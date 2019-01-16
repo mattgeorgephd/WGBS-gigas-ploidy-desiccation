@@ -22,7 +22,7 @@ dCt<-read.csv("data/qpcr_ct_values/qpcr_data_consolidated.csv", header=T)
 dCt<-cSplit(dCt,"Sample", sep= "_", drop=F)
 
 #rename columns appropriately
-dCt<-rename(dCt,replace=c("Sample_1"="Ploidy","Sample_2"="Desiccation","Sample_3"="HeatShock","Sample_4"="Sample"))
+dCt<-rename(dCt,replace=c("Sample_1"="Ploidy","Sample_2"="Desiccation","Sample_3"="HeatShock","Sample_4"="SampleNum"))
 
 #calculate normalized expression of target gene Ct relative to actin Ct using: 2^-(delta Ct)
 dCt$HSC70<-2^-(dCt$HSC70-dCt$Actin)
@@ -93,16 +93,15 @@ summary(MBD23)
 
 #graph all normalized Ct values to produce boxplots to visualize data
 
-ggplot(data=dCt)+geom_boxplot(aes(x=Treat, y=HSC70,fill=Pop))+theme_bw()+
+ggplot(data=dCt)+geom_boxplot(aes(x=Desiccation, y=HSC70,fill=Ploidy))+theme_bw()+
   scale_fill_grey(start=0.37, end=.9,
-                  labels=c("Dabob Bay","Fidalgo Bay","Oyster Bay"))+
+                  labels=c("Diploid","Triploid"))+
   guides(fill=guide_legend(title="Population"))+
   theme(axis.text.x=element_text(size=20), axis.text.y=element_text(size=20),
         axis.title.x=element_text(size=25), axis.title.y=element_text(size=25),
         legend.position=c(.09,.87),panel.grid.major=element_blank(),
         legend.key=element_rect(fill=NA))+
-  ylim(c(0,0.3))+scale_x_discrete(labels=c("Control","Mechanical","Temperature"))+
-  annotate("text",x=c("C","M","T"), y=0.3, label=c("A", "A", "B"), size=10)+
+  ylim(c(0,0.023))+scale_x_discrete(labels=c("Dessicated + Elevated Temp.","Control"))+
   labs(x="Treatment", y=expression(paste("HSC70 Expression (",Delta,"Ct)")))
 
 
