@@ -19,10 +19,10 @@ require(splitstackshape)
 dCt<-read.csv("data/qpcr_ct_values/qpcr_data_consolidated.csv", header=T)
 
 #Split SAMPLE_ID column to create columns for population, treatment, and sample number
-dCt<-cSplit(dCt,"SAMPLE_ID", sep= "_", drop=F)
+dCt<-cSplit(dCt,"Sample", sep= "_", drop=F)
 
 #rename columns appropriately
-dCt<-rename(dCt,replace=c("SAMPLE_ID_1"="Pop","SAMPLE_ID_2"="Treat","SAMPLE_ID_3"="Sample"))
+dCt<-rename(dCt,replace=c("Sample_1"="Ploidy","Sample_2"="Desiccation","Sample_3"="HeatShock","Sample_4"="Sample"))
 
 #calculate normalized expression of target gene Ct relative to actin Ct using: 2^-(delta Ct)
 dCt$CARM<-2^-(dCt$CarmCt-dCt$Actinct)
