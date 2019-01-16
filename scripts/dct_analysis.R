@@ -2,7 +2,7 @@
   #
   #UNCOMMENT the lines below if you do have the packages already installed
   #
-  install.packages("ggplot2")
+install.packages("ggplot2")
 install.packages("plyr")
 install.packages("splitstackshape")
 
@@ -11,12 +11,9 @@ install.packages("splitstackshape")
   
   
   #Necessary Packages to manipulate data and plot values. 
-  require(plyr)
+require(plyr)
 require(ggplot2)
 require(splitstackshape)
-
-#set working directory
-setwd("~/Downloads/")
 
 #Read in  Ct value table
 dCt<-read.csv("~/Downloads/ct-values-2015.csv", header=T)
