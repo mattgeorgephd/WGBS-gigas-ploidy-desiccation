@@ -16,7 +16,7 @@ require(ggplot2)
 require(splitstackshape)
 
 #Read in  Ct value table
-dCt<-read.csv("~/Downloads/ct-values-2015.csv", header=T)
+dCt<-read.csv("data/qpcr_ct_values/qpcr_data_consolidated.csv", header=T)
 
 #Split SAMPLE_ID column to create columns for population, treatment, and sample number
 dCt<-cSplit(dCt,"SAMPLE_ID", sep= "_", drop=F)
