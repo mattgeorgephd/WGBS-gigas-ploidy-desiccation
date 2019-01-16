@@ -104,102 +104,91 @@ ggplot(data=dCt)+geom_boxplot(aes(x=Desiccation, y=HSC70,fill=Ploidy))+theme_bw(
   ylim(c(0,0.023))+scale_x_discrete(labels=c("Dessicated + Elevated Temp.","Control"))+
   labs(x="Treatment", y=expression(paste("HSC70 Expression (",Delta,"Ct)")))
 
-
-ggplot(data=dCt)+geom_boxplot(aes(x=Treat, y=DNMT1, fill=Pop))+theme_bw()+
+ggplot(data=dCt)+geom_boxplot(aes(x=Desiccation, y=DNMT1,fill=Ploidy))+theme_bw()+
   scale_fill_grey(start=0.37, end=.9,
-                  labels=c("Dabob Bay","Fidalgo Bay","Oyster Bay"))+
+                  labels=c("Diploid","Triploid"))+
   guides(fill=guide_legend(title="Population"))+
   theme(axis.text.x=element_text(size=20), axis.text.y=element_text(size=20),
         axis.title.x=element_text(size=25), axis.title.y=element_text(size=25),
         legend.position=c(.09,.87),panel.grid.major=element_blank(),
         legend.key=element_rect(fill=NA))+
-  ylim(c(0,0.005))+scale_x_discrete(labels=c("Control","Mechanical","Temperature"))+
+  ylim(c(0,0.001))+scale_x_discrete(labels=c("Dessicated + Elevated Temp.","Control"))+
   labs(x="Treatment", y=expression(paste("DNMT1 Expression (",Delta,"Ct)")))
 
-ggplot(data=dCt)+geom_boxplot(aes(x=Treat, y=MeCP2,fill=Pop))+theme_bw()+
+ggplot(data=dCt)+geom_boxplot(aes(x=Desiccation, y=MBD2,fill=Ploidy))+theme_bw()+
   scale_fill_grey(start=0.37, end=.9,
-                  labels=c("Dabob Bay","Fidalgo Bay","Oyster Bay"))+
+                  labels=c("Diploid","Triploid"))+
   guides(fill=guide_legend(title="Population"))+
   theme(axis.text.x=element_text(size=20), axis.text.y=element_text(size=20),
         axis.title.x=element_text(size=25), axis.title.y=element_text(size=25),
         legend.position=c(.09,.87),panel.grid.major=element_blank(),
         legend.key=element_rect(fill=NA))+
-  ylim(c(0,1.9))+scale_x_discrete(labels=c("Control","Mechanical","Temperature"))+
-  annotate("text",x=c("C","M","T"), y=1.9, label=c("A", "A", "B"), size=10)+
-  annotate("text",x=c(1.25,3.25), y=1.85, label=c("*","*"), size=12)+
+  ylim(c(0,0.0005))+scale_x_discrete(labels=c("Dessicated + Elevated Temp.","Control"))+
+  labs(x="Treatment", y=expression(paste("MBD2 Expression (",Delta,"Ct)")))
+
+ggplot(data=dCt)+geom_boxplot(aes(x=Desiccation, y=MBD2,fill=Ploidy))+theme_bw()+
+  scale_fill_grey(start=0.37, end=.9,
+                  labels=c("Diploid","Triploid"))+
+  guides(fill=guide_legend(title="Population"))+
+  theme(axis.text.x=element_text(size=20), axis.text.y=element_text(size=20),
+        axis.title.x=element_text(size=25), axis.title.y=element_text(size=25),
+        legend.position=c(.09,.87),panel.grid.major=element_blank(),
+        legend.key=element_rect(fill=NA))+
+  ylim(c(0,0.0005))+scale_x_discrete(labels=c("Dessicated + Elevated Temp.","Control"))+
+  labs(x="Treatment", y=expression(paste("MBD2 Expression (",Delta,"Ct)")))
+
+ggplot(data=dCt)+geom_boxplot(aes(x=Desiccation, y=MeCP2,fill=Ploidy))+theme_bw()+
+  scale_fill_grey(start=0.37, end=.9,
+                  labels=c("Diploid","Triploid"))+
+  guides(fill=guide_legend(title="Population"))+
+  theme(axis.text.x=element_text(size=20), axis.text.y=element_text(size=20),
+        axis.title.x=element_text(size=25), axis.title.y=element_text(size=25),
+        legend.position=c(.09,.87),panel.grid.major=element_blank(),
+        legend.key=element_rect(fill=NA))+
+  ylim(c(0,0.00075))+scale_x_discrete(labels=c("Dessicated + Elevated Temp.","Control"))+
   labs(x="Treatment", y=expression(paste("MeCP2 Expression (",Delta,"Ct)")))
 
-ggplot(data=dCt)+geom_boxplot(aes(x=Treat, y=HIF1A,fill=Pop))+theme_bw()+
+ggplot(data=dCt)+geom_boxplot(aes(x=Desiccation, y=HIF1A,fill=Ploidy))+theme_bw()+
   scale_fill_grey(start=0.37, end=.9,
-                  labels=c("Dabob Bay","Fidalgo Bay","Oyster Bay"))+
+                  labels=c("Diploid","Triploid"))+
   guides(fill=guide_legend(title="Population"))+
   theme(axis.text.x=element_text(size=20), axis.text.y=element_text(size=20),
         axis.title.x=element_text(size=25), axis.title.y=element_text(size=25),
         legend.position=c(.09,.87),panel.grid.major=element_blank(),
         legend.key=element_rect(fill=NA))+
-  ylim(c(0,0.005))+scale_x_discrete(labels=c("Control","Mechanical","Temperature"))+
+  ylim(c(0,0.00075))+scale_x_discrete(labels=c("Dessicated + Elevated Temp.","Control"))+
   labs(x="Treatment", y=expression(paste("HIF1A Expression (",Delta,"Ct)")))
 
-ggplot(data=dCt)+geom_boxplot(aes(x=Treat, y=HATHaP2,fill=Pop))+theme_bw()+
+ggplot(data=dCt)+geom_boxplot(aes(x=Desiccation, y=HATHaP2,fill=Ploidy))+theme_bw()+
   scale_fill_grey(start=0.37, end=.9,
-                  labels=c("Dabob Bay","Fidalgo Bay","Oyster Bay"))+
+                  labels=c("Diploid","Triploid"))+
   guides(fill=guide_legend(title="Population"))+
   theme(axis.text.x=element_text(size=20), axis.text.y=element_text(size=20),
         axis.title.x=element_text(size=25), axis.title.y=element_text(size=25),
-        legend.position=c(.09,.80),panel.grid.major=element_blank(),
+        legend.position=c(.09,.87),panel.grid.major=element_blank(),
         legend.key=element_rect(fill=NA))+
-  ylim(c(0,.5))+scale_x_discrete(labels=c("Control","Mechanical","Temperature"))+
-  annotate("text",x=c("C","M","T"), y=.5, label=c("AB", "A", "B"), size=10)+
-  annotate("text",x=c(2.25,3.25), y=.4, label=c("*","*"), size=12)+
+  ylim(c(0,0.005))+scale_x_discrete(labels=c("Dessicated + Elevated Temp.","Control"))+
   labs(x="Treatment", y=expression(paste("HATHaP2 Expression (",Delta,"Ct)")))
 
-ggplot(data=dCt)+geom_boxplot(aes(x=Treat, y=HAT,fill=Pop))+theme_bw()+
+ggplot(data=dCt)+geom_boxplot(aes(x=Desiccation, y=HAT,fill=Ploidy))+theme_bw()+
   scale_fill_grey(start=0.37, end=.9,
-                  labels=c("Dabob Bay","Fidalgo Bay","Oyster Bay"))+
+                  labels=c("Diploid","Triploid"))+
   guides(fill=guide_legend(title="Population"))+
   theme(axis.text.x=element_text(size=20), axis.text.y=element_text(size=20),
         axis.title.x=element_text(size=25), axis.title.y=element_text(size=25),
         legend.position=c(.09,.87),panel.grid.major=element_blank(),
         legend.key=element_rect(fill=NA))+
-  ylim(c(0,2.5))+scale_x_discrete(labels=c("Control","Mechanical","Temperature"))+
-  annotate("text",x=c(1.25,2.25), y=2.5, label=c("*","*"), size=12)+
+  ylim(c(0,0.00075))+scale_x_discrete(labels=c("Dessicated + Elevated Temp.","Control"))+
   labs(x="Treatment", y=expression(paste("HAT Expression (",Delta,"Ct)")))
 
-ggplot(data=dCt)+geom_boxplot(aes(x=Treat, y=HSP90,fill=Pop))+theme_bw()+
+ggplot(data=dCt)+geom_boxplot(aes(x=Desiccation, y=HSP90,fill=Ploidy))+theme_bw()+
   scale_fill_grey(start=0.37, end=.9,
-                  labels=c("Dabob Bay","Fidalgo Bay","Oyster Bay"))+
+                  labels=c("Diploid","Triploid"))+
   guides(fill=guide_legend(title="Population"))+
   theme(axis.text.x=element_text(size=20), axis.text.y=element_text(size=20),
         axis.title.x=element_text(size=25), axis.title.y=element_text(size=25),
         legend.position=c(.09,.87),panel.grid.major=element_blank(),
         legend.key=element_rect(fill=NA))+
-  ylim(c(0,1.5))+scale_x_discrete(labels=c("Control","Mechanical","Temperature"))+
-  annotate("text",x=c(1.25,2.25), y=1.27, label=c("*","*"), size=12)+
+  ylim(c(0,0.03))+scale_x_discrete(labels=c("Dessicated + Elevated Temp.","Control"))+
   labs(x="Treatment", y=expression(paste("HSP90 Expression (",Delta,"Ct)")))
-
-ggplot(data=dCt)+geom_boxplot(aes(x=Treat, y=PGEEP4,fill=Pop))+theme_bw()+
-  scale_fill_grey(start=0.37, end=.9,
-                  labels=c("Dabob Bay","Fidalgo Bay","Oyster Bay"))+
-  guides(fill=guide_legend(title="Population"))+
-  theme(axis.text.x=element_text(size=20), axis.text.y=element_text(size=20),
-        axis.title.x=element_text(size=25), axis.title.y=element_text(size=25),
-        legend.position=c(.09,.87),panel.grid.major=element_blank(),
-        legend.key=element_rect(fill=NA))+
-  ylim(c(0,0.15))+scale_x_discrete(labels=c("Control","Mechanical","Temperature"))+
-  labs(x="Treatment", y=expression(paste("PGEEP4 Expression (",Delta,"Ct)")))
-
-ggplot(data=dCt)+geom_boxplot(aes(x=Treat, y=MBD2,fill=Pop))+theme_bw()+
-  scale_fill_grey(start=0.37, end=.9,
-                  labels=c("Dabob Bay","Fidalgo Bay","Oyster Bay"))+
-  guides(fill=guide_legend(title="Population"))+
-  theme(axis.text.x=element_text(size=20), axis.text.y=element_text(size=20),
-        axis.title.x=element_text(size=25), axis.title.y=element_text(size=25),
-        legend.position=c(.09,.87),panel.grid.major=element_blank(),
-        legend.key=element_rect(fill=NA))+
-  ylim(c(0,.3))+scale_x_discrete(labels=c("Control","Mechanical","Temperature"))+
-  annotate("text",x=c("C","M","T"), y=.3, label=c("A", "B", "AB"), size=10)+
-  labs(x="Treatment", y=expression(paste("MBD23 Expression (",Delta,"Ct)")))
-
-
-
 
