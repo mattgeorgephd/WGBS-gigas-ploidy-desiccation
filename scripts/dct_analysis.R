@@ -6,10 +6,6 @@ install.packages("ggplot2")
 install.packages("plyr")
 install.packages("splitstackshape")
 
-
-
-  
-  
   #Necessary Packages to manipulate data and plot values. 
 require(plyr)
 require(ggplot2)
