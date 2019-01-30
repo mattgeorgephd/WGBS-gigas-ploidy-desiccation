@@ -145,7 +145,7 @@ ggplot(data=dCt)+geom_boxplot(aes(x=Desiccation, y=MeCP2,fill=Ploidy))+theme_bw(
         axis.title.x=element_text(size=25), axis.title.y=element_text(size=25),
         legend.position=c(.09,.87),panel.grid.major=element_blank(),
         legend.key=element_rect(fill=NA))+
-  ylim(c(0,0.00075))+scale_x_discrete(labels=c("Dessicated + Elevated Temp.","Control"))+
+  ylim(c(0,0.002))+scale_x_discrete(labels=c("Dessicated + Elevated Temp.","Control"))+
   labs(x="Treatment", y=expression(paste("MeCP2 Expression (",Delta,"Ct)")))
 
 ggplot(data=dCt)+geom_boxplot(aes(x=Desiccation, y=HIF1A,fill=Ploidy))+theme_bw()+
