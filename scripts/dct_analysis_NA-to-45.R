@@ -36,6 +36,7 @@ dCt$SOD<-2^-(dCt$SOD-dCt$Actin)
 dCt$ATPsynthetase<-2^-(dCt$ATPsynthetase-dCt$Actin)
 
 
+
 #log transform the data to develop normality in data
 dCt$HSC70log<-log(dCt$HSC70)
 dCt$DNMT1log<-log(dCt$DNMT1)
@@ -47,6 +48,8 @@ dCt$HSP90log<-log(dCt$HSP90)
 dCt$MBD2log<-log(dCt$MBD2)
 dCt$SODlog<-log(dCt$SOD)
 dCt$ATPsynthetaselog<-log(dCt$ATPsynthetase)
+dCt$COX1log<-log(dCt$COX1)
+
 
 #Run ANOVA's on all log transformed data as well as Tukey's Honestly Significant Difference post hoc test
 HSC70<-aov(HSC70log~Ploidy+Desiccation+Ploidy:Desiccation, data=dCt)
@@ -93,6 +96,13 @@ ATPsynthetase<-aov(ATPsynthetaselog~Ploidy+Desiccation+Ploidy:Desiccation, data=
 ATPsynthetase
 TukeyHSD(ATPsynthetase)
 summary(ATPsynthetase)
+
+COX1<-aov(COX1log~Ploidy+Desiccation+Ploidy:Desiccation, data=dCt)
+COX1
+TukeyHSD(COX1)
+summary(COX1)
+
+
 
 
 #graph all normalized Ct values to produce boxplots to visualize data
@@ -218,7 +228,7 @@ ggplot(data=dCt)+geom_boxplot(aes(x=Desiccation, y=ATPsynthetase,fill=Ploidy))+t
   ylim(c(0,0.003))+scale_x_discrete(labels=c("Control","Desiccation + Elevated Temp."))+
   labs(x="Treatment", y=expression(paste("ATP Synthetase Expression (",Delta,"Ct)")))
 
-ggplot(data=dCt)+geom_boxplot(aes(x=Desiccation, y=ATPsynthetase,fill=Ploidy))+theme_bw()+
+ggplot(data=dCt)+geom_boxplot(aes(x=Desiccation, y=COX1,fill=Ploidy))+theme_bw()+
   scale_fill_grey(start=0.37, end=.9,
                   labels=c("Diploid","Triploid"))+
   guides(fill=guide_legend(title="Ploidy"))+
@@ -226,8 +236,8 @@ ggplot(data=dCt)+geom_boxplot(aes(x=Desiccation, y=ATPsynthetase,fill=Ploidy))+t
         axis.title.x=element_text(size=20), axis.title.y=element_text(size=20),
         legend.position=c(.09,.87),panel.grid.major=element_blank(),
         legend.key=element_rect(fill = NA))+
-  ylim(c(0,0.003))+scale_x_discrete(labels=c("Control","Desiccation + Elevated Temp."))+
-  labs(x="Treatment", y=expression(paste("ATP Synthetase Expression (",Delta,"Ct)")))
+  ylim(c(20, 23))+scale_x_discrete(labels=c("Control","Desiccation + Elevated Temp."))+
+  labs(x="Treatment", y=expression(paste("COX1 Cq Value")))
 
 
 
