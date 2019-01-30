@@ -1,12 +1,12 @@
 
-  #
-  #UNCOMMENT the lines below if you do have the packages already installed
-  #
+#
+#UNCOMMENT the lines below if you do have the packages already installed
+#
 install.packages("ggplot2")
 install.packages("plyr")
 install.packages("splitstackshape")
 
-  #Necessary Packages to manipulate data and plot values. 
+#Necessary Packages to manipulate data and plot values. 
 require(plyr)
 require(ggplot2)
 require(splitstackshape)
@@ -19,6 +19,9 @@ dCt<-cSplit(dCt,"Sample", sep= "_", drop=F)
 
 #rename columns appropriately
 dCt<-rename(dCt,replace=c("Sample_1"="Ploidy","Sample_2"="Desiccation","Sample_3"="HeatShock","Sample_4"="SampleNum"))
+
+#change NA to 45
+dCt[is.na(dCt)] <- 45
 
 #calculate normalized expression of target gene Ct relative to actin Ct using: 2^-(delta Ct)
 dCt$HSC70<-2^-(dCt$HSC70-dCt$Actin)
@@ -133,11 +136,7 @@ ggplot(data=dCt)+geom_boxplot(aes(x=Desiccation, y=MeCP2,fill=Ploidy))+theme_bw(
         axis.title.x=element_text(size=20), axis.title.y=element_text(size=20),
         legend.position=c(.09,.87),panel.grid.major=element_blank(),
         legend.key=element_rect(fill=NA))+
-<<<<<<< HEAD
-  ylim(c(0,0.002))+scale_x_discrete(labels=c("Dessicated + Elevated Temp.","Control"))+
-=======
   ylim(c(0,0.00075))+scale_x_discrete(labels=c("Desiccated + Elevated Temp.","Control"))+
->>>>>>> 8b8bf5e62dcbc30895d3a87125404ede2d66328d
   labs(x="Treatment", y=expression(paste("MeCP2 Expression (",Delta,"Ct)")))
 
 ggplot(data=dCt)+geom_boxplot(aes(x=Desiccation, y=HIF1A,fill=Ploidy))+theme_bw()+
