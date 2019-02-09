@@ -111,8 +111,8 @@ ggplot(data=dCt)+geom_boxplot(aes(x=Desiccation, y=HSC70,fill=Ploidy))+theme_bw(
   scale_fill_manual(values=c("#31C4ED", "#62D12B"),
                   labels=c("Diploid","Triploid"))+
   guides(fill=guide_legend(title="Ploidy"))+
-  theme(axis.text.x=element_text(size=13), axis.text.y=element_text(size=13),
-        axis.title.x=element_text(size=20), axis.title.y=element_text(size=20),
+  theme(axis.text.x=element_text(size=15), axis.text.y=element_text(size=13),
+        axis.title.x=element_text(size=19), axis.title.y=element_text(size=20),
         legend.position=c(.09,.87),panel.grid.major=element_blank(),
         legend.key=element_rect(fill=NA))+
   ylim(c(0,0.023))+scale_x_discrete(labels=c("Control","Desiccation + Elevated Temp."))+
@@ -122,8 +122,8 @@ ggplot(data=dCt)+geom_boxplot(aes(x=Desiccation, y=DNMT1,fill=Ploidy))+theme_bw(
   scale_fill_manual(values=c("#31C4ED", "#62D12B"),
                   labels=c("Diploid","Triploid"))+
   guides(fill=guide_legend(title="Ploidy"))+
-  theme(axis.text.x=element_text(size=13), axis.text.y=element_text(size=13),
-        axis.title.x=element_text(size=20), axis.title.y=element_text(size=20),
+  theme(axis.text.x=element_text(size=15), axis.text.y=element_text(size=13),
+        axis.title.x=element_text(size=19), axis.title.y=element_text(size=20),
         legend.position=c(.09,.87),panel.grid.major=element_blank(),
         legend.key=element_rect(fill=NA))+
   ylim(c(0,0.001))+scale_x_discrete(labels=c("Control","Desiccation + Elevated Temp."))+
@@ -133,96 +133,96 @@ ggplot(data=dCt)+geom_boxplot(aes(x=Desiccation, y=MBD2,fill=Ploidy))+theme_bw()
   scale_fill_manual(values=c("#31C4ED", "#62D12B"),
                   labels=c("Diploid","Triploid"))+
   guides(fill=guide_legend(title="Ploidy"))+
-  theme(axis.text.x=element_text(size=13), axis.text.y=element_text(size=13),
-        axis.title.x=element_text(size=20), axis.title.y=element_text(size=20),
+  theme(axis.text.x=element_text(size=15), axis.text.y=element_text(size=13),
+        axis.title.x=element_text(size=19), axis.title.y=element_text(size=20),
         legend.position=c(.09,.87),panel.grid.major=element_blank(),
         legend.key=element_rect(fill=NA))+
-  ylim(c(0,0.0003))+scale_x_discrete(labels=c("Control","Desiccation + Elevated Temp."))+
+  ylim(c(0,0.0002))+scale_x_discrete(labels=c("Control","Desiccation + Elevated Temp."))+
   labs(x="Treatment", y=expression(paste("MBD2 Expression (",Delta,"Ct)")))
 
 ggplot(data=dCt)+geom_boxplot(aes(x=Desiccation, y=MeCP2,fill=Ploidy))+theme_bw()+
   scale_fill_manual(values=c("#31C4ED", "#62D12B"),
                   labels=c("Diploid","Triploid"))+
   guides(fill=guide_legend(title="Ploidy"))+
-  theme(axis.text.x=element_text(size=13), axis.text.y=element_text(size=13),
-        axis.title.x=element_text(size=20), axis.title.y=element_text(size=20),
+  theme(axis.text.x=element_text(size=15), axis.text.y=element_text(size=13),
+        axis.title.x=element_text(size=19), axis.title.y=element_text(size=20),
         legend.position=c(.09,.87),panel.grid.major=element_blank(),
         legend.key=element_rect(fill=NA))+
-  ylim(c(0,0.0003))+scale_x_discrete(labels=c("Control","Desiccation + Elevated Temp."))+
+  ylim(c(0,0.0004))+scale_x_discrete(labels=c("Control","Desiccation + Elevated Temp."))+
   labs(x="Treatment", y=expression(paste("MeCP2 Expression (",Delta,"Ct)")))
 
 ggplot(data=dCt)+geom_boxplot(aes(x=Desiccation, y=HIF1A,fill=Ploidy))+theme_bw()+
   scale_fill_manual(values=c("#31C4ED", "#62D12B"),
                   labels=c("Diploid","Triploid"))+
   guides(fill=guide_legend(title="Ploidy"))+
-  theme(axis.text.x=element_text(size=13), axis.text.y=element_text(size=13),
-        axis.title.x=element_text(size=20), axis.title.y=element_text(size=20),
+  theme(axis.text.x=element_text(size=15), axis.text.y=element_text(size=13),
+        axis.title.x=element_text(size=19), axis.title.y=element_text(size=20),
         legend.position=c(.09,.87),panel.grid.major=element_blank(),
         legend.key=element_rect(fill=NA))+
-  ylim(c(0,0.00075))+scale_x_discrete(labels=c("Control","Desiccation + Elevated Temp."))+
+  ylim(c(0,0.0004))+scale_x_discrete(labels=c("Control","Desiccation + Elevated Temp."))+
   labs(x="Treatment", y=expression(paste("HIF1A Expression (",Delta,"Ct)")))
 
 ggplot(data=dCt)+geom_boxplot(aes(x=Desiccation, y=HATHaP2,fill=Ploidy))+theme_bw()+
   scale_fill_manual(values=c("#31C4ED", "#62D12B"),
                   labels=c("Diploid","Triploid"))+
   guides(fill=guide_legend(title="Ploidy"))+
-  theme(axis.text.x=element_text(size=13), axis.text.y=element_text(size=13),
-        axis.title.x=element_text(size=20), axis.title.y=element_text(size=20),
+  theme(axis.text.x=element_text(size=15), axis.text.y=element_text(size=13),
+        axis.title.x=element_text(size=19), axis.title.y=element_text(size=20),
         legend.position=c(.09,.87),panel.grid.major=element_blank(),
         legend.key=element_rect(fill=NA))+
-  ylim(c(0,0.02))+scale_x_discrete(labels=c("Control","Desiccation + Elevated Temp."))+
+  ylim(c(0,0.013))+scale_x_discrete(labels=c("Control","Desiccation + Elevated Temp."))+
   labs(x="Treatment", y=expression(paste("HATHaP2 Expression (",Delta,"Ct)")))
 
 ggplot(data=dCt)+geom_boxplot(aes(x=Desiccation, y=HAT,fill=Ploidy))+theme_bw()+
   scale_fill_manual(values=c("#31C4ED", "#62D12B"),
                   labels=c("Diploid","Triploid"))+
   guides(fill=guide_legend(title="Ploidy"))+
-  theme(axis.text.x=element_text(size=13), axis.text.y=element_text(size=13),
-        axis.title.x=element_text(size=20), axis.title.y=element_text(size=20),
+  theme(axis.text.x=element_text(size=15), axis.text.y=element_text(size=13),
+        axis.title.x=element_text(size=19), axis.title.y=element_text(size=20),
         legend.position=c(.09,.87),panel.grid.major=element_blank(),
         legend.key=element_rect(fill=NA))+
-  ylim(c(0,0.0004))+scale_x_discrete(labels=c("Control","Desiccation + Elevated Temp."))+
+  ylim(c(0,0.0003))+scale_x_discrete(labels=c("Control","Desiccation + Elevated Temp."))+
   labs(x="Treatment", y=expression(paste("HAT Expression (",Delta,"Ct)")))
 
 ggplot(data=dCt)+geom_boxplot(aes(x=Desiccation, y=HSP90,fill=Ploidy))+theme_bw()+
   scale_fill_manual(values=c("#31C4ED", "#62D12B"),
                   labels=c("Diploid","Triploid"))+
   guides(fill=guide_legend(title="Ploidy"))+
-  theme(axis.text.x=element_text(size=13), axis.text.y=element_text(size=13),
-        axis.title.x=element_text(size=20), axis.title.y=element_text(size=20),
+  theme(axis.text.x=element_text(size=15), axis.text.y=element_text(size=13),
+        axis.title.x=element_text(size=19), axis.title.y=element_text(size=20),
         legend.position=c(.09,.87),panel.grid.major=element_blank(),
         legend.key=element_rect(fill = NA))+
-  ylim(c(0,0.025))+scale_x_discrete(labels=c("Control","Desiccation + Elevated Temp."))+
+  ylim(c(0,0.013))+scale_x_discrete(labels=c("Control","Desiccation + Elevated Temp."))+
   labs(x="Treatment", y=expression(paste("HSP90 Expression (",Delta,"Ct)")))
 
 ggplot(data=dCt)+geom_boxplot(aes(x=Desiccation, y=SOD,fill=Ploidy))+theme_bw()+
   scale_fill_manual(values=c("#31C4ED", "#62D12B"),
                   labels=c("Diploid","Triploid"))+
   guides(fill=guide_legend(title="Ploidy"))+
-  theme(axis.text.x=element_text(size=13), axis.text.y=element_text(size=13),
-        axis.title.x=element_text(size=20), axis.title.y=element_text(size=20),
+  theme(axis.text.x=element_text(size=15), axis.text.y=element_text(size=13),
+        axis.title.x=element_text(size=19), axis.title.y=element_text(size=20),
         legend.position=c(.09,.87),panel.grid.major=element_blank(),
         legend.key=element_rect(fill = NA))+
-  ylim(c(0,0.5))+scale_x_discrete(labels=c("Control","Desiccation + Elevated Temp."))+
+  ylim(c(0,0.4))+scale_x_discrete(labels=c("Control","Desiccation + Elevated Temp."))+
   labs(x="Treatment", y=expression(paste("SOD Expression (",Delta,"Ct)")))
 
 ggplot(data=dCt)+geom_boxplot(aes(x=Desiccation, y=ATPsynthetase,fill=Ploidy))+theme_bw()+
   scale_fill_manual(values=c("#31C4ED", "#62D12B"),
                   labels=c("Diploid","Triploid"))+
   guides(fill=guide_legend(title="Ploidy"))+
-  theme(axis.text.x=element_text(size=13), axis.text.y=element_text(size=13),
-        axis.title.x=element_text(size=20), axis.title.y=element_text(size=20),
+  theme(axis.text.x=element_text(size=15), axis.text.y=element_text(size=13),
+        axis.title.x=element_text(size=19), axis.title.y=element_text(size=18),
         legend.position=c(.09,.87),panel.grid.major=element_blank(),
         legend.key=element_rect(fill = NA))+
-  ylim(c(0,0.002))+scale_x_discrete(labels=c("Control","Desiccation + Elevated Temp."))+
+  ylim(c(0,0.0016))+scale_x_discrete(labels=c("Control","Desiccation + Elevated Temp."))+
   labs(x="Treatment", y=expression(paste("ATP Synthetase Expression (",Delta,"Ct)")))
 
 ggplot(data=dCt)+geom_boxplot(aes(x=Desiccation, y=COX1,fill=Ploidy))+theme_bw()+
   scale_fill_manual(values=c("#31C4ED", "#62D12B"),
                   labels=c("Diploid","Triploid"))+
   guides(fill=guide_legend(title="Ploidy"))+
-  theme(axis.text.x=element_text(size=13), axis.text.y=element_text(size=13),
-        axis.title.x=element_text(size=20), axis.title.y=element_text(size=20),
+  theme(axis.text.x=element_text(size=15), axis.text.y=element_text(size=13),
+        axis.title.x=element_text(size=19), axis.title.y=element_text(size=20),
         legend.position=c(.09,.87),panel.grid.major=element_blank(),
         legend.key=element_rect(fill = NA))+
   ylim(c(21, 22))+scale_x_discrete(labels=c("Control","Desiccation + Elevated Temp."))+
