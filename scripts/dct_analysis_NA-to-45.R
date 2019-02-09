@@ -108,7 +108,7 @@ summary(COX1)
 #graph all normalized Ct values to produce boxplots to visualize data
 
 ggplot(data=dCt)+geom_boxplot(aes(x=Desiccation, y=HSC70,fill=Ploidy))+theme_bw()+
-  scale_fill_grey(start=0.37, end=.9,
+  scale_fill_manual(values=c("#31C4ED", "#62D12B"),
                   labels=c("Diploid","Triploid"))+
   guides(fill=guide_legend(title="Ploidy"))+
   theme(axis.text.x=element_text(size=13), axis.text.y=element_text(size=13),
@@ -119,7 +119,7 @@ ggplot(data=dCt)+geom_boxplot(aes(x=Desiccation, y=HSC70,fill=Ploidy))+theme_bw(
   labs(x="Treatment", y=expression(paste("HSC70 Expression (",Delta,"Ct)")))
 
 ggplot(data=dCt)+geom_boxplot(aes(x=Desiccation, y=DNMT1,fill=Ploidy))+theme_bw()+
-  scale_fill_grey(start=0.37, end=.9,
+  scale_fill_manual(values=c("#31C4ED", "#62D12B"),
                   labels=c("Diploid","Triploid"))+
   guides(fill=guide_legend(title="Ploidy"))+
   theme(axis.text.x=element_text(size=13), axis.text.y=element_text(size=13),
@@ -130,7 +130,7 @@ ggplot(data=dCt)+geom_boxplot(aes(x=Desiccation, y=DNMT1,fill=Ploidy))+theme_bw(
   labs(x="Treatment", y=expression(paste("DNMT1 Expression (",Delta,"Ct)")))
 
 ggplot(data=dCt)+geom_boxplot(aes(x=Desiccation, y=MBD2,fill=Ploidy))+theme_bw()+
-  scale_fill_grey(start=0.37, end=.9,
+  scale_fill_manual(values=c("#31C4ED", "#62D12B"),
                   labels=c("Diploid","Triploid"))+
   guides(fill=guide_legend(title="Ploidy"))+
   theme(axis.text.x=element_text(size=13), axis.text.y=element_text(size=13),
@@ -141,7 +141,7 @@ ggplot(data=dCt)+geom_boxplot(aes(x=Desiccation, y=MBD2,fill=Ploidy))+theme_bw()
   labs(x="Treatment", y=expression(paste("MBD2 Expression (",Delta,"Ct)")))
 
 ggplot(data=dCt)+geom_boxplot(aes(x=Desiccation, y=MeCP2,fill=Ploidy))+theme_bw()+
-  scale_fill_grey(start=0.37, end=.9,
+  scale_fill_manual(values=c("#31C4ED", "#62D12B"),
                   labels=c("Diploid","Triploid"))+
   guides(fill=guide_legend(title="Ploidy"))+
   theme(axis.text.x=element_text(size=13), axis.text.y=element_text(size=13),
@@ -152,7 +152,7 @@ ggplot(data=dCt)+geom_boxplot(aes(x=Desiccation, y=MeCP2,fill=Ploidy))+theme_bw(
   labs(x="Treatment", y=expression(paste("MeCP2 Expression (",Delta,"Ct)")))
 
 ggplot(data=dCt)+geom_boxplot(aes(x=Desiccation, y=HIF1A,fill=Ploidy))+theme_bw()+
-  scale_fill_grey(start=0.37, end=.9,
+  scale_fill_manual(values=c("#31C4ED", "#62D12B"),
                   labels=c("Diploid","Triploid"))+
   guides(fill=guide_legend(title="Ploidy"))+
   theme(axis.text.x=element_text(size=13), axis.text.y=element_text(size=13),
@@ -163,7 +163,7 @@ ggplot(data=dCt)+geom_boxplot(aes(x=Desiccation, y=HIF1A,fill=Ploidy))+theme_bw(
   labs(x="Treatment", y=expression(paste("HIF1A Expression (",Delta,"Ct)")))
 
 ggplot(data=dCt)+geom_boxplot(aes(x=Desiccation, y=HATHaP2,fill=Ploidy))+theme_bw()+
-  scale_fill_grey(start=0.37, end=.9,
+  scale_fill_manual(values=c("#31C4ED", "#62D12B"),
                   labels=c("Diploid","Triploid"))+
   guides(fill=guide_legend(title="Ploidy"))+
   theme(axis.text.x=element_text(size=13), axis.text.y=element_text(size=13),
@@ -174,7 +174,7 @@ ggplot(data=dCt)+geom_boxplot(aes(x=Desiccation, y=HATHaP2,fill=Ploidy))+theme_b
   labs(x="Treatment", y=expression(paste("HATHaP2 Expression (",Delta,"Ct)")))
 
 ggplot(data=dCt)+geom_boxplot(aes(x=Desiccation, y=HAT,fill=Ploidy))+theme_bw()+
-  scale_fill_grey(start=0.37, end=.9,
+  scale_fill_manual(values=c("#31C4ED", "#62D12B"),
                   labels=c("Diploid","Triploid"))+
   guides(fill=guide_legend(title="Ploidy"))+
   theme(axis.text.x=element_text(size=13), axis.text.y=element_text(size=13),
@@ -185,7 +185,7 @@ ggplot(data=dCt)+geom_boxplot(aes(x=Desiccation, y=HAT,fill=Ploidy))+theme_bw()+
   labs(x="Treatment", y=expression(paste("HAT Expression (",Delta,"Ct)")))
 
 ggplot(data=dCt)+geom_boxplot(aes(x=Desiccation, y=HSP90,fill=Ploidy))+theme_bw()+
-  scale_fill_grey(start=0.37, end=.9,
+  scale_fill_manual(values=c("#31C4ED", "#62D12B"),
                   labels=c("Diploid","Triploid"))+
   guides(fill=guide_legend(title="Ploidy"))+
   theme(axis.text.x=element_text(size=13), axis.text.y=element_text(size=13),
@@ -196,7 +196,7 @@ ggplot(data=dCt)+geom_boxplot(aes(x=Desiccation, y=HSP90,fill=Ploidy))+theme_bw(
   labs(x="Treatment", y=expression(paste("HSP90 Expression (",Delta,"Ct)")))
 
 ggplot(data=dCt)+geom_boxplot(aes(x=Desiccation, y=SOD,fill=Ploidy))+theme_bw()+
-  scale_fill_grey(start=0.37, end=.9,
+  scale_fill_manual(values=c("#31C4ED", "#62D12B"),
                   labels=c("Diploid","Triploid"))+
   guides(fill=guide_legend(title="Ploidy"))+
   theme(axis.text.x=element_text(size=13), axis.text.y=element_text(size=13),
@@ -207,7 +207,7 @@ ggplot(data=dCt)+geom_boxplot(aes(x=Desiccation, y=SOD,fill=Ploidy))+theme_bw()+
   labs(x="Treatment", y=expression(paste("SOD Expression (",Delta,"Ct)")))
 
 ggplot(data=dCt)+geom_boxplot(aes(x=Desiccation, y=ATPsynthetase,fill=Ploidy))+theme_bw()+
-  scale_fill_grey(start=0.37, end=.9,
+  scale_fill_manual(values=c("#31C4ED", "#62D12B"),
                   labels=c("Diploid","Triploid"))+
   guides(fill=guide_legend(title="Ploidy"))+
   theme(axis.text.x=element_text(size=13), axis.text.y=element_text(size=13),
@@ -218,15 +218,16 @@ ggplot(data=dCt)+geom_boxplot(aes(x=Desiccation, y=ATPsynthetase,fill=Ploidy))+t
   labs(x="Treatment", y=expression(paste("ATP Synthetase Expression (",Delta,"Ct)")))
 
 ggplot(data=dCt)+geom_boxplot(aes(x=Desiccation, y=COX1,fill=Ploidy))+theme_bw()+
-  scale_fill_grey(start=0.37, end=.9,
+  scale_fill_manual(values=c("#31C4ED", "#62D12B"),
                   labels=c("Diploid","Triploid"))+
   guides(fill=guide_legend(title="Ploidy"))+
   theme(axis.text.x=element_text(size=13), axis.text.y=element_text(size=13),
         axis.title.x=element_text(size=20), axis.title.y=element_text(size=20),
         legend.position=c(.09,.87),panel.grid.major=element_blank(),
         legend.key=element_rect(fill = NA))+
-  ylim(c(20, 23))+scale_x_discrete(labels=c("Control","Desiccation + Elevated Temp."))+
+  ylim(c(21, 22))+scale_x_discrete(labels=c("Control","Desiccation + Elevated Temp."))+
   labs(x="Treatment", y=expression(paste("COX1 Cq Value")))
+
 
 
 
