@@ -97,6 +97,11 @@ ATPsynthetase
 TukeyHSD(ATPsynthetase)
 summary(ATPsynthetase)
 
+MBD2<-aov(MBD2log~Ploidy+Desiccation+Ploidy:Desiccation, data=dCt)
+MBD2
+TukeyHSD(MBD2)
+summary(MBD2)
+
 COX1<-aov(COX1log~Ploidy+Desiccation+Ploidy:Desiccation, data=dCt)
 COX1
 TukeyHSD(COX1)
@@ -126,7 +131,7 @@ ggplot(data=dCt)+geom_boxplot(aes(x=Desiccation, y=DNMT1,fill=Ploidy))+theme_bw(
         axis.title.x=element_text(size=19), axis.title.y=element_text(size=20),
         legend.position=c(.09,.87),panel.grid.major=element_blank(),
         legend.key=element_rect(fill=NA))+
-  ylim(c(0,0.001))+scale_x_discrete(labels=c("Control","Desiccation + Elevated Temp."))+
+  ylim(c(0,0.00075))+scale_x_discrete(labels=c("Control","Desiccation + Elevated Temp."))+
   labs(x="Treatment", y=expression(paste("DNMT1 Expression (",Delta,"Ct)")))
 
 ggplot(data=dCt)+geom_boxplot(aes(x=Desiccation, y=MBD2,fill=Ploidy))+theme_bw()+
