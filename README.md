@@ -1,6 +1,14 @@
 # gigas_ploidy
 Project investigating the effects of desiccation/elevated temp. exposure on triploid and diploid Pacific oysters.
 
+---
+
+### Files:
+
+- [Triploid-Diploid-Oyster-Poster_RonitJain.ppt](https://github.com/RobertsLab/gigas_ploidy/blob/master/Triploid-Diploid-Oyster-Poster_RonitJain.pptx) (Miscrosoft PowerPoint): Research poster created by Ronit Jain.
+
+---
+
 #### Sample name guide
 
 - D01-D08: Diploid oysters exposed to control conditions (water in aquarium)
