@@ -1,6 +1,24 @@
 # gigas_ploidy
 Project investigating the effects of desiccation/elevated temp. exposure on triploid and diploid Pacific oysters.
 
+#### Sample name guide
+
+- D01-D08: Diploid oysters exposed to control conditions (water in aquarium)
+
+- D09-D10: Diploid oysters exposed to control conditions (water in aquarium); subsequently exposed to 1 hr acute heat shock at 45 degrees Celsius.
+
+- D11-D18: Diploid oysters exposed to desiccation + elevated temperature (27 degrees Celsius) for 24 hrs
+
+- D19-D20: Diploid oysters exposed to desiccation + elevated temperature (27 degrees Celsius) for 24 hrs; subsequently exposed to 1 hr acute heat shock at 45 degrees Celsius.
+
+- T01-T08: Triploid oysters exposed to control conditions (water in aquarium)
+
+- T09-T10: Triploid oysters exposed to control conditions (water in aquarium); subsequently exposed to 1 hr acute heat shock at 45 degrees Celsius.
+
+- T11-T18: Triploid oysters exposed to desiccation + elevated temperature (27 degrees Celsius) for 24 hrs
+
+- T19-T20: Triploid oysters exposed to desiccation + elevated temperature (27 degrees Celsius) for 24 hrs; subsequently exposed to 1 hr acute heat shock at 45 degrees Celsius.
+
 ---
 
 Other pertinent files:
