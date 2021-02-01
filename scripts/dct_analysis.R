@@ -1,12 +1,11 @@
-
-  #
-  #UNCOMMENT the lines below if you do have the packages already installed
-  #
+#
+# UNCOMMENT the lines below if you do have the packages already installed
+#
 install.packages("ggplot2")
 install.packages("plyr")
 install.packages("splitstackshape")
 
-  #Necessary Packages to manipulate data and plot values. 
+#Necessary Packages to manipulate data and plot values. 
 require(plyr)
 require(ggplot2)
 require(splitstackshape)
@@ -81,7 +80,8 @@ summary(HSP90)
 
 #graph all normalized Ct values to produce boxplots to visualize data
 
-ggplot(data=dCt)+geom_boxplot(aes(x=Desiccation, y=HSC70,fill=Ploidy))+theme_bw()+
+p1 <- ggplot(data=dCt) + 
+  geom_boxplot(aes(x=Desiccation, y=HSC70,fill=Ploidy)) + theme_bw()+
   scale_fill_grey(start=0.37, end=.9,
                   labels=c("Diploid","Triploid"))+
   guides(fill=guide_legend(title="Ploidy"))+
