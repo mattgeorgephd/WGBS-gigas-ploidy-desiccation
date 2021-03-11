@@ -92,16 +92,38 @@ p1 <- ggplot(data=dCt) +
   ylim(c(0,0.023))+scale_x_discrete(labels=c("Desiccated + Elevated Temp.","Control"))+
   labs(x="Treatment", y=expression(paste("HSC70 Expression (",Delta,"Ct)")))
 
-ggplot(data=dCt)+geom_boxplot(aes(x=Desiccation, y=DNMT1,fill=Ploidy))+theme_bw()+
-  scale_fill_grey(start=0.37, end=.9,
-                  labels=c("Diploid","Triploid"))+
-  guides(fill=guide_legend(title="Ploidy"))+
-  theme(axis.text.x=element_text(size=13), axis.text.y=element_text(size=13),
-        axis.title.x=element_text(size=20), axis.title.y=element_text(size=20),
-        legend.position=c(.09,.87),panel.grid.major=element_blank(),
-        legend.key=element_rect(fill=NA))+
-  ylim(c(0,0.001))+scale_x_discrete(labels=c("Desiccated + Elevated Temp.","Control"))+
-  labs(x="Treatment", y=expression(paste("DNMT1 Expression (",Delta,"Ct)")))
+p1 <- ggplot(data=dCt)+
+      geom_boxplot(aes(x=Desiccation, y=DNMT1,fill=Ploidy)) +
+      # scale_y_continuous(breaks = seq(0, 0.03, 0.01), limits = c(0, 0.035)) +
+      scale_fill_manual(values=c("royalblue1", "orangered1")) +
+      # scale_x_discrete(labels=c("Desiccated + Elevated Temp.","Control"))+
+      # labs(x="Treatment", y=expression(paste("HSP90 Expression (",Delta,"Ct)"))) +
+      theme(line              = element_line(size=1.5),
+            rect              = element_rect(size=1.5),
+            text              = element_text(size=14,color="black"),
+            panel.background  = element_blank(),
+            panel.grid.major  = element_blank(), 
+            panel.grid.minor  = element_blank(),
+            axis.text.x       = element_text(size=16,color="black"),
+            axis.text.y       = element_text(size=16,color="black"),
+            axis.title.x      = element_text(margin = margin(t = 10, r = 0, b = 0, l = 0)),
+            axis.title.y      = element_text(margin = margin(t = 0, r = 10, b = 0, l = 0)),
+            axis.ticks.x      = element_line(color="black"),
+            axis.ticks.y      = element_line(color="black"),
+            # axis.line         = element_line(color = "black", size = 0.1),
+            panel.border      = element_rect(color = "black", fill=NA, size=1.5),
+            legend.key        = element_blank(),
+            legend.title      = element_blank()) # removes background of legend bullets
+
+p1
+
+ggsave("DNMT1_ploidy.tiff",
+       plot   = p1,
+       dpi    = 600,
+       device = "tiff",
+       width  = 5,
+       height = 5,
+       units  = "in")
 
 ggplot(data=dCt)+geom_boxplot(aes(x=Desiccation, y=MBD2,fill=Ploidy))+theme_bw()+
   scale_fill_grey(start=0.37, end=.9,
@@ -173,14 +195,35 @@ ggplot(data=dCt)+geom_boxplot(aes(x=Desiccation, y=HAT,fill=Ploidy))+theme_bw()+
   ylim(c(0,0.00075))+scale_x_discrete(labels=c("Desiccated + Elevated Temp.","Control"))+
   labs(x="Treatment", y=expression(paste("HAT Expression (",Delta,"Ct)")))
 
-ggplot(data=dCt)+geom_boxplot(aes(x=Desiccation, y=HSP90,fill=Ploidy))+theme_bw()+
-  scale_fill_grey(start=0.37, end=.9,
-                  labels=c("Diploid","Triploid"))+
-  guides(fill=guide_legend(title="Ploidy"))+
-  theme(axis.text.x=element_text(size=13), axis.text.y=element_text(size=13),
-        axis.title.x=element_text(size=20), axis.title.y=element_text(size=20),
-        legend.position=c(.09,.87),panel.grid.major=element_blank(),
-        legend.key=element_rect(fill = NA))+
-  ylim(c(0,0.03))+scale_x_discrete(labels=c("Desiccated + Elevated Temp.","Control"))+
-  labs(x="Treatment", y=expression(paste("HSP90 Expression (",Delta,"Ct)")))
+p1 <- ggplot(data=dCt)+
+      geom_boxplot(aes(x=Desiccation,y=HSP90,fill=Ploidy))+
+      scale_y_continuous(breaks = seq(0, 0.03, 0.01), limits = c(0, 0.035)) +
+      scale_fill_manual(values=c("royalblue1", "orangered1")) +
+        # scale_x_discrete(labels=c("Desiccated + Elevated Temp.","Control"))+
+        # labs(x="Treatment", y=expression(paste("HSP90 Expression (",Delta,"Ct)"))) +
+        theme(line              = element_line(size=1.5),
+                    rect              = element_rect(size=1.5),
+                    text              = element_text(size=14,color="black"),
+                    panel.background  = element_blank(),
+                    panel.grid.major  = element_blank(), 
+                    panel.grid.minor  = element_blank(),
+                    axis.text.x       = element_text(size=16,color="black"),
+                    axis.text.y       = element_text(size=16,color="black"),
+                    axis.title.x      = element_text(margin = margin(t = 10, r = 0, b = 0, l = 0)),
+                    axis.title.y      = element_text(margin = margin(t = 0, r = 10, b = 0, l = 0)),
+                    axis.ticks.x      = element_line(color="black"),
+                    axis.ticks.y      = element_line(color="black"),
+                    # axis.line         = element_line(color = "black", size = 0.1),
+                    panel.border      = element_rect(color = "black", fill=NA, size=1.5),
+                    legend.key        = element_blank(),
+                    legend.title      = element_blank()) # removes background of legend bullets
 
+p1
+
+ggsave("HSP90_ploidy.tiff",
+       plot   = p1,
+       dpi    = 600,
+       device = "tiff",
+       width  = 5,
+       height = 5,
+       units  = "in")
