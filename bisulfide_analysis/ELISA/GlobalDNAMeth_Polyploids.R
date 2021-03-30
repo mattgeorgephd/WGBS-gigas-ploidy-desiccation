@@ -145,10 +145,13 @@ Feb_data_avg_Samples$condition <- paste(Feb_data_avg_Samples$ploidy, Feb_data_av
 
 head(Feb_data_avg_Samples)
 
-bp1 <- ggplot(Feb_data_avg_Samples, aes(x = condition, y = perc_meth)) +  
+Feb_data_avg_Samples$condition <- factor(Feb_data_avg_Samples$condition, levels=c("diploid_control","triploid_control","diploid_heat_stress","triploid_heat_stress"), ordered=TRUE)
+
+
+bp1 <- ggplot(Feb_data_avg_Samples, aes(x = condition, y = perc_meth, fill=ploidy)) +  
             geom_boxplot(colour = "black", size = 1.5,outlier.colour="black", outlier.shape=16,
                          outlier.size=2, notch=FALSE) +
-            scale_fill_manual(values = c("dodgerblue4", "lightblue1", "darkgreen", "palegreen")) +
+            scale_fill_manual(values = c("royalblue1", "orangered1", "darkgreen", "palegreen")) +
             scale_y_continuous(breaks = seq(0, 4, 0.5), limits = c(0, 3)) +
             # scale_x_discrete(labels=c("diploid_control","diploid_head","triploid_control","triploid_heat")) +
             xlab("Sample") + 
@@ -180,8 +183,8 @@ ggsave("[boxplot]5mC_comparison.tiff",
        plot   = bp1,
        dpi    = 1200,
        device = "tiff",
-       width  = 5,
-       height = 6,
+       width  = 7,
+       height = 5,
        units  = "in")
 
 
