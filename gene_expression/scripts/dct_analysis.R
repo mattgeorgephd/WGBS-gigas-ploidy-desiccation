@@ -92,6 +92,8 @@ p1 <- ggplot(data=dCt) +
   ylim(c(0,0.023))+scale_x_discrete(labels=c("Desiccated + Elevated Temp.","Control"))+
   labs(x="Treatment", y=expression(paste("HSC70 Expression (",Delta,"Ct)")))
 
+p1
+
 p1 <- ggplot(data=dCt)+
       geom_boxplot(aes(x=Desiccation, y=DNMT1,fill=Ploidy)) +
       # scale_y_continuous(breaks = seq(0, 0.03, 0.01), limits = c(0, 0.035)) +
