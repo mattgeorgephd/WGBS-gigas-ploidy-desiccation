@@ -34,7 +34,8 @@ require(readr)
 # Grab the WD from the file location and set it
 home <- getActiveDocumentContext()$path
 setwd(dirname(home)); getwd()
-
+setwd('..')
+home <- getwd()
 ###################################################################################################
 ## Load previous session data. Return here to save after big unites.
 
@@ -184,6 +185,8 @@ clusteringInformationFilteredCov10 <- methylKit::clusterSamples(methylationInfor
 ##########################################################################################################
 ## Differentially methylated loci (DML analysis)
 
+setwd(dirname(home)); getwd() # reset working directory to home dir
+
 # Identify DML
 
 #Code that was used to test calculateDiffMeth parameters
@@ -194,14 +197,14 @@ differentialMethylationStatsTrtCov10  <- methylKit::calculateDiffMeth(methylatio
 # differentialMethylationStatsTreatment2 <- methylKit::calculateDiffMeth(methylationInformationFilteredCov5, overdispersion = "MN", test = "Chisq")
 # head(differentialMethylationStatsTreatment2) #Look at differential methylation statistics
 
-setwd("E:/project-gigas_ploidy/DML")
-write.csv(differentialMethylationStatsTrtCov1, "DML-stats-ploidy-Cov1.csv") #Save table as .csv
+setwd('DML')
+write.csv(differentialMethylationStatsTrtCov10, "DML-stats-ploidy-Cov10.csv") #Save table as .csv
 
-diffMethStatsTreatment25 <- methylKit::getMethylDiff(differentialMethylationStatsTreatment, difference = 25, qvalue = 0.01) #Identify loci that are at least 25% different
-length(diffMethStatsTreatment25$chr) #Count the number of DML
-head(diffMethStatsTreatment25) #Confirm creation
+diffMethStatsTreatment20 <- methylKit::getMethylDiff(differentialMethylationStatsTrtCov10, difference = 20, qvalue = 0.01) #Identify loci that are at least 20% different
+length(diffMethStatsTreatment20$chr) #Count the number of DML
+head(diffMethStatsTreatment20) #Confirm creation
 
-write.csv(diffMethStatsTreatment25, "DML-getMethylDiff-temp-Cov5-25.csv") #Save table as .csv
+write.csv(diffMethStatsTreatment20, "DML-getMethylDiff-ploidy-Cov10-20.csv") #Save table as .csv
 
 diffMethStatsTreatment50 <- methylKit::getMethylDiff(differentialMethylationStatsTreatment, difference = 50, qvalue = 0.01) #Identify loci that are at least 50% different
 length(diffMethStatsTreatment50$chr) #Count the number of DML
