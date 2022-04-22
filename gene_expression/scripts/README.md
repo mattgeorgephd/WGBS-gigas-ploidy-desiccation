@@ -1,1 +1,2 @@
-Scripts folder for storing qPCR scripts
+Scripts folder for storing qPCR scripts.
+
