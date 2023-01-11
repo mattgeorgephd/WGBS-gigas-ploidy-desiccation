@@ -1,4 +1,4 @@
-# gigas-WGBS-ploidy-desiccation
+# WGBS-gigas-ploidy-desiccation
 
 Project investigating the effects of desiccation/elevated temp. exposure on triploid and diploid Pacific oysters.
 
