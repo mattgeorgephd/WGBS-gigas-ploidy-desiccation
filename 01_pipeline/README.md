@@ -8,9 +8,9 @@ For the project overview see the [root README](../README.md); for the design and
 
 | Step | Script | What it does | Manuscript items | Status |
 |---|---|---|---|---|
-| 01 | `01_fetch_inputs.R` | Downloads the files listed in `03_input_files/gannet_manifest.csv` into the cache and verifies their checksums | none | planned |
-| 02 | `02_alignment_qc.R` | Per-library read, mapping, duplication, and methylation table from the Bismark reports; comparison of the two sequencing batches | Methods 2.4; Figure 1B inputs | planned |
-| 03 | `03_global_methylation.R` | %5-mC from raw ELISA absorbance; models and post hoc tests for %5-mC and %mCpG | Results 3.1; Figure 1 | planned |
+| 01 | `01_fetch_inputs.R` | Downloads the files listed in `03_input_files/gannet_manifest.csv` into the cache and verifies their checksums | none | done |
+| 02 | `02_alignment_qc.R` | Per-library read, mapping, duplication, and methylation table from the Bismark reports; comparison of the two sequencing batches | Methods 2.4; Figure 1B inputs | done |
+| 03 | `03_global_methylation.R` | %5-mC from raw ELISA absorbance; models and post hoc tests for %5-mC and %mCpG | Results 3.1; Figure 1 | done |
 | 04 | `04_cpg_coverage.R` | CpG counts by coverage threshold and sample set; methylation distributions; sample correlations; whole-data PCA | Results 3.1; Figure S1 | planned |
 | 05 | `05_differential_methylation.R` | Coverage filtering, normalization, union across libraries, per-CpG tests for ploidy and heat, DML lists by difference threshold | Results 3.2; Figure 2A, 2B | planned |
 | 06 | `06_dml_figures.R` | PCA and heat maps of DML; paired-difference plot of loci in both lists | Figure 2C to 2G; Figure 4 | planned |

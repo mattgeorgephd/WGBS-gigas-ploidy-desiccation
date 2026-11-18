@@ -60,7 +60,7 @@ WGBS-gigas-ploidy-desiccation/
 | `07_documentation/` | Plan, audit, provenance | [07_documentation/README.md](07_documentation/README.md) |
 | `08_archive/` | Legacy code, outputs, figures, slides, with a guide to which legacy script produced which manuscript item | [08_archive/README.md](08_archive/README.md) |
 
-Still to be added at the root as the pipeline arrives: `run_config.R` (single control surface), `run_pipeline.R` (orchestrator), and the `renv` lockfile.
+At the root: `run_config.R` is the single control surface (thresholds, analysis modes, cache location). Still to be added as the pipeline arrives: `run_pipeline.R` (orchestrator) and the `renv` lockfile.
 
 ### How paths work
 

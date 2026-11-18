@@ -4,19 +4,16 @@ Helper functions shared by the pipeline scripts. Every script in `01_pipeline/` 
 
 ## Files
 
-To be added with the pipeline (phase 2 of the plan). Planned contents:
+| File | Functions | Purpose |
+|---|---|---|
+| `packages.R` | `load_packages()` | Loads the packages a step needs; stops, naming every missing package, before any work starts. Never installs. |
+| `paths.R` | `input_path()`, `output_dir()`, `output_path()`, `step_cache_dir()`, `gannet_cache_dir()`, `manuscript_path()`, `archive_path()` | Builds every path on top of `here::here()`. The numbered folder names appear only in this file. |
+| `logging.R` | `log_msg()`, `start_step()`, `finish_step()`, `write_table()` | Timestamped console messages; `finish_step()` writes `session_info.txt` into the step's output folder. |
+| `fetch_gannet.R` | `read_gannet_manifest()`, `fetch_gannet_file()` | Returns the local path of a file listed in `03_input_files/gannet_manifest.csv`, downloading it into the cache when absent and verifying size and md5. |
+| `sample_sheet.R` | `read_libraries()`, `sample_sets()` | Reads `wgbs_libraries.csv` in legacy column order and defines the sample sets (all, diploid, triploid, control, heat). |
+| `plot_theme.R` | `theme_wgbs()`, `save_figure()` | One ggplot2 theme; saves each figure as PNG and PDF. |
 
-| File | Functions for |
-|---|---|
-| `packages.R` | Loading the packages a step needs and stopping with a clear message if one is missing |
-| `paths.R` | Building input, output, and cache paths with `here::here()`; creating a step's output folder |
-| `fetch_gannet.R` | Downloading a file listed in `03_input_files/gannet_manifest.csv` into the cache, with resume and md5 verification |
-| `sample_sheet.R` | Reading `wgbs_libraries.csv` and returning sample sets (all, by ploidy, by treatment, by cohort) |
-| `coverage_io.R` | Reading a Bismark merged CpG coverage file efficiently |
-| `methylkit_helpers.R` | Building methylKit objects one library at a time; coverage filters in legacy and corrected form |
-| `genomic_overlaps.R` | Reading GFF and BED tracks into one coordinate convention; overlap counts equivalent to `bedtools intersect -u` and `-wb` |
-| `go_helpers.R` | Parsing the blastx table; building transcript and gene to GO maps |
-| `plot_theme.R` | The ggplot2 theme and the colour assignments for ploidy, treatment, and DML sets |
+Still to come with the steps that need them: `coverage_io.R` (reading Bismark coverage files), `methylkit_helpers.R` (methylKit objects and coverage filters in legacy and corrected form), `genomic_overlaps.R` (feature tracks and overlap counts), `go_helpers.R` (blastx parsing and GO maps).
 
 ## Conventions
 
