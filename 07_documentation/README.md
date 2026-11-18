@@ -11,7 +11,9 @@ For the list of open problems and decisions, see [`issues.md`](../issues.md) at 
 | `reproducibility_plan.md` | The plan: goal, rules (R only, GitHub first for data), target folder layout, the twelve pipeline steps, phases, validation targets, and the decisions needed from the authors. |
 | `audit/gannet_manifest_2026-11-18.tsv` | Every file in the project directory on gannet as crawled on 2026-11-18 (843 files, 217 GB): path, modification time, size. |
 | `audit/elisa_qpcr_audit.md` | Detailed audit of the ELISA, the percent CpG methylation summary, and the qPCR material: computational path, recomputed statistics, per-sample values, script inventory. |
-| `upstream_processing/` | Alignment job scripts and Bismark summary reports copied from gannet, with a README on what they establish. |
+| `upstream_processing/` | Alignment job scripts copied from gannet, with a README on what they establish about how the coverage files were produced. |
+| `protocols/` | Kit manual for the MethylFlash global 5-mC ELISA (Epigentek P-1030), with margin notes from the 2018 pilot. |
+| `sequencing_reports/` | Zymo Research service reports for the WGBS libraries of project zr3534. |
 | `cloud_environment_setup.sh` | Setup script for a Linux container (Ubuntu 24.04): installs R 4.3.3 and the Bioconductor 3.18 packages the pipeline uses. Stored as the setup script of the `WGBS-oyster-ploidy` cloud environment. |
 
 ## Conventions

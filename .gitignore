@@ -1,4 +1,29 @@
-.Rproj.user
+# --- R session / IDE artifacts ---
+.Rproj.user/
 .Rhistory
 .RData
 .Ruserdata
+.Renviron
+
+# --- Download cache for inputs hosted on gannet (see 03_input_files/README.md) ---
+03_input_files/gannet_cache/
+
+# --- Large regenerable intermediates written by pipeline steps ---
+04_output/*/cache/
+
+# --- renv library (the lockfile is tracked, the installed packages are not) ---
+renv/library/
+renv/local/
+renv/staging/
+
+# --- R Markdown render artifacts ---
+*_cache/
+*.knit.md
+*.utf8.md
+
+# --- OS / editor / Office cruft ---
+.DS_Store
+Thumbs.db
+*~
+~$*
+.ipynb_checkpoints/
