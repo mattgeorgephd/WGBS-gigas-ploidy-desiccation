@@ -1,0 +1,144 @@
+# Reproducibility plan
+
+Project: *Epigenetic divergence in the thermal stress response of diploid and triploid Pacific oysters* (George, Jain, Roberts).
+Branch: `reproducibility-audit`. Plan written 2026-11-18 after a full read of the manuscript draft, every script and notebook in this repository, and the project directory on gannet.
+
+The companion document is [`issues.md`](../issues.md) at the repository root. This plan says what will be built and in what order; `issues.md` records every problem found, the evidence for it, and what has to be decided or fixed.
+
+---
+
+## 1. Goal
+
+A pipeline, written only in R, that lives in this repository and regenerates every number, table, and figure cited in the manuscript, starting from the per-sample Bismark coverage files on gannet and the small raw data files kept in the repository. Each script reads the outputs of the script before it, so any step can be rerun on its own and any manuscript value can be traced to one script and one input.
+
+A second goal follows from the audit: several manuscript values cannot be regenerated because they came from hand-edited spreadsheets or from steps that did not do what the Methods describe. For those, the pipeline computes the value correctly and reports the difference next to the manuscript value, so the manuscript can be revised against a known baseline.
+
+## 2. Rules
+
+These hold for everything added on this branch.
+
+1. **R only.** No Python, shell, Jupyter, bedtools, or web tools in the pipeline. The legacy notebooks are translated: bedtools interval operations become `GenomicRanges` overlaps, shell joins become `data.table` joins, the REVIGO web step becomes `rrvgo`.
+2. **GitHub first for data.** A file that the pipeline needs and that fits in GitHub lives in GitHub. The working ceiling is 50 MB per file, after gzip where the format allows it (GFF, BED, tab-delimited text). Only files above that ceiling stay on gannet. Every gannet-hosted input is listed in `03_input_files/gannet_manifest.csv` with its URL, size, and md5, and scripts verify the checksum after download. Nothing small exists only on gannet.
+3. **One source of truth per value.** No hand-typed numbers in scripts and no hand-edited spreadsheets between steps. A value shown in a figure is computed by the script that draws the figure.
+4. **Paths through `here::here()`.** No `setwd()`, no `rstudioapi`, no absolute paths. Scripts run from RStudio or from `Rscript` on any operating system.
+5. **Each step declares its inputs and outputs** in a header block and writes into its own folder under `04_output/`. A step never writes outside its folder, and never reads a file it did not declare.
+6. **Legacy behaviour and corrected behaviour are both available where they differ.** The switch is in `run_config.R`, the default is stated there, and both sets of outputs carry the mode in their file names. This is what lets the manuscript values be reproduced and corrected values be compared with them.
+7. **Every reproduced value is checked.** `06_diagnostics/` compares regenerated outputs with the legacy outputs and with the values quoted in the manuscript, and writes a pass/differs table. A difference is never silently accepted.
+8. **Nothing is deleted without being listed.** Legacy files move to `08_archive/` with their original relative paths. Files proposed for removal are listed in `issues.md` first.
+9. **Naming.** The treatment is "heat" (or "heat-treated") everywhere in new code, outputs, and text. The legacy label "desiccation" survives only inside `08_archive/`. The legacy dataset labels map as follows: `ronit` = heat-treated animals only (Zymo project zr3534), `yaamini` = control animals only (Zymo project zr3644), `both` = the 22-library comparison reported in the manuscript.
+
+## 3. Target layout
+
+Modelled on `Coastal-Rec-Crab-BSS`: numbered stage folders in pipeline order, a README in each, a single configuration file and a single orchestrator at the root.
+
+```text
+WGBS-gigas-ploidy-desiccation/
+├── 01_pipeline/          Numbered R scripts, one per analysis step, run in order
+├── 02_R_functions/       Helper functions sourced by every step (paths, gannet fetch, plotting, overlaps)
+├── 03_input_files/       Inputs kept in GitHub, plus the manifest of inputs fetched from gannet
+│   ├── metadata/           Sample sheets (one row per library, one row per animal)
+│   ├── elisa/              Raw plate reads, plate map, standard curve inputs
+│   ├── qpcr/               Raw Cq tables
+│   ├── bismark_reports/    Alignment and summary reports for all 22 libraries (one consistent run)
+│   ├── genome_features/    Roslin v1 feature tracks, gzipped (gene, mRNA, exon, CDS, UTR, intron, ...)
+│   ├── annotation/         blastx hits, transcript to gene map, GO mapping
+│   ├── gannet_manifest.csv URL, size, md5 for every input that stays on gannet
+│   └── gannet_cache/       Download cache (git-ignored)
+├── 04_output/            One subfolder per pipeline step; regenerated by the pipeline
+├── 05_manuscript/        Figures and tables as numbered in the manuscript, plus the value-by-value traceability table
+├── 06_diagnostics/       Checks: regenerated vs legacy outputs vs manuscript values
+├── 07_documentation/     This plan, audit notes, upstream (HPC) processing scripts, methods notes
+├── 08_archive/           Everything from before the reorganization, original relative paths preserved
+├── run_config.R          Single control surface: thresholds, sample sets, legacy/corrected switches, cache location
+├── run_pipeline.R        Orchestrator: runs the steps in order, or a chosen subset
+├── issues.md             Issue log
+├── README.md
+├── renv.lock, .Rprofile, renv/   Package versions (added once the package set is final)
+└── WGBS-gigas-ploidy-desiccation.Rproj
+```
+
+### Where the existing files go
+
+| Now | After | Note |
+|---|---|---|
+| `code/`, `analyses/`, `GOterms/`, `figures/`, `plots/`, `tables/`, `stats/`, `old_WGBS/`, `presentations/`, `ELISA/`, `gene_expression/`, `data/`, `metadata.xlsx` | `08_archive/<same path>` | Moved with `git mv`, so history follows each file |
+| `ELISA/docs/20190206_*ReadingSTRIGG.xls`, `ELISA/docs/20190131_Ronit'sSamplesforGlobalDNAMeth.xlsx` | `03_input_files/elisa/` | Raw absorbance and plate map for the N = 32 run; converted to CSV by a script so the pipeline has no `.xls` dependency |
+| `gene_expression/data/qpcr_ct_values/*.csv` | `03_input_files/qpcr/` | Raw Cq values |
+| `gene_expression/data/zr3534_wgbs_info.csv`, `metadata.xlsx` (sheet `list`) | `03_input_files/metadata/wgbs_libraries.csv` | Merged into one library sheet with treatment, ploidy, acute heat shock flag, source experiment, Zymo project, accession |
+| `old_WGBS/WGBS/GFF/*` (11 tracks) | `03_input_files/genome_features/*.gz` | Gzipped; the uncompressed copies leave the tree |
+| gannet `GFF/`, OSF `genome-feature-files/` (CDS, exon) | `03_input_files/genome_features/*.gz` | CDS and exon tracks were only on the retired `owl` server and on OSF; brought into GitHub |
+| gannet `data/20210605-cgigas-roslin-mito-blastx.outfmt6.txt`, `analyses/GOterm-annotation/` small files | `03_input_files/annotation/` | Brought into GitHub |
+| gannet `/panopea/061021-big/` Bismark reports and job scripts | `03_input_files/bismark_reports/`, `07_documentation/upstream_processing/` | Brought into GitHub |
+| gannet `cov_files/` (22 files, about 440 MB each) | stay on gannet | Listed in the manifest; fetched on demand |
+
+Office lock files (`~$*.xlsx`, `~$*.pptx`) and `.DS_Store` are removed rather than archived.
+
+## 4. Pipeline steps
+
+Each row is one script in `01_pipeline/`. "Reproduces" names the manuscript items the step is responsible for.
+
+| Step | Script | Reads | Writes (under `04_output/<step>/`) | Reproduces |
+|---|---|---|---|---|
+| 01 | `01_fetch_inputs.R` | `gannet_manifest.csv` | verified cache, `input_inventory.csv` | none (inputs) |
+| 02 | `02_alignment_qc.R` | Bismark reports | per-library read, mapping, duplication, and methylation table; batch comparison | Methods 2.4; Fig. 1B inputs |
+| 03 | `03_global_methylation.R` | ELISA plate reads, plate map, step 02 table | per-sample %5-mC from raw absorbance, model tables, post hoc tests | Results 3.1 (ELISA, %mCpG); Fig. 1 |
+| 04 | `04_cpg_coverage.R` | 22 coverage files | CpG counts by coverage threshold and sample set, methylation distributions, sample correlations, global PCA | Results 3.1; Fig. S1 |
+| 05 | `05_differential_methylation.R` | 22 coverage files | united 10x table, per-CpG statistics, DML lists by threshold, BED files | Results 3.2; Fig. 2A, 2B |
+| 06 | `06_dml_figures.R` | step 05 | PCA, heat maps, paired-difference plot | Fig. 2C to 2G; Fig. 4 |
+| 07 | `07_genome_features.R` | step 05, feature tracks | feature overlap counts for the analysed CpG set and each DML set, association tests, per-chromosome counts | Results 3.3; Fig. 3 |
+| 08 | `08_gene_annotation.R` | step 05, blastx, GO mapping, feature tracks | transcript and gene annotation tables, DML to gene tables, tested-gene background | Supplementary lists |
+| 09 | `09_go_enrichment.R` | step 08 | enrichment tables per DML set and ontology, DML within enriched genes | Results 3.4, 3.5; Fig. 5, Fig. 9; Table 1 |
+| 10 | `10_semantic_similarity.R` | step 09 | semantic similarity plots and cluster tables | Fig. 6, 7, 8 |
+| 11 | `11_qpcr.R` | qPCR Cq tables | relative expression tables and tests | Discussion statements on HSP90 and COX1 (see issue I-29) |
+| 12 | `12_manuscript_values.R` | all steps | `05_manuscript/` figures, tables, and `manuscript_values.csv` (manuscript value, regenerated value, status) | Every number in the text |
+
+Design notes:
+
+- **Memory.** The legacy analysis saved an 8.9 GB workspace. The new steps read one coverage file at a time and keep only filtered tables, so steps 04 and 05 run within 16 GB.
+- **Step 05 is the expensive one** (about 9.7 GB of downloads the first time, then roughly an hour of single-core model fitting). Its small outputs, including the united 10x methylation table (gzipped), are committed, so steps 06 to 12 can be rerun from GitHub alone.
+- **Legacy and corrected modes** (rule 6) apply to: the upper coverage filter (issue I-05), the definition of interaction loci (I-02), the unit and background of the GO test (I-03), and the definition of "enriched" (I-21).
+
+## 5. Phases and commits
+
+Each phase ends in one or more pushed commits on `reproducibility-audit`.
+
+| Phase | Content | State |
+|---|---|---|
+| 0 | Audit; `issues.md`; this plan; gannet manifest; upstream processing scripts | this commit |
+| 1 | Reorganization into the numbered layout; README per folder; lock files removed | next |
+| 2 | `run_config.R`, `run_pipeline.R`, `02_R_functions/`, input manifest, inputs brought into GitHub under the 50 MB rule | |
+| 3 | Steps 01 to 05 in legacy mode, each validated against legacy outputs (CpG counts, DML lists row by row) | 480,579 CpG count already reproduced in a prototype |
+| 4 | Steps 06 to 10 in legacy mode, validated against legacy outputs | |
+| 5 | Corrected modes for the items in section 4, with side-by-side comparison tables | needs the decisions listed in section 7 |
+| 6 | Steps 11 and 12; `05_manuscript/`; traceability table; list of manuscript edits implied by the results | |
+| 7 | `renv.lock`, final READMEs, clean checkout test from a fresh container | |
+
+## 6. Validation targets
+
+Legacy mode is accepted for a step when these are matched exactly:
+
+| Quantity | Legacy value | Source |
+|---|---|---|
+| CpGs with at least 1x, 3x, 5x, 10x, 20x in all 22 libraries | 5,852,939; 3,714,898; 2,297,236; 480,579; 29,884 | `analyses/coverage_summary.xlsx`, sheet `total_cpg` |
+| Ploidy DML at 20% difference, q < 0.01 | 1,038 (442 hyper, 596 hypo) | `tables/DML-getMethylDiff-PLOIDY-Cov10-20.csv` |
+| Heat DML | 2,351 (1,150 hyper, 1,201 hypo) | `tables/DML-getMethylDiff-HEAT-Cov10-20.csv` |
+| Loci in both lists | 200 (28 both hyper, 49 both hypo, 123 opposite sign) | `tables/DML-getMethylDiff-INTERACTION-Cov10-20.csv` |
+| DML counts at 5% to 50% thresholds | table of 30 values | `analyses/DML_difference_threshold_comparison.xlsx` |
+| Feature overlaps of each DML set (13 tracks) | for example ploidy: gene 981, CDS 371, intron 515, lncRNA 65, TE 194, intergenic 34 | `analyses/DML_locations-all-datasets.xlsx`, sheet `data` |
+| topGO tables | 9 files, term by term | `GOterms/BOTH-*/*FisherTestResults.csv` |
+| ELISA and %mCpG model tables | F and p as in the manuscript | `stats/*.csv` |
+
+## 7. Decisions needed from the authors
+
+These do not block phases 1 to 4. They decide what phase 5 builds and what the manuscript can claim. Details and evidence are in `issues.md` under the issue numbers given.
+
+1. **Control and heat libraries come from different experiments and sequencing batches (I-01).** Do tissue or DNA from the heat experiment's own control animals (D01 to D08, T01 to T08) still exist, and is sequencing them possible? If not, how should the heat contrast be framed?
+2. **Four of the ten heat libraries also received a 45 C acute heat shock (I-04).** Keep them pooled and disclose it, drop them, or model the heat shock as a covariate?
+3. **"Interaction" loci (I-02).** Keep the overlap set under a different name, fit a formal ploidy by heat model, or both?
+4. **GO enrichment (I-03).** Is moving to a gene-level test with a tested-gene background and false discovery control acceptable as the primary analysis, with the legacy transcript-level run kept for traceability?
+5. **Upper coverage filter (I-05).** Apply the 99.9th percentile filter the Methods describe (454,555 CpGs), or keep the analysis as run (480,579 CpGs) and change the Methods?
+6. **ELISA (I-10, I-12).** What DNA mass was loaded per well, and which scale of analysis should be reported?
+7. **qPCR (I-29).** Bring the qPCR data into Methods and Results with a pipeline step, or remove the statements from the Discussion?
+8. **Provenance of the control animals (I-01, I-36).** Source experiment, location, holding conditions, age, and relationship to the heat-treated cohort; animal IDs and SRA accessions for zr3644.
+9. **Computing environment (I-37).** Which R version and operating system should the lockfile target?
+10. **Bulky legacy files (I-34).** May regenerable legacy outputs above 10 MB be dropped from the working tree (they stay in git history and on gannet)?
