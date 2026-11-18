@@ -1,0 +1,47 @@
+GOID,topGOterm,p.value,geneID,chr,start,end,meth.diff,GOterm,GOSlim
+GO:1901363,heterocyclic compound binding,< 1e-30,NA,NA,NA,NA,NA,NA,NA
+GO:0097159,organic cyclic compound binding,< 1e-30,NA,NA,NA,NA,NA,NA,NA
+GO:0003676,nucleic acid binding,3.0e-26,NA,NA,NA,NA,NA,NA,NA
+GO:0003676,nucleic acid binding,3.0e-26,105317469,NC_047564.1,25266712,25266714,-52.02074119,nucleic acid binding,nucleic acid binding activity
+GO:0003676,nucleic acid binding,3.0e-26,105317469,NC_047564.1,25268271,25268273,27.98491831,nucleic acid binding,nucleic acid binding activity
+GO:0003676,nucleic acid binding,3.0e-26,105325875,NC_047568.1,4178745,4178747,-20.17683563,nucleic acid binding,nucleic acid binding activity
+GO:0003676,nucleic acid binding,3.0e-26,105328669,NC_047564.1,24485431,24485433,59.38501894,nucleic acid binding,nucleic acid binding activity
+GO:0003676,nucleic acid binding,3.0e-26,105328669,NC_047564.1,24492869,24492871,26.62921348,nucleic acid binding,nucleic acid binding activity
+GO:0003676,nucleic acid binding,3.0e-26,105332234,NC_047561.1,57396192,57396194,-30.29405311,nucleic acid binding,nucleic acid binding activity
+GO:0003676,nucleic acid binding,3.0e-26,105336033,NC_047564.1,43314993,43314995,-21.87909567,nucleic acid binding,nucleic acid binding activity
+GO:0003676,nucleic acid binding,3.0e-26,105337947,NC_047568.1,47900475,47900477,-28.99709302,nucleic acid binding,nucleic acid binding activity
+GO:0003676,nucleic acid binding,3.0e-26,105339778,NC_047559.1,43862341,43862343,21.24499684,nucleic acid binding,nucleic acid binding activity
+GO:0003676,nucleic acid binding,3.0e-26,105339778,NC_047559.1,43872417,43872419,-23.21481046,nucleic acid binding,nucleic acid binding activity
+GO:0003676,nucleic acid binding,3.0e-26,105339778,NC_047559.1,43873125,43873127,-29.24014628,nucleic acid binding,nucleic acid binding activity
+GO:0003676,nucleic acid binding,3.0e-26,105340178,NC_047566.1,40019741,40019743,-23.27650111,nucleic acid binding,nucleic acid binding activity
+GO:0003676,nucleic acid binding,3.0e-26,105341635,NC_047564.1,46711454,46711456,25.83333333,nucleic acid binding,nucleic acid binding activity
+GO:0003676,nucleic acid binding,3.0e-26,105341635,NC_047564.1,46711543,46711545,-31.26811594,nucleic acid binding,nucleic acid binding activity
+GO:0003676,nucleic acid binding,3.0e-26,105341635,NC_047564.1,46711562,46711564,-32.15254237,nucleic acid binding,nucleic acid binding activity
+GO:0008432,JUN kinase binding,2.2e-22,105318395,NC_047568.1,35026870,35026872,39.24587238,JUN kinase binding,other molecular function
+GO:0008432,JUN kinase binding,2.2e-22,105318395,NC_047568.1,35028786,35028788,-27.31259968,JUN kinase binding,other molecular function
+GO:0008432,JUN kinase binding,2.2e-22,NA,NA,NA,NA,NA,NA,NA
+GO:0008432,JUN kinase binding,2.2e-22,105335674,NC_047565.1,49279895,49279897,28.52181161,JUN kinase binding,other molecular function
+GO:0030159,signaling receptor complex adaptor activ...,1.8e-19,NA,NA,NA,NA,NA,NA,NA
+GO:0030159,signaling receptor complex adaptor activ...,1.8e-19,105335674,NC_047565.1,49279895,49279897,28.52181161,receptor signaling complex scaffold activity,other molecular function
+GO:0030159,signaling receptor complex adaptor activ...,1.8e-19,105338106,NC_047566.1,49441225,49441227,-26.88494282,receptor signaling complex scaffold activity,other molecular function
+GO:0035591,signaling adaptor activity,1.0e-17,NA,NA,NA,NA,NA,NA,NA
+GO:0016773,phosphotransferase activity, alcohol gro...,1.1e-17,NA,NA,NA,NA,NA,NA,NA
+GO:0140110,transcription regulator activity,1.8e-17,NA,NA,NA,NA,NA,NA,NA
+GO:0004672,protein kinase activity,1.9e-17,NA,NA,NA,NA,NA,NA,NA
+GO:0004672,protein kinase activity,1.9e-17,105318395,NC_047568.1,35026870,35026872,39.24587238,protein kinase activity,kinase activity
+GO:0004672,protein kinase activity,1.9e-17,105318395,NC_047568.1,35028786,35028788,-27.31259968,protein kinase activity,kinase activity
+GO:0004672,protein kinase activity,1.9e-17,105322077,NC_047562.1,4748450,4748452,-20.73170732,protein kinase activity,kinase activity
+GO:0004672,protein kinase activity,1.9e-17,105323040,NC_047566.1,54843581,54843583,-27.09315055,protein kinase activity,kinase activity
+GO:0004672,protein kinase activity,1.9e-17,105330503,NC_047568.1,46558513,46558515,35.26315789,protein kinase activity,kinase activity
+GO:0004672,protein kinase activity,1.9e-17,105330503,NC_047568.1,46561176,46561178,-27.5862069,protein kinase activity,kinase activity
+GO:0004672,protein kinase activity,1.9e-17,105331599,NC_047564.1,7098640,7098642,-34.68899522,protein kinase activity,kinase activity
+GO:0004672,protein kinase activity,1.9e-17,105331599,NC_047564.1,7107309,7107311,23.39855267,protein kinase activity,kinase activity
+GO:0004672,protein kinase activity,1.9e-17,105334479,NC_047564.1,42343286,42343288,-31.40368388,protein kinase activity,kinase activity
+GO:0004672,protein kinase activity,1.9e-17,105334935,NC_047565.1,2297719,2297721,35.68796069,protein kinase activity,kinase activity
+GO:0004672,protein kinase activity,1.9e-17,105335534,NC_047561.1,558483,558485,24.52956989,protein kinase activity,kinase activity
+GO:0004672,protein kinase activity,1.9e-17,105337904,NC_047559.1,27265851,27265853,-29.80842912,protein kinase activity,kinase activity
+GO:0004672,protein kinase activity,1.9e-17,105338186,NC_047559.1,21347953,21347955,33.05019305,protein kinase activity,kinase activity
+GO:0004672,protein kinase activity,1.9e-17,105338496,NC_047564.1,1139359,1139361,32.46376812,protein kinase activity,kinase activity
+GO:0004672,protein kinase activity,1.9e-17,105341321,NC_047568.1,53432596,53432598,-29.91893011,protein kinase activity,kinase activity
+GO:0047322,[hydroxymethylglutaryl-CoA reductase (NA...,3.4e-17,105341321,NC_047568.1,53432596,53432598,-29.91893011,[hydroxymethylglutaryl-CoA reductase (NADPH)] kinase activity,kinase activity
+GO:0047322,[hydroxymethylglutaryl-CoA reductase (NA...,3.4e-17,NA,NA,NA,NA,NA,NA,NA

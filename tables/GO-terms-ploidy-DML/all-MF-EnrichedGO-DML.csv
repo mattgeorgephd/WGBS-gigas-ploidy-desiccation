@@ -1,0 +1,27 @@
+GOID,topGOterm,p.value,geneID,chr,start,end,meth.diff,GOterm,GOSlim
+GO:0004435,phosphatidylinositol phospholipase C act...,2.7e-20,NA,NA,NA,NA,NA,NA,NA
+GO:0004435,phosphatidylinositol phospholipase C act...,2.7e-20,105335651,NC_047561.1,19405662,19405664,21.61016949,phosphoinositide phospholipase C activity,other molecular function
+GO:0004629,phospholipase C activity,2.7e-20,NA,NA,NA,NA,NA,NA,NA
+GO:0004629,phospholipase C activity,2.7e-20,105335651,NC_047561.1,19405662,19405664,21.61016949,phospholipase C activity,other molecular function
+GO:0097109,neuroligin family protein binding,4.1e-19,NA,NA,NA,NA,NA,NA,NA
+GO:0033130,acetylcholine receptor binding,5.5e-18,105328103,NC_047561.1,51312262,51312264,-22.94545064,acetylcholine receptor binding,signal transduction activity
+GO:0033130,acetylcholine receptor binding,5.5e-18,105328103,NC_047561.1,51346481,51346483,-32.14811894,acetylcholine receptor binding,signal transduction activity
+GO:0033130,acetylcholine receptor binding,5.5e-18,NA,NA,NA,NA,NA,NA,NA
+GO:0070137,ubiquitin-like protein-specific endopept...,2.0e-14,NA,NA,NA,NA,NA,NA,NA
+GO:0070139,SUMO-specific endopeptidase activity,2.0e-14,NA,NA,NA,NA,NA,NA,NA
+GO:0070139,SUMO-specific endopeptidase activity,2.0e-14,105329645,NC_047561.1,27733219,27733221,-21.00872793,SUMO-specific endopeptidase activity,other molecular function
+GO:0004620,phospholipase activity,7.6e-14,NA,NA,NA,NA,NA,NA,NA
+GO:0005219,ryanodine-sensitive calcium-release chan...,7.6e-14,NA,NA,NA,NA,NA,NA,NA
+GO:0005219,ryanodine-sensitive calcium-release chan...,7.6e-14,105333338,NC_047561.1,30415141,30415143,-22.99264401,ryanodine-sensitive calcium-release channel activity,transporter activity
+GO:0005219,ryanodine-sensitive calcium-release chan...,7.6e-14,105333338,NC_047561.1,30415154,30415156,-25.03749554,ryanodine-sensitive calcium-release channel activity,transporter activity
+GO:0005219,ryanodine-sensitive calcium-release chan...,7.6e-14,105333338,NC_047561.1,30415160,30415162,-21.85063169,ryanodine-sensitive calcium-release channel activity,transporter activity
+GO:0005219,ryanodine-sensitive calcium-release chan...,7.6e-14,105333339,NC_047561.1,30440017,30440019,-32.11275087,ryanodine-sensitive calcium-release channel activity,transporter activity
+GO:0005219,ryanodine-sensitive calcium-release chan...,7.6e-14,105333339,NC_047561.1,30447367,30447369,-20.92307692,ryanodine-sensitive calcium-release channel activity,transporter activity
+GO:0005219,ryanodine-sensitive calcium-release chan...,7.6e-14,105333339,NC_047561.1,30450949,30450951,-23.20645363,ryanodine-sensitive calcium-release channel activity,transporter activity
+GO:0016929,SUMO-specific protease activity,3.3e-13,NA,NA,NA,NA,NA,NA,NA
+GO:0016929,SUMO-specific protease activity,3.3e-13,105329645,NC_047561.1,27733219,27733221,-21.00872793,SUMO-specific protease activity,other molecular function
+GO:0005521,lamin binding,4.2e-13,NA,NA,NA,NA,NA,NA,NA
+GO:0005521,lamin binding,4.2e-13,105329309,NC_047561.1,28607016,28607018,23.03649635,lamin binding,other molecular function
+GO:0005521,lamin binding,4.2e-13,105329309,NC_047561.1,28607026,28607028,20.69390301,lamin binding,other molecular function
+GO:0005521,lamin binding,4.2e-13,105329309,NC_047561.1,28607119,28607121,-24.04577335,lamin binding,other molecular function
+GO:0005521,lamin binding,4.2e-13,105329309,NC_047561.1,28608523,28608525,25.56102901,lamin binding,other molecular function

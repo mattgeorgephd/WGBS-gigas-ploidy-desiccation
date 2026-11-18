@@ -1,0 +1,61 @@
+GOID,topGOterm,p.value,geneID,chr,start,end,meth.diff,GOterm,GOSlim
+GO:0005790,smooth endoplasmic reticulum,3.9e-24,NA,NA,NA,NA,NA,NA,NA
+GO:0005790,smooth endoplasmic reticulum,3.9e-24,105335651,NC_047561.1,19405662,19405664,21.61016949,smooth endoplasmic reticulum,ER/Golgi
+GO:0034992,microtubule organizing center attachment...,2.8e-17,NA,NA,NA,NA,NA,NA,NA
+GO:0034993,meiotic nuclear membrane microtubule tet...,2.8e-17,105329309,NC_047561.1,28607016,28607018,23.03649635,SUN-KASH complex,nucleus
+GO:0034993,meiotic nuclear membrane microtubule tet...,2.8e-17,105329309,NC_047561.1,28607026,28607028,20.69390301,SUN-KASH complex,nucleus
+GO:0034993,meiotic nuclear membrane microtubule tet...,2.8e-17,105329309,NC_047561.1,28607119,28607121,-24.04577335,SUN-KASH complex,nucleus
+GO:0034993,meiotic nuclear membrane microtubule tet...,2.8e-17,105329309,NC_047561.1,28608523,28608525,25.56102901,SUN-KASH complex,nucleus
+GO:0106083,nuclear membrane protein complex,2.8e-17,NA,NA,NA,NA,NA,NA,NA
+GO:0106094,nuclear membrane microtubule tethering c...,2.8e-17,NA,NA,NA,NA,NA,NA,NA
+GO:0005635,nuclear envelope,1.2e-16,NA,NA,NA,NA,NA,NA,NA
+GO:0005635,nuclear envelope,1.2e-16,105329309,NC_047561.1,28607016,28607018,23.03649635,nuclear envelope,nucleus
+GO:0005635,nuclear envelope,1.2e-16,105329309,NC_047561.1,28607026,28607028,20.69390301,nuclear envelope,nucleus
+GO:0005635,nuclear envelope,1.2e-16,105329309,NC_047561.1,28607119,28607121,-24.04577335,nuclear envelope,nucleus
+GO:0005635,nuclear envelope,1.2e-16,105329309,NC_047561.1,28608523,28608525,25.56102901,nuclear envelope,nucleus
+GO:0005635,nuclear envelope,1.2e-16,105338349,NC_047559.1,12710196,12710198,-22.92076345,nuclear envelope,nucleus
+GO:0005635,nuclear envelope,1.2e-16,105319280,NC_047561.1,34721767,34721769,-21.83293193,nuclear envelope,nucleus
+GO:0005635,nuclear envelope,1.2e-16,105319280,NC_047561.1,34726093,34726095,-20.58033519,nuclear envelope,nucleus
+GO:0005635,nuclear envelope,1.2e-16,105319280,NC_047561.1,34726818,34726820,-35.73917478,nuclear envelope,nucleus
+GO:0005635,nuclear envelope,1.2e-16,105319280,NC_047561.1,34727047,34727049,-21.77085313,nuclear envelope,nucleus
+GO:0005635,nuclear envelope,1.2e-16,105327689,NC_047562.1,22386487,22386489,-23.07692308,nuclear envelope,nucleus
+GO:0005635,nuclear envelope,1.2e-16,105327689,NC_047562.1,22446606,22446608,-21.26142392,nuclear envelope,nucleus
+GO:0031965,nuclear membrane,1.3e-14,NA,NA,NA,NA,NA,NA,NA
+GO:0031965,nuclear membrane,1.3e-14,105329645,NC_047561.1,27733219,27733221,-21.00872793,nuclear membrane,nucleus
+GO:0031965,nuclear membrane,1.3e-14,105329645,NC_047561.1,27733219,27733221,-21.00872793,nuclear membrane,other membranes
+GO:0031965,nuclear membrane,1.3e-14,105329309,NC_047561.1,28607016,28607018,23.03649635,nuclear membrane,nucleus
+GO:0031965,nuclear membrane,1.3e-14,105329309,NC_047561.1,28607016,28607018,23.03649635,nuclear membrane,other membranes
+GO:0031965,nuclear membrane,1.3e-14,105329309,NC_047561.1,28607026,28607028,20.69390301,nuclear membrane,nucleus
+GO:0031965,nuclear membrane,1.3e-14,105329309,NC_047561.1,28607026,28607028,20.69390301,nuclear membrane,other membranes
+GO:0031965,nuclear membrane,1.3e-14,105329309,NC_047561.1,28607119,28607121,-24.04577335,nuclear membrane,nucleus
+GO:0031965,nuclear membrane,1.3e-14,105329309,NC_047561.1,28607119,28607121,-24.04577335,nuclear membrane,other membranes
+GO:0031965,nuclear membrane,1.3e-14,105329309,NC_047561.1,28608523,28608525,25.56102901,nuclear membrane,nucleus
+GO:0031965,nuclear membrane,1.3e-14,105329309,NC_047561.1,28608523,28608525,25.56102901,nuclear membrane,other membranes
+GO:0031965,nuclear membrane,1.3e-14,105320845,NC_047561.1,20840223,20840225,31.7506095,nuclear membrane,nucleus
+GO:0031965,nuclear membrane,1.3e-14,105320845,NC_047561.1,20840223,20840225,31.7506095,nuclear membrane,other membranes
+GO:0031965,nuclear membrane,1.3e-14,105328103,NC_047561.1,51312262,51312264,-22.94545064,nuclear membrane,nucleus
+GO:0031965,nuclear membrane,1.3e-14,105328103,NC_047561.1,51312262,51312264,-22.94545064,nuclear membrane,other membranes
+GO:0031965,nuclear membrane,1.3e-14,105328103,NC_047561.1,51346481,51346483,-32.14811894,nuclear membrane,nucleus
+GO:0031965,nuclear membrane,1.3e-14,105328103,NC_047561.1,51346481,51346483,-32.14811894,nuclear membrane,other membranes
+GO:0031965,nuclear membrane,1.3e-14,117689683,NC_047562.1,10463466,10463468,22.60552416,nuclear membrane,nucleus
+GO:0031965,nuclear membrane,1.3e-14,117689683,NC_047562.1,10463466,10463468,22.60552416,nuclear membrane,other membranes
+GO:0031965,nuclear membrane,1.3e-14,117690865,NC_047559.1,35665123,35665125,20.07467482,nuclear membrane,nucleus
+GO:0031965,nuclear membrane,1.3e-14,117690865,NC_047559.1,35665123,35665125,20.07467482,nuclear membrane,other membranes
+GO:0031965,nuclear membrane,1.3e-14,105318231,NC_047563.1,5569229,5569231,23.35076428,nuclear membrane,nucleus
+GO:0031965,nuclear membrane,1.3e-14,105318231,NC_047563.1,5569229,5569231,23.35076428,nuclear membrane,other membranes
+GO:0031965,nuclear membrane,1.3e-14,105318231,NC_047563.1,5569232,5569234,24.05362074,nuclear membrane,nucleus
+GO:0031965,nuclear membrane,1.3e-14,105318231,NC_047563.1,5569232,5569234,24.05362074,nuclear membrane,other membranes
+GO:0005640,nuclear outer membrane,1.1e-12,NA,NA,NA,NA,NA,NA,NA
+GO:0005640,nuclear outer membrane,1.1e-12,105329309,NC_047561.1,28607016,28607018,23.03649635,nuclear outer membrane,nucleus
+GO:0005640,nuclear outer membrane,1.1e-12,105329309,NC_047561.1,28607016,28607018,23.03649635,nuclear outer membrane,other membranes
+GO:0005640,nuclear outer membrane,1.1e-12,105329309,NC_047561.1,28607026,28607028,20.69390301,nuclear outer membrane,nucleus
+GO:0005640,nuclear outer membrane,1.1e-12,105329309,NC_047561.1,28607026,28607028,20.69390301,nuclear outer membrane,other membranes
+GO:0005640,nuclear outer membrane,1.1e-12,105329309,NC_047561.1,28607119,28607121,-24.04577335,nuclear outer membrane,nucleus
+GO:0005640,nuclear outer membrane,1.1e-12,105329309,NC_047561.1,28607119,28607121,-24.04577335,nuclear outer membrane,other membranes
+GO:0005640,nuclear outer membrane,1.1e-12,105329309,NC_047561.1,28608523,28608525,25.56102901,nuclear outer membrane,nucleus
+GO:0005640,nuclear outer membrane,1.1e-12,105329309,NC_047561.1,28608523,28608525,25.56102901,nuclear outer membrane,other membranes
+GO:0032593,insulin-responsive compartment,4.1e-12,NA,NA,NA,NA,NA,NA,NA
+GO:0032593,insulin-responsive compartment,4.1e-12,105330929,NC_047560.1,72532549,72532551,-22.40198482,insulin-responsive compartment,other cellular component
+GO:0005882,intermediate filament,9.5e-12,NA,NA,NA,NA,NA,NA,NA
+GO:0005882,intermediate filament,9.5e-12,105330929,NC_047560.1,72532549,72532551,-22.40198482,intermediate filament,cytoskeleton
+GO:0005882,intermediate filament,9.5e-12,105338349,NC_047559.1,12710196,12710198,-22.92076345,intermediate filament,cytoskeleton

@@ -1,0 +1,225 @@
+---
+title: "5-mC & 5mCpG plots"
+author: "Matt George"
+date: "2026-02-14"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r}
+rm(list=ls()) # clear all
+```
+
+
+```{r message=FALSE, warning=FALSE}
+## Load Packages
+load.lib<-c("readxl","tidyverse","scales", "bestNormalize","agricolae","nlme","multcomp","patchwork") # List of required packages
+install.lib <- load.lib[!load.lib %in% installed.packages()] # Select missing packages
+for(lib in install.lib) install.packages(lib,dependencies=TRUE) # Install missing packages + dependencies
+sapply(load.lib,require,character=TRUE) # Load all packages.
+
+## Set ggplot theme
+my_theme <- theme(line              = element_line(size=1.2),
+                  rect              = element_rect(size=1.2),
+                  text              = element_text(size=18,color="black"),
+                  panel.background  = element_rect(fill="white",color="white"),
+                  plot.background   = element_rect(fill = "white", color = NA),
+                  panel.grid.major  = element_blank(), 
+                  panel.grid.minor  = element_blank(),
+                  axis.text.x       = element_text(size=18,color="black"), #,angle=90),
+                  axis.text.y       = element_text(size=18,color="black"),
+                  axis.title.x      = element_text(margin = margin(t = 10, r = 0, b = 0, l = 0)),
+                  axis.title.y      = element_text(margin = margin(t = 0, r = 10, b = 0, l = 0)),
+                  axis.ticks.x      = element_line(color="black"),
+                  axis.ticks.y      = element_line(color="black"),
+                  # axis.line         = element_line(color = "black", size = 0.1),
+                  panel.border      = element_rect(color = "black", fill=NA, size=1.2),
+                  legend.key        = element_blank(), # removes background of legend bullets
+                  legend.position   = "none"
+                  ) 
+```
+
+```{r}
+dat <- read_excel("data/ELISA-percent-mCPG-summary.xlsx", sheet = "summary", col_names = TRUE)
+dat2 <- read_excel("data/bismark-percent-mCPG-summary.xlsx", sheet = "raw", col_names = TRUE)
+```
+
+
+```{r}
+# Generate the boxplot
+# We map treatment to the x-axis, percent to the y-axis, and color by ploidy
+p1 <- ggplot(dat, aes(x = treatment, y = percent, fill = ploidy)) +
+  geom_boxplot(color="black", linewidth=1) +
+  scale_fill_manual(values = c("diploid" = "royalblue1", 
+                               "triploid" = "orangered1")) +
+  labs(title = NULL, x = NULL, y = "%5-mC") +
+  ylim(0.5, 5) +
+  my_theme
+
+p1
+
+# Save the plot
+ggsave(filename = "plots/methylation_boxplot.png", 
+       plot = p1, 
+       width = 8, 
+       height = 6, 
+       units = "in", 
+       dpi = 1000)
+```
+
+```{r}
+
+dat_stat <- dat
+# Ensure we are using the correct column for percent
+test_me <- dat_stat$percent
+
+dat_stat$ploidy     <- factor(dat_stat$ploidy)
+dat_stat$treatment  <- factor(dat_stat$treatment)
+
+# 1. Normality Check & Manual Arcsin Transformation
+norm_test <- shapiro.test(test_me)
+
+if(norm_test$p.value < 0.05) {
+    # Arcsin transformation: asin(sqrt(p))
+    # We divide by 100 because asin() requires values between 0 and 1
+    dat_stat$response <- asin(sqrt(test_me / 100))
+    message("Data was non-normal. Applied Arcsin Square Root transformation.")
+    
+    # Re-check normality after transformation (optional but recommended)
+    new_norm <- shapiro.test(dat_stat$response)
+    message("New Shapiro p-value: ", round(new_norm$p.value, 4))
+} else {
+    dat_stat$response <- test_me
+    message("Data is normal; no transformation applied.")
+}
+
+# 2. Interaction Model
+my_test <- aov(response ~ ploidy * treatment, data = dat_stat)
+my_test_summary <- summary(my_test)
+print(summary(my_test))
+
+# 3. Multiple Comparisons
+# Creating the interaction group for HSD
+dat_stat$group_idx <- interaction(dat_stat$treatment, dat_stat$ploidy)
+amod <- aov(response ~ group_idx, data = dat_stat)
+
+library(agricolae)
+mult_comp <- HSD.test(amod, "group_idx", group=TRUE, console=TRUE)
+
+# Display the letters for your plot
+print(mult_comp$groups)
+
+write.table(my_test_summary[[1]],                 file = "stats/AOV_5-mC.csv",      row.names = TRUE)
+write.table(mult_comp$groups,                     file = "stats/HSD_test_5-mC.csv", row.names = TRUE)
+
+```
+
+
+```{r}
+# Generate the boxplot
+# We map treatment to the x-axis, percent to the y-axis, and color by ploidy
+p2 <- ggplot(dat2, aes(x = treatment, y = `%mCpG`, fill = ploidy)) +
+  geom_boxplot(color="black", linewidth=1) +
+  scale_fill_manual(values = c("diploid" = "royalblue1", 
+                               "triploid" = "orangered1")) +
+  labs(title = NULL, x= NULL, y = "%mCpG") +
+  ylim(9, 12.5) +
+  my_theme
+
+p2
+
+# Save the plot
+ggsave(filename = "plots/methylation_CpG_boxplot.png",
+       plot = p2,
+       width = 8,
+       height = 6,
+       units = "in",
+       dpi = 1000)
+```
+
+
+
+```{r}
+
+dat_stat <- dat2
+# Using the specific column for dat2
+test_me <- dat_stat$`%mCpG`
+
+dat_stat$ploidy     <- factor(dat_stat$ploidy)
+dat_stat$treatment  <- factor(dat_stat$treatment)
+
+# 1. Normality Check & Manual Arcsin Transformation
+norm_test <- shapiro.test(test_me)
+
+if(norm_test$p.value < 0.05) {
+    # Applying Arcsin Square Root transformation
+    # Formula: asin(sqrt(p)) where p is a proportion (0-1)
+    dat_stat$response <- asin(sqrt(test_me / 100))
+    message("Data was non-normal. Applied Arcsin Square Root transformation.")
+    
+    # Optional: Check if normality improved
+    new_norm <- shapiro.test(dat_stat$response)
+    message("Post-transformation Shapiro p-value: ", round(new_norm$p.value, 4))
+} else {
+    dat_stat$response <- test_me
+    message("Data is normal; no transformation applied.")
+}
+
+# 2. Interaction Model
+# Testing main effects and the interaction between ploidy and treatment
+my_test <- aov(response ~ ploidy * treatment, data = dat_stat)
+my_test_summary <- summary(my_test)
+
+# 3. Multiple Comparisons (HSD Test)
+# Create the combined factor for comparing all group combinations
+dat_stat$group_idx <- interaction(dat_stat$treatment, dat_stat$ploidy)
+amod <- aov(response ~ group_idx, data = dat_stat)
+
+library(agricolae)
+mult_comp <- HSD.test(amod, "group_idx", group=TRUE, console=TRUE)
+
+# Display the letters for your plot
+print(mult_comp$groups)
+
+write.table(my_test_summary[[1]],                 file = "stats/AOV_%mCpG.csv",      row.names = TRUE)
+write.table(mult_comp$groups,                     file = "stats/HSD_%mCpG.csv", row.names = TRUE)
+```
+
+
+
+```{r}
+# Load patchwork (install if needed: install.packages("patchwork"))
+library(patchwork)
+
+# Ensure p1 and p2 are defined as you have them above
+# (Note: I've removed the title from p2 for a cleaner combined look)
+
+p3 <- p1 + p2 + 
+  plot_layout(guides = "collect") # Combines the legend into one
+  # plot_annotation(tag_levels = 'A') # Adds "A" and "B" labels to the plots
+
+# View the combined plot
+p3
+
+# Save the combined side-by-side plot
+ggsave(filename = "plots/methylation_combined_facet.png", 
+       plot = p3, 
+       width = 10, # Increased width for side-by-side
+       height = 7, 
+       units = "in", 
+       dpi = 600)
+```
+
+
+
+
+
+
+
+
+
+

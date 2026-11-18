@@ -1,0 +1,71 @@
+---
+title: "4_GO_enrichment_analysis"
+author: "Matt George"
+date: "6/14/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(engine.opts = list(bash = "-l")) # set arguments for bash chunks globally
+library(rstudioapi)
+```
+
+```{bash, engine.opts='-l'}
+echo $PATH
+```
+
+## Session information
+```{r}
+sessionInfo()
+```
+
+This is based on yaamini's [analysis](https://github.com/RobertsLab/project-virginica-oa/blob/master/analyses/2018-06-14-Gene-Enrichment-Analysis/2018-06-14-Gene-Enrichment-Analysis.Rmd) of gonad methylation in virginica.
+
+
+```{bash}
+# To install blast+, I opened up my bash client and ran the following:
+# cd home/mngeorge/
+# sudo wget https://ftp.ncbi.nlm.nih.gov/blast/executables/LATEST/ncbi-blast-2.11.0+-x64-linux.tar.gz
+# tar zxvpf ncbi-blast-2.11.0+-x64-linux.tar.gz
+
+/home/mngeorge/ncbi-blast-2.11.0+/bin/makeblastdb -help #confirm download/install was successful
+```
+
+```{r}
+home <- getActiveDocumentContext()$path
+setwd(dirname(home)); getwd()
+setwd('..')
+home <- getwd(); getwd()
+```
+
+```{r}
+library(readxl)
+library(dplyr)
+setwd(home)
+
+# Import datasets
+blastResults <- read_excel("data/20210605-cgigas-roslin-mito-blastx_unfolded.xlsx", sheet = "data", col_names = TRUE)
+DMLmRNA      <- read_excel("data/2021-06-21-DML-mRNA_unfolded.xlsx", sheet = "data", col_names = TRUE)
+
+blastResults <- blastResults %>% mutate(Genbank = as.character(Genbank))
+DMLmRNA      <- DMLmRNA %>% mutate(Genbank = as.character(Genbank))
+
+# Merge files together, using Genbank ID
+mRNADMLblast <- right_join.data.frame(x = blastResults , y = DMLmRNA , by = "Genbank", keep = TRUE)
+# head(mRNADMLblast) #Confirm merge
+
+# Save the newly created database in the data folder
+# openxlsx::write.xlsx(x = mRNADMLblast, "data/2021-06-21-mRNA-DML-Uniprot.xlsx", sheetName = "data", col.names = TRUE, append = FALSE) #Write out file
+
+```
+
+
+
+
+
+
+
+
+
+

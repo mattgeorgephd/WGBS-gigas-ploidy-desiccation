@@ -1,0 +1,431 @@
+---
+title: "Gene plots"
+author: "Matt George"
+date: "2024-10-11"
+output: html_document
+---
+
+
+```{r message=FALSE, warning=FALSE}
+## Load Packages
+load.lib<-c("readxl","tidyverse","scales") # List of required packages
+install.lib <- load.lib[!load.lib %in% installed.packages()] # Select missing packages
+for(lib in install.lib) install.packages(lib,dependencies=TRUE) # Install missing packages + dependencies
+sapply(load.lib,require,character=TRUE) # Load all packages.
+
+```
+
+
+
+```{r}
+## Set ggplot theme
+## Set ggplot theme
+my_theme <- theme(line              = element_line(size=1.2),
+                  rect              = element_rect(size=1.2),
+                  text              = element_text(size=16,color="black"),
+                  panel.background  = element_rect(fill="white",color="white"),
+                  plot.background   = element_rect(fill = "white", color = NA),
+                  strip.background  = element_blank(),
+                  strip.text        = element_text(size = 20, face = "bold"),
+                  panel.grid.major  = element_blank(), 
+                  panel.grid.minor  = element_blank(),
+                  axis.text.x       = element_text(size=22,color="black"), #,angle=90),
+                  axis.text.y       = element_text(size=22,color="black"),
+                  axis.title.x      = element_text(margin = margin(t = 10, r = 0, b = 0, l = 0)),
+                  axis.title.y      = element_text(margin = margin(t = 0, r = 10, b = 0, l = 0)),
+                  axis.ticks.x      = element_line(color="black"),
+                  axis.ticks.y      = element_line(color="black"),
+                  # axis.line         = element_line(color = "black", size = 0.1),
+                  panel.border      = element_rect(color = "black", fill=NA, size=1.2),
+                  panel.spacing.x   = unit(1.0, "cm"),
+                  panel.spacing.y   = unit(1.0, "cm"),
+                  legend.key        = element_blank(), # removes background of legend bullets
+                  legend.position   = "none"
+                  ) 
+
+# Create a sample data frame with "overlap" replaced by "interaction"
+data <- data.frame(
+  treatment = c("control", "heat", "heat", "heat", "control + heat", "control + heat", "control + heat", "control",
+                "heat", "heat", "heat", "control + heat", "control + heat", "control + heat", "control", "heat", "heat", 
+                "heat", "control + heat", "control + heat", "control + heat", "control", "heat", "heat", "heat", 
+                "control + heat", "control + heat", "control + heat"),
+  factor = c("ploidy", "ploidy", "heat", "interaction", "ploidy", "heat", "interaction", "ploidy", "ploidy", "heat", 
+             "interaction", "ploidy", "heat", "interaction", "ploidy", "ploidy", "heat", "interaction", "ploidy", "heat", 
+             "interaction", "ploidy", "ploidy", "heat", "interaction", "ploidy", "heat", "interaction"),
+  variable = c("GO terms", "GO terms", "GO terms", "GO terms", "GO terms", "GO terms", "GO terms", 
+               "Unique transcripts", "Unique transcripts", "Unique transcripts", "Unique transcripts", 
+               "Unique transcripts", "Unique transcripts", "Unique transcripts", "Unique genes", 
+               "Unique genes", "Unique genes", "Unique genes", "Unique genes", "Unique genes", "Unique genes", 
+               "Gene products", "Gene products", "Gene products", "Gene products", "Gene products", 
+               "Gene products", "Gene products"),
+  BP = c(34086, 514086, 50696, 14503, 4379, 39688, 3332, 950, 17007, 412, 19517, 128, 93, 55, 29, 28, 8, 1, 1, 3, 1, 
+         2736, 68452, 1236, 109458, 199, 1441, 165),
+  CC = c(21772, 375681, 39736, 9588, 4145, 26084, 2337, 2705, 31297, 12821, 39913, 601, 727, 610, 21, 1313, 348, 331, 
+         12, 17, 10, 3407, 259092, 20617, 39913, 1420, 1698, 1145),
+  MF = c(14724, 235261, 23665, 5706, 2443, 15213, 1262, 1358, 22189, 1548, 13304, 178, 1841, 207, 52, 71, 27, 23, 6, 
+         49, 4, 2288, 61978, 3861, 37810, 392, 5801, 318)
+)
+
+# Filter the data to only include rows for "control + heat" treatment
+data_filtered <- data %>%
+  filter(treatment == "control + heat")
+
+# Ensure the variable column is ordered according to the specified order
+data_filtered$variable <- factor(data_filtered$variable, levels = c("Unique transcripts", "GO terms", "Unique genes", "Gene products"))
+
+# Reshape the filtered data to a long format for easier plotting with ggplot2
+data_long <- data_filtered %>%
+  tidyr::pivot_longer(cols = c("BP", "CC", "MF"), names_to = "Category", values_to = "Value")
+
+# Ensure that the 'factor' column is ordered so that ploidy is first, heat second, and interaction third
+data_long$factor <- factor(data_long$factor, levels = c("ploidy", "heat", "interaction"))
+
+# Generate the bar plot for "control + heat" treatment only
+p1 <- ggplot(data_long, aes(x = Category, y = Value, fill = factor)) +
+  geom_bar(stat = "identity", position = position_dodge(width = 0.9)) +
+  geom_text(aes(label = scales::comma(Value)), 
+            position = position_dodge(width = 0.9), 
+            vjust = -0.3, size = 3, fontface="bold") +  # Add text labels above each bar with thousand separators
+  scale_fill_manual(values = c("ploidy" = "royalblue1", "heat" = "orangered1", "interaction" = "seagreen3")) +  # Custom colors
+  facet_wrap(~ variable, scales = "free", ncol = 2) +  # Set ncol = 2 for a 2x2 grid
+  labs(x = "Process", y = "Number Identified") +  # Removed the title
+  scale_y_continuous(labels = scales::comma, expand = expansion(mult = c(0, 0.2))) +  # Use thousand separators on the y-axis
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) + my_theme
+
+p1
+
+
+```
+
+
+```{r}
+ggsave("plots/transcripts-goterms-genes-gene-products.png",
+       plot   = p1,
+       dpi    = 1200,
+       device = "png",
+       width  = 12,
+       height = 10,
+       units  = "in")
+```
+
+
+
+```{r}
+## Set ggplot theme
+## Set ggplot theme
+my_theme <- theme(line              = element_line(size=1.2),
+                  rect              = element_rect(size=1.2),
+                  text              = element_text(size=16,color="black"),
+                  panel.background  = element_rect(fill="white",color="white"),
+                  plot.background   = element_rect(fill = "white", color = NA),
+                  strip.background  = element_blank(),
+                  strip.text        = element_text(size = 20, face = "bold"),
+                  panel.grid.major  = element_blank(), 
+                  panel.grid.minor  = element_blank(),
+                  axis.text.x       = element_text(size=16,color="black"), #,angle=90),
+                  axis.text.y       = element_text(size=16,color="black"),
+                  axis.title.x      = element_text(margin = margin(t = 10, r = 0, b = 0, l = 0)),
+                  axis.title.y      = element_text(margin = margin(t = 0, r = 10, b = 0, l = 0)),
+                  axis.ticks.x      = element_line(color="black"),
+                  axis.ticks.y      = element_line(color="black"),
+                  # axis.line         = element_line(color = "black", size = 0.1),
+                  panel.border      = element_rect(color = "black", fill=NA, size=1.2),
+                  panel.spacing.x   = unit(0.5, "cm"),
+                  panel.spacing.y   = unit(1.0, "cm"),
+                  legend.key        = element_blank(), # removes background of legend bullets
+                  legend.position   = "none"
+                  ) 
+
+# Create a sample data frame with the updated data, replacing "overlap" with "interaction"
+data <- data.frame(
+  treatment = c("control", "heat", "heat", "heat", "control + heat", "control + heat", "control + heat", "control",
+                "heat", "heat", "heat", "control + heat", "control + heat", "control + heat", "control", "heat", "heat", 
+                "heat", "control + heat", "control + heat", "control + heat"),
+  factor = c("ploidy", "ploidy", "heat", "interaction", "ploidy", "heat", "interaction", "ploidy", "ploidy", "heat", 
+             "interaction", "ploidy", "heat", "interaction", "ploidy", "ploidy", "heat", "interaction", "ploidy", "heat", 
+             "interaction"),
+  type = c("BP", "BP", "BP", "BP", "BP", "BP", "BP", 
+           "CC", "CC", "CC", "CC", "CC", "CC", "CC", 
+           "MF", "MF", "MF", "MF", "MF", "MF", "MF"),
+  total = c(59, 10766, 43, 568, 10, 7, 3, 
+            147, 16605, 1054, 953, 24, 54, 16, 
+            106, 12993, 125, 385, 15, 134, 8),
+  hyper = c(52, 1597, 29, 277, 5, 2, 2, 
+            124, 2560, 633, 428, 12, 30, 8, 
+            87, 1827, 66, 170, 5, 87, 5),
+  hypo = c(7, 9169, 14, 291, 5, 5, 1, 
+           23, 14045, 421, 525, 12, 24, 8, 
+           19, 11166, 59, 215, 10, 47, 3)
+)
+
+# Filter the data to only include rows for "control + heat" treatment
+data_filtered <- data %>%
+  filter(treatment == "control + heat")
+
+# Ensure the type column is ordered according to the specified order
+data_filtered$type <- factor(data_filtered$type, levels = c("BP", "CC", "MF"))
+
+# Ensure that the factor column is ordered so that ploidy is first, heat second, and interaction third
+data_filtered$factor <- factor(data_filtered$factor, levels = c("ploidy", "heat", "interaction"))
+
+# Reshape the filtered data to a long format for easier plotting with ggplot2
+data_long <- data_filtered %>%
+  tidyr::pivot_longer(cols = c("hyper", "hypo"), names_to = "Category", values_to = "Value")
+
+# Generate the bar plot for "control + heat" treatment only
+p1 <- ggplot(data_long, aes(x = Category, y = Value, fill = factor)) +
+  geom_bar(stat = "identity", position = position_dodge(width = 0.9)) +
+  geom_text(aes(label = scales::comma(Value)), 
+            position = position_dodge(width = 0.9), 
+            vjust = -0.3, size = 3, fontface="bold") +  # Add text labels above each bar with thousand separators
+  scale_fill_manual(values = c("ploidy" = "royalblue1", "heat" = "orangered1", "interaction" = "seagreen3")) +  # Custom colors
+  facet_wrap(~ type, scales = "free", ncol = 3) +  # Set ncol = 2 for a 2x2 grid
+  theme_minimal() +
+  labs(x = "Category", y = "DML in enriched genes") +  # Removed the title
+  scale_y_continuous(labels = scales::comma, expand = expansion(mult = c(0, 0.2))) +  # Increase only the upper y-axis limit
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) + my_theme
+
+# Display the plot
+p1
+
+```
+```{r}
+ggsave("plots/DML-in-enriched-genes.png",
+       plot   = p1,
+       dpi    = 1200,
+       device = "png",
+       width  = 8,
+       height = 4,
+       units  = "in")
+```
+
+
+
+```{r}
+# Load packages
+library(ggplot2)
+library(dplyr)
+
+# Data with counts
+dml_data <- data.frame(
+  DML_Type = c(rep("Ploidy-DML", 2), 
+               rep("Desiccation-DML", 2), 
+               rep("Interaction-DML", 3)),
+  Methylation_Change = c("Hypermethylated", "Hypomethylated",
+                         "Hypermethylated", "Hypomethylated",
+                         "Hypermethylated", "Hypomethylated", "Contrasting"),
+  Count = c(442, 596, 1150, 1201, 28, 49, 123)
+)
+
+# Calculate percent within each DML_Type
+dml_data <- dml_data %>%
+  group_by(DML_Type) %>%
+  mutate(Percent = Count / sum(Count) * 100,
+         Label = paste0(Count, "\n", round(Percent), "%"))
+
+# Plot
+ggplot(dml_data, aes(x = DML_Type, y = Methylation_Change)) +
+  geom_point(aes(size = Count, fill = Methylation_Change), shape = 21, color = "black", alpha = 0.8) +
+  geom_text(aes(label = Label), size = 4, fontface = "bold") +
+  scale_fill_manual(values = c("Hypermethylated" = "red", 
+                               "Hypomethylated" = "blue", 
+                               "Contrasting" = "gray40")) +
+  scale_size(range = c(10, 30), guide = FALSE) +
+  labs(
+    x = NULL, y = NULL, fill = "Methylation Status"
+  ) +
+  theme_minimal() +
+  theme(
+    legend.position = "top",
+    panel.grid = element_blank()
+  )
+
+
+# title = "Differentially Methylated Loci by Type and Methylation Direction",
+
+```
+
+
+```{r}
+# Packages
+library(dplyr)
+library(ggplot2)
+library(tidyr)
+library(stringr)
+library(gt)
+
+# --- Your data (unchanged) ---
+dml <- tibble::tribble(
+  ~DML,          ~geneID,     ~Gene_Name,                                           ~Chromosome,     ~start,    ~end,     ~Methylation_Difference, ~Category,
+  "ploidy-DML", 105318079, "MAP kinase-activating death domain protein",           "NC_047559.1", 17423557, 17423559,  +22, "Stress response",
+  "ploidy-DML", 105328103, "neurexin-1",                                           "NC_047561.1", 51312262, 51312264,  -23, "Calcium binding",
+  "ploidy-DML", 105328103, "neurexin-1",                                           "NC_047561.1", 51346481, 51346483,  -32, "Calcium binding",
+  "ploidy-DML", 105329309, "nesprin-1",                                            "NC_047561.1", 28607016, 28607018,  +23, "DNA damage response",
+  "ploidy-DML", 105329309, "nesprin-1",                                            "NC_047561.1", 28607026, 28607028,  +21, "DNA damage response",
+  "ploidy-DML", 105329309, "nesprin-1",                                            "NC_047561.1", 28607119, 28607121,  -24, "DNA damage response",
+  "ploidy-DML", 105329309, "nesprin-1",                                            "NC_047561.1", 28608523, 28608525,  +26, "DNA damage response",
+  "ploidy-DML", 105329645, "ubiquitin-like-specific protease 1",                   "NC_047561.1", 27733219, 27733221,  -21, "Stress response",
+  "ploidy-DML", 105335651, "1-phosphatidylinositol 4,5-bisphosphate phosphodiesterase beta-1",
+                                                                                   "NC_047561.1", 19405662, 19405664,  +22, "Lipid metabolism",
+  "ploidy-DML", 105347767, "F-box DNA helicase 1",                                 "NC_047561.1",  2676336,  2676338,  -21, "DNA replication",
+  "heat-DML",   105320544, "kinesin-like protein unc-104",                         "NC_047564.1", 40471809, 40471811,  +42, "Cell adhesion, transport",
+  "heat-DML",   105326303, "phosphatidylinositol-binding clathrin assembly protein LAP",
+                                                                                   "NC_047563.1",  1749458,  1749460,  -20, "Cell proliferation",
+  "heat-DML",   105326303, "phosphatidylinositol-binding clathrin assembly protein LAP",
+                                                                                   "NC_047563.1",  1761560,  1761562,  +20, "Cell proliferation",
+  "heat-DML",   105326303, "phosphatidylinositol-binding clathrin assembly protein LAP",
+                                                                                   "NC_047563.1",  1771931,  1771933,  -23, "Cell proliferation",
+  "heat-DML",   105326303, "phosphatidylinositol-binding clathrin assembly protein LAP",
+                                                                                   "NC_047563.1",  1780314,  1780316,  -28, "Cell proliferation",
+  "heat-DML",   105344721, "ataxin-2-like protein",                                "NC_047564.1", 22005779, 22005781,  -21, "Stress response",
+  "heat-DML",   117680672, "uncharacterized LOC117680672",                         "NC_047563.1",   684534,   684536,  -21, "Unknown",
+  "interaction-DML", 105319299, "CAD protein",                                     "NC_047564.1",  8425110,  8425112,  -31, "Apoptosis",
+  "interaction-DML", 105329309, "nesprin-1",                                       "NC_047561.1", 28607016, 28607018,  +21, "DNA damage response",
+  "interaction-DML", 105340590, "dihydropyrimidinase",                             "NW_022994979.1", 42498,    42500,  +31, "Stress response"
+)
+
+# --- Summarize by CATEGORY (across DML types) ---
+# counts and within-DML percentages
+cat_summ <- dml %>%
+  mutate(DML = factor(DML, levels = c("ploidy-DML","heat-DML","interaction-DML"))) %>%
+  count(DML, Category, name = "n") %>%
+  group_by(DML) %>%
+  mutate(pct = 100 * n / sum(n)) %>%
+  ungroup()
+
+# order categories by total count across all DML types (for cleaner y-axis)
+cat_order <- cat_summ %>%
+  group_by(Category) %>%
+  summarise(total = sum(n), .groups="drop") %>%
+  arrange(desc(total)) %>%
+  pull(Category)
+
+cat_summ <- cat_summ %>%
+  mutate(Category = factor(Category, levels = cat_order))
+
+# --- Colors (Okabe–Ito inspired, color-blind friendly) ---
+dml_cols <- c("ploidy-DML"="#0072B2", "heat-DML"="#D55E00", "interaction-DML"="#009E73")
+
+# --- Plot: categories by DML type ---
+p_cat <- ggplot(cat_summ, aes(x = n, y = Category, fill = DML)) +
+  geom_col(position = position_dodge(width = 0.8), width = 0.72, color = "white", alpha = 0.95) +
+  geom_text(aes(label = n),
+            position = position_dodge(width = 0.8),
+            hjust = -0.15, size = 3.4) +
+  scale_fill_manual(values = dml_cols, name = "DML type") +
+  scale_x_continuous(expand = expansion(mult = c(0, 0.15))) +
+  labs(
+    title = "Representation of DML by Functional Category",
+    subtitle = "Counts per category, grouped by DML type",
+    x = "Number of DML",
+    y = NULL
+  ) +
+  theme_minimal(base_size = 13) +
+  theme(
+    legend.position = "top",
+    panel.grid.major.y = element_blank(),
+    panel.grid.minor = element_blank(),
+    plot.title = element_text(face = "bold"),
+    plot.margin = margin(10, 16, 10, 16)
+  )
+
+p_cat
+# ggsave("dml_by_category.png", p_cat, width = 8.2, height = 5, dpi = 300, bg = "white")
+
+# --- Professional table (gt) with counts and within-DML % ---
+tbl <- cat_summ %>%
+  mutate(`Count (n)` = n,
+         `Percent within DML` = sprintf("%.1f%%", pct)) %>%
+  select(Category, DML, `Count (n)`, `Percent within DML`) %>%
+  arrange(match(Category, cat_order), DML) %>%
+  gt(rowname_col = "Category", groupname_col = "DML") %>%
+  tab_header(
+    title = md("**DML by Functional Category**"),
+    subtitle = "Count and % within each DML type"
+  ) %>%
+  tab_options(table.font.size = px(13), data_row.padding = px(6)) %>%
+  opt_table_outline() %>%
+  tab_style(style = cell_fill(color = "#F7F7F7"),
+            locations = cells_body(rows = seq(1, n(), by = 2))) %>%
+  cols_align(columns = c(`Count (n)`, `Percent within DML`), align = "center") %>%
+  tab_source_note(md("Palette: Okabe–Ito; values are within-DML percentages."))
+
+tbl
+# gtsave(tbl, "dml_by_category_table.png", expand = 5)  # optional save
+
+
+```
+
+```{r}
+# Load packages
+library(dplyr)
+library(ggplot2)
+
+# ---- Data ----
+dml_data <- data.frame(
+  DML_Type = c(rep("Ploidy-DML", 2),
+               rep("Desiccation-DML", 2),
+               rep("Interaction-DML", 3)),
+  Methylation_Change = c("Hypermethylated", "Hypomethylated",
+                         "Hypermethylated", "Hypomethylated",
+                         "Hypermethylated", "Hypomethylated", "Contrasting"),
+  Count = c(442, 596, 1150, 1201, 28, 49, 123)
+)
+
+# ---- Tidy + nice labels ----
+dml_plot <- dml_data %>%
+  mutate(
+    DML_Type = factor(DML_Type,
+                      levels = c("Ploidy-DML", "Desiccation-DML", "Interaction-DML")),
+    Methylation_Change = factor(Methylation_Change,
+                                levels = c("Hypermethylated", "Hypomethylated", "Contrasting"))
+  ) %>%
+  group_by(DML_Type) %>%
+  mutate(
+    Percent = 100 * Count / sum(Count),
+    # label on two lines: count and percent (1 decimal)
+    Label = paste0(Count, "\n", sprintf("%.1f%%", Percent))
+  ) %>%
+  ungroup()
+
+# ---- Colors (color-blind friendly) ----
+cols <- c(
+  "Hypermethylated" = "#D55E00",   # orange
+  "Hypomethylated"  = "#0072B2",   # blue
+  "Contrasting"     = "#7A7A7A"    # grey
+)
+
+# ---- Plot ----
+p <- ggplot(dml_plot, aes(x = DML_Type, y = Methylation_Change)) +
+  # bubbles (area scaled by Count)
+  geom_point(aes(size = Count, fill = Methylation_Change),
+             shape = 21, color = "white", stroke = 1.2, alpha = 0.9) +
+  # labels centered on bubbles
+  geom_text(aes(label = Label), lineheight = 0.95, fontface = "bold", size = 3.8) +
+  scale_fill_manual(values = cols, name = "Methylation status") +
+  scale_size_area(max_size = 28, guide = "none") +
+  coord_equal() +
+  labs(
+    title   = "Distribution of DML by Type and Methylation Direction",
+    subtitle = "Bubble size = number of DML; label shows count and percent within DML type",
+    x = NULL, y = NULL
+  ) +
+  theme_minimal(base_size = 13) +
+  theme(
+    plot.title = element_text(face = "bold", size = 15),
+    plot.subtitle = element_text(color = "#555555"),
+    legend.position = "top",
+    panel.grid = element_blank(),
+    axis.text.x = element_text(face = "bold"),
+    axis.text.y = element_text(face = "bold"),
+    plot.margin = margin(12, 16, 12, 16)
+  )
+
+p
+
+# ---- Optional: save ----
+# ggsave("dml_bubbles.png", p, width = 8, height = 4.8, dpi = 300, bg = "white")
+
+```
+
+

@@ -1,0 +1,48 @@
+GOID,topGOterm,p.value,geneID,chr,start,end,meth.diff,GOterm,GOSlim
+GO:0097418,neurofibrillary tangle,< 1e-30,NA,NA,NA,NA,NA,NA,NA
+GO:0042734,presynaptic membrane,2.1e-29,NA,NA,NA,NA,NA,NA,NA
+GO:0042734,presynaptic membrane,2.1e-29,105336267,NC_047565.1,41140073,41140075,24.2225859247136,presynaptic membrane,other membranes
+GO:0042734,presynaptic membrane,2.1e-29,105344231,NC_047562.1,26774453,26774455,24.0508474576271,presynaptic membrane,other membranes
+GO:0042734,presynaptic membrane,2.1e-29,105330539,NC_047561.1,33394274,33394276,-32.258064516129,presynaptic membrane,other membranes
+GO:0042734,presynaptic membrane,2.1e-29,105330539,NC_047561.1,33406788,33406790,21.306771601902,presynaptic membrane,other membranes
+GO:0042734,presynaptic membrane,2.1e-29,105328103,NC_047561.1,51298503,51298505,-24.3091460153325,presynaptic membrane,other membranes
+GO:0042734,presynaptic membrane,2.1e-29,105328103,NC_047561.1,51309221,51309223,20.0735545672255,presynaptic membrane,other membranes
+GO:0042734,presynaptic membrane,2.1e-29,105326303,NC_047563.1,1778234,1778236,-24.0476190476191,presynaptic membrane,other membranes
+GO:0044305,calyx of Held,4.2e-23,NA,NA,NA,NA,NA,NA,NA
+GO:0097470,ribbon synapse,6.0e-22,NA,NA,NA,NA,NA,NA,NA
+GO:0036064,ciliary basal body,6.5e-21,NA,NA,NA,NA,NA,NA,NA
+GO:0005858,axonemal dynein complex,5.9e-19,NA,NA,NA,NA,NA,NA,NA
+GO:0005858,axonemal dynein complex,5.9e-19,105319445,NC_047560.1,8409212,8409214,25.7707679132173,axonemal dynein complex,cytoskeleton
+GO:0005858,axonemal dynein complex,5.9e-19,105319445,NC_047560.1,8413441,8413443,-29.517091698318,axonemal dynein complex,cytoskeleton
+GO:0005858,axonemal dynein complex,5.9e-19,105319445,NC_047560.1,8417868,8417870,25.33748701973,axonemal dynein complex,cytoskeleton
+GO:0005858,axonemal dynein complex,5.9e-19,105319445,NC_047560.1,8425643,8425645,29.7685185185185,axonemal dynein complex,cytoskeleton
+GO:0005858,axonemal dynein complex,5.9e-19,105319445,NC_047560.1,8430573,8430575,32.8906905227844,axonemal dynein complex,cytoskeleton
+GO:0005858,axonemal dynein complex,5.9e-19,105330782,NC_047563.1,23990584,23990586,24.7361688519348,axonemal dynein complex,cytoskeleton
+GO:0048786,presynaptic active zone,3.2e-18,105318488,NC_047568.1,3322358,3322360,-24.079343823234,presynaptic active zone,other cellular component
+GO:0048786,presynaptic active zone,3.2e-18,NA,NA,NA,NA,NA,NA,NA
+GO:0048786,presynaptic active zone,3.2e-18,105330539,NC_047561.1,33394274,33394276,-32.258064516129,presynaptic active zone,other cellular component
+GO:0048786,presynaptic active zone,3.2e-18,105330539,NC_047561.1,33406788,33406790,21.306771601902,presynaptic active zone,other cellular component
+GO:0048786,presynaptic active zone,3.2e-18,105332418,NC_047561.1,27381974,27381976,25.9846547314578,presynaptic active zone,other cellular component
+GO:0016234,inclusion body,1.9e-17,NA,NA,NA,NA,NA,NA,NA
+GO:0099081,supramolecular polymer,1.4e-16,NA,NA,NA,NA,NA,NA,NA
+GO:0005930,axoneme,2.0e-16,NA,NA,NA,NA,NA,NA,NA
+GO:0005930,axoneme,2.0e-16,105317681,NC_047564.1,9454575,9454577,23.4141357852698,axoneme,other cellular component
+GO:0005930,axoneme,2.0e-16,105320874,NC_047561.1,56902316,56902318,24.775066872011,axoneme,other cellular component
+GO:0005930,axoneme,2.0e-16,105331671,NC_047565.1,55329670,55329672,23.7121212121212,axoneme,other cellular component
+GO:0005930,axoneme,2.0e-16,105337848,NC_047561.1,53655604,53655606,-22.4762618690655,axoneme,other cellular component
+GO:0005930,axoneme,2.0e-16,105337848,NC_047561.1,53660152,53660154,24.1056910569106,axoneme,other cellular component
+GO:0005930,axoneme,2.0e-16,105343243,NC_047564.1,38580874,38580876,31.2789115646259,axoneme,other cellular component
+GO:0005930,axoneme,2.0e-16,105343243,NC_047564.1,38581246,38581248,-28.4579037800687,axoneme,other cellular component
+GO:0005930,axoneme,2.0e-16,105343243,NC_047564.1,38586519,38586521,23.8095238095238,axoneme,other cellular component
+GO:0005930,axoneme,2.0e-16,105343243,NC_047564.1,38599241,38599243,24.2609016999261,axoneme,other cellular component
+GO:0005930,axoneme,2.0e-16,105343357,NC_047564.1,40585303,40585305,27.960927960928,axoneme,other cellular component
+GO:0005930,axoneme,2.0e-16,105343357,NC_047564.1,40585789,40585791,-35.4466458116093,axoneme,other cellular component
+GO:0005930,axoneme,2.0e-16,105343357,NC_047564.1,40592908,40592910,25.86115527292,axoneme,other cellular component
+GO:0005930,axoneme,2.0e-16,105347343,NC_047568.1,24187750,24187752,22.6206896551724,axoneme,other cellular component
+GO:0005930,axoneme,2.0e-16,105347667,NC_047563.1,23864527,23864529,-20.3805496828753,axoneme,other cellular component
+GO:0005930,axoneme,2.0e-16,105347788,NC_047563.1,4183556,4183558,24.1666666666667,axoneme,other cellular component
+GO:0005930,axoneme,2.0e-16,105323836,NC_047563.1,7106332,7106334,-22.3243672681875,axoneme,other cellular component
+GO:0005930,axoneme,2.0e-16,105330782,NC_047563.1,23990584,23990586,24.7361688519348,axoneme,other cellular component
+GO:0005930,axoneme,2.0e-16,105320190,NC_047564.1,4266321,4266323,28.4216438869126,axoneme,other cellular component
+GO:0005930,axoneme,2.0e-16,105320190,NC_047564.1,4266353,4266355,22.063751181373,axoneme,other cellular component
+GO:0005930,axoneme,2.0e-16,105334009,NC_047564.1,26433829,26433831,21.6666666666667,axoneme,other cellular component

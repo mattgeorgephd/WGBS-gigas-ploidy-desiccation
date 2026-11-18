@@ -1,0 +1,43 @@
+GOID,topGOterm,p.value,geneID,chr,start,end,meth.diff,GOterm,GOSlim
+GO:0097418,neurofibrillary tangle,< 1e-30,NA,NA,NA,NA,NA,NA,NA
+GO:0030136,clathrin-coated vesicle,1.2e-25,NA,NA,NA,NA,NA,NA,NA
+GO:0030136,clathrin-coated vesicle,1.2e-25,105340059,NC_047564.1,48899036,48899038,23.267271613873,clathrin-coated vesicle,other cellular component
+GO:0030136,clathrin-coated vesicle,1.2e-25,105342580,NC_047561.1,33232918,33232920,27.8843843843844,clathrin-coated vesicle,other cellular component
+GO:0030136,clathrin-coated vesicle,1.2e-25,105342655,NC_047562.1,39936578,39936580,20.9499134893812,clathrin-coated vesicle,other cellular component
+GO:0030136,clathrin-coated vesicle,1.2e-25,105323602,NC_047561.1,406849,406851,-20.2987861811391,clathrin-coated vesicle,other cellular component
+GO:0030136,clathrin-coated vesicle,1.2e-25,105319752,NC_047563.1,58373353,58373355,22.2211292543773,clathrin-coated vesicle,other cellular component
+GO:0030136,clathrin-coated vesicle,1.2e-25,105326303,NC_047563.1,1749458,1749460,-20.1461551237336,clathrin-coated vesicle,other cellular component
+GO:0030136,clathrin-coated vesicle,1.2e-25,105326303,NC_047563.1,1761560,1761562,20.2422078919085,clathrin-coated vesicle,other cellular component
+GO:0030136,clathrin-coated vesicle,1.2e-25,105326303,NC_047563.1,1771931,1771933,-23.0875874578906,clathrin-coated vesicle,other cellular component
+GO:0030136,clathrin-coated vesicle,1.2e-25,105326303,NC_047563.1,1780314,1780316,-27.6470962002796,clathrin-coated vesicle,other cellular component
+GO:0030136,clathrin-coated vesicle,1.2e-25,117680672,NC_047563.1,684534,684536,-21.1564812277336,clathrin-coated vesicle,other cellular component
+GO:0030136,clathrin-coated vesicle,1.2e-25,105329663,NC_047564.1,30382610,30382612,-25.3962703962704,clathrin-coated vesicle,other cellular component
+GO:0030136,clathrin-coated vesicle,1.2e-25,105329663,NC_047564.1,30385249,30385251,41.3836477987421,clathrin-coated vesicle,other cellular component
+GO:0030136,clathrin-coated vesicle,1.2e-25,105329663,NC_047564.1,30385273,30385275,-21.0769090244794,clathrin-coated vesicle,other cellular component
+GO:0030135,coated vesicle,2.6e-22,NA,NA,NA,NA,NA,NA,NA
+GO:0016234,inclusion body,1.0e-21,NA,NA,NA,NA,NA,NA,NA
+GO:0005905,clathrin-coated pit,1.3e-17,NA,NA,NA,NA,NA,NA,NA
+GO:0005905,clathrin-coated pit,1.3e-17,105339625,NC_047563.1,6169569,6169571,24.0185153437339,coated pit,other membranes
+GO:0005905,clathrin-coated pit,1.3e-17,105345381,NC_047564.1,8936581,8936583,-24.7794117647059,coated pit,other membranes
+GO:0005905,clathrin-coated pit,1.3e-17,105329029,NC_047560.1,52334797,52334799,-33.3653241032096,coated pit,other membranes
+GO:0005905,clathrin-coated pit,1.3e-17,105329029,NC_047560.1,52337121,52337123,28.9014685372057,coated pit,other membranes
+GO:0005905,clathrin-coated pit,1.3e-17,105329029,NC_047560.1,52338962,52338964,43.9494470774092,coated pit,other membranes
+GO:0005905,clathrin-coated pit,1.3e-17,105340100,NC_047561.1,57362943,57362945,22.0462543991956,coated pit,other membranes
+GO:0005905,clathrin-coated pit,1.3e-17,105319752,NC_047563.1,58373353,58373355,22.2211292543773,coated pit,other membranes
+GO:0005905,clathrin-coated pit,1.3e-17,105326303,NC_047563.1,1749458,1749460,-20.1461551237336,coated pit,other membranes
+GO:0005905,clathrin-coated pit,1.3e-17,105326303,NC_047563.1,1761560,1761562,20.2422078919085,coated pit,other membranes
+GO:0005905,clathrin-coated pit,1.3e-17,105326303,NC_047563.1,1771931,1771933,-23.0875874578906,coated pit,other membranes
+GO:0005905,clathrin-coated pit,1.3e-17,105326303,NC_047563.1,1780314,1780316,-27.6470962002796,coated pit,other membranes
+GO:0005905,clathrin-coated pit,1.3e-17,105346886,NC_047563.1,42672858,42672860,-30.9935553168636,coated pit,other membranes
+GO:0005905,clathrin-coated pit,1.3e-17,117680672,NC_047563.1,684534,684536,-21.1564812277336,coated pit,other membranes
+GO:0005875,microtubule associated complex,8.7e-17,NA,NA,NA,NA,NA,NA,NA
+GO:0005875,microtubule associated complex,8.7e-17,105327229,NW_022994904.1,4536,4538,-43.7856709168185,microtubule associated complex,cytoskeleton
+GO:0005875,microtubule associated complex,8.7e-17,117680391,NC_047559.1,15617612,15617614,39.0321909615685,microtubule associated complex,cytoskeleton
+GO:0005875,microtubule associated complex,8.7e-17,105320544,NC_047564.1,40471809,40471811,41.6764922623434,microtubule associated complex,cytoskeleton
+GO:0030118,clathrin coat,1.4e-15,NA,NA,NA,NA,NA,NA,NA
+GO:0030118,clathrin coat,1.4e-15,105340059,NC_047564.1,48899036,48899038,23.267271613873,clathrin coat,other membranes
+GO:0005834,heterotrimeric G-protein complex,5.9e-15,105322561,NC_047568.1,10851012,10851014,-22.6694915254237,heterotrimeric G-protein complex,other membranes
+GO:0005834,heterotrimeric G-protein complex,5.9e-15,105322561,NC_047568.1,10851012,10851014,-22.6694915254237,heterotrimeric G-protein complex,plasma membrane
+GO:0005834,heterotrimeric G-protein complex,5.9e-15,NA,NA,NA,NA,NA,NA,NA
+GO:1905360,GTPase complex,5.9e-15,NA,NA,NA,NA,NA,NA,NA
+GO:0030119,AP-type membrane coat adaptor complex,6.4e-15,NA,NA,NA,NA,NA,NA,NA

@@ -1,0 +1,32 @@
+GOID,topGOterm,p.value,geneID,chr,start,end,meth.diff,GOterm,GOSlim
+GO:0034992,microtubule organizing center attachment...,6.1e-22,NA,NA,NA,NA,NA,NA,NA
+GO:0034993,meiotic nuclear membrane microtubule tet...,6.1e-22,105329309,NC_047561.1,28607016,28607018,21.14030292,SUN-KASH complex,nucleus
+GO:0106083,nuclear membrane protein complex,6.1e-22,NA,NA,NA,NA,NA,NA,NA
+GO:0106094,nuclear membrane microtubule tethering c...,6.1e-22,NA,NA,NA,NA,NA,NA,NA
+GO:0005640,nuclear outer membrane,2.7e-17,NA,NA,NA,NA,NA,NA,NA
+GO:0005640,nuclear outer membrane,2.7e-17,105329309,NC_047561.1,28607016,28607018,21.14030292,nuclear outer membrane,nucleus
+GO:0005640,nuclear outer membrane,2.7e-17,105329309,NC_047561.1,28607016,28607018,21.14030292,nuclear outer membrane,other membranes
+GO:0005635,nuclear envelope,4.1e-16,NA,NA,NA,NA,NA,NA,NA
+GO:0005635,nuclear envelope,4.1e-16,105329309,NC_047561.1,28607016,28607018,21.14030292,nuclear envelope,nucleus
+GO:0005635,nuclear envelope,4.1e-16,105338349,NC_047559.1,12710196,12710198,-27.2990377,nuclear envelope,nucleus
+GO:0005635,nuclear envelope,4.1e-16,105319280,NC_047561.1,34726818,34726820,-23.41970678,nuclear envelope,nucleus
+GO:0031965,nuclear membrane,6.9e-10,NA,NA,NA,NA,NA,NA,NA
+GO:0031965,nuclear membrane,6.9e-10,105318231,NC_047563.1,5569229,5569231,-26.42129676,nuclear membrane,nucleus
+GO:0031965,nuclear membrane,6.9e-10,105318231,NC_047563.1,5569229,5569231,-26.42129676,nuclear membrane,other membranes
+GO:0031965,nuclear membrane,6.9e-10,105318231,NC_047563.1,5569232,5569234,-24.17857143,nuclear membrane,nucleus
+GO:0031965,nuclear membrane,6.9e-10,105318231,NC_047563.1,5569232,5569234,-24.17857143,nuclear membrane,other membranes
+GO:0031965,nuclear membrane,6.9e-10,105333565,NC_047564.1,2021092,2021094,24.67720056,nuclear membrane,nucleus
+GO:0031965,nuclear membrane,6.9e-10,105333565,NC_047564.1,2021092,2021094,24.67720056,nuclear membrane,other membranes
+GO:0031965,nuclear membrane,6.9e-10,105329309,NC_047561.1,28607016,28607018,21.14030292,nuclear membrane,nucleus
+GO:0031965,nuclear membrane,6.9e-10,105329309,NC_047561.1,28607016,28607018,21.14030292,nuclear membrane,other membranes
+GO:0045111,intermediate filament cytoskeleton,1.1e-09,NA,NA,NA,NA,NA,NA,NA
+GO:0045111,intermediate filament cytoskeleton,1.1e-09,105343876,NC_047566.1,4839349,4839351,24.53147353,intermediate filament cytoskeleton,cytoskeleton
+GO:0045111,intermediate filament cytoskeleton,1.1e-09,105332697,NW_022994918.1,340314,340316,-22.06142698,intermediate filament cytoskeleton,cytoskeleton
+GO:0045111,intermediate filament cytoskeleton,1.1e-09,105332697,NW_022994918.1,396187,396189,27.01662562,intermediate filament cytoskeleton,cytoskeleton
+GO:0031258,lamellipodium membrane,8.7e-09,NA,NA,NA,NA,NA,NA,NA
+GO:0031258,lamellipodium membrane,8.7e-09,105335035,NC_047559.1,11412189,11412191,-24.08220523,lamellipodium membrane,other membranes
+GO:0031258,lamellipodium membrane,8.7e-09,105335035,NC_047559.1,11412189,11412191,-24.08220523,lamellipodium membrane,plasma membrane
+GO:0031258,lamellipodium membrane,8.7e-09,105338655,NC_047561.1,18140490,18140492,32.3690596,lamellipodium membrane,other membranes
+GO:0031258,lamellipodium membrane,8.7e-09,105338655,NC_047561.1,18140490,18140492,32.3690596,lamellipodium membrane,plasma membrane
+GO:0005868,cytoplasmic dynein complex,1.7e-08,NA,NA,NA,NA,NA,NA,NA
+GO:0005868,cytoplasmic dynein complex,1.7e-08,105345667,NC_047561.1,23952486,23952488,-32.35782647,cytoplasmic dynein complex,cytoskeleton

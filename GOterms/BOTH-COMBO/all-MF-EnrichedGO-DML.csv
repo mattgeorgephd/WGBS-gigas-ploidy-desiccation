@@ -1,0 +1,18 @@
+GOID,topGOterm,p.value,geneID,chr,start,end,meth.diff,GOterm,GOSlim
+GO:0016812,hydrolase activity, acting on carbon-nit...,1.7e-26,NA,NA,NA,NA,NA,NA,NA
+GO:0002054,nucleobase binding,2.5e-22,NA,NA,NA,NA,NA,NA,NA
+GO:0002058,uracil binding,1.2e-21,105340590,NW_022994979.1,42498,42500,31.37242142,uracil binding,other molecular function
+GO:0002059,thymine binding,1.2e-21,105340590,NW_022994979.1,42498,42500,31.37242142,thymine binding,other molecular function
+GO:0002061,pyrimidine nucleobase binding,1.2e-21,NA,NA,NA,NA,NA,NA,NA
+GO:0004157,dihydropyrimidinase activity,1.2e-21,105340590,NW_022994979.1,42498,42500,31.37242142,dihydropyrimidinase activity,other molecular function
+GO:0051219,phosphoprotein binding,8.4e-21,NA,NA,NA,NA,NA,NA,NA
+GO:0051219,phosphoprotein binding,8.4e-21,105335534,NC_047561.1,556532,556534,22.70259722,phosphoprotein binding,other molecular function
+GO:0051219,phosphoprotein binding,8.4e-21,105335534,NC_047561.1,561990,561992,23.79296918,phosphoprotein binding,other molecular function
+GO:0051219,phosphoprotein binding,8.4e-21,105340590,NW_022994979.1,42498,42500,31.37242142,phosphoprotein binding,other molecular function
+GO:0005521,lamin binding,5.5e-17,NA,NA,NA,NA,NA,NA,NA
+GO:0005521,lamin binding,5.5e-17,105329309,NC_047561.1,28607016,28607018,21.14030292,lamin binding,other molecular function
+GO:0016597,amino acid binding,6.2e-15,NA,NA,NA,NA,NA,NA,NA
+GO:0016597,amino acid binding,6.2e-15,105340590,NW_022994979.1,42498,42500,31.37242142,amino acid binding,other molecular function
+GO:0019206,nucleoside kinase activity,2.0e-12,105318231,NC_047563.1,5569229,5569231,-26.42129676,nucleoside kinase activity,kinase activity
+GO:0019206,nucleoside kinase activity,2.0e-12,105318231,NC_047563.1,5569232,5569234,-24.17857143,nucleoside kinase activity,kinase activity
+GO:0019206,nucleoside kinase activity,2.0e-12,NA,NA,NA,NA,NA,NA,NA

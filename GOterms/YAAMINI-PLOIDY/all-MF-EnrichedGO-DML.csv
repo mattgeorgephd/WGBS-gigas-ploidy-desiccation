@@ -1,0 +1,140 @@
+GOID,topGOterm,p.value,geneID,chr,start,end,meth.diff,GOterm,GOSlim
+GO:0032050,clathrin heavy chain binding,< 1e-30,NA,NA,NA,NA,NA,NA,NA
+GO:0032050,clathrin heavy chain binding,< 1e-30,105326303,NC_047563.1,1778234,1778236,-24.0476190476191,clathrin heavy chain binding,other molecular function
+GO:0035615,clathrin adaptor activity,< 1e-30,NA,NA,NA,NA,NA,NA,NA
+GO:0140312,cargo adaptor activity,< 1e-30,NA,NA,NA,NA,NA,NA,NA
+GO:0070740,tubulin-glutamic acid ligase activity,< 1e-30,NA,NA,NA,NA,NA,NA,NA
+GO:0070739,protein-glutamic acid ligase activity,1.2e-30,NA,NA,NA,NA,NA,NA,NA
+GO:0004674,protein serine/threonine kinase activity,5.8e-30,NA,NA,NA,NA,NA,NA,NA
+GO:0004674,protein serine/threonine kinase activity,5.8e-30,105318506,NC_047568.1,2846457,2846459,-24.3419077169453,protein serine/threonine kinase activity,kinase activity
+GO:0004674,protein serine/threonine kinase activity,5.8e-30,105319193,NC_047568.1,8406629,8406631,27.9541038215971,protein serine/threonine kinase activity,kinase activity
+GO:0004674,protein serine/threonine kinase activity,5.8e-30,105319247,NC_047565.1,31894207,31894209,20.1352003862868,protein serine/threonine kinase activity,kinase activity
+GO:0004674,protein serine/threonine kinase activity,5.8e-30,105319268,NC_047566.1,50081016,50081018,25.5067155067155,protein serine/threonine kinase activity,kinase activity
+GO:0004674,protein serine/threonine kinase activity,5.8e-30,105330503,NC_047568.1,46553082,46553084,29.1198501872659,protein serine/threonine kinase activity,kinase activity
+GO:0004674,protein serine/threonine kinase activity,5.8e-30,105331599,NC_047564.1,7093793,7093795,-27.8908554572271,protein serine/threonine kinase activity,kinase activity
+GO:0004674,protein serine/threonine kinase activity,5.8e-30,105332077,NC_047564.1,46480218,46480220,28.7223914699162,protein serine/threonine kinase activity,kinase activity
+GO:0004674,protein serine/threonine kinase activity,5.8e-30,105333057,NW_022994961.1,145439,145441,25.4135338345865,protein serine/threonine kinase activity,kinase activity
+GO:0004674,protein serine/threonine kinase activity,5.8e-30,105333342,NC_047561.1,29572843,29572845,-27.475614927905,protein serine/threonine kinase activity,kinase activity
+GO:0004674,protein serine/threonine kinase activity,5.8e-30,105333342,NC_047561.1,29587422,29587424,25.7552705933493,protein serine/threonine kinase activity,kinase activity
+GO:0004674,protein serine/threonine kinase activity,5.8e-30,105333422,NC_047559.1,29968312,29968314,27.4877916440586,protein serine/threonine kinase activity,kinase activity
+GO:0004674,protein serine/threonine kinase activity,5.8e-30,105335534,NC_047561.1,558342,558344,22.0795892169448,protein serine/threonine kinase activity,kinase activity
+GO:0004674,protein serine/threonine kinase activity,5.8e-30,105335534,NC_047561.1,563111,563113,23.5919899874844,protein serine/threonine kinase activity,kinase activity
+GO:0004674,protein serine/threonine kinase activity,5.8e-30,105336011,NC_047564.1,43047072,43047074,31.6666666666667,protein serine/threonine kinase activity,kinase activity
+GO:0004674,protein serine/threonine kinase activity,5.8e-30,105337002,NC_047561.1,10239020,10239022,-22.530612244898,protein serine/threonine kinase activity,kinase activity
+GO:0004674,protein serine/threonine kinase activity,5.8e-30,105337304,NC_047566.1,44777852,44777854,25.6794183832439,protein serine/threonine kinase activity,kinase activity
+GO:0004674,protein serine/threonine kinase activity,5.8e-30,105340730,NC_047568.1,46101846,46101848,23.5055724417427,protein serine/threonine kinase activity,kinase activity
+GO:0004674,protein serine/threonine kinase activity,5.8e-30,105340730,NC_047568.1,46104740,46104742,24.7894882946239,protein serine/threonine kinase activity,kinase activity
+GO:0004674,protein serine/threonine kinase activity,5.8e-30,105340730,NC_047568.1,46105935,46105937,23.4848484848485,protein serine/threonine kinase activity,kinase activity
+GO:0004674,protein serine/threonine kinase activity,5.8e-30,105340730,NC_047568.1,46109889,46109891,20.9321077245606,protein serine/threonine kinase activity,kinase activity
+GO:0004674,protein serine/threonine kinase activity,5.8e-30,105340730,NC_047568.1,46110094,46110096,21.3222711952295,protein serine/threonine kinase activity,kinase activity
+GO:0004674,protein serine/threonine kinase activity,5.8e-30,105340730,NC_047568.1,46152384,46152386,20.952632273387,protein serine/threonine kinase activity,kinase activity
+GO:0004674,protein serine/threonine kinase activity,5.8e-30,105343286,NC_047564.1,44444877,44444879,27.1896420411272,protein serine/threonine kinase activity,kinase activity
+GO:0004674,protein serine/threonine kinase activity,5.8e-30,105343569,NC_047565.1,45139085,45139087,23.8827838827839,protein serine/threonine kinase activity,kinase activity
+GO:0004674,protein serine/threonine kinase activity,5.8e-30,105343569,NC_047565.1,45152750,45152752,28.2554701360142,protein serine/threonine kinase activity,kinase activity
+GO:0004674,protein serine/threonine kinase activity,5.8e-30,105343707,NC_047564.1,33191773,33191775,20.3883495145631,protein serine/threonine kinase activity,kinase activity
+GO:0004674,protein serine/threonine kinase activity,5.8e-30,105344231,NC_047562.1,26774453,26774455,24.0508474576271,protein serine/threonine kinase activity,kinase activity
+GO:0004674,protein serine/threonine kinase activity,5.8e-30,105344416,NC_047561.1,10762958,10762960,-38.5069690526813,protein serine/threonine kinase activity,kinase activity
+GO:0004674,protein serine/threonine kinase activity,5.8e-30,105344416,NC_047561.1,10789469,10789471,-26.1988304093567,protein serine/threonine kinase activity,kinase activity
+GO:0004674,protein serine/threonine kinase activity,5.8e-30,105344416,NC_047561.1,10803742,10803744,27.5525525525526,protein serine/threonine kinase activity,kinase activity
+GO:0004674,protein serine/threonine kinase activity,5.8e-30,105344588,NC_047562.1,14579398,14579400,-33.1903945111492,protein serine/threonine kinase activity,kinase activity
+GO:0004674,protein serine/threonine kinase activity,5.8e-30,105345020,NC_047565.1,59524855,59524857,-27.1585557299843,protein serine/threonine kinase activity,kinase activity
+GO:0004674,protein serine/threonine kinase activity,5.8e-30,105345020,NC_047565.1,59529082,59529084,23.9728682170543,protein serine/threonine kinase activity,kinase activity
+GO:0004674,protein serine/threonine kinase activity,5.8e-30,105346346,NC_047561.1,30593076,30593078,-23.1851851851852,protein serine/threonine kinase activity,kinase activity
+GO:0004674,protein serine/threonine kinase activity,5.8e-30,105346346,NC_047561.1,30595018,30595020,24.0379648760331,protein serine/threonine kinase activity,kinase activity
+GO:0004674,protein serine/threonine kinase activity,5.8e-30,105348312,NC_047566.1,8906965,8906967,21.4830637778456,protein serine/threonine kinase activity,kinase activity
+GO:0004674,protein serine/threonine kinase activity,5.8e-30,105348312,NC_047566.1,8923196,8923198,22.3157894736842,protein serine/threonine kinase activity,kinase activity
+GO:0004674,protein serine/threonine kinase activity,5.8e-30,117680412,NC_047559.1,17388922,17388924,21.7316629622146,protein serine/threonine kinase activity,kinase activity
+GO:0004674,protein serine/threonine kinase activity,5.8e-30,105342841,NC_047560.1,1639369,1639371,-20.8237986270023,protein serine/threonine kinase activity,kinase activity
+GO:0004674,protein serine/threonine kinase activity,5.8e-30,105318361,NC_047561.1,6217860,6217862,21.1352657004831,protein serine/threonine kinase activity,kinase activity
+GO:0004674,protein serine/threonine kinase activity,5.8e-30,105338262,NC_047559.1,29454522,29454524,27.211131276467,protein serine/threonine kinase activity,kinase activity
+GO:0004674,protein serine/threonine kinase activity,5.8e-30,105338262,NC_047559.1,29465327,29465329,31.7962503446374,protein serine/threonine kinase activity,kinase activity
+GO:0004674,protein serine/threonine kinase activity,5.8e-30,105317550,NC_047561.1,44143872,44143874,-36.3199859037047,protein serine/threonine kinase activity,kinase activity
+GO:0004674,protein serine/threonine kinase activity,5.8e-30,105346669,NC_047562.1,31357423,31357425,21.8,protein serine/threonine kinase activity,kinase activity
+GO:0004674,protein serine/threonine kinase activity,5.8e-30,105327381,NC_047562.1,23237230,23237232,32.7431289640592,protein serine/threonine kinase activity,kinase activity
+GO:0004674,protein serine/threonine kinase activity,5.8e-30,105327381,NC_047562.1,23237775,23237777,20.6482593037215,protein serine/threonine kinase activity,kinase activity
+GO:0004674,protein serine/threonine kinase activity,5.8e-30,105324226,NC_047563.1,8645247,8645249,-25.6330578512397,protein serine/threonine kinase activity,kinase activity
+GO:0004674,protein serine/threonine kinase activity,5.8e-30,105332629,NC_047559.1,20568232,20568234,22.6021684737281,protein serine/threonine kinase activity,kinase activity
+GO:0004674,protein serine/threonine kinase activity,5.8e-30,105332629,NC_047559.1,20586441,20586443,21.6389244558259,protein serine/threonine kinase activity,kinase activity
+GO:0004674,protein serine/threonine kinase activity,5.8e-30,105320190,NC_047564.1,4266321,4266323,28.4216438869126,protein serine/threonine kinase activity,kinase activity
+GO:0004674,protein serine/threonine kinase activity,5.8e-30,105320190,NC_047564.1,4266353,4266355,22.063751181373,protein serine/threonine kinase activity,kinase activity
+GO:0004674,protein serine/threonine kinase activity,5.8e-30,105317516,NC_047564.1,25201901,25201903,24.9929318631609,protein serine/threonine kinase activity,kinase activity
+GO:0004674,protein serine/threonine kinase activity,5.8e-30,105317516,NC_047564.1,25205840,25205842,22.1269841269841,protein serine/threonine kinase activity,kinase activity
+GO:0004674,protein serine/threonine kinase activity,5.8e-30,105317516,NC_047564.1,25208472,25208474,21.4964810470428,protein serine/threonine kinase activity,kinase activity
+GO:0004674,protein serine/threonine kinase activity,5.8e-30,105319304,NC_047564.1,8320047,8320049,38.270944741533,protein serine/threonine kinase activity,kinase activity
+GO:0004674,protein serine/threonine kinase activity,5.8e-30,105329548,NC_047564.1,9301511,9301513,35.4560954816709,protein serine/threonine kinase activity,kinase activity
+GO:0004674,protein serine/threonine kinase activity,5.8e-30,105329548,NC_047564.1,9316650,9316652,28.240024744819,protein serine/threonine kinase activity,kinase activity
+GO:0019992,diacylglycerol binding,5.9e-29,NA,NA,NA,NA,NA,NA,NA
+GO:0019992,diacylglycerol binding,5.9e-29,105329799,NW_022994949.1,61753,61755,20.4906204906205,diacylglycerol binding,other molecular function
+GO:0019992,diacylglycerol binding,5.9e-29,105330539,NC_047561.1,33394274,33394276,-32.258064516129,diacylglycerol binding,other molecular function
+GO:0019992,diacylglycerol binding,5.9e-29,105330539,NC_047561.1,33406788,33406790,21.306771601902,diacylglycerol binding,other molecular function
+GO:0019992,diacylglycerol binding,5.9e-29,105317808,NC_047561.1,46400309,46400311,22.188679245283,diacylglycerol binding,other molecular function
+GO:0019992,diacylglycerol binding,5.9e-29,105317808,NC_047561.1,46405902,46405904,22.2222222222222,diacylglycerol binding,other molecular function
+GO:0045505,dynein intermediate chain binding,6.3e-28,NA,NA,NA,NA,NA,NA,NA
+GO:0045505,dynein intermediate chain binding,6.3e-28,105343243,NC_047564.1,38580874,38580876,31.2789115646259,dynein intermediate chain binding,other molecular function
+GO:0045505,dynein intermediate chain binding,6.3e-28,105343243,NC_047564.1,38581246,38581248,-28.4579037800687,dynein intermediate chain binding,other molecular function
+GO:0045505,dynein intermediate chain binding,6.3e-28,105343243,NC_047564.1,38586519,38586521,23.8095238095238,dynein intermediate chain binding,other molecular function
+GO:0045505,dynein intermediate chain binding,6.3e-28,105343243,NC_047564.1,38599241,38599243,24.2609016999261,dynein intermediate chain binding,other molecular function
+GO:0045505,dynein intermediate chain binding,6.3e-28,105345667,NC_047561.1,23946336,23946338,21.317794710892,dynein intermediate chain binding,other molecular function
+GO:0045505,dynein intermediate chain binding,6.3e-28,105345667,NC_047561.1,23946943,23946945,21.6003616636528,dynein intermediate chain binding,other molecular function
+GO:0045505,dynein intermediate chain binding,6.3e-28,105345667,NC_047561.1,23952486,23952488,-24.2728664370455,dynein intermediate chain binding,other molecular function
+GO:0045505,dynein intermediate chain binding,6.3e-28,105345667,NC_047561.1,23973555,23973557,28.9335664335664,dynein intermediate chain binding,other molecular function
+GO:0045505,dynein intermediate chain binding,6.3e-28,105319445,NC_047560.1,8409212,8409214,25.7707679132173,dynein intermediate chain binding,other molecular function
+GO:0045505,dynein intermediate chain binding,6.3e-28,105319445,NC_047560.1,8413441,8413443,-29.517091698318,dynein intermediate chain binding,other molecular function
+GO:0045505,dynein intermediate chain binding,6.3e-28,105319445,NC_047560.1,8417868,8417870,25.33748701973,dynein intermediate chain binding,other molecular function
+GO:0045505,dynein intermediate chain binding,6.3e-28,105319445,NC_047560.1,8425643,8425645,29.7685185185185,dynein intermediate chain binding,other molecular function
+GO:0045505,dynein intermediate chain binding,6.3e-28,105319445,NC_047560.1,8430573,8430575,32.8906905227844,dynein intermediate chain binding,other molecular function
+GO:0045505,dynein intermediate chain binding,6.3e-28,105323682,NC_047561.1,47168350,47168352,-30.944963655244,dynein intermediate chain binding,other molecular function
+GO:0045505,dynein intermediate chain binding,6.3e-28,105336490,NC_047562.1,4231669,4231671,25.1150681110233,dynein intermediate chain binding,other molecular function
+GO:0045505,dynein intermediate chain binding,6.3e-28,105336490,NC_047562.1,4231686,4231688,23.8167360848164,dynein intermediate chain binding,other molecular function
+GO:0045505,dynein intermediate chain binding,6.3e-28,105336490,NC_047562.1,4321368,4321370,24.5121625233895,dynein intermediate chain binding,other molecular function
+GO:0045505,dynein intermediate chain binding,6.3e-28,105336490,NC_047562.1,4332005,4332007,22.7306693235598,dynein intermediate chain binding,other molecular function
+GO:0045505,dynein intermediate chain binding,6.3e-28,105329758,NC_047562.1,4001391,4001393,22.6778656126482,dynein intermediate chain binding,other molecular function
+GO:0045505,dynein intermediate chain binding,6.3e-28,105329758,NC_047562.1,4014801,4014803,27.6190476190476,dynein intermediate chain binding,other molecular function
+GO:0045505,dynein intermediate chain binding,6.3e-28,105329758,NC_047562.1,4020977,4020979,21.6453570967325,dynein intermediate chain binding,other molecular function
+GO:0045505,dynein intermediate chain binding,6.3e-28,105329758,NC_047562.1,4021059,4021061,20.530303030303,dynein intermediate chain binding,other molecular function
+GO:0045505,dynein intermediate chain binding,6.3e-28,105329758,NC_047562.1,4066410,4066412,23.3812949640288,dynein intermediate chain binding,other molecular function
+GO:0045505,dynein intermediate chain binding,6.3e-28,105329758,NC_047562.1,4066418,4066420,26.4700704225352,dynein intermediate chain binding,other molecular function
+GO:0045505,dynein intermediate chain binding,6.3e-28,105329758,NC_047562.1,4066466,4066468,27.2809394760614,dynein intermediate chain binding,other molecular function
+GO:0045505,dynein intermediate chain binding,6.3e-28,105329758,NC_047562.1,4100562,4100564,26.415770609319,dynein intermediate chain binding,other molecular function
+GO:0045505,dynein intermediate chain binding,6.3e-28,105322834,NC_047562.1,3974719,3974721,30.8124491757226,dynein intermediate chain binding,other molecular function
+GO:0045505,dynein intermediate chain binding,6.3e-28,105322834,NC_047562.1,3974785,3974787,21.9444444444444,dynein intermediate chain binding,other molecular function
+GO:0045505,dynein intermediate chain binding,6.3e-28,105330274,NC_047562.1,4020977,4020979,21.6453570967325,dynein intermediate chain binding,other molecular function
+GO:0045505,dynein intermediate chain binding,6.3e-28,105330274,NC_047562.1,4021059,4021061,20.530303030303,dynein intermediate chain binding,other molecular function
+GO:0045505,dynein intermediate chain binding,6.3e-28,105330782,NC_047563.1,23990584,23990586,24.7361688519348,dynein intermediate chain binding,other molecular function
+GO:0051959,dynein light intermediate chain binding,3.2e-25,NA,NA,NA,NA,NA,NA,NA
+GO:0051959,dynein light intermediate chain binding,3.2e-25,105342396,NC_047561.1,7692503,7692505,30.6506849315068,dynein light intermediate chain binding,other molecular function
+GO:0051959,dynein light intermediate chain binding,3.2e-25,105342396,NC_047561.1,7694561,7694563,36.5700608099366,dynein light intermediate chain binding,other molecular function
+GO:0051959,dynein light intermediate chain binding,3.2e-25,105342396,NC_047561.1,7694572,7694574,31.3557522123894,dynein light intermediate chain binding,other molecular function
+GO:0051959,dynein light intermediate chain binding,3.2e-25,105343243,NC_047564.1,38580874,38580876,31.2789115646259,dynein light intermediate chain binding,other molecular function
+GO:0051959,dynein light intermediate chain binding,3.2e-25,105343243,NC_047564.1,38581246,38581248,-28.4579037800687,dynein light intermediate chain binding,other molecular function
+GO:0051959,dynein light intermediate chain binding,3.2e-25,105343243,NC_047564.1,38586519,38586521,23.8095238095238,dynein light intermediate chain binding,other molecular function
+GO:0051959,dynein light intermediate chain binding,3.2e-25,105343243,NC_047564.1,38599241,38599243,24.2609016999261,dynein light intermediate chain binding,other molecular function
+GO:0051959,dynein light intermediate chain binding,3.2e-25,105345667,NC_047561.1,23946336,23946338,21.317794710892,dynein light intermediate chain binding,other molecular function
+GO:0051959,dynein light intermediate chain binding,3.2e-25,105345667,NC_047561.1,23946943,23946945,21.6003616636528,dynein light intermediate chain binding,other molecular function
+GO:0051959,dynein light intermediate chain binding,3.2e-25,105345667,NC_047561.1,23952486,23952488,-24.2728664370455,dynein light intermediate chain binding,other molecular function
+GO:0051959,dynein light intermediate chain binding,3.2e-25,105345667,NC_047561.1,23973555,23973557,28.9335664335664,dynein light intermediate chain binding,other molecular function
+GO:0051959,dynein light intermediate chain binding,3.2e-25,105319445,NC_047560.1,8409212,8409214,25.7707679132173,dynein light intermediate chain binding,other molecular function
+GO:0051959,dynein light intermediate chain binding,3.2e-25,105319445,NC_047560.1,8413441,8413443,-29.517091698318,dynein light intermediate chain binding,other molecular function
+GO:0051959,dynein light intermediate chain binding,3.2e-25,105319445,NC_047560.1,8417868,8417870,25.33748701973,dynein light intermediate chain binding,other molecular function
+GO:0051959,dynein light intermediate chain binding,3.2e-25,105319445,NC_047560.1,8425643,8425645,29.7685185185185,dynein light intermediate chain binding,other molecular function
+GO:0051959,dynein light intermediate chain binding,3.2e-25,105319445,NC_047560.1,8430573,8430575,32.8906905227844,dynein light intermediate chain binding,other molecular function
+GO:0051959,dynein light intermediate chain binding,3.2e-25,105336490,NC_047562.1,4231669,4231671,25.1150681110233,dynein light intermediate chain binding,other molecular function
+GO:0051959,dynein light intermediate chain binding,3.2e-25,105336490,NC_047562.1,4231686,4231688,23.8167360848164,dynein light intermediate chain binding,other molecular function
+GO:0051959,dynein light intermediate chain binding,3.2e-25,105336490,NC_047562.1,4321368,4321370,24.5121625233895,dynein light intermediate chain binding,other molecular function
+GO:0051959,dynein light intermediate chain binding,3.2e-25,105336490,NC_047562.1,4332005,4332007,22.7306693235598,dynein light intermediate chain binding,other molecular function
+GO:0051959,dynein light intermediate chain binding,3.2e-25,105329758,NC_047562.1,4001391,4001393,22.6778656126482,dynein light intermediate chain binding,other molecular function
+GO:0051959,dynein light intermediate chain binding,3.2e-25,105329758,NC_047562.1,4014801,4014803,27.6190476190476,dynein light intermediate chain binding,other molecular function
+GO:0051959,dynein light intermediate chain binding,3.2e-25,105329758,NC_047562.1,4020977,4020979,21.6453570967325,dynein light intermediate chain binding,other molecular function
+GO:0051959,dynein light intermediate chain binding,3.2e-25,105329758,NC_047562.1,4021059,4021061,20.530303030303,dynein light intermediate chain binding,other molecular function
+GO:0051959,dynein light intermediate chain binding,3.2e-25,105329758,NC_047562.1,4066410,4066412,23.3812949640288,dynein light intermediate chain binding,other molecular function
+GO:0051959,dynein light intermediate chain binding,3.2e-25,105329758,NC_047562.1,4066418,4066420,26.4700704225352,dynein light intermediate chain binding,other molecular function
+GO:0051959,dynein light intermediate chain binding,3.2e-25,105329758,NC_047562.1,4066466,4066468,27.2809394760614,dynein light intermediate chain binding,other molecular function
+GO:0051959,dynein light intermediate chain binding,3.2e-25,105329758,NC_047562.1,4100562,4100564,26.415770609319,dynein light intermediate chain binding,other molecular function
+GO:0051959,dynein light intermediate chain binding,3.2e-25,105322834,NC_047562.1,3974719,3974721,30.8124491757226,dynein light intermediate chain binding,other molecular function
+GO:0051959,dynein light intermediate chain binding,3.2e-25,105322834,NC_047562.1,3974785,3974787,21.9444444444444,dynein light intermediate chain binding,other molecular function
+GO:0051959,dynein light intermediate chain binding,3.2e-25,105330274,NC_047562.1,4020977,4020979,21.6453570967325,dynein light intermediate chain binding,other molecular function
+GO:0051959,dynein light intermediate chain binding,3.2e-25,105330274,NC_047562.1,4021059,4021061,20.530303030303,dynein light intermediate chain binding,other molecular function
+GO:0051959,dynein light intermediate chain binding,3.2e-25,105330782,NC_047563.1,23990584,23990586,24.7361688519348,dynein light intermediate chain binding,other molecular function
+GO:0005545,1-phosphatidylinositol binding,1.1e-24,NA,NA,NA,NA,NA,NA,NA
+GO:0005545,1-phosphatidylinositol binding,1.1e-24,105342791,NC_047561.1,11057918,11057920,27.5476067936181,phosphatidylinositol binding,other molecular function
+GO:0005545,1-phosphatidylinositol binding,1.1e-24,105326303,NC_047563.1,1778234,1778236,-24.0476190476191,phosphatidylinositol binding,other molecular function
