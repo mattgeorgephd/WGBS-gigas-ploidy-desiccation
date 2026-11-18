@@ -4,22 +4,21 @@ Paths in this document refer to the repository layout BEFORE the reorganization,
 
 ## Summary
 
-This audit covers the three small-data analyses behind the manuscript: the global 5-mC ELISA (N=32, Figure 1A), the Bismark percent CpG methylation comparison (N=22, Figure 1B), and the qPCR data cited in the Discussion, together with every script, spreadsheet and report that feeds them. All three reported two-way ANOVA results are reproduced exactly by `code/5-mC & 5mCpG plots.Rmd` and match `stats/*.csv`. The ELISA statistics, however, are on arcsine-transformed data (untransformed, ploidy and the interaction are significant at 0.05), and Figure 1A silently drops three of the eight diploid heat-treated samples because of an axis limit. In the percent CpG analysis the treatment is completely confounded with sequencing project: the 12 controls come from a different dataset, and 4 of the 10 heat-treated libraries are from animals that also received the acute heat shock and carry wrong names in the spreadsheet. For qPCR, nothing in the repository measures mitochondrial abundance relative to a nuclear gene, the COX1 pattern is not statistically significant, and the HSP90 ploidy effect depends on how one failed sample is handled.
-
-The project-wide issue log is `issues.md` at the repository root; this document is the detailed evidence for the ELISA, percent CpG and qPCR entries.
+This audit covers the three small-data analyses behind the manuscript: the global 5-mC ELISA (N=32, Figure 1A), the Bismark percent CpG methylation comparison (N=22, Figure 1B), and the qPCR data cited in the Discussion, together with every script, spreadsheet and report that feeds them. Both reported two-way ANOVA results (ELISA and percent mCpG) are reproduced exactly by `code/5-mC & 5mCpG plots.Rmd` and match `stats/*.csv`. The ELISA statistics, however, are on arcsine-transformed data (untransformed, ploidy and the interaction are significant at 0.05), and Figure 1A silently drops three of the eight diploid heat-treated samples because of an axis limit. In the percent CpG analysis the treatment is completely confounded with sequencing project: the 12 controls come from a different dataset, and 4 of the 10 heat-treated libraries are from animals that also received the acute heat shock and carry wrong names in the spreadsheet. For qPCR, nothing in the repository measures mitochondrial abundance relative to a nuclear gene, the COX1 pattern is not statistically significant, and the HSP90 ploidy effect depends on how one failed sample is handled.
 
 ## How this was checked
 
-- Nothing in the repository was modified during the audit.
+- The checks reported here did not modify any repository file.
 - Every number below was recomputed independently in Python from the committed data files (plate-reader exports, spreadsheets, CSV tables and Bismark reports) and compared with the R output already committed in the repository (`stats/*.csv` and the knitted `.md` files under `ELISA/`).
-- The statistics were then repeated in R 4.3.3 (readxl 1.4.3, agricolae 1.3.8, car 3.1.2, broom 1.0.5, ggplot2 3.4.4). Python, R and the committed outputs agree:
-  - both HSD files are reproduced byte for byte, and both ANOVA files to at least 12 significant digits;
-  - the 2019 ELISA knit output is reproduced: max SD 0.01871462, slope 0.6104974, R-squared 0.9978712, model p 0.0007834074, and all six Tukey p-values;
-  - all 11 qPCR ANOVA tables in `ELISA/dct_analysis_NA-to-45_COX1convert.md` are reproduced, as are its ten "Removed N rows" plot warnings.
+- The statistics were then repeated in R 4.3.3 (readxl 1.4.3, agricolae 1.3.8, car 3.1.2, broom 1.0.5, ggplot2 3.4.4). The Python results, the R results and the committed outputs agree:
+  - both HSD files are reproduced byte for byte in R, and both ANOVA files to at least 12 significant digits in Python and in R;
+  - the 2019 ELISA knit output is reproduced in both: max SD 0.01871462, slope 0.6104974, R-squared 0.9978712, model p 0.0007834074, and all six Tukey p-values;
+  - all 11 qPCR ANOVA tables in `ELISA/dct_analysis_NA-to-45_COX1convert.md` are reproduced in Python (HSP90 and COX1 also in R), as are its ten "Removed N rows" plot warnings;
+  - the boxplot statistics in section 1.5 were confirmed with ggplot2 itself.
 - The plate-reader `.xls` files were read two ways (a spreadsheet converter and R's readxl), with identical values.
 - No repository script was run exactly as committed, because several cannot run (Appendix E). Their statistical steps were re-implemented line by line.
 - One step could not be repeated: the Johnson transformation in `ELISA/GlobalDNAMeth_Polyploids.R:210-229`. The Johnson package was not available and nothing was installed for the audit.
-- Section 2.5 also uses five files that the audit retrieved from the lab server and stored under `07_documentation/upstream_processing/`. They are not part of commit 523d734.
+- Section 2.5 also uses four files that the audit retrieved from the lab server: the two alignment job scripts and the March summary report under `07_documentation/upstream_processing/`, and the June summary report at `03_input_files/bismark_reports/061021-big_bismark_summary_report.txt`. They did not exist at commit 523d734, so they are cited at their current locations.
 
 ## Conventions used in this document
 
@@ -28,6 +27,7 @@ The project-wide issue log is `issues.md` at the repository root; this document 
 - **Treatment names.** The treatment is 24 h of aerial emersion at 27 C. The legacy files call it "desiccation" (for example the `Desiccation` factor in the qPCR scripts and the `Dessication` column of `gene_expression/data/zr3534_wgbs_info.csv`). This document calls it "heat" and the animals "heat-treated", and keeps the legacy word only inside verbatim code and labels. The additional 1 h exposure at 45 C is called "acute heat shock" (legacy names include `heat_shock`, `Heat_Stress` and the `H` code in sample IDs).
 - **Sample names** follow `README.md:26-40`: 01-08 control; 09-10 control plus acute heat shock; 11-18 heat; 19-20 heat plus acute heat shock. Prefix D is diploid and T is triploid; the suffix -C is ctenidia.
 - **Figure 1A** is the ELISA panel and **Figure 1B** the percent mCpG panel of `figures/final_figures/Figure-1-methylation-percentage.png`.
+- The project-wide issue log is `issues.md` at the repository root. This document holds the detailed evidence for the ELISA, percent mCpG and qPCR analyses.
 
 ## 1. Global 5-mC ELISA (N=32, Figure 1A)
 
@@ -157,7 +157,7 @@ There are exactly 32 samples, 8 per group, all ctenidia. No animals given the ac
 
 - HSD letters (`stats/HSD_%mCpG.csv`): heat.diploid a; control.triploid ab; heat.triploid b; control.diploid b. The letters in Figure 1B are the same grouping relabelled.
 - Tukey p-values: heat.diploid vs control.diploid 0.020; heat.diploid vs heat.triploid 0.041; control.triploid vs control.diploid 0.106; control.triploid vs heat.triploid 0.188; the other two pairs 0.78 or higher.
-- Untransformed, the interaction is F=14.31, p=0.00136. After the transformation the pooled Shapiro p-value is still 0.0094, and the code proceeds regardless. On the model residuals Shapiro-Wilk gives p=0.41.
+- Untransformed, the interaction is F=14.31, p=0.00136. After the transformation the pooled Shapiro p-value is still 0.0094, and the code proceeds regardless. On the residuals of the two-way model Shapiro-Wilk gives p=0.41 on the raw scale and p=0.44 after the transformation.
 - `code/1_WGBS_PE_report_analysis.R` is not the source: its input is missing at the referenced path, it has n=10, and its models are `CpG ~ ploidy` and `CpG ~ ploidy + heat_shock` (`code/1_WGBS_PE_report_analysis.R:87`, `code/1_WGBS_PE_report_analysis.R:155`).
 
 ### 2.3 Groups and what the Bismark reports reveal (verified)
@@ -192,14 +192,15 @@ Lines 1 to 3 of each report in `data/PE_reports/` give:
 
 ### 2.5 The alignment runs and trimming
 
-**What the committed job script does (verified).** `old_WGBS/WGBS/sbatch_scripts/20210316_cgig_fastp_ronit-ploidy-wgbs.sh` performs no trimming. Despite "fastp" in its file name it contains no fastp command. It aligns reads that are already trimmed (`*_R1.fastp-trim.20201202.fq.gz`, lines 40-48) with Bismark 0.21.0, bowtie2 2.3.4.1 and samtools 1.9 (lines 21-23), then deduplicates, extracts methylation and builds coverage files. A condensed listing is in Appendix H. The fastp version and parameters are recorded nowhere in the repository; the only traces are the "fastp-trim.20201202" file-name suffix and a commented file name with a 20201206 suffix (line 38).
+**What the committed job script does (verified).** `old_WGBS/WGBS/sbatch_scripts/20210316_cgig_fastp_ronit-ploidy-wgbs.sh` performs no trimming. Despite "fastp" in its file name it contains no fastp command. It aligns reads that are already trimmed (`*_R1.fastp-trim.20201202.fq.gz`; `old_WGBS/WGBS/sbatch_scripts/20210316_cgig_fastp_ronit-ploidy-wgbs.sh:40-48`) with Bismark 0.21.0, bowtie2 2.3.4.1 and samtools 1.9 (`old_WGBS/WGBS/sbatch_scripts/20210316_cgig_fastp_ronit-ploidy-wgbs.sh:21-23`), then deduplicates, extracts methylation and builds coverage files. A condensed listing is in Appendix H. The fastp version and parameters are recorded nowhere in the repository; the only traces are the "fastp-trim.20201202" file-name suffix and a commented file name with a 20201206 suffix (`old_WGBS/WGBS/sbatch_scripts/20210316_cgig_fastp_ronit-ploidy-wgbs.sh:38`).
 
 **How this script relates to the two upstream runs (verified against copies retrieved from the lab server).**
 
 - The committed script is the job script of the March 2021 alignment run (server path `/panopea/030521-ronrosM/job.sh`, copy at `07_documentation/upstream_processing/030521-ronrosM_job.sh`). Every command line is identical. The two files differ only in white space: 31 blank lines carry a single space in the server copy, one line has a trailing space, and the server copy ends with two extra blank lines.
 - A second, later run aligned all libraries together (server path `/panopea/061021-big/job.sh`, June to July 2021 per the server listing, copy at `07_documentation/upstream_processing/061021-big_job.sh`). It uses Bismark 0.22.3, bowtie2 2.3.4.1 and samtools 1.9 (`07_documentation/upstream_processing/061021-big_job.sh:21-23`), reads from a `cg-big` directory named `<sample>_R1.fq.gz` (`07_documentation/upstream_processing/061021-big_job.sh:24`), and the same `-score_min L,0,-0.6 --non_directional` settings with `-p 4` (`07_documentation/upstream_processing/061021-big_job.sh:60-68`).
-- The two `bismark_summary_report.txt` files show identical read-pair totals for all ten zr3534 libraries in both runs (10 of 10). The June run therefore used the same fastp-trimmed reads under shorter names.
+- The two Bismark summary reports (`07_documentation/upstream_processing/030521-ronrosM_bismark_summary_report.txt` for March and `03_input_files/bismark_reports/061021-big_bismark_summary_report.txt` for June) show identical read-pair totals for all ten zr3534 libraries in both runs (10 of 10). The June run therefore used the same fastp-trimmed reads under shorter names.
 - The read-pair totals of all 22 reports in `data/PE_reports/` equal the June-run totals (22 of 22).
+- The repository itself points to the June run: the download log in `code/4_WGBS_GOterm-Annotation-BOTH.ipynb:1178` and `code/4_WGBS_GOterm-Annotation-BOTH.ipynb:1439` lists a `061021-big` directory holding short-named reports for all ten zr3534 libraries as well as the zr3644 libraries.
 - The March run did align zr3534_7 (66,080,050 pairs; `07_documentation/upstream_processing/030521-ronrosM_bismark_summary_report.txt:9`). The repository simply lacks its March report and holds the June one instead.
 - The merged CpG coverage files used for all differential methylation analyses are the June (Bismark 0.22.3) outputs for all 22 libraries. This was checked by the wider audit against the server, and it is consistent with `metadata.xlsx`, sheet `list`, whose 22 paths all use the short June-run file names (the older `code/2_WGBS_Methylkit.R:58-67` used the March names).
 - **Conclusion.** The mixed-version problem applies only to the hand-built percent mCpG spreadsheet behind Figure 1B, not to the differential methylation analysis.
@@ -252,7 +253,7 @@ Nothing in the repository quantifies COX1 relative to a nuclear gene.
 
 - COX1 is used as a raw Cq (`gene_expression/scripts/dct_analysis_NA-to-45.R:51` takes `log()` of the raw Cq; plot at `gene_expression/scripts/dct_analysis_NA-to-45.R:225-234`) or as 2^-Cq (`ELISA/dct_analysis_NA-to-45_COX1convert.Rmd:39`), with the axis label "COX1 DNA Abundance" (`ELISA/dct_analysis_NA-to-45_COX1convert.Rmd:236`).
 - Undetermined: the template (DNA or cDNA), primers, input mass and efficiencies.
-- COX1 Cq (20.85 to 22.44) is uncorrelated with Actin Cq across animals (r=0.002). This suggests a different template preparation (inference).
+- COX1 Cq (20.845 to 22.440) is uncorrelated with Actin Cq across animals (r=0.002). This suggests a different template preparation (inference).
 
 ### 3.3 Do the data support the Discussion statements?
 
@@ -271,7 +272,7 @@ All values were computed from the consolidated file. dCq is Cq(HSP90) minus Cq(A
 - **Complete case** (the analysis in `gene_expression/scripts/dct_analysis.R`): ploidy F(1,27)=3.61, p=0.068; treatment F=5.22, p=0.030; interaction p=0.84. Tukey, triploid control vs diploid control: p=0.44.
 - **Control-only unadjusted t-test** (computed for the audit): p=0.016 with `NA` set to 45; p=0.033 complete case.
 - **The single non-detect** is D_C_N_05, whose Actin Cq is 35.26 (a failed sample). Imputing 45 for it is what moves the ploidy p-value from 0.068 to 0.035.
-- **Assessment.** A roughly 2-fold higher HSP90 in triploids is consistent across variants, but its significance depends on the analysis. The better-supported effect is induction by heat in both ploidies, with no interaction. The data do not show a stress-independent, triploid-specific pattern.
+- **Assessment.** A roughly 2-fold higher HSP90 in triploids is consistent across variants, but its significance depends on the analysis. The better-supported effect is induction by heat in both ploidies, with no interaction. The data do not show a pattern that is independent of the heat treatment and specific to triploids.
 
 **COX1 raw Cq**, n=8 per group:
 
@@ -309,14 +310,14 @@ All values were computed from the consolidated file. dCq is Cq(HSP90) minus Cq(A
 
 **Code that cannot run as committed**
 
-10. `gene_expression/scripts/dct_analysis.R` does not parse: git conflict markers at lines 160-164 (R reports "unexpected input" at line 160).
+10. `gene_expression/scripts/dct_analysis.R` does not parse: there are git conflict markers at `gene_expression/scripts/dct_analysis.R:160-164` (R reports "unexpected input" at line 160).
 11. `ELISA/GlobalDNAMeth_Polyploids.R:231-233` references undefined objects and stops with an error.
 12. Paths and environment:
     - absolute paths to other repositories (`ELISA/GlobalDNAMeth_Polyploids.Rmd`, `ELISA/GlobalDNAMeth_Polyploids_pilot.Rmd`, `ELISA/dct_analysis_NA-to-45_COX1convert.Rmd`);
     - a missing pilot plate map;
     - an rstudioapi requirement (`ELISA/GlobalDNAMeth_Polyploids.R`);
     - dependence on the working directory (`code/5-mC & 5mCpG plots.Rmd`, both `gene_expression/scripts/` files, `ELISA/Facet_wrap_expression_vals.R`);
-    - unconditional `install.packages` calls; `code/5-mC & 5mCpG plots.Rmd:20-22` would install `bestNormalize`, which the code never uses.
+    - unconditional `install.packages` calls in the qPCR scripts; `code/5-mC & 5mCpG plots.Rmd:20-22` installs any package on its list that is missing, including `bestNormalize`, which the code never uses.
 13. **Package-version dependence.** `ELISA/GlobalDNAMeth_Polyploids.Rmd:182` prints `glance(aov)$p.value`. With broom 1.0.5 `glance()` on an `aov` returns no `p.value` column, so the line that printed 0.0007834074 in 2019 (R 3.4.4, `ELISA/GlobalDNAMeth_Polyploids.md:12`, `ELISA/GlobalDNAMeth_Polyploids.md:258`) now returns nothing.
 
 **Other**
@@ -324,14 +325,14 @@ All values were computed from the consolidated file. dCq is Cq(HSP90) minus Cq(A
 14. **ELISA plate layout.** Groups occupy contiguous strips (3-4 diploid control, 5-6 diploid heat, 7-8 triploid control, 9-10 triploid heat; `ELISA/docs/20190131_Ronit'sSamplesforGlobalDNAMeth.xlsx`, sheet `PlateMap`, rows 15-23), on a single plate. Position is confounded with group.
 15. **Labels and gaps in `gene_expression/scripts/dct_analysis.R`.**
     - X-axis labels are swapped for the current CSV coding: `labels=c("Desiccated + Elevated Temp.","Control")` at lines 92, 138, 149, 161/163, 175, 186 and 197, while `C` (control) sorts first. They were correct before commit 6bffd5d changed the coding. The two saved TIFFs are unaffected.
-    - The MBD2 plot is duplicated (lines 130-150).
-    - There is no MBD2 ANOVA.
+    - The MBD2 plot is duplicated (`gene_expression/scripts/dct_analysis.R:130-150`).
+    - There is no MBD2 ANOVA (`gene_expression/scripts/dct_analysis.R:44-77` covers seven genes).
 16. **qPCR plots drop data.** Every qPCR boxplot with `ylim` drops observations.
     - `ELISA/dct_analysis_NA-to-45_COX1convert.md:662-698` reports the removed rows: HSC70 2, DNMT1 1, MBD2 4, MeCP2 3, HIF1A 3, HATHaP2 3, HAT 4, HSP90 5, SOD 4, ATPsynthetase 2.
     - HSP90 loses 5 values, of which 3 are triploid heat.
     - `gene_expression/HSP90_ploidy.tiff` (`gene_expression/scripts/dct_analysis.R:202`, limits 0 to 0.035) drops the three highest values (D_D_N_11 0.1015, T_D_N_11 0.0998, T_D_N_12 0.0602) and the non-detect.
     - `gene_expression/scripts/dct_analysis_NA-to-45.R:233`, `ylim(c(21,22))`, drops 4 COX1 values.
-    - The axis reads "Expression (delta Ct)" but shows 2^-dCq.
+    - The axis label names the quantity as an expression delta Ct, but the values plotted are 2^-dCq.
 17. **Label ambiguity.** `heat` and `heat_stress` mean three different things across files: the 27 C treatment (ELISA scripts and both data workbooks), the 45 C acute heat shock (`ELISA/GlobalDNAMeth_Polyploids_pilot.Rmd`), and a mixture of the two (zr3534 libraries labelled `heat`).
 18. **Housekeeping.**
     - The `stats/*.csv` files are space-delimited `write.table` output, not CSV.
@@ -392,7 +393,7 @@ Standards (mean OD of two wells; `ELISA/GlobalDNAMeth_Polyploids.md:110-116`):
 
 ## Appendix B. Per-library percent mCpG and Bismark paired-end report table
 
-"Label (xlsx)" is the name typed in `data/bismark-percent-mCPG-summary.xlsx`; "Label (sample sheet)" is the name in `gene_expression/data/zr3534_wgbs_info.csv`. Report percentages are as printed in `data/PE_reports/`. The last column is from the June 2021 summary report (`07_documentation/upstream_processing/061021-big_bismark_summary_report.txt`), after deduplication.
+"Label (xlsx)" is the name typed in `data/bismark-percent-mCPG-summary.xlsx`; "Label (sample sheet)" is the name in `gene_expression/data/zr3534_wgbs_info.csv`. Report percentages are as printed in `data/PE_reports/`. The last column is from the June 2021 summary report (`03_input_files/bismark_reports/061021-big_bismark_summary_report.txt`), after deduplication.
 
 | seqID | Label (xlsx) | Label (sample sheet) | Ploidy | Treatment (xlsx) | fastp in file name | Bismark | Pairs analysed | Unique alignments | Map eff % | CpG / CHG / CHH % | %mCpG (xlsx) | %mCpG, June run, deduplicated |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
@@ -504,9 +505,9 @@ The pilot analysis (`ELISA/GlobalDNAMeth_Polyploids_pilot.Rmd`) uses single well
 
 Additional notes:
 
-- `code/5-mC & 5mCpG plots.Rmd` must have been run with the repository root as working directory. Knitting from `code/` with default settings would fail at line 47.
-- `gene_expression/scripts/dct_analysis.R` does not parse as committed: there are git conflict markers at lines 160-164.
-- `ELISA/GlobalDNAMeth_Polyploids.R` stops with an error at lines 231-233.
+- `code/5-mC & 5mCpG plots.Rmd` must have been run with the repository root as working directory. Knitting from `code/` with default settings would fail at `code/5-mC & 5mCpG plots.Rmd:47`.
+- `gene_expression/scripts/dct_analysis.R` does not parse as committed: there are git conflict markers at `gene_expression/scripts/dct_analysis.R:160-164`.
+- `ELISA/GlobalDNAMeth_Polyploids.R` stops with an error at `ELISA/GlobalDNAMeth_Polyploids.R:231-233`.
 - `code/1_WGBS_PE_report_analysis.R` (related, older) needs rstudioapi and `setwd` (`code/1_WGBS_PE_report_analysis.R:15-19`) and reads `data/PE_reports/percent_methylation_summary.xlsx` (`code/1_WGBS_PE_report_analysis.R:24-25`), which exists only under `old_WGBS/WGBS/data/PE_reports/`.
 
 ## Appendix F. `stats/*.csv`
