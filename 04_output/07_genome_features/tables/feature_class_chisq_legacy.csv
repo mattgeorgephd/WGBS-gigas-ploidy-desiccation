@@ -1,4 +1,4 @@
-mode,set,test,statistic,df,p,min_expected
-legacy,ploidy DML,"chi-squared, DML status by exclusive class",349.388543038468,7,1.66565895324127e-71,0.784041749639497
-legacy,heat DML,"chi-squared, DML status by exclusive class",702.696290216154,7,1.80842159015081e-147,1.77580168921239
-legacy,shared,"chi-squared, DML status by exclusive class",281.375655253188,7,5.71279436779901e-57,0.151067774497013
+mode,background,set,test,statistic,df,p,min_expected
+legacy,all analysed CpGs,ploidy DML,"chi-squared, DML status by exclusive class",349.388543038468,7,1.66565895324127e-71,0.784041749639497
+legacy,all analysed CpGs,heat DML,"chi-squared, DML status by exclusive class",702.696290216154,7,1.80842159015081e-147,1.77580168921239
+legacy,all analysed CpGs,shared,"chi-squared, DML status by exclusive class",281.375655253188,7,5.71279436779901e-57,0.151067774497013

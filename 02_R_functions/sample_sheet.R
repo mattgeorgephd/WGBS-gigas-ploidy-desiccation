@@ -11,8 +11,9 @@
 # a different coverage file in every row, the sample indices 1 to 22, and no
 # other label than those listed in `allowed`, each of them for at least one
 # library. If a label of the sheet is ever renamed, change `allowed` here,
-# sample_sets() below and the two comparisons with "triploid" and "heat" in
-# fit_mode() of step 05 together.
+# sample_sets() below, the two comparisons with "triploid" and "heat" in
+# fit_mode() of step 05 and the comparisons with these labels in the scripts of
+# 06_diagnostics/ together.
 read_libraries <- function() {
   allowed <- list(ploidy = c("diploid", "triploid"), treatment = c("control", "heat"))
   lib <- utils::read.csv(input_path("metadata", "wgbs_libraries.csv"), stringsAsFactors = FALSE)

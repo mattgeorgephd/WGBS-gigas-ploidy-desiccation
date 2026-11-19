@@ -12,7 +12,8 @@
 #               adjacent CpGs are not independent observations (issue I-09)
 #           and draw Figure 3.
 #
-# Run       Rscript 01_pipeline/07_genome_features.R     (after step 05; under a minute, about 1 GB)
+# Run       Rscript 01_pipeline/07_genome_features.R     (after step 05; under a minute, about 1 GB of memory)
+#
 # Inputs    04_output/05_differential_methylation/tables/united_cpg_<mode>.csv.gz
 #           04_output/05_differential_methylation/tables/dml_{ploidy,heat,shared}_<mode>.csv
 #           03_input_files/genome_features/*.gz   the 13 tracks; what each holds is in the README there
@@ -122,8 +123,11 @@
 #             model). For a set without loci the percentages and the Fisher and
 #             chi-squared rows hold NA, the region summary has a row of zeros,
 #             and Figure 3A keeps its label without a bar; the log names every
-#             such set. Nothing is tested for it. With no DML on any linkage
-#             group, Figure 3B is replaced by a panel that says so.
+#             such set. Nothing is tested for it. A set of one or a few loci is
+#             tested as it stands; dml_total of the Fisher table and
+#             min_expected of the chi-squared table show how thin such a test
+#             is. With no DML on any linkage group, Figure 3B is replaced by a
+#             panel that says so.
 
 suppressPackageStartupMessages(library(here))
 source(here("run_config.R"))

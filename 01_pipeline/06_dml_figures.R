@@ -12,7 +12,8 @@
 #           Figure 4  for each locus in both lists, its ploidy difference and
 #                     its heat difference
 #
-# Run       Rscript 01_pipeline/06_dml_figures.R     (after step 05; under a minute, about 0.5 GB)
+# Run       Rscript 01_pipeline/06_dml_figures.R     (after step 05; under a minute, about 0.5 GB of memory)
+#
 # Inputs    04_output/05_differential_methylation/tables/
 #             united_cpg_<mode>.csv.gz, dml_{ploidy,heat,shared}_<mode>.csv,
 #             dml_counts_by_threshold_<mode>.csv

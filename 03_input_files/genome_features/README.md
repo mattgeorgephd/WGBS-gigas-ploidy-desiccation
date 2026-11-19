@@ -26,7 +26,7 @@ GFF files use 1-based closed coordinates. The intron, nonCDS and intergenic BED 
 
 Flank width, checked in the tracks themselves: 1,000 bp for 78% of records, shorter where a neighbouring feature or the end of a sequence intervenes, and zero length for a few records, which the pipeline drops on import.
 
-Two names say something else than the files hold. In the tables of step 07 a CpG that overlaps `nonCDS` lies outside every exon, not merely outside coding sequence: in legacy mode 63.7% of the analysed CpGs overlap `nonCDS`, while 72.9% do not overlap CDS. A CpG that overlaps `exonUTR` (track `exon_UTR`) lies in an untranslated region or in an exon of a non-coding gene. The column `track_label` of those tables repeats this for every track.
+Two names say something else than the files hold. In the tables of the pipeline a CpG that overlaps `nonCDS` lies outside every exon, not merely outside coding sequence: in legacy mode 63.7% of the analysed CpGs overlap `nonCDS`, while 72.9% do not overlap CDS. A CpG that overlaps `exonUTR` (track `exon_UTR`) lies in an untranslated region or in an exon of a non-coding gene, so an exon of a lncRNA gene is counted in `exon_UTR` and in `lncRNA`: of the 44,251 analysed CpGs of legacy mode that overlap `exon_UTR`, 5,918 also overlap `lncRNA`. The column `track_label` of the tables that are written by track repeats what each track holds.
 
 ## The repeat track
 

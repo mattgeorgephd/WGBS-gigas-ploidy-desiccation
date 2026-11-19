@@ -1,10 +1,284 @@
 {
  "workflow": "pipeline-hardening",
  "run_id": "wf_0d998304-306",
- "agents_finished": 0,
+ "agents_finished": 1,
  "agents_running_or_lost": [
   "fix:A-steps-04-05",
-  "fix:B-steps-06-07"
+  "fix:C-steps-08-09"
  ],
- "results": []
+ "results": [
+  {
+   "agent": "fix:B-steps-06-07",
+   "phase": "Fix",
+   "result": {
+    "group": "B",
+    "findings_handled": [
+     {
+      "finding": "R2.1 (steps 06 and 07 with an empty or very small DML set)",
+      "action": "fixed",
+      "what_changed": "Reproduced first with the committed scripts: step 06 stops (hclust, svd, or pc$x[, 2]) at thresholds 35, 40, 50, with the lists of the overdispersion model and with empty lists; step 07 exits 0 and writes a goodness-of-fit statistic (459,270.8, df 7) as the chi-squared row of an empty set. Step 06 now replaces a panel that cannot be drawn by a panel that states the reason, and logs it: PCA with fewer than two loci above the median SD (the PCA tables then hold NA scores with n_loci and n_loci_used), heat map with fewer than two loci, Figure 4 with no locus. The colour key and the annotation legend go to the last heat map that can be drawn. Step 07: for a set without loci the Fisher rows, the chi-squared row (also whenever the table is not 2 x k) and the percentages hold NA, the region summary keeps one row per set (zeros), Figure 3A keeps the label without a bar, and Figure 3B is replaced by a note when no DML lies on a linkage group; the log names every such set. A set of one or a few loci is still tested as it stands (dml_total and min_expected show how thin the test is); the header says so. At default settings nothing changes: 12 of the 18 tables are byte-identical to the committed ones and the other 6 differ by a label column only (see R2.2 and R2.4).",
+      "files": [
+       "01_pipeline/06_dml_figures.R",
+       "01_pipeline/07_genome_features.R"
+      ]
+     },
+     {
+      "finding": "R2.2 (the track called TE): description",
+      "action": "fixed",
+      "what_changed": "Documentation only; the reading is unchanged in both modes, as the scope decision requires. How the legacy analysis read the file: 08_archive/code/3_WGBS_DML_feature_location-new.ipynb runs 'intersectBed -u -a <DML or CpG BED> -b GFF/cgigas_uk_roslin_v1_rm.te.bed' (cells 15 to 17 for the 22-library sets: 194, 463, 28); bedtools takes a .bed file as 0-based, so every 1-based RepeatMasker interval lost its first base. read_feature_track() does the same (start + 1), which is why the 78 legacy overlap counts are reproduced. What the track is, is now stated in: the header of 02_R_functions/genomic_overlaps.R and the comment at the shift; a new section 'The repeat track' and the file table of 03_input_files/genome_features/README.md; a note in the header of step 07; my rows of 01_pipeline/README.md, 04_output/README.md and 02_R_functions/README.md; and, as the label in the outputs, a column track_label in the two step 07 tables that are written by track (new helper feature_track_labels(); the track key TE and the column pct_in_TE keep their names because 06_diagnostics and 13 rows of the values map select the track by that name). I recomputed every number quoted with interval arithmetic that does not use the pipeline helpers: 781,312 records identical to columns 5 to 7 of NCBI's rm.out; no record starts at 0, 47 at 1; first record (C)n 4109 to 4128 is exactly 20 C in the reference; legacy mode 109,966 CpGs counted against 110,067 (101 affected, each with its G on the first base of a record), eligible 19,411 against 19,426, heat DML 463 against 465, ploidy 194 and shared 28 unchanged; corrected mode 98,671 against 98,763 (92), heat DML 458 against 459; classes: 24.2% of records and 4.0% of bases are simple repeats, low complexity, satellites or rRNA; 3,697 of the 109,966 CpGs overlap no DNA, RC, LTR, LINE or SINE record.",
+      "files": [
+       "02_R_functions/genomic_overlaps.R",
+       "03_input_files/genome_features/README.md",
+       "01_pipeline/07_genome_features.R",
+       "01_pipeline/README.md",
+       "04_output/README.md",
+       "02_R_functions/README.md"
+      ]
+     },
+     {
+      "finding": "R2.2 (the track called TE): reading and content",
+      "action": "needs_decision",
+      "what_changed": "Not changed, by the scope decision. Note for the author: the category 'transposable elements' of Methods 2.3, Results 3.1 and 3.3 and Figure 3A is every RepeatMasker repeat (24% of the records are simple repeats, low complexity, satellites or rRNA), read without the first base of each interval; either the text calls it repeats, with no number changed, or the track is rebuilt with a class filter and 1-based coordinates, which moves 12 of the 56 printed shares by at most 0.5 points (ploidy 14.9% to 14.6%, heat 16.0% to 15.7%) and no conclusion. Full text under issues_text.",
+      "files": []
+     },
+     {
+      "finding": "R2.3 (three wrong descriptions in the track README; class 'other')",
+      "action": "fixed",
+      "what_changed": "README: the tracks cover the 236 nuclear sequences only and no track has a record on NC_001276.1; exonUTR is exon minus coding sequence and holds every exon of non-coding genes; nonCDS is the complement of the exon track; all 13 md5 equal the OSF records (checked against the OSF API response of 2026-11-19 saved by the second agent). A paragraph says what this means in the tables (63.7% of analysed CpGs overlap nonCDS, 72.9% do not overlap CDS; 5,918 of the 44,251 CpGs in exon_UTR also overlap lncRNA). Step 07: the header says that class 'other' is exactly the mitochondrial CpGs (363 in legacy mode, none in corrected mode) and why the chi-squared test has 7 and 6 degrees of freedom; the legend label of Figure 3A is 'Mitochondrial genome (in no track)' in place of 'Other'. The value 'other' in the CSV files is unchanged. I verified that the seven class tracks together are 647,887,097 bases in 236 gap-free ranges, the total of the nuclear sequences.",
+      "files": [
+       "03_input_files/genome_features/README.md",
+       "01_pipeline/07_genome_features.R"
+      ]
+     },
+     {
+      "finding": "R2.4 (header of step 07 and README name every file; chi-squared background)",
+      "action": "fixed",
+      "what_changed": "The header of step 07 now lists all seven tables with what each holds, the figure and session_info.txt, and says that the chi-squared test compares each DML set with all analysed CpGs only. feature_class_chisq_<mode>.csv gets a column background ('all analysed CpGs') as second column, like the Fisher table; its numbers are byte-identical. 04_output/README.md names feature_class_chisq and dml_region_summary. The header of step 06 also names session_info.txt and what its two tables hold.",
+      "files": [
+       "01_pipeline/07_genome_features.R",
+       "01_pipeline/06_dml_figures.R",
+       "04_output/README.md",
+       "01_pipeline/README.md"
+      ]
+     },
+     {
+      "finding": "R2.4 (second agent's code fix: chi-squared test against eligible CpGs)",
+      "action": "needs_decision",
+      "what_changed": "Not added: it would be a test that the pipeline does not have. Note for the author: the chi-squared test of DML status by genomic class exists against all analysed CpGs only; a version against eligible CpGs (the review computed 127.6, 176.0 and 179.9 on 6 degrees of freedom in legacy mode) can be added on request, with the reservations of I-41.",
+      "files": []
+     },
+     {
+      "finding": "R2.5 ('hyper' and 'hypo' of the loci in both lists)",
+      "action": "fixed",
+      "what_changed": "Documentation only, as the task asks; no column was renamed or replaced, so dml_by_linkage_group and dml_regions are byte-identical. The headers of steps 06 and 07 and a paragraph of 04_output/README.md now say that shared_hyper and shared_hypo (dml_by_linkage_group), n_hyper and n_hypo of the set 'shared' (dml_regions) and the series 'both lists' of Figure 2B are the sign of the heat difference alone, and are not the classes both hyper, both hypo and opposite (legacy mode: 106 and 94 by the heat sign; 28, 49 and 123 by class). Figure 2B carries the caption 'Both lists: loci counted by the sign of their heat difference.' A comment at count_dir() says the same. The header of step 05 (group A's file) does not yet say it for its threshold table and its BED file: see shared_file_requests.",
+      "files": [
+       "01_pipeline/06_dml_figures.R",
+       "01_pipeline/07_genome_features.R",
+       "04_output/README.md"
+      ]
+     },
+     {
+      "finding": "R2.6 (label and legend defects of Figures 2 and 3)",
+      "action": "fixed",
+      "what_changed": "Figure 2 E to G: the names of the annotation strips are no longer drawn beside the strips (annotation_names_col = FALSE), so nothing is cut and nothing touches the colour key; the legend of the last heat map names both strips. Figure 2B: the x axis keeps the range of panel A, and the caption states the rule of at least 10 DML (the constant is named min_dml_for_percent). Figure 3A: the n of each set is on its own line without parentheses at size 8, so the first two labels no longer run together; one fixed colour per class in both modes, and a class without a CpG in the mode has no legend key. Figure 3B: the axis title says that the two lists are stacked, and the caption gives, from the data, the loci counted twice in the panel (191 in legacy mode, 150 in corrected mode) and what is not drawn (47 ploidy DML, 147 heat DML and 3,117 genes outside the ten linkage groups in legacy mode; 41, 142 and 3,117 in corrected mode). No plotted value changed; I inspected the PNG files in crops at full resolution and the PDF files rendered with pdftoppm, in both modes.",
+      "files": [
+       "01_pipeline/06_dml_figures.R",
+       "01_pipeline/07_genome_features.R"
+      ]
+     },
+     {
+      "finding": "R2.7 ('cannot be DML')",
+      "action": "not_a_defect",
+      "what_changed": "The refutation holds: the header of step 07 and the comment on dml_eligible() already say 'almost never' and 'all but 2'. I recomputed the counts: 1 ploidy and 1 heat DML outside the eligible range in legacy mode, 1 heat DML in corrected mode. Added one sentence to the header and one comment at the Fisher tests saying that every DML of a set stays in the DML row of its 2 x 2 tables.",
+      "files": [
+       "01_pipeline/07_genome_features.R"
+      ]
+     },
+     {
+      "finding": "R6.17 (file inventory of 06_diagnostics/README.md)",
+      "action": "already_fixed",
+      "what_changed": "The Files table lists all 13 scripts of the folder and the run block names each; the parent session added the rows. Nothing there concerns steps 06 and 07, so I changed nothing in that file.",
+      "files": []
+     },
+     {
+      "finding": "Task 2 (threshold rule in steps 06 and 07)",
+      "action": "fixed",
+      "what_changed": "No count changed. Neither step compares a difference with the threshold: both read the DML lists and the counts by threshold that step 05 wrote, and the only comparisons of a difference are with zero, for the direction. No header or README row of these steps described the rule otherwise; both headers now say that the step applies no threshold of its own and name methylKit's rule on the unrounded difference. The header of step 07 now gives the eligible range by its rule (half of config$dml_difference to 100 minus that, both ends included) instead of the fixed 10% and 90%.",
+      "files": [
+       "01_pipeline/06_dml_figures.R",
+       "01_pipeline/07_genome_features.R"
+      ]
+     },
+     {
+      "finding": "Optional output additions of the traceability table (items that concern steps 06 and 07)",
+      "action": "deferred",
+      "what_changed": "None added: my task names no optional addition, and each item would be a new output or analysis. Left: the library dendrogram of Figure 2E to 2G as a table; pooled group values at every DML; a chance expectation for the grouping into regions; a chi-squared test of the spread over linkage groups; the share of all DML and gene density per linkage group; the DOI of the tracks as a setting.",
+      "files": []
+     }
+    ],
+    "outputs_changed": [
+     {
+      "file": "04_output/06_dml_figures/figures/figure_2_legacy.png, figure_2_legacy.pdf, figure_2_corrected.png, figure_2_corrected.pdf",
+      "change": "Labels only. Panel B: x axis to 50 as in panel A, caption on the sign counted for the loci in both lists and on the rule of at least 10 DML. Panels E to G: no names beside the annotation strips. No plotted value changed.",
+      "changes_a_number": false,
+      "old_value": "'treatme' cut in E and F; '100' of the colour key run into 'ploidy' in G; panel B axis ending at 45 with no note",
+      "new_value": "no cut or colliding label; panel B axis 5 to 50 with caption",
+      "reason": "R2.6 and R2.5"
+     },
+     {
+      "file": "04_output/07_genome_features/figures/figure_3_legacy.png, figure_3_legacy.pdf, figure_3_corrected.png, figure_3_corrected.pdf",
+      "change": "Labels only. Panel A: set labels separated; legend key 'Mitochondrial genome (in no track)' in legacy mode and no key for that class in corrected mode. Panel B: axis title 'DML (ploidy and heat lists stacked)' and a caption with the loci counted twice and what is not drawn. No plotted value changed.",
+      "changes_a_number": false,
+      "old_value": "'(n = 480,579)(n = 65,480)' run together; key 'Other' also in corrected mode; axis title 'DML' with no note on unplaced scaffolds",
+      "new_value": "labels separated; caption in legacy mode: 191 loci counted twice, 47 ploidy DML, 147 heat DML and 3,117 genes not drawn (corrected mode: 150, 41, 142, 3,117)",
+      "reason": "R2.6 and R2.3"
+     },
+     {
+      "file": "04_output/07_genome_features/tables/feature_overlap_by_track_legacy.csv, feature_overlap_by_track_corrected.csv",
+      "change": "New last column track_label (what each track holds). Every other column is byte-identical: the file without its last column equals the committed file.",
+      "changes_a_number": false,
+      "old_value": "7 columns",
+      "new_value": "8 columns",
+      "reason": "R2.2 and R2.3: the label in the outputs says what the tracks TE, nonCDS and exon_UTR hold"
+     },
+     {
+      "file": "04_output/07_genome_features/tables/feature_association_tests_legacy.csv, feature_association_tests_corrected.csv",
+      "change": "New last column track_label. Every other column is byte-identical. 06_diagnostics/feature_odds_matched.R, which reads this table by column name, reproduces its four committed tables byte for byte with the new file (run in a scratch copy).",
+      "changes_a_number": false,
+      "old_value": "13 columns",
+      "new_value": "14 columns",
+      "reason": "R2.2"
+     },
+     {
+      "file": "04_output/07_genome_features/tables/feature_class_chisq_legacy.csv, feature_class_chisq_corrected.csv",
+      "change": "New second column background with the value 'all analysed CpGs'. Every other column is byte-identical.",
+      "changes_a_number": false,
+      "old_value": "7 columns",
+      "new_value": "8 columns",
+      "reason": "R2.4: the table now says which comparison the test is"
+     },
+     {
+      "file": "04_output/06_dml_figures/figures/figure_4_legacy.pdf, figure_4_corrected.pdf; 04_output/06_dml_figures/session_info.txt; 04_output/07_genome_features/session_info.txt",
+      "change": "Time stamps of the rerun; the session information of step 07 now also lists RColorBrewer. The two Figure 4 PNG files are byte-identical.",
+      "changes_a_number": false,
+      "old_value": "run of 2026-11-19 00:49",
+      "new_value": "run of 2026-11-19 22:20",
+      "reason": "rerun in place"
+     },
+     {
+      "file": "05_manuscript/figures/legacy/Figure_2.png, Figure_2.pdf, Figure_3.png, Figure_3.pdf and the same four files under 05_manuscript/figures/corrected/ (also Figure_4.pdf in both folders, time stamp only)",
+      "change": "Will change when step 13 is rerun: they are copies of the step 06 and 07 figures and still hold the old ones. I did not run step 13.",
+      "changes_a_number": false,
+      "old_value": "copies of the old figures",
+      "new_value": "copies of the new figures after the next run of step 13",
+      "reason": "R2.6; step 13 is not mine to run"
+     }
+    ],
+    "tests_run": [
+     {
+      "what": "Baseline: the committed scripts of steps 06 and 07 in a scratch copy of the tree, default settings",
+      "result": "All 18 CSV and all 6 PNG byte-identical to the committed files. Step 06: 10 s, 0.4 GB peak; step 07: 23 s, 0.9 GB peak."
+     },
+     {
+      "what": "Committed scripts on small sets (thresholds 35, 40, 50; lists of the overdispersion model; all lists empty)",
+      "result": "Step 06 exits 1 in all five (hclust, svd, or subscript out of bounds). Step 07 exits 0 with warnings and writes the goodness-of-fit statistic for an empty set and an empty region summary. R2.1 confirmed in the current tree."
+     },
+     {
+      "what": "Edited steps at default settings: scratch copy, then in place twice (once through run_pipeline.R --steps 6:7)",
+      "result": "Exit 0, no warning. 12 of 18 tables byte-identical to the committed ones (all four of step 06; dml_by_linkage_group, dml_regions, dml_region_summary and feature_class_exclusive of step 07, both modes). The other 6 equal the committed files once the added label column is removed (sed and cut, then cmp). Figure 4 PNG byte-identical. The second in-place run gives the same 18 tables and 6 PNG as the first."
+     },
+     {
+      "what": "Edited steps on 13 scenarios built from the step 05 tables: thresholds 35, 40, 50 (with dml_difference set accordingly); lists of the overdispersion model (2, 16, 1 and 2, 6, 1); all lists empty; ploidy list empty; heat list empty; 1, 2, 3, 4 loci per list; 1 and 2 loci that are in both lists",
+      "result": "Both steps exit 0 without a warning in all 13. A check script confirms for every scenario and mode: all tables and figures written with the usual shape (104, 64, 54, 3, 3 rows; 44 and 8 for the PCA tables), Fisher, chi-squared and percentage cells NA exactly for the sets without loci, one summary row per set, every DML once in the regions and linkage-group tables, PCA scores present exactly when two or more loci are used. Figures inspected."
+     },
+     {
+      "what": "Step 06 with a threshold table in which no set has any DML (panel B has nothing to draw)",
+      "result": "Exit 0, no warning; panel B is drawn empty with its axes and caption."
+     },
+     {
+      "what": "Both steps with modes = c('legacy') alone and c('corrected') alone (scratch copies)",
+      "result": "Exit 0, no warning; only the files of the configured mode are written, and the tables compared are byte-identical to the committed ones."
+     },
+     {
+      "what": "06_diagnostics/check_legacy_outputs.R, in place, after the in-place run",
+      "result": "331 comparisons, 329 match, 2 differ (the two known ones: the percent mCpG ANOVA F and the heat count at 50%). All 78 feature-track counts match. legacy_check_results.csv is byte-identical to the committed file."
+     },
+     {
+      "what": "06_diagnostics/feature_odds_matched.R in a scratch copy, against the new feature_association_tests tables (it stops if its odds ratios differ from step 07)",
+      "result": "Exit 0 after 9.7 minutes, 2.1 GB peak; its four tables are byte-identical to the committed ones."
+     },
+     {
+      "what": "The 130 expressions of the values map that read a table of step 06 or 07, evaluated with the tables of the base commit and with the new ones",
+      "result": "130 of 130 give the same value; none fails."
+     },
+     {
+      "what": "Independent recomputation of the track facts quoted in the documentation (plain interval arithmetic, NCBI rm.out as downloaded by the second agent, the reference sequence, the saved OSF API response)",
+      "result": "Every quoted number reproduced: 101 and 92 CpGs, 15 and 11 eligible CpGs, 2 and 1 heat DML, the class counts, 3,697 and 2,158 CpGs, the five-class counts (106,269; 189; 455; 28), 12 of 56 printed shares changing by at most 0.50 points with a class filter and 0 of 56 with the coordinate correction, odds ratios moving by at most 0.0035; 363 mitochondrial CpGs; the seven class tracks tile the 236 nuclear sequences; 13 of 13 md5 equal the OSF records."
+     },
+     {
+      "what": "Steps 04 and 05",
+      "result": "not run (not allowed for this group)"
+     },
+     {
+      "what": "Step 13 and the other diagnostics (locus_nc047563.R, coverage_filter_variants.R and the rest)",
+      "result": "not run. Step 13 is not mine; the copies of Figures 2 and 3 in 05_manuscript are stale until it runs. The other diagnostics read nothing of mine that changed: dml_regions_legacy.csv is byte-identical and read_feature_track() behaves as before."
+     }
+    ],
+    "config_requests": [],
+    "shared_file_requests": [
+     {
+      "file": "01_pipeline/05_differential_methylation.R",
+      "old_text": "#           - Differences are group 1 minus group 0: triploid minus diploid for\n#             ploidy, heat minus control for heat. \"hyper\" means higher in\n#             triploid, or higher in heat.",
+      "new_text": "#           - Differences are group 1 minus group 0: triploid minus diploid for\n#             ploidy, heat minus control for heat. \"hyper\" means higher in\n#             triploid, or higher in heat. A locus in both lists has two\n#             differences; where it is counted as hyper or hypo, the sign is that\n#             of its heat difference alone: n_hyper, n_hypo and pct_hyper of the\n#             set \"shared\" in dml_counts_by_threshold_<mode>.csv, and the fourth\n#             column of bed/dml_shared_<mode>.bed. Its class (both hyper, both\n#             hypo, opposite) is in dml_shared_<mode>.csv and dml_counts_by_mode.csv.",
+      "reason": "R2.5: steps 06 and 07 and their README text now say this for their own outputs; the threshold table and the BED file of step 05 (group A's file) are where the convention starts (sum(s$meth.diff_heat > 0) and write_bed(shared, \"meth.diff_heat\", ...)), and its header does not state it."
+     },
+     {
+      "file": "03_input_files/manuscript/manuscript_values_map.csv (row M2.3-005, column note)",
+      "old_text": "Second mention of the assembly accession; no output table or setting holds it. The transposable element track is an input (cgigas_uk_roslin_v1_rm.te.bed.gz), and the README files name GCF_902806645.1 for the assembly.",
+      "new_text": "Second mention of the assembly accession; no output table or setting holds it. The transposable element track is an input (cgigas_uk_roslin_v1_rm.te.bed.gz), and the README files name GCF_902806645.1 for the assembly. The track is columns 5 to 7 of NCBI's RepeatMasker output for that assembly: repeats of every class, simple repeats included (24% of the records are simple repeats, low complexity, satellites or rRNA), with 1-based coordinates that the legacy bedtools run and the pipeline read as BED (03_input_files/genome_features/README.md, section The repeat track).",
+      "reason": "R2.2: this row is the draft's statement on where the track comes from. Also add the number of the new issue on the repeat track (I-50 if it gets that number) to the column issue of rows M2.3-005, R3.1-043, R3.1-047, R3.3-004, R3.3-007, R3.3-026, R3.3-027, R3.3-028, R3.3-029, R3.3-032, R3.3-033, R3.3-046 and R3.3-047. No expression and no regenerated value changes."
+     },
+     {
+      "file": "03_input_files/manuscript/manuscript_values_map.csv (row R3.3-045, column note)",
+      "old_text": "26 of the 175 overlaps of the 123 shared loci with opposite signs with the eight tracks (I-18). As a share of loci 21.1%; with the coverage filter 5 of 83, 6.0%: the filter removes 21 of the 26 loci (I-09).",
+      "new_text": "26 of the 175 overlaps of the 123 shared loci with opposite signs with the eight tracks (I-18). As a share of loci 21.1%; with the coverage filter 5 of 83, 6.0%: the filter removes 21 of the 26 loci (I-09). Those 21 are also among the 41 loci counted as lncRNA (row R3.3-043): the UTR track is exon minus coding sequence and holds the exons of non-coding genes, so the block of I-09 is counted in both categories. With one class per locus the set has 41 loci in lncRNA and 5 in an untranslated region or other non-coding exon (feature_class_exclusive_legacy.csv).",
+      "reason": "R2.3: what the exonUTR track holds explains this percentage of the draft. Counted in the code pass: 21 of the 26 loci overlap both the exon_UTR and the lncRNA track, all 21 in the region NC_047563.1:39,633,323 to 39,635,522. The same sentence could be added to row R3.3-044."
+     }
+    ],
+    "issues_text": [
+     {
+      "issue": "New entry, proposed as I-50 (S3), section 'Added 2026-11-19' or a section of its own for the code pass. No statement of issues.md is made wrong by my changes: no number of an output changed.",
+      "current_text": "(no entry yet)",
+      "proposed_text": "### I-50 (S3) The \"transposable element\" track is the whole RepeatMasker output, and it was read with a one-base shift\n\n**Where.** Methods 2.3, the sentence on the location of transposable elements (\"obtained from RepeatMasker using the NCBI RefSeq annotation (RefSeq: GCF_902806645.1)\"); Results 3.1, last paragraph (\"transposable elements (13.1%)\" of the CpGs at 1x); Results 3.3, first paragraph (\"transposable elements (18.4%)\" of the CpGs at 10x; \"transposable elements (14.9% and 16.0%; Figure 3A)\" for ploidy-DML and heat-DML; \"reduced representation in transposable elements (10.3%)\" for interaction-DML) and second paragraph (\"comparatively depleted for transposable elements (5.7%)\" for the interaction-DML with contrasting responses); the category of that name in every bar of Figure 3A. These are rows M2.3-005, R3.1-043, R3.1-047, R3.3-004, R3.3-007, R3.3-026 to R3.3-029, R3.3-032, R3.3-033, R3.3-046 and R3.3-047 of `05_manuscript/manuscript_values.csv`. The Discussion and the Conclusions make no statement on transposable elements.\n\n**Evidence (verified).** `03_input_files/genome_features/cgigas_uk_roslin_v1_rm.te.bed.gz` is columns 5 to 7 (sequence, begin, end) of NCBI's RepeatMasker output for the assembly, `GCF_902806645.1_cgigas_uk_roslin_v1_rm.out.gz`, without its three header lines: 781,312 records, identical line for line. The notebook that built the tracks does exactly that (`code/08-Generating-Genome-Feature-Tracks.ipynb` of the OSF archive, cells 64 to 67). Two things follow.\n- *Content.* The file holds every repeat class: DNA transposons 380,683 records, simple repeats 165,597, Helitrons (class RC) 151,061, LINE 29,494, low complexity 21,815, LTR 19,774, unknown 9,973, satellites 1,461, SINE 1,391, rRNA 63. Simple repeats, low complexity, satellites and rRNA are 24.2% of the records and 4.0% of their bases. Of the 109,966 analysed CpGs that step 07 counts in the track in legacy mode, 3,697 (3.4%) overlap no DNA, RC, LTR, LINE or SINE record, 2,158 of them in a record of class unknown.\n- *Coordinates.* RepeatMasker positions are 1-based closed: no record starts at 0 and 47 start at 1, and the first record, `(C)n` at 4109 to 4128 of NC_047559.1, is a run of exactly 20 C in the reference. The legacy notebook gave the file to `intersectBed` under its name `.bed` (`code/3_WGBS_DML_feature_location-new.ipynb`, cells 15 to 17 for the 22-library sets), which takes the start as 0-based, so every interval was read without its first base. The legacy counts (194 ploidy-DML, 463 heat-DML, 28 interaction loci in the track) are those of that reading.\n\n**Effect.** Small in numbers; what is wrong is the name of the category and its description in the Methods.\n- *Coordinates read as written*, legacy mode: 110,067 instead of 109,966 analysed CpGs in the track (101 more, each with its G on the first base of a record), 19,426 instead of 19,411 eligible CpGs, 465 instead of 463 heat DML; the 194 ploidy DML and the 28 loci in both lists do not change. None of the 56 shares of the kind Results 3.3 prints (overlaps of a track over the summed overlaps of eight tracks, I-18; seven sets) changes at one decimal, and the odds ratios of step 07 for the track change by less than 0.004. Corrected mode: 98,763 instead of 98,671 CpGs (92 more), 459 instead of 458 heat DML.\n- *Transposable elements only* (classes DNA, RC, LTR, LINE and SINE; coordinates as the draft read them), legacy mode: 106,269 analysed CpGs instead of 109,966 (22.1% of loci instead of 22.9%), 189 ploidy DML instead of 194, 455 heat DML instead of 463, and the same 28 loci in both lists (8, 10 and 10 by class). As the draft computes its percentages, the track falls from 18.1% to 17.6% for the analysed CpGs (the draft prints 18.4%, from the workbook column of I-14), from 14.9% to 14.6% for the ploidy DML and from 16.0% to 15.7% for the heat DML; 10.3% and 5.7% for the interaction loci stay. Because every share is taken over the sum of eight tracks, other features rise a little: 12 of the 56 shares change at one decimal, none by more than 0.5 points (introns of the ploidy and heat DML 39.6% and 42.0% to 39.8% and 42.1%; CDS 28.6% and 27.6% to 28.7% and 27.7%).\n- The direction of every statement stays under each reading: DML lie in the track less often than the CpGs they are compared with. With the five classes only, the odds ratios against all analysed CpGs are 0.78 (ploidy), 0.85 (heat) and 0.57 (both lists), against 0.77, 0.83 and 0.55 as run; against eligible CpGs 0.55, 0.59 and 0.40 against 0.54, 0.57 and 0.39. What such a comparison can show is the subject of I-41 and is not changed by this entry.\n- The 13.1% of Results 3.1 was computed with the same file and the same reading; the table that traces it is the one of I-15, and it was not recomputed under the other readings.\n\n**Status of the pipeline.** Nothing is corrected (scope decision of 2026-11-19). `read_feature_track()` reads the file as the legacy analysis did, in legacy and in corrected mode, so the legacy counts are reproduced (78 of 78 overlap counts in `06_diagnostics/legacy_check_results.csv`). What the track is, and the numbers above, are stated in `03_input_files/genome_features/README.md` (section \"The repeat track\"), in the headers of `02_R_functions/genomic_overlaps.R` and of step 07, and in the column `track_label` of the tables that are written by track. The track keeps the name `TE` in the tables, because the diagnostics and the values map select it by that name.\n\n**Verification.** Found by the code review of steps 06 and 07 and confirmed by a second agent, which downloaded the RepeatMasker output from NCBI and compared it with the track (`07_documentation/agent_workflows/verification_scripts/R2-figures-features/`). All counts above were recomputed in the code pass with interval arithmetic that shares nothing with the pipeline's helpers. No pipeline step writes them.\n\n**Needs from authors.** One of two. (1) Keep the track and call it what it is in Methods 2.3, Results 3.1 and 3.3 and Figure 3A: repeats (RepeatMasker, all classes). No number changes. (2) Restrict it to transposable elements: rebuild the track from the RepeatMasker output with a filter on the repeat class (column 11; say whether the class unknown, 9,973 records, counts) and with begin minus 1 as the BED start. The percentages of Results 3.1 and 3.3 and Figure 3A then change as given above, and legacy mode would no longer reproduce the draft's numbers for this track, so this needs the author's approval.",
+      "reason": "Task 1(b): a note for the author that names every statement of the draft on transposable elements and says what a corrected reading would change. The quotes are clauses that the values map already holds; no other text of the draft is used."
+     },
+     {
+      "issue": "Summary table, new row for the entry above",
+      "current_text": "(no row yet)",
+      "proposed_text": "| I-50 | S3 | Method | The \"transposable element\" track is the whole RepeatMasker output (24% of its records are simple repeats, low complexity, satellites or rRNA) and was read as BED although its coordinates are 1-based; 101 of the 480,579 analysed CpGs are affected by the shift, and a class filter would move the printed shares by at most 0.5 points | needs decision (name the category repeats, or filter the classes); the pipeline reproduces the legacy reading in both modes |",
+      "reason": "Row for the new entry; the count of issues in README.md and in the session handoff (49) rises by one if the entry is added."
+     },
+     {
+      "issue": "I-09, addition after 'Proposed resolution' (or as an Update paragraph); it also bears on I-18",
+      "current_text": "**Why it matters.** The lncRNA \"enrichment\" among interaction loci, and the link drawn to \"gene silencing by RNA\", describe one locus, not a genome-wide pattern.",
+      "proposed_text": "**Update (code pass, 2026-11-19).** The same locus supplies most of the \"exon/UTR regions (14.9%)\" that Results 3.3 gives, beside \"lncRNAs (23.4%)\", for the interaction-DML with contrasting responses. The track behind that category, `cgigas_uk_roslin_v1_exonUTR.gff`, is exon minus coding sequence and so holds every exon of non-coding genes (6.8 of its 36.9 Mb lie in lncRNA transcripts; of the 44,251 analysed CpGs that overlap it in legacy mode, 5,918 also overlap the lncRNA track; `03_input_files/genome_features/README.md`). Of the 26 loci counted as exon/UTR for that set, 21 lie in the block on NC_047563.1 and are also among the 41 counted as lncRNA. The two percentages of that sentence are therefore largely one locus counted in two categories (I-18). With one class per locus (step 07, `feature_class_exclusive_legacy.csv`) the 123 loci have 41 in lncRNA (33.3%) and 5 in an untranslated region or other non-coding exon (4.1%); with the coverage filter 5 of 83 loci overlap the exon UTR track and none of them the lncRNA track.",
+      "reason": "Follows from the correction of the track README (R2.3): the exonUTR track is not untranslated regions alone. Counted in the code pass with the pipeline's helpers: 26 loci of the set overlap exon_UTR, 21 of them also lncRNA, all 21 in NC_047563.1:39,633,323 to 39,635,522; corrected mode 5 and 0. The values map rows R3.3-044 and R3.3-045 already say that the coverage filter removes 21 of the 26 loci, but not that they are the lncRNA loci counted a second time."
+     }
+    ],
+    "open_points": [
+     "Label columns. The task asks for the description of the TE track 'in the labels of the outputs'. Step 07 has no figure label for that track, and the key TE cannot be renamed (check_legacy_outputs.R, feature_odds_matched.R and 13 values-map rows select it), so I added a column track_label to feature_overlap_by_track and feature_association_tests, and a column background to feature_class_chisq. No reader breaks (all address columns by name; tested). If the columns are not wanted, remove the two track_label lines and the background argument in step 07; the tables are then byte-identical to the committed ones. Group A's new table of step 04 already calls feature_track_labels() and writes the same column, so the helper function has to stay.",
+     "Step 13 has to be rerun: 05_manuscript/figures/{legacy,corrected}/Figure_2 and Figure_3 are still copies of the old figures.",
+     "The header of step 05 (group A) does not say that the hyper counts of the shared set in its threshold table, and the fourth column of its BED file, are the heat difference alone. Group E does not own that file either, so the request under shared_file_requests needs the parent or the repair agent.",
+     "The issue note and two documentation sentences ('issues.md carries a note for the authors') assume that the entry on the repeat track is added to issues.md; the number I-50 is a proposal.",
+     "The numbers of the section 'The repeat track' and of the issue note are written by no pipeline step. My scripts that reproduce them are in the scratch directory wf/code-pass/B (verify_tracks.R, te_readings.R with te_readings_shares.csv and te_readings_odds.csv, utr_lnc.R); copy them to 07_documentation/agent_workflows/verification_scripts/ if they are to be kept. They need NCBI's rm.out.gz, which is in the second agent's scratch folder (R2-figures-features-verify/dl_ncbi) and not in the repository. The statements of the draft were located in the session's local text copy (md5 f852956a...); only clauses that the values map already quotes went into the issue text.",
+     "The labels of three diagnostics still call the track 'transposable elements' (feature_odds_matched.R, locus_nc047563.R and their tables; the 06_diagnostics README rows). Those scripts are frozen; a sentence in the 06_diagnostics README could point to the new issue.",
+     "note_panel() is defined in step 06, and step 07 builds the same kind of panel once; 02_R_functions/plot_theme.R, which no group owns, would be the place for one shared definition. The constant min_dml_for_percent (10) of Figure 2B is named in step 06 and is not a setting of run_config.R, as before.",
+     "Headers: I kept the field names Inputs and Outputs that all 13 steps use and added a Run line with time and memory (group A did the same in steps 04 and 05). The other steps may need the same line for the docs review.",
+     "With the lists of the overdispersion-corrected model (2 ploidy, 16 heat, 1 shared) both steps now run, but several panels are notes and the tests rest on a handful of loci; that is a limit of such lists, not of the steps.",
+     "In the PDF of Figure 2 the '100' of the colour key stands close to the legend title 'treatment' (a gap of about one character, no overlap); pheatmap offers no spacing option there."
+    ],
+    "summary": "All confirmed findings of group B are applied; no number of any output changed and legacy mode reproduces as before (check_legacy_outputs.R: 329 of 331, result file byte-identical). Code: steps 06 and 07 no longer fail or write a meaningless test when a DML set is empty or too small; a panel or row that cannot be made says so, in the output and in the log, and every table and figure is still written (13 scenarios, no error, no warning). Figures 2 and 3 have their label and legend defects fixed. Documentation: the track README (three descriptions, a new section on the repeat track), the helper header, the headers of both steps (every file written, the chi-squared background, class 'other' as the mitochondrial CpGs, hyper and hypo of the loci in both lists as the sign of the heat difference, the threshold rule taken from step 05) and my rows of three README files. The TE track keeps the legacy reading in both modes: I traced it to the intersectBed calls of the legacy notebook and recomputed its effect independently (101 CpGs in legacy mode, 92 in corrected mode). At default settings 12 of the 18 tables are byte-identical to the committed ones; 6 gained a label column (track_label or background) with all numbers unchanged, which is the one choice the parent may want to reverse (open points). feature_odds_matched.R reproduces its four tables byte for byte against the new step 07 tables, and all 130 values-map expressions on step 06 and 07 tables give the same values. Returned for others: a header sentence for step 05, three requests for the values map, and three texts for issues.md (a new entry on the repeat track with every statement of the draft it bears on, its summary row, and an addition to I-09: 21 of the 26 'exon/UTR' loci of the contrasting interaction-DML are the lncRNA locus counted a second time). Not run: steps 04, 05 and 13; the copies of Figures 2 and 3 in 05_manuscript are stale until step 13 runs.\n\nFiles: /home/user/WGBS-gigas-ploidy-desiccation/01_pipeline/06_dml_figures.R, /home/user/WGBS-gigas-ploidy-desiccation/01_pipeline/07_genome_features.R, /home/user/WGBS-gigas-ploidy-desiccation/02_R_functions/genomic_overlaps.R, /home/user/WGBS-gigas-ploidy-desiccation/03_input_files/genome_features/README.md, and rows of /home/user/WGBS-gigas-ploidy-desiccation/01_pipeline/README.md, /home/user/WGBS-gigas-ploidy-desiccation/04_output/README.md, /home/user/WGBS-gigas-ploidy-desiccation/02_R_functions/README.md. Test scripts and logs: /tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/code-pass/B/"
+   }
+  }
+ ]
 }
