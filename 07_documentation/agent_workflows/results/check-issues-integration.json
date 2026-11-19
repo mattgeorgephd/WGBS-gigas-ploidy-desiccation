@@ -1,10 +1,126 @@
 {
  "workflow": "check-issues-integration",
  "run_id": "wf_09e60af1-cc6",
- "agents_finished": 0,
+ "agents_finished": 1,
  "agents_running_or_lost": [
-  "check:C1-universe",
-  "check:C2-reader"
+  "check:C2-reader",
+  "check:C3-ontology-release"
  ],
- "results": []
+ "results": [
+  {
+   "agent": "check:C1-universe",
+   "phase": "Check integration",
+   "result": {
+    "report_id": "C1-universe",
+    "items_checked": 14,
+    "carried_correctly": 9,
+    "discrepancies": [
+     {
+      "where": "issues.md, I-28, table row 'GO background: genes with CpGs at 10x in all samples' (line 509 at commit 35d5bfb)",
+      "quote": "| GO background: genes with CpGs at 10x in all samples | Transcripts with a CpG at 1x in any sample (I-03), minus a block of 15,666 transcripts lost to a failed write (I-39) | annotation notebook; `geneid2go-union1x-BOTH.tab` |",
+      "problem": "The row still describes the background in the words that errors_found item 4 of the report found wrong ('and the same wording in the claim'). That wording was corrected in I-39 and logged in the corrections table, so I-28 and I-39 now describe the same code differently. The notebook did not select transcripts by their own overlap with a CpG: it intersected CpGs with the gene track, attached every mRNA of each gene, and kept the transcripts with a GO ID in the GOslim table. The row also equates the run of 15,666 with the loss from the failed write; 13 of the 15,666 would be absent in any case, so the write removed 15,653. This is the row a rewrite of Methods 2.6 would start from.",
+      "evidence": "Report errors_found item 4 and missing_caveats item 2. The row is unchanged since commit dbe5bd8 (git show dbe5bd8:issues.md). In the verifier's dump of the notebook the cells join the CpG-by-gene overlaps to the transcript-to-gene table and then to Blastquery-GOslim.tab. Recomputed here from the three universe files the verifier downloaded and from transcript_table.csv.gz of step 08: the union of the three legacy universes holds 43,122 annotated mRNAs; 62 are absent from all three (7 in genes without a covered CpG, 24 with legacy_gene_id_lost, 31 others, all without a GO ID in the recovered GOslim table); of the 15,666 in the run, 15,653 are in the heat-only or control-only universe and 13 are in neither.",
+      "proposed_text": "Replace the row with: | GO background: genes with CpGs at 10x in all samples | Every mRNA of each gene whose body holds a CpG with a read in at least one of the 22 libraries, kept if it has a GO ID in the 2017 GOslim table: about 43,122 transcripts (I-03, I-39). The file that was used holds 27,469 of them, because a failed write removed 15,653 (I-39) | annotation notebook; `geneid2go-union1x-BOTH.tab` |\nAdd to Corrections after verification: | I-28 | GO background: \"Transcripts with a CpG at 1x in any sample (I-03), minus a block of 15,666 transcripts lost to a failed write (I-39)\" | Every mRNA of each gene whose body holds a covered CpG, kept if it has a GO ID in the GOslim table; 15,653 of them removed by the failed write | The notebook attached every mRNA of each gene, and 13 of the 15,666 transcripts of the run would be absent in any case |",
+      "severity": "medium"
+     },
+     {
+      "where": "issues.md, I-39, Verification 2026-11-19, fourth bullet (line 648 at commit 35d5bfb)",
+      "quote": "- The control-only universe on gannet has the same defect (`geneid2go-union1x-YAAMINI.tab`: 39,860 transcripts, one run of 3,257 absent, XM_034456003.1 to XM_034461022.1), and `code/5_WGBS_Functional-enrichement-analysis-YAAMINI.R` reads it; any control-only enrichment in the legacy outputs inherits the gap. The heat-only universe is complete (43,118 transcripts).",
+      "problem": "A limit stated by the report is dropped. For the control-only universe the cause was not verified in a file: the damaged control-only table is not on gannet, so no cut line was inspected. 'Has the same defect' reads as if it had been. The basis of the inference (the same error message in the control-only notebook) is also not given. 'Complete' for the heat-only universe is loose: 66 annotated mRNAs are absent from it, in runs of at most 7.",
+      "evidence": "Report missing_caveats item 5, last sentence: 'The damaged control-only table itself is not on gannet, so that hole was not inspected at file level'; checks_run: the control-only table on gannet has 9 columns and is complete across the range of the gap. Recomputed from the verifier's downloads: control-only universe 39,860 transcripts, 3,324 annotated mRNAs absent, longest run 3,257 (XM_034456003.1 to XM_034461022.1); heat-only universe 43,118 transcripts, 66 absent, longest run 7. The verifier's saved bytes of the control-only table on gannet (out/junction_YAAMINI.bin in its scratch directory) have 9 fields per line and hold lines of XM_034456003.1, the first transcript of the gap. The dumped control-only notebook shows 'uniq: write error' for the same join cell. Line 90 of the control-only enrichment script reads the file.",
+      "proposed_text": "- The control-only universe on gannet has a gap of the same kind (`geneid2go-union1x-YAAMINI.tab`: 39,860 transcripts; 3,324 annotated mRNAs absent, 3,257 of them in one run in accession order, XM_034456003.1 to XM_034461022.1), and the saved output of the same cell of its notebook (`code/4_WGBS_GOterm-Annotation-YAAMINI.ipynb`) is also `uniq: write error`. For this file the cause is an inference: the damaged table is not on gannet (the control-only table there has 9 columns and holds lines for the missing transcripts, so it is not the table that this run wrote), and no cut line was inspected. `code/5_WGBS_Functional-enrichement-analysis-YAAMINI.R` reads this universe; any control-only enrichment in the legacy outputs inherits the gap. The heat-only universe has no such gap (43,118 transcripts; 66 annotated mRNAs absent, longest run 7), and its notebook shows no write error.",
+      "severity": "medium"
+     },
+     {
+      "where": "issues.md, I-39, Verification 2026-11-19, second bullet (line 646 at commit 35d5bfb)",
+      "quote": "In genome order the same transcripts form 3,967 separate stretches (longest 104).",
+      "problem": "The count is attached to the wrong set. 'The same transcripts' are the 15,666 of the run; 3,967 is the number of stretches formed by all 15,715 missing mRNAs. The count also depends on the order given to isoforms with identical coordinates. The slip comes from the report's own caveat ('the same transcripts'); the report's summary says 'the missing transcripts'.",
+      "evidence": "Verifier's log out/01_basic.log: 'genomic order (GFF sequence, start) runs of missing: 3967; longest 104; missing outside longest 15611', which sums to 15,715. Recomputed from the verifier's annotated_mrnas.csv with its ordering (sequence, start, end, ties in GFF order): 3,967 stretches for the 15,715 missing, 3,955 for the 15,666 of the run. With ties ordered by accession (also recomputed from transcript_table.csv.gz of step 08): 3,830 and 3,817. Longest stretch 104 in every case.",
+      "proposed_text": "In genome order the 15,715 missing transcripts form 3,967 separate stretches (longest 104) when isoforms with identical coordinates keep their GFF order, and 3,830 when they are ordered by accession.",
+      "severity": "low"
+     },
+     {
+      "where": "issues.md, Corrections after verification, second I-39 row (line 884 at commit 35d5bfb)",
+      "quote": "| I-39 | \"Likely cause (inference)\", supported by a comparison of file sizes | Cause verified by the cut line in the file on gannet | The size comparison used tables that are not equivalent |",
+      "problem": "The reason is stated too broadly. The report found one of the two comparison tables not equivalent (the control-only table, 9 columns, complete, from another run); the heat-only table is the same kind of table. The row also does not record that the three sizes were binary gigabytes, which is why the '19 GB' of the first version is now 20,149,928,521 bytes, or '20 GB', in I-39.",
+      "evidence": "Report errors_found item 3: 'The control-only table on gannet is not equivalent: it has 9 columns instead of 10 ... The sizes are binary gigabytes (18.8, 29.8 and 33.0 GiB)'. First version of the bullet (git show dbe5bd8:issues.md): 'a 19 GB table' and 'The equivalent tables of the other two datasets on gannet are 30 GB and 33 GB'. Arithmetic checked: 20,149,928,521 bytes is 18.8 GiB; 32,002,018,978 bytes is 29.8 GiB; 35,467,724,280 bytes is 33.0 GiB.",
+      "proposed_text": "| I-39 | \"Likely cause (inference)\", supported by the sizes of three tables on gannet (\"19 GB\" against \"30 GB and 33 GB\") | Cause verified by the cut line in the file on gannet; the size comparison is replaced by the line counts in the notebooks (157,469,551 against 276,062,519) | The control-only table on gannet (\"30 GB\") has 9 columns and is complete, so it is not the equivalent table; the three sizes were binary gigabytes (18.8, 29.8 and 33.0 GiB) |",
+      "severity": "low"
+     },
+     {
+      "where": "issues.md, header, Updates, bullet '2026-11-19, second pass' (line 20 at commit 35d5bfb)",
+      "quote": "Every number they recomputed was reproduced.",
+      "problem": "Too strong, and contradicted by the corrections table of the same file. The C1 report did not reproduce one number of I-39: the share for NC_047568.1 was written as 35% and is 35.7% (36%). The table lists that correction.",
+      "evidence": "Report summary: 'NC_047568.1 is 36%, not 35%'; errors_found item 1. Recomputed from legacy_universe_by_chromosome.csv and independently from the GO maps and the transcript table: 1,916 of 5,360 is 35.75%. Corrections table row: | I-39 | \"35% on NC_047565.1 and NC_047568.1\" | 35% and 36% |.",
+      "proposed_text": "Nearly every number they recomputed was reproduced; the exceptions are listed in the corrections table (for example 36%, not 35%, on NC_047568.1 in I-39).",
+      "severity": "low"
+     },
+     {
+      "where": "issues.md, I-39, first sentence of Verification 2026-11-19 (line 644 at commit 35d5bfb)",
+      "quote": "**Verification 2026-11-19.** Every count above was reproduced from the mRNA GFF, the complete GO map and the universe file, without using the tables of steps 08 and 09; the universe file in the repository is byte-identical to the gannet copy that the legacy script reads.",
+      "problem": "After the in-place corrections, 'every count above' includes numbers that were not reproduced but introduced by the verification, and that cannot come from the three files named: the cut line (table on gannet), the line counts (notebooks), the intended universe (two other universe files and the legacy overlap list on gannet), and the gene and transcript shares (legacy DML annotation tables). The report's statement covered the counts of the universe, the run and the per-sequence shares. The next bullet's 77.5% and 78.8% do use a step 08 table (n_cpg_tested of gene_table_legacy), which the paragraph does not say.",
+      "evidence": "Report summary: 'Counts (parsed from the mRNA GFF, the full GO map and the universe map, not from step 08/09 tables)' introduces only the universe, run and per-sequence counts. Verifier scripts: 01_basic.R reads the GFF and the two maps; 05_dml_genes.R reads the legacy DML annotation tables; 02_tested_cpg.R reads 04_output/08_gene_annotation/tables/gene_table_legacy.csv.gz; 10_decompose.R uses the heat-only and control-only universe files.",
+      "proposed_text": "**Verification 2026-11-19.** The counts of the first three evidence bullets were reproduced from the mRNA GFF, the complete GO map and the universe file, without using the tables of steps 08 and 09; the universe file in the repository is byte-identical to the gannet copy that the legacy script reads. The other counts above were obtained in this verification: the cut line from the table on gannet, the line counts from the saved outputs of the notebooks, the intended universe from the heat-only and control-only universe files and the legacy list of CpG-by-gene overlaps on gannet, and the shares under Why it matters from the three legacy DML annotation tables.\nIn the first bullet, after \"against 78.8% of the transcripts that are present\", insert: \" (CpG counts per gene from the gene table of step 08)\".",
+      "severity": "low"
+     },
+     {
+      "where": "01_pipeline/09_go_enrichment_legacy.R, header lines 10 to 11 and comment at line 97",
+      "quote": "#                geneid2go-union1x-BOTH.tab, from which one block of 15,666\n#                consecutive transcript accessions is missing (issue I-39).\n...\n# The missing transcripts form one block of consecutive accession numbers.",
+      "problem": "errors_found item 6 of the report names this header. The wording was corrected in issues.md (corrections row 'One unbroken run of accession numbers') but not here. The 15,666 are adjacent entries of the accession-sorted list of annotated mRNAs; the range spans about 23 million accession numbers. The file is unchanged since commit dbe5bd8, and no loose end records the pending change.",
+      "evidence": "git log dbe5bd8..HEAD shows no commit touching this file. Recomputed: XM_034461018 minus XM_011455141 is 23,005,877; 15,666 annotated mRNAs lie in the range and none is in the universe; 49 other annotated mRNAs are missing in 24 runs.",
+      "proposed_text": "Lines 10 to 11:\n#                geneid2go-union1x-BOTH.tab, from which 15,666 annotated mRNAs\n#                that are adjacent when sorted by accession are missing\n#                (XM_011455141.3 to XM_034461018.1; issue I-39).\nLine 97:\n# Nearly all missing transcripts are adjacent when the annotated mRNAs are sorted by accession.",
+      "severity": "low"
+     },
+     {
+      "where": "03_input_files/annotation/README.md, table row for `geneid2go-union1x-BOTH.tab.gz`",
+      "quote": "One block of 15,666 consecutive transcript accessions is missing from it (issue I-39).",
+      "problem": "Same wording as above, in the second file that errors_found item 6 names. Not changed.",
+      "evidence": "The file is unchanged since commit dbe5bd8. Counts recomputed as in the previous entry.",
+      "proposed_text": "15,666 annotated mRNAs that are adjacent when sorted by accession (XM_011455141.3 to XM_034461018.1) are missing from it, and 49 others (issue I-39).",
+      "severity": "low"
+     },
+     {
+      "where": "03_input_files/manuscript/manuscript_values_map.csv, row M2.6-001, column note (copied by step 13 into 05_manuscript/manuscript_values.csv)",
+      "quote": "the background was built from transcripts overlapping a CpG with 1x in any sample (I-03, I-39)",
+      "problem": "The note carries the description of the legacy background that errors_found item 4 found wrong and that I-39 now corrects. The rest of the note is right.",
+      "evidence": "Report errors_found item 4. Checked from gene_table_legacy.csv.gz: 4,078 of the 14,109 genes of the legacy universe hold no CpG at 10x in all 22 libraries, as the note says.",
+      "proposed_text": "the background was built from every mRNA of each gene whose body holds a CpG with a read in at least one library, kept if it has a GO ID in the 2017 GOslim table, and the file used lacks 15,653 of those transcripts (I-03, I-39)",
+      "severity": "low"
+     }
+    ],
+    "omitted_items": [
+     {
+      "item": "missing_caveats item 4: the notebook alone does not tie the universe to the damaged table. Its saved outputs come from several sessions, one output names a file of the control-only notebook, and other cells end in 'Process is interrupted', '^C' and 'No such file'. These anomalies were checked and left the inputs of the failing cell complete; the tie is the cut line in the file on gannet.",
+      "why_it_matters": "I-39 cites two saved outputs of the notebook (the error message and the line count of the next cell) as if the notebook were a linear record. A reader who opens it finds execution counts out of order: the cells that derive the universe carry counts 13 and 16, the failing cell 32, and the count 30 occurs twice. Without the caveat the reader cannot tell that this was seen and does not weaken the cause, which rests on the cut line.",
+      "where_to_add": "issues.md, I-39, Verification 2026-11-19, as a new bullet before the bullet 'Limits'",
+      "proposed_text": "- The notebook by itself does not tie the universe to the damaged table. Its saved outputs come from more than one session: in cell order the execution counts run 57, 58, 60, then 29 to 33 (the failing cell is 32 and its line count 33), then 1, 30, 13, 10, 8 and 16 for the cells that derive the universe. One output names a file of the control-only notebook, and other cells end in `Process is interrupted`, `^C` and `No such file or directory`. These anomalies were checked and left the inputs of the failing cell complete: the transcript table has the 26,098,781 lines that the union CpGs and the transcript-to-gene map predict, and the unfolded GO table has the expected 1,565,846 lines. What ties the universe to this table is the cut line in the file on gannet.",
+      "severity": "low"
+     },
+     {
+      "item": "errors_found item 4, as it bears on I-03: the evidence bullet of 2026-11-18 says 'Code: transcripts overlapping a CpG with at least 1x in any sample (...), which is nearly every annotated transcript'. Both halves are superseded by I-39, and no Verification paragraph of I-03 says so.",
+      "why_it_matters": "The log's convention is that text of 2026-11-18 stays as written and is superseded by a Verification paragraph that says so. As it stands, I-03 says the background used by the code was nearly every annotated transcript, and I-39 says the file held 64% of the annotated mRNAs (27,469 of 43,184).",
+      "where_to_add": "issues.md, I-03, Verification 2026-11-19, as a new bullet",
+      "proposed_text": "- The description of the background under Evidence (\"transcripts overlapping a CpG with at least 1x in any sample\", \"which is nearly every annotated transcript\") is superseded by I-39. The notebook took every gene whose body holds a CpG with a read in at least one library, attached all mRNAs of that gene, and kept those with a GO ID in the 2017 GOslim table. That rule keeps about 43,122 of the 43,184 annotated mRNAs, but the file the test read holds 27,469 (64%), because the table it was derived from was cut by a failed write.",
+      "severity": "low"
+     },
+     {
+      "item": "errors_found item 5: in `04_output/09_go_enrichment_legacy/tables/legacy_universe_by_chromosome.csv` the columns largest_missing_block_n, largest_missing_block_first and largest_missing_block_last hold the genome-wide run and are repeated on all 12 rows.",
+      "why_it_matters": "I-39 cites this table as the source of its per-sequence shares. A reader who opens it sees a missing block of 15,666 on the row of NC_047560.1, which has 2,770 annotated mRNAs. The item is recorded nowhere: not in issues.md, the plan, or the handoff file, and nothing was flagged as deferred for this report.",
+      "where_to_add": "issues.md, I-39, end of Verification 2026-11-19 (as the loose ends for the code are recorded at the end of the I-16 Verification paragraph); also the code-pass list in 07_documentation/session_handoff.md",
+      "proposed_text": "- Loose ends for the code: in `legacy_universe_by_chromosome.csv` the columns `largest_missing_block_n`, `largest_missing_block_first` and `largest_missing_block_last` describe the genome-wide run and are repeated on all 12 rows, so the row of NC_047560.1 (2,770 annotated mRNAs) shows a missing block of 15,666; they belong in a one-row table (`01_pipeline/09_go_enrichment_legacy.R`, lines 102 to 104).",
+      "severity": "low"
+     },
+     {
+      "item": "missing_caveats item 2, first sentence: 'Not all 15,715 absences come from the write failure: 15,653 do.' issues.md gives the 62 and the intended 43,122 but never the 15,653, and does not say that 13 of the 15,666 in the run would be absent in any case.",
+      "why_it_matters": "Without the number, the run of 15,666 is read as the loss from the write. I-28 says '15,666 transcripts lost to a failed write', and the new diagnostic (purpose lines of 06_diagnostics/universe_file_cut.R and its row in 06_diagnostics/README.md) says the universe 'lost 15,666 transcripts' at the cut. Recomputed here: 15,653 of the 15,666 are in the heat-only or control-only universe; 13 are in neither (1 in a gene without a covered CpG, 4 with a lost gene ID, 8 others).",
+      "where_to_add": "issues.md, I-39, Evidence, end of the bullet that begins 'The intended universe was'; adjust the two diagnostic texts to 'lost its run of 15,666 transcripts (15,653 of them to the cut)'",
+      "proposed_text": "The failed write therefore removed 15,653 transcripts: 13 of the 15,666 in the run (1 for coverage, 4 for the parsing defect, 8 for the GOslim table) and the 49 outside it would be absent in any case.",
+      "severity": "low"
+     }
+    ],
+    "not_yet_due": [],
+    "notes": "State checked: working tree at commit 35d5bfb. issues.md was being edited by the main session during this check (third pass, I-46 and I-47, citations of new diagnostics). The I-39 section is identical to commit 61841be, every quote above was confirmed present at 35d5bfb, and line numbers are those of 35d5bfb.\n\nResult: no high-severity problem. The conclusion of I-39 is carried faithfully, and each of the five in-place corrections of I-39 has an accurate row in the corrections table (one row's reason is too broad, listed above). Of the 14 report items (6 errors, 8 caveats), 9 are carried correctly: errors 1, 2, 3 and caveats 1, 2, 3, 6, 7, 8. Error 4 is corrected in I-39 but survives in I-28, in I-03 without a superseding note, and in the manuscript values map. Caveat 5 lost its limit. Error 5 and caveat 4 are not carried. Error 6 was applied to issues.md only, not to the two files the report names. Nothing was flagged as deferred for this report, so not_yet_due is empty; if errors 5 and 6 are meant for the code pass, they need a recorded loose end.\n\nRecomputed here and in agreement with issues.md (scripts recompute1.py to recompute7.py in /tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/check-C1-universe/): universe 48,263 lines and 27,469 names; 43,184 annotated mRNAs; 15,715 missing (36.39%); run of 15,666 from XM_011455141.3 to XM_034461018.1 bounded by XM_011455140.3 and XM_034461020.1; 49 others in 24 runs; all 11 per-sequence shares (35.26% on NC_047565.1, 35.75% on NC_047568.1); 9,761 mRNAs of the XM_034 series on NC_047565.1 to NC_047568.1 with none in the universe; 12,139 of 15,666 (77.5%) against 21,642 of 27,469 (78.8%) for the 10x test; 20,202, 14,109 and 20,175 genes; 43,122 as the union of the three universes; 62 absent from all three as 7, 24 and 31; 456 of 622, 930 of 1,237, 91 of 117 genes and 1,419 of 2,348, 3,012 of 4,606, 247 of 379 transcripts from the legacy DML annotation tables; control-only 39,860 and run of 3,257; heat-only 43,118; md5 of the universe file; 4,096 x 1,289,932 = 5,283,561,472; input 1.2% smaller. The only number that did not survive is the genome-order count (listed above).\n\nNot recomputed: the cut line; no request to gannet was made. It is confirmed by the verifier's saved bytes (out/junction_BOTH.bin: a line of XM_011455140.3 cut after 55 bytes, followed by a line of XM_034461020.1) and by the committed output of the new 06_diagnostics/universe_file_cut.R (file size 20,149,928,521 bytes, cut offset 5,283,561,472, checked 2026-11-19). The verifier's saved simulation output was re-analysed: one line cut, a fresh line at byte 561,152 = 4,096 x 137, 10,841 keys missing, tail written.\n\nWhere issues.md departs from the report and is right: 'under every collation tested' for the report's 'under any collation'. Where the report is imprecise: its caveat says 'the same transcripts' for the 3,967 stretches, and its list of execution counts ('30 to 33') is 29 to 33 in the notebook.\n\nSmaller points, not listed as problems. (1) 'Of the transcripts of those genes' in Why it matters: the denominators 2,348, 4,606 and 379 are the transcripts with GO terms listed in the legacy DML annotation tables; the 622 and 1,237 genes have 2,366 and 4,660 mRNAs in all, and the rounded shares are the same either way. (2) '77.5% of the missing transcripts' is 12,139 of the 15,666 in the run; for all 15,715 missing it is 12,177, also 77.5%. (3) The same BOTH table is 'files of 19 to 33 GB' in I-35 (text of 2026-11-18, binary gigabytes) and '20 GB' in I-39. (4) I-35 treats the join tables on gannet as redundant intermediates whose cleanup is for the owner. The BOTH table is now the direct evidence for the cause in I-39 and the input of 06_diagnostics/universe_file_cut.R; I-35 should say that it must be kept until its bytes around the cut and its size are archived. (5) I-20 gives 625, 1,246 and 119 genes with GO terms and I-39 gives 622, 1,237 and 117 'by the legacy route'; by the verifier's script 05_dml_genes.R the difference comes from the NM_ names that step 08 repairs, the genes with hyphenated names, and the GO IDs absent from the GOslim table. A clause in I-39 naming the two routes would spare the reader the comparison. (6) Apart from the proposed I-28 row, the changes proposed here alter text written after the verification, which the preamble of the corrections table does not cover."
+   }
+  }
+ ]
 }

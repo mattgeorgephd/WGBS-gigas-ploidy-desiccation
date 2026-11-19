@@ -2,7 +2,7 @@
 
 How to continue this work from the repository alone, for a new session or a person. The working session rewrites the "State" and "In flight" sections whenever it pushes.
 
-Last updated: 2026-11-19 06:31 UTC.
+Last updated: 2026-11-19 06:32 UTC.
 
 ## If the session ends or its machine is replaced
 
@@ -45,13 +45,14 @@ What a new session cannot get from git: the download cache (step 4 restores it);
 
 ## In flight when this file was last updated
 
-Six agent runs (scripts and partial results in `07_documentation/agent_workflows/`). If the machine is lost, the finished agents' results are in `results/`; the rest must be run again.
+Agent runs (scripts and partial results in `07_documentation/agent_workflows/`). If the machine is lost, the finished agents' results are in `results/`; the rest must be run again.
 
 | Run | Finished | Still to come | If lost |
 |---|---|---|---|
 | `audit-verification` | all nine claim reports (C1 to C8); code review R2 | five code reviews (R1 and R3 running), six verifications of their findings | Run the script again; or check by hand the claims that matter most to the authors (C4, C5, C6). |
 | `build-steps-11-12` | finished and integrated (both steps) | nothing | Not needed. |
-| `manuscript-values`, first batch (Methods, Results 3.1 to 3.3, figure legends) | finished and integrated | second batch to be launched: `results34_35`, `discussion` | Run `manuscript-values.js` with args `{"sections": ["results34_35", "discussion"]}`; append its verified rows to the map. |
+| `manuscript-values`, first batch (Methods, Results 3.1 to 3.3, figure legends) | finished and integrated (253 rows) | nothing | Not needed. |
+| `manuscript-values`, second batch (Results 3.4 and 3.5, Table 1, Discussion; launched 06:33 UTC) | nothing yet | extract, map, verify for both parts | Run `manuscript-values.js` with the args in `agent_workflows/scripts/manuscript-values-batch2-args.json`; it needs `output_catalog.txt` regenerated (one entry per table of `04_output/*/tables` and of `06_diagnostics/`) and `eval_expressions.R` in its scratch directory. Append its verified rows to the map and run step 13. |
 | `build-dml-sensitivity` | build, review | fix | The snapshot of the script is in git. Review it, then run it in full. |
 | `check-issues-integration` (launched 06:08 UTC) | nothing yet | ten checks that `issues.md` carries the nine verification reports faithfully | Run the script again; it is read-only. |
 | `build-diagnostics` (launched 06:20 UTC) | nothing yet | five scripts under `06_diagnostics/` (`feature_odds_matched`, `locus_nc047563`, `legacy_reader_mechanism`, `coverage_filter_variants`, `check_methylkit_equivalence`), each built, reviewed, fixed | Files the agents have written so far are in git as snapshots; run the script again for the rest. |
@@ -64,7 +65,7 @@ Note on the sensitivity script: the fix stage of `build-dml-sensitivity` edits `
 1. Code reviews: when all six and their verifications are in, fix the confirmed defects, rerun the steps they touch, rerun `06_diagnostics/check_legacy_outputs.R` and step 13, and log what bears on the manuscript in `issues.md` (the claim reports are already carried in).
 1a. Move the verification computations that `issues.md` relies on into `06_diagnostics/` scripts that run from the repository (label-permutation null for DML counts, feature odds ratios and GO terms; matched feature odds ratios; exact gene-level GO tests; methylKit equivalence; per-library coverage at the I-09 locus; group means at the Table 1 loci; correlation permutation test). The agents' scratch scripts are in `agent_workflows/verification_scripts/` as a starting point. In step 10: an exact test beside the Wallenius value, log2 CpG count as bias variable, remapping of secondary GO IDs.
 2. Steps 11 and 12 are finished and integrated. Left for the code pass: copy the seven legacy files they read from `08_archive/` into `03_input_files/` and point the steps there; move the settings blocks at the top of both scripts into `run_config.R`.
-3. Manuscript values: run `manuscript-values.js` for the remaining parts (`results34_35`, `discussion`), which need the outputs of steps 11 and 12. Assemble all verified rows into `03_input_files/manuscript/manuscript_values_map.csv` (write the CSV with a CSV library so that quotes inside expressions are escaped), run step 13, and read every row that "differs".
+3. Manuscript values: the run for the remaining parts (`results34_35`, `discussion`) is in flight. Assemble all verified rows into `03_input_files/manuscript/manuscript_values_map.csv` (write the CSV with a CSV library so that quotes inside expressions are escaped), run step 13, and read every row that "differs".
 4. Sensitivity analyses: after review, run `06_diagnostics/dml_sensitivity.R` in full, and write the results into `issues.md` (I-02 interaction, I-04 acute heat-shock libraries, I-06 overdispersion, I-07 ploidy within controls).
 5. Issue I-15: the genomic distribution of CpGs at 1x in Results 3.1 has no pipeline output yet. Extend step 04 to write the overlap of its CpG sets with the feature tracks (the draft's numbers appear to come from the heat-only 10x set), then rerun step 04 (8 minutes, 8 GB).
 6. `renv.lock` for the audit environment; a full run from a clean clone; final pass over the READMEs; remove obsolete items from the "still to be written" list in `06_diagnostics/README.md`.
