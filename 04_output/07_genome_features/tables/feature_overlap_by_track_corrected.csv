@@ -1,0 +1,105 @@
+mode,set,n_loci,track,n_overlap,pct_of_loci,legacy_share_pct
+corrected,all analysed CpGs,454555,gene,325335,71.5721969838633,
+corrected,all analysed CpGs,454555,mRNA,314989,69.2961247813796,
+corrected,all analysed CpGs,454555,exon,168756,37.1255403636524,
+corrected,all analysed CpGs,454555,CDS,126899,27.9171937389315,22.317327105302
+corrected,all analysed CpGs,454555,exon_UTR,41862,9.20944660162137,7.36213797809403
+corrected,all analysed CpGs,454555,intron,157174,34.5775538713687,27.6416959191857
+corrected,all analysed CpGs,454555,nonCDS,286409,63.0086568182068,
+corrected,all analysed CpGs,454555,lncRNA,13481,2.9657577190879,2.37086097373956
+corrected,all analysed CpGs,454555,upstream_flank,16144,3.55160541628626,2.83919438914409
+corrected,all analysed CpGs,454555,downstream_flank,11605,2.55304638602589,2.04093476746885
+corrected,all analysed CpGs,454555,flanks,26522,5.83471747093311,
+corrected,all analysed CpGs,454555,intergenic,102776,22.6102451848511,18.0748911384213
+corrected,all analysed CpGs,454555,TE,98671,21.7071641495529,17.3529577286445
+corrected,methylated CpGs,69476,gene,62536,90.0109390293051,
+corrected,methylated CpGs,69476,mRNA,61351,88.3053140652887,
+corrected,methylated CpGs,69476,exon,26508,38.1541827393632,
+corrected,methylated CpGs,69476,CDS,22044,31.7289423685877,24.5091281047786
+corrected,methylated CpGs,69476,exon_UTR,4465,6.42667971673671,4.96431033332592
+corrected,methylated CpGs,69476,intron,36187,52.0856122977719,40.233706166196
+corrected,methylated CpGs,69476,nonCDS,43120,62.0645978467385,
+corrected,methylated CpGs,69476,lncRNA,2192,3.15504634693995,2.43712614796202
+corrected,methylated CpGs,69476,upstream_flank,633,0.911105993436582,0.703786884881368
+corrected,methylated CpGs,69476,downstream_flank,1107,1.59335597904312,1.23079317782571
+corrected,methylated CpGs,69476,flanks,1652,2.37779952789452,
+corrected,methylated CpGs,69476,intergenic,5290,7.61414013472278,5.88156812167842
+corrected,methylated CpGs,69476,TE,18024,25.9427716045829,20.0395810633519
+corrected,ploidy DML,952,gene,911,95.6932773109244,
+corrected,ploidy DML,952,mRNA,908,95.3781512605042,
+corrected,ploidy DML,952,exon,433,45.4831932773109,
+corrected,ploidy DML,952,CDS,369,38.7605042016807,32.2270742358079
+corrected,ploidy DML,952,exon_UTR,64,6.72268907563025,5.58951965065502
+corrected,ploidy DML,952,intron,478,50.2100840336135,41.7467248908297
+corrected,ploidy DML,952,nonCDS,519,54.5168067226891,
+corrected,ploidy DML,952,lncRNA,11,1.15546218487395,0.960698689956332
+corrected,ploidy DML,952,upstream_flank,1,0.105042016806723,0.0873362445414847
+corrected,ploidy DML,952,downstream_flank,23,2.41596638655462,2.00873362445415
+corrected,ploidy DML,952,flanks,23,2.41596638655462,
+corrected,ploidy DML,952,intergenic,18,1.89075630252101,1.57205240174672
+corrected,ploidy DML,952,TE,181,19.0126050420168,15.8078602620087
+corrected,heat DML,2273,gene,2136,93.9727232732072,
+corrected,heat DML,2273,mRNA,2112,92.9168499780027,
+corrected,heat DML,2273,exon,957,42.1029476462824,
+corrected,heat DML,2273,CDS,793,34.8878134623845,28.5559956787901
+corrected,heat DML,2273,exon_UTR,164,7.21513418389793,5.90565358300324
+corrected,heat DML,2273,intron,1180,51.9137703475583,42.4918977313648
+corrected,heat DML,2273,nonCDS,1317,57.9410470743511,
+corrected,heat DML,2273,lncRNA,44,1.93576770787506,1.58444364422038
+corrected,heat DML,2273,upstream_flank,13,0.571931368235812,0.468131076701476
+corrected,heat DML,2273,downstream_flank,42,1.84777826660801,1.512423478574
+corrected,heat DML,2273,flanks,54,2.3757149142103,
+corrected,heat DML,2273,intergenic,83,3.65156181258249,2.98883687432481
+corrected,heat DML,2273,TE,458,20.149582050154,16.4926179330212
+corrected,shared,159,gene,154,96.8553459119497,
+corrected,shared,159,mRNA,153,96.2264150943396,
+corrected,shared,159,exon,68,42.7672955974843,
+corrected,shared,159,CDS,59,37.1069182389937,31.3829787234043
+corrected,shared,159,exon_UTR,9,5.66037735849057,4.78723404255319
+corrected,shared,159,intron,86,54.0880503144654,45.7446808510638
+corrected,shared,159,nonCDS,91,57.2327044025157,
+corrected,shared,159,lncRNA,3,1.88679245283019,1.59574468085106
+corrected,shared,159,upstream_flank,0,0,0
+corrected,shared,159,downstream_flank,3,1.88679245283019,1.59574468085106
+corrected,shared,159,flanks,3,1.88679245283019,
+corrected,shared,159,intergenic,2,1.25786163522013,1.06382978723404
+corrected,shared,159,TE,26,16.3522012578616,13.8297872340426
+corrected,"shared, both hyper",27,gene,27,100,
+corrected,"shared, both hyper",27,mRNA,27,100,
+corrected,"shared, both hyper",27,exon,11,40.7407407407407,
+corrected,"shared, both hyper",27,CDS,9,33.3333333333333,25.7142857142857
+corrected,"shared, both hyper",27,exon_UTR,2,7.40740740740741,5.71428571428571
+corrected,"shared, both hyper",27,intron,16,59.2592592592593,45.7142857142857
+corrected,"shared, both hyper",27,nonCDS,16,59.2592592592593,
+corrected,"shared, both hyper",27,lncRNA,1,3.7037037037037,2.85714285714286
+corrected,"shared, both hyper",27,upstream_flank,0,0,0
+corrected,"shared, both hyper",27,downstream_flank,0,0,0
+corrected,"shared, both hyper",27,flanks,0,0,
+corrected,"shared, both hyper",27,intergenic,0,0,0
+corrected,"shared, both hyper",27,TE,7,25.9259259259259,20
+corrected,"shared, both hypo",49,gene,46,93.8775510204082,
+corrected,"shared, both hypo",49,mRNA,46,93.8775510204082,
+corrected,"shared, both hypo",49,exon,18,36.734693877551,
+corrected,"shared, both hypo",49,CDS,16,32.6530612244898,27.1186440677966
+corrected,"shared, both hypo",49,exon_UTR,2,4.08163265306122,3.38983050847458
+corrected,"shared, both hypo",49,intron,28,57.1428571428572,47.4576271186441
+corrected,"shared, both hypo",49,nonCDS,31,63.265306122449,
+corrected,"shared, both hypo",49,lncRNA,0,0,0
+corrected,"shared, both hypo",49,upstream_flank,0,0,0
+corrected,"shared, both hypo",49,downstream_flank,2,4.08163265306122,3.38983050847458
+corrected,"shared, both hypo",49,flanks,2,4.08163265306122,
+corrected,"shared, both hypo",49,intergenic,1,2.04081632653061,1.69491525423729
+corrected,"shared, both hypo",49,TE,10,20.4081632653061,16.9491525423729
+corrected,"shared, opposite",83,gene,81,97.5903614457831,
+corrected,"shared, opposite",83,mRNA,80,96.3855421686747,
+corrected,"shared, opposite",83,exon,39,46.9879518072289,
+corrected,"shared, opposite",83,CDS,34,40.9638554216868,36.1702127659575
+corrected,"shared, opposite",83,exon_UTR,5,6.02409638554217,5.31914893617021
+corrected,"shared, opposite",83,intron,42,50.6024096385542,44.6808510638298
+corrected,"shared, opposite",83,nonCDS,44,53.0120481927711,
+corrected,"shared, opposite",83,lncRNA,2,2.40963855421687,2.12765957446809
+corrected,"shared, opposite",83,upstream_flank,0,0,0
+corrected,"shared, opposite",83,downstream_flank,1,1.20481927710843,1.06382978723404
+corrected,"shared, opposite",83,flanks,1,1.20481927710843,
+corrected,"shared, opposite",83,intergenic,1,1.20481927710843,1.06382978723404
+corrected,"shared, opposite",83,TE,9,10.8433734939759,9.57446808510638

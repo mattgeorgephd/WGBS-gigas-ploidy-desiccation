@@ -19,10 +19,13 @@ config <- list(
   # ---- Analysis modes --------------------------------------------------------
   # Steps 04 onward write one set of outputs per mode listed here, with the mode
   # in each file name.
-  #   legacy     no upper coverage filter (the legacy call misnamed the argument,
-  #              so the filter never ran; issue I-05)
+  #   legacy     what the legacy scripts did: no upper coverage filter (the call
+  #              misnamed the argument, so the filter never ran; issue I-05), and
+  #              the first line of every coverage file lost on import (methRead()
+  #              was left at header = TRUE; issue I-38)
   #   corrected  CpGs at or above the 99.9th percentile of coverage in a library
-  #              are removed from that library, as the Methods describe
+  #              are removed from that library, as the Methods describe, and
+  #              every line of every coverage file is read
   modes = c("legacy", "corrected"),
 
   # ---- Step 03: global methylation ------------------------------------------
@@ -41,11 +44,25 @@ config <- list(
   dml_qvalue                = 0.01,  # SLIM-adjusted q-value cutoff
   dml_difference            = 20,    # minimum absolute methylation difference, percentage points
   dml_difference_sweep      = seq(5, 50, by = 5),  # thresholds for the sensitivity curve (Figure 2A, 2B)
-  cores                     = 1,     # cores for the per-CpG model fits; results do not depend on it
+  # Cores for the per-CpG model fits (forked workers; leave at 1 on Windows). Results
+  # do not depend on it. Set the environment variable WGBS_CORES to override.
+  cores                     = max(1L, as.integer(Sys.getenv("WGBS_CORES", unset = "1"))),
 
-  # ---- Step 09: GO enrichment ------------------------------------------------
+  # ---- Steps 09 to 11: GO enrichment ------------------------------------------
   go_pvalue      = 0.01,   # Fisher p-value cutoff named in the Methods
   go_legacy_topn = 10,     # the legacy "enriched" set was the top 10 terms per ontology (issue I-21)
+  # Ontology release of the legacy enrichment (step 09). The archived tables are
+  # reproduced exactly with this release and with no later one. It is installed
+  # into a side library in the download cache; other steps use the GO.db of the
+  # R installation.
+  legacy_go_db = list(
+    version = "3.13.0",
+    url     = "https://bioconductor.org/packages/3.13/data/annotation/src/contrib/GO.db_3.13.0.tar.gz",
+    md5     = "796f6a26af270310d8a1f7c9c3913330"
+  ),
+  # Gene-level enrichment (step 10)
+  go_min_genes = 5,        # a term is tested when at least this many universe genes carry it
+  go_fdr       = 0.05,     # Benjamini-Hochberg threshold for calling a term enriched
 
   # ---- Plot colours ----------------------------------------------------------
   colours = list(

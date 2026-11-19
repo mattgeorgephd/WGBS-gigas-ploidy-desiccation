@@ -1,0 +1,4 @@
+mode,set,test,statistic,df,p,min_expected
+corrected,ploidy DML,"chi-squared, DML status by exclusive class",349.486802738845,6,1.98905667032315e-72,21.7080001319972
+corrected,heat DML,"chi-squared, DML status by exclusive class",708.764551011531,6,7.83606868735209e-150,51.8301305672581
+corrected,shared,"chi-squared, DML status by exclusive class",62.3000626266967,6,1.53273141138563e-11,3.62560086238189
