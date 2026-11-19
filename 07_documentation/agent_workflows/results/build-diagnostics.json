@@ -1,10 +1,8 @@
 {
  "workflow": "build-diagnostics",
  "run_id": "wf_1f1a6a86-611",
- "agents_finished": 14,
- "agents_running_or_lost": [
-  "fix:check_methylkit_equivalence"
- ],
+ "agents_finished": 15,
+ "agents_running_or_lost": [],
  "results": [
   {
    "agent": "build:locus_nc047563",
@@ -2652,6 +2650,207 @@
     ],
     "readme_row": "| `coverage_filter_variants.R` | How far the CpG and DML counts depend on how the upper coverage filter of the Methods is read (I-05). From the 22 coverage files: the 99.9th percentile cutoff of each library with the percentile taken over CpGs with at least 1, 2 or 10 reads, and one pooled cutoff; nine filter rules applied to the CpGs of legacy mode, with the CpGs kept and the legacy DML at kept CpGs; what the rule of corrected mode removes (number of libraries at the cutoff, repeat track, mitochondrial sequence, unplaced scaffolds, runs of removed CpGs with a reference from 1,000 seeded random draws); and whether those DML counts are what step 05 would report under each rule (q-value rule in the step 05 tables; library medians under each rule, and how many of its most covered CpGs each library can lose before its median changes; q-values estimated again with methylKit's SLIM function). Stops unless the rule of corrected mode gives the CpGs and DML lists of step 05. The base of corrected mode follows `import_min_coverage` of `run_config.R`. 6 to 7 minutes, 1.6 GB, one core; needs the coverage files in the cache. | `coverage_filter_variants.csv` (one row per rule), `coverage_filter_cutoffs.csv` (one row per library), `coverage_filter_removed_cpgs.csv` (one row per set of CpGs), `coverage_filter_qvalue_rule.csv` (one row per set of CpGs and contrast) |",
     "notes": "All four review findings were right and all four are applied; none is left out. The script is final: two runs from the repository root exited with status 0 and no warning (352 s and 347 s, peak 1.6 GB, one core), the four CSV files are byte-identical between them, and all 22 targets agree.\n\nWhat the fix of finding 1 was tested on. I could not rerun steps 04 and 05 with another import threshold, so the runs below use corrected-mode tables that I rebuilt from the legacy tables for base 1 and base 10. That is valid for a test because no library median changes under those filters, so only the q-values and the lists are new. They show that the script runs under those settings, not what step 05 would write.\n- `import_min_coverage = 1`: runs to the end. The rule of corrected mode is then base 1 (451,328 CpGs; 949, 2,267, 159) and the pooled cutoff is 84 reads.\n- `import_min_coverage = 10`: runs to the end. The rule of corrected mode is base 10 (469,453; 959, 2,292, 159) and the pooled cutoff is 134 reads.\n- `import_min_coverage = 1` with the real tables of step 05 (base 2): stops after the pass over the files with the message that names the setting, and writes nothing.\nBoth complete runs were repeated with the final script and gave identical tables.\n\nOther checks of the new code, all in the scratch folder:\n- The margin equals a brute-force count on 400 random sets of small libraries, and equals the reviewer's values (zr3644_3 12,102; zr3644_14 19,667).\n- With artificially low bounds, where 4 to 21 medians do change, the margin and the direct comparison of medians agree library by library.\n- The rounding function stops on a real fourth decimal and on a cutoff a hair away from a whole number.\n- The new stop for line 1 and the guard of section 5 fire when their condition is altered.\n\nThree small additions go beyond the suggested fixes and can be taken out without touching anything else: the setting named in one stop message, the stopifnot that ties the margin to the changed medians, and the second condition on rounding.\n\nLeft as it was:\n- The header says \"about 7 minutes\"; seven measured runs took 5.8 to 5.9 minutes. The review did not raise it.\n- Peak memory was 1.77 GB in the two scratch runs with another threshold, against 1.6 GB with the committed config.\n\nFor the analyst:\n- `06_diagnostics/README.md` still says \"review pending\" in the row of this script and in the run block.\n- The sentence of I-09 that already cites `coverage_filter_variants.csv` (475,175 CpGs; 1,002, 2,322, 176) is confirmed and needs no change.\n- The eleven quoted sentences each occur exactly once in `issues.md` as it stood at 20:37 UTC.\n- I ran no git command that changes state. HEAD (7588135) already holds the final script (md5 eafc0dabe7c612c32d436be513f1cc5a) and its four tables.\n\nScratch folder: /tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/fix-coverage_filter_variants (script and tables before the fix in `before/`, the two final runs in `run1/` and `run2/` with `final1.log` and `final2.log`, the four scratch project roots `rootA` to `rootD`, harnesses and unit checks in `dev/`, `check_targets.log`)."
+   }
+  },
+  {
+   "agent": "fix:check_methylkit_equivalence",
+   "phase": "Fix",
+   "result": {
+    "script": "/home/user/WGBS-gigas-ploidy-desiccation/06_diagnostics/check_methylkit_equivalence.R",
+    "outputs": [
+     "/home/user/WGBS-gigas-ploidy-desiccation/06_diagnostics/check_methylkit_equivalence.csv",
+     "/home/user/WGBS-gigas-ploidy-desiccation/06_diagnostics/check_methylkit_equivalence_libraries.csv",
+     "/home/user/WGBS-gigas-ploidy-desiccation/06_diagnostics/check_methylkit_equivalence_extract.csv"
+    ],
+    "changes_made": [
+     "Finding 1 (medium; stop before any table is written, wrong step blamed): confirmed by reading the code and by a run with altered helpers. The two must() calls are now judged rows, so a disagreement between the routes reaches part 8, the three tables are written, and the script then lists the failing comparisons and stops. New rows: 'lines that the upper filter removes, as counted by region for the extract table, against the rows that filterByCoverage removed' (22 libraries, rule identical) and, at 10 reads in each mode, 'CpGs selected by the rule of step 04 against the united CpGs of the helper route' (rule identical) and 'scaling factors by the rule of step 04 against the factors of the helper route' (rule tolerance). Header lines on stopping and the note on part 7 say the same.",
+     "Finding 2 (45 unexplained warnings): confirmed in the source of methylKit 1.28.0 (the row selection behind getMethylDiff evaluates max(i) on an empty index) and on a five-row object. The three DML selections now run inside a wrapper that collects their warnings; per mode the log gives the selections made, those without a CpG and the warnings by message (60 made, 21 and 24 without a CpG, 21 and 24 warnings). One note added to the header. The log no longer ends with 'There were 45 warnings'.",
+     "Finding 3 (methylKit's route took its header argument from first_line_lost()): confirmed at both places. The call is now written out, if (mode_name == \"corrected\") read_args$header <- FALSE, in part 2 and in methylkit_route(), so methylKit's route uses no helper of the route it is compared with. A wrong first-line rule in the helper is now caught by the legacy rows alone.",
+     "Finding 4a (labels that read as values taken from methylKit): the two comparisons are renamed to say that the cutoff is the percentile of the rows methRead imported and the factor is largest median over own median, both expressions of methylKit's source evaluated in this script; the columns are now upper_cutoff_from_methylkit_rows and scaling_factor_from_methylkit_medians; the comparison of that percentile with upper_cutoff of step 05 is renamed likewise; a header note 'What methylKit does not report' says which rows show that methylKit applied the values (rows kept, rows removed, normalized counts).",
+     "Finding 4b (purpose texts speak of the library median, the column was relative to the extract): the ratio is now computed against the median of the whole coverage file, which part 1 has in memory; columns renamed median_reads_over_library_median_min and _max. The purpose texts now rest on the column beside them (mitochondrial sequence 8.7 to 99, NW_022994810.1 6 to 11.33).",
+     "Finding 4c (lines_in_file held two different things): column renamed lines_read, with a header note that it is the extract file in scope 'extract' and the whole coverage file in scope 'full library'.",
+     "Finding 5 (part 5 weaker than it could be), both parts of the suggested fix. (i) New judged row per mode: the CpGs of united_cpg_<mode>.csv.gz inside the regions against the CpGs of the regions that pass the rule of the mode in every library, with the whole-file cutoffs that step 05 recorded (9,642 and 7,089 CpGs, sets identical). (ii) New judged row per mode: every count of the whole table against the lines of the whole coverage files scaled by scale_counts_like_methylkit, compared during the pass of part 1 (0 of 31,718,214 and 0 of 30,000,630 values differ; 307,592 and 287,436 values are exact ties before rounding). The tables of step 05 are now read once, before part 1, and cut down to the regions after it. Part renamed 'tables of step 05'; purpose item 5 and the notes on part 5 and on the helper chain rewritten.",
+     "Finding 6 (a result in the header that the script does not compute): the sentence on which CpGs raise the glm.fit warning is removed; the note now says only what the log shows.",
+     "Repair of something I introduced: a gc() at top level printed its table into the log; it is now wrapped in invisible().",
+     "Run line of the header: 2.2 GB (was 2 GB); the two tables of step 05 are held in memory during part 1."
+    ],
+    "findings_not_applied": [
+     "Finding 7 (the builder's report says 83% to 87% of p-values are not bit-identical under the legacy coding): right, but nothing in the script or its tables carries the figure, so there is nothing to change in the code. The share is 86% to 87% (8,346 and 8,410 of 9,642; 7,954 and 7,973 of 9,201); that figure is used in this report.",
+     "Finding 6, the alternative of counting the CpGs behind the glm.fit warnings: not taken. The warnings are raised inside calculateDiffMeth, so the handler cannot name the CpG without refitting every CpG outside methylKit; the review offered the removal of the sentence as an equal fix, and that is what was done.",
+     "Finding 2, the alternative of not calling getMethylDiff where no CpG passes: not taken, because the selection at those thresholds would then no longer be methylKit's own; the warnings are collected and logged instead.",
+     "Not part of any finding and left as it is: the must() in facts_of_methylkit() that stops when filterByCoverage does not keep the rows below the percentile of its imported rows. It checks the script's reading of methylKit's source (an input), its message names methylKit, and the review did not name it. If methylKit ever changes its filter the script stops there, before the tables."
+    ],
+    "final_run_clean": true,
+    "run_time_minutes": 8.6,
+    "targets": [
+     {
+      "quantity": "United table, legacy mode: methylKit's route against the helper route on the extract",
+      "target": "identical; 6,744 CpGs on the verifier's extract, zero count differences",
+      "obtained": "identical: 9,642 CpGs by both routes, same row order, end coordinate, strand, sample names and treatment vector; 0 of 636,372 counts differ, for the ploidy and for the heat treatment vector",
+      "agrees": true,
+      "comment": "Unchanged by the fix. The extract is larger than the verifier's by design."
+     },
+     {
+      "quantity": "United table, corrected mode: methylKit's route against the helper route on the extract",
+      "target": "identical; 6,419 CpGs on the verifier's extract, zero count differences",
+      "obtained": "identical: 9,201 CpGs by both routes; 0 of 607,266 counts differ, for both treatment vectors",
+      "agrees": true,
+      "comment": "Unchanged by the fix."
+     },
+     {
+      "quantity": "Rows kept per library",
+      "target": "same rows kept per library",
+      "obtained": "extract, all 22 libraries: 1,187,098 (legacy) and 1,184,471 (corrected) kept rows compared row by row, 0 differ. Six whole libraries: 22,885,370 and 22,830,029 rows, 0 differ. Rows imported and rows with at least 10 reads agree in every library",
+      "agrees": true,
+      "comment": "Whole libraries: zr3534_1, zr3534_6, zr3644_1, zr3644_4, zr3644_13, zr3644_16."
+     },
+     {
+      "quantity": "Per-library upper cutoffs, corrected mode",
+      "target": "same cutoffs (task item d)",
+      "obtained": "22 of 22 identical on the extract (14 whole numbers, 8 not; 39 rows with exactly the cutoff number of reads, removed by both routes; 2,628 rows removed in all). 6 of 6 identical on whole libraries (96, 92, 83, 66.368, 74, 71; 1,334 rows with exactly the cutoff number of reads; 55,342 removed) and equal to the record of step 05 (one within 4.3e-14, because the table holds 15 digits)",
+      "agrees": true,
+      "comment": "After finding 4a the row and the column say what the value is: the percentile of the rows methRead imported, evaluated in the script. methylKit does not return its cutoff; that it applied this value is shown by the rows it kept and removed, which are its own."
+     },
+     {
+      "quantity": "Scaling factors and normalized counts",
+      "target": "same scaling factors",
+      "obtained": "22 of 22 factors identical in both modes (five distinct values, 1 to 1.30769). Normalized coverage, numCs and numTs of every kept row: 0 of 3,561,294 (legacy) and 0 of 3,553,413 (corrected) values differ; 14,719 and 16,807 of them are exact ties before rounding",
+      "agrees": true,
+      "comment": "The factor on methylKit's side is largest median over own median computed in the script from methylKit's kept rows (renamed accordingly); the normalized counts are methylKit's own."
+     },
+     {
+      "quantity": "meth.diff of both contrasts",
+      "target": "identical",
+      "obtained": "0 of 9,642 (legacy) and 0 of 9,201 (corrected) CpGs differ, for ploidy and for heat; the same under the covariate coding of the legacy script",
+      "agrees": true
+     },
+     {
+      "quantity": "p-values and q-values of both contrasts",
+      "target": "not a target of the verifier, whose methylKit route used the covariate data frames of the legacy script",
+      "obtained": "With the covariates of step 05 in both routes: identical, 0 of 9,642 and 0 of 9,201 differ, p and q. With the legacy coding on methylKit's route (recorded, not judged): 86% to 87% of the p-values are not bit-identical; largest relative difference 6.3e-10 (legacy, ploidy), 6.4e-9 (legacy, heat), 1.9e-8 (corrected, ploidy), 3.9e-9 (corrected, heat); q-values within 2.2e-12",
+      "agrees": true,
+      "comment": "The share was 83% to 87% in the builder's report; 86% to 87% is right (finding 7)."
+     },
+     {
+      "quantity": "DML at thresholds 5, 10 and 20",
+      "target": "same DML at 5, 10 and 20",
+      "obtained": "same sets at all ten thresholds from 5 to 50, both modes, both contrasts. At 5 / 10 / 20: legacy ploidy 285 / 185 / 59, legacy heat 852 / 508 / 75, corrected ploidy 214 / 130 / 16, corrected heat 746 / 450 / 41. Loci in both lists at 20: 41 and 7. The same sets with the legacy coding of the covariate",
+      "agrees": true
+     },
+     {
+      "quantity": "scale_counts_like_methylkit against normalizeCoverage on synthetic counts",
+      "target": "bit-identical over 80 synthetic libraries with 20,129 ties",
+      "obtained": "0 of 7,200,240 values differ over 80 synthetic libraries of 30,001 CpGs; 485,811 coverage values and 306,734 counts are exact ties before rounding. The order of operations of step 04 changes 3,459 of 4,800,160 of the same counts",
+      "agrees": true,
+      "comment": "More ties than the verifier had, by construction. set.seed(20261119); three draws per CpG and two per set."
+     },
+     {
+      "quantity": "Order of operations of step 04 against methylKit's, on the extract (reported, not fixed)",
+      "target": "size of the effect on record (issues.md, I-16: 193 of 6.6 million values at 1x on one linkage group)",
+      "obtained": "At 1 read, legacy: 18 numCs and 7 numTs of 1,641,706 each differ (corrected: 17 and 6 of 1,631,234); percent methylation changes in 25 (23) cells, by at most 1.56 points; 41 of 231 correlations change, by at most 1.5e-6. At 10 reads, legacy: 10 and 6 of 212,124 (corrected: 10 and 5 of 202,422); 16 (15) cells, at most 0.68 points; 126 of 231 correlations change, by at most 7.9e-6 (8.3e-6)",
+      "agrees": true,
+      "comment": "Nothing in 01_pipeline/04_cpg_coverage.R was changed. At 10 reads the selection by the rule of step 04 is now a judged comparison with the united CpGs (9,642 and 9,201) and the factors of the helper route: identical."
+     },
+     {
+      "quantity": "Share of the tested CpGs that the extract covers",
+      "target": "to be stated",
+      "obtained": "9,642 of 480,579 (2.006%) in legacy mode; 7,089 of 454,555 (1.560%) in corrected mode. 125,181 to 138,700 lines per library, 2,920,636 lines in all",
+      "agrees": true
+     },
+     {
+      "quantity": "I-05: the misspelled filter arguments are ignored",
+      "target": "no upper filter ran",
+      "obtained": "filterByCoverage called as the legacy scripts called it (high.count, high.perc) keeps the rows of the call with no upper filter in 22 of 22 libraries of the extract",
+      "agrees": true
+     },
+     {
+      "quantity": "I-38: what methRead loses with header = TRUE",
+      "target": "exactly line 1 is lost",
+      "obtained": "Extract, 22 of 22 libraries: the rows returned with header = FALSE and not with the default are the first line and no other (the first line has at least 2 reads in 8 libraries, at least 10 in 1). Six whole files: the default import is one row shorter in the 2 files whose first line has at least 2 reads and equal in the other 4",
+      "agrees": true,
+      "comment": "After finding 3 methylKit's calls no longer depend on first_line_lost(); with that helper switched off the legacy rows now differ (run with altered helpers)."
+     },
+     {
+      "quantity": "New after finding 5: the tables of step 05 against the raw counts",
+      "target": "reviewer's recount: 0 of 31,718,214 and 0 of 30,000,630 values on the whole tables; 9,642 and 7,089 CpGs inside the regions by the rule with the recorded whole-file cutoffs",
+      "obtained": "whole tables against the 22 whole files: 0 of 31,718,214 (legacy) and 0 of 30,000,630 (corrected) values differ; 307,592 and 287,436 values are exact ties before rounding. Inside the regions: the CpGs of the tables are the CpGs that pass the rule of the mode in every library, 9,642 and 7,089, sets identical; counts 0 of 636,372 and 0 of 467,874. Recorded: 2,112 of the 9,201 united CpGs of the extract are not tested by step 05 in corrected mode",
+      "agrees": true,
+      "comment": "My own recount in Python (numpy, no code shared with the R script) gives the same seven numbers, tie counts included."
+     },
+     {
+      "quantity": "Failure path after finding 1 (scratch copy of the project, the final script unchanged)",
+      "target": "tables written, failing comparisons listed, error at the end",
+      "obtained": "With the upper filter of the helper set to <=, first_line_lost() returning FALSE, one CpG taken out of united_cpg_corrected and one count changed in each table: exit status 1 at the end, three tables written, 121 rows of which 30 DIFFERENT. Among them: rows kept in 14 of 22 libraries of the extract and 5 of 6 whole libraries (39 and 1,334 rows), legacy rows imported in 8 of 22, united CpGs 9,201 against 9,207, the step 04 selection (6 of 9,207; the comparison that used to stop the script), the rule set inside the regions (1 of 7,089) and the whole-table counts (1 of 31,718,214 and 1 of 30,000,564)",
+      "agrees": true,
+      "comment": "One run with all alterations together; each alters different rows. The rows that concern methylKit alone (I-38, I-05) stayed identical."
+     },
+     {
+      "quantity": "Log after finding 2",
+      "target": "no unexplained warning",
+      "obtained": "per mode: 60 DML selections made, 21 (legacy) and 24 (corrected) of them without a CpG, and 21 and 24 warnings 'no non-missing arguments to max; returning -Inf'; the log no longer ends with a warning count",
+      "agrees": true
+     },
+     {
+      "quantity": "Two runs of the final script from the repository root",
+      "target": "outputs byte-identical between the two runs",
+      "obtained": "byte-identical, all three files (md5 575b1b94..., 57f6d5a1..., 5116fea8...); script md5 3f682865... in both runs; exit status 0 twice. 121 rows: 94 identical, 1 within tolerance (relative 6.4e-16, tolerance 1e-12), 26 recorded, none different",
+      "agrees": true,
+      "comment": "The tables also equal those of my first run after the edits. No output file had to be removed: the script writes the same three files as before."
+     },
+     {
+      "quantity": "Machine limits",
+      "target": "under 3 GB, under about 15 minutes, one single-threaded R process",
+      "obtained": "516 s and 518 s (8.6 minutes), peak resident memory 2,159 MB both times, WGBS_CORES=1, one R process of mine at a time",
+      "agrees": true,
+      "comment": "Peak was 1.91 GB before the fix; the two tables of step 05 are now in memory during part 1. The failing run with altered helpers peaked at 2.57 GB."
+     }
+    ],
+    "issues_md_changes": [
+     {
+      "issue": "I-05, Verification",
+      "current_text": "methylKit's own `methRead` and `filterByCoverage`, run on four of the real libraries with the argument spelled correctly, give the pipeline's cutoffs, kept rows and removed positions.",
+      "proposed_text": "methylKit's own `methRead` and `filterByCoverage`, run on six of the real libraries with the argument spelled correctly, keep exactly the rows that the pipeline keeps (22,830,029 rows compared one by one, none differs; 55,342 rows removed by the upper filter), and the 99.9th percentile of the rows that `methRead` imports is the pipeline's cutoff in each of the six (96, 92, 83, 66.368, 74 and 71 reads). On a regional extract of all 22 libraries, methylKit's own route (`methRead`, `filterByCoverage`, `normalizeCoverage`, `unite`) and the pipeline's route give the same table of tested CpGs in both modes (9,642 CpGs without the upper filter and 9,201 with it, every count equal) and the same differences, p-values, q-values and DML lists for both contrasts. Every count of the two tables of step 05 is the count of the coverage file scaled as methylKit scales it (none of 31,718,214 values differs in legacy mode, none of 30,000,630 in corrected mode). These comparisons are repeated by `06_diagnostics/check_methylkit_equivalence.R`, which writes one row per comparison and stops with an error if one of them fails (`06_diagnostics/check_methylkit_equivalence.csv`).",
+      "reason": "The current sentence rests on a scratch run of four libraries. The script repeats it on six whole libraries and adds the end-to-end comparison on all 22. Two corrections of wording: the script compares kept rows and numbers of removed rows, not a list of removed positions; and methylKit does not return its cutoff, so the sentence now says what is compared."
+     },
+     {
+      "issue": "I-05, Verification (first bullet of the list on the definitions of the filter)",
+      "current_text": "- 454,555 is one of several defensible values, because the Methods do not say over which CpGs the percentile is taken, nor whether a CpG with exactly the cutoff number of reads is removed (last row):",
+      "proposed_text": "- 454,555 is one of several defensible values, because the Methods do not say over which CpGs the percentile is taken, nor whether a CpG with exactly the cutoff number of reads is removed (last row). methylKit's own `filterByCoverage` removes such a CpG: in six whole libraries it removed all 1,334 rows that had exactly the cutoff number of reads (`06_diagnostics/check_methylkit_equivalence.csv`). The values:",
+      "reason": "The output settles what methylKit itself does at the cutoff: the kept rows of the six libraries end one read below the cutoff (95, 91, 82, 73, 70 where the cutoff is a whole number), so the first row of the table is methylKit's rule and the last row is not."
+     },
+     {
+      "issue": "I-05, Evidence (not a Verification paragraph; the sentence can now cite a repeatable check)",
+      "current_text": "The misspelled names fall into the function's `...` argument and are ignored, so no upper filter runs.",
+      "proposed_text": "The misspelled names fall into the function's `...` argument and are ignored, so no upper filter runs: called as the legacy scripts called it, `filterByCoverage` keeps the same rows as a call with no upper filter in all 22 libraries of a regional extract (`06_diagnostics/check_methylkit_equivalence.csv`).",
+      "reason": "The script runs the legacy call in methylKit 1.28.0 and compares its rows with those of a call without an upper filter: equal in 22 of 22 libraries."
+     },
+     {
+      "issue": "I-38, Verification",
+      "current_text": "Confirmed with methylKit's own `methRead` on real files: exactly line 1 is lost.",
+      "proposed_text": "Confirmed with methylKit's own `methRead`, and repeatable with `06_diagnostics/check_methylkit_equivalence.R`: on a regional extract of all 22 files, the import with `header = FALSE` returns the rows of the default import and, in the 8 files whose line 1 has at least 2 reads (the import threshold of the legacy DML script), line 1, and no other row; on six whole files the default import is one row shorter in the 2 files whose line 1 has at least 2 reads and equally long in the other 4 (`06_diagnostics/check_methylkit_equivalence.csv`).",
+      "reason": "The check ran in a scratch directory; the script repeats it on all 22 files (extract) and on six whole files, and gives the number of files in which the loss changes the import at 2 reads."
+     },
+     {
+      "issue": "I-38, Evidence (clarification, not an error)",
+      "current_text": "For two libraries read both ways, `methRead` returns exactly one row fewer than the file has lines, and the missing row is line 1.",
+      "proposed_text": "For two libraries read both ways with `mincov = 1`, the import threshold of the legacy coverage script, `methRead` returns exactly one row fewer than the file has lines, and the missing row is line 1. With `mincov = 2`, the threshold of the legacy DML script, lines with one read are dropped as well, and the default import is one row shorter than a complete import only where line 1 has at least 2 reads (8 of the 22 files; `06_diagnostics/check_methylkit_equivalence_libraries.csv`, column `first_line_reads`).",
+      "reason": "The sentence can hold only for an import at 1 read: every file has many lines with one read (zr3534_1 has 10,390,894 lines and 9,414,828 rows with at least 2 reads). Without the qualifier it seems to contradict the script, which imports at 2 reads as the DML script did. I did not run the import at 1 read; the analyst should confirm that the two libraries were read with mincov = 1 before adding the qualifier."
+     },
+     {
+      "issue": "I-38, Effect (not a Verification paragraph; one part can now be cited)",
+      "current_text": "None of the 22 first-line CpGs has 10x coverage in all libraries, so no DML result changes.",
+      "proposed_text": "None of the 22 first-line CpGs has 10x coverage in all libraries, so no DML result changes; the first line has at least 10 reads in one library only (zr3644_16, 11 reads; `06_diagnostics/check_methylkit_equivalence_libraries.csv`, column `first_line_reads`).",
+      "reason": "The library table gives the reads of the first line of every file: at least 2 reads in 8 files, at least 10 in one. The loss therefore changes the rows with 10 reads of one library, and the table of tested CpGs of no mode."
+     },
+     {
+      "issue": "I-16, Verification (second of the three loose ends)",
+      "current_text": "step 04 rounds normalized counts in a different order from methylKit at exact .5 ties (193 of 6.6 million values at 1x on one linkage group; in legacy mode r changes there by at most 1e-5, and on the full data by at most 1.3e-7 at 1x and 6.5e-7 at 10x)",
+      "proposed_text": "step 04 scales counts in a different order of operations from methylKit, `round(new_cov * nc / cv)` where methylKit computes `round(new_cov * (nc / cv))`, and the two differ at exact .5 ties (193 of 6.6 million values at 1x on one linkage group; in legacy mode r changes there by at most 1e-5, and on the full data by at most 1.3e-7 at 1x and 6.5e-7 at 10x; `06_diagnostics/check_methylkit_equivalence.R` puts the effect on record for its regional extract of all 22 libraries: in legacy mode 25 of 3,283,412 scaled counts differ at 1x and 16 of 424,248 at 10x, the percent methylation of a CpG in a library moves by at most 1.56 points, 41 of the 231 correlations change at 1x, by at most 1.5e-6, and 126 at 10x, by at most 7.9e-6)",
+      "reason": "The size of the effect is now written by a script of the repository (`check_methylkit_equivalence.csv`, parts 'order of operations of step 04'; corrected mode: 23 of 3,262,468 and 15 of 404,844 counts, correlations by at most 1.5e-6 and 8.3e-6). Wording: what differs is the order of the multiplication and the division, not the rounding. The script does not test that the differing values are exact ties; that clause stays the verifying agent's (the reviewer confirmed it on the extract: 25 of 25 and 16 of 16)."
+     }
+    ],
+    "readme_row": "| `check_methylkit_equivalence.R` | Shows that the low-memory import of step 05 (`02_R_functions/methylkit_helpers.R`) gives what methylKit's own `methRead`, `filterByCoverage`, `normalizeCoverage` and `unite` give, in both modes (issues I-05, I-38). Both routes run on a regional extract of all 22 coverage files that keeps the first line of every file (2.0% of the CpGs tested in legacy mode, 1.6% in corrected mode): the same rows imported, kept and removed and the same normalized counts in every library, identical united tables (9,642 and 9,201 CpGs), and identical differences, p-values, q-values and DML lists for both contrasts. Also compared: import and filter on six whole libraries, with methylKit and with the records of step 05 (22.8 million kept rows, none differs); every count of the two tables of step 05 with the raw counts of the 22 whole files (31.7 and 30.0 million values, none differs), and the CpGs of those tables inside the regions with the rule of each mode; rounding on synthetic counts with exact ties. Recorded, not judged: p-values under the covariate coding of the legacy script (within 2e-8, relative; same DML lists), and the order of operations of step 04 (at most 25 of 3.3 million scaled counts of the extract differ; correlations change by less than 1e-5). If a comparison that must agree does not, the tables are written and the script then stops with an error. About 9 minutes, 2.2 GB, one core; needs the coverage files and the tables of step 05. Written by an agent and reviewed by an independent agent, which recomputed every group of numbers with code of its own; its findings are applied | `check_methylkit_equivalence.csv` (one row per comparison), `check_methylkit_equivalence_libraries.csv` (one row per library, mode and scope), `check_methylkit_equivalence_extract.csv` (one row per region of the extract) |",
+    "notes": "All seven review findings were checked and found right; six are applied to the script and the seventh concerns only the builder's report. The final script ran twice from the repository root (516 s and 518 s, peak 2,159 MB, exit status 0) with byte-identical tables: 121 comparisons, 94 identical, 1 within tolerance, 26 recorded, none different.\n\nWhat changed in the tables: 103 of the 112 earlier rows are unchanged to the byte; 9 are renamed with the same values (finding 4a, and the part 'tables of step 05'); 9 rows are new (the three former stop conditions as judged rows, the rule set inside the regions per mode, the whole-table counts per mode). The library table has the same values under three new column names; the extract table differs only in the two ratio columns, now relative to the whole-file median.\n\nChecks outside the script:\n- Failure path: one run of the unchanged final script in a scratch copy of the project with altered helpers and altered tables of step 05 (see targets). It ends with exit status 1 after writing its tables there; nothing in the repository was touched.\n- New numbers recounted in Python with no shared code: whole-table counts and tie counts, the rule sets inside the regions, the nine pairs of ratio values of the extract table. All equal.\n\nNot verified by me: the reviewer's recounts of the unchanged rows (I rely on the rows being byte-identical to the reviewed ones), and the import at mincov = 1 behind the I-38 Evidence sentence.\n\nReported, not fixed (01_pipeline/04_cpg_coverage.R, function percent_methylation): step 04 computes round(new_cov * nc / cv) where methylKit computes round(new_cov * (nc / cv)). Size on the extract: see the target row. Fix when step 04 is next touched: call scale_counts_like_methylkit(cv, nc, cv - nc, sc[j]).\n\nWhat the script still does not show: methylKit's own route on all 22 whole libraries at once (about 9 GB). Whole-file evidence is import and filter on six libraries plus, since this fix, every count of the two tables of step 05 against the 22 whole files. Which CpGs each mode keeps on the whole files is checked by coverage_filter_variants.R (it stops unless its sets are the CpGs of step 05; I read that check in its current state). On the extract the corrected-mode cutoffs are 182 to 701 reads against 59 to 112 on the whole files.\n\nProposed text outside issues.md (I edited none of these files):\n- 02_R_functions/methylkit_helpers.R, comment lines 8 to 12, replacing 'The result was compared ... is still to be written.': '06_diagnostics/check_methylkit_equivalence.R compares the result with methylKit's own methRead, filterByCoverage, normalizeCoverage and unite: on a regional extract of all 22 libraries the two routes keep the same rows in every library and give identical united tables, test results and DML lists in both modes; on six whole libraries they import and keep the same rows; and every count of the tables of step 05 is the count of the coverage file scaled by scale_counts_like_methylkit.'\n- 06_diagnostics/README.md: remove the row of this script under 'Still to be written' (its sentence 'No comparison on the complete 22 libraries in corrected mode is on record' goes with it), add readme_row to the table, and add to the run list: Rscript 06_diagnostics/check_methylkit_equivalence.R   # about 9 minutes; needs the coverage files and the tables of step 05\n- 07_documentation/session_handoff.md, line on this script: the fix stage is done.\n\nRepository state: I ran no git command that changes state. The parent session's commits 7588135 and d36f4bb already hold the script as I left it (md5 3f682865...) and tables byte-identical to the final ones; the working tree is clean. issues.md was edited by the parent while I worked; each current_text above occurred exactly once in issues.md at commit d36f4bb.\n\nLogs, memory traces, the scratch project of the failing run and the recount script are in /tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/fix-check_methylkit_equivalence/ (final1.log, final2.log, mut.log, recount_whole.py, recount_whole.log, script_before_fix.R, and the folders before, final1, final2 and proj_mut)."
    }
   }
  ]

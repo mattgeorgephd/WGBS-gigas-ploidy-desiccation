@@ -5,11 +5,13 @@
 # 22 full libraries) holds every library's full table in memory at once, about
 # 9 GB here. The functions below apply the same rules one library at a time and
 # keep only the CpGs that survive in all libraries. The arithmetic is methylKit's.
-# The result was compared with methylKit's own methRead, filterByCoverage and
-# unite (identical united tables on a small end-to-end example in both modes;
-# identical cutoffs, kept rows and removed positions on four real libraries);
-# the script that repeats this check from the repository,
-# 06_diagnostics/check_methylkit_equivalence.R, is still to be written.
+# 06_diagnostics/check_methylkit_equivalence.R compares the result with
+# methylKit's own methRead, filterByCoverage, normalizeCoverage and unite: on a
+# regional extract of all 22 libraries the two routes keep the same rows in
+# every library and give identical united tables, test results and DML lists
+# in both modes; on six whole libraries they import and keep the same rows;
+# and every count of the tables of step 05 is the count of the coverage file
+# scaled by scale_counts_like_methylkit.
 
 # Read one library and apply the coverage filters.
 #   import   rows with fewer than config$import_min_coverage reads are dropped
