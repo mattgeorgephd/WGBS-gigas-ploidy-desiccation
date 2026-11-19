@@ -1,5 +1,5 @@
 Step: 11_semantic_similarity
-Finished: 2026-11-19 03:57:51 UTC
+Finished: 2026-11-19 05:32:16 UTC
 
 R version 4.3.3 (2024-02-29)
 Platform: x86_64-pc-linux-gnu (64-bit)
@@ -22,9 +22,9 @@ attached base packages:
 other attached packages:
  [1] patchwork_1.2.0      ggrepel_0.9.5        ggplot2_3.4.4       
  [4] org.Hs.eg.db_3.18.0  rrvgo_1.14.2         GOSemSim_2.28.1     
- [7] GO.db_3.18.0         AnnotationDbi_1.64.1 IRanges_2.36.0      
-[10] S4Vectors_0.40.2     Biobase_2.62.0       BiocGenerics_0.48.1 
-[13] data.table_1.14.10   here_1.0.1          
+ [7] Rcpp_1.0.12          GO.db_3.18.0         AnnotationDbi_1.64.1
+[10] IRanges_2.36.0       S4Vectors_0.40.2     Biobase_2.62.0      
+[13] BiocGenerics_0.48.1  data.table_1.14.10   here_1.0.1          
 
 loaded via a namespace (and not attached):
  [1] tidyselect_1.2.0        gridBase_0.4-7          farver_2.1.1           
@@ -53,5 +53,4 @@ loaded via a namespace (and not attached):
 [70] R6_2.5.1                textshaping_0.3.7       rprojroot_2.0.4        
 [73] shiny_1.8.0             lattice_0.22-5          R.methodsS3_1.8.2      
 [76] png_0.1-8               pheatmap_1.0.12         memoise_2.0.1          
-[79] httpuv_1.6.14           Rcpp_1.0.12             fs_1.6.3               
-[82] pkgconfig_2.0.3        
+[79] httpuv_1.6.14           fs_1.6.3                pkgconfig_2.0.3        

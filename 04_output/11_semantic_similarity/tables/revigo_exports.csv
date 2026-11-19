@@ -17,9 +17,9 @@ export,same_content_as,export_terms,export_has_p_values,term_list,term_list_sour
 08_archive/code/Revigo.R,"",223,TRUE,"all terms annotated to genes with a DML (legacy reader): interaction-DML, BP",04_output/08_gene_annotation/tables/dml_go_annotation_shared_legacy.tsv.gz,517,13,1,14,,6.3,FALSE
 08_archive/code/Revigo.R,"",223,TRUE,"all terms annotated to genes with a DML (legacy reader): interaction-DML, CC",04_output/08_gene_annotation/tables/dml_go_annotation_shared_legacy.tsv.gz,151,0,0,0,,0,FALSE
 08_archive/code/Revigo.R,"",223,TRUE,"all terms annotated to genes with a DML (legacy reader): interaction-DML, MF",04_output/08_gene_annotation/tables/dml_go_annotation_shared_legacy.tsv.gz,158,0,0,0,,0,FALSE
-08_archive/code/Revigo.R,"",223,TRUE,"earlier analysis, not in the manuscript, p < 0.01: ploidy, BP",08_archive/tables/ploidy-BP-FisherTestResults.csv,1718,218,0,220,213,97.8,TRUE
-08_archive/code/Revigo.R,"",223,TRUE,"earlier analysis, not in the manuscript, p < 0.01: ploidy, CC",08_archive/tables/ploidy-CC-FisherTestResults.csv,326,0,0,0,0,0,FALSE
-08_archive/code/Revigo.R,"",223,TRUE,"earlier analysis, not in the manuscript, p < 0.01: ploidy, MF",08_archive/tables/ploidy-MF-FisherTestResults.csv,511,0,0,0,0,0,FALSE
+08_archive/code/Revigo.R,"",223,TRUE,"another analysis, not the manuscript's, p < 0.01: ploidy, BP",08_archive/tables/ploidy-BP-FisherTestResults.csv,1718,218,0,220,213,97.8,TRUE
+08_archive/code/Revigo.R,"",223,TRUE,"another analysis, not the manuscript's, p < 0.01: ploidy, CC",08_archive/tables/ploidy-CC-FisherTestResults.csv,326,0,0,0,0,0,FALSE
+08_archive/code/Revigo.R,"",223,TRUE,"another analysis, not the manuscript's, p < 0.01: ploidy, MF",08_archive/tables/ploidy-MF-FisherTestResults.csv,511,0,0,0,0,0,FALSE
 08_archive/code/OLD/Revigo.R,08_archive/code/Revigo.R,223,TRUE,"legacy test, p < 0.01: ploidy-DML, BP",04_output/09_go_enrichment_legacy/tables/legacy_fisher_ploidy_BP.csv,383,17,0,17,0,7.6,FALSE
 08_archive/code/OLD/Revigo.R,08_archive/code/Revigo.R,223,TRUE,"legacy test, p < 0.01: ploidy-DML, CC",04_output/09_go_enrichment_legacy/tables/legacy_fisher_ploidy_CC.csv,43,0,0,0,0,0,FALSE
 08_archive/code/OLD/Revigo.R,08_archive/code/Revigo.R,223,TRUE,"legacy test, p < 0.01: ploidy-DML, MF",04_output/09_go_enrichment_legacy/tables/legacy_fisher_ploidy_MF.csv,68,0,0,0,0,0,FALSE
@@ -38,9 +38,9 @@ export,same_content_as,export_terms,export_has_p_values,term_list,term_list_sour
 08_archive/code/OLD/Revigo.R,08_archive/code/Revigo.R,223,TRUE,"all terms annotated to genes with a DML (legacy reader): interaction-DML, BP",04_output/08_gene_annotation/tables/dml_go_annotation_shared_legacy.tsv.gz,517,13,1,14,,6.3,FALSE
 08_archive/code/OLD/Revigo.R,08_archive/code/Revigo.R,223,TRUE,"all terms annotated to genes with a DML (legacy reader): interaction-DML, CC",04_output/08_gene_annotation/tables/dml_go_annotation_shared_legacy.tsv.gz,151,0,0,0,,0,FALSE
 08_archive/code/OLD/Revigo.R,08_archive/code/Revigo.R,223,TRUE,"all terms annotated to genes with a DML (legacy reader): interaction-DML, MF",04_output/08_gene_annotation/tables/dml_go_annotation_shared_legacy.tsv.gz,158,0,0,0,,0,FALSE
-08_archive/code/OLD/Revigo.R,08_archive/code/Revigo.R,223,TRUE,"earlier analysis, not in the manuscript, p < 0.01: ploidy, BP",08_archive/tables/ploidy-BP-FisherTestResults.csv,1718,218,0,220,213,97.8,TRUE
-08_archive/code/OLD/Revigo.R,08_archive/code/Revigo.R,223,TRUE,"earlier analysis, not in the manuscript, p < 0.01: ploidy, CC",08_archive/tables/ploidy-CC-FisherTestResults.csv,326,0,0,0,0,0,FALSE
-08_archive/code/OLD/Revigo.R,08_archive/code/Revigo.R,223,TRUE,"earlier analysis, not in the manuscript, p < 0.01: ploidy, MF",08_archive/tables/ploidy-MF-FisherTestResults.csv,511,0,0,0,0,0,FALSE
+08_archive/code/OLD/Revigo.R,08_archive/code/Revigo.R,223,TRUE,"another analysis, not the manuscript's, p < 0.01: ploidy, BP",08_archive/tables/ploidy-BP-FisherTestResults.csv,1718,218,0,220,213,97.8,TRUE
+08_archive/code/OLD/Revigo.R,08_archive/code/Revigo.R,223,TRUE,"another analysis, not the manuscript's, p < 0.01: ploidy, CC",08_archive/tables/ploidy-CC-FisherTestResults.csv,326,0,0,0,0,0,FALSE
+08_archive/code/OLD/Revigo.R,08_archive/code/Revigo.R,223,TRUE,"another analysis, not the manuscript's, p < 0.01: ploidy, MF",08_archive/tables/ploidy-MF-FisherTestResults.csv,511,0,0,0,0,0,FALSE
 08_archive/figures/revigo_figure/Revigo-PLOIDY-BP.R,"",354,FALSE,"legacy test, p < 0.01: ploidy-DML, BP",04_output/09_go_enrichment_legacy/tables/legacy_fisher_ploidy_BP.csv,383,63,0,63,,17.8,FALSE
 08_archive/figures/revigo_figure/Revigo-PLOIDY-BP.R,"",354,FALSE,"legacy test, p < 0.01: ploidy-DML, CC",04_output/09_go_enrichment_legacy/tables/legacy_fisher_ploidy_CC.csv,43,0,0,0,,0,FALSE
 08_archive/figures/revigo_figure/Revigo-PLOIDY-BP.R,"",354,FALSE,"legacy test, p < 0.01: ploidy-DML, MF",04_output/09_go_enrichment_legacy/tables/legacy_fisher_ploidy_MF.csv,68,0,0,0,,0,FALSE
@@ -59,6 +59,6 @@ export,same_content_as,export_terms,export_has_p_values,term_list,term_list_sour
 08_archive/figures/revigo_figure/Revigo-PLOIDY-BP.R,"",354,FALSE,"all terms annotated to genes with a DML (legacy reader): interaction-DML, BP",04_output/08_gene_annotation/tables/dml_go_annotation_shared_legacy.tsv.gz,517,133,4,138,,38.7,FALSE
 08_archive/figures/revigo_figure/Revigo-PLOIDY-BP.R,"",354,FALSE,"all terms annotated to genes with a DML (legacy reader): interaction-DML, CC",04_output/08_gene_annotation/tables/dml_go_annotation_shared_legacy.tsv.gz,151,0,0,0,,0,FALSE
 08_archive/figures/revigo_figure/Revigo-PLOIDY-BP.R,"",354,FALSE,"all terms annotated to genes with a DML (legacy reader): interaction-DML, MF",04_output/08_gene_annotation/tables/dml_go_annotation_shared_legacy.tsv.gz,158,0,0,0,,0,FALSE
-08_archive/figures/revigo_figure/Revigo-PLOIDY-BP.R,"",354,FALSE,"earlier analysis, not in the manuscript, p < 0.01: ploidy, BP",08_archive/tables/ploidy-BP-FisherTestResults.csv,1718,95,0,96,,26.8,FALSE
-08_archive/figures/revigo_figure/Revigo-PLOIDY-BP.R,"",354,FALSE,"earlier analysis, not in the manuscript, p < 0.01: ploidy, CC",08_archive/tables/ploidy-CC-FisherTestResults.csv,326,0,0,0,,0,FALSE
-08_archive/figures/revigo_figure/Revigo-PLOIDY-BP.R,"",354,FALSE,"earlier analysis, not in the manuscript, p < 0.01: ploidy, MF",08_archive/tables/ploidy-MF-FisherTestResults.csv,511,0,0,0,,0,FALSE
+08_archive/figures/revigo_figure/Revigo-PLOIDY-BP.R,"",354,FALSE,"another analysis, not the manuscript's, p < 0.01: ploidy, BP",08_archive/tables/ploidy-BP-FisherTestResults.csv,1718,95,0,96,,26.8,FALSE
+08_archive/figures/revigo_figure/Revigo-PLOIDY-BP.R,"",354,FALSE,"another analysis, not the manuscript's, p < 0.01: ploidy, CC",08_archive/tables/ploidy-CC-FisherTestResults.csv,326,0,0,0,,0,FALSE
+08_archive/figures/revigo_figure/Revigo-PLOIDY-BP.R,"",354,FALSE,"another analysis, not the manuscript's, p < 0.01: ploidy, MF",08_archive/tables/ploidy-MF-FisherTestResults.csv,511,0,0,0,,0,FALSE
