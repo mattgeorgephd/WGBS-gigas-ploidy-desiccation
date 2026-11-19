@@ -134,9 +134,10 @@
 #             the same colour in two panels does not mark the same cluster.
 #           - A similarity matrix is written as plain CSV. One larger than
 #             gzip_above_mb is written gzipped, and its file name ends in .csv.gz.
-#           - The legacy enrichment is unsound (issues I-03, I-39, I-40) and no term
-#             is enriched at gene level (I-41). The legacy figures are regenerated
-#             for traceability, not as results.
+#           - The legacy enrichment is unsound (issues I-03, I-39, I-40) and step 10
+#             calls no term enriched at gene level at its configured settings
+#             (I-41). The legacy figures are regenerated for traceability, not as
+#             results.
 
 suppressPackageStartupMessages(library(here))
 source(here("run_config.R"))

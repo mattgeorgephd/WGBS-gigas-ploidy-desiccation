@@ -84,7 +84,9 @@
 #             jackknife, because a jackknife interval rests on a normal
 #             distribution of the log odds ratio, and that fails where one
 #             window holds most of the DML of a track (in legacy mode 53 of
-#             the 65 ploidy DML in lncRNA lie in the locus of issue I-09).
+#             the 65 ploidy DML in lncRNA lie in the locus of issue I-09). With
+#             2,000 resamples the ends of a block interval still move by a few
+#             percent from one seed to another.
 #           - Label permutation (comparison 8): the ploidy labels are shuffled
 #             within cohort (5 and 5 in the heat cohort, 6 and 6 in the control
 #             cohort), the read-pooled difference triploid minus diploid is

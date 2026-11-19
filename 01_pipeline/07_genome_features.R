@@ -125,9 +125,9 @@ for (mode in config$modes) {
   # Loci are treated as independent, which they are not where DML cluster, so
   # these p-values are optimistic; see the region summary below.
   # Two backgrounds: every analysed CpG, and the eligible CpGs. Most CpGs in this
-  # genome are unmethylated and cannot differ between groups, and methylation is
-  # concentrated in gene bodies, so the second background asks the sharper
-  # question.
+  # genome are unmethylated and almost never reach the difference threshold, and
+  # methylation is concentrated in gene bodies, so the second background is the
+  # fairer of the two. It is not a fair one either: see the header and issues.md, I-41.
   backgrounds <- list(`all analysed CpGs` = rep(TRUE, nrow(cpg)), `eligible CpGs` = eligible)
   tests <- rbindlist(lapply(names(backgrounds), function(b) {
     rbindlist(lapply(c("ploidy DML", "heat DML", "shared"), function(s) {
