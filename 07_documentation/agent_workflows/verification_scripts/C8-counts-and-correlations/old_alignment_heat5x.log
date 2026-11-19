@@ -1,0 +1,17 @@
+[   34s] {'library': 'zr3534_1', 'rows': 1714522, 'rows_at_reference_CG': 1714522, 'curl_exit': 0, 'last_row': 'NC_047561.1:19960481', 'pct_min': 0.0, 'pct_max': 100.0}
+[   69s] {'library': 'zr3534_2', 'rows': 7507334, 'rows_at_reference_CG': 7507334, 'curl_exit': 0, 'last_row': 'NW_022994998.1:54934', 'pct_min': 0.0, 'pct_max': 100.0}
+[  106s] {'library': 'zr3534_3', 'rows': 7718060, 'rows_at_reference_CG': 7718060, 'curl_exit': 0, 'last_row': 'NW_022994998.1:54958', 'pct_min': 0.0, 'pct_max': 100.0}
+[  237s] {'library': 'zr3534_4', 'rows': 7469396, 'rows_at_reference_CG': 7469396, 'curl_exit': 0, 'last_row': 'NW_022994998.1:54949', 'pct_min': 0.0, 'pct_max': 100.0}
+[  256s] {'library': 'zr3534_5', 'rows': 7726005, 'rows_at_reference_CG': 7726005, 'curl_exit': 0, 'last_row': 'NW_022994998.1:54934', 'pct_min': 0.0, 'pct_max': 100.0}
+[  290s] {'library': 'zr3534_6', 'rows': 7629109, 'rows_at_reference_CG': 7629109, 'curl_exit': 0, 'last_row': 'NW_022994998.1:54872', 'pct_min': 0.0, 'pct_max': 100.0}
+[  318s] {'library': 'zr3534_7', 'rows': 7259853, 'rows_at_reference_CG': 7259853, 'curl_exit': 0, 'last_row': 'NW_022994998.1:54872', 'pct_min': 0.0, 'pct_max': 100.0}
+[  391s] {'library': 'zr3534_8', 'rows': 7980091, 'rows_at_reference_CG': 7980091, 'curl_exit': 0, 'last_row': 'NW_022994998.1:54958', 'pct_min': 0.0, 'pct_max': 100.0}
+[  591s] {'library': 'zr3534_9', 'rows': 7469649, 'rows_at_reference_CG': 7469649, 'curl_exit': 0, 'last_row': 'NW_022994998.1:54934', 'pct_min': 0.0, 'pct_max': 100.0}
+[  669s] {'library': 'zr3534_10', 'rows': 7591290, 'rows_at_reference_CG': 7591290, 'curl_exit': 0, 'last_row': 'NW_022994998.1:54934', 'pct_min': 0.0, 'pct_max': 100.0}
+old alignment, libraries 2-10, CpGs at >=5x in all nine: 4333810; Pearson (raw percent) min=0.8779 max=0.9248 median=0.8961 (pairs=36)
+old alignment, all ten libraries, CpGs at >=5x in all ten (limited by the truncated zr3534_1 file): 908578; Pearson min=0.8799 max=0.9272 median=0.8962 (pairs=45)
+current alignment, libraries 2-10, >=5x in all nine: 4326239; Pearson (raw percent) min=0.8779 max=0.9248 median=0.8962 (pairs=36)
+current alignment, all ten, >=5x in all ten: 4194066; Pearson (raw percent) min=0.8790 max=0.9258 median=0.8967 (pairs=45)
+CpGs at >=5x in all nine libraries in both alignments: 4303431; per-library correlation old vs current percent: 0.9997 0.9997 0.9997 0.9997 0.9997 0.9997 0.9997 0.9997 0.9997
+counts per library old (rows at >=5x) vs current (>=5x): [(1714522, 7520025), (7507334, 7499691), (7718060, 7711932), (7469396, 7462163), (7726005, 7718818), (7629109, 7620933), (7259853, 7251266), (7980091, 7972661), (7469649, 7462532), (7591290, 7584301)]
+exit 0

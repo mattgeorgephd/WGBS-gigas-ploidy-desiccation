@@ -1,0 +1,29 @@
+unique transcript names:  BOTH 27469; RONIT 43118; YAAMINI 39860 
+BOTH     names that are annotated mRNAs: 27469; names not among the annotated mRNAs: 0; annotated mRNAs absent: 15715
+RONIT    names that are annotated mRNAs: 43118; names not among the annotated mRNAs: 0; annotated mRNAs absent: 66
+YAAMINI  names that are annotated mRNAs: 39860; names not among the annotated mRNAs: 0; annotated mRNAs absent: 3324
+BOTH names absent from RONIT: 2  absent from YAAMINI: 6 
+RONIT names absent from BOTH: 15651 ; YAAMINI names absent from BOTH: 12397 ; in RONIT or YAAMINI but not BOTH: 15653 
+               status     n in_RONIT in_YAAMINI in_either in_neither
+1:    present in BOTH 27469    27467      27463     27469          0
+2: missing: 49 others    49        0          0         0         49
+3:     missing: block 15666    15651      12397     15653         13
+
+Block transcripts by presence in the subset universes:
+   in_ron in_yaa     N
+1:   TRUE   TRUE 12395
+2:  FALSE  FALSE    13
+3:   TRUE  FALSE  3256
+4:  FALSE   TRUE     2
+
+The 49 others:
+   hyphen in_ron in_yaa  N
+1:  FALSE  FALSE  FALSE 29
+2:   TRUE  FALSE  FALSE 20
+in_ron: missing annotated mRNAs 66 in 34 runs; longest run 7
+   longest run: XM_034468151.1 to XM_034468157.1 
+in_yaa: missing annotated mRNAs 3324 in 37 runs; longest run 3257
+   longest run: XM_034456003.1 to XM_034461022.1 
+RONIT names not annotated mRNAs: 0  
+YAAMINI names not annotated mRNAs: 0  
+ids in BOTH and RONIT maps with identical GO string: 27467 of 27467 

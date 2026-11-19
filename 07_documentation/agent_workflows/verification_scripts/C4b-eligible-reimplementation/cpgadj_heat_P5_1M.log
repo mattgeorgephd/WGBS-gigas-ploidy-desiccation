@@ -1,0 +1,14 @@
+heat P5 done in 734 s
+    set scheme ontology pool_cpg dml_labels blocks dml_genes_observed dml_genes_perm_mean dml_genes_perm_sd frac_perm_total_ge_observed       B
+1: heat     P5       BP    55717       2178    142               1109            1116.371          15.91499                    0.689394 1000000
+2: heat     P5       CC    55717       2178    142               1157            1155.555          15.81590                    0.476460 1000000
+3: heat     P5       MF    55717       2178    142               1021            1061.864          16.60103                    0.993687 1000000
+    set cpg_bin genes observed_pct        P5
+1: heat       1  1805     5.152355  5.220114
+2: heat       2  1209    11.910670 12.224913
+3: heat     3-5  2069    17.544708 18.217631
+4: heat    6-10  1314    23.059361 24.063210
+5: heat   11-20   808    32.425743 33.923223
+6: heat   21-50   426    47.417840 50.762877
+7: heat  51-100   111    52.252252 56.578161
+8: heat    >100    29    68.965517 77.190279

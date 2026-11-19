@@ -1,0 +1,126 @@
+mRNA records: 63341 
+prefix table of mRNA transcript ids:
+
+  NM_   XM_ 
+  135 63206 
+digits in accession number:
+
+    9 
+63341 
+version digits:
+
+    1     2     3 
+40775  4207 18359 
+full map lines: 92197  names: 47266  names with a GO id: 45346 
+universe lines: 48263  names: 27469  names with a GO id: 27469 
+universe lines without any GO id: 0 
+universe names not in full map: 0 
+full-map lines whose id is in the universe: 48263  identical to universe file (same order): TRUE 
+mRNAs on track with GO terms in full map (annotated): 43184 
+mRNAs on track named in full map at all (with or without GO): 45042 
+universe names on mRNA track: 27469 of 27469 
+universe names that are annotated mRNAs: 27469 
+annotated mRNAs missing from the universe: 15715 of 43184 (36.39%) 
+annotated mRNAs by prefix:
+
+  XM_ 
+43184 
+byte order of the ID                   runs of missing:    25; longest 15666; missing outside longest    49; runs of present: 26
+  longest block: XM_011455141.3 to XM_034461018.1  n = 15666 
+  last present before: XM_011455140.3   first present after: XM_034461020.1 
+  position of block in ordered list: 12823 to 28488 of 43184 
+numeric accession order                runs of missing:    25; longest 15666; missing outside longest    49; runs of present: 26
+  numeric order identical to byte order: TRUE 
+  annotated mRNAs with accession number in block range: 15666   of them in universe: 0 
+Warning message:
+In eval(jsub, SDenv, parent.frame()) : NAs introduced by coercion
+  full-map names (any RNA class) with GO terms in block range: 15666   of them in universe: 0 
+  universe ids below block: 12804   above block: 14665 
+  annotated mRNAs below block: 12822   above block: 14696 
+  missing below block: 18   missing above block: 31 
+genomic order (GFF sequence, start)    runs of missing:  3967; longest   104; missing outside longest 15611; runs of present: 3968
+order of the mRNA GFF file             runs of missing:  3973; longest   104; missing outside longest 15611; runs of present: 3974
+gene ID (string), then ID              runs of missing:  3817; longest  2476; missing outside longest 13239; runs of present: 3818
+gene ID (numeric), then ID             runs of missing:  3817; longest  2476; missing outside longest 13239; runs of present: 3818
+version, then accession                runs of missing:    27; longest 12104; missing outside longest  3611; runs of present: 27
+order of first appearance in full map  runs of missing:  4122; longest   154; missing outside longest 15561; runs of present: 4123
+
+series x status (annotated mRNAs):
+                     series     n in_universe in_block missing_outside_block
+1:         XM_011 (2014-15) 13954       12804     1132                    18
+2: XM_0199-XM_020 (2016-17)  2432           0     2432                     0
+3:            XM_034 (2020) 26798       14665    12102                    31
+    min_acc  max_acc
+1: 11413559 11458949
+2: 20062342 20075327
+3: 34442971 34483609
+                      sequence annotated in_universe   pct
+ 1:                NC_047559.1      4681        2990 63.88
+ 2:                NC_047560.1      2770        2649 95.63
+ 3:                NC_047561.1      4931        4441 90.06
+ 4:                NC_047562.1      3749        3441 91.78
+ 5:                NC_047563.1      3798        3549 93.44
+ 6:                NC_047564.1      4743        3985 84.02
+ 7:                NC_047565.1      5497        1938 35.26
+ 8:                NC_047566.1      3492         844 24.17
+ 9:                NC_047567.1      1978         358 18.10
+10:                NC_047568.1      5360        1916 35.75
+11: unplaced scaffolds / other      2185        1358 62.15
+12:                        all     43184       27469 63.61
+other sequence names:
+   prefix    N
+1:    NW_ 2185
+per-sequence counts equal to the pipeline table: TRUE 
+
+missing outside the block: 49 ; of them in a gene whose name holds a hyphen: 20 
+     transcript_id   gene_id       parent            chr    start      end
+ 1: XM_011452487.3 105344658 LOC105344658    NC_047559.1 30796630 30799812
+ 2: XM_034466782.1 117688636 LOC117688636    NC_047560.1 68446199 68446579
+ 3: XM_034466783.1 117688638 LOC117688638    NC_047560.1 68448798 68450495
+ 4: XM_034466785.1 117688639 LOC117688639    NC_047560.1 68655279 68656210
+ 5: XM_034469107.1 105334136 LOC105334136    NC_047561.1 29045276 29046743
+ 6: XM_034469106.1 117689150 LOC117689150    NC_047561.1 29062508 29063975
+ 7: XM_011430800.3 105329519 LOC105329519    NC_047561.1 34171630 34175883
+ 8: XM_034471098.1 105326478 LOC105326478    NC_047561.1 37266065 37271409
+ 9: XM_034468351.1 105332130 LOC105332130    NC_047561.1 41582152 41586439
+10: XM_011434580.3 105332130 LOC105332130    NC_047561.1 41582152 41586413
+11: XM_034468156.1 105317820 LOC105317820    NC_047561.1 46218363 46254262
+12: XM_034468161.1 105317820 LOC105317820    NC_047561.1 46218363 46254262
+13: XM_034468155.1 105317820 LOC105317820    NC_047561.1 46218363 46254262
+14: XM_034468151.1 105317820 LOC105317820    NC_047561.1 46218363 46254262
+15: XM_034468154.1 105317820 LOC105317820    NC_047561.1 46218363 46253256
+16: XM_034468152.1 105317820 LOC105317820    NC_047561.1 46218363 46253256
+17: XM_034468160.1 105317820 LOC105317820    NC_047561.1 46218363 46253255
+18: XM_034468157.1 105317820 LOC105317820    NC_047561.1 46218363 46253007
+19: XM_034468153.1 105317820 LOC105317820    NC_047561.1 46218363 46252732
+20: XM_034468159.1 105317820 LOC105317820    NC_047561.1 46218363 46252731
+21: XM_011434754.3 105332232   Striatin-3    NC_047561.1 57364433 57381079
+22: XM_011434759.3 105332232   Striatin-3    NC_047561.1 57364433 57381079
+23: XM_011434756.3 105332232   Striatin-3    NC_047561.1 57364433 57381079
+24: XM_034469273.1 105332232   Striatin-3    NC_047561.1 57364433 57381079
+25: XM_011434755.3 105332232   Striatin-3    NC_047561.1 57364434 57381079
+26: XM_034469271.1 105332232   Striatin-3    NC_047561.1 57364459 57380773
+27: XM_034469270.1 105332232   Striatin-3    NC_047561.1 57364460 57381079
+28: XM_011434760.3 105332232   Striatin-3    NC_047561.1 57364460 57381079
+29: XM_011434758.3 105332232   Striatin-3    NC_047561.1 57364460 57381079
+30: XM_034469268.1 105332232   Striatin-3    NC_047561.1 57364460 57380773
+31: XM_034469272.1 105332232   Striatin-3    NC_047561.1 57364460 57380773
+32: XM_034469269.1 105332232   Striatin-3    NC_047561.1 57364460 57380317
+33: XM_034474660.1 117690429 LOC117690429    NC_047562.1 36915362 36916165
+34: XM_011438016.3 105334529    Ankyrin-3    NC_047563.1 41455117 41460196
+35: XM_034477048.1 105341543 LOC105341543    NC_047563.1 46898565 46907080
+36: XM_034477262.1 117691332 LOC117691332    NC_047563.1 55682970 55698549
+37: XM_034479718.1 105333412 LOC105333412    NC_047563.1 56528557 56563175
+38: XM_011436367.3 105333412 LOC105333412    NC_047563.1 56552266 56563205
+39: XM_034482170.1 105321302 LOC105321302    NC_047564.1   539122   542053
+40: XM_011444208.3 105338904     Caprin-2    NC_047565.1  9476312  9478396
+41: XM_011444206.3 105338904     Caprin-2    NC_047565.1  9476312  9477995
+42: XM_011444207.3 105338904     Caprin-2    NC_047565.1  9476617  9478396
+43: XM_011444205.3 105338904     Caprin-2    NC_047565.1  9476617  9477995
+44: XM_011439908.3 105335806 LOC105335806    NC_047565.1 41478092 41485857
+45: XM_011448838.3 105342053 LOC105342053    NC_047568.1  4424121  4432047
+46: XM_011426872.3 105326704 LOC105326704    NC_047568.1 48055606 48056993
+47: XM_034462448.1 105345280   Secernin-1 NW_022994986.1   107490   112469
+48: XM_034462449.1 105345280   Secernin-1 NW_022994986.1   107538   112469
+49: XM_034462450.1 105345280   Secernin-1 NW_022994986.1   107708   112469
+     transcript_id   gene_id       parent            chr    start      end

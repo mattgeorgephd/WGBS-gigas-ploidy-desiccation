@@ -1,0 +1,107 @@
+[   12s] >=  1x all 22                                     n= 5852939 r 0.7944..0.8973  nearest 0.79-0.90  outward 0.79-0.90  
+            within the 22-library set, heat pairs               r 0.8492..0.8973  nearest 0.85-0.90  outward 0.84-0.90  
+            within the 22-library set, control pairs            r 0.7944..0.8893  nearest 0.79-0.89  outward 0.79-0.89  
+            within the 22-library set, diploid pairs            r 0.8163..0.8911  nearest 0.82-0.89  outward 0.81-0.90  
+            within the 22-library set, triploid pairs           r 0.8180..0.8973  nearest 0.82-0.90  outward 0.81-0.90  
+            within the 22-library set, diploid/control pairs    r 0.8216..0.8791  nearest 0.82-0.88  outward 0.82-0.88  
+            within the 22-library set, diploid/heat pairs       r 0.8515..0.8911  nearest 0.85-0.89  outward 0.85-0.90  
+            within the 22-library set, triploid/control pairs   r 0.8180..0.8893  nearest 0.82-0.89  outward 0.81-0.89  
+            within the 22-library set, triploid/heat pairs      r 0.8785..0.8973  nearest 0.88-0.90  outward 0.87-0.90  
+[   18s] >=  1x heat (10)                                  n= 7261925 r 0.8218..0.8702  nearest 0.82-0.87  outward 0.82-0.88  
+[   24s] >=  1x control (12)                               n= 6337867 r 0.7850..0.8837  nearest 0.79-0.88  outward 0.78-0.89  
+[   31s] >=  1x diploid (11)                               n= 6583553 r 0.8008..0.8805  nearest 0.80-0.88  outward 0.80-0.89  
+[   37s] >=  1x triploid (11)                              n= 6787343 r 0.7991..0.8814  nearest 0.80-0.88  outward 0.79-0.89  
+[   40s] >=  1x diploid/control only                       n= 7275028 r 0.7912..0.8547  nearest 0.79-0.85  outward 0.79-0.86  
+[   43s] >=  1x diploid/heat only                          n= 8002418 r 0.8044..0.8565  nearest 0.80-0.86  outward 0.80-0.86  
+[   47s] >=  1x triploid/control only                      n= 7262366 r 0.7895..0.8647  nearest 0.79-0.86  outward 0.78-0.87  
+[   50s] >=  1x triploid/heat only                         n= 8521909 r 0.8244..0.8489  nearest 0.82-0.85  outward 0.82-0.85  
+[   53s] >=  1x heat without acute shock (6)               n= 7964142 r 0.8071..0.8596  nearest 0.81-0.86  outward 0.80-0.86  
+[   63s] >=  1x controls + heat without acute shock (18)   n= 6010753 r 0.7914..0.8892  nearest 0.79-0.89  outward 0.79-0.89  
+[   71s] >=  3x all 22                                     n= 3714898 r 0.8378..0.9263  nearest 0.84-0.93  outward 0.83-0.93  
+            within the 22-library set, heat pairs               r 0.8778..0.9263  nearest 0.88-0.93  outward 0.87-0.93  MATCH(outward)
+            within the 22-library set, control pairs            r 0.8378..0.9251  nearest 0.84-0.93  outward 0.83-0.93  
+            within the 22-library set, diploid pairs            r 0.8520..0.9168  nearest 0.85-0.92  outward 0.85-0.92  
+            within the 22-library set, triploid pairs           r 0.8578..0.9263  nearest 0.86-0.93  outward 0.85-0.93  
+            within the 22-library set, diploid/control pairs    r 0.8668..0.9168  nearest 0.87-0.92  outward 0.86-0.92  
+            within the 22-library set, diploid/heat pairs       r 0.8813..0.9120  nearest 0.88-0.91  outward 0.88-0.92  
+            within the 22-library set, triploid/control pairs   r 0.8578..0.9251  nearest 0.86-0.93  outward 0.85-0.93  
+            within the 22-library set, triploid/heat pairs      r 0.9122..0.9263  nearest 0.91-0.93  outward 0.91-0.93  
+[   76s] >=  3x heat (10)                                  n= 5416388 r 0.8646..0.9111  nearest 0.86-0.91  outward 0.86-0.92  
+[   80s] >=  3x control (12)                               n= 3993030 r 0.8344..0.9244  nearest 0.83-0.92  outward 0.83-0.93  
+[   85s] >=  3x diploid (11)                               n= 4410404 r 0.8449..0.9097  nearest 0.84-0.91  outward 0.84-0.91  
+[   90s] >=  3x triploid (11)                              n= 4527090 r 0.8501..0.9187  nearest 0.85-0.92  outward 0.85-0.92  
+[   92s] >=  3x diploid/control only                       n= 4835061 r 0.8517..0.9074  nearest 0.85-0.91  outward 0.85-0.91  
+[   95s] >=  3x diploid/heat only                          n= 6162722 r 0.8579..0.8981  nearest 0.86-0.90  outward 0.85-0.90  
+[   98s] >=  3x triploid/control only                      n= 4846782 r 0.8477..0.9165  nearest 0.85-0.92  outward 0.84-0.92  
+[  100s] >=  3x triploid/heat only                         n= 6510042 r 0.8826..0.9002  nearest 0.88-0.90  outward 0.88-0.91  
+[  103s] >=  3x heat without acute shock (6)               n= 6057391 r 0.8574..0.8994  nearest 0.86-0.90  outward 0.85-0.90  
+[  111s] >=  3x controls + heat without acute shock (18)   n= 3805697 r 0.8366..0.9242  nearest 0.84-0.92  outward 0.83-0.93  
+[  117s] >=  5x all 22                                     n= 2297236 r 0.8493..0.9387  nearest 0.85-0.94  outward 0.84-0.94  
+            within the 22-library set, heat pairs               r 0.8850..0.9359  nearest 0.88-0.94  outward 0.88-0.94  
+            within the 22-library set, control pairs            r 0.8493..0.9387  nearest 0.85-0.94  outward 0.84-0.94  
+            within the 22-library set, diploid pairs            r 0.8617..0.9307  nearest 0.86-0.93  outward 0.86-0.94  
+            within the 22-library set, triploid pairs           r 0.8678..0.9387  nearest 0.87-0.94  outward 0.86-0.94  
+            within the 22-library set, diploid/control pairs    r 0.8823..0.9307  nearest 0.88-0.93  outward 0.88-0.94  
+            within the 22-library set, diploid/heat pairs       r 0.8891..0.9159  nearest 0.89-0.92  outward 0.88-0.92  
+            within the 22-library set, triploid/control pairs   r 0.8678..0.9387  nearest 0.87-0.94  outward 0.86-0.94  
+            within the 22-library set, triploid/heat pairs      r 0.9229..0.9359  nearest 0.92-0.94  outward 0.92-0.94  
+[  121s] >=  5x heat (10)                                  n= 4194066 r 0.8781..0.9253  nearest 0.88-0.93  outward 0.87-0.93  MATCH(outward)
+[  125s] >=  5x control (12)                               n= 2465533 r 0.8476..0.9371  nearest 0.85-0.94  outward 0.84-0.94  
+[  129s] >=  5x diploid (11)                               n= 2928292 r 0.8573..0.9259  nearest 0.86-0.93  outward 0.85-0.93  
+[  132s] >=  5x triploid (11)                              n= 3023664 r 0.8650..0.9340  nearest 0.87-0.93  outward 0.86-0.94  MATCH(nearest)
+[  134s] >=  5x diploid/control only                       n= 3197948 r 0.8712..0.9232  nearest 0.87-0.92  outward 0.87-0.93  MATCH(outward)
+[  137s] >=  5x diploid/heat only                          n= 4969080 r 0.8768..0.9095  nearest 0.88-0.91  outward 0.87-0.91  
+[  139s] >=  5x triploid/control only                      n= 3249806 r 0.8653..0.9322  nearest 0.87-0.93  outward 0.86-0.94  MATCH(nearest)
+[  142s] >=  5x triploid/heat only                         n= 5143935 r 0.9020..0.9181  nearest 0.90-0.92  outward 0.90-0.92  
+[  145s] >=  5x heat without acute shock (6)               n= 4791806 r 0.8734..0.9129  nearest 0.87-0.91  outward 0.87-0.92  
+[  151s] >=  5x controls + heat without acute shock (18)   n= 2350363 r 0.8486..0.9381  nearest 0.85-0.94  outward 0.84-0.94  
+[  156s] >= 10x all 22                                     n=  480579 r 0.8394..0.9424  nearest 0.84-0.94  outward 0.83-0.95  
+            within the 22-library set, heat pairs               r 0.8751..0.9374  nearest 0.88-0.94  outward 0.87-0.94  MATCH(truncated)
+            within the 22-library set, control pairs            r 0.8394..0.9424  nearest 0.84-0.94  outward 0.83-0.95  
+            within the 22-library set, diploid pairs            r 0.8506..0.9339  nearest 0.85-0.93  outward 0.85-0.94  
+            within the 22-library set, triploid pairs           r 0.8613..0.9424  nearest 0.86-0.94  outward 0.86-0.95  
+            within the 22-library set, diploid/control pairs    r 0.8803..0.9339  nearest 0.88-0.93  outward 0.88-0.94  
+            within the 22-library set, diploid/heat pairs       r 0.8800..0.9127  nearest 0.88-0.91  outward 0.87-0.92  
+            within the 22-library set, triploid/control pairs   r 0.8613..0.9424  nearest 0.86-0.94  outward 0.86-0.95  
+            within the 22-library set, triploid/heat pairs      r 0.9225..0.9374  nearest 0.92-0.94  outward 0.92-0.94  
+[  159s] >= 10x heat (10)                                  n= 1921856 r 0.8854..0.9396  nearest 0.89-0.94  outward 0.88-0.94  
+[  161s] >= 10x control (12)                               n=  529068 r 0.8376..0.9408  nearest 0.84-0.94  outward 0.83-0.95  
+[  164s] >= 10x diploid (11)                               n=  766054 r 0.8509..0.9324  nearest 0.85-0.93  outward 0.85-0.94  
+[  166s] >= 10x triploid (11)                              n=  861750 r 0.8721..0.9451  nearest 0.87-0.95  outward 0.87-0.95  
+[  167s] >= 10x diploid/control only                       n=  856856 r 0.8755..0.9302  nearest 0.88-0.93  outward 0.87-0.94  MATCH(truncated)
+[  169s] >= 10x diploid/heat only                          n= 2628131 r 0.8890..0.9168  nearest 0.89-0.92  outward 0.88-0.92  
+[  170s] >= 10x triploid/control only                      n=  956068 r 0.8733..0.9442  nearest 0.87-0.94  outward 0.87-0.95  
+[  171s] >= 10x triploid/heat only                         n= 2617373 r 0.9213..0.9358  nearest 0.92-0.94  outward 0.92-0.94  
+[  173s] >= 10x heat without acute shock (6)               n= 2361793 r 0.8845..0.9303  nearest 0.88-0.93  outward 0.88-0.94  
+[  176s] >= 10x controls + heat without acute shock (18)   n=  493727 r 0.8389..0.9418  nearest 0.84-0.94  outward 0.83-0.95  
+[  179s] >= 20x all 22                                     n=   29884 r 0.8345..0.9362  nearest 0.83-0.94  outward 0.83-0.94  
+            within the 22-library set, heat pairs               r 0.8643..0.9351  nearest 0.86-0.94  outward 0.86-0.94  
+            within the 22-library set, control pairs            r 0.8345..0.9362  nearest 0.83-0.94  outward 0.83-0.94  
+            within the 22-library set, diploid pairs            r 0.8365..0.9351  nearest 0.84-0.94  outward 0.83-0.94  
+            within the 22-library set, triploid pairs           r 0.8731..0.9355  nearest 0.87-0.94  outward 0.87-0.94  MATCH(truncated)
+            within the 22-library set, diploid/control pairs    r 0.8365..0.9295  nearest 0.84-0.93  outward 0.83-0.93  
+            within the 22-library set, diploid/heat pairs       r 0.8643..0.9351  nearest 0.86-0.94  outward 0.86-0.94  
+            within the 22-library set, triploid/control pairs   r 0.8851..0.9355  nearest 0.89-0.94  outward 0.88-0.94  
+            within the 22-library set, triploid/heat pairs      r 0.9037..0.9283  nearest 0.90-0.93  outward 0.90-0.93  
+[  181s] >= 20x heat (10)                                  n=  193521 r 0.8622..0.9279  nearest 0.86-0.93  outward 0.86-0.93  
+[  182s] >= 20x control (12)                               n=   35027 r 0.8235..0.9294  nearest 0.82-0.93  outward 0.82-0.93  
+[  184s] >= 20x diploid (11)                               n=   47820 r 0.8172..0.9198  nearest 0.82-0.92  outward 0.81-0.92  
+[  185s] >= 20x triploid (11)                              n=   54998 r 0.8534..0.9249  nearest 0.85-0.92  outward 0.85-0.93  
+[  186s] >= 20x diploid/control only                       n=   59484 r 0.8097..0.9074  nearest 0.81-0.91  outward 0.80-0.91  
+[  187s] >= 20x diploid/heat only                          n=  380276 r 0.8749..0.9077  nearest 0.87-0.91  outward 0.87-0.91  
+[  188s] >= 20x triploid/control only                      n=   65605 r 0.8569..0.9224  nearest 0.86-0.92  outward 0.85-0.93  
+[  189s] >= 20x triploid/heat only                         n=  366213 r 0.9115..0.9307  nearest 0.91-0.93  outward 0.91-0.94  
+[  190s] >= 20x heat without acute shock (6)               n=  277545 r 0.8629..0.9200  nearest 0.86-0.92  outward 0.86-0.93  
+[  193s] >= 20x controls + heat without acute shock (18)   n=   31035 r 0.8331..0.9343  nearest 0.83-0.93  outward 0.83-0.94  
+
+rows scanned: 95  with a flag: 8
+               united_set                 pairs  min_coverage    n_cpg     r_min     r_max    nearest    outward              flag
+20                 all 22            heat pairs             3  3714898  0.877759  0.926285  0.88-0.93  0.87-0.93    MATCH(outward)
+47              heat (10)  all pairs of the set             5  4194066  0.878059  0.925251  0.88-0.93  0.87-0.93    MATCH(outward)
+50          triploid (11)  all pairs of the set             5  3023664  0.865029  0.934029  0.87-0.93  0.86-0.94    MATCH(nearest)
+51   diploid/control only  all pairs of the set             5  3197948  0.871235  0.923222  0.87-0.92  0.87-0.93    MATCH(outward)
+53  triploid/control only  all pairs of the set             5  3249806  0.865313  0.932186  0.87-0.93  0.86-0.94    MATCH(nearest)
+58                 all 22            heat pairs            10   480579  0.875113  0.937393  0.88-0.94  0.87-0.94  MATCH(truncated)
+70   diploid/control only  all pairs of the set            10   856856  0.875460  0.930234  0.88-0.93  0.87-0.94  MATCH(truncated)
+80                 all 22        triploid pairs            20    29884  0.873123  0.935517  0.87-0.94  0.87-0.94  MATCH(truncated)
+exit 0

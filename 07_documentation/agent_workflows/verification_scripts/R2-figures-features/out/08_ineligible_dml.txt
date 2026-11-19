@@ -1,0 +1,58 @@
+
+NC_047560.1:7406728 (ploidy DML) row 59029  meth.diff -25.08  q 1.01e-19
+       lib    group numCs numTs  pct
+  zr3534_1  diploid     1    15  6.2
+  zr3534_2  diploid     4    29 12.1
+  zr3534_3  diploid     0    28  0.0
+  zr3534_4  diploid    73   178 29.1
+  zr3534_5  diploid     0    23  0.0
+  zr3534_6 triploid     0    26  0.0
+  zr3534_7 triploid     2    33  5.7
+  zr3534_8 triploid     2    31  6.1
+  zr3534_9 triploid     0    24  0.0
+ zr3534_10 triploid     0    18  0.0
+  zr3644_1  diploid     0    27  0.0
+  zr3644_2  diploid     0    19  0.0
+  zr3644_3  diploid     1    47  2.1
+  zr3644_4  diploid     0    33  0.0
+  zr3644_5  diploid    73    70 51.0
+  zr3644_6  diploid    73    71 50.7
+ zr3644_13 triploid     2    30  6.2
+ zr3644_14 triploid     0    14  0.0
+ zr3644_15 triploid     0    28  0.0
+ zr3644_16 triploid     1    21  4.5
+ zr3644_17 triploid     6    39 13.3
+ zr3644_18 triploid     0    23  0.0
+unweighted mean of library percentages: 8.51; by group: diploid 13.75, triploid 3.26
+pooled (coverage-weighted) percentage by group: diploid 29.41, triploid 4.33; difference -25.08
+
+NC_047562.1:38931611 (heat DML) row 166646  meth.diff -20.40  q 6.16e-10
+       lib   group numCs numTs   pct
+  zr3534_1    heat    20     0 100.0
+  zr3534_2    heat     9    12  42.9
+  zr3534_3    heat    12    19  38.7
+  zr3534_4    heat    14     3  82.4
+  zr3534_5    heat    15     2  88.2
+  zr3534_6    heat    10     1  90.9
+  zr3534_7    heat    20     5  80.0
+  zr3534_8    heat    23     2  92.0
+  zr3534_9    heat    19     1  95.0
+ zr3534_10    heat    18     1  94.7
+  zr3644_1 control    22     0 100.0
+  zr3644_2 control    15     0 100.0
+  zr3644_3 control    13     0 100.0
+  zr3644_4 control    26     0 100.0
+  zr3644_5 control    15     1  93.8
+  zr3644_6 control    20     1  95.2
+ zr3644_13 control    17     0 100.0
+ zr3644_14 control    13     0 100.0
+ zr3644_15 control    16     0 100.0
+ zr3644_16 control    15     1  93.8
+ zr3644_17 control    14     1  93.3
+ zr3644_18 control    17     0 100.0
+unweighted mean of library percentages: 90.04; by group: control 98.01, heat 80.48
+pooled (coverage-weighted) percentage by group: control 98.07, heat 77.67; difference -20.40
+
+legacy: CpGs with |pooled ploidy difference| > 20: 1038, of which outside the eligible range: 1; heat: 2352, outside: 1
+max |my pooled ploidy diff - methylKit meth.diff|: 6.750156e-14 
+max |my pooled heat diff - methylKit meth.diff|: 6.750156e-14 

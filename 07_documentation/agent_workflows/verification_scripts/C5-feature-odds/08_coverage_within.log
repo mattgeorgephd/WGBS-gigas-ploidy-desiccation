@@ -1,0 +1,53 @@
+eligible CpGs: 65480 
+
+ CDS, not TE  n = 15672 
+              covq    n median_meth p_ploidy_pct p_heat_pct
+1:     [14.8,22.1] 5825        75.0         2.95       5.68
+2:     (22.1,25.5] 4570        73.8         2.45       5.38
+3:     (25.5,32.6] 3255        64.8         1.78       5.16
+4: (32.6,1.15e+03] 2022        30.5         1.29       2.47
+
+ CDS, not TE, methylation 40-70%  n = 4302 
+              covq    n median_meth p_ploidy_pct p_heat_pct
+1:     [14.8,22.1] 1599        59.4         5.32      10.32
+2:     (22.1,25.5] 1216        58.8         4.36      10.28
+3:     (25.5,32.6]  920        57.5         3.15       9.13
+4: (32.6,1.15e+03]  567        50.4         3.70       5.47
+
+ intron, not TE, methylation 40-70%  n = 6137 
+              covq    n median_meth p_ploidy_pct p_heat_pct
+1:     [14.8,22.1] 1862        55.9         3.87       8.11
+2:     (22.1,25.5] 1838        56.4         3.26       7.83
+3:     (25.5,32.6] 1629        55.5         2.46       6.45
+4: (32.6,1.15e+03]  808        51.1         1.49       7.43
+
+ outside genes, methylation 40-70%  n = 1706 
+              covq    n median_meth p_ploidy_pct p_heat_pct
+1:     [14.8,22.1]  156        54.9         2.56       8.33
+2:     (22.1,25.5]  189        53.6         2.65      10.05
+3:     (25.5,32.6]  300        53.2         3.00       4.33
+4: (32.6,1.15e+03] 1061        55.2         0.19       1.79
+
+ TE, methylation 40-70%  n = 4557 
+              covq    n median_meth p_ploidy_pct p_heat_pct
+1:     [14.8,22.1]  702        56.5         5.56       9.26
+2:     (22.1,25.5]  915        55.1         3.17       8.31
+3:     (25.5,32.6] 1304        53.6         2.15       5.67
+4: (32.6,1.15e+03] 1636        52.9         0.49       1.77
+
+locus NC_047563.1:39,633,323-39,635,520: mean coverage of its tested CpGs (median, range):
+    n median_mean_cov      min      max median_meth
+1: 54        122.4091 71.86364 191.6364     21.5994
+genome-wide tested CpGs: quantiles of mean coverage
+        0%        25%        50%        75%        90%        99%      99.9% 
+  14.27273   22.31818   25.36364   30.68182   42.81818  108.23727 2615.32564 
+      100% 
+5240.95455 
+
+composition of the eligible CpGs outside introns (the comparison group of the intron test):
+n 29394  CDS 55.5 %  exon_UTR 16.3 %  intergenic 22.1 %  flanks 6.1 %
+composition of the eligible CpGs outside CDS: n 49060  intron 73.3 %
+
+DML neighbours: share of DML with another DML of the same list within 1 kb
+dml_ploidy : n 1038  with neighbour within 1 kb: 306 (29.5%)  regions: 830  largest region: 53 
+dml_heat : n 2351  with neighbour within 1 kb: 772 (32.8%)  regions: 1834  largest region: 39 

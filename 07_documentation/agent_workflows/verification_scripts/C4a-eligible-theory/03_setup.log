@@ -1,0 +1,28 @@
+
+groupGOTerms: 	GOBPTerm, GOMFTerm, GOCCTerm environments built.
+all genes: 38208 ; biotypes:
+
+     guide_RNA         lncRNA       misc_RNA protein_coding           rRNA 
+             1           5904             90          31371             55 
+         snRNA         snoRNA           tRNA 
+           114             32            641 
+genes with a tested CpG: 21026 (all biotypes), 19489 protein coding; with an eligible CpG: 8199 (all), 7771 protein coding
+protein-coding genes: 31371; with GO terms: 20279
+protein-coding genes with DML but zero eligible CpGs: 0
+Empty data.table (0 rows and 7 cols): gene_id,gene,n_cpg_tested,n_cpg_eligible,n_dml_ploidy,n_dml_heat...
+eligible universe: 7771 protein-coding genes; with GO: 6374; DML genes ploidy 711 heat 1445 shared 138 (with GO: 625, 1246, 119)
+bias (eligible CpGs per gene) quantiles:
+  0%  10%  25%  50%  75%  90%  95%  99% 100% 
+   1    1    2    3    8   16   27   69  743 
+BP: 5525 genes, 10502 terms (4823 with >= 5 genes); 11 s
+CC: 5738 genes, 1367 terms (642 with >= 5 genes); 1 s
+MF: 5277 genes, 2794 terms (913 with >= 5 genes); 1 s
+ploidy BP: terms 10502; max |log10 p_wall mine - pipeline| = 1.50e-12; max |log10 p_fisher diff| = 1.07e-14; counts equal: TRUE; BH(min 5): n_sig 0, min q 0.3602 (pipeline min q 0.3602)
+ploidy CC: terms 1367; max |log10 p_wall mine - pipeline| = 1.52e-12; max |log10 p_fisher diff| = 4.00e-15; counts equal: TRUE; BH(min 5): n_sig 0, min q 0.2658 (pipeline min q 0.2658)
+ploidy MF: terms 2794; max |log10 p_wall mine - pipeline| = 2.57e-13; max |log10 p_fisher diff| = 5.33e-15; counts equal: TRUE; BH(min 5): n_sig 0, min q 0.3296 (pipeline min q 0.3296)
+heat   BP: terms 10502; max |log10 p_wall mine - pipeline| = 4.20e-13; max |log10 p_fisher diff| = 6.22e-15; counts equal: TRUE; BH(min 5): n_sig 0, min q 1.0000 (pipeline min q 1.0000)
+heat   CC: terms 1367; max |log10 p_wall mine - pipeline| = 4.53e-13; max |log10 p_fisher diff| = 4.44e-15; counts equal: TRUE; BH(min 5): n_sig 0, min q 0.0754 (pipeline min q 0.0754)
+heat   MF: terms 2794; max |log10 p_wall mine - pipeline| = 3.04e-13; max |log10 p_fisher diff| = 1.07e-14; counts equal: TRUE; BH(min 5): n_sig 0, min q 0.1294 (pipeline min q 0.1294)
+shared BP: terms 10502; max |log10 p_wall mine - pipeline| = 1.84e-13; max |log10 p_fisher diff| = 5.55e-15; counts equal: TRUE; BH(min 5): n_sig 0, min q 0.3376 (pipeline min q 0.3376)
+shared CC: terms 1367; max |log10 p_wall mine - pipeline| = 4.55e-13; max |log10 p_fisher diff| = 4.00e-15; counts equal: TRUE; BH(min 5): n_sig 0, min q 1.0000 (pipeline min q 1.0000)
+shared MF: terms 2794; max |log10 p_wall mine - pipeline| = 1.87e-13; max |log10 p_fisher diff| = 8.44e-15; counts equal: TRUE; BH(min 5): n_sig 0, min q 1.0000 (pipeline min q 1.0000)

@@ -1,0 +1,9 @@
+rule,cpg_tested,removed,pct_removed,ploidy_dml,heat_dml,shared,locus_cpg_kept
+no upper filter (legacy),480579,0,0,1038,2351,200,54
+"99.9th pct, base >= 2 reads, remove >= cutoff in any library (pipeline corrected)",454555,26024,5.42,952,2273,159,0
+"same, remove only > cutoff",455253,25326,5.27,952,2273,159,0
+"99.9th pct, base >= 1 read (mincov = 1 import)",451328,29251,6.09,949,2267,159,0
+"99.9th pct, base >= 10 reads (methRead default mincov = 10)",469453,11126,2.32,959,2292,159,0
+"base >= 2, remove only if >= cutoff in at least 2 libraries",462296,18283,3.8,957,2285,159,0
+"base >= 2, remove only if >= cutoff in more than half (12+) of libraries",475175,5404,1.12,1002,2322,176,20
+"base >= 2, remove only if >= cutoff in all 22 libraries",478611,1968,0.41,1038,2351,200,54

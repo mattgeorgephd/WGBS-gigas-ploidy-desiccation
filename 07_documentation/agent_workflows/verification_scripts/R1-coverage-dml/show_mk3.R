@@ -1,0 +1,6 @@
+suppressPackageStartupMessages(library(methylKit))
+cat("\n===== calculateDiffMeth methylBase =====\n"); print(getMethod("calculateDiffMeth", "methylBase")@.Data)
+cat("\n===== .checkCovs =====\n"); print(methylKit:::.checkCovs)
+cat("\n===== getMethylDiff =====\n"); print(getMethod("getMethylDiff", "methylDiff")@.Data)
+cat("\n===== reorganize methylBase =====\n"); print(getMethod("reorganize", "methylBase")@.Data)
+cat("\n===== p.adjusted =====\n"); print(methylKit:::p.adjusted)

@@ -1,0 +1,48 @@
+group sizes: ploidy 11 11  heat 12 10 
+          
+           control heat
+  diploid        6    5
+  triploid       6    5
+rows: 454555 
+cells where coverage != numCs+numTs: 18982 of 10000210 (max abs diff 1)
+mean<10: 385079 (84.72%); mean>90: 8420 (1.85%); eligible [10,90]: 61056 (13.43%)
+max |meth.diff - weighted pooled diff|: ploidy 6.750156e-14  heat 6.750156e-14 
+max |meth.diff - unweighted diff|: ploidy 18.48203  heat 17.91076 
+cor(weighted, unweighted diff): ploidy 0.9589421  heat 0.9766266 
+
+[ploidy] 952 DML; mean range 10.367 to 89.081; outside [10,90]: 0 (below 0, above 0)
+  DML with mean in [10,12): 4; [12,15): 11; [15,20): 25; [20,80]: 854; (80,85]: 38; (85,88]: 18; (88,90]: 2
+  DML whose UNWEIGHTED group difference is <= 20: 253 (min |unweighted diff| 8.56)
+
+[heat] 2273 DML; mean range 10.256 to 90.040; outside [10,90]: 1 (below 0, above 1)
+    set         chr    start meth.diff unweighted_mean weighted_mean
+1: heat NC_047562.1 38931611 -20.39773        90.03966      87.89346
+   unweighted_diff    g1_w     g0_w
+1:       -17.52585 77.6699 98.06763
+  DML with mean in [10,12): 14; [12,15): 27; [15,20): 75; [20,80]: 2003; (80,85]: 123; (85,88]: 25; (88,90]: 5
+  DML whose UNWEIGHTED group difference is <= 20: 382 (min |unweighted diff| 9.26)
+
+DML rows summed over two lists: 3225; distinct loci: 3066; distinct loci outside [10,90]: 1
+
+Theoretical lower bound on the unweighted mean given |unweighted diff| > 20:
+  ploidy 11 v 11:  10   heat 10 v 12: smaller group high: 9.090909  larger group high: 10.90909 
+tested CpGs with mean in [9.0909,10): 2513; in (90, 90.909]: 954
+[ploidy] CpGs with |meth.diff|>20: 952; of them outside [10,90]: 0; min mean 10.37 max mean 89.08
+Empty data.table (0 rows and 5 cols): chr,start,meth.diff,q,mean
+[heat] CpGs with |meth.diff|>20: 2273; of them outside [10,90]: 1; min mean 10.26 max mean 90.04
+           chr    start meth.diff            q     mean
+1: NC_047562.1 38931611 -20.39773 8.785071e-10 90.03966
+
+Median per-CpG coverage (after normalization) by library:
+ numCs1  numCs2  numCs3  numCs4  numCs5  numCs6  numCs7  numCs8  numCs9 numCs10 
+     27      27      28      26      27      26      25      28      28      30 
+numCs11 numCs12 numCs13 numCs14 numCs15 numCs16 numCs17 numCs18 numCs19 numCs20 
+     23      24      20      24      22      24      24      20      27      23 
+numCs21 numCs22 
+     25      24 
+mean coverage heat cohort / control cohort (per CpG ratio, quantiles):
+       1%        5%       25%       50%       75%       95%       99% 
+0.8239344 0.9268293 1.0585859 1.1515850 1.2547231 1.4394261 1.6285714 
+max share of a group's coverage held by one library (ploidy groups), quantiles:
+      50%       90%       99%     99.9%      100% 
+0.1372549 0.1640867 0.2045455 0.2441308 0.3239437 

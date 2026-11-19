@@ -1,0 +1,161 @@
+
+Warning messages:
+1: In ns(lb, df = 5) :
+  shoving 'interior' knots matching boundary knots to inside
+2: In ns(lb, df = 5) :
+  shoving 'interior' knots matching boundary knots to inside
+3: In ns(lb, df = 5) :
+  shoving 'interior' knots matching boundary knots to inside
+4: In ns(lb, df = 5) :
+  shoving 'interior' knots matching boundary knots to inside
+5: In ns(lb, df = 5) :
+  shoving 'interior' knots matching boundary knots to inside
+6: In ns(lb, df = 5) :
+  shoving 'interior' knots matching boundary knots to inside
+7: In ns(lb, df = 5) :
+  shoving 'interior' knots matching boundary knots to inside
+8: In ns(lb, df = 5) :
+  shoving 'interior' knots matching boundary knots to inside
+9: In ns(lb, df = 5) :
+  shoving 'interior' knots matching boundary knots to inside
+BH q<0.05 counts by minimum term size: logistic/Poisson-binomial test against the Wallenius test
+       set ontology min_genes terms alt_q05 alt_min_q wall_q05 wall_min_q
+ 1:   heat       BP         5  4823       0    0.9421        0     1.0000
+ 2:   heat       BP        10  3184       0    0.6953        0     0.9105
+ 3:   heat       BP        15  2454       0    0.5359        0     0.7777
+ 4:   heat       BP        20  2019       0    0.4409        0     0.6711
+ 5:   heat       BP        50  1044       0    0.2280        0     0.4845
+ 6:   heat       BP       100   575       0    0.1256        0     0.2668
+ 7:   heat       CC         5   642       1    0.0234        0     0.0754
+ 8:   heat       CC        10   454       5    0.0166        0     0.0533
+ 9:   heat       CC        15   375       5    0.0137        1     0.0440
+10:   heat       CC        20   327       5    0.0119        1     0.0384
+11:   heat       CC        50   188       3    0.0069        1     0.0221
+12:   heat       CC       100   119       5    0.0043        3     0.0140
+13:   heat       MF         5   913       0    0.1194        0     0.1294
+14:   heat       MF        10   590       0    0.0882        0     0.1205
+15:   heat       MF        15   429       0    0.0686        0     0.1051
+16:   heat       MF        20   360       0    0.0719        0     0.1103
+17:   heat       MF        50   181       5    0.0362        0     0.0554
+18:   heat       MF       100   114       6    0.0228        5     0.0349
+19: ploidy       BP         5  4823       0    0.1626        0     0.3602
+20: ploidy       BP        10  3184       0    0.1074        0     0.2378
+21: ploidy       BP        15  2454       0    0.0903        0     0.2016
+22: ploidy       BP        20  2019       0    0.0743        0     0.1659
+23: ploidy       BP        50  1044      21    0.0384        0     0.0858
+24: ploidy       BP       100   575      38    0.0212       10     0.0472
+25: ploidy       CC         5   642       0    0.1261        0     0.2658
+26: ploidy       CC        10   454       0    0.0892        0     0.1879
+27: ploidy       CC        15   375       0    0.0737        0     0.1552
+28: ploidy       CC        20   327       0    0.0642        0     0.1354
+29: ploidy       CC        50   188       2    0.0369        0     0.0778
+30: ploidy       CC       100   119       9    0.0234        2     0.0493
+31: ploidy       MF         5   913       0    0.0564        0     0.3296
+32: ploidy       MF        10   590       1    0.0365        0     0.2130
+33: ploidy       MF        15   429       1    0.0265        0     0.1549
+34: ploidy       MF        20   360       1    0.0223        0     0.1300
+35: ploidy       MF        50   181       1    0.0112        0     0.0653
+36: ploidy       MF       100   114       1    0.0070        1     0.0412
+37: shared       BP         5  4823       0    0.2801        0     0.3376
+38: shared       BP        10  3184       0    0.1849        0     0.2229
+39: shared       BP        15  2454       0    0.1425        0     0.1718
+40: shared       BP        20  2019       0    0.1173        0     0.1413
+41: shared       BP        50  1044       0    0.6653        0     1.0000
+42: shared       BP       100   575       0    0.6901        0     0.9445
+43: shared       CC         5   642       0    0.3619        0     1.0000
+44: shared       CC        10   454       0    0.2559        0     1.0000
+45: shared       CC        15   375       0    0.2114        0     0.9858
+46: shared       CC        20   327       0    0.1843        0     0.9025
+47: shared       CC        50   188       0    0.1060        0     0.8242
+48: shared       CC       100   119       0    0.0671        0     0.5397
+49: shared       MF         5   913       0    1.0000        0     1.0000
+50: shared       MF        10   590       0    1.0000        0     1.0000
+51: shared       MF        15   429       0    1.0000        0     1.0000
+52: shared       MF        20   360       0    1.0000        0     1.0000
+53: shared       MF        50   181       0    0.9845        0     1.0000
+54: shared       MF       100   114       0    0.7726        0     0.9698
+       set ontology min_genes terms alt_q05 alt_min_q wall_q05 wall_min_q
+       top_alt top_alt_n                                 top_term
+ 1: GO:0033043       356     regulation of organelle organization
+ 2: GO:0033043       356     regulation of organelle organization
+ 3: GO:0033043       356     regulation of organelle organization
+ 4: GO:0033043       356     regulation of organelle organization
+ 5: GO:0033043       356     regulation of organelle organization
+ 6: GO:0033043       356     regulation of organelle organization
+ 7: GO:0043226      4535                                organelle
+ 8: GO:0043226      4535                                organelle
+ 9: GO:0043226      4535                                organelle
+10: GO:0043226      4535                                organelle
+11: GO:0043226      4535                                organelle
+12: GO:0043226      4535                                organelle
+13: GO:0001223         9        transcription coactivator binding
+14: GO:0030554       871                adenyl nucleotide binding
+15: GO:0030554       871                adenyl nucleotide binding
+16: GO:0030554       871                adenyl nucleotide binding
+17: GO:0030554       871                adenyl nucleotide binding
+18: GO:0030554       871                adenyl nucleotide binding
+19: GO:0051656       120  establishment of organelle localization
+20: GO:0051656       120  establishment of organelle localization
+21: GO:0051656       120  establishment of organelle localization
+22: GO:0051656       120  establishment of organelle localization
+23: GO:0051656       120  establishment of organelle localization
+24: GO:0051656       120  establishment of organelle localization
+25: GO:0005829      1347                                  cytosol
+26: GO:0005829      1347                                  cytosol
+27: GO:0005829      1347                                  cytosol
+28: GO:0005829      1347                                  cytosol
+29: GO:0005829      1347                                  cytosol
+30: GO:0005829      1347                                  cytosol
+31: GO:0140657       241                   ATP-dependent activity
+32: GO:0140657       241                   ATP-dependent activity
+33: GO:0140657       241                   ATP-dependent activity
+34: GO:0140657       241                   ATP-dependent activity
+35: GO:0140657       241                   ATP-dependent activity
+36: GO:0140657       241                   ATP-dependent activity
+37: GO:1902107        26 positive regulation of leukocyte differe
+38: GO:1902107        26 positive regulation of leukocyte differe
+39: GO:1902107        26 positive regulation of leukocyte differe
+40: GO:1902107        26 positive regulation of leukocyte differe
+41: GO:0051240       257 positive regulation of multicellular org
+42: GO:0051240       257 positive regulation of multicellular org
+43: GO:0030141       109                        secretory granule
+44: GO:0030141       109                        secretory granule
+45: GO:0030141       109                        secretory granule
+46: GO:0030141       109                        secretory granule
+47: GO:0030141       109                        secretory granule
+48: GO:0030141       109                        secretory granule
+49: GO:0016812         5 hydrolase activity, acting on carbon-nit
+50: GO:0019829        16 ATPase-coupled monoatomic cation transme
+51: GO:0019829        16 ATPase-coupled monoatomic cation transme
+52: GO:0008134       148             transcription factor binding
+53: GO:0008134       148             transcription factor binding
+54: GO:0008134       148             transcription factor binding
+       top_alt top_alt_n                                 top_term
+
+Agreement of the two tests (terms with >= 5 genes): Spearman correlation of p-values, and ratio of medians
+      set ontology terms spearman share_alt_smaller alt_p05 wall_p05 alt_p001
+1: ploidy       BP  4823    0.994             0.343  0.0554   0.0489  0.00435
+2: ploidy       CC   642    0.993             0.386  0.0576   0.0498  0.00312
+3: ploidy       MF   913    0.988             0.369  0.0624   0.0613  0.00219
+4:   heat       BP  4823    0.996             0.257  0.0427   0.0398  0.00041
+5:   heat       CC   642    0.993             0.380  0.0841   0.0748  0.00779
+6:   heat       MF   913    0.995             0.352  0.0646   0.0635  0.00657
+7: shared       BP  4823    0.895             0.501  0.0251   0.0216  0.00041
+8: shared       CC   642    0.913             0.525  0.0296   0.0218  0.00156
+9: shared       MF   913    0.824             0.446  0.0274   0.0252  0.00000
+   wall_p001
+1:   0.00228
+2:   0.00312
+3:   0.00110
+4:   0.00021
+5:   0.00312
+6:   0.00438
+7:   0.00041
+8:   0.00000
+9:   0.00000
+
+organelle (GO:0043226), heat, CC:
+    set ontology      go_id n_cat   x expected_logistic       p_alt     p_score
+1: heat       CC GO:0043226  4535 951            904.38 3.65252e-05 3.65252e-05
+    p_wallenius
+1: 0.0001174415

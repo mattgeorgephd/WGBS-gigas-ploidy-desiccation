@@ -1,0 +1,74 @@
+   legacy_sample_index library_id   ploidy treatment             cohort
+1                    1   zr3534_1  diploid      heat    heat_experiment
+2                    2   zr3534_2  diploid      heat    heat_experiment
+3                    3   zr3534_3  diploid      heat    heat_experiment
+4                    4   zr3534_4  diploid      heat    heat_experiment
+5                    5   zr3534_5  diploid      heat    heat_experiment
+6                    6   zr3534_6 triploid      heat    heat_experiment
+7                    7   zr3534_7 triploid      heat    heat_experiment
+8                    8   zr3534_8 triploid      heat    heat_experiment
+9                    9   zr3534_9 triploid      heat    heat_experiment
+10                  10  zr3534_10 triploid      heat    heat_experiment
+11                  11   zr3644_1  diploid   control control_experiment
+12                  12   zr3644_2  diploid   control control_experiment
+13                  13   zr3644_3  diploid   control control_experiment
+14                  14   zr3644_4  diploid   control control_experiment
+15                  15   zr3644_5  diploid   control control_experiment
+16                  16   zr3644_6  diploid   control control_experiment
+17                  17  zr3644_13 triploid   control control_experiment
+18                  18  zr3644_14 triploid   control control_experiment
+19                  19  zr3644_15 triploid   control control_experiment
+20                  20  zr3644_16 triploid   control control_experiment
+21                  21  zr3644_17 triploid   control control_experiment
+22                  22  zr3644_18 triploid   control control_experiment
+   acute_heat_shock                                        cov_file
+1                no  zr3534_1_R1.CpG_report.merged_CpG_evidence.cov
+2                no  zr3534_2_R1.CpG_report.merged_CpG_evidence.cov
+3                no  zr3534_3_R1.CpG_report.merged_CpG_evidence.cov
+4               yes  zr3534_4_R1.CpG_report.merged_CpG_evidence.cov
+5               yes  zr3534_5_R1.CpG_report.merged_CpG_evidence.cov
+6                no  zr3534_6_R1.CpG_report.merged_CpG_evidence.cov
+7                no  zr3534_7_R1.CpG_report.merged_CpG_evidence.cov
+8                no  zr3534_8_R1.CpG_report.merged_CpG_evidence.cov
+9               yes  zr3534_9_R1.CpG_report.merged_CpG_evidence.cov
+10              yes zr3534_10_R1.CpG_report.merged_CpG_evidence.cov
+11               no  zr3644_1_R1.CpG_report.merged_CpG_evidence.cov
+12               no  zr3644_2_R1.CpG_report.merged_CpG_evidence.cov
+13               no  zr3644_3_R1.CpG_report.merged_CpG_evidence.cov
+14               no  zr3644_4_R1.CpG_report.merged_CpG_evidence.cov
+15               no  zr3644_5_R1.CpG_report.merged_CpG_evidence.cov
+16               no  zr3644_6_R1.CpG_report.merged_CpG_evidence.cov
+17               no zr3644_13_R1.CpG_report.merged_CpG_evidence.cov
+18               no zr3644_14_R1.CpG_report.merged_CpG_evidence.cov
+19               no zr3644_15_R1.CpG_report.merged_CpG_evidence.cov
+20               no zr3644_16_R1.CpG_report.merged_CpG_evidence.cov
+21               no zr3644_17_R1.CpG_report.merged_CpG_evidence.cov
+22               no zr3644_18_R1.CpG_report.merged_CpG_evidence.cov
+
+[legacy] coverage == numCs + numTs in all cells: FALSE (cells where it fails: 19811)
+[legacy] max |numCs/(numCs+numTs) - numCs/coverage| in percent: 5.7143
+[legacy] ploidy DML: methylKit::PCASamples PC1 23.9265% PC2 8.8280% | pipeline 23.9265% 8.8280% | max |score diff| PC1 4.26e-14 PC2 2.4e-14 | loci in 1038, in PCA 519 (pipeline says 519)
+       DML whose start coordinate occurs at more than one analysed CpG: 9; DML for which the first start-only match is another row: 6
+       PCA with the legacy start-only matching (first match): PC1 24.02% PC2 8.77%
+       heat map matrix 1038 x 22: min 0.000 max 100.000; rows with zero variance: 0; any non-finite: FALSE
+[legacy] heat DML: methylKit::PCASamples PC1 25.4264% PC2 7.8137% | pipeline 25.4264% 7.8137% | max |score diff| PC1 5.68e-14 PC2 1.37e-13 | loci in 2351, in PCA 1175 (pipeline says 1175)
+       DML whose start coordinate occurs at more than one analysed CpG: 38; DML for which the first start-only match is another row: 15
+       PCA with the legacy start-only matching (first match): PC1 25.38% PC2 7.81%
+       heat map matrix 2351 x 22: min 0.000 max 100.000; rows with zero variance: 0; any non-finite: FALSE
+[legacy] shared heat map matrix 200 x 22: min 0.000 max 100.000
+[legacy] shared classes: both_hyper 28, both_hypo 49, opposite 123 | sign check failures: 0 | meth.diff exactly 0: 0
+[legacy] opposite: heat>0 78, heat<0 45; ranges ploidy diff [-42.4, 40.2], heat diff [-46.6, 46.1]
+
+[corrected] coverage == numCs + numTs in all cells: FALSE (cells where it fails: 18982)
+[corrected] max |numCs/(numCs+numTs) - numCs/coverage| in percent: 5.7143
+[corrected] ploidy DML: methylKit::PCASamples PC1 24.0045% PC2 9.0613% | pipeline 24.0045% 9.0613% | max |score diff| PC1 4.44e-14 PC2 4.8e-14 | loci in 952, in PCA 476 (pipeline says 476)
+       DML whose start coordinate occurs at more than one analysed CpG: 7; DML for which the first start-only match is another row: 5
+       PCA with the legacy start-only matching (first match): PC1 24.04% PC2 9.01%
+       heat map matrix 952 x 22: min 0.000 max 100.000; rows with zero variance: 0; any non-finite: FALSE
+[corrected] heat DML: methylKit::PCASamples PC1 25.5670% PC2 7.7466% | pipeline 25.5670% 7.7466% | max |score diff| PC1 5.68e-14 PC2 1.33e-13 | loci in 2273, in PCA 1136 (pipeline says 1136)
+       DML whose start coordinate occurs at more than one analysed CpG: 32; DML for which the first start-only match is another row: 11
+       PCA with the legacy start-only matching (first match): PC1 25.59% PC2 7.73%
+       heat map matrix 2273 x 22: min 0.000 max 100.000; rows with zero variance: 0; any non-finite: FALSE
+[corrected] shared heat map matrix 159 x 22: min 0.000 max 100.000
+[corrected] shared classes: both_hyper 27, both_hypo 49, opposite 83 | sign check failures: 0 | meth.diff exactly 0: 0
+[corrected] opposite: heat>0 39, heat<0 44; ranges ploidy diff [-42.4, 40.2], heat diff [-46.6, 46.1]

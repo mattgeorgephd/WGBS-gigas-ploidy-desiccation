@@ -1,0 +1,15 @@
+records: 781312 
+    mode               set      n pipeline_csv as_bed as_1based te_only te_or_unknown simple_low_sat gained_with_1based pct_as_bed pct_1based pct_te_only pct_te_or_unknown
+1 legacy all analysed CpGs 480579       109966 109966    110067  106342        108502           1584                101      22.88      22.90       22.13             22.58
+2 legacy     eligible CpGs  65480        19411  19411     19426   18796         19306            124                 15      29.64      29.67       28.70             29.48
+3 legacy        ploidy DML   1038          194    194       194     189           192              2                  0      18.69      18.69       18.21             18.50
+4 legacy          heat DML   2351          463    463       465     456           462              3                  2      19.69      19.78       19.40             19.65
+5 legacy            shared    200           28     28        28      28            28              0                  0      14.00      14.00       14.00             14.00
+[legacy] CpGs counted as TE by the pipeline that overlap no DNA/RC/LTR/LINE/SINE record: 3697 of 109966 (3.4%); of those, in Unknown: 2158
+       mode               set      n pipeline_csv as_bed as_1based te_only te_or_unknown simple_low_sat gained_with_1based pct_as_bed pct_1based pct_te_only pct_te_or_unknown
+1 corrected all analysed CpGs 454555        98671  98671     98763   95705         97738           1039                 92      21.71      21.73       21.05             21.50
+2 corrected     eligible CpGs  61056        17370  17370     17381   16813         17271            114                 11      28.45      28.47       27.54             28.29
+3 corrected        ploidy DML    952          181    181       181     176           179              2                  0      19.01      19.01       18.49             18.80
+4 corrected          heat DML   2273          458    458       459     450           456              3                  1      20.15      20.19       19.80             20.06
+5 corrected            shared    159           26     26        26      26            26              0                  0      16.35      16.35       16.35             16.35
+[corrected] CpGs counted as TE by the pipeline that overlap no DNA/RC/LTR/LINE/SINE record: 3034 of 98671 (3.1%); of those, in Unknown: 2031

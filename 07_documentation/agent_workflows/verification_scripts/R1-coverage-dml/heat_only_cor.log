@@ -1,0 +1,16 @@
+pass 1 zr3534_1: common 10390893
+pass 1 zr3534_2: common 9312595
+pass 1 zr3534_3: common 8882087
+pass 1 zr3534_4: common 8363567
+pass 1 zr3534_5: common 8002418
+pass 1 zr3534_6: common 7792766
+pass 1 zr3534_7: common 7592254
+pass 1 zr3534_8: common 7478342
+pass 1 zr3534_9: common 7359121
+pass 1 zr3534_10: common 7261925
+heat-only set: 10 libraries, 7261925 CpGs with >= 1 read in all of them
+   1x:  7261925 CpGs ; Pearson r (methylKit-normalized) 0.8218 to 0.8702 ; on raw counts 0.8224 to 0.8706
+   3x:  5416388 CpGs ; Pearson r (methylKit-normalized) 0.8646 to 0.9111 ; on raw counts 0.8658 to 0.9114
+   5x:  4194066 CpGs ; Pearson r (methylKit-normalized) 0.8781 to 0.9253 ; on raw counts 0.8790 to 0.9258
+  10x:  1921856 CpGs ; Pearson r (methylKit-normalized) 0.8854 to 0.9396 ; on raw counts 0.8871 to 0.9400
+  20x:   193521 CpGs ; Pearson r (methylKit-normalized) 0.8622 to 0.9279 ; on raw counts 0.8629 to 0.9279

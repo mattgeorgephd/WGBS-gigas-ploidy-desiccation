@@ -1,0 +1,4 @@
+data_gene_annotations_BOTH_geneid2go-union1x-BOTH.tab          lines  48263 ; equals the full-map lines of its ids, same order: TRUE
+data_gene_annotations_RONIT_geneid2go-union1x-RONIT.tab        lines  81448 ; equals the full-map lines of its ids, same order: TRUE
+data_gene_annotations_YAAMINI_geneid2go-union1x-YAAMINI.tab    lines  73634 ; equals the full-map lines of its ids, same order: TRUE
+repo copy identical to gannet copy (data/gene_annotations/BOTH): TRUE 

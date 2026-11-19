@@ -1,0 +1,28 @@
+
+groupGOTerms: 	GOBPTerm, GOMFTerm, GOCCTerm environments built.
+eligible CpGs 65480; with non-zero propensity 23809
+   list_size ontology draws genes_hit any_q05 max_terms any_q05_min15
+1:    ploidy       BP   100     810.5    0.03         7          0.06
+2:    ploidy       CC   100     810.5    0.01         1          0.07
+3:    ploidy       MF   100     810.5    0.05        14          0.05
+4:      heat       BP   100    1564.0    0.13        38          0.18
+5:      heat       CC   100    1564.0    0.17        10          0.23
+6:      heat       MF   100    1564.0    0.06         9          0.12
+   median_min_q q10_min_q w_p05_big fisher_median organelle_p_le_real
+1:        1.000     0.185    0.0699          14.5                  NA
+2:        0.908     0.121    0.0581           0.0                0.00
+3:        0.815     0.154    0.0709           2.0                  NA
+4:        0.636     0.035    0.1068          69.0                  NA
+5:        0.288     0.025    0.0892           2.0                0.04
+6:        0.537     0.090    0.1050          12.0                  NA
+   organelle_p_median
+1:                 NA
+2:             0.0720
+3:                 NA
+4:                 NA
+5:             0.0057
+6:                 NA
+draws with a hit in any ontology:
+   list_size share
+1:    ploidy  0.07
+2:      heat  0.30

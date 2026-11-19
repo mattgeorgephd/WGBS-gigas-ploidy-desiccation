@@ -1,0 +1,40 @@
+"set","lines_in_file","reader","rows","transcripts","genes","dml","multi_line_rows","warnings","pct_rows"
+"ploidy",46626,"A defaults (as legacy script)",10979,623,171,302,14,"EOF within quoted string | number of items read is not a multiple of the number of columns",23.55
+"ploidy",46626,"B quote = '' (quoting off)",46626,2348,622,876,0,"",100
+"ploidy",46626,"C quote = '""' only",46626,2348,622,876,0,"",100
+"ploidy",46626,"D quote = ""'"" only",10981,624,172,303,16,"EOF within quoted string | number of items read is not a multiple of the number of columns",23.55
+"ploidy",46626,"E defaults + comment.char = ''",10979,623,171,302,14,"EOF within quoted string | number of items read is not a multiple of the number of columns",23.55
+"ploidy",46626,"F defaults + fill = TRUE",10979,623,171,302,14,"EOF within quoted string",23.55
+"ploidy",46626,"G defaults + fill = TRUE + comment.char=''",10979,623,171,302,14,"EOF within quoted string",23.55
+"ploidy",46626,"H quote = '' + comment.char = '' + fill",46626,2348,622,876,0,"",100
+"ploidy",46626,"I defaults + stringsAsFactors = TRUE",10979,623,171,302,14,"EOF within quoted string | number of items read is not a multiple of the number of columns",23.55
+"ploidy",46626,"J read.delim(header = FALSE) defaults",46626,2348,622,876,0,"",100
+"ploidy",46626,"K defaults + allowEscapes = TRUE",10979,623,171,302,14,"EOF within quoted string | number of items read is not a multiple of the number of columns",23.55
+"ploidy",46626,"L defaults + strip.white = TRUE",10979,623,171,302,14,"EOF within quoted string | number of items read is not a multiple of the number of columns",23.55
+"ploidy",46626,"M defaults, colClasses = 'character'",10979,623,171,302,14,"EOF within quoted string | number of items read is not a multiple of the number of columns",23.55
+"heat",106621,"A defaults (as legacy script)",81109,3444,949,1543,44,"",76.07
+"heat",106621,"B quote = '' (quoting off)",106621,4606,1237,1900,0,"",100
+"heat",106621,"C quote = '""' only",106621,4606,1237,1900,0,"",100
+"heat",106621,"D quote = ""'"" only",81109,3444,949,1543,44,"",76.07
+"heat",106621,"E defaults + comment.char = ''",81109,3444,949,1543,44,"",76.07
+"heat",106621,"F defaults + fill = TRUE",81109,3444,949,1543,44,"",76.07
+"heat",106621,"G defaults + fill = TRUE + comment.char=''",81109,3444,949,1543,44,"",76.07
+"heat",106621,"H quote = '' + comment.char = '' + fill",106621,4606,1237,1900,0,"",100
+"heat",106621,"I defaults + stringsAsFactors = TRUE",81109,3444,949,1543,44,"",76.07
+"heat",106621,"J read.delim(header = FALSE) defaults",106621,4606,1237,1900,0,"",100
+"heat",106621,"K defaults + allowEscapes = TRUE",81109,3444,949,1543,44,"",76.07
+"heat",106621,"L defaults + strip.white = TRUE",81109,3444,949,1543,44,"",76.07
+"heat",106621,"M defaults, colClasses = 'character'",81109,3444,949,1543,44,"",76.07
+"shared",7029,"A defaults (as legacy script)",6941,379,117,171,5,"",98.75
+"shared",7029,"B quote = '' (quoting off)",7029,379,117,171,0,"",100
+"shared",7029,"C quote = '""' only",7029,379,117,171,0,"",100
+"shared",7029,"D quote = ""'"" only",6941,379,117,171,5,"",98.75
+"shared",7029,"E defaults + comment.char = ''",6941,379,117,171,5,"",98.75
+"shared",7029,"F defaults + fill = TRUE",6941,379,117,171,5,"",98.75
+"shared",7029,"G defaults + fill = TRUE + comment.char=''",6941,379,117,171,5,"",98.75
+"shared",7029,"H quote = '' + comment.char = '' + fill",7029,379,117,171,0,"",100
+"shared",7029,"I defaults + stringsAsFactors = TRUE",6941,379,117,171,5,"",98.75
+"shared",7029,"J read.delim(header = FALSE) defaults",7029,379,117,171,0,"",100
+"shared",7029,"K defaults + allowEscapes = TRUE",6941,379,117,171,5,"",98.75
+"shared",7029,"L defaults + strip.white = TRUE",6941,379,117,171,5,"",98.75
+"shared",7029,"M defaults, colClasses = 'character'",6941,379,117,171,5,"",98.75

@@ -1,0 +1,14 @@
+bed_files/BOTH/union_1x.BOTH.bedgraph.bed ::    head: NC_001276.1	34	36
+   head: NC_001276.1	123	125
+rows=12910231 NF3=12910231 width2=12910231 :: 36 s
+curl: (92) HTTP/2 stream 1 was not closed cleanly: INTERNAL_ERROR (err 2)
+bed_files/BOTH/union_1x.bedgraph.bed ::    head: NC_001276.1	34	36
+   head: NC_001276.1	123	125
+rows=12672405 NF3=12672405 width2=12672404 width-169516=1 :: 226 s
+bed_files/RONIT/union_1x.RONIT.bedgraph.bed ::    head: NC_001276.1	34	36
+   head: NC_001276.1	123	125
+rows=12726299 NF3=12726299 width2=12726299 :: 27 s
+bed_files/YAAMINI/union_1x.YAAMINI.bedgraph.bed ::    head: NC_001276.1	34	36
+   head: NC_001276.1	123	125
+rows=12604319 NF3=12604319 width2=12604319 :: 19 s
+exit 0

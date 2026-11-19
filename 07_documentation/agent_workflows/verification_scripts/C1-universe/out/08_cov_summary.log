@@ -1,0 +1,17 @@
+                status transcripts covered_ctrl_zr3644_14 covered_heat_zr3534_8
+1: present in universe       27469                  27373                 27432
+2:      missing: block       15666                  15602                 15640
+3:  missing: 49 others          49                     43                    43
+   covered_either pct_either covered_union22_legacy
+1:          27450      99.93                  27469
+2:          15652      99.91                  15665
+3:             43      87.76                     43
+40 sampled block genes: covered in zr3644_14: 39 ; in zr3534_8: 40 ; in either: 40 ; range of covered CpGs zr3644_14: 0-956 ; zr3534_8: 16-983 
+
+lower-bound line weights (union CpGs x GOslim rows of GO ids in the recovered table): all 239.4 M; present 135.0 M; block 104.3 M (43.6% of all)
+notebook: lines written for BOTH 157469551; ratio written / weight of present transcripts = 1.166
+expected complete BOTH table by the heat-only ratio (276062519 lines from 25779364 input lines): 279.5 M lines; written 56.3% of that
+share of GO ids (transcript x GO pairs) found in the recovered GOslim table: 78.2 %
+gene 105323906: 50 annotated mRNAs, union CpGs 2823, weight 12.6 M lines = 5.2% of all; mRNAs in universe 31, in block 19
+cumulative weight at hole start (XM_011455141.3): 0.150; at hole end (XM_034461018.1): 0.586
+observed file: junction at byte 5283561472 of 20149928521 = 0.262 of the written file

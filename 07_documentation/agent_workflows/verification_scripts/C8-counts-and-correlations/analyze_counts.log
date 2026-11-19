@@ -1,0 +1,89 @@
+reference CpG sites: 13245836  libraries: 22  first-line CpG found for all: True
+[    1s] all lines >= 1x: any=12918252 all22=5852940  >=2 libs=12699295  >=3 libs=12498767
+      union at 1x on linkage groups: 11735744 of 12020316 reference CpGs
+      union at 1x on unplaced scaffolds: 1182115 of 1225127 reference CpGs
+      union at 1x on mitochondrial genome: 393 of 393 reference CpGs
+      reference CpGs with no read in any library: 327584
+      subsets of the 22 libraries whose union equals 12794074: 22 (within +-100: 3613); sizes of exact hits: [12, 13, 14]
+      of these, natural subsets (leave-one/two-out, prefixes, group unions, shock-excluded): []
+      closest natural subsets: [('last 16 libraries in legacy order', 12799432, 5358), ('first 12 libraries in legacy order', 12801892, 7818), ('last 15 libraries in legacy order', 12775861, -18213), ('first 11 libraries in legacy order', 12773551, -20523), ('first 13 libraries in legacy order', 12819988, 25914), ('groups diploid/control+diploid/heat+triploid/control', 12826500, 32426)]
+        e.g. ['zr3534_1', 'zr3534_2', 'zr3534_3', 'zr3534_5', 'zr3534_6', 'zr3534_8', 'zr3534_9', 'zr3534_10', 'zr3644_1', 'zr3644_2', 'zr3644_13', 'zr3644_14']
+        e.g. ['zr3534_1', 'zr3534_3', 'zr3534_4', 'zr3534_5', 'zr3534_7', 'zr3534_8', 'zr3644_1', 'zr3644_2', 'zr3644_3', 'zr3644_4', 'zr3644_5', 'zr3644_6', 'zr3644_15']
+        e.g. ['zr3534_1', 'zr3534_2', 'zr3534_3', 'zr3534_4', 'zr3534_5', 'zr3534_6', 'zr3534_8', 'zr3534_9', 'zr3644_3', 'zr3644_4', 'zr3644_14', 'zr3644_15']
+        e.g. ['zr3534_1', 'zr3534_2', 'zr3534_5', 'zr3534_6', 'zr3534_7', 'zr3534_9', 'zr3534_10', 'zr3644_1', 'zr3644_3', 'zr3644_4', 'zr3644_13', 'zr3644_15', 'zr3644_16']
+        e.g. ['zr3534_1', 'zr3534_2', 'zr3534_3', 'zr3534_4', 'zr3534_7', 'zr3534_8', 'zr3534_10', 'zr3644_2', 'zr3644_5', 'zr3644_6', 'zr3644_13', 'zr3644_14', 'zr3644_15', 'zr3644_16']
+      subsets with union within +-5000 of target: 180246 -> 18.02 subsets per integer value (chance hits expected)
+      leave-one-out unions: [('zr3534_1', 12905984), ('zr3534_2', 12908331), ('zr3534_3', 12906729), ('zr3534_4', 12905658), ('zr3534_5', 12899528), ('zr3534_6', 12901768), ('zr3534_7', 12909122), ('zr3534_8', 12905108), ('zr3534_9', 12908120), ('zr3534_10', 12906402), ('zr3644_1', 12905680), ('zr3644_2', 12908425), ('zr3644_3', 12913870), ('zr3644_4', 12907637), ('zr3644_5', 12911842), ('zr3644_6', 12912760), ('zr3644_13', 12912527), ('zr3644_14', 12909478), ('zr3644_15', 12910179), ('zr3644_16', 12913624), ('zr3644_17', 12909160), ('zr3644_18', 12910655)]
+[    3s] all lines >= 2x: any=12470054 all22=4630424  >=2 libs=12083309  >=3 libs=11759655
+      subsets of the 22 libraries whose union equals 12794074: 0 (within +-100: 0); sizes of exact hits: []
+      of these, natural subsets (leave-one/two-out, prefixes, group unions, shock-excluded): []
+      closest natural subsets: [('first 22 libraries in legacy order', 12470054, -324020), ('all but zr3644_3', 12464921, -329153), ('all but zr3644_16', 12464173, -329901), ('all but zr3644_5', 12462259, -331815), ('all but zr3644_6', 12461886, -332188), ('all but zr3644_13', 12461194, -332880)]
+      subsets with union within +-5000 of target: 0 -> 0.00 subsets per integer value (chance hits expected)
+      leave-one-out unions: [('zr3534_1', 12445441), ('zr3534_2', 12450427), ('zr3534_3', 12447293), ('zr3534_4', 12444313), ('zr3534_5', 12432236), ('zr3534_6', 12440237), ('zr3534_7', 12453617), ('zr3534_8', 12444681), ('zr3534_9', 12452055), ('zr3534_10', 12447982), ('zr3644_1', 12449024), ('zr3644_2', 12452401), ('zr3644_3', 12464921), ('zr3644_4', 12454125), ('zr3644_5', 12462259), ('zr3644_6', 12461886), ('zr3644_13', 12461194), ('zr3644_14', 12455580), ('zr3644_15', 12457260), ('zr3644_16', 12464173), ('zr3644_17', 12454288), ('zr3644_18', 12459050)]
+[    4s] all lines >= 3x: any=12042382 all22=3714898  >=2 libs=11525128  >=3 libs=11108177
+      subsets of the 22 libraries whose union equals 12794074: 0 (within +-100: 0); sizes of exact hits: []
+      of these, natural subsets (leave-one/two-out, prefixes, group unions, shock-excluded): []
+      closest natural subsets: [('first 22 libraries in legacy order', 12042382, -751692), ('all but zr3644_3', 12037094, -756980), ('all but zr3644_16', 12035876, -758198), ('all but zr3644_5', 12033972, -760102), ('all but zr3644_6', 12032947, -761127), ('all but zr3644_13', 12031186, -762888)]
+      subsets with union within +-5000 of target: 0 -> 0.00 subsets per integer value (chance hits expected)
+      leave-one-out unions: [('zr3534_1', 12006487), ('zr3534_2', 12015261), ('zr3534_3', 12008133), ('zr3534_4', 12004347), ('zr3534_5', 11987032), ('zr3534_6', 12002572), ('zr3534_7', 12020912), ('zr3534_8', 12005309), ('zr3534_9', 12018364), ('zr3534_10', 12012672), ('zr3644_1', 12016256), ('zr3644_2', 12019022), ('zr3644_3', 12037094), ('zr3644_4', 12024520), ('zr3644_5', 12033972), ('zr3644_6', 12032947), ('zr3644_13', 12031186), ('zr3644_14', 12025419), ('zr3644_15', 12026196), ('zr3644_16', 12035876), ('zr3644_17', 12021662), ('zr3644_18', 12029911)]
+[    6s] all lines >= 5x: any=11183702 all22=2297236  >=2 libs=10433297  >=3 libs=9867963
+[    7s] all lines >= 10x: any=8879998 all22=480579  >=2 libs=7764652  >=3 libs=7031954
+[    8s] all lines >= 20x: any=4462005 all22=29884  >=2 libs=3262155  >=3 libs=2597970
+[    9s] legacy(first line lost) >= 1x: any=12918250 all22=5852939  >=2 libs=12699294  >=3 libs=12498767
+      subsets of the 22 libraries whose union equals 12794074: 20 (within +-100: 3620); sizes of exact hits: [12, 13, 14, 15]
+      of these, natural subsets (leave-one/two-out, prefixes, group unions, shock-excluded): []
+      closest natural subsets: [('last 16 libraries in legacy order', 12799431, 5357), ('first 12 libraries in legacy order', 12801890, 7816), ('last 15 libraries in legacy order', 12775860, -18214), ('first 11 libraries in legacy order', 12773549, -20525), ('first 13 libraries in legacy order', 12819986, 25912), ('groups diploid/control+diploid/heat+triploid/control', 12826499, 32425)]
+        e.g. ['zr3534_3', 'zr3534_4', 'zr3534_5', 'zr3534_6', 'zr3534_7', 'zr3534_8', 'zr3534_9', 'zr3534_10', 'zr3644_1', 'zr3644_2', 'zr3644_5', 'zr3644_6']
+        e.g. ['zr3534_2', 'zr3534_3', 'zr3534_4', 'zr3534_6', 'zr3534_7', 'zr3534_8', 'zr3534_10', 'zr3644_1', 'zr3644_2', 'zr3644_5', 'zr3644_6', 'zr3644_13', 'zr3644_14']
+        e.g. ['zr3534_3', 'zr3534_5', 'zr3534_6', 'zr3534_8', 'zr3534_9', 'zr3644_1', 'zr3644_2', 'zr3644_3', 'zr3644_4', 'zr3644_5', 'zr3644_6', 'zr3644_14', 'zr3644_15']
+        e.g. ['zr3534_2', 'zr3534_4', 'zr3534_5', 'zr3534_7', 'zr3534_8', 'zr3534_10', 'zr3644_1', 'zr3644_2', 'zr3644_3', 'zr3644_5', 'zr3644_6', 'zr3644_13', 'zr3644_14', 'zr3644_16']
+        e.g. ['zr3534_1', 'zr3534_3', 'zr3534_5', 'zr3534_6', 'zr3534_8', 'zr3534_10', 'zr3644_1', 'zr3644_2', 'zr3644_4', 'zr3644_6', 'zr3644_13', 'zr3644_17']
+      subsets with union within +-5000 of target: 180235 -> 18.02 subsets per integer value (chance hits expected)
+      leave-one-out unions: [('zr3534_1', 12905982), ('zr3534_2', 12908329), ('zr3534_3', 12906727), ('zr3534_4', 12905657), ('zr3534_5', 12899526), ('zr3534_6', 12901766), ('zr3534_7', 12909119), ('zr3534_8', 12905106), ('zr3534_9', 12908118), ('zr3534_10', 12906401), ('zr3644_1', 12905678), ('zr3644_2', 12908423), ('zr3644_3', 12913868), ('zr3644_4', 12907635), ('zr3644_5', 12911840), ('zr3644_6', 12912758), ('zr3644_13', 12912525), ('zr3644_14', 12909476), ('zr3644_15', 12910177), ('zr3644_16', 12913622), ('zr3644_17', 12909158), ('zr3644_18', 12910653)]
+[   10s] legacy(first line lost) >= 3x: any=12042382 all22=3714898  >=2 libs=11525128  >=3 libs=11108177
+[   11s] legacy(first line lost) >= 5x: any=11183702 all22=2297236  >=2 libs=10433297  >=3 libs=9867963
+[   12s] legacy(first line lost) >= 10x: any=8879998 all22=480579  >=2 libs=7764652  >=3 libs=7031954
+[   13s] legacy(first line lost) >= 20x: any=4462005 all22=29884  >=2 libs=3262155  >=3 libs=2597970
+
+comparison with the pipeline table (legacy mode): 25 of 25 (sample set x threshold) rows match on both counts
+Empty DataFrame
+Columns: [view, min_coverage, legacy, sample_set, in_all, in_any, pipeline_in_all, pipeline_in_any, match]
+Index: []
+
+closest k-of-22 counts to the target:
+                              view  min_coverage  legacy  k  cpg_in_at_least_k_libraries  diff_from_target
+1                  all lines >= 1x             1   False  2                     12699295            -94779
+133  legacy(first line lost) >= 1x             1    True  2                     12699294            -94780
+132  legacy(first line lost) >= 1x             1    True  1                     12918250            124176
+0                  all lines >= 1x             1   False  1                     12918252            124178
+2                  all lines >= 1x             1   False  3                     12498767           -295307
+134  legacy(first line lost) >= 1x             1    True  3                     12498767           -295307
+22                 all lines >= 2x             2   False  1                     12470054           -324020
+3                  all lines >= 1x             1   False  4                     12298517           -495557
+
+all-lines view, >=1x and >=2x, k-of-22:
+min_coverage         1         2
+k                               
+1             12918252  12470054
+2             12699295  12083309
+3             12498767  11759655
+4             12298517  11458856
+5             12101636  11177230
+6             11903153  10901800
+7             11696246  10628285
+8             11484678  10359261
+9             11266166  10091953
+10            11042711   9824440
+11            10811473   9554891
+12            10569117   9279086
+13            10312441   8994681
+14            10041664   8699606
+15             9748399   8388992
+16             9430556   8061382
+17             9081553   7709988
+18             8689014   7323867
+19             8234939   6887156
+20             7687022   6368422
+21             6984474   5702245
+22             5852940   4630424
+exit 0

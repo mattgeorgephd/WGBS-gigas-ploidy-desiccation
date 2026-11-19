@@ -1,0 +1,15 @@
+==============================================================================
+08_gene_annotation: DML to genes, transcripts, and GO terms
+==============================================================================
+05:49:53 GO map: 45346 transcript names; 43307 are mRNAs on the track; 123 of those were renamed and lost in the legacy join
+05:49:57 38208 genes (31371 protein coding); 20279 with GO terms; 14109 of those have a transcript in the legacy universe
+05:50:00 [legacy] ploidy 1038 DML;  981 in a gene;  724 genes,  625 with GO terms
+05:50:01 [legacy] heat   2351 DML; 2203 in a gene; 1476 genes, 1246 with GO terms
+05:50:01 [legacy] shared  200 DML;  193 in a gene;  143 genes,  119 with GO terms
+05:50:01 [legacy] genes with a tested CpG: 21026 of 38208 (13884 with GO terms); with an eligible CpG: 8199 (6374 with GO terms)
+05:50:03 [corrected] ploidy  952 DML;  911 in a gene;  715 genes,  620 with GO terms
+05:50:04 [corrected] heat   2273 DML; 2136 in a gene; 1470 genes, 1243 with GO terms
+05:50:04 [corrected] shared  159 DML;  154 in a gene;  140 genes,  118 with GO terms
+05:50:04 [corrected] genes with a tested CpG: 20895 of 38208 (13826 with GO terms); with an eligible CpG: 8127 (6335 with GO terms)
+05:50:04 08_gene_annotation finished in 0.3 min
+exit 0

@@ -1,0 +1,57 @@
+permutations: 300; CpGs passing in at least one permutation: 23892; mean number passing per permutation: 813
+
+Null (label-permutation) probability of passing the 20-point rule, and the real ploidy DML rate, by mean methylation:
+    mean_bin   cpgs null_pct real_ploidy_pct real_heat_pct expected_null_dml real_ploidy
+ 1:    [0,5) 387984    0.000           0.000         0.000               0.0           0
+ 2:   [5,10)  18688    0.008           0.005         0.000               1.5           1
+ 3:  [10,20)  17182    0.296           0.361         0.733              50.8          62
+ 4:  [20,30)   9354    1.036           1.475         2.427              96.9         138
+ 5:  [30,40)   6128    1.740           2.056         4.324             106.7         126
+ 6:  [40,50)   5476    2.476           2.721         7.615             135.6         149
+ 7:  [50,60)   5453    2.699           3.356         7.042             147.2         183
+ 8:  [60,70)   5929    2.409           2.952         7.118             142.8         175
+ 9:  [70,80)   6755    1.468           2.161         5.270              99.2         146
+10:  [80,90)   9203    0.351           0.630         1.663              32.3          58
+11:  [90,95)   5478    0.002           0.000         0.018               0.1           0
+12: [95,100]   2949    0.000           0.000         0.000               0.0           0
+
+Same, by within-cell SD (eligible CpGs):
+     sd_bin  cpgs null_pct real_ploidy_pct real_heat_pct expected_null real_ploidy real_heat
+1:    [0,5)   139    0.000           0.000         0.000           0.0           0         0
+2:   [5,10)  9774    0.001           0.051         0.133           0.1           5        13
+3:  [10,15) 21868    0.045           0.348         1.043           9.9          76       228
+4:  [15,20) 21691    0.707           1.263         3.541         153.4         274       768
+5:  [20,25)  8461    3.411           4.231         9.195         288.6         358       778
+6:  [25,30)  2699    8.618           8.373        15.339         232.6         226       414
+7: [30,100)   848   14.941          11.557        17.571         126.7          98       149
+
+Null pass probability by genomic feature within the eligible set (this is what a 'fair' background would have to match):
+  gene       in feature: 1.343%   outside: 0.526%   ratio 2.55
+  CDS        in feature: 1.653%   outside: 1.101%   ratio 1.50
+  intron     in feature: 1.186%   outside: 1.304%   ratio 0.91
+  TE         in feature: 0.632%   outside: 1.495%   ratio 0.42
+  intergenic in feature: 0.425%   outside: 1.329%   ratio 0.32
+
+Share of loci in each feature: real ploidy DML, eligible CpGs (unweighted), eligible CpGs weighted by null pass probability:
+  gene       real ploidy DML 94.5%; real heat DML 93.7%; eligible 87.3%; null-weighted eligible 94.6%
+  CDS        real ploidy DML 35.7%; real heat DML 34.1%; eligible 25.1%; null-weighted eligible 33.4%
+  intron     real ploidy DML 49.6%; real heat DML 51.8%; eligible 55.1%; null-weighted eligible 52.7%
+  TE         real ploidy DML 18.7%; real heat DML 19.7%; eligible 29.6%; null-weighted eligible 15.1%
+  intergenic real ploidy DML 3.3%; real heat DML 4.0%; eligible 9.9%; null-weighted eligible 3.4%
+
+correlation of null pass rate with real DML status among eligible: ploidy AUC-like: mean null rate at ploidy DML 0.108 vs at other eligible 0.0109; at heat DML 0.053
+real ploidy DML that passed in >= 10% of permutations: 460 of 1038; that never passed in 300 permutations: 11
+
+Heat DML direction by mean methylation (10 heat v 12 control: a hyper DML needs mean >= 9.09, a hypo DML >= 10.91; mirrored at the top):
+          mb hyper hypo
+ 1:  [10,11)     5    2
+ 2:  [11,12)     4    3
+ 3:  [12,15)    22    6
+ 4:  [15,20)    41   43
+ 5:  [20,50)   467  442
+ 6:  [50,80)   563  599
+ 7:  [80,85)    43   80
+ 8:  [85,88)     5   20
+ 9:  [88,89)     0    3
+10:  [89,90)     0    2
+11: [90,100)     0    1

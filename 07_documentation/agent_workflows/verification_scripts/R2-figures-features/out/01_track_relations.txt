@@ -1,0 +1,63 @@
+BED column counts: intron 3 nonCDS 3 intergenic 3 TE 3 
+            V1   V2   V3
+1: NC_047559.1 4109 4128
+2: NC_047559.1 5159 5183
+3: NC_047559.1 5546 5572
+
+bp covered (reduced):
+      gene       mRNA       exon        CDS        UTR        lnc         up 
+ 385351098  366099494   89036763   52093257   36943506   23768727   26518440 
+      down     flanks     intron     nonCDS intergenic         TE 
+  27481642   51578153  296423347  558850334  210957846  236354648 
+
+--- BED convention checks (bp of overlap; 0 expected when the reading is right)
+intron(0-based) x exon : 0    intron(as 1-based) x exon : 264901 
+nonCDS(0-based) x exon : 0    nonCDS(as 1-based) x exon : 297362 
+nonCDS(0-based) x CDS  : 0 
+intergenic(0-based) x gene : 0    as 1-based: 0 
+intergenic(0-based) x flanks : 0    as 1-based: 21412 
+
+nonCDS + exon: union bp = 647887097  sum of the two = 647887097  (equal => disjoint and jointly tiling)
+number of union ranges per sequence with exon+nonCDS (1 => gap-free tiling):
+
+  1 
+236 
+nonCDS + CDS: union bp = 610943591  ranges on sequences: 106597  n seq: 236 
+bp of exon not in CDS (UTR + non-coding exon): 36943506 
+bp of non-CDS exon covered by the nonCDS track: 0 
+
+exonUTR bp: 36943506  exon minus CDS bp: 36943506  overlap: 36943506  UTR x CDS bp: 0 
+intron bp: 296423347  gene minus exon bp: 296423347  overlap: 296423347 
+intron x lncRNA transcript bp: 16535044    UTR track x lncRNA transcripts bp: 6810335    lncRNA bp: 23768727 
+flanks bp: 51578153  up U down bp: 51578153  up x down bp: 2421929 
+Warning message:
+In .merge_two_Seqinfo_objects(x, y) :
+  Each of the 2 combined objects has sequence levels not in the other:
+  - in 'x': NW_022994994.1
+  - in 'y': NW_022994942.1, NW_022994990.1
+  Make sure to always combine/compare objects based on the same reference
+  genome (use suppressWarnings() to suppress this warning).
+flanks x gene bp: 0   up x gene: 0   down x gene: 0 
+Warning message:
+In .merge_two_Seqinfo_objects(x, y) :
+  Each of the 2 combined objects has sequence levels not in the other:
+  - in 'x': NW_022994817.1
+  - in 'y': NW_022994801.1, NW_022994811.1, NW_022994818.1
+  Make sure to always combine/compare objects based on the same reference
+  genome (use suppressWarnings() to suppress this warning).
+intergenic + gene + flanks: union bp = 647887097  sum = 647887097  ranges: 236  sequences: 236 
+TE bp: 236354648  TE x gene bp: 117995824  TE x CDS bp: 2929866  TE x intergenic bp: 100985652 
+TE zero-length: 0  intron zero-length: 0  nonCDS zero-length: 0  intergenic zero-length: 0 
+
+upstream flank position relative to its gene, by gene strand:
+   strand_g                           where     N
+1:        -   after gene end (higher coord) 16194
+2:        + before gene start (lower coord) 16393
+downstream flank position relative to its gene, by gene strand:
+   strand_g                           where     N
+1:        - before gene start (lower coord) 16277
+2:        +   after gene end (higher coord) 16472
+upstream flanks adjacent to gene (+: end_f == start_g - 1; -: start_f == end_g + 1): 31852 of 32587 
+genes: 38208  genes with an upstream record: 32087  with a downstream record: 32324 
+sequences: gene 233  TE 211  intergenic 235  nonCDS 236 
+mito (NC_001276.1) records: gene 0  exon 0  CDS 0  TE 0  intergenic 0  nonCDS 0 

@@ -1,0 +1,53 @@
+group sizes: ploidy 11 11  heat 12 10 
+          
+           control heat
+  diploid        6    5
+  triploid       6    5
+rows: 480579 
+cells where coverage != numCs+numTs: 19811 of 10572738 (max abs diff 1)
+mean<10: 406672 (84.62%); mean>90: 8427 (1.75%); eligible [10,90]: 65480 (13.63%)
+max |meth.diff - weighted pooled diff|: ploidy 6.750156e-14  heat 6.750156e-14 
+max |meth.diff - unweighted diff|: ploidy 29.76363  heat 31.9934 
+cor(weighted, unweighted diff): ploidy 0.9555393  heat 0.9733459 
+
+[ploidy] 1038 DML; mean range 8.508 to 89.081; outside [10,90]: 1 (below 1, above 0)
+      set         chr   start meth.diff unweighted_mean weighted_mean
+1: ploidy NC_047560.1 7406728 -25.07843        8.508422      22.34742
+   unweighted_diff     g1_w     g0_w
+1:        -10.4889 4.333333 29.41176
+  DML with mean in [10,12): 4; [12,15): 14; [15,20): 44; [20,80]: 917; (80,85]: 38; (85,88]: 18; (88,90]: 2
+  DML whose UNWEIGHTED group difference is <= 20: 287 (min |unweighted diff| 1.21)
+
+[heat] 2351 DML; mean range 10.256 to 90.040; outside [10,90]: 1 (below 0, above 1)
+    set         chr    start meth.diff unweighted_mean weighted_mean
+1: heat NC_047562.1 38931611 -20.39773        90.03966      87.89346
+   unweighted_diff    g1_w     g0_w
+1:       -17.52585 77.6699 98.06763
+  DML with mean in [10,12): 14; [12,15): 28; [15,20): 84; [20,80]: 2071; (80,85]: 123; (85,88]: 25; (88,90]: 5
+  DML whose UNWEIGHTED group difference is <= 20: 433 (min |unweighted diff| 0.73)
+
+DML rows summed over two lists: 3389; distinct loci: 3189; distinct loci outside [10,90]: 2
+
+Theoretical lower bound on the unweighted mean given |unweighted diff| > 20:
+  ploidy 11 v 11:  10   heat 10 v 12: smaller group high: 9.090909  larger group high: 10.90909 
+tested CpGs with mean in [9.0909,10): 2714; in (90, 90.909]: 955
+[ploidy] CpGs with |meth.diff|>20: 1038; of them outside [10,90]: 1; min mean 8.51 max mean 89.08
+           chr   start meth.diff            q     mean
+1: NC_047560.1 7406728 -25.07843 1.012021e-19 8.508422
+[heat] CpGs with |meth.diff|>20: 2352; of them outside [10,90]: 1; min mean 10.26 max mean 90.04
+           chr    start meth.diff            q     mean
+1: NC_047562.1 38931611 -20.39773 6.159931e-10 90.03966
+
+Median per-CpG coverage (after normalization) by library:
+ numCs1  numCs2  numCs3  numCs4  numCs5  numCs6  numCs7  numCs8  numCs9 numCs10 
+     28      27      28      27      28      27      25      28      29      30 
+numCs11 numCs12 numCs13 numCs14 numCs15 numCs16 numCs17 numCs18 numCs19 numCs20 
+     24      24      20      24      22      24      24      20      27      23 
+numCs21 numCs22 
+     26      25 
+mean coverage heat cohort / control cohort (per CpG ratio, quantiles):
+       1%        5%       25%       50%       75%       95%       99% 
+0.7821044 0.9152070 1.0555184 1.1511777 1.2573705 1.4571429 1.6898502 
+max share of a group's coverage held by one library (ploidy groups), quantiles:
+      50%       90%       99%     99.9%      100% 
+0.1379962 0.1689655 0.2254654 0.3144730 0.7042254 

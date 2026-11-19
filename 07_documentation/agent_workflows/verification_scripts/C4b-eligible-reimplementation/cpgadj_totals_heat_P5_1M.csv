@@ -1,0 +1,4 @@
+set,scheme,ontology,pool_cpg,dml_labels,blocks,dml_genes_observed,dml_genes_perm_mean,dml_genes_perm_sd,frac_perm_total_ge_observed,B
+heat,P5,BP,55717,2178,142,1109,1116.3706,15.914993525824,0.689394,1000000
+heat,P5,CC,55717,2178,142,1157,1155.554637,15.8158962104841,0.47646,1000000
+heat,P5,MF,55717,2178,142,1021,1061.864362,16.6010337608017,0.993687,1000000

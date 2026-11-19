@@ -1,0 +1,57 @@
+
+groupGOTerms: 	GOBPTerm, GOMFTerm, GOCCTerm environments built.
+real ploidy DML genes via my mapping: 711 (pipeline: 711)
+real ploidy DML through my code:
+   ontology de_genes terms C_wall_q05   C_min_q B_fisher_q05      w_p05
+1:       BP      542  4823          0 0.3601890            0 0.04893220
+2:       CC      579   642          0 0.2657745            2 0.04984424
+3:       MF      517   913          0 0.3295813            8 0.06133625
+        w_p01      w_p001  w_p05_big  w_p01_big  w_p001_big C_q05_min15
+1: 0.01368443 0.002280738 0.11111111 0.04501916 0.009578544           0
+2: 0.02024922 0.003115265 0.08510638 0.04255319 0.010638298           0
+3: 0.01533406 0.001095290 0.14364641 0.04419890 0.005524862           0
+   C_q05_min100
+1:           10
+2:            2
+3:            1
+real location ORs (eligible background):
+      gene        CDS     intron         TE intergenic 
+      2.52       1.68       0.80       0.54       0.30 
+done 25 
+done 50 
+done 75 
+done 100 
+done 125 
+done 150 
+done 175 
+done 200 
+done 225 
+done 250 
+
+Location ORs against eligible CpGs for permuted-label 'DML' (real ploidy: gene 2.52, CDS 1.68, intron 0.80, TE 0.54, intergenic 0.30):
+     n_dml n_genes gene  CDS intron   TE intergenic
+1:  474.35  382.45 1.44 1.14   0.72 0.28       0.14
+2:  619.25  470.00 2.12 1.44   0.81 0.39       0.23
+3:  749.00  555.50 2.68 1.58   0.87 0.44       0.30
+4:  897.50  648.50 3.32 1.72   0.93 0.48       0.39
+5: 1481.13  997.08 4.53 1.99   1.16 0.58       0.68
+
+GO, eligible universe, permuted-label 'DML':
+   ontology perms de_genes_median C_any_q05 C_max C_median_min_q
+1:       BP   250             427     0.064    28          0.968
+2:       CC   250             453     0.040    10          0.855
+3:       MF   250             402     0.040     7          0.965
+   B_fisher_median B_any B_max  w_p05  w_p01  w_p001 w_p05_big w_p01_big
+1:               0 0.460   347 0.0346 0.0071 0.00085    0.0713    0.0178
+2:               0 0.280    32 0.0364 0.0072 0.00085    0.0593    0.0146
+3:               0 0.384    48 0.0340 0.0070 0.00072    0.0655    0.0166
+   w_p001_big C_any_min15 C_any_min100
+1:    0.00279       0.092        0.132
+2:    0.00206       0.064        0.140
+3:    0.00203       0.044        0.092
+share of permutations with any Wallenius q<0.05 term in any ontology: 0.12 
+quantiles of smallest q (Wallenius, min 5 genes) across permutations, by ontology:
+   ontology    1%    5%   10%   25%   50%
+1:       BP 0.005 0.038 0.106 0.496 0.968
+2:       CC 0.014 0.070 0.122 0.411 0.855
+3:       MF 0.024 0.094 0.174 0.422 0.965

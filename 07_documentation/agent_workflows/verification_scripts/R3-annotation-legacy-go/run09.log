@@ -1,0 +1,8 @@
+==============================================================================
+09_go_enrichment_legacy: GO enrichment as run for the manuscript draft
+==============================================================================
+05:50:25 GO.db 3.13.0 (ontology of 2021-02-01), topGO 2.54.0
+05:50:28 ploidy annotation table:  46626 lines, 2348 transcripts; the legacy reader kept  10979 rows,  623 transcripts
+05:50:28 heat   annotation table: 106621 lines, 4606 transcripts; the legacy reader kept  81109 rows, 3444 transcripts
+05:50:28 shared annotation table:   7029 lines,  379 transcripts; the legacy reader kept   6941 rows,  379 transcripts
+05:50:28 legacy universe: 27469 transcripts; 27469 of the 43184 mRNAs with GO terms (64%); largest missing block 15666 transcripts, XM_011455141.3 to XM_034461018.1

@@ -1,0 +1,6 @@
+==============================================================================
+06_dml_figures: Figure 2 and Figure 4
+==============================================================================
+Error in svd(x, nu = 0, nv = k) : a dimension is zero
+Calls: pca_on -> prcomp -> prcomp.default -> svd
+Execution halted

@@ -1,0 +1,110 @@
+Received list of locations.
+Reading file.
+Reading file.
+Reading file.
+Reading file.
+Reading file.
+Reading file.
+Reading file.
+Reading file.
+Reading file.
+Reading file.
+Reading file.
+Reading file.
+Reading file.
+Reading file.
+Reading file.
+Reading file.
+Reading file.
+Reading file.
+Reading file.
+Reading file.
+Reading file.
+Reading file.
+uniting...
+rows read by methRead per library minus rows in file: -1 
+getCorrelation printed 92 lines; first:            zr3534_1  zr3534_2  zr3534_3  zr3534_4  zr3534_5  zr3534_6  zr3534_7 
+legacy, 1x                         CpGs: methylKit 300575, step 04 300575 | Pearson range methylKit 0.7678..0.8736, step 04 0.7678..0.8736 | max |dr| 1.60e-06 | PC1 6.9645 vs 6.9644, PC2 6.5039 vs 6.5039 | max |score diff| PC1 0.0104 PC2 0.00965 (score SD 102) | PCA loci 150277 vs 150277
+                                   percent-methylation values that differ between the two: 193 of 6612650 (0.0029%), largest difference 1.153 points; CpGs affected 193
+                                   Spearman range on the same methylKit matrix: 0.6041..0.6955
+Received list of locations.
+Reading file.
+Reading file.
+Reading file.
+Reading file.
+Reading file.
+Reading file.
+Reading file.
+Reading file.
+Reading file.
+Reading file.
+Reading file.
+Reading file.
+Reading file.
+Reading file.
+Reading file.
+Reading file.
+Reading file.
+Reading file.
+Reading file.
+Reading file.
+Reading file.
+Reading file.
+uniting...
+legacy, 10x                        CpGs: methylKit 19306, step 04 19306 | Pearson range methylKit 0.7824..0.9123, step 04 0.7824..0.9123 | max |dr| 9.70e-06 | PC1 7.9596 vs 7.9595, PC2 6.2813 vs 6.2813 | max |score diff| PC1 0.00109 PC2 0.00211 (score SD 28) | PCA loci 9653 vs 9653
+                                   percent-methylation values that differ between the two: 3 of 424732 (0.0007%), largest difference 0.676 points; CpGs affected 3
+                                   Spearman range on the same methylKit matrix: 0.5173..0.6117
+Received list of locations.
+Reading file.
+Reading file.
+Reading file.
+Reading file.
+Reading file.
+Reading file.
+Reading file.
+Reading file.
+Reading file.
+Reading file.
+Reading file.
+Reading file.
+Reading file.
+Reading file.
+Reading file.
+Reading file.
+Reading file.
+Reading file.
+Reading file.
+Reading file.
+Reading file.
+Reading file.
+uniting...
+corrected, 10x (import >= 2 reads) CpGs: methylKit 18586, step 04 18586 | Pearson range methylKit 0.7817..0.9120, step 04 0.7817..0.9120 | max |dr| 1.25e-05 | PC1 8.0683 vs 8.0683, PC2 6.2877 vs 6.2877 | max |score diff| PC1 0.00462 PC2 0.00338 (score SD 27) | PCA loci 9289 vs 9289
+                                   percent-methylation values that differ between the two: 7 of 408892 (0.0017%), largest difference 0.676 points; CpGs affected 7
+Received list of locations.
+Reading file.
+Reading file.
+Reading file.
+Reading file.
+Reading file.
+Reading file.
+Reading file.
+Reading file.
+Reading file.
+Reading file.
+Reading file.
+Reading file.
+Reading file.
+Reading file.
+Reading file.
+Reading file.
+Reading file.
+Reading file.
+Reading file.
+Reading file.
+Reading file.
+Reading file.
+uniting...
+corrected, 1x (import >= 1 read)   CpGs: methylKit 299771, step 04 299856 | Pearson range methylKit 0.7677..0.8736, step 04 0.7677..0.8736 | max |dr| 8.96e-06 | PC1 6.9702 vs 6.9692, PC2 6.5030 vs 6.5036 | max |score diff| PC1 0.1 PC2 0.118 (score SD 102) | PCA loci 149885 vs 149928
+upper cutoffs, percentile over rows >= 2 reads (step 04): 1420.45 2463.21 1887.65 1948.5 2320.3 2177.59 1058.68 1526.39 1948.85 2440.56 2993.18 3185.69 1859.72 1365.31 1687.62 1855.92 2315.12 1384.57 1804.09 2329.94 4327.16 2709.17 
+upper cutoffs, percentile over rows >= 1 read  (methylKit after mincov = 1): 1182.96 2195.41 1629.75 1691 1942.62 1996.33 932 1373.51 1784.13 2219.31 2687.53 2926.06 1577.42 1108.2 1333 1542.16 2024 1195.16 1553 1974.46 3881.54 2370.73 
+R 4.3.3 methylKit 1.28.0 

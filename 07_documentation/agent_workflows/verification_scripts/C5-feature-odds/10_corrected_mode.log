@@ -1,0 +1,21 @@
+corrected mode: tested 454555  eligible 61056  ploidy DML 952  heat DML 2273  DML outside eligible: 0 1 
+gene       ploidy all analysed CpGs  mine 8.8474 (6.47-12.41)  pipeline 8.8474  equal TRUE
+gene       ploidy eligible CpGs      mine 2.8491 (2.08-4.00)  pipeline 2.8491  equal TRUE
+gene       heat   all analysed CpGs  mine 6.2271 (5.24-7.46)  pipeline 6.2271  equal TRUE
+gene       heat   eligible CpGs      mine 2.0174 (1.69-2.42)  pipeline 2.0174  equal TRUE
+intron     ploidy all analysed CpGs  mine 1.9109 (1.68-2.17)  pipeline 1.9109  equal TRUE
+intron     ploidy eligible CpGs      mine 0.7807 (0.69-0.89)  pipeline 0.7807  equal TRUE
+intron     heat   all analysed CpGs  mine 2.0506 (1.89-2.23)  pipeline 2.0506  equal TRUE
+intron     heat   eligible CpGs      mine 0.8334 (0.77-0.91)  pipeline 0.8334  equal TRUE
+CDS        ploidy all analysed CpGs  mine 1.6361 (1.43-1.87)  pipeline 1.6361  equal TRUE
+CDS        ploidy eligible CpGs      mine 1.8395 (1.61-2.10)  pipeline 1.8395  equal TRUE
+CDS        heat   all analysed CpGs  mine 1.3859 (1.27-1.51)  pipeline 1.3859  equal TRUE
+CDS        heat   eligible CpGs      mine 1.5692 (1.43-1.72)  pipeline 1.5692  equal TRUE
+TE         ploidy all analysed CpGs  mine 0.8464 (0.72-1.00)  pipeline 0.8464  equal TRUE
+TE         ploidy eligible CpGs      mine 0.5861 (0.50-0.69)  pipeline 0.5861  equal TRUE
+TE         heat   all analysed CpGs  mine 0.9097 (0.82-1.01)  pipeline 0.9097  equal TRUE
+TE         heat   eligible CpGs      mine 0.6248 (0.56-0.69)  pipeline 0.6248  equal TRUE
+intergenic ploidy all analysed CpGs  mine 0.0658 (0.04-0.10)  pipeline 0.0658  equal TRUE
+intergenic ploidy eligible CpGs      mine 0.2021 (0.12-0.32)  pipeline 0.2021  equal TRUE
+intergenic heat   all analysed CpGs  mine 0.1290 (0.10-0.16)  pipeline 0.1290  equal TRUE
+intergenic heat   eligible CpGs      mine 0.3933 (0.31-0.49)  pipeline 0.3933  equal TRUE

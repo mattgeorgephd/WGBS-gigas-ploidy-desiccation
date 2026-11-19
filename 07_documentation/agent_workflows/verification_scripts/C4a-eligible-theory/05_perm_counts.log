@@ -1,0 +1,33 @@
+            
+stratum      diploid triploid
+  control no       6        6
+  heat no          3        3
+  heat yes         2        2
+           used  (Mb) gc trigger  (Mb) max used  (Mb)
+Ncells   405733  21.7     837269  44.8   664391  35.5
+Vcells 22603358 172.5   57390600 437.9 47588538 363.1
+observed ploidy: |weighted diff| > 20 at 1038 CpGs (1037 eligible)
+real data: largest p-value with q < 0.01: 0.00023; smallest p-value with q >= 0.01: 0.00023; CpGs with q<0.01: 10275 (2.1%); with |diff|>20: 1038; with both: 1038
+perm 50 
+perm 100 
+perm 150 
+perm 200 
+perm 250 
+perm 300 
+
+Stratified permutations: 300. CpGs passing |diff|>20: median 762, mean 813, range 399 to 2941; 5%/95% quantiles 510 / 1226
+share of permutations with at least as many as observed (1038): 0.130
+largest LRT p-value among permuted 'DML' in the first 10 permutations: 0.000267 (real-data p cutoff at q<0.01: 0.00023)
+share of passing CpGs outside the eligible range: 0.0020
+by number of libraries keeping their true label (22 = identity, 11 = fully mixed):
+   same_as_true perms median_pass
+1:            4     2      1423.5
+2:            6    17       902.0
+3:            8    42       777.5
+4:           10    89       730.0
+5:           12    92       743.0
+6:           14    45       783.0
+7:           16    12       801.0
+8:           18     1      2941.0
+
+Within-cohort permutations (acute shock not held balanced): median 780, mean 838, range 391 to 3615; share >= observed 0.100

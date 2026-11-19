@@ -1,0 +1,7 @@
+==============================================================================
+06_dml_figures: Figure 2 and Figure 4
+==============================================================================
+05:37:00 [legacy] PCA on ploidy DML: PC1 56.5%, PC2 25.1%; on heat DML: PC1 49.5%, PC2 8.5%
+Error in hclust(d, method = method) : must have n >= 2 objects to cluster
+Calls: heat_panel -> pheatmap -> cluster_mat -> hclust
+Execution halted

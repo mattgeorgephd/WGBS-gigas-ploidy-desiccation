@@ -1,0 +1,99 @@
+
+[legacy] CpGs 480579; end - start: 2; strand: *; coverage min 10; any NA pm: FALSE
+[legacy] mean methylation < 10: 84.62%; > 90: 1.75%; eligible [10, 90]: 65480 (13.63%)
+[legacy] DML not eligible: ploidy 1, heat 1, shared 0; unique DML 3189
+           chr    start   mean_pm ploidy  heat
+1: NC_047560.1  7406728  8.508422   TRUE FALSE
+2: NC_047562.1 38931611 90.039655  FALSE  TRUE
+[legacy] overlap-by-track rows compared: 104; n_loci differ: 0; n_overlap differ: 0
+[legacy] largest |legacy_share_pct difference|: 5.33e-14; largest |pct_of_loci difference|: 5.68e-14
+[legacy] exclusive class rows compared: 64; n differ: 0; max |pct_in_TE diff|: 4.97e-14; pct sums by set: 100 100 100 100 100 100 100 100
+[legacy] class other: 363 CpGs; on mito NC_001276.1: 363; in gene track: 0; in exon: 0; in TE: 0; in nonCDS: 0; in flanks: 0
+[legacy] analysed CpGs on mito: 363; DML on mito: ploidy 0 heat 0
+[legacy] CpGs in more than one of the 7 class tracks: 17004 (3.54%); CDS&intron 501; CDS&exon_UTR 5; lncRNA&CDS 940; lncRNA&intron 7995; lncRNA&exon_UTR 5918; lncRNA not in (exon_UTR or intron): 0 of 14835
+[legacy] Fisher tests compared: 54; dml_in_track differ: 0; dml_total differ: 0; max rel OR diff: NaN; max rel p diff: 4.45e-15; max |pct_other diff|: 7.11e-14; BH q max abs diff: 3.33e-16
+[legacy] chisq ploidy DML: mine X2 349.3885 df 7 p 1.67e-71 min expected 0.784 | pipeline X2 349.3885 df 7 p 1.67e-71 min expected 0.784 | classes with expected < 5: 1
+[legacy] chisq heat DML: mine X2 702.6963 df 7 p 1.81e-147 min expected 1.776 | pipeline X2 702.6963 df 7 p 1.81e-147 min expected 1.776 | classes with expected < 5: 1
+[legacy] chisq shared: mine X2 281.3757 df 7 p 5.71e-57 min expected 0.151 | pipeline X2 281.3757 df 7 p 5.71e-57 min expected 0.151 | classes with expected < 5: 2
+[legacy] regions ploidy DML: mine 830, pipeline 830, unmatched 0, n_dml differ 0; span check failures 0; n_hyper+n_hypo != n_dml: 0; largest 53
+       smallest gap between neighbouring regions (start minus previous end): 1030; pairs with start-to-start gap in (1000, 1002]: 0
+[legacy] regions heat DML: mine 1834, pipeline 1834, unmatched 0, n_dml differ 0; span check failures 0; n_hyper+n_hypo != n_dml: 0; largest 39
+       smallest gap between neighbouring regions (start minus previous end): 1005; pairs with start-to-start gap in (1000, 1002]: 0
+[legacy] regions shared: mine 152, pipeline 152, unmatched 0, n_dml differ 0; span check failures 0; n_hyper+n_hypo != n_dml: 0; largest 39
+       smallest gap between neighbouring regions (start minus previous end): 4404; pairs with start-to-start gap in (1000, 1002]: 0
+[legacy] linkage groups rows 12 (pipeline 12): differing cells: n_cpg 0, ploidy 0/0/0, heat 0/0/0, shared 0/0/0
+[legacy] genes per linkage group differ: 0; total genes in table 38208 of 38208
+         sequence n_cpg_analysed ploidy_dml heat_dml shared n_genes all3
+ 1:           LG1          54739         74      248     12    3422  334
+ 2:           LG2          26286         21       79      2    3521  102
+ 3:           LG3          58816        192      319     30    3790  541
+ 4:           LG4          37678         77      188     10    3115  275
+ 5:           LG5          36663        120      172     51    3909  343
+ 6:           LG6          61554        104      319     26    4117  449
+ 7:           LG7          62350        170      368     27    4087  565
+ 8:           LG8          37765         79      162     10    3603  251
+ 9:           LG9          19306         23       48      6    1826   77
+10:          LG10          60467        131      301     17    3701  449
+11:      unplaced          24592         47      147      9    3117  203
+12: mitochondrial            363          0        0      0       0    0
+    pct_all3 pct_p pct_h
+ 1:     9.31  7.13 10.55
+ 2:     2.84  2.02  3.36
+ 3:    15.07 18.50 13.57
+ 4:     7.66  7.42  8.00
+ 5:     9.56 11.56  7.32
+ 6:    12.51 10.02 13.57
+ 7:    15.74 16.38 15.65
+ 8:     6.99  7.61  6.89
+ 9:     2.15  2.22  2.04
+10:    12.51 12.62 12.80
+11:     5.66  4.53  6.25
+12:     0.00  0.00  0.00
+
+[corrected] CpGs 454555; end - start: 2; strand: *; coverage min 10; any NA pm: FALSE
+[corrected] mean methylation < 10: 84.72%; > 90: 1.85%; eligible [10, 90]: 61056 (13.43%)
+[corrected] DML not eligible: ploidy 0, heat 1, shared 0; unique DML 3066
+           chr    start  mean_pm ploidy heat
+1: NC_047562.1 38931611 90.03966  FALSE TRUE
+[corrected] overlap-by-track rows compared: 104; n_loci differ: 0; n_overlap differ: 0
+[corrected] largest |legacy_share_pct difference|: 5.68e-14; largest |pct_of_loci difference|: 5.68e-14
+[corrected] exclusive class rows compared: 64; n differ: 0; max |pct_in_TE diff|: 4.97e-14; pct sums by set: 100 100 100 100 100 100 100 100
+[corrected] class other: 0 CpGs; on mito NC_001276.1: 0; in gene track: 0; in exon: 0; in TE: 0; in nonCDS: 0; in flanks: 0
+[corrected] analysed CpGs on mito: 0; DML on mito: ploidy 0 heat 0
+[corrected] CpGs in more than one of the 7 class tracks: 15367 (3.38%); CDS&intron 490; CDS&exon_UTR 5; lncRNA&CDS 905; lncRNA&intron 7306; lncRNA&exon_UTR 5286; lncRNA not in (exon_UTR or intron): 0 of 13481
+[corrected] Fisher tests compared: 54; dml_in_track differ: 0; dml_total differ: 0; max rel OR diff: NaN; max rel p diff: 3.97e-15; max |pct_other diff|: 4.97e-14; BH q max abs diff: 5.55e-16
+[corrected] chisq ploidy DML: mine X2 349.4868 df 6 p 1.99e-72 min expected 21.708 | pipeline X2 349.4868 df 6 p 1.99e-72 min expected 21.708 | classes with expected < 5: 0
+[corrected] chisq heat DML: mine X2 708.7646 df 6 p 7.84e-150 min expected 51.830 | pipeline X2 708.7646 df 6 p 7.84e-150 min expected 51.830 | classes with expected < 5: 0
+[corrected] chisq shared: mine X2 62.3001 df 6 p 1.53e-11 min expected 3.626 | pipeline X2 62.3001 df 6 p 1.53e-11 min expected 3.626 | classes with expected < 5: 2
+[corrected] regions ploidy DML: mine 814, pipeline 814, unmatched 0, n_dml differ 0; span check failures 0; n_hyper+n_hypo != n_dml: 0; largest 11
+       smallest gap between neighbouring regions (start minus previous end): 1041; pairs with start-to-start gap in (1000, 1002]: 0
+[corrected] regions heat DML: mine 1817, pipeline 1817, unmatched 0, n_dml differ 0; span check failures 0; n_hyper+n_hypo != n_dml: 0; largest 16
+       smallest gap between neighbouring regions (start minus previous end): 1005; pairs with start-to-start gap in (1000, 1002]: 0
+[corrected] regions shared: mine 149, pipeline 149, unmatched 0, n_dml differ 0; span check failures 0; n_hyper+n_hypo != n_dml: 0; largest 2
+       smallest gap between neighbouring regions (start minus previous end): 4404; pairs with start-to-start gap in (1000, 1002]: 0
+[corrected] linkage groups rows 11 (pipeline 11): differing cells: n_cpg 0, ploidy 0/0/0, heat 0/0/0, shared 0/0/0
+[corrected] genes per linkage group differ: 0; total genes in table 38208 of 38208
+    sequence n_cpg_analysed ploidy_dml heat_dml shared n_genes all3 pct_all3
+ 1:      LG1          53205         73      247     11    3422  331     9.78
+ 2:      LG2          21375         11       70      2    3521   83     2.45
+ 3:      LG3          57218        192      319     30    3790  541    15.99
+ 4:      LG4          35733         71      184     10    3115  265     7.83
+ 5:      LG5          33219         67      130     12    3909  209     6.18
+ 6:      LG6          60088        104      318     26    4117  448    13.24
+ 7:      LG7          61056        169      366     27    4087  562    16.61
+ 8:      LG8          35616         75      157      9    3603  241     7.12
+ 9:      LG9          17136         18       48      6    1826   72     2.13
+10:     LG10          59439        131      292     17    3701  440    13.00
+11: unplaced          20470         41      142      9    3117  192     5.67
+    pct_p pct_h
+ 1:  7.67 10.87
+ 2:  1.16  3.08
+ 3: 20.17 14.03
+ 4:  7.46  8.10
+ 5:  7.04  5.72
+ 6: 10.92 13.99
+ 7: 17.75 16.10
+ 8:  7.88  6.91
+ 9:  1.89  2.11
+10: 13.76 12.85
+11:  4.31  6.25

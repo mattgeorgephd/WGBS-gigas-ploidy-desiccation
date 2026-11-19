@@ -1,0 +1,231 @@
+
+
+ ploidy : observed share with a DML and mean fitted weight, by number of eligible CpGs
+         bin genes observed goseq_raw goseq_log2 gam_log2 isotonic exact_count
+1:     (0,1]  1806    0.027     0.034      0.022    0.026    0.027       0.027
+2:     (1,2]  1208    0.041     0.046      0.047    0.045    0.041       0.041
+3:     (2,3]   881    0.065     0.058      0.065    0.061    0.065       0.065
+4:     (3,5]  1188    0.082     0.075      0.086    0.082    0.081       0.082
+5:    (5,10]  1314    0.116     0.111      0.121    0.119    0.117       0.116
+6:   (10,20]   808    0.189     0.179      0.172    0.176    0.182       0.189
+7:   (20,50]   426    0.251     0.270      0.253    0.255    0.259       0.251
+8:  (50,100]   111    0.279     0.340      0.343    0.348    0.309       0.279
+9: (100,Inf]    29    0.517     0.417      0.419    0.446    0.523       0.517
+
+ heat : observed share with a DML and mean fitted weight, by number of eligible CpGs
+         bin genes observed goseq_raw goseq_log2 gam_log2 isotonic exact_count
+1:     (0,1]  1806    0.052     0.090      0.054    0.055    0.052       0.052
+2:     (1,2]  1208    0.118     0.110      0.111    0.110    0.118       0.118
+3:     (2,3]   881    0.148     0.130      0.148    0.150    0.148       0.148
+4:     (3,5]  1188    0.196     0.158      0.186    0.188    0.192       0.196
+5:    (5,10]  1314    0.231     0.219      0.246    0.240    0.231       0.231
+6:   (10,20]   808    0.324     0.334      0.328    0.326    0.327       0.324
+7:   (20,50]   426    0.474     0.497      0.447    0.464    0.474       0.474
+8:  (50,100]   111    0.523     0.553      0.568    0.564    0.542       0.523
+9: (100,Inf]    29    0.690     0.611      0.656    0.624    0.690       0.690
+
+ shared : observed share with a DML and mean fitted weight, by number of eligible CpGs
+         bin genes observed goseq_raw goseq_log2 gam_log2 isotonic exact_count
+1:     (0,1]  1806    0.006     0.008      0.005    0.006    0.006       0.006
+2:     (1,2]  1208    0.008     0.010      0.010    0.010    0.008       0.008
+3:     (2,3]   881    0.020     0.012      0.014    0.013    0.016       0.020
+4:     (3,5]  1188    0.015     0.015      0.017    0.017    0.016       0.015
+5:    (5,10]  1314    0.020     0.021      0.023    0.023    0.020       0.020
+6:   (10,20]   808    0.031     0.033      0.032    0.032    0.033       0.031
+7:   (20,50]   426    0.061     0.049      0.045    0.044    0.050       0.061
+8:  (50,100]   111    0.009     0.054      0.052    0.056    0.055       0.009
+9: (100,Inf]    29    0.103     0.061      0.057    0.069    0.103       0.103
+
+Terms with BH q < 0.05 (eligible universe, Wallenius) by weighting function and minimum term size:
+       set ontology         pwf 5 10 15 20 50 100
+ 1:   heat       BP exact_count 0  0  0  0  0   0
+ 2:   heat       BP    gam_log2 0  0  0  0  0   0
+ 3:   heat       BP  goseq_log2 0  0  0  0  0   0
+ 4:   heat       BP   goseq_raw 0  0  0  0  0   0
+ 5:   heat       BP    isotonic 0  0  0  0  0   0
+ 6:   heat       CC exact_count 0  1  1  1  1   3
+ 7:   heat       CC    gam_log2 0  0  1  1  1   1
+ 8:   heat       CC  goseq_log2 0  0  0  1  1   1
+ 9:   heat       CC   goseq_raw 0  0  1  1  1   3
+10:   heat       CC    isotonic 0  0  1  1  1   1
+11:   heat       MF exact_count 0  0  0  0  3   5
+12:   heat       MF    gam_log2 0  0  0  0  0   5
+13:   heat       MF  goseq_log2 0  0  0  0  5   5
+14:   heat       MF   goseq_raw 0  0  0  0  0   5
+15:   heat       MF    isotonic 0  0  0  0  5   5
+16: ploidy       BP exact_count 0  0  0  0  0  11
+17: ploidy       BP    gam_log2 0  0  0  0  0   9
+18: ploidy       BP  goseq_log2 0  0  0  0  0   0
+19: ploidy       BP   goseq_raw 0  0  0  0  0  10
+20: ploidy       BP    isotonic 0  0  0  0  0   9
+21: ploidy       CC exact_count 0  0  0  0  0   0
+22: ploidy       CC    gam_log2 0  0  0  0  0   0
+23: ploidy       CC  goseq_log2 0  0  0  0  0   0
+24: ploidy       CC   goseq_raw 0  0  0  0  0   2
+25: ploidy       CC    isotonic 0  0  0  0  0   0
+26: ploidy       MF exact_count 0  0  0  0  0   1
+27: ploidy       MF    gam_log2 0  0  0  0  0   1
+28: ploidy       MF  goseq_log2 0  0  0  0  0   1
+29: ploidy       MF   goseq_raw 0  0  0  0  0   1
+30: ploidy       MF    isotonic 0  0  0  0  0   1
+31: shared       BP exact_count 0  0  0  0  0   0
+32: shared       BP    gam_log2 0  0  0  0  0   0
+33: shared       BP  goseq_log2 0  0  0  0  0   0
+34: shared       BP   goseq_raw 0  0  0  0  0   0
+35: shared       BP    isotonic 0  0  0  0  0   0
+36: shared       CC exact_count 0  0  0  0  0   0
+37: shared       CC    gam_log2 0  0  0  0  0   0
+38: shared       CC  goseq_log2 0  0  0  0  0   0
+39: shared       CC   goseq_raw 0  0  0  0  0   0
+40: shared       CC    isotonic 0  0  0  0  0   0
+41: shared       MF exact_count 0  0  0  0  0   0
+42: shared       MF    gam_log2 0  0  0  0  0   0
+43: shared       MF  goseq_log2 0  0  0  0  0   0
+44: shared       MF   goseq_raw 0  0  0  0  0   0
+45: shared       MF    isotonic 0  0  0  0  0   0
+       set ontology         pwf 5 10 15 20 50 100
+
+Smallest q:
+       set ontology         pwf      5     10     15     20     50    100
+ 1:   heat       BP exact_count 1.0000 0.9021 0.7983 0.7254 0.5972 0.3585
+ 2:   heat       BP    gam_log2 1.0000 0.9484 0.8448 0.7667 0.5936 0.3269
+ 3:   heat       BP  goseq_log2 1.0000 0.9590 0.8468 0.7697 0.5935 0.3269
+ 4:   heat       BP   goseq_raw 1.0000 0.9105 0.7777 0.6711 0.4845 0.2668
+ 5:   heat       BP    isotonic 1.0000 0.9336 0.8251 0.7540 0.6214 0.3423
+ 6:   heat       CC exact_count 0.0659 0.0466 0.0385 0.0335 0.0193 0.0122
+ 7:   heat       CC    gam_log2 0.0820 0.0580 0.0479 0.0418 0.0240 0.0152
+ 8:   heat       CC  goseq_log2 0.0875 0.0619 0.0511 0.0446 0.0256 0.0162
+ 9:   heat       CC   goseq_raw 0.0754 0.0533 0.0440 0.0384 0.0221 0.0140
+10:   heat       CC    isotonic 0.0816 0.0577 0.0476 0.0415 0.0239 0.0151
+11:   heat       MF exact_count 0.1682 0.1319 0.0961 0.0884 0.0445 0.0280
+12:   heat       MF    gam_log2 0.1588 0.1173 0.0995 0.1002 0.0504 0.0317
+13:   heat       MF  goseq_log2 0.1556 0.1149 0.0975 0.0981 0.0493 0.0311
+14:   heat       MF   goseq_raw 0.1294 0.1205 0.1051 0.1103 0.0554 0.0349
+15:   heat       MF    isotonic 0.1475 0.1177 0.0866 0.0969 0.0487 0.0307
+16: ploidy       BP exact_count 0.3380 0.2231 0.1891 0.1556 0.0805 0.0443
+17: ploidy       BP    gam_log2 0.3680 0.2430 0.2081 0.1712 0.0885 0.0488
+18: ploidy       BP  goseq_log2 0.3796 0.2506 0.2146 0.1766 0.0913 0.0503
+19: ploidy       BP   goseq_raw 0.3602 0.2378 0.2016 0.1659 0.0858 0.0472
+20: ploidy       BP    isotonic 0.3653 0.2411 0.2065 0.1699 0.0879 0.0484
+21: ploidy       CC exact_count 0.3004 0.2125 0.1755 0.1530 0.0880 0.0557
+22: ploidy       CC    gam_log2 0.2947 0.2084 0.1722 0.1501 0.0863 0.0546
+23: ploidy       CC  goseq_log2 0.2744 0.1940 0.1603 0.1397 0.0803 0.0509
+24: ploidy       CC   goseq_raw 0.2658 0.1879 0.1552 0.1354 0.0778 0.0493
+25: ploidy       CC    isotonic 0.3048 0.2156 0.1781 0.1553 0.0893 0.0565
+26: ploidy       MF exact_count 0.3121 0.2017 0.1467 0.1231 0.0619 0.0390
+27: ploidy       MF    gam_log2 0.3264 0.2110 0.1534 0.1287 0.0647 0.0408
+28: ploidy       MF  goseq_log2 0.3103 0.2005 0.1458 0.1224 0.0615 0.0387
+29: ploidy       MF   goseq_raw 0.3296 0.2130 0.1549 0.1300 0.0653 0.0412
+30: ploidy       MF    isotonic 0.3164 0.2044 0.1487 0.1247 0.0627 0.0395
+31: shared       BP exact_count 0.2718 0.1794 0.1383 0.1138 1.0000 0.9778
+32: shared       BP    gam_log2 0.3676 0.2427 0.1870 0.1539 1.0000 0.9463
+33: shared       BP  goseq_log2 0.3628 0.2395 0.1846 0.1519 1.0000 0.9456
+34: shared       BP   goseq_raw 0.3376 0.2229 0.1718 0.1413 1.0000 0.9445
+35: shared       BP    isotonic 0.3048 0.2012 0.1551 0.1276 1.0000 0.9591
+36: shared       CC exact_count 1.0000 1.0000 1.0000 1.0000 1.0000 0.7356
+37: shared       CC    gam_log2 1.0000 1.0000 0.9737 0.8774 0.7964 0.5221
+38: shared       CC  goseq_log2 1.0000 1.0000 1.0000 0.9123 0.8242 0.5217
+39: shared       CC   goseq_raw 1.0000 1.0000 0.9858 0.9025 0.8242 0.5397
+40: shared       CC    isotonic 1.0000 1.0000 0.9834 0.8889 0.7855 0.4972
+41: shared       MF exact_count 1.0000 1.0000 1.0000 1.0000 1.0000 0.9474
+42: shared       MF    gam_log2 1.0000 1.0000 1.0000 1.0000 1.0000 0.9696
+43: shared       MF  goseq_log2 1.0000 1.0000 1.0000 1.0000 1.0000 0.9717
+44: shared       MF   goseq_raw 1.0000 1.0000 1.0000 1.0000 1.0000 0.9698
+45: shared       MF    isotonic 1.0000 1.0000 1.0000 1.0000 1.0000 0.9966
+       set ontology         pwf      5     10     15     20     50    100
+
+Top term at min_genes = 5:
+       set ontology         pwf  min_q top_n
+ 1: ploidy       BP   goseq_raw 0.3602  1742
+ 2: ploidy       CC   goseq_raw 0.2658  1347
+ 3: ploidy       MF   goseq_raw 0.3296   241
+ 4: ploidy       BP  goseq_log2 0.3796  1742
+ 5: ploidy       CC  goseq_log2 0.2744  1347
+ 6: ploidy       MF  goseq_log2 0.3103   241
+ 7: ploidy       BP    gam_log2 0.3680  1742
+ 8: ploidy       CC    gam_log2 0.2947  1347
+ 9: ploidy       MF    gam_log2 0.3264   241
+10: ploidy       BP    isotonic 0.3653  1742
+11: ploidy       CC    isotonic 0.3048  1347
+12: ploidy       MF    isotonic 0.3164   241
+13: ploidy       BP exact_count 0.3380  1742
+14: ploidy       CC exact_count 0.3004  1347
+15: ploidy       MF exact_count 0.3121   241
+16:   heat       BP   goseq_raw 1.0000   356
+17:   heat       CC   goseq_raw 0.0754  4535
+18:   heat       MF   goseq_raw 0.1294     9
+19:   heat       BP  goseq_log2 1.0000   356
+20:   heat       CC  goseq_log2 0.0875  4535
+21:   heat       MF  goseq_log2 0.1556     9
+22:   heat       BP    gam_log2 1.0000   356
+23:   heat       CC    gam_log2 0.0820  4535
+24:   heat       MF    gam_log2 0.1588     9
+25:   heat       BP    isotonic 1.0000   356
+26:   heat       CC    isotonic 0.0816  4535
+27:   heat       MF    isotonic 0.1475     9
+28:   heat       BP exact_count 1.0000   356
+29:   heat       CC exact_count 0.0659  4535
+30:   heat       MF exact_count 0.1682     9
+31: shared       BP   goseq_raw 0.3376    26
+32: shared       CC   goseq_raw 1.0000    23
+33: shared       MF   goseq_raw 1.0000     5
+34: shared       BP  goseq_log2 0.3628    26
+35: shared       CC  goseq_log2 1.0000    23
+36: shared       MF  goseq_log2 1.0000     5
+37: shared       BP    gam_log2 0.3676    26
+38: shared       CC    gam_log2 1.0000    23
+39: shared       MF    gam_log2 1.0000     5
+40: shared       BP    isotonic 0.3048    26
+41: shared       CC    isotonic 1.0000    23
+42: shared       MF    isotonic 1.0000     5
+43: shared       BP exact_count 0.2718    26
+44: shared       CC exact_count 1.0000    23
+45: shared       MF exact_count 1.0000     5
+       set ontology         pwf  min_q top_n
+                                             term
+ 1:                               gene expression
+ 2:                                       cytosol
+ 3:                        ATP-dependent activity
+ 4:                               gene expression
+ 5:                                       cytosol
+ 6:                        ATP-dependent activity
+ 7:                               gene expression
+ 8:                                       cytosol
+ 9:                        ATP-dependent activity
+10:                               gene expression
+11:                                       cytosol
+12:                        ATP-dependent activity
+13:                               gene expression
+14:                                       cytosol
+15:                        ATP-dependent activity
+16:          regulation of organelle organization
+17:                                     organelle
+18:             transcription coactivator binding
+19:          regulation of organelle organization
+20:                                     organelle
+21:             transcription coactivator binding
+22:          regulation of organelle organization
+23:                                     organelle
+24:             transcription coactivator binding
+25:          regulation of organelle organization
+26:                                     organelle
+27:             transcription coactivator binding
+28:          regulation of organelle organization
+29:                                     organelle
+30:             transcription coactivator binding
+31: positive regulation of leukocyte differentiat
+32:            intermediate filament cytoskeleton
+33: hydrolase activity, acting on carbon-nitrogen
+34: positive regulation of leukocyte differentiat
+35:            intermediate filament cytoskeleton
+36: hydrolase activity, acting on carbon-nitrogen
+37: positive regulation of leukocyte differentiat
+38:            intermediate filament cytoskeleton
+39: hydrolase activity, acting on carbon-nitrogen
+40: positive regulation of leukocyte differentiat
+41:            intermediate filament cytoskeleton
+42: hydrolase activity, acting on carbon-nitrogen
+43: positive regulation of leukocyte differentiat
+44:            intermediate filament cytoskeleton
+45: hydrolase activity, acting on carbon-nitrogen
+                                             term

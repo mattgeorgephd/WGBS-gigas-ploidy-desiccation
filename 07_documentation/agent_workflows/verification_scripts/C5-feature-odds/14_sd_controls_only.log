@@ -1,0 +1,24 @@
+
+within-group SD from sd_ctrl 
+dml_ploidy gene       +meth +SD: 1.28 (0.82-1.98)
+dml_ploidy CDS        +meth +SD: 1.36 (1.12-1.63)
+dml_ploidy intron     +meth +SD: 0.77 (0.65-0.91)
+dml_ploidy TE         +meth +SD: 0.89 (0.69-1.13)
+dml_ploidy intergenic +meth +SD: 0.66 (0.38-1.15)
+dml_heat   gene       +meth +SD: 1.26 (0.92-1.72)
+dml_heat   CDS        +meth +SD: 1.28 (1.11-1.47)
+dml_heat   intron     +meth +SD: 0.85 (0.75-0.97)
+dml_heat   TE         +meth +SD: 0.79 (0.65-0.97)
+dml_heat   intergenic +meth +SD: 0.69 (0.47-1.01)
+
+within-group SD from sd_heatcoh 
+dml_ploidy gene       +meth +SD: 1.31 (0.84-2.05)
+dml_ploidy CDS        +meth +SD: 1.32 (1.09-1.59)
+dml_ploidy intron     +meth +SD: 0.78 (0.66-0.93)
+dml_ploidy TE         +meth +SD: 0.88 (0.69-1.14)
+dml_ploidy intergenic +meth +SD: 0.65 (0.37-1.14)
+dml_heat   gene       +meth +SD: 1.25 (0.90-1.74)
+dml_heat   CDS        +meth +SD: 1.25 (1.09-1.43)
+dml_heat   intron     +meth +SD: 0.87 (0.76-0.99)
+dml_heat   TE         +meth +SD: 0.81 (0.67-0.98)
+dml_heat   intergenic +meth +SD: 0.70 (0.46-1.04)

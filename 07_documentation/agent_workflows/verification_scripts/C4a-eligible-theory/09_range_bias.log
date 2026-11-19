@@ -1,0 +1,305 @@
+
+column-subset membership equals the membership built by topGO on the eligible universe: TRUE
+done range 5 95 
+done range 9.090909 90.90909 
+done range 10 90 
+done range 15 85 
+done range 20 80 
+done range 25 75 
+done range 30 70 
+Warning message:
+In bgam.fitd(G, mf, gp, scale, nobs.extra = 0, rho = rho, coef = coef,  :
+  fitted probabilities numerically 0 or 1 occurred
+
+Terms with BH q<0.05 (Wallenius), min term size 5 / 15 / 50:
+                                                                                 analysis
+ 1: 10 to 90, bias = expected DML from CpG mean, within-cell SD, coverage (GAM weighting)
+ 2: 10 to 90, bias = expected DML from CpG mean, within-cell SD, coverage (GAM weighting)
+ 3: 10 to 90, bias = expected DML from CpG mean, within-cell SD, coverage (GAM weighting)
+ 4: 10 to 90, bias = expected DML from CpG mean, within-cell SD, coverage (GAM weighting)
+ 5: 10 to 90, bias = expected DML from CpG mean, within-cell SD, coverage (GAM weighting)
+ 6: 10 to 90, bias = expected DML from CpG mean, within-cell SD, coverage (GAM weighting)
+ 7:                          10 to 90, bias = expected DML from CpG means (GAM weighting)
+ 8:                          10 to 90, bias = expected DML from CpG means (GAM weighting)
+ 9:                          10 to 90, bias = expected DML from CpG means (GAM weighting)
+10:                          10 to 90, bias = expected DML from CpG means (GAM weighting)
+11:                          10 to 90, bias = expected DML from CpG means (GAM weighting)
+12:                          10 to 90, bias = expected DML from CpG means (GAM weighting)
+13:                           10 to 90, bias = number of eligible CpGs, GAM on log2 scale
+14:                           10 to 90, bias = number of eligible CpGs, GAM on log2 scale
+15:                           10 to 90, bias = number of eligible CpGs, GAM on log2 scale
+16:                           10 to 90, bias = number of eligible CpGs, GAM on log2 scale
+17:                           10 to 90, bias = number of eligible CpGs, GAM on log2 scale
+18:                           10 to 90, bias = number of eligible CpGs, GAM on log2 scale
+19:                           10 to 90, bias = number of eligible CpGs, GAM on log2 scale
+20:                           10 to 90, bias = number of eligible CpGs, GAM on log2 scale
+21:                           10 to 90, bias = number of eligible CpGs, GAM on log2 scale
+22:                               eligible range 10.0 to 90.0, bias = number of such CpGs
+23:                               eligible range 10.0 to 90.0, bias = number of such CpGs
+24:                               eligible range 10.0 to 90.0, bias = number of such CpGs
+25:                               eligible range 10.0 to 90.0, bias = number of such CpGs
+26:                               eligible range 10.0 to 90.0, bias = number of such CpGs
+27:                               eligible range 10.0 to 90.0, bias = number of such CpGs
+28:                               eligible range 10.0 to 90.0, bias = number of such CpGs
+29:                               eligible range 10.0 to 90.0, bias = number of such CpGs
+30:                               eligible range 10.0 to 90.0, bias = number of such CpGs
+31:                               eligible range 15.0 to 85.0, bias = number of such CpGs
+32:                               eligible range 15.0 to 85.0, bias = number of such CpGs
+33:                               eligible range 15.0 to 85.0, bias = number of such CpGs
+34:                               eligible range 15.0 to 85.0, bias = number of such CpGs
+35:                               eligible range 15.0 to 85.0, bias = number of such CpGs
+36:                               eligible range 15.0 to 85.0, bias = number of such CpGs
+37:                               eligible range 15.0 to 85.0, bias = number of such CpGs
+38:                               eligible range 15.0 to 85.0, bias = number of such CpGs
+39:                               eligible range 15.0 to 85.0, bias = number of such CpGs
+40:                               eligible range 20.0 to 80.0, bias = number of such CpGs
+41:                               eligible range 20.0 to 80.0, bias = number of such CpGs
+42:                               eligible range 20.0 to 80.0, bias = number of such CpGs
+43:                               eligible range 20.0 to 80.0, bias = number of such CpGs
+44:                               eligible range 20.0 to 80.0, bias = number of such CpGs
+45:                               eligible range 20.0 to 80.0, bias = number of such CpGs
+46:                               eligible range 20.0 to 80.0, bias = number of such CpGs
+47:                               eligible range 20.0 to 80.0, bias = number of such CpGs
+48:                               eligible range 20.0 to 80.0, bias = number of such CpGs
+49:                               eligible range 25.0 to 75.0, bias = number of such CpGs
+50:                               eligible range 25.0 to 75.0, bias = number of such CpGs
+51:                               eligible range 25.0 to 75.0, bias = number of such CpGs
+52:                               eligible range 25.0 to 75.0, bias = number of such CpGs
+53:                               eligible range 25.0 to 75.0, bias = number of such CpGs
+54:                               eligible range 25.0 to 75.0, bias = number of such CpGs
+55:                               eligible range 25.0 to 75.0, bias = number of such CpGs
+56:                               eligible range 25.0 to 75.0, bias = number of such CpGs
+57:                               eligible range 25.0 to 75.0, bias = number of such CpGs
+58:                               eligible range 30.0 to 70.0, bias = number of such CpGs
+59:                               eligible range 30.0 to 70.0, bias = number of such CpGs
+60:                               eligible range 30.0 to 70.0, bias = number of such CpGs
+61:                               eligible range 30.0 to 70.0, bias = number of such CpGs
+62:                               eligible range 30.0 to 70.0, bias = number of such CpGs
+63:                               eligible range 30.0 to 70.0, bias = number of such CpGs
+64:                               eligible range 30.0 to 70.0, bias = number of such CpGs
+65:                               eligible range 30.0 to 70.0, bias = number of such CpGs
+66:                               eligible range 30.0 to 70.0, bias = number of such CpGs
+67:                                eligible range 5.0 to 95.0, bias = number of such CpGs
+68:                                eligible range 5.0 to 95.0, bias = number of such CpGs
+69:                                eligible range 5.0 to 95.0, bias = number of such CpGs
+70:                                eligible range 5.0 to 95.0, bias = number of such CpGs
+71:                                eligible range 5.0 to 95.0, bias = number of such CpGs
+72:                                eligible range 5.0 to 95.0, bias = number of such CpGs
+73:                                eligible range 5.0 to 95.0, bias = number of such CpGs
+74:                                eligible range 5.0 to 95.0, bias = number of such CpGs
+75:                                eligible range 5.0 to 95.0, bias = number of such CpGs
+76:                                eligible range 9.1 to 90.9, bias = number of such CpGs
+77:                                eligible range 9.1 to 90.9, bias = number of such CpGs
+78:                                eligible range 9.1 to 90.9, bias = number of such CpGs
+79:                                eligible range 9.1 to 90.9, bias = number of such CpGs
+80:                                eligible range 9.1 to 90.9, bias = number of such CpGs
+81:                                eligible range 9.1 to 90.9, bias = number of such CpGs
+82:                                eligible range 9.1 to 90.9, bias = number of such CpGs
+83:                                eligible range 9.1 to 90.9, bias = number of such CpGs
+84:                                eligible range 9.1 to 90.9, bias = number of such CpGs
+                                                                                 analysis
+       set ontology universe_genes annotated dml_genes n_q05_5 n_q05_15
+ 1:   heat       BP           7771      5525      1109       0        0
+ 2:   heat       CC           7771      5738      1157       0        0
+ 3:   heat       MF           7771      5277      1021       0        0
+ 4: ploidy       BP           7771      5525       542       0        0
+ 5: ploidy       CC           7771      5738       579       0        0
+ 6: ploidy       MF           7771      5277       517       0        0
+ 7:   heat       BP           7771      5525      1109       0        0
+ 8:   heat       CC           7771      5738      1157       0        0
+ 9:   heat       MF           7771      5277      1021       0        0
+10: ploidy       BP           7771      5525       542       0        0
+11: ploidy       CC           7771      5738       579       0        0
+12: ploidy       MF           7771      5277       517       0        0
+13:   heat       BP           7771      5525      1109       0        0
+14:   heat       CC           7771      5738      1157       0        1
+15:   heat       MF           7771      5277      1021       0        0
+16: ploidy       BP           7771      5525       542       0        0
+17: ploidy       CC           7771      5738       579       0        0
+18: ploidy       MF           7771      5277       517       0        0
+19: shared       BP           7771      5525       104       0        0
+20: shared       CC           7771      5738       111       0        0
+21: shared       MF           7771      5277        95       0        0
+22:   heat       BP           7771      5525      1109       0        0
+23:   heat       CC           7771      5738      1157       0        1
+24:   heat       MF           7771      5277      1021       0        0
+25: ploidy       BP           7771      5525       542       0        0
+26: ploidy       CC           7771      5738       579       0        0
+27: ploidy       MF           7771      5277       517       0        0
+28: shared       BP           7771      5525       104       0        0
+29: shared       CC           7771      5738       111       0        0
+30: shared       MF           7771      5277        95       0        0
+31:   heat       BP           6898      4984      1109       0        0
+32:   heat       CC           6898      5184      1157       0        0
+33:   heat       MF           6898      4732      1021       0        0
+34: ploidy       BP           6898      4984       542       0        0
+35: ploidy       CC           6898      5184       579       0        0
+36: ploidy       MF           6898      4732       517       0        0
+37: shared       BP           6898      4984       104       0        0
+38: shared       CC           6898      5184       111       0        0
+39: shared       MF           6898      4732        95       0        0
+40:   heat       BP           6191      4521      1109       0        0
+41:   heat       CC           6191      4697      1157       0        0
+42:   heat       MF           6191      4277      1021       0        0
+43: ploidy       BP           6191      4521       542       0        0
+44: ploidy       CC           6191      4697       579       0        0
+45: ploidy       MF           6191      4277       517       0        0
+46: shared       BP           6191      4521       104       0        0
+47: shared       CC           6191      4697       111       0        0
+48: shared       MF           6191      4277        95       0        0
+49:   heat       BP           5539      4085      1109       0        0
+50:   heat       CC           5539      4235      1157       0        0
+51:   heat       MF           5539      3852      1021       0        0
+52: ploidy       BP           5539      4085       542       0        0
+53: ploidy       CC           5539      4235       579       0        0
+54: ploidy       MF           5539      3852       517       0        0
+55: shared       BP           5539      4085       104       0        0
+56: shared       CC           5539      4235       111       0        0
+57: shared       MF           5539      3852        95       0        0
+58:   heat       BP           4958      3677      1109       0        0
+59:   heat       CC           4958      3810      1157       0        2
+60:   heat       MF           4958      3452      1021       0        0
+61: ploidy       BP           4958      3677       542       0        0
+62: ploidy       CC           4958      3810       579       0        0
+63: ploidy       MF           4958      3452       517       0        0
+64: shared       BP           4958      3677       104       0        0
+65: shared       CC           4958      3810       111       0        0
+66: shared       MF           4958      3452        95       0        0
+67:   heat       BP           9249      6385      1109       0        0
+68:   heat       CC           9249      6622      1157       8       11
+69:   heat       MF           9249      6185      1021       0        1
+70: ploidy       BP           9249      6385       542       0        0
+71: ploidy       CC           9249      6622       579       0        2
+72: ploidy       MF           9249      6185       517       0        0
+73: shared       BP           9249      6385       104       0        0
+74: shared       CC           9249      6622       111       0        0
+75: shared       MF           9249      6185        95       0        0
+76:   heat       BP           7989      5657      1109       0        0
+77:   heat       CC           7989      5859      1157       1        1
+78:   heat       MF           7989      5414      1021       0        0
+79: ploidy       BP           7989      5657       542       0        0
+80: ploidy       CC           7989      5859       579       0        0
+81: ploidy       MF           7989      5414       517       0        0
+82: shared       BP           7989      5657       104       0        0
+83: shared       CC           7989      5859       111       0        0
+84: shared       MF           7989      5414        95       0        0
+       set ontology universe_genes annotated dml_genes n_q05_5 n_q05_15
+    n_q05_50 min_q_5 min_q_15 min_q_50
+ 1:        0  1.0000   0.9877   0.9344
+ 2:        0  0.7493   0.4377   0.7027
+ 3:        0  0.6256   0.6381   0.5385
+ 4:        0  1.0000   0.8013   0.5422
+ 5:        0  0.9538   0.5571   0.4988
+ 6:        0  1.0000   0.8841   0.5951
+ 7:        0  1.0000   0.9530   0.8163
+ 8:        0  0.2542   0.1485   0.3459
+ 9:        0  0.1822   0.3838   0.2290
+10:        0  0.7607   0.4222   0.1850
+11:        0  0.5918   0.3457   0.1733
+12:        0  0.6646   0.3123   0.1813
+13:        0  1.0000   0.8448   0.5936
+14:        1  0.0820   0.0479   0.0240
+15:        0  0.1588   0.0995   0.0504
+16:        0  0.3680   0.2081   0.0885
+17:        0  0.2947   0.1722   0.0863
+18:        0  0.3264   0.1534   0.0647
+19:        0  0.3676   0.1870   1.0000
+20:        0  1.0000   0.9737   0.7964
+21:        0  1.0000   1.0000   1.0000
+22:        0  1.0000   0.7777   0.4845
+23:        1  0.0754   0.0440   0.0221
+24:        0  0.1294   0.1051   0.0554
+25:        0  0.3602   0.2016   0.0858
+26:        0  0.2658   0.1552   0.0778
+27:        0  0.3296   0.1549   0.0653
+28:        0  0.3376   0.1718   1.0000
+29:        0  1.0000   0.9858   0.8242
+30:        0  1.0000   1.0000   1.0000
+31:        0  1.0000   0.8188   0.6208
+32:        0  0.2349   0.1368   0.1583
+33:        0  0.1337   0.1887   0.0812
+34:        0  0.5476   0.2970   0.1250
+35:        0  0.4558   0.2655   0.1316
+36:        0  0.5222   0.2414   0.1039
+37:        0  0.2909   0.1457   1.0000
+38:        0  1.0000   0.9527   0.8689
+39:        0  1.0000   1.0000   1.0000
+40:        0  1.0000   0.7332   0.5564
+41:        0  0.0980   0.0579   0.2607
+42:        0  0.1357   0.2274   0.0966
+43:        0  0.6399   0.3579   0.1559
+44:        0  0.4614   0.2724   0.1323
+45:        0  0.4396   0.2054   0.0897
+46:        0  0.3849   0.1914   1.0000
+47:        0  1.0000   0.9760   0.7525
+48:        0  1.0000   1.0000   1.0000
+49:        0  1.0000   0.7683   0.4729
+50:        0  0.0974   0.0586   0.3423
+51:        0  0.1479   0.1341   0.0584
+52:        0  0.6260   0.3264   0.1850
+53:        0  0.4691   0.2823   0.1369
+54:        0  0.5112   0.2785   0.1418
+55:        0  0.3211   0.1571   0.9956
+56:        0  1.0000   1.0000   0.7898
+57:        0  1.0000   1.0000   0.9957
+58:        0  0.9744   0.6353   0.2628
+59:        0  0.0713   0.0428   0.3593
+60:        0  0.2234   0.2816   0.1270
+61:        0  0.6187   0.3203   0.1691
+62:        0  0.4517   0.2708   0.1287
+63:        0  0.5475   0.2608   0.1198
+64:        0  0.3776   0.1857   0.9739
+65:        0  1.0000   1.0000   0.9429
+66:        0  1.0000   1.0000   1.0000
+67:        0  0.6368   0.3290   0.1433
+68:       11  0.0001   0.0000   0.0000
+69:        5  0.0702   0.0498   0.0218
+70:        0  0.2445   0.1421   0.0619
+71:        2  0.0701   0.0423   0.0206
+72:        0  0.2538   0.1212   0.0531
+73:        0  0.2973   0.1536   1.0000
+74:        0  1.0000   0.9004   0.6051
+75:        0  1.0000   1.0000   1.0000
+76:        0  1.0000   0.7882   0.4338
+77:        3  0.0394   0.0234   0.0115
+78:        5  0.1256   0.0863   0.0439
+79:        0  0.3971   0.2244   0.0951
+80:        0  0.2380   0.1415   0.0693
+81:        0  0.2690   0.1251   0.0526
+82:        0  0.3454   0.1770   1.0000
+83:        0  1.0000   1.0000   0.8013
+84:        0  1.0000   1.0000   1.0000
+    n_q05_50 min_q_5 min_q_15 min_q_50
+
+Any analysis with a term at q<0.05 with min 5 genes:
+                                                 analysis  set ontology
+1: eligible range 5.0 to 95.0, bias = number of such CpGs heat       CC
+2: eligible range 9.1 to 90.9, bias = number of such CpGs heat       CC
+   universe_genes annotated dml_genes min_genes terms n_q05  min_q        top
+1:           9249      6622      1157         5   673     8 0.0001 GO:0043226
+2:           7989      5859      1157         5   646     1 0.0394 GO:0043226
+   top_n      term
+1:  5092 organelle
+2:  4612 organelle
+
+Top terms where min_q < 0.1 at min 5:
+                                                      analysis    set ontology
+1:      eligible range 5.0 to 95.0, bias = number of such CpGs ploidy       CC
+2:      eligible range 5.0 to 95.0, bias = number of such CpGs   heat       CC
+3:      eligible range 5.0 to 95.0, bias = number of such CpGs   heat       MF
+4:      eligible range 9.1 to 90.9, bias = number of such CpGs   heat       CC
+5:     eligible range 10.0 to 90.0, bias = number of such CpGs   heat       CC
+6:     eligible range 20.0 to 80.0, bias = number of such CpGs   heat       CC
+7:     eligible range 25.0 to 75.0, bias = number of such CpGs   heat       CC
+8:     eligible range 30.0 to 70.0, bias = number of such CpGs   heat       CC
+9: 10 to 90, bias = number of eligible CpGs, GAM on log2 scale   heat       CC
+    min_q top_n            term
+1: 0.0701  1472         cytosol
+2: 0.0001  5092       organelle
+3: 0.0702  2144 protein binding
+4: 0.0394  4612       organelle
+5: 0.0754  4535       organelle
+6: 0.0980    32   membrane coat
+7: 0.0974    29   membrane coat
+8: 0.0713    26   membrane coat
+9: 0.0820  4535       organelle

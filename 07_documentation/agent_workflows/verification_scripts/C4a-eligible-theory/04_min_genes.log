@@ -1,0 +1,373 @@
+Wallenius, eligible universe: BH recomputed at each minimum term size. Rows with any q < 0.10:
+         mode    set ontology min_genes terms n_q05 n_q10       min_q
+ 1: corrected   heat       CC         5   642     0     1 0.089626814
+ 2: corrected   heat       CC         8   499     0     1 0.069663209
+ 3: corrected   heat       CC        10   454     0     1 0.063380956
+ 4: corrected   heat       CC        15   374     0     6 0.052212505
+ 5: corrected   heat       CC        20   326     1     6 0.045511435
+ 6: corrected   heat       CC        25   294     1     7 0.041044055
+ 7: corrected   heat       CC        30   271     1     7 0.037833126
+ 8: corrected   heat       CC        40   215     1     6 0.030015210
+ 9: corrected   heat       CC        50   188     1     4 0.026245858
+10: corrected   heat       CC        75   145     3     3 0.020242816
+11: corrected   heat       CC       100   119     3     3 0.016613070
+12: corrected   heat       CC       200    75     3    10 0.010470422
+13: corrected   heat       MF        50   181     0     4 0.090069722
+14: corrected   heat       MF        75   138     0     5 0.068671943
+15: corrected   heat       MF       100   114     0     5 0.056728996
+16: corrected   heat       MF       200    67     5    14 0.033340726
+17: corrected ploidy       BP        75   731     0    23 0.079463739
+18: corrected ploidy       BP       100   575     0    32 0.062505677
+19: corrected ploidy       BP       200   319    19    34 0.038144769
+20: corrected ploidy       CC        50   188     0     1 0.099912637
+21: corrected ploidy       CC        75   145     0     1 0.077060279
+22: corrected ploidy       CC       100   119     0     3 0.063242574
+23: corrected ploidy       CC       200    75     1     8 0.039858765
+24: corrected ploidy       MF        75   138     0     1 0.095510098
+25: corrected ploidy       MF       100   114     0     1 0.078899646
+26: corrected ploidy       MF       200    67     1     3 0.046370845
+27:    legacy   heat       CC         5   642     0     1 0.075397431
+28:    legacy   heat       CC         8   499     0     1 0.058603299
+29:    legacy   heat       CC        10   454     0     1 0.053318432
+30:    legacy   heat       CC        15   375     1     5 0.044040555
+31:    legacy   heat       CC        20   327     1     5 0.038403364
+32:    legacy   heat       CC        25   294     1     7 0.034527795
+33:    legacy   heat       CC        30   271     1     7 0.031826641
+34:    legacy   heat       CC        40   215     1     6 0.025249918
+35:    legacy   heat       CC        50   188     1     4 0.022078998
+36:    legacy   heat       CC        75   145     2     3 0.017029015
+37:    legacy   heat       CC       100   119     3     3 0.013975536
+38:    legacy   heat       CC       200    75     3     6 0.008808111
+39:    legacy   heat       MF         8   675     0     1 0.095694841
+40:    legacy   heat       MF        25   306     0     5 0.093722626
+41:    legacy   heat       MF        30   263     0     5 0.080552453
+42:    legacy   heat       MF        40   218     0     5 0.066769714
+43:    legacy   heat       MF        50   181     0     5 0.055437239
+44:    legacy   heat       MF        75   139     5     9 0.042573350
+45:    legacy   heat       MF       100   114     5    11 0.034916272
+46:    legacy   heat       MF       200    67    10    15 0.020520967
+47:    legacy ploidy       BP        50  1044     0    10 0.085764258
+48:    legacy ploidy       BP        75   734     0    33 0.060297859
+49:    legacy ploidy       BP       100   575    10    36 0.047236062
+50:    legacy ploidy       BP       200   319    27    37 0.029117495
+51:    legacy ploidy       CC        40   215     0     2 0.089005475
+52:    legacy ploidy       CC        50   188     0     2 0.077828043
+53:    legacy ploidy       CC        75   145     0     2 0.060026948
+54:    legacy ploidy       CC       100   119     2     3 0.049263495
+55:    legacy ploidy       CC       200    75     2     8 0.031048421
+56:    legacy ploidy       MF        30   263     0     1 0.094939626
+57:    legacy ploidy       MF        40   218     0     1 0.078695204
+58:    legacy ploidy       MF        50   181     0     1 0.065338678
+59:    legacy ploidy       MF        75   139     0     1 0.050177217
+60:    legacy ploidy       MF       100   114     1     1 0.041152538
+61:    legacy ploidy       MF       200    67     1     4 0.024186141
+         mode    set ontology min_genes terms n_q05 n_q10       min_q
+                                  top top_n n_fisher_q05
+ 1:                         organelle  4515            0
+ 2:                         organelle  4515            0
+ 3:                         organelle  4515            0
+ 4:                         organelle  4515            0
+ 5:                         organelle  4515           12
+ 6:                         organelle  4515           13
+ 7:                         organelle  4515           13
+ 8:                         organelle  4515           12
+ 9:                         organelle  4515           13
+10:                         organelle  4515           12
+11:                         organelle  4515           11
+12:                         organelle  4515           12
+13:                   protein binding  1877           35
+14:                   protein binding  1877           34
+15:                   protein binding  1877           31
+16:                   protein binding  1877           28
+17:                   gene expression  1740           59
+18:                   gene expression  1740           63
+19:                   gene expression  1740           75
+20:                           cytosol  1345            3
+21:                           cytosol  1345            3
+22:                           cytosol  1345            3
+23:                           cytosol  1345            8
+24:            ATP-dependent activity   238            6
+25:            ATP-dependent activity   238            5
+26:            ATP-dependent activity   238            3
+27:                         organelle  4535            0
+28:                         organelle  4535            0
+29:                         organelle  4535            0
+30:                         organelle  4535            0
+31:                         organelle  4535           13
+32:                         organelle  4535           13
+33:                         organelle  4535           13
+34:                         organelle  4535           13
+35:                         organelle  4535           13
+36:                         organelle  4535           12
+37:                         organelle  4535           11
+38:                         organelle  4535           12
+39: transcription coactivator binding     9           35
+40:                   protein binding  1885           33
+41:                   protein binding  1885           33
+42:                   protein binding  1885           35
+43:                   protein binding  1885           35
+44:                   protein binding  1885           34
+45:                   protein binding  1885           32
+46:                   protein binding  1885           28
+47:                   gene expression  1742           47
+48:                   gene expression  1742           58
+49:                   gene expression  1742           70
+50:                   gene expression  1742           74
+51:                           cytosol  1347            3
+52:                           cytosol  1347            3
+53:                           cytosol  1347            3
+54:                           cytosol  1347            3
+55:                           cytosol  1347            9
+56:            ATP-dependent activity   241            8
+57:            ATP-dependent activity   241            8
+58:            ATP-dependent activity   241            8
+59:            ATP-dependent activity   241            6
+60:            ATP-dependent activity   241            5
+61:            ATP-dependent activity   241            3
+                                  top top_n n_fisher_q05
+
+Count of q<0.05 terms by min_genes (legacy), set x ontology:
+      set ontology 1 2 3 5 8 10 15 20 25 30 40 50 75 100 200
+1:   heat       BP 0 0 0 0 0  0  0  0  0  0  0  0  0   0   0
+2:   heat       CC 0 0 0 0 0  0  1  1  1  1  1  1  2   3   3
+3:   heat       MF 0 0 0 0 0  0  0  0  0  0  0  0  5   5  10
+4: ploidy       BP 0 0 0 0 0  0  0  0  0  0  0  0  0  10  27
+5: ploidy       CC 0 0 0 0 0  0  0  0  0  0  0  0  0   2   2
+6: ploidy       MF 0 0 0 0 0  0  0  0  0  0  0  0  0   1   1
+7: shared       BP 0 0 0 0 0  0  0  0  0  0  0  0  0   0   0
+8: shared       CC 0 0 0 0 0  0  0  0  0  0  0  0  0   0   0
+9: shared       MF 0 0 0 0 0  0  0  0  0  0  0  0  0   0   0
+
+Smallest q by min_genes (legacy):
+      set ontology     1     2     3     5     8    10    15    20    25    30
+1:   heat       BP 1.000 1.000 1.000 1.000 0.996 0.911 0.778 0.671 0.646 0.646
+2:   heat       CC 0.161 0.123 0.101 0.075 0.059 0.053 0.044 0.038 0.035 0.032
+3:   heat       MF 0.396 0.248 0.190 0.129 0.096 0.120 0.105 0.110 0.094 0.081
+4: ploidy       BP 0.784 0.584 0.480 0.360 0.274 0.238 0.202 0.166 0.144 0.127
+5: ploidy       CC 0.566 0.434 0.357 0.266 0.207 0.188 0.155 0.135 0.122 0.112
+6: ploidy       MF 1.000 0.632 0.483 0.330 0.244 0.213 0.155 0.130 0.110 0.095
+7: shared       BP 0.735 0.548 0.449 0.338 0.257 0.223 0.172 0.141 0.123 1.000
+8: shared       CC 1.000 1.000 1.000 1.000 1.000 1.000 0.986 0.902 0.902 1.000
+9: shared       MF 1.000 0.827 0.632 1.000 1.000 1.000 1.000 1.000 1.000 1.000
+      40    50    75   100   200
+1: 0.574 0.484 0.341 0.267 0.148
+2: 0.025 0.022 0.017 0.014 0.009
+3: 0.067 0.055 0.043 0.035 0.021
+4: 0.102 0.086 0.060 0.047 0.029
+5: 0.089 0.078 0.060 0.049 0.031
+6: 0.079 0.065 0.050 0.041 0.024
+7: 1.000 1.000 0.990 0.945 0.903
+8: 0.853 0.824 0.654 0.540 0.433
+9: 1.000 1.000 1.000 0.970 0.843
+
+Smallest q by min_genes (corrected):
+      set ontology     1     2     3     5     8    10    15    20    25    30
+1:   heat       BP 1.000 1.000 1.000 1.000 1.000 0.949 0.832 0.720 0.686 0.691
+2:   heat       CC 0.191 0.146 0.120 0.090 0.070 0.063 0.052 0.046 0.041 0.038
+3:   heat       MF 0.440 0.276 0.210 0.143 0.106 0.195 0.171 0.179 0.152 0.130
+4: ploidy       BP 1.000 0.779 0.639 0.480 0.366 0.317 0.267 0.219 0.190 0.167
+5: ploidy       CC 0.726 0.557 0.459 0.341 0.265 0.241 0.199 0.173 0.156 0.144
+6: ploidy       MF 1.000 0.823 0.626 0.480 0.382 0.334 0.243 0.204 0.212 0.181
+7: shared       BP 0.782 0.583 0.477 0.359 0.273 0.237 0.183 0.150 0.130 1.000
+8: shared       CC 1.000 1.000 1.000 1.000 1.000 1.000 0.994 0.896 0.914 1.000
+9: shared       MF 1.000 0.779 0.593 1.000 1.000 1.000 1.000 1.000 1.000 1.000
+      40    50    75   100   200
+1: 0.629 0.613 0.438 0.345 0.191
+2: 0.030 0.026 0.020 0.017 0.010
+3: 0.108 0.090 0.069 0.057 0.033
+4: 0.134 0.113 0.079 0.063 0.038
+5: 0.114 0.100 0.077 0.063 0.040
+6: 0.151 0.125 0.096 0.079 0.046
+7: 1.000 1.000 0.982 0.940 0.889
+8: 0.844 0.816 0.644 0.529 0.424
+9: 1.000 1.000 1.000 0.993 0.879
+
+Count of q<0.05 terms by min_genes (corrected):
+      set ontology 1 2 3 5 8 10 15 20 25 30 40 50 75 100 200
+1:   heat       BP 0 0 0 0 0  0  0  0  0  0  0  0  0   0   0
+2:   heat       CC 0 0 0 0 0  0  0  1  1  1  1  1  3   3   3
+3:   heat       MF 0 0 0 0 0  0  0  0  0  0  0  0  0   0   5
+4: ploidy       BP 0 0 0 0 0  0  0  0  0  0  0  0  0   0  19
+5: ploidy       CC 0 0 0 0 0  0  0  0  0  0  0  0  0   0   1
+6: ploidy       MF 0 0 0 0 0  0  0  0  0  0  0  0  0   0   1
+7: shared       BP 0 0 0 0 0  0  0  0  0  0  0  0  0   0   0
+8: shared       CC 0 0 0 0 0  0  0  0  0  0  0  0  0   0   0
+9: shared       MF 0 0 0 0 0  0  0  0  0  0  0  0  0   0   0
+
+Top 12 terms, heat CC legacy eligible, Wallenius:
+         go_id                                     term genes_annotated
+ 1: GO:0043226                                organelle            4535
+ 2: GO:0032991               protein-containing complex            1588
+ 3: GO:0043229                  intracellular organelle            4328
+ 4: GO:0030117                            membrane coat              42
+ 5: GO:0048475                          coated membrane              42
+ 6: GO:0030135                           coated vesicle              73
+ 7: GO:0030662                  coated vesicle membrane              38
+ 8: GO:0030120                             vesicle coat              22
+ 9: GO:0043227               membrane-bounded organelle            4179
+10: GO:1902494                        catalytic complex             683
+11: GO:0043231 intracellular membrane-bounded organelle            3840
+12: GO:0030132              clathrin coat of coated pit               6
+    genes_with_dml expected p_fisher p_wallenius q_wallenius
+ 1:            951    914.4 0.001570    0.000117      0.0754
+ 2:            354    320.2 0.007470    0.000685      0.1610
+ 3:            897    872.7 0.033700    0.001170      0.1610
+ 4:             16      8.5 0.005470    0.001260      0.1610
+ 5:             16      8.5 0.005470    0.001260      0.1610
+ 6:             27     14.7 0.000609    0.001890      0.2020
+ 7:             15      7.7 0.004800    0.002240      0.2060
+ 8:             10      4.4 0.006420    0.003260      0.2620
+ 9:            861    842.6 0.092900    0.005020      0.3580
+10:            156    137.7 0.036700    0.007090      0.3960
+11:            779    774.3 0.385000    0.007340      0.3960
+12:              5      1.2 0.001650    0.007890      0.3960
+
+Top 8 terms, heat MF and BP, ploidy CC/MF/BP legacy eligible:
+heat BP 
+                                            term genes_annotated genes_with_dml
+1:          regulation of organelle organization             356            102
+2:                              response to cold              10              6
+3: cellular component organization or biogenesis            1924            449
+4:                       chromosome organization             212             57
+5:    positive regulation of histone methylation              14              8
+   expected p_fisher p_wallenius q_wallenius
+1:     71.5 3.85e-05    0.000464           1
+2:      2.0 6.44e-03    0.001460           1
+3:    386.2 6.54e-06    0.001760           1
+4:     42.5 8.88e-03    0.002180           1
+5:      2.8 2.42e-03    0.002520           1
+heat CC 
+                         term genes_annotated genes_with_dml expected p_fisher
+1:                  organelle            4535            951    914.4  0.00157
+2: protein-containing complex            1588            354    320.2  0.00747
+3:    intracellular organelle            4328            897    872.7  0.03370
+4:              membrane coat              42             16      8.5  0.00547
+5:            coated membrane              42             16      8.5  0.00547
+   p_wallenius q_wallenius
+1:    0.000117      0.0754
+2:    0.000685      0.1610
+3:    0.001170      0.1610
+4:    0.001260      0.1610
+5:    0.001260      0.1610
+heat MF 
+                                term genes_annotated genes_with_dml expected
+1: transcription coactivator binding               9              7      1.7
+2:                   protein binding            1885            434    364.7
+3:         adenyl nucleotide binding             871            216    168.5
+4: transcription coregulator binding              11              7      2.1
+5:     adenyl ribonucleotide binding             816            205    157.9
+   p_fisher p_wallenius q_wallenius
+1: 2.49e-04    0.000142       0.129
+2: 3.53e-07    0.000615       0.160
+3: 8.30e-06    0.000721       0.160
+4: 1.58e-03    0.000755       0.160
+5: 5.93e-06    0.001050       0.160
+ploidy BP 
+                                              term genes_annotated
+1:                                 gene expression            1742
+2:                                response to cold              10
+3: cellular nitrogen compound biosynthetic process            1431
+4:                   cellular biosynthetic process            2222
+5:         establishment of organelle localization             120
+   genes_with_dml expected p_fisher p_wallenius q_wallenius
+1:            201    170.9 2.18e-03    0.000202        0.36
+2:              5      1.0 1.48e-03    0.000262        0.36
+3:            169    140.4 2.13e-03    0.000430        0.36
+4:            242    218.0 1.53e-02    0.000471        0.36
+5:             26     11.8 7.27e-05    0.000510        0.36
+ploidy CC 
+                             term genes_annotated genes_with_dml expected
+1:                        cytosol            1347            175    135.9
+2:                        nucleus            2405            272    242.7
+3:                  nuclear lumen            1184            142    119.5
+4: Sm-like protein family complex              32              9      3.2
+5:       microtubule cytoskeleton             495             77     50.0
+   p_fisher p_wallenius q_wallenius
+1: 4.91e-05    0.000464       0.266
+2: 5.37e-03    0.000828       0.266
+3: 9.40e-03    0.002290       0.414
+4: 3.40e-03    0.003380       0.414
+5: 4.44e-05    0.003520       0.414
+ploidy MF 
+                                        term genes_annotated genes_with_dml
+1:                    ATP-dependent activity             241             45
+2:                          ribosome binding              23              8
+3:                   ATP hydrolysis activity              70             18
+4:                      nucleic acid binding            1344            154
+5: proton transmembrane transporter activity              41              9
+   expected p_fisher p_wallenius q_wallenius
+1:     23.6 1.17e-05    0.000361       0.330
+2:      2.2 1.04e-03    0.001430       0.439
+3:      6.9 9.31e-05    0.002030       0.439
+4:    131.7 1.10e-02    0.002110       0.439
+5:      4.0 1.57e-02    0.002410       0.439
+shared BP 
+                                                 term genes_annotated
+1:   positive regulation of leukocyte differentiation              26
+2:                 positive regulation of hemopoiesis              26
+3:      positive regulation of T cell differentiation              11
+4:            regulation of leukocyte differentiation              43
+5: endoplasmic reticulum to Golgi vesicle-mediated tr              56
+   genes_with_dml expected p_fisher p_wallenius q_wallenius
+1:              5      0.5 0.000103     0.00014       0.338
+2:              5      0.5 0.000103     0.00014       0.338
+3:              3      0.2 0.000958     0.00125       1.000
+4:              5      0.8 0.001170     0.00169       1.000
+5:              5      1.0 0.003830     0.00259       1.000
+shared CC 
+                                 term genes_annotated genes_with_dml expected
+1: intermediate filament cytoskeleton              23              3      0.4
+2:                  secretory granule             109              7      2.1
+3:                            cytosol            1347             37     26.1
+4:                      vesicle lumen              29              3      0.6
+5:            secretory granule lumen              29              3      0.6
+   p_fisher p_wallenius q_wallenius
+1:  0.00941     0.00600           1
+2:  0.00494     0.00676           1
+3:  0.01100     0.01920           1
+4:  0.01790     0.02170           1
+5:  0.01790     0.02170           1
+shared MF 
+                                                 term genes_annotated
+1: hydrolase activity, acting on carbon-nitrogen (but               5
+2: ATPase-coupled monoatomic cation transmembrane tra              16
+3:                  transcription coactivator binding               9
+4:                  transcription coregulator binding              11
+5:                P-type calcium transporter activity               7
+   genes_with_dml expected p_fisher p_wallenius q_wallenius
+1:              2      0.1  0.00310     0.00350           1
+2:              3      0.3  0.00267     0.00438           1
+3:              2      0.2  0.01060     0.00879           1
+4:              2      0.2  0.01590     0.01220           1
+5:              2      0.1  0.00635     0.01800           1
+
+Share of tested terms (>=5 genes) with Wallenius p below 0.05 / 0.01 / 0.001 (legacy, eligible):
+      set ontology terms    p05    p01    p001    min_p share_p_eq_1    f05
+1: ploidy       BP  4823 0.0489 0.0137 0.00228 0.000202        0.216 0.0943
+2: ploidy       CC   642 0.0498 0.0202 0.00312 0.000464        0.178 0.0748
+3: ploidy       MF   913 0.0613 0.0153 0.00110 0.000361        0.280 0.0876
+4:   heat       BP  4823 0.0398 0.0064 0.00021 0.000464        0.090 0.0900
+5:   heat       CC   642 0.0748 0.0202 0.00312 0.000117        0.072 0.1059
+6:   heat       MF   913 0.0635 0.0175 0.00438 0.000142        0.125 0.0909
+7: shared       BP  4823 0.0216 0.0035 0.00041 0.000140        0.580 0.0332
+8: shared       CC   642 0.0218 0.0031 0.00000 0.006000        0.545 0.0234
+9: shared       MF   913 0.0252 0.0033 0.00000 0.003500        0.666 0.0318
+      f01
+1: 0.0319
+2: 0.0327
+3: 0.0340
+4: 0.0350
+5: 0.0436
+6: 0.0526
+7: 0.0056
+8: 0.0031
+9: 0.0110
+
+One BH family per set and mode (ontologies pooled), min 5 genes:
+        mode    set terms n_q05 min_q
+1:    legacy ploidy  6378     0 0.377
+2:    legacy   heat  6378     0 0.452
+3:    legacy shared  6378     0 0.446
+4: corrected ploidy  6366     0 0.544
+5: corrected   heat  6366     0 0.502
+6: corrected shared  6366     0 0.474

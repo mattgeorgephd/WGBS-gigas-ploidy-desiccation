@@ -1,0 +1,68 @@
+
+groupGOTerms: 	GOBPTerm, GOMFTerm, GOCCTerm environments built.
+ploidy : observed share of genes with a DML against mean fitted PWF, by number of eligible CpGs
+         bin genes observed fitted
+1:     (0,1]  1806    0.027  0.034
+2:     (1,2]  1208    0.041  0.046
+3:     (2,5]  2069    0.075  0.067
+4:    (5,10]  1314    0.116  0.111
+5:   (10,20]   808    0.189  0.179
+6:   (20,50]   426    0.251  0.270
+7:  (50,100]   111    0.279  0.340
+8: (100,Inf]    29    0.517  0.417
+   sum(pwf) = 711.0, observed DML genes = 711; max pwf 0.514 at bias 743; pwf at bias 743: 0.514
+heat : observed share of genes with a DML against mean fitted PWF, by number of eligible CpGs
+         bin genes observed fitted
+1:     (0,1]  1806    0.052  0.090
+2:     (1,2]  1208    0.118  0.110
+3:     (2,5]  2069    0.175  0.146
+4:    (5,10]  1314    0.231  0.219
+5:   (10,20]   808    0.324  0.334
+6:   (20,50]   426    0.474  0.497
+7:  (50,100]   111    0.523  0.553
+8: (100,Inf]    29    0.690  0.611
+   sum(pwf) = 1444.9, observed DML genes = 1445; max pwf 0.736 at bias 743; pwf at bias 743: 0.736
+
+Type I error of the Wallenius p-value when genes are drawn independently with the fitted PWF as their probability:
+       set ontology              class sims terms    p05    p01    p001
+ 1:   heat       BP          all (>=5)  100  4823 0.0275 0.0046 0.00036
+ 2:   heat       BP               5-19  100  2804 0.0215 0.0035 0.00023
+ 3:   heat       BP              20-99  100  1444 0.0330 0.0057 0.00050
+ 4:   heat       BP            100-499  100   444 0.0412 0.0066 0.00068
+ 5:   heat       BP              >=500  100   131 0.0472 0.0083 0.00046
+ 6:   heat       BP >=50 & weight>1.15  100   354 0.0477 0.0075 0.00070
+ 7:   heat       BP >=50 & weight<0.87  100    35 0.0259 0.0049 0.00000
+ 8:   heat       CC          all (>=5)  100   642 0.0285 0.0049 0.00039
+ 9:   heat       CC               5-19  100   315 0.0223 0.0034 0.00029
+10:   heat       CC              20-99  100   208 0.0300 0.0054 0.00038
+11:   heat       CC            100-499  100    79 0.0377 0.0059 0.00025
+12:   heat       CC              >=500  100    40 0.0513 0.0112 0.00150
+13:   heat       CC >=50 & weight>1.15  100    65 0.0470 0.0100 0.00093
+14:   heat       CC >=50 & weight<0.87  100    22 0.0276 0.0065 0.00000
+15: ploidy       BP          all (>=5)  100  4823 0.0249 0.0039 0.00030
+16: ploidy       BP               5-19  100  2804 0.0194 0.0031 0.00020
+17: ploidy       BP              20-99  100  1444 0.0287 0.0044 0.00038
+18: ploidy       BP            100-499  100   444 0.0412 0.0068 0.00056
+19: ploidy       BP              >=500  100   131 0.0461 0.0076 0.00076
+20: ploidy       BP >=50 & weight>1.15  100   418 0.0425 0.0067 0.00054
+21: ploidy       BP >=50 & weight<0.87  100    64 0.0262 0.0030 0.00016
+22: ploidy       CC          all (>=5)  100   642 0.0258 0.0041 0.00025
+23: ploidy       CC               5-19  100   315 0.0197 0.0029 0.00019
+24: ploidy       CC              20-99  100   208 0.0302 0.0042 0.00019
+25: ploidy       CC            100-499  100    79 0.0332 0.0056 0.00051
+26: ploidy       CC              >=500  100    40 0.0358 0.0092 0.00050
+27: ploidy       CC >=50 & weight>1.15  100    69 0.0372 0.0055 0.00073
+28: ploidy       CC >=50 & weight<0.87  100    27 0.0346 0.0083 0.00000
+       set ontology              class sims terms    p05    p01    p001
+
+Runs with at least one BH q<0.05 term (Wallenius; Fisher for comparison):
+      set ontology sims any_wallenius max_wallenius median_min_q q10_min_q
+1:   heat       BP  100          0.01             1            1     0.555
+2:   heat       CC  100          0.01             5            1     0.348
+3: ploidy       BP  100          0.02             5            1     0.486
+4: ploidy       CC  100          0.01             2            1     0.400
+   any_fisher median_fisher
+1:       0.66           7.5
+2:       0.63           3.0
+3:       0.53           1.0
+4:       0.36           0.0

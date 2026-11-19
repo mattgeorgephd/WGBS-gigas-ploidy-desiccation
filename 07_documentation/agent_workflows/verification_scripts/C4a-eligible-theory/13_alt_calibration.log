@@ -1,0 +1,42 @@
+
+groupGOTerms: 	GOBPTerm, GOMFTerm, GOCCTerm environments built.
+Label-permutation null (ploidy), share of permutations with at least one BH q<0.05 term, by test and minimum term size:
+   ontology perms alt_5 alt_10 alt_50 alt_100 wal_5 wal_10 wal_15 wal_50
+1:       BP   150 0.133  0.160  0.240   0.320 0.047  0.067  0.073  0.093
+2:       CC   150 0.093  0.133  0.213   0.273 0.033  0.040  0.053  0.100
+3:       MF   150 0.080  0.113  0.173   0.193 0.033  0.033  0.040  0.093
+   wal_100
+1:   0.120
+2:   0.160
+3:   0.087
+   ontology alt_p05_big alt_p001_big alt_p05_small max_alt_50 q95_alt_50
+1:       BP      0.0830      0.00464        0.0262         71      14.10
+2:       CC      0.0779      0.00411        0.0300         11       3.55
+3:       MF      0.0809      0.00368        0.0276         15       4.65
+   q95_alt_100 q95_wal_100
+1:       22.20        9.55
+2:        7.55        3.00
+3:        6.00        1.55
+
+Model null (independent genes, fitted PWF as probability), share of runs with at least one BH q<0.05 term:
+      set ontology sims alt_5 alt_10 alt_50 alt_100 wal_5 wal_10 wal_15 wal_50
+1: ploidy       BP   40 0.025  0.025  0.075   0.075 0.000  0.000  0.000  0.025
+2: ploidy       CC   40 0.050  0.025  0.075   0.125 0.000  0.000  0.000  0.000
+3: ploidy       MF   40 0.000  0.000  0.025   0.075 0.000  0.000  0.000  0.000
+4:   heat       BP   40 0.025  0.050  0.025   0.075 0.000  0.000  0.000  0.025
+5:   heat       CC   40 0.050  0.050  0.075   0.075 0.025  0.025  0.025  0.025
+6:   heat       MF   40 0.025  0.050  0.050   0.050 0.025  0.025  0.025  0.025
+   wal_100
+1:   0.025
+2:   0.000
+3:   0.000
+4:   0.025
+5:   0.000
+6:   0.025
+      set ontology alt_p05_big alt_p001_big alt_p05_small
+1: ploidy       BP      0.0461      0.00110        0.0258
+2: ploidy       CC      0.0416      0.00120        0.0227
+3: ploidy       MF      0.0510      0.00152        0.0237
+4:   heat       BP      0.0410      0.00053        0.0247
+5:   heat       CC      0.0515      0.00106        0.0278
+6:   heat       MF      0.0535      0.00235        0.0259

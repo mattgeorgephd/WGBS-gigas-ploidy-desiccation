@@ -1,0 +1,167 @@
+names with more than one distinct GO string in full map: 0 
+     status transcripts genes in_gene_with_present_sibling
+1: others49          49    22                            0
+2:    block       15666  7858                         3979
+   identical_go_list_as_present_sibling shares_a_go_id_with_present_sibling
+1:                                    0                                   0
+2:                                 3754                                3948
+recovered legacy GOslim table: GO ids: 4564 
+     transcript_id   gene_id       parent hyphen gene_has_present n_go
+ 1: XM_011426872.3 105326704 LOC105326704  FALSE            FALSE    1
+ 2: XM_011430800.3 105329519 LOC105329519  FALSE            FALSE    1
+ 3: XM_011434580.3 105332130 LOC105332130  FALSE            FALSE    1
+ 4: XM_011434754.3 105332232   Striatin-3   TRUE            FALSE   19
+ 5: XM_011434755.3 105332232   Striatin-3   TRUE            FALSE   13
+ 6: XM_011434756.3 105332232   Striatin-3   TRUE            FALSE   13
+ 7: XM_011434758.3 105332232   Striatin-3   TRUE            FALSE   18
+ 8: XM_011434759.3 105332232   Striatin-3   TRUE            FALSE   19
+ 9: XM_011434760.3 105332232   Striatin-3   TRUE            FALSE   19
+10: XM_011436367.3 105333412 LOC105333412  FALSE            FALSE    1
+11: XM_011438016.3 105334529    Ankyrin-3   TRUE            FALSE   56
+12: XM_011439908.3 105335806 LOC105335806  FALSE            FALSE    2
+13: XM_011444205.3 105338904     Caprin-2   TRUE            FALSE   12
+14: XM_011444206.3 105338904     Caprin-2   TRUE            FALSE    6
+15: XM_011444207.3 105338904     Caprin-2   TRUE            FALSE   12
+16: XM_011444208.3 105338904     Caprin-2   TRUE            FALSE   18
+17: XM_011448838.3 105342053 LOC105342053  FALSE            FALSE    1
+18: XM_011452487.3 105344658 LOC105344658  FALSE            FALSE    2
+19: XM_034462448.1 105345280   Secernin-1   TRUE            FALSE    2
+20: XM_034462449.1 105345280   Secernin-1   TRUE            FALSE    2
+21: XM_034462450.1 105345280   Secernin-1   TRUE            FALSE    2
+22: XM_034466782.1 117688636 LOC117688636  FALSE            FALSE    7
+23: XM_034466783.1 117688638 LOC117688638  FALSE            FALSE    3
+24: XM_034466785.1 117688639 LOC117688639  FALSE            FALSE    4
+25: XM_034468151.1 105317820 LOC105317820  FALSE            FALSE    1
+26: XM_034468152.1 105317820 LOC105317820  FALSE            FALSE    1
+27: XM_034468153.1 105317820 LOC105317820  FALSE            FALSE    1
+28: XM_034468154.1 105317820 LOC105317820  FALSE            FALSE    1
+29: XM_034468155.1 105317820 LOC105317820  FALSE            FALSE    1
+30: XM_034468156.1 105317820 LOC105317820  FALSE            FALSE    1
+31: XM_034468157.1 105317820 LOC105317820  FALSE            FALSE    1
+32: XM_034468159.1 105317820 LOC105317820  FALSE            FALSE    1
+33: XM_034468160.1 105317820 LOC105317820  FALSE            FALSE    1
+34: XM_034468161.1 105317820 LOC105317820  FALSE            FALSE    1
+35: XM_034468351.1 105332130 LOC105332130  FALSE            FALSE    1
+36: XM_034469106.1 117689150 LOC117689150  FALSE            FALSE    6
+37: XM_034469107.1 105334136 LOC105334136  FALSE            FALSE    6
+38: XM_034469268.1 105332232   Striatin-3   TRUE            FALSE   13
+39: XM_034469269.1 105332232   Striatin-3   TRUE            FALSE   13
+40: XM_034469270.1 105332232   Striatin-3   TRUE            FALSE   19
+41: XM_034469271.1 105332232   Striatin-3   TRUE            FALSE   19
+42: XM_034469272.1 105332232   Striatin-3   TRUE            FALSE   13
+43: XM_034469273.1 105332232   Striatin-3   TRUE            FALSE   13
+44: XM_034471098.1 105326478 LOC105326478  FALSE            FALSE    1
+45: XM_034474660.1 117690429 LOC117690429  FALSE            FALSE    5
+46: XM_034477048.1 105341543 LOC105341543  FALSE            FALSE    1
+47: XM_034477262.1 117691332 LOC117691332  FALSE            FALSE    1
+48: XM_034479718.1 105333412 LOC105333412  FALSE            FALSE    1
+49: XM_034482170.1 105321302 LOC105321302  FALSE            FALSE    1
+     transcript_id   gene_id       parent hyphen gene_has_present n_go
+    n_go_in_recovered_goslim n_cpg_tested
+ 1:                        0            9
+ 2:                        0            0
+ 3:                        0            1
+ 4:                       18           13
+ 5:                       12           13
+ 6:                       12           13
+ 7:                       17           13
+ 8:                       18           13
+ 9:                       18           13
+10:                        0            0
+11:                       44           65
+12:                        0            0
+13:                        9           13
+14:                        6           13
+15:                        9           13
+16:                       16           13
+17:                        0            5
+18:                        0            8
+19:                        2           27
+20:                        2           27
+21:                        2           27
+22:                        7            0
+23:                        3            0
+24:                        3            0
+25:                        0            4
+26:                        0            4
+27:                        0            4
+28:                        0            4
+29:                        0            4
+30:                        0            4
+31:                        0            4
+32:                        0            4
+33:                        0            4
+34:                        0            4
+35:                        0            1
+36:                        6            0
+37:                        6            0
+38:                       12           13
+39:                       12           13
+40:                       18           13
+41:                       18           13
+42:                       12           13
+43:                       12           13
+44:                        0            1
+45:                        1            0
+46:                        0           16
+47:                        0            0
+48:                        0            0
+49:                        0            4
+    n_go_in_recovered_goslim n_cpg_tested
+                                          go
+ 1:                               GO:1905799
+ 2:                               GO:0036157
+ 3:                               GO:0002161
+ 4: GO:0000122,GO:0000159,GO:0003700,GO:0005
+ 5: GO:0000122,GO:0000159,GO:0003700,GO:0005
+ 6: GO:0000122,GO:0000159,GO:0003700,GO:0005
+ 7: GO:0000122,GO:0003700,GO:0005516,GO:0005
+ 8: GO:0000122,GO:0000159,GO:0003700,GO:0005
+ 9: GO:0000122,GO:0000159,GO:0003700,GO:0005
+10:                               GO:0036459
+11: GO:0000281,GO:0005200,GO:0005764,GO:0005
+12:                    GO:0097602,GO:2000060
+13: GO:0003723,GO:0005737,GO:0005886,GO:0009
+14: GO:0005581,GO:0005615,GO:0042802,GO:0045
+15: GO:0003723,GO:0005737,GO:0005886,GO:0009
+16: GO:0003723,GO:0005102,GO:0005634,GO:0005
+17:                               GO:0071601
+18:                    GO:0039502,GO:0039586
+19:                    GO:0006887,GO:0016805
+20:                    GO:0006887,GO:0016805
+21:                    GO:0006887,GO:0016805
+22: GO:0003690,GO:0003697,GO:0003713,GO:0005
+23:         GO:0004748,GO:0005971,GO:0009263
+24: GO:0008061,GO:0016020,GO:0016021,GO:0046
+25:                               GO:0036459
+26:                               GO:0036459
+27:                               GO:0036459
+28:                               GO:0036459
+29:                               GO:0036459
+30:                               GO:0036459
+31:                               GO:0036459
+32:                               GO:0036459
+33:                               GO:0036459
+34:                               GO:0036459
+35:                               GO:0002161
+36: GO:0003676,GO:0005634,GO:0006351,GO:0006
+37: GO:0003676,GO:0005634,GO:0006351,GO:0006
+38: GO:0000122,GO:0000159,GO:0003700,GO:0005
+39: GO:0000122,GO:0000159,GO:0003700,GO:0005
+40: GO:0000122,GO:0000159,GO:0003700,GO:0005
+41: GO:0000122,GO:0000159,GO:0003700,GO:0005
+42: GO:0000122,GO:0000159,GO:0003700,GO:0005
+43: GO:0000122,GO:0000159,GO:0003700,GO:0005
+44:                               GO:1903955
+45: GO:0005507,GO:0016722,GO:0046274,GO:0048
+46:                               GO:0102082
+47:                               GO:0036459
+48:                               GO:0036459
+49:                               GO:0036459
+                                          go
+
+49 others: hyphen gene: 20 ; not hyphen: 29 ; not hyphen and no GO id in recovered GOslim table: 23 ; not hyphen, with a GO id known to be in the GOslim table: 6 
+     status     n no_go_in_recovered_table
+1:  present 27469                      150
+2: others49    49                       23
+3:    block 15666                       78

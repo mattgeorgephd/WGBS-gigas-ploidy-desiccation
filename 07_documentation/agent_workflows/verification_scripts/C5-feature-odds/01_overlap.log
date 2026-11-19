@@ -1,0 +1,22 @@
+united rows: 480579  cols: 70 
+coverage == numCs + numTs everywhere: FALSE 
+min coverage: 10  any NA: FALSE 
+ploidy DML: 1038  heat DML: 2351  shared file: 200 
+matched ploidy: 1038  heat: 2351  in both: 200  shared file all found: TRUE 
+
+both hyper  both hypo   opposite       <NA> 
+        28         49        123     480379 
+gene               records   38208 dropped    0  CpG hits  340706
+mRNA               records   63341 dropped    0  CpG hits  328804
+exon               records  798642 dropped    0  CpG hits  174705
+CDS                records  700399 dropped    0  CpG hits  130459
+exon_UTR           records  202624 dropped    0  CpG hits   44251
+intron             records  283812 dropped    0  CpG hits  166610
+nonCDS             records  297596 dropped    0  CpG hits  306138
+lncRNA             records    7247 dropped    0  CpG hits   14835
+upstream_flank     records   32588 dropped    1  CpG hits   17130
+downstream_flank   records   32753 dropped    4  CpG hits   12652
+flanks             records   65341 dropped    5  CpG hits   28286
+intergenic         records   21598 dropped    0  CpG hits  111306
+TE                 records  781312 dropped    0  CpG hits  109966
+saved

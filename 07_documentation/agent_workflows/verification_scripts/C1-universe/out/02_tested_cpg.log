@@ -1,0 +1,20 @@
+annotated mRNAs matched in transcript_table: 43184 ; gene ids agree: TRUE ; in_legacy_go_map all TRUE: TRUE ; universe flag agrees: TRUE 
+transcript_table: in_legacy_go_map TRUE: 43184  in_legacy_universe TRUE: 27469 
+annotated mRNAs without a row in the gene table: 0 
+                  status transcripts genes tx_gene_has_tested_cpg pct_tx
+1: missing: in the block       15666  7858                  12139   77.5
+2:   present in universe       27469 14109                  21642   78.8
+3:    missing: 49 others          49    22                     38   77.6
+   median_tested_cpg mean_tested_cpg tx_gene_has_eligible_cpg
+1:                 7            20.7                     7261
+2:                 7            23.1                    12441
+3:                 4             9.0                       27
+
+Genes with annotated mRNAs: 20202 
+  genes with >= 1 transcript in universe: 14109 
+  genes with no transcript in universe: 6093 ; of those all transcripts in block: 6071 
+  genes with transcripts both in universe and in block (split genes): 1785 
+  genes wholly lost (no transcript in universe) that hold a CpG with 10x in all 22 libraries: 3790 of 6093 (62.2%) 
+  genes with a transcript in universe that hold such a CpG: 10031 of 14109 (71.1%) 
+  tested CpGs inside wholly lost genes (sum over genes; genes can overlap): 69405 
+  eligible CpGs inside wholly lost genes: 14525 

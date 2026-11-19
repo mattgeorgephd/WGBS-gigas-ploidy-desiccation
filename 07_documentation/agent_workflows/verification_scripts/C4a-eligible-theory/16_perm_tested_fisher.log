@@ -1,0 +1,10 @@
+
+real ploidy DML, tested universe, Fisher BH q<0.05 (pipeline: 102, 48, 52): 102 48 52 
+terms tested: 6837 801 1419  genes: 11435 12094 11744 
+permutations: 300
+BP: permuted-label lists give median 46.5 terms (5%-95%: 1-159.3; max 334); share with >= real (102): 0.137; share with >= 10 terms: 0.833
+CC: permuted-label lists give median 33 terms (5%-95%: 16-56; max 75); share with >= real (48): 0.103; share with >= 10 terms: 0.987
+MF: permuted-label lists give median 33.5 terms (5%-95%: 5.95-57.05; max 80); share with >= real (52): 0.080; share with >= 10 terms: 0.917
+  lists of 800-1300 loci (n=113) BP: median 63 (5%-95%: 11.2-169.6); share >= real: 0.221
+  lists of 800-1300 loci (n=113) CC: median 39 (5%-95%: 24.6-56); share >= real: 0.168
+  lists of 800-1300 loci (n=113) MF: median 41 (5%-95%: 21.6-56.2); share >= real: 0.115

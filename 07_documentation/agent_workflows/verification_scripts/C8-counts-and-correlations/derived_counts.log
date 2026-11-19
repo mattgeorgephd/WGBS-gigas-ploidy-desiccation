@@ -1,0 +1,26 @@
+  12918252    +124178  union (>=1 read in >=1 library)
+   7554012   -5240062  CpGs with >=1 methylated read in any library
+  12896114    +102040  CpGs with >=1 unmethylated read in any library
+   7531874   -5262200  CpGs with both a methylated and an unmethylated read (pooled)
+  12768423     -25651  CpGs with pooled coverage (sum over 22 libraries) >= 2
+  12646705    -147369  CpGs with pooled coverage (sum over 22 libraries) >= 3
+  12536749    -257325  CpGs with pooled coverage (sum over 22 libraries) >= 4
+  12433856    -360218  CpGs with pooled coverage (sum over 22 libraries) >= 5
+  11981003    -813071  CpGs with pooled coverage (sum over 22 libraries) >= 10
+  11898871    -895203  CpGs with pooled coverage (sum over 22 libraries) >= 11
+  11818164    -975910  CpGs with pooled coverage (sum over 22 libraries) >= 12
+  11223140   -1570934  CpGs with pooled coverage (sum over 22 libraries) >= 20
+  11085182   -1708892  CpGs with pooled coverage (sum over 22 libraries) >= 22
+   9768296   -3025778  CpGs with pooled coverage (sum over 22 libraries) >= 44
+  12718409     -75665  CpGs with pooled coverage >= 2 in heat libraries or in control libraries
+  12154191    -639883  CpGs with pooled coverage >= 2 in heat libraries and in control libraries
+  12552027    -242047  CpGs with pooled coverage >= 3 in heat libraries or in control libraries
+  11905857    -888217  CpGs with pooled coverage >= 3 in heat libraries and in control libraries
+  12257438    -536636  CpGs with pooled coverage >= 5 in heat libraries or in control libraries
+  11483746   -1310328  CpGs with pooled coverage >= 5 in heat libraries and in control libraries
+  11610080   -1183994  CpGs with pooled coverage >= 10 in heat libraries or in control libraries
+  10623490   -2170584  CpGs with pooled coverage >= 10 in heat libraries and in control libraries
+  11371862   -1422212  CpGs with pooled coverage >= 12 in heat libraries or in control libraries
+  10327398   -2466676  CpGs with pooled coverage >= 12 in heat libraries and in control libraries
+  12463724    -330350  CpGs covered in >=1 heat and >=1 control library
+pooled-coverage thresholds with counts within 150,000 of the target: [(1, 12918252), (2, 12768423), (3, 12646705)]

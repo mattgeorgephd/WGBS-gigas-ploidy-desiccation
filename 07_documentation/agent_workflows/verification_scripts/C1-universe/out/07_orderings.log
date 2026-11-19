@@ -1,0 +1,38 @@
+C / POSIX byte order                           runs of missing    25; longest 15666 (XM_011455141.3 to XM_034461018.1); missing outside it    49
+ICU en_US collation                            runs of missing    25; longest 15666 (XM_011455141.3 to XM_034461018.1); missing outside it    49
+ICU en_US, punctuation ignored                 runs of missing    25; longest 15666 (XM_011455141.3 to XM_034461018.1); missing outside it    49
+ICU en_US, numeric (natural) collation         runs of missing    25; longest 15666 (XM_011455141.3 to XM_034461018.1); missing outside it    49
+punctuation stripped, then bytes (old glibc)   runs of missing    25; longest 15666 (XM_011455141.3 to XM_034461018.1); missing outside it    49
+numeric value of the accession.version         runs of missing    25; longest 15666 (XM_011455141.3 to XM_034461018.1); missing outside it    49
+reversed string (control: unrelated order)     runs of missing  9043; longest    32 (XM_020070532.2 to XM_020073542.2); missing outside it 15683
+random order (control)                         runs of missing 10043; longest    10 (XM_034448740.1 to XM_034455593.1); missing outside it 15705
+unique-ID list from gannet: n = 27469 ; duplicates: FALSE ; all 14 characters XM_: TRUE ; strictly increasing in byte order: TRUE ; same set as universe: TRUE 
+neighbours in the list around the jump: XM_011455139.3 XM_011455140.3 XM_034461020.1 XM_034461021.1 
+
+XM_034 series (2020 annotation): accession range per sequence
+       sequence    n  min_acc median_acc  max_acc in_block in_universe
+ 1: NC_047565.1 3045 34443532   34446019 34448481     3045           0
+ 2: NC_047566.1 2368 34448492   34450492 34452509     2368           0
+ 3: NC_047567.1 1504 34452512   34453770 34454976     1504           0
+ 4: NC_047568.1 2844 34454978   34457150 34459216     2844           0
+ 5:    unplaced 1659 34459217   34461220 34462558      715         941
+ 6: NC_047559.1 2735 34442974   34462853 34483586     1307        1428
+ 7: NC_047560.1 2377 34462559   34464794 34466946        0        2374
+ 8: NC_047561.1 2741 34466948   34469202 34471174        0        2721
+ 9: NC_047562.1 2389 34471182   34473096 34475029        0        2388
+10: NC_047563.1 2707 34475035   34477478 34479871        0        2704
+11: NC_047564.1 2429 34442971   34481575 34483609      319        2109
+
+older series (XM_011, XM_0199, XM_020): by sequence
+       sequence    n in_block in_universe pct_in_universe
+ 1: NC_047559.1 1946      383        1562            80.3
+ 2: NC_047560.1  393      118         275            70.0
+ 3: NC_047561.1 2190      462        1720            78.5
+ 4: NC_047562.1 1360      307        1053            77.4
+ 5: NC_047563.1 1091      244         845            77.5
+ 6: NC_047564.1 2314      438        1876            81.1
+ 7: NC_047565.1 2452      509        1938            79.0
+ 8: NC_047566.1 1124      280         844            75.1
+ 9: NC_047567.1  474      116         358            75.5
+10: NC_047568.1 2516      598        1916            76.2
+11:    unplaced  526      109         417            79.3

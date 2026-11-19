@@ -1,0 +1,31 @@
+1. Reference CpGs by soft-mask class, and how many have a read in at least one library:
+   both bases upper case                  n=  8830215  covered in >=1 library:   8573509 (97.09%)  in all 22 at >=1x:  4317625  in all 22 at >=10x:  384380
+   both bases lower case (soft-masked)    n=  4117319  covered in >=1 library:   4054838 (98.48%)  in all 22 at >=1x:  1416209  in all 22 at >=10x:   87642
+   mixed case                             n=   298302  covered in >=1 library:    289905 (97.19%)  in all 22 at >=1x:   119106  in all 22 at >=10x:    8557
+   covered CpGs that are not fully upper case: 4344743 of 12918252 (33.6%)
+
+4. 99.9th percentile of coverage per library:
+   base rows >= 2 reads (step 04/05 'corrected'): [96.0, 97.0, 100.0, 103.0, 112.0, 92.0, 81.0, 100.0, 95.0, 102.0, 83.0, 83.0, 59.0, 66.37, 63.0, 75.0, 74.0, 61.0, 79.0, 71.0, 94.0, 76.0]
+   pipeline library_coverage.csv upper_cutoff   : [96.0, 97.0, 100.0, 103.0, 112.0, 92.0, 81.0, 100.0, 95.0, 102.0, 83.0, 83.0, 59.0, 66.37, 63.0, 75.0, 74.0, 61.0, 79.0, 71.0, 94.0, 76.0]
+   base rows >= 1 read (methRead mincov = 1)    : [92.0, 93.0, 97.0, 99.0, 108.0, 88.0, 78.0, 97.0, 92.0, 97.0, 78.0, 79.0, 55.0, 63.0, 59.0, 71.0, 70.0, 57.0, 75.0, 67.0, 89.0, 72.0]
+   max |mine(>=2) - pipeline| = 4.263256414560601e-14  libraries where the two bases give different cutoffs: 22
+
+5. pipeline legacy in-all counts equal to analyses/coverage_summary.xlsx sheet total_cpg: 25 of 25
+
+2. 1x_legacy: within-cohort minus between-cohort: median diff 0.0063 (permutation p = 0.0051); mean diff 0.0044 (p = 0.0056); heat-heat median 0.8652, control-control 0.8563, heat-control 0.8561
+3. 1x_legacy: R^2 of pairwise r on log depth_i + log depth_j = 0.091; correlation of per-library mean r with library mean coverage = 0.315 (excluding zr3644_1 and zr3644_14: -0.009)
+
+2. 10x_legacy: within-cohort minus between-cohort: median diff 0.0044 (permutation p = 0.0332); mean diff 0.0051 (p = 0.0170); heat-heat median 0.9073, control-control 0.9139, heat-control 0.9068
+3. 10x_legacy: R^2 of pairwise r on log depth_i + log depth_j = 0.001; correlation of per-library mean r with library mean coverage = -0.068 (excluding zr3644_1 and zr3644_14: -0.554)
+
+6. pipeline PCA scores, 1x legacy:
+   PC1 (8.35%): heat [-230.0, 795.1]; controls [-752.3, -349.4, -340.0, -279.0, -258.4, -245.3, -181.2, -140.5, -117.2, -94.0, 284.8, 1616.5]; controls inside the heat range: 5; best one-threshold split by treatment 16/22, by ploidy 15/22
+   PC2 (6.92%): heat [83.2, 131.5]; controls [-561.5, -504.6, -466.8, -406.2, -314.0, -236.8, -218.2, -196.4, -91.8, -90.7, 287.5, 1683.4]; controls inside the heat range: 0; best one-threshold split by treatment 20/22, by ploidy 13/22
+   PC3 (5.92%): heat [224.3, 600.0]; controls [-988.4, -731.7, -605.5, -450.2, -335.2, -219.8, -172.0, -133.3, -54.3, -40.1, 189.1, 232.5]; controls inside the heat range: 1; best one-threshold split by treatment 21/22, by ploidy 16/22
+   PC4 (5.65%): heat [2.8, 120.8]; controls [-1026.9, -435.7, -309.9, -141.2, -104.8, -58.6, -45.7, -17.2, 18.3, 94.7, 100.7, 1425.1]; controls inside the heat range: 3; best one-threshold split by treatment 18/22, by ploidy 17/22
+
+6. pipeline PCA scores, 10x legacy:
+   PC1 (9.47%): heat [-94.4, 294.3]; controls [-158.1, -90.9, -89.3, -86.2, -75.7, -71.9, -71.4, -61.0, -57.1, -53.9, 109.5, 443.7]; controls inside the heat range: 10; best one-threshold split by treatment 16/22, by ploidy 14/22
+   PC2 (6.41%): heat [54.1, 115.0]; controls [-180.9, -160.9, -142.2, -130.4, -112.4, -112.0, -106.7, -78.0, -56.6, -38.8, -31.9, 328.0]; controls inside the heat range: 0; best one-threshold split by treatment 21/22, by ploidy 14/22
+   PC3 (5.78%): heat [-16.3, 242.3]; controls [-323.2, -233.1, -49.6, -38.2, -37.5, -31.5, -30.1, -19.1, -10.2, 16.1, 40.6, 82.8]; controls inside the heat range: 4; best one-threshold split by treatment 18/22, by ploidy 16/22
+   PC4 (5.32%): heat [-90.3, 26.9]; controls [-109.4, -86.6, -76.6, -74.5, -70.5, -69.7, -60.9, -27.5, -16.3, 122.0, 282.6, 334.1]; controls inside the heat range: 8; best one-threshold split by treatment 16/22, by ploidy 16/22

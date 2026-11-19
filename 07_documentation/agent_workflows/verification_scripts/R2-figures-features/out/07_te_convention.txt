@@ -1,0 +1,15 @@
+records: 781312 
+[legacy] CpGs counted as TE by the pipeline that overlap no DNA/RC/LTR/LINE/SINE record: 3697 of 109966 (3.4%); of those, in Unknown: 2158
+[legacy] all analysed CpGs  ploidy DML  as BED: OR 0.774 (p 0.0011) | 1-based: OR 0.773 (p 0.0011) | TE classes only: OR 0.783 (p 0.0021) | TE or Unknown: OR 0.778 (p 0.0014)
+[legacy] all analysed CpGs  heat DML    as BED: OR 0.826 (p 0.0002) | 1-based: OR 0.829 (p 0.00027) | TE classes only: OR 0.846 (p 0.0013) | TE or Unknown: OR 0.838 (p 0.00059)
+[legacy] all analysed CpGs  shared      as BED: OR 0.549 (p 0.0023) | 1-based: OR 0.548 (p 0.0023) | TE classes only: OR 0.573 (p 0.0048) | TE or Unknown: OR 0.558 (p 0.003)
+[legacy] eligible CpGs      ploidy DML  as BED: OR 0.541 (p 5.6e-16) | 1-based: OR 0.540 (p 4.4e-16) | TE classes only: OR 0.548 (p 4e-15) | TE or Unknown: OR 0.538 (p 3.8e-16)
+[legacy] eligible CpGs      heat DML    as BED: OR 0.572 (p 6.5e-29) | 1-based: OR 0.574 (p 1.5e-28) | TE classes only: OR 0.588 (p 5.9e-26) | TE or Unknown: OR 0.575 (p 2.5e-28)
+[legacy] eligible CpGs      shared      as BED: OR 0.385 (p 3.4e-07) | 1-based: OR 0.385 (p 3.4e-07) | TE classes only: OR 0.403 (p 1.4e-06) | TE or Unknown: OR 0.388 (p 3.4e-07)
+[corrected] CpGs counted as TE by the pipeline that overlap no DNA/RC/LTR/LINE/SINE record: 3034 of 98671 (3.1%); of those, in Unknown: 2031
+[corrected] all analysed CpGs  ploidy DML  as BED: OR 0.846 (p 0.045) | 1-based: OR 0.845 (p 0.045) | TE classes only: OR 0.850 (p 0.051) | TE or Unknown: OR 0.845 (p 0.044)
+[corrected] all analysed CpGs  heat DML    as BED: OR 0.910 (p 0.074) | 1-based: OR 0.911 (p 0.079) | TE classes only: OR 0.925 (p 0.15) | TE or Unknown: OR 0.916 (p 0.096)
+[corrected] all analysed CpGs  shared      as BED: OR 0.705 (p 0.12) | 1-based: OR 0.704 (p 0.1) | TE classes only: OR 0.733 (p 0.17) | TE or Unknown: OR 0.714 (p 0.12)
+[corrected] eligible CpGs      ploidy DML  as BED: OR 0.586 (p 1.7e-11) | 1-based: OR 0.586 (p 1.7e-11) | TE classes only: OR 0.593 (p 6.4e-11) | TE or Unknown: OR 0.583 (p 1.2e-11)
+[corrected] eligible CpGs      heat DML    as BED: OR 0.625 (p 2.9e-20) | 1-based: OR 0.626 (p 4.6e-20) | TE classes only: OR 0.640 (p 4.5e-18) | TE or Unknown: OR 0.626 (p 6e-20)
+[corrected] eligible CpGs      shared      as BED: OR 0.491 (p 0.00055) | 1-based: OR 0.490 (p 0.00055) | TE classes only: OR 0.514 (p 0.0013) | TE or Unknown: OR 0.495 (p 0.00055)

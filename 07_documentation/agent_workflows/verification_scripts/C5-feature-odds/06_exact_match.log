@@ -1,0 +1,122 @@
+cells where coverage != numCs + numTs: 19811 of 10572738 (0.19%); range of difference: -1 to 1
+eligible, numCs/(numCs+numTs):  65480 
+eligible, numCs/coverage:       65481 
+in one set but not the other:   43 
+below 10 / above 90 (pipeline definition):  406672 (84.62%) / 8427 (1.75%) 
+DML outside (pipeline definition): ploidy 1  heat 1 
+
+== overlap table, pipeline eligible definition: rows 104 
+n_loci equal: TRUE  n_overlap equal: TRUE  max|share diff|: 5.329071e-14  max|pct_of_loci diff|: 5.684342e-14 
+
+== association table: rows mine 54  pipeline 54  merged 54 
+dml_in_track equal: TRUE  dml_total equal: TRUE 
+max |pct_other diff|: 7.105427e-14 
+max rel OR diff: 3.774758e-15 
+max rel CI diff: 4.107825e-15 
+max rel p diff: 4.440892e-15 
+max rel q diff: 2.88658e-15 
+OR of 0 (both): 2 
+
+== legacy workbook DML counts vs my overlap counts: cells 78  equal: 78 
+Empty data.table (0 rows and 9 cols): set,track,feature,col,n_workbook,n_loci...
+
+legacy 10x background counts vs the tested CpGs:
+               track  bg10x n_overlap  diff    ratio
+ 1:              CDS 153632    130459 23173 1.177627
+ 2:               TE 135135    109966 25169 1.228880
+ 3: downstream_flank  15210     12652  2558 1.202181
+ 4:             exon 205584    174705 30879 1.176749
+ 5:         exon_UTR  51464     44251  7213 1.163002
+ 6:           flanks  34486     28286  6200 1.219190
+ 7:             gene 408617    340706 67911 1.199324
+ 8:       intergenic 135433    111306 24127 1.216763
+ 9:           intron 203209    166610 36599 1.219669
+10:           lncRNA  17964     14835  3129 1.210920
+11:             mRNA 393941    328804 65137 1.198103
+12:           nonCDS 373546    306138 67408 1.220188
+13:   upstream_flank  20481     17130  3351 1.195622
+
+shares of the eight tracks, legacy background vs tested CpGs (sum legacy 732528 , sum tested 607209 ):
+              track legacy_share regenerated_share   diff
+1:              CDS       20.973            21.485  0.512
+2:               TE       18.448            18.110 -0.338
+3: downstream_flank        2.076             2.084  0.007
+4:         exon_UTR        7.026             7.288  0.262
+5:       intergenic       18.488            18.331 -0.158
+6:           intron       27.741            27.439 -0.302
+7:           lncRNA        2.452             2.443 -0.009
+8:   upstream_flank        2.796             2.821  0.025
+max |difference|: 0.5121739 
+
+== manuscript Results 3.3 percentages vs legacy_share_pct ==
+                   set            track manuscript pipeline    mine   diff
+ 1:  all analysed CpGs           intron       27.7  27.4387 27.4387 -0.261
+ 2:  all analysed CpGs              CDS       21.0  21.4850 21.4850  0.485
+ 3:  all analysed CpGs       intergenic       18.5  18.3308 18.3308 -0.169
+ 4:  all analysed CpGs               TE       18.4  18.1101 18.1101 -0.290
+ 5:  all analysed CpGs         exon_UTR        7.0   7.2876  7.2876  0.288
+ 6:  all analysed CpGs   upstream_flank        2.8   2.8211  2.8211  0.021
+ 7:  all analysed CpGs           lncRNA        2.5   2.4431  2.4431 -0.057
+ 8:  all analysed CpGs downstream_flank        2.1   2.0836  2.0836 -0.016
+ 9:         ploidy DML           intron       39.6  39.6459 39.6459  0.046
+10:           heat DML           intron       42.0  41.9855 41.9855 -0.014
+11:         ploidy DML              CDS       28.6  28.5604 28.5604 -0.040
+12:           heat DML              CDS       27.6  27.6456 27.6456  0.046
+13:         ploidy DML       intergenic        2.6   2.6174  2.6174  0.017
+14:           heat DML       intergenic        3.2   3.2403  3.2403  0.040
+15:         ploidy DML               TE       14.9  14.9346 14.9346  0.035
+16:           heat DML               TE       16.0  15.9600 15.9600 -0.040
+17:             shared       intergenic        1.5   1.4760  1.4760 -0.024
+18:             shared               TE       10.3  10.3321 10.3321  0.032
+19:             shared           lncRNA       15.5  15.4982 15.4982 -0.002
+20:             shared         exon_UTR       11.1  11.0701 11.0701 -0.030
+21:  shared, both hypo           intron       47.5  47.4576 47.4576 -0.042
+22: shared, both hyper           intron       43.2  43.2432 43.2432  0.043
+23:   shared, opposite           lncRNA       23.4  23.4286 23.4286  0.029
+24:   shared, opposite         exon_UTR       14.9  14.8571 14.8571 -0.043
+25:   shared, opposite               TE        5.7   5.7143  5.7143  0.014
+26:   shared, opposite       intergenic        1.1   1.1429  1.1429  0.043
+                   set            track manuscript pipeline    mine   diff
+    match_1dp
+ 1:     FALSE
+ 2:     FALSE
+ 3:     FALSE
+ 4:     FALSE
+ 5:     FALSE
+ 6:      TRUE
+ 7:     FALSE
+ 8:      TRUE
+ 9:      TRUE
+10:      TRUE
+11:      TRUE
+12:      TRUE
+13:      TRUE
+14:      TRUE
+15:      TRUE
+16:      TRUE
+17:      TRUE
+18:      TRUE
+19:      TRUE
+20:      TRUE
+21:      TRUE
+22:      TRUE
+23:      TRUE
+24:      TRUE
+25:      TRUE
+26:      TRUE
+    match_1dp
+DML percentages matching at one decimal: 18 of 18 ; background percentages matching: 2 of 8
+
+== DML per linkage group (lgi = index of NC_047559.1..NC_047568.1; NA = unplaced or mitochondrial) ==
+    lgi tested ploidy heat shared all3 pct_all3 pct_ploidy_heat pct_all3_placed
+ 1:  NA  24955     47  147      9  203     5.66            5.72            6.00
+ 2:   1  54739     74  248     12  334     9.31            9.50            9.86
+ 3:   2  26286     21   79      2  102     2.84            2.95            3.01
+ 4:   3  58816    192  319     30  541    15.07           15.08           15.98
+ 5:   4  37678     77  188     10  275     7.66            7.82            8.12
+ 6:   5  36663    120  172     51  343     9.56            8.62           10.13
+ 7:   6  61554    104  319     26  449    12.51           12.48           13.26
+ 8:   7  62350    170  368     27  565    15.74           15.87           16.69
+ 9:   8  37765     79  162     10  251     6.99            7.11            7.41
+10:   9  19306     23   48      6   77     2.15            2.10            2.27
+11:  10  60467    131  301     17  449    12.51           12.75           13.26

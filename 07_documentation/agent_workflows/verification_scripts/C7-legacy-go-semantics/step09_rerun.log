@@ -1,0 +1,29 @@
+
+
+groupGOTerms: 	GOBPTerm, GOMFTerm, GOCCTerm environments built.
+==============================================================================
+09_go_enrichment_legacy: GO enrichment as run for the manuscript draft
+==============================================================================
+04:53:50 GO.db 3.13.0 (ontology of 2021-02-01), topGO 2.54.0
+04:53:52 ploidy annotation table:  46626 lines, 2348 transcripts; the legacy reader kept  10979 rows,  623 transcripts
+04:53:52 heat   annotation table: 106621 lines, 4606 transcripts; the legacy reader kept  81109 rows, 3444 transcripts
+04:53:52 shared annotation table:   7029 lines,  379 transcripts; the legacy reader kept   6941 rows,  379 transcripts
+04:53:53 legacy universe: 27469 transcripts; 27469 of the 43184 mRNAs with GO terms (64%); largest missing block 15666 transcripts, XM_011455141.3 to XM_034461018.1
+04:54:51 ploidy BP: 12720 terms;  383 with p < 0.01; transcripts of interest 498; genes behind the ten top-ranked terms: 2 1 1 1 1 1 1 1 2 1
+04:55:29 heat   BP: 12720 terms;  856 with p < 0.01; transcripts of interest 1912; genes behind the ten top-ranked terms: 3 3 2 2 2 2 2 2 2 2
+04:55:58 shared BP: 12720 terms;  341 with p < 0.01; transcripts of interest 226; genes behind the ten top-ranked terms: 2 1 1 1 1 1 1 2 1 1
+04:56:06 ploidy CC:  1594 terms;   43 with p < 0.01; transcripts of interest 584; genes behind the ten top-ranked terms: 1 1 1 1 1 11 7 1 1 2
+04:56:12 heat   CC:  1594 terms;  145 with p < 0.01; transcripts of interest 2091; genes behind the ten top-ranked terms: 2 9 14 4 9 15 5 1 1 5
+04:56:16 shared CC:  1594 terms;   36 with p < 0.01; transcripts of interest 241; genes behind the ten top-ranked terms: 1 1 1 1 1 7 4 3 2 1
+04:56:26 ploidy MF:  3398 terms;   68 with p < 0.01; transcripts of interest 472; genes behind the ten top-ranked terms: 1 1 1 1 1 1 2 2 1 1
+04:56:34 heat   MF:  3398 terms;  172 with p < 0.01; transcripts of interest 1786; genes behind the ten top-ranked terms: 40 2 2 2 46 6 55 52 2 16
+04:56:40 shared MF:  3398 terms;   74 with p < 0.01; transcripts of interest 201; genes behind the ten top-ranked terms: 2 2 1 1 1 1 2 1 2 1
+      set BP CC  MF
+1:   heat  7 54 134
+2: ploidy 10 24  15
+3: shared  3 16   8
+04:56:41 09_go_enrichment_legacy finished in 2.9 min
+
+real	2m55.724s
+user	2m54.634s
+sys	0m1.318s

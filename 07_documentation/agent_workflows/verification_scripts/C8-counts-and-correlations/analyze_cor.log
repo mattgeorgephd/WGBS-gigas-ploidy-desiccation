@@ -1,0 +1,120 @@
+
+[   12s] set=all (22 libraries) >= 1x: 5852939 CpGs in all; medians=[9.0, 9.0, 10.0, 9.0, 10.0, 9.0, 8.0, 10.0, 8.0, 9.0, 6.0, 7.0, 5.0, 6.0, 6.0, 7.0, 7.0, 5.0, 7.0, 6.0, 7.0, 6.0] NaN rows=0
+   Pearson, methylKit-style normalization (step 04 order): min=0.7944 max=0.8973 median=0.8595 | within-cohort median=0.8624 between-cohort median=0.8561
+   max |r - saved pipeline matrix| = 7.028e-14
+   PCA: 2926467 CpGs with SD above the median SD (2.2525); PC1 8.3466% PC2 6.9215% PC3 5.9164% | pipeline PC1 8.3466% PC2 6.9215% | max |score diff| PC1 9.479e-03 PC2 9.115e-03
+      PC1 (8.3%): heat mean     85.6 [  -230.0,   795.1]  control mean    -71.3 [  -752.3,  1616.5]  standardized difference  0.31
+      PC2 (6.9%): heat mean   -111.6 [  -131.5,   -83.2]  control mean     93.0 [ -1683.4,   561.5]  standardized difference -0.46
+      PC3 (5.9%): heat mean    330.9 [   224.3,   600.0]  control mean   -275.7 [  -988.4,   232.5]  standardized difference  2.13
+      PC4 (5.6%): heat mean    -50.1 [  -120.8,    -2.8]  control mean     41.8 [ -1425.1,  1027.0]  standardized difference -0.22
+   Spearman, same matrix: min=0.6828 max=0.7558 median=0.7143 | within-cohort median=0.7179 between-cohort median=0.7126
+   Pearson, normalization in methylKit's evaluation order: min=0.7944 max=0.8973 median=0.8595 | within-cohort median=0.8624 between-cohort median=0.8561
+   max |r(step04 order) - r(methylKit order)| = 1.315e-07
+   Pearson, no normalization (100*nC/cov): min=0.7953 max=0.8976 median=0.8600 | within-cohort median=0.8630 between-cohort median=0.8575
+
+[   58s] set=all (22 libraries) >= 10x: 480579 CpGs in all; medians=[16.0, 16.0, 16.0, 16.0, 17.0, 16.0, 15.0, 17.0, 16.0, 16.0, 14.0, 14.0, 13.0, 13.0, 13.0, 14.0, 14.0, 13.0, 14.0, 14.0, 15.0, 14.0] NaN rows=0
+   Pearson, methylKit-style normalization (step 04 order): min=0.8394 max=0.9424 median=0.9086 | within-cohort median=0.9112 between-cohort median=0.9068
+   max |r - saved pipeline matrix| = 9.104e-15
+   PCA: 240195 CpGs with SD above the median SD (1.4210); PC1 9.4722% PC2 6.4060% PC3 5.7755% | pipeline PC1 9.4722% PC2 6.4060% | max |score diff| PC1 1.296e-11 PC2 2.197e-11
+      PC1 (9.5%): heat mean    -26.2 [  -294.3,    94.4]  control mean     21.9 [  -443.7,   158.1]  standardized difference -0.32
+      PC2 (6.4%): heat mean    -82.3 [  -115.0,   -54.1]  control mean     68.6 [  -328.0,   180.9]  standardized difference -1.51
+      PC3 (5.8%): heat mean     63.3 [   -16.3,   242.3]  control mean    -52.8 [  -323.2,    82.8]  standardized difference  1.11
+      PC4 (5.3%): heat mean    -14.7 [   -90.3,    26.9]  control mean     12.2 [  -109.4,   334.1]  standardized difference -0.23
+   Spearman, same matrix: min=0.6084 max=0.6912 median=0.6405 | within-cohort median=0.6434 between-cohort median=0.6384
+   Pearson, normalization in methylKit's evaluation order: min=0.8394 max=0.9424 median=0.9086 | within-cohort median=0.9112 between-cohort median=0.9068
+   max |r(step04 order) - r(methylKit order)| = 6.482e-07
+   Pearson, no normalization (100*nC/cov): min=0.8394 max=0.9420 median=0.9087 | within-cohort median=0.9113 between-cohort median=0.9067
+
+[   75s] set=all (22 libraries) >= 3x: 3714898 CpGs in all; medians=[11.0, 11.0, 11.0, 11.0, 12.0, 10.0, 10.0, 12.0, 10.0, 11.0, 8.0, 9.0, 7.0, 8.0, 7.0, 8.0, 8.0, 7.0, 9.0, 8.0, 9.0, 8.0] NaN rows=0
+   Pearson, methylKit-style normalization (step 04 order): min=0.8378 max=0.9263 median=0.8956 | within-cohort median=0.8969 between-cohort median=0.8939
+   Spearman, same matrix: min=0.7102 max=0.7831 median=0.7407 | within-cohort median=0.7447 between-cohort median=0.7387
+   Pearson, normalization in methylKit's evaluation order: min=0.8378 max=0.9263 median=0.8956 | within-cohort median=0.8969 between-cohort median=0.8939
+   max |r(step04 order) - r(methylKit order)| = 3.973e-07
+   Pearson, no normalization (100*nC/cov): min=0.8395 max=0.9273 median=0.8966 | within-cohort median=0.8977 between-cohort median=0.8952
+
+[  108s] set=all (22 libraries) >= 5x: 2297236 CpGs in all; medians=[13.0, 12.0, 13.0, 12.0, 13.0, 12.0, 11.0, 13.0, 12.0, 12.0, 10.0, 10.0, 8.0, 9.0, 9.0, 10.0, 10.0, 8.0, 11.0, 9.0, 11.0, 10.0] NaN rows=0
+   Pearson, methylKit-style normalization (step 04 order): min=0.8493 max=0.9387 median=0.9086 | within-cohort median=0.9107 between-cohort median=0.9070
+   Spearman, same matrix: min=0.6988 max=0.7725 median=0.7286 | within-cohort median=0.7314 between-cohort median=0.7268
+   Pearson, normalization in methylKit's evaluation order: min=0.8493 max=0.9387 median=0.9086 | within-cohort median=0.9107 between-cohort median=0.9070
+   max |r(step04 order) - r(methylKit order)| = 2.894e-08
+   Pearson, no normalization (100*nC/cov): min=0.8509 max=0.9388 median=0.9090 | within-cohort median=0.9110 between-cohort median=0.9073
+
+[  131s] set=all (22 libraries) >= 20x: 29884 CpGs in all; medians=[24.0, 24.0, 24.0, 24.0, 25.0, 24.0, 24.0, 25.0, 25.0, 25.0, 24.0, 24.0, 24.0, 23.0, 23.0, 23.0, 23.0, 24.0, 24.0, 23.0, 24.0, 24.0] NaN rows=0
+   Pearson, methylKit-style normalization (step 04 order): min=0.8345 max=0.9362 median=0.8944 | within-cohort median=0.8991 between-cohort median=0.8919
+   Spearman, same matrix: min=0.5630 max=0.6991 median=0.6113 | within-cohort median=0.6167 between-cohort median=0.6023
+   Pearson, normalization in methylKit's evaluation order: min=0.8345 max=0.9362 median=0.8944 | within-cohort median=0.8991 between-cohort median=0.8919
+   max |r(step04 order) - r(methylKit order)| = 2.332e-06
+   Pearson, no normalization (100*nC/cov): min=0.8346 max=0.9360 median=0.8943 | within-cohort median=0.8988 between-cohort median=0.8919
+
+[  142s] set=heat (10 libraries) >= 1x: 7261925 CpGs in all; medians=[9.0, 9.0, 10.0, 9.0, 10.0, 9.0, 8.0, 10.0, 8.0, 9.0] NaN rows=0
+   Pearson, methylKit-style normalization (step 04 order): min=0.8218 max=0.8702 median=0.8354
+   Spearman, same matrix: min=0.6720 max=0.7255 median=0.6826
+   Pearson, normalization in methylKit's evaluation order: min=0.8218 max=0.8702 median=0.8354
+   max |r(step04 order) - r(methylKit order)| = 1.267e-07
+   Pearson, no normalization (100*nC/cov): min=0.8224 max=0.8706 median=0.8359
+
+[  167s] set=heat (10 libraries) >= 5x: 4194066 CpGs in all; medians=[13.0, 12.0, 13.0, 12.0, 13.0, 12.0, 11.0, 13.0, 12.0, 12.0] NaN rows=0
+   Pearson, methylKit-style normalization (step 04 order): min=0.8781 max=0.9253 median=0.8963
+   Spearman, same matrix: min=0.7252 max=0.7647 median=0.7352
+   Pearson, normalization in methylKit's evaluation order: min=0.8781 max=0.9253 median=0.8963
+   max |r(step04 order) - r(methylKit order)| = 9.503e-09
+   Pearson, no normalization (100*nC/cov): min=0.8790 max=0.9258 median=0.8967
+
+[  182s] set=heat (10 libraries) >= 10x: 1921856 CpGs in all; medians=[16.0, 16.0, 16.0, 16.0, 17.0, 16.0, 15.0, 17.0, 16.0, 16.0] NaN rows=0
+   Pearson, methylKit-style normalization (step 04 order): min=0.8854 max=0.9396 median=0.9129
+   Spearman, same matrix: min=0.6977 max=0.7377 median=0.7102
+   Pearson, normalization in methylKit's evaluation order: min=0.8854 max=0.9396 median=0.9129
+   max |r(step04 order) - r(methylKit order)| = 2.407e-07
+   Pearson, no normalization (100*nC/cov): min=0.8871 max=0.9400 median=0.9134
+
+[  194s] set=control (12 libraries) >= 1x: 6337867 CpGs in all; medians=[6.0, 7.0, 5.0, 6.0, 6.0, 7.0, 7.0, 5.0, 7.0, 6.0, 7.0, 6.0] NaN rows=0
+   Pearson, methylKit-style normalization (step 04 order): min=0.7850 max=0.8837 median=0.8482
+   Spearman, same matrix: min=0.6791 max=0.7485 median=0.7107
+   Pearson, normalization in methylKit's evaluation order: min=0.7850 max=0.8837 median=0.8482
+   max |r(step04 order) - r(methylKit order)| = 5.221e-09
+   Pearson, no normalization (100*nC/cov): min=0.7863 max=0.8838 median=0.8482
+
+[  219s] set=control (12 libraries) >= 5x: 2465533 CpGs in all; medians=[10.0, 10.0, 8.0, 9.0, 9.0, 10.0, 10.0, 8.0, 11.0, 9.0, 11.0, 10.0] NaN rows=0
+   Pearson, methylKit-style normalization (step 04 order): min=0.8476 max=0.9371 median=0.9094
+   Spearman, same matrix: min=0.7016 max=0.7692 median=0.7363
+   Pearson, normalization in methylKit's evaluation order: min=0.8476 max=0.9371 median=0.9094
+   max |r(step04 order) - r(methylKit order)| = 6.667e-09
+   Pearson, no normalization (100*nC/cov): min=0.8489 max=0.9371 median=0.9095
+
+[  232s] set=control (12 libraries) >= 10x: 529068 CpGs in all; medians=[14.0, 14.0, 13.0, 13.0, 13.0, 14.0, 14.0, 13.0, 14.0, 14.0, 15.0, 14.0] NaN rows=0
+   Pearson, methylKit-style normalization (step 04 order): min=0.8376 max=0.9408 median=0.9111
+   Spearman, same matrix: min=0.6095 max=0.6881 median=0.6454
+   Pearson, normalization in methylKit's evaluation order: min=0.8376 max=0.9408 median=0.9111
+   max |r(step04 order) - r(methylKit order)| = 1.585e-08
+   Pearson, no normalization (100*nC/cov): min=0.8378 max=0.9405 median=0.9111
+
+[  242s] set=diploid (11 libraries) >= 1x: 6583553 CpGs in all; medians=[9.0, 9.0, 10.0, 9.0, 10.0, 6.0, 7.0, 5.0, 6.0, 6.0, 7.0] NaN rows=0
+   Pearson, methylKit-style normalization (step 04 order): min=0.8008 max=0.8805 median=0.8353 | within-cohort median=0.8416 between-cohort median=0.8320
+   Spearman, same matrix: min=0.6675 max=0.7358 median=0.6951 | within-cohort median=0.7025 between-cohort median=0.6943
+   Pearson, normalization in methylKit's evaluation order: min=0.8008 max=0.8805 median=0.8353 | within-cohort median=0.8416 between-cohort median=0.8320
+   max |r(step04 order) - r(methylKit order)| = 0.000e+00
+   Pearson, no normalization (100*nC/cov): min=0.8018 max=0.8812 median=0.8355 | within-cohort median=0.8421 between-cohort median=0.8330
+
+[  268s] set=triploid (11 libraries) >= 1x: 6787343 CpGs in all; medians=[9.0, 8.0, 10.0, 8.0, 9.0, 7.0, 5.0, 7.0, 6.0, 7.0, 6.0] NaN rows=0
+   Pearson, methylKit-style normalization (step 04 order): min=0.7991 max=0.8814 median=0.8501 | within-cohort median=0.8622 between-cohort median=0.8479
+   Spearman, same matrix: min=0.6844 max=0.7377 median=0.7034 | within-cohort median=0.7083 between-cohort median=0.7026
+   Pearson, normalization in methylKit's evaluation order: min=0.7991 max=0.8814 median=0.8501 | within-cohort median=0.8622 between-cohort median=0.8479
+   max |r(step04 order) - r(methylKit order)| = 1.041e-07
+   Pearson, no normalization (100*nC/cov): min=0.7997 max=0.8815 median=0.8516 | within-cohort median=0.8631 between-cohort median=0.8496
+
+[  291s] set=diploid (11 libraries) >= 10x: 766054 CpGs in all; medians=[16.0, 16.0, 16.0, 16.0, 17.0, 14.0, 14.0, 13.0, 13.0, 13.0, 14.0] NaN rows=0
+   Pearson, methylKit-style normalization (step 04 order): min=0.8509 max=0.9324 median=0.8939 | within-cohort median=0.9054 between-cohort median=0.8910
+   Spearman, same matrix: min=0.6233 max=0.6962 median=0.6516 | within-cohort median=0.6626 between-cohort median=0.6509
+   Pearson, normalization in methylKit's evaluation order: min=0.8509 max=0.9324 median=0.8939 | within-cohort median=0.9054 between-cohort median=0.8910
+   max |r(step04 order) - r(methylKit order)| = 7.802e-08
+   Pearson, no normalization (100*nC/cov): min=0.8517 max=0.9322 median=0.8943 | within-cohort median=0.9056 between-cohort median=0.8908
+
+[  298s] set=triploid (11 libraries) >= 10x: 861750 CpGs in all; medians=[16.0, 15.0, 17.0, 16.0, 16.0, 14.0, 13.0, 14.0, 14.0, 15.0, 14.0] NaN rows=0
+   Pearson, methylKit-style normalization (step 04 order): min=0.8721 max=0.9451 median=0.9216 | within-cohort median=0.9280 between-cohort median=0.9194
+   Spearman, same matrix: min=0.6516 max=0.7136 median=0.6769 | within-cohort median=0.6813 between-cohort median=0.6756
+   Pearson, normalization in methylKit's evaluation order: min=0.8721 max=0.9451 median=0.9216 | within-cohort median=0.9280 between-cohort median=0.9194
+   max |r(step04 order) - r(methylKit order)| = 3.504e-07
+   Pearson, no normalization (100*nC/cov): min=0.8722 max=0.9448 median=0.9215 | within-cohort median=0.9278 between-cohort median=0.9195
+
+[  303s] done
+exit 0

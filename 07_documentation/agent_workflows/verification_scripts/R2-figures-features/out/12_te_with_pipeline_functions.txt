@@ -1,0 +1,32 @@
+first TE record as read by the pipeline: NC_047559.1 4110 4128  width 19 (RepeatMasker: 4109-4128, 20 bases)
+[legacy] analysed CpGs in TE: pipeline 109966, with 1-based starts 110067 (gained 101, lost 0); ploidy DML 194 -> 194; heat DML 463 -> 465
+           chr    start G_position_1based
+1: NC_047559.1  6888336           6888338
+2: NC_047559.1  8905842           8905844
+3: NC_047559.1 23007387          23007389
+   cpg te_start   te_end
+1:   1  6888338  6888822
+2:   2  8905844  8905871
+3:   3 23007389 23007700
+[corrected] analysed CpGs in TE: pipeline 98671, with 1-based starts 98763 (gained 92, lost 0); ploidy DML 181 -> 181; heat DML 458 -> 459
+           chr    start G_position_1based
+1: NC_047559.1  6888336           6888338
+2: NC_047559.1  8905842           8905844
+3: NC_047559.1 23007387          23007389
+   cpg te_start   te_end
+1:   1  6888338  6888822
+2:   2  8905844  8905871
+3:   3 23007389 23007700
+Warning messages:
+1: In .merge_two_Seqinfo_objects(x, y) :
+  Each of the 2 combined objects has sequence levels not in the other:
+  - in 'x': NC_001276.1, NW_022994773.1, NW_022994775.1, NW_022994810.1, NW_022994855.1, NW_022994856.1, NW_022994892.1, NW_022994893.1, NW_022994906.1, NW_022994913.1, NW_022994917.1, NW_022994920.1, NW_022994944.1, NW_022994958.1, NW_022994960.1, NW_022994969.1, NW_022994976.1, NW_022994977.1, NW_022994988.1
+  - in 'y': NW_022994787.1, NW_022994796.1, NW_022994797.1, NW_022994884.1, NW_022994889.1, NW_022994898.1, NW_022994926.1, NW_022994947.1, NW_022994984.1
+  Make sure to always combine/compare objects based on the same reference
+  genome (use suppressWarnings() to suppress this warning).
+2: In .merge_two_Seqinfo_objects(x, y) :
+  Each of the 2 combined objects has sequence levels not in the other:
+  - in 'x': NW_022994773.1, NW_022994775.1, NW_022994810.1, NW_022994855.1, NW_022994856.1, NW_022994892.1, NW_022994893.1, NW_022994906.1, NW_022994913.1, NW_022994917.1, NW_022994920.1, NW_022994944.1, NW_022994958.1, NW_022994960.1, NW_022994969.1, NW_022994976.1, NW_022994977.1, NW_022994988.1
+  - in 'y': NW_022994787.1, NW_022994796.1, NW_022994797.1, NW_022994884.1, NW_022994889.1, NW_022994898.1, NW_022994926.1, NW_022994947.1, NW_022994984.1
+  Make sure to always combine/compare objects based on the same reference
+  genome (use suppressWarnings() to suppress this warning).

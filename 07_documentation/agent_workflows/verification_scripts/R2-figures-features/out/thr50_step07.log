@@ -1,0 +1,32 @@
+==============================================================================
+07_genome_features: genomic location of analysed CpGs and DML
+==============================================================================
+05:45:25 reading track gene
+05:45:25 reading track mRNA
+05:45:26 reading track exon
+05:45:31 reading track CDS
+05:45:33 reading track exon_UTR
+05:45:34 reading track intron
+05:45:34 reading track nonCDS
+05:45:34 reading track lncRNA
+05:45:34 reading track upstream_flank
+05:45:34 reading track downstream_flank
+05:45:35 reading track flanks
+05:45:35 reading track intergenic
+05:45:35 reading track TE
+05:45:36 [legacy] reading analysed CpGs and DML
+     mode        set n_dml n_regions n_single_locus_regions
+1: legacy   heat DML     4         4                      4
+2: legacy ploidy DML     1         1                      1
+   largest_region_n_dml dml_in_regions_of_5_or_more
+1:                    1                           0
+2:                    1                           0
+05:45:43 [corrected] reading analysed CpGs and DML
+        mode        set n_dml n_regions n_single_locus_regions
+1: corrected   heat DML     4         4                      4
+2: corrected ploidy DML     1         1                      1
+   largest_region_n_dml dml_in_regions_of_5_or_more
+1:                    1                           0
+2:                    1                           0
+There were 12 warnings (use warnings() to see them)
+05:45:49 07_genome_features finished in 0.4 min

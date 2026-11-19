@@ -531,15 +531,18 @@ label_box_in <- function(text, font_mm) {
 #   lab      one row per label: id, u, v (centre of its circle), r (radius of the circle), w, h (size of its box)
 #   circles  every circle of the panel: id, u, v, r, hard (TRUE: a label may not touch it; FALSE: it costs charge_circle)
 #   panel    width and height of the panel
-# Labels are placed one after the other, those in the most crowded places first. Each takes the cheapest allowed position among
-# label_rings x label_angles positions around its circle. A position is allowed when the box is inside the panel, touches no
-# label already placed and no hard circle, and when its leader line and the leader lines already drawn cross neither each other
-# nor a label box. The cost is the distance from the circle, plus a charge for each other circle under the box or the leader.
-# When no position is allowed, the leader rule is dropped, then the circle rule, then the label rule.
+# Labels are placed one after the other. Each takes the cheapest allowed position among label_rings x label_angles positions
+# around its circle. A position is allowed when the box is inside the panel, touches no label already placed and no hard
+# circle, and when its leader line and the leader lines already drawn cross neither each other nor a label box. The cost is the
+# distance from the circle, plus a charge for each other circle under the box or the leader. When no position is allowed, the
+# leader rule is dropped, then the circle rule, then the label rule.
+# The result depends on which label is placed first, so six orders are tried: the most crowded places first, the least crowded
+# first, and from the left, the right, the bottom and the top. The order that drops the fewest rules is kept; among equals,
+# the one with the lowest total cost, then the earlier in this list.
 # Returns the middle of each box and the number of rules that had to be dropped for it.
 place_labels <- function(lab, circles, panel) {
-  n_lab <- nrow(lab); at_u <- rep(NA_real_, n_lab); at_v <- rep(NA_real_, n_lab); dropped <- rep(NA_integer_, n_lab)
-  if (n_lab == 0) return(data.table(label_u = at_u, label_v = at_v, rules_dropped = dropped))
+  n_lab <- nrow(lab)
+  if (n_lab == 0) return(data.table(label_u = numeric(0), label_v = numeric(0), rules_dropped = integer(0)))
   fixed <- circles[hard == TRUE]; loose <- circles[hard == FALSE]
   crowd <- vapply(seq_len(n_lab), function(i) sum((fixed$u - lab$u[i])^2 + (fixed$v - lab$v[i])^2 < crowd_radius^2), numeric(1))
   middle <- c(mean(fixed$u), mean(fixed$v))
@@ -549,8 +552,8 @@ place_labels <- function(lab, circles, panel) {
     dx <- pmax(x1 - cu, 0, cu - x2); dy <- pmax(y1 - cv, 0, cv - y2); dx^2 + dy^2 < cr^2
   }
   turn_of <- function(pu, pv, qu, qv, ru, rv) sign((qu - pu) * (rv - pv) - (qv - pv) * (ru - pu))   # side of p-q on which r lies
-  placed <- list()
-  for (i in order(-crowd, seq_len(n_lab))) {
+  # Every position of every label, and what does not depend on the labels placed before it.
+  positions <- lapply(seq_len(n_lab), function(i) {
     p <- lab[i]
     reach <- p$r + label_gap + cand$ring + p$w / 2 * abs(ux) + p$h / 2 * abs(uy)          # the box clears the label's own circle
     bu <- p$u + reach * ux; bv <- p$v + reach * uy                                         # middle of the box
@@ -564,27 +567,41 @@ place_labels <- function(lab, circles, panel) {
       leader_hit <- leader_hit + (rowSums(free & (lu - fixed$u[k])^2 + (lv - fixed$v[k])^2 < fixed$r[k]^2) > 0)
     }
     for (k in seq_len(nrow(loose))) loose_hit <- loose_hit + touches(x1, y1, x2, y2, loose$u[k], loose$v[k], loose$r[k])
-    label_hit <- rep(FALSE, n_cand); leader_bad <- numeric(n_cand)
-    for (q in placed) {
-      label_hit <- label_hit | (x1 < q$x2 + label_gap & x2 > q$x1 - label_gap & y1 < q$y2 + label_gap & y2 > q$y1 - label_gap)
-      crossing <- turn_of(p$u, p$v, bu, bv, q$pu, q$pv) * turn_of(p$u, p$v, bu, bv, q$bu, q$bv) < 0 &      # the ends of each line lie
-                  turn_of(q$pu, q$pv, q$bu, q$bv, p$u, p$v) * turn_of(q$pu, q$pv, q$bu, q$bv, bu, bv) < 0      # on both sides of the other
-      under_label <- rowSums(lu > q$x1 & lu < q$x2 & lv > q$y1 & lv < q$y2) > 0
-      over_leader <- rowSums(outer(x1, q$lu, "<") & outer(x2, q$lu, ">") & outer(y1, q$lv, "<") & outer(y2, q$lv, ">")) > 0
-      leader_bad <- leader_bad + crossing + under_label + over_leader
-    }
     outward <- atan2(p$v - middle[2], p$u - middle[1])
     turn <- abs(atan2(sin(cand$angle - outward), cos(cand$angle - outward))) / pi          # 0: away from the middle of the labelled circles
-    cost <- cand$ring + charge_circle * loose_hit + charge_leader * (leader_hit + leader_bad) + charge_turn * turn
-    allowed <- list(inside & !label_hit & !hard_hit & leader_bad == 0, inside & !label_hit & !hard_hit, inside & !label_hit, inside,
-                    rep(TRUE, n_cand))
-    level <- which(vapply(allowed, any, logical(1)))[1]
-    best <- which(allowed[[level]])[which.min(cost[allowed[[level]]])]
-    at_u[i] <- bu[best]; at_v[i] <- bv[best]; dropped[i] <- level - 1L
-    placed[[length(placed) + 1]] <- list(x1 = x1[best], y1 = y1[best], x2 = x2[best], y2 = y2[best], pu = p$u, pv = p$v, bu = bu[best], bv = bv[best],
-                                         lu = lu[best, free[best, ]], lv = lv[best, free[best, ]])
+    list(pu = p$u, pv = p$v, bu = bu, bv = bv, x1 = x1, y1 = y1, x2 = x2, y2 = y2, lu = lu, lv = lv, free = free, inside = inside,
+         hard_hit = hard_hit, cost = cand$ring + charge_circle * loose_hit + charge_leader * leader_hit + charge_turn * turn)
+  })
+  place_in_order <- function(turns) {
+    at_u <- rep(NA_real_, n_lab); at_v <- rep(NA_real_, n_lab); dropped <- rep(NA_integer_, n_lab); paid <- 0
+    placed <- list()
+    for (i in turns) {
+      o <- positions[[i]]
+      label_hit <- rep(FALSE, n_cand); leader_bad <- numeric(n_cand)
+      for (q in placed) {
+        label_hit <- label_hit | (o$x1 < q$x2 + label_gap & o$x2 > q$x1 - label_gap & o$y1 < q$y2 + label_gap & o$y2 > q$y1 - label_gap)
+        # two leader lines cross when the ends of each lie on both sides of the other
+        crossing <- turn_of(o$pu, o$pv, o$bu, o$bv, q$pu, q$pv) * turn_of(o$pu, o$pv, o$bu, o$bv, q$bu, q$bv) < 0 &
+                    turn_of(q$pu, q$pv, q$bu, q$bv, o$pu, o$pv) * turn_of(q$pu, q$pv, q$bu, q$bv, o$bu, o$bv) < 0
+        under_label <- rowSums(o$lu > q$x1 & o$lu < q$x2 & o$lv > q$y1 & o$lv < q$y2) > 0
+        over_leader <- rowSums(outer(o$x1, q$lu, "<") & outer(o$x2, q$lu, ">") & outer(o$y1, q$lv, "<") & outer(o$y2, q$lv, ">")) > 0
+        leader_bad <- leader_bad + crossing + under_label + over_leader
+      }
+      cost <- o$cost + charge_leader * leader_bad
+      allowed <- list(o$inside & !label_hit & !o$hard_hit & leader_bad == 0, o$inside & !label_hit & !o$hard_hit, o$inside & !label_hit, o$inside,
+                      rep(TRUE, n_cand))
+      level <- which(vapply(allowed, any, logical(1)))[1]
+      best <- which(allowed[[level]])[which.min(cost[allowed[[level]]])]
+      at_u[i] <- o$bu[best]; at_v[i] <- o$bv[best]; dropped[i] <- level - 1L; paid <- paid + cost[best]
+      placed[[length(placed) + 1]] <- list(x1 = o$x1[best], y1 = o$y1[best], x2 = o$x2[best], y2 = o$y2[best], pu = o$pu, pv = o$pv, bu = o$bu[best],
+                                           bv = o$bv[best], lu = o$lu[best, o$free[best, ]], lv = o$lv[best, o$free[best, ]])
+    }
+    list(spot = data.table(label_u = at_u, label_v = at_v, rules_dropped = dropped), dropped = sum(dropped), paid = paid)
   }
-  data.table(label_u = at_u, label_v = at_v, rules_dropped = dropped)
+  first <- seq_len(n_lab)
+  tries <- lapply(list(order(-crowd, first), order(crowd, first), order(lab$u, first), order(-lab$u, first), order(lab$v, first),
+                       order(-lab$v, first)), place_in_order)
+  tries[[order(vapply(tries, `[[`, numeric(1), "dropped"), vapply(tries, `[[`, numeric(1), "paid"))[1]]]$spot
 }
 
 # Say in the log when labels could not be placed within every rule.

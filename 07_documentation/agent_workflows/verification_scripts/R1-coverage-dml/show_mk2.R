@@ -1,0 +1,5 @@
+suppressPackageStartupMessages(library(methylKit))
+cat("\n===== .procBismarkCoverage =====\n"); print(methylKit:::.procBismarkCoverage)
+cat("\n===== .readTableFast =====\n"); print(methylKit:::.readTableFast)
+cat("\n===== methRead character =====\n"); print(getMethod("methRead", signature("character","character","character")))
+cat("\n===== logReg =====\n"); print(methylKit:::logReg)

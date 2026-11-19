@@ -1,0 +1,15 @@
+Mantel-Haenszel OR among eligible CpGs, strata = 5-point methylation bin x decile of within-group SD; 100 kb block bootstrap
+dml_ploidy gene       1.13 (0.76-1.70)
+dml_ploidy intron     0.81 (0.68-0.95)
+dml_ploidy CDS        1.25 (1.06-1.48)
+dml_ploidy TE         1.05 (0.83-1.32)
+dml_ploidy intergenic 0.80 (0.46-1.32)
+dml_heat   gene       1.01 (0.76-1.34)
+dml_heat   intron     0.87 (0.77-0.99)
+dml_heat   CDS        1.17 (1.03-1.33)
+dml_heat   TE         1.02 (0.85-1.21)
+dml_heat   intergenic 0.92 (0.63-1.32)
+
+correlation (Spearman) of within-group SD with mean coverage among eligible CpGs: -0.39 
+median within-group SD of DML vs other eligible CpGs: ploidy 22.2 vs 15.1 ; heat 21 vs 15 
+expected binomial SD (points) at the median coverage and methylation of eligible CpGs in the 40-60% band: 9.8 ; observed median within-group SD there: 18 

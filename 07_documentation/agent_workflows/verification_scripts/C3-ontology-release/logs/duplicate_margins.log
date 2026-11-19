@@ -1,0 +1,59 @@
+
+groupGOTerms: 	GOBPTerm, GOMFTerm, GOCCTerm environments built.
+map lines 48263 unique names 27469 
+transcripts whose repeated lines differ in GO content: 0 
+     set ont N_legacy N_unique sig_legacy sig_unique rate_legacy rate_unique
+1 PLOIDY  CC    45770    25505       1914        584      0.0418      0.0229
+  annotated_same significant_same n_p01_legacy n_p01_unique n_p01_both
+1           TRUE             TRUE           43           96         43
+  top10_in_common median_log10_ratio_p
+1               7                -3.17
+   set ont N_legacy N_unique sig_legacy sig_unique rate_legacy rate_unique
+1 HEAT  CC    45770    25505       5168       2091      0.1129       0.082
+  annotated_same significant_same n_p01_legacy n_p01_unique n_p01_both
+1           TRUE             TRUE          145          228        145
+  top10_in_common median_log10_ratio_p
+1               4                -1.78
+    set ont N_legacy N_unique sig_legacy sig_unique rate_legacy rate_unique
+1 COMBO  CC    45770    25505        786        241      0.0172      0.0094
+  annotated_same significant_same n_p01_legacy n_p01_unique n_p01_both
+1           TRUE             TRUE           36           88         36
+  top10_in_common median_log10_ratio_p
+1               8                -2.77
+     set ont N_legacy N_unique sig_legacy sig_unique rate_legacy rate_unique
+1 PLOIDY  MF    40016    22785       1546        472      0.0386      0.0207
+  annotated_same significant_same n_p01_legacy n_p01_unique n_p01_both
+1           TRUE             TRUE           68          135         68
+  top10_in_common median_log10_ratio_p
+1               7                -2.03
+   set ont N_legacy N_unique sig_legacy sig_unique rate_legacy rate_unique
+1 HEAT  MF    40016    22785       4455       1786      0.1113      0.0784
+  annotated_same significant_same n_p01_legacy n_p01_unique n_p01_both
+1           TRUE             TRUE          172          245        172
+  top10_in_common median_log10_ratio_p
+1               4                -1.76
+    set ont N_legacy N_unique sig_legacy sig_unique rate_legacy rate_unique
+1 COMBO  MF    40016    22785        729        201      0.0182      0.0088
+  annotated_same significant_same n_p01_legacy n_p01_unique n_p01_both
+1           TRUE             TRUE           74          134         74
+  top10_in_common median_log10_ratio_p
+1               9                -1.91
+     set ont N_legacy N_unique sig_legacy sig_unique rate_legacy rate_unique
+1 PLOIDY  BP    40748    22761       1581        498      0.0388      0.0219
+  annotated_same significant_same n_p01_legacy n_p01_unique n_p01_both
+1           TRUE             TRUE          383          638        383
+  top10_in_common median_log10_ratio_p
+1               5                -2.45
+   set ont N_legacy N_unique sig_legacy sig_unique rate_legacy rate_unique
+1 HEAT  BP    40748    22761       4699       1912      0.1153       0.084
+  annotated_same significant_same n_p01_legacy n_p01_unique n_p01_both
+1           TRUE             TRUE          856         1342        856
+  top10_in_common median_log10_ratio_p
+1               8                -1.83
+    set ont N_legacy N_unique sig_legacy sig_unique rate_legacy rate_unique
+1 COMBO  BP    40748    22761        768        226      0.0188      0.0099
+  annotated_same significant_same n_p01_legacy n_p01_unique n_p01_both
+1           TRUE             TRUE          341          556        341
+  top10_in_common median_log10_ratio_p
+1              10                -1.39
+exit 0

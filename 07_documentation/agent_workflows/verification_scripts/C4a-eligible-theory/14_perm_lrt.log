@@ -1,0 +1,11 @@
+           used  (Mb) gc trigger  (Mb) max used  (Mb)
+Ncells   395987  21.2     837269  44.8   664391  35.5
+Vcells 21857551 166.8   57377874 437.8 46072522 351.6
+my LRT against the pipeline p-values on 200 real ploidy DML: max |log10 ratio| = 1.14e-13
+real ploidy DML p-values: median 1.1e-09; 90th pct 1.3e-06; max 8.3e-05; p cutoff at q<0.01: 0.00023; CpGs with q<0.01: 10275
+permutation 1: 636 CpGs pass 20 points; LRT p: median 9.2e-09; 90th pct 2.9e-06; max 7.6e-05; share above 2.3e-4: 0.0000; above 1e-5: 0.0330
+permutation 2: 1317 CpGs pass 20 points; LRT p: median 1.5e-09; 90th pct 1.4e-06; max 8.3e-05; share above 2.3e-4: 0.0000; above 1e-5: 0.0289
+permutation 3: 762 CpGs pass 20 points; LRT p: median 1e-08; 90th pct 3.9e-06; max 0.00011; share above 2.3e-4: 0.0000; above 1e-5: 0.0420
+permutation 4: 525 CpGs pass 20 points; LRT p: median 4.9e-09; 90th pct 2.5e-06; max 0.00027; share above 2.3e-4: 0.0019; above 1e-5: 0.0324
+permutation 5: 508 CpGs pass 20 points; LRT p: median 1.1e-08; 90th pct 2e-06; max 4.1e-05; share above 2.3e-4: 0.0000; above 1e-5: 0.0256
+permutation 6: 949 CpGs pass 20 points; LRT p: median 2.5e-09; 90th pct 1.4e-06; max 0.00012; share above 2.3e-4: 0.0000; above 1e-5: 0.0200

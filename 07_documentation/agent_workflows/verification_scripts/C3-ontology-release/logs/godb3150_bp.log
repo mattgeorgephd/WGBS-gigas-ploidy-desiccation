@@ -1,0 +1,30 @@
+
+groupGOTerms: 	GOBPTerm, GOMFTerm, GOCCTerm environments built.
+                                                                                                                                                 R 
+                                                                                                                    "R version 4.3.3 (2024-02-29)" 
+                                                                                                                                             topGO 
+                                                                                                                                          "2.54.0" 
+                                                                                                                                        topGO_path 
+                                                                                                             "/usr/local/lib/R/site-library/topGO" 
+                                                                                                                                             GO.db 
+                                                                                                                                          "3.15.0" 
+                                                                                                                                        GO.db_path 
+"/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/C3-ontology-release/lib/godb3150/GO.db" 
+                                                                                                                                    GO_source_date 
+                                                                                                                                      "2022-03-10" 
+                                                                                                                                            reader 
+                                                                                                                                          "legacy" 
+PLOIDY: rows read 10979, transcripts 623
+HEAT: rows read 81109, transcripts 3444
+COMBO: rows read 6941, transcripts 379
+universe: 48263 map lines, 27469 unique names
+     set ont terms genes_in_object sig_genes feasible secs
+1 PLOIDY  BP 12554           40713      1581    48263   39
+   set ont terms genes_in_object sig_genes feasible secs
+1 HEAT  BP 12554           40713      4677    48263 55.4
+    set ont terms genes_in_object sig_genes feasible secs
+1 COMBO  BP 12554           40713       768    48263 45.9
+peak memory, gc max used (MB): 752.6 
+VmPeak:	 1038328 kB
+VmHWM:	  853816 kB
+exit 0
