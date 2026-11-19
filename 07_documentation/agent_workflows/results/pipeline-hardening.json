@@ -1,10 +1,9 @@
 {
  "workflow": "pipeline-hardening",
  "run_id": "wf_0d998304-306",
- "agents_finished": 1,
+ "agents_finished": 3,
  "agents_running_or_lost": [
-  "fix:A-steps-04-05",
-  "fix:C-steps-08-09"
+  "fix:E-shared-code"
  ],
  "results": [
   {
@@ -278,6 +277,707 @@
      "In the PDF of Figure 2 the '100' of the colour key stands close to the legend title 'treatment' (a gap of about one character, no overlap); pheatmap offers no spacing option there."
     ],
     "summary": "All confirmed findings of group B are applied; no number of any output changed and legacy mode reproduces as before (check_legacy_outputs.R: 329 of 331, result file byte-identical). Code: steps 06 and 07 no longer fail or write a meaningless test when a DML set is empty or too small; a panel or row that cannot be made says so, in the output and in the log, and every table and figure is still written (13 scenarios, no error, no warning). Figures 2 and 3 have their label and legend defects fixed. Documentation: the track README (three descriptions, a new section on the repeat track), the helper header, the headers of both steps (every file written, the chi-squared background, class 'other' as the mitochondrial CpGs, hyper and hypo of the loci in both lists as the sign of the heat difference, the threshold rule taken from step 05) and my rows of three README files. The TE track keeps the legacy reading in both modes: I traced it to the intersectBed calls of the legacy notebook and recomputed its effect independently (101 CpGs in legacy mode, 92 in corrected mode). At default settings 12 of the 18 tables are byte-identical to the committed ones; 6 gained a label column (track_label or background) with all numbers unchanged, which is the one choice the parent may want to reverse (open points). feature_odds_matched.R reproduces its four tables byte for byte against the new step 07 tables, and all 130 values-map expressions on step 06 and 07 tables give the same values. Returned for others: a header sentence for step 05, three requests for the values map, and three texts for issues.md (a new entry on the repeat track with every statement of the draft it bears on, its summary row, and an addition to I-09: 21 of the 26 'exon/UTR' loci of the contrasting interaction-DML are the lncRNA locus counted a second time). Not run: steps 04, 05 and 13; the copies of Figures 2 and 3 in 05_manuscript are stale until step 13 runs.\n\nFiles: /home/user/WGBS-gigas-ploidy-desiccation/01_pipeline/06_dml_figures.R, /home/user/WGBS-gigas-ploidy-desiccation/01_pipeline/07_genome_features.R, /home/user/WGBS-gigas-ploidy-desiccation/02_R_functions/genomic_overlaps.R, /home/user/WGBS-gigas-ploidy-desiccation/03_input_files/genome_features/README.md, and rows of /home/user/WGBS-gigas-ploidy-desiccation/01_pipeline/README.md, /home/user/WGBS-gigas-ploidy-desiccation/04_output/README.md, /home/user/WGBS-gigas-ploidy-desiccation/02_R_functions/README.md. Test scripts and logs: /tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/code-pass/B/"
+   }
+  },
+  {
+   "agent": "fix:A-steps-04-05",
+   "phase": "Fix",
+   "result": {
+    "group": "A",
+    "findings_handled": [
+     {
+      "finding": "R1.1 and R5.2 (cached fit of step 05 reused whatever changed; truncated cache stops the step)",
+      "action": "fixed",
+      "what_changed": "01_pipeline/05_differential_methylation.R. The fitting code stays in fit_mode(), with the same name and the same chain of helper calls, because 06_diagnostics/check_methylkit_equivalence.R cites it. New fit_fingerprint(mode): the mode; min_coverage, import_min_coverage and upper_coverage_percentile; library_id, legacy_sample_index, ploidy, treatment and cov_file of the sample sheet; file, size and md5 of the 22 coverage files as the manifest lists them; the methylKit version; the code of fit_mode() and of the eight helpers it uses, compared as R parses it (comments and layout do not count, any other change does). New cached_fit(mode): a cache file is used only when it can be read, is a fit of this step and carries an identical fingerprint; otherwise the log says which part differs (or that the file cannot be read, or that it predates the fingerprint) and the mode is fitted again. A new fit is written to <file>.part and renamed. fit_mode() now checks the md5 of each coverage file as it reads it (under 1 s per file), so the checksums in the fingerprint are those of the files the fit was made from. The DML thresholds (applied after the fit) and the number of cores are not part of the fingerprint. The header, 04_output/README.md and 01_pipeline/README.md now say this in place of 'delete the cache file to refit' and 'rebuilt by rerunning the step'.",
+      "files": [
+       "01_pipeline/05_differential_methylation.R",
+       "04_output/README.md",
+       "01_pipeline/README.md"
+      ]
+     },
+     {
+      "finding": "R1.2, the statement (header of step 04 says counts are scaled 'the way methylKit scales them')",
+      "action": "fixed",
+      "what_changed": "Documentation only, as rule (c) of the task prescribes when the fix would change quoted numbers. The header of step 04 now says that the scaling is methylKit's median normalization written out in the step, that one detail differs (round(new_cov * n / cov) here, round(new_cov * (n / cov)) in methylKit and step 05), and gives the effect on the full data, which I measured in a scratch run that computed both orders: legacy mode 224 of 128,764,658 CpG-by-library values at 1x and 66 of 10,572,738 at 10x (corrected mode 167 and 41); largest change in a correlation 1.3e-7 at 1x and 6.5e-7 at 10x; percent variance of a principal component by at most 2.5e-5 points; PCA scores by at most 0.014 on scores of up to 1,683. No value changes at the two or three decimals at which correlations are quoted.",
+      "files": [
+       "01_pipeline/04_cpg_coverage.R"
+      ]
+     },
+     {
+      "finding": "R1.2, the code (make step 04 round in methylKit's order)",
+      "action": "needs_decision",
+      "what_changed": "Not changed. Note for the author: step 04 rounds scaled counts in a slightly different order from methylKit (at most 224 of 129 million values differ and no correlation moves by more than 7e-7); calling the helper of step 05 would remove the difference, but it would change the four saved correlation matrices and the PCA tables in the seventh digit, the statement of issues.md (I-16) that an independent recount reproduced those matrices within 1e-13 would no longer hold, and 06_diagnostics/check_methylkit_equivalence.R, which is frozen, records the present order as that of step 04.",
+      "files": []
+     },
+     {
+      "finding": "R1.3 (thresholds on unrounded doubles; tables written with 15 significant digits)",
+      "action": "fixed",
+      "what_changed": "No code change, as instructed: the DML call, the sweep and the check against getMethylDiff are untouched in both modes. The header of step 05 now states the rule (abs(meth.diff) > threshold on the double that methylKit computed), that the legacy count of 5,910 heat loci at 15 points depends on it, and names the three loci with pooled counts, written and held values: NC_047559.1:17861107 (heat 121/352, control 158/320; written -15, held -15.000000000000002), NC_047562.1:49679999 (152/280, 194/280; written -15, held -15.000000000000002), NW_022994958.1:20934 (128/256, 182/260; written -20, held -19.999999999999996), with the counts retaken from the written tables (5,908 for 5,910 and 2,352 for 2,351 in legacy mode; 5,669 for 5,671 and 2,274 for 2,273 in corrected mode). I verified all of this from the cached fits and the committed tables. The same is in the step 05 row of 01_pipeline/README.md and in a paragraph of 04_output/README.md. The header also says that scaling_factor is written with 15 digits and gives a checked example (the written 17/14 scales 133 reads to 161, the factor itself to 162).",
+      "files": [
+       "01_pipeline/05_differential_methylation.R",
+       "01_pipeline/README.md",
+       "04_output/README.md"
+      ]
+     },
+     {
+      "finding": "R1.4 (header of methylkit_helpers.R cites a script that did not exist)",
+      "action": "already_fixed",
+      "what_changed": "No change. The script exists since the base commit, and I checked the header sentence against 06_diagnostics/check_methylkit_equivalence.csv: identical united tables, differences, p-values, q-values and DML lists on the extract in both modes, six whole libraries, every count of the step 05 tables.",
+      "files": []
+     },
+     {
+      "finding": "R1.5 (comment on dml_eligible said 'cannot reach')",
+      "action": "already_fixed",
+      "what_changed": "No change; the comment reads 'almost never reaches' and gives the two DML outside the range.",
+      "files": []
+     },
+     {
+      "finding": "R1.6 (read_libraries() accepts unexpected labels and indices)",
+      "action": "fixed",
+      "what_changed": "read_libraries() now stops with a message that names the fault when a needed column is absent, the sheet does not have 22 rows, library_id or cov_file repeats or is missing, legacy_sample_index is not exactly 1 to 22, ploidy or treatment holds a label other than diploid, triploid, control, heat (message gives the label and the number of rows), or one of the four labels has no library. The allowed labels are defined once and also give the factor levels. Beyond the finding: the check on cov_file (two libraries pointing at one file would be analysed without error) and on absent columns. On the committed sheet the result is identical to that of the base-commit function. Row of 02_R_functions/README.md updated.",
+      "files": [
+       "02_R_functions/sample_sheet.R",
+       "02_R_functions/README.md"
+      ]
+     },
+     {
+      "finding": "R1.7 (the count 12,918,252 is written to the log only)",
+      "action": "fixed",
+      "what_changed": "Step 04 appends two columns to cpg_counts_by_coverage.csv: cpg_in_any_library_unfiltered (at least x reads in at least one library of the set, every line of every file, no upper filter; the same in both modes) and pct_of_genome_cpg_any_unfiltered. A stopifnot ties the value for all libraries at 1x to the number of CpGs read. The eight existing columns are byte-identical. The header defines the three counts. Requests for rows R3.1-001 and R3.1-003 of the values map and text for I-16 are returned.",
+      "files": [
+       "01_pipeline/04_cpg_coverage.R",
+       "04_output/README.md"
+      ]
+     },
+     {
+      "finding": "R1.8 (README said 'union'; header called the united table 'read counts')",
+      "action": "fixed",
+      "what_changed": "The README row had been corrected by the session. Header of step 05 and the step 05 row of 04_output/README.md now say normalized counts, median-scaled and rounded as by methylKit, not raw read counts. I confirmed the 19,811 cells of the legacy table where coverage differs from numCs + numTs.",
+      "files": [
+       "01_pipeline/05_differential_methylation.R",
+       "04_output/README.md"
+      ]
+     },
+     {
+      "finding": "R2.7 (step 07 header and helper comment said 'cannot be DML')",
+      "action": "already_fixed",
+      "what_changed": "No change; refuted as stale, and step 07 is not a file of this group.",
+      "files": []
+     },
+     {
+      "finding": "R3.7 (fwrite without eol writes CRLF on Windows)",
+      "action": "fixed",
+      "what_changed": "The part in my file: the direct fwrite() of the BED files in step 05 now sets eol = \"\\n\" (same bytes on Linux; the six BED files are byte-identical). The part in write_table() (02_R_functions/logging.R) is returned as a request. No .gitattributes was created: it is a new file outside my list.",
+      "files": [
+       "01_pipeline/05_differential_methylation.R"
+      ]
+     },
+     {
+      "finding": "R6.2 (references to I-06)",
+      "action": "already_fixed",
+      "what_changed": "No change; refuted as fixed, and issues.md is not edited by this group.",
+      "files": []
+     },
+     {
+      "finding": "R6.6 (three different memory figures for step 05)",
+      "action": "fixed",
+      "what_changed": "Header of step 05: the import needs about 4 GB (measured 3.8 GB, not 3); time and memory of the step in one note. Measured in the scratch run with WGBS_CORES=2: 36.9 minutes for both modes, peak 6.6 GB summed over the R process and its two workers with shared pages counted once (10.8 GB when resident sizes are simply added). The figures for four cores (18 minutes, about 10 GB) and one core are the earlier ones; I could not measure them under the limit of two cores. Run-times table and Running paragraph of 01_pipeline/README.md updated, also for step 04 (12.1 minutes and a peak of 9.5 GB measured in place; the base-commit code measured the same way: 9.5 minutes and 9.0 GB, not 8 and 8). run_pipeline.R and the root README are returned as requests.",
+      "files": [
+       "01_pipeline/05_differential_methylation.R",
+       "01_pipeline/04_cpg_coverage.R",
+       "01_pipeline/README.md"
+      ]
+     },
+     {
+      "finding": "R6.7 and the extra item for group A (header of step 04: definition of the manuscript's 1x count; base of the percentile in corrected mode)",
+      "action": "fixed",
+      "what_changed": "Header of step 04: the manuscript's 1x count (12,794,074) is on an unknown definition and is none of the three counts the step writes (I-16); corrected mode takes the 99.9th percentile over the library's CpGs with at least config$import_min_coverage (2) reads, and CpGs with one read are still counted at 1x. The purpose line of step 05 says the same about the percentile. A Run line was added to both headers.",
+      "files": [
+       "01_pipeline/04_cpg_coverage.R",
+       "01_pipeline/05_differential_methylation.R"
+      ]
+     },
+     {
+      "finding": "R6.17 (file inventory of 06_diagnostics/README.md)",
+      "action": "already_fixed",
+      "what_changed": "No change by this group: all 13 scripts of 06_diagnostics/ now have a row in the Files table.",
+      "files": []
+     },
+     {
+      "finding": "Task 2, issue I-15 (genomic distribution of Results 3.1 not regenerated)",
+      "action": "fixed",
+      "what_changed": "Step 04 writes 04_output/04_cpg_coverage/tables/cpg_counts_by_feature_track.csv: for each of its 100 CpG sets (two modes, five sample sets, five thresholds, covered in all libraries of the set or in at least one) and each of the 13 feature tracks, n_loci, n_overlap (one count per CpG and track, as bedtools intersect -u; functions of genomic_overlaps.R), pct_of_loci, legacy_share_pct (count over the sum of the counts of eight tracks, the rule of Results 3.3 and of step 07), legacy_share_exon_twice_pct (the same after the exon count is added to the UTR count, as in sheet data, column H of the legacy workbook DML_locations-all-datasets.xlsx) and track_label. Corrected mode comes for free through config$modes. Result: exactly one set and one rule give all eight percentages of the draft and their order at the printed decimal: legacy mode, the ten heat libraries, 10 reads in every library (1,921,856 CpGs), exon count added: 27.30, 22.89, 16.02, 14.27, 13.05, 2.66, 2.01, 1.79. No 1x set, no set of all 22 libraries and no set under the rule of Results 3.3 gives them. The counts of the workbook are not regenerated, because they belong to the 1,926,243 CpGs of an earlier analysis of the ten heat libraries; in a scratch check the pipeline's functions reproduced all 13 workbook counts exactly from the archived file, and 1,912,802 of those CpGs are in step 04's set. The header says what matches and what does not.",
+      "files": [
+       "01_pipeline/04_cpg_coverage.R",
+       "01_pipeline/README.md",
+       "04_output/README.md"
+      ]
+     },
+     {
+      "finding": "Items of the findings file about the scripts of 06_diagnostics/ and the second counting rule (rule 2, helpers for it, tables of dml_sensitivity.R, group values at every DML)",
+      "action": "deferred",
+      "what_changed": "Not acted on: deferred by the scope decision of 2026-11-19. No helper for a counting rule was added and no script under 06_diagnostics/ was edited.",
+      "files": []
+     },
+     {
+      "finding": "Optional output additions of the traceability lists that concern steps 04 and 05",
+      "action": "deferred",
+      "what_changed": "Left, because the task names only two output additions (the unfiltered count and the table for I-15). Not added: a table with the methylKit version of the run (it is in session_info.txt and now inside the fingerprint of each cached fit); the assembly accession in genome_cpg_total.csv (needs a setting); a setting or column for the coverage level drawn in Figure S1; mitochondrial against nuclear coverage per library; ploidy contrasts within one cohort.",
+      "files": []
+     }
+    ],
+    "outputs_changed": [
+     {
+      "file": "04_output/04_cpg_coverage/tables/cpg_counts_by_coverage.csv",
+      "change": "Two columns appended at the end: cpg_in_any_library_unfiltered and pct_of_genome_cpg_any_unfiltered. The eight existing columns and the 50 rows are byte-identical (cut of the first eight columns compared with the committed file).",
+      "changes_a_number": false,
+      "old_value": "8 columns",
+      "new_value": "10 columns; all 22 libraries at 1x: 12,918,252 and 97.5268907149387 in both modes (cpg_in_any_library stays 12,918,250 in legacy and 12,916,270 in corrected mode)",
+      "reason": "Finding R1.7: the count of CpGs with a read in at least one library was only in the log."
+     },
+     {
+      "file": "04_output/04_cpg_coverage/tables/cpg_counts_by_feature_track.csv",
+      "change": "New file, 1,300 rows: 100 CpG sets by 13 feature tracks.",
+      "changes_a_number": false,
+      "old_value": "absent",
+      "new_value": "legacy, heat, 10 reads, in all libraries (1,921,856 CpGs), legacy_share_exon_twice_pct: exon_UTR 27.3001, intron 22.8924, CDS 16.0185, intergenic 14.2712, TE 13.0520, upstream_flank 2.6588, downstream_flank 2.0129, lncRNA 1.7941",
+      "reason": "Task 2, issue I-15: the genomic distribution of Results 3.1 had no pipeline output."
+     },
+     {
+      "file": "04_output/04_cpg_coverage/figures/figure_S1_legacy.pdf and figure_S1_corrected.pdf",
+      "change": "Rewritten by the rerun of step 04. Only /CreationDate and /ModDate differ; the two PNG files are byte-identical. The copies in 05_manuscript/ keep the old time stamp until step 13 copies again.",
+      "changes_a_number": false,
+      "old_value": "time stamp 2026-11-19 00:31",
+      "new_value": "time stamp 2026-11-19 22:48",
+      "reason": "Step 04 was rerun in place to write the new column and the new table."
+     },
+     {
+      "file": "04_output/04_cpg_coverage/session_info.txt",
+      "change": "Time of the run; GenomicRanges is now among the attached packages.",
+      "changes_a_number": false,
+      "old_value": "Finished: 2026-11-19 00:31:06 UTC",
+      "new_value": "Finished: 2026-11-19 22:48:12 UTC",
+      "reason": "Rerun of step 04; the step now loads GenomicRanges for the overlaps."
+     },
+     {
+      "file": "04_output/05_differential_methylation/ (17 tables, 6 BED files, session_info.txt)",
+      "change": "Nothing changed now: step 05 was not run in place. At its next run in place all 23 tables and BED files stay byte-identical (tested in the scratch copy, fit from nothing and from the cache); session_info.txt gets a new time stamp. The two cache files now in place carry no fingerprint, so that run fits both modes again once.",
+      "changes_a_number": false,
+      "old_value": "committed files",
+      "new_value": "byte-identical files",
+      "reason": "Fingerprint of the cached fit (R1.1, R5.2); the output code is unchanged apart from eol in the BED writer."
+     },
+     {
+      "file": "05_manuscript/manuscript_values.csv and 05_manuscript/manuscript_values_summary.csv",
+      "change": "Will change only if the 13 requested rows of the values map are applied and step 13 is rerun (tested in a scratch root, no expression error): R3.1-041 to R3.1-050 go from 'not regenerated' to 'matches'; the corrected value of R3.1-001 and of R3.1-003 changes. With the map as it is, step 13 reproduces both committed files byte for byte.",
+      "changes_a_number": true,
+      "old_value": "summary 342 match, 146 differ, 57 not regenerated; R3.1-001 corrected 12,916,270; R3.1-003 corrected 97.51193; R3.1-041 to R3.1-050 without a value",
+      "new_value": "summary 352 match, 146 differ, 47 not regenerated; R3.1-001 corrected 12,918,252; R3.1-003 corrected 97.52689; R3.1-042 27.30011, R3.1-044 22.89244, R3.1-045 16.01848, R3.1-046 14.27119, R3.1-047 13.05197, R3.1-048 2.658831, R3.1-049 2.012856, R3.1-050 1.794112; R3.1-041 and R3.1-043 TRUE",
+      "reason": "The new table and column of step 04 let these rows be regenerated (I-15, I-16)."
+     }
+    ],
+    "tests_run": [
+     {
+      "what": "read_libraries() on the committed sheet and on 15 malformed copies (relabelled treatment, 'Triploid', trailing space, empty cell, NA, duplicated index, index 23, index 1.5, 23 rows, 21 rows, duplicated library_id, duplicated cov_file, one treatment only, missing ploidy column, missing index column); rows shuffled",
+      "result": "Committed sheet: data frame identical to that of the base-commit function. All 15 malformed sheets stop with a message naming the fault (the base-commit function accepted 9 of them). Shuffled rows give the same result."
+     },
+     {
+      "what": "Step 05, full data, scratch copy of the working tree (without .git, 04_output, 08_archive), both modes, WGBS_CORES=2, no cache",
+      "result": "Finished in 36.9 minutes. 23 files written (17 tables, 6 BED); all 23 byte-identical to the committed files (cmp). Peak memory 6.6 GB with shared pages counted once, 10.8 GB as a plain sum of resident sizes; import phase 3.8 GB."
+     },
+     {
+      "what": "Fingerprint on the full data, same scratch copy: unchanged rerun",
+      "result": "Both modes logged 'using the cached fit'; 0.4 minutes; 23 of 23 files byte-identical. Repeated after the other tests and once more with the final scripts and helpers of the repository copied in (headers and comments edited since the fit): cache used, 23 of 23 identical."
+     },
+     {
+      "what": "Fingerprint on the full data: changed setting (upper_coverage_percentile 99.9 to 99.8), changed sample sheet (treatment labels of two libraries exchanged), legacy cache file cut to half its bytes",
+      "result": "Each caused a refit: the log said 'differs from this run in: coverage settings', 'differs from this run in: sample sheet' and 'cannot be read (cut short, or not a fit of this step)', each followed by 'fitting again' and the import of the first libraries. I stopped each of these three runs once the import had begun and did not let the refits finish on the full data; the cache files were unchanged after the interrupted refits, and the full legacy file was put back after the truncation test."
+     },
+     {
+      "what": "Step 05 on a regional extract of all 22 coverage files (4.67 million lines; real fetch and md5 check through a manifest of the extract), 20 cases run to completion",
+      "result": "All 20 as expected. New code without cache: 23 files byte-identical to those of the base-commit code. Cache used: unchanged rerun; changed dml_difference (lists change, no refit); a sheet column the fit does not use; comments and layout edited in fit_mode() and a helper; code of write_mode edited; WGBS_CORES=1 on a 2-core cache; a session that keeps source references. Refit: each of the three coverage settings (with min_coverage 11 the files equal those of the base-commit code run without cache at that setting); swapped ploidy labels; cache cut to half (other mode from cache, files identical afterwards); cache replaced by another object; empty cache file; cache of the base-commit code; a helper rewritten; a reworded log message in fit_mode(); another methylKit version in the stored fingerprint. A changed md5 in the manifest starts a refit that stops on 'md5 mismatch'. A fit on one core gives the same files; a leftover .part file is replaced."
+     },
+     {
+      "what": "Step 04, scratch run of the new code with an added second pass in methylKit's order of operations (full data)",
+      "result": "All 15 tables that existed before are byte-identical to the committed ones except cpg_counts_by_coverage.csv, whose first eight columns are identical. The two orders differ in 224 and 66 values (legacy, 1x and 10x) and 167 and 41 (corrected); largest change in r 1.3e-7, 6.5e-7, 1.2e-7, 5.0e-7; percent variance by at most 2.5e-5 points; same CpGs enter the PCA; no sign flip."
+     },
+     {
+      "what": "Step 04 run in place with the final code",
+      "result": "12.1 minutes, peak resident size 9.5 GB. Changed files: cpg_counts_by_coverage.csv (two columns added), the two PDF figures (time stamps only), session_info.txt; new: cpg_counts_by_feature_track.csv. The other 14 tables and both PNG figures have the md5 they had before. The header line on memory was edited after the run (comment only)."
+     },
+     {
+      "what": "Step 04 of the base commit, rerun in scratch for comparison",
+      "result": "9.5 minutes, peak 9.0 GB; all 15 of its tables byte-identical to the committed ones."
+     },
+     {
+      "what": "Checks of cpg_counts_by_feature_track.csv",
+      "result": "n_loci of all 100 sets equals the counts of cpg_counts_by_coverage.csv; both share columns sum to 100 in every set. For the CpGs with 10 reads in all 22 libraries the 13 overlap counts, pct_of_loci and legacy_share_pct equal the committed step 07 table in both modes. Exactly 1 of the 100 sets gives the draft's eight percentages with the exon count added, none with the plain rule. Scratch check outside the pipeline: the same functions applied to 08_archive/old_WGBS/WGBS/DML/ALL-CpG-Cov10.csv give all 13 counts of the legacy workbook exactly."
+     },
+     {
+      "what": "Threshold facts: counts on the differences held in the cached fits against counts retaken from the committed diffmeth tables, all ten thresholds, both contrasts, both modes; pooled counts of the three loci",
+      "result": "With '>' the counts differ only for heat at 15 points (5,910 held, 5,908 written; 5,671 and 5,669 in corrected mode); with 'at least 20' the written heat table gives 2,352 and 2,274. The three loci and their values are as stated in the header. The legacy script and workbook have 5,910, 2,938, 2,972."
+     },
+     {
+      "what": "Readers of step 04 tables, run in a scratch root that reads the repository through links: 06_diagnostics/check_legacy_outputs.R and step 13 with the map as committed; step 13 again with the 13 requested map rows",
+      "result": "legacy_check_results.csv byte-identical to the committed file (329 match, 2 differ). manuscript_values.csv and its summary byte-identical with the committed map. With the requested rows: no expression error; 352 match, 146 differ, 47 not regenerated."
+     },
+     {
+      "what": "Final versions of both steps on the extract, end to end",
+      "result": "Step 05: 23 files identical to those of the base-commit code. Step 04: 14 tables identical and the old columns of cpg_counts_by_coverage.csv identical."
+     },
+     {
+      "what": "Step 05 in place; step 05 with WGBS_CORES=1 and 4; anything on Windows; rerun of the scripts of 06_diagnostics/ other than check_legacy_outputs.R",
+      "result": "not run"
+     }
+    ],
+    "config_requests": [],
+    "shared_file_requests": [
+     {
+      "file": "03_input_files/manuscript/manuscript_values_map.csv",
+      "old_text": ",\"tab(\"\"04_cpg_coverage\"\", \"\"cpg_counts_by_coverage.csv\"\")[mode == \"\"corrected\"\" & sample_set == \"\"all\"\" & min_coverage == 1, cpg_in_any_library]\",I-16; I-38; I-05,\"Step 04 counts 12,918,250 CpGs with a read in at least one library (12,918,252 when the first line of every file is read, I-38) and 5,852,939 with a read in all 22. The draft's 12,794,074 is in no script or table of the rep",
+      "new_text": ",\"tab(\"\"04_cpg_coverage\"\", \"\"cpg_counts_by_coverage.csv\"\")[mode == \"\"corrected\"\" & sample_set == \"\"all\"\" & min_coverage == 1, cpg_in_any_library_unfiltered]\",I-16; I-38; I-05,\"Step 04 counts 12,918,250 CpGs with a read in at least one library in legacy mode, 12,918,252 when the first line of every file is read (column cpg_in_any_library_unfiltered; I-38), and 5,852,939 with a read in all 22. The corrected expression takes the unfiltered column: cpg_in_any_library of corrected mode (12,916,270) is not a count of CpGs with reads, because it leaves out 1,982 CpGs that are at or above the coverage cutoff of every library that covers them (I-05). The draft's 12,794,074 is in no script or table of the rep",
+      "reason": "Row R3.1-001: the corrected expression reads the new column cpg_in_any_library_unfiltered (12,918,252); the note says why. The file has CRLF line endings."
+     },
+     {
+      "file": "03_input_files/manuscript/manuscript_values_map.csv",
+      "old_text": ",\"tab(\"\"04_cpg_coverage\"\", \"\"cpg_counts_by_coverage.csv\"\")[mode == \"\"corrected\"\" & sample_set == \"\"all\"\" & min_coverage == 1, pct_of_genome_cpg_any]\",I-16; I-05,\"Step 04 gives 97.5%: 12,918,250 of the 13,245,836 CpG sites counted in the reference (genome_cpg_total.csv). The draft's 96.6% is its own count over that same total (1",
+      "new_text": ",\"tab(\"\"04_cpg_coverage\"\", \"\"cpg_counts_by_coverage.csv\"\")[mode == \"\"corrected\"\" & sample_set == \"\"all\"\" & min_coverage == 1, pct_of_genome_cpg_any_unfiltered]\",I-16; I-05,\"Step 04 gives 97.5%: 12,918,250 of the 13,245,836 CpG sites counted in the reference (genome_cpg_total.csv); the corrected expression takes the count with every line read and no filter (12,918,252, column pct_of_genome_cpg_any_unfiltered; see R3.1-001), which is 97.5% as well. The draft's 96.6% is its own count over that same total (1",
+      "reason": "Row R3.1-003: the corrected expression reads pct_of_genome_cpg_any_unfiltered (97.52689)."
+     },
+     {
+      "file": "03_input_files/manuscript/manuscript_values_map.csv",
+      "old_text": ",\"The draft's counts are not from a 1x set: they are the overlaps of 1,926,243 CpGs with 10x in the ten heat libraries of an earlier analysis (see R3.1-042), so the threshold behind the percentages is config$min_coverage, which is also the level at which step 07 describes the analysed CpGs by genomic feature. No pipeline output describes a 1x CpG set by genomic feature.\"",
+      "new_text": ",\"The draft's percentages are not those of a 1x set. Step 04 writes the overlap of each of its CpG sets with the feature tracks (cpg_counts_by_feature_track.csv: two modes, five sample sets, five thresholds, covered in all libraries of the set or in at least one). Of these 100 sets one gives the eight percentages of the sentence, with the exon count added to the UTR count: legacy mode, at least 10 reads in each of the ten heat libraries (rows R3.1-042 to R3.1-050). The threshold behind the percentages is therefore config$min_coverage, which is also the level at which step 07 describes the analysed CpGs by genomic feature. The draft's own counts are the overlaps of 1,926,243 CpGs with 10x in the ten heat libraries of an earlier analysis (see R3.1-042).\"",
+      "reason": "Row R3.1-040: the note said that no pipeline output describes these CpG sets by genomic feature; step 04 now does."
+     },
+     {
+      "file": "03_input_files/manuscript/manuscript_values_map.csv",
+      "old_text": ",,,I-15; I-18,\"Not regenerated: no pipeline output describes a 1x CpG set by genomic feature. In the draft's source exon UTR ranks first only because the exon count was added to the UTR count (I-15); with the UTR track alone introns hold the largest share of that CpG set (29.2%), as they do among the CpGs analysed at 10x (27.4%, step 07).\"",
+      "new_text": ",\"tab(\"\"04_cpg_coverage\"\", \"\"cpg_counts_by_feature_track.csv\"\")[mode == \"\"legacy\"\" & sample_set == \"\"heat\"\" & min_coverage == config$min_coverage & cpg_set == \"\"in all libraries\"\" & !is.na(legacy_share_exon_twice_pct), track[which.max(legacy_share_exon_twice_pct)] == \"\"exon_UTR\"\"]\",\"tab(\"\"04_cpg_coverage\"\", \"\"cpg_counts_by_feature_track.csv\"\")[mode == \"\"corrected\"\" & sample_set == \"\"heat\"\" & min_coverage == config$min_coverage & cpg_set == \"\"in all libraries\"\" & !is.na(legacy_share_exon_twice_pct), track[which.max(legacy_share_exon_twice_pct)] == \"\"exon_UTR\"\"]\",I-15; I-18,\"TRUE for the CpG set and the counting rule that give the draft's percentages: the CpGs with 10 reads in each of the ten heat libraries, with the exon count added to the UTR count as in the draft's source (column legacy_share_exon_twice_pct of cpg_counts_by_feature_track.csv, step 04; see R3.1-042). It is not true of what the sentence describes, and exon UTR ranks first only because the exon count was added to the UTR count (I-15). With the UTR track alone introns hold the largest share of the same set (29.2%), as they do among the CpGs analysed at 10x (27.4%, step 07). For the CpGs with a read in all 22 libraries introns come first under either rule (24.0% with the exon count added, 28.6% without), and for the CpGs with a read in at least one library the repeat track does (25.3% and 28.3%).\"",
+      "reason": "Row R3.1-041: was 'not regenerated'; the expressions read the new table of step 04 and return TRUE in both modes."
+     },
+     {
+      "file": "03_input_files/manuscript/manuscript_values_map.csv",
+      "old_text": ",,,I-15; I-18,\"Not regenerated: no pipeline output describes a 1x CpG set by genomic feature (step 07 gives 7.3% of overlaps and 9.2% of loci for the CpGs analysed at 10x). The draft's value is 832,055 / 3,048,678: 832,055 is the exon count (660,217) plus the UTR count (171,838), so coding exons are counted twice (I-15), and the eight counts are overlaps of the 1,926,243 CpGs of 08_archive/old_WGBS/WGBS/DML/ALL-CpG-Cov10.csv, which have 10x in the ten heat libraries of an earlier analysis, not 1x in all samples (recomputed exactly from that file with the step 07 tracks).\"",
+      "new_text": ",\"tab(\"\"04_cpg_coverage\"\", \"\"cpg_counts_by_feature_track.csv\"\")[mode == \"\"legacy\"\" & sample_set == \"\"heat\"\" & min_coverage == config$min_coverage & cpg_set == \"\"in all libraries\"\" & track == \"\"exon_UTR\"\", legacy_share_exon_twice_pct]\",\"tab(\"\"04_cpg_coverage\"\", \"\"cpg_counts_by_feature_track.csv\"\")[mode == \"\"corrected\"\" & sample_set == \"\"heat\"\" & min_coverage == config$min_coverage & cpg_set == \"\"in all libraries\"\" & track == \"\"exon_UTR\"\", legacy_share_exon_twice_pct]\",I-15; I-18,\"Step 04 gives 27.30% for the CpGs with 10 reads in each of the ten heat libraries (1,921,856 CpGs, legacy mode) when the exon count is added to the UTR count, as the draft's source did: 830,319 of 3,041,449 summed overlaps (column legacy_share_exon_twice_pct of cpg_counts_by_feature_track.csv). None of the other 99 CpG sets of that table gives the eight percentages of the sentence, and no set does with the UTR track alone (7.2% of overlaps and 8.9% of loci for this set; step 07 gives 7.3% and 9.2% for the CpGs analysed at 10x). For the CpGs with a read in all 22 libraries the draft's rule gives 20.5%. The draft's value is 832,055 / 3,048,678: 832,055 is the exon count (660,217) plus the UTR count (171,838), so coding exons are counted twice (I-15), and the eight counts are overlaps of the 1,926,243 CpGs of 08_archive/old_WGBS/WGBS/DML/ALL-CpG-Cov10.csv, which have 10x in the ten heat libraries of an earlier analysis, not 1x in all samples (recomputed exactly from that file with the step 07 tracks); 1,912,802 of them are among the 1,921,856 CpGs of step 04.\"",
+      "reason": "Row R3.1-042: was 'not regenerated'; legacy 27.30011 (matches 27.3), corrected 27.42165."
+     },
+     {
+      "file": "03_input_files/manuscript/manuscript_values_map.csv",
+      "old_text": ",,,I-15; I-18,\"Not regenerated: no pipeline output describes a 1x CpG set by genomic feature. The order printed is that of the draft's source counts (see R3.1-042); among the CpGs analysed at 10x step 07 gives introns, CDS,",
+      "new_text": ",\"tab(\"\"04_cpg_coverage\"\", \"\"cpg_counts_by_feature_track.csv\"\")[mode == \"\"legacy\"\" & sample_set == \"\"heat\"\" & min_coverage == config$min_coverage & cpg_set == \"\"in all libraries\"\" & !is.na(legacy_share_exon_twice_pct), identical(track[order(-legacy_share_exon_twice_pct)], c(\"\"exon_UTR\"\", \"\"intron\"\", \"\"CDS\"\", \"\"intergenic\"\", \"\"TE\"\", \"\"upstream_flank\"\", \"\"downstream_flank\"\", \"\"lncRNA\"\"))]\",\"tab(\"\"04_cpg_coverage\"\", \"\"cpg_counts_by_feature_track.csv\"\")[mode == \"\"corrected\"\" & sample_set == \"\"heat\"\" & min_coverage == config$min_coverage & cpg_set == \"\"in all libraries\"\" & !is.na(legacy_share_exon_twice_pct), identical(track[order(-legacy_share_exon_twice_pct)], c(\"\"exon_UTR\"\", \"\"intron\"\", \"\"CDS\"\", \"\"intergenic\"\", \"\"TE\"\", \"\"upstream_flank\"\", \"\"downstream_flank\"\", \"\"lncRNA\"\"))]\",I-15; I-18,\"TRUE for the CpGs with 10 reads in each of the ten heat libraries, with the exon count added to the UTR count as in the draft's source (column legacy_share_exon_twice_pct of cpg_counts_by_feature_track.csv, step 04; see R3.1-042): 27.30, 22.89, 16.02, 14.27, 13.05, 2.66, 2.01 and 1.79%. The order printed is that of the draft's source counts. With the UTR track alone the same set gives introns, CDS, intergenic regions, transposable elements, exon UTR, upstream flanks, downstream flanks, lncRNA; among the CpGs analysed at 10x step 07 gives introns, CDS,",
+      "reason": "Row R3.1-043: was 'not regenerated'; the order of the eight shares, TRUE in both modes."
+     },
+     {
+      "file": "03_input_files/manuscript/manuscript_values_map.csv",
+      "old_text": ",,,I-15; I-18,\"Not regenerated (see R3.1-042): the draft's value is 697,814 / 3,048,678 = 22.89%. Without th",
+      "new_text": ",\"tab(\"\"04_cpg_coverage\"\", \"\"cpg_counts_by_feature_track.csv\"\")[mode == \"\"legacy\"\" & sample_set == \"\"heat\"\" & min_coverage == config$min_coverage & cpg_set == \"\"in all libraries\"\" & track == \"\"intron\"\", legacy_share_exon_twice_pct]\",\"tab(\"\"04_cpg_coverage\"\", \"\"cpg_counts_by_feature_track.csv\"\")[mode == \"\"corrected\"\" & sample_set == \"\"heat\"\" & min_coverage == config$min_coverage & cpg_set == \"\"in all libraries\"\" & track == \"\"intron\"\", legacy_share_exon_twice_pct]\",I-15; I-18,\"Step 04 gives 22.89% for the CpG set and the counting rule of row R3.1-042 (the CpGs with 10 reads in each of the ten heat libraries, exon count added to the UTR count). The draft's value is 697,814 / 3,048,678 = 22.89%. Without th",
+      "reason": "Row R3.1-044: was 'not regenerated'; legacy 22.89244, corrected 22.90198."
+     },
+     {
+      "file": "03_input_files/manuscript/manuscript_values_map.csv",
+      "old_text": ",,,I-15; I-18,\"Not regenerated (see R3.1-042): the draft's value is 488,392 / 3,048,678 = 16.02%. Without th",
+      "new_text": ",\"tab(\"\"04_cpg_coverage\"\", \"\"cpg_counts_by_feature_track.csv\"\")[mode == \"\"legacy\"\" & sample_set == \"\"heat\"\" & min_coverage == config$min_coverage & cpg_set == \"\"in all libraries\"\" & track == \"\"CDS\"\", legacy_share_exon_twice_pct]\",\"tab(\"\"04_cpg_coverage\"\", \"\"cpg_counts_by_feature_track.csv\"\")[mode == \"\"corrected\"\" & sample_set == \"\"heat\"\" & min_coverage == config$min_coverage & cpg_set == \"\"in all libraries\"\" & track == \"\"CDS\"\", legacy_share_exon_twice_pct]\",I-15; I-18,\"Step 04 gives 16.02% for the CpG set and the counting rule of row R3.1-042 (the CpGs with 10 reads in each of the ten heat libraries, exon count added to the UTR count). The draft's value is 488,392 / 3,048,678 = 16.02%. Without th",
+      "reason": "Row R3.1-045: was 'not regenerated'; legacy 16.01848, corrected 16.13933."
+     },
+     {
+      "file": "03_input_files/manuscript/manuscript_values_map.csv",
+      "old_text": ",,,I-15; I-18,\"Not regenerated (see R3.1-042): the draft's value is 435,052 / 3,048,678 = 14.27%. Without th",
+      "new_text": ",\"tab(\"\"04_cpg_coverage\"\", \"\"cpg_counts_by_feature_track.csv\"\")[mode == \"\"legacy\"\" & sample_set == \"\"heat\"\" & min_coverage == config$min_coverage & cpg_set == \"\"in all libraries\"\" & track == \"\"intergenic\"\", legacy_share_exon_twice_pct]\",\"tab(\"\"04_cpg_coverage\"\", \"\"cpg_counts_by_feature_track.csv\"\")[mode == \"\"corrected\"\" & sample_set == \"\"heat\"\" & min_coverage == config$min_coverage & cpg_set == \"\"in all libraries\"\" & track == \"\"intergenic\"\", legacy_share_exon_twice_pct]\",I-15; I-18,\"Step 04 gives 14.27% for the CpG set and the counting rule of row R3.1-042 (the CpGs with 10 reads in each of the ten heat libraries, exon count added to the UTR count). The draft's value is 435,052 / 3,048,678 = 14.27%. Without th",
+      "reason": "Row R3.1-046: was 'not regenerated'; legacy 14.27119, corrected 14.20492."
+     },
+     {
+      "file": "03_input_files/manuscript/manuscript_values_map.csv",
+      "old_text": ",,,I-15; I-18,\"Not regenerated (see R3.1-042): the draft's value is 398,259 / 3,048,678 = 13.06%. Without th",
+      "new_text": ",\"tab(\"\"04_cpg_coverage\"\", \"\"cpg_counts_by_feature_track.csv\"\")[mode == \"\"legacy\"\" & sample_set == \"\"heat\"\" & min_coverage == config$min_coverage & cpg_set == \"\"in all libraries\"\" & track == \"\"TE\"\", legacy_share_exon_twice_pct]\",\"tab(\"\"04_cpg_coverage\"\", \"\"cpg_counts_by_feature_track.csv\"\")[mode == \"\"corrected\"\" & sample_set == \"\"heat\"\" & min_coverage == config$min_coverage & cpg_set == \"\"in all libraries\"\" & track == \"\"TE\"\", legacy_share_exon_twice_pct]\",I-15; I-18,\"Step 04 gives 13.05% for the CpG set and the counting rule of row R3.1-042 (the CpGs with 10 reads in each of the ten heat libraries, exon count added to the UTR count). The draft's value is 398,259 / 3,048,678 = 13.06%. Without th",
+      "reason": "Row R3.1-047: was 'not regenerated'; legacy 13.05197, corrected 12.88575."
+     },
+     {
+      "file": "03_input_files/manuscript/manuscript_values_map.csv",
+      "old_text": ",,,I-15; I-18,\"Not regenerated (see R3.1-042): the draft's value is 81,075 / 3,048,678 = 2.66%. Without the",
+      "new_text": ",\"tab(\"\"04_cpg_coverage\"\", \"\"cpg_counts_by_feature_track.csv\"\")[mode == \"\"legacy\"\" & sample_set == \"\"heat\"\" & min_coverage == config$min_coverage & cpg_set == \"\"in all libraries\"\" & track == \"\"upstream_flank\"\", legacy_share_exon_twice_pct]\",\"tab(\"\"04_cpg_coverage\"\", \"\"cpg_counts_by_feature_track.csv\"\")[mode == \"\"corrected\"\" & sample_set == \"\"heat\"\" & min_coverage == config$min_coverage & cpg_set == \"\"in all libraries\"\" & track == \"\"upstream_flank\"\", legacy_share_exon_twice_pct]\",I-15; I-18,\"Step 04 gives 2.66% for the CpG set and the counting rule of row R3.1-042 (the CpGs with 10 reads in each of the ten heat libraries, exon count added to the UTR count). The draft's value is 81,075 / 3,048,678 = 2.66%. Without the",
+      "reason": "Row R3.1-048: was 'not regenerated'; legacy 2.658831, corrected 2.664403."
+     },
+     {
+      "file": "03_input_files/manuscript/manuscript_values_map.csv",
+      "old_text": ",,,I-15; I-18,\"Not regenerated (see R3.1-042): the draft's value is 61,406 / 3,048,678 = 2.01%. Without the",
+      "new_text": ",\"tab(\"\"04_cpg_coverage\"\", \"\"cpg_counts_by_feature_track.csv\"\")[mode == \"\"legacy\"\" & sample_set == \"\"heat\"\" & min_coverage == config$min_coverage & cpg_set == \"\"in all libraries\"\" & track == \"\"downstream_flank\"\", legacy_share_exon_twice_pct]\",\"tab(\"\"04_cpg_coverage\"\", \"\"cpg_counts_by_feature_track.csv\"\")[mode == \"\"corrected\"\" & sample_set == \"\"heat\"\" & min_coverage == config$min_coverage & cpg_set == \"\"in all libraries\"\" & track == \"\"downstream_flank\"\", legacy_share_exon_twice_pct]\",I-15; I-18,\"Step 04 gives 2.01% for the CpG set and the counting rule of row R3.1-042 (the CpGs with 10 reads in each of the ten heat libraries, exon count added to the UTR count). The draft's value is 61,406 / 3,048,678 = 2.01%. Without the",
+      "reason": "Row R3.1-049: was 'not regenerated'; legacy 2.012856, corrected 2.007349."
+     },
+     {
+      "file": "03_input_files/manuscript/manuscript_values_map.csv",
+      "old_text": ",,,I-15; I-18,\"Not regenerated (see R3.1-042): the draft's value is 54,625 / 3,048,678 = 1.79%. Without the",
+      "new_text": ",\"tab(\"\"04_cpg_coverage\"\", \"\"cpg_counts_by_feature_track.csv\"\")[mode == \"\"legacy\"\" & sample_set == \"\"heat\"\" & min_coverage == config$min_coverage & cpg_set == \"\"in all libraries\"\" & track == \"\"lncRNA\"\", legacy_share_exon_twice_pct]\",\"tab(\"\"04_cpg_coverage\"\", \"\"cpg_counts_by_feature_track.csv\"\")[mode == \"\"corrected\"\" & sample_set == \"\"heat\"\" & min_coverage == config$min_coverage & cpg_set == \"\"in all libraries\"\" & track == \"\"lncRNA\"\", legacy_share_exon_twice_pct]\",I-15; I-18,\"Step 04 gives 1.79% for the CpG set and the counting rule of row R3.1-042 (the CpGs with 10 reads in each of the ten heat libraries, exon count added to the UTR count). The draft's value is 54,625 / 3,048,678 = 1.79%. Without the",
+      "reason": "Row R3.1-050: was 'not regenerated'; legacy 1.794112, corrected 1.774623."
+     },
+     {
+      "file": "run_pipeline.R",
+      "old_text": "# first time (via step 01) and need about 12 GB of memory.",
+      "new_text": "# first time (via step 01); step 04 needs about 9.5 GB of memory and step 05\n# about 10 GB with WGBS_CORES=4.",
+      "reason": "Finding R6.6: the header gave 12 GB for both steps. Measured: step 04 peaks at 9.5 GB; the 10 GB of step 05 is the figure of the run-times table."
+     },
+     {
+      "file": "README.md",
+      "old_text": "Step 04 needs about 8 GB of memory and step 05 about 10 GB with `WGBS_CORES=4`; together they take about half an hour on four cores;",
+      "new_text": "Step 04 needs about 9.5 GB of memory and step 05 about 10 GB with `WGBS_CORES=4`; together they take about half an hour on four cores;",
+      "reason": "Step 04 measured in this pass: 12.1 minutes and a peak resident size of 9.5 GB (the code of the base commit: 9.5 minutes and 9.0 GB, not the 8 GB stated)."
+     },
+     {
+      "file": "03_input_files/README.md",
+      "old_text": "| `genome_features/` | Thirteen feature tracks for the Roslin v1 assembly, gzipped | Venkataraman et al. 2022, OSF doi:10.17605/OSF.IO/YGCTB | steps 07, 08 |",
+      "new_text": "| `genome_features/` | Thirteen feature tracks for the Roslin v1 assembly, gzipped | Venkataraman et al. 2022, OSF doi:10.17605/OSF.IO/YGCTB | steps 04, 07, 08 |",
+      "reason": "Step 04 now reads the feature tracks (issue I-15)."
+     },
+     {
+      "file": "07_documentation/reproducibility_plan.md",
+      "old_text": "| 04 | `04_cpg_coverage.R` | 22 coverage files | CpG counts by coverage threshold and sample set, methylation distributions, sample correlations, global PCA | Results 3.1; Fig. S1 |",
+      "new_text": "| 04 | `04_cpg_coverage.R` | 22 coverage files, reference genome, feature tracks | CpG counts by coverage threshold and sample set, the same CpG sets by genome feature track, CpG sites in the reference, methylation distributions, sample correlations, global PCA | Results 3.1; Fig. S1 |",
+      "reason": "Step 04 also reads the reference genome (as before) and now the feature tracks, and writes cpg_counts_by_feature_track.csv."
+     },
+     {
+      "file": "02_R_functions/logging.R",
+      "old_text": "# Write a data frame as CSV; gzip when the name ends in .gz.\nwrite_table <- function(x, path) {\n  data.table::fwrite(x, path)",
+      "new_text": "# Write a data frame as CSV; gzip when the name ends in .gz. The line ending is\n# fixed to LF: fwrite() would otherwise write CRLF on Windows.\nwrite_table <- function(x, path) {\n  data.table::fwrite(x, path, eol = \"\\n\")",
+      "reason": "Finding R3.7 (in the findings file of this group because step 05 has a direct fwrite): the part in step 05 is done; this is the part in write_table(), the fix the second agent tested. Not applied by this group, which does not own the file; it may also be in the request of the group that does."
+     }
+    ],
+    "issues_text": [
+     {
+      "issue": "I-15 (row of the summary table)",
+      "current_text": "| I-15 | S2 | Number | The 1x genomic distribution in Results 3.1 double counts exons and comes from an unidentified CpG set | open (no pipeline output yet; to be added to step 04) |",
+      "proposed_text": "| I-15 | S2 | Number | The 1x genomic distribution in Results 3.1 double counts exons and is that of the CpGs with 10 reads in the ten heat libraries, not of a 1x set of all samples | open (regenerated by step 04, `cpg_counts_by_feature_track.csv`; the text of Results 3.1 is unchanged) |",
+      "reason": "Step 04 now writes the table, and it identifies the kind of CpG set and the counting rule behind the draft's percentages."
+     },
+     {
+      "issue": "I-15 (update)",
+      "current_text": "**Update 2026-11-19.** Not yet regenerated: no step writes a 1x CpG set by genome feature, so rows R3.1-041 to R3.1-050 of `05_manuscript/manuscript_values.csv` are \"not regenerated\". To be added to step 04 in the code pass, for every coverage level and sample set, so that the set behind the draft's percentages can be identified.",
+      "proposed_text": "**Update 2026-11-19 (code pass).** Step 04 now writes `04_output/04_cpg_coverage/tables/cpg_counts_by_feature_track.csv`: for each of its 100 CpG sets (two modes, five sample sets, five coverage thresholds, covered in all libraries of the set or in at least one) the CpGs that overlap each of the 13 feature tracks, and two percentages computed as the draft computed them. `legacy_share_pct` is the count of a track over the sum of the counts of eight tracks, the rule of Results 3.3; `legacy_share_exon_twice_pct` is the same after the count of the exon track has been added to that of the UTR track, the rule behind Results 3.1. One set and one rule give the eight percentages of Results 3.1 at the one decimal the draft prints, and their order: legacy mode, the ten heat libraries, at least 10 reads in every library (1,921,856 CpGs), with the exon count added. The values are 27.30, 22.89, 16.02, 14.27, 13.05, 2.66, 2.01 and 1.79 for exon UTR, introns, CDS, intergenic regions, the repeat track, upstream flanks, downstream flanks and lncRNA. None of the other 99 sets gives them, and no set does without the double count (for this set 7.2, 29.2, 20.4, 18.2, 16.7, 3.4, 2.6 and 2.3 in the same order, with introns first). What the sentence describes gives other numbers under the draft's rule: 20.5, 24.0, 11.7, 17.3, 19.0, 2.9, 2.7 and 1.8 for the CpGs with a read in all 22 libraries, and 13.7, 24.5, 7.1, 21.9, 25.3, 2.8, 2.6 and 2.1 for those with a read in at least one. The counts of the legacy workbook themselves are not regenerated, because they belong to the 1,926,243 CpGs of an earlier analysis of the ten heat libraries (`old_WGBS/WGBS/DML/ALL-CpG-Cov10.csv` in the archive). A check outside the pipeline reproduced all 13 counts of the workbook exactly from that file with the pipeline's overlap functions, and found 1,912,802 of its CpGs among the 1,921,856 of step 04's set. Rows R3.1-040 to R3.1-050 of the values map can take expressions on the new table (proposed with the code pass).",
+      "reason": "The update said that no step writes the table; step 04 does now, and the table shows which CpG set and which counting rule give the draft's percentages."
+     },
+     {
+      "issue": "I-16 (update, third item)",
+      "current_text": "- CpGs with at least one read in at least one library number **12,918,252** (97.5%) when every line of every file is read; 12,918,250 in legacy mode, because two CpGs (NC_047559.1:455 and NC_047566.1:16536) are each the first line of the only library that covers them (I-38); and 12,916,270 in corrected mode.",
+      "proposed_text": "- CpGs with at least one read in at least one library number **12,918,252** (97.5%) when every line of every file is read (column `cpg_in_any_library_unfiltered` of `cpg_counts_by_coverage.csv`, added in the code pass); 12,918,250 in legacy mode, because two CpGs (NC_047559.1:455 and NC_047566.1:16536) are each the first line of the only library that covers them (I-38); and 12,916,270 in corrected mode, where a CpG does not count for a library in which its coverage is at or above that library's cutoff (1,982 CpGs are at or above the cutoff in every library that covers them).",
+      "reason": "The count is now in an output table, and the text did not say why the corrected value is lower."
+     },
+     {
+      "issue": "I-16 (verification, the three loose ends)",
+      "current_text": "Three loose ends are recorded for the code: 12,918,252 itself is in no output table of step 04 (the tables hold 12,918,250 and 12,916,270); step 04 scales counts in a different order of operations from methylKit, `round(new_cov * nc / cv)` where methylKit computes `round(new_cov * (nc / cv))`, and the two differ at exact .5 ties (193 of 6.6 million values at 1x on one linkage group; in legacy mode r changes there by at most 1e-5, and on the full data by at most 1.3e-7 at 1x and 6.5e-7 at 10x; `06_diagnostics/check_methylkit_equivalence.R` puts the effect on record for its regional extract of all 22 libraries: in legacy mode 25 of 3,283,412 scaled counts differ at 1x and 16 of 424,248 at 10x, the percent methylation of a CpG in a library moves by at most 1.56 points, 41 of the 231 correlations change at 1x, by at most 1.5e-6, and 126 at 10x, by at most 7.9e-6); and the header of step 04 does not say that corrected mode takes the 99.9th percentile over CpGs with 2 or more reads (I-05), while its notes still give \"covered in at least one library\" as the definition of the manuscript's 1x count, which is unknown.",
+      "proposed_text": "Three loose ends were recorded for the code, and the code pass of 2026-11-19 dealt with them. First, 12,918,252 is now in an output table of step 04 (column `cpg_in_any_library_unfiltered` of `cpg_counts_by_coverage.csv`; the column `cpg_in_any_library` holds 12,918,250 and 12,916,270). Second, step 04 scales counts in a different order of operations from methylKit, `round(new_cov * nc / cv)` where methylKit computes `round(new_cov * (nc / cv))`, and the two differ at exact .5 ties. This is left as it is and is now stated in the header of step 04 with its effect on the full data, measured in the code pass: in legacy mode 224 of the 128.8 million scaled values differ at 1x and 66 of the 10.6 million at 10x (corrected mode 167 and 41), the percent methylation of a CpG in a library moves by at most 1.56 points, no correlation changes by more than 1.4e-7 at 1x and 6.5e-7 at 10x, and no percent variance of a principal component by more than 3e-5 points. The code was not changed because `06_diagnostics/check_methylkit_equivalence.R` records this order of operations for its regional extract of all 22 libraries (in legacy mode 25 of 3,283,412 scaled counts differ at 1x and 16 of 424,248 at 10x, 41 of the 231 correlations change at 1x, by at most 1.5e-6, and 126 at 10x, by at most 7.9e-6), and because the saved matrices would then no longer be those the independent recount reproduced within 1e-13. Third, the header of step 04 now says that corrected mode takes the 99.9th percentile over CpGs with 2 or more reads (I-05) and that the definition of the manuscript's 1x count is unknown.",
+      "reason": "All three loose ends are closed (one in code, one by a statement in the header, one in the header), so the sentence that lists them as open is out of date. The figure for one linkage group (193 of 6.6 million) is dropped because the full-data figures replace it."
+     },
+     {
+      "issue": "Corrections table at the end of the log, row I-16 on the count 12,918,252",
+      "current_text": "| I-16 | \"CpGs with at least one read in at least one library number 12,918,252 (97.5%)\" | 12,918,252 when every line of every file is read; the step 04 table holds 12,918,250 (legacy mode) and 12,916,270 (corrected mode) | The count was right, but it is in no output table, and the text did not explain why the table values are lower by 2 and by 1,982 |",
+      "proposed_text": "| I-16 | \"CpGs with at least one read in at least one library number 12,918,252 (97.5%)\" | 12,918,252 when every line of every file is read; the step 04 table holds 12,918,250 (legacy mode) and 12,916,270 (corrected mode) | The count was right, but it was in no output table (since the code pass it is column `cpg_in_any_library_unfiltered` of `cpg_counts_by_coverage.csv`), and the text did not explain why the table values are lower by 2 and by 1,982 |",
+      "reason": "The row says in the present tense that the count is in no output table."
+     }
+    ],
+    "open_points": [
+     "Step 05 was not run in place. The two cache files in 04_output/05_differential_methylation/cache/ predate the fingerprint, so the next run of step 05 in place fits both modes again once (18 minutes at four cores) and then writes tables that are byte-identical to the committed ones. Fits that carry the fingerprint, made in my scratch copy from the same code, settings, sheet and inputs, are in /tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/code-pass/A/tree/04_output/05_differential_methylation/cache/ (methylkit_legacy.rds, methylkit_corrected.rds); copying them into the repository's cache folder makes that run take half a minute. I did not copy them, because the folder is outside my files.",
+     "Note for the author (R1.2): step 04 rounds scaled counts in a slightly different order from methylKit; the effect is below 7e-7 in any correlation and is now stated in the header. Aligning the code is a decision, because the frozen diagnostic check_methylkit_equivalence.R and a sentence of I-16 describe the present order.",
+     "On the full data the three refit triggers (changed setting, changed sample sheet, truncated cache) were stopped once the refit had begun its import; each was run to completion only on the regional extract, where the refitted files were also compared. A complete legacy refit on the full data takes about 19 minutes at two cores if that is wanted.",
+     "Step 04 calls feature_track_labels(), which group B added to 02_R_functions/genomic_overlaps.R in this pass, for the column track_label of the new table (the same column as in the step 07 tables). If that function is renamed or dropped, step 04 must follow.",
+     "The 18 edit requests are also in /tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/code-pass/A/shared_file_requests.json and the five texts for issues.md in issues_text.json in the same folder; use those files if a string here does not match. manuscript_values_map.patched.csv there is the whole map with the 13 rows applied (CRLF kept); step 13 ran on it without an expression error.",
+     "If the 13 map rows are applied, step 13 gives 352 matches, 146 differ and 47 not regenerated in place of 342, 146 and 57, so the figures in README.md, 05_manuscript/README.md and the handoff notes must follow. Seen in passing: README.md, status paragraph, says 144 not reproduced and 59 laboratory or design details, while the committed summary and 05_manuscript/README.md say 146 and 57.",
+     "The expression of row R3.1-040 is unchanged (config$min_coverage, status differs); only its note is updated. Whether rows R3.1-041 to R3.1-050 should take the draft's own computation as expression_legacy, as proposed, is the map owner's choice; the true 1x shares are in the same table and in the notes.",
+     "Finding R3.7: the request for write_table() in logging.R is included; a .gitattributes file and the sentence of 04_output/README.md about gzip headers are left to the group that owns that finding.",
+     "Memory of step 05 with one and with four cores was not measured (limit of two cores in this pass); the 10 GB at four cores and the hour on one core are the earlier figures. Step 04 costs 2.6 minutes more than before (12.1 against 9.5), almost all of it in the overlap counts.",
+     "issues.md has no statement about the cache of step 05, about the ties at 15 and 20 points or about read_libraries(), so nothing is proposed for it there; the headers of steps 05 and of sample_sheet.R carry the facts if a note is wanted.",
+     "Beyond the findings: read_libraries() also stops on a repeated coverage file and on absent columns, and step 05 checks the md5 of each coverage file when it fits (not when it loads a cached fit).",
+     "Scratch material of this group (scripts, logs, the extract, the base-commit rerun): /tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/code-pass/A/ (logs/extract_tests.out, logs/full_tests_a.out, logs/full_tests_b.out, out04/order_of_operations_full_data.csv, logs/archived_set.log, t_sheet.log, ties.log)."
+    ],
+    "summary": "All confirmed findings of group A that are defects of code or documentation are applied, and step 04 now regenerates the genomic distribution of Results 3.1 (I-15). No existing number of a committed output changed. Step 05 was tested in a scratch copy only; step 04 was rerun in place.\n\nStep 05 (/home/user/WGBS-gigas-ploidy-desiccation/01_pipeline/05_differential_methylation.R): a cached fit now carries a fingerprint (mode and coverage settings, the sample sheet columns the fit uses, size and md5 of the 22 coverage files, methylKit version, the fitting code) and is refitted when the fingerprint differs or the file cannot be read; new fits are written under a temporary name and renamed. A full fit from nothing at two cores (36.9 minutes) gave 23 of 23 tables and BED files byte-identical to the committed ones. An unchanged rerun used the cache; a changed setting, a changed sample sheet and a truncated cache file each started a refit, which I stopped after the import began on the full data and ran to completion on a regional extract (20 cases, all as expected). Thresholds are untouched; the header and the README rows now say that counts are taken on methylKit's unrounded differences and name the three loci.\n\nStep 04 (/home/user/WGBS-gigas-ploidy-desiccation/01_pipeline/04_cpg_coverage.R): cpg_counts_by_coverage.csv gained the unfiltered count (12,918,252) and its percentage; the eight old columns are byte-identical. The new table cpg_counts_by_feature_track.csv shows that exactly one of its 100 CpG sets, the CpGs with 10 reads in each of the ten heat libraries in legacy mode, with the exon count added to the UTR count, gives all eight percentages of the draft (27.30, 22.89, 16.02, 14.27, 13.05, 2.66, 2.01, 1.79); no 1x set and no set of all samples does. The rounding order was left as it is and stated in the header with its measured effect, because the fix would change the saved correlation matrices beyond the 1e-13 that I-16 quotes and contradict a frozen diagnostic.\n\n/home/user/WGBS-gigas-ploidy-desiccation/02_R_functions/sample_sheet.R: read_libraries() stops on unexpected labels, indices, repeated libraries or coverage files. /home/user/WGBS-gigas-ploidy-desiccation/02_R_functions/methylkit_helpers.R needed no change. My rows in 01_pipeline/README.md, 04_output/README.md and 02_R_functions/README.md are updated, with measured time and memory (step 04: 12.1 minutes, 9.5 GB; step 05 at two cores: 37 minutes, 6.5 GB).\n\nReturned for others to apply: 18 edits to files I do not own (13 rows of the values map, run_pipeline.R, root README, 03_input_files/README.md, the plan, logging.R) and five texts for issues.md. One point needs the author: whether step 04 should round in methylKit's order."
+   }
+  },
+  {
+   "agent": "fix:C-steps-08-09",
+   "phase": "Fix",
+   "result": {
+    "group": "C",
+    "findings_handled": [
+     {
+      "finding": "R3.2 and R6.5: what_it_counts of 'GO terms' and 'Unique genes' in figure_5_values_legacy.csv",
+      "action": "fixed",
+      "what_changed": "01_pipeline/09_go_enrichment_legacy.R: the two strings replaced, no typed numbers. 'GO terms' is now 'rows of the DML x transcript x GO term x GOslim bin table for this ontology, as the legacy reader returned it; a term filed under several GOslim bins gives several rows'. 'Unique genes' is now 'genes that hold a DML and have, in the DML annotation table as the legacy reader returned it, a line that names one of the ten top-ranked terms for a transcript of the universe; the table names a term only for a transcript that carries it directly, and lacks many GO IDs of the complete map (issue I-42), so this is not the number of genes annotated with one of the ten terms'. Recounted first with code that shares nothing with step 09 (scratch check_fig5_definitions.R): the new definition gives all nine values (1, 12, 6; 3, 17, 49; 1, 10, 4); without 'for a transcript of the universe' it gives 26 and 62 for heat CC and MF, so that clause is needed; the 4,379 / 39,688 / 3,332 BP rows are 3,792 / 33,642 / 3,060 distinct DML x transcript x term combinations, up to 4 rows per combination. I did not take the second agent's wording 'lacks every GO ID dropped by the join to the 2017 GOslim table': the join is an inference, and only 16 of the 38 absent top-ten terms are absent for that reason (see issues_text). The same 'one line per DML, transcript, and GO term' wording is corrected in the header of step 08 and in 03_input_files/annotation/README.md (now 'GO term, and GOslim bin of the term'); 06_diagnostics/legacy_reader_mechanism.R and its CSV already say it correctly. Step 09 rerun in place: 18 text cells of one table changed, no value.",
+      "files": [
+       "01_pipeline/09_go_enrichment_legacy.R",
+       "01_pipeline/08_gene_annotation.R",
+       "03_input_files/annotation/README.md",
+       "02_R_functions/annotation.R",
+       "04_output/09_go_enrichment_legacy/tables/figure_5_values_legacy.csv"
+      ]
+     },
+     {
+      "finding": "R3.3 and R6.8: header of step 08, '9 genes whose name holds a hyphen'",
+      "action": "fixed",
+      "what_changed": "Header note rewritten: 'the 24 mRNAs of the 5 protein-coding genes whose name holds a hyphen (none of the five holds a DML, so this loss removes no line from the three tables)'. Checked from the committed tables: legacy_gene_id_lost is TRUE for 24 mRNAs of 5 genes (Striatin-3 14, Caprin-2 5, Secernin-1 3, Ankyrin-3 1, Testican-1 1), and n_dml_ploidy, n_dml_heat and n_dml_shared are 0 for all five in both gene tables. In the same sentence the third loss no longer states the inference as fact: 'every GO ID that is not in legacy_go_goslim_terms.tsv.gz, the part of the 2017 GOslim table recovered from the legacy tables (that the lost table lacked these IDs is an inference). Issues I-03 and I-42'. Comment only.",
+      "files": [
+       "01_pipeline/08_gene_annotation.R"
+      ]
+     },
+     {
+      "finding": "R5.1, part of steps 08 and 09: modes = c(\"corrected\") gave exit 0 and wrong cross-mode tables",
+      "action": "fixed",
+      "what_changed": "Step 09: (1) when \"legacy\" is not in config$modes it prints one line that says so and ends before the ontology release is fetched and before any file is read or written; under Rscript with exit status 0, so that run_pipeline.R goes on; in an interactive session with stop(), because quit() would close the session. (2) When \"legacy\" is configured, it stops with an error before writing anything unless annotation_summary.csv of step 08 holds exactly one legacy row per DML set (the summary is now read with the other inputs at the top, not after two tables were written). Step 08: writes its per-mode tables for the configured modes as before; annotation_summary.csv holds one row per configured mode and DML set and now has the same 20 columns whichever modes are configured (the eight legacy_ columns are written empty outside legacy mode; before, they vanished without the legacy mode); the log says which modes are written and, without legacy, that the ten-column tables and the legacy rows are not written. Design choice to confirm: a single-mode run does NOT keep the summary rows of the other mode from the file on disk, as the reviewer suggested; that would make the table depend on what an earlier run left in the folder, and the missing legacy rows are what tells step 09 that the legacy tables on disk do not belong to the last run of step 08. Default configuration: annotation_summary.csv is byte-identical. The validation of config$modes in run_config.R belongs to group E; step 10 was not touched.",
+      "files": [
+       "01_pipeline/09_go_enrichment_legacy.R",
+       "01_pipeline/08_gene_annotation.R",
+       "01_pipeline/README.md",
+       "04_output/README.md"
+      ]
+     },
+     {
+      "finding": "R6.14 (c), step 09 part: GO.db could be downloaded and installed before the packages were checked",
+      "action": "fixed",
+      "what_changed": "Step 09 now looks up its packages (data.table, topGO, ggplot2, and R.utils, which fread() needs for the .gz tables) with system.file(), which loads no namespace, and stops naming every missing one before use_legacy_go_db(). load_packages() then attaches the three packages in the old order. patchwork is no longer loaded: the step calls no patchwork function (the same defect as R4.8 names for step 10), and both PNG are byte-identical without it. Parts (a) and (b) of R6.14 are already corrected in 01_pipeline/README.md; R.utils in load_packages() is group E's.",
+      "files": [
+       "01_pipeline/09_go_enrichment_legacy.R"
+      ]
+     },
+     {
+      "finding": "Integration check (issues.md I-39, loose end): legacy_universe_by_chromosome.csv repeats the genome-wide missing block on all 12 rows",
+      "action": "fixed",
+      "what_changed": "The three columns largest_missing_block_n, largest_missing_block_first and largest_missing_block_last are removed from legacy_universe_by_chromosome.csv, which keeps its four per-sequence columns unchanged. The block is written once, as three new rows of legacy_run_info.csv: 'largest missing block: mRNAs with GO terms' 15666, 'largest missing block: first transcript' XM_011455141.3, 'largest missing block: last transcript' XM_034461018.1. Readers checked with grep over 01_pipeline, 02_R_functions, 06_diagnostics, both maps of 03_input_files/manuscript and all README files: nothing reads the three columns; the values map reads legacy_run_info.csv only by item == \"topGO\" (row M2.6-002), which still returns 2.54.0; an archived verification script reads the other columns only. issues.md line 800 names the old columns (text under issues_text).",
+      "files": [
+       "01_pipeline/09_go_enrichment_legacy.R",
+       "04_output/09_go_enrichment_legacy/tables/legacy_universe_by_chromosome.csv",
+       "04_output/09_go_enrichment_legacy/tables/legacy_run_info.csv",
+       "04_output/README.md"
+      ]
+     },
+     {
+      "finding": "Integration check (issue I-43): the log line of each test printed the distinct transcripts of interest under one label, not the lines the test counted",
+      "action": "fixed",
+      "what_changed": "The line now gives both units, for example 'ploidy BP: 12720 terms; 383 with p < 0.01; transcripts of interest 498, counted in the totals of the test as 1581 of 40748 map lines'. The line counts are numSigGenes(td) and numGenes(td), which are the two totals of topGO's contingency table (read in the topGO source: numSigAll and numAllMembers of the classicCount object are lengths over genes(td), repeats included). The nine pairs equal I-43: 1,581, 4,699 and 768 of 40,748 (BP), 1,914, 5,168 and 786 of 45,770 (CC), 1,546, 4,455 and 729 of 40,016 (MF). Log only; no table.",
+      "files": [
+       "01_pipeline/09_go_enrichment_legacy.R"
+      ]
+     },
+     {
+      "finding": "Task 1 (f): headers and README rows that lag behind the code (steps 08, 09, annotation.R, annotation inputs)",
+      "action": "fixed",
+      "what_changed": "Headers of steps 08 and 09: a Run line (prerequisite, minutes, memory as measured: step 08 0.3 min and 0.83 GB, step 09 3.1 to 3.3 min and 1.04 GB), every output file named with what it holds, session_info.txt listed, notes on the modes, on what the largest missing block is, on column what_it_counts and on the two units of the log line. 01_pipeline/README.md: rows 08 and 09 and three sentences of the Modes section about steps 08 and 09 without the legacy mode. 04_output/README.md: row 08 now lists go_map_id_repair.csv and says what annotation_summary.csv and the legacy tables hold; row 09 now lists legacy_top10_term_transcripts, legacy_dml_in_top10_genes and legacy_run_info.csv. 02_R_functions/README.md: row of annotation.R now lists dml_annotation_columns(). 03_input_files/annotation/README.md: legacy_go_goslim_terms.tsv.gz has 5,217 rows for its 4,564 GO IDs (565 IDs under two GOslim bins, 41 under three, 2 under four; counted) and is read by step 08 only. Only rows and sentences about my steps were changed; each file was re-read before the edit, and the rows of the other groups were left alone.",
+      "files": [
+       "01_pipeline/08_gene_annotation.R",
+       "01_pipeline/09_go_enrichment_legacy.R",
+       "01_pipeline/README.md",
+       "04_output/README.md",
+       "02_R_functions/README.md",
+       "03_input_files/annotation/README.md",
+       "02_R_functions/annotation.R"
+      ]
+     },
+     {
+      "finding": "R3.1: step 09 header and README said the p < 0.01 terms fed Figures 6 to 8; text comparison of the legacy p filter",
+      "action": "already_fixed",
+      "what_changed": "Checked the current tree: header item 3 and the manuscript-items line of step 09, row 09 of 01_pipeline/README.md, the I-21 bullet and the I-28 row of issues.md already carry the corrected wording (p-values from 1e-30 to 1e-4 dropped; the 12 heat terms printed '< 1e-30' kept; all nine counts recounted). No edit.",
+      "files": []
+     },
+     {
+      "finding": "R3.1, optional item 3: write the nine counts of the legacy text filter as a table (legacy_p_filter_as_run.csv)",
+      "action": "deferred",
+      "what_changed": "Not added. The counts (165, 22, 31; 405, 67, 75; 171, 14, 37) describe simplifyEnrichment plots that are not in the draft, so the table would be an output the paper does not have (scope decision). The second agent's tested diff is in its scratch directory if the author wants it.",
+      "files": []
+     },
+     {
+      "finding": "R3.4 and R6.15: annotation README ('Used by step 09 only'; the breakdown of the 45,346 names; 'consecutive accessions')",
+      "action": "already_fixed",
+      "what_changed": "03_input_files/annotation/README.md at the base commit already reads 'Used by step 08 (to flag the transcripts of the legacy universe), by step 09, and by 06_diagnostics/legacy_reader_mechanism.R', names the one bare 'XM_' entry, and says 'adjacent when sorted by accession', as do the header and the comment of step 09. Confirmed against the code: step 08 calls read_go_map(\"legacy_universe\"); go_map_id_repair.csv has 43,184 XM, 123 NM, 2,038 XR names and one empty one.",
+      "files": []
+     },
+     {
+      "finding": "R4.8: header and log slips of step 10 and of 06_diagnostics/go_random_cpg_control.R",
+      "action": "deferred",
+      "what_changed": "Not my files, and step 10 and the scripts of 06_diagnostics stay as they are by the scope decision. The one point that has a twin in my step (an unused patchwork in load_packages) is fixed in step 09, see R6.14 (c).",
+      "files": []
+     },
+     {
+      "finding": "R6.3 (step 13 listed as planned) and R6.17 (inventory of 06_diagnostics/README.md)",
+      "action": "already_fixed",
+      "what_changed": "R6.3: the status of step 13, its run-times row and its row in 04_output/README.md are already in place; none of these is my file. R6.17: the findings file says the parent session adds the rows of the four diagnostics scripts and tells me not to; nothing done.",
+      "files": []
+     },
+     {
+      "finding": "Optional output addition for group C: step 09, DML in genes that carry a GO term with p below 0.01, per DML set and ontology",
+      "action": "needs_decision",
+      "what_changed": "Not added to the repository. Note for the author: step 09 could also write the counts of Figure 9 under the rule the Methods state (every GO term with Fisher p below 0.01 in place of the ten top-ranked terms; 89, 680 and 45 DML for BP where the figure has 10, 7 and 3, and BP 47%, CC 27%, MF 27% for heat), but the paper states no number made that way, so it is an output the paper does not have. A patch of 12 lines was written and tested in a scratch copy only: it adds one table of 9 rows, reproduces the numbers that I-21 quotes from the verification record (89, 680, 45; heat 46.9 / 26.6 / 26.5%; ploidy CC 38.4, BP 34.5, MF 27.1%), and leaves all 34 tables and both PNG of step 09 byte-identical. Files: <scratch>/code-pass/C/optional_step09_p_cutoff_lists.diff, optional_step09_with_p_cutoff_lists.R, optional_figure_9_values_p_cutoff_legacy.csv.",
+      "files": []
+     },
+     {
+      "finding": "Notes of the values map rows that quote outputs of steps 08 and 09",
+      "action": "not_a_defect",
+      "what_changed": "Read the rows that use figure_5_values_legacy.csv (R3.4-001 to R3.4-006), annotation_summary.csv (corrected expressions of R3.4-001, -002, -005), legacy_run_info.csv (M2.6-002) and the Figure 9 rows. No expression reads a removed column or the reworded text, and no note is made wrong: R3.4-004 and R3.4-005 already describe the two panels as the corrected strings do. Step 13 run in a scratch copy of the final tree: exit 0, no expression error, manuscript_values.csv byte-identical to the base commit. No request for the map.",
+      "files": []
+     }
+    ],
+    "outputs_changed": [
+     {
+      "file": "04_output/09_go_enrichment_legacy/tables/figure_5_values_legacy.csv",
+      "change": "Column what_it_counts reworded in 18 of the 36 rows (the 9 rows 'GO terms' and the 9 rows 'Unique genes'). Columns set, ontology, published_label and value are identical in all 36 rows.",
+      "changes_a_number": false,
+      "old_value": "GO terms: 'rows of the DML x transcript x GO term table for this ontology, as the legacy reader returned it'. Unique genes: 'genes that hold a DML and are annotated directly with one of the ten top-ranked terms'.",
+      "new_value": "GO terms: 'rows of the DML x transcript x GO term x GOslim bin table for this ontology, as the legacy reader returned it; a term filed under several GOslim bins gives several rows'. Unique genes: 'genes that hold a DML and have, in the DML annotation table as the legacy reader returned it, a line that names one of the ten top-ranked terms for a transcript of the universe; the table names a term only for a transcript that carries it directly, and lacks many GO IDs of the complete map (issue I-42), so this is not the number of genes annotated with one of the ten terms'.",
+      "reason": "R3.2 and R6.5: the old wording was the one issues.md withdrew; by it the ploidy BP value would be 6, not 1."
+     },
+     {
+      "file": "04_output/09_go_enrichment_legacy/tables/legacy_universe_by_chromosome.csv",
+      "change": "Three columns removed. The columns sequence, mRNAs_with_GO_terms, in_legacy_universe and percent_in_universe and all 12 rows are unchanged.",
+      "changes_a_number": false,
+      "old_value": "7 columns; largest_missing_block_n, largest_missing_block_first and largest_missing_block_last held 15666, XM_011455141.3 and XM_034461018.1 on every one of the 12 rows",
+      "new_value": "4 columns; the three values are in legacy_run_info.csv, once",
+      "reason": "Integration check, I-39 loose end: the block is a fact about the whole universe, and on the row of NC_047560.1 (2,770 annotated mRNAs) it read as a missing block of 15,666."
+     },
+     {
+      "file": "04_output/09_go_enrichment_legacy/tables/legacy_run_info.csv",
+      "change": "Three rows added after the five existing ones, which are unchanged.",
+      "changes_a_number": false,
+      "old_value": "5 items: GO.db, GO source date, topGO, universe transcripts, universe map lines",
+      "new_value": "8 items; added 'largest missing block: mRNAs with GO terms' = 15666, 'largest missing block: first transcript' = XM_011455141.3, 'largest missing block: last transcript' = XM_034461018.1",
+      "reason": "The same finding: the values moved here from legacy_universe_by_chromosome.csv. No number changed."
+     },
+     {
+      "file": "04_output/09_go_enrichment_legacy/session_info.txt",
+      "change": "Time stamp of the rerun; patchwork_1.2.0 is no longer among the attached packages.",
+      "changes_a_number": false,
+      "old_value": "Finished 2026-11-19 00:57:50 UTC; 13 attached packages with patchwork",
+      "new_value": "Finished 2026-11-19 23:01:21 UTC; 12 attached packages",
+      "reason": "Rerun in place; step 09 no longer loads the unused package."
+     },
+     {
+      "file": "04_output/08_gene_annotation/session_info.txt",
+      "change": "Time stamp of the rerun only.",
+      "changes_a_number": false,
+      "old_value": "Finished 2026-11-19 01:01:54 UTC",
+      "new_value": "Finished 2026-11-19 23:12:23 UTC",
+      "reason": "Rerun in place. All 21 tables of the step are byte-identical."
+     },
+     {
+      "file": "04_output/09_go_enrichment_legacy/figures/figure_5_legacy.pdf and figure_9_legacy.pdf",
+      "change": "Creation time stamps inside the PDF; the two PNG are byte-identical. The copies 05_manuscript/figures/legacy/Figure_5.pdf and Figure_9.pdf will change the same way when step 13 next copies them (I did not run step 13 in place).",
+      "changes_a_number": false,
+      "old_value": "PDF written 2026-11-19 00:57 UTC",
+      "new_value": "PDF written 2026-11-19 23:01 UTC",
+      "reason": "Rerun in place; PDF files carry a time stamp, as 04_output/README.md says."
+     }
+    ],
+    "tests_run": [
+     {
+      "what": "Baseline: the unedited scripts of steps 08 and 09 in a copy of the working tree as the other groups had left it (shared helpers of group B included)",
+      "result": "All 21 tables of step 08, all 34 tables and both PNG of step 09 byte-identical to the committed files; only the two PDFs and the two session_info.txt differ. So every later difference comes from my edits."
+     },
+     {
+      "what": "Task 2: steps 08 and 09 rerun in place after the edits (plain Rscript, WGBS_CACHE_DIR=/home/user/gannet_cache), md5 of every file against the base commit",
+      "result": "Both exit 0. Step 08: 21 of 21 tables byte-identical. Step 09: 31 of 34 tables byte-identical, both PNG byte-identical; the 3 tables that changed are those a finding changes (figure_5_values_legacy.csv, legacy_universe_by_chromosome.csv, legacy_run_info.csv). PDFs and session_info.txt differ by time stamp. No new file. Step 08 0.3 min and 0.83 GB peak, step 09 3.2 min and 1.04 GB peak."
+     },
+     {
+      "what": "06_diagnostics/check_legacy_outputs.R in place after the rerun",
+      "result": "331 comparisons: 329 match, 2 differ (percent mCpG ANOVA F 14.49 against 14.43; heat DML at 50 points, hyper 1 against 3), the same two as before. legacy_check_results.csv is byte-identical to the base commit. All 143 comparisons on steps 08 and 09 match."
+     },
+     {
+      "what": "Task 3: copy of the final working tree without .git and 08_archive, modes = c(\"corrected\"), Rscript run_pipeline.R --steps 8:9",
+      "result": "Exit 0, 'All requested steps finished'. Step 08 rewrote the mode-independent and the corrected tables with identical content; the only table that changed is annotation_summary.csv: three corrected rows, the same 20 columns, each row identical to the corrected row of the default table; the legacy tables were not touched. Step 09 printed 'step 09 repeats the GO enrichment of the draft on the legacy-mode DML, and \"legacy\" is not in config$modes (corrected): nothing is run and no file is written' and touched no file (md5 and modification times)."
+     },
+     {
+      "what": "The defect before the fix: scripts of the base commit, same copy method, modes = c(\"corrected\")",
+      "result": "Reproduced. Both steps exit 0; annotation_summary.csv loses the eight legacy_ columns; step 09 runs three minutes, warns three times 'recycled with remainder' and writes the shifted legacy_funnel.csv (ploidy genes 622, 171, 168, 622 with 363.7%)."
+     },
+     {
+      "what": "Legacy configured again in the corrected-only copy, step 08 NOT rerun, then step 09",
+      "result": "Stops after 5 seconds, exit 1, nothing written: 'annotation_summary.csv of step 08 must hold one legacy-mode row for each DML set (ploidy, heat, shared) and holds none. Step 08 last ran without the legacy mode: rerun it with \"legacy\" in config$modes.'"
+     },
+     {
+      "what": "modes = c(\"legacy\") in a copy, steps 08 and 09",
+      "result": "Both exit 0. annotation_summary.csv holds the three legacy rows, identical to those of the default table; the corrected tables are not touched; all 34 tables and both PNG of step 09 are byte-identical to the default run."
+     },
+     {
+      "what": "Step 09 sourced in an interactive session (R --interactive) with modes = c(\"corrected\")",
+      "result": "Stops with the same sentence as an error; the session stays alive (the next command ran)."
+     },
+     {
+      "what": "Step 09 on a library path without R.utils and with an empty download cache",
+      "result": "Stops at once with 'Missing R package(s): R.utils. Install them (see README, 'Running the pipeline') and rerun.'; the cache directory stays empty, so nothing was downloaded. With a second, invented package name in the list both names are printed. A missing topGO was not simulated (same check; topGO sits in a site library that cannot be hidden here)."
+     },
+     {
+      "what": "Locale: the first in-place rerun went through a Python wrapper that sets LC_CTYPE=C.UTF-8 for the child process; the final one ran in the C locale",
+      "result": "Tables and PNG byte-identical in both, so the outputs of steps 08 and 09 do not depend on that setting. The committed session_info.txt are from the C locale runs, like those of the other steps."
+     },
+     {
+      "what": "Step 13 in a scratch copy of the final working tree (to see whether the three changed tables alter a regenerated value or break an expression)",
+      "result": "Exit 0, 67 of 67 items copied, expression_errors.csv header only, 05_manuscript/manuscript_values.csv byte-identical to the base commit. Not run in place."
+     },
+     {
+      "what": "Recounts for the texts, from committed tables and inputs with code that shares nothing with the steps (check_facts.R, check_fig5_definitions.R, check_38_terms.R in my scratch directory)",
+      "result": "24 mRNAs of 5 protein-coding hyphen genes, none with a DML in either mode; 5,217 rows for 4,564 GO IDs in the GOslim table; the nine 'Unique genes' values under the new definition; 38 of the 90 top-ten entries in none of the three annotation tables, of which 16 among the 1,333 absent IDs (7 for ploidy BP), 19 attached directly to no transcript, 3 only to transcripts of genes without a DML."
+     },
+     {
+      "what": "06_diagnostics/check_legacy_outputs.R in the corrected-only copy (archive linked read-only)",
+      "result": "Still stops, exit 1, 'missing value where TRUE/FALSE needed' in record(), before it writes its result file. Unchanged by my edits; the script is frozen in this pass (see shared_file_requests and open_points)."
+     },
+     {
+      "what": "Steps 04 and 05; steps 10 and 11; anything on Windows or macOS",
+      "result": "Not run."
+     }
+    ],
+    "config_requests": [],
+    "shared_file_requests": [
+     {
+      "file": "run_config.R",
+      "old_text": "  # Steps 04 onward write one set of outputs per mode listed here, with the mode\n  # in each file name.",
+      "new_text": "  # Steps 04 to 08 and step 10 write one set of outputs per mode listed here, with\n  # the mode in each file name. Step 09 repeats the enrichment of the draft and runs\n  # only when \"legacy\" is listed: without it the step says so and ends with status\n  # 0, and annotation_summary.csv of step 08 holds no legacy row.",
+      "reason": "R6 finding 13 (the comment says every step from 04 on) and R5.1: the comment should say what steps 08 and 09 now do with each setting. Steps 08 and 09 need no validation of their own beyond what group E adds; they assume a non-empty vector of known modes (with an empty vector step 08 would write an empty annotation_summary.csv)."
+     },
+     {
+      "file": "06_diagnostics/check_legacy_outputs.R",
+      "old_text": "    record(label, \"DML x transcript rows before the GO join\", nrow(old_tx), ann_sum$legacy_dml_transcript_rows)",
+      "new_text": "    # No legacy row: step 08 last ran without the legacy mode, and the comparison is \"not run\".\n    record(label, \"DML x transcript rows before the GO join\", nrow(old_tx),\n           if (nrow(ann_sum) == 1) ann_sum$legacy_dml_transcript_rows else NA)",
+      "reason": "Not for this pass unless the parent lifts the freeze on 06_diagnostics: after a run of step 08 without the legacy mode the check stops with 'missing value where TRUE/FALSE needed' (tested in a scratch copy, before and after my edits), although its header says that checks without their outputs are reported as not run. With the default modes the line behaves as now. Untested as a patch."
+     }
+    ],
+    "issues_text": [
+     {
+      "issue": "I-20, Update 2026-11-19, sentence before the table",
+      "current_text": "until step 09 is rerun after the code review, the file and the script still carry the first wording for \"GO terms\" and \"Unique genes\" (18 of the 36 rows)",
+      "proposed_text": "since the code pass of 2026-11-19 the script and the file carry it (the 18 rows of \"GO terms\" and \"Unique genes\" were reworded; no value changed)",
+      "reason": "Step 09 was rerun with the corrected strings; the clause is now false."
+     },
+     {
+      "issue": "I-20, table of the Update, row 'Unique genes'",
+      "current_text": "The three annotation tables lack 1,333 of the 5,897 GO IDs that their transcripts carry in the complete map (I-42; by inference, the IDs that the notebook's join to the 2017 GOslim table dropped), 38 of the 90 top-ten terms among them (9 of the 10 for ploidy BP)",
+      "proposed_text": "The three annotation tables lack 1,333 of the 5,897 GO IDs that their transcripts carry in the complete map (I-42; by inference, the IDs that the notebook's join to the 2017 GOslim table dropped). 38 of the 90 top-ten terms are in none of the three tables (9 of the 10 for ploidy BP): 16 of them (7 for ploidy BP) are among the 1,333; 19 are attached directly to no transcript of the complete map and hold transcripts only through child terms, which a table of direct annotations cannot name; 3 are attached only to transcripts of genes without a DML",
+      "reason": "Side finding of the verification of R3.2, recounted here (scratch check_38_terms.R): the text attributes all 38 absent top-ten terms to the 1,333 lost IDs; 16 are. The totals 38, 9 of 10, 1,333 and 5,897 are right."
+     },
+     {
+      "issue": "I-42, second evidence bullet, last sentence",
+      "current_text": "38 of the draft's 90 top-ten terms are among the absent IDs (9 of the 10 for ploidy BP), which is why the \"Unique genes\" panel of Figure 5 shows one gene where Table 1 lists six (I-20).",
+      "proposed_text": "38 of the draft's 90 top-ten terms are in none of the three tables (9 of the 10 for ploidy BP), which is why the \"Unique genes\" panel of Figure 5 shows one gene where Table 1 lists six (I-20). Only 16 of the 38 (7 for ploidy BP) are among the 1,333 absent IDs. Of the other 22, 19 are attached directly to no transcript of the complete map (they hold transcripts only through child terms, and the annotation tables list direct annotations only) and 3 are attached only to transcripts of genes without a DML.",
+      "reason": "Same correction as in I-20; the two sentences must agree."
+     },
+     {
+      "issue": "I-39, Verification 2026-11-19, last bullet (loose end for the code)",
+      "current_text": "- Loose end for the code: in `legacy_universe_by_chromosome.csv` the columns `largest_missing_block_n`, `largest_missing_block_first` and `largest_missing_block_last` describe the genome-wide run and are repeated on all 12 rows, so the row of NC_047560.1 (2,770 annotated mRNAs) shows a missing block of 15,666. They belong in a one-row table and will be moved in the next code pass.",
+      "proposed_text": "- Done in the code pass of 2026-11-19: `legacy_universe_by_chromosome.csv` now holds per-sequence counts only (`sequence`, `mRNAs_with_GO_terms`, `in_legacy_universe`, `percent_in_universe`). The genome-wide run, which the table had repeated on all 12 rows in three columns `largest_missing_block_...`, is written once in `legacy_run_info.csv` (items `largest missing block: mRNAs with GO terms`, `largest missing block: first transcript` and `largest missing block: last transcript`: 15,666, XM_011455141.3, XM_034461018.1).",
+      "reason": "The columns named in the bullet no longer exist; the move it announces is made."
+     },
+     {
+      "issue": "I-43, second evidence bullet (optional addition)",
+      "current_text": "The two totals and the ploidy numbers are regenerated by `06_diagnostics/legacy_reader_mechanism.R` (`legacy_reader_position_control.csv`, rows `legacy_list`).",
+      "proposed_text": "The two totals and the ploidy numbers are regenerated by `06_diagnostics/legacy_reader_mechanism.R` (`legacy_reader_position_control.csv`, rows `legacy_list`). Since the code pass of 2026-11-19 the log of step 09 prints both units for each of the nine tests (for ploidy BP: transcripts of interest 498, counted in the totals of the test as 1,581 of 40,748 map lines; CC 1,914, 5,168 and 786 of 45,770; MF 1,546, 4,455 and 729 of 40,016); the log is not a committed file.",
+      "reason": "The integration check asked that the log report both counts; it now does, and the nine pairs agree with the numbers of I-43."
+     }
+    ],
+    "open_points": [
+     "Design choice for the parent to confirm (R5.1): after a single-mode run annotation_summary.csv holds the rows of that mode only, with stable columns. I did not keep the other mode's rows from the file on disk, because the table would then depend on what an earlier run left in the folder, and because step 09 uses the missing legacy rows to refuse stale legacy tables. If rows are to be kept instead, it is a few lines in step 08, and the guard of step 09 then needs another signal.",
+     "With the legacy mode alone as the future default (toggles pass recorded in commit 10adb4d), annotation_summary.csv will hold three legacy rows only. The corrected expressions of the values map rows R3.4-001, R3.4-002 and R3.4-005 select mode == \"corrected\" in that table and will then find no row.",
+     "06_diagnostics/check_legacy_outputs.R still stops with 'missing value where TRUE/FALSE needed' when step 08 last ran without the legacy mode (line 155 reads a legacy row that is not there). The script is frozen in this pass; a one-line guard is under shared_file_requests.",
+     "Step 10 with modes = c(\"corrected\") is untouched and still writes its retest of the draft's terms against empty legacy results (R5.1, third part); not my file.",
+     "For group E: step 09 checks R.utils itself before the GO.db install; if load_packages() gets its own R.utils check the two are redundant but consistent. Step 09 ends with quit(status = 0) when the legacy mode is not configured, so run_pipeline.R lists it as finished in 0.0 minutes; a shared helper or a 'skipped' column would be group E's to add.",
+     "For group E's write_table finding: the three dml_go_annotation_<set>_legacy.tsv.gz of step 08 are written with gzfile() and writeLines(), not write_table(), because the lines are sorted in byte order as text. On Windows or macOS their gzip header would differ in the operating-system byte like the other .gz tables; the README sentence on gzipped tables should cover them. 03_input_files/annotation/build_legacy_go_terms.R calls fwrite() directly without eol; it is not in my file list.",
+     "Optional output for the author's decision (see findings_handled): the Figure 9 counts under the Methods' own p < 0.01 rule. Tested patch, not applied: /tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/code-pass/C/optional_step09_p_cutoff_lists.diff",
+     "The row order of annotation_summary.csv follows the order of config$modes (as before); with the default order the file is byte-identical.",
+     "Scratch directory with logs, md5 lists, the three recount scripts, my diff and an index (README.txt): /tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/code-pass/C/ . The copy t_modes there is the final tree with modes = c(\"corrected\"); the other copies were removed after the tests."
+    ],
+    "summary": "Steps 08 and 09 are fixed and rerun in place; no legacy number changed. Of the 55 tables of the two steps 52 are byte-identical to the base commit, as are both PNG; the three that changed are the ones the findings name, and none of their numbers changed. `06_diagnostics/check_legacy_outputs.R` gives 329 of 331 as before, with its result file byte-identical.\n\n- **Figure 5 definitions:** the 18 cells of `what_it_counts` for \"GO terms\" and \"Unique genes\" in `figure_5_values_legacy.csv` now carry the corrected wording. I recounted that the new \"Unique genes\" definition gives all nine values.\n- **Universe table:** the three repeated block columns are gone from `legacy_universe_by_chromosome.csv`; the block is written once, as three rows of `legacy_run_info.csv`. Nothing reads the removed columns.\n- **Modes:** with only the corrected mode, step 09 says it is legacy-only, writes nothing and exits 0, so `run_pipeline.R` goes on. Step 08 writes the corrected tables and a summary with the same columns as always. Step 09 stops with an error if legacy is configured but step 08 last ran without it. Legacy alone also works, with every step 09 table identical.\n- **Packages:** step 09 names a missing package before it fetches GO.db, and no longer loads the unused patchwork.\n- **Log line:** each test now prints both units of I-43 (for ploidy BP, 498 transcripts counted as 1,581 of 40,748 map lines).\n- **Documentation:** the hyphen-gene count in the step 08 header is corrected to 24 mRNAs of 5 genes, and the headers and my README rows now name every output.\n\nFour findings were already fixed in the tree. R4.8 and R6.17 are not mine to change.\n\nDecisions for you:\n- **Summary table after a single-mode run:** it holds that mode's rows only; I did not keep the other mode's rows from disk, because step 09 uses their absence to refuse stale legacy tables. Say if you want them kept.\n- **Optional Figure 9 table under p < 0.01:** not added, because the paper states no number made that way. A tested 12-line patch is in my scratch directory and reproduces 89, 680 and 45 for BP.\n\nReturned for others: five text corrections for `issues.md`, including that only 16 of the 38 absent top-ten terms are among the 1,333 lost GO IDs; a comment change for `run_config.R`; and a one-line guard for `check_legacy_outputs.R`, which still crashes after a corrected-only run of step 08."
    }
   }
  ]

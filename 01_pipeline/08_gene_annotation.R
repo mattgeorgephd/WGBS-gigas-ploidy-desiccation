@@ -115,7 +115,8 @@ log_msg("%d genes (%d protein coding); %d with GO terms; %d of those have a tran
 legacy_terms <- read_legacy_go_terms()
 log_msg("writing the tables of %d mode(s): %s", length(config$modes), paste(config$modes, collapse = ", "))
 if (!"legacy" %in% config$modes) {
-  log_msg("\"legacy\" is not in config$modes: the ten-column tables that step 09 reads are not written, and annotation_summary.csv gets no legacy row")
+  log_msg(paste("\"legacy\" is not in config$modes: the ten-column tables that step 09 reads are not written,",
+                "and annotation_summary.csv gets no legacy row"))
 }
 summary_rows <- list()
 for (mode in config$modes) {
