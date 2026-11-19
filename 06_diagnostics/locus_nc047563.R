@@ -129,7 +129,18 @@ fact <- function(section, quantity, value, how_defined) {
 }
 whole    <- function(x) formatC(x, format = "d")
 decimal  <- function(x, digits) formatC(round(x, digits), format = "f", digits = digits)
-p_value  <- function(p) formatC(p, format = "g", digits = 3)
+# A p-value or q-value as text, with four significant digits. A written value
+# that ends in the digit 5 lies on a rounding boundary, and a reader who rounds
+# it further can go the wrong way (0.011499 written as 0.0115 becomes 0.012).
+# Digits are therefore added until the last digit is not 5; a value that is
+# exactly such a number (0.5, 0.25) stays as it is.
+p_value  <- function(p) {
+  for (digits in 4:15) {
+    text <- sprintf("%.*g", digits, p)
+    if (!endsWith(sub("e.*$", "", text), "5")) break     # the last digit before any exponent
+  }
+  text
+}
 x_of_y   <- function(x, y) paste(whole(x), "of", whole(y))
 a_to_b   <- function(x, digits) paste(decimal(min(x), digits), "to", decimal(max(x), digits))
 interval <- function(from, to, sequence = locus_sequence) sprintf("%s:%d-%d", sequence, from, to)
