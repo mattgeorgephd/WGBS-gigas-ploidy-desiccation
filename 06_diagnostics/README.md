@@ -13,6 +13,10 @@ Checks that the pipeline reproduces what it should, and controls for the analyse
 | `universe_file_cut.R` | Shows where the gene universe of the legacy GO enrichment lost its run of 15,666 transcripts (15,653 of them to the cut): fetches 4 KB of the 20 GB table on gannet around the place where a line is cut and a line from far later in the sort order follows, and checks that the two transcripts at the cut bound the gap in the universe. A few seconds; needs gannet. Issue I-39. | `universe_file_cut.csv`, `universe_file_cut_context.txt` |
 | `table1_group_means.R` | What the "methylation difference" values of Table 1 are made of: read-pooled percent methylation of the four groups at each of its 20 loci, the ploidy difference within each cohort, the cohort difference within each ploidy, and the per-library values. Descriptive; no test. Under a minute. Issues I-02 and I-07. | `table1_group_means.csv`, `table1_library_values.csv` |
 | `library_methylation_level.R` | What the differences between groups of libraries consist of. Overall methylation level of each library; the ploidy contrast inside each cohort by direction; whether a CpG's dependence on the level predicts the contrast of the other cohort; counts with one library left out; complete enumeration of regroupings, with and without the five libraries of highest level, and for the acute heat shock; similarity of the libraries of each group; library values at the CpGs called with the overdispersion correction. Tests nothing at single CpGs. About 3 minutes, 3 GB; part 8 needs the outputs of `dml_sensitivity.R`. Issues I-49, I-01, I-02, I-04, I-07, I-08. Written by the audit session; independent review pending. | `library_methylation_level/` (13 tables, described below) |
+| `feature_odds_matched.R` | Location of DML against matched and label-permuted backgrounds (I-41). Written by an agent; review pending | `feature_odds_matched.csv`, `feature_odds_matched_within_group_sd.csv`, `feature_odds_label_permutation.csv`, `feature_odds_label_permutation_counts.csv` |
+| `locus_nc047563.R` | What the locus of I-09 is: extent of the excess coverage, per-library coverage, leave-one-library-out. Needs the coverage files and the reference genome. Written by an agent; review pending | `locus_nc047563_summary.csv`, `locus_nc047563_per_library.csv`, `locus_nc047563_leave_one_out.csv`, `locus_nc047563_coverage_profile.csv` |
+| `legacy_reader_mechanism.R` | How the legacy reader lost annotation lines and what the loss did to the test (I-40, I-39, I-43). Written by an agent; review pending | `legacy_reader_mechanism.csv`, `legacy_reader_by_linkage_group.csv`, `legacy_reader_position_control.csv` |
+| `coverage_filter_variants.R` | How far the CpG and DML counts depend on the reading of the upper coverage filter (I-05). Needs the coverage files. Written by an agent; review pending | `coverage_filter_variants.csv`, `coverage_filter_cutoffs.csv`, `coverage_filter_removed_cpgs.csv`, `coverage_filter_qvalue_rule.csv` |
 
 Run from the repository root, after the pipeline steps they check:
 
@@ -24,6 +28,10 @@ Rscript 06_diagnostics/cohort_separation.R
 Rscript 06_diagnostics/universe_file_cut.R
 Rscript 06_diagnostics/dml_sensitivity.R                                 # full run, after step 05; hours, see below
 Rscript 06_diagnostics/library_methylation_level.R                       # after steps 02 to 05 and, for its part 8, after dml_sensitivity.R
+Rscript 06_diagnostics/feature_odds_matched.R                            # review pending
+Rscript 06_diagnostics/locus_nc047563.R                                  # review pending; needs the coverage files and the genome
+Rscript 06_diagnostics/legacy_reader_mechanism.R                         # review pending
+Rscript 06_diagnostics/coverage_filter_variants.R                        # review pending; needs the coverage files
 WGBS_SENSITIVITY_SUBSET=20000 Rscript 06_diagnostics/dml_sensitivity.R   # test of the code on a random sample of CpGs, 10 to 15 minutes
 ```
 

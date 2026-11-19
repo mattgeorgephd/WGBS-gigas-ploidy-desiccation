@@ -1,6 +1,6 @@
 # 01_pipeline
 
-The analysis, as numbered R scripts that run in order. Each script reads the inputs in `03_input_files/` and the outputs of earlier steps in `04_output/`, and writes only into its own folder `04_output/<step>/`.
+The analysis, as numbered R scripts that run in order. Each script reads the inputs in `03_input_files/` and the outputs of earlier steps in `04_output/`, and writes only into its own folder `04_output/<step>/`, with two exceptions: step 01 (and step 09, if step 01 was skipped) fills the download cache, and step 13 writes `05_manuscript/`.
 
 For the project overview see the [root README](../README.md); for the design and the order of work see [`07_documentation/reproducibility_plan.md`](../07_documentation/reproducibility_plan.md).
 
@@ -12,7 +12,7 @@ For the project overview see the [root README](../README.md); for the design and
 | 02 | `02_alignment_qc.R` | Per-library read, mapping, duplication, and methylation table from the Bismark reports; comparison of the two sequencing batches | Methods 2.4; Figure 1B inputs | done |
 | 03 | `03_global_methylation.R` | %5-mC from raw ELISA absorbance; models and post hoc tests for %5-mC and %mCpG | Results 3.1; Figure 1 | done |
 | 04 | `04_cpg_coverage.R` | CpG counts by coverage threshold and sample set; CpG sites in the reference; methylation distributions; library correlations; whole-data PCA | Results 3.1; Figure S1 | done |
-| 05 | `05_differential_methylation.R` | Coverage filtering, normalization, union across libraries, per-CpG tests for ploidy and heat, DML lists by difference threshold, loci in both lists | Results 3.2; Figure 2A, 2B | done |
+| 05 | `05_differential_methylation.R` | Coverage filtering, normalization, restriction to the CpGs covered in all libraries, per-CpG tests for ploidy and heat, DML lists by difference threshold, loci in both lists | Results 3.2; Figure 2A, 2B | done |
 | 06 | `06_dml_figures.R` | PCA and heat maps of DML; paired-difference plot of loci in both lists | Figure 2C to 2G; Figure 4 | done |
 | 07 | `07_genome_features.R` | Overlap of the analysed CpGs and each DML set with the genome feature tracks; association tests against all tested CpGs and against eligible CpGs; counts per linkage group; DML grouped into regions | Results 3.3; Figure 3 | done |
 | 08 | `08_gene_annotation.R` | Transcript, gene, and GO tables; every (DML, gene) overlap; per-gene counts of tested CpGs, eligible CpGs, and DML; the legacy annotation tables, regenerated line for line | Supplementary lists; inputs of steps 09 and 10 | done |
@@ -41,7 +41,7 @@ Measured on 4 cores and 15 GB of memory, with the downloads already in the cache
 
 | Step | Minutes | Notes |
 |---|---|---|
-| 01 | 1 to 2 | First run downloads 9.8 GB |
+| 01 | 1 to 2 | First run downloads 10.5 GB (plus the 31 MB GO.db archive) |
 | 02, 03 | under 1 | |
 | 04 | 8 | About 8 GB of memory |
 | 05 | 18 | `WGBS_CORES=4`; about 10 GB of memory. Single core: about an hour |
@@ -50,6 +50,7 @@ Measured on 4 cores and 15 GB of memory, with the downloads already in the cache
 | 10 | 3 | |
 | 11 | 5 | About 1.4 GB of memory |
 | 12 | under 1 | About 35 seconds, 24 of them the simulation; reads one file from `08_archive/` |
+| 13 | under 1 | About 10 seconds for 545 statements and 67 copied files |
 
 ## How a step is written
 
@@ -72,7 +73,7 @@ Rscript run_pipeline.R --steps 5:7  # a subset
 
 or source an individual script in RStudio with the project (`WGBS-gigas-ploidy-desiccation.Rproj`) open.
 
-Steps 04 and 05 need the 22 coverage files and the reference genome (9.8 GB, downloaded once by step 01) and about 12 GB of memory. Every later step runs from files that are in the repository, except that step 09 also needs the GO.db 3.13.0 package (31 MB, fetched from the Bioconductor archive into the cache by step 01, or by step 09 itself if step 01 was skipped).
+Steps 04 and 05 need the 22 coverage files and the reference genome (10.5 GB, downloaded once by step 01), and about 8 GB (step 04) and about 10 GB (step 05 with `WGBS_CORES=4`) of memory. Every later step runs from files that are in the repository, except that step 09 also needs the GO.db 3.13.0 package (31 MB, fetched from the Bioconductor archive into the cache by step 01, or by step 09 itself if step 01 was skipped).
 
 Two environment variables are read by `run_config.R`: `WGBS_CACHE_DIR` (where downloads are kept; default `03_input_files/gannet_cache/`) and `WGBS_CORES` (cores for the model fits of step 05; default 1).
 

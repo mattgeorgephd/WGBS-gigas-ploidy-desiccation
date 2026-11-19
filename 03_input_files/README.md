@@ -21,7 +21,7 @@ Only files above that ceiling stay on gannet. They are listed in `gannet_manifes
 | `bismark_reports/` | Bismark alignment, deduplication, and summary reports for the 22 libraries, all from the June 2021 alignment | gannet `/panopea/061021-big/` | steps 02, 03 |
 | `genome_features/` | Thirteen feature tracks for the Roslin v1 assembly, gzipped | Venkataraman et al. 2022, OSF doi:10.17605/OSF.IO/YGCTB | steps 07, 08 |
 | `annotation/` | blastx hits against Swiss-Prot and the transcript-to-GO map | gannet project directory | steps 08, 09 |
-| `gannet_manifest.csv` | The inputs that stay on gannet: 22 coverage files, 9.13 GB in total | gannet project directory, `cov_files/` | steps 01, 04, 05 |
+| `gannet_manifest.csv` | The inputs that stay on gannet, with URL, size and md5: the 22 coverage files (9.8 GB) and the reference genome (0.66 GB), 10.5 GB in total | gannet project directory, `cov_files/`, and `/panopea/Cg-roslin/` | steps 01, 04, 05 |
 | `gannet_cache/` | Download cache; created on first run; not tracked | | |
 
 Each subfolder has its own README with a file inventory.

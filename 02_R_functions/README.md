@@ -7,7 +7,7 @@ Helper functions shared by the pipeline scripts. Every script in `01_pipeline/` 
 | File | Functions | Purpose |
 |---|---|---|
 | `packages.R` | `load_packages()` | Loads the packages a step needs; stops, naming every missing package, before any work starts. Never installs. |
-| `paths.R` | `input_path()`, `output_dir()`, `output_path()`, `step_cache_dir()`, `gannet_cache_dir()`, `manuscript_path()`, `archive_path()` | Builds every path on top of `here::here()`. The numbered folder names appear only in this file. |
+| `paths.R` | `input_path()`, `output_dir()`, `output_path()`, `step_cache_dir()`, `gannet_cache_dir()`, `manuscript_path()`, `archive_path()` | Builds every path on top of `here::here()`. Holds the numbered folder names for every path built inside a step; the exceptions are listed in the root README, How paths work. |
 | `logging.R` | `log_msg()`, `start_step()`, `finish_step()`, `write_table()` | Timestamped console messages; `finish_step()` writes `session_info.txt` into the step's output folder. |
 | `fetch_gannet.R` | `read_gannet_manifest()`, `fetch_gannet_file()` | Returns the local path of a file listed in `03_input_files/gannet_manifest.csv`, downloading it into the cache when absent and verifying size and md5. |
 | `sample_sheet.R` | `read_libraries()`, `sample_sets()` | Reads `wgbs_libraries.csv` in legacy column order and defines the sample sets (all, diploid, triploid, control, heat). |

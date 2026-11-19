@@ -12,7 +12,7 @@ The manuscript's figures, table and supplementary lists under the numbers the ma
 | `figures/legacy/` | Figures 2 to 9 and S1 as the draft's analysis gives them, regenerated in R. Figures 5 to 9 reproduce analyses that the audit found unsound (issues I-03, I-20, I-21, I-39 to I-41, I-48); they are reproductions, not results |
 | `figures/corrected/` | Figures 2 to 4 and S1 with the coverage filter that the Methods describe (issue I-05), and two figures of the gene-level enrichment |
 | `tables/legacy/Table_1.csv` | Table 1 as in the draft |
-| `supplement/legacy/`, `supplement/corrected/` | The lists the draft's section 7 names: DML of each set, genes holding DML, and (legacy only) the GO terms with p < 0.01 of the draft's test |
+| `supplement/legacy/`, `supplement/corrected/` | The lists the draft's section 7 names: DML of each set, genes holding DML, and (legacy only) the GO terms with p < 0.01 of the draft's test and the DML in genes that carry one of its ten top-ranked terms per ontology (the draft's "genes with enriched GO terms that contain DML"; issue I-21) |
 | `supplement/GO_gene_level_summary.csv`, `supplement/GO_terms_of_draft_retested.csv` | The gene-level enrichment in summary, and each of the draft's ten top-ranked terms retested at gene level |
 
 PNG and PDF versions of each figure are written. PDF files carry a time stamp and show as changed in git after a rerun even when the content is the same.

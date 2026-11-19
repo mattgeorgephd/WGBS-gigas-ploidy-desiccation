@@ -11,7 +11,7 @@ The message "This session is out of disk, memory or time. Start a new session to
 1. Start a new session in the same cloud environment (`WGBS-oyster-ploidy`) with this repository attached.
 2. Give it this instruction: *Check out branch `reproducibility-audit`, read `07_documentation/session_handoff.md`, then `issues.md` and `07_documentation/reproducibility_plan.md`, and continue from "Next actions". Commit and push to `reproducibility-audit`.*
 3. The new machine sets itself up: the environment's setup script installs R 4.3.3 and the packages (copy at `07_documentation/cloud_environment_setup.sh`; if R is missing, run that script).
-4. Restore the inputs that are not in git (9.8 GB, about ten minutes): `Rscript 01_pipeline/01_fetch_inputs.R`. Optional: set `WGBS_CACHE_DIR` to a directory outside the repository, and `WGBS_CORES=4`.
+4. Restore the inputs that are not in git (10.5 GB, about ten minutes): `Rscript 01_pipeline/01_fetch_inputs.R`. Optional: set `WGBS_CACHE_DIR` to a directory outside the repository, and `WGBS_CORES=4`.
 5. Confirm that the machine reproduces the repository before changing anything: `Rscript run_pipeline.R --steps 6:10`, then `git status` (only PDF files and `session_info.txt` may show as changed), then `Rscript 06_diagnostics/check_legacy_outputs.R` (329 of 331 comparisons match).
 
 What a new session cannot get from git: the download cache (step 4 restores it); a text copy of the manuscript (not committed by decision of the author; export the Google Doc linked in the root README, see `03_input_files/manuscript/README.md`); the agents' full transcripts (their returned results are in `07_documentation/agent_workflows/results/`).

@@ -66,13 +66,13 @@ At the root: `run_config.R` is the single control surface (thresholds, analysis 
 
 ### How paths work
 
-Scripts build every path with `here::here()`, which anchors on the repository root (found through the `.Rproj` file), not on the location of the script or the working directory. A script therefore runs unchanged from RStudio or from a terminal, on any operating system, and no script calls `setwd()`. If a numbered folder is renamed, the matching string in `02_R_functions/paths.R` is the only place to update.
+Scripts build every path with `here::here()`, which anchors on the repository root (found through the `.Rproj` file), not on the location of the script or the working directory. A script therefore runs unchanged from RStudio or from a terminal, on any operating system, and no script calls `setwd()`. If a numbered folder is renamed, update the matching string in `02_R_functions/paths.R` and the places that cannot use it: the line of each script that sources `02_R_functions/`, `run_pipeline.R` (`01_pipeline`), the two build scripts under `03_input_files/`, step 13 and the diagnostics scripts (which name `04_output` and `06_diagnostics`), and the `source` column of `03_input_files/manuscript/manuscript_items_map.csv`.
 
 ## Where the data live
 
 **GitHub first.** Any input that fits in GitHub is in `03_input_files/` (ceiling: 50 MB per file, after gzip where possible). That covers everything except the per-library coverage files and the reference genome.
 
-**gannet for the large files.** The 22 Bismark coverage files (about 440 MB each, 9.1 GB in total) stay at <https://gannet.fish.washington.edu/panopea/WGBS-gigas-ploidy-desiccation/cov_files/>, and the reference genome (656 MB) at `/panopea/Cg-roslin/`. They are listed with md5 checksums in [`03_input_files/gannet_manifest.csv`](03_input_files/gannet_manifest.csv), downloaded once by the first pipeline step into a git-ignored cache, and verified.
+**gannet for the large files.** The 22 Bismark coverage files (about 445 MB each, 9.8 GB in total) stay at <https://gannet.fish.washington.edu/panopea/WGBS-gigas-ploidy-desiccation/cov_files/>, and the reference genome (656 MB) at `/panopea/Cg-roslin/`. They are listed with md5 checksums in [`03_input_files/gannet_manifest.csv`](03_input_files/gannet_manifest.csv), downloaded once by the first pipeline step into a git-ignored cache, and verified.
 
 **One file from Bioconductor.** Step 09 reproduces the legacy GO enrichment, which matches the archived tables only under the ontology release it was run on. That release (the R package GO.db 3.13.0, 31 MB) is fetched from the Bioconductor archive into the same cache; its address and md5 are in `run_config.R`.
 
@@ -88,13 +88,13 @@ Other locations, for reference:
 
 ## Running the pipeline
 
-Steps 01 to 12 run end to end (see the status column in [`01_pipeline/README.md`](01_pipeline/README.md)).
+Steps 01 to 13 run end to end (see the status column in [`01_pipeline/README.md`](01_pipeline/README.md)).
 
 1. Install R (4.3 or later) and the packages. Until the `renv` lockfile is added, the package list is the one in `07_documentation/cloud_environment_setup.sh`, which sets up a clean Ubuntu 24.04 machine (R 4.3.3, Bioconductor 3.18).
 2. Open `WGBS-gigas-ploidy-desiccation.Rproj`, or start R in the repository root.
 3. Run `Rscript run_pipeline.R` for everything, `Rscript run_pipeline.R --steps 6:10` for a subset, or source the numbered scripts in `01_pipeline/` one at a time, each in a fresh R session.
 
-The first run downloads 9.8 GB. Steps 04 and 05 need about 12 GB of memory and together take about half an hour on four cores; every other step takes a few minutes or less and runs from files in the repository. To use the outputs already in the repository and skip the heavy steps, start at step 06.
+The first run downloads 10.5 GB (plus the 31 MB GO.db archive). Step 04 needs about 8 GB of memory and step 05 about 10 GB with `WGBS_CORES=4`; together they take about half an hour on four cores; every other step takes a few minutes or less and runs from files in the repository. To use the outputs already in the repository and skip the heavy steps, start at step 06.
 
 ## Conventions
 

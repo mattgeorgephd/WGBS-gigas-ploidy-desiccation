@@ -43,7 +43,7 @@ Opened 2026-11-18 on branch `reproducibility-audit`, from a full read of the man
 | I-12 | S2 | Data | ELISA calculation rests on unverified inputs (DNA mass per well, standards, extrapolation) | needs information |
 | I-13 | S2 | Data | Figure 1B values come from a hand-built sheet that mixes two alignment runs and carries four wrong sample names | pipeline done (step 03) |
 | I-14 | S2 | Number | The "all CpG" genomic background in Figure 3A and Results 3.3 was not computed from the analysed CpGs | pipeline done (step 07) |
-| I-15 | S2 | Number | The 1x genomic distribution in Results 3.1 double counts exons and comes from an unidentified CpG set | fix planned (4) |
+| I-15 | S2 | Number | The 1x genomic distribution in Results 3.1 double counts exons and comes from an unidentified CpG set | open (no pipeline output yet; to be added to step 04) |
 | I-16 | S2 | Number | CpG counts: the 1x value is not the count that corresponds to the 5x, 10x, 20x values, its definition is unknown, and it cannot be traced; 480,479 is a typo; the correlation range is not reproduced | pipeline done (step 04); needs information |
 | I-17 | S2 | Statistics | The chi-squared test of genomic location has spreadsheet errors and is not reported in Results | pipeline done for the counts (step 07); the test itself needs the decision of I-41, option 1 |
 | I-18 | S3 | Method | Genomic feature percentages are shares of overlap events, not of loci | pipeline done (step 07) |
@@ -61,8 +61,8 @@ Opened 2026-11-18 on branch `reproducibility-audit`, from a full read of the man
 | I-30 | S3 | Text | Manuscript structure: empty abstract, numbering gaps, orphan section, about 60 citations missing from the reference list | open |
 | I-31 | R | Code | No analysis script runs as committed | pipeline done (steps 01 to 12) |
 | I-32 | R | Code | Non-R and manual steps (Python, bash, bedtools, spreadsheets, PowerPoint, REVIGO) | pipeline done |
-| I-33 | R | Data | Inputs on a retired server; one annotation source has no surviving copy | fix planned (2) |
-| I-34 | R | Repo | Repository hygiene: duplicates, lock files, misplaced files, 613 MB | fix planned (1) |
+| I-33 | R | Data | Inputs on a retired server; one annotation source has no surviving copy | pipeline done (inputs in `03_input_files/annotation/`); the 2017 UniProt-to-GO table is lost, see I-42 |
+| I-34 | R | Repo | Repository hygiene: duplicates, lock files, misplaced files, 613 MB | reorganization done; needs decision (legacy files above 10 MB); license and lockfile open |
 | I-35 | R | Data | gannet directory: about 200 GB of redundant intermediates, one incomplete upload, one mislabelled sample set | needs decision |
 | I-36 | R | Data | Sample metadata are incomplete for the control libraries | needs information |
 | I-37 | R | Environment | No `sessionInfo()` output exists for the legacy runs; install comments and workspace headers point to R 4.1.0 on Windows with Bioconductor 3.13 for the enrichment, the archived tables identify GO.db 3.13.0, and the methylKit version is unknown | needs information |
@@ -183,7 +183,7 @@ Under I-01, a formally tested interaction is still ploidy by cohort, and the tex
   Across the three DML sets, the ten top BP terms rest on DML in 7 genes (ploidy), 4 genes (heat), and 3 genes (interaction). Of all 90 top-ten terms (three sets, three ontologies), 70 rest on two or fewer genes and 43 on exactly one.
 - No multiple testing correction: 12,720 BP terms were tested per DML set with a raw p < 0.01 cutoff (`:1009-1063`), using the classic Fisher test that ignores the GO hierarchy (`:255`).
 - The background does not match the Methods. Methods: genes with CpGs at 10x in all samples. Code: transcripts overlapping a CpG with at least 1x in any sample (`code/4_WGBS_GOterm-Annotation-BOTH.ipynb`, cells 55 to 74), which is nearly every annotated transcript.
-- Annotation bug: cell 10 of the same notebook rebuilds transcript IDs with `sed 's/^/XM_/'`, which relabels the 157 `NM_` (curated RefSeq) and 8,059 `XR_` queries in the blastx file as `XM_`; the `NM_` transcripts then fail to join and lose their GO terms.
+- Annotation bug: cell 10 of the same notebook rebuilds transcript IDs with `sed 's/^/XM_/'`, which relabels the 131 `NM_` (curated RefSeq) and 2,151 `XR_` queries of the blastx file (157 and 8,059 alignment rows) as `XM_`; the `NM_` transcripts then fail to join and lose their GO terms.
 
 **Why it matters.** The reported p-values (1e-17 to below 1e-30) measure how many isoforms a few genes have, not functional enrichment. The gene lists in Table 1 and Figure 9 are therefore lists of isoform-rich genes that contain at least one DML, and the functional narrative built on them (DNA replication and meiosis for ploidy; MAPK, ER overload, RNA processing for heat; tRNA modification and "alarm system" thresholds for interaction; AK9, CAD, nesprin-1, LAP, dihydropyrimidinase as mechanisms) has no statistical support from this analysis. Two further biases compound it: gene-set tests on methylation data are biased toward genes with many assayed CpGs unless that is modelled (Geeleher et al. 2013, Bioinformatics 29:1851, doi:10.1093/bioinformatics/btt311; Maksimovic et al. 2021, Genome Biol 22:173, doi:10.1186/s13059-021-02388-x), and a background that includes genes that could never be detected inflates enrichment (Timmons et al. 2015, Genome Biol 16:186, doi:10.1186/s13059-015-0761-7).
 
@@ -238,7 +238,7 @@ Under I-01, a formally tested interaction is still ploidy by cohort, and the tex
 
 **Needs from authors.** Choice. The pipeline implements both.
 
-**Update 2026-11-19 (verified).** Both versions run in every step from 04 on (`legacy` and `corrected` in `run_config.R`). With the filter applied as the Methods describe:
+**Update 2026-11-19 (verified).** Both versions run in steps 04 to 08 and step 10 (`legacy` and `corrected` in `run_config.R`); step 09 repeats the legacy procedure on the legacy DML only. With the filter applied as the Methods describe:
 
 | | No upper filter (as run) | With the 99.9th percentile filter |
 |---|---|---|
@@ -478,6 +478,8 @@ Residual normality is Shapiro-Wilk on model residuals; equal variance is Brown-F
 
 **Resolution.** Recompute with one category definition at every coverage level.
 
+**Update 2026-11-19.** Not yet regenerated: no step writes a 1x CpG set by genome feature, so rows R3.1-041 to R3.1-050 of `05_manuscript/manuscript_values.csv` are "not regenerated". To be added to step 04 in the code pass, for every coverage level and sample set, so that the set behind the draft's percentages can be identified.
+
 ### I-16 (S2) CpG counts
 
 **Rating.** S3 on 2026-11-18, when the issue covered a typing error and an unstated denominator; raised to S2 on 2026-11-19, because two values of Results 3.1 (12,794,074 CpG loci and the Pearson range 0.87 to 0.93) can be neither traced nor reproduced, and the reading of that range as consistency within treatment groups is not supported.
@@ -596,7 +598,7 @@ Panels B and C were built from histogram bar heights read off 44 per-sample plot
 
 Section 7 cites lists of DML, GO terms, and genes that are not assembled. The pipeline will write them.
 
-**Update 2026-11-19.** Step 13 assembles them in `05_manuscript/supplement/` from the outputs of steps 05, 08, 09 and 10: the three DML lists and the genes that hold them, for both modes; the nine GO tables of the draft's analysis (legacy mode only; they reproduce an analysis that I-03, I-39, I-40 and I-43 find unsound); and the gene-level results. Which of these lists the paper should carry depends on the decisions of I-06 and I-41: under the analysis that I-06 supports there is no list of ploidy or heat loci to supply.
+**Update 2026-11-19.** Step 13 assembles them in `05_manuscript/supplement/` from the outputs of steps 05, 08, 09 and 10: the three DML lists and the genes that hold them, for both modes; the nine GO tables of the draft's analysis (legacy mode only; they reproduce an analysis that I-03, I-39, I-40 and I-43 find unsound); and the gene-level results. The third list that section 7 of the draft names, genes with enriched GO terms that contain DML, is copied as `supplement/legacy/DML_in_genes_with_top10_GO_terms_<set>_<ontology>.csv` (nine files; "enriched" there means the ten top-ranked terms, I-21); Table 1 is `05_manuscript/tables/legacy/Table_1.csv`. Which of these lists the paper should carry depends on the decisions of I-06 and I-41: under the analysis that I-06 supports there is no list of ploidy or heat loci to supply.
 
 ---
 
@@ -688,7 +690,7 @@ Feature overlap and GO annotation are in Python and bash notebooks that call bed
 
 ### I-35 (R) gannet directory
 
-Of 217 GB, the pipeline needs the 22 coverage files (9.7 GB). About 117 GB are GO annotation joins of every covered CpG with every transcript and term (files of 19 to 33 GB), 43 GB are bedgraphs, 18 GB are saved workspaces. `bed_files/BOTH/` ends mid-listing (an incomplete upload). `bed_files/YAAMINI/` holds zr3644_1 to 12, which per `metadata.xlsx` are diploid control and diploid low-pH animals, not the 12 controls (1 to 6 and 13 to 18); if those bedgraphs fed the control-only background, it used the wrong animals. A stray 16 KB file named `name` sits at the top level. This session has read-only access; any cleanup is for the owner.
+Of 217 GB, the pipeline needs the 22 coverage files (9.8 GB). About 117 GB are GO annotation joins of every covered CpG with every transcript and term (files of 19 to 33 GB), 43 GB are bedgraphs, 18 GB are saved workspaces. `bed_files/BOTH/` ends mid-listing (an incomplete upload). `bed_files/YAAMINI/` holds zr3644_1 to 12, which per `metadata.xlsx` are diploid control and diploid low-pH animals, not the 12 controls (1 to 6 and 13 to 18); if those bedgraphs fed the control-only background, it used the wrong animals. A stray 16 KB file named `name` sits at the top level. This session has read-only access; any cleanup is for the owner.
 
 **Verification 2026-11-19.** The 22-library union on gannet has the same fault as `bed_files/YAAMINI/`. The listing of `bed_files/BOTH/`, which is incomplete, holds bedgraphs of the ten heat libraries from the earlier alignment (file names with `fastp-trim.20201202`) and of zr3644_1 to 5 and 10 to 12, and no file of zr3644_13 to 18 (`07_documentation/audit/gannet_manifest_2026-11-18.tsv`). `bed_files/BOTH/union_1x.BOTH.bedgraph.bed` (12,910,231 rows) comes from a table with 22 data columns. At the two positions that one verifying agent compared, six of its control columns equal zr3644_1 to 6 of the current coverage files and the other six match none of zr3644_13 to 18. The union was therefore built with zr3644_7 to 12 in place of zr3644_13 to 18 (inferred from the listing and from those two positions), and it is not the union of the 22 analysed libraries, which has 12,918,252 CpGs (I-16). Whether the `union_1x-BOTH` tables behind the legacy GO universe (I-39) were derived from this union was not checked.
 
@@ -889,7 +891,7 @@ A further result from the same permutations bears on every ploidy finding and is
 
 **Options.**
 1. Keep the frozen annotation. Reproducible from the repository; nine years old at submission.
-2. Refresh: keep the 2021 blastx hits (or rerun blastx against current Swiss-Prot), pull current GO terms for the 21,000 accessions from UniProt, and freeze that table in the repository with its retrieval date. Requires one download from UniProt; changes every GO number.
+2. Refresh: keep the 2021 blastx hits (or rerun blastx against current Swiss-Prot), pull current GO terms for the 13,165 Swiss-Prot accessions of the blastx table (12,874 of them hit by mRNA queries) from UniProt, and freeze that table in the repository with its retrieval date. Requires one download from UniProt; changes every GO number.
 
 **Recommendation.** If a functional analysis stays in the paper, option 2. If I-41 is resolved by dropping the functional claims, the annotation is needed only for gene names, which come from the RefSeq annotation and are current.
 
