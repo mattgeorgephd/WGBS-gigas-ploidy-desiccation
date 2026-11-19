@@ -1,0 +1,9 @@
+File: https://gannet.fish.washington.edu/panopea/WGBS-gigas-ploidy-desiccation/data/gene_annotations/BOTH/union_1x-BOTH.GeneIDs.geneOverlap.transcriptIDs.GOAnnot
+Lines around byte 5,283,561,472 (the offset of each line start, then the line; tabs shown as ' | '):
+      5283560998  XM_011455140.3 | 105346521 | NC_047564.1 | 39998258 | 39998260 | NC_047564.1 | GO:0032874 | positive regulation of stress-activated MAPK cascade | stress response | P
+      5283561147  XM_011455140.3 | 105346521 | NC_047564.1 | 39998258 | 39998260 | NC_047564.1 | GO:0042802 | identical protein binding | other molecular function | F
+      5283561278  XM_011455140.3 | 105346521 | NC_047564.1 | 39998258 | 39998260 | NC_047564.1 | GO:0042803 | protein homodimerization activity | other molecular function | F
+>>    5283561417  XM_011455140.3 | 105346521 | NC_047564.1 | 39998258 | 39998260 | XM_034461020.1 | 105323906 | NW_022994874.1 | 67275 | 67277 | NW_022994874.1 | GO:0004888 | transmembrane receptor activity | signal transduction activity | F
+      5283561613  XM_034461020.1 | 105323906 | NW_022994874.1 | 67275 | 67277 | NW_022994874.1 | GO:0005509 | calcium ion binding | other molecular function | F
+      5283561738  XM_034461020.1 | 105323906 | NW_022994874.1 | 67275 | 67277 | NW_022994874.1 | GO:0005622 | intracellular | other cellular component | C
+      5283561857  XM_034461020.1 | 105323906 | NW_022994874.1 | 67275 | 67277 | NW_022994874.1 | GO:0005634 | nucleus | nucleus | C

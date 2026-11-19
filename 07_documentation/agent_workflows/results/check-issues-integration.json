@@ -1,0 +1,10 @@
+{
+ "workflow": "check-issues-integration",
+ "run_id": "wf_09e60af1-cc6",
+ "agents_finished": 0,
+ "agents_running_or_lost": [
+  "check:C1-universe",
+  "check:C2-reader"
+ ],
+ "results": []
+}

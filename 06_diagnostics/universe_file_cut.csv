@@ -1,0 +1,2 @@
+file,file_bytes,cut_offset_bytes,cut_offset_is_multiple_of_4096,cut_offset_as_expected,bytes_kept_of_cut_line,fields_kept_of_cut_line,last_transcript_before_cut,first_transcript_after_cut,annotated_mRNAs_absent_from_universe,longest_run_absent,run_first,run_last,transcript_before_cut_is_just_before_run,transcript_after_cut_is_just_after_run,checked_on
+union_1x-BOTH.GeneIDs.geneOverlap.transcriptIDs.GOAnnot,20149928521,5283561472,TRUE,TRUE,55,5,XM_011455140.3,XM_034461020.1,15715,15666,XM_011455141.3,XM_034461018.1,TRUE,TRUE,2026-11-19
