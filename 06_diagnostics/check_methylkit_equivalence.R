@@ -30,7 +30,7 @@
 #             5. The tables of step 05 at the CpGs of the extract. The counts
 #                that step 05 wrote must be the lines of the coverage files
 #                scaled by scale_counts_like_methylkit. This ties the routes
-#                compared here to the tables the pipeline uses.
+#                compared here to the tables that the pipeline uses.
 #             6. Rounding. methylKit::normalizeCoverage against
 #                scale_counts_like_methylkit on synthetic counts built to hold
 #                many values exactly halfway between two whole numbers.
@@ -80,8 +80,16 @@
 #             from every library, so that a first-line CpG can enter the united
 #             table where the data allow it. The percentile cutoffs of the
 #             extract are those of the extract files, not of the full files;
-#             both routes see the same files. The extract table gives the share
-#             of the CpGs tested by step 05 that lie in the regions.
+#             both routes see the same files. The extract table gives, for each
+#             region, what the reason rests on (lines per library, coverage
+#             relative to the whole extract, lines that the upper filter
+#             removes, files that begin there) and the share of the CpGs tested
+#             by step 05 that lie in it.
+#           - The helper route of part 3 repeats the chain of helper calls of
+#             fit_mode() in 01_pipeline/05_differential_methylation.R, because
+#             step 05 does not offer that chain as a function. If the chain of
+#             step 05 changes, this script must follow; part 5 fails when the
+#             tables that step 05 wrote are no longer what this chain gives.
 #           - Both routes run the two tests with the covariates as step 05
 #             passes them (factors), so the routes differ only in how the table
 #             of counts is built. The legacy script passed character vectors
@@ -164,11 +172,11 @@ regions <- data.table(
   from     = c(0, locus_start - locus_flank, 0, 0, 0, 0, 0, 0),
   to       = c(6e6, locus_start + locus_flank, Inf, Inf, Inf, Inf, Inf, Inf),
   purpose  = c("ordinary coverage; most CpGs of the extract; several files begin here",
-               "coverage many times the library median in some libraries: rows at and above the upper cutoff, large counts",
+               "a short block with coverage far above the library median in some libraries, inside ordinary sequence",
                "coverage far above the library median in every library",
-               "coverage several times the library median along a whole scaffold",
-               "a sequence that sorts after the linkage groups and stands at a different place in each file",
-               "a sequence that sorts after the linkage groups and stands at a different place in each file",
+               "coverage several times the library median along the whole scaffold",
+               "a scaffold with many tested CpGs; scaffold names sort after the linkage groups",
+               "a scaffold with many tested CpGs; scaffold names sort after the linkage groups",
                "a scaffold on which a file begins",
                "a sequence that some libraries do not have"))
 stopifnot(!anyDuplicated(regions$sequence), all(regions$from < regions$to), all(regions$sequence[1:2] %in% config$linkage_groups))
@@ -184,12 +192,14 @@ count_text <- function(x) format(x, big.mark = ",", scientific = FALSE, trim = T
 # ---- Recording comparisons --------------------------------------------------------------
 comparisons <- list()
 # Add one row to the result table. `rule`: "identical" (any difference fails),
-# "tolerance" (fails above float_tolerance), "recorded" (not judged).
+# "tolerance" (fails above float_tolerance), "recorded" (not judged). A row
+# without items is marked "nothing to compare" and does not count as agreement.
 record <- function(part, mode_name, quantity, item, n_compared, n_different, largest_absolute = NA_real_,
                    largest_relative = NA_real_, rule = "identical", note = "") {
   must(rule %in% c("identical", "tolerance", "recorded"), "Unknown rule: ", rule)
   must(length(n_different) == 1 && !is.na(n_different), "A comparison without a count of differences: ", quantity)
   result <- if (rule == "recorded") "recorded"
+            else if (n_compared == 0) "nothing to compare"
             else if (n_different == 0) "identical"
             else if (rule == "tolerance" && is.finite(largest_relative) && largest_relative <= float_tolerance) "within tolerance"
             else "DIFFERENT"
@@ -256,6 +266,10 @@ n_interval_regions <- nrow(regions)
 regions <- rbind(regions, first_positions[, .(region = "position of the first line of a file", sequence, from, to = from + 1,
                                               purpose = "the first-line rule of legacy mode")])
 extract_levels <- unique(regions$sequence)               # sequence names of the extract, for cpg_key()
+# Rows of the extract table: one per region above; the positions of first lines
+# that lie outside those regions form one more row.
+region_group <- c(seq_len(n_interval_regions), rep(n_interval_regions + 1L, nrow(regions) - n_interval_regions))
+n_groups <- n_interval_regions + 1L
 
 part_extract   <- sprintf("extract, all %d libraries", n_lib)
 part_tables    <- "tables of step 05 inside the regions"
@@ -281,7 +295,8 @@ region_of <- function(chr, start) {
 extract_dir <- file.path(tempdir(), "check_methylkit_equivalence_extract")
 dir.create(extract_dir, showWarnings = FALSE)
 extract_file <- file.path(extract_dir, lib$cov_file)
-lines_by_region <- matrix(0L, n_lib, nrow(regions))
+lines_by_group <- removed_by_group <- matrix(0L, n_lib, n_groups)
+relative_median <- matrix(NA_real_, n_lib, n_groups)
 file_facts <- vector("list", n_lib)
 for (lib_i in seq_len(n_lib)) {
   whole <- read_whole_lines(cov_file[lib_i])
@@ -297,13 +312,21 @@ for (lib_i in seq_len(n_lib)) {
   must(identical(as.list(read_whole_lines(extract_file[lib_i])), as.list(taken)) &&
          identical(readLines(extract_file[lib_i], n = 1L), readLines(cov_file[lib_i], n = 1L)),
        "The extract of ", lib$library_id[lib_i], " does not reproduce the lines of the coverage file.")
-  lines_by_region[lib_i, ] <- tabulate(region_index[region_index > 0L], nbins = nrow(regions))
+  # What each region contributes in this library: lines, median reads relative
+  # to the median of the whole extract file, and lines that corrected mode
+  # removes (at least min_coverage reads and at least the cutoff of the extract file).
+  group_taken <- region_group[region_index[region_index > 0L]]
+  reads <- taken$nC + taken$nT
+  cutoff <- upper_coverage_cutoff(reads, config$import_min_coverage, config$upper_coverage_percentile)
+  lines_by_group[lib_i, ] <- tabulate(group_taken, nbins = n_groups)
+  relative_median[lib_i, ] <- as.numeric(tapply(reads, factor(group_taken, levels = seq_len(n_groups)), stats::median)) / stats::median(reads)
+  removed_by_group[lib_i, ] <- tabulate(group_taken[reads >= config$min_coverage & reads >= cutoff], nbins = n_groups)
   file_facts[[lib_i]] <- data.table(library_id = lib$library_id[lib_i], lines_in_file = nrow(whole), lines_in_extract = nrow(taken))
   log_msg("%-10s %9d lines, %6d in the extract", lib$library_id[lib_i], nrow(whole), nrow(taken))
-  rm(whole, taken, region_index); gc(verbose = FALSE)
+  rm(whole, taken, region_index, group_taken, reads); gc(verbose = FALSE)
 }
 file_facts <- rbindlist(file_facts)
-must(all(colSums(lines_by_region)[seq_len(n_interval_regions)] > 0), "A region of the extract holds no line in any library.")
+must(all(colSums(lines_by_group)[seq_len(n_interval_regions)] > 0), "A region of the extract holds no line in any library.")
 
 # ---- Facts about one library, from each route ---------------------------------------------
 # What methylKit did to one library. `imported` and `kept` are the tables of its
@@ -607,6 +630,11 @@ for (mode_name in config$modes) {
   rm(native, native_united, helper, facts, scaled, united_now, dml); gc(verbose = FALSE)
 }
 
+if ("corrected" %in% config$modes) {
+  must(sum(removed_by_group) == sum(extract_facts$corrected$rows_removed_by_upper_methylkit),
+       "The lines removed by the upper filter, counted by region, are not the rows that the routes removed.")
+}
+
 # ---- 4. The two legacy defects in methylKit's own objects ---------------------------------
 # I-38: with header = FALSE methRead returns the rows it returns with its default
 # header = TRUE, and the first line of the file where that line has at least
@@ -636,7 +664,7 @@ for (mode_name in config$modes) {
   united05 <- fread(tab05(sprintf("united_cpg_%s.csv.gz", mode_name)))
   must(ncol(united05) == 4 + 3 * n_lib &&
          all(paste0(rep(c("coverage", "numCs", "numTs"), n_lib), rep(seq_len(n_lib), each = 3)) == names(united05)[-(1:4)]),
-       "united_cpg_", mode_name, ".csv.gz does not hold coverage, numCs and numTs of the 22 libraries.")
+       "united_cpg_", mode_name, ".csv.gz does not hold coverage, numCs and numTs of the ", n_lib, " libraries.")
   n_tested05[[mode_name]] <- nrow(united05)
   region05 <- region_of(united05$chr, united05$start)
   tested05_by_region[[mode_name]] <- tabulate(region05[region05 > 0L], nbins = nrow(regions))
@@ -702,6 +730,8 @@ for (set_i in seq_len(synthetic_sets)) {
   }
   synthetic$factors <- c(synthetic$factors, factors)
 }
+must(synthetic$half_coverage > 0 && synthetic$half_counts > 0 && synthetic$other_order > 0,
+     "The synthetic counts hold no value halfway between two whole numbers, or do not tell the two orders of operations apart.")
 record(part_synthetic, NA_character_, "normalized coverage, numCs and numTs: normalizeCoverage against scale_counts_like_methylkit", "count",
        synthetic$values, synthetic$different,
        note = sprintf(paste("exactly halfway between two whole numbers before rounding: %s coverage values and %s counts;",
@@ -791,25 +821,26 @@ setcolorder(library_table, c(
 fwrite(library_table, out_file("_libraries"))
 
 # One row per region; the positions of first lines outside the other regions form one row.
-region_group <- c(seq_len(n_interval_regions), rep(n_interval_regions + 1L, nrow(regions) - n_interval_regions))
 by_group <- function(x) as.numeric(tapply(x, region_group, sum))
-lines_by_group <- t(apply(lines_by_region, 1, function(x) tapply(x, region_group, sum)))
 first_region <- region_of(first_line$chr, first_line$start)
 extract_table <- data.table(
   region = c(regions$region[seq_len(n_interval_regions)], "positions of first lines outside the regions above"),
   sequence = c(regions$sequence[seq_len(n_interval_regions)], NA_character_),
-  from = c(regions$from[seq_len(n_interval_regions)], NA_real_),
-  to = c(ifelse(is.finite(regions$to[seq_len(n_interval_regions)]), regions$to[seq_len(n_interval_regions)], NA_real_), NA_real_),
+  from = as.integer(c(regions$from[seq_len(n_interval_regions)], NA)),
+  to = as.integer(c(ifelse(is.finite(regions$to[seq_len(n_interval_regions)]), regions$to[seq_len(n_interval_regions)], NA), NA)),   # empty: to the end
   purpose = c(regions$purpose[seq_len(n_interval_regions)], "the first-line rule of legacy mode"),
   positions = c(rep(NA_integer_, n_interval_regions), sum(region_of(regions$sequence, regions$from) > n_interval_regions)),
   libraries_with_lines = colSums(lines_by_group > 0),
   lines_per_library_min = apply(lines_by_group, 2, min), lines_per_library_max = apply(lines_by_group, 2, max),
-  files_that_begin_here = as.integer(tabulate(region_group[first_region], nbins = n_interval_regions + 1L)))
+  files_that_begin_here = as.integer(tabulate(region_group[first_region], nbins = n_groups)),
+  median_reads_over_median_of_extract_min = round(apply(relative_median, 2, min, na.rm = TRUE), 2),
+  median_reads_over_median_of_extract_max = round(apply(relative_median, 2, max, na.rm = TRUE), 2),
+  lines_removed_by_upper_filter = colSums(removed_by_group))
 for (mode_name in config$modes) {
   set(extract_table, j = paste0("cpg_united_on_extract_", mode_name), value = by_group(tested_by_region[[mode_name]]))
   set(extract_table, j = paste0("cpg_tested_by_step05_", mode_name), value = by_group(tested05_by_region[[mode_name]]))
 }
-total <- extract_table[, lapply(.SD, sum), .SDcols = patterns("^cpg_|^files_that")]
+total <- extract_table[, lapply(.SD, sum), .SDcols = patterns("^cpg_|^files_that|^lines_removed")]
 total[, `:=`(region = "all regions", purpose = "the extract", libraries_with_lines = n_lib,
              lines_per_library_min = min(file_facts$lines_in_extract), lines_per_library_max = max(file_facts$lines_in_extract))]
 extract_table <- rbind(extract_table, total, fill = TRUE)
@@ -835,6 +866,7 @@ if (nrow(failed) > 0) {
   print(failed[, .(part, mode, quantity, n_compared, n_different, largest_relative_difference)])
   stop(nrow(failed), " comparison(s) that must agree do not; see ", out_file(), call. = FALSE)
 }
-cat(sprintf("\nAll %d comparisons that must agree do (%d identical, %d within tolerance); %d differences are recorded and not judged.\n",
-            sum(comparisons$result != "recorded"), sum(comparisons$result == "identical"), sum(comparisons$result == "within tolerance"),
-            sum(comparisons$result == "recorded")))
+cat(sprintf(paste("\nAll %d comparisons that must agree do (%d identical, %d within tolerance).",
+                  "%d differences are recorded and not judged. %d comparisons had nothing to compare.\n"),
+            sum(comparisons$result %in% c("identical", "within tolerance")), sum(comparisons$result == "identical"),
+            sum(comparisons$result == "within tolerance"), sum(comparisons$result == "recorded"), sum(comparisons$result == "nothing to compare")))

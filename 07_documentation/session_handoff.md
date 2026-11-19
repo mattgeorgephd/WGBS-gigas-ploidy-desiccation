@@ -2,7 +2,7 @@
 
 How to continue this work from the repository alone, for a new session or a person. The working session rewrites the "State" and "In flight" sections whenever it pushes.
 
-Last updated: 2026-11-19 09:28 UTC.
+Last updated: 2026-11-19 09:38 UTC.
 
 ## If the session ends or its machine is replaced
 
@@ -55,7 +55,7 @@ Agent runs (scripts and partial results in `07_documentation/agent_workflows/`).
 
 | Run | Finished | Still to come | If lost |
 |---|---|---|---|
-| `audit-verification` | all nine claim reports (C1 to C8); all six code reviews (R1 to R6); verifications of R1, R2, R3, R4 and R6 (48 findings confirmed, 6 refuted as already fixed). The documentation findings of R6 are applied; its code findings and those of R1 to R5 wait for the code pass | verification of R5 (clean-clone run) | Run the script again with `resumeFromRunId`; finished agents are in `results/audit-verification.json`. |
+| `audit-verification` | finished (21 agents): nine claim reports, six code reviews, six verifications of the reviews' findings (58 confirmed, 6 refuted as already fixed). Claim reports and documentation findings are applied; the code findings wait for the code pass | nothing | Not needed. The per-group findings files for the code pass are written by `tools/make_codepass_findings.py` of the session scratch directory from `results/audit-verification.json`; if the scratch directory is lost, the grouping is described in `agent_workflows/scripts/code-pass-draft.js`. |
 | `build-steps-11-12` | finished and integrated (both steps) | nothing | Not needed. |
 | `manuscript-values`, first batch (Methods, Results 3.1 to 3.3, figure legends) | finished and integrated (253 rows) | nothing | Not needed. |
 | `manuscript-values`, second batch (Results 3.4 and 3.5, Table 1, Discussion) | finished and integrated (292 rows; 545 in all) | nothing | Not needed. |
