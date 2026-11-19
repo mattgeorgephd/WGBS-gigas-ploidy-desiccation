@@ -2,7 +2,7 @@
 
 How to continue this work from the repository alone, for a new session or a person. The working session rewrites the "State" and "In flight" sections whenever it pushes.
 
-Last updated: 2026-11-19 08:39 UTC.
+Last updated: 2026-11-19 08:51 UTC.
 
 ## If the session ends or its machine is replaced
 
@@ -29,7 +29,7 @@ What a new session cannot get from git: the download cache (step 4 restores it);
 
 | Item | State |
 |---|---|
-| Audit | `issues.md`: 49 issues, nine of them bearing on the main conclusions. The nine claim reports of the verification are carried in (Verification paragraphs, I-43 to I-45, and a corrections table at the end of the file). The sensitivity results are written in (I-06 rewritten and raised to S1; I-01, I-02, I-04, I-07, I-08 updated; I-49 added); that text is being checked by independent agents (`check-sensitivity-text`). Still to write into it: the code-review findings, and the build reports of the diagnostics (I-09, I-41). |
+| Audit | `issues.md`: 49 issues, nine of them bearing on the main conclusions. The nine claim reports of the verification are carried in (Verification paragraphs, I-43 to I-45, and a corrections table at the end of the file), and the ten checks of that integration are applied. The sensitivity results are written in (I-06 rewritten and raised to S1; I-01, I-02, I-04, I-07, I-08 updated; I-49 added); that text is being checked by independent agents (`check-sensitivity-text`). Still to write into it: the code-review findings, and the build reports of the diagnostics (I-09, I-41). |
 | Steps 01 to 10 | Done. Legacy outputs reproduced: 329 of 331 checks in `06_diagnostics/legacy_check_results.csv`; the two differences come from the legacy files. |
 | Step 12 (qPCR) | Done: built, reviewed independently, fixed; reruns from a fresh R process with byte-identical tables; listed in the READMEs; carried into `issues.md` (I-29 updated, I-46 and I-47 added). |
 | Step 11 (semantic similarity) | Done: built, reviewed independently, fixed; rerun from a fresh R process with byte-identical tables and images (5 minutes); listed in the READMEs; carried into `issues.md` (I-22 updated, I-48 added: Figures 6 to 8 were drawn from every GO term annotated to a gene with a DML, not from enriched terms). |
@@ -60,7 +60,7 @@ Agent runs (scripts and partial results in `07_documentation/agent_workflows/`).
 | `manuscript-values`, first batch (Methods, Results 3.1 to 3.3, figure legends) | finished and integrated (253 rows) | nothing | Not needed. |
 | `manuscript-values`, second batch (Results 3.4 and 3.5, Table 1, Discussion; launched 06:33 UTC) | extraction and mapping of both parts; verification of Results 3.4 and 3.5 | verification of the Discussion | Run `manuscript-values.js` with the args in `agent_workflows/scripts/manuscript-values-batch2-args.json`; it needs `output_catalog.txt` regenerated (one entry per table of `04_output/*/tables` and of `06_diagnostics/`) and `eval_expressions.R` in its scratch directory. Append its verified rows to the map and run step 13. |
 | `build-dml-sensitivity` | finished: build, review, fix. The script is final (1,110 lines); its documentation is in `06_diagnostics/README.md` | nothing | Not needed. |
-| `check-issues-integration` (launched 06:08 UTC) | nine of ten checks (reports C1 to C8), all applied to `issues.md` and the files they name: two wrong numbers (a null median in I-44, a range end in I-16), otherwise corrections to qualifiers, limits and stale wording, about 160 in all, two of them rated high | the cross-file check | Run the script again; it is read-only. |
+| `check-issues-integration` (launched 06:08 UTC) | finished and applied: all ten checks (reports C1 to C8 and the cross-file check), about 190 corrections to `issues.md`, the manuscript values map, README files and the plan; two wrong numbers, two corrections rated high | nothing | Not needed. |
 | `build-diagnostics` (launched 06:20 UTC) | build stage of `feature_odds_matched`, `locus_nc047563` and `legacy_reader_mechanism` (all reproduce their targets; see the notes below this table) | build of `coverage_filter_variants` and `check_methylkit_equivalence`; review and fix of all five | Files the agents have written so far are in git as snapshots; run the script again for the rest. |
 | `check-sensitivity-text` (launched 08:33 UTC) | nothing yet | five checks: I-06 numbers and reading; I-49 numbers and alternative explanations; code review of `library_methylation_level.R`; cross-file consistency of the fourth pass; literature (citations of I-06 and sources for I-49) | Run `agent_workflows/scripts/check-sensitivity-text.js` again; it is read-only. |
 | Full run of `06_diagnostics/dml_sensitivity.R` (not an agent run; 22 model fits) | finished 08:03 UTC; outputs committed | nothing | To regenerate: `WGBS_CORES=2 Rscript 06_diagnostics/dml_sensitivity.R` from the repository root; about three hours on three cores when no fit is cached (the cache under `06_diagnostics/dml_sensitivity/cache/` is on the machine only). |
