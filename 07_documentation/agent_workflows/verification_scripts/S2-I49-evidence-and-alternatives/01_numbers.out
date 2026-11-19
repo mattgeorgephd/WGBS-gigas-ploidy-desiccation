@@ -1,0 +1,193 @@
+==== 1. Genome-wide level, from the Bismark counts ====
+max |my level - pct_mCpG column|: 4.618528e-14 
+ zr3644_1 zr3534_10  zr3534_9  zr3534_7  zr3644_4  zr3644_2  zr3534_8  zr3644_3 zr3644_17  zr3534_6  zr3644_6  zr3534_2  zr3644_5  zr3534_1 zr3644_13 zr3644_18 zr3644_16  zr3534_4 zr3644_15  zr3534_5 
+    9.460     9.813     9.837     9.930     9.947    10.030    10.081    10.164    10.181    10.186    10.204    10.209    10.234    10.235    10.300    10.402    10.410    11.018    11.036    11.087 
+ zr3534_3 zr3644_14 
+   11.551    11.615 
+gaps, largest first:
+       below below_value     above above_value   gap
+1: zr3644_16      10.410  zr3534_4      11.018 0.607
+2:  zr3534_5      11.087  zr3534_3      11.551 0.464
+3:  zr3644_1       9.460 zr3534_10       9.813 0.353
+4: zr3644_13      10.300 zr3644_18      10.402 0.102
+5:  zr3534_9       9.837  zr3534_7       9.930 0.092
+6:  zr3644_4       9.947  zr3644_2      10.030 0.083
+libraries above the largest gap: zr3534_3 zr3534_4 zr3534_5 zr3644_14 zr3644_15 
+range of the five: 11.018 11.615  range of the other 17: 9.46 10.41 
+
+tested CpGs: 480579  eligible (strict): 65480  eligible (inclusive bounds): 65480 
+mean over eligible CpGs, sorted:
+ zr3644_1  zr3534_9  zr3534_7  zr3534_8 zr3534_10 zr3644_18  zr3644_5  zr3534_6  zr3534_1  zr3534_2  zr3644_6  zr3644_4  zr3644_3 zr3644_16 zr3644_13  zr3644_2 zr3644_17  zr3534_4 zr3644_15  zr3534_5 
+    37.94     40.35     40.37     41.80     41.82     42.13     42.47     42.82     43.00     43.05     43.05     43.20     43.59     43.96     43.96     43.98     44.15     49.23     49.66     49.69 
+ zr3534_3 zr3644_14 
+    54.24     54.35 
+largest gaps in the mean over eligible: 5.07 4.56 2.41 
+libraries above the largest gap of the eligible mean: zr3534_4 zr3644_15 zr3534_5 zr3534_3 zr3644_14 
+five: 49.2 54.3  other 17: 37.9 44.2 
+cor(level, mean eligible) Pearson: 0.9701  Spearman: 0.7538 
+cor(level, mean tested) Pearson: 0.9691 
+cor(level, PC1 of step 04): 0.9346 
+own PCA (centred, unscaled): PC1 variance share 18.72 ; |cor| with level 0.948 
+own PCA (centred, scaled):   PC1 variance share 7.33 ; |cor| with level 0.9453 
+
+==== 2. Non-CpG methylation ====
+           id            group  high    CpG    CHG    CHH nonCpG
+ 1:  zr3534_1     diploid heat FALSE 10.235 0.4819 0.5143 0.5079
+ 2:  zr3534_2     diploid heat FALSE 10.209 0.4824 0.5162 0.5095
+ 3:  zr3534_3     diploid heat  TRUE 11.551 0.5005 0.5256 0.5207
+ 4:  zr3534_4     diploid heat  TRUE 11.018 0.4928 0.5238 0.5177
+ 5:  zr3534_5     diploid heat  TRUE 11.087 0.4954 0.5269 0.5206
+ 6:  zr3534_6    triploid heat FALSE 10.186 0.4843 0.5165 0.5102
+ 7:  zr3534_7    triploid heat FALSE  9.930 0.4864 0.5186 0.5123
+ 8:  zr3534_8    triploid heat FALSE 10.081 0.4804 0.5120 0.5058
+ 9:  zr3534_9    triploid heat FALSE  9.837 0.4509 0.4808 0.4748
+10: zr3534_10    triploid heat FALSE  9.813 0.4422 0.4750 0.4684
+11:  zr3644_1  diploid control FALSE  9.460 0.4591 0.4885 0.4826
+12:  zr3644_2  diploid control FALSE 10.030 0.4742 0.4974 0.4929
+13:  zr3644_3  diploid control FALSE 10.164 0.4713 0.4972 0.4921
+14:  zr3644_4  diploid control FALSE  9.947 0.4641 0.4735 0.4716
+15:  zr3644_5  diploid control FALSE 10.234 0.4820 0.5024 0.4984
+16:  zr3644_6  diploid control FALSE 10.204 0.4825 0.5078 0.5028
+17: zr3644_13 triploid control FALSE 10.300 0.4854 0.5091 0.5044
+18: zr3644_14 triploid control  TRUE 11.615 0.5039 0.5197 0.5166
+19: zr3644_15 triploid control  TRUE 11.036 0.4939 0.5185 0.5137
+20: zr3644_16 triploid control FALSE 10.410 0.4768 0.5059 0.5002
+21: zr3644_17 triploid control FALSE 10.181 0.4871 0.5183 0.5121
+22: zr3644_18 triploid control FALSE 10.402 0.4867 0.5139 0.5085
+           id            group  high    CpG    CHG    CHH nonCpG
+CHH range: 0.4735 0.5269  CHG range: 0.4422 0.5039  CHG+CHH range: 0.4684 0.5207 
+chh vs CpG level: Spearman all 0.7132, heat 0.8182 (p 0.0068), control 0.8252 (p 0.0017); Pearson heat 0.681, control 0.698
+chg vs CpG level: Spearman all 0.8035, heat 0.8303 (p 0.0056), control 0.8112 (p 0.0024); Pearson heat 0.745, control 0.896
+nonCpG vs CpG level: Spearman all 0.7369, heat 0.8303 (p 0.0056), control 0.8252 (p 0.0017); Pearson heat 0.694, control 0.747
+heat cohort without zr3534_9 and zr3534_10: Spearman CHH vs level 0.6429  p 0.0962 
+difference in mean CHH, five high minus 17 others: 0.0201 
+difference in mean CpG level, five high minus 17 others: 1.166 
+
+==== 3. Wilcoxon tests of the level ====
+heat cohort D vs T: 0.00794  min D - max T: 0.0226 
+control cohort D vs T: 0.00866  triploids above every diploid: 5 
+heat vs control cohort: 0.8212 
+diploid vs triploid, all 22: 0.8977 
+group means: 10.82 9.97 10.007 10.657 
+-- without the five --
+heat cohort, 2 D vs 5 T: exact Wilcoxon p 0.0952  D values 10.235 10.209  T values 10.186 9.93 10.081 9.837 9.813 
+control cohort, 6 D vs 4 T: exact Wilcoxon p 0.0381  D values 9.46 10.03 10.164 9.947 10.234 10.204  T values 10.3 10.41 10.181 10.402 
+2x2 ANOVA, 22 libraries, interaction F and p: 16.16 0.000802 
+2x2 ANOVA, 17 libraries (five set aside), interaction F(1, 13 ) and p: 6.79 0.0218 
+                             Estimate Std. Error  t value Pr(>|t|)
+(Intercept)                   10.0065     0.0844 118.5721   0.0000
+ploidytriploid                 0.3168     0.1334   2.3741   0.0337
+treatmentheat                  0.2153     0.1688   1.2759   0.2243
+ploidytriploid:treatmentheat  -0.5691     0.2184  -2.6054   0.0218
+     ploidy treatment n   mean
+1:  diploid      heat 2 10.222
+2: triploid      heat 5  9.970
+3:  diploid   control 6 10.007
+4: triploid   control 4 10.323
+eligible mean: 22 libraries interaction F and p: 11.49 0.00326 
+eligible mean: 17 libraries interaction F and p: 2.78 0.119 
+     ploidy treatment n  mean
+1:  diploid      heat 2 43.02
+2: triploid      heat 5 41.43
+3:  diploid   control 6 42.37
+4: triploid   control 4 43.55
+interaction contrast in the level, 17 libraries: -0.569 ; regroupings (within cohort) with |contrast| >= observed: 32 of 4410 
+interaction contrast in the level, 22 libraries: -1.501 
+
+==== 4. Contrasts across CpGs (pooled reads, > 20 points) ====
+ploidy, all 22                                above 20:   1038  positive    442  negative    596  majority 0.574  median eligible -1.25  (|d| >= 20: 1038)
+cohort, all 22                                above 20:   2352  positive   1150  negative   1202  majority 0.511  median eligible 0.37  (|d| >= 20: 2353)
+ploidy inside heat cohort                     above 20:  13028  positive   1915  negative  11113  majority 0.853  median eligible -5.71  (|d| >= 20: 13048)
+ploidy inside control cohort                  above 20:   3349  positive   2688  negative    661  majority 0.803  median eligible 3.64  (|d| >= 20: 3357)
+interaction                                   above 20:  23503  positive   2876  negative  20627  majority 0.878  median eligible -8.91  (|d| >= 20: 23504)
+max |my all-22 ploidy difference - step 05 meth.diff|: 6.750156e-14 
+correlation of the two within-cohort differences: Pearson all -0.3003  Spearman all -0.1012  Pearson eligible -0.2138  Spearman eligible -0.2525 
+above 20 in both: 969  same sign: 181 
+heat cohort without its 3 high                above 20:  10733  positive   4434  negative   6299  majority 0.587  median eligible -1.60  (|d| >= 20: 10762)
+control cohort without its 2 high             above 20:   3191  positive   1944  negative   1247  majority 0.609  median eligible 1.07  (|d| >= 20: 3196)
+without the five: Pearson all -0.0359  Spearman all -0.0128  Pearson eligible -0.0295 
+above 20 in both (without the five): 923  same sign: 407 
+
+==== 5. Enumerations ====
+          group_of_two     n
+ 1:  zr3534_1 zr3534_2 10733
+ 2:  zr3534_2 zr3534_6  8737
+ 3:  zr3534_1 zr3534_6  8591
+ 4:  zr3534_7 zr3534_9  7895
+ 5: zr3534_2 zr3534_10  7563
+ 6: zr3534_1 zr3534_10  7501
+ 7:  zr3534_1 zr3534_9  7403
+ 8:  zr3534_1 zr3534_7  7379
+ 9:  zr3534_1 zr3534_8  7349
+10:  zr3534_2 zr3534_7  7319
+11:  zr3534_2 zr3534_8  7234
+12:  zr3534_2 zr3534_9  6913
+13: zr3534_8 zr3534_10  6913
+14: zr3534_6 zr3534_10  6653
+15:  zr3534_6 zr3534_7  6559
+16:  zr3534_8 zr3534_9  6468
+17:  zr3534_6 zr3534_8  6403
+18:  zr3534_6 zr3534_9  6365
+19: zr3534_7 zr3534_10  6285
+20:  zr3534_7 zr3534_8  6238
+21: zr3534_9 zr3534_10  6124
+          group_of_two     n
+observed (zr3534_1 zr3534_2): 10733  median of 21: 7234  largest other: 8737  at or above observed: 1 
+heat cohort 5 vs 5: observed 13028  median 4019  at or above: 2 of 252  largest other (excluding the mirror): 12824 
+control cohort 6 vs 6: observed 3349  median 2912.5  at or above: 242 of 924  largest other: 4749 
+control cohort without its 2 high, 6 vs 4: observed 3191  median 3714  at or above: 179 of 210  largest other: 5807 
+2 vs 5, direction: diploid higher 6299 of 10733 = 0.587 
+
+==== 6. Pairwise correlations, heat cohort ====
+max |own correlation of the united table - step 04 matrix|: 6.48e-07 
+mean pairwise r, heat triploids: 0.929  rank among 252: 1  next best: 0.9236 ( zr3534_1 zr3534_7 zr3534_8 zr3534_9 zr3534_10 )
+mean pairwise r, heat diploids: 0.8981  between: 0.8981 
+           a         b         r both_T
+ 1: zr3534_7  zr3534_9 0.9373928   TRUE
+ 2: zr3534_8 zr3534_10 0.9360873   TRUE
+ 3: zr3534_8  zr3534_9 0.9322846   TRUE
+ 4: zr3534_9 zr3534_10 0.9293719   TRUE
+ 5: zr3534_7  zr3534_8 0.9293446   TRUE
+ 6: zr3534_7 zr3534_10 0.9281019   TRUE
+ 7: zr3534_6 zr3534_10 0.9260074   TRUE
+ 8: zr3534_6  zr3534_8 0.9257601   TRUE
+ 9: zr3534_6  zr3534_9 0.9232811   TRUE
+10: zr3534_6  zr3534_7 0.9225049   TRUE
+11: zr3534_1 zr3534_10 0.9130195  FALSE
+12: zr3534_2 zr3534_10 0.9127726  FALSE
+13: zr3534_3  zr3534_4 0.9126691  FALSE
+14: zr3534_4  zr3534_5 0.9122695  FALSE
+15: zr3534_1  zr3534_8 0.9121966  FALSE
+16: zr3534_1  zr3534_6 0.9119552  FALSE
+17: zr3534_3  zr3534_5 0.9116745  FALSE
+18: zr3534_2  zr3534_8 0.9113072  FALSE
+19: zr3534_2  zr3534_6 0.9112140  FALSE
+20: zr3534_1  zr3534_9 0.9110935  FALSE
+21: zr3534_2  zr3534_9 0.9088582  FALSE
+22: zr3534_2  zr3534_3 0.9078438  FALSE
+23: zr3534_2  zr3534_7 0.9073081  FALSE
+24: zr3534_1  zr3534_7 0.9071001  FALSE
+25: zr3534_1  zr3534_2 0.9056156  FALSE
+26: zr3534_5  zr3534_6 0.8996039  FALSE
+27: zr3534_4 zr3534_10 0.8976740  FALSE
+28: zr3534_4  zr3534_6 0.8975653  FALSE
+29: zr3534_4  zr3534_8 0.8956110  FALSE
+30: zr3534_5 zr3534_10 0.8950812  FALSE
+31: zr3534_5  zr3534_8 0.8942699  FALSE
+32: zr3534_4  zr3534_7 0.8927887  FALSE
+33: zr3534_4  zr3534_9 0.8914723  FALSE
+34: zr3534_2  zr3534_4 0.8909478  FALSE
+35: zr3534_1  zr3534_4 0.8907307  FALSE
+36: zr3534_5  zr3534_9 0.8894606  FALSE
+37: zr3534_5  zr3534_7 0.8888162  FALSE
+38: zr3534_3  zr3534_6 0.8860128  FALSE
+39: zr3534_2  zr3534_5 0.8850145  FALSE
+40: zr3534_1  zr3534_5 0.8846726  FALSE
+41: zr3534_3 zr3534_10 0.8840122  FALSE
+42: zr3534_3  zr3534_8 0.8819031  FALSE
+43: zr3534_1  zr3534_3 0.8799633  FALSE
+44: zr3534_3  zr3534_9 0.8754991  FALSE
+45: zr3534_3  zr3534_7 0.8751126  FALSE
+           a         b         r both_T
+range of the T-T pairs: 0.9225 0.9374  range of the other 35: 0.8751 0.913 
+control: among diploids 0.9116  among triploids 0.9078  between 0.9085 

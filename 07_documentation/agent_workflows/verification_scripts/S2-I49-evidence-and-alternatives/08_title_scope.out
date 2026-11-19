@@ -1,0 +1,38 @@
+draft contrasts, CpGs above 20 points: ploidy 1038 ; cohort 2352 
+
+==== the draft's lists without the five high libraries ====
+ploidy: above 20 without the five: 1425 ; of the 1038 of the draft, 633 remain with the same sign ( 61 %); median |difference| of the draft's CpGs without the five: 22 ; correlation of the two differences at the draft's CpGs: 0.954 
+cohort: above 20 without the five: 3591 ; of the 2352 of the draft, 1776 remain with the same sign ( 75.5 %); correlation at the draft's CpGs: 0.957 
+reference: leaving out 3 random heat diploids and 2 random control triploids ( 200 draws other than the five): share of the draft's ploidy CpGs kept: median 0.659  range 0.572 0.74 ; cohort CpGs kept: median 0.733  range 0.647 0.807 
+exhaustive (150 choices of 3 heat diploids and 2 control triploids): share of the draft's ploidy CpGs kept: the five 0.61 ; others median 0.656  range 0.572 0.74 ; rank of the five (1 = fewest kept): 18 of 150
+   cohort CpGs kept: the five 0.755 ; others median 0.732  range 0.647 0.807 ; rank of the five: 116 of 150
+
+==== one library left out: how many of the draft's CpGs remain above 20 points with the same sign ====
+      library            group  high ploidy_list_without ploidy_kept cohort_list_without cohort_kept ploidy_kept_pct cohort_kept_pct
+ 1:  zr3534_1     diploid heat FALSE                1232         888                2593        2043            85.5            86.9
+ 2:  zr3534_2     diploid heat FALSE                1063         853                2389        1962            82.2            83.4
+ 3:  zr3534_3     diploid heat  TRUE                1012         804                2463        1945            77.5            82.7
+ 4:  zr3534_4     diploid heat  TRUE                1055         814                2494        1998            78.4            84.9
+ 5:  zr3534_5     diploid heat  TRUE                1147         870                2692        2076            83.8            88.3
+ 6:  zr3534_6    triploid heat FALSE                1170         907                2576        2117            87.4            90.0
+ 7:  zr3534_7    triploid heat FALSE                1052         887                2524        2099            85.5            89.2
+ 8:  zr3534_8    triploid heat FALSE                1085         880                2601        2111            84.8            89.8
+ 9:  zr3534_9    triploid heat FALSE                1035         846                2555        2062            81.5            87.7
+10: zr3534_10    triploid heat FALSE                1071         860                2501        2040            82.9            86.7
+11:  zr3644_1  diploid control FALSE                1271         924                2777        2148            89.0            91.3
+12:  zr3644_2  diploid control FALSE                1120         867                2489        2052            83.5            87.2
+13:  zr3644_3  diploid control FALSE                1245         973                2357        2120            93.7            90.1
+14:  zr3644_4  diploid control FALSE                1291         954                2407        2086            91.9            88.7
+15:  zr3644_5  diploid control FALSE                1259         967                2317        2073            93.2            88.1
+16:  zr3644_6  diploid control FALSE                1283         955                2337        2096            92.0            89.1
+17: zr3644_13 triploid control FALSE                1198         949                2341        2101            91.4            89.3
+18: zr3644_14 triploid control  TRUE                1234         922                2728        2150            88.8            91.4
+19: zr3644_15 triploid control  TRUE                1245         946                2451        2066            91.1            87.8
+20: zr3644_16 triploid control FALSE                1203         951                2285        2081            91.6            88.5
+21: zr3644_17 triploid control FALSE                1267         894                2522        2069            86.1            88.0
+22: zr3644_18 triploid control FALSE                1190         941                2430        2100            90.7            89.3
+      library            group  high ploidy_list_without ploidy_kept cohort_list_without cohort_kept ploidy_kept_pct cohort_kept_pct
+
+==== which contrast does the draft's ploidy list reflect? ====
+of the 1038 ploidy CpGs of the draft: above 20 with the same sign in the heat cohort 880 ; in the control cohort 335 ; D11 and D12 against the five heat triploids 776 ; the three high heat diploids against the five heat triploids 846 
+correlation across the draft's ploidy CpGs of the pooled difference with: heat-cohort difference 0.939 ; control-cohort difference 0.821 ; D11, D12 against triploids 0.867 ; three high diploids against triploids 0.916 

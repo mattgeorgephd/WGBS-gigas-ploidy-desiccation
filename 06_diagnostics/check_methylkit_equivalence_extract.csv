@@ -1,0 +1,11 @@
+region,sequence,from,to,purpose,positions,libraries_with_lines,lines_per_library_min,lines_per_library_max,files_that_begin_here,cpg_united_on_extract_legacy,cpg_tested_by_step05_legacy,cpg_united_on_extract_corrected,cpg_tested_by_step05_corrected,percent_of_all_cpg_tested_by_step05_legacy,percent_of_all_cpg_tested_by_step05_corrected
+first 6 Mb of linkage group NC_047559.1,NC_047559.1,0,6e+06,ordinary coverage; most CpGs of the extract; several files begin here,,22,97487,108282,5,5387,5387,5332,5174,1.121,1.138
+300 kb around the locus of issue I-09,NC_047563.1,39483323,39783323,"coverage many times the library median in some libraries: rows at and above the upper cutoff, large counts",,22,4897,5117,0,489,489,441,422,0.102,0.093
+mitochondrial sequence,NC_001276.1,0,,coverage far above the library median in every library,,22,392,393,0,363,363,200,0,0.076,0
+unplaced scaffold NW_022994810.1,NW_022994810.1,0,,coverage several times the library median along a whole scaffold,,22,718,752,0,573,573,548,157,0.119,0.035
+unplaced scaffold NW_022994829.1,NW_022994829.1,0,,a sequence that sorts after the linkage groups and stands at a different place in each file,,22,5337,6325,0,1310,1310,1194,496,0.273,0.109
+unplaced scaffold NW_022994852.1,NW_022994852.1,0,,a sequence that sorts after the linkage groups and stands at a different place in each file,,22,4840,6944,0,1365,1365,1344,705,0.284,0.155
+unplaced scaffold NW_022994895.1,NW_022994895.1,0,,a scaffold on which a file begins,,22,10100,11831,1,155,155,142,135,0.032,0.03
+unplaced scaffold NW_022994818.1,NW_022994818.1,0,,a sequence that some libraries do not have,,10,0,4,0,0,0,0,0,0,0
+positions of first lines outside the regions above,,,,the first-line rule of legacy mode,12,22,3,9,16,0,0,0,0,0,0
+all regions,,,,the extract,,22,125181,138700,22,9642,9642,9201,7089,2.006,1.56

@@ -1,0 +1,187 @@
+max |correlation from reconstructed raw counts - step 04|: 0.000962 
+
+==== observed ====
+                               what mean_own mean_other_group mean_between rank_of_own_subset n_subsets best_other_subset own_pairs_among_top n_own_pairs min_own_pair max_other_pair
+1: heat cohort, triploids, observed    0.929           0.8987       0.8984                  1       252            0.9236                  10          10       0.9224         0.9132
+
+==== coverage of the heat libraries at the tested CpGs (reconstructed raw counts) ====
+           id   ploidy mean_cov_tested median_cov_tested mean_cov_eligible mean_inverse_cov
+ 1:  zr3534_1  diploid           33.80                26             31.79          0.03985
+ 2:  zr3534_2  diploid           35.27                25             31.19          0.04083
+ 3:  zr3534_3  diploid           35.16                26             31.86          0.03970
+ 4:  zr3534_4  diploid           34.35                25             31.39          0.04126
+ 5:  zr3534_5  diploid           37.99                28             35.86          0.03753
+ 6:  zr3534_6 triploid           34.27                25             31.18          0.04171
+ 7:  zr3534_7 triploid           28.83                22             28.59          0.04626
+ 8:  zr3534_8 triploid           36.91                28             35.54          0.03631
+ 9:  zr3534_9 triploid           35.65                27             32.47          0.03851
+10: zr3534_10 triploid           38.32                28             33.90          0.03687
+mean raw coverage at tested CpGs: diploids 35.31  triploids 34.8 
+mean raw coverage at eligible CpGs: diploids 32.42  triploids 32.34 
+45 pairs of the heat cohort: Spearman of r with mean coverage 0.047 (p 0.76 ); with harmonic-mean coverage 0.045 ; with mean inverse coverage -0.033 ; with the difference in level -0.796 
+among the 35 pairs that are not triploid-triploid: Spearman r vs mean coverage 0.085 ; r vs level difference -0.768 
+mean coverage of pairs: T-T 34.8  D-D 35.31  D-T 35.06 
+               Estimate  Std. Error   t value     Pr(>|t|)
+(Intercept)  0.94337334 0.020199864 46.701965 3.550390e-37
+mean_inv    -0.72852626 0.500571554 -1.455389 1.531762e-01
+level_gap   -0.01960887 0.002016007 -9.726590 3.289409e-12
+TTTRUE       0.01860989 0.002524964  7.370357 4.969066e-09
+
+==== noise-corrected correlations (no random draw) ====
+share of each library's variance across CpGs that is sampling noise (heat cohort):
+ zr3534_1  zr3534_2  zr3534_3  zr3534_4  zr3534_5  zr3534_6  zr3534_7  zr3534_8  zr3534_9 zr3534_10 
+   0.0234    0.0243    0.0205    0.0248    0.0222    0.0276    0.0314    0.0238    0.0258    0.0243 
+                                                       what mean_own mean_other_group mean_between rank_of_own_subset n_subsets best_other_subset own_pairs_among_top n_own_pairs min_own_pair max_other_pair
+1: heat cohort, triploids, noise-corrected, all tested CpGs   0.9544           0.9199       0.9212                  1       252            0.9481                  10          10       0.9486         0.9359
+2:  heat cohort, diploids, noise-corrected, all tested CpGs   0.9199           0.9544       0.9212                237       252            0.9544                   0          10       0.9006         0.9650
+noise-corrected correlations, heat cohort:
+          zr3534_1 zr3534_2 zr3534_3 zr3534_4 zr3534_5 zr3534_6 zr3534_7 zr3534_8 zr3534_9 zr3534_10
+zr3534_1    1.0000   0.9279   0.9006   0.9131   0.9060   0.9359   0.9327   0.9342   0.9342    0.9354
+zr3534_2    0.9279   1.0000   0.9297   0.9138   0.9068   0.9356   0.9334   0.9338   0.9324    0.9357
+zr3534_3    0.9006   0.9297   1.0000   0.9344   0.9318   0.9088   0.8992   0.9019   0.8972    0.9052
+zr3534_4    0.9131   0.9138   0.9344   1.0000   0.9345   0.9220   0.9188   0.9176   0.9150    0.9206
+zr3534_5    0.9060   0.9068   0.9318   0.9345   1.0000   0.9232   0.9138   0.9153   0.9121    0.9171
+zr3534_6    0.9359   0.9356   0.9088   0.9220   0.9232   1.0000   0.9504   0.9500   0.9486    0.9507
+zr3534_7    0.9327   0.9334   0.8992   0.9188   0.9138   0.9504   1.0000   0.9557   0.9650    0.9547
+zr3534_8    0.9342   0.9338   0.9019   0.9176   0.9153   0.9500   0.9557   1.0000   0.9561    0.9592
+zr3534_9    0.9342   0.9324   0.8972   0.9150   0.9121   0.9486   0.9650   0.9561   1.0000    0.9533
+zr3534_10   0.9354   0.9357   0.9052   0.9206   0.9171   0.9507   0.9547   0.9592   0.9533    1.0000
+share of variance that is sampling noise, eligible CpGs only (heat cohort):
+ zr3534_1  zr3534_2  zr3534_3  zr3534_4  zr3534_5  zr3534_6  zr3534_7  zr3534_8  zr3534_9 zr3534_10 
+   0.0582    0.0615    0.0691    0.0765    0.0692    0.0751    0.0806    0.0615    0.0661    0.0648 
+                                                     what mean_own mean_other_group mean_between rank_of_own_subset n_subsets best_other_subset own_pairs_among_top n_own_pairs min_own_pair max_other_pair
+1:        heat cohort, triploids, eligible CpGs, observed   0.7951           0.6823       0.6931                  1       252            0.7823                  10          10       0.7740         0.7502
+2: heat cohort, triploids, eligible CpGs, noise-corrected   0.8546           0.7312       0.7438                  1       252            0.8379                  10          10       0.8367         0.7993
+
+==== thinning to the minimum coverage of the ten heat libraries at each CpG ====
+common coverage: median 17  mean 21.16  range 10 2580 
+    seed                     what mean_own mean_other_group mean_between rank_of_own_subset n_subsets best_other_subset own_pairs_among_top n_own_pairs min_own_pair max_other_pair
+ 1:    1 thinned, all tested CpGs   0.9162           0.8877       0.8868                  1       252            0.9111                  10          10       0.9109         0.9028
+ 2:    1   thinned, eligible CpGs   0.7674           0.6583       0.6690                  1       252            0.7556                  10          10       0.7504         0.7266
+ 3:    2 thinned, all tested CpGs   0.9164           0.8880       0.8870                  1       252            0.9112                  10          10       0.9108         0.9032
+ 4:    2   thinned, eligible CpGs   0.7676           0.6596       0.6697                  1       252            0.7560                  10          10       0.7505         0.7271
+ 5:    3 thinned, all tested CpGs   0.9163           0.8879       0.8869                  1       252            0.9110                  10          10       0.9111         0.9030
+ 6:    3   thinned, eligible CpGs   0.7672           0.6588       0.6691                  1       252            0.7552                  10          10       0.7505         0.7259
+ 7:    4 thinned, all tested CpGs   0.9163           0.8880       0.8870                  1       252            0.9111                  10          10       0.9109         0.9030
+ 8:    4   thinned, eligible CpGs   0.7673           0.6590       0.6694                  1       252            0.7556                  10          10       0.7506         0.7257
+ 9:    5 thinned, all tested CpGs   0.9162           0.8880       0.8867                  1       252            0.9110                  10          10       0.9108         0.9028
+10:    5   thinned, eligible CpGs   0.7669           0.6594       0.6687                  1       252            0.7553                  10          10       0.7508         0.7260
+11:    6 thinned, all tested CpGs   0.9162           0.8880       0.8868                  1       252            0.9108                  10          10       0.9107         0.9033
+12:    6   thinned, eligible CpGs   0.7672           0.6592       0.6692                  1       252            0.7547                  10          10       0.7509         0.7247
+13:    7 thinned, all tested CpGs   0.9164           0.8879       0.8868                  1       252            0.9110                  10          10       0.9113         0.9034
+14:    7   thinned, eligible CpGs   0.7675           0.6591       0.6690                  1       252            0.7551                  10          10       0.7510         0.7250
+15:    8 thinned, all tested CpGs   0.9163           0.8878       0.8869                  1       252            0.9110                  10          10       0.9109         0.9034
+16:    8   thinned, eligible CpGs   0.7673           0.6593       0.6696                  1       252            0.7556                  10          10       0.7505         0.7258
+mean thinned correlation matrix over the 8 seeds:
+          zr3534_1 zr3534_2 zr3534_3 zr3534_4 zr3534_5 zr3534_6 zr3534_7 zr3534_8 zr3534_9 zr3534_10
+zr3534_1    1.0000   0.8949   0.8707   0.8806   0.8739   0.9007   0.8970   0.8992   0.8991    0.9008
+zr3534_2    0.8949   1.0000   0.8986   0.8811   0.8744   0.9003   0.8973   0.8986   0.8971    0.9009
+zr3534_3    0.8707   0.8986   1.0000   0.9031   0.9006   0.8766   0.8665   0.8700   0.8655    0.8736
+zr3534_4    0.8806   0.8811   0.9031   1.0000   0.9011   0.8870   0.8833   0.8829   0.8803    0.8863
+zr3534_5    0.8739   0.8744   0.9006   0.9011   1.0000   0.8884   0.8786   0.8807   0.8777    0.8829
+zr3534_6    0.9007   0.9003   0.8766   0.8870   0.8884   1.0000   0.9118   0.9123   0.9109    0.9134
+zr3534_7    0.8970   0.8973   0.8665   0.8833   0.8786   0.9118   1.0000   0.9170   0.9257    0.9163
+zr3534_8    0.8992   0.8986   0.8700   0.8829   0.8807   0.9123   0.9170   1.0000   0.9182    0.9215
+zr3534_9    0.8991   0.8971   0.8655   0.8803   0.8777   0.9109   0.9257   0.9182   1.0000    0.9158
+zr3534_10   0.9008   0.9009   0.8736   0.8863   0.8829   0.9134   0.9163   0.9215   0.9158    1.0000
+
+-- thinning every heat library to exactly 10 reads at every CpG --
+   seed                                 what mean_own mean_other_group mean_between rank_of_own_subset n_subsets best_other_subset own_pairs_among_top n_own_pairs min_own_pair max_other_pair
+1:    1 thinned to 10 reads, all tested CpGs   0.8917           0.8669       0.8644                  1       252            0.8873                  10          10       0.8863         0.8825
+2:    2 thinned to 10 reads, all tested CpGs   0.8918           0.8671       0.8647                  1       252            0.8872                  10          10       0.8864         0.8824
+3:    3 thinned to 10 reads, all tested CpGs   0.8916           0.8673       0.8646                  1       252            0.8868                  10          10       0.8869         0.8829
+4:    4 thinned to 10 reads, all tested CpGs   0.8918           0.8669       0.8645                  1       252            0.8871                  10          10       0.8865         0.8831
+
+==== (b)3 the seven heat libraries that are not high ====
+           a         b r_observed r_noise_corrected type rank
+ 1: zr3534_7  zr3534_9     0.9374            0.9650  T-T    1
+ 2: zr3534_8 zr3534_10     0.9361            0.9592  T-T    2
+ 3: zr3534_8  zr3534_9     0.9324            0.9561  T-T    3
+ 4: zr3534_9 zr3534_10     0.9294            0.9533  T-T    4
+ 5: zr3534_7  zr3534_8     0.9293            0.9557  T-T    5
+ 6: zr3534_7 zr3534_10     0.9281            0.9547  T-T    6
+ 7: zr3534_6 zr3534_10     0.9260            0.9507  T-T    7
+ 8: zr3534_6  zr3534_8     0.9256            0.9500  T-T    8
+ 9: zr3534_6  zr3534_9     0.9233            0.9486  T-T    9
+10: zr3534_6  zr3534_7     0.9224            0.9504  T-T   10
+11: zr3534_1 zr3534_10     0.9131            0.9354  D-T   11
+12: zr3534_2 zr3534_10     0.9129            0.9357  D-T   12
+13: zr3534_1  zr3534_8     0.9122            0.9342  D-T   13
+14: zr3534_1  zr3534_6     0.9120            0.9359  D-T   14
+15: zr3534_2  zr3534_8     0.9114            0.9338  D-T   15
+16: zr3534_2  zr3534_6     0.9113            0.9356  D-T   16
+17: zr3534_1  zr3534_9     0.9112            0.9342  D-T   17
+18: zr3534_2  zr3534_9     0.9090            0.9324  D-T   18
+19: zr3534_2  zr3534_7     0.9074            0.9334  D-T   19
+20: zr3534_1  zr3534_7     0.9072            0.9327  D-T   20
+21: zr3534_1  zr3534_2     0.9058            0.9279  D-D   21
+           a         b r_observed r_noise_corrected type rank
+                                         what mean_own mean_other_group mean_between rank_of_own_subset n_subsets best_other_subset own_pairs_among_top n_own_pairs min_own_pair max_other_pair
+1:        seven not high, triploids, observed   0.9290           0.9058       0.9108                  1        21            0.9236                  10          10       0.9224         0.9131
+2: seven not high, triploids, noise-corrected   0.9544           0.9279       0.9343                  1        21            0.9481                  10          10       0.9486         0.9359
+D11-D12 correlation: 0.9058 ; D11 with the five triploids: 0.912 0.9072 0.9122 0.9112 0.9131 ; D12 with the five triploids: 0.9113 0.9074 0.9114 0.909 0.9129 
+rank of the D11-D12 pair among the 21 pairs of the seven: 21 ; among the 45 pairs of the cohort: 25 
+T11 (zr3534_6) with the other four triploids: 0.9224 0.9256 0.9233 0.926 
+
+==== (b)3 correlations after removing the level from every CpG (heat cohort) ====
+(residual correlations are centred near -1/(n-2); only their ordering is read)
+                                                               what mean_own mean_other_group mean_between rank_of_own_subset n_subsets best_other_subset own_pairs_among_top n_own_pairs min_own_pair max_other_pair
+1: heat cohort, residuals on the genome-wide level, all tested CpGs  -0.1619          -0.1957       -0.054                231       252           -0.0528                   0          10      -0.2488         0.1799
+2:         heat cohort diploids, residuals on the genome-wide level  -0.1957          -0.1619       -0.054                252       252           -0.0528                   1          10      -0.5964         0.1288
+                                                               what mean_own mean_other_group mean_between rank_of_own_subset n_subsets best_other_subset own_pairs_among_top n_own_pairs min_own_pair max_other_pair
+1: heat cohort, residuals on the eligible-CpG mean, all tested CpGs   -0.154          -0.1915      -0.0582                222       252           -0.0447                   0          10      -0.2014         0.1811
+          zr3534_1 zr3534_2 zr3534_3 zr3534_4 zr3534_5 zr3534_6 zr3534_7 zr3534_8 zr3534_9 zr3534_10
+zr3534_1     1.000   -0.083   -0.064   -0.071   -0.110   -0.114   -0.216   -0.164   -0.196    -0.191
+zr3534_2    -0.083    1.000    0.180   -0.185   -0.233   -0.134   -0.182   -0.172   -0.179    -0.141
+zr3534_3    -0.064    0.180    1.000   -0.537   -0.596   -0.067    0.072    0.023    0.120     0.129
+zr3534_4    -0.071   -0.185   -0.537    1.000   -0.258   -0.078    0.028   -0.040    0.019     0.024
+zr3534_5    -0.110   -0.233   -0.596   -0.258    1.000   -0.003    0.028   -0.004    0.052     0.040
+zr3534_6    -0.114   -0.134   -0.067   -0.078   -0.003    1.000   -0.157   -0.128   -0.185    -0.165
+zr3534_7    -0.216   -0.182    0.072    0.028    0.028   -0.157    1.000   -0.159   -0.071    -0.233
+zr3534_8    -0.164   -0.172    0.023   -0.040   -0.004   -0.128   -0.159    1.000   -0.160    -0.113
+zr3534_9    -0.196   -0.179    0.120    0.019    0.052   -0.185   -0.071   -0.160    1.000    -0.249
+zr3534_10   -0.191   -0.141    0.129    0.024    0.040   -0.165   -0.233   -0.113   -0.249     1.000
+                                                                         what mean_own mean_other_group mean_between rank_of_own_subset n_subsets best_other_subset own_pairs_among_top n_own_pairs min_own_pair
+1: heat cohort, deviations from the CpG mean of the cohort (no level removed)   0.0635          -0.0564      -0.1961                  1       252            0.0374                   6          10      -0.0061
+   max_other_pair
+1:         0.1693
+
+==== by chromosome: is the triploid similarity everywhere? ====
+            chr n_cpg mean_own mean_other_group mean_between rank_of_own_subset own_pairs_among_top
+ 1: NC_047559.1 54739   0.9324           0.9038       0.9056                  1                  10
+ 2: NC_047560.1 26286   0.8541           0.8098       0.8171                  1                   8
+ 3: NC_047561.1 58816   0.9415           0.9049       0.9062                  1                  10
+ 4: NC_047562.1 37678   0.9201           0.8882       0.8894                  1                   7
+ 5: NC_047563.1 36663   0.9149           0.8816       0.8744                  1                  10
+ 6: NC_047564.1 61554   0.9383           0.9076       0.9078                  1                  10
+ 7: NC_047565.1 62350   0.9349           0.9044       0.9011                  1                  10
+ 8: NC_047566.1 37765   0.9092           0.8892       0.8863                  1                   8
+ 9: NC_047567.1 19306   0.8830           0.8419       0.8406                  1                   9
+10: NC_047568.1 60467   0.9345           0.9099       0.9093                  1                  10
+
+==== control cohort for comparison ====
+                                         what mean_own mean_other_group mean_between rank_of_own_subset n_subsets best_other_subset own_pairs_among_top n_own_pairs min_own_pair max_other_pair
+1:        control cohort, triploids, observed   0.9076           0.9114       0.9082                498       924            0.9335                   3          15       0.8614         0.9393
+2: control cohort, triploids, noise-corrected   0.9359           0.9433       0.9383                544       924            0.9664                   2          15       0.8868         0.9734
+3:         control cohort, diploids, observed   0.9114           0.9076       0.9082                374       924            0.9335                   3          15       0.8800         0.9420
+4:  control cohort, diploids, noise-corrected   0.9433           0.9359       0.9383                343       924            0.9664                   5          15       0.9088         0.9734
+                                                                  what mean_own mean_other_group mean_between rank_of_own_subset n_subsets best_other_subset own_pairs_among_top n_own_pairs min_own_pair max_other_pair
+1:        control cohort without its two high, triploids (4), observed   0.9248           0.9114       0.9191                 41       210            0.9365                   1           6       0.9114         0.9393
+2: control cohort without its two high, triploids (4), noise-corrected   0.9535           0.9433       0.9494                 51       210            0.9688                   1           6       0.9375         0.9734
+noise-corrected correlations, control cohort:
+          zr3644_1 zr3644_2 zr3644_3 zr3644_4 zr3644_5 zr3644_6 zr3644_13 zr3644_14 zr3644_15 zr3644_16 zr3644_17 zr3644_18
+zr3644_1     1.000    0.909    0.924    0.927    0.926    0.926     0.927     0.870     0.909     0.924     0.913     0.928
+zr3644_2     0.909    1.000    0.940    0.934    0.935    0.941     0.937     0.885     0.921     0.936     0.938     0.933
+zr3644_3     0.924    0.940    1.000    0.965    0.965    0.966     0.969     0.900     0.950     0.973     0.943     0.960
+zr3644_4     0.927    0.934    0.965    1.000    0.962    0.963     0.963     0.899     0.954     0.965     0.940     0.963
+zr3644_5     0.926    0.935    0.965    0.962    1.000    0.966     0.967     0.899     0.951     0.964     0.942     0.962
+zr3644_6     0.926    0.941    0.966    0.963    0.966    1.000     0.964     0.902     0.953     0.967     0.943     0.963
+zr3644_13    0.927    0.937    0.969    0.963    0.967    0.964     1.000     0.910     0.953     0.973     0.942     0.963
+zr3644_14    0.870    0.885    0.900    0.899    0.899    0.902     0.910     1.000     0.939     0.902     0.887     0.896
+zr3644_15    0.909    0.921    0.950    0.954    0.951    0.953     0.953     0.939     1.000     0.954     0.925     0.951
+zr3644_16    0.924    0.936    0.973    0.965    0.964    0.967     0.973     0.902     0.954     1.000     0.941     0.963
+zr3644_17    0.913    0.938    0.943    0.940    0.942    0.943     0.942     0.887     0.925     0.941     1.000     0.938
+zr3644_18    0.928    0.933    0.960    0.963    0.962    0.963     0.963     0.896     0.951     0.963     0.938     1.000
+share of variance that is sampling noise (control cohort):
+ zr3644_1  zr3644_2  zr3644_3  zr3644_4  zr3644_5  zr3644_6 zr3644_13 zr3644_14 zr3644_15 zr3644_16 zr3644_17 zr3644_18 
+   0.0367    0.0266    0.0383    0.0335    0.0368    0.0309    0.0325    0.0331    0.0279    0.0318    0.0243    0.0315 

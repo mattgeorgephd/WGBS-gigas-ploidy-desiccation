@@ -1,0 +1,151 @@
+cells where the reconstructed raw counts do not reproduce the normalized counts, per library:
+ zr3534_1  zr3534_2  zr3534_3  zr3534_4  zr3534_5  zr3534_6  zr3534_7  zr3534_8  zr3534_9 zr3534_10  zr3644_1  zr3644_2  zr3644_3  zr3644_4  zr3644_5  zr3644_6 zr3644_13 zr3644_14 zr3644_15 zr3644_16 zr3644_17 zr3644_18 
+        0         0         0         0         0         0         0         0         0         0        80        75         0         0         0        45        80         0        55        67         0        68 
+minimum reconstructed raw coverage: 10 
+
+==== (b)1 library-level quantities ====
+           id             cohort  high  level level_predup mean_elig read_pairs_M unique_pairs_M map_eff dup_pct total_C_M n10x_M mean_cov_genome cov_tested cov_elig cov_meth_over_unmeth cov_elig_over_unmeth ambig_pct
+ 1:  zr3534_1    heat_experiment FALSE 10.235       10.467     43.00         76.5           38.3   61.48   18.56       922   5.05           11.40      33.80    31.87                0.671                0.928     15.97
+ 2:  zr3534_2    heat_experiment FALSE 10.209       10.362     43.05         75.4           37.6   61.08   18.32       909   4.98           11.29      35.27    31.26                0.619                0.864     16.36
+ 3:  zr3534_3    heat_experiment  TRUE 11.551       11.769     54.24         78.1           39.1   60.88   17.85       965   5.29           11.75      35.16    31.94                0.644                0.889     15.67
+ 4:  zr3534_4    heat_experiment  TRUE 11.018       11.223     49.23         74.7           37.6   61.32   17.91       904   4.92           11.14      34.35    31.48                0.634                0.898     16.24
+ 5:  zr3534_5    heat_experiment  TRUE 11.087       11.261     49.69         84.0           41.9   61.29   18.76      1000   5.36           12.20      37.99    35.97                0.635                0.932     16.37
+ 6:  zr3534_6    heat_experiment FALSE 10.186       10.337     42.82         75.3           37.4   60.66   18.16       909   4.93           10.80      34.27    31.26                0.625                0.893     15.81
+ 7:  zr3534_7    heat_experiment FALSE  9.930       10.144     40.37         66.1           33.6   60.99   16.53       814   4.41            9.74      28.83    28.67                0.679                0.987     15.95
+ 8:  zr3534_8    heat_experiment FALSE 10.081       10.294     41.80         90.6           44.0   61.19   20.63      1034   5.51           12.11      36.91    35.63                0.660                0.953     16.56
+ 9:  zr3534_9    heat_experiment FALSE  9.837       10.020     40.35         73.8           37.5   61.69   17.56       901   4.82           10.95      35.65    32.56                0.660                0.895     16.62
+10: zr3534_10    heat_experiment FALSE  9.813        9.960     41.82         77.6           39.1   61.78   18.47       940   4.99           11.39      38.32    33.99                0.636                0.865     16.59
+11:  zr3644_1 control_experiment FALSE  9.460        9.480     37.94         50.6           27.5   62.04   12.46       651   3.17            8.43      29.41    24.81                0.602                0.817     17.07
+12:  zr3644_2 control_experiment FALSE 10.030       10.040     43.98         54.7           29.2   61.00   12.55       733   3.74            9.18      31.54    26.15                0.552                0.800     16.18
+13:  zr3644_3 control_experiment FALSE 10.164       10.253     43.59         38.7           21.2   60.92   10.18       517   2.13            6.52      22.33    19.27                0.606                0.838     16.60
+14:  zr3644_4 control_experiment FALSE  9.947       10.085     43.20         49.1           26.5   60.97   11.46       642   3.12            7.83      24.94    22.41                0.622                0.878     16.66
+15:  zr3644_5 control_experiment FALSE 10.234       10.353     42.47         43.9           23.9   61.06   10.61       586   2.71            7.28      24.08    21.23                0.629                0.859     16.33
+16:  zr3644_6 control_experiment FALSE 10.204       10.313     43.05         52.9           28.6   61.34   11.89       695   3.50            8.49      28.35    25.09                0.618                0.863     16.61
+17: zr3644_13 control_experiment FALSE 10.300       10.385     43.96         53.0           28.6   61.27   11.93       706   3.57            8.58      29.20    25.68                0.595                0.856     16.20
+18: zr3644_14 control_experiment  TRUE 11.615       11.785     54.35         36.2           20.0   61.71   10.42       485   1.98            6.43      20.64    18.57                0.659                0.880     16.47
+19: zr3644_15 control_experiment  TRUE 11.036       11.178     49.66         58.1           31.4   61.22   11.68       765   4.00            9.24      30.17    27.10                0.626                0.877     16.50
+20: zr3644_16 control_experiment FALSE 10.410       10.492     43.96         50.1           27.1   61.64   12.18       628   3.03            7.90      27.72    24.03                0.612                0.842     17.44
+21: zr3644_17 control_experiment FALSE 10.181       10.127     44.15         57.1           30.8   61.66   12.58       748   3.77            9.59      36.17    29.40                0.552                0.782     17.33
+22: zr3644_18 control_experiment FALSE 10.402       10.458     42.13         50.7           27.9   62.04   11.13       676   3.34            8.42      30.27    25.59                0.623                0.819     16.62
+           id             cohort  high  level level_predup mean_elig read_pairs_M unique_pairs_M map_eff dup_pct total_C_M n10x_M mean_cov_genome cov_tested cov_elig cov_meth_over_unmeth cov_elig_over_unmeth ambig_pct
+    unaligned_pct
+ 1:         22.55
+ 2:         22.56
+ 3:         23.45
+ 4:         22.44
+ 5:         22.34
+ 6:         23.53
+ 7:         23.05
+ 8:         22.25
+ 9:         21.69
+10:         21.64
+11:         20.89
+12:         22.82
+13:         22.48
+14:         22.37
+15:         22.61
+16:         22.06
+17:         22.53
+18:         21.83
+19:         22.28
+20:         20.92
+21:         21.01
+22:         21.33
+    unaligned_pct
+            y                    x spearman_heat  p_heat spearman_control p_control pearson_heat pearson_control pearson_17_not_high_heat pearson_not_high_control
+ 1:     level         level_predup          1.00 0.00000             0.99     0.000         1.00            1.00                     0.98                     0.98
+ 2:     level         read_pairs_M          0.35 0.33000            -0.01     0.970         0.22           -0.31                     0.22                    -0.03
+ 3:     level       unique_pairs_M          0.24 0.51000            -0.03     0.940         0.24           -0.30                     0.15                    -0.01
+ 4:     level              map_eff         -0.37 0.30000             0.33     0.300        -0.34            0.06                    -0.58                    -0.12
+ 5:     level              dup_pct          0.14 0.71000            -0.33     0.300        -0.01           -0.46                     0.33                    -0.30
+ 6:     level            total_C_M          0.35 0.33000            -0.07     0.830         0.34           -0.28                     0.18                     0.00
+ 7:     level               n10x_M          0.42 0.23000            -0.07     0.830         0.46           -0.27                     0.35                    -0.01
+ 8:     level      mean_cov_genome          0.48 0.17000            -0.11     0.730         0.45           -0.29                     0.26                    -0.09
+ 9:     level           cov_tested         -0.19 0.61000            -0.18     0.570         0.15           -0.35                    -0.13                    -0.02
+10:     level             cov_elig          0.03 0.95000            -0.03     0.920         0.13           -0.28                    -0.13                     0.02
+11:     level cov_meth_over_unmeth         -0.27 0.45000             0.57     0.055        -0.30            0.56                    -0.25                     0.14
+12:     level cov_elig_over_unmeth          0.01 1.00000             0.45     0.140        -0.10            0.51                     0.00                     0.15
+13:     level            ambig_pct         -0.55 0.10000            -0.16     0.620        -0.45           -0.23                    -0.55                    -0.09
+14:     level        unaligned_pct          0.47 0.18000            -0.12     0.720         0.42            0.10                     0.62                     0.12
+15: mean_elig         level_predup          0.92 0.00047             0.41     0.180         0.98            0.95                     0.75                     0.72
+16: mean_elig         read_pairs_M          0.43 0.22000             0.26     0.420         0.23           -0.29                     0.32                     0.10
+17: mean_elig       unique_pairs_M          0.35 0.33000             0.23     0.470         0.25           -0.29                     0.29                     0.07
+18: mean_elig              map_eff         -0.26 0.47000            -0.14     0.670        -0.28           -0.10                    -0.29                    -0.56
+19: mean_elig              dup_pct          0.21 0.56000             0.10     0.750        -0.01           -0.37                     0.44                    -0.08
+20: mean_elig            total_C_M          0.43 0.22000             0.24     0.440         0.37           -0.26                     0.35                     0.14
+21: mean_elig               n10x_M          0.45 0.19000             0.24     0.440         0.47           -0.25                     0.49                     0.12
+22: mean_elig      mean_cov_genome          0.52 0.13000             0.24     0.440         0.48           -0.26                     0.48                     0.05
+23: mean_elig           cov_tested          0.03 0.95000             0.05     0.890         0.22           -0.34                     0.30                     0.05
+24: mean_elig             cov_elig          0.08 0.84000             0.24     0.460         0.17           -0.28                     0.13                     0.07
+25: mean_elig cov_meth_over_unmeth         -0.49 0.15000            -0.04     0.900        -0.35            0.42                    -0.58                    -0.28
+26: mean_elig cov_elig_over_unmeth         -0.28 0.43000             0.20     0.530        -0.20            0.49                    -0.44                     0.08
+27: mean_elig            ambig_pct         -0.45 0.19000            -0.29     0.370        -0.42           -0.26                    -0.32                    -0.16
+28: mean_elig        unaligned_pct          0.36 0.31000             0.15     0.640         0.37            0.20                     0.33                     0.40
+            y                    x spearman_heat  p_heat spearman_control p_control pearson_heat pearson_control pearson_17_not_high_heat pearson_not_high_control
+level before minus after deduplication: range -0.054 0.232 ; cor(level, level_predup) = 0.9928 ; the five highest before deduplication: zr3644_14 zr3534_3 zr3534_5 zr3534_4 zr3644_15 
+high vs not high, Wilcoxon exact p within cohort, for each QC quantity:
+  read_pairs_M           heat (3 vs 7) p = 0.517   control (2 vs 10) p = 1.000
+  unique_pairs_M         heat (3 vs 7) p = 0.517   control (2 vs 10) p = 1.000
+  map_eff                heat (3 vs 7) p = 0.833   control (2 vs 10) p = 0.758
+  dup_pct                heat (3 vs 7) p = 1.000   control (2 vs 10) p = 0.364
+  total_C_M              heat (3 vs 7) p = 0.517   control (2 vs 10) p = 1.000
+  n10x_M                 heat (3 vs 7) p = 0.517   control (2 vs 10) p = 1.000
+  mean_cov_genome        heat (3 vs 7) p = 0.267   control (2 vs 10) p = 0.909
+  cov_tested             heat (3 vs 7) p = 0.833   control (2 vs 10) p = 0.606
+  cov_elig               heat (3 vs 7) p = 0.517   control (2 vs 10) p = 0.909
+  cov_meth_over_unmeth   heat (3 vs 7) p = 0.517   control (2 vs 10) p = 0.061
+  cov_elig_over_unmeth   heat (3 vs 7) p = 1.000   control (2 vs 10) p = 0.061
+  ambig_pct              heat (3 vs 7) p = 0.517   control (2 vs 10) p = 0.485
+  unaligned_pct          heat (3 vs 7) p = 0.833   control (2 vs 10) p = 0.909
+
+==== mitochondrial CpGs (NC_001276.1) among the tested CpGs ====
+tested CpGs on the mitochondrial genome: 363 
+           id  high mito_pct_mCpG mito_reads_M level
+ 1:  zr3534_1 FALSE        0.5310        0.052 10.24
+ 2:  zr3534_2 FALSE        0.3723        0.046 10.21
+ 3:  zr3534_3  TRUE        0.3409        0.032 11.55
+ 4:  zr3534_4  TRUE        0.3626        0.055 11.02
+ 5:  zr3534_5  TRUE        0.4159        0.046 11.09
+ 6:  zr3534_6 FALSE        0.3804        0.057 10.19
+ 7:  zr3534_7 FALSE        0.3585        0.060  9.93
+ 8:  zr3534_8 FALSE        0.3331        0.061 10.08
+ 9:  zr3534_9 FALSE        0.3290        0.063  9.84
+10: zr3534_10 FALSE        0.6199        0.077  9.81
+11:  zr3644_1 FALSE        2.4067        0.123  9.46
+12:  zr3644_2 FALSE        3.2073        0.122 10.03
+13:  zr3644_3 FALSE        3.3979        0.112 10.16
+14:  zr3644_4 FALSE        2.6351        0.141  9.95
+15:  zr3644_5 FALSE        3.2391        0.125 10.23
+16:  zr3644_6 FALSE        3.2267        0.113 10.20
+17: zr3644_13 FALSE        1.9743        0.193 10.30
+18: zr3644_14  TRUE        2.9105        0.092 11.61
+19: zr3644_15  TRUE        2.3674        0.209 11.04
+20: zr3644_16 FALSE        2.2148        0.175 10.41
+21: zr3644_17 FALSE        3.6380        0.225 10.18
+22: zr3644_18 FALSE        2.5775        0.217 10.40
+           id  high mito_pct_mCpG mito_reads_M level
+mito CpG methylation: range 0.329 3.638 ; five high: 0.341 0.363 0.416 2.911 2.367 
+Spearman mito vs level: heat 0.07  control -0.34 
+mean mito, high minus not high: heat -0.0446  control -0.2128 
+
+==== profile of the level across classes of CpGs ====
+heat cohort (3 high vs 7 others); classes by the mean of the 10 control libraries that are not high 
+        class  n_cpg mean_high mean_not_high difference ratio     range_high range_not_high
+1: (-0.001,1] 321472      0.68          0.48       0.20 1.410    0.65 to 0.7   0.45 to 0.52
+2:     (1,10]  89238      5.28          3.06       2.22 1.727   4.97 to 5.69   2.82 to 3.21
+3:    (10,30]  23896     24.69         17.29       7.39 1.428 23.27 to 26.89 15.85 to 18.56
+4:    (30,50]  11020     47.89         39.20       8.69 1.222 45.48 to 51.79 37.25 to 41.13
+5:    (50,70]  10822     66.34         58.41       7.93 1.136  64.51 to 69.9 56.05 to 60.53
+6:    (70,90]  14758     82.61         77.71       4.90 1.063 81.37 to 84.65 75.77 to 79.59
+7:    (90,99]   9197     92.13         90.70       1.43 1.016 91.69 to 92.67 90.12 to 91.25
+8:   (99,100]    176     95.17         94.74       0.43 1.005 94.79 to 95.55 93.59 to 95.85
+control cohort (2 high vs 10 others); classes by the mean of the 7 heat libraries that are not high 
+        class  n_cpg mean_high mean_not_high difference ratio     range_high range_not_high
+1: (-0.001,1] 312801      0.60          0.46       0.14 1.316   0.55 to 0.65   0.42 to 0.51
+2:     (1,10]  98198      4.60          2.85       1.75 1.613    4.01 to 5.2   2.77 to 3.04
+3:    (10,30]  23925     26.61         17.72       8.89 1.502 24.24 to 28.99 15.71 to 19.18
+4:    (30,50]  11433     49.40         40.98       8.41 1.205   47.3 to 51.5 34.46 to 43.11
+5:    (50,70]  11344     68.91         61.99       6.93 1.112 67.39 to 70.43 53.53 to 65.84
+6:    (70,90]  14970     85.21         81.23       3.98 1.049  84.72 to 85.7 75.61 to 83.69
+7:    (90,99]   7803     93.76         92.48       1.28 1.014 93.71 to 93.81  90.5 to 93.56
+8:   (99,100]    105     96.34         96.08       0.25 1.003 96.05 to 96.62 94.93 to 97.24

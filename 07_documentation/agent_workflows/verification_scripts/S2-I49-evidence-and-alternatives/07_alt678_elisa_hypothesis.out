@@ -1,0 +1,123 @@
+==== (b)8 ELISA ====
+              group n  mean median  min  max above_top_standard
+1:  diploid control 8 1.697  1.451 0.65 3.62                  0
+2:     diploid heat 8 4.019  3.980 1.54 6.96                  4
+3: triploid control 8 1.680  1.626 0.82 3.39                  0
+4:    triploid heat 8 2.227  2.175 1.33 3.16                  0
+                              assay   ploidy treatment n   mean
+1:               ELISA percent 5-mC  diploid   control 8  1.697
+2:               ELISA percent 5-mC  diploid      heat 8  4.019
+3:               ELISA percent 5-mC triploid   control 8  1.680
+4:               ELISA percent 5-mC triploid      heat 8  2.227
+5: WGBS percent mCpG (deduplicated)  diploid   control 6 10.007
+6: WGBS percent mCpG (deduplicated)  diploid      heat 5 10.820
+7: WGBS percent mCpG (deduplicated) triploid   control 6 10.657
+8: WGBS percent mCpG (deduplicated) triploid      heat 5  9.970
+absorbance of the highest standard used in the fit: 0.8259 ; percent 5-mC is linear in absorbance (R2 1 ); value at that absorbance: 3.943 
+samples above it: D13 4.37; D14 5.2; D15 5.22; D16 6.96 
+              group mean_as_reported mean_capped_at_top_standard
+1:  diploid control             1.70                        1.70
+2:     diploid heat             4.02                        3.27
+3: triploid control             1.68                        1.68
+4:    triploid heat             2.23                        2.23
+exact Wilcoxon (rank tests do not depend on extrapolation): diploid heat vs triploid heat p = 0.0499 ; diploid heat vs diploid control p = 0.0104 ; triploid heat vs triploid control p = 0.1605 
+diploid heat animals above every triploid heat animal: 5 of 8
+ratio of group means, heat diploid over heat triploid: ELISA 1.8 (capped 1.47 ); WGBS genome-wide 1.085 
+ratio heat diploid over control diploid: ELISA 2.37 ; WGBS (other experiment's diploids) 1.081 
+   animal  library      wgbs    elisa flagged
+1:    D11 zr3534_1 10.235010 2.986022   FALSE
+2:    D12 zr3534_2 10.208748 3.593178   FALSE
+3:    D13 zr3534_3 11.550618 4.366513    TRUE
+4:    T11 zr3534_6 10.186105 2.596474   FALSE
+5:    T12 zr3534_7  9.929518 3.003671   FALSE
+6:    T13 zr3534_8 10.081289 1.804710   FALSE
+six animals: Spearman 0.5429 0.2972 ; Pearson 0.753 0.084 
+without D13 (five animals): Spearman 0.2 0.7833 ; Pearson 0.2365 0.7017 
+six animals, means: ELISA D 3.65 T 2.47 ; WGBS D 10.66 T 10.07 
+animals with a WGBS library but no ELISA value: D19 D20 T19 T20 
+
+==== frequency of high libraries ====
+heat cohort 3 of 10 against control cohort 2 of 12: Fisher exact p = 0.624 
+heat cohort 3 of 10 against project zr3644 2 of 24 (levels above 11%): Fisher exact p = 0.138 
+heat diploids 3 of 5 against all untreated libraries of project zr3644 2 of 24: p = 0.024 ; against the 12 control libraries of the study 2 of 12: p = 0.117 
+within the heat cohort, high by ploidy 3 of 5 against 0 of 5: p = 0.167 ; within the control cohort 0 of 6 against 2 of 6: p = 0.455 
+
+==== acute heat shock by ploidy (heat cohort) ====
+     ploidy acute n mean_level            values               chh
+1:  diploid    no 3     10.665 10.24 10.21 11.55 0.514 0.516 0.526
+2:  diploid   yes 2     11.052       11.02 11.09       0.524 0.527
+3: triploid    no 3     10.066  10.19 9.93 10.08 0.517 0.519 0.512
+4: triploid   yes 2      9.825         9.84 9.81       0.481 0.475
+                        Estimate Std. Error t value Pr(>|t|)
+(Intercept)              10.6648     0.2596 41.0774   0.0000
+ploidytriploid           -0.5992     0.3672 -1.6318   0.1538
+acuteyes                  0.3875     0.4105  0.9441   0.3816
+ploidytriploid:acuteyes  -0.6278     0.5805 -1.0813   0.3211
+
+==== the draft's DML against the slope on the level ====
+ploidy DML: 1038 (eligible: 1037 ); heat DML: 2351 (eligible: 2350 )
+                                      set     n share_in_top_tenth_of_slope share_in_top_three_tenths share_in_bottom_tenth
+1:                       draft ploidy DML  1037                       0.033                     0.261                 0.276
+2:                         draft heat DML  2350                       0.030                     0.249                 0.192
+3:            shared loci (in both lists)   200                       0.035                     0.315                 0.285
+4:    heat cohort ploidy, above 20 points 12006                       0.378                     0.692                 0.103
+5: control cohort ploidy, above 20 points  3318                       0.246                     0.598                 0.135
+200 random relabellings of ploidy within cohort: share of the list in the top tenth of slope: median 0.039  5th to 95th percentile 0.019 0.218 
+  by imbalance of the five high libraries between the two groups (|n in group a - 2.5|):
+   high_in_group_a relabellings median_n median_share_top_tenth
+1:               0            1   2699.0                  0.491
+2:               1           26    836.5                  0.123
+3:               2           72    681.5                  0.031
+4:               3           70    698.0                  0.031
+5:               4           27    773.0                  0.127
+6:               5            4   2055.5                  0.552
+level difference between the groups of the draft's contrasts: ploidy (T - D) -0.031 ; cohort (heat - control) 0.063 
+share of the eligible CpGs above 20 points with diploids higher in the heat cohort that lie in the top tenth / top two tenths of the control-cohort slope:
+  n = 10189 ; top tenth 0.299 ; top two tenths 0.511 ; top three 0.633 
+
+==== direction shares of the regroupings ====
+                  pair     n share_pair_higher
+ 1:  zr3534_1 zr3534_2 10733             0.587
+ 2:  zr3534_2 zr3534_6  8737             0.582
+ 3:  zr3534_1 zr3534_6  8591             0.578
+ 4:  zr3534_7 zr3534_9  7895             0.392
+ 5: zr3534_2 zr3534_10  7563             0.559
+ 6: zr3534_1 zr3534_10  7501             0.550
+ 7:  zr3534_1 zr3534_9  7403             0.470
+ 8:  zr3534_1 zr3534_7  7379             0.473
+ 9:  zr3534_1 zr3534_8  7349             0.556
+10:  zr3534_2 zr3534_7  7319             0.487
+11:  zr3534_2 zr3534_8  7234             0.557
+12:  zr3534_2 zr3534_9  6913             0.469
+13: zr3534_8 zr3534_10  6913             0.525
+14: zr3534_6 zr3534_10  6653             0.539
+15:  zr3534_6 zr3534_7  6559             0.465
+16:  zr3534_8 zr3534_9  6468             0.438
+17:  zr3534_6 zr3534_8  6403             0.555
+18:  zr3534_6 zr3534_9  6365             0.469
+19: zr3534_7 zr3534_10  6285             0.447
+20:  zr3534_7 zr3534_8  6238             0.446
+21: zr3534_9 zr3534_10  6124             0.428
+                  pair     n share_pair_higher
+observed pair (D11, D12): share with the pair higher 0.587 ; majority share of the other 20 regroupings: median 0.553  range 0.513 0.608 
+heat cohort 5 vs 5: observed majority share 0.853 ; other regroupings: median 0.646  95th percentile 0.891  max 0.899 ; regroupings with a majority share at least the observed: 38 of 252
+  majority share by the number of high libraries in the first group:
+   n_high_in_group regroupings median_majority   max
+1:               0          21           0.885 0.899
+2:               1         105           0.625 0.720
+3:               2         105           0.625 0.720
+4:               3          21           0.885 0.899
+
+==== NC_047565.1:35,030,701 and its neighbours among the tested CpGs ====
+row 311879 ; percent methylation:
+ zr3534_1  zr3534_2  zr3534_3  zr3534_4  zr3534_5  zr3534_6  zr3534_7  zr3534_8  zr3534_9 zr3534_10  zr3644_1  zr3644_2  zr3644_3  zr3644_4  zr3644_5  zr3644_6 zr3644_13 zr3644_14 zr3644_15 zr3644_16 zr3644_17 zr3644_18 
+     0.00      6.90      0.00      0.00      0.00     62.50     45.83     37.50     41.67     35.48      0.00      0.00      0.00      0.00      0.00      0.00      0.00      0.00      0.00      0.00      0.00      0.00 
+reads (methylated/all): 0/20 2/29 0/31 0/23 0/20 10/16 11/24 12/32 10/24 11/31 0/15 0/25 0/16 0/18 0/17 0/21 0/18 0/13 0/29 0/18 0/31 0/21 
+      start distance   DH   TH   DC   TC TH_range others_range
+1: 35029903     -798  1.0 31.6  5.0 10.2     9-50         0-32
+2: 35030107     -594  6.6 13.0  0.7  5.6     5-17         0-12
+3: 35030701        0  1.6 42.5  0.0  0.0    35-62          0-7
+4: 35030717       16  0.7 48.9  0.9  0.0    34-80          0-6
+5: 35031092      391  0.9  8.8 10.3 12.8     4-15         0-24
+6: 35031179      478 10.0 38.5 18.3 13.2    24-55         0-33
+7: 35031804     1103 12.0 36.8 29.9 49.6    26-48         0-68

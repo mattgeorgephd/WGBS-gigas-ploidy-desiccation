@@ -1,0 +1,17 @@
+seed,what,mean_own,mean_other_group,mean_between,rank_of_own_subset,n_subsets,best_other_subset,own_pairs_among_top,n_own_pairs,min_own_pair,max_other_pair
+1,"thinned, all tested CpGs",0.9162,0.8877,0.8868,1,252,0.9111,10,10,0.9109,0.9028
+1,"thinned, eligible CpGs",0.7674,0.6583,0.669,1,252,0.7556,10,10,0.7504,0.7266
+2,"thinned, all tested CpGs",0.9164,0.888,0.887,1,252,0.9112,10,10,0.9108,0.9032
+2,"thinned, eligible CpGs",0.7676,0.6596,0.6697,1,252,0.756,10,10,0.7505,0.7271
+3,"thinned, all tested CpGs",0.9163,0.8879,0.8869,1,252,0.911,10,10,0.9111,0.903
+3,"thinned, eligible CpGs",0.7672,0.6588,0.6691,1,252,0.7552,10,10,0.7505,0.7259
+4,"thinned, all tested CpGs",0.9163,0.888,0.887,1,252,0.9111,10,10,0.9109,0.903
+4,"thinned, eligible CpGs",0.7673,0.659,0.6694,1,252,0.7556,10,10,0.7506,0.7257
+5,"thinned, all tested CpGs",0.9162,0.888,0.8867,1,252,0.911,10,10,0.9108,0.9028
+5,"thinned, eligible CpGs",0.7669,0.6594,0.6687,1,252,0.7553,10,10,0.7508,0.726
+6,"thinned, all tested CpGs",0.9162,0.888,0.8868,1,252,0.9108,10,10,0.9107,0.9033
+6,"thinned, eligible CpGs",0.7672,0.6592,0.6692,1,252,0.7547,10,10,0.7509,0.7247
+7,"thinned, all tested CpGs",0.9164,0.8879,0.8868,1,252,0.911,10,10,0.9113,0.9034
+7,"thinned, eligible CpGs",0.7675,0.6591,0.669,1,252,0.7551,10,10,0.751,0.725
+8,"thinned, all tested CpGs",0.9163,0.8878,0.8869,1,252,0.911,10,10,0.9109,0.9034
+8,"thinned, eligible CpGs",0.7673,0.6593,0.6696,1,252,0.7556,10,10,0.7505,0.7258

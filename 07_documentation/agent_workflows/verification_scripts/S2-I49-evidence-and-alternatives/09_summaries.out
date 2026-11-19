@@ -1,0 +1,55 @@
+==== similarity at equal coverage (mean of 5 thinning seeds) and noise-corrected ====
+step 04 (observed) 
+  heat triploids among themselves                                mean 0.9290  range 0.9225 to 0.9374  (n = 10)
+  ten control libraries that are not high, among themselves      mean 0.9175  range 0.8803 to 0.9424  (n = 45)
+  seven control libraries 3, 4, 5, 6, 13, 16, 18 among themselves mean 0.9330  range 0.9262 to 0.9424  (n = 21)
+  heat triploids with the ten control libraries not high         mean 0.9148  range 0.9000 to 0.9241  (n = 50)
+  heat triploids with the seven control libraries                mean 0.9191  range 0.9134 to 0.9241  (n = 35)
+  D11 and D12 with the five heat triploids                       mean 0.9107  range 0.9071 to 0.9130  (n = 10)
+  D11 and D12 with the ten control libraries not high            mean 0.9037  range 0.8880 to 0.9109  (n = 20)
+  D11 with D12                                                   mean 0.9056  range 0.9056 to 0.9056  (n = 1)
+  control diploids among themselves                              mean 0.9116  range 0.8803 to 0.9339  (n = 15)
+  control triploids among themselves                             mean 0.9078  range 0.8613 to 0.9424  (n = 15)
+thinned to equal coverage 
+  heat triploids among themselves                                mean 0.9028  range 0.8977 to 0.9118  (n = 10)
+  ten control libraries that are not high, among themselves      mean 0.9007  range 0.8631 to 0.9258  (n = 45)
+  seven control libraries 3, 4, 5, 6, 13, 16, 18 among themselves mean 0.9164  range 0.9111 to 0.9258  (n = 21)
+  heat triploids with the ten control libraries not high         mean 0.8935  range 0.8777 to 0.9019  (n = 50)
+  heat triploids with the seven control libraries                mean 0.8980  range 0.8947 to 0.9019  (n = 35)
+  D11 and D12 with the five heat triploids                       mean 0.8865  range 0.8841 to 0.8885  (n = 10)
+  D11 and D12 with the ten control libraries not high            mean 0.8841  range 0.8673 to 0.8913  (n = 20)
+  D11 with D12                                                   mean 0.8832  range 0.8832 to 0.8832  (n = 1)
+  control diploids among themselves                              mean 0.8959  range 0.8631 to 0.9179  (n = 15)
+  control triploids among themselves                             mean 0.8911  range 0.8494 to 0.9238  (n = 15)
+noise-corrected 
+  heat triploids among themselves                                mean 0.9544  range 0.9486 to 0.9650  (n = 10)
+  ten control libraries that are not high, among themselves      mean 0.9479  range 0.9088 to 0.9734  (n = 45)
+  seven control libraries 3, 4, 5, 6, 13, 16, 18 among themselves mean 0.9652  range 0.9595 to 0.9734  (n = 21)
+  heat triploids with the ten control libraries not high         mean 0.9425  range 0.9271 to 0.9506  (n = 50)
+  heat triploids with the seven control libraries                mean 0.9475  range 0.9446 to 0.9506  (n = 35)
+  D11 and D12 with the five heat triploids                       mean 0.9343  range 0.9324 to 0.9359  (n = 10)
+  D11 and D12 with the ten control libraries not high            mean 0.9298  range 0.9159 to 0.9371  (n = 20)
+  D11 with D12                                                   mean 0.9279  range 0.9279 to 0.9279  (n = 1)
+  control diploids among themselves                              mean 0.9433  range 0.9088 to 0.9663  (n = 15)
+  control triploids among themselves                             mean 0.9359  range 0.8868 to 0.9733  (n = 15)
+mean correlation of each library that is not high with the other 16 that are not high (thinned to equal coverage), sorted:
+ zr3644_3 zr3644_16  zr3644_6 zr3644_13  zr3644_4  zr3644_5 zr3644_18  zr3534_8 zr3534_10  zr3534_9  zr3534_7  zr3534_6 zr3644_17  zr3644_2  zr3534_1  zr3534_2  zr3644_1 
+   0.9035    0.9030    0.9028    0.9020    0.9017    0.9003    0.8999    0.8961    0.8953    0.8947    0.8943    0.8943    0.8902    0.8860    0.8854    0.8842    0.8743 
+the same, noise-corrected:
+zr3644_13  zr3644_3  zr3644_6 zr3644_16  zr3644_4  zr3644_5 zr3644_18  zr3534_8  zr3534_7 zr3534_10  zr3534_9  zr3534_6 zr3644_17  zr3534_1  zr3534_2  zr3644_2  zr3644_1 
+   0.9514    0.9511    0.9509    0.9504    0.9494    0.9489    0.9486    0.9454    0.9447    0.9443    0.9441    0.9436    0.9345    0.9315    0.9306    0.9302    0.9241 
+
+==== level, PC1 and eligible mean among the 17 libraries that are not high ====
+  level vs PC1, all 22                                    Pearson 0.935  Spearman 0.726 (p 0.000)
+  level vs PC1, the 17 not high                           Pearson 0.577  Spearman 0.407 (p 0.106)
+  level vs PC1, the 17 without zr3644_1                   Pearson 0.220  Spearman 0.288 (p 0.278)
+  level vs eligible mean, all 22                          Pearson 0.970  Spearman 0.754 (p 0.000)
+  level vs eligible mean, the 17 not high                 Pearson 0.777  Spearman 0.466 (p 0.061)
+  level vs eligible mean, the 17 without zr3644_1         Pearson 0.568  Spearman 0.359 (p 0.173)
+  level vs mean over all tested CpGs, the 17 not high     Pearson 0.758  Spearman 0.475 (p 0.056)
+  level vs eligible mean, heat cohort                     Pearson 0.989  Spearman 0.915 (p 0.000)
+  level vs eligible mean, control cohort                  Pearson 0.951  Spearman 0.469 (p 0.127)
+eligible mean, 17 libraries: exact Wilcoxon heat 2 D vs 5 T p = 0.0952 ; control 6 D vs 4 T p = 0.3524 
+
+==== enumeration: both cohorts without the five, labels moved within cohort (4,410 regroupings) ====
+observed 1426 ; median 1318 ; largest other 2612 ; at or above observed 1549 of 4410 

@@ -1,6 +1,6 @@
 # Scripts of the verifying agents
 
-One folder per verification task of the workflow `audit-verification` (claims C1 to C8) and per code review (R1 to R6). Each folder holds the scripts the agent wrote and its small result tables, copied from the scratch directory of the audit session.
+One folder per verification task of the workflow `audit-verification` (claims C1 to C8), per code review (R1 to R6), and per check of the workflow `check-sensitivity-text` that wrote scripts (S1 to S5). Each folder holds the scripts the agent wrote and its small result tables, copied from the scratch directory of the audit session.
 
 **What these are.** A record of how each number in a **Verification** paragraph of [`issues.md`](../../../issues.md) was obtained. The agents were instructed to refute a statement of the issue log with code that shares nothing with the pipeline.
 
@@ -17,6 +17,7 @@ One folder per verification task of the workflow `audit-verification` (claims C1
 | `C6-coverage-filter-locus` | The coverage filter, the first-line loss, and the locus on NC_047563.1 | I-05, I-09, I-38 |
 | `C7-legacy-go-semantics` | What Figure 5, Figure 9 and Table 1 count | I-02, I-07, I-20, I-21, I-42, I-45 |
 | `C8-counts-and-correlations` | CpG counts, the genome total, the correlation range | I-16, I-44 |
+| `S2-I49-evidence-and-alternatives` | Issue I-49 as first written: numbers recomputed, and eight alternative explanations tested (sequencing depth, read depth and pair similarity, the level and pair similarity, other rules for the high libraries, the slope analysis, the draft's own hypothesis, bisulfite conversion, the ELISA) | I-49, I-01, I-06, I-08 |
 | `R1` to `R6` | Code reviews of the pipeline steps (in progress) | to be added |
 
 The agents' full reports are in [`../results/audit-verification.json`](../results/audit-verification.json).

@@ -1,0 +1,67 @@
+### I-49 (S1) The group differences in the WGBS data are carried by five libraries with a higher overall methylation level and by five mutually similar triploid libraries
+
+**Where.** Results 3.1 (Figure 1B: percent CpG methylation and its ploidy by heat interaction), Results 3.2 to 3.5 (every list of DML), Discussion 4.1 to 4.3 and Conclusions; the analyses of I-01, I-02, I-06 and I-07.
+
+**What was done.** `06_diagnostics/library_methylation_level.R` describes the 22 libraries one by one and the contrasts between groups of them. It tests nothing at single CpGs. Tables are in `06_diagnostics/library_methylation_level/`. Numbers are legacy mode (480,579 CpGs); corrected mode gives the same reading and is in the same tables. The script was written by the audit session and is being reviewed independently.
+
+**Evidence (computed).**
+
+1. *Libraries differ in overall methylation level, and that level is the main axis of variation among them.* Genome-wide CpG methylation (Bismark) runs from 9.46% to 11.61%. Five libraries lie between 11.02% and 11.61%; the other 17 lie between 9.46% and 10.41% (`library_level.csv`). Over the 65,480 eligible CpGs, the five average 49% to 54% methylation and the other 17 average 38% to 44%. The genome-wide level correlates 0.93 with the first principal component of the tested CpGs (step 04; 9.5% of the variance) and 0.97 with the mean over the eligible CpGs (`level_correlations.csv`). The five are:
+
+   | Library | Animal | Group | Genome-wide CpG methylation | Mean over eligible CpGs |
+   |---|---|---|---|---|
+   | zr3534_3 | D13 | diploid, heat | 11.55% | 54.2% |
+   | zr3534_4 | D19 (acute heat shock) | diploid, heat | 11.02% | 49.2% |
+   | zr3534_5 | D20 (acute heat shock) | diploid, heat | 11.09% | 49.7% |
+   | zr3644_14 | not recorded | triploid, control | 11.61% | 54.3% |
+   | zr3644_15 | not recorded | triploid, control | 11.04% | 49.7% |
+
+   They are found by a rule that ignores the group labels: the libraries above the largest gap in the sorted genome-wide values (10.41% to 11.02%). The same five lie above the largest gap in the mean over eligible CpGs.
+
+2. *Incomplete bisulfite conversion does not explain the level.* Non-CpG methylation, the usual measure of non-conversion, is 0.47% to 0.53% in all 22 libraries. A difference of 0.05 points in non-conversion moves CpG methylation by at most 0.05 points; the libraries differ by 1 to 2 points. Non-CpG methylation does rise with the level (Spearman 0.82 in each cohort), so whatever raises the level of a library also leaves a small trace outside CpG context. Whether the cause is biological (animals or tissue samples that are more methylated) or lies in library preparation cannot be decided from these data.
+
+3. *Figure 1B is these five libraries.* The ploidy by heat interaction in percent CpG methylation (F(1,18) = 14.49 in the draft; I-01) comes from the diploid heat group holding three of the five and the triploid control group holding the other two. Exact Wilcoxon tests of the genome-wide level (`level_group_tests.csv`): diploid against triploid inside the heat cohort p = 0.008 (every diploid above every triploid, by 0.02 points at the closest pair); inside the control cohort p = 0.009 in the opposite direction (five of the six triploids above every diploid); heat cohort against control cohort p = 0.82; diploid against triploid over all 22 libraries p = 0.90.
+
+4. *The contrasts between groups follow the level.* CpGs at which the read-pooled difference exceeds 20 points, by sign (`contrast_direction.csv`):
+
+   | Contrast | CpGs above 20 points | Triploid higher (or heat cohort higher) | Diploid higher (or control cohort higher) | Median difference at eligible CpGs |
+   |---|---|---|---|---|
+   | Ploidy, all 22 libraries (the draft's ploidy contrast) | 1,038 | 442 | 596 | -1.2 |
+   | Cohort, all 22 libraries (the draft's heat contrast) | 2,352 | 1,150 | 1,202 | +0.4 |
+   | Ploidy inside the heat cohort | 13,028 | 1,915 | 11,113 (85%) | -5.7 |
+   | Ploidy inside the control cohort | 3,349 | 2,688 (80%) | 661 | +3.6 |
+   | Interaction (heat-cohort ploidy difference minus control-cohort ploidy difference) | 23,503 | 2,876 | 20,627 (88%) | -8.9 |
+
+   Inside each cohort the differences run in one direction, the direction of the group that holds the high libraries, and the two cohorts run in opposite directions. Across CpGs the ploidy difference of the heat cohort and that of the control cohort correlate at -0.30 (Pearson, all tested CpGs; Spearman -0.25 over the eligible ones; `contrast_agreement.csv`). A consistent effect of triploidy would add a positive correlation. How strongly a CpG follows the level, estimated among the libraries of one cohort, predicts the ploidy difference of the other cohort: among the eligible CpGs in the top tenth of the slope estimated in the control cohort, 47% exceed 20 points with the diploids higher in the heat cohort and 1% with the triploids higher; in the middle tenths, 6% to 9% and 3% (`level_slope_deciles.csv`). The CpGs that such a contrast lists are the CpGs most sensitive to the level.
+
+5. *With the five libraries set aside* (exploratory: the rule that finds them ignores the labels, but setting them aside was decided after seeing the data). Number of CpGs above 20 points for the observed ploidy grouping, against every regrouping of the same libraries into groups of the same sizes (`relabelling_reference.csv`):
+
+   | Comparison | Observed | Median of all regroupings | Largest other regrouping | Regroupings at or above the observed |
+   |---|---|---|---|---|
+   | Heat cohort, all ten (5 diploid, 5 triploid) | 13,028 | 4,018.5 | 12,822 | 2 of 252 (the observed one and its mirror image) |
+   | Control cohort, all twelve (6, 6) | 3,349 | 2,912.5 | 4,749 | 242 of 924 |
+   | Heat cohort without its three high libraries (2, 5) | 10,732 | 7,234 | 8,737 | 1 of 21 |
+   | Control cohort without its two high libraries (6, 4) | 3,190 | 3,713 | 5,806 | 179 of 210 |
+   | Both cohorts without the five (8, 9), labels moved within cohort | 1,425 | 1,318 | 2,612 | 1,552 of 4,410 |
+
+   In the control cohort nothing separates diploids from triploids, with or without the two high libraries. In the heat cohort the two diploids with an ordinary level (D11, D12) still differ from the five triploids at more CpGs than any other pair of those seven libraries does; 1 of 21 is the smallest value this comparison can give. That remaining difference has no preferred direction (59% of the CpGs have the diploids higher, against 85% with all ten libraries). With the five set aside, the ploidy differences of the two cohorts are unrelated across CpGs (correlation -0.03; of 923 CpGs above 20 points in both, 407 have the same sign).
+
+6. *The five triploids of the heat cohort resemble each other more than any other five libraries of that cohort do.* Their ten pairwise correlations (0.923 to 0.937) are the ten highest of the 45 in the cohort; the other pairs lie between 0.875 and 0.913 (step 04, `library_correlation_10x_legacy.csv`). Their mean pairwise correlation, 0.929, is the highest of all 252 subsets of five (`pair_similarity.csv`). The five diploids are no more similar to each other (0.898) than to the triploids (0.898). The control cohort has no such structure: 0.912 among diploids, 0.908 among triploids, 0.909 between. A group of mutually similar libraries is what related animals (one cross), one processing batch, or a common biological state would each produce. In both projects the library numbers run diploids first and triploids second (zr3534_1 to 5 and 6 to 10; zr3644_1 to 6 and 13 to 18), so anything that follows the order of processing is aligned with ploidy.
+
+7. *The CpGs that pass the corrected test show one group apart.* See I-06, item 6, and I-08: at the CpG with the smallest p-value all five heat-cohort triploids are 35% to 62% methylated and the other 17 libraries are at 0% to 7%.
+
+**Why it matters.**
+- What the draft reads as ploidy-specific responses to heat at particular loci and in particular functions is, in these data, two things: (a) a difference in overall methylation level between groups of animals, which sits in five libraries, and (b) a set of five triploid libraries that resemble each other. Neither has been shown to be a property of ploidy or an effect of heat. The control cohort, whose diploids and triploids come from another source, shows the opposite of (a) and nothing of (b).
+- A contrast driven by level lists the CpGs most sensitive to level. This is why DML lie where methylation is intermediate and variable among animals, and why the functions assigned to them reflect which genes have such CpGs (I-41, I-03).
+- The ELISA of the heat experiment reports a difference of the same kind as (a): 4.0% 5-mC in heat-treated diploids against 2.2% in heat-treated triploids, and 1.7% in both control groups (`04_output/03_global_methylation/tables/group_summary.csv`; limits of the assay in I-10 and I-12). The two assays agree in direction for the heat-treated animals. They cannot confirm each other, for two reasons. The WGBS has no control animals from the heat experiment, and in the other experiment two of six untreated triploids are as high as the three high heat-treated diploids, so the WGBS shows that libraries with a high level occur without heat. And only six animals have both an ELISA value and a WGBS library (D11 to D13, T11 to T13): the two measurements correlate at 0.54 (Spearman, p = 0.30), with D13 the highest in both.
+
+**What would settle it.** WGBS of the control animals of the heat experiment (I-01, option 1). The pedigree of the animals (I-36). Variant calls from the alignments (I-08). Without new data: show the individual libraries in Figure 1B, state that the interaction rests on five libraries, and do not interpret lists of loci.
+
+**Needs from authors.**
+- Source and crosses of the diploid and the triploid animals of each experiment. Were the triploids of the heat experiment one family?
+- The order and batches in which the libraries were prepared.
+- Anything recorded about animals D13, D19 and D20 and about the animals behind zr3644_14 and zr3644_15: size, sex, gonad stage, condition, position in the sampling order.
+- Whether tissue or DNA of the control animals of the heat experiment (D01 to D08, T01 to T08) remains.
+
+---
+

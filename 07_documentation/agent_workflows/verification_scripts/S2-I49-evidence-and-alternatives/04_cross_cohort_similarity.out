@@ -1,0 +1,165 @@
+==== step 04 correlations (observed): each heat library with the control libraries ====
+       C1d   C2d   C3d   C4d   C5d   C6d  C13t C14t* C15t*  C16t  C17t  C18t
+H1d  0.889 0.895 0.908 0.909 0.905 0.910 0.911 0.864 0.904 0.909 0.901 0.909
+H2d  0.888 0.896 0.905 0.906 0.902 0.908 0.909 0.862 0.900 0.907 0.900 0.907
+H3d* 0.851 0.870 0.878 0.879 0.876 0.883 0.890 0.913 0.919 0.883 0.870 0.877
+H4d* 0.869 0.882 0.893 0.894 0.892 0.897 0.900 0.905 0.916 0.896 0.885 0.892
+H5d* 0.866 0.881 0.891 0.893 0.890 0.896 0.900 0.910 0.917 0.894 0.887 0.890
+H6t  0.900 0.904 0.916 0.920 0.916 0.922 0.921 0.876 0.913 0.918 0.910 0.918
+H7t  0.900 0.902 0.914 0.916 0.913 0.921 0.918 0.865 0.909 0.916 0.907 0.917
+H8t  0.901 0.908 0.921 0.921 0.919 0.924 0.923 0.870 0.913 0.922 0.912 0.923
+H9t  0.900 0.903 0.917 0.918 0.915 0.921 0.920 0.865 0.908 0.917 0.909 0.921
+H10t 0.901 0.904 0.919 0.920 0.916 0.923 0.919 0.871 0.912 0.920 0.911 0.921
+      library   ploidy  high level mean_r_with_12_control mean_r_with_10_control_not_high noise_corrected_with_10_control_not_high mean_r_with_other_heat
+ 1:  zr3534_1  diploid FALSE 10.24                 0.9011                          0.9045                                   0.9304                 0.9018
+ 2:  zr3534_2  diploid FALSE 10.21                 0.8992                          0.9029                                   0.9291                 0.9045
+ 3:  zr3534_3  diploid  TRUE 11.55                 0.8823                          0.8756                                   0.8996                 0.8905
+ 4:  zr3534_4  diploid  TRUE 11.02                 0.8935                          0.8900                                   0.9160                 0.8980
+ 5:  zr3534_5  diploid  TRUE 11.09                 0.8929                          0.8888                                   0.9139                 0.8957
+ 6:  zr3534_6 triploid FALSE 10.19                 0.9113                          0.9146                                   0.9426                 0.9115
+ 7:  zr3534_7 triploid FALSE  9.93                 0.9083                          0.9125                                   0.9424                 0.9098
+ 8:  zr3534_8 triploid FALSE 10.08                 0.9131                          0.9174                                   0.9438                 0.9132
+ 9:  zr3534_9 triploid FALSE  9.84                 0.9096                          0.9142                                   0.9415                 0.9110
+10: zr3534_10 triploid FALSE  9.81                 0.9114                          0.9154                                   0.9420                 0.9136
+for how many of the 10 control libraries that are not high is each heat triploid more similar than D11 and than D12 (step 04 values)?
+  zr3534_6 : above D11 at 10 of 10; above D12 at 10 of 10
+  zr3534_7 : above D11 at 10 of 10; above D12 at 10 of 10
+  zr3534_8 : above D11 at 10 of 10; above D12 at 10 of 10
+  zr3534_9 : above D11 at 10 of 10; above D12 at 10 of 10
+  zr3534_10 : above D11 at 10 of 10; above D12 at 10 of 10
+and for the two high control libraries (zr3644_14, zr3644_15)?
+  zr3534_6 : above D11 at 2 of 2; above D12 at 2 of 2
+  zr3534_7 : above D11 at 2 of 2; above D12 at 2 of 2
+  zr3534_8 : above D11 at 2 of 2; above D12 at 2 of 2
+  zr3534_9 : above D11 at 2 of 2; above D12 at 2 of 2
+  zr3534_10 : above D11 at 2 of 2; above D12 at 2 of 2
+
+==== thinning all 22 libraries to the minimum coverage of the 22 at each CpG ====
+common coverage: median 11  mean 15.37 
+seed 1: mean r heat T-T 0.9027; heat T with 10 control not high 0.8934; D11,D12 with 10 control not high 0.8840; D11-D12 0.8829; D11/D12 with heat T 0.8866; among 10 control not high 0.9007
+seed 2: mean r heat T-T 0.9029; heat T with 10 control not high 0.8935; D11,D12 with 10 control not high 0.8841; D11-D12 0.8833; D11/D12 with heat T 0.8864; among 10 control not high 0.9007
+seed 3: mean r heat T-T 0.9028; heat T with 10 control not high 0.8935; D11,D12 with 10 control not high 0.8841; D11-D12 0.8834; D11/D12 with heat T 0.8866; among 10 control not high 0.9006
+seed 4: mean r heat T-T 0.9029; heat T with 10 control not high 0.8936; D11,D12 with 10 control not high 0.8838; D11-D12 0.8830; D11/D12 with heat T 0.8863; among 10 control not high 0.9008
+seed 5: mean r heat T-T 0.9026; heat T with 10 control not high 0.8935; D11,D12 with 10 control not high 0.8843; D11-D12 0.8834; D11/D12 with heat T 0.8866; among 10 control not high 0.9007
+mean thinned correlation matrix (5 seeds), all 22 libraries (H = heat cohort, C = control cohort, d/t = ploidy, * = high):
+        H1d   H2d  H3d*  H4d*  H5d*   H6t   H7t   H8t   H9t  H10t   C1d   C2d   C3d   C4d   C5d   C6d  C13t C14t* C15t*  C16t  C17t  C18t
+H1d   1.000 0.883 0.860 0.869 0.862 0.888 0.884 0.887 0.887 0.888 0.868 0.876 0.891 0.890 0.886 0.890 0.890 0.850 0.883 0.889 0.881 0.888
+H2d   0.883 1.000 0.887 0.869 0.863 0.888 0.884 0.886 0.884 0.888 0.867 0.877 0.888 0.887 0.884 0.887 0.888 0.848 0.879 0.888 0.880 0.886
+H3d*  0.860 0.887 1.000 0.892 0.890 0.865 0.855 0.859 0.854 0.862 0.833 0.853 0.863 0.862 0.859 0.864 0.870 0.899 0.899 0.865 0.853 0.858
+H4d*  0.869 0.869 0.892 1.000 0.889 0.875 0.871 0.871 0.868 0.874 0.850 0.864 0.876 0.875 0.874 0.876 0.880 0.890 0.896 0.877 0.866 0.872
+H5d*  0.862 0.863 0.890 0.889 1.000 0.876 0.866 0.869 0.865 0.871 0.846 0.862 0.874 0.874 0.871 0.875 0.878 0.894 0.895 0.874 0.867 0.869
+H6t   0.888 0.888 0.865 0.875 0.876 1.000 0.898 0.899 0.898 0.900 0.878 0.884 0.899 0.900 0.896 0.900 0.899 0.861 0.892 0.897 0.889 0.896
+H7t   0.884 0.884 0.855 0.871 0.866 0.898 1.000 0.903 0.912 0.903 0.879 0.882 0.897 0.897 0.895 0.899 0.897 0.851 0.888 0.896 0.886 0.896
+H8t   0.887 0.886 0.859 0.871 0.869 0.899 0.903 1.000 0.905 0.908 0.878 0.886 0.902 0.899 0.897 0.900 0.899 0.852 0.889 0.900 0.889 0.899
+H9t   0.887 0.884 0.854 0.868 0.865 0.898 0.912 0.905 1.000 0.902 0.878 0.882 0.898 0.898 0.895 0.899 0.897 0.849 0.886 0.896 0.886 0.898
+H10t  0.888 0.888 0.862 0.874 0.871 0.900 0.903 0.908 0.902 1.000 0.878 0.882 0.900 0.899 0.896 0.900 0.896 0.855 0.889 0.898 0.889 0.898
+C1d   0.868 0.867 0.833 0.850 0.846 0.878 0.879 0.878 0.878 0.878 1.000 0.863 0.875 0.877 0.875 0.876 0.876 0.827 0.861 0.875 0.867 0.877
+C2d   0.876 0.877 0.853 0.864 0.862 0.884 0.882 0.886 0.882 0.882 0.863 1.000 0.897 0.890 0.890 0.897 0.892 0.848 0.878 0.893 0.897 0.888
+C3d   0.891 0.888 0.863 0.876 0.874 0.899 0.897 0.902 0.898 0.900 0.875 0.897 1.000 0.917 0.916 0.918 0.920 0.859 0.903 0.926 0.899 0.911
+C4d   0.890 0.887 0.862 0.875 0.874 0.900 0.897 0.899 0.898 0.899 0.877 0.890 0.917 1.000 0.914 0.915 0.914 0.859 0.907 0.918 0.897 0.914
+C5d   0.886 0.884 0.859 0.874 0.871 0.896 0.895 0.897 0.895 0.896 0.875 0.890 0.916 0.914 1.000 0.917 0.917 0.857 0.904 0.916 0.897 0.913
+C6d   0.890 0.887 0.864 0.876 0.875 0.900 0.899 0.900 0.899 0.900 0.876 0.897 0.918 0.915 0.917 1.000 0.914 0.861 0.906 0.919 0.899 0.914
+C13t  0.890 0.888 0.870 0.880 0.878 0.899 0.897 0.899 0.897 0.896 0.876 0.892 0.920 0.914 0.917 0.914 1.000 0.867 0.905 0.924 0.897 0.913
+C14t* 0.850 0.848 0.899 0.890 0.894 0.861 0.851 0.852 0.849 0.855 0.827 0.848 0.859 0.859 0.857 0.861 0.867 1.000 0.897 0.862 0.849 0.854
+C15t* 0.883 0.879 0.899 0.896 0.895 0.892 0.888 0.889 0.886 0.889 0.861 0.878 0.903 0.907 0.904 0.906 0.905 0.897 1.000 0.908 0.882 0.903
+C16t  0.889 0.888 0.865 0.877 0.874 0.897 0.896 0.900 0.896 0.898 0.875 0.893 0.926 0.918 0.916 0.919 0.924 0.862 0.908 1.000 0.898 0.915
+C17t  0.881 0.880 0.853 0.866 0.867 0.889 0.886 0.889 0.886 0.889 0.867 0.897 0.899 0.897 0.897 0.899 0.897 0.849 0.882 0.898 1.000 0.893
+C18t  0.888 0.886 0.858 0.872 0.869 0.896 0.896 0.899 0.898 0.898 0.877 0.888 0.911 0.914 0.913 0.914 0.913 0.854 0.903 0.915 0.893 1.000
+    library             cohort mean_r_with_heat_triploids mean_r_with_control_not_high mean_r_with_all_other_21
+ 1:    C16t control_experiment                     0.8975                       0.9093                   0.8969
+ 2:     C3d control_experiment                     0.8993                       0.9089                   0.8968
+ 3:    C13t control_experiment                     0.8976                       0.9074                   0.8968
+ 4:     C6d control_experiment                     0.8997                       0.9077                   0.8965
+ 5:     C4d control_experiment                     0.8986                       0.9063                   0.8954
+ 6:     C5d control_experiment                     0.8958                       0.9062                   0.8938
+ 7:    C18t control_experiment                     0.8974                       0.9041                   0.8930
+ 8:   C15t* control_experiment                     0.8886                       0.8957                   0.8928
+ 9:     H6t    heat_experiment                     0.8988                       0.8938                   0.8894
+10:     H8t    heat_experiment                     0.9039                       0.8949                   0.8894
+11:    H10t    heat_experiment                     0.9033                       0.8936                   0.8893
+12:     H7t    heat_experiment                     0.9040                       0.8925                   0.8876
+13:     H9t    heat_experiment                     0.9041                       0.8927                   0.8875
+14:    C17t control_experiment                     0.8877                       0.8938                   0.8838
+15:     H2d    heat_experiment                     0.8861                       0.8833                   0.8806
+16:     H1d    heat_experiment                     0.8869                       0.8849                   0.8805
+17:     C2d control_experiment                     0.8832                       0.8897                   0.8800
+18:    H4d*    heat_experiment                     0.8717                       0.8709                   0.8749
+19:    H5d*    heat_experiment                     0.8694                       0.8690                   0.8729
+20:     C1d control_experiment                     0.8782                       0.8736                   0.8669
+21:    H3d*    heat_experiment                     0.8588                       0.8581                   0.8667
+22:   C14t* control_experiment                     0.8537                       0.8543                   0.8614
+    library             cohort mean_r_with_heat_triploids mean_r_with_control_not_high mean_r_with_all_other_21
+heat triploids more similar (thinned) to each control library that is not high than D11 / D12 are? counts of 10:
+  zr3534_6 : 10 / 10 
+  zr3534_7 : 10 / 10 
+  zr3534_8 : 10 / 10 
+  zr3534_9 : 10 / 10 
+  zr3534_10 : 10 / 10 
+
+==== average-linkage clustering of the 22 libraries on 1 - r (thinned to equal coverage) ====
+k = 2 : H1d H2d H6t H7t H8t H9t H10t C1d C2d C3d C4d C5d C6d C13t C15t* C16t C17t C18t  |  H3d* H4d* H5d* C14t* 
+k = 3 : H1d H2d H6t H7t H8t H9t H10t C2d C3d C4d C5d C6d C13t C15t* C16t C17t C18t  |  H3d* H4d* H5d* C14t*  |  C1d 
+k = 4 : H1d H6t H7t H8t H9t H10t C2d C3d C4d C5d C6d C13t C15t* C16t C17t C18t  |  H2d  |  H3d* H4d* H5d* C14t*  |  C1d 
+k = 5 : H1d  |  H2d  |  H3d* H4d* H5d* C14t*  |  H6t H7t H8t H9t H10t C2d C3d C4d C5d C6d C13t C15t* C16t C17t C18t  |  C1d 
+k = 6 : H1d  |  H2d  |  H3d* H4d* H5d* C14t*  |  H6t H7t H8t H9t H10t C3d C4d C5d C6d C13t C15t* C16t C18t  |  C1d  |  C2d C17t 
+k = 7 : H1d  |  H2d  |  H3d* H5d* C14t*  |  H4d*  |  H6t H7t H8t H9t H10t C3d C4d C5d C6d C13t C15t* C16t C18t  |  C1d  |  C2d C17t 
+merge order (heights):
+    step height       merged
+ 1:    1 0.0742   C3d + C16t
+ 2:    2 0.0781   C13t + [1]
+ 3:    3 0.0828    C5d + C6d
+ 4:    4 0.0832    [2] + [3]
+ 5:    5 0.0843    C4d + [4]
+ 6:    6 0.0868   C18t + [5]
+ 7:    7 0.0882    H7t + H9t
+ 8:    8 0.0918   H8t + H10t
+ 9:    9 0.0950  C15t* + [6]
+10:   10 0.0968    [7] + [8]
+11:   11 0.1009 H3d* + C14t*
+12:   12 0.1012   H6t + [10]
+13:   13 0.1030   C2d + C17t
+14:   14 0.1032   [9] + [12]
+15:   15 0.1084  H5d* + [11]
+16:   16 0.1097  H4d* + [15]
+17:   17 0.1099  [13] + [14]
+18:   18 0.1134   H1d + [17]
+19:   19 0.1151   H2d + [18]
+20:   20 0.1265   C1d + [19]
+21:   21 0.1349  [16] + [20]
+    step height       merged
+
+==== the same on the noise-corrected correlations (no thinning) ====
+k = 2 : H1d H2d H6t H7t H8t H9t H10t C1d C2d C3d C4d C5d C6d C13t C15t* C16t C17t C18t  |  H3d* H4d* H5d* C14t* 
+k = 3 : H1d H2d H6t H7t H8t H9t H10t C2d C3d C4d C5d C6d C13t C15t* C16t C17t C18t  |  H3d* H4d* H5d* C14t*  |  C1d 
+k = 4 : H1d H6t H7t H8t H9t H10t C2d C3d C4d C5d C6d C13t C15t* C16t C17t C18t  |  H2d  |  H3d* H4d* H5d* C14t*  |  C1d 
+k = 5 : H1d  |  H2d  |  H3d* H4d* H5d* C14t*  |  H6t H7t H8t H9t H10t C2d C3d C4d C5d C6d C13t C15t* C16t C17t C18t  |  C1d 
+k = 6 : H1d  |  H2d  |  H3d* C14t*  |  H4d* H5d*  |  H6t H7t H8t H9t H10t C2d C3d C4d C5d C6d C13t C15t* C16t C17t C18t  |  C1d 
+k = 7 : H1d  |  H2d  |  H3d* C14t*  |  H4d*  |  H5d*  |  H6t H7t H8t H9t H10t C2d C3d C4d C5d C6d C13t C15t* C16t C17t C18t  |  C1d 
+noise-corrected correlations, heat libraries (rows) with control libraries (columns):
+       C1d   C2d   C3d   C4d   C5d   C6d  C13t C14t* C15t*  C16t  C17t  C18t
+H1d  0.916 0.918 0.937 0.936 0.933 0.935 0.937 0.889 0.928 0.934 0.923 0.935
+H2d  0.916 0.920 0.934 0.933 0.931 0.934 0.936 0.888 0.924 0.933 0.923 0.933
+H3d* 0.876 0.892 0.905 0.904 0.902 0.906 0.914 0.938 0.942 0.907 0.891 0.901
+H4d* 0.897 0.905 0.922 0.921 0.920 0.922 0.927 0.932 0.941 0.922 0.907 0.918
+H5d* 0.893 0.903 0.919 0.918 0.917 0.921 0.925 0.935 0.941 0.919 0.908 0.915
+H6t  0.930 0.929 0.947 0.949 0.946 0.949 0.950 0.904 0.940 0.946 0.934 0.946
+H7t  0.932 0.928 0.947 0.947 0.946 0.950 0.949 0.894 0.937 0.946 0.932 0.947
+H8t  0.929 0.931 0.951 0.948 0.947 0.950 0.950 0.895 0.937 0.949 0.934 0.949
+H9t  0.929 0.927 0.947 0.946 0.945 0.948 0.948 0.892 0.933 0.945 0.932 0.948
+H10t 0.930 0.927 0.948 0.948 0.945 0.949 0.946 0.897 0.936 0.946 0.934 0.947
+mean noise-corrected r: heat T-T 0.9544 ; heat T with the 10 control not high 0.9425 ; D11 and D12 with the 10 control not high 0.9298 ; D11 and D12 with heat T 0.9343 ; D11-D12 0.9279 ; among the 10 control not high 0.9479 
+
+==== (b)3 level removed with slopes estimated in the control cohort ====
+adjusted with control-cohort slopes: mean r T-T 0.9319 ; D-D 0.8976 ; between 0.8981 ; rank of the triploid subset among 252: 1 
+       H1d   H2d  H3d*  H4d*  H5d*   H6t   H7t   H8t   H9t  H10t
+H1d  1.000 0.908 0.882 0.894 0.888 0.914 0.909 0.914 0.912 0.913
+H2d  0.908 1.000 0.913 0.894 0.889 0.913 0.909 0.914 0.910 0.913
+H3d* 0.882 0.913 1.000 0.903 0.900 0.886 0.872 0.883 0.870 0.874
+H4d* 0.894 0.894 0.903 1.000 0.905 0.899 0.893 0.899 0.891 0.893
+H5d* 0.888 0.889 0.900 0.905 1.000 0.902 0.890 0.898 0.890 0.891
+H6t  0.914 0.913 0.886 0.899 0.902 1.000 0.925 0.928 0.925 0.927
+H7t  0.909 0.909 0.872 0.893 0.890 0.925 1.000 0.932 0.942 0.933
+H8t  0.914 0.914 0.883 0.899 0.898 0.928 0.932 1.000 0.935 0.937
+H9t  0.912 0.910 0.870 0.891 0.890 0.925 0.942 0.935 1.000 0.935
+H10t 0.913 0.913 0.874 0.893 0.891 0.927 0.933 0.937 0.935 1.000
+T-T pairs among the 10 most similar after adjustment: 10 

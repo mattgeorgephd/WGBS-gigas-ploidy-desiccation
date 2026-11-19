@@ -1,0 +1,19 @@
+==== Figure 1B interaction with and without the five ====
+after deduplication: 22 libraries F(1,18) = 16.16, p = 0.0008, contrast -1.501; 17 libraries F(1,13) = 6.79, p = 0.0218, contrast -0.569
+before deduplication: 22 libraries F(1,18) = 14.25, p = 0.0014, contrast -1.515; 17 libraries F(1,13) = 4.77, p = 0.0480, contrast -0.541
+each group without its highest and its lowest library (14 libraries): F(1, 10 ) = 16.37 , p = 0.00234 
+                  g median
+1:     diploid heat 11.018
+2:    triploid heat  9.930
+3:  diploid control 10.097
+4: triploid control 10.406
+interaction contrast in group medians (22 libraries): -1.397 
+
+==== permutation of the level among the 12 control libraries, by where the two largest values land ====
+                                          class permutations top_tenth_diploid_higher_median   min   max bottom_tenth_diploid_higher_median top_tenth_triploid_higher_median
+1:  zr3644_14 has one of the two largest values           88                           0.377 0.181 0.483                              0.104                            0.024
+2:                         zr3644_14 in between          329                           0.145 0.096 0.344                              0.154                            0.049
+3: zr3644_14 has one of the two smallest values           83                           0.122 0.086 0.216                              0.227                            0.055
+observed: top tenth 0.465 diploids higher, 0.011 triploids higher; bottom tenth 0.102 diploids higher
+permutations with top-tenth diploid-higher share above 0.30: 63 ; of these with zr3644_14 among the two largest values: 57 ; with zr3644_14 or zr3644_15 the largest: 53 
+Spearman between the level rank given to zr3644_14 and the top-tenth share: -0.68 

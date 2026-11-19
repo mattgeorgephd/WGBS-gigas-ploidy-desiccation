@@ -1,0 +1,94 @@
+part,mode,quantity,item,n_compared,n_different,largest_absolute_difference,largest_relative_difference,rule,result,note,methylkit_version
+"extract, all 22 libraries",legacy,rows imported: methRead against read_filtered_counts,library,22,0,0,0,identical,identical,the first line of the file is among the rows that methRead imported in 0 of 22 libraries,1.28.0
+"extract, all 22 libraries",legacy,rows with at least min_coverage reads,library,22,0,0,0,identical,identical,"",1.28.0
+"extract, all 22 libraries",legacy,rows kept: filterByCoverage against read_filtered_counts,library,22,0,0,0,identical,identical,"",1.28.0
+"extract, all 22 libraries",legacy,"rows kept, row by row: position, coverage, methylated and unmethylated count",row,1187098,0,,,identical,identical,"",1.28.0
+"extract, all 22 libraries",legacy,first line of the file among the rows kept,library,22,0,,,identical,identical,kept in 0 of 22 libraries,1.28.0
+"extract, all 22 libraries",legacy,median coverage of the rows kept,library,22,0,0,0,identical,identical,"",1.28.0
+"extract, all 22 libraries",legacy,scaling factor: largest median over own median,library,22,0,0,0,tolerance: relative difference at most 1e-12,identical,"5 distinct factors, from 1 to 1.30769",1.28.0
+"extract, all 22 libraries",legacy,"normalized coverage, numCs and numTs of every kept row: normalizeCoverage against scale_counts_like_methylkit",count,3561294,0,,,identical,identical,"14,719 values are exactly halfway between two whole numbers before rounding and 5,402 lie within 1e-09 of a half",1.28.0
+"extract, all 22 libraries",legacy,"united table, treatment vector of the ploidy contrast: CpGs",CpG,9642,0,,,identical,identical,"9,642 CpGs by methylKit, 9,642 by the helpers",1.28.0
+"extract, all 22 libraries",legacy,"united table, treatment vector of the ploidy contrast: order of the rows, end coordinate, strand, sample names, treatment vector",table,1,0,,,identical,identical,"",1.28.0
+"extract, all 22 libraries",legacy,"united table, treatment vector of the ploidy contrast: coverage, numCs and numTs of every library at every CpG",count,636372,0,0,0,identical,identical,"",1.28.0
+"extract, all 22 libraries",legacy,"united table, treatment vector of the heat contrast: CpGs",CpG,9642,0,,,identical,identical,"9,642 CpGs by methylKit, 9,642 by the helpers",1.28.0
+"extract, all 22 libraries",legacy,"united table, treatment vector of the heat contrast: order of the rows, end coordinate, strand, sample names, treatment vector",table,1,0,,,identical,identical,"",1.28.0
+"extract, all 22 libraries",legacy,"united table, treatment vector of the heat contrast: coverage, numCs and numTs of every library at every CpG",count,636372,0,0,0,identical,identical,"",1.28.0
+"extract, all 22 libraries",legacy,ploidy contrast: methylation difference (meth.diff),CpG,9642,0,0,0,tolerance: relative difference at most 1e-12,identical,"",1.28.0
+"extract, all 22 libraries",legacy,ploidy contrast: p-value,CpG,9642,0,0,0,tolerance: relative difference at most 1e-12,identical,"",1.28.0
+"extract, all 22 libraries",legacy,ploidy contrast: q-value (SLIM),CpG,9642,0,0,0,tolerance: relative difference at most 1e-12,identical,"",1.28.0
+"extract, all 22 libraries",legacy,ploidy contrast: DML at q < 0.01 and a difference above 20 points,DML,59,0,,,identical,identical,"",1.28.0
+"extract, all 22 libraries",legacy,"ploidy contrast: DML at q < 0.01, at each difference threshold of the sweep (5 to 50 points)",DML,712,0,,,identical,identical,DML by threshold: 5: 285; 10: 185; 15: 96; 20: 59; 25: 46; 30: 35; 35: 6; 40: 0; 45: 0; 50: 0,1.28.0
+"extract, all 22 libraries",legacy,heat contrast: methylation difference (meth.diff),CpG,9642,0,0,0,tolerance: relative difference at most 1e-12,identical,"",1.28.0
+"extract, all 22 libraries",legacy,heat contrast: p-value,CpG,9642,0,0,0,tolerance: relative difference at most 1e-12,identical,"",1.28.0
+"extract, all 22 libraries",legacy,heat contrast: q-value (SLIM),CpG,9642,0,0,0,tolerance: relative difference at most 1e-12,identical,"",1.28.0
+"extract, all 22 libraries",legacy,heat contrast: DML at q < 0.01 and a difference above 20 points,DML,75,0,,,identical,identical,"",1.28.0
+"extract, all 22 libraries",legacy,"heat contrast: DML at q < 0.01, at each difference threshold of the sweep (5 to 50 points)",DML,1663,0,,,identical,identical,DML by threshold: 5: 852; 10: 508; 15: 199; 20: 75; 25: 24; 30: 5; 35: 0; 40: 0; 45: 0; 50: 0,1.28.0
+"extract, all 22 libraries",legacy,loci in both DML lists,locus,41,0,,,identical,identical,"",1.28.0
+"extract, all 22 libraries",corrected,rows imported: methRead against read_filtered_counts,library,22,0,0,0,identical,identical,the first line of the file is among the rows that methRead imported in 8 of 22 libraries,1.28.0
+"extract, all 22 libraries",corrected,rows with at least min_coverage reads,library,22,0,0,0,identical,identical,"",1.28.0
+"extract, all 22 libraries",corrected,upper cutoff: the percentile that filterByCoverage computes against upper_coverage_cutoff,library,22,0,0,0,tolerance: relative difference at most 1e-12,identical,"14 cutoffs are whole numbers and 8 are not; 39 rows have exactly the number of reads of their cutoff, and both routes remove them",1.28.0
+"extract, all 22 libraries",corrected,rows removed by the upper filter,library,22,0,0,0,identical,identical,"2,628 rows removed in all",1.28.0
+"extract, all 22 libraries",corrected,rows kept: filterByCoverage against read_filtered_counts,library,22,0,0,0,identical,identical,"",1.28.0
+"extract, all 22 libraries",corrected,"rows kept, row by row: position, coverage, methylated and unmethylated count",row,1184471,0,,,identical,identical,"",1.28.0
+"extract, all 22 libraries",corrected,first line of the file among the rows kept,library,22,0,,,identical,identical,kept in 1 of 22 libraries,1.28.0
+"extract, all 22 libraries",corrected,median coverage of the rows kept,library,22,0,0,0,identical,identical,"",1.28.0
+"extract, all 22 libraries",corrected,scaling factor: largest median over own median,library,22,0,0,0,tolerance: relative difference at most 1e-12,identical,"5 distinct factors, from 1 to 1.30769",1.28.0
+"extract, all 22 libraries",corrected,"normalized coverage, numCs and numTs of every kept row: normalizeCoverage against scale_counts_like_methylkit",count,3553413,0,,,identical,identical,"16,807 values are exactly halfway between two whole numbers before rounding and 4,632 lie within 1e-09 of a half",1.28.0
+"extract, all 22 libraries",corrected,"united table, treatment vector of the ploidy contrast: CpGs",CpG,9201,0,,,identical,identical,"9,201 CpGs by methylKit, 9,201 by the helpers",1.28.0
+"extract, all 22 libraries",corrected,"united table, treatment vector of the ploidy contrast: order of the rows, end coordinate, strand, sample names, treatment vector",table,1,0,,,identical,identical,"",1.28.0
+"extract, all 22 libraries",corrected,"united table, treatment vector of the ploidy contrast: coverage, numCs and numTs of every library at every CpG",count,607266,0,0,0,identical,identical,"",1.28.0
+"extract, all 22 libraries",corrected,"united table, treatment vector of the heat contrast: CpGs",CpG,9201,0,,,identical,identical,"9,201 CpGs by methylKit, 9,201 by the helpers",1.28.0
+"extract, all 22 libraries",corrected,"united table, treatment vector of the heat contrast: order of the rows, end coordinate, strand, sample names, treatment vector",table,1,0,,,identical,identical,"",1.28.0
+"extract, all 22 libraries",corrected,"united table, treatment vector of the heat contrast: coverage, numCs and numTs of every library at every CpG",count,607266,0,0,0,identical,identical,"",1.28.0
+"extract, all 22 libraries",corrected,ploidy contrast: methylation difference (meth.diff),CpG,9201,0,0,0,tolerance: relative difference at most 1e-12,identical,"",1.28.0
+"extract, all 22 libraries",corrected,ploidy contrast: p-value,CpG,9201,0,0,0,tolerance: relative difference at most 1e-12,identical,"",1.28.0
+"extract, all 22 libraries",corrected,ploidy contrast: q-value (SLIM),CpG,9201,0,0,0,tolerance: relative difference at most 1e-12,identical,"",1.28.0
+"extract, all 22 libraries",corrected,ploidy contrast: DML at q < 0.01 and a difference above 20 points,DML,16,0,,,identical,identical,"",1.28.0
+"extract, all 22 libraries",corrected,"ploidy contrast: DML at q < 0.01, at each difference threshold of the sweep (5 to 50 points)",DML,419,0,,,identical,identical,DML by threshold: 5: 214; 10: 130; 15: 49; 20: 16; 25: 7; 30: 3; 35: 0; 40: 0; 45: 0; 50: 0,1.28.0
+"extract, all 22 libraries",corrected,heat contrast: methylation difference (meth.diff),CpG,9201,0,0,0,tolerance: relative difference at most 1e-12,identical,"",1.28.0
+"extract, all 22 libraries",corrected,heat contrast: p-value,CpG,9201,0,0,0,tolerance: relative difference at most 1e-12,identical,"",1.28.0
+"extract, all 22 libraries",corrected,heat contrast: q-value (SLIM),CpG,9201,0,0,0,tolerance: relative difference at most 1e-12,identical,"",1.28.0
+"extract, all 22 libraries",corrected,heat contrast: DML at q < 0.01 and a difference above 20 points,DML,41,0,,,identical,identical,"",1.28.0
+"extract, all 22 libraries",corrected,"heat contrast: DML at q < 0.01, at each difference threshold of the sweep (5 to 50 points)",DML,1416,0,,,identical,identical,DML by threshold: 5: 746; 10: 450; 15: 156; 20: 41; 25: 19; 30: 4; 35: 0; 40: 0; 45: 0; 50: 0,1.28.0
+"extract, all 22 libraries",corrected,loci in both DML lists,locus,7,0,,,identical,identical,"",1.28.0
+"extract, all 22 libraries",legacy,rows that methRead returns with header = FALSE and not with its default header = TRUE: the first line of the file and no other,library,22,0,,,identical,identical,"the first line has at least 2 reads, and so is imported, in 8 libraries; it has at least 10 reads in 1",1.28.0
+"extract, all 22 libraries",legacy,"rows kept by filterByCoverage as the legacy scripts called it (high.count, high.perc) against the call with no upper filter",library,22,0,,,identical,identical,the misspelled arguments are ignored,1.28.0
+tables of step 05 inside the regions,legacy,CpGs of united_cpg_legacy.csv.gz inside the regions against the united CpGs of the extract,CpG,9642,0,,,identical,identical,"9,642 CpGs of step 05 inside the regions, 9,642 united CpGs on the extract",1.28.0
+tables of step 05 inside the regions,legacy,counts of united_cpg_legacy.csv.gz at those CpGs against the lines of the coverage files scaled by scale_counts_like_methylkit,count,636372,0,,,identical,identical,"factor: largest median over own median, from the medians in library_filtering_legacy.csv",1.28.0
+tables of step 05 inside the regions,corrected,CpGs of united_cpg_corrected.csv.gz inside the regions against the united CpGs of the extract,CpG,9201,2112,,,recorded,recorded,"7,089 CpGs of step 05 inside the regions, 9,201 united CpGs on the extract; the cutoffs of the extract are not those of the full files, so the sets may differ",1.28.0
+tables of step 05 inside the regions,corrected,counts of united_cpg_corrected.csv.gz at those CpGs against the lines of the coverage files scaled by scale_counts_like_methylkit,count,467874,0,,,identical,identical,"factor: largest median over own median, from the medians in library_filtering_corrected.csv",1.28.0
+full libraries (6 of 22),legacy,rows imported: methRead against read_filtered_counts,library,6,0,0,0,identical,identical,the first line of the file is among the rows that methRead imported in 0 of 6 libraries,1.28.0
+full libraries (6 of 22),legacy,rows with at least min_coverage reads,library,6,0,0,0,identical,identical,"",1.28.0
+full libraries (6 of 22),legacy,rows kept: filterByCoverage against read_filtered_counts,library,6,0,0,0,identical,identical,"",1.28.0
+full libraries (6 of 22),legacy,"rows kept, row by row: position, coverage, methylated and unmethylated count",row,22885370,0,,,identical,identical,"",1.28.0
+full libraries (6 of 22),legacy,first line of the file among the rows kept,library,6,0,,,identical,identical,kept in 0 of 6 libraries,1.28.0
+full libraries (6 of 22),legacy,median coverage of the rows kept,library,6,0,0,0,identical,identical,"",1.28.0
+full libraries (6 of 22),legacy,"methylKit on the full file against library_filtering_legacy.csv of step 05: n_cpg_imported, n_cpg_min_coverage, n_removed_by_upper, n_cpg_kept, median_coverage, max_coverage_kept",value,36,0,0,0,identical,identical,"",1.28.0
+full libraries (6 of 22),corrected,rows imported: methRead against read_filtered_counts,library,6,0,0,0,identical,identical,the first line of the file is among the rows that methRead imported in 2 of 6 libraries,1.28.0
+full libraries (6 of 22),corrected,rows with at least min_coverage reads,library,6,0,0,0,identical,identical,"",1.28.0
+full libraries (6 of 22),corrected,upper cutoff: the percentile that filterByCoverage computes against upper_coverage_cutoff,library,6,0,0,0,tolerance: relative difference at most 1e-12,identical,"5 cutoffs are whole numbers and 1 are not; 1,334 rows have exactly the number of reads of their cutoff, and both routes remove them",1.28.0
+full libraries (6 of 22),corrected,rows removed by the upper filter,library,6,0,0,0,identical,identical,"55,342 rows removed in all",1.28.0
+full libraries (6 of 22),corrected,rows kept: filterByCoverage against read_filtered_counts,library,6,0,0,0,identical,identical,"",1.28.0
+full libraries (6 of 22),corrected,"rows kept, row by row: position, coverage, methylated and unmethylated count",row,22830029,0,,,identical,identical,"",1.28.0
+full libraries (6 of 22),corrected,first line of the file among the rows kept,library,6,0,,,identical,identical,kept in 1 of 6 libraries,1.28.0
+full libraries (6 of 22),corrected,median coverage of the rows kept,library,6,0,0,0,identical,identical,"",1.28.0
+full libraries (6 of 22),corrected,"methylKit on the full file against library_filtering_corrected.csv of step 05: n_cpg_imported, n_cpg_min_coverage, n_removed_by_upper, n_cpg_kept, median_coverage, max_coverage_kept",value,36,0,0,0,identical,identical,"",1.28.0
+full libraries (6 of 22),corrected,methylKit on the full file against library_filtering_corrected.csv of step 05: upper_cutoff,value,6,1,4.2632564145606e-14,6.42366263035597e-16,tolerance: relative difference at most 1e-12,within tolerance,the table holds 15 significant digits,1.28.0
+"synthetic counts (80 libraries of 30,001 CpGs)",,"normalized coverage, numCs and numTs: normalizeCoverage against scale_counts_like_methylkit",count,7200240,0,,,identical,identical,"exactly halfway between two whole numbers before rounding: 485,811 coverage values and 306,734 counts; within 1e-09 of a half and not a half: 8,616 values; 17 distinct scaling factors",1.28.0
+"synthetic counts (80 libraries of 30,001 CpGs)",,"numCs and numTs: normalizeCoverage against the order of operations of step 04, round(new_cov * nc / cv)",count,4800160,3459,,,recorded,recorded,a different order of operations is detected by these counts,1.28.0
+"order of operations of step 04, CpGs with at least 1 read in all libraries",legacy,numCs after scaling: round(new_cov * nc / cv) of step 04 against round(new_cov * (nc / cv)) of methylKit,count,1641706,18,,,recorded,recorded,"",1.28.0
+"order of operations of step 04, CpGs with at least 1 read in all libraries",legacy,numTs after scaling: the same two orders,count,1641706,7,,,recorded,recorded,"",1.28.0
+"order of operations of step 04, CpGs with at least 1 read in all libraries",legacy,"percent methylation of a CpG in a library, from the scaled counts",CpG in a library,1641706,25,1.55844155844156,,recorded,recorded,"largest absolute difference in percentage points; 74,623 CpGs",1.28.0
+"order of operations of step 04, CpGs with at least 1 read in all libraries",legacy,Pearson correlation between two libraries,pair of libraries,231,41,1.53131530500339e-06,,recorded,recorded,correlations range from 0.7958 to 0.9067,1.28.0
+"order of operations of step 04, CpGs with at least 10 reads in all libraries",legacy,numCs after scaling: round(new_cov * nc / cv) of step 04 against round(new_cov * (nc / cv)) of methylKit,count,212124,10,,,recorded,recorded,"",1.28.0
+"order of operations of step 04, CpGs with at least 10 reads in all libraries",legacy,numTs after scaling: the same two orders,count,212124,6,,,recorded,recorded,"",1.28.0
+"order of operations of step 04, CpGs with at least 10 reads in all libraries",legacy,"percent methylation of a CpG in a library, from the scaled counts",CpG in a library,212124,16,0.676328502415458,,recorded,recorded,"largest absolute difference in percentage points; 9,642 CpGs",1.28.0
+"order of operations of step 04, CpGs with at least 10 reads in all libraries",legacy,Pearson correlation between two libraries,pair of libraries,231,126,7.88758777503507e-06,,recorded,recorded,correlations range from 0.8565 to 0.9585,1.28.0
+"order of operations of step 04, CpGs with at least 1 read in all libraries",corrected,numCs after scaling: round(new_cov * nc / cv) of step 04 against round(new_cov * (nc / cv)) of methylKit,count,1631234,17,,,recorded,recorded,"",1.28.0
+"order of operations of step 04, CpGs with at least 1 read in all libraries",corrected,numTs after scaling: the same two orders,count,1631234,6,,,recorded,recorded,"",1.28.0
+"order of operations of step 04, CpGs with at least 1 read in all libraries",corrected,"percent methylation of a CpG in a library, from the scaled counts",CpG in a library,1631234,23,1.55844155844156,,recorded,recorded,"largest absolute difference in percentage points; 74,147 CpGs",1.28.0
+"order of operations of step 04, CpGs with at least 1 read in all libraries",corrected,Pearson correlation between two libraries,pair of libraries,231,41,1.51919883051299e-06,,recorded,recorded,correlations range from 0.7956 to 0.9062,1.28.0
+"order of operations of step 04, CpGs with at least 10 reads in all libraries",corrected,numCs after scaling: round(new_cov * nc / cv) of step 04 against round(new_cov * (nc / cv)) of methylKit,count,202422,10,,,recorded,recorded,"",1.28.0
+"order of operations of step 04, CpGs with at least 10 reads in all libraries",corrected,numTs after scaling: the same two orders,count,202422,5,,,recorded,recorded,"",1.28.0
+"order of operations of step 04, CpGs with at least 10 reads in all libraries",corrected,"percent methylation of a CpG in a library, from the scaled counts",CpG in a library,202422,15,0.676328502415458,,recorded,recorded,"largest absolute difference in percentage points; 9,201 CpGs",1.28.0
+"order of operations of step 04, CpGs with at least 10 reads in all libraries",corrected,Pearson correlation between two libraries,pair of libraries,231,126,8.31976626947117e-06,,recorded,recorded,correlations range from 0.8610 to 0.9611,1.28.0

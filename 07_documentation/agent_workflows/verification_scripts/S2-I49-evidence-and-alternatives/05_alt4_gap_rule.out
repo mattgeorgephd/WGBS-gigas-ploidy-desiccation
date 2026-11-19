@@ -1,0 +1,175 @@
+
+---- genome-wide level, 22 libraries (n = 22 ) ----
+largest gap: 0.607 between zr3644_16 and zr3534_4 ; second: 0.464 ; third: 0.353 
+  above the largest gap: zr3534_4 zr3644_15 zr3534_5 zr3534_3 zr3644_14 
+  above the second largest gap: zr3534_3 zr3644_14 
+k-means, k = 2 (exact optimum): upper cluster = zr3534_4 zr3644_15 zr3534_5 zr3534_3 zr3644_14 
+k-means, k = 3 (exact optimum): middle = zr3644_2 zr3534_8 zr3644_3 zr3644_17 zr3534_6 zr3644_6 zr3534_2 zr3644_5 zr3534_1 zr3644_13 zr3644_18 zr3644_16 ; upper = zr3534_4 zr3644_15 zr3534_5 zr3534_3 zr3644_14 
+  share of variance between clusters: k = 2 0.805 ; k = 3 0.902 
+above the 75th percentile ( 10.408 ): zr3534_3 zr3534_4 zr3534_5 zr3644_14 zr3644_15 zr3644_16 
+above the Tukey fence Q3 + 1.5 IQR ( 10.957 ): zr3534_3 zr3534_4 zr3534_5 zr3644_14 zr3644_15 
+above median + 3 MAD ( 11.095 ): zr3534_3 zr3644_14 
+Gaussian mixture BIC (lower is better): 1 component 41.9 ; 2 equal variance 35.6 ; 2 unequal variance 38.6 ; 3 equal variance 40.1 
+  2 components, equal variance: means 10.1 11.26 ; libraries with posterior > 0.5 in the upper one: zr3534_3 zr3534_4 zr3534_5 zr3644_14 zr3644_15 
+  2 components, unequal variance: means 10.1 11.26  sd 0.23 0.27 ; upper: zr3534_3 zr3534_4 zr3534_5 zr3644_14 zr3644_15 
+  3 components, equal variance: means 9.52 10.14 11.26 ; middle: zr3534_1 zr3534_2 zr3534_6 zr3534_7 zr3534_8 zr3534_9 zr3534_10 zr3644_2 zr3644_3 zr3644_4 zr3644_5 zr3644_6 zr3644_13 zr3644_16 zr3644_17 zr3644_18 ; upper: zr3534_3 zr3534_4 zr3534_5 zr3644_14 zr3644_15 
+
+---- mean over eligible CpGs, 22 libraries (n = 22 ) ----
+largest gap: 5.071 between zr3644_17 and zr3534_4 ; second: 4.557 ; third: 2.406 
+  above the largest gap: zr3534_4 zr3644_15 zr3534_5 zr3534_3 zr3644_14 
+  above the second largest gap: zr3534_3 zr3644_14 
+k-means, k = 2 (exact optimum): upper cluster = zr3534_4 zr3644_15 zr3534_5 zr3534_3 zr3644_14 
+k-means, k = 3 (exact optimum): middle = zr3534_8 zr3534_10 zr3644_18 zr3644_5 zr3534_6 zr3534_1 zr3534_2 zr3644_6 zr3644_4 zr3644_3 zr3644_16 zr3644_13 zr3644_2 zr3644_17 ; upper = zr3534_4 zr3644_15 zr3534_5 zr3534_3 zr3644_14 
+  share of variance between clusters: k = 2 0.816 ; k = 3 0.896 
+above the 75th percentile ( 44.112 ): zr3534_3 zr3534_4 zr3534_5 zr3644_14 zr3644_15 zr3644_17 
+above the Tukey fence Q3 + 1.5 IQR ( 46.962 ): zr3534_3 zr3534_4 zr3534_5 zr3644_14 zr3644_15 
+above median + 3 MAD ( 47.637 ): zr3534_3 zr3534_4 zr3534_5 zr3644_14 zr3644_15 
+Gaussian mixture BIC (lower is better): 1 component 131.4 ; 2 equal variance 123.9 ; 2 unequal variance 124.8 ; 3 equal variance 126 
+  2 components, equal variance: means 42.45 51.44 ; libraries with posterior > 0.5 in the upper one: zr3534_3 zr3534_4 zr3534_5 zr3644_14 zr3644_15 
+  2 components, unequal variance: means 43.06 46.22  sd 0.78 5.67 ; upper: zr3534_3 zr3534_4 zr3534_5 zr3534_7 zr3534_9 zr3644_1 zr3644_14 zr3644_15 
+  3 components, equal variance: means 42.45 49.54 54.28 ; middle: zr3534_4 zr3534_5 zr3644_15 ; upper: zr3534_3 zr3644_14 
+
+---- genome-wide level, heat cohort alone (n = 10 ) ----
+largest gap: 0.783 between zr3534_1 and zr3534_4 ; second: 0.464 ; third: 0.152 
+  above the largest gap: zr3534_4 zr3534_5 zr3534_3 
+  above the second largest gap: zr3534_3 
+k-means, k = 2 (exact optimum): upper cluster = zr3534_4 zr3534_5 zr3534_3 
+k-means, k = 3 (exact optimum): middle = zr3534_8 zr3534_6 zr3534_2 zr3534_1 ; upper = zr3534_4 zr3534_5 zr3534_3 
+  share of variance between clusters: k = 2 0.889 ; k = 3 0.942 
+above the 75th percentile ( 10.822 ): zr3534_3 zr3534_4 zr3534_5 
+above the Tukey fence Q3 + 1.5 IQR ( 12.104 ):  
+above median + 3 MAD ( 11.594 ):  
+Gaussian mixture BIC (lower is better): 1 component 21.8 ; 2 equal variance 16.6 ; 2 unequal variance 18.4 ; 3 equal variance 18.9 
+  2 components, equal variance: means 10.04 11.22 ; libraries with posterior > 0.5 in the upper one: zr3534_3 zr3534_4 zr3534_5 
+  2 components, unequal variance: means 10.04 11.22  sd 0.17 0.24 ; upper: zr3534_3 zr3534_4 zr3534_5 
+  3 components, equal variance: means 10.04 11.05 11.55 ; middle: zr3534_4 zr3534_5 ; upper: zr3534_3 
+
+---- genome-wide level, control cohort alone (12) (n = 12 ) ----
+largest gap: 0.625 between zr3644_16 and zr3644_15 ; second: 0.579 ; third: 0.487 
+  above the largest gap: zr3644_15 zr3644_14 
+  above the second largest gap: zr3644_14 
+k-means, k = 2 (exact optimum): upper cluster = zr3644_15 zr3644_14 
+k-means, k = 3 (exact optimum): middle = zr3644_4 zr3644_2 zr3644_3 zr3644_17 zr3644_6 zr3644_5 zr3644_13 zr3644_18 zr3644_16 ; upper = zr3644_15 zr3644_14 
+  share of variance between clusters: k = 2 0.733 ; k = 3 0.889 
+above the 75th percentile ( 10.404 ): zr3644_14 zr3644_15 zr3644_16 
+above the Tukey fence Q3 + 1.5 IQR ( 10.815 ): zr3644_14 zr3644_15 
+above median + 3 MAD ( 11.046 ): zr3644_14 
+Gaussian mixture BIC (lower is better): 1 component 23.3 ; 2 equal variance 23.1 ; 2 unequal variance 22.7 ; 3 equal variance 24.1 
+  2 components, equal variance: means 10.14 11.33 ; libraries with posterior > 0.5 in the upper one: zr3644_14 zr3644_15 
+  2 components, unequal variance: means 10.21 10.55  sd 0.14 0.8 ; upper: zr3644_1 zr3644_14 zr3644_15 
+  3 components, equal variance: means 9.46 10.21 11.33 ; middle: zr3644_2 zr3644_3 zr3644_4 zr3644_5 zr3644_6 zr3644_13 zr3644_16 zr3644_17 zr3644_18 ; upper: zr3644_14 zr3644_15 
+
+==== the 24 libraries of project zr3644 (Bismark summary report) ====
+          lib in_study  level   chh read_pairs_M
+ 1:  zr3644_1     TRUE  9.460 0.488         50.6
+ 2: zr3644_12    FALSE  9.647 0.471         46.6
+ 3:  zr3644_4     TRUE  9.947 0.473         49.1
+ 4:  zr3644_2     TRUE 10.030 0.497         54.7
+ 5: zr3644_19    FALSE 10.108 0.512         48.3
+ 6: zr3644_23    FALSE 10.118 0.514         39.7
+ 7:  zr3644_3     TRUE 10.164 0.497         38.7
+ 8: zr3644_20    FALSE 10.174 0.513         53.1
+ 9: zr3644_17     TRUE 10.181 0.518         57.1
+10: zr3644_24    FALSE 10.202 0.511         52.0
+11:  zr3644_6     TRUE 10.204 0.508         52.9
+12: zr3644_22    FALSE 10.211 0.516         46.7
+13:  zr3644_5     TRUE 10.234 0.502         43.9
+14: zr3644_21    FALSE 10.293 0.502         50.2
+15: zr3644_13     TRUE 10.300 0.509         53.0
+16: zr3644_11    FALSE 10.368 0.513         55.7
+17:  zr3644_7    FALSE 10.385 0.503         81.0
+18: zr3644_18     TRUE 10.402 0.514         50.7
+19: zr3644_16     TRUE 10.410 0.506         50.1
+20:  zr3644_8    FALSE 10.438 0.525         42.1
+21: zr3644_10    FALSE 10.613 0.511         51.6
+22:  zr3644_9    FALSE 10.697 0.508         47.3
+23: zr3644_15     TRUE 11.036 0.519         58.1
+24: zr3644_14     TRUE 11.615 0.520         36.2
+          lib in_study  level   chh read_pairs_M
+agreement with bismark_by_library.csv for the 12 libraries of the study: max abs difference 0 
+
+---- genome-wide level, all 24 libraries of project zr3644 (n = 24 ) ----
+largest gap: 0.579 between zr3644_15 and zr3644_14 ; second: 0.339 ; third: 0.3 
+  above the largest gap: zr3644_14 
+  above the second largest gap: zr3644_15 zr3644_14 
+k-means, k = 2 (exact optimum): upper cluster = zr3644_15 zr3644_14 
+k-means, k = 3 (exact optimum): middle = zr3644_2 zr3644_19 zr3644_23 zr3644_3 zr3644_20 zr3644_17 zr3644_24 zr3644_6 zr3644_22 zr3644_5 zr3644_21 zr3644_13 zr3644_11 zr3644_7 zr3644_18 zr3644_16 zr3644_8 zr3644_10 zr3644_9 ; upper = zr3644_15 zr3644_14 
+  share of variance between clusters: k = 2 0.564 ; k = 3 0.798 
+above the 75th percentile ( 10.404 ): zr3644_16 zr3644_8 zr3644_10 zr3644_9 zr3644_15 zr3644_14 
+above the Tukey fence Q3 + 1.5 IQR ( 10.782 ): zr3644_15 zr3644_14 
+above median + 3 MAD ( 10.907 ): zr3644_15 zr3644_14 
+Gaussian mixture BIC (lower is better): 1 component 31.8 ; 2 equal variance 31.5 ; 2 unequal variance 29.4 ; 3 equal variance 33.3 
+  2 components, equal variance: means 10.22 11.36 ; libraries with posterior > 0.5 in the upper one: zr3644_15 zr3644_14 
+  2 components, unequal variance: means 10.24 10.4  sd 0.12 0.63 ; upper: zr3644_1 zr3644_12 zr3644_4 zr3644_10 zr3644_9 zr3644_15 zr3644_14 
+  3 components, equal variance: means 9.57 10.27 11.33 ; middle: zr3644_4 zr3644_2 zr3644_19 zr3644_23 zr3644_3 zr3644_20 zr3644_17 zr3644_24 zr3644_6 zr3644_22 zr3644_5 zr3644_21 zr3644_13 zr3644_11 zr3644_7 zr3644_18 zr3644_16 zr3644_8 zr3644_10 zr3644_9 ; upper: zr3644_15 zr3644_14 
+values of the 12 libraries of the project that are not in the study: 9.65 10.11 10.12 10.17 10.2 10.21 10.29 10.37 10.38 10.44 10.61 10.7 
+libraries of the project between 10.41 and 11.02: zr3644_8 10.44 zr3644_10 10.61 zr3644_9 10.7 
+
+---- heat cohort (10) plus all 24 libraries of project zr3644 (n = 34 ) ----
+largest gap: 0.464 between zr3534_5 and zr3534_3 ; second: 0.321 ; third: 0.187 
+  above the largest gap: zr3534_3 zr3644_14 
+  above the second largest gap: zr3534_4 zr3644_15 zr3534_5 zr3534_3 zr3644_14 
+k-means, k = 2 (exact optimum): upper cluster = zr3644_9 zr3534_4 zr3644_15 zr3534_5 zr3534_3 zr3644_14 
+k-means, k = 3 (exact optimum): middle = zr3534_8 zr3644_19 zr3644_23 zr3644_3 zr3644_20 zr3644_17 zr3534_6 zr3644_24 zr3644_6 zr3534_2 zr3644_22 zr3644_5 zr3534_1 zr3644_21 zr3644_13 zr3644_11 zr3644_7 zr3644_18 zr3644_16 zr3644_8 zr3644_10 zr3644_9 ; upper = zr3534_4 zr3644_15 zr3534_5 zr3534_3 zr3644_14 
+  share of variance between clusters: k = 2 0.693 ; k = 3 0.85 
+above the 75th percentile ( 10.408 ): zr3534_3 zr3534_4 zr3534_5 zr3644_16 zr3644_8 zr3644_10 zr3644_9 zr3644_15 zr3644_14 
+above the Tukey fence Q3 + 1.5 IQR ( 10.855 ): zr3534_3 zr3534_4 zr3534_5 zr3644_15 zr3644_14 
+above median + 3 MAD ( 10.999 ): zr3534_3 zr3534_4 zr3534_5 zr3644_15 zr3644_14 
+Gaussian mixture BIC (lower is better): 1 component 51.6 ; 2 equal variance 46.8 ; 2 unequal variance 48.3 ; 3 equal variance 52.1 
+  2 components, equal variance: means 10.17 11.24 ; libraries with posterior > 0.5 in the upper one: zr3534_3 zr3534_4 zr3534_5 zr3644_15 zr3644_14 
+  2 components, unequal variance: means 10.21 10.44  sd 0.12 0.62 ; upper: zr3534_3 zr3534_4 zr3534_5 zr3534_7 zr3534_9 zr3534_10 zr3644_1 zr3644_12 zr3644_4 zr3644_8 zr3644_10 zr3644_9 zr3644_15 zr3644_14 
+  3 components, equal variance: means 9.66 10.22 11.25 ; middle: zr3534_1 zr3534_2 zr3534_6 zr3534_7 zr3534_8 zr3534_9 zr3534_10 zr3644_4 zr3644_2 zr3644_19 zr3644_23 zr3644_3 zr3644_20 zr3644_17 zr3644_24 zr3644_6 zr3644_22 zr3644_5 zr3644_21 zr3644_13 zr3644_11 zr3644_7 zr3644_18 zr3644_16 zr3644_8 zr3644_10 zr3644_9 ; upper: zr3534_3 zr3534_4 zr3534_5 zr3644_15 zr3644_14 
+
+other rows of the summary report (different projects; context only):
+            lib level
+ 1:        0501 13.60
+ 2:        0502 12.74
+ 3:        0503 14.19
+ 4:        3501 12.66
+ 5:        3502 12.81
+ 6:        3503 13.14
+ 7:        5201 12.22
+ 8:        5202 11.79
+ 9:        5203 13.56
+10:        5901 13.35
+11:        5902 12.42
+12:        5903 12.35
+13:  zrtg3616_1 10.78
+14:  zrtg3616_2 10.73
+15:  zrtg3616_3 11.05
+16:  zrtg3616_4 11.12
+17:  zrtg3616_5 10.56
+18:  zrtg3616_6 10.86
+19:  zrtg3616_7 11.46
+20:  zrtg3616_8 10.97
+21: zrtg3644_10 10.63
+22: zrtg3644_11 10.38
+23: zrtg3644_12  9.66
+24: zrtg3644_13 10.31
+25: zrtg3644_14 11.63
+26: zrtg3644_15 11.05
+27: zrtg3644_16 10.43
+28: zrtg3644_17 10.19
+29: zrtg3644_18 10.42
+30: zrtg3644_19 10.12
+31:  zrtg3644_1  9.47
+32: zrtg3644_20 10.18
+33: zrtg3644_21 10.31
+34: zrtg3644_22 10.22
+35: zrtg3644_23 10.13
+36: zrtg3644_24 10.21
+37:  zrtg3644_2 10.04
+38:  zrtg3644_3 10.18
+39:  zrtg3644_4  9.96
+40:  zrtg3644_5 10.25
+41:  zrtg3644_6 10.22
+42:  zrtg3644_7 10.40
+43:  zrtg3644_8 10.45
+44:  zrtg3644_9 10.71
+            lib level
+
+==== how unusual is a largest gap of this size under a unimodal distribution with a tail? ====
+normal(mean, sd of the 22): 0.1799 0.0944 0.5638 
+shifted log-normal fitted to the 22: 0.3528 0.0238 0.6766 
+observed largest gap 0.607 ; ratio to the second largest 1.31 
+Shapiro-Wilk on the 22 levels: p = 0.011 ; on log(level): p = 0.0196 

@@ -2,7 +2,7 @@
 
 How to continue this work from the repository alone, for a new session or a person. The working session rewrites the "State" and "In flight" sections whenever it pushes.
 
-Last updated: 2026-11-19 09:02 UTC.
+Last updated: 2026-11-19 09:28 UTC.
 
 ## If the session ends or its machine is replaced
 
@@ -62,7 +62,7 @@ Agent runs (scripts and partial results in `07_documentation/agent_workflows/`).
 | `build-dml-sensitivity` | finished: build, review, fix. The script is final (1,110 lines); its documentation is in `06_diagnostics/README.md` | nothing | Not needed. |
 | `check-issues-integration` (launched 06:08 UTC) | finished and applied: all ten checks (reports C1 to C8 and the cross-file check), about 190 corrections to `issues.md`, the manuscript values map, README files and the plan; two wrong numbers, two corrections rated high | nothing | Not needed. |
 | `build-diagnostics` (launched 06:20 UTC) | build stage of `feature_odds_matched`, `locus_nc047563` and `legacy_reader_mechanism` (all reproduce their targets; see the notes below this table) | build of `coverage_filter_variants` and `check_methylkit_equivalence`; review and fix of all five | Files the agents have written so far are in git as snapshots; run the script again for the rest. |
-| `check-sensitivity-text` (launched 08:33 UTC) | nothing yet | five checks: I-06 numbers and reading; I-49 numbers and alternative explanations; code review of `library_methylation_level.R`; cross-file consistency of the fourth pass; literature (citations of I-06 and sources for I-49) | Run `agent_workflows/scripts/check-sensitivity-text.js` again; it is read-only. |
+| `check-sensitivity-text` (launched 08:33 UTC) | S2 (I-49: numbers reproduced; one reading withdrawn, eleven narrowed; I-49 rewritten, with changes to I-01, I-06, I-08, the README and plan decision 16; the checker's scripts are in `agent_workflows/verification_scripts/S2-I49-evidence-and-alternatives/`) | S1 (I-06 numbers and reading), S3 (code review of `library_methylation_level.R`), S4 (cross-file consistency of the fourth pass), S5 (literature) | Run `agent_workflows/scripts/check-sensitivity-text.js` again with `resumeFromRunId`; it is read-only. |
 | Full run of `06_diagnostics/dml_sensitivity.R` (not an agent run; 22 model fits) | finished 08:03 UTC; outputs committed | nothing | To regenerate: `WGBS_CORES=2 Rscript 06_diagnostics/dml_sensitivity.R` from the repository root; about three hours on three cores when no fit is cached (the cache under `06_diagnostics/dml_sensitivity/cache/` is on the machine only). |
 
 Build-stage reports of `build-diagnostics` (not yet reviewed; carry into `issues.md` after the review and fix stages):
