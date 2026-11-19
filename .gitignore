@@ -10,6 +10,8 @@
 
 # --- Large regenerable intermediates written by pipeline steps ---
 04_output/*/cache/
+06_diagnostics/*/cache/
+06_diagnostics/*/test_subset/
 
 # --- renv library (the lockfile is tracked, the installed packages are not) ---
 renv/library/
