@@ -39,7 +39,7 @@
 suppressPackageStartupMessages(library(here))
 source(here("run_config.R"))
 invisible(lapply(list.files(here("02_R_functions"), pattern = "\\.R$", full.names = TRUE), source))
-load_packages(c("data.table", "ggplot2", "patchwork", "Biostrings"))
+load_packages(c("data.table", "ggplot2", "patchwork", "Biostrings", "GenomicRanges"))
 
 step <- "04_cpg_coverage"
 t0 <- start_step(step, "CpG coverage, methylation distributions, library similarity")
@@ -121,7 +121,8 @@ log_msg("reference: %d sequences, %.1f Mb, %d CpG sites", length(genome), sum(as
 rm(genome); gc(verbose = FALSE)
 
 # =============================================================================
-# 3. CpG counts by coverage threshold, sample set, and mode
+# 3. CpG counts by coverage threshold, sample set, and mode; the same CpG sets
+#    by genome feature
 # =============================================================================
 # A CpG counts for a library when its coverage is at least x and, in corrected
 # mode, below that library's upper cutoff. In legacy mode the CpG on the first
@@ -132,19 +133,65 @@ covered <- function(j, x, mode) {
   if (first_line_lost(mode)) ok[first_row[j]] <- FALSE
   ok
 }
-count_rows <- list()
+
+# Which feature tracks each CpG overlaps: one logical vector per track, the
+# `bedtools intersect -u` of the legacy notebooks.
+position <- key_to_position(universe, chr_levels)
+cpg_gr <- cpg_ranges(position$chr, position$start)
+tracks <- names(feature_track_files())
+in_track <- lapply(setNames(tracks, tracks), function(t) overlaps_track(cpg_gr, read_feature_track(t)))
+rm(position, cpg_gr); gc(verbose = FALSE)
+
+# Overlap counts of one CpG set, and the two ways the draft turned such counts
+# into percentages. Both divide the count of a track by the sum of the counts of
+# eight tracks, so a CpG that lies in two tracks is counted twice (issue I-18).
+# Results 3.3 takes the eight counts as they are (legacy_share_pct, as in step
+# 07). Results 3.1 first adds the count of the exon track to that of the UTR
+# track and calls the sum "exon UTR", which counts the CpGs of every exon under
+# that name and those of coding exons again under CDS (issue I-15).
+legacy_eight <- c("exon_UTR", "CDS", "intron", "upstream_flank", "downstream_flank", "lncRNA", "TE", "intergenic")
+feature_counts <- function(in_set) {
+  n <- vapply(in_track, function(hit) sum(hit & in_set), integer(1))
+  exon_twice <- n[legacy_eight]
+  exon_twice["exon_UTR"] <- n[["exon_UTR"]] + n[["exon"]]
+  data.table(n_cpg = sum(in_set), track = tracks, n_overlap = unname(n), pct_of_cpg = unname(100 * n / sum(in_set)),
+             legacy_share_pct = ifelse(tracks %in% legacy_eight, unname(100 * n / sum(n[legacy_eight])), NA_real_),
+             legacy_share_exon_twice_pct = unname(100 * exon_twice[tracks] / sum(exon_twice)))
+}
+
+count_rows <- list(); feature_rows <- list()
 for (mode in config$modes) for (s in names(sets)) for (x in levels_x) {
   in_all <- rep(TRUE, n_cpg); in_any <- rep(FALSE, n_cpg)
   for (j in sets[[s]]) { ok <- covered(j, x, mode); in_all <- in_all & ok; in_any <- in_any | ok }
-  count_rows[[length(count_rows) + 1]] <- data.table(
-    mode = mode, sample_set = s, n_libraries = length(sets[[s]]), min_coverage = x,
-    cpg_in_all_libraries = sum(in_all), cpg_in_any_library = sum(in_any))
+  set_id <- data.table(mode = mode, sample_set = s, n_libraries = length(sets[[s]]), min_coverage = x)
+  count_rows[[length(count_rows) + 1]] <- cbind(set_id, cpg_in_all_libraries = sum(in_all), cpg_in_any_library = sum(in_any))
+  feature_rows[[length(feature_rows) + 1]] <- rbind(cbind(set_id, cpg_set = "in all libraries", feature_counts(in_all)),
+                                                    cbind(set_id, cpg_set = "in any library", feature_counts(in_any)))
 }
 cpg_counts <- rbindlist(count_rows)
 cpg_counts[, `:=`(pct_of_genome_cpg_all = 100 * cpg_in_all_libraries / total_cpg,
                   pct_of_genome_cpg_any = 100 * cpg_in_any_library / total_cpg)]
+
+# CpGs with at least x reads in at least one library of the set, counted on every
+# line of every file and with no upper filter, so the count is the same in both
+# modes. cpg_in_any_library applies the rules of the mode first.
+unfiltered <- unique(cpg_counts[, .(sample_set, min_coverage)])
+unfiltered[, cpg_in_any_library_unfiltered := mapply(function(s, x) {
+  in_any <- rep(FALSE, n_cpg)
+  for (j in sets[[s]]) in_any <- in_any | cov_mat[, j] >= x
+  sum(in_any)
+}, sample_set, min_coverage, USE.NAMES = FALSE)]
+cpg_counts[unfiltered, on = c("sample_set", "min_coverage"), cpg_in_any_library_unfiltered := i.cpg_in_any_library_unfiltered]
+cpg_counts[, pct_of_genome_cpg_any_unfiltered := 100 * cpg_in_any_library_unfiltered / total_cpg]
+stopifnot(cpg_counts[sample_set == "all" & min_coverage == 1, all(cpg_in_any_library_unfiltered == n_cpg)])
 write_table(cpg_counts, tab("cpg_counts_by_coverage.csv"))
 print(dcast(cpg_counts[sample_set == "all"], mode ~ min_coverage, value.var = "cpg_in_all_libraries"))
+
+cpg_features <- rbindlist(feature_rows)
+write_table(cpg_features, tab("cpg_feature_overlap.csv"))
+print(dcast(cpg_features[mode == "legacy" & cpg_set == "in all libraries" & min_coverage == config$min_coverage & track %in% legacy_eight],
+            track ~ sample_set, value.var = "legacy_share_exon_twice_pct"), digits = 3)
+rm(in_track, cpg_features); gc(verbose = FALSE)
 
 # =============================================================================
 # 4. Methylation distribution per library and per group

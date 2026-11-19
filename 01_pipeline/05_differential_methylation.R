@@ -55,22 +55,23 @@ load_packages(c("data.table", "methylKit"))
 step <- "05_differential_methylation"
 t0 <- start_step(step, "differential methylation for ploidy and heat")
 lib <- read_libraries()
-treat_ploidy <- as.integer(lib$ploidy == "triploid")     # 0 diploid, 1 triploid
-treat_heat   <- as.integer(lib$treatment == "heat")      # 0 control, 1 heat
 
-# ---- Fit one mode (or load it from the cache) ------------------------------------
+# ---- Fit one mode ------------------------------------------------------------------
+# Returns the filtering record of every library, the united table and the two
+# tests. What a fit depends on is used inside this function or listed in
+# fit_fingerprint() below; cached_fit() decides whether this function runs.
 fit_mode <- function(mode) {
-  cache_file <- file.path(step_cache_dir(step), sprintf("methylkit_%s.rds", mode))
-  if (file.exists(cache_file)) {
-    log_msg("[%s] loading cached fit %s", mode, basename(cache_file))
-    return(readRDS(cache_file))
-  }
+  treat_ploidy <- as.integer(lib$ploidy == "triploid")     # 0 diploid, 1 triploid
+  treat_heat   <- as.integer(lib$treatment == "heat")      # 0 control, 1 heat
+
   # Pass over the libraries: filter each one, keep its surviving CpGs as
   # (position key, counts), and narrow the set of CpGs present in all libraries.
+  # The md5 of each file is checked as it is read, so that the checksums in the
+  # fingerprint of the fit are those of the files the fit was made from.
   kept <- vector("list", nrow(lib)); records <- vector("list", nrow(lib))
   chr_levels <- character(0); common <- NULL
   for (i in seq_len(nrow(lib))) {
-    r <- read_filtered_counts(fetch_gannet_file(lib$cov_file[i], config), mode, config, chr_levels)
+    r <- read_filtered_counts(fetch_gannet_file(lib$cov_file[i], config, verify_md5 = TRUE), mode, config, chr_levels)
     chr_levels <- r$chr_levels
     common <- if (is.null(common)) r$counts$pos_key else common[common %in% r$counts$pos_key]
     kept[[i]] <- r$counts
@@ -104,9 +105,63 @@ fit_mode <- function(mode) {
   log_msg("[%s] fitting heat (covariate: ploidy)", mode)
   dm_heat <- calculateDiffMeth(meth_heat, covariates = data.frame(ploidy = lib$ploidy),
                                mc.cores = config$cores)
-  fit <- list(mode = mode, filtering = filtering, united = meth_ploidy,
-              diffmeth = list(ploidy = dm_ploidy, heat = dm_heat))
-  saveRDS(fit, cache_file)
+  list(mode = mode, filtering = filtering, united = meth_ploidy,
+       diffmeth = list(ploidy = dm_ploidy, heat = dm_heat))
+}
+
+# ---- What a fit depends on -----------------------------------------------------------
+# A cached fit is reused only while all of this is unchanged: the mode and the
+# coverage settings, the columns of the sample sheet that the fit uses, the
+# coverage files (size and md5 as the manifest lists them; fit_mode() checks
+# the files against it), the methylKit version, and the code that builds the
+# table of counts and runs the tests. The code is compared as R parses it, so a
+# change of comments or layout does not count and any other change does, a
+# reworded log message included. The thresholds that define a DML are applied
+# after the fit (write_mode) and are not part of it; the number of cores is not
+# either, because the results do not depend on it.
+fit_fingerprint <- function(mode) {
+  manifest <- read_gannet_manifest()
+  files <- manifest[match(lib$cov_file, manifest$file), ]
+  fitting_code <- list(fit_mode = fit_mode, read_filtered_counts = read_filtered_counts, read_cov = read_cov,
+                       first_line_lost = first_line_lost, upper_coverage_cutoff = upper_coverage_cutoff,
+                       cpg_key = cpg_key, key_to_position = key_to_position,
+                       scale_counts_like_methylkit = scale_counts_like_methylkit, make_methylraw = make_methylraw)
+  list(mode = mode,
+       coverage_settings = unlist(config[c("min_coverage", "import_min_coverage", "upper_coverage_percentile")]),
+       sample_sheet = paste(lib$library_id, lib$legacy_sample_index, lib$ploidy, lib$treatment, lib$cov_file),
+       coverage_files = paste(files$file, files$bytes, files$md5),
+       methylKit_version = as.character(utils::packageVersion("methylKit")),
+       fitting_code = lapply(fitting_code, function(f) deparse(utils::removeSource(f))))
+}
+
+# ---- The fit of one mode, from the cache where that is safe ------------------------
+# A cache file that cannot be read (a run was stopped while it was written, or
+# the file is not a fit of this step) is fitted again, as is a fit made from
+# anything other than what fit_fingerprint() returns now. A new fit is written
+# under a temporary name and renamed, so a file with the final name is complete.
+cached_fit <- function(mode) {
+  cache_file <- file.path(step_cache_dir(step), sprintf("methylkit_%s.rds", mode))
+  fingerprint <- fit_fingerprint(mode)
+  if (file.exists(cache_file)) {
+    cached <- tryCatch(suppressWarnings(readRDS(cache_file)), error = function(e) NULL)
+    readable <- is.list(cached) && all(c("mode", "filtering", "united", "diffmeth") %in% names(cached))
+    changed <- if (readable) names(fingerprint)[!vapply(names(fingerprint), function(part) {
+      identical(cached$fingerprint[[part]], fingerprint[[part]])
+    }, logical(1))]
+    if (readable && length(changed) == 0) {
+      log_msg("[%s] using the cached fit %s: settings, sample sheet, coverage files, methylKit version and fitting code are unchanged",
+              mode, basename(cache_file))
+      return(cached)
+    }
+    log_msg("[%s] the cached fit %s %s; fitting again", mode, basename(cache_file),
+            if (!readable) "cannot be read (cut short, or not a fit of this step)"
+            else if (is.null(cached$fingerprint)) "does not say what it was made from (written before this step recorded it)"
+            else paste("differs from this run in:", paste(gsub("_", " ", changed), collapse = ", ")))
+  }
+  fit <- c(fit_mode(mode), list(fingerprint = fingerprint))
+  part_file <- paste0(cache_file, ".part")
+  saveRDS(fit, part_file)
+  if (!file.rename(part_file, cache_file)) stop("Could not move ", part_file, " to ", cache_file, ".", call. = FALSE)
   fit
 }
 
@@ -146,7 +201,7 @@ write_mode <- function(fit) {
   bed_dir <- output_dir(step, "bed")
   write_bed <- function(d, diff_col, name) {
     fwrite(d[, .(chr, start, end, get(diff_col))], file.path(bed_dir, sprintf("dml_%s_%s.bed", name, mode)),
-           sep = "\t", col.names = FALSE, scipen = 50)
+           sep = "\t", col.names = FALSE, scipen = 50, eol = "\n")   # fwrite would write CRLF on Windows
   }
   write_bed(dml$ploidy, "meth.diff", "ploidy"); write_bed(dml$heat, "meth.diff", "heat")
   write_bed(shared, "meth.diff_heat", "shared")
@@ -175,7 +230,7 @@ write_mode <- function(fit) {
 
 # ---- Run ----------------------------------------------------------------------------
 headline <- rbindlist(lapply(config$modes, function(mode) {
-  fit <- fit_mode(mode)
+  fit <- cached_fit(mode)
   out <- write_mode(fit)
   rm(fit); gc(verbose = FALSE)
   out

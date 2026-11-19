@@ -5,12 +5,47 @@
 # Coordinates inside R are 1-based closed intervals (GenomicRanges). GFF files
 # already use that convention; BED files and Bismark coverage files use 0-based
 # half-open intervals and are converted on read.
+#
+# One track is a BED file in name only. cgigas_uk_roslin_v1_rm.te.bed (track
+# "TE") is columns 5 to 7 (sequence, begin, end) of NCBI's RepeatMasker output
+# for the assembly, GCF_902806645.1_cgigas_uk_roslin_v1_rm.out.gz. Its
+# coordinates are 1-based closed, and it holds repeats of every class (simple
+# repeats, low complexity, satellites and rRNA included), not transposable
+# elements alone. The legacy notebooks gave the file to bedtools, which took it
+# for a BED file, so that every one of its 781,312 intervals was read without
+# its first base. read_feature_track() reads it the same way, in both analysis
+# modes, because the numbers of the draft come from that reading; the reading is
+# documented, not corrected (scope decision of 2026-11-19). The effect is small:
+# of the 480,579 CpGs analysed in legacy mode, 101 touch a repeat with the lost
+# base alone and are counted outside the track. Details, and what a filter on
+# the repeat class would change: 03_input_files/genome_features/README.md.
 
 # Names of the 13 feature tracks in 03_input_files/genome_features/.
 feature_track_files <- function() {
   c(gene = "gene.gff", mRNA = "mRNA.gff", exon = "exon.gff", CDS = "CDS.gff", exon_UTR = "exonUTR.gff",
     intron = "intron.bed", nonCDS = "nonCDS.bed", lncRNA = "lncRNA.gff", upstream_flank = "upstream.gff",
     downstream_flank = "downstream.gff", flanks = "flanks.gff", intergenic = "intergenic.bed", TE = "rm.te.bed")
+}
+
+# What each track holds, in words, for the label column of the tables that are
+# written by track. Three track names say something else than their files hold:
+# nonCDS is the complement of the exon track, exon_UTR is exon minus coding
+# sequence, and TE is every repeat that RepeatMasker reports (see above and
+# 03_input_files/genome_features/README.md).
+feature_track_labels <- function() {
+  c(gene             = "genes",
+    mRNA             = "mRNA transcripts",
+    exon             = "exons",
+    CDS              = "coding sequence",
+    exon_UTR         = "exon minus coding sequence (untranslated regions and exons of non-coding genes)",
+    intron           = "introns",
+    nonCDS           = "complement of the exon track (not of coding sequence)",
+    lncRNA           = "long non-coding RNA",
+    upstream_flank   = "upstream flanks (up to 1 kb)",
+    downstream_flank = "downstream flanks (up to 1 kb)",
+    flanks           = "upstream and downstream flanks together",
+    intergenic       = "intergenic regions",
+    TE               = "repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)")
 }
 
 # Read one track as a GRanges object. `keep_attributes = TRUE` keeps the GFF
@@ -24,7 +59,9 @@ read_feature_track <- function(track, keep_attributes = FALSE) {
   } else {
     d <- data.table::fread(path, header = FALSE, sep = "\t", quote = "", select = 1:3,
                            col.names = c("chr", "start", "end"), showProgress = FALSE)
-    d[, start := start + 1L]                      # BED start is 0-based
+    # BED start is 0-based. The starts of the repeat track (TE) are 1-based; they are
+    # shifted like the others, which is how bedtools read the file for the draft.
+    d[, start := start + 1L]
     d[, `:=`(strand = "*", attributes = NA_character_)]
   }
   d <- d[end >= start]                            # a few flank records have zero length
