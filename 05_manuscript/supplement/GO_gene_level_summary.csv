@@ -1,0 +1,37 @@
+mode,set,ontology,universe,universe_genes,dml_genes,terms_tested,fisher_p_below_cutoff,fisher_q_below_fdr,wallenius_p_below_cutoff,wallenius_q_below_fdr,smallest_q_wallenius,top_term,go_db,go_source_date
+legacy,ploidy,BP,tested,11435,542,6837,283,102,275,108,5.30603629542926e-08,RNA metabolic process,3.18.0,2023-07-27
+legacy,heat,BP,tested,11435,1109,6837,374,197,366,221,7.61849577241642e-15,organelle organization,3.18.0,2023-07-27
+legacy,shared,BP,tested,11435,104,6837,48,0,50,0,0.182481066894152,positive regulation of leukocyte differentiation,3.18.0,2023-07-27
+legacy,ploidy,CC,tested,12094,579,801,66,48,66,54,1.82085752276171e-17,nucleus,3.18.0,2023-07-27
+legacy,heat,CC,tested,12094,1157,801,96,82,98,87,1.23547041098322e-39,intracellular organelle,3.18.0,2023-07-27
+legacy,shared,CC,tested,12094,111,801,21,11,22,13,0.00151488913135376,intracellular organelle,3.18.0,2023-07-27
+legacy,ploidy,MF,tested,11744,517,1419,75,52,78,52,4.19107216976245e-09,ATP-dependent activity,3.18.0,2023-07-27
+legacy,heat,MF,tested,11744,1021,1419,101,78,99,80,6.190354734778e-15,protein binding,3.18.0,2023-07-27
+legacy,shared,MF,tested,11744,95,1419,22,0,23,0,0.154389363000592,ATPase-coupled monoatomic cation transmembrane transporter activity,3.18.0,2023-07-27
+legacy,ploidy,BP,eligible,5525,542,4823,154,0,66,0,0.360188971795375,gene expression,3.18.0,2023-07-27
+legacy,heat,BP,eligible,5525,1109,4823,169,22,31,0,1,regulation of organelle organization,3.18.0,2023-07-27
+legacy,shared,BP,eligible,5525,104,4823,27,0,17,0,0.337596830602624,positive regulation of leukocyte differentiation,3.18.0,2023-07-27
+legacy,ploidy,CC,eligible,5738,579,642,21,2,13,0,0.265774487119168,cytosol,3.18.0,2023-07-27
+legacy,heat,CC,eligible,5738,1157,642,28,0,13,0,0.0753974305015093,organelle,3.18.0,2023-07-27
+legacy,shared,CC,eligible,5738,111,642,2,0,2,0,1,intermediate filament cytoskeleton,3.18.0,2023-07-27
+legacy,ploidy,MF,eligible,5277,517,913,31,8,14,0,0.329581288567209,ATP-dependent activity,3.18.0,2023-07-27
+legacy,heat,MF,eligible,5277,1021,913,48,31,16,0,0.129436132803238,transcription coactivator binding,3.18.0,2023-07-27
+legacy,shared,MF,eligible,5277,95,913,10,0,3,0,1,"hydrolase activity, acting on carbon-nitrogen (but not peptide) bonds, in cyclic amides",3.18.0,2023-07-27
+corrected,ploidy,BP,tested,11395,538,6837,278,104,277,108,7.15589945421774e-08,RNA metabolic process,3.18.0,2023-07-27
+corrected,heat,BP,tested,11395,1106,6837,376,201,368,220,3.63845060637532e-15,organelle organization,3.18.0,2023-07-27
+corrected,shared,BP,tested,11395,103,6837,49,0,53,0,0.178005442227037,positive regulation of leukocyte differentiation,3.18.0,2023-07-27
+corrected,ploidy,CC,tested,12044,574,801,66,48,67,54,1.90629098410955e-17,organelle,3.18.0,2023-07-27
+corrected,heat,CC,tested,12044,1155,801,96,82,100,87,1.63655693222905e-40,intracellular organelle,3.18.0,2023-07-27
+corrected,shared,CC,tested,12044,110,801,23,10,23,13,0.00191336357859012,intracellular organelle,3.18.0,2023-07-27
+corrected,ploidy,MF,tested,11695,514,1416,74,50,77,48,5.83381329692951e-09,nucleic acid binding,3.18.0,2023-07-27
+corrected,heat,MF,tested,11695,1019,1416,102,77,101,79,2.12639428390258e-15,protein binding,3.18.0,2023-07-27
+corrected,shared,MF,tested,11695,95,1416,22,0,22,0,0.157416929933652,ATPase-coupled monoatomic cation transmembrane transporter activity,3.18.0,2023-07-27
+corrected,ploidy,BP,eligible,5497,538,4815,156,0,65,0,0.479799009783647,response to cold,3.18.0,2023-07-27
+corrected,heat,BP,eligible,5497,1106,4815,169,21,33,0,1,regulation of organelle organization,3.18.0,2023-07-27
+corrected,shared,BP,eligible,5497,103,4815,27,0,17,0,0.358677590911433,positive regulation of leukocyte differentiation,3.18.0,2023-07-27
+corrected,ploidy,CC,eligible,5706,574,642,21,2,13,0,0.341191027640401,cytosol,3.18.0,2023-07-27
+corrected,heat,CC,eligible,5706,1155,642,28,0,15,0,0.0896268141135132,organelle,3.18.0,2023-07-27
+corrected,shared,CC,eligible,5706,110,642,2,0,2,0,1,intermediate filament cytoskeleton,3.18.0,2023-07-27
+corrected,ploidy,MF,eligible,5245,514,909,30,8,11,0,0.480463948513119,ATP-dependent activity,3.18.0,2023-07-27
+corrected,heat,MF,eligible,5245,1019,909,48,31,13,0,0.14326885522538,transcription coactivator binding,3.18.0,2023-07-27
+corrected,shared,MF,eligible,5245,95,909,10,0,3,0,1,"hydrolase activity, acting on carbon-nitrogen (but not peptide) bonds, in cyclic amides",3.18.0,2023-07-27

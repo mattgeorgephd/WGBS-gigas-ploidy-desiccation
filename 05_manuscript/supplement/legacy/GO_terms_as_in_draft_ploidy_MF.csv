@@ -1,0 +1,69 @@
+set,ontology,rank,go_id,term,annotated,significant,expected,p_fisher,genes_annotated,genes_significant,top10,below_p_cutoff
+ploidy,MF,1,GO:0004435,phosphatidylinositol phospholipase C activity,53,24,2.05,2.72685254658427e-20,9,1,TRUE,TRUE
+ploidy,MF,2,GO:0004629,phospholipase C activity,53,24,2.05,2.72685254658427e-20,9,1,TRUE,TRUE
+ploidy,MF,3,GO:0097109,neuroligin family protein binding,13,13,0.5,4.06969219586962e-19,1,1,TRUE,TRUE
+ploidy,MF,4,GO:0033130,acetylcholine receptor binding,14,13,0.54,5.49482204081628e-18,2,1,TRUE,TRUE
+ploidy,MF,5,GO:0070137,ubiquitin-like protein-specific endopeptidase activity,13,11,0.5,2.00836650961654e-14,3,1,TRUE,TRUE
+ploidy,MF,6,GO:0070139,SUMO-specific endopeptidase activity,13,11,0.5,2.00836650961654e-14,3,1,TRUE,TRUE
+ploidy,MF,7,GO:0004620,phospholipase activity,119,27,4.6,7.55852811708236e-14,43,2,TRUE,TRUE
+ploidy,MF,8,GO:0005219,ryanodine-sensitive calcium-release channel activity,11,10,0.42,7.64790875891297e-14,3,2,TRUE,TRUE
+ploidy,MF,9,GO:0016929,SUMO-specific protease activity,15,11,0.58,3.27188956125871e-13,5,1,TRUE,TRUE
+ploidy,MF,10,GO:0005521,lamin binding,19,12,0.73,4.15599119765318e-13,3,1,TRUE,TRUE
+ploidy,MF,11,GO:0019783,ubiquitin-like protein-specific protease activity,18,11,0.7,6.85212389561464e-12,8,1,FALSE,TRUE
+ploidy,MF,12,GO:0016298,lipase activity,155,28,5.99,9.85610128155081e-12,68,3,FALSE,TRUE
+ploidy,MF,13,GO:0005246,calcium channel regulator activity,31,13,1.2,4.37655597435179e-11,13,1,FALSE,TRUE
+ploidy,MF,14,GO:0043813,"phosphatidylinositol-3,5-bisphosphate 5-phosphatase activity",8,7,0.31,9.80329232385626e-10,2,1,FALSE,TRUE
+ploidy,MF,15,GO:0097718,disordered domain specific binding,28,11,1.08,3.2353260842095e-09,7,2,FALSE,TRUE
+ploidy,MF,16,GO:0102490,8-oxo-dGTP phosphohydrolase activity,13,8,0.5,5.27687537809558e-09,2,1,FALSE,TRUE
+ploidy,MF,17,GO:0000285,1-phosphatidylinositol-3-phosphate 5-kinase activity,10,7,0.39,1.3732481182483e-08,3,1,FALSE,TRUE
+ploidy,MF,18,GO:0000146,microfilament motor activity,26,10,1,2.17012094934191e-08,6,1,FALSE,TRUE
+ploidy,MF,19,GO:0008081,phosphoric diester hydrolase activity,165,24,6.37,2.53552377142974e-08,46,1,FALSE,TRUE
+ploidy,MF,20,GO:0106018,"phosphatidylinositol-3,5-bisphosphate phosphatase activity",11,7,0.42,3.64952863754008e-08,3,1,FALSE,TRUE
+ploidy,MF,21,GO:0019206,nucleoside kinase activity,22,9,0.85,5.90904921087974e-08,9,1,FALSE,TRUE
+ploidy,MF,22,GO:0099106,ion channel regulator activity,53,13,2.05,8.07855574930299e-08,23,1,FALSE,TRUE
+ploidy,MF,23,GO:0015616,DNA translocase activity,5,5,0.19,8.55412774227556e-08,1,1,FALSE,TRUE
+ploidy,MF,24,GO:0032810,sterol response element binding,13,7,0.5,1.77245350824772e-07,6,1,FALSE,TRUE
+ploidy,MF,25,GO:0003989,acetyl-CoA carboxylase activity,20,8,0.77,4.05262867278761e-07,10,1,FALSE,TRUE
+ploidy,MF,26,GO:0009374,biotin binding,27,9,1.04,4.67384919569811e-07,10,2,FALSE,TRUE
+ploidy,MF,27,GO:0034595,phosphatidylinositol phosphate 5-phosphatase activity,15,7,0.58,6.20831850512094e-07,6,1,FALSE,TRUE
+ploidy,MF,28,GO:0050145,nucleoside monophosphate kinase activity,29,9,1.12,9.31297103706076e-07,7,1,FALSE,TRUE
+ploidy,MF,29,GO:0035035,histone acetyltransferase binding,16,7,0.62,1.06671389888127e-06,7,1,FALSE,TRUE
+ploidy,MF,30,GO:0050692,DNA binding domain binding,16,7,0.62,1.06671389888127e-06,6,1,FALSE,TRUE
+ploidy,MF,31,GO:0016421,CoA carboxylase activity,25,8,0.97,2.92750427547056e-06,14,1,FALSE,TRUE
+ploidy,MF,32,GO:0005509,calcium ion binding,1752,106,67.69,3.80578438866577e-06,808,12,FALSE,TRUE
+ploidy,MF,33,GO:0004075,biotin carboxylase activity,28,8,1.08,7.58584892057786e-06,13,1,FALSE,TRUE
+ploidy,MF,34,GO:0016247,channel regulator activity,79,13,3.05,9.97326055691555e-06,41,1,FALSE,TRUE
+ploidy,MF,35,GO:0004550,nucleoside diphosphate kinase activity,38,9,1.47,1.10748034997311e-05,9,1,FALSE,TRUE
+ploidy,MF,36,GO:0016885,"ligase activity, forming carbon-carbon bonds",31,8,1.2,1.73639293929943e-05,15,1,FALSE,TRUE
+ploidy,MF,37,GO:0016308,1-phosphatidylinositol-4-phosphate 5-kinase activity,23,7,0.89,1.80169392186607e-05,4,1,FALSE,TRUE
+ploidy,MF,38,GO:0016307,phosphatidylinositol phosphate kinase activity,30,7,1.16,0.000118037180798731,7,1,FALSE,TRUE
+ploidy,MF,39,GO:1990404,protein ADP-ribosylase activity,8,4,0.31,0.000137115584339481,5,1,FALSE,TRUE
+ploidy,MF,40,GO:0046966,thyroid hormone receptor binding,31,7,1.2,0.000147400212458737,13,1,FALSE,TRUE
+ploidy,MF,41,GO:0003910,DNA ligase (ATP) activity,10,4,0.39,0.000386519636375921,7,1,FALSE,TRUE
+ploidy,MF,42,GO:0033293,monocarboxylic acid binding,60,9,2.32,0.000468627188345133,31,2,FALSE,TRUE
+ploidy,MF,43,GO:0001147,transcription termination site sequence-specific DNA binding,5,3,0.19,0.000542813444490978,2,1,FALSE,TRUE
+ploidy,MF,44,GO:0034593,phosphatidylinositol bisphosphate phosphatase activity,38,7,1.47,0.000558785842587978,14,1,FALSE,TRUE
+ploidy,MF,45,GO:0003909,DNA ligase activity,11,4,0.42,0.00058881093841773,8,1,FALSE,TRUE
+ploidy,MF,46,GO:0052866,phosphatidylinositol phosphate phosphatase activity,40,7,1.55,0.000771836142876869,16,1,FALSE,TRUE
+ploidy,MF,47,GO:0016886,"ligase activity, forming phosphoric ester bonds",12,4,0.46,0.00085624011556676,9,1,FALSE,TRUE
+ploidy,MF,48,GO:0003774,motor activity,288,23,11.13,0.000894889017255234,75,6,FALSE,TRUE
+ploidy,MF,49,GO:0004411,"homogentisate 1,2-dioxygenase activity",2,2,0.08,0.00149169995877695,1,1,FALSE,TRUE
+ploidy,MF,50,GO:0004827,proline-tRNA ligase activity,2,2,0.08,0.00149169995877695,1,1,FALSE,TRUE
+ploidy,MF,51,GO:0019205,nucleobase-containing compound kinase activity,71,9,2.74,0.00161729246504788,24,1,FALSE,TRUE
+ploidy,MF,52,GO:0015278,calcium-release channel activity,85,10,3.28,0.00162093299720718,27,2,FALSE,TRUE
+ploidy,MF,53,GO:0099604,ligand-gated calcium channel activity,85,10,3.28,0.00162093299720718,27,2,FALSE,TRUE
+ploidy,MF,54,GO:0039706,co-receptor binding,7,3,0.27,0.0017920693200922,3,1,FALSE,TRUE
+ploidy,MF,55,GO:0019992,diacylglycerol binding,35,6,1.35,0.0020419028107673,5,1,FALSE,TRUE
+ploidy,MF,56,GO:0008349,MAP kinase kinase kinase kinase activity,37,6,1.43,0.00273891513592263,4,1,FALSE,TRUE
+ploidy,MF,57,GO:0005217,intracellular ligand-gated ion channel activity,123,12,4.75,0.00294840383249665,37,3,FALSE,TRUE
+ploidy,MF,58,GO:0005201,extracellular matrix structural constituent,125,12,4.83,0.00336711882437474,100,3,FALSE,TRUE
+ploidy,MF,59,GO:0004818,glutamate-tRNA ligase activity,3,2,0.12,0.0043599809311441,2,1,FALSE,TRUE
+ploidy,MF,60,GO:0031208,POZ domain binding,3,2,0.12,0.0043599809311441,2,1,FALSE,TRUE
+ploidy,MF,61,GO:0071568,UFM1 transferase activity,3,2,0.12,0.0043599809311441,2,1,FALSE,TRUE
+ploidy,MF,62,GO:0016776,"phosphotransferase activity, phosphate group as acceptor",83,9,3.21,0.00473591124075468,18,1,FALSE,TRUE
+ploidy,MF,63,GO:0051219,phosphoprotein binding,85,9,3.28,0.00554168743887261,33,1,FALSE,TRUE
+ploidy,MF,64,GO:0070700,BMP receptor binding,10,3,0.39,0.00563140999897128,6,1,FALSE,TRUE
+ploidy,MF,65,GO:0003707,steroid hormone receptor activity,134,12,5.18,0.0058832732210965,47,2,FALSE,TRUE
+ploidy,MF,66,GO:0043138,3'-5' DNA helicase activity,32,5,1.24,0.007221351150476,24,1,FALSE,TRUE
+ploidy,MF,67,GO:0032137,guanine/thymine mispair binding,4,2,0.15,0.00849638287773615,2,1,FALSE,TRUE
+ploidy,MF,68,GO:0031369,translation initiation factor binding,22,4,0.85,0.00930144218468365,16,1,FALSE,TRUE

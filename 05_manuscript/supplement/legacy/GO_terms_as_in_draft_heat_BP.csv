@@ -1,0 +1,857 @@
+set,ontology,rank,go_id,term,annotated,significant,expected,p_fisher,genes_annotated,genes_significant,top10,below_p_cutoff
+heat,BP,1,GO:0048261,negative regulation of receptor-mediated endocytosis,64,53,7.38,2.95917761671929e-39,5,3,TRUE,TRUE
+heat,BP,2,GO:0016188,synaptic vesicle maturation,85,56,9.8,3.12036571616553e-32,8,3,TRUE,TRUE
+heat,BP,3,GO:0098711,iron ion import across plasma membrane,73,51,8.42,2.12001847705037e-31,4,2,TRUE,TRUE
+heat,BP,4,GO:1902961,positive regulation of aspartic-type endopeptidase activity involved in amyloid precursor protein catabolic process,73,51,8.42,2.12001847705037e-31,4,2,TRUE,TRUE
+heat,BP,5,GO:1905247,positive regulation of aspartic-type peptidase activity,73,51,8.42,2.12001847705037e-31,4,2,TRUE,TRUE
+heat,BP,6,GO:1902959,regulation of aspartic-type endopeptidase activity involved in amyloid precursor protein catabolic process,74,51,8.53,6.05731323326409e-31,5,2,TRUE,TRUE
+heat,BP,7,GO:1902962,regulation of metalloendopeptidase activity involved in amyloid precursor protein catabolic process,74,51,8.53,6.05731323326409e-31,5,2,TRUE,TRUE
+heat,BP,8,GO:1902963,negative regulation of metalloendopeptidase activity involved in amyloid precursor protein catabolic process,74,51,8.53,6.05731323326409e-31,5,2,TRUE,TRUE
+heat,BP,9,GO:1905245,regulation of aspartic-type peptidase activity,74,51,8.53,6.05731323326409e-31,5,2,TRUE,TRUE
+heat,BP,10,GO:1902004,positive regulation of amyloid-beta formation,77,51,8.88,1.19354752263906e-29,8,2,TRUE,TRUE
+heat,BP,11,GO:1902993,positive regulation of amyloid precursor protein catabolic process,77,51,8.88,1.19354752263906e-29,8,2,FALSE,TRUE
+heat,BP,12,GO:1902992,negative regulation of amyloid precursor protein catabolic process,78,51,8.99,3.0620567291896e-29,9,2,FALSE,TRUE
+heat,BP,13,GO:0045806,negative regulation of endocytosis,84,53,9.69,3.4874008032342e-29,9,3,FALSE,TRUE
+heat,BP,14,GO:0048268,clathrin coat assembly,97,57,11.19,6.25040201196902e-29,10,4,FALSE,TRUE
+heat,BP,15,GO:1902003,regulation of amyloid-beta formation,79,51,9.11,7.67231720004594e-29,10,2,FALSE,TRUE
+heat,BP,16,GO:0034205,amyloid-beta formation,81,51,9.34,4.50687603909435e-28,11,2,FALSE,TRUE
+heat,BP,17,GO:0035459,vesicle cargo loading,81,51,9.34,4.50687603909435e-28,7,2,FALSE,TRUE
+heat,BP,18,GO:0042982,amyloid precursor protein metabolic process,95,55,10.96,1.64789791295616e-27,18,3,FALSE,TRUE
+heat,BP,19,GO:0033212,iron import into cell,83,51,9.57,2.43868488178271e-27,9,2,FALSE,TRUE
+heat,BP,20,GO:0034755,iron ion transmembrane transport,84,51,9.69,5.51281479944822e-27,11,2,FALSE,TRUE
+heat,BP,21,GO:0051155,positive regulation of striated muscle cell differentiation,67,45,7.73,1.01093400431386e-26,18,3,FALSE,TRUE
+heat,BP,22,GO:1902991,regulation of amyloid precursor protein catabolic process,86,51,9.92,2.67087507329027e-26,14,2,FALSE,TRUE
+heat,BP,23,GO:1904683,regulation of metalloendopeptidase activity,87,51,10.03,5.73228457782378e-26,18,2,FALSE,TRUE
+heat,BP,24,GO:1904684,negative regulation of metalloendopeptidase activity,87,51,10.03,5.73228457782378e-26,18,2,FALSE,TRUE
+heat,BP,25,GO:0042987,amyloid precursor protein catabolic process,89,51,10.26,2.51846015206186e-25,16,2,FALSE,TRUE
+heat,BP,26,GO:1905049,negative regulation of metallopeptidase activity,89,51,10.26,2.51846015206186e-25,20,2,FALSE,TRUE
+heat,BP,27,GO:1905048,regulation of metallopeptidase activity,91,51,10.49,1.04284878715374e-24,21,2,FALSE,TRUE
+heat,BP,28,GO:0051345,positive regulation of hydrolase activity,615,159,70.92,3.78461593936493e-23,200,18,FALSE,TRUE
+heat,BP,29,GO:0006826,iron ion transport,107,54,12.34,3.84741521719073e-23,26,3,FALSE,TRUE
+heat,BP,30,GO:0050435,amyloid-beta metabolic process,100,51,11.53,3.31931858481068e-22,19,2,FALSE,TRUE
+heat,BP,31,GO:0006879,cellular iron ion homeostasis,102,51,11.76,1.05778612101902e-21,23,2,FALSE,TRUE
+heat,BP,32,GO:0048259,regulation of receptor-mediated endocytosis,121,56,13.95,1.33559419160589e-21,32,5,FALSE,TRUE
+heat,BP,33,GO:0060297,regulation of sarcomere organization,39,30,4.5,4.87477776212732e-21,8,2,FALSE,TRUE
+heat,BP,34,GO:0031623,receptor internalization,128,57,14.76,6.04961647792457e-21,50,5,FALSE,TRUE
+heat,BP,35,GO:0060298,positive regulation of sarcomere organization,37,29,4.27,8.71763179039731e-21,6,1,FALSE,TRUE
+heat,BP,36,GO:0051149,positive regulation of muscle cell differentiation,85,45,9.8,1.27535690783012e-20,25,3,FALSE,TRUE
+heat,BP,37,GO:0001886,endothelial cell morphogenesis,38,29,4.38,3.27309437960881e-20,8,3,FALSE,TRUE
+heat,BP,38,GO:0043112,receptor metabolic process,170,66,19.6,4.45806472379874e-20,73,7,FALSE,TRUE
+heat,BP,39,GO:0006937,regulation of muscle contraction,169,65,19.49,1.52134834640167e-19,80,6,FALSE,TRUE
+heat,BP,40,GO:0090257,regulation of muscle system process,244,81,28.14,2.5504292520467e-19,112,11,FALSE,TRUE
+heat,BP,41,GO:0110020,regulation of actomyosin structure organization,163,63,18.8,4.07405351789413e-19,60,10,FALSE,TRUE
+heat,BP,42,GO:0034250,positive regulation of cellular amide metabolic process,174,65,20.07,9.01656017588653e-19,56,8,FALSE,TRUE
+heat,BP,43,GO:0045989,positive regulation of striated muscle contraction,41,29,4.73,1.11529636300279e-18,10,1,FALSE,TRUE
+heat,BP,44,GO:0021563,glossopharyngeal nerve development,29,24,3.34,1.92382922291529e-18,2,1,FALSE,TRUE
+heat,BP,45,GO:0021564,vagus nerve development,29,24,3.34,1.92382922291529e-18,2,1,FALSE,TRUE
+heat,BP,46,GO:0006936,muscle contraction,302,91,34.83,2.27636955181051e-18,146,12,FALSE,TRUE
+heat,BP,47,GO:0003012,muscle system process,377,105,43.48,3.2792940262504e-18,177,16,FALSE,TRUE
+heat,BP,48,GO:0030003,cellular cation homeostasis,753,169,86.83,8.91801704260043e-18,327,18,FALSE,TRUE
+heat,BP,49,GO:0072583,clathrin-dependent endocytosis,122,51,14.07,1.84978747364363e-17,18,2,FALSE,TRUE
+heat,BP,50,GO:0007626,locomotory behavior,458,118,52.82,2.03634039326153e-17,192,14,FALSE,TRUE
+heat,BP,51,GO:0051782,negative regulation of cell division,44,29,5.07,2.28327034445618e-17,10,1,FALSE,TRUE
+heat,BP,52,GO:0006873,cellular ion homeostasis,766,169,88.33,5.00115160084623e-17,332,18,FALSE,TRUE
+heat,BP,53,GO:0001976,nervous system process involved in regulation of systemic arterial blood pressure,32,24,3.69,1.20089073007837e-16,5,1,FALSE,TRUE
+heat,BP,54,GO:0003025,regulation of systemic arterial blood pressure by baroreceptor feedback,32,24,3.69,1.20089073007837e-16,5,1,FALSE,TRUE
+heat,BP,55,GO:0099518,vesicle cytoskeletal trafficking,83,40,9.57,1.2796267924443e-16,22,4,FALSE,TRUE
+heat,BP,56,GO:0048644,muscle organ morphogenesis,89,41,10.26,4.01875975871219e-16,37,7,FALSE,TRUE
+heat,BP,57,GO:0045214,sarcomere organization,143,54,16.49,4.37387569178684e-16,42,4,FALSE,TRUE
+heat,BP,58,GO:0043547,positive regulation of GTPase activity,291,84,33.56,7.50710277828262e-16,63,10,FALSE,TRUE
+heat,BP,59,GO:0046916,cellular transition metal ion homeostasis,132,51,15.22,9.3966801793789e-16,41,2,FALSE,TRUE
+heat,BP,60,GO:0021554,optic nerve development,34,24,3.92,1.18576798852834e-15,6,1,FALSE,TRUE
+heat,BP,61,GO:0030240,skeletal muscle thin filament assembly,34,24,3.92,1.18576798852834e-15,10,2,FALSE,TRUE
+heat,BP,62,GO:0055072,iron ion homeostasis,138,52,15.91,1.68475223191507e-15,44,3,FALSE,TRUE
+heat,BP,63,GO:0001778,plasma membrane repair,45,27,5.19,9.15436829127051e-15,6,2,FALSE,TRUE
+heat,BP,64,GO:0031032,actomyosin structure organization,420,105,48.43,1.00876136725511e-14,173,16,FALSE,TRUE
+heat,BP,65,GO:0003382,epithelial cell morphogenesis,59,31,6.8,1.56388184415651e-14,18,5,FALSE,TRUE
+heat,BP,66,GO:0055080,cation homeostasis,884,180,101.94,1.59494340358981e-14,404,23,FALSE,TRUE
+heat,BP,67,GO:0051153,regulation of striated muscle cell differentiation,117,45,13.49,5.43489391663708e-14,44,3,FALSE,TRUE
+heat,BP,68,GO:0016050,vesicle organization,570,128,65.73,7.99405609305733e-14,211,20,FALSE,TRUE
+heat,BP,69,GO:1901216,positive regulation of neuron death,189,60,21.8,1.0059242394556e-13,54,6,FALSE,TRUE
+heat,BP,70,GO:0050801,ion homeostasis,907,180,104.59,1.79886833383499e-13,418,23,FALSE,TRUE
+heat,BP,71,GO:0046716,muscle cell cellular homeostasis,43,25,4.96,2.47915507537504e-13,16,2,FALSE,TRUE
+heat,BP,72,GO:0045933,positive regulation of muscle contraction,57,29,6.57,3.25470372167681e-13,22,1,FALSE,TRUE
+heat,BP,73,GO:0006875,cellular metal ion homeostasis,656,140,75.65,3.54117845086105e-13,300,15,FALSE,TRUE
+heat,BP,74,GO:0006895,Golgi to endosome transport,29,20,3.34,5.89745508194681e-13,12,3,FALSE,TRUE
+heat,BP,75,GO:0021783,preganglionic parasympathetic fiber development,41,24,4.73,6.06595872867075e-13,7,1,FALSE,TRUE
+heat,BP,76,GO:0048486,parasympathetic nervous system development,41,24,4.73,6.06595872867075e-13,7,1,FALSE,TRUE
+heat,BP,77,GO:0098771,inorganic ion homeostasis,893,176,102.98,6.23286500336159e-13,408,22,FALSE,TRUE
+heat,BP,78,GO:0030219,megakaryocyte differentiation,48,26,5.54,8.00579011127545e-13,13,2,FALSE,TRUE
+heat,BP,79,GO:0006942,regulation of striated muscle contraction,109,41,12.57,1.6610046697841e-12,49,4,FALSE,TRUE
+heat,BP,80,GO:0003208,cardiac ventricle morphogenesis,53,27,6.11,2.03936872641825e-12,22,4,FALSE,TRUE
+heat,BP,81,GO:1902905,positive regulation of supramolecular fiber organization,249,69,28.71,2.28374570697351e-12,80,12,FALSE,TRUE
+heat,BP,82,GO:0043087,regulation of GTPase activity,373,91,43.01,2.57399269378241e-12,98,15,FALSE,TRUE
+heat,BP,83,GO:0021545,cranial nerve development,85,35,9.8,3.24867825202403e-12,27,3,FALSE,TRUE
+heat,BP,84,GO:0098659,inorganic cation import across plasma membrane,189,57,21.8,4.38256546590507e-12,46,3,FALSE,TRUE
+heat,BP,85,GO:0099587,inorganic ion import across plasma membrane,189,57,21.8,4.38256546590507e-12,46,3,FALSE,TRUE
+heat,BP,86,GO:0001885,endothelial cell development,86,35,9.92,4.87080534746618e-12,28,4,FALSE,TRUE
+heat,BP,87,GO:0035095,behavioral response to nicotine,62,29,7.15,4.94343898972116e-12,22,1,FALSE,TRUE
+heat,BP,88,GO:0014866,skeletal myofibril assembly,44,24,5.07,4.97093438103615e-12,17,2,FALSE,TRUE
+heat,BP,89,GO:0006208,pyrimidine nucleobase catabolic process,12,12,1.38,5.4624614478409e-12,1,1,FALSE,TRUE
+heat,BP,90,GO:0006210,thymine catabolic process,12,12,1.38,5.4624614478409e-12,1,1,FALSE,TRUE
+heat,BP,91,GO:0006212,uracil catabolic process,12,12,1.38,5.4624614478409e-12,1,1,FALSE,TRUE
+heat,BP,92,GO:0019859,thymine metabolic process,12,12,1.38,5.4624614478409e-12,1,1,FALSE,TRUE
+heat,BP,93,GO:0043578,nuclear matrix organization,12,12,1.38,5.4624614478409e-12,1,1,FALSE,TRUE
+heat,BP,94,GO:0070889,platelet alpha granule organization,12,12,1.38,5.4624614478409e-12,1,1,FALSE,TRUE
+heat,BP,95,GO:0090292,nuclear matrix anchoring at nuclear membrane,12,12,1.38,5.4624614478409e-12,1,1,FALSE,TRUE
+heat,BP,96,GO:0002634,regulation of germinal center formation,16,14,1.85,6.91374079992281e-12,2,1,FALSE,TRUE
+heat,BP,97,GO:0003138,primary heart field specification,16,14,1.85,6.91374079992281e-12,2,1,FALSE,TRUE
+heat,BP,98,GO:0003172,sinoatrial valve development,16,14,1.85,6.91374079992281e-12,2,1,FALSE,TRUE
+heat,BP,99,GO:0003185,sinoatrial valve morphogenesis,16,14,1.85,6.91374079992281e-12,2,1,FALSE,TRUE
+heat,BP,100,GO:0035983,response to trichostatin A,16,14,1.85,6.91374079992281e-12,2,1,FALSE,TRUE
+heat,BP,101,GO:0035984,cellular response to trichostatin A,16,14,1.85,6.91374079992281e-12,2,1,FALSE,TRUE
+heat,BP,102,GO:1903365,regulation of fear response,16,14,1.85,6.91374079992281e-12,2,1,FALSE,TRUE
+heat,BP,103,GO:1903367,positive regulation of fear response,16,14,1.85,6.91374079992281e-12,2,1,FALSE,TRUE
+heat,BP,104,GO:2000822,regulation of behavioral fear response,16,14,1.85,6.91374079992281e-12,2,1,FALSE,TRUE
+heat,BP,105,GO:2000987,positive regulation of behavioral fear response,16,14,1.85,6.91374079992281e-12,2,1,FALSE,TRUE
+heat,BP,106,GO:0010950,positive regulation of endopeptidase activity,202,59,23.29,8.1929171070605e-12,79,6,FALSE,TRUE
+heat,BP,107,GO:0007035,vacuolar acidification,21,16,2.42,1.09808502715304e-11,6,2,FALSE,TRUE
+heat,BP,108,GO:0010952,positive regulation of peptidase activity,204,59,23.52,1.28210551571114e-11,80,6,FALSE,TRUE
+heat,BP,109,GO:0006925,inflammatory cell apoptotic process,19,15,2.19,2.04294561960466e-11,5,2,FALSE,TRUE
+heat,BP,110,GO:0006206,pyrimidine nucleobase metabolic process,33,20,3.81,2.1262004042696e-11,12,3,FALSE,TRUE
+heat,BP,111,GO:0071888,macrophage apoptotic process,17,14,1.96,3.49765974940164e-11,3,1,FALSE,TRUE
+heat,BP,112,GO:2000109,regulation of macrophage apoptotic process,17,14,1.96,3.49765974940164e-11,3,1,FALSE,TRUE
+heat,BP,113,GO:2000111,positive regulation of macrophage apoptotic process,17,14,1.96,3.49765974940164e-11,3,1,FALSE,TRUE
+heat,BP,114,GO:0019860,uracil metabolic process,13,12,1.5,6.34700044760863e-11,2,1,FALSE,TRUE
+heat,BP,115,GO:0018209,peptidyl-serine modification,312,77,35.98,6.62016327384944e-11,125,16,FALSE,TRUE
+heat,BP,116,GO:0000041,transition metal ion transport,186,54,21.45,7.89029196515004e-11,65,3,FALSE,TRUE
+heat,BP,117,GO:0047496,vesicle transport along microtubule,72,30,8.3,7.89121248984417e-11,20,3,FALSE,TRUE
+heat,BP,118,GO:0055076,transition metal ion homeostasis,187,54,21.56,9.85623168041946e-11,70,4,FALSE,TRUE
+heat,BP,119,GO:0045851,pH reduction,23,16,2.65,1.05269352260431e-10,8,2,FALSE,TRUE
+heat,BP,120,GO:0051452,intracellular pH reduction,23,16,2.65,1.05269352260431e-10,8,2,FALSE,TRUE
+heat,BP,121,GO:0051648,vesicle localization,198,56,22.83,1.0857461278307e-10,67,7,FALSE,TRUE
+heat,BP,122,GO:0007018,microtubule-based movement,497,107,57.31,1.20271423531678e-10,170,19,FALSE,TRUE
+heat,BP,123,GO:0098739,import across plasma membrane,204,57,23.52,1.25019720606149e-10,56,3,FALSE,TRUE
+heat,BP,124,GO:0007341,penetration of zona pellucida,18,14,2.08,1.40525279399199e-10,3,1,FALSE,TRUE
+heat,BP,125,GO:0033034,positive regulation of myeloid cell apoptotic process,18,14,2.08,1.40525279399199e-10,4,1,FALSE,TRUE
+heat,BP,126,GO:0018105,peptidyl-serine phosphorylation,281,70,32.4,3.06783804615983e-10,113,14,FALSE,TRUE
+heat,BP,127,GO:0048639,positive regulation of developmental growth,187,53,21.56,3.10650153269963e-10,94,9,FALSE,TRUE
+heat,BP,128,GO:0003231,cardiac ventricle development,93,34,10.72,3.12404331013283e-10,44,8,FALSE,TRUE
+heat,BP,129,GO:0042552,myelination,182,52,20.99,3.30785532698744e-10,67,8,FALSE,TRUE
+heat,BP,130,GO:0055082,cellular chemical homeostasis,914,169,105.4,3.3749541477749e-10,412,18,FALSE,TRUE
+heat,BP,131,GO:0019482,beta-alanine metabolic process,14,12,1.61,3.97135486789434e-10,3,1,FALSE,TRUE
+heat,BP,132,GO:0070070,proton-transporting V-type ATPase complex assembly,14,12,1.61,3.97135486789434e-10,3,1,FALSE,TRUE
+heat,BP,133,GO:0070072,vacuolar proton-transporting V-type ATPase complex assembly,14,12,1.61,3.97135486789434e-10,3,1,FALSE,TRUE
+heat,BP,134,GO:0006174,dADP phosphorylation,10,10,1.15,4.12391111409733e-10,1,1,FALSE,TRUE
+heat,BP,135,GO:0006186,dGDP phosphorylation,10,10,1.15,4.12391111409733e-10,1,1,FALSE,TRUE
+heat,BP,136,GO:0006756,AMP phosphorylation,10,10,1.15,4.12391111409733e-10,1,1,FALSE,TRUE
+heat,BP,137,GO:0009216,purine deoxyribonucleoside triphosphate biosynthetic process,10,10,1.15,4.12391111409733e-10,1,1,FALSE,TRUE
+heat,BP,138,GO:0032252,secretory granule localization,10,10,1.15,4.12391111409733e-10,1,1,FALSE,TRUE
+heat,BP,139,GO:0046940,nucleoside monophosphate phosphorylation,10,10,1.15,4.12391111409733e-10,1,1,FALSE,TRUE
+heat,BP,140,GO:0061508,CDP phosphorylation,10,10,1.15,4.12391111409733e-10,1,1,FALSE,TRUE
+heat,BP,141,GO:0061565,dAMP phosphorylation,10,10,1.15,4.12391111409733e-10,1,1,FALSE,TRUE
+heat,BP,142,GO:0061566,CMP phosphorylation,10,10,1.15,4.12391111409733e-10,1,1,FALSE,TRUE
+heat,BP,143,GO:0061567,dCMP phosphorylation,10,10,1.15,4.12391111409733e-10,1,1,FALSE,TRUE
+heat,BP,144,GO:0061568,GDP phosphorylation,10,10,1.15,4.12391111409733e-10,1,1,FALSE,TRUE
+heat,BP,145,GO:0061569,UDP phosphorylation,10,10,1.15,4.12391111409733e-10,1,1,FALSE,TRUE
+heat,BP,146,GO:0061570,dCDP phosphorylation,10,10,1.15,4.12391111409733e-10,1,1,FALSE,TRUE
+heat,BP,147,GO:0061571,TDP phosphorylation,10,10,1.15,4.12391111409733e-10,1,1,FALSE,TRUE
+heat,BP,148,GO:2000727,positive regulation of cardiac muscle cell differentiation,19,14,2.19,4.76793584368028e-10,4,1,FALSE,TRUE
+heat,BP,149,GO:0002467,germinal center formation,22,15,2.54,6.38928924104904e-10,6,2,FALSE,TRUE
+heat,BP,150,GO:0090280,positive regulation of calcium ion import,25,16,2.88,6.98193890243255e-10,4,1,FALSE,TRUE
+heat,BP,151,GO:0033962,P-body assembly,38,20,4.38,6.9963030666775e-10,11,3,FALSE,TRUE
+heat,BP,152,GO:0055065,metal ion homeostasis,778,147,89.72,1.05444112942702e-09,374,19,FALSE,TRUE
+heat,BP,153,GO:0035023,regulation of Rho protein signal transduction,215,57,24.79,1.10919598071381e-09,48,8,FALSE,TRUE
+heat,BP,154,GO:0060025,regulation of synaptic activity,20,14,2.31,1.41915505040629e-09,5,1,FALSE,TRUE
+heat,BP,155,GO:0071236,cellular response to antibiotic,20,14,2.31,1.41915505040629e-09,4,1,FALSE,TRUE
+heat,BP,156,GO:1905209,positive regulation of cardiocyte differentiation,20,14,2.31,1.41915505040629e-09,5,1,FALSE,TRUE
+heat,BP,157,GO:0098751,bone cell development,43,21,4.96,1.5784485031422e-09,12,2,FALSE,TRUE
+heat,BP,158,GO:0051279,regulation of release of sequestered calcium ion into cytosol,63,26,7.27,1.81932762285983e-09,28,3,FALSE,TRUE
+heat,BP,159,GO:2000785,regulation of autophagosome assembly,33,18,3.81,2.33566462471658e-09,10,3,FALSE,TRUE
+heat,BP,160,GO:0018345,protein palmitoylation,27,16,3.11,3.54706171240865e-09,7,2,FALSE,TRUE
+heat,BP,161,GO:0003223,ventricular compact myocardium morphogenesis,9,9,1.04,3.58217515729662e-09,2,2,FALSE,TRUE
+heat,BP,162,GO:0036334,epidermal stem cell homeostasis,9,9,1.04,3.58217515729662e-09,1,1,FALSE,TRUE
+heat,BP,163,GO:0030214,hyaluronan catabolic process,21,14,2.42,3.8018987101151e-09,6,1,FALSE,TRUE
+heat,BP,164,GO:0034198,cellular response to amino acid starvation,65,26,7.5,4.04725406454895e-09,28,8,FALSE,TRUE
+heat,BP,165,GO:0030050,vesicle transport along actin filament,11,10,1.27,4.06163436714381e-09,2,1,FALSE,TRUE
+heat,BP,166,GO:0046066,dGDP metabolic process,11,10,1.27,4.06163436714381e-09,2,1,FALSE,TRUE
+heat,BP,167,GO:0099515,actin filament-based transport,11,10,1.27,4.06163436714381e-09,2,1,FALSE,TRUE
+heat,BP,168,GO:0018107,peptidyl-threonine phosphorylation,141,42,16.26,4.08040491558487e-09,42,8,FALSE,TRUE
+heat,BP,169,GO:0001974,blood vessel remodeling,49,22,5.65,4.77625444702774e-09,18,2,FALSE,TRUE
+heat,BP,170,GO:0021772,olfactory bulb development,31,17,3.57,5.85805983866279e-09,15,5,FALSE,TRUE
+heat,BP,171,GO:0050853,B cell receptor signaling pathway,31,17,3.57,5.85805983866279e-09,10,3,FALSE,TRUE
+heat,BP,172,GO:0051495,positive regulation of cytoskeleton organization,342,77,39.44,5.88751404578873e-09,141,13,FALSE,TRUE
+heat,BP,173,GO:0060411,cardiac septum morphogenesis,58,24,6.69,7.12902773605899e-09,29,6,FALSE,TRUE
+heat,BP,174,GO:0051146,striated muscle cell differentiation,456,95,52.59,7.40254446381922e-09,210,13,FALSE,TRUE
+heat,BP,175,GO:0055017,cardiac muscle tissue growth,71,27,8.19,7.55232208612385e-09,36,7,FALSE,TRUE
+heat,BP,176,GO:0003206,cardiac chamber morphogenesis,144,42,16.61,8.13796355669852e-09,70,8,FALSE,TRUE
+heat,BP,177,GO:1990928,response to amino acid starvation,67,26,7.73,8.64940202964881e-09,30,8,FALSE,TRUE
+heat,BP,178,GO:0033032,regulation of myeloid cell apoptotic process,25,15,2.88,8.70908791332797e-09,9,2,FALSE,TRUE
+heat,BP,179,GO:0006941,striated muscle contraction,155,44,17.87,9.05233951801984e-09,72,6,FALSE,TRUE
+heat,BP,180,GO:0003128,heart field specification,22,14,2.54,9.33709583563289e-09,4,1,FALSE,TRUE
+heat,BP,181,GO:0003139,secondary heart field specification,22,14,2.54,9.33709583563289e-09,4,1,FALSE,TRUE
+heat,BP,182,GO:0009313,oligosaccharide catabolic process,22,14,2.54,9.33709583563289e-09,7,1,FALSE,TRUE
+heat,BP,183,GO:0010694,positive regulation of alkaline phosphatase activity,22,14,2.54,9.33709583563289e-09,5,1,FALSE,TRUE
+heat,BP,184,GO:2000725,regulation of cardiac muscle cell differentiation,22,14,2.54,9.33709583563289e-09,6,1,FALSE,TRUE
+heat,BP,185,GO:2001016,positive regulation of skeletal muscle cell differentiation,22,14,2.54,9.33709583563289e-09,5,1,FALSE,TRUE
+heat,BP,186,GO:0030318,melanocyte differentiation,59,24,6.8,1.07024909128865e-08,20,2,FALSE,TRUE
+heat,BP,187,GO:0051496,positive regulation of stress fiber assembly,77,28,8.88,1.27990752747081e-08,22,6,FALSE,TRUE
+heat,BP,188,GO:0044088,regulation of vacuole organization,36,18,4.15,1.44914241825334e-08,13,3,FALSE,TRUE
+heat,BP,189,GO:0090630,activation of GTPase activity,101,33,11.65,1.48279310561888e-08,28,6,FALSE,TRUE
+heat,BP,190,GO:0050931,pigment cell differentiation,87,30,10.03,1.63307898808534e-08,31,4,FALSE,TRUE
+heat,BP,191,GO:0046622,positive regulation of organ growth,40,19,4.61,1.69626695234589e-08,18,3,FALSE,TRUE
+heat,BP,192,GO:0006996,organelle organization,4567,642,526.66,1.80788854955693e-08,2075,173,FALSE,TRUE
+heat,BP,193,GO:0001662,behavioral fear response,26,15,3,1.83765511192208e-08,10,2,FALSE,TRUE
+heat,BP,194,GO:0007213,G protein-coupled acetylcholine receptor signaling pathway,17,12,1.96,1.92966227986931e-08,6,1,FALSE,TRUE
+heat,BP,195,GO:0070071,proton-transporting two-sector ATPase complex assembly,17,12,1.96,1.92966227986931e-08,6,1,FALSE,TRUE
+heat,BP,196,GO:0098657,import into cell,249,60,28.71,2.04449635332744e-08,82,4,FALSE,TRUE
+heat,BP,197,GO:0006213,pyrimidine nucleoside metabolic process,33,17,3.81,2.05105929916994e-08,14,2,FALSE,TRUE
+heat,BP,198,GO:0021988,olfactory lobe development,33,17,3.81,2.05105929916994e-08,16,5,FALSE,TRUE
+heat,BP,199,GO:0003211,cardiac ventricle formation,23,14,2.65,2.13110706134634e-08,7,1,FALSE,TRUE
+heat,BP,200,GO:0042340,keratan sulfate catabolic process,23,14,2.65,2.13110706134634e-08,8,1,FALSE,TRUE
+heat,BP,201,GO:0045652,regulation of megakaryocyte differentiation,23,14,2.65,2.13110706134634e-08,7,1,FALSE,TRUE
+heat,BP,202,GO:0043085,positive regulation of catalytic activity,1244,208,143.46,2.13667950689483e-08,503,34,FALSE,TRUE
+heat,BP,203,GO:0009182,purine deoxyribonucleoside diphosphate metabolic process,12,10,1.38,2.18222344323145e-08,3,1,FALSE,TRUE
+heat,BP,204,GO:0009202,deoxyribonucleoside triphosphate biosynthetic process,12,10,1.38,2.18222344323145e-08,3,1,FALSE,TRUE
+heat,BP,205,GO:0031585,"regulation of inositol 1,4,5-trisphosphate-sensitive calcium-release channel activity",12,10,1.38,2.18222344323145e-08,2,1,FALSE,TRUE
+heat,BP,206,GO:0046056,dADP metabolic process,12,10,1.38,2.18222344323145e-08,3,1,FALSE,TRUE
+heat,BP,207,GO:0051643,endoplasmic reticulum localization,12,10,1.38,2.18222344323145e-08,2,1,FALSE,TRUE
+heat,BP,208,GO:0000186,activation of MAPKK activity,61,24,7.03,2.33261575288418e-08,21,4,FALSE,TRUE
+heat,BP,209,GO:0018210,peptidyl-threonine modification,166,45,19.14,2.88163510190637e-08,48,9,FALSE,TRUE
+heat,BP,210,GO:0007272,ensheathment of neurons,205,52,23.64,2.89699531448182e-08,79,8,FALSE,TRUE
+heat,BP,211,GO:0008366,axon ensheathment,205,52,23.64,2.89699531448182e-08,79,8,FALSE,TRUE
+heat,BP,212,GO:0043243,positive regulation of protein-containing complex disassembly,66,25,7.61,2.94825554919822e-08,19,6,FALSE,TRUE
+heat,BP,213,GO:0003221,right ventricular cardiac muscle tissue morphogenesis,8,8,0.92,3.111017179882e-08,1,1,FALSE,TRUE
+heat,BP,214,GO:0003226,right ventricular compact myocardium morphogenesis,8,8,0.92,3.111017179882e-08,1,1,FALSE,TRUE
+heat,BP,215,GO:0007290,spermatid nucleus elongation,10,9,1.15,3.21102315702786e-08,2,1,FALSE,TRUE
+heat,BP,216,GO:0014733,regulation of skeletal muscle adaptation,10,9,1.15,3.21102315702786e-08,2,2,FALSE,TRUE
+heat,BP,217,GO:0043501,skeletal muscle adaptation,10,9,1.15,3.21102315702786e-08,2,2,FALSE,TRUE
+heat,BP,218,GO:0060426,lung vasculature development,10,9,1.15,3.21102315702786e-08,2,1,FALSE,TRUE
+heat,BP,219,GO:1902117,positive regulation of organelle assembly,99,32,11.42,3.25797616355787e-08,30,5,FALSE,TRUE
+heat,BP,220,GO:0032233,positive regulation of actin filament bundle assembly,80,28,9.23,3.3558365677803e-08,23,6,FALSE,TRUE
+heat,BP,221,GO:0033028,myeloid cell apoptotic process,27,15,3.11,3.69134128777359e-08,10,2,FALSE,TRUE
+heat,BP,222,GO:1902115,regulation of organelle assembly,230,56,26.52,4.05773671026536e-08,76,10,FALSE,TRUE
+heat,BP,223,GO:0010692,regulation of alkaline phosphatase activity,24,14,2.77,4.56829973730441e-08,7,1,FALSE,TRUE
+heat,BP,224,GO:0030890,positive regulation of B cell proliferation,24,14,2.77,4.56829973730441e-08,8,1,FALSE,TRUE
+heat,BP,225,GO:0090330,regulation of platelet aggregation,24,14,2.77,4.56829973730441e-08,9,2,FALSE,TRUE
+heat,BP,226,GO:0045927,positive regulation of growth,231,56,26.64,4.75964529472755e-08,126,11,FALSE,TRUE
+heat,BP,227,GO:0046113,nucleobase catabolic process,18,12,2.08,5.17632318102298e-08,5,1,FALSE,TRUE
+heat,BP,228,GO:0055023,positive regulation of cardiac muscle tissue growth,31,16,3.57,5.18500221105095e-08,12,2,FALSE,TRUE
+heat,BP,229,GO:0030705,cytoskeleton-dependent intracellular transport,226,55,26.06,5.42606246203233e-08,76,8,FALSE,TRUE
+heat,BP,230,GO:0005977,glycogen metabolic process,68,25,7.84,5.89852615694673e-08,26,3,FALSE,TRUE
+heat,BP,231,GO:0045446,endothelial cell differentiation,117,35,13.49,6.87049816607848e-08,45,4,FALSE,TRUE
+heat,BP,232,GO:0001953,negative regulation of cell-matrix adhesion,39,18,4.5,7.06375830435003e-08,19,3,FALSE,TRUE
+heat,BP,233,GO:0042596,fear response,28,15,3.23,7.09845648899716e-08,12,2,FALSE,TRUE
+heat,BP,234,GO:0003073,regulation of systemic arterial blood pressure,78,27,8.99,7.63794133798136e-08,37,2,FALSE,TRUE
+heat,BP,235,GO:0060419,heart growth,78,27,8.99,7.63794133798136e-08,42,7,FALSE,TRUE
+heat,BP,236,GO:0061025,membrane fusion,270,62,31.14,7.99410008017062e-08,104,11,FALSE,TRUE
+heat,BP,237,GO:0060914,heart formation,60,23,6.92,8.06253352142767e-08,15,2,FALSE,TRUE
+heat,BP,238,GO:0051302,regulation of cell division,123,36,14.18,8.32682854588346e-08,50,5,FALSE,TRUE
+heat,BP,239,GO:0009186,deoxyribonucleoside diphosphate metabolic process,13,10,1.5,8.46871549497154e-08,4,1,FALSE,TRUE
+heat,BP,240,GO:1902903,regulation of supramolecular fiber organization,459,92,52.93,8.52097421506638e-08,161,20,FALSE,TRUE
+heat,BP,241,GO:0060421,positive regulation of heart growth,32,16,3.69,9.25522931153407e-08,13,2,FALSE,TRUE
+heat,BP,242,GO:0090279,regulation of calcium ion import,32,16,3.69,9.25522931153407e-08,9,1,FALSE,TRUE
+heat,BP,243,GO:0043615,astrocyte cell migration,25,14,2.88,9.27407003217734e-08,4,1,FALSE,TRUE
+heat,BP,244,GO:0060045,positive regulation of cardiac muscle cell proliferation,25,14,2.88,9.27407003217734e-08,9,1,FALSE,TRUE
+heat,BP,245,GO:0048738,cardiac muscle tissue development,184,47,21.22,1.04230952700782e-07,91,12,FALSE,TRUE
+heat,BP,246,GO:0060043,regulation of cardiac muscle cell proliferation,36,17,4.15,1.07319838529626e-07,16,3,FALSE,TRUE
+heat,BP,247,GO:0060038,cardiac muscle cell proliferation,40,18,4.61,1.14553421378078e-07,20,4,FALSE,TRUE
+heat,BP,248,GO:0071498,cellular response to fluid shear stress,40,18,4.61,1.14553421378078e-07,8,3,FALSE,TRUE
+heat,BP,249,GO:0034063,stress granule assembly,16,11,1.85,1.18854752565475e-07,5,2,FALSE,TRUE
+heat,BP,250,GO:0048820,hair follicle maturation,16,11,1.85,1.18854752565475e-07,4,2,FALSE,TRUE
+heat,BP,251,GO:0051336,regulation of hydrolase activity,1086,182,125.24,1.37251324555373e-07,407,27,FALSE,TRUE
+heat,BP,252,GO:0032956,regulation of actin cytoskeleton organization,440,88,50.74,1.77534928088715e-07,182,18,FALSE,TRUE
+heat,BP,253,GO:0002520,immune system development,841,147,96.98,1.77540194014489e-07,393,27,FALSE,TRUE
+heat,BP,254,GO:0055002,striated muscle cell development,288,64,33.21,1.78495876634033e-07,127,9,FALSE,TRUE
+heat,BP,255,GO:0003207,cardiac chamber formation,26,14,3,1.79498874391419e-07,10,1,FALSE,TRUE
+heat,BP,256,GO:0006112,energy reserve metabolic process,72,25,8.3,2.14064931457881e-07,27,3,FALSE,TRUE
+heat,BP,257,GO:0006468,protein phosphorylation,1556,245,179.44,2.27594445256323e-07,688,56,FALSE,TRUE
+heat,BP,258,GO:0051650,establishment of vesicle localization,172,44,19.83,2.49855100028393e-07,60,6,FALSE,TRUE
+heat,BP,259,GO:2000096,"positive regulation of Wnt signaling pathway, planar cell polarity pathway",9,8,1.04,2.51334144931007e-07,2,1,FALSE,TRUE
+heat,BP,260,GO:0042759,long-chain fatty acid biosynthetic process,14,10,1.61,2.6547993772014e-07,5,1,FALSE,TRUE
+heat,BP,261,GO:0014883,transition between fast and slow fiber,7,7,0.81,2.70132035220742e-07,1,1,FALSE,TRUE
+heat,BP,262,GO:0089700,protein kinase D signaling,7,7,0.81,2.70132035220742e-07,1,1,FALSE,TRUE
+heat,BP,263,GO:0095500,acetylcholine receptor signaling pathway,20,12,2.31,2.80911389254429e-07,9,1,FALSE,TRUE
+heat,BP,264,GO:0098926,postsynaptic signal transduction,20,12,2.31,2.80911389254429e-07,9,1,FALSE,TRUE
+heat,BP,265,GO:1905145,cellular response to acetylcholine,20,12,2.31,2.80911389254429e-07,9,1,FALSE,TRUE
+heat,BP,266,GO:0030279,negative regulation of ossification,38,17,4.38,2.86033901627342e-07,16,3,FALSE,TRUE
+heat,BP,267,GO:0007266,Rho protein signal transduction,261,59,30.1,2.86674435010715e-07,70,9,FALSE,TRUE
+heat,BP,268,GO:0030097,hemopoiesis,778,137,89.72,2.98802249956046e-07,358,23,FALSE,TRUE
+heat,BP,269,GO:0021553,olfactory nerve development,17,11,1.96,3.01377990471241e-07,3,2,FALSE,TRUE
+heat,BP,270,GO:0003158,endothelium development,124,35,14.3,3.3107868738864e-07,48,4,FALSE,TRUE
+heat,BP,271,GO:0001782,B cell homeostasis,27,14,3.11,3.33052448329231e-07,11,1,FALSE,TRUE
+heat,BP,272,GO:0006689,ganglioside catabolic process,27,14,3.11,3.33052448329231e-07,12,1,FALSE,TRUE
+heat,BP,273,GO:0030220,platelet formation,27,14,3.11,3.33052448329231e-07,6,1,FALSE,TRUE
+heat,BP,274,GO:0036344,platelet morphogenesis,27,14,3.11,3.33052448329231e-07,6,1,FALSE,TRUE
+heat,BP,275,GO:2001014,regulation of skeletal muscle cell differentiation,27,14,3.11,3.33052448329231e-07,9,1,FALSE,TRUE
+heat,BP,276,GO:0030239,myofibril assembly,238,55,27.45,3.36295002688574e-07,102,5,FALSE,TRUE
+heat,BP,277,GO:0019725,cellular homeostasis,1051,175,121.2,3.65478516905101e-07,482,22,FALSE,TRUE
+heat,BP,278,GO:0048878,chemical homeostasis,1240,201,142.99,3.67549670092804e-07,586,29,FALSE,TRUE
+heat,BP,279,GO:0006906,vesicle fusion,209,50,24.1,3.72255501822155e-07,73,10,FALSE,TRUE
+heat,BP,280,GO:0032970,regulation of actin filament-based process,454,89,52.35,3.78964385770953e-07,192,19,FALSE,TRUE
+heat,BP,281,GO:0030099,myeloid cell differentiation,264,59,30.44,4.31090910096498e-07,134,9,FALSE,TRUE
+heat,BP,282,GO:0090174,organelle membrane fusion,210,50,24.22,4.34324429604265e-07,74,10,FALSE,TRUE
+heat,BP,283,GO:0030316,osteoclast differentiation,65,23,7.5,4.39560116538582e-07,31,3,FALSE,TRUE
+heat,BP,284,GO:0045663,positive regulation of myoblast differentiation,39,17,4.5,4.5247651144213e-07,8,2,FALSE,TRUE
+heat,BP,285,GO:0003222,ventricular trabecula myocardium morphogenesis,24,13,2.77,4.54641148223249e-07,11,3,FALSE,TRUE
+heat,BP,286,GO:0070925,organelle assembly,1333,213,153.72,4.82685861586486e-07,575,50,FALSE,TRUE
+heat,BP,287,GO:0048534,hematopoietic or lymphoid organ development,806,140,92.95,4.96760544665112e-07,374,25,FALSE,TRUE
+heat,BP,288,GO:0032400,melanosome localization,61,22,7.03,5.32969094076504e-07,19,2,FALSE,TRUE
+heat,BP,289,GO:0051875,pigment granule localization,61,22,7.03,5.32969094076504e-07,19,2,FALSE,TRUE
+heat,BP,290,GO:0034405,response to fluid shear stress,85,27,9.8,5.56445069533795e-07,41,4,FALSE,TRUE
+heat,BP,291,GO:0046135,pyrimidine nucleoside catabolic process,21,12,2.42,5.86247311678582e-07,9,1,FALSE,TRUE
+heat,BP,292,GO:0030207,chondroitin sulfate catabolic process,28,14,3.23,5.9512033176849e-07,10,1,FALSE,TRUE
+heat,BP,293,GO:0048643,positive regulation of skeletal muscle tissue development,28,14,3.23,5.9512033176849e-07,6,1,FALSE,TRUE
+heat,BP,294,GO:0090073,positive regulation of protein homodimerization activity,28,14,3.23,5.9512033176849e-07,7,1,FALSE,TRUE
+heat,BP,295,GO:0072160,nephron tubule epithelial cell differentiation,48,19,5.54,5.96168065069842e-07,21,4,FALSE,TRUE
+heat,BP,296,GO:0044057,regulation of system process,526,99,60.66,6.29504466353452e-07,239,17,FALSE,TRUE
+heat,BP,297,GO:0007608,sensory perception of smell,72,24,8.3,8.74522006402928e-07,26,1,FALSE,TRUE
+heat,BP,298,GO:0045862,positive regulation of proteolysis,320,67,36.9,9.29207881948232e-07,142,11,FALSE,TRUE
+heat,BP,299,GO:0001573,ganglioside metabolic process,29,14,3.34,1.02803004531228e-06,13,1,FALSE,TRUE
+heat,BP,300,GO:0055012,ventricular cardiac muscle cell differentiation,29,14,3.34,1.02803004531228e-06,4,1,FALSE,TRUE
+heat,BP,301,GO:0030029,actin filament-based process,1200,193,138.38,1.06397553037838e-06,511,39,FALSE,TRUE
+heat,BP,302,GO:0005981,regulation of glycogen catabolic process,10,8,1.15,1.12822979837392e-06,3,1,FALSE,TRUE
+heat,BP,303,GO:0051444,negative regulation of ubiquitin-protein transferase activity,10,8,1.15,1.12822979837392e-06,2,1,FALSE,TRUE
+heat,BP,304,GO:2000052,positive regulation of non-canonical Wnt signaling pathway,10,8,1.15,1.12822979837392e-06,3,1,FALSE,TRUE
+heat,BP,305,GO:0030641,regulation of cellular pH,98,29,11.3,1.13061053650754e-06,28,3,FALSE,TRUE
+heat,BP,306,GO:0051453,regulation of intracellular pH,98,29,11.3,1.13061053650754e-06,28,3,FALSE,TRUE
+heat,BP,307,GO:0008344,adult locomotory behavior,158,40,18.22,1.1416891902021e-06,56,5,FALSE,TRUE
+heat,BP,308,GO:1905144,response to acetylcholine,22,12,2.54,1.15366067266146e-06,11,1,FALSE,TRUE
+heat,BP,309,GO:0003279,cardiac septum development,114,32,13.15,1.18453503820542e-06,58,9,FALSE,TRUE
+heat,BP,310,GO:0010638,positive regulation of organelle organization,755,131,87.07,1.20706402614978e-06,344,33,FALSE,TRUE
+heat,BP,311,GO:0030004,cellular monovalent inorganic cation homeostasis,99,29,11.42,1.4237091519332e-06,29,3,FALSE,TRUE
+heat,BP,312,GO:0033059,cellular pigmentation,99,29,11.42,1.4237091519332e-06,35,5,FALSE,TRUE
+heat,BP,313,GO:0030212,hyaluronan metabolic process,55,20,6.34,1.4915900862388e-06,20,3,FALSE,TRUE
+heat,BP,314,GO:0006073,cellular glucan metabolic process,79,25,9.11,1.55936797603942e-06,36,3,FALSE,TRUE
+heat,BP,315,GO:0032286,central nervous system myelin maintenance,13,9,1.5,1.65496306244508e-06,3,1,FALSE,TRUE
+heat,BP,316,GO:0042487,regulation of odontogenesis of dentin-containing tooth,13,9,1.5,1.65496306244508e-06,4,1,FALSE,TRUE
+heat,BP,317,GO:0022405,hair cycle process,116,32,13.38,1.7956254704162e-06,45,7,FALSE,TRUE
+heat,BP,318,GO:0097722,sperm motility,70,23,8.07,1.94910391898467e-06,29,6,FALSE,TRUE
+heat,BP,319,GO:0044042,glucan metabolic process,80,25,9.23,2.02072571525654e-06,37,3,FALSE,TRUE
+heat,BP,320,GO:0071800,podosome assembly,23,12,2.65,2.15788451573281e-06,7,1,FALSE,TRUE
+heat,BP,321,GO:0072093,metanephric renal vesicle formation,6,6,0.69,2.34513517557287e-06,2,2,FALSE,TRUE
+heat,BP,322,GO:0061515,myeloid cell development,66,22,7.61,2.4675821717284e-06,26,3,FALSE,TRUE
+heat,BP,323,GO:0045844,positive regulation of striated muscle tissue development,31,14,3.57,2.80676852249669e-06,7,1,FALSE,TRUE
+heat,BP,324,GO:0048636,positive regulation of muscle organ development,31,14,3.57,2.80676852249669e-06,7,1,FALSE,TRUE
+heat,BP,325,GO:0071107,response to parathyroid hormone,31,14,3.57,2.80676852249669e-06,7,1,FALSE,TRUE
+heat,BP,326,GO:0071374,cellular response to parathyroid hormone stimulus,31,14,3.57,2.80676852249669e-06,7,1,FALSE,TRUE
+heat,BP,327,GO:1901863,positive regulation of muscle tissue development,31,14,3.57,2.80676852249669e-06,7,1,FALSE,TRUE
+heat,BP,328,GO:0003205,cardiac chamber development,199,46,22.95,2.91715703574536e-06,100,10,FALSE,TRUE
+heat,BP,329,GO:0006885,regulation of pH,103,29,11.88,3.43907241006593e-06,30,3,FALSE,TRUE
+heat,BP,330,GO:0055021,regulation of cardiac muscle tissue growth,53,19,6.11,3.4718575143227e-06,27,4,FALSE,TRUE
+heat,BP,331,GO:0046033,AMP metabolic process,17,10,1.96,3.70867306055131e-06,6,1,FALSE,TRUE
+heat,BP,332,GO:0048368,lateral mesoderm development,17,10,1.96,3.70867306055131e-06,9,2,FALSE,TRUE
+heat,BP,333,GO:0006207,'de novo' pyrimidine nucleobase biosynthetic process,11,8,1.27,3.71463214341267e-06,4,2,FALSE,TRUE
+heat,BP,334,GO:0019856,pyrimidine nucleobase biosynthetic process,11,8,1.27,3.71463214341267e-06,4,2,FALSE,TRUE
+heat,BP,335,GO:0043471,regulation of cellular carbohydrate catabolic process,11,8,1.27,3.71463214341267e-06,4,1,FALSE,TRUE
+heat,BP,336,GO:0016310,phosphorylation,1873,279,215.99,3.85089038747002e-06,819,64,FALSE,TRUE
+heat,BP,337,GO:0050871,positive regulation of B cell activation,40,16,4.61,3.90467534036789e-06,19,2,FALSE,TRUE
+heat,BP,338,GO:0014888,striated muscle adaptation,14,9,1.61,4.15603268694997e-06,4,2,FALSE,TRUE
+heat,BP,339,GO:0070527,platelet aggregation,49,18,5.65,4.18054411870069e-06,32,5,FALSE,TRUE
+heat,BP,340,GO:0060021,roof of mouth development,73,23,8.42,4.37906067797884e-06,31,6,FALSE,TRUE
+heat,BP,341,GO:0010092,specification of animal organ identity,32,14,3.69,4.45941064841278e-06,9,1,FALSE,TRUE
+heat,BP,342,GO:0031529,ruffle organization,99,28,11.42,4.57167370805128e-06,21,4,FALSE,TRUE
+heat,BP,343,GO:0060420,regulation of heart growth,54,19,6.23,4.77874916539817e-06,28,4,FALSE,TRUE
+heat,BP,344,GO:0072384,organelle transport along microtubule,110,30,12.69,4.79508451588502e-06,32,3,FALSE,TRUE
+heat,BP,345,GO:0051492,regulation of stress fiber assembly,121,32,13.95,4.80673504021152e-06,50,7,FALSE,TRUE
+heat,BP,346,GO:0034248,regulation of cellular amide metabolic process,468,87,53.97,4.83545736834965e-06,225,16,FALSE,TRUE
+heat,BP,347,GO:0003179,heart valve morphogenesis,45,17,5.19,4.94527159991619e-06,23,3,FALSE,TRUE
+heat,BP,348,GO:0072102,glomerulus morphogenesis,45,17,5.19,4.94527159991619e-06,16,2,FALSE,TRUE
+heat,BP,349,GO:0033363,secretory granule organization,41,16,4.73,5.71845190986669e-06,15,4,FALSE,TRUE
+heat,BP,350,GO:0043244,regulation of protein-containing complex disassembly,139,35,16.03,5.88428138565304e-06,46,10,FALSE,TRUE
+heat,BP,351,GO:0046578,regulation of Ras protein signal transduction,318,64,36.67,6.33531647728716e-06,82,11,FALSE,TRUE
+heat,BP,352,GO:0006517,protein deglycosylation,37,15,4.27,6.41880103362259e-06,18,3,FALSE,TRUE
+heat,BP,353,GO:0035855,megakaryocyte development,25,12,2.88,6.64367672920472e-06,6,1,FALSE,TRUE
+heat,BP,354,GO:0010543,regulation of platelet activation,33,14,3.81,6.92253538670814e-06,13,2,FALSE,TRUE
+heat,BP,355,GO:0071340,skeletal muscle acetylcholine-gated channel clustering,33,14,3.81,6.92253538670814e-06,15,2,FALSE,TRUE
+heat,BP,356,GO:0072080,nephron tubule development,140,35,16.14,6.98273624710635e-06,62,9,FALSE,TRUE
+heat,BP,357,GO:0015949,nucleobase-containing small molecule interconversion,18,10,2.08,7.47747719363871e-06,8,1,FALSE,TRUE
+heat,BP,358,GO:0043568,positive regulation of insulin-like growth factor receptor signaling pathway,18,10,2.08,7.47747719363871e-06,10,2,FALSE,TRUE
+heat,BP,359,GO:0045893,"positive regulation of transcription, DNA-templated",1282,199,147.84,7.71616792902179e-06,558,46,FALSE,TRUE
+heat,BP,360,GO:1903508,positive regulation of nucleic acid-templated transcription,1282,199,147.84,7.71616792902179e-06,558,46,FALSE,TRUE
+heat,BP,361,GO:0009268,response to pH,91,26,10.49,8.06695305240646e-06,43,4,FALSE,TRUE
+heat,BP,362,GO:1902680,positive regulation of RNA biosynthetic process,1283,199,147.95,8.10778192825645e-06,559,46,FALSE,TRUE
+heat,BP,363,GO:0030100,regulation of endocytosis,301,61,34.71,8.21655327926388e-06,116,7,FALSE,TRUE
+heat,BP,364,GO:0032946,positive regulation of mononuclear cell proliferation,42,16,4.84,8.24959753850042e-06,21,2,FALSE,TRUE
+heat,BP,365,GO:0048520,positive regulation of behavior,42,16,4.84,8.24959753850042e-06,18,2,FALSE,TRUE
+heat,BP,366,GO:0050671,positive regulation of lymphocyte proliferation,42,16,4.84,8.24959753850042e-06,21,2,FALSE,TRUE
+heat,BP,367,GO:0070665,positive regulation of leukocyte proliferation,42,16,4.84,8.24959753850042e-06,21,2,FALSE,TRUE
+heat,BP,368,GO:0030038,contractile actin filament bundle assembly,124,32,14.3,8.37560628010218e-06,53,7,FALSE,TRUE
+heat,BP,369,GO:0043149,stress fiber assembly,124,32,14.3,8.37560628010218e-06,53,7,FALSE,TRUE
+heat,BP,370,GO:0042060,wound healing,454,84,52.35,8.38638750151336e-06,226,17,FALSE,TRUE
+heat,BP,371,GO:0051235,maintenance of location,334,66,38.52,8.61900721596908e-06,188,12,FALSE,TRUE
+heat,BP,372,GO:0010557,positive regulation of macromolecule biosynthetic process,1435,219,165.48,8.74008775010966e-06,647,53,FALSE,TRUE
+heat,BP,373,GO:0045669,positive regulation of osteoblast differentiation,56,19,6.46,8.79593683926844e-06,28,4,FALSE,TRUE
+heat,BP,374,GO:0009112,nucleobase metabolic process,61,20,7.03,9.27144160325447e-06,28,3,FALSE,TRUE
+heat,BP,375,GO:0042481,regulation of odontogenesis,15,9,1.73,9.31994060023765e-06,6,1,FALSE,TRUE
+heat,BP,376,GO:0007605,sensory perception of sound,251,53,28.94,9.33562976856359e-06,77,5,FALSE,TRUE
+heat,BP,377,GO:0048284,organelle fusion,239,51,27.56,1.00262019008365e-05,95,11,FALSE,TRUE
+heat,BP,378,GO:0050954,sensory perception of mechanical stimulus,303,61,34.94,1.01848518539397e-05,96,7,FALSE,TRUE
+heat,BP,379,GO:0048638,regulation of developmental growth,349,68,40.25,1.03613208203029e-05,185,16,FALSE,TRUE
+heat,BP,380,GO:1903169,regulation of calcium ion transmembrane transport,103,28,11.88,1.04662438167167e-05,47,3,FALSE,TRUE
+heat,BP,381,GO:0021511,spinal cord patterning,26,12,3,1.1040627303516e-05,12,2,FALSE,TRUE
+heat,BP,382,GO:0021513,spinal cord dorsal/ventral patterning,26,12,3,1.1040627303516e-05,12,2,FALSE,TRUE
+heat,BP,383,GO:0032881,regulation of polysaccharide metabolic process,30,13,3.46,1.11447920788462e-05,16,3,FALSE,TRUE
+heat,BP,384,GO:0030036,actin cytoskeleton organization,1112,175,128.23,1.21689437476984e-05,470,35,FALSE,TRUE
+heat,BP,385,GO:0043473,pigmentation,192,43,22.14,1.39453228492386e-05,71,6,FALSE,TRUE
+heat,BP,386,GO:0072033,renal vesicle formation,7,6,0.81,1.47951540176856e-05,3,2,FALSE,TRUE
+heat,BP,387,GO:0046620,regulation of organ growth,94,26,10.84,1.52626011019968e-05,45,8,FALSE,TRUE
+heat,BP,388,GO:0001945,lymph vessel development,23,11,2.65,1.69540846313103e-05,11,3,FALSE,TRUE
+heat,BP,389,GO:0022010,central nervous system myelination,16,9,1.85,1.91113732882983e-05,6,1,FALSE,TRUE
+heat,BP,390,GO:0032291,axon ensheathment in central nervous system,16,9,1.85,1.91113732882983e-05,6,1,FALSE,TRUE
+heat,BP,391,GO:0046677,response to antibiotic,74,22,8.53,1.97330119405274e-05,32,3,FALSE,TRUE
+heat,BP,392,GO:0051924,regulation of calcium ion transport,207,45,23.87,1.98327362915667e-05,114,5,FALSE,TRUE
+heat,BP,393,GO:0031630,regulation of synaptic vesicle fusion to presynaptic active zone membrane,5,5,0.58,2.03553136894685e-05,1,1,FALSE,TRUE
+heat,BP,394,GO:0072396,response to cell cycle checkpoint signaling,5,5,0.58,2.03553136894685e-05,1,1,FALSE,TRUE
+heat,BP,395,GO:0072402,response to DNA integrity checkpoint signaling,5,5,0.58,2.03553136894685e-05,1,1,FALSE,TRUE
+heat,BP,396,GO:0072423,response to DNA damage checkpoint signaling,5,5,0.58,2.03553136894685e-05,1,1,FALSE,TRUE
+heat,BP,397,GO:0072429,response to intra-S DNA damage checkpoint signaling,5,5,0.58,2.03553136894685e-05,1,1,FALSE,TRUE
+heat,BP,398,GO:1901098,positive regulation of autophagosome maturation,13,8,1.5,2.33733751609756e-05,4,2,FALSE,TRUE
+heat,BP,399,GO:0003143,embryonic heart tube morphogenesis,136,33,15.68,2.43810010332876e-05,70,7,FALSE,TRUE
+heat,BP,400,GO:0046514,ceramide catabolic process,50,17,5.77,2.5046450409649e-05,26,2,FALSE,TRUE
+heat,BP,401,GO:1904158,axonemal central apparatus assembly,20,10,2.31,2.5361069537325e-05,3,1,FALSE,TRUE
+heat,BP,402,GO:0006898,receptor-mediated endocytosis,399,74,46.01,2.56244953730106e-05,192,12,FALSE,TRUE
+heat,BP,403,GO:0048066,developmental pigmentation,119,30,13.72,2.5703359755458e-05,45,4,FALSE,TRUE
+heat,BP,404,GO:0030836,positive regulation of actin filament depolymerization,32,13,3.69,2.58611577342928e-05,7,2,FALSE,TRUE
+heat,BP,405,GO:0042633,hair cycle,131,32,15.11,2.78551686774297e-05,51,7,FALSE,TRUE
+heat,BP,406,GO:0010959,regulation of metal ion transport,210,45,24.22,2.88933692047467e-05,115,5,FALSE,TRUE
+heat,BP,407,GO:0051254,positive regulation of RNA metabolic process,1334,202,153.83,3.10109758710034e-05,590,49,FALSE,TRUE
+heat,BP,408,GO:0055074,calcium ion homeostasis,533,93,61.46,3.17577169812025e-05,264,15,FALSE,TRUE
+heat,BP,409,GO:0042339,keratan sulfate metabolic process,37,14,4.27,3.29743117833899e-05,17,1,FALSE,TRUE
+heat,BP,410,GO:0048009,insulin-like growth factor receptor signaling pathway,37,14,4.27,3.29743117833899e-05,16,4,FALSE,TRUE
+heat,BP,411,GO:0046479,glycosphingolipid catabolic process,51,17,5.88,3.35496303407131e-05,27,2,FALSE,TRUE
+heat,BP,412,GO:0019915,lipid storage,56,18,6.46,3.46712378582831e-05,25,2,FALSE,TRUE
+heat,BP,413,GO:0055007,cardiac muscle cell differentiation,104,27,11.99,3.65876180265902e-05,46,5,FALSE,TRUE
+heat,BP,414,GO:0031328,positive regulation of cellular biosynthetic process,1507,224,173.79,3.91074219998638e-05,669,55,FALSE,TRUE
+heat,BP,415,GO:0098660,inorganic ion transmembrane transport,700,116,80.72,3.92245768575704e-05,317,13,FALSE,TRUE
+heat,BP,416,GO:0035850,epithelial cell differentiation involved in kidney development,99,26,11.42,4.08437879122276e-05,39,7,FALSE,TRUE
+heat,BP,417,GO:0010256,endomembrane system organization,572,98,65.96,4.14049766239606e-05,255,19,FALSE,TRUE
+heat,BP,418,GO:0021537,telencephalon development,258,52,29.75,4.24936330714054e-05,131,16,FALSE,TRUE
+heat,BP,419,GO:0045887,positive regulation of synaptic growth at neuromuscular junction,29,12,3.34,4.25337356900878e-05,8,1,FALSE,TRUE
+heat,BP,420,GO:1904398,positive regulation of neuromuscular junction development,29,12,3.34,4.25337356900878e-05,8,1,FALSE,TRUE
+heat,BP,421,GO:0006027,glycosaminoglycan catabolic process,67,20,7.73,4.34515156778695e-05,33,2,FALSE,TRUE
+heat,BP,422,GO:0030317,flagellated sperm motility,67,20,7.73,4.34515156778695e-05,28,5,FALSE,TRUE
+heat,BP,423,GO:0008582,regulation of synaptic growth at neuromuscular junction,52,17,6,4.45145265149348e-05,25,2,FALSE,TRUE
+heat,BP,424,GO:0010970,transport along microtubule,208,44,23.99,4.87104694539827e-05,71,6,FALSE,TRUE
+heat,BP,425,GO:0006995,cellular response to nitrogen starvation,14,8,1.61,4.89964984596763e-05,7,1,FALSE,TRUE
+heat,BP,426,GO:0043562,cellular response to nitrogen levels,14,8,1.61,4.89964984596763e-05,7,1,FALSE,TRUE
+heat,BP,427,GO:0072382,minus-end-directed vesicle transport along microtubule,14,8,1.61,4.89964984596763e-05,2,1,FALSE,TRUE
+heat,BP,428,GO:0003007,heart morphogenesis,380,70,43.82,5.19321422607218e-05,193,19,FALSE,TRUE
+heat,BP,429,GO:0009311,oligosaccharide metabolic process,43,15,4.96,5.28854471857869e-05,23,2,FALSE,TRUE
+heat,BP,430,GO:0001560,regulation of cell growth by extracellular stimulus,8,6,0.92,5.335076083322e-05,3,1,FALSE,TRUE
+heat,BP,431,GO:0044205,'de novo' UMP biosynthetic process,8,6,0.92,5.335076083322e-05,3,1,FALSE,TRUE
+heat,BP,432,GO:0090648,response to environmental enrichment,8,6,0.92,5.335076083322e-05,3,1,FALSE,TRUE
+heat,BP,433,GO:0055010,ventricular cardiac muscle tissue morphogenesis,34,13,3.92,5.52893069107101e-05,17,3,FALSE,TRUE
+heat,BP,434,GO:0003032,detection of oxygen,11,7,1.27,5.83567915755277e-05,2,1,FALSE,TRUE
+heat,BP,435,GO:0006348,chromatin silencing at telomere,11,7,1.27,5.83567915755277e-05,6,2,FALSE,TRUE
+heat,BP,436,GO:0072383,plus-end-directed vesicle transport along microtubule,11,7,1.27,5.83567915755277e-05,2,1,FALSE,TRUE
+heat,BP,437,GO:0072386,plus-end-directed organelle transport along microtubule,11,7,1.27,5.83567915755277e-05,2,1,FALSE,TRUE
+heat,BP,438,GO:0003170,heart valve development,53,17,6.11,5.85305559926871e-05,29,3,FALSE,TRUE
+heat,BP,439,GO:0048483,autonomic nervous system development,124,30,14.3,5.91129123497498e-05,22,2,FALSE,TRUE
+heat,BP,440,GO:0051101,regulation of DNA binding,90,24,10.38,6.09492887475871e-05,38,8,FALSE,TRUE
+heat,BP,441,GO:0051208,sequestering of calcium ion,136,32,15.68,6.10611078560054e-05,82,5,FALSE,TRUE
+heat,BP,442,GO:0051282,regulation of sequestering of calcium ion,136,32,15.68,6.10611078560054e-05,82,5,FALSE,TRUE
+heat,BP,443,GO:0048853,forebrain morphogenesis,30,12,3.46,6.34596980975823e-05,7,2,FALSE,TRUE
+heat,BP,444,GO:0060259,regulation of feeding behavior,30,12,3.46,6.34596980975823e-05,11,3,FALSE,TRUE
+heat,BP,445,GO:0036035,osteoclast development,18,9,2.08,6.54013448953883e-05,6,1,FALSE,TRUE
+heat,BP,446,GO:0042438,melanin biosynthetic process,26,11,3,6.96234908214048e-05,7,2,FALSE,TRUE
+heat,BP,447,GO:0007288,sperm axoneme assembly,22,10,2.54,7.13396243237979e-05,9,2,FALSE,TRUE
+heat,BP,448,GO:0001539,cilium or flagellum-dependent cell motility,91,24,10.49,7.38101059955941e-05,43,6,FALSE,TRUE
+heat,BP,449,GO:0035329,hippo signaling,54,17,6.23,7.62976907345622e-05,32,8,FALSE,TRUE
+heat,BP,450,GO:0055008,cardiac muscle tissue morphogenesis,54,17,6.23,7.62976907345622e-05,31,5,FALSE,TRUE
+heat,BP,451,GO:0016601,Rac protein signal transduction,35,13,4.04,7.86995957891207e-05,15,2,FALSE,TRUE
+heat,BP,452,GO:0071468,cellular response to acidic pH,40,14,4.61,8.95952833811665e-05,19,2,FALSE,TRUE
+heat,BP,453,GO:0046777,protein autophosphorylation,332,62,38.29,8.99796121917642e-05,124,15,FALSE,TRUE
+heat,BP,454,GO:0021694,cerebellar Purkinje cell layer formation,15,8,1.73,9.43411360133206e-05,9,3,FALSE,TRUE
+heat,BP,455,GO:0021702,cerebellar Purkinje cell differentiation,15,8,1.73,9.43411360133206e-05,9,3,FALSE,TRUE
+heat,BP,456,GO:0036507,protein demannosylation,15,8,1.73,9.43411360133206e-05,8,1,FALSE,TRUE
+heat,BP,457,GO:0036508,"protein alpha-1,2-demannosylation",15,8,1.73,9.43411360133206e-05,8,1,FALSE,TRUE
+heat,BP,458,GO:1904380,endoplasmic reticulum mannose trimming,15,8,1.73,9.43411360133206e-05,8,1,FALSE,TRUE
+heat,BP,459,GO:0030834,regulation of actin filament depolymerization,76,21,8.76,9.88041559961029e-05,20,4,FALSE,TRUE
+heat,BP,460,GO:0099111,microtubule-based transport,240,48,27.68,9.95009571053958e-05,85,7,FALSE,TRUE
+heat,BP,461,GO:0098662,inorganic cation transmembrane transport,636,105,73.34,0.000102625937109945,288,11,FALSE,TRUE
+heat,BP,462,GO:0042594,response to starvation,202,42,23.29,0.000107188541822899,102,14,FALSE,TRUE
+heat,BP,463,GO:0051457,maintenance of protein location in nucleus,36,13,4.15,0.000110223643454472,20,2,FALSE,TRUE
+heat,BP,464,GO:0006526,arginine biosynthetic process,6,5,0.69,0.000110406206258947,2,1,FALSE,TRUE
+heat,BP,465,GO:0032482,Rab protein signal transduction,19,9,2.19,0.000111529961953428,3,2,FALSE,TRUE
+heat,BP,466,GO:0032801,receptor catabolic process,19,9,2.19,0.000111529961953428,10,2,FALSE,TRUE
+heat,BP,467,GO:0031643,positive regulation of myelination,23,10,2.65,0.00011317465485648,7,2,FALSE,TRUE
+heat,BP,468,GO:0070873,regulation of glycogen metabolic process,23,10,2.65,0.00011317465485648,11,2,FALSE,TRUE
+heat,BP,469,GO:0042592,homeostatic process,1885,269,217.38,0.000120332369687968,909,56,FALSE,TRUE
+heat,BP,470,GO:0006874,cellular calcium ion homeostasis,524,89,60.43,0.000123549400123516,258,13,FALSE,TRUE
+heat,BP,471,GO:0061005,cell differentiation involved in kidney development,117,28,13.49,0.000125235011177572,45,8,FALSE,TRUE
+heat,BP,472,GO:0008156,negative regulation of DNA replication,32,12,3.69,0.000132799117170557,16,5,FALSE,TRUE
+heat,BP,473,GO:0072529,pyrimidine-containing compound catabolic process,32,12,3.69,0.000132799117170557,15,1,FALSE,TRUE
+heat,BP,474,GO:1905037,autophagosome organization,83,22,9.57,0.00013362042911534,39,5,FALSE,TRUE
+heat,BP,475,GO:2000027,regulation of animal organ morphogenesis,106,26,12.22,0.00014006524579083,56,6,FALSE,TRUE
+heat,BP,476,GO:0009891,positive regulation of biosynthetic process,1539,224,177.48,0.000140660623573141,691,55,FALSE,TRUE
+heat,BP,477,GO:0009847,spore germination,9,6,1.04,0.000144322055801609,4,1,FALSE,TRUE
+heat,BP,478,GO:0034773,histone H4-K20 trimethylation,9,6,1.04,0.000144322055801609,5,2,FALSE,TRUE
+heat,BP,479,GO:0055067,monovalent inorganic cation homeostasis,124,29,14.3,0.000147621033990621,48,3,FALSE,TRUE
+heat,BP,480,GO:0033043,regulation of organelle organization,1433,210,165.25,0.000152980098580897,655,62,FALSE,TRUE
+heat,BP,481,GO:1905332,positive regulation of morphogenesis of an epithelium,28,11,3.23,0.000155349411361455,14,4,FALSE,TRUE
+heat,BP,482,GO:0019377,glycolipid catabolic process,57,17,6.57,0.000161071213172721,31,2,FALSE,TRUE
+heat,BP,483,GO:0010447,response to acidic pH,42,14,4.84,0.000163256311179755,21,2,FALSE,TRUE
+heat,BP,484,GO:0030888,regulation of B cell proliferation,42,14,4.84,0.000163256311179755,17,1,FALSE,TRUE
+heat,BP,485,GO:0042100,B cell proliferation,47,15,5.42,0.000167519787153313,20,2,FALSE,TRUE
+heat,BP,486,GO:0072385,minus-end-directed organelle transport along microtubule,16,8,1.85,0.000169570898738343,3,1,FALSE,TRUE
+heat,BP,487,GO:2000095,"regulation of Wnt signaling pathway, planar cell polarity pathway",16,8,1.85,0.000169570898738343,6,1,FALSE,TRUE
+heat,BP,488,GO:0007368,determination of left/right symmetry,219,44,25.25,0.000169710307609894,118,12,FALSE,TRUE
+heat,BP,489,GO:0032057,negative regulation of translational initiation in response to stress,4,4,0.46,0.000176646837265965,2,2,FALSE,TRUE
+heat,BP,490,GO:0042986,positive regulation of amyloid precursor protein biosynthetic process,4,4,0.46,0.000176646837265965,1,1,FALSE,TRUE
+heat,BP,491,GO:0106004,tRNA (guanine-N7)-methylation,4,4,0.46,0.000176646837265965,1,1,FALSE,TRUE
+heat,BP,492,GO:0003338,metanephros morphogenesis,20,9,2.31,0.000182031783021148,10,4,FALSE,TRUE
+heat,BP,493,GO:0002573,myeloid leukocyte differentiation,114,27,13.15,0.000196791598487663,59,5,FALSE,TRUE
+heat,BP,494,GO:0051693,actin filament capping,58,17,6.69,0.000203572667736655,13,3,FALSE,TRUE
+heat,BP,495,GO:0003229,ventricular cardiac muscle tissue development,38,13,4.38,0.000206867058889685,20,3,FALSE,TRUE
+heat,BP,496,GO:0009161,ribonucleoside monophosphate metabolic process,53,16,6.11,0.000212925932529223,26,2,FALSE,TRUE
+heat,BP,497,GO:0001958,endochondral ossification,48,15,5.54,0.000217867401781899,22,2,FALSE,TRUE
+heat,BP,498,GO:0036075,replacement ossification,48,15,5.54,0.000217867401781899,22,2,FALSE,TRUE
+heat,BP,499,GO:0022404,molting cycle process,145,32,16.72,0.000218786024795695,57,7,FALSE,TRUE
+heat,BP,500,GO:0060415,muscle tissue morphogenesis,64,18,7.38,0.000237779009616715,35,6,FALSE,TRUE
+heat,BP,501,GO:0060294,cilium movement involved in cell motility,75,20,8.65,0.000242387564896825,34,5,FALSE,TRUE
+heat,BP,502,GO:0030149,sphingolipid catabolic process,59,17,6.8,0.000255511694410116,33,2,FALSE,TRUE
+heat,BP,503,GO:0030903,notochord development,39,13,4.5,0.000277740228562731,17,3,FALSE,TRUE
+heat,BP,504,GO:0031641,regulation of myelination,49,15,5.65,0.000280766191380273,16,4,FALSE,TRUE
+heat,BP,505,GO:0021700,developmental maturation,580,95,66.88,0.000281146527518759,263,17,FALSE,TRUE
+heat,BP,506,GO:0032231,regulation of actin filament bundle assembly,147,32,16.95,0.000284266127034196,56,7,FALSE,TRUE
+heat,BP,507,GO:0050732,negative regulation of peptidyl-tyrosine phosphorylation,21,9,2.42,0.000286003850871216,9,1,FALSE,TRUE
+heat,BP,508,GO:1905832,positive regulation of spindle assembly,21,9,2.42,0.000286003850871216,4,2,FALSE,TRUE
+heat,BP,509,GO:0005980,glycogen catabolic process,17,8,1.96,0.000287909998910636,7,1,FALSE,TRUE
+heat,BP,510,GO:0045661,regulation of myoblast differentiation,65,18,7.5,0.00029373471242977,22,3,FALSE,TRUE
+heat,BP,511,GO:0035094,response to nicotine,129,29,14.88,0.000303347908345876,72,1,FALSE,TRUE
+heat,BP,512,GO:0003337,mesenchymal to epithelial transition involved in metanephros morphogenesis,10,6,1.15,0.000325428377053205,5,2,FALSE,TRUE
+heat,BP,513,GO:0070417,cellular response to cold,10,6,1.15,0.000325428377053205,7,4,FALSE,TRUE
+heat,BP,514,GO:0072283,metanephric renal vesicle morphogenesis,10,6,1.15,0.000325428377053205,5,2,FALSE,TRUE
+heat,BP,515,GO:0035306,positive regulation of dephosphorylation,71,19,8.19,0.000326737778711374,21,3,FALSE,TRUE
+heat,BP,516,GO:1902231,positive regulation of intrinsic apoptotic signaling pathway in response to DNA damage,7,5,0.81,0.000349433836862101,3,1,FALSE,TRUE
+heat,BP,517,GO:0072009,nephron epithelium development,174,36,20.07,0.000352483996360797,70,10,FALSE,TRUE
+heat,BP,518,GO:0035137,hindlimb morphogenesis,35,12,4.04,0.000352529028816529,16,3,FALSE,TRUE
+heat,BP,519,GO:0007029,endoplasmic reticulum organization,50,15,5.77,0.000358689970105539,26,3,FALSE,TRUE
+heat,BP,520,GO:0035690,cellular response to drug,83,21,9.57,0.000376057001338797,27,4,FALSE,TRUE
+heat,BP,521,GO:0051129,negative regulation of cellular component organization,830,128,95.71,0.000391972469223346,342,31,FALSE,TRUE
+heat,BP,522,GO:0097178,ruffle assembly,61,17,7.03,0.000394678238618019,14,2,FALSE,TRUE
+heat,BP,523,GO:0061061,muscle structure development,944,143,108.86,0.000409866053311404,430,28,FALSE,TRUE
+heat,BP,524,GO:0051651,maintenance of location in cell,242,46,27.91,0.000453043540565043,140,8,FALSE,TRUE
+heat,BP,525,GO:0072503,cellular divalent inorganic cation homeostasis,545,89,62.85,0.000472469297978395,271,13,FALSE,TRUE
+heat,BP,526,GO:0050851,antigen receptor-mediated signaling pathway,108,25,12.45,0.000481405648501001,36,4,FALSE,TRUE
+heat,BP,527,GO:0072595,maintenance of protein localization in organelle,41,13,4.73,0.000482843477898948,24,2,FALSE,TRUE
+heat,BP,528,GO:1901881,positive regulation of protein depolymerization,41,13,4.73,0.000482843477898948,10,2,FALSE,TRUE
+heat,BP,529,GO:0045935,positive regulation of nucleobase-containing compound metabolic process,1503,215,173.32,0.000490681968563795,700,56,FALSE,TRUE
+heat,BP,530,GO:0030042,actin filament depolymerization,85,21,9.8,0.00053063899687531,26,4,FALSE,TRUE
+heat,BP,531,GO:0110053,regulation of actin filament organization,312,56,35.98,0.000533007182238562,120,15,FALSE,TRUE
+heat,BP,532,GO:0048813,dendrite morphogenesis,369,64,42.55,0.000582462735099407,155,8,FALSE,TRUE
+heat,BP,533,GO:0043567,regulation of insulin-like growth factor receptor signaling pathway,32,11,3.69,0.000602431947561724,13,3,FALSE,TRUE
+heat,BP,534,GO:0016197,endosomal transport,314,56,36.21,0.000625180080915929,127,5,FALSE,TRUE
+heat,BP,535,GO:0043217,myelin maintenance,23,9,2.65,0.000641259404876925,6,1,FALSE,TRUE
+heat,BP,536,GO:0051638,barbed-end actin filament uncapping,23,9,2.65,0.000641259404876925,1,1,FALSE,TRUE
+heat,BP,537,GO:0051695,actin filament uncapping,23,9,2.65,0.000641259404876925,1,1,FALSE,TRUE
+heat,BP,538,GO:0048478,replication fork protection,11,6,1.27,0.000645914279626417,3,2,FALSE,TRUE
+heat,BP,539,GO:0072077,renal vesicle morphogenesis,11,6,1.27,0.000645914279626417,6,2,FALSE,TRUE
+heat,BP,540,GO:0072087,renal vesicle development,11,6,1.27,0.000645914279626417,6,2,FALSE,TRUE
+heat,BP,541,GO:0031338,regulation of vesicle fusion,69,18,7.96,0.000647322531288872,19,5,FALSE,TRUE
+heat,BP,542,GO:0008360,regulation of cell shape,167,34,19.26,0.000683931221155676,75,6,FALSE,TRUE
+heat,BP,543,GO:0097435,supramolecular fiber organization,1017,151,117.28,0.000695611623606058,430,35,FALSE,TRUE
+heat,BP,544,GO:0002209,behavioral defense response,53,15,6.11,0.000712731433885119,25,2,FALSE,TRUE
+heat,BP,545,GO:1901658,glycosyl compound catabolic process,53,15,6.11,0.000712731433885119,27,2,FALSE,TRUE
+heat,BP,546,GO:0007512,adult heart development,19,8,2.19,0.000723652893155132,11,1,FALSE,TRUE
+heat,BP,547,GO:0030970,"retrograde protein transport, ER to cytosol",19,8,2.19,0.000723652893155132,12,1,FALSE,TRUE
+heat,BP,548,GO:0072273,metanephric nephron morphogenesis,19,8,2.19,0.000723652893155132,9,3,FALSE,TRUE
+heat,BP,549,GO:0090190,positive regulation of branching involved in ureteric bud morphogenesis,19,8,2.19,0.000723652893155132,10,3,FALSE,TRUE
+heat,BP,550,GO:1901096,regulation of autophagosome maturation,19,8,2.19,0.000723652893155132,5,2,FALSE,TRUE
+heat,BP,551,GO:1903513,endoplasmic reticulum to cytosol transport,19,8,2.19,0.000723652893155132,12,1,FALSE,TRUE
+heat,BP,552,GO:2000050,regulation of non-canonical Wnt signaling pathway,19,8,2.19,0.000723652893155132,9,1,FALSE,TRUE
+heat,BP,553,GO:1902459,positive regulation of stem cell population maintenance,15,7,1.73,0.00074743873300359,4,1,FALSE,TRUE
+heat,BP,554,GO:1902895,positive regulation of pri-miRNA transcription by RNA polymerase II,15,7,1.73,0.00074743873300359,6,1,FALSE,TRUE
+heat,BP,555,GO:0043113,receptor clustering,99,23,11.42,0.000752073796322297,36,4,FALSE,TRUE
+heat,BP,556,GO:0009267,cellular response to starvation,181,36,20.87,0.000762501598490746,87,12,FALSE,TRUE
+heat,BP,557,GO:0010878,cholesterol storage,5,4,0.58,0.000801812931571951,2,1,FALSE,TRUE
+heat,BP,558,GO:0032202,telomere assembly,5,4,0.58,0.000801812931571951,3,2,FALSE,TRUE
+heat,BP,559,GO:0034433,steroid esterification,5,4,0.58,0.000801812931571951,2,1,FALSE,TRUE
+heat,BP,560,GO:0034434,sterol esterification,5,4,0.58,0.000801812931571951,2,1,FALSE,TRUE
+heat,BP,561,GO:0034435,cholesterol esterification,5,4,0.58,0.000801812931571951,2,1,FALSE,TRUE
+heat,BP,562,GO:0034729,histone H3-K79 methylation,5,4,0.58,0.000801812931571951,2,1,FALSE,TRUE
+heat,BP,563,GO:0035609,C-terminal protein deglutamylation,5,4,0.58,0.000801812931571951,2,1,FALSE,TRUE
+heat,BP,564,GO:0051451,myoblast migration,5,4,0.58,0.000801812931571951,3,2,FALSE,TRUE
+heat,BP,565,GO:0043321,regulation of natural killer cell degranulation,8,5,0.92,0.000842905630243569,1,1,FALSE,TRUE
+heat,BP,566,GO:0043323,positive regulation of natural killer cell degranulation,8,5,0.92,0.000842905630243569,1,1,FALSE,TRUE
+heat,BP,567,GO:0048789,cytoskeletal matrix organization at active zone,8,5,0.92,0.000842905630243569,3,1,FALSE,TRUE
+heat,BP,568,GO:0051414,response to cortisol,8,5,0.92,0.000842905630243569,4,1,FALSE,TRUE
+heat,BP,569,GO:0044264,cellular polysaccharide metabolic process,112,25,12.92,0.000850467994930073,55,3,FALSE,TRUE
+heat,BP,570,GO:0006458,'de novo' protein folding,24,9,2.77,0.000921620862954081,16,2,FALSE,TRUE
+heat,BP,571,GO:2000812,regulation of barbed-end actin filament capping,24,9,2.77,0.000921620862954081,2,1,FALSE,TRUE
+heat,BP,572,GO:2000813,negative regulation of barbed-end actin filament capping,24,9,2.77,0.000921620862954081,2,1,FALSE,TRUE
+heat,BP,573,GO:0014033,neural crest cell differentiation,71,18,8.19,0.00093211035793596,35,3,FALSE,TRUE
+heat,BP,574,GO:0042048,olfactory behavior,71,18,8.19,0.00093211035793596,17,4,FALSE,TRUE
+heat,BP,575,GO:0010522,regulation of calcium ion transport into cytosol,119,26,13.72,0.000950008777779345,77,3,FALSE,TRUE
+heat,BP,576,GO:0043496,regulation of protein homodimerization activity,49,14,5.65,0.000957696793373796,17,1,FALSE,TRUE
+heat,BP,577,GO:0006997,nucleus organization,138,29,15.91,0.000969082373226365,64,6,FALSE,TRUE
+heat,BP,578,GO:0009123,nucleoside monophosphate metabolic process,60,16,6.92,0.000979782216577482,31,2,FALSE,TRUE
+heat,BP,579,GO:0046466,membrane lipid catabolic process,66,17,7.61,0.00105527178860443,38,2,FALSE,TRUE
+heat,BP,580,GO:0009164,nucleoside catabolic process,39,12,4.5,0.00106454615712915,20,1,FALSE,TRUE
+heat,BP,581,GO:0060688,regulation of morphogenesis of a branching structure,34,11,3.92,0.00107400483239371,19,4,FALSE,TRUE
+heat,BP,582,GO:0003215,cardiac right ventricle morphogenesis,20,8,2.31,0.00108473363324445,8,1,FALSE,TRUE
+heat,BP,583,GO:0043584,nose development,20,8,2.31,0.00108473363324445,7,1,FALSE,TRUE
+heat,BP,584,GO:0090235,regulation of metaphase plate congression,20,8,2.31,0.00108473363324445,3,1,FALSE,TRUE
+heat,BP,585,GO:0050821,protein stabilization,152,31,17.53,0.00111392045430203,82,10,FALSE,TRUE
+heat,BP,586,GO:0000045,autophagosome assembly,78,19,8.99,0.00114800164274558,37,4,FALSE,TRUE
+heat,BP,587,GO:0006222,UMP biosynthetic process,12,6,1.38,0.00116578373735051,5,1,FALSE,TRUE
+heat,BP,588,GO:0009173,pyrimidine ribonucleoside monophosphate metabolic process,12,6,1.38,0.00116578373735051,5,1,FALSE,TRUE
+heat,BP,589,GO:0009174,pyrimidine ribonucleoside monophosphate biosynthetic process,12,6,1.38,0.00116578373735051,5,1,FALSE,TRUE
+heat,BP,590,GO:0030213,hyaluronan biosynthetic process,12,6,1.38,0.00116578373735051,8,2,FALSE,TRUE
+heat,BP,591,GO:0046049,UMP metabolic process,12,6,1.38,0.00116578373735051,5,1,FALSE,TRUE
+heat,BP,592,GO:0060231,mesenchymal to epithelial transition,12,6,1.38,0.00116578373735051,7,2,FALSE,TRUE
+heat,BP,593,GO:0010839,negative regulation of keratinocyte proliferation,61,16,7.03,0.00118781918651863,30,1,FALSE,TRUE
+heat,BP,594,GO:0072507,divalent inorganic cation homeostasis,606,95,69.88,0.00121804406752167,303,16,FALSE,TRUE
+heat,BP,595,GO:0051056,regulation of small GTPase mediated signal transduction,452,74,52.12,0.00124751501303923,115,14,FALSE,TRUE
+heat,BP,596,GO:0006497,protein lipidation,109,24,12.57,0.00130480676475137,63,5,FALSE,TRUE
+heat,BP,597,GO:0072073,kidney epithelium development,193,37,22.26,0.00131414885717241,83,11,FALSE,TRUE
+heat,BP,598,GO:0030204,chondroitin sulfate metabolic process,56,15,6.46,0.00132727269182753,28,2,FALSE,TRUE
+heat,BP,599,GO:0051124,synaptic growth at neuromuscular junction,79,19,9.11,0.00135053288201726,36,3,FALSE,TRUE
+heat,BP,600,GO:0038202,TORC1 signaling,30,10,3.46,0.00139062537837193,13,4,FALSE,TRUE
+heat,BP,601,GO:0009855,determination of bilateral symmetry,241,44,27.79,0.00139091512679471,129,12,FALSE,TRUE
+heat,BP,602,GO:0042158,lipoprotein biosynthetic process,110,24,12.69,0.00148944319678713,64,5,FALSE,TRUE
+heat,BP,603,GO:0021591,ventricular system development,68,17,7.84,0.00150712982931095,25,4,FALSE,TRUE
+heat,BP,604,GO:0030835,negative regulation of actin filament depolymerization,68,17,7.84,0.00150712982931095,15,3,FALSE,TRUE
+heat,BP,605,GO:0051283,negative regulation of sequestering of calcium ion,129,27,14.88,0.00151168775537899,80,4,FALSE,TRUE
+heat,BP,606,GO:0015980,energy derivation by oxidation of organic compounds,168,33,19.37,0.00153050521796373,95,7,FALSE,TRUE
+heat,BP,607,GO:0002091,negative regulation of receptor internalization,3,3,0.35,0.00153268215170395,1,1,FALSE,TRUE
+heat,BP,608,GO:0003247,post-embryonic cardiac muscle cell growth involved in heart morphogenesis,3,3,0.35,0.00153268215170395,1,1,FALSE,TRUE
+heat,BP,609,GO:0003340,negative regulation of mesenchymal to epithelial transition involved in metanephros morphogenesis,3,3,0.35,0.00153268215170395,1,1,FALSE,TRUE
+heat,BP,610,GO:0006398,mRNA 3'-end processing by stem-loop binding and cleavage,3,3,0.35,0.00153268215170395,2,2,FALSE,TRUE
+heat,BP,611,GO:0007371,ventral midline determination,3,3,0.35,0.00153268215170395,1,1,FALSE,TRUE
+heat,BP,612,GO:0021938,smoothened signaling pathway involved in regulation of cerebellar granule cell precursor cell proliferation,3,3,0.35,0.00153268215170395,1,1,FALSE,TRUE
+heat,BP,613,GO:0031129,inductive cell-cell signaling,3,3,0.35,0.00153268215170395,1,1,FALSE,TRUE
+heat,BP,614,GO:0031509,subtelomeric heterochromatin assembly,3,3,0.35,0.00153268215170395,1,1,FALSE,TRUE
+heat,BP,615,GO:0031940,positive regulation of chromatin silencing at telomere,3,3,0.35,0.00153268215170395,1,1,FALSE,TRUE
+heat,BP,616,GO:0035063,nuclear speck organization,3,3,0.35,0.00153268215170395,1,1,FALSE,TRUE
+heat,BP,617,GO:0060734,regulation of endoplasmic reticulum stress-induced eIF2 alpha phosphorylation,3,3,0.35,0.00153268215170395,1,1,FALSE,TRUE
+heat,BP,618,GO:0061034,olfactory bulb mitral cell layer development,3,3,0.35,0.00153268215170395,1,1,FALSE,TRUE
+heat,BP,619,GO:0061038,uterus morphogenesis,3,3,0.35,0.00153268215170395,1,1,FALSE,TRUE
+heat,BP,620,GO:0072036,mesenchymal to epithelial transition involved in renal vesicle formation,3,3,0.35,0.00153268215170395,1,1,FALSE,TRUE
+heat,BP,621,GO:0072092,ureteric bud invasion,3,3,0.35,0.00153268215170395,1,1,FALSE,TRUE
+heat,BP,622,GO:0072285,mesenchymal to epithelial transition involved in metanephric renal vesicle formation,3,3,0.35,0.00153268215170395,1,1,FALSE,TRUE
+heat,BP,623,GO:0101023,vascular endothelial cell proliferation,3,3,0.35,0.00153268215170395,1,1,FALSE,TRUE
+heat,BP,624,GO:0140461,subtelomeric heterochromatin organization,3,3,0.35,0.00153268215170395,1,1,FALSE,TRUE
+heat,BP,625,GO:1903699,tarsal gland development,3,3,0.35,0.00153268215170395,1,1,FALSE,TRUE
+heat,BP,626,GO:1903709,uterine gland development,3,3,0.35,0.00153268215170395,1,1,FALSE,TRUE
+heat,BP,627,GO:1905547,regulation of subtelomeric heterochromatin assembly,3,3,0.35,0.00153268215170395,1,1,FALSE,TRUE
+heat,BP,628,GO:1905549,positive regulation of subtelomeric heterochromatin assembly,3,3,0.35,0.00153268215170395,1,1,FALSE,TRUE
+heat,BP,629,GO:1905553,regulation of blood vessel branching,3,3,0.35,0.00153268215170395,1,1,FALSE,TRUE
+heat,BP,630,GO:1905555,positive regulation of blood vessel branching,3,3,0.35,0.00153268215170395,1,1,FALSE,TRUE
+heat,BP,631,GO:1905562,regulation of vascular endothelial cell proliferation,3,3,0.35,0.00153268215170395,1,1,FALSE,TRUE
+heat,BP,632,GO:1905564,positive regulation of vascular endothelial cell proliferation,3,3,0.35,0.00153268215170395,1,1,FALSE,TRUE
+heat,BP,633,GO:1990737,response to manganese-induced endoplasmic reticulum stress,3,3,0.35,0.00153268215170395,1,1,FALSE,TRUE
+heat,BP,634,GO:2000383,regulation of ectoderm development,3,3,0.35,0.00153268215170395,1,1,FALSE,TRUE
+heat,BP,635,GO:2000384,negative regulation of ectoderm development,3,3,0.35,0.00153268215170395,1,1,FALSE,TRUE
+heat,BP,636,GO:2000697,negative regulation of epithelial cell differentiation involved in kidney development,3,3,0.35,0.00153268215170395,1,1,FALSE,TRUE
+heat,BP,637,GO:2001198,regulation of dendritic cell differentiation,3,3,0.35,0.00153268215170395,1,1,FALSE,TRUE
+heat,BP,638,GO:2001199,negative regulation of dendritic cell differentiation,3,3,0.35,0.00153268215170395,1,1,FALSE,TRUE
+heat,BP,639,GO:2001200,positive regulation of dendritic cell differentiation,3,3,0.35,0.00153268215170395,1,1,FALSE,TRUE
+heat,BP,640,GO:0051493,regulation of cytoskeleton organization,693,106,79.92,0.00153980889054061,284,24,FALSE,TRUE
+heat,BP,641,GO:0071277,cellular response to calcium ion,98,22,11.3,0.00156049399355713,41,5,FALSE,TRUE
+heat,BP,642,GO:0043536,positive regulation of blood vessel endothelial cell migration,21,8,2.42,0.00157625965316644,7,1,FALSE,TRUE
+heat,BP,643,GO:0046112,nucleobase biosynthetic process,21,8,2.42,0.00157625965316644,11,2,FALSE,TRUE
+heat,BP,644,GO:0090189,regulation of branching involved in ureteric bud morphogenesis,21,8,2.42,0.00157625965316644,11,3,FALSE,TRUE
+heat,BP,645,GO:0033622,integrin activation,57,15,6.57,0.00161188076028788,38,4,FALSE,TRUE
+heat,BP,646,GO:0050654,chondroitin sulfate proteoglycan metabolic process,57,15,6.57,0.00161188076028788,29,2,FALSE,TRUE
+heat,BP,647,GO:0034622,cellular protein-containing complex assembly,938,138,108.17,0.0016351172560696,433,37,FALSE,TRUE
+heat,BP,648,GO:0009799,specification of symmetry,243,44,28.02,0.00164573055270985,130,12,FALSE,TRUE
+heat,BP,649,GO:0038083,peptidyl-tyrosine autophosphorylation,111,24,12.8,0.0016960356337914,31,2,FALSE,TRUE
+heat,BP,650,GO:0003341,cilium movement,189,36,21.8,0.00170070523093186,67,7,FALSE,TRUE
+heat,BP,651,GO:0044093,positive regulation of molecular function,1588,221,183.13,0.001715626288537,699,42,FALSE,TRUE
+heat,BP,652,GO:0006525,arginine metabolic process,9,5,1.04,0.00171613509829602,4,1,FALSE,TRUE
+heat,BP,653,GO:0008049,male courtship behavior,52,14,6,0.00180001295717264,14,1,FALSE,TRUE
+heat,BP,654,GO:0007010,cytoskeleton organization,2060,280,237.56,0.00180515193471775,856,70,FALSE,TRUE
+heat,BP,655,GO:0010812,negative regulation of cell-substrate adhesion,75,18,8.65,0.00183030994714668,39,3,FALSE,TRUE
+heat,BP,656,GO:0070286,axonemal dynein complex assembly,31,10,3.57,0.00184283000516105,20,3,FALSE,TRUE
+heat,BP,657,GO:0007610,behavior,1236,176,142.53,0.00184442133240926,509,29,FALSE,TRUE
+heat,BP,658,GO:0060285,cilium-dependent cell motility,87,20,10.03,0.00184453527556049,42,5,FALSE,TRUE
+heat,BP,659,GO:0098655,cation transmembrane transport,705,107,81.3,0.00189916257201002,323,12,FALSE,TRUE
+heat,BP,660,GO:0007498,mesoderm development,231,42,26.64,0.00190615102494628,100,6,FALSE,TRUE
+heat,BP,661,GO:0009130,pyrimidine nucleoside monophosphate biosynthetic process,13,6,1.5,0.00195431707527902,6,1,FALSE,TRUE
+heat,BP,662,GO:0048484,enteric nervous system development,13,6,1.5,0.00195431707527902,6,1,FALSE,TRUE
+heat,BP,663,GO:0051017,actin filament bundle assembly,204,38,23.52,0.00195753748992794,91,10,FALSE,TRUE
+heat,BP,664,GO:0001947,heart looping,125,26,14.41,0.0020048100250259,66,6,FALSE,TRUE
+heat,BP,665,GO:0048489,synaptic vesicle transport,64,16,7.38,0.0020478775132905,22,2,FALSE,TRUE
+heat,BP,666,GO:0045445,myoblast differentiation,88,20,10.15,0.00213263611009392,39,4,FALSE,TRUE
+heat,BP,667,GO:0033623,regulation of integrin activation,42,12,4.84,0.00216749292661969,23,1,FALSE,TRUE
+heat,BP,668,GO:2000036,regulation of stem cell population maintenance,42,12,4.84,0.00216749292661969,15,3,FALSE,TRUE
+heat,BP,669,GO:0003017,lymph circulation,6,4,0.69,0.00218462638219796,2,1,FALSE,TRUE
+heat,BP,670,GO:0021889,olfactory bulb interneuron differentiation,6,4,0.69,0.00218462638219796,4,2,FALSE,TRUE
+heat,BP,671,GO:0033227,dsRNA transport,6,4,0.69,0.00218462638219796,3,1,FALSE,TRUE
+heat,BP,672,GO:0035610,protein side chain deglutamylation,6,4,0.69,0.00218462638219796,3,1,FALSE,TRUE
+heat,BP,673,GO:0036265,RNA (guanine-N7)-methylation,6,4,0.69,0.00218462638219796,3,1,FALSE,TRUE
+heat,BP,674,GO:0036490,regulation of translation in response to endoplasmic reticulum stress,6,4,0.69,0.00218462638219796,4,2,FALSE,TRUE
+heat,BP,675,GO:0036491,regulation of translation initiation in response to endoplasmic reticulum stress,6,4,0.69,0.00218462638219796,4,2,FALSE,TRUE
+heat,BP,676,GO:0036492,eiF2alpha phosphorylation in response to endoplasmic reticulum stress,6,4,0.69,0.00218462638219796,4,2,FALSE,TRUE
+heat,BP,677,GO:0042983,amyloid precursor protein biosynthetic process,6,4,0.69,0.00218462638219796,2,1,FALSE,TRUE
+heat,BP,678,GO:0042984,regulation of amyloid precursor protein biosynthetic process,6,4,0.69,0.00218462638219796,2,1,FALSE,TRUE
+heat,BP,679,GO:1990256,signal clustering,6,4,0.69,0.00218462638219796,3,1,FALSE,TRUE
+heat,BP,680,GO:0051491,positive regulation of filopodium assembly,53,14,6.11,0.00219031914501944,28,3,FALSE,TRUE
+heat,BP,681,GO:0097553,calcium ion transmembrane import into cytosol,165,32,19.03,0.00220778463622967,90,4,FALSE,TRUE
+heat,BP,682,GO:0036302,atrioventricular canal development,22,8,2.54,0.00222862657144826,7,1,FALSE,TRUE
+heat,BP,683,GO:0048752,semicircular canal morphogenesis,22,8,2.54,0.00222862657144826,7,1,FALSE,TRUE
+heat,BP,684,GO:0010951,negative regulation of endopeptidase activity,310,53,35.75,0.00224005356955468,114,3,FALSE,TRUE
+heat,BP,685,GO:0035082,axoneme assembly,159,31,18.34,0.00235168799154418,50,7,FALSE,TRUE
+heat,BP,686,GO:0090659,walking behavior,32,10,3.69,0.00240664730406983,13,3,FALSE,TRUE
+heat,BP,687,GO:0051209,release of sequestered calcium ion into cytosol,127,26,14.65,0.0025289929078846,78,3,FALSE,TRUE
+heat,BP,688,GO:0071216,cellular response to biotic stimulus,121,25,13.95,0.00265764603798713,77,5,FALSE,TRUE
+heat,BP,689,GO:0008217,regulation of blood pressure,134,27,15.45,0.00268251091223378,69,2,FALSE,TRUE
+heat,BP,690,GO:0030488,tRNA methylation,18,7,2.08,0.00270325411311717,12,3,FALSE,TRUE
+heat,BP,691,GO:0007017,microtubule-based process,1169,166,134.81,0.00272449314600056,445,42,FALSE,TRUE
+heat,BP,692,GO:0033555,multicellular organismal response to stress,60,15,6.92,0.00278691463181345,23,2,FALSE,TRUE
+heat,BP,693,GO:0050864,regulation of B cell activation,66,16,7.61,0.00287044637110319,32,2,FALSE,TRUE
+heat,BP,694,GO:2000108,positive regulation of leukocyte apoptotic process,66,16,7.61,0.00287044637110319,38,2,FALSE,TRUE
+heat,BP,695,GO:0031122,cytoplasmic microtubule organization,84,19,9.69,0.00287742532649944,30,3,FALSE,TRUE
+heat,BP,696,GO:0090288,negative regulation of cellular response to growth factor stimulus,84,19,9.69,0.00287742532649944,47,3,FALSE,TRUE
+heat,BP,697,GO:0035050,embryonic heart tube development,175,33,20.18,0.00304099643642187,82,7,FALSE,TRUE
+heat,BP,698,GO:0016446,somatic hypermutation of immunoglobulin genes,14,6,1.61,0.00308805999093219,6,1,FALSE,TRUE
+heat,BP,699,GO:0034770,histone H4-K20 methylation,14,6,1.61,0.00308805999093219,8,2,FALSE,TRUE
+heat,BP,700,GO:0036269,swimming behavior,14,6,1.61,0.00308805999093219,7,1,FALSE,TRUE
+heat,BP,701,GO:0060159,regulation of dopamine receptor signaling pathway,14,6,1.61,0.00308805999093219,7,1,FALSE,TRUE
+heat,BP,702,GO:1901660,calcium ion export,14,6,1.61,0.00308805999093219,5,1,FALSE,TRUE
+heat,BP,703,GO:1990034,calcium ion export across plasma membrane,14,6,1.61,0.00308805999093219,5,1,FALSE,TRUE
+heat,BP,704,GO:0072202,cell differentiation involved in metanephros development,33,10,3.81,0.00310074968289023,22,5,FALSE,TRUE
+heat,BP,705,GO:0019240,citrulline biosynthetic process,10,5,1.15,0.00310684181953882,2,1,FALSE,TRUE
+heat,BP,706,GO:1903960,negative regulation of anion transmembrane transport,10,5,1.15,0.00310684181953882,6,2,FALSE,TRUE
+heat,BP,707,GO:0051251,positive regulation of lymphocyte activation,116,24,13.38,0.00313509795267177,68,5,FALSE,TRUE
+heat,BP,708,GO:0010466,negative regulation of peptidase activity,315,53,36.33,0.00316384738423764,119,3,FALSE,TRUE
+heat,BP,709,GO:0007619,courtship behavior,55,14,6.34,0.00318126493117467,16,1,FALSE,TRUE
+heat,BP,710,GO:0007015,actin filament organization,558,86,64.35,0.00324386627548792,220,20,FALSE,TRUE
+heat,BP,711,GO:0035264,multicellular organism growth,149,29,17.18,0.00326767353494633,79,9,FALSE,TRUE
+heat,BP,712,GO:0040018,positive regulation of multicellular organism growth,44,12,5.07,0.0033232181910698,23,3,FALSE,TRUE
+heat,BP,713,GO:0030282,bone mineralization,123,25,14.18,0.00334239982373058,76,6,FALSE,TRUE
+heat,BP,714,GO:0032007,negative regulation of TOR signaling,67,16,7.73,0.00337436028433646,23,3,FALSE,TRUE
+heat,BP,715,GO:0061371,determination of heart left/right asymmetry,137,27,15.8,0.00370171948904693,71,7,FALSE,TRUE
+heat,BP,716,GO:0010922,positive regulation of phosphatase activity,56,14,6.46,0.00379926234429037,11,1,FALSE,TRUE
+heat,BP,717,GO:0043302,positive regulation of leukocyte degranulation,19,7,2.19,0.00385802149142836,9,2,FALSE,TRUE
+heat,BP,718,GO:1901879,regulation of protein depolymerization,105,22,12.11,0.00387611304647172,33,5,FALSE,TRUE
+heat,BP,719,GO:0060122,inner ear receptor cell stereocilium organization,74,17,8.53,0.00393772726868257,31,4,FALSE,TRUE
+heat,BP,720,GO:0007289,spermatid nucleus differentiation,34,10,3.92,0.00394522670393044,11,2,FALSE,TRUE
+heat,BP,721,GO:0021692,cerebellar Purkinje cell layer morphogenesis,24,8,2.77,0.00415202315895242,11,3,FALSE,TRUE
+heat,BP,722,GO:0060872,semicircular canal development,24,8,2.77,0.00415202315895242,8,1,FALSE,TRUE
+heat,BP,723,GO:0050905,neuromuscular process,125,25,14.41,0.00417010685723559,55,6,FALSE,TRUE
+heat,BP,724,GO:0010942,positive regulation of cell death,723,107,83.38,0.00421191972725798,323,18,FALSE,TRUE
+heat,BP,725,GO:0051051,negative regulation of transport,385,62,44.4,0.00426767482708327,165,9,FALSE,TRUE
+heat,BP,726,GO:0006892,post-Golgi vesicle-mediated transport,193,35,22.26,0.00448676504865064,76,5,FALSE,TRUE
+heat,BP,727,GO:0044550,secondary metabolite biosynthetic process,40,11,4.61,0.00452519101510647,18,2,FALSE,TRUE
+heat,BP,728,GO:0040038,polar body extrusion after meiotic divisions,7,4,0.81,0.00463154977597911,3,1,FALSE,TRUE
+heat,BP,729,GO:0070649,formin-nucleated actin cable assembly,7,4,0.81,0.00463154977597911,3,1,FALSE,TRUE
+heat,BP,730,GO:0097694,establishment of RNA localization to telomere,7,4,0.81,0.00463154977597911,2,1,FALSE,TRUE
+heat,BP,731,GO:0097695,establishment of protein-containing complex localization to telomere,7,4,0.81,0.00463154977597911,2,1,FALSE,TRUE
+heat,BP,732,GO:0110009,formin-nucleated actin cable organization,7,4,0.81,0.00463154977597911,3,1,FALSE,TRUE
+heat,BP,733,GO:1904868,telomerase catalytic core complex assembly,7,4,0.81,0.00463154977597911,2,1,FALSE,TRUE
+heat,BP,734,GO:1904882,regulation of telomerase catalytic core complex assembly,7,4,0.81,0.00463154977597911,2,1,FALSE,TRUE
+heat,BP,735,GO:1904884,positive regulation of telomerase catalytic core complex assembly,7,4,0.81,0.00463154977597911,2,1,FALSE,TRUE
+heat,BP,736,GO:1905323,telomerase holoenzyme complex assembly,7,4,0.81,0.00463154977597911,2,1,FALSE,TRUE
+heat,BP,737,GO:0051928,positive regulation of calcium ion transport,126,25,14.53,0.00464440442400145,69,3,FALSE,TRUE
+heat,BP,738,GO:0009129,pyrimidine nucleoside monophosphate metabolic process,15,6,1.73,0.0046484741628846,7,1,FALSE,TRUE
+heat,BP,739,GO:0045943,positive regulation of transcription by RNA polymerase I,15,6,1.73,0.0046484741628846,10,3,FALSE,TRUE
+heat,BP,740,GO:0070588,calcium ion transmembrane transport,285,48,32.87,0.00468777013320764,142,6,FALSE,TRUE
+heat,BP,741,GO:0045773,positive regulation of axon extension,46,12,5.3,0.00493122636654456,26,2,FALSE,TRUE
+heat,BP,742,GO:0018193,peptidyl-amino acid modification,1124,158,129.62,0.00496644734432273,475,39,FALSE,TRUE
+heat,BP,743,GO:0006914,autophagy,462,72,53.28,0.00505022989776929,209,20,FALSE,TRUE
+heat,BP,744,GO:0061919,process utilizing autophagic mechanism,462,72,53.28,0.00505022989776929,209,20,FALSE,TRUE
+heat,BP,745,GO:0007635,chemosensory behavior,82,18,9.46,0.00511934792365714,19,4,FALSE,TRUE
+heat,BP,746,GO:0000050,urea cycle,11,5,1.27,0.00515761476946584,5,1,FALSE,TRUE
+heat,BP,747,GO:0002717,positive regulation of natural killer cell mediated immunity,11,5,1.27,0.00515761476946584,3,1,FALSE,TRUE
+heat,BP,748,GO:0045954,positive regulation of natural killer cell mediated cytotoxicity,11,5,1.27,0.00515761476946584,3,1,FALSE,TRUE
+heat,BP,749,GO:0070200,establishment of protein localization to telomere,11,5,1.27,0.00515761476946584,6,2,FALSE,TRUE
+heat,BP,750,GO:0072019,proximal convoluted tubule development,11,5,1.27,0.00515761476946584,3,1,FALSE,TRUE
+heat,BP,751,GO:0072114,pronephros morphogenesis,11,5,1.27,0.00515761476946584,4,1,FALSE,TRUE
+heat,BP,752,GO:0090160,Golgi to lysosome transport,11,5,1.27,0.00515761476946584,3,1,FALSE,TRUE
+heat,BP,753,GO:0021680,cerebellar Purkinje cell layer development,30,9,3.46,0.00531661002519486,16,4,FALSE,TRUE
+heat,BP,754,GO:0032418,lysosome localization,58,14,6.69,0.00532779517501992,32,2,FALSE,TRUE
+heat,BP,755,GO:0071467,cellular response to pH,58,14,6.69,0.00532779517501992,31,2,FALSE,TRUE
+heat,BP,756,GO:0050885,neuromuscular process controlling balance,70,16,8.07,0.00533868849348416,31,3,FALSE,TRUE
+heat,BP,757,GO:0006013,mannose metabolic process,20,7,2.31,0.00535133033814276,8,2,FALSE,TRUE
+heat,BP,758,GO:0007205,protein kinase C-activating G protein-coupled receptor signaling pathway,20,7,2.31,0.00535133033814276,9,1,FALSE,TRUE
+heat,BP,759,GO:0048339,paraxial mesoderm development,20,7,2.31,0.00535133033814276,5,1,FALSE,TRUE
+heat,BP,760,GO:0010880,regulation of release of sequestered calcium ion into cytosol by sarcoplasmic reticulum,25,8,2.88,0.00549710177635053,13,1,FALSE,TRUE
+heat,BP,761,GO:0014808,release of sequestered calcium ion into cytosol by sarcoplasmic reticulum,25,8,2.88,0.00549710177635053,13,1,FALSE,TRUE
+heat,BP,762,GO:0016556,mRNA modification,25,8,2.88,0.00549710177635053,13,2,FALSE,TRUE
+heat,BP,763,GO:0019886,antigen processing and presentation of exogenous peptide antigen via MHC class II,25,8,2.88,0.00549710177635053,11,2,FALSE,TRUE
+heat,BP,764,GO:0032527,protein exit from endoplasmic reticulum,25,8,2.88,0.00549710177635053,16,1,FALSE,TRUE
+heat,BP,765,GO:0050975,sensory perception of touch,25,8,2.88,0.00549710177635053,7,2,FALSE,TRUE
+heat,BP,766,GO:0070296,sarcoplasmic reticulum calcium ion transport,25,8,2.88,0.00549710177635053,13,1,FALSE,TRUE
+heat,BP,767,GO:0090183,regulation of kidney development,25,8,2.88,0.00549710177635053,13,3,FALSE,TRUE
+heat,BP,768,GO:1903514,release of sequestered calcium ion into cytosol by endoplasmic reticulum,25,8,2.88,0.00549710177635053,13,1,FALSE,TRUE
+heat,BP,769,GO:0003245,cardiac muscle tissue growth involved in heart morphogenesis,4,3,0.46,0.00560078809501791,2,1,FALSE,TRUE
+heat,BP,770,GO:0018242,protein O-linked glycosylation via serine,4,3,0.46,0.00560078809501791,2,1,FALSE,TRUE
+heat,BP,771,GO:0021937,cerebellar Purkinje cell-granule cell precursor cell signaling involved in regulation of granule cell precursor cell proliferation,4,3,0.46,0.00560078809501791,2,1,FALSE,TRUE
+heat,BP,772,GO:0021940,positive regulation of cerebellar granule cell precursor proliferation,4,3,0.46,0.00560078809501791,2,1,FALSE,TRUE
+heat,BP,773,GO:0031938,regulation of chromatin silencing at telomere,4,3,0.46,0.00560078809501791,2,1,FALSE,TRUE
+heat,BP,774,GO:0046325,negative regulation of glucose import,4,3,0.46,0.00560078809501791,2,1,FALSE,TRUE
+heat,BP,775,GO:0051799,negative regulation of hair follicle development,4,3,0.46,0.00560078809501791,2,1,FALSE,TRUE
+heat,BP,776,GO:0090248,cell migration involved in somitogenic axis elongation,4,3,0.46,0.00560078809501791,2,1,FALSE,TRUE
+heat,BP,777,GO:0090249,regulation of cell migration involved in somitogenic axis elongation,4,3,0.46,0.00560078809501791,2,1,FALSE,TRUE
+heat,BP,778,GO:0097676,histone H3-K36 dimethylation,4,3,0.46,0.00560078809501791,2,1,FALSE,TRUE
+heat,BP,779,GO:1900126,negative regulation of hyaluronan biosynthetic process,4,3,0.46,0.00560078809501791,2,1,FALSE,TRUE
+heat,BP,780,GO:1902732,positive regulation of chondrocyte proliferation,4,3,0.46,0.00560078809501791,2,1,FALSE,TRUE
+heat,BP,781,GO:0060485,mesenchyme development,182,33,20.99,0.00567482463371995,99,8,FALSE,TRUE
+heat,BP,782,GO:0010837,regulation of keratinocyte proliferation,83,18,9.57,0.00584716919823864,39,2,FALSE,TRUE
+heat,BP,783,GO:0030838,positive regulation of actin filament polymerization,83,18,9.57,0.00584716919823864,35,5,FALSE,TRUE
+heat,BP,784,GO:0006890,"retrograde vesicle-mediated transport, Golgi to endoplasmic reticulum",47,12,5.42,0.00593993063254098,26,5,FALSE,TRUE
+heat,BP,785,GO:0061045,negative regulation of wound healing,71,16,8.19,0.00616928521087024,40,1,FALSE,TRUE
+heat,BP,786,GO:0007265,Ras protein signal transduction,466,72,53.74,0.00620330316934678,143,14,FALSE,TRUE
+heat,BP,787,GO:0016236,macroautophagy,204,36,23.52,0.00625275356419864,107,9,FALSE,TRUE
+heat,BP,788,GO:0048771,tissue remodeling,204,36,23.52,0.00625275356419864,122,6,FALSE,TRUE
+heat,BP,789,GO:0045814,"negative regulation of gene expression, epigenetic",59,14,6.8,0.00625884608742475,33,5,FALSE,TRUE
+heat,BP,790,GO:0006644,phospholipid metabolic process,333,54,38.4,0.00629527464957206,160,11,FALSE,TRUE
+heat,BP,791,GO:0044085,cellular component biogenesis,4049,516,466.92,0.00636373830104535,1913,139,FALSE,TRUE
+heat,BP,792,GO:0005976,polysaccharide metabolic process,156,29,17.99,0.00640320299083689,80,5,FALSE,TRUE
+heat,BP,793,GO:0042476,odontogenesis,136,26,15.68,0.00655433108903339,64,6,FALSE,TRUE
+heat,BP,794,GO:0046488,phosphatidylinositol metabolic process,136,26,15.68,0.00655433108903339,60,7,FALSE,TRUE
+heat,BP,795,GO:0022607,cellular component assembly,3852,492,444.21,0.00658007373651135,1774,127,FALSE,TRUE
+heat,BP,796,GO:0050680,negative regulation of epithelial cell proliferation,170,31,19.6,0.00659545360129854,81,5,FALSE,TRUE
+heat,BP,797,GO:0035025,positive regulation of Rho protein signal transduction,16,6,1.85,0.00671942376482275,8,2,FALSE,TRUE
+heat,BP,798,GO:0140115,export across plasma membrane,16,6,1.85,0.00671942376482275,7,1,FALSE,TRUE
+heat,BP,799,GO:0007628,adult walking behavior,31,9,3.57,0.00673770185157232,12,2,FALSE,TRUE
+heat,BP,800,GO:0035909,aorta morphogenesis,31,9,3.57,0.00673770185157232,16,2,FALSE,TRUE
+heat,BP,801,GO:0031647,regulation of protein stability,205,36,23.64,0.00676199670378972,116,13,FALSE,TRUE
+heat,BP,802,GO:0042157,lipoprotein metabolic process,123,24,14.18,0.00677182473804866,74,5,FALSE,TRUE
+heat,BP,803,GO:0042692,muscle cell differentiation,736,107,84.87,0.00714605159480937,322,14,FALSE,TRUE
+heat,BP,804,GO:0021533,cell differentiation in hindbrain,26,8,3,0.00715006722933269,14,3,FALSE,TRUE
+heat,BP,805,GO:0051281,positive regulation of release of sequestered calcium ion into cytosol,26,8,3,0.00715006722933269,12,1,FALSE,TRUE
+heat,BP,806,GO:0070509,calcium ion import,117,23,13.49,0.00721822974116717,44,3,FALSE,TRUE
+heat,BP,807,GO:2000104,negative regulation of DNA-dependent DNA replication,21,7,2.42,0.00723886568063094,10,3,FALSE,TRUE
+heat,BP,808,GO:0030433,ubiquitin-dependent ERAD pathway,66,15,7.61,0.00724709577719972,47,6,FALSE,TRUE
+heat,BP,809,GO:0097120,receptor localization to synapse,54,13,6.23,0.00727944165387105,10,2,FALSE,TRUE
+heat,BP,810,GO:0007606,sensory perception of chemical stimulus,124,24,14.3,0.00750017127738986,41,1,FALSE,TRUE
+heat,BP,811,GO:0030168,platelet activation,85,18,9.8,0.007555643285732,51,5,FALSE,TRUE
+heat,BP,812,GO:0016482,cytosolic transport,172,31,19.83,0.0078211862010493,67,7,FALSE,TRUE
+heat,BP,813,GO:0001822,kidney development,359,57,41.4,0.00793392669106264,171,18,FALSE,TRUE
+heat,BP,814,GO:0000052,citrulline metabolic process,12,5,1.38,0.00800892264954822,3,1,FALSE,TRUE
+heat,BP,815,GO:0002043,blood vessel endothelial cell proliferation involved in sprouting angiogenesis,12,5,1.38,0.00800892264954822,8,2,FALSE,TRUE
+heat,BP,816,GO:0008334,histone mRNA metabolic process,12,5,1.38,0.00800892264954822,9,4,FALSE,TRUE
+heat,BP,817,GO:0010738,regulation of protein kinase A signaling,12,5,1.38,0.00800892264954822,6,1,FALSE,TRUE
+heat,BP,818,GO:0019627,urea metabolic process,12,5,1.38,0.00800892264954822,6,1,FALSE,TRUE
+heat,BP,819,GO:0070914,UV-damage excision repair,12,5,1.38,0.00800892264954822,9,2,FALSE,TRUE
+heat,BP,820,GO:1990253,cellular response to leucine starvation,12,5,1.38,0.00800892264954822,6,3,FALSE,TRUE
+heat,BP,821,GO:2000042,negative regulation of double-strand break repair via homologous recombination,12,5,1.38,0.00800892264954822,6,1,FALSE,TRUE
+heat,BP,822,GO:0031214,biomineral tissue development,145,27,16.72,0.00811523801879543,90,8,FALSE,TRUE
+heat,BP,823,GO:0110148,biomineralization,145,27,16.72,0.00811523801879543,90,8,FALSE,TRUE
+heat,BP,824,GO:0010927,cellular component assembly involved in morphogenesis,382,60,44.05,0.00828342311154714,154,8,FALSE,TRUE
+heat,BP,825,GO:0006265,DNA topological change,8,4,0.92,0.00842019392171466,6,3,FALSE,TRUE
+heat,BP,826,GO:0010560,positive regulation of glycoprotein biosynthetic process,8,4,0.92,0.00842019392171466,4,1,FALSE,TRUE
+heat,BP,827,GO:0010742,macrophage derived foam cell differentiation,8,4,0.92,0.00842019392171466,4,1,FALSE,TRUE
+heat,BP,828,GO:0021534,cell proliferation in hindbrain,8,4,0.92,0.00842019392171466,5,2,FALSE,TRUE
+heat,BP,829,GO:0021924,cell proliferation in external granule layer,8,4,0.92,0.00842019392171466,5,2,FALSE,TRUE
+heat,BP,830,GO:0021930,cerebellar granule cell precursor proliferation,8,4,0.92,0.00842019392171466,5,2,FALSE,TRUE
+heat,BP,831,GO:0032483,regulation of Rab protein signal transduction,8,4,0.92,0.00842019392171466,1,1,FALSE,TRUE
+heat,BP,832,GO:0046827,positive regulation of protein export from nucleus,8,4,0.92,0.00842019392171466,5,2,FALSE,TRUE
+heat,BP,833,GO:0051295,establishment of meiotic spindle localization,8,4,0.92,0.00842019392171466,4,1,FALSE,TRUE
+heat,BP,834,GO:0090077,foam cell differentiation,8,4,0.92,0.00842019392171466,4,1,FALSE,TRUE
+heat,BP,835,GO:1903020,positive regulation of glycoprotein metabolic process,8,4,0.92,0.00842019392171466,4,1,FALSE,TRUE
+heat,BP,836,GO:0033574,response to testosterone,32,9,3.69,0.00843246232668201,17,3,FALSE,TRUE
+heat,BP,837,GO:0051568,histone H3-K4 methylation,49,12,5.65,0.00844280897222486,25,4,FALSE,TRUE
+heat,BP,838,GO:0008064,regulation of actin polymerization or depolymerization,201,35,23.18,0.00853412868346857,70,10,FALSE,TRUE
+heat,BP,839,GO:0030832,regulation of actin filament length,201,35,23.18,0.00853412868346857,70,10,FALSE,TRUE
+heat,BP,840,GO:0030501,positive regulation of bone mineralization,86,18,9.92,0.00854952617904603,53,3,FALSE,TRUE
+heat,BP,841,GO:0070169,positive regulation of biomineral tissue development,86,18,9.92,0.00854952617904603,53,3,FALSE,TRUE
+heat,BP,842,GO:0110151,positive regulation of biomineralization,86,18,9.92,0.00854952617904603,53,3,FALSE,TRUE
+heat,BP,843,GO:0007009,plasma membrane organization,244,41,28.14,0.0087549174714022,110,6,FALSE,TRUE
+heat,BP,844,GO:0030534,adult behavior,324,52,37.36,0.00881344697057115,122,10,FALSE,TRUE
+heat,BP,845,GO:0010508,positive regulation of autophagy,93,19,10.72,0.00914974200131968,44,6,FALSE,TRUE
+heat,BP,846,GO:0021675,nerve development,202,35,23.29,0.00920559438683843,51,3,FALSE,TRUE
+heat,BP,847,GO:0051016,barbed-end actin filament capping,38,10,4.38,0.00926959710931195,8,2,FALSE,TRUE
+heat,BP,848,GO:0051639,actin filament network formation,38,10,4.38,0.00926959710931195,6,2,FALSE,TRUE
+heat,BP,849,GO:0046907,intracellular transport,1681,225,193.85,0.00938496931849027,759,54,FALSE,TRUE
+heat,BP,850,GO:0046579,positive regulation of Ras protein signal transduction,22,7,2.54,0.00957697726491617,14,3,FALSE,TRUE
+heat,BP,851,GO:0044089,positive regulation of cellular component biogenesis,643,94,74.15,0.00958520534940651,265,21,FALSE,TRUE
+heat,BP,852,GO:0006026,aminoglycan catabolic process,100,20,11.53,0.00967179693370501,50,2,FALSE,TRUE
+heat,BP,853,GO:0061572,actin filament bundle organization,224,38,25.83,0.00969166247870552,95,10,FALSE,TRUE
+heat,BP,854,GO:0051145,smooth muscle cell differentiation,62,14,7.15,0.00985137270270536,32,1,FALSE,TRUE
+heat,BP,855,GO:0072006,nephron development,210,36,24.22,0.00985648743502969,96,10,FALSE,TRUE
+heat,BP,856,GO:0034656,nucleobase-containing small molecule catabolic process,50,12,5.77,0.0099689894246803,25,1,FALSE,TRUE
