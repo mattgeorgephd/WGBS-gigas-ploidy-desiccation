@@ -1,4 +1,4 @@
-libraries_left_out,n_left_out,ploidy,treatment,carries_excess,share_of_ploidy_reads_pct,share_of_cohort_reads_pct,diploid_used,triploid_used,control_used,heat_used,region_cpgs,ploidy_cpgs_over_difference,ploidy_difference_median,heat_cpgs_over_difference,heat_difference_median
+libraries_left_out,n_left_out,ploidy,treatment,carries_excess,pct_of_ploidy_normalized_reads,pct_of_cohort_normalized_reads,diploid_used,triploid_used,control_used,heat_used,region_cpgs,ploidy_cpgs_over_difference,ploidy_difference_median,heat_cpgs_over_difference,heat_difference_median
 none,0,,,,,,11,11,12,10,54,53,-31.98,39,22.44
 zr3534_1,1,diploid,heat,FALSE,2.3,3.4,10,11,12,9,54,53,-31.88,39,22.54
 zr3534_2,1,diploid,heat,FALSE,1.6,2.5,10,11,12,9,54,53,-31.95,40,22.75

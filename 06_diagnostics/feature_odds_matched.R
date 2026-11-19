@@ -243,6 +243,7 @@ label_cov_low  <- "eligible CpGs in the lower three quartiles of mean coverage"
 label_cds      <- "eligible CpGs in gene bodies that lie in CDS or in an intron, not both: CDS against intron"
 
 track_gr <- lapply(setNames(tracks, tracks), function(tr) { log_msg("reading track %s", tr); read_feature_track(tr) })
+invisible(gc(verbose = FALSE))
 
 # ---- One mode ----------------------------------------------------------------------------
 analyse_mode <- function(mode_name) {
@@ -337,13 +338,18 @@ analyse_mode <- function(mode_name) {
   block_of[compared] <- match(block_key, unique(block_key))
   n_blocks <- max(block_of)
   set.seed(seed_bootstrap)
-  boot_weights <- vapply(seq_len(n_boot), function(i) tabulate(sample.int(n_blocks, n_blocks, replace = TRUE), n_blocks),
-                         integer(n_blocks))
-  storage.mode(boot_weights) <- "double"                   # blocks by resamples: times each block is drawn
-  # Cell counts of every resample (resamples by cells), for the CpGs `rows` whose cells are `cell`.
+  boot_weights <- t(vapply(seq_len(n_boot), function(i) tabulate(sample.int(n_blocks, n_blocks, replace = TRUE), n_blocks),
+                           numeric(n_blocks)))             # resamples by blocks: times each block is drawn
+  # Cell counts of every resample (resamples by cells), for the CpGs `rows` whose
+  # cells are `cell`. Only the blocks that hold a CpG of a cell are multiplied.
   resample_counts <- function(rows, cell, n_cell) {
     by_block <- matrix(tabulate((cell - 1L) * n_blocks + block_of[rows], n_blocks * n_cell), n_blocks, n_cell)
-    crossprod(boot_weights, by_block)
+    resampled <- matrix(0, n_boot, n_cell)
+    for (j in seq_len(n_cell)) {
+      filled <- which(by_block[, j] > 0L)
+      if (length(filled) > 0) resampled[, j] <- boot_weights[, filled, drop = FALSE] %*% by_block[filled, j]
+    }
+    resampled
   }
   block_note <- sprintf("%d blocks", n_blocks)
   log_msg("[%s] %d blocks of %g kb hold the eligible CpGs and DML", mode_name, n_blocks, block_size / 1e3)
@@ -460,6 +466,13 @@ analyse_mode <- function(mode_name) {
   cand_c <- num_c[candidate, ]; cand_w <- num_w[candidate, ]
   called_real <- candidate[drop(difference_above_threshold(cand_c, cand_w, matrix(real_labels$ploidy), config$dml_difference))]
   stopifnot(identical(called_real, which(is_dml$ploidy)))
+  # One labelling of special interest: the ploidy labels exchanged in one cohort
+  # only, which is the ploidy by cohort contrast. Both schemes can draw it.
+  exchanged <- ifelse(lib$cohort == lib$cohort[1], 1 - real_labels$ploidy, real_labels$ploidy)
+  counts[[length(counts) + 1]] <- count_row(
+    mode_name, "ploidy", "ploidy labels exchanged in one cohort only", "CpGs called",
+    sum(difference_above_threshold(cand_c, cand_w, matrix(exchanged), config$dml_difference)),
+    notes = "the ploidy by cohort contrast; one of the possible labellings of both permutation schemes")
   cand_eligible <- as.numeric(eligible[candidate])
   n_eligible <- sum(eligible)
   cand_track <- in_track[candidate, ] + 0

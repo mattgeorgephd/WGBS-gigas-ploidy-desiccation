@@ -18,7 +18,8 @@
 #                between ploidies (Wilcoxon rank-sum tests);
 #             e. the genes, exons and transposable elements annotated at the block;
 #             f. base composition of the block, how much of its sequence occurs
-#                once in the reference, and where the other copies lie.
+#                once in the reference, where the other copies lie, and whether
+#                coverage reaches the cutoff there as well.
 #
 # Run       Rscript 06_diagnostics/locus_nc047563.R      (about 2 minutes; 1.2 GB of memory; one core)
 #           Needs the 22 coverage files and the reference genome in the cache (step 01).
@@ -56,8 +57,11 @@
 #             above its upper cutoff there (the percentile of config, the rule by
 #             which corrected mode removes a CpG). Rule for the block: CpGs with
 #             excess coverage that lie within run_gap_bp of each other form a
-#             run, and the block is the run that holds the DML region. Its ends
-#             are known to the nearest CpG only.
+#             run, and the block is the run that holds the DML region. The block
+#             is where coverage reaches the cutoff, to the nearest CpG. The
+#             sequence present in extra copies may reach further: the summary
+#             gives the coverage of the CpG site next to each end, and the
+#             profile every site.
 #           - Rule for a library that carries the excess: at least one tested CpG
 #             of the DML region is at or above the library's upper cutoff. This
 #             is a threshold on a continuous quantity. Column block_over_flanks
@@ -69,7 +73,8 @@
 #             DML that the region could give without that library. The differences
 #             are read-pooled, as methylKit computes meth.diff: methylated reads
 #             of all libraries of a group over all their reads, from the
-#             normalized counts that step 05 tested.
+#             normalized counts that step 05 tested. Ploidy differences are
+#             triploid minus diploid; heat differences are heat minus control.
 #           - Percent methylation of a library is read-pooled over the tested
 #             CpGs of the DML region, from raw counts. Each library is taken as
 #             one animal; the sample sheet names the animal for the heat cohort
@@ -79,8 +84,16 @@
 #           - Cohort and heat treatment are the same split of the libraries
 #             (issue I-01). With 22 libraries the Fisher tests can detect only a
 #             strong association; a large p-value does not show independence.
+#           - Part f counts every 30-mer of the block on both strands of every
+#             sequence of the reference. For the 30-mers with exactly two copies
+#             it reports the places that hold the second copies, and whether any
+#             library reaches its upper cutoff there.
 #           - No random numbers are used. The 30-mer sample of part f is one
 #             30-mer every kmer_sample_step bases, from the first base of the block.
+#           - Columns: "region" is the tested CpGs of the DML region, "block" and
+#             "flank" are all CpG sites with reads. ploidy_difference and
+#             heat_difference of the profile are step 05's meth.diff (legacy).
+#             Shares of reads are shares of the normalized reads of a group.
 
 suppressPackageStartupMessages(library(here))
 source(here("run_config.R"))
@@ -126,10 +139,12 @@ stopifnot(identical(library_coverage$library_id, lib$library_id), identical(filt
 library_median <- library_coverage$median_coverage; upper_cutoff <- library_coverage$upper_cutoff
 
 # The DML region: the run of ploidy DML with the most DML (step 07).
-dml_runs <- fread(output_path("07_genome_features", "tables", "dml_regions_legacy.csv"))[set == "ploidy DML"]
-largest_run <- dml_runs[n_dml == max(n_dml)]
+dml_runs <- fread(output_path("07_genome_features", "tables", "dml_regions_legacy.csv"))
+largest_runs <- dml_runs[, .SD[n_dml == max(n_dml)], by = set]   # the largest run of each DML list
+largest_run <- largest_runs[set == "ploidy DML"]
 if (nrow(largest_run) != 1L || largest_run$chr != locus_sequence)
   stop("The largest run of legacy ploidy DML is not a single region on ", locus_sequence, "; this script describes that region only.")
+same_run <- largest_runs[chr == largest_run$chr & start == largest_run$start & end == largest_run$end, set]
 region_from <- largest_run$start; region_to <- largest_run$end - 2L      # start of the first and of the last DML CpG
 window_from <- region_from - window_margin_bp; window_to <- region_to + window_margin_bp
 
@@ -143,17 +158,22 @@ stopifnot(length(dml_region$ploidy) == largest_run$n_dml, range(dml_region$ploid
 log_msg("reading %d coverage files for %s", n_lib, interval(window_from, window_to))
 manifest <- read_gannet_manifest()
 window_rows <- vector("list", n_lib)
+cutoff_rows <- vector("list", n_lib)   # every CpG of the genome at or above the library's cutoff; part f looks some of them up
 for (lib_i in seq_len(n_lib)) {
   cov_table <- read_cov(fetch_gannet_file(lib$cov_file[lib_i], config, manifest))
   reads <- cov_table$nC + cov_table$nT
   cutoff_here <- upper_coverage_cutoff(reads, config$import_min_coverage, config$upper_coverage_percentile)
-  if (median(reads) != library_median[lib_i] || !isTRUE(all.equal(cutoff_here, upper_cutoff[lib_i])))
-    stop("The coverage file of ", lib$library_id[lib_i], " does not give the median and the cutoff of library_coverage.csv; rerun step 04.")
+  high <- which(reads >= upper_cutoff[lib_i])
+  if (median(reads) != library_median[lib_i] || !isTRUE(all.equal(cutoff_here, upper_cutoff[lib_i])) ||
+      length(high) != library_coverage$n_cpg_at_or_above_cutoff[lib_i])
+    stop("The coverage file of ", lib$library_id[lib_i], " does not give the median, the cutoff and the number of CpGs at the cutoff of ",
+         "library_coverage.csv; rerun step 04.")
   keep <- which(cov_table$chr == locus_sequence & cov_table$start >= window_from & cov_table$start <= window_to)
   window_rows[[lib_i]] <- data.table(lib_index = lib_i, start = cov_table$start[keep], nC = cov_table$nC[keep], nT = cov_table$nT[keep])
-  rm(cov_table, reads, keep); gc(verbose = FALSE)
+  cutoff_rows[[lib_i]] <- data.table(lib_index = lib_i, chr = cov_table$chr[high], start = cov_table$start[high])
+  rm(cov_table, reads, keep, high); gc(verbose = FALSE)
 }
-window_rows <- rbindlist(window_rows)
+window_rows <- rbindlist(window_rows); cutoff_rows <- rbindlist(cutoff_rows)
 stopifnot(nrow(window_rows) > 0L, !anyDuplicated(window_rows, by = c("lib_index", "start")))
 
 # Matrices of raw counts: one row per CpG site with reads in at least one
@@ -182,7 +202,7 @@ in_region <- site_start >= region_from & site_start <= region_to
 region_rows <- which(tested_legacy & in_region)                 # the tested CpGs of the DML region
 n_region <- length(region_rows)
 stopifnot(all(reads_raw[tested_legacy, ] >= config$min_coverage), all(dml_window$ploidy %in% site_start[tested_legacy]),
-          all(dml_window$heat %in% site_start[tested_legacy]), all(dml_window$shared %in% dml_window$ploidy))
+          all(dml_window$heat %in% site_start[tested_legacy]), all(dml_window$shared %in% intersect(dml_window$ploidy, dml_window$heat)))
 
 # Column j of the united table must be library j of the sample sheet: the
 # normalized counts of every tested CpG of the window are rebuilt from the raw file.
@@ -211,8 +231,12 @@ sec <- "DML region"
 fact(sec, "dml_region", interval(region_from, region_to),
      "Run of legacy ploidy DML with the most DML, as step 07 groups them (dml_regions_legacy.csv). Start of its first and of its last DML CpG.")
 fact(sec, "dml_region_length_bp", whole(region_to + 2L - region_from), "From the C of the first DML CpG to the G of the last.")
-fact(sec, "ploidy_dml_in_region", x_of_y(length(dml_region$ploidy), dml_total[["ploidy"]]), "Legacy ploidy DML inside the DML region, of all legacy ploidy DML.")
-fact(sec, "heat_dml_in_region", x_of_y(length(dml_region$heat), dml_total[["heat"]]), "Legacy heat DML inside the DML region, of all legacy heat DML.")
+fact(sec, "lists_whose_largest_run_is_this_region", paste(same_run, collapse = "; "),
+     "DML lists of step 07 whose run with the most DML has the same first and last CpG as this region.")
+fact(sec, "ploidy_dml_in_region", x_of_y(length(dml_region$ploidy), dml_total[["ploidy"]]),
+     "Legacy ploidy DML inside the DML region, of all legacy ploidy DML.")
+fact(sec, "heat_dml_in_region", x_of_y(length(dml_region$heat), dml_total[["heat"]]),
+     "Legacy heat DML inside the DML region, of all legacy heat DML.")
 fact(sec, "loci_in_both_lists_in_region", x_of_y(length(dml_region$shared), dml_total[["shared"]]),
      "Loci in both legacy DML lists inside the DML region, of all such loci.")
 fact(sec, "tested_cpgs_in_region_legacy", x_of_y(n_region, n_tested_legacy),
@@ -254,6 +278,7 @@ sites_with_reads <- function(rows) colSums(reads_raw[rows, , drop = FALSE] > 0)
 block_median <- median_with_reads(in_block)
 up_median <- median_with_reads(zone == "upstream flank"); down_median <- median_with_reads(zone == "downstream flank")
 block_over_flanks <- block_median / median_with_reads(in_flanks)
+stopifnot(!anyNA(c(block_median, up_median, down_median, block_over_flanks)))   # every library has reads in the block and in each flank
 
 # Per CpG site: relative coverage among the libraries with and without the excess.
 across <- function(m, f) apply(m, 1, f)
@@ -273,7 +298,8 @@ fact(sec, "window_cpg_sites", whole(n_site), "CpG sites of the window with at le
 fact(sec, "runs_of_excess_coverage_in_window", whole(max(run_of_site, na.rm = TRUE)),
      paste0("Runs of CpGs with excess coverage in the window. A CpG has excess coverage when at least one library is at or above ", cutoff_text,
             "; such CpGs within ", run_gap_bp, " bp of each other form a run."))
-fact(sec, "block", interval(block_from, block_to), "The run of CpGs with excess coverage that holds the DML region. Start of its first and of its last CpG.")
+fact(sec, "block", interval(block_from, block_to),
+     "The run of CpGs with excess coverage that holds the DML region. Start of its first and of its last CpG.")
 fact(sec, "block_length_bp", whole(block_to + 2L - block_from), "From the C of the first CpG of the block to the G of the last.")
 fact(sec, "block_cpg_sites", whole(sum(in_block)), "CpG sites inside the block with at least one read in at least one library.")
 fact(sec, "block_cpg_sites_with_excess", x_of_y(sum(in_block & excess_site), sum(in_block)),
@@ -287,11 +313,11 @@ fact(sec, "cutoff_reached_outside_block", x_of_y(sum(at_cutoff[!in_block, ]), su
 fact(sec, "block_under_stricter_rule", interval(site_start[min(stricter)], site_start[max(stricter)]),
      "For comparison: first and last CpG of the block at which at least half of the libraries with the excess are at or above their upper cutoff.")
 fact(sec, "next_cpg_site_upstream_distance_bp", whole(block_from - site_start[site_before] - 2L),
-     "Bases between the first CpG of the block and the nearest CpG site with reads before it. The block may begin anywhere in this gap.")
+     "Bases between the first CpG of the block and the nearest CpG site with reads before it.")
 fact(sec, "next_cpg_site_upstream_relative_coverage", decimal(with_excess_median[site_before], 2),
      "Coverage over the library median at that site; median of the libraries with the excess.")
 fact(sec, "next_cpg_site_downstream_distance_bp", whole(site_start[site_after] - block_to - 2L),
-     "Bases between the last CpG of the block and the nearest CpG site with reads after it. The block may end anywhere in this gap.")
+     "Bases between the last CpG of the block and the nearest CpG site with reads after it.")
 fact(sec, "next_cpg_site_downstream_relative_coverage", decimal(with_excess_median[site_after], 2),
      "Coverage over the library median at that site; median of the libraries with the excess.")
 fact(sec, "block_relative_coverage_with_excess", a_to_b((block_median / library_median)[carries_excess], 2),
@@ -311,7 +337,8 @@ fact(sec, "flank_tested_cpgs_legacy", whole(sum(in_flanks & tested_legacy)), "Te
 fact(sec, "block_over_flanks_with_excess", a_to_b(block_over_flanks[carries_excess], 2),
      paste("Median coverage of the CpG sites of the block over the median coverage of the CpG sites of both flanks, per library;",
            "lowest and highest among the libraries with the excess."))
-fact(sec, "block_over_flanks_without_excess", a_to_b(block_over_flanks[!carries_excess], 2), "Same; lowest and highest among the libraries without the excess.")
+fact(sec, "block_over_flanks_without_excess", a_to_b(block_over_flanks[!carries_excess], 2),
+     "Same; lowest and highest among the libraries without the excess.")
 
 sec <- "b. libraries that carry the excess"
 fisher_p <- function(in_group) fisher.test(table(factor(in_group, c(FALSE, TRUE)), factor(carries_excess, c(FALSE, TRUE))))$p.value
@@ -332,7 +359,8 @@ fact(sec, "region_cpgs_at_cutoff_per_library_with_excess", paste(a_to_b(region_a
      "Tested CpGs of the DML region at or above the upper cutoff, per library; lowest and highest among the libraries with the excess.")
 fact(sec, "libraries_with_every_region_cpg_at_cutoff", whole(sum(region_at_cutoff == n_region)),
      "Libraries in which every tested CpG of the DML region is at or above the upper cutoff.")
-fact(sec, "libraries_without_excess_at_cutoff_in_block", x_of_y(sum(colSums(at_cutoff[in_block, !carries_excess, drop = FALSE]) > 0), n_lib - n_carriers),
+fact(sec, "libraries_without_excess_at_cutoff_in_block",
+     x_of_y(sum(colSums(at_cutoff[in_block, !carries_excess, drop = FALSE]) > 0), n_lib - n_carriers),
      "Libraries without the excess that reach their upper cutoff at any CpG site of the block, tested or not.")
 fact(sec, "libraries_at_cutoff_per_region_cpg", a_to_b(rowSums(at_cutoff[region_rows, , drop = FALSE]), 0),
      "Libraries at or above their upper cutoff, per tested CpG of the DML region; lowest and highest among those CpGs.")
@@ -341,9 +369,12 @@ fact(sec, "with_excess_control_cohort", with_excess_of(!is_heat), "Libraries wit
 fact(sec, "with_excess_diploid", with_excess_of(!is_triploid), "Libraries with the excess among diploids.")
 fact(sec, "with_excess_triploid", with_excess_of(is_triploid), "Libraries with the excess among triploids.")
 for (group_name in levels(lib$group))
-  fact(sec, paste0("with_excess_", gsub(" ", "_", group_name)), with_excess_of(lib$group == group_name), paste0("Libraries with the excess among the group ", group_name, "."))
-fact(sec, "fisher_p_excess_by_ploidy", p_value(fisher_p(is_triploid)), paste("Fisher exact test, two-sided, of carrying the excess against ploidy;", n_lib, "libraries."))
-fact(sec, "fisher_p_excess_by_cohort", p_value(fisher_p(is_heat)), paste("Fisher exact test, two-sided, of carrying the excess against cohort;", n_lib, "libraries."))
+  fact(sec, paste0("with_excess_", gsub(" ", "_", group_name)), with_excess_of(lib$group == group_name),
+       paste0("Libraries with the excess among the group ", group_name, "."))
+fact(sec, "fisher_p_excess_by_ploidy", p_value(fisher_p(is_triploid)),
+     paste("Fisher exact test, two-sided, of carrying the excess against ploidy;", n_lib, "libraries."))
+fact(sec, "fisher_p_excess_by_cohort", p_value(fisher_p(is_heat)),
+     paste("Fisher exact test, two-sided, of carrying the excess against cohort;", n_lib, "libraries."))
 
 # ---- 5. (c) Leave one library out ------------------------------------------------------------
 # Read-pooled difference, group 1 minus group 0, at each tested CpG of the DML
@@ -383,20 +414,25 @@ extreme <- which.min(remaining)                                  # index of the 
 without_excess_only <- loo[libraries_left_out == "all libraries with the excess"]
 
 sec <- "c. leave one library out"
-difference_text <- paste0("tested CpGs of the DML region whose read-pooled difference (normalized counts) exceeds ", config$dml_difference, " points in absolute value")
+difference_text <- paste0("tested CpGs of the DML region whose read-pooled difference (normalized counts) exceeds ", config$dml_difference,
+                          " points in absolute value")
 for (s in names(contrast_group1)) {
   d <- diffmeth_region[[s]]; counts <- paste0(s, "_cpgs_over_difference")
   fact(sec, paste0(s, "_region_cpgs_failing_qvalue_rule"), x_of_y(sum(d$qvalue >= config$dml_qvalue), n_region),
-       paste0("Tested CpGs of the DML region with q at or above ", config$dml_qvalue, " for the ", s, " contrast, all ", n_lib, " libraries (diffmeth_", s, "_legacy.csv.gz)."))
+       paste0("Tested CpGs of the DML region with q at or above ", config$dml_qvalue, " for the ", s, " contrast, all ", n_lib,
+              " libraries (diffmeth_", s, "_legacy.csv.gz)."))
   fact(sec, paste0(s, "_region_largest_qvalue"), p_value(max(d$qvalue)), "Largest q-value among those CpGs.")
   fact(sec, paste0(s, "_region_cpgs_over_difference_all_libraries"), x_of_y(loo[n_left_out == 0L][[counts]], n_region),
-       paste0("Number of ", difference_text, "; ", s, " contrast, all ", n_lib, " libraries. Equal to the number of DML when no CpG fails the q-value rule."))
+       paste0("Number of ", difference_text, "; ", s, " contrast, all ", n_lib,
+              " libraries. Equal to the number of DML when no CpG fails the q-value rule."))
   fact(sec, paste0(s, "_region_cpgs_over_difference_without_most_influential_library"), whole(one_out[[counts]][extreme]),
-       "Same count with the most influential library left out. The difference rule only: the model is not refitted, so this is the largest possible number of DML.")
+       paste("Same count with the most influential library left out. The difference rule only: the model is not refitted,",
+             "so this is the largest possible number of DML."))
   fact(sec, paste0(s, "_region_cpgs_over_difference_without_one_other_library"), a_to_b(one_out[[counts]][-extreme], 0),
        paste("Same count with one of the other", n_lib - 1L, "libraries left out; lowest and highest among them."))
   fact(sec, paste0(s, "_region_cpgs_over_difference_libraries_without_excess_only"), whole(without_excess_only[[counts]]),
-       "Same count from the libraries without the excess alone.")
+       sprintf("Same count from the libraries without the excess alone (%d diploid and %d triploid; %d control and %d heat).",
+               without_excess_only$diploid_used, without_excess_only$triploid_used, without_excess_only$control_used, without_excess_only$heat_used))
 }
 fact(sec, "most_influential_library", lib$library_id[extreme],
      "The library whose omission leaves the fewest CpGs over the difference threshold, ploidy and heat contrasts added.")
@@ -405,9 +441,9 @@ fact(sec, "most_influential_library_relative_coverage", decimal(region_median[ex
      "Median coverage of the tested CpGs of the DML region over the library median, that library.")
 fact(sec, "most_influential_library_pct_methylation", decimal(region_pct_meth[extreme], 1),
      "Read-pooled percent methylation of the tested CpGs of the DML region, raw counts, that library.")
-fact(sec, "most_influential_library_share_of_cohort_reads_pct", decimal(share_pct(is_heat == is_heat[extreme])[extreme], 1),
+fact(sec, "most_influential_library_pct_of_cohort_normalized_reads", decimal(share_pct(is_heat == is_heat[extreme])[extreme], 1),
      "Its share of the normalized reads of its cohort at the tested CpGs of the DML region.")
-fact(sec, "most_influential_library_share_of_ploidy_reads_pct", decimal(share_pct(is_triploid == is_triploid[extreme])[extreme], 1),
+fact(sec, "most_influential_library_pct_of_ploidy_normalized_reads", decimal(share_pct(is_triploid == is_triploid[extreme])[extreme], 1),
      "Its share of the normalized reads of its ploidy at the tested CpGs of the DML region.")
 
 # ---- 6. (d) Percent methylation per library ---------------------------------------------------
@@ -416,8 +452,10 @@ sec <- "d. methylation per library"
 pct_text <- "read-pooled percent methylation of the tested CpGs of the DML region, raw counts, one value per library"
 compare_groups <- function(label, members, in_second, group_names, described) {
   a <- region_pct_meth[members & !in_second]; b <- region_pct_meth[members & in_second]
-  fact(sec, paste0(label, "_libraries"), paste(length(a), group_names[1], "and", length(b), group_names[2]), paste0("Libraries compared: ", described, "."))
-  fact(sec, paste0(label, "_median_", group_names[1]), decimal(median(a), 1), paste0("Median of the ", pct_text, "; ", group_names[1], ", ", described, "."))
+  fact(sec, paste0(label, "_group_sizes"), paste(length(a), group_names[1], "and", length(b), group_names[2]),
+       paste0("Libraries compared: ", described, "."))
+  fact(sec, paste0(label, "_median_", group_names[1]), decimal(median(a), 1),
+       paste0("Median of the ", pct_text, "; ", group_names[1], ", ", described, "."))
   fact(sec, paste0(label, "_median_", group_names[2]), decimal(median(b), 1), paste0("Same; ", group_names[2], "."))
   fact(sec, paste0(label, "_range_", group_names[1]), a_to_b(a, 1), paste0("Lowest and highest value; ", group_names[1], ", ", described, "."))
   fact(sec, paste0(label, "_range_", group_names[2]), a_to_b(b, 1), paste0("Same; ", group_names[2], "."))
@@ -430,9 +468,11 @@ ploidy_names <- c("diploid", "triploid")
 compare_groups("ploidy_all_libraries", every_library, is_triploid, ploidy_names, paste("all", n_lib, "libraries"))
 compare_groups("ploidy_heat_cohort", is_heat, is_triploid, ploidy_names, "heat cohort")
 compare_groups("ploidy_control_cohort", !is_heat, is_triploid, ploidy_names, "control cohort")
-compare_groups("ploidy_without_most_influential_library", seq_len(n_lib) != extreme, is_triploid, ploidy_names, "all libraries but the most influential one of part c")
+compare_groups("ploidy_without_most_influential_library", seq_len(n_lib) != extreme, is_triploid, ploidy_names,
+               "all libraries but the most influential one of part c")
 compare_groups("cohort_all_libraries", every_library, is_heat, c("control", "heat"), paste("all", n_lib, "libraries"))
-fact(sec, "library_with_highest_pct_methylation", lib$library_id[which.max(region_pct_meth)], paste0("Library with the highest ", pct_text, "."))
+fact(sec, "library_with_highest_pct_methylation", lib$library_id[which.max(region_pct_meth)],
+     paste0("Library with the highest ", pct_text, "."))
 
 # ---- 7. (e) Genes, exons and transposable elements at the block ----------------------------------
 log_msg("annotation of the block %s", interval(block_from, block_to))
@@ -531,7 +571,7 @@ if (nrow(second_copy) > 0L) {
   places <- second_copy[, .(sequence = sequence[1L], from = min(first_base), to = max(first_base) + kmer_width - 1L, n_kmers = .N), by = place][
     order(-n_kmers, sequence, from)]
 }
-many_copies <- which(copies >= 10L)
+many_copies <- which(copies >= 10L)                              # classes of the summary: 1, 2, 3 to 9, 10 or more copies
 
 sec <- "f. reference sequence of the block"
 kmer_name <- paste0(kmer_width, "-mers"); n_kmers <- length(kmers)
@@ -544,18 +584,24 @@ fact(sec, "block_kmers", whole(n_kmers), paste0(kmer_name, " of the block, one s
 fact(sec, "block_kmers_once_in_reference", x_of_y(sum(copies == 1L), n_kmers),
      paste0(kmer_name, " of the block that occur once in the reference, both strands of all ", length(genome), " sequences counted."))
 fact(sec, "block_kmers_once_in_reference_pct", decimal(100 * mean(copies == 1L), 1), "The same as a percentage.")
-fact(sec, "block_kmers_twice_in_reference", x_of_y(sum(copies == 2L), n_kmers), paste0(kmer_name, " of the block that occur exactly twice in the reference."))
-fact(sec, "block_kmers_3_to_9_times_in_reference", x_of_y(sum(copies >= 3L & copies <= 9L), n_kmers), paste0(kmer_name, " of the block that occur 3 to 9 times in the reference."))
-fact(sec, "block_kmers_10_or_more_times_in_reference", x_of_y(length(many_copies), n_kmers), paste0(kmer_name, " of the block that occur 10 times or more in the reference."))
+fact(sec, "block_kmers_twice_in_reference", x_of_y(sum(copies == 2L), n_kmers),
+     paste0(kmer_name, " of the block that occur exactly twice in the reference."))
+fact(sec, "block_kmers_3_to_9_times_in_reference", x_of_y(sum(copies >= 3L & copies <= 9L), n_kmers),
+     paste0(kmer_name, " of the block that occur 3 to 9 times in the reference."))
+fact(sec, "block_kmers_10_or_more_times_in_reference", x_of_y(length(many_copies), n_kmers),
+     paste0(kmer_name, " of the block that occur 10 times or more in the reference."))
 if (length(many_copies) > 0L) {
-  fact(sec, "block_kmers_10_or_more_times_copies", a_to_b(copies[many_copies], 0), paste0("Copies in the reference of those ", kmer_name, "; lowest and highest."))
+  fact(sec, "block_kmers_10_or_more_times_copies", a_to_b(copies[many_copies], 0),
+       paste0("Copies in the reference of those ", kmer_name, "; lowest and highest."))
   fact(sec, "block_kmers_10_or_more_times_position", interval(block_from + min(many_copies), block_from + max(many_copies) + kmer_width - 1L),
        paste0("First and last base of the block that those ", kmer_name, " cover, 1-based."))
 }
 fact(sec, "sampled_kmers_once_in_reference", x_of_y(sum(copies[sampled] == 1L), length(sampled)),
      paste0("The same count for a sample: one of the ", kmer_name, " every ", kmer_sample_step, " bases, from the first base of the block."))
-fact(sec, "sampled_kmers_twice_in_reference", x_of_y(sum(copies[sampled] == 2L), length(sampled)), paste0(kmer_name, " of the sample that occur exactly twice in the reference."))
-fact(sec, "sampled_kmers_3_or_more_times_in_reference", x_of_y(sum(copies[sampled] >= 3L), length(sampled)), paste0(kmer_name, " of the sample that occur three times or more."))
+fact(sec, "sampled_kmers_twice_in_reference", x_of_y(sum(copies[sampled] == 2L), length(sampled)),
+     paste0(kmer_name, " of the sample that occur exactly twice in the reference."))
+fact(sec, "sampled_kmers_3_or_more_times_in_reference", x_of_y(sum(copies[sampled] >= 3L), length(sampled)),
+     paste0(kmer_name, " of the sample that occur three times or more."))
 fact(sec, "second_copies_inside_block", x_of_y(length(two_copies) - nrow(second_copy), length(two_copies)),
      paste0("Of the ", kmer_name, " with exactly two copies, those whose second copy also lies inside the block."))
 fact(sec, "second_copies_elsewhere_on_same_sequence", x_of_y(sum(second_copy$sequence == locus_sequence), length(two_copies)),
@@ -566,7 +612,15 @@ for (place_i in seq_len(min(n_places, NROW(places)))) {
               " bp of each other on one sequence are one place; places are ranked by the number of ", kmer_name, "."))
   fact(sec, paste0("second_copies_place_", place_i, "_kmers"), x_of_y(places$n_kmers[place_i], length(two_copies)),
        paste0(kmer_name, " with exactly two copies whose second copy lies there."))
+  place_dna <- subseq(genome[[places$sequence[place_i]]], places$from[place_i], places$to[place_i])
+  place_at_cutoff <- cutoff_rows[chr == places$sequence[place_i] & start + 1L >= places$from[place_i] & start + 2L <= places$to[place_i], .N]
+  fact(sec, paste0("second_copies_place_", place_i, "_cutoff_reached"), x_of_y(place_at_cutoff, countPattern("CG", place_dna) * n_lib),
+       paste("Pairs of CpG site and library at or above the upper cutoff inside that place, of its CG dinucleotides in the reference times", n_lib,
+             "libraries. Compare block_cutoff_reached."))
 }
+stopifnot(cutoff_rows[chr == locus_sequence & start >= block_from & start <= block_to, .N] == sum(at_cutoff[in_block, ]))
+fact(sec, "block_cutoff_reached", x_of_y(sum(at_cutoff[in_block, ]), countPattern("CG", block_dna) * n_lib),
+     paste("Pairs of CpG site and library at or above the upper cutoff inside the block, of its CG dinucleotides in the reference times", n_lib, "libraries."))
 rm(genome, locus_dna, hits, copies_by_sequence); invisible(gc(verbose = FALSE))
 
 # ---- 9. Output tables ----------------------------------------------------------------------------
@@ -579,14 +633,15 @@ per_library <- data.table(
   acute_heat_shock = lib$acute_heat_shock,
   library_median_coverage = library_median, upper_cutoff = round(upper_cutoff, 3),
   region_tested_cpgs = n_region, region_median_coverage = region_median,
-  region_min_coverage = apply(reads_raw[region_rows, , drop = FALSE], 2, min), region_max_coverage = apply(reads_raw[region_rows, , drop = FALSE], 2, max),
+  region_min_coverage = apply(reads_raw[region_rows, , drop = FALSE], 2, min),
+  region_max_coverage = apply(reads_raw[region_rows, , drop = FALSE], 2, max),
   region_coverage_over_library_median = round(region_median / library_median, 2),
   region_coverage_over_cutoff = round(region_median / upper_cutoff, 2),
   region_cpgs_at_or_above_cutoff = region_at_cutoff, carries_excess = carries_excess,
   region_pct_methylation = round(region_pct_meth, 1),
   region_normalized_reads = colSums(norm_reads),
-  share_of_ploidy_reads_pct = round(ifelse(is_triploid, share_pct(is_triploid), share_pct(!is_triploid)), 1),
-  share_of_cohort_reads_pct = round(ifelse(is_heat, share_pct(is_heat), share_pct(!is_heat)), 1),
+  pct_of_ploidy_normalized_reads = round(ifelse(is_triploid, share_pct(is_triploid), share_pct(!is_triploid)), 1),
+  pct_of_cohort_normalized_reads = round(ifelse(is_heat, share_pct(is_heat), share_pct(!is_heat)), 1),
   block_cpg_sites_with_reads = sites_with_reads(in_block), block_median_coverage = block_median,
   block_coverage_over_library_median = round(block_median / library_median, 2),
   block_cpg_sites_at_or_above_cutoff = colSums(at_cutoff[in_block, , drop = FALSE]),
@@ -598,8 +653,8 @@ per_library <- data.table(
 fwrite(per_library, out_file("per_library"))
 
 loo_groups <- data.table(libraries_left_out = lib$library_id, ploidy = as.character(lib$ploidy), treatment = as.character(lib$treatment),
-                         carries_excess = carries_excess, share_of_ploidy_reads_pct = per_library$share_of_ploidy_reads_pct,
-                         share_of_cohort_reads_pct = per_library$share_of_cohort_reads_pct)
+                         carries_excess = carries_excess, pct_of_ploidy_normalized_reads = per_library$pct_of_ploidy_normalized_reads,
+                         pct_of_cohort_normalized_reads = per_library$pct_of_cohort_normalized_reads)
 loo_table <- merge(loo, loo_groups, by = "libraries_left_out", all.x = TRUE, sort = FALSE)
 setcolorder(loo_table, c("libraries_left_out", "n_left_out", names(loo_groups)[-1L]))
 fwrite(loo_table, out_file("leave_one_out"))
@@ -608,7 +663,8 @@ tested_value <- function(x, digits) { out <- rep(NA_real_, n_site); out[tested_l
 profile <- data.table(
   sequence = locus_sequence, start = site_start, zone = zone, in_dml_region = in_region,
   tested_legacy = tested_legacy, tested_corrected = tested_corrected,
-  ploidy_dml = site_start %in% dml_window$ploidy, heat_dml = site_start %in% dml_window$heat, in_both_dml_lists = site_start %in% dml_window$shared,
+  ploidy_dml = site_start %in% dml_window$ploidy, heat_dml = site_start %in% dml_window$heat,
+  in_both_dml_lists = site_start %in% dml_window$shared,
   ploidy_difference = tested_value(diffmeth_window$ploidy$meth.diff, 1), heat_difference = tested_value(diffmeth_window$heat$meth.diff, 1),
   libraries_with_reads = rowSums(reads_raw > 0),
   libraries_at_cutoff_with_excess = with_excess_at_cutoff, libraries_at_cutoff_without_excess = without_excess_at_cutoff,
@@ -630,4 +686,4 @@ cat("\nLeave one library out (CpGs of the region over the difference threshold):
 print(loo_table[, .(libraries_left_out, ploidy_cpgs_over_difference, ploidy_difference_median, heat_cpgs_over_difference, heat_difference_median)])
 cat("\nFacts:\n")
 print(as.data.frame(summary_table[, .(section, quantity, value)]), right = FALSE, row.names = FALSE)
-log_msg("wrote %s", paste(basename(c(out_file("summary"), out_file("per_library"), out_file("leave_one_out"), out_file("coverage_profile"))), collapse = ", "))
+log_msg("wrote %s", paste(basename(vapply(c("summary", "per_library", "leave_one_out", "coverage_profile"), out_file, "")), collapse = ", "))

@@ -15,6 +15,7 @@ legacy,heat,real labels,largest q-value among CpGs with absolute difference abov
 legacy,heat,real labels,"CpGs with q-value below 0.01, any difference",all,,20062,""
 legacy,heat,real labels,DML in the list of step 05,all,,2351,""
 legacy,heat,real labels,DML outside the eligible range,all,,1,""
+legacy,ploidy,ploidy labels exchanged in one cohort only,CpGs called,all,,3480,the ploidy by cohort contrast; one of the possible labellings of both permutation schemes
 legacy,ploidy,real labels,eligible CpGs in the bin,10 to 15,5,10294,""
 legacy,ploidy,real labels,"eligible CpGs that are ploidy DML, percent of the eligible CpGs in the bin",10 to 15,5,0.174859,""
 legacy,ploidy,real labels,eligible CpGs in the bin,15 to 20,5,6888,""
@@ -144,6 +145,7 @@ corrected,heat,real labels,largest q-value among CpGs with absolute difference a
 corrected,heat,real labels,"CpGs with q-value below 0.01, any difference",all,,16494,""
 corrected,heat,real labels,DML in the list of step 05,all,,2273,""
 corrected,heat,real labels,DML outside the eligible range,all,,1,""
+corrected,ploidy,ploidy labels exchanged in one cohort only,CpGs called,all,,3427,the ploidy by cohort contrast; one of the possible labellings of both permutation schemes
 corrected,ploidy,real labels,eligible CpGs in the bin,10 to 15,5,9431,""
 corrected,ploidy,real labels,"eligible CpGs that are ploidy DML, percent of the eligible CpGs in the bin",10 to 15,5,0.15905,""
 corrected,ploidy,real labels,eligible CpGs in the bin,15 to 20,5,6389,""

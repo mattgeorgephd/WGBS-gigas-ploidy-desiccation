@@ -42,7 +42,7 @@ File and folder names in this archive use three labels:
 | `data/` | The two hand-built workbooks behind Figure 1 and the per-library Bismark alignment reports that were in the repository (a mix of two alignment runs; see issue I-13). |
 | `ELISA/` | Global 5-mC ELISA analysis written in 2019 (`GlobalDNAMeth_Polyploids.*`), the 2018 pilot, exploratory workbooks, and a qPCR notebook that was filed here. |
 | `gene_expression/` | qPCR scripts and plots. |
-| `GOterms/` | topGO result tables and annotation joins, one folder per dataset label and contrast. `BOTH-*` are the manuscript results. |
+| `GOterms/` | topGO result tables and annotation joins, one folder per dataset label and contrast. The manuscript results are the nine tables `PLOIDY-`, `HEAT-` and `COMBO-{BP,CC,MF}-FisherTestResults.csv` in `BOTH-PLOIDY/`, `BOTH-HEAT/` and `BOTH-COMBO/` (dated 2022-03-07 on gannet, computed on GO.db 3.13.0). The same folders hold six Fisher tables to which no item of the draft is traced: three BP tables whose names end in `-new` (12,495 terms each, a later re-run on GO.db 3.16.0, not on gannet) and `BOTH-COMBO/ploidy-{BP,CC,MF}-FisherTestResults.csv` (13,345, 1,693 and 3,708 terms, dated 2021-11-21 on gannet). See issue I-37. |
 | `tables/` | DML lists for the manuscript contrasts (`DML-getMethylDiff-*-Cov10-20.csv`), GO tables, and table images. |
 | `stats/` | Model tables for Figure 1 as written by the legacy notebook. |
 | `figures/`, `plots/` | Figure panels, assembled figures (`figures/final_figures/`, PNG and PowerPoint), exploratory plots. |

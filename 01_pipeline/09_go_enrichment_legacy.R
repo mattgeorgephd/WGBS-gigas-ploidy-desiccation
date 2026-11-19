@@ -16,10 +16,17 @@
 #                a quarter of the heat table (issue I-40).
 #             3. topGO classic Fisher test per ontology, no correction for the
 #                number of terms. The ten top-ranked terms per ontology were
-#                treated as "enriched" for Figure 5, Figure 9 and Table 1; terms
-#                with p < 0.01 went to the semantic similarity plots (issue I-21).
-#             4. The ontology was GO.db 3.13.0. Under any later release the
+#                treated as "enriched" for Figure 5, Figure 9 and Table 1. The
+#                legacy script filtered p < 0.01 only for its simplifyEnrichment
+#                PDFs, which are not in the draft (issue I-21); Figures 6 to 8
+#                were drawn from unfiltered annotation (issue I-48).
+#             4. The ontology was GO.db 3.13.0. Under any other release the
 #                tables change; this step loads that release from a side library.
+#             5. topGO received one name per line of the map, and names repeat:
+#                48,263 lines for 27,469 transcripts. It counts every line in the
+#                totals of each Fisher test and each name once per term, so the
+#                Expected column and the p-values mix two units (issue I-43).
+#                This step keeps the repeats in order to match the archive.
 #
 # Inputs    04_output/08_gene_annotation/tables/
 #             dml_go_annotation_{ploidy,heat,shared}_legacy.tsv.gz, transcript_table.csv.gz,
@@ -35,8 +42,7 @@
 #             legacy_run_info.csv
 #           04_output/09_go_enrichment_legacy/figures/figure_5_legacy.(png|pdf), figure_9_legacy.(png|pdf)
 #
-# Manuscript items: Results 3.4 and 3.5; Figure 5; Figure 9; Table 1; the term
-#           lists behind Figures 6 to 8.
+# Manuscript items: Results 3.4 and 3.5; Figure 5; Figure 9; Table 1.
 # Notes     - Runs on the legacy-mode DML only.
 #           - "shared" is the set the draft calls interaction-DML: loci in both
 #             the ploidy and the heat list (issue I-02). Its methylation
