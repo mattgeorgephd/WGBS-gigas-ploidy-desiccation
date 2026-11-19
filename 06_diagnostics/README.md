@@ -48,6 +48,8 @@ Number of GO terms called enriched at FDR 0.05 (BP, CC, MF), for random CpGs (me
 
 Random CpGs are "enriched" for dozens to hundreds of terms under the first two analyses and for none under the third. Enrichment under the first two therefore reflects which genes are methylated and how many methylated CpGs they hold, not ploidy or heat. See issue I-41.
 
+**Limits of this control.** CpGs drawn uniformly from the eligible CpGs are the one null under which the number of eligible CpGs per gene is exactly the right adjustment, so this control is easy on the third analysis and cannot tell a calibrated test from a conservative one. Independent verification found the Wallenius analysis conservative under this null (a term in under 1% of runs), at the nominal level when ploidy labels are shuffled within cohort (a term in 4% to 6% of 250 permutations), and above it (6% to 17%) for heat-sized lists drawn in proportion to each CpG's chance of passing the 20-point rule. A label-permutation control and a spike-in positive control are to be added here (plan, phase 5); until then those figures come from `07_documentation/agent_workflows/verification_scripts/C4a-eligible-theory`.
+
 ## Still to be written
 
 | File | Purpose |

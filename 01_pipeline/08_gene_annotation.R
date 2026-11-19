@@ -8,7 +8,7 @@
 #                names, and a gene-to-GO map.
 #             2. For each mode and DML set: every (DML, gene) overlap, a per-gene
 #                summary, and a gene table with the number of tested CpGs and of
-#                DML per gene (the input of the gene-level enrichment in step 09).
+#                DML per gene (the input of the gene-level enrichment in step 10).
 #             3. For the legacy mode: the ten-column annotation tables of the
 #                legacy notebook (one line per DML, transcript, and GO term), in
 #                the legacy line order (the input of the legacy enrichment in

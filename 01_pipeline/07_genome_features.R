@@ -30,11 +30,17 @@
 #           - Two backgrounds are used for the association tests: all analysed
 #             CpGs, and "eligible" CpGs, those whose mean methylation across
 #             libraries is between 10% and 90%. A 20-point difference between
-#             two groups needs a pooled mean in that range, so the other CpGs
-#             (about 86% of those analysed) cannot be DML. Methylation in this
-#             genome sits mostly in gene bodies, so enrichment of DML in genes
-#             relative to all CpGs is expected whatever the treatment; the
-#             eligible background removes that.
+#             two groups almost always needs a mean in that range (all but 2 of
+#             the legacy DML have one), so the other CpGs, about 86% of those
+#             analysed, are almost never DML. Methylation in this genome sits
+#             mostly in gene bodies, so enrichment of DML in genes relative to
+#             all CpGs is expected whatever the treatment. The eligible
+#             background removes most of that and not all of it: inside the
+#             range the chance of passing the threshold still depends on the
+#             mean and on the variation among animals, and CpG lists made with
+#             shuffled ploidy labels show the same odds ratios against eligible
+#             CpGs as the real DML (issues.md, I-41). Neither background is a
+#             test of a treatment effect on location.
 #           - "legacy_share_pct" reproduces the manuscript's percentages: the
 #             overlap count of a track divided by the sum of the counts of eight
 #             tracks. Those shares double count loci that lie in two tracks.

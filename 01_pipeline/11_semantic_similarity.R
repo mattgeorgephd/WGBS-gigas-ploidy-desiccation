@@ -191,7 +191,7 @@ label_angles     <- seq(0, 350, by = 10) * pi / 180   # directions tried around 
 label_rings      <- c(0.08, 0.15, 0.22, 0.3, 0.4, 0.5, 0.62, 0.75, 0.9, 1.05, 1.2, 1.4, 1.6, 1.8, 2, 2.2)   # distances tried between the
                                             # circle and the label box
 label_gap        <- 0.05                    # clearance kept around circles and label boxes
-crowd_radius     <- 1                       # labels with the most labelled circles within this distance are placed first
+crowd_radius     <- 1                       # labelled circles within this distance make a place crowded (one of the orders of placement)
 charge_circle    <- 0.33                    # cost of an unlabelled circle under a label box
 charge_leader    <- 0.5                     # cost of a labelled circle or a label under a leader line, and of two leader lines that cross
 charge_turn      <- 0.06                    # cost of pointing towards the middle of the labelled circles and not away from it
@@ -512,7 +512,8 @@ for (s_i in names(sets)) {
 # =============================================================================
 wrap_text   <- function(x, width) paste(strwrap(x, width), collapse = "\n")
 wrap_label  <- function(x) vapply(x, wrap_text, character(1), width = label_width, USE.NAMES = FALSE)
-size_breaks <- function(size_max) { b <- pretty(c(1, size_max), n = 4); sort(unique(c(1, b[b > 1 & b <= size_max]))) }
+size_breaks <- function(size_max) { b <- pretty(c(1, size_max), n = 4); sort(unique(c(1, b[b > 1 & b <= size_max & b == round(b)]))) }
+n_of        <- function(n, noun) sprintf("%s %s%s", format(n, big.mark = ","), noun, if (n == 1) "" else "s")       # "1 term", "2 terms"
 circle_size <- function(n_terms, size_max) max_circle * sqrt(n_terms / size_max)       # area in proportion to the number of terms
 tint_of <- function(colour) {                                                           # the colour mixed with white
   mixed <- grDevices::col2rgb(colour) * tint_share + 255 * (1 - tint_share)
@@ -657,8 +658,8 @@ semantic_panel <- function(terms, title, subtitle, size_max) {
     theme_wgbs(base_size = 11) + theme(plot.title = element_text(size = 10.5, face = "bold"), plot.subtitle = element_text(size = 8.5))
 }
 panel_subtitle <- function(res, representative_rule) {
-  sprintf("%s terms in the list, %s placed, %d clusters. Each cluster is named after %s.", format(res$summary$terms_in, big.mark = ","),
-          format(res$summary$terms_placed, big.mark = ","), res$summary$clusters, representative_rule)
+  sprintf("%s in the list, %s placed, %s. Each cluster is named after %s.", n_of(res$summary$terms_in, "term"),
+          format(res$summary$terms_placed, big.mark = ","), n_of(res$summary$clusters, "cluster"), representative_rule)
 }
 layout_fit <- function(res) {
   fit <- res$summary$mds_goodness_of_fit

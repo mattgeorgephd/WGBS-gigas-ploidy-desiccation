@@ -4,8 +4,12 @@
 # methylKit's own route (methRead, filterByCoverage, normalizeCoverage, unite on
 # 22 full libraries) holds every library's full table in memory at once, about
 # 9 GB here. The functions below apply the same rules one library at a time and
-# keep only the CpGs that survive in all libraries. The arithmetic is methylKit's;
-# 06_diagnostics/check_methylkit_equivalence.R confirms the result is identical.
+# keep only the CpGs that survive in all libraries. The arithmetic is methylKit's.
+# The result was compared with methylKit's own methRead, filterByCoverage and
+# unite (identical united tables on a small end-to-end example in both modes;
+# identical cutoffs, kept rows and removed positions on four real libraries);
+# the script that repeats this check from the repository,
+# 06_diagnostics/check_methylkit_equivalence.R, is still to be written.
 
 # Read one library and apply the coverage filters.
 #   import   rows with fewer than config$import_min_coverage reads are dropped
@@ -76,14 +80,22 @@ mean_percent_methylation <- function(united) {
   }, numeric(nrow(united))))
 }
 
-# CpGs that can be a DML at all. Two groups of similar size that differ by d
-# percentage points have a pooled mean between d/2 and 100 - d/2, so a CpG whose
-# mean methylation across libraries lies outside that range cannot reach the
-# difference threshold (config$dml_difference). In this genome that removes most
-# CpGs: about 85% of the analysed CpGs are below 10% methylation. The mean across
-# all libraries says nothing about which group is higher, so using it to define
-# the background does not bias a comparison of DML with other CpGs (Bourgon,
-# Gentleman and Huber 2010, PNAS 107:9546).
+# CpGs whose methylation level allows a DML ("eligible" CpGs). Two groups of
+# equal size whose unweighted mean methylation differs by d percentage points
+# have an overall mean between d/2 and 100 - d/2, so a CpG whose mean across
+# libraries lies outside that range almost never reaches the difference
+# threshold (config$dml_difference). "Almost": methylKit's difference is
+# weighted by coverage and the heat groups are 10 against 12 libraries, so the
+# range is a screen, not a bound; 2 of the 3,189 legacy DML lie outside it. In
+# this genome the screen removes most CpGs: about 85% of the analysed CpGs are
+# below 10% methylation.
+# The mean across all libraries is symmetric in the group labels, so the screen
+# favours neither direction of difference. It does NOT make the remaining CpGs
+# equally likely to be called: inside the range the chance of passing the
+# threshold by chance varies about ninefold with the mean and rises with the
+# variation among animals of one group. A comparison of DML with eligible CpGs
+# is therefore fairer than one with all CpGs and still not a fair one
+# (issues.md, I-41).
 dml_eligible <- function(mean_pm, config) {
   half <- config$dml_difference / 2
   mean_pm >= half & mean_pm <= 100 - half
