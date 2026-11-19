@@ -6,6 +6,8 @@ DNA methylation in diploid and triploid Pacific oysters (*Crassostrea gigas*) af
 - **Lead:** Matt George
 - **Status:** The repository is being rebuilt as a reproducible, R-only pipeline on the branch `reproducibility-audit`. The audit, the folder reorganization, and pipeline steps 01 to 10 are done: every WGBS and ELISA number, figure, and table of the draft is regenerated in R from the raw inputs, and the legacy results are reproduced exactly. Steps 11 to 13 (semantic similarity, qPCR, the value-by-value traceability table) are still to come. The legacy code is kept in `08_archive/`.
 
+> **Resuming the work.** [`07_documentation/session_handoff.md`](07_documentation/session_handoff.md) says what is done, what is in progress, and what comes next, and how to set up a fresh machine.
+>
 > **Where the work stands.** Read [`issues.md`](issues.md) first: it lists 42 problems, six of which bear on the main conclusions. (1) The heat treatment is confounded with experiment and sequencing batch in the WGBS data. (2) The "interaction" loci are the overlap of two lists, not a tested interaction. (3) The GO enrichment counts transcript isoforms as genes. (4) Its gene universe is missing 36% of the annotated transcripts. (5) Most of its input was skipped by a file-reading fault. (6) When DML are compared with the CpGs and genes that could have been DML, no GO term is enriched and the enrichment in gene bodies shrinks threefold. The plan and the decisions needed from the authors are in [`07_documentation/reproducibility_plan.md`](07_documentation/reproducibility_plan.md).
 
 ---

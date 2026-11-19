@@ -1,0 +1,10 @@
+{
+ "workflow": "build-steps-11-12",
+ "run_id": "wf_743d4e72-89f",
+ "agents_finished": 0,
+ "agents_running_or_lost": [
+  "build:11_semantic_similarity",
+  "build:12_qpcr"
+ ],
+ "results": []
+}

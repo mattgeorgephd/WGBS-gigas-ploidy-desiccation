@@ -65,7 +65,12 @@
 #             well is represented by that well; the other well is treated as a
 #             failed reaction. This overstates the expression of such an animal
 #             when the cause was a low template, so the number of these animals
-#             is reported per gene (qpcr_nondetects.csv).
+#             is reported per gene (qpcr_nondetects.csv), and a second censored
+#             fit takes the other reading: the undetected well is above the
+#             cycle limit, so the mean of the two wells is above the mean of the
+#             detected Cq and the limit. The data cannot say which reading is
+#             right; where the two fits differ, the gene is too close to the
+#             detection limit for a firm estimate.
 #           - Why a non-detect is not replaced by a number. The legacy scripts
 #             set every non-detect to Cq 45 (config$qpcr$legacy_nondetect). The
 #             runs had config$qpcr$max_cycles cycles, so no well can have that
@@ -563,16 +568,20 @@ K <- rbind(c(-1, -1, 1, 1) / 2, c(-1, 1, -1, 1) / 2, c(1, -1, -1, 1), c(-1, 0, 1
 dimnames(K) <- list(term_info$term, group_levels)
 model_terms <- term_info$term[1:3]; simple_terms <- term_info$term[4:7]
 contrast_of <- function(term_i) term_info$contrast[match(term_i, term_info$term)]
-methods <- c("complete cases", "censored regression")
+methods <- c("complete cases", "censored regression", "censored regression, one-well animals as bounds")
 n_groups <- length(group_levels)
 t_half <- function(df_i, se_i) qt(1 - (1 - opt$conf_level) / 2, df_i) * se_i      # half width of a confidence interval
 
 # One row per animal for a fit: y is the value, or the bound when no well was detected (exact = FALSE).
-model_data <- function(gene_i, set_i, normalization = "delta Cq") {
+# With one_well_as_bound an animal with some but not all wells detected is a bound as well: each of its other wells is
+# above the cycle limit, so the mean of its wells is above the mean of the detected Cq and the limit.
+model_data <- function(gene_i, set_i, normalization = "delta Cq", one_well_as_bound = FALSE) {
   d <- dq[gene == gene_i & animal_id %chin% in_set[[set_i]] & !is.na(reference_cq)]
   shift <- if (normalization == "delta Cq") d$reference_cq else 0
-  data.frame(animal_id = d$animal_id, group = d$group, exact = !d$censored,
-             y = ifelse(d$censored, opt$max_cycles, d$cq) - shift, x = d$reference_cq)
+  partly <- one_well_as_bound & !is.na(d$n_detected) & d$n_detected > 0 & d$n_detected < design$wells_per_animal
+  mean_with_limit <- (d$cq * d$n_detected + (design$wells_per_animal - d$n_detected) * opt$max_cycles) / design$wells_per_animal
+  data.frame(animal_id = d$animal_id, group = d$group, exact = !d$censored & !partly,
+             y = ifelse(d$censored, opt$max_cycles, ifelse(partly, mean_with_limit, d$cq)) - shift, x = d$reference_cq)
 }
 # Group means and their covariance matrix. With a covariate the means are adjusted to the mean of x.
 fit_groups <- function(d, method, with_covariate = FALSE) {
@@ -621,19 +630,23 @@ leave_one_out <- function(d, method) {
 models <- list(); group_fit <- list()
 for (set_i in names(animal_sets)) for (gene_i in targets) {
   d_i <- model_data(gene_i, set_i)
+  data_for <- setNames(list(d_i, d_i, model_data(gene_i, set_i, one_well_as_bound = TRUE)), methods)
   id_cols <- data.table(gene = gene_i, replicate_data = gene_i %in% targets_rep, detection_class = class_of(gene_i, set_i),
                         animals_included = animal_sets[[set_i]], n_animals_without_value = sum(!d_i$exact))
-  if (id_cols$detection_class == "not analysed") {
-    models[[length(models) + 1]] <- rbindlist(lapply(methods, function(m_i) cbind(id_cols, analysis = m_i, term_info)))
-    next
-  }
-  fits <- lapply(setNames(methods, methods), function(m_i) fit_groups(d_i, m_i))
+  fits <- list()
   for (m_i in methods) {
-    rows <- cbind(id_cols, analysis = m_i, contrast_table(fits[[m_i]]), leave_one_out(d_i, m_i))
+    d_m <- data_for[[m_i]]
+    # A fit needs two animals with a value in every group; a gene that is not analysed gets empty rows as well.
+    if (id_cols$detection_class == "not analysed" || min(table(d_m$group[d_m$exact])) < 2) {
+      models[[length(models) + 1]] <- cbind(id_cols, analysis = m_i, term_info)
+      next
+    }
+    fits[[m_i]] <- fit_groups(d_m, m_i)
+    rows <- cbind(id_cols, analysis = m_i, contrast_table(fits[[m_i]]), leave_one_out(d_m, m_i))
     if (m_i == "complete cases") {
       rows[, `:=`(residual_shapiro_p = shapiro.test(fits[[m_i]]$residuals)$p.value,
                   brown_forsythe_p = brown_forsythe_p(fits[[m_i]]$residuals, fits[[m_i]]$group))]
-      tg <- vapply(simple_terms, function(term_i) two_group_p(d_i, term_i), numeric(2))
+      tg <- vapply(simple_terms, function(term_i) two_group_p(d_m, term_i), numeric(2))
       rows[match(simple_terms, term), `:=`(p_two_groups_student = tg[1, ], p_two_groups_welch = tg[2, ])]
     }
     models[[length(models) + 1]] <- rows
@@ -641,9 +654,9 @@ for (set_i in names(animal_sets)) for (gene_i in targets) {
       gene = gene_i, animals_included = animal_sets[[set_i]], analysis = m_i, group = group_levels,
       mean_delta_cq = fits[[m_i]]$b[seq_len(n_groups)], se_mean = sqrt(diag(fits[[m_i]]$V)[seq_len(n_groups)]))
   }
-  # Without a censored animal the two analyses are the same model and must give the same numbers.
-  if (all(d_i$exact)) {
-    a <- contrast_table(fits[[1]]); b <- contrast_table(fits[[2]])
+  # Without a censored animal the linear model and the censored regression are the same model and must give the same numbers.
+  if (all(d_i$exact) && all(methods[1:2] %in% names(fits))) {
+    a <- contrast_table(fits[[methods[1]]]); b <- contrast_table(fits[[methods[2]]])
     if (max(abs(c(a$difference_cycles - b$difference_cycles, a$se_cycles - b$se_cycles, a$p_value - b$p_value))) > 1e-6) {
       stop("Censored regression and linear model disagree for ", gene_i, " (", animal_sets[[set_i]], ") although nothing is censored.")
     }
@@ -653,7 +666,7 @@ models <- rbindlist(models, fill = TRUE); group_fit <- rbindlist(group_fit)
 bh <- function(p) { q <- rep(NA_real_, length(p)); q[!is.na(p)] <- p.adjust(p[!is.na(p)], method = "BH"); q }
 models[, `:=`(q_value = bh(p_value), q_two_groups_student = bh(p_two_groups_student), q_two_groups_welch = bh(p_two_groups_welch),
               genes_in_correction = sum(!is.na(p_value))), by = .(analysis, animals_included, term)]
-models[, primary := analysis == "censored regression" & animals_included == animal_sets[["clean"]]]
+models[, primary := analysis == methods[2] & animals_included == animal_sets[["clean"]]]
 models <- models[order(match(animals_included, animal_sets), match(analysis, methods), match(gene, targets), match(term, term_info$term))]
 setcolorder(models, c("gene", "replicate_data", "detection_class", "analysis", "animals_included", "primary", "term", "contrast",
                       "n_animals", "n_censored", "n_animals_without_value", "difference_cycles", "se_cycles", "ci_low_cycles", "ci_high_cycles",
@@ -661,7 +674,7 @@ setcolorder(models, c("gene", "replicate_data", "detection_class", "analysis", "
                       "p_leave_one_out_low", "left_out_for_low", "p_leave_one_out_high", "left_out_for_high", "p_two_groups_student",
                       "q_two_groups_student", "p_two_groups_welch", "q_two_groups_welch", "residual_shapiro_p", "brown_forsythe_p"))
 write_tab(models, "qpcr_models.csv")
-pick <- function(gene_i, term_i, analysis_i = "censored regression", set_i = "clean") {
+pick <- function(gene_i, term_i, analysis_i = methods[2], set_i = "clean") {
   r <- models[gene == gene_i & term == term_i & analysis == analysis_i & animals_included == animal_sets[[set_i]]]
   stopifnot(nrow(r) == 1); r
 }
@@ -701,7 +714,8 @@ write_tab(group_summary, "qpcr_group_summary.csv")
 # ---- every analysis side by side, for the three model terms ----
 wide_p <- dcast(models[term %chin% model_terms], gene + term ~ analysis + animals_included, value.var = "p_value")
 setnames(wide_p, c(outer(methods, animal_sets, paste, sep = "_")),
-         c("p_complete_all", "p_censored_all", "p_complete_without_failed", "p_censored_without_failed"))
+         c("p_complete_all", "p_censored_all", "p_censored_bounds_all",
+           "p_complete_without_failed", "p_censored_without_failed", "p_censored_bounds_without_failed"))
 legacy_p <- dcast(legacy_anova[gene %chin% legacy_targets], gene + term ~ nondetects, value.var = "p_value")
 setnames(legacy_p, unname(legacy_variants), c("p_legacy_nondetects_dropped", "p_legacy_nondetects_substituted"))
 sensitivity <- merge(legacy_p, wide_p, by = c("gene", "term"), all.y = TRUE)       # every target; legacy p where the legacy input holds the gene
@@ -712,7 +726,7 @@ sensitivity <- merge(sensitivity, models[primary == TRUE & term %chin% model_ter
                      by = c("gene", "term"))
 stopifnot(nrow(sensitivity) == length(targets) * length(model_terms))
 p_cols <- c("p_legacy_nondetects_substituted", "p_legacy_nondetects_dropped", "p_complete_all", "p_complete_without_failed", "p_censored_all",
-            "p_censored_without_failed")
+            "p_censored_without_failed", "p_censored_bounds_all", "p_censored_bounds_without_failed")
 sensitivity[, analyses_with_p_below_alpha := rowSums(.SD < opt$alpha, na.rm = TRUE), .SDcols = p_cols]
 sensitivity[, analyses_run := rowSums(!is.na(.SD)), .SDcols = p_cols]
 sensitivity[, reading := fifelse(detection_class == "not analysed", "legacy analyses only: the gene is not analysed here",
@@ -894,8 +908,8 @@ if (!hsp %in% targets || any(vapply(names(animal_sets), function(set_i) class_of
                   if (all(unlist(tests) < opt$alpha) && !stable) "not in every fit that leaves one animal out")
   claims$hsp_control <- list(
     numbers = paste(
-      sprintf("%s, triploid vs diploid, control animals: %s, %s in the two-way model (primary analysis; %s over the four fits; %s),",
-              hsp, fold_ci(p1), fmt_p(p1$p_value), p_span(cc$p_value), loo(p1)),
+      sprintf("%s, triploid vs diploid, control animals: %s, %s in the two-way model (primary analysis; %s over the %d fits; %s),",
+              hsp, fold_ci(p1), fmt_p(p1$p_value), p_span(cc$p_value), nrow(cc), loo(p1)),
       sprintf("q = %.2f across %d genes; the two control groups alone: Student %s (q = %.2f), Welch %s (q = %.2f);",
               p1$q_value, p1$genes_in_correction, fmt_p(tw1$student), tw1$q_student, fmt_p(tw1$welch), tw1$q_welch),
       sprintf("the same Student test with the legacy substitution of Cq %g: %s;", opt$legacy_nondetect, fmt_p(p_substituted)),
@@ -937,8 +951,8 @@ if (!hsp %in% targets || any(vapply(names(animal_sets), function(set_i) class_of
                   if (!stable) "not in every fit that leaves one animal out")
   claims$hsp_heat <- list(
     numbers = paste(
-      sprintf("%s, heat vs control averaged over ploidies: %s, %s (primary analysis; %s over the four fits; %s), q = %.2f across %d genes;",
-              hsp, fold_ci(p1), fmt_p(p1$p_value), p_span(avg$p_value), loo(p1), p1$q_value, p1$genes_in_correction),
+      sprintf("%s, heat vs control averaged over ploidies: %s, %s (primary analysis; %s over the %d fits; %s), q = %.2f across %d genes;",
+              hsp, fold_ci(p1), fmt_p(p1$p_value), p_span(avg$p_value), nrow(avg), loo(p1), p1$q_value, p1$genes_in_correction),
       sprintf("legacy ANOVA %s.", legacy_text(lg)),
       sprintf("Within diploids: %s, %s; within triploids: %s, %s; interaction %s.", fold_ci(d1), fmt_p(d1$p_value), fold_ci(t1), fmt_p(t1$p_value),
               fmt_p(h1("interaction")$p_value)),

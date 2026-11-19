@@ -8,7 +8,9 @@ For the list of open problems and decisions, see [`issues.md`](../issues.md) at 
 
 | Path | Contents |
 |---|---|
-| `reproducibility_plan.md` | The plan: goal, rules (R only, GitHub first for data), target folder layout, the twelve pipeline steps, phases, validation targets, and the decisions needed from the authors. |
+| `session_handoff.md` | How to continue the work in a new session: recovery steps, project rules, current state, work in flight, next actions. Rewritten whenever the working session pushes. |
+| `reproducibility_plan.md` | The plan: goal, rules (R only, GitHub first for data), target folder layout, the thirteen pipeline steps, phases, validation targets, and the decisions needed from the authors. |
+| `agent_workflows/` | Scripts and returned results of the multi-agent runs used to verify the audit and to build parts of the pipeline. |
 | `audit/gannet_manifest_2026-11-18.tsv` | Every file in the project directory on gannet as crawled on 2026-11-18 (843 files, 217 GB): path, modification time, size. |
 | `audit/elisa_qpcr_audit.md` | Detailed audit of the ELISA, the percent CpG methylation summary, and the qPCR material: computational path, recomputed statistics, per-sample values, script inventory. |
 | `upstream_processing/` | Alignment job scripts copied from gannet, with a README on what they establish about how the coverage files were produced. |
