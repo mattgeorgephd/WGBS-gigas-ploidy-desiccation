@@ -2,7 +2,7 @@ export const meta = {
   name: 'code-pass',
   description: 'Apply the verified code-review findings to the pipeline, rerun everything, explain every changed output, review the changes adversarially, fix',
   phases: [
-    { title: 'Fix', detail: 'four agents with disjoint files: steps 04-05; steps 06-07; steps 08-09; step 10' },
+    { title: 'Fix', detail: 'five agents with disjoint files: steps 04-05, then the library-level diagnostic; steps 06-07; steps 08-09; step 10' },
     { title: 'Shared code', detail: 'run_pipeline.R, run_config.R, logging, packages, steps 01, 11, 12; config requests of the other agents' },
     { title: 'Rerun', detail: 'the whole pipeline and all diagnostics in place; every changed file explained' },
     { title: 'Review', detail: 'two independent reviewers: the code diff; the outputs against the documentation' },
@@ -149,15 +149,13 @@ const GROUPS = {
     label: 'fix:A-steps-04-05',
     prompt: `${COMMON}
 Your group: A, steps 04 and 05, the sample sheet, and the two diagnostics that share their counting rule.
-Your files: 01_pipeline/04_cpg_coverage.R, 01_pipeline/05_differential_methylation.R, 02_R_functions/methylkit_helpers.R, 02_R_functions/sample_sheet.R, 06_diagnostics/dml_sensitivity.R, 06_diagnostics/library_methylation_level.R, and the rows about steps 04 and 05 and these two diagnostics in the README files.
+Your files: 01_pipeline/04_cpg_coverage.R, 01_pipeline/05_differential_methylation.R, 02_R_functions/methylkit_helpers.R, 02_R_functions/sample_sheet.R, 06_diagnostics/dml_sensitivity.R, 06_diagnostics/table1_group_means.R, and the rows about steps 04 and 05 and these diagnostics in the README files. (06_diagnostics/library_methylation_level.R belongs to group F, which starts when you have finished and will use your threshold helper: say in your summary how to call it.)
 Findings file: ${FIND}/group_A.txt (code reviews R1 and parts of R5, R6; the check of 06_diagnostics/library_methylation_level.R; loose ends recorded in issues.md under I-16).
 
 Tasks
 1. Apply the confirmed findings. The main ones: (a) the model fit cached by step 05 must carry a fingerprint of everything it depends on (settings used by the fit, sample sheet, the united table or its inputs, methylKit version, the fitting code) and must be refitted when the fingerprint differs or the cache file cannot be read; (b) one rule, in one helper of 02_R_functions/methylkit_helpers.R, for "difference above the threshold", used by steps 05, 06 and 07 (ask groups B for 06 and 07 through shared_file_requests if they must call it) and by both diagnostics, so that a CpG exactly at the threshold is treated the same everywhere and a count retaken from a written table equals the count made in memory; legacy-mode lists must stay exactly the legacy lists; (c) step 04's rounding order against methylKit's; (d) the count of CpGs covered in at least one library (12,918,252 when every line is read) written to a table; (e) read_libraries() must stop on unexpected labels; (f) headers and README rows.
 2. Issue I-15 (read it in issues.md): Results 3.1 of the draft gives a genomic distribution of CpGs "at 1x". Extend step 04 to write, for its CpG sets (each coverage threshold, each sample set, both modes), the overlap with the feature tracks of 03_input_files/genome_features using the functions of 02_R_functions/genomic_overlaps.R (owned by group B; do not edit it), counting each CpG once per feature (not overlap events), so that a reader can see which CpG set, if any, gives the draft's percentages. Say in the header what the draft's numbers match.
 3. 06_diagnostics/dml_sensitivity.R: write two more tables at the end of a run, from the fits it already has: for every analysis that runs in both modes, the CpGs with q below the cutoff in legacy mode split by whether the coverage filter keeps them (and how many are on the mitochondrial genome NC_001276.1); and the DML counts under the Benjamini-Hochberg adjustment beside those under SLIM. issues.md (I-06, item 6) quotes these from a scratch computation: 157 of 287, 138 mitochondrial, 15 and 4. Then run the script (the fits are cached under 06_diagnostics/dml_sensitivity/cache/, so a run takes a few minutes) and confirm that every table it wrote before is unchanged.
-4. 06_diagnostics/library_methylation_level.R: apply the code findings of the independent check (in your findings file), switch it to the shared threshold helper, rerun it, and report every number that changes.
-
 Running. You MAY run step 04 in place (about 8 minutes, 8 GB): nobody else reads its outputs during this phase. You may NOT run step 05 in place: other agents are reading its outputs. To test step 05, copy the working tree without .git, 04_output and 08_archive to your scratch directory (the .Rproj file makes it a project root for here::here()), run step 05 there for both modes with WGBS_CORES=2, and compare every table it writes with the committed table of the same name in ${REPO}/04_output/05_differential_methylation/tables/ (cmp or md5sum). Test the fingerprint: an unchanged rerun must reuse the cache; a changed setting, a changed sample sheet and a truncated cache file must each cause a refit.
 
 Return group "A".`,
@@ -214,6 +212,25 @@ Return group "D".`,
   },
 }
 
+GROUPS.F = {
+  label: 'fix:F-library-level-diagnostic',
+  prompt: `${COMMON}
+Your group: F, the diagnostic that describes the 22 libraries one by one (issue I-49 of issues.md, which you must read in full first, with I-06 and the update paragraphs of I-01).
+Your files: 06_diagnostics/library_methylation_level.R, a second script beside it if you split it, their tables under 06_diagnostics/library_methylation_level/, and the section "What the group differences consist of" of 06_diagnostics/README.md.
+Findings file: ${FIND}/group_F.txt (the code review of the script by an independent agent, and the list of computations to bring in).
+
+Tasks
+1. Apply the code findings of the review.
+2. Use the shared helper for "difference above the threshold" that group A has put into 02_R_functions/methylkit_helpers.R (group A has finished; read its file), and report every count that changes.
+3. Issue I-49 cites numbers that exist only in the scratch scripts of the agent that checked it: ${REPO}/07_documentation/agent_workflows/verification_scripts/S2-I49-evidence-and-alternatives/ (files 01 to 11 with their .out results). Bring those computations into your script, each writing a table, as listed in your findings file, and reproduce the numbers that I-49 quotes. Where your result differs from the quoted number, find out why (seed, tie rule, normalized against raw counts) and report it; do not tune the code to hit a number.
+4. Keep the script runnable in a few minutes and a few GB: permutations with a fixed seed, complete enumeration where the number of groupings allows.
+5. Run the script twice and show that the two runs write identical tables. Return under issues_text every sentence of I-49, I-01, I-06 and I-08 whose number your tables do not reproduce, with the number they give.
+
+You may read the outputs of steps 02 to 05; do not run those steps.
+
+Return group "F".`,
+}
+
 const E_PROMPT = (requests) => `${COMMON}
 Your group: E, the code that every step shares, and steps 01, 11, 12 and 13.
 Your files: run_pipeline.R, run_config.R, 02_R_functions/logging.R, 02_R_functions/packages.R, 02_R_functions/paths.R, 02_R_functions/legacy_go_db.R, 01_pipeline/01_fetch_inputs.R, 01_pipeline/11_semantic_similarity.R, 01_pipeline/12_qpcr.R, 01_pipeline/13_manuscript_values.R, a new .gitattributes at the repository root, and the README statements about these files (README.md at the root, 01_pipeline/README.md, 02_R_functions/README.md, 03_input_files/README.md, 04_output/README.md).
@@ -230,7 +247,7 @@ ${requests}
 Return group "E".`
 
 const RERUN_PROMPT = (summaries) => `${COMMON}
-Your job: rerun the whole pipeline and all diagnostics in place after the code pass, and explain every file that changed. You fix nothing; you report. Five agents have edited the code since commit ${BASE}; their summaries:
+Your job: rerun the whole pipeline and all diagnostics in place after the code pass, and explain every file that changed. You fix nothing; you report. Six agents have edited the code since commit ${BASE}; their summaries:
 ${summaries}
 
 Steps
@@ -246,7 +263,7 @@ Return the result in the schema. Be exact about what you did not run and why.`
 
 const REVIEW_CODE_PROMPT = `${COMMON}
 Your job: an adversarial review of the code changes of this code pass. You fix nothing. "git diff ${BASE} -- 01_pipeline 02_R_functions 06_diagnostics run_pipeline.R run_config.R .gitattributes" is the change set (the working tree is not committed; compare the working tree with ${BASE}). For each changed file read the whole file as it now stands, not only the diff.
-Look for: a fix that does not do what its finding asked (the findings are in ${FIND}/group_A.txt to group_E.txt); regressions; a legacy-mode number changed where the legacy analysis, not the pipeline, was at fault; a guard that hides an error instead of reporting it; settings read from config that run_config.R does not define, or defined and never read; headers and README rows that no longer match the code; the cache fingerprint of step 05 (try to construct a change that it misses); the shared threshold helper (is it used everywhere a difference is compared with the threshold? grep for comparisons with dml_difference and with the literal 20); run_config.R validation (try bad values in a scratch copy of the tree); run_pipeline.R argument handling (try it); write_table() (bytes); the secondary GO ID remapping of step 10 (is a term counted twice for a gene after remapping? are obsolete IDs handled?).
+Look for: a fix that does not do what its finding asked (the findings are in ${FIND}/group_A.txt to group_F.txt); regressions; a legacy-mode number changed where the legacy analysis, not the pipeline, was at fault; a guard that hides an error instead of reporting it; settings read from config that run_config.R does not define, or defined and never read; headers and README rows that no longer match the code; the cache fingerprint of step 05 (try to construct a change that it misses); the shared threshold helper (is it used everywhere a difference is compared with the threshold? grep for comparisons with dml_difference and with the literal 20); run_config.R validation (try bad values in a scratch copy of the tree); run_pipeline.R argument handling (try it); write_table() (bytes); the secondary GO ID remapping of step 10 (is a term counted twice for a gene after remapping? are obsolete IDs handled?).
 You may run light steps in a scratch copy of the working tree (copy without .git and 08_archive). Do not run steps 04 or 05. Report each defect with a concrete failure scenario. Return review "code".`
 
 const REVIEW_DOCS_PROMPT = (rerun) => `${COMMON}
@@ -283,22 +300,26 @@ function requestsOf(rs) {
 
 phase('Fix')
 // Lane 1: A alone. Lane 2: B, then C, then D (D needs C's outputs of step 08; B and C share README files only).
-const laneA = agent(GROUPS.A.prompt, { label: GROUPS.A.label, phase: 'Fix', schema: CHANGE_SCHEMA })
+const laneA = (async () => {
+  const ra = await agent(GROUPS.A.prompt, { label: GROUPS.A.label, phase: 'Fix', schema: CHANGE_SCHEMA })
+  const rf = await agent(GROUPS.F.prompt, { label: GROUPS.F.label, phase: 'Fix', schema: CHANGE_SCHEMA })
+  return [ra, rf]
+})()
 const lane2 = (async () => {
   const b = await agent(GROUPS.B.prompt, { label: GROUPS.B.label, phase: 'Fix', schema: CHANGE_SCHEMA })
   const c = await agent(GROUPS.C.prompt, { label: GROUPS.C.label, phase: 'Fix', schema: CHANGE_SCHEMA })
   const d = await agent(GROUPS.D.prompt, { label: GROUPS.D.label, phase: 'Fix', schema: CHANGE_SCHEMA })
   return [b, c, d]
 })()
-const a = await laneA
+const [a, f] = await laneA
 const [b, c, d] = await lane2
-log(`Fix phase done: ${[a, b, c, d].filter(Boolean).length} of 4 groups returned`)
+log(`Fix phase done: ${[a, f, b, c, d].filter(Boolean).length} of 5 groups returned`)
 
 phase('Shared code')
-const e = await agent(E_PROMPT(requestsOf([a, b, c, d])), { label: 'fix:E-shared-code', phase: 'Shared code', schema: CHANGE_SCHEMA })
+const e = await agent(E_PROMPT(requestsOf([a, f, b, c, d])), { label: 'fix:E-shared-code', phase: 'Shared code', schema: CHANGE_SCHEMA })
 
 phase('Rerun')
-const summaries = [a, b, c, d, e].map(brief).join('\n\n')
+const summaries = [a, f, b, c, d, e].map(brief).join('\n\n')
 const rerun = await agent(RERUN_PROMPT(summaries), { label: 'rerun:whole-pipeline', phase: 'Rerun', schema: RERUN_SCHEMA })
 
 phase('Review')
@@ -319,4 +340,4 @@ if (allFindings.length || unexplained.length) {
   log('No reviewer finding and no unexplained change: repair stage skipped')
 }
 
-return { groups: { a, b, c, d, e }, rerun, reviews, repair }
+return { groups: { a, f, b, c, d, e }, rerun, reviews, repair }
