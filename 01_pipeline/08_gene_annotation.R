@@ -100,7 +100,7 @@ for (mode in config$modes) {
   eligible <- dml_eligible(mean_percent_methylation(united), config)
   united <- united[, .(chr, start)]
   gene_tab <- copy(gene_base)
-  # Tested CpGs in the gene body, and those of them that can be DML at all.
+  # Tested CpGs in the gene body, and those of them that are eligible (see dml_eligible()).
   gene_tab[, n_cpg_tested := suppressWarnings(countOverlaps(gene_gr, cpg_ranges(united$chr, united$start), ignore.strand = TRUE))]
   gene_tab[, n_cpg_eligible := suppressWarnings(countOverlaps(gene_gr, cpg_ranges(united$chr[eligible], united$start[eligible]),
                                                               ignore.strand = TRUE))]

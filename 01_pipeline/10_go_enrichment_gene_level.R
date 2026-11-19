@@ -1,16 +1,16 @@
 # 10_go_enrichment_gene_level.R
 #
 # Purpose   GO enrichment of the genes that hold DML, done at the level of genes
-#           and against the genes that could have held one. This is the analysis
+#           and against the genes that hold an eligible CpG. This is the analysis
 #           the audit recommends in place of step 09; it changes five things:
 #             1. Unit. One gene counts once, whatever its number of transcripts
 #                (issue I-03). A gene carries the union of its mRNAs' GO terms.
 #             2. Universe. Two are used and reported side by side:
 #                  tested    protein-coding genes with GO terms and at least one
 #                            CpG that was tested for differential methylation
-#                  eligible  those of them with at least one CpG that can be a
-#                            DML at all (mean methylation 10% to 90%; see
-#                            dml_eligible()). Gene-body methylation in this
+#                  eligible  those of them with at least one eligible CpG
+#                            (mean methylation 10% to 90%, a screen and not a
+#                            bound; see dml_eligible()). Gene-body methylation in this
 #                            genome sits in a minority of genes, mostly broadly
 #                            expressed ones, so against the tested universe any
 #                            DML list looks enriched for housekeeping functions.

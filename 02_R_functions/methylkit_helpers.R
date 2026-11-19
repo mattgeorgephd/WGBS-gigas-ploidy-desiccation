@@ -92,7 +92,7 @@ mean_percent_methylation <- function(united) {
 # The mean across all libraries is symmetric in the group labels, so the screen
 # favours neither direction of difference. It does NOT make the remaining CpGs
 # equally likely to be called: inside the range the chance of passing the
-# threshold by chance varies about ninefold with the mean and rises with the
+# threshold by chance varies about sevenfold with the mean and rises with the
 # variation among animals of one group. A comparison of DML with eligible CpGs
 # is therefore fairer than one with all CpGs and still not a fair one
 # (issues.md, I-41).

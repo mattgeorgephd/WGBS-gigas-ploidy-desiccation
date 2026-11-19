@@ -22,7 +22,7 @@
 #                once in the reference, where the other copies lie, and whether
 #                coverage reaches the cutoff there as well.
 #
-# Run       Rscript 06_diagnostics/locus_nc047563.R      (about 2 minutes; 1.2 GB of memory; one core)
+# Run       Rscript 06_diagnostics/locus_nc047563.R      (about 2 minutes; 1.5 GB of memory; one core)
 #           Needs the 22 coverage files and the reference genome in the cache (step 01).
 #
 # Reads     03_input_files/metadata/wgbs_libraries.csv
@@ -85,8 +85,9 @@
 #           - Cohort and heat treatment are the same split of the libraries
 #             (issue I-01). With 22 libraries the Fisher tests can detect only a
 #             strong association; a large p-value does not show independence.
-#             The size of the excess is therefore compared between groups as
-#             well, as a continuous quantity.
+#             The tests are therefore repeated under a stricter rule, and the
+#             size of the excess is compared between groups as a continuous
+#             quantity.
 #           - Part f counts every 30-mer of the block on both strands of every
 #             sequence of the reference. For the 30-mers with exactly two copies
 #             it reports the places that hold the second copies, and whether any
@@ -290,8 +291,8 @@ without_excess_median <- across(relative[, !carries_excess, drop = FALSE], media
 with_excess_at_cutoff <- rowSums(at_cutoff[, carries_excess, drop = FALSE])
 without_excess_at_cutoff <- rowSums(at_cutoff[, !carries_excess, drop = FALSE])
 site_before <- max(which(site_start < block_from)); site_after <- min(which(site_start > block_to))
-stricter <- which(in_block & with_excess_at_cutoff >= n_carriers / 2)
-stopifnot(length(stricter) > 0L)
+half_at_cutoff <- which(in_block & with_excess_at_cutoff >= n_carriers / 2)
+stopifnot(length(half_at_cutoff) > 0L)
 
 sec <- "a. block of excess coverage"
 cutoff_text <- paste0("its upper cutoff (", config$upper_coverage_percentile, "th percentile of coverage of the library)")
@@ -313,7 +314,7 @@ fact(sec, "block_tested_cpgs_legacy", whole(sum(in_block & tested_legacy)), "Tes
 fact(sec, "block_tested_cpgs_corrected", whole(sum(in_block & tested_corrected)), "Tested CpGs of corrected mode inside the block.")
 fact(sec, "cutoff_reached_outside_block", x_of_y(sum(at_cutoff[!in_block, ]), sum(reads_raw[!in_block, ] > 0)),
      "Pairs of CpG site and library at or above the upper cutoff, of all pairs with reads, in the window outside the block.")
-fact(sec, "block_under_stricter_rule", interval(site_start[min(stricter)], site_start[max(stricter)]),
+fact(sec, "block_under_stricter_rule", interval(site_start[min(half_at_cutoff)], site_start[max(half_at_cutoff)]),
      "For comparison: first and last CpG of the block at which at least half of the libraries with the excess are at or above their upper cutoff.")
 fact(sec, "next_cpg_site_upstream_distance_bp", whole(block_from - site_start[site_before] - 2L),
      "Bases between the first CpG of the block and the nearest CpG site with reads before it.")
@@ -346,7 +347,7 @@ fact(sec, "libraries_with_more_coverage_in_block_than_in_flanks", x_of_y(sum(blo
      "Libraries whose median coverage of the CpG sites of the block is above their median coverage of the CpG sites of both flanks.")
 
 sec <- "b. libraries that carry the excess"
-fisher_p <- function(in_group) fisher.test(table(factor(in_group, c(FALSE, TRUE)), factor(carries_excess, c(FALSE, TRUE))))$p.value
+fisher_p <- function(in_group, state) fisher.test(table(factor(in_group, c(FALSE, TRUE)), factor(state, c(FALSE, TRUE))))$p.value
 with_excess_of <- function(members) x_of_y(sum(carries_excess & members), sum(members))
 fact(sec, "libraries_with_excess", x_of_y(n_carriers, n_lib),
      paste0("Libraries with at least one tested CpG of the DML region at or above ", sub("^its", "their", cutoff_text), "."))
@@ -362,8 +363,6 @@ fact(sec, "region_coverage_over_cutoff_without_excess", a_to_b((region_median / 
      "Same; lowest and highest among the libraries without the excess.")
 fact(sec, "region_cpgs_at_cutoff_per_library_with_excess", paste(a_to_b(region_at_cutoff[carries_excess], 0), "of", n_region),
      "Tested CpGs of the DML region at or above the upper cutoff, per library; lowest and highest among the libraries with the excess.")
-fact(sec, "libraries_with_every_region_cpg_at_cutoff", whole(sum(region_at_cutoff == n_region)),
-     "Libraries in which every tested CpG of the DML region is at or above the upper cutoff.")
 fact(sec, "libraries_without_excess_at_cutoff_in_block",
      x_of_y(sum(colSums(at_cutoff[in_block, !carries_excess, drop = FALSE]) > 0), n_lib - n_carriers),
      "Libraries without the excess that reach their upper cutoff at any CpG site of the block, tested or not.")
@@ -376,10 +375,23 @@ fact(sec, "with_excess_triploid", with_excess_of(is_triploid), "Libraries with t
 for (group_name in levels(lib$group))
   fact(sec, paste0("with_excess_", gsub(" ", "_", group_name)), with_excess_of(lib$group == group_name),
        paste0("Libraries with the excess among the group ", group_name, "."))
-fact(sec, "fisher_p_excess_by_ploidy", p_value(fisher_p(is_triploid)),
+fact(sec, "fisher_p_excess_by_ploidy", p_value(fisher_p(is_triploid, carries_excess)),
      paste("Fisher exact test, two-sided, of carrying the excess against ploidy;", n_lib, "libraries."))
-fact(sec, "fisher_p_excess_by_cohort", p_value(fisher_p(is_heat)),
+fact(sec, "fisher_p_excess_by_cohort", p_value(fisher_p(is_heat, carries_excess)),
      paste("Fisher exact test, two-sided, of carrying the excess against cohort;", n_lib, "libraries."))
+# The same counts and tests under a stricter rule, to show how far they depend on the rule.
+every_cpg <- region_at_cutoff == n_region
+of_every_cpg <- function(members) x_of_y(sum(every_cpg & members), sum(members))
+fact(sec, "libraries_with_every_region_cpg_at_cutoff", x_of_y(sum(every_cpg), n_lib),
+     "A stricter rule for comparison: libraries in which every tested CpG of the DML region is at or above the upper cutoff.")
+fact(sec, "every_region_cpg_at_cutoff_heat_cohort", of_every_cpg(is_heat), "Such libraries among the heat cohort.")
+fact(sec, "every_region_cpg_at_cutoff_control_cohort", of_every_cpg(!is_heat), "Such libraries among the control cohort.")
+fact(sec, "every_region_cpg_at_cutoff_diploid", of_every_cpg(!is_triploid), "Such libraries among diploids.")
+fact(sec, "every_region_cpg_at_cutoff_triploid", of_every_cpg(is_triploid), "Such libraries among triploids.")
+fact(sec, "fisher_p_every_region_cpg_at_cutoff_by_ploidy", p_value(fisher_p(is_triploid, every_cpg)),
+     "Fisher exact test, two-sided, of that state against ploidy.")
+fact(sec, "fisher_p_every_region_cpg_at_cutoff_by_cohort", p_value(fisher_p(is_heat, every_cpg)),
+     "Fisher exact test, two-sided, of that state against cohort.")
 # The size of the excess as a continuous quantity, by ploidy and by cohort. Two
 # measures; the second does not depend on the library median.
 size_of_excess <- list(

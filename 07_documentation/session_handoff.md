@@ -2,7 +2,7 @@
 
 How to continue this work from the repository alone, for a new session or a person. The working session rewrites the "State" and "In flight" sections whenever it pushes.
 
-Last updated: 2026-11-19 07:12 UTC.
+Last updated: 2026-11-19 07:14 UTC.
 
 ## If the session ends or its machine is replaced
 
@@ -73,7 +73,7 @@ Agent runs (scripts and partial results in `07_documentation/agent_workflows/`).
 | `manuscript-values`, first batch (Methods, Results 3.1 to 3.3, figure legends) | finished and integrated (253 rows) | nothing | Not needed. |
 | `manuscript-values`, second batch (Results 3.4 and 3.5, Table 1, Discussion; launched 06:33 UTC) | nothing yet | extract, map, verify for both parts | Run `manuscript-values.js` with the args in `agent_workflows/scripts/manuscript-values-batch2-args.json`; it needs `output_catalog.txt` regenerated (one entry per table of `04_output/*/tables` and of `06_diagnostics/`) and `eval_expressions.R` in its scratch directory. Append its verified rows to the map and run step 13. |
 | `build-dml-sensitivity` | finished: build, review, fix. The script is final (1,110 lines); its documentation is in `06_diagnostics/README.md` | nothing | Not needed. |
-| `check-issues-integration` (launched 06:08 UTC) | three of ten checks (reports C1, C2, C3), all applied to `issues.md` and the files they name: no error in a count, 38 corrections to qualifiers, limits and stale wording, one of them rated high (a control experiment in I-40 reported without its limit) | seven checks (C4a, C4b, C5, C6, C7, C8, cross-file) | Run the script again; it is read-only. |
+| `check-issues-integration` (launched 06:08 UTC) | four of ten checks (reports C1, C2, C3, C4a), all applied to `issues.md` and the files they name: no error in a count, about 60 corrections to qualifiers, limits and stale wording, two of them rated high (a control experiment in I-40 reported without its limit; the plan presenting a residual excess of DML in coding sequence as attributable to ploidy or heat, which shuffled-label lists show too) | six checks (C4b, C5, C6, C7, C8, cross-file) | Run the script again; it is read-only. |
 | `build-diagnostics` (launched 06:20 UTC) | nothing yet | five scripts under `06_diagnostics/` (`feature_odds_matched`, `locus_nc047563`, `legacy_reader_mechanism`, `coverage_filter_variants`, `check_methylkit_equivalence`), each built, reviewed, fixed | Files the agents have written so far are in git as snapshots; run the script again for the rest. |
 | Full run of `06_diagnostics/dml_sensitivity.R` (not an agent run; 22 model fits) | The 16 fits of legacy mode (04:31 to 06:39 UTC, three workers). On the full data the primary fits reproduce step 05 exactly (q-values, both DML lists, loci in both lists). Stopped by the session at 06:39 UTC between two fits, because with three workers it held about 7 GB while eight agents were running, and restarted with two workers and the script as revised by its fix stage; the restart reuses all 16 cached fits. | the 6 fits of corrected mode, then the tables and figure | Start it again from the repository root: `WGBS_CORES=2 Rscript 06_diagnostics/dml_sensitivity.R`. Finished fits are cached under `06_diagnostics/dml_sensitivity/cache/` on the machine (not in git); on a new machine all 22 fits run again, about three hours on three cores. |
 

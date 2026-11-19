@@ -77,7 +77,7 @@ setnames(genes_per_seq, "N", "n_genes")
 for (mode in config$modes) {
   log_msg("[%s] reading analysed CpGs and DML", mode)
   united <- fread(dml_dir(sprintf("united_cpg_%s.csv.gz", mode)))
-  # CpGs that can reach the difference threshold (see dml_eligible()).
+  # Eligible CpGs: mean methylation in the range that holds nearly all DML (see dml_eligible()).
   eligible <- dml_eligible(mean_percent_methylation(united), config)
   cpg <- united[, .(chr, start)]
   cpg[, united_row := .I]
