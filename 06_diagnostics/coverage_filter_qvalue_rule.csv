@@ -1,6 +1,6 @@
 cpg_set,q_values,contrast,n_cpg,n_above_difference,n_failing_q,n_dml,largest_q_of_dml,smallest_q_failing,list_is_legacy_dml_at_these_cpgs
-legacy mode,as stored by step 05,ploidy,480579,1038,0,1038,0.00464,,TRUE
-legacy mode,as stored by step 05,heat,480579,2352,1,2351,0.00407,0.0179,TRUE
+legacy mode,as stored by step 05,ploidy,480579,1038,0,1038,0.00464,,
+legacy mode,as stored by step 05,heat,480579,2352,1,2351,0.00407,0.0179,
 corrected mode,as stored by step 05,ploidy,454555,952,0,952,0.00519,,TRUE
 corrected mode,as stored by step 05,heat,454555,2273,0,2273,0.00459,,TRUE
 no upper filter,estimated again on the kept CpGs,ploidy,480579,1038,0,1038,0.00464,,TRUE
