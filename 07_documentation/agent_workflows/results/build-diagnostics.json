@@ -1,10 +1,255 @@
 {
  "workflow": "build-diagnostics",
  "run_id": "wf_1f1a6a86-611",
- "agents_finished": 0,
+ "agents_finished": 1,
  "agents_running_or_lost": [
   "build:feature_odds_matched",
-  "build:locus_nc047563"
+  "build:legacy_reader_mechanism"
  ],
- "results": []
+ "results": [
+  {
+   "agent": "build:locus_nc047563",
+   "phase": "Build",
+   "result": {
+    "script": "/home/user/WGBS-gigas-ploidy-desiccation/06_diagnostics/locus_nc047563.R",
+    "outputs": [
+     "/home/user/WGBS-gigas-ploidy-desiccation/06_diagnostics/locus_nc047563_summary.csv",
+     "/home/user/WGBS-gigas-ploidy-desiccation/06_diagnostics/locus_nc047563_per_library.csv",
+     "/home/user/WGBS-gigas-ploidy-desiccation/06_diagnostics/locus_nc047563_leave_one_out.csv",
+     "/home/user/WGBS-gigas-ploidy-desiccation/06_diagnostics/locus_nc047563_coverage_profile.csv"
+    ],
+    "run_time_minutes": 1.7,
+    "peak_memory_gb": 1.5,
+    "summary": "The script is written, runs from the repository root in 103 seconds on one thread with a peak of 1.45 to 1.53 GB, and reproduces every target except two Wilcoxon p-values. Two runs of the finished script (md5 c11e3c99f8dcd8a3a4f45447a324f9b5, 725 lines) gave byte-identical CSV files.\n\nThe two departures are a matter of method. The issue text quotes p = 0.007 (all libraries) and 0.012 (without zr3534_4), which are normal approximations; the exact test gives 0.005 and 0.010. The same paragraph quotes the exact value for the heat cohort (0.008), so it mixed the two methods. The script writes both for every comparison.\n\nThree findings go beyond the targets and change how I-09 should read:\n- **Cohort is associated with the excess.** The Fisher test on the 13 carriers gives p = 0.19, as in the issue. Under a stricter rule (all 54 CpGs at the cutoff: 1 of 10 heat, 8 of 12 control) it gives p = 0.012. As a continuous quantity the excess is larger in the control cohort (median 19.9 against 4.4 times the library median, exact Wilcoxon p = 0.009; block over flanks 20.7 against 3.6, p = 0.014). Ploidy shows nothing (p = 0.39, 1, 0.56, 0.70).\n- **The excess is in every library.** All 22 have more coverage in the block than in its flanks (1.31 to 32 times); the 9 \"without the excess\" are at 1.31 to 4.83.\n- **The block is not simply single-copy.** Counting all 3,570 30-mers, 2,471 (69.2%) occur once and 874 exactly twice. Of the second copies, 868 lie in three places on other linkage groups, none of which reaches the cutoff in any library. The last 113 bases of the block occur 11 to 61 times in the reference.\n\nThe script also checks its inputs against each other and stops on any mismatch. It recomputes each library's median, cutoff and number of CpGs at the cutoff from the raw file, rebuilds the normalized counts of the united table from the raw counts (which fixes the library order), and confirms that its pooled differences equal step 05's meth.diff to 1e-8. Independent cross-checks agree: awk on two raw files, a Python reading of the reference, pwilcox and dhyper by hand, and all 176 per-library and 54 per-CpG values of the verifying agent's tables.\n\nNothing outside `06_diagnostics/locus_nc047563*` was edited. An early snapshot of the script was committed by the parent session (40cd66d, \"unreviewed\"); the working-tree file is the finished one.",
+    "targets": [
+     {
+      "quantity": "DML of the region (legacy): ploidy, heat, loci in both lists",
+      "target": "53 of 1,038; 39 of 2,351; 39 of 200",
+      "obtained": "53 of 1038; 39 of 2351; 39 of 200",
+      "agrees": true,
+      "comment": "The region NC_047563.1:39633323-39635520 is read from step 07's dml_regions_legacy.csv, not typed in. It is the largest run of all three lists."
+     },
+     {
+      "quantity": "Tested CpGs of the region, and how many the coverage filter leaves",
+      "target": "54 tested, all removed",
+      "obtained": "54 of 480579 in legacy mode; 0 in corrected mode",
+      "agrees": true
+     },
+     {
+      "quantity": "Block of excess coverage",
+      "target": "NC_047563.1:39,633,065-39,636,662",
+      "obtained": "NC_047563.1:39633065-39636662",
+      "agrees": true,
+      "comment": "Rule: CpGs with at least one library at or above its upper cutoff, joined into runs when within 1 kb. One run in the window; 0 of 5570 site-library pairs at the cutoff outside it. Requiring half of the carriers shortens it by one CpG (to 39636622). The next CpG sites, 182 and 183 bp away, are at 2.50 and 1.33 times the library median in carriers, so the duplicated sequence may be somewhat longer."
+     },
+     {
+      "quantity": "Block length",
+      "target": "3,599 bp",
+      "obtained": "3599",
+      "agrees": true
+     },
+     {
+      "quantity": "CpG sites in the block",
+      "target": "82",
+      "obtained": "82 with reads (all 82 in every library); 82 CG dinucleotides in the reference",
+      "agrees": true
+     },
+     {
+      "quantity": "Tested CpGs in the block",
+      "target": "56",
+      "obtained": "56 in legacy mode, 0 in corrected mode",
+      "agrees": true
+     },
+     {
+      "quantity": "Flank coverage relative to the library median",
+      "target": "0.56 to 1.72",
+      "obtained": "0.56 to 1.72 (upstream 0.56 to 1.40; downstream 0.71 to 1.72)",
+      "agrees": true,
+      "comment": "5 kb on each side; median over the CpG sites with reads in the library. No tested CpG lies in either flank."
+     },
+     {
+      "quantity": "Libraries that carry the excess",
+      "target": "13 of 22",
+      "obtained": "13 of 22",
+      "agrees": true,
+      "comment": "Rule: at least one tested CpG of the region at or above the library's cutoff. The same 13 under a median rule; 9 when every CpG must be at the cutoff. All 22 have more coverage in the block than in its flanks."
+     },
+     {
+      "quantity": "Region coverage over library median, libraries with the excess",
+      "target": "10.6 to 35.5",
+      "obtained": "10.61 to 35.50 (1.04 to 3.01 times the cutoff)",
+      "agrees": true
+     },
+     {
+      "quantity": "Carriers by cohort",
+      "target": "4 of 10 heat, 9 of 12 control",
+      "obtained": "4 of 10; 9 of 12",
+      "agrees": true
+     },
+     {
+      "quantity": "Carriers by ploidy",
+      "target": "5 of 11 diploid, 8 of 11 triploid",
+      "obtained": "5 of 11; 8 of 11",
+      "agrees": true
+     },
+     {
+      "quantity": "Fisher exact p, carrying the excess by ploidy",
+      "target": "0.39",
+      "obtained": "0.387",
+      "agrees": true,
+      "comment": "Stricter rule: p = 1. Size of the excess by ploidy: Wilcoxon p = 0.562 and 0.699."
+     },
+     {
+      "quantity": "Fisher exact p, carrying the excess by cohort",
+      "target": "0.19",
+      "obtained": "0.192",
+      "agrees": true,
+      "comment": "The number is reproduced, but the reading 'no association with cohort' does not hold. Stricter rule: p = 0.0115. Size of the excess: exact Wilcoxon p = 0.00896 (relative to library median) and 0.0138 (block over flanks)."
+     },
+     {
+      "quantity": "Region coverage over library median, the other 9 libraries",
+      "target": "2.0 to 5.9, no CpG at the cutoff",
+      "obtained": "2.00 to 5.92; 0 of 9 reach the cutoff at any CpG site of the block",
+      "agrees": true,
+      "comment": "These 9 still have 1.31 to 4.83 times the coverage of their own flanks."
+     },
+     {
+      "quantity": "Libraries at or above the cutoff, per tested CpG of the region",
+      "target": "9 to 13",
+      "obtained": "9 to 13",
+      "agrees": true
+     },
+     {
+      "quantity": "Ploidy DML in the region without zr3534_4",
+      "target": "1 instead of 53",
+      "obtained": "1 (53 of 54 with all libraries)",
+      "agrees": true,
+      "comment": "Difference rule only, so 'at most 1'. No CpG of the region fails the q-value rule in the full data (largest q 5.88e-09). Any other single library left out: 50 to 53."
+     },
+     {
+      "quantity": "Heat DML in the region without zr3534_4",
+      "target": "0 instead of 39",
+      "obtained": "0 (39 of 54 with all libraries)",
+      "agrees": true,
+      "comment": "Largest q 8.62e-05. Any other single library left out: 29 to 53. Added row: the 9 libraries without the excess alone give 37 (ploidy) and 24 (heat) CpGs over 20 points."
+     },
+     {
+      "quantity": "zr3534_4: region coverage over its library median",
+      "target": "34",
+      "obtained": "34.44",
+      "agrees": true,
+      "comment": "The script finds zr3534_4 by rule, as the library whose omission leaves the fewest CpGs over the threshold; it is also the library with the highest methylation."
+     },
+     {
+      "quantity": "zr3534_4: percent methylation of the region",
+      "target": "84%",
+      "obtained": "84.4",
+      "agrees": true
+     },
+     {
+      "quantity": "zr3534_4: share of the heat group's reads at the region",
+      "target": "39%",
+      "obtained": "39.2 (normalized reads; 25.9 of the diploid reads)",
+      "agrees": true
+     },
+     {
+      "quantity": "Median percent methylation per library, diploid against triploid",
+      "target": "34.1% against 3.2%",
+      "obtained": "34.1; 3.2",
+      "agrees": true
+     },
+     {
+      "quantity": "Wilcoxon p, ploidy, all 22 libraries",
+      "target": "0.007",
+      "obtained": "exact 0.00524; normal approximation 0.0071",
+      "agrees": false,
+      "comment": "The target is the normal approximation with continuity correction. With 11 against 11 untied values the exact test is available and is the right one: 0.005. Confirmed with pwilcox by hand."
+     },
+     {
+      "quantity": "Wilcoxon p, ploidy, without zr3534_4",
+      "target": "0.012",
+      "obtained": "exact 0.0101; normal approximation 0.0124",
+      "agrees": false,
+      "comment": "Same cause: the target is the normal approximation; the exact value is 0.010."
+     },
+     {
+      "quantity": "Wilcoxon p, ploidy, heat cohort",
+      "target": "0.008",
+      "obtained": "exact 0.00794 (normal approximation 0.0122)",
+      "agrees": true,
+      "comment": "Here the issue text quoted the exact value. Diploids 33.8 to 84.4, triploids 0.4 to 18.7."
+     },
+     {
+      "quantity": "Wilcoxon p, ploidy, control cohort",
+      "target": "0.09",
+      "obtained": "exact 0.0931 (normal approximation 0.0927)",
+      "agrees": true
+     },
+     {
+      "quantity": "Genes at the block",
+      "target": "LOC105341636 (lncRNA)",
+      "obtained": "LOC105341636 (lncRNA), plus LOC105318567 (lncRNA) and LOC105317102 (protein_coding), which contain the whole block in introns",
+      "agrees": true,
+      "comment": "3471 of the block's 3599 bases lie in LOC105341636; 5 merged exons, 2040 exonic bases. Carrier coverage is the same at its 53 exonic and 26 intronic CpG sites (18.86 and 20.54 times the library median)."
+     },
+     {
+      "quantity": "Overlap with the repeat track",
+      "target": "none",
+      "obtained": "0 records; 0 of 82 CpG sites; nearest records 799 bp before and 585 bp after",
+      "agrees": true
+     },
+     {
+      "quantity": "Sampled 30-mers that occur once in the reference",
+      "target": "42 of 60",
+      "obtained": "42 of 60 (15 twice, 3 more often)",
+      "agrees": true,
+      "comment": "All 30-mers: 2471 of 3570 once (69.2%), 874 twice, 141 three to nine times, 84 ten times or more."
+     },
+     {
+      "quantity": "GC content of the block against its flanks",
+      "target": "42.5% against about 32%",
+      "obtained": "42.5; 30.9 upstream and 32.7 downstream",
+      "agrees": true
+     }
+    ],
+    "design_decisions": [
+     "The DML region is read from step 07 (dml_regions_legacy.csv, largest run of ploidy DML), so its coordinates are not typed in. This adds a dependency on step 07 beyond the step 05 tables. The script stops if that run is not on NC_047563.1.",
+     "The window is the DML region plus 10 kb on either side (39623323 to 39645520), close to the suggested 39,625,000 to 39,645,000. The script stops if the block and its 5 kb flanks do not fit.",
+     "Block rule: a CpG has excess coverage when at least one library is at or above its upper cutoff; such CpGs within 1 kb form a run; the block is the run that holds the DML region. I chose the cutoff because it is the criterion by which corrected mode removes a CpG, not to match the target.",
+     "Carrier rule: at least one tested CpG of the region at or above the library's cutoff. Because the Fisher result for cohort depends on the rule, the script also reports a stricter rule (every CpG at the cutoff) and Wilcoxon tests on the size of the excess, on two scales.",
+     "Per-library medians over a zone use only the CpG sites with reads in that library, as the library median does. In the per-CpG profile a library without reads counts as 0. Both are stated in the header.",
+     "Coverage relative to the cutoff is written per library as a ratio and per CpG as the number of libraries at or above the cutoff, not as a per-CpG ratio.",
+     "Leave-one-out applies the difference rule only, as instructed, and the output says each count is therefore the largest possible number of DML. I added one row for the 9 libraries without the excess taken alone.",
+     "Wilcoxon tests are exact, with the normal approximation written beside each for part d. The script stops if two libraries tie on percent methylation.",
+     "Part f counts all 3,570 30-mers of the block, not only the sample of 60, which is kept for comparison. It also reports where the second copies of the two-copy 30-mers lie and whether any library reaches its cutoff there. The latter costs no second pass: the first pass keeps every position at or above the cutoff.",
+     "The summary has four columns (section, quantity, value, how_defined), one more than specified. Values are text: a number, a label, 'x of y' or 'a to b'. Setting values are interpolated into the definitions.",
+     "The script calls setDTthreads(1), so the stated run time and memory hold on a shared machine.",
+     "The profile carries extra columns: zone, DML flags, step 05's meth.diff for tested CpGs, libraries with reads, and min and max relative coverage per class."
+    ],
+    "left_out": [
+     "No model refit in the leave-one-out (the verifying agent used glm with p < 2e-4): left out by instruction.",
+     "Share of soft-masked bases in the block (the agent's 10%): not computed, because Biostrings drops letter case and it was not a target.",
+     "Relative coverage at the three places that hold second copies: the script reports only whether the cutoff is reached there (it is not), because medians would need a second pass over the 22 files.",
+     "Coverage beyond 10 kb either side of the region (the agent looked at 100 kb): not in the script.",
+     "README.md and issues.md were not edited, by rule; proposed text is in the caveats and in readme_row."
+    ],
+    "caveats": [
+     "The cohort difference in the size of the excess cannot be attributed. Cohort, stock and sequencing batch coincide (I-01, I-08), and control libraries are somewhat higher within both classes, so part of it may be a batch effect on the coverage of this GC-richer block.",
+     "'Carries the excess' is a threshold on a continuous quantity. Three heat triploids sit just above it (zr3534_6, _7, _8: 1.04 to 1.22 times the cutoff, 29 to 42 of 54 CpGs), and they are what moves the Fisher p for cohort from 0.19 to 0.012.",
+     "The issue's sentence that the heat loci are 'not methylation regulated by heat' is supported for the 22-library analysis: without zr3534_4 the median heat difference is -5.66 points and no CpG passes. Among the 9 libraries without the excess, 24 CpGs still exceed 20 points for heat and 37 for ploidy, with groups of 3 and 6. That reflects the four heat-cohort diploids at 34% to 43% and is description only.",
+     "Each library is treated as one animal. The sample sheet names the animal for the heat cohort only (I-36).",
+     "Run time was measured with the machine under load (load average about 5). Peak memory varied between 1.45 and 1.53 GB across runs.",
+     "The 06_diagnostics README needs the row below and the line `Rscript 06_diagnostics/locus_nc047563.R` in its run list.",
+     "An exploration file (explore_window.rds) was written to the repository root by mistake early on and moved to scratch within a minute.",
+     "Exploration not in the script, so not reproducible from the repository: within 100 kb either side no CpG outside the block reaches a cutoff, and median coverage at the two larger second-copy places is ordinary in all 22 libraries.",
+     "Proposed text for issues.md, I-09, bullet 1: The block of excess coverage is NC_047563.1:39,633,065-39,636,662 (3.6 kb, 82 CpG sites, 56 of them tested, all removed by the filter): the CpGs at which at least one library is at or above its upper cutoff. The 5 kb on either side have ordinary coverage (0.56 to 1.72 times the library median) and no CpG at the cutoff. The ends are those of the cutoff rule; the nearest CpG sites, 182 and 183 bp away, are at 2.5 and 1.3 times the library median in the libraries with the excess.",
+     "Proposed text, bullet 2 (replaces 'The excess is not in every animal ... no association with ploidy or cohort'): The excess is in every library and differs in size. All 22 have more coverage in the block than in its flanks (1.3 to 32 times). In 13 the median coverage of the 54 tested CpGs is 10.6 to 35.5 times the library median and reaches the cutoff; in the other 9 it is 2.0 to 5.9 times, with no CpG at the cutoff. The 13 are found in all four groups (4 of 10 heat, 9 of 12 control; 5 of 11 diploid, 8 of 11 triploid). Ploidy shows no difference (Fisher exact p = 0.39; size of the excess, Wilcoxon p = 0.56). Cohort does: the Fisher test on the 13 gives p = 0.19, but with all 54 CpGs required at the cutoff (1 of 10 heat, 8 of 12 control) it gives p = 0.012, and the excess is larger in the control cohort (median 19.9 against 4.4 times the library median, exact Wilcoxon p = 0.009; block over flanks 20.7 against 3.6, p = 0.014). A repeat carried equally by every animal would not give this spread. The pattern is a copy-number difference among individual animals that is larger in the control cohort; cohort, stock and sequencing batch cannot be separated (I-01, I-08).",
+     "Proposed text, bullet 3: keep, with 'at most 1 ploidy DML' and add: all 54 CpGs have q < 0.01, so the 20-point rule alone decides; the counts are recomputed differences without a refit; leaving out any other single library leaves 50 to 53 and 29 to 53; zr3534_4 supplies 39% of the heat group's normalized reads. The 9 libraries without the excess alone (6 diploid, 3 triploid; 6 heat, 3 control) still give 37 and 24 CpGs above 20 points.",
+     "Proposed text, bullet 4: replace 'Wilcoxon p = 0.007, and p = 0.012 without zr3534_4' by 'exact Wilcoxon p = 0.005, and p = 0.010 without zr3534_4'. The heat cohort (0.008) and control cohort (0.09) values stand.",
+     "Proposed text, bullet 5 (replaces 'mostly single-copy'): 69% of the block's 30-mers occur once in the reference (2,471 of 3,570; 42 of 60 in the first sample). 874 occur exactly twice; 474, 294 and 100 of the second copies lie at NC_047560.1:13,874,789-13,881,520, NC_047559.1:4,498,648-4,509,003 and NC_047561.1:36,696,412-36,696,653, where no CpG reaches the cutoff in any library. The last 113 bases of the block occur 11 to 61 times. The block is not in the transposable element track (nearest records 799 bp before and 585 bp after). It lies inside introns of LOC105317102 and LOC105318567, and 3,471 of its 3,599 bases lie in the lncRNA gene LOC105341636, exons and introns at the same coverage (18.9 and 20.5 times the library median), so the extra copies are genomic. GC content is 42.5% against 30.9% and 32.7% in the flanks."
+    ],
+    "readme_row": "| `locus_nc047563.R` | What the locus of I-09 is: the largest run of DML of all three legacy lists, on NC_047563.1, whose tested CpGs the upper coverage filter removes. From the 22 raw coverage files, the step 05 and step 07 tables, the feature tracks and the reference: the block of excess coverage around the region and the coverage of its flanks; which libraries carry the excess and how they are spread over ploidy and cohort (Fisher exact tests under two rules, Wilcoxon tests on the size of the excess); how many CpGs still pass the difference threshold when one library at a time is left out (difference rule only, no refit); percent methylation per library by ploidy (exact Wilcoxon tests); genes, exons and transposable elements at the block; GC content, the share of its 30-mers that occur once in the reference, and where the second copies lie. About 2 minutes and 1.5 GB on one core; needs the coverage files and the reference genome in the cache. Issues I-05 and I-09. | `locus_nc047563_summary.csv` (one row per fact, with its definition), `locus_nc047563_per_library.csv`, `locus_nc047563_leave_one_out.csv`, `locus_nc047563_coverage_profile.csv` |"
+   }
+  }
+ ]
 }

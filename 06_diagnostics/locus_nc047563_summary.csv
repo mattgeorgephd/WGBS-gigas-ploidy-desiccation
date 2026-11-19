@@ -41,7 +41,6 @@ b. libraries that carry the excess,region_relative_coverage_without_excess,2.00 
 b. libraries that carry the excess,region_coverage_over_cutoff_with_excess,1.04 to 3.01,Median coverage of the tested CpGs of the DML region over the upper cutoff of the library; lowest and highest among the libraries with the excess.
 b. libraries that carry the excess,region_coverage_over_cutoff_without_excess,0.18 to 0.44,Same; lowest and highest among the libraries without the excess.
 b. libraries that carry the excess,region_cpgs_at_cutoff_per_library_with_excess,29 to 54 of 54,"Tested CpGs of the DML region at or above the upper cutoff, per library; lowest and highest among the libraries with the excess."
-b. libraries that carry the excess,libraries_with_every_region_cpg_at_cutoff,9,Libraries in which every tested CpG of the DML region is at or above the upper cutoff.
 b. libraries that carry the excess,libraries_without_excess_at_cutoff_in_block,0 of 9,"Libraries without the excess that reach their upper cutoff at any CpG site of the block, tested or not."
 b. libraries that carry the excess,libraries_at_cutoff_per_region_cpg,9 to 13,"Libraries at or above their upper cutoff, per tested CpG of the DML region; lowest and highest among those CpGs."
 b. libraries that carry the excess,with_excess_heat_cohort,4 of 10,Libraries with the excess among the heat cohort.
@@ -54,6 +53,13 @@ b. libraries that carry the excess,with_excess_triploid_control,5 of 6,Libraries
 b. libraries that carry the excess,with_excess_triploid_heat,3 of 5,Libraries with the excess among the group triploid heat.
 b. libraries that carry the excess,fisher_p_excess_by_ploidy,0.387,"Fisher exact test, two-sided, of carrying the excess against ploidy; 22 libraries."
 b. libraries that carry the excess,fisher_p_excess_by_cohort,0.192,"Fisher exact test, two-sided, of carrying the excess against cohort; 22 libraries."
+b. libraries that carry the excess,libraries_with_every_region_cpg_at_cutoff,9 of 22,A stricter rule for comparison: libraries in which every tested CpG of the DML region is at or above the upper cutoff.
+b. libraries that carry the excess,every_region_cpg_at_cutoff_heat_cohort,1 of 10,Such libraries among the heat cohort.
+b. libraries that carry the excess,every_region_cpg_at_cutoff_control_cohort,8 of 12,Such libraries among the control cohort.
+b. libraries that carry the excess,every_region_cpg_at_cutoff_diploid,5 of 11,Such libraries among diploids.
+b. libraries that carry the excess,every_region_cpg_at_cutoff_triploid,4 of 11,Such libraries among triploids.
+b. libraries that carry the excess,fisher_p_every_region_cpg_at_cutoff_by_ploidy,   1,"Fisher exact test, two-sided, of that state against ploidy."
+b. libraries that carry the excess,fisher_p_every_region_cpg_at_cutoff_by_cohort,0.0115,"Fisher exact test, two-sided, of that state against cohort."
 b. libraries that carry the excess,region_relative_coverage_median_diploid,5.92,Median among diploid libraries of the median coverage of the tested CpGs of the DML region over the library median.
 b. libraries that carry the excess,region_relative_coverage_median_triploid,12.38,Same among triploid libraries.
 b. libraries that carry the excess,region_relative_coverage_wilcoxon_p_by_ploidy,0.562,"Wilcoxon rank-sum test, two-sided, exact, of that quantity between diploid and triploid libraries."

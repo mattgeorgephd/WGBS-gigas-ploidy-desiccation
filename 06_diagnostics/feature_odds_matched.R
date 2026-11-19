@@ -29,14 +29,14 @@
 #             7. comparisons 1 (eligible), 2 and 3 again with an interval from a
 #                bootstrap over 100 kb blocks, because neighbouring CpGs are
 #                not independent observations.
-#             8. ploidy only: the odds ratio of comparison 1 (eligible) for CpG
-#                lists made with shuffled ploidy labels. This reference needs
-#                no model: it is what a list of this kind shows when the labels
-#                carry no information about ploidy.
+#             8. ploidy only: the odds ratios of comparison 1 (eligible) and of
+#                comparison 3 for CpG lists made with shuffled ploidy labels.
+#                This reference needs no model: it is what a list of this kind
+#                shows when the labels carry no information about ploidy.
 #           It also writes the within-group SD of DML and of the other eligible
 #           CpGs (medians, overall and inside each SD decile).
 #
-# Run       Rscript 06_diagnostics/feature_odds_matched.R     (about 3 minutes; about 1.5 GB of memory)
+# Run       Rscript 06_diagnostics/feature_odds_matched.R     (about 4 minutes; about 1.5 GB of memory)
 #
 # Reads     04_output/05_differential_methylation/tables/united_cpg_<mode>.csv.gz
 #           04_output/05_differential_methylation/tables/dml_{ploidy,heat}_<mode>.csv
@@ -49,8 +49,9 @@
 #           06_diagnostics/feature_odds_matched_within_group_sd.csv
 #               within-group SD of DML and of other eligible CpGs, overall and by decile
 #           06_diagnostics/feature_odds_label_permutation.csv
-#               per track: the odds ratio of the real list and its distribution over the
-#               label permutations; share of eligible CpGs called inside and outside the track
+#               per track: the odds ratios of the real list (comparisons 1 and 3) and their
+#               distribution over the label permutations; share of eligible CpGs called
+#               inside and outside the track
 #           06_diagnostics/feature_odds_label_permutation_counts.csv
 #               difference rule and q-value rule in the real data; CpGs called per
 #               permutation; share of eligible CpGs called, by bin of mean methylation
@@ -95,6 +96,14 @@
 #             shock balanced (3 and 3, and 2 and 2, in the heat cohort; issue
 #             I-04), as the real labels do. With 1,000 permutations a share near
 #             0.13 has a standard error of 0.01.
+#           - Comparison 3 under shuffled labels: for every permutation the
+#             within-group SD and its deciles are computed again, around the
+#             means of the four groups that the shuffled labels define (label
+#             by cohort). A CpG called under shuffled labels differs between
+#             the shuffled groups, and that difference has to stay out of its
+#             SD exactly as the real group difference stays out of the SD of a
+#             real DML; with the SD of the real groups the shuffled lists would
+#             be matched to CpGs that are too variable.
 #           - THE PERMUTATION APPLIES THE DIFFERENCE RULE ONLY, NOT THE Q-VALUE
 #             RULE: refitting the logistic regression at every CpG for every
 #             permutation is not feasible here. Evidence that the q-value rule
@@ -158,8 +167,7 @@ n_lib <- nrow(lib)
 is_triploid <- lib$ploidy == "triploid"
 is_heat <- lib$treatment == "heat"
 real_labels <- list(ploidy = as.numeric(is_triploid), heat = as.numeric(is_heat))
-group_columns <- split(seq_len(n_lib), lib$group)          # the four groups: ploidy by cohort
-stopifnot(length(group_columns) == 4, all(lengths(group_columns) >= 2))
+in_first_cohort <- as.numeric(lib$cohort == lib$cohort[1])
 # Heat coincides with cohort: each cohort holds one treatment. This is why the
 # heat labels cannot be permuted (issue I-01).
 stopifnot(length(unique(lib$cohort)) == 2,
@@ -187,6 +195,22 @@ for (scheme in names(perm_strata)) {      # every draw keeps the number of tripl
 }
 
 # ---- Functions ---------------------------------------------------------------------------
+# The four groups that a labelling defines: label by cohort. Libraries by
+# groups, entries 0 or 1. For the real ploidy labels these are the groups of the
+# sample sheet (diploid control, diploid heat, triploid control, triploid heat).
+group_membership <- function(labels) {
+  cbind(labels * in_first_cohort, labels * (1 - in_first_cohort),
+        (1 - labels) * in_first_cohort, (1 - labels) * (1 - in_first_cohort))
+}
+real_groups <- rowsum(group_membership(real_labels$ploidy), as.integer(lib$group))   # sheet groups by columns
+stopifnot(all(rowSums(real_groups > 0) == 1), all(colSums(real_groups > 0) == 1), all(colSums(real_groups) >= 2))
+# Pooled within-group SD of each row of x (CpGs by libraries) around the means
+# of the groups in `membership`; sum_sq = rowSums(x^2).
+pooled_within_sd <- function(x, sum_sq, membership) {
+  group_sums <- x %*% membership
+  within_ss <- sum_sq - drop(group_sums^2 %*% (1 / colSums(membership)))
+  sqrt(pmax(within_ss, 0) / (nrow(membership) - ncol(membership)))
+}
 # Counts of the 2 x 2 table of step 07: the DML of a list against the other
 # CpGs of the background, by overlap with a track. Order: DML in the track, DML
 # outside it, other CpGs in the track, other CpGs outside it.
@@ -258,6 +282,7 @@ invisible(gc(verbose = FALSE))
 analyse_mode <- function(mode_name) {
   tab05 <- function(f) output_path("05_differential_methylation", "tables", f)
   odds <- list(); counts <- list(); perm_rows <- list(); sd_rows <- list()
+  matched_real <- list()                         # comparison 3 for the real lists, by DML list and track
 
   log_msg("[%s] reading the tested CpGs", mode_name)
   united <- fread(tab05(sprintf("united_cpg_%s.csv.gz", mode_name)))
@@ -276,18 +301,18 @@ analyse_mode <- function(mode_name) {
 
   # Per-library percent methylation: within-group SD and span.
   pm <- 100 * num_c / num_w
-  ss <- numeric(n_cpg)
-  for (cols in group_columns) ss <- ss + rowSums((pm[, cols] - rowMeans(pm[, cols]))^2)
-  sd_within <- sqrt(ss / (n_lib - length(group_columns)))
+  sd_within <- pooled_within_sd(pm, rowSums(pm^2), group_membership(real_labels$ploidy))
   pm_high <- pm[, 1]; pm_low <- pm[, 1]
   for (j in seq_len(n_lib)[-1]) { pm_high <- pmax(pm_high, pm[, j]); pm_low <- pmin(pm_low, pm[, j]) }
   pm_span <- pm_high - pm_low
-  rm(pm, ss, pm_high, pm_low); gc(verbose = FALSE)
+  pm_eligible <- pm[eligible, ]                  # kept for the SD under shuffled labels
+  rm(pm, pm_high, pm_low); gc(verbose = FALSE)
 
   # Strata of the matched comparisons.
   bin_breaks <- seq(0, 100, by = methylation_bin_width)
   meth_bin <- findInterval(mean_pm, bin_breaks, rightmost.closed = TRUE)
-  sd_cuts <- quantile(sd_within[eligible], seq(0, 1, length.out = n_sd_groups + 1), names = FALSE)
+  sd_probs <- seq(0, 1, length.out = n_sd_groups + 1)
+  sd_cuts <- quantile(sd_within[eligible], sd_probs, names = FALSE)
   sd_group <- findInterval(sd_within, sd_cuts[-c(1, n_sd_groups + 1)]) + 1L
   strata <- setNames(list(meth_bin, (meth_bin - 1L) * n_sd_groups + sd_group), c(label_bin, label_bin_sd))
   high_coverage <- mean_coverage > quantile(mean_coverage[eligible], coverage_quantile, names = FALSE)
@@ -416,6 +441,7 @@ analyse_mode <- function(mode_name) {
         strata_note <- sprintf("%d of %d strata that hold a CpG are used; %d of %d DML lie in them", nrow(used),
                                length(levels_present), k_used[1] + k_used[2], sum(dml))
         add(strat, c(unname(mh$estimate), mh$conf.int[1], mh$conf.int[2]), method_mh, interval_mh, k_used, nrow(used), strata_note)
+        if (strat == label_bin_sd) matched_real[[set_name]][track_name] <- unname(mh$estimate)
 
         in_used <- informative[stratum_index]
         cell <- (match(stratum_index[in_used], which(informative)) - 1L) * 4L + cell4[in_used]
@@ -477,7 +503,7 @@ analyse_mode <- function(mode_name) {
   stopifnot(identical(called_real, which(is_dml$ploidy)))
   # One labelling of special interest: the ploidy labels exchanged in one cohort
   # only, which is the ploidy by cohort contrast. Both schemes can draw it.
-  exchanged <- ifelse(lib$cohort == lib$cohort[1], 1 - real_labels$ploidy, real_labels$ploidy)
+  exchanged <- ifelse(in_first_cohort == 1, 1 - real_labels$ploidy, real_labels$ploidy)
   counts[[length(counts) + 1]] <- count_row(
     mode_name, "ploidy", "ploidy labels exchanged in one cohort only", "CpGs called",
     sum(difference_above_threshold(cand_c, cand_w, matrix(exchanged), config$dml_difference)),
@@ -488,6 +514,35 @@ analyse_mode <- function(mode_name) {
   eligible_in_track <- colSums(in_track[eligible, ])
   real_odds <- vapply(tracks, function(tr) fisher_odds(table_counts(is_dml$ploidy, eligible, in_track[, tr]), interval = FALSE),
                       numeric(1))
+  # Comparison 3 for the list that one labelling calls. The within-group SD and
+  # its deciles are those of the four groups that this labelling defines (label
+  # by cohort), as they are for the real labels: a CpG called under shuffled
+  # labels differs between the shuffled groups, and that difference must stay
+  # out of its SD as the real difference stays out of the SD of a real DML.
+  # Called CpGs outside the eligible range have no comparison CpGs and add nothing.
+  eligible_sum_sq <- rowSums(pm_eligible^2)
+  stratum_offset <- (meth_bin[eligible] - 1L) * n_sd_groups
+  n_strata_all <- max(meth_bin[eligible]) * n_sd_groups
+  track_cell <- 2L - in_track[eligible, ]                    # 1 inside the track, 2 outside
+  cand_row_in_eligible <- match(candidate, which(eligible))  # NA for a candidate outside the eligible range
+  matched_odds_for <- function(called_candidates, labels) {
+    is_called <- logical(n_eligible)
+    is_called[cand_row_in_eligible[called_candidates & !is.na(cand_row_in_eligible)]] <- TRUE
+    sd_now <- pooled_within_sd(pm_eligible, eligible_sum_sq, group_membership(labels))
+    cuts <- quantile(sd_now, sd_probs[-c(1, n_sd_groups + 1)], names = FALSE)
+    stratum <- stratum_offset + findInterval(sd_now, cuts) + 1L
+    vapply(seq_along(tracks), function(j) {
+      cell <- (stratum - 1L) * 4L + 2L * (!is_called) + track_cell[, j]      # cells 1 to 4 as in comparison 3
+      m <- matrix(tabulate(cell, 4L * n_strata_all), ncol = 4, byrow = TRUE)
+      mantel_haenszel(t(m[, 1]), t(m[, 2]), t(m[, 3]), t(m[, 4]))
+    }, numeric(1))
+  }
+  # With the real labels this is comparison 3 of the ploidy list. The tolerance
+  # allows for a CpG at a decile boundary that falls on the other side when the
+  # SD is computed in a separate matrix product; an error in the method would
+  # show as a far larger difference.
+  stopifnot(isTRUE(all.equal(matched_odds_for(candidate %in% called_real, real_labels$ploidy),
+                             unname(matched_real$ploidy[tracks]), tolerance = 1e-3)))
   in_bin <- function(width) findInterval(mean_pm, seq(0, 100, by = width), rightmost.closed = TRUE)
   bin_label <- function(index, width) sprintf("%g to %g", (index - 1) * width, index * width)
   bin_widths <- unique(c(methylation_bin_width, 2 * methylation_bin_width))
@@ -507,9 +562,11 @@ analyse_mode <- function(mode_name) {
     n_called <- numeric(n_perm); n_called_eligible <- numeric(n_perm)
     called_in_track <- matrix(0, n_perm, length(tracks)); called_eligible_in_track <- matrix(0, n_perm, length(tracks))
     times_called <- numeric(length(candidate))
+    matched_perm <- matrix(0, n_perm, length(tracks))
     for (first in seq(1, n_perm, by = perm_chunk)) {
       cols <- first:min(n_perm, first + perm_chunk - 1)
       called <- difference_above_threshold(cand_c, cand_w, draws[, cols, drop = FALSE], config$dml_difference) + 0
+      for (i in seq_along(cols)) matched_perm[cols[i], ] <- matched_odds_for(called[, i] == 1, draws[, cols[i]])
       n_called[cols] <- colSums(called)
       n_called_eligible[cols] <- drop(crossprod(cand_eligible, called))
       called_in_track[cols, ] <- t(crossprod(cand_track, called))
@@ -529,11 +586,15 @@ analyse_mode <- function(mode_name) {
     for (j in seq_along(tracks)) {
       inside <- eligible & in_track[, j]; outside <- eligible & !in_track[, j]
       perm_rows[[length(perm_rows) + 1]] <- data.table(
-        mode = mode_name, dml_set = "ploidy", permutation_scheme = scheme, track = tracks[j],
+        mode = mode_name, dml_set = "ploidy", permutation_scheme = scheme, track = tracks[j], n_permutations = n_perm,
         odds_ratio_real = real_odds[[j]], perm_median = median(perm_odds[, j]),
         perm_percentile_2.5 = quantile(perm_odds[, j], 0.025, names = FALSE),
         perm_percentile_97.5 = quantile(perm_odds[, j], 0.975, names = FALSE),
-        share_perm_at_least_real = mean(perm_odds[, j] >= real_odds[[j]]), n_permutations = n_perm,
+        share_perm_at_least_real = mean(perm_odds[, j] >= real_odds[[j]]),
+        matched_odds_ratio_real = matched_real$ploidy[[tracks[j]]], matched_perm_median = median(matched_perm[, j]),
+        matched_perm_percentile_2.5 = quantile(matched_perm[, j], 0.025, names = FALSE),
+        matched_perm_percentile_97.5 = quantile(matched_perm[, j], 0.975, names = FALSE),
+        matched_share_perm_at_least_real = mean(matched_perm[, j] >= matched_real$ploidy[[tracks[j]]]),
         pct_eligible_called_in_track = 100 * sum(times_all[inside]) / (sum(inside) * n_perm),
         pct_eligible_called_outside_track = 100 * sum(times_all[outside]) / (sum(outside) * n_perm),
         notes = scheme_note)
@@ -564,9 +625,12 @@ analyse_mode <- function(mode_name) {
   heat_odds <- vapply(tracks, function(tr) fisher_odds(table_counts(is_dml$heat, eligible, in_track[, tr]), interval = FALSE),
                       numeric(1))
   perm_rows[[length(perm_rows) + 1]] <- data.table(
-    mode = mode_name, dml_set = "heat", permutation_scheme = "none", track = tracks, odds_ratio_real = heat_odds,
+    mode = mode_name, dml_set = "heat", permutation_scheme = "none", track = tracks, n_permutations = 0L,
+    odds_ratio_real = heat_odds,
     perm_median = NA_real_, perm_percentile_2.5 = NA_real_, perm_percentile_97.5 = NA_real_, share_perm_at_least_real = NA_real_,
-    n_permutations = 0L, pct_eligible_called_in_track = NA_real_, pct_eligible_called_outside_track = NA_real_,
+    matched_odds_ratio_real = unname(matched_real$heat[tracks]), matched_perm_median = NA_real_,
+    matched_perm_percentile_2.5 = NA_real_, matched_perm_percentile_97.5 = NA_real_, matched_share_perm_at_least_real = NA_real_,
+    pct_eligible_called_in_track = NA_real_, pct_eligible_called_outside_track = NA_real_,
     notes = no_heat_permutation)
   counts[[length(counts) + 1]] <- count_row(mode_name, "heat", "none", "CpGs called per permutation", NA_real_,
                                             notes = no_heat_permutation)
@@ -589,8 +653,7 @@ round_columns(sd_tab, c("sd_from", "sd_to", "median_sd_dml", "median_sd_other_el
                         "pct_other_eligible_in_gene_body"), 2)
 perm_tab[, ratio_in_to_outside := pct_eligible_called_in_track / pct_eligible_called_outside_track]
 setcolorder(perm_tab, c(setdiff(names(perm_tab), "notes"), "notes"))
-round_columns(perm_tab, c("odds_ratio_real", "perm_median", "perm_percentile_2.5", "perm_percentile_97.5", "share_perm_at_least_real",
-                          "pct_eligible_called_in_track", "pct_eligible_called_outside_track", "ratio_in_to_outside"), 4)
+round_columns(perm_tab, setdiff(names(perm_tab), c("mode", "dml_set", "permutation_scheme", "track", "n_permutations", "notes")), 4)
 count_tab[, value := signif(value, 6)]
 fwrite(odds_tab, out_file("feature_odds_matched.csv"))
 fwrite(sd_tab, out_file("feature_odds_matched_within_group_sd.csv"))
@@ -606,7 +669,8 @@ cat("\nOdds ratio of a DML lying in a gene body, by comparison:\n"); print(show[
 cat("\nOdds ratios against eligible CpGs in the same methylation bin and SD decile:\n")
 print(show[odds_tab$comparison == label_bin_sd, !"comparison"], nrows = 200)
 cat("\nLabel permutation, ploidy:\n")
-print(perm_tab[dml_set == "ploidy", !c("dml_set", "n_permutations", "notes")], nrows = 200)
+print(perm_tab[dml_set == "ploidy", !c("dml_set", "n_permutations", "notes", "pct_eligible_called_in_track",
+                                       "pct_eligible_called_outside_track")], nrows = 200)
 cat("\nMedian within-group SD (percentage points):\n"); print(sd_tab[sd_group == "all"])
 cat("\nDifference rule, q-value rule, and CpGs called per permutation:\n")
 print(count_tab[mean_methylation_bin == "all", .(mode, dml_set, permutation_scheme, quantity = substr(quantity, 1, 80),

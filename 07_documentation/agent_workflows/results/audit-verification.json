@@ -1,10 +1,10 @@
 {
  "workflow": "audit-verification",
  "run_id": "wf_824ebfd3-506",
- "agents_finished": 13,
+ "agents_finished": 15,
  "agents_running_or_lost": [
-  "review:R5-clean-checkout",
-  "review:R6-documentation"
+  "verify:R2-figures-features",
+  "verify:R1-coverage-dml"
  ],
  "results": [
   {
@@ -1131,6 +1131,287 @@
      }
     ],
     "notes": "The statistics are implemented as described; no defect changes a committed number except through the dropped GO IDs of the first finding. Step 10 is deterministic and the committed outputs belong to the committed code.\n\nWhat checked out (all run in a scratch copy; the repository was not touched):\n- Reproduction. Two reruns of step 10 at default settings gave all 12 tables byte-identical to the committed ones; the three PNG figures of the first rerun have identical md5 sums.\n- Universe. Recounted from the gene table, the GO map and GO.db without topGO: 11,435/12,094/11,744 (tested) and 5,525/5,738/5,277 (eligible) in legacy mode, 11,395/12,044/11,695 and 5,497/5,706/5,245 in corrected mode. Organelle (4,535 genes, 951 with a heat DML) and membrane coat (42, 16) agree by closure over GO offspring.\n- updateGenes() on a shared object (CC, heat, eligible, legacy) against a fresh topGOdata tested with runTest: same 1,367 terms, identical p-values, Annotated and Significant. The shared object is unchanged after three calls, and the order of calls does not matter.\n- nullp() and goseq(). The weighting-function table is aligned row for row with the universe (IDs, bias, DML status). With use_genes_without_cat = FALSE goseq tests 5,738 genes with 1,157 DML genes, the same as topGO. goseq's hypergeometric method on the same input equals topGO's Fisher p to 1.3e-15.\n- Wallenius tail. P(X >= x) recomputed with BiasedUrn equals p_wallenius exactly, so it is one-sided for over-representation. At precision 1e-13 the p-values below 0.01 move by at most 1.8% (smallest heat q 0.0754 against 0.0768).\n- Multiple testing. 'tested' is exactly genes_annotated >= 5 and is applied before adjustment; q is NA elsewhere; BH recomputed per mode, set, ontology and universe agrees to 5e-15. Fisher p recomputed with phyper agrees to 1e-13.\n- Term names. Term(GOTERM[ids]) keeps the order of ids, so names are not shifted against GO IDs.\n- Random control. The first ploidy-sized and the first heat-sized draw, replayed with the script's seed, reproduce the committed rows exactly (788 and 1,494 genes hit; A 38/48/49 and 108/73/70; B 69/11/0 and 109/28/14; C 0), as do both real-list rows. The tests consume no random numbers. The summary file equals medians, minima and maxima recomputed from the per-draw file. Eligible CpGs per gene from the control's overlap equal n_cpg_eligible for every protein-coding gene. Real DML mapped by the control's route give the same genes as step 08 (711 of 711; 1,444 of 1,445, the missing one being the gene whose DML is not an eligible CpG). The comparison with the real lists uses the same objects, universes and gene filter as step 10.\n- Robustness. Gene lists of 0, 1, 2, 4 and 10 genes do not crash go_gene_level_test(). The enriched-terms path (go_enriched_term_genes.csv, figure_go_enriched) runs when a term passes.\n\nAlready reported by the first verification and still in the code (confirmed, not listed again):\n- goseq's spline on the raw CpG count fits poorly: 9.0% fitted against 5.2% observed for the 1,806 single-CpG genes (heat). The calls do not change: 0 terms under a log2-count spline, an isotonic fit, and a spline fitted on the tested genes only.\n- goseq uses fitted probabilities as urn weights: with weights of -log(1 - p), organelle reaches q = 0.046.\n\nOne issues.md statement needs a qualifier. Organelle 'crosses 0.05 in step 10 itself when go_min_genes is 15 or more' holds in legacy mode (q = 0.0440 at 15) but not in corrected mode (0.0522 at 15, 0.0455 at 20). Other statements of I-03 and I-41 that cite step 10 outputs were checked against the tables and agree (51 and 39 of the draft's terms, smallest q-values 0.27/0.075/0.34, 5% to 69% and 3% to 52% by CpG count, the heat CC clathrin family at q 0.20 to 0.74, smallest q 0.10 for the 90 terms as one family).\n\nNot checked:\n- The other 18 draws of the random control, and whether its counts change once secondary IDs are remapped.\n- The calibration and power numbers that I-41 takes from the verification record.\n- GO.db releases other than 3.18.0 and 3.13.0.\n- Steps 04 and 05 (not run); the step 08 tables were taken as given, apart from the per-gene counts of eligible CpGs and DML, which I recomputed for legacy mode and found identical.\n\nScratch scripts and logs are in /tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/R4-gene-level-go: test_core.R, check_outputs.R, onedraw_control.R, test_pwf.R, test_precision.R, test_small.R, test_godb_release.R, test_secondary_ids.R, test_secondary_top10.R, each with its .log, and the folder variants/ for the runs with changed settings."
+   }
+  },
+  {
+   "agent": "review:R6-documentation",
+   "phase": "Review code",
+   "result": {
+    "area": "R6-documentation",
+    "findings": [
+     {
+      "file": "README.md",
+      "line": 7,
+      "severity": "medium",
+      "summary": "The status line says \"every WGBS, ELISA and qPCR number, figure, and table of the draft is regenerated in R from the raw inputs, and the legacy results are reproduced exactly\". The repository's own traceability table contradicts both halves.",
+      "failure_scenario": "An author reads the first screen of the README and takes every number of the draft as regenerated. Ten statements of Results 3.1 (the 1x genomic distribution, exon UTR 27.3% and so on) have no pipeline output at all; 12,794,074 and the correlation range 0.87 to 0.93 could not be traced; three chromosome percentages are not reproduced.",
+      "evidence": "05_manuscript/manuscript_values_summary.csv: 253 statements, 163 match, 35 differ, 55 not regenerated; Results 3.1 alone: 50 statements, 32 match, 8 differ, 10 not regenerated. Rows R3.1-041 to R3.1-050 of manuscript_values.csv are 'not regenerated' (issue I-15; session_handoff.md next action 5: 'has no pipeline output yet'). R3.1-001: 12,794,074 against 12,918,250. R3.1-012/013: 0.87 and 0.93 against 0.794 and 0.897. R3.3-056 to 058: 15.5, 12.9, 12.9 against 15.07, 12.51, 12.51. 06_diagnostics/legacy_check_results.csv: 329 of 331 match, 2 differ.",
+      "suggested_fix": "Reword: every figure and table is regenerated; the quoted numbers are regenerated where a source exists (give the counts from manuscript_values_summary.csv); name the values that could not be traced or have no output yet (I-15, I-16, I-25); say 329 of 331 legacy comparisons match."
+     },
+     {
+      "file": "issues.md",
+      "line": 760,
+      "severity": "medium",
+      "summary": "Three places send the reader to I-06 for content that I-06 does not hold: line 760 (\"is taken up in I-06\"), line 248 (\"What this says about the q-values is in I-06\") and line 146 (\"analysis A2 of 06_diagnostics/dml_sensitivity.R, see I-06\"). I-06 (lines 252 to 262) is the unchanged text of 2026-11-18, rated S2, with no update or verification paragraph. Line 760 also quotes a number with no committed source.",
+      "failure_scenario": "An author follows the reference, finds in I-06 only the general argument and \"report a sensitivity analysis\", and does not learn that the committed full-run lists already show the result. The README's list of seven problems that bear on the conclusions does not include it.",
+      "evidence": "sed of the I-06 section: 0 lines with Update or Verification. Committed lists in 06_diagnostics/dml_sensitivity/ (run_scope 'all tested CpGs'): ploidy 1,038 DML, 14 with overdispersion and chi-squared (dml_A1_ploidy_mn_chisq_legacy.csv), 2 with the F test; heat 2,351, 185, 16; interaction_vs_shared_legacy.csv: 99 of the 200 shared loci pass the uncorrected interaction test (16,971 CpGs in all), 0 of 200 with the correction. Line 760: 'the sensitivity script gives a median of 749 and 11% (113 of 1,000)'; the table that would hold it, permutation_reference.csv, exists only in the git-ignored test_subset folder (find). session_handoff.md lines 32 and 48 list I-06 as still to write and say it 'should then be rated S1'.",
+      "suggested_fix": "Write the dated update into I-06 (and the A2 result into I-02) from the committed lists, or change the three references to say the result will be added when the run has written its tables, and mark the 749 and 11% as provisional with their source."
+     },
+     {
+      "file": "01_pipeline/README.md",
+      "line": 23,
+      "severity": "medium",
+      "summary": "Step 13 is listed as \"planned\". The script exists, has run, and has assembled 05_manuscript/. The same stale state is in the plan (line 115, phase 6 \"next\"), in issues.md I-27 (line 57 \"fix planned (6)\"; line 507 \"The pipeline will write them\"), and 04_output/README.md has no row for 13_manuscript_values.",
+      "failure_scenario": "README.md line 91 sends the reader to this status column. A reader concludes that no traceability table and no supplementary lists exist, while README.md line 7 says step 13 covers the Methods, Results 3.1 to 3.3 and the legends.",
+      "evidence": "04_output/13_manuscript_values/session_info.txt: 'Finished: 2026-11-19 06:34:12 UTC'; expression_errors.csv has a header and no rows; 05_manuscript/manuscript_values.csv has 253 rows; 05_manuscript/supplement/legacy holds 15 lists and supplement/corrected 6 (DML of each set, genes with DML, GO terms with p < 0.01); manuscript_items_copied.csv lists Figures 1 to 9, S1 and Table 1 as copied. The run-times table of 01_pipeline/README.md has no row for step 13.",
+      "suggested_fix": "Set the status to partly done (253 statements; Results 3.4, 3.5 and Discussion pending); add step 13 to the run-times table and to the Folders table of 04_output/README.md; set I-27 to pipeline done (step 13); update phase 6 in the plan."
+     },
+     {
+      "file": "issues.md",
+      "line": 45,
+      "severity": "medium",
+      "summary": "Three statuses of the summary table name plan phases that are marked done, so they no longer say what is open: I-15 \"fix planned (4)\" (line 45), I-33 \"fix planned (2)\" (line 63), I-34 \"fix planned (1)\" (line 64).",
+      "failure_scenario": "Phase 4 (steps 06 to 10) is 'done' in the plan, so a reader takes I-15 as fixed or about to be. No step writes the 1x genomic distribution, and the fix now belongs to step 04. For I-33 and I-34 the reader cannot tell that only an author decision remains.",
+      "evidence": "reproducibility_plan.md lines 110 to 113: phases 1, 2 and 4 are 'done'. I-15: rows R3.1-041 to R3.1-050 of 05_manuscript/manuscript_values.csv are 'not regenerated'; session_handoff.md next action 5 says to extend step 04. I-33: its own update (line 589) says the map and tables are now in 03_input_files/annotation/. I-34: the reorganization is commit 117be05; what is left is the question about files above 10 MB.",
+      "suggested_fix": "I-15: open, to be added to step 04. I-33: pipeline done or resolved, with the lost UniProt table noted. I-34: needs decision (bulky legacy files)."
+     },
+     {
+      "file": "01_pipeline/09_go_enrichment_legacy.R",
+      "line": 182,
+      "severity": "medium",
+      "summary": "Step 09 still writes, in figure_5_values_legacy.csv, the two definitions that the corrections table of issues.md withdrew. issues.md line 434 says step 09 \"writes, next to each, what it counts\" and then prints different definitions. Already reported by code review R3 (session_handoff.md line 45); not yet fixed.",
+      "failure_scenario": "An author opens the output table to caption Figure 5 and reads 'Unique genes' as genes annotated directly with one of the ten terms. By that definition the ploidy BP value would be 6, not the 1 in the table. 'GO terms' is described as rows of a DML x transcript x term table, which hides that one term gives up to four rows.",
+      "evidence": "Lines 182 to 183 of the script and column what_it_counts of 04_output/09_go_enrichment_legacy/tables/figure_5_values_legacy.csv (9 rows each): 'rows of the DML x transcript x GO term table for this ontology' and 'genes that hold a DML and are annotated directly with one of the ten top-ranked terms'. issues.md corrections table (I-20 rows): 'By direct annotation the cited example would be 6, not 1'; 'One term gives up to four rows'. Recount: the 4,379 ploidy BP rows are 3,792 distinct DML x transcript x term combinations.",
+      "suggested_fix": "Replace the two strings with the wording of the I-20 table, rerun step 09 and 06_diagnostics/check_legacy_outputs.R."
+     },
+     {
+      "file": "01_pipeline/05_differential_methylation.R",
+      "line": 32,
+      "severity": "medium",
+      "summary": "The memory need of step 05 is given as three different figures: \"about 3 GB instead of 9 GB\" in the step header, \"about 10 GB\" in the run-times table of 01_pipeline/README.md (line 47), and \"about 12 GB\" for steps 04 and 05 in 01_pipeline/README.md line 75, README.md line 97 and run_pipeline.R line 12.",
+      "failure_scenario": "A user with an 8 GB machine reads the header, starts step 05 with WGBS_CORES=4, and the process is killed during the model fits; or a user with 8 GB does not try a single-core run that might fit.",
+      "evidence": "Read the four texts. The 3 GB of the header describes the import (one library at a time), not the fits with forked workers. I could not measure it: running step 05 was excluded for this review. Step 04 is consistent (header and table both say about 8 GB).",
+      "suggested_fix": "Give one statement in both places: memory of the import, and memory of the fits per worker, measured at WGBS_CORES 1 and 4."
+     },
+     {
+      "file": "01_pipeline/04_cpg_coverage.R",
+      "line": 28,
+      "severity": "medium",
+      "summary": "The header states as fact that \"the manuscript's 1x count uses 'covered in at least one library'\". issues.md I-16 (line 404) says the opposite: the number could not be traced and \"the definition behind the number is unknown; the original text above assumed 'covered in at least one library' from its size alone\".",
+      "failure_scenario": "A reader of the script takes 12,794,074 for a miscount of the union and corrects the text to 12,918,250, although the union differs from the manuscript value by 124,176 and matches no file or count the audit examined.",
+      "evidence": "Header lines 26 to 29. 04_output/04_cpg_coverage/tables/cpg_counts_by_coverage.csv: 12,918,250 (legacy) and 12,916,270 (corrected) CpGs in any library at 1x. Manuscript line 35: 12,794,074.",
+      "suggested_fix": "Reword: the manuscript's 1x count is on an unknown definition (I-16); the step writes both the count in all libraries and the count in at least one."
+     },
+     {
+      "file": "01_pipeline/08_gene_annotation.R",
+      "line": 37,
+      "severity": "low",
+      "summary": "The header says the legacy route lost the \"mRNAs of the 9 genes whose name holds a hyphen\". The data give 24 mRNAs of 5 genes. Already reported by code review R3; not yet fixed.",
+      "failure_scenario": "A wrong count in the description of a legacy defect; issues.md I-39 gives the right one (24 mRNAs).",
+      "evidence": "transcript_table.csv.gz: legacy_gene_id_lost is TRUE for 24 mRNAs of 5 genes (Striatin-3, Ankyrin-3, Caprin-2, Testican-1, Secernin-1). legacy_check_results.csv: 63,317 of 63,341 mRNAs have the same gene ID in the legacy map, a difference of 24.",
+      "suggested_fix": "Write: the 24 mRNAs of the 5 protein-coding genes whose name holds a hyphen."
+     },
+     {
+      "file": "issues.md",
+      "line": 797,
+      "severity": "low",
+      "summary": "I-42, option 2, speaks of \"the 21,000 accessions\" whose GO terms would be pulled from UniProt. The blastx table that the option keeps holds 13,165 distinct Swiss-Prot accessions.",
+      "failure_scenario": "The scope of the refresh is overstated by 60%. It does not change the decision.",
+      "evidence": "awk on column 2 of 03_input_files/annotation/20210605-cgigas-roslin-mito-blastx.outfmt6.gz: 13,165 distinct accessions in 93,983 rows from 48,504 queries. No other in-scope text gives 21,000.",
+      "suggested_fix": "Replace by 13,165, or by the number of accessions behind the 43,307 mRNAs if that is what was meant."
+     },
+     {
+      "file": "README.md",
+      "line": 69,
+      "severity": "low",
+      "summary": "\"If a numbered folder is renamed, the matching string in 02_R_functions/paths.R is the only place to update\" is false, as are \"The numbered folder names appear only in this file\" (02_R_functions/README.md line 10) and the comment in paths.R lines 2 to 3.",
+      "failure_scenario": "Someone renames 04_output and edits paths.R only. Step 13 stops with 'No such table', run_pipeline.R finds no scripts if 01_pipeline is renamed, and no step can source the helpers if 02_R_functions is renamed.",
+      "evidence": "grep for quoted folder names outside paths.R: here(\"02_R_functions\") in all 13 step scripts and in the diagnostics; here(\"04_output\", ...) at 13_manuscript_values.R line 73 and check_legacy_outputs.R lines 29 to 30; here(\"06_diagnostics\", ...) at 13_manuscript_values.R line 79 and in four diagnostics scripts; here(\"01_pipeline\") at run_pipeline.R line 17.",
+      "suggested_fix": "Route those calls through helpers in paths.R, or state the exceptions."
+     },
+     {
+      "file": "03_input_files/README.md",
+      "line": 24,
+      "severity": "low",
+      "summary": "Download sizes disagree across the documents and mix binary and decimal units, and the manifest is described as holding 22 coverage files when it holds 23 files.",
+      "failure_scenario": "A user who provisions disk from \"The first run downloads 9.8 GB\" needs 10.46 GB (decimal) plus the 31 MB GO.db archive. A reader of this README does not learn that the reference genome is fetched and checksummed through the same manifest.",
+      "evidence": "gannet_manifest.csv: 23 rows; 22 coverage files 9,799,176,800 bytes (9.13 GiB, 9.80 GB); genome 656,030,650 bytes; total 10,455,207,450 bytes (9.74 GiB, 10.46 GB). Texts: README.md line 75 '9.1 GB in total' beside '656 MB'; README.md line 97, 01_pipeline/README.md lines 44 and 75, 01_fetch_inputs.R line 17, run_pipeline.R line 11, plan line 99: '9.8 GB'; issues.md line 599: 'the 22 coverage files (9.7 GB)'; this file: '22 coverage files, 9.13 GB in total', origin 'cov_files/' only. Step 01 itself logs bytes / 1024^3, that is 9.74.",
+      "suggested_fix": "Use one unit. Say the manifest lists 22 coverage files and the reference genome, 10.5 GB (9.7 GiB) in total, and correct the 9.8 and 9.7 figures."
+     },
+     {
+      "file": "issues.md",
+      "line": 90,
+      "severity": "low",
+      "summary": "Three cited locations do not resolve by the rule of line 8 (same path under 08_archive unless the plan lists a move). Line 90 and line 369 place the June 2021 Bismark summary in 07_documentation/upstream_processing/. metadata.xlsx and gene_expression/data/zr3534_wgbs_info.csv are neither under 08_archive nor where the plan says.",
+      "failure_scenario": "A reader who wants to check the batch table of I-01 opens 07_documentation/upstream_processing/ and finds only the March 2021 summary. A reader who looks for metadata.xlsx under 08_archive, as plan line 64 says, finds nothing.",
+      "evidence": "ls 07_documentation/upstream_processing: two job scripts of June, the March job script and the March summary; the June summary is 03_input_files/bismark_reports/061021-big_bismark_summary_report.txt (the README of upstream_processing says so). find: no metadata.xlsx anywhere; the file is 03_input_files/metadata/raw/legacy_metadata.xlsx. zr3534_wgbs_info.csv is 03_input_files/metadata/raw/zr3534_wgbs_info.csv. Plan line 64 lists metadata.xlsx under '08_archive/<same path>' and line 67 under wgbs_libraries.csv. All other 44 legacy paths I tested exist under 08_archive.",
+      "suggested_fix": "Correct the two paths in issues.md and add the three renamed inputs (legacy_metadata.xlsx, zr3534_wgbs_info.csv, the ELISA workbook without its apostrophe) to the plan's table of moves."
+     },
+     {
+      "file": "issues.md",
+      "line": 220,
+      "severity": "low",
+      "summary": "\"Both versions run in every step from 04 on\" is not what the pipeline does, and run_config.R line 20 says the same (\"Steps 04 onward write one set of outputs per mode\").",
+      "failure_scenario": "A reader looks for corrected-mode outputs of steps 09, 11, 12 or 13 and finds none.",
+      "evidence": "01_pipeline/README.md line 29: 'Steps 04 to 08 and step 10'. Step 09 header: 'Runs on the legacy-mode DML only'. Output folders of steps 09, 11, 12 hold no file with 'corrected' in its name.",
+      "suggested_fix": "Write 'steps 04 to 08 and step 10' in both places."
+     },
+     {
+      "file": "01_pipeline/README.md",
+      "line": 3,
+      "severity": "low",
+      "summary": "Three statements of this README are contradicted by the scripts: each script \"writes only into its own folder\" (line 3; also plan rule 5, line 24); step 05 does a \"union across libraries\" (line 15); a missing package \"is reported by name before any work starts\" (line 57). The second was reported by code review R1 and the third by R3.",
+      "failure_scenario": "Step 13 writes 05_manuscript/. Step 05 keeps the CpGs present in all 22 libraries, an intersection. On a machine without R.utils, steps 06 to 10 pass load_packages() and then stop at the first fread() of a .gz table; step 09 may download and install GO.db before its packages are checked.",
+      "evidence": "13_manuscript_values.R lines 115 to 119 and 139 to 147 write under manuscript_path(). Step 05 header line 9: 'keep the CpGs present in all 22 libraries'. No load_packages() call names R.utils (grep), while steps 06, 08, 09 and 10 read .csv.gz or .tsv.gz with fread; in step 09 use_legacy_go_db() is called on line 54, before load_packages() on line 55.",
+      "suggested_fix": "Name the exception for step 13; write 'CpGs covered in all libraries'; add R.utils to the package lists of the steps that read .gz files."
+     },
+     {
+      "file": "03_input_files/annotation/README.md",
+      "line": 10,
+      "severity": "low",
+      "summary": "geneid2go-union1x-BOTH.tab.gz is described as \"Used by step 09 only\". Step 08 reads it as well. On line 22 the breakdown of the 45,346 names sums to 45,345.",
+      "failure_scenario": "Someone who changes or removes the file expects only step 09 to be affected; step 08 would fail or lose its in_legacy_universe flags.",
+      "evidence": "08_gene_annotation.R line 62: read_go_map(\"legacy_universe\"), and the step 08 header lists the file among its inputs. go_map_id_repair.csv: 43,307 mrna (43,184 XM and 123 NM), 1,205 miscrna, 833 ncrna and one name that is the bare prefix 'XM_' (from tRNA queries): 43,184 + 123 + 2,038 = 45,345.",
+      "suggested_fix": "Write 'Used by steps 08 and 09'; add the one empty name to the breakdown."
+     },
+     {
+      "file": "07_documentation/reproducibility_plan.md",
+      "line": 113,
+      "severity": "low",
+      "summary": "Three statements of the plan are stale against the corrected log: phase 4 says the \"DML location percentages\" were \"reproduced exactly\" (line 113); the state paragraph names two conditions for matching the topGO tables where there are four (line 133); \"steps 06 to 13 can be rerun from GitHub alone\" (line 99).",
+      "failure_scenario": "The corrections table of issues.md withdrew the first statement for the four chromosome percentages (I-25). A reader who rebuilds step 09 from line 133 without the repeated universe names (I-43) or the incomplete universe file (I-39) does not reproduce the archive. Step 09 needs GO.db 3.13.0 from the Bioconductor archive.",
+      "evidence": "issues.md corrections table, I-14 row: 'The 18 genome-feature percentages; the four chromosome percentages are not reproduced'. 06_diagnostics/README.md line 46: 'Three conditions are needed'. README.md line 77 and 01_pipeline/README.md line 75 state the Bioconductor download.",
+      "suggested_fix": "Align the three sentences with issues.md and the READMEs."
+     },
+     {
+      "file": "06_diagnostics/README.md",
+      "line": 116,
+      "severity": "low",
+      "summary": "The file inventory does not match the folder, and the note on the methylKit equivalence check claims more than was checked.",
+      "failure_scenario": "A reader looks for dml_counts.csv, permutation_reference.csv, dispersion_summary.csv and the figure listed on lines 83 to 88 and finds none; two committed scripts with twelve output tables are not described; 'identical DML lists in both modes' reads as a full comparison with methylKit's own route in corrected mode, which was not run.",
+      "evidence": "ls 06_diagnostics/dml_sensitivity: analyses.csv, equivalence_with_step05.csv, interaction_vs_shared_legacy.csv and 16 DML lists; the other tables exist only under test_subset (line 110 does say the run was in progress). git ls-files: feature_odds_matched.R, locus_nc047563.R and their CSV files are tracked and absent from the Files table. Verification record R1: identical united tables on a toy example in both modes, cutoffs and kept rows on four real libraries, all 22 cutoffs and both position sets reproduced; methylkit_helpers.R lines 8 to 12 say this accurately.",
+      "suggested_fix": "Add the two scripts when they are reviewed, mark the sensitivity tables as pending, and copy the wording of methylkit_helpers.R into the 'Still to be written' row."
+     },
+     {
+      "file": "issues.md",
+      "line": 824,
+      "severity": "low",
+      "summary": "For the ploidy separation on principal components the text gives the within-cohort permutation p-value only for the fourth component (0.04). The table holds a smaller one for the third component, which the text reports only with its unrestricted p of 0.21.",
+      "failure_scenario": "The summary \"among eight tests is not a finding\" rests on a selection: two of the four within-cohort p-values at 1x are below 0.05, not one.",
+      "evidence": "06_diagnostics/cohort_separation_pca.csv, legacy, 1x, ploidy: PC3 p_permutation 0.210, p_permutation_within_cohort 0.032; PC4 0.077 and 0.044. All other numbers of I-44 and of the I-16 correlation test agree with the two diagnostics tables.",
+      "suggested_fix": "Quote both within-cohort values (0.03 on the third component, 0.04 on the fourth) and keep or revise the conclusion accordingly."
+     },
+     {
+      "file": "issues.md",
+      "line": 172,
+      "severity": "low",
+      "summary": "I-03 says the notebook relabels \"the 157 NM_ and 8,059 XR_ queries in the blastx file\". Those are alignment rows; the distinct queries number 131 and 2,151.",
+      "failure_scenario": "A reader compares 157 with the 123 NM_ mRNAs of the annotation README and cannot reconcile them.",
+      "evidence": "awk on the blastx table: rows NM 157, XR 8,059, XM 85,755, other 12; distinct queries NM 131, XR 2,151, XM 46,210, other 12.",
+      "suggested_fix": "Write 'the 157 rows of 131 NM_ queries and the 8,059 rows of 2,151 XR_ queries'."
+     }
+    ],
+    "notes": "State reviewed: commit 1636cb5. Line numbers are at that commit. Three commits landed while I worked (184551e, 68a8a1b, 1636cb5) and other agents are still editing issues.md and 06_diagnostics, so line numbers may drift. Two things I had found were fixed by 68a8a1b before I finished (\"can be DML at all\" in 02_R_functions/README.md and the step 10 header; \"ninefold\").\n\nOverall: the numbers of the written record are sound. I found no wrong result number in issues.md, the READMEs or the plan. The defects are stale statuses, cross-references to text that does not exist yet, and descriptions that lag behind the code. None is rated high. Four findings repeat points already listed in session_handoff.md as known and unfixed (I-06 pending; R1 \"union\"; R3 Figure 5 definitions, \"9 genes\", R.utils); they are marked.\n\nRecomputed and found correct (scripts and outputs in /tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/R6-documentation):\n- I-05: every cell of the mode table; 26,024 CpGs removed (5.42%), 363 mitochondrial, 43.4% against 21.7% in the repeat track; the q-value criterion (0 and 1 CpGs above 20 points with q >= 0.01); corrected lists are subsets of legacy lists (86, 78, 41 lost).\n- I-09: 54 tested CpGs in the 2.2 kb region, 53, 39, 39 DML, 56 in the 3.6 kb block, none in corrected mode; the lncRNA odds ratios before and after the filter.\n- I-16 and I-38, from the 22 coverage files with grep: exactly one first-line CpG (NC_047567.1:396) is covered in all 22 libraries, none at 10x in all; the two CpGs covered by one library only; legacy counts lower by 1 (all, diploid, control, heat) or 2 (triploid) at 1x and by 1 for heat at 3x. Reference CpG total, union counts, correlation ranges.\n- I-39: 15,715 missing, 15,666 in one run plus 49 in 24 runs, shares per linkage group, 9,761 mRNAs of the 2020 release with none in the universe, 14,109 genes, 77.5% against 78.8%, the cut arithmetic (4,096 x 1,289,932; 55 bytes), all the 62 / 13 / 49 / 15,653 sums.\n- I-40: 27, 88, 10 lines with an unpaired apostrophe giving 14, 44, 5 merged rows; rows, transcripts and genes per reader; 603 of 623; 601 of 612 (98.2%); 62.1% and 32.9%; the funnel; the reader calls named in the Resolution.\n- I-41: all 20 odds ratios of the first table and the corrected-mode values; 65,480 eligible (13.6%), 84.6%, 1.8%; 2 of 3,189 outside the range (1 in corrected mode); 720 of 3,389; 16%; universe and term counts; smallest q-values; organelle q at minimum term size 15 and 20 in both modes; 51 and 39 of the draft's 90 terms; smallest q 0.10; the CpG-count gradient; the random-CpG control table. The matched and permuted odds ratios agree with the new 06_diagnostics/feature_odds_matched tables within rounding (point estimates 1.13, 1.01, 1.25, 1.17).\n- I-42: 1,920; 1,333 of 5,897; 38 of 90 (9 of 10 for ploidy BP); 245 of 4,564; 830 = 395 secondary + 435 obsolete under GO.db 3.18.0.\n- I-02, I-07, I-20, I-21, I-43, I-44, I-45, I-48 and the step 11 counts quoted in I-22 and I-42: every number that has a table.\n- 06_diagnostics/README.md: 331 comparisons, 329 match, all eleven group counts. Annotation README: row counts and both md5 sums.\n- All 27 relative links resolve. All 12 functions tables of 02_R_functions/README.md match the code (two unlisted internal helpers: dml_annotation_columns, legacy_go_db_installed). No step number in issues.md or the READMEs points at the wrong step after the renumbering.\n- Writing rules: no em dash in any text file outside 08_archive. \"Desiccation\" outside the archive occurs only as legacy factor and column names, GO term names and the repository name.\n\nSmall points not raised as findings: the upper end of the denominator range in I-16 should be 13,251,241, not 13,251,242; the update list on line 19 of issues.md omits I-26; the step 13 header does not name its fourth status (\"not comparable\") or its output manuscript_items_copied.csv; the step 07 header and 04_output/README.md omit feature_class_chisq_<mode>.csv (known from R2); 02_R_functions/README.md says coverage positions are converted on read, whereas they stay 0-based in every table and are converted in cpg_ranges().\n\nNot checked: run times and memory figures (steps 04 and 05 were not to be run); numbers that exist only in the verification record (label permutations, exact tests, power simulations, other GO.db releases); anything on gannet beyond the repository; the headers and outputs of steps 11 and 12 beyond the counts that issues.md quotes; manuscript quotations beyond a spot check of twenty values."
+   }
+  },
+  {
+   "agent": "review:R5-clean-checkout",
+   "phase": "Review code",
+   "result": {
+    "area": "R5-clean-checkout",
+    "findings": [
+     {
+      "file": "/home/user/WGBS-gigas-ploidy-desiccation/run_config.R",
+      "line": 29,
+      "severity": "medium",
+      "summary": "The `modes` setting works only at its default. With `modes = c(\"corrected\")`, the steps exit 0 and write wrong tables: step 08 drops the legacy rows from `annotation_summary.csv`, step 09 writes a shifted `legacy_funnel.csv`, and step 10 marks all 90 draft terms \"no eligible gene carries it\".",
+      "failure_scenario": "An author who settles on the corrected analysis sets `modes = c(\"corrected\")` (which also halves steps 04 and 05) and reruns steps 6:10.\n- Step 08 (line 172) rewrites the cross-mode table `annotation_summary.csv` without its three legacy rows.\n- Step 09 (lines 119 and 126) then finds no legacy row. data.table recycles a 3-value vector into 4 stages with only a warning, so `legacy_funnel.csv` is shifted: ploidy genes 622, 171, 168, 622 instead of 724, 622, 171, 168, and a percentage of 363.7.\n- Step 10 (lines 162-169) merges against empty legacy results. `legacy_top10_at_gene_level.csv` then reads \"no eligible gene carries it\" for 90 of 90 terms; the committed table has 39 \"not enriched\" and 51 \"fewer annotated genes than go_min_genes\". Step 10 guards only the absence of \"corrected\" (lines 164, 203).\n- `06_diagnostics/check_legacy_outputs.R` (line 24) then stops with \"missing value where TRUE/FALSE needed\".",
+      "evidence": "Ran it in the clone with that one line of `run_config.R` changed.\n- `Rscript run_pipeline.R --steps 6:8` and `--steps 10` both exited 0.\n- `git status` showed five tables modified: `annotation_summary.csv`, `go_gene_level_summary.csv` (corrected rows only), `dml_probability_by_cpg_count.csv`, `go_terms_by_analysis.csv`, `legacy_top10_at_gene_level.csv`.\n- Step 09, run directly, printed three warnings \"Item 3 has 3 rows but longest item has 4; recycled with remainder\" and wrote the shifted funnel table quoted above.\n- The check script crashed as quoted.\nLogs: `<scratch>/logs/modes_corrected_only.log` and `<scratch>/logs/step9_corrected_only.log`.",
+      "suggested_fix": "Validate `config$modes` once (in `run_config.R` or a helper) and stop with a message when a step that needs the legacy mode runs without it. In step 09, stop if `annotation_summary.csv` has no legacy row for a set. In step 10, guard the legacy comparisons the way the corrected ones are guarded. Do not let a single-mode run overwrite cross-mode summary tables with fewer rows."
+     },
+     {
+      "file": "/home/user/WGBS-gigas-ploidy-desiccation/01_pipeline/05_differential_methylation.R",
+      "line": 56,
+      "severity": "medium",
+      "summary": "Step 05 reuses its cached fit (`04_output/05_differential_methylation/cache/methylkit_<mode>.rds`) whenever the file exists. Nothing checks that the cache was made with the current settings, coverage files, sample sheet or methylKit version.",
+      "failure_scenario": "On any machine that has run step 05 once (the working machine holds both cache files), an author edits `min_coverage`, `import_min_coverage` or `upper_coverage_percentile` in `run_config.R` and reruns the pipeline. Step 05 logs \"loading cached fit\" and rewrites the old united table, diffmeth tables and DML lists; steps 06 to 10 and 13 propagate them. The outputs are identical to before, which reads as \"the result does not depend on the threshold\".\n\nThe settings applied after the cache (`dml_qvalue`, `dml_difference`, the sweep) do take effect, so some edits work and others silently do not. A clean checkout is not affected, because the cache is git-ignored. On the working machine a rerun of step 05 therefore never re-reads the coverage files.",
+      "evidence": "- Lines 56-60 return `readRDS(cache_file)` on `file.exists()` alone; the file name carries only the mode.\n- `<scratch>/test_fit_cache.R` evaluates only the definition of `fit_mode()` with a planted cache file and a changed config (`min_coverage = 5`). It returned the planted object after printing \"loading cached fit methylkit_legacy.rds\".\n- The working repository has `methylkit_legacy.rds` (50.9 MB) and `methylkit_corrected.rds` (46.8 MB).\n- The step header (lines 40-41) does say \"delete the cache file to refit\". But `run_config.R` says \"Change analysis settings here, never inside a step\" and does not mention the cache, and `04_output/README.md` line 19 says cache files \"are rebuilt by rerunning the step\".",
+      "suggested_fix": "Store with the fit the settings it depends on (`min_coverage`, `import_min_coverage`, `upper_coverage_percentile`, mode), the md5 of the sample sheet and of the 22 manifest entries, and the methylKit version. Refit, or stop with a message, when any of them differs. Alternatively put a hash of these in the cache file name."
+     },
+     {
+      "file": "/home/user/WGBS-gigas-ploidy-desiccation/01_pipeline/01_fetch_inputs.R",
+      "line": 44,
+      "severity": "low",
+      "summary": "`04_output/01_fetch_inputs/tables/input_inventory.csv` is the one tracked table that changes on a rerun from a clean checkout. The committed copy is stale, and its row order depends on the collation locale.",
+      "failure_scenario": "`Rscript run_pipeline.R` (or `--steps 1`) on a clean checkout leaves a modified tracked CSV. That contradicts `04_output/README.md` line 44 (\"The CSV files do not\") and the handoff's check that only PDF files and `session_info.txt` may change.\n\nThe inventory hashes every file under `03_input_files/`, READMEs included, so any later edit there makes the committed table stale until step 01 is rerun. On a machine with an en_US.UTF-8 locale (the usual default on macOS and Linux desktops) the rows also come out in a different order.",
+      "evidence": "- C locale, clone at 35d5bfb: step 01 changed the file by 3 insertions and 1 deletion. Two rows were added for `03_input_files/manuscript/*.csv` and the size and md5 of `qpcr/README.md` changed; all were committed after step 01 last ran.\n- Two further runs gave the same md5, so this is staleness, not run-to-run variation.\n- en_US.UTF-8 (locale compiled into scratch, R using ICU collation): the same 124 lines, 24 at different positions; the diff against HEAD was 14 insertions and 12 deletions. The cause is `list.files()` at line 44, which sorts by locale.\n- No other tracked table changed in any run (see notes).",
+      "suggested_fix": "Sort the file list with `sort(repo_files, method = \"radix\")`. Either restrict the inventory to data inputs (leave out `README.md` and helper scripts) or rerun step 01 as part of every commit that touches `03_input_files/`."
+     },
+     {
+      "file": "/home/user/WGBS-gigas-ploidy-desiccation/02_R_functions/logging.R",
+      "line": 27,
+      "severity": "low",
+      "summary": "`write_table()` calls `data.table::fwrite()` with its default `scipen = getOption(\"scipen\", 0)`, so the bytes of every tracked CSV depend on the R profile of whoever runs the pipeline.",
+      "failure_scenario": "A user whose `~/.Rprofile` has `options(scipen = 999)` (a common personal setting) reruns the pipeline. Small and large numbers are written in fixed notation, many tracked CSVs show as modified with identical values, and the handoff's reproduction check fails. `run_pipeline.R` starts each step with plain `Rscript`, which reads the user profile.",
+      "evidence": "Ran `R_PROFILE_USER=<scratch>/profile_scipen.R Rscript run_pipeline.R --steps 2:3` in the clone. Three tracked CSVs changed (`anova_by_scale.csv`, `elisa_wells.csv`, `tukey_by_scale.csv`; 13 lines), for example `1.35022817295565e-06` became `0.00000135022817295565`. The same steps without the profile were byte-identical in four runs. `formals(data.table::fwrite)$scipen` is `getOption(\"scipen\", 0L)`.",
+      "suggested_fix": "Call `data.table::fwrite(x, path, scipen = 0)` in `write_table()`, and likewise in the direct `fwrite()` calls of the diagnostics. The BED writer of step 05 already fixes `scipen`."
+     },
+     {
+      "file": "/home/user/WGBS-gigas-ploidy-desiccation/run_pipeline.R",
+      "line": 17,
+      "severity": "low",
+      "summary": "Started from a directory outside the repository, `run_pipeline.R` finds no scripts, runs nothing and prints \"All requested steps finished.\" with exit status 0. `README.md` line 69 says paths do not depend on the working directory.",
+      "failure_scenario": "`cd ~; Rscript ~/repos/WGBS-gigas-ploidy-desiccation/run_pipeline.R`, or a job script with another working directory. `here()` resolves to the working directory (or to an enclosing project), `list.files(here(\"01_pipeline\"))` is empty, the loop is skipped and success is reported. `--list` prints nothing and exits 0. Only `--steps N` fails, with \"No such step(s)\". Single step scripts fail loudly in the same situation, at `source(here(\"run_config.R\"))`.",
+      "evidence": "- A mock repository in scratch with the identical `run_pipeline.R` and dummy steps, started from another directory, printed \"All requested steps finished.\" and an empty timing table, exit 0.\n- `Rscript <clone>/run_pipeline.R --list` from `/root` printed nothing, exit 0; `here()` there is `/root`.\n- From a subdirectory of the repository it works.",
+      "suggested_fix": "Call `here::i_am(\"run_pipeline.R\")` at the top, or stop when `length(scripts) == 0`. Reword `README.md` line 69: the root is searched upward from the working directory, so scripts must be started from inside the repository."
+     },
+     {
+      "file": "/home/user/WGBS-gigas-ploidy-desiccation/run_pipeline.R",
+      "line": 26,
+      "severity": "low",
+      "summary": "`--steps` takes only the token that follows it and never checks the rest of the command line, so mistyped selections run a subset, or nothing, and still report \"All requested steps finished.\"",
+      "failure_scenario": "- `Rscript run_pipeline.R --steps 3, 12` (a space after the comma) runs step 03 only.\n- `--steps \"\"` runs nothing and reports success.\n- `--steps 5 --steps 6` runs step 05 only.\n- Any extra token after the selection is ignored.\n- `--steps :6` stops with the unrelated message \"'from' must be a finite number\".",
+      "evidence": "Exercised the unmodified `run_pipeline.R` against a mock repository with dummy steps (`<scratch>/mock_repo`).\n- `--steps 6, 12` ran only step 06 and printed the success line.\n- `--steps \"\"` printed the success line with an empty timing table, exit 0.\n- `--steps 6:7 --dry-run` ran both steps.\n- `--steps`, `--steps=6:7`, `--step 5`, `-h`, `6:7`, `--steps 6-7` and `--steps 20` all stop with a message, as they should.",
+      "suggested_fix": "Accept exactly the arguments `--list`, or `--steps` followed by one token matching `^[0-9]+(:[0-9]+)?(,[0-9]+(:[0-9]+)?)*$`. Stop on anything left over and on an empty selection."
+     },
+     {
+      "file": "/home/user/WGBS-gigas-ploidy-desiccation/run_config.R",
+      "line": 49,
+      "severity": "low",
+      "summary": "`WGBS_CORES` values that cannot work are accepted and fail late, in the model fit of step 05 after all 22 libraries have been imported.",
+      "failure_scenario": "- `export WGBS_CORES=` (set but empty, as an env file or CI variable can leave it) gives `config$cores = NA`, because `max(1L, NA)` is NA; so does `WGBS_CORES=four`. Step 05 imports the 22 libraries, then stops in `calculateDiffMeth` with \"'mc.cores' must be >= 1\".\n- On Windows any value above 1 fails at the same point, because methylKit uses forked workers. The comment at line 47 says to leave it at 1 on Windows, but `01_pipeline/README.md` and the handoff recommend `WGBS_CORES=4` without that caveat. The legacy analysis was run on Windows.",
+      "evidence": "- Sourced `run_config.R` with nine values of the variable: \"\" gives `NA_integer_`; \"four\" and \"all\" give NA with a coercion warning; \"0\" and \"-2\" give 1; \"2.7\" gives 2.\n- `parallel::mclapply(1:3, identity, mc.cores = NA_integer_)` errors with \"'mc.cores' must be >= 1\".\n- methylKit 1.28.0 passes `mc.cores` straight to `mclapply` (`.calculateDiffMeth`, deparsed).\n- The point of failure inside step 05 is from reading lines 65-96; the step was not run. The Windows case was not tested.",
+      "suggested_fix": "Parse once: `n <- suppressWarnings(as.integer(Sys.getenv(\"WGBS_CORES\", \"1\")))`, set it to 1 when NA or below 1, and force 1 with a message when `.Platform$OS.type == \"windows\"`."
+     },
+     {
+      "file": "/home/user/WGBS-gigas-ploidy-desiccation/02_R_functions/legacy_go_db.R",
+      "line": 36,
+      "severity": "low",
+      "summary": "An interrupted install of the GO.db side library leaves `legacy_r_lib/00LOCK-GO.db` in the cache. Every later run of step 01 or step 09 then stops with \"GO.db 3.13.0 could not be installed\" and no hint of the cause.",
+      "failure_scenario": "Step 01 or step 09 is interrupted (Ctrl-C, session loss) during the roughly 15 seconds of `R CMD INSTALL`. On the next run the install fails on the stale lock. `quiet = TRUE` hides R's own message naming the lock directory, and the step cannot proceed until the user finds and deletes a directory inside the cache.",
+      "evidence": "Simulated in a scratch cache.\n- With an empty cache, `use_legacy_go_db()` downloaded the tarball (30,765,734 bytes, md5 as in `run_config.R`), installed and loaded GO.db 3.13.0 in 17 s.\n- After removing the installed package and creating `legacy_r_lib/00LOCK-GO.db`, the next call ended with \"Error: GO.db 3.13.0 could not be installed\" plus the warning \"installation of package ... had non-zero exit status\"; the lock directory was still there.\n- A tarball truncated to 1 MB was detected by md5 and downloaded again, so the download side recovers.",
+      "suggested_fix": "Before installing, remove a leftover `00LOCK-GO.db` in the side library (or pass `--no-lock` in `INSTALL_opts`). On failure, name the side library in the message and say to delete it."
+     },
+     {
+      "file": "/home/user/WGBS-gigas-ploidy-desiccation/01_pipeline/README.md",
+      "line": 57,
+      "severity": "low",
+      "summary": "The README says a missing package is reported by name before any work starts. That is not true for R.utils, which `data.table::fread()` needs for every `.gz` input and which no step declares.",
+      "failure_scenario": "A co-author sets up a laptop only for the light steps (\"start at step 06\") and installs what `load_packages()` names: data.table, ggplot2, patchwork, pheatmap, RColorBrewer, GenomicRanges, topGO, goseq. `load_packages()` passes, and the step then stops at its first `.gz` read with fread's own message. On a machine built with the setup script this cannot happen, because methylKit imports R.utils.",
+      "evidence": "- The body of `fread` in data.table 1.14.10 stops with \"requires 'R.utils' package\" for gz files.\n- R.utils is only a Suggests of data.table, and none of the ten packages declared by steps 02 to 10 depends on it (checked with `tools::package_dependencies`, recursive).\n- Steps 06 to 10 and `06_diagnostics/check_legacy_outputs.R`, `go_random_cpg_control.R`, `table1_group_means.R` and `universe_file_cut.R` read `.gz` files with `fread` and do not name R.utils; only `dml_sensitivity.R` checks for it.",
+      "suggested_fix": "Add \"R.utils\" to the `load_packages()` call of every script that reads a `.gz` table, or check for it once inside `load_packages()`."
+     },
+     {
+      "file": "/home/user/WGBS-gigas-ploidy-desiccation/02_R_functions/paths.R",
+      "line": 3,
+      "severity": "low",
+      "summary": "Three statements that the numbered folder names live only in `paths.R` are false: `paths.R` lines 2-3, `02_R_functions/README.md` line 10, and `README.md` line 69 (\"the matching string in `02_R_functions/paths.R` is the only place to update\").",
+      "failure_scenario": "Someone renames a numbered folder and edits only `paths.R`, as the README instructs. Every step then fails at `source()`, or `run_pipeline.R` finds no scripts.",
+      "evidence": "grep over the code:\n- `\"02_R_functions\"` is hard-coded in every step script and every diagnostic (the `list.files(here(\"02_R_functions\"), ...)` line).\n- `\"01_pipeline\"` is in `run_pipeline.R` line 17.\n- `\"04_output\"` is in `13_manuscript_values.R` line 73 and `check_legacy_outputs.R` lines 29-30.\n- `\"06_diagnostics\"` is in `13_manuscript_values.R` line 79 and in the diagnostics' own output paths.",
+      "suggested_fix": "Reword the three statements (the names of `03_input_files`, `04_output`, `05_manuscript` and `08_archive` are built in `paths.R`; `01_pipeline`, `02_R_functions` and `06_diagnostics` also appear in the scripts). Alternatively add path helpers for those folders and use them."
+     }
+    ],
+    "notes": "**Outcome.** From a clean clone the repository runs as documented at its default settings. I found no defect that changes a number in a default run. The two medium findings need a non-default setting or an existing step 05 cache.\n\n`<scratch>` below is `/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/R5-clean-checkout`. It holds `clone/` (restored to a clean state), `logs/`, and the test scripts `test_fetch.R`, `test_fit_cache.R`, `rewrite_step05_tables.R` and `cores_test.R`.\n\n**What was run.** Clone of `reproducibility-audit` at commit 35d5bfb, with `WGBS_CACHE_DIR=/home/user/gannet_cache` and `WGBS_CORES=2`. The source repository moved to 1636cb5 during the review; the changes to steps 09 and 10 and the helpers since the clone are comments only.\n\n- `--list`: 13 scripts.\n- `--steps 2:3`: 5 s.\n- `--steps 6:10`: 8 min 48 s under a load average of about 7 (0.2, 0.4, 0.5, 3.9, 3.9 min); a later run took 7 min 56 s (steps 09 and 10 at 3.3 and 3.4 min). This matches the README table.\n- Peak memory, sampled every 2 s: 0.37, 0.82, 0.80, 1.02 and 1.51 GB for steps 06 to 10.\n- Step 01: 24 s; all 23 gannet files verified by md5.\n\n**Tracked outputs after the rerun.** Only 13 PDFs (6 to 12 differing bytes each, the two date fields) and 7 `session_info.txt` files (the \"Finished\" line) changed. All 87 CSV, 7 gz and 13 PNG files of steps 02, 03 and 06 to 10 were byte-identical in three C-locale runs and one en_US.UTF-8 run.\n- One of the C-locale runs followed deletion of all 127 tracked files of those steps: all were regenerated, none is an orphan, and no untracked file appeared.\n- The only tracked table that changed in any run is `input_inventory.csv` of step 01 (finding 3).\n- Starting steps from inside `01_pipeline/` works and leaves no stray files.\n\n**Legacy check.** `Rscript 06_diagnostics/check_legacy_outputs.R` gives 331 comparisons, 329 match. The two differences are the documented ones: the %mCpG interaction F, 14.49 against 14.43 (I-13), and heat 50% hyper, 1 against 3 (I-19). `legacy_check_results.csv` is byte-identical, also under en_US. With the step 09 tables removed it reports \"not run\" as documented.\n\n**Other scripts run in the clone, all with byte-identical tracked outputs.**\n- Step 13: 6.6 s, no CSV changed. It did rewrite `05_manuscript/figures/legacy/Figure_6` to `Figure_8` (PNG and PDF): at that commit those copies were older than the committed step 11 figures. Step 13 is still listed as \"planned\" in `01_pipeline/README.md` line 23, although a no-argument run executes it.\n- `table1_group_means.R` 1.3 s, `cohort_separation.R` 31 s, `universe_file_cut.R` 2 s (gannet reachable), `go_random_cpg_control.R` 9 min 24 s.\n\n**Step 05, partial check without running the script.**\n- `write_mode()` applied to the fit cached on the working machine reproduces all 23 tracked step 05 files (11 csv, 6 csv.gz, 6 bed) byte for byte (40 s, 1.4 GB).\n- On 5,000 CpGs, `calculateDiffMeth` gives identical tables with 1 and 2 cores.\n- gz output is identical with 1, 2 and 4 data.table threads.\n\n**Environment and code.**\n- Every package used in `01_pipeline`, `02_R_functions` and `06_diagnostics` is installed by `cloud_environment_setup.sh`. The machine's manually installed `r-*` apt packages are exactly the script's 47, and `/usr/local/lib/R/site-library` holds only the script's seven packages and their dependencies.\n- No absolute path, `setwd`, `rstudioapi` or non-ASCII character in the code. No unseeded randomness in steps 01 to 10 (both jitters have `seed = 1`); the diagnostics set seeds.\n- `fetch_gannet_file()` handled every simulated case correctly: absent cache, leftover `.part`, truncated file, wrong content with and without `verify_md5`, missing URL, changed remote size. The server `Content-Length` equals the manifest size for 23 of 23 URLs.\n- The GO.db guards of steps 09 and 10 work.\n- No case-colliding or Windows-invalid tracked paths; the two CSVs tracked with CRLF do not show as modified under autocrlf.\n\n**Not checked.**\n- Steps 04 and 05 as scripts (import and fits), and steps 11 and 12.\n- A real 9.7 GB download.\n- Windows and macOS. Two effects there are expected from reading and not tested: `fwrite` writes CRLF on Windows, and the gzip header carries an OS byte (3 here), so `.csv.gz` files and PNGs should not be expected byte-identical across systems.\n- Another BLAS (only the reference BLAS is installed), other package versions, and R 4.4 or later.\n- Memory of steps 04 and 05. The statements differ and I could not determine which holds: the step 05 header says \"about 3 GB\", the `01_pipeline/README.md` table says \"about 10 GB\" with four cores, and the README text says \"about 12 GB\" for steps 04 and 05.\n- The en_US run was slower (5.6 and 4.3 min for steps 09 and 10) while other jobs were running; I did not separate locale from load."
    }
   }
  ]

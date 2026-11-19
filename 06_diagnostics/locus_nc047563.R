@@ -610,21 +610,21 @@ if (nrow(second_copy) > 0L) {
 many_copies <- which(copies >= 10L)                              # classes of the summary: 1, 2, 3 to 9, 10 or more copies
 
 sec <- "f. reference sequence of the block"
-kmer_name <- paste0(kmer_width, "-mers"); n_kmers <- length(kmers)
+kmer_name <- paste0(kmer_width, "-mers"); n_block_kmers <- length(kmers)
 fact(sec, "block_bases", whole(length(block_dna)), "Length of the block in the reference: from the C of its first CpG to the G of its last.")
 fact(sec, "block_cpg_dinucleotides_in_reference", whole(countPattern("CG", block_dna)), "CG dinucleotides in the reference sequence of the block.")
 fact(sec, "block_gc_pct", decimal(gc_pct(block_dna), 1), "G plus C, percent of the bases of the block.")
 fact(sec, "flank_gc_pct_upstream", decimal(gc_pct(up_dna), 1), paste0("G plus C, percent of the ", flank_bp, " bases before the block."))
 fact(sec, "flank_gc_pct_downstream", decimal(gc_pct(down_dna), 1), paste0("G plus C, percent of the ", flank_bp, " bases after the block."))
-fact(sec, "block_kmers", whole(n_kmers), paste0(kmer_name, " of the block, one starting at every base."))
-fact(sec, "block_kmers_once_in_reference", x_of_y(sum(copies == 1L), n_kmers),
+fact(sec, "block_kmers", whole(n_block_kmers), paste0(kmer_name, " of the block, one starting at every base."))
+fact(sec, "block_kmers_once_in_reference", x_of_y(sum(copies == 1L), n_block_kmers),
      paste0(kmer_name, " of the block that occur once in the reference, both strands of all ", length(genome), " sequences counted."))
 fact(sec, "block_kmers_once_in_reference_pct", decimal(100 * mean(copies == 1L), 1), "The same as a percentage.")
-fact(sec, "block_kmers_twice_in_reference", x_of_y(sum(copies == 2L), n_kmers),
+fact(sec, "block_kmers_twice_in_reference", x_of_y(sum(copies == 2L), n_block_kmers),
      paste0(kmer_name, " of the block that occur exactly twice in the reference."))
-fact(sec, "block_kmers_3_to_9_times_in_reference", x_of_y(sum(copies >= 3L & copies <= 9L), n_kmers),
+fact(sec, "block_kmers_3_to_9_times_in_reference", x_of_y(sum(copies >= 3L & copies <= 9L), n_block_kmers),
      paste0(kmer_name, " of the block that occur 3 to 9 times in the reference."))
-fact(sec, "block_kmers_10_or_more_times_in_reference", x_of_y(length(many_copies), n_kmers),
+fact(sec, "block_kmers_10_or_more_times_in_reference", x_of_y(length(many_copies), n_block_kmers),
      paste0(kmer_name, " of the block that occur 10 times or more in the reference."))
 if (length(many_copies) > 0L) {
   fact(sec, "block_kmers_10_or_more_times_copies", a_to_b(copies[many_copies], 0),
