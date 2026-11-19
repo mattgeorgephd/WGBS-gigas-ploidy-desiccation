@@ -20,6 +20,7 @@ What a new session cannot get from git: the download cache (step 4 restores it);
 
 ## Rules of the project
 
+- **Scope, by decision of the author on 2026-11-19: a reproducible pipeline that produces the results of the paper, with notes on where improvements would help. No improvement is implemented without the author's approval.** Do not start sensitivity analyses, new diagnostics, alternative models or literature work. Code work is limited to defects that affect running the pipeline or reproducing the paper's results, and to documentation. What was built beyond the paper's analysis before that date (corrected mode, step 10, `06_diagnostics/`) stays as it is until the author says what is to become of it.
 - R only in the pipeline. Numbered folders, a README in each. One script per step in `01_pipeline/`, helpers in `02_R_functions/`, settings in `run_config.R`.
 - GitHub first: any file that fits (50 MB after gzip) lives in the repository; gannet holds only what does not.
 - The treatment is "heat" or "heat-treated". "Desiccation" appears only in legacy names. Legacy labels: `ronit` = heat-treated animals, `yaamini` = control animals, `both` = the 22-library comparison.

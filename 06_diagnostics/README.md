@@ -167,6 +167,8 @@ Four points for reading these tables.
 
 ## Still to be written
 
+Nothing of this list is written without the author's approval (scope decision of 2026-11-19, `07_documentation/reproducibility_plan.md`, table "Decided"): the pipeline is to produce the results of the paper, and these scripts would test them further.
+
 | File | Purpose |
 |---|---|
 | `check_methylkit_equivalence.R` | Shows that the low-memory import of step 05 gives the same united table as methylKit's own `methRead`, `filterByCoverage`, `normalizeCoverage`, `unite`. Checked once outside the repository: identical united tables on a small end-to-end example in both modes, and identical cutoffs, kept rows and removed positions on four real libraries; in legacy mode the DML lists also equal the archived lists of the legacy analysis (`check_legacy_outputs.R`). No comparison on the complete 22 libraries in corrected mode is on record; the script will make the check repeatable. |
