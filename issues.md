@@ -55,7 +55,7 @@ Opened 2026-11-18 on branch `reproducibility-audit`, from a full read of the man
 | I-24 | S2 | Text | The "CAD" gene is misidentified in the Discussion and Conclusions | open |
 | I-25 | S3 | Number | Chromosome percentages are hand-computed and do not match the DML lists exactly | pipeline done (step 07) |
 | I-26 | S3 | Figure | Figure S1 B and C were built from hand-transcribed histogram values | pipeline done (step 04) |
-| I-27 | S3 | Text | Supplementary lists are cited but not assembled | fix planned (6) |
+| I-27 | S3 | Text | Supplementary lists are cited but not assembled | pipeline done (step 13); which lists to carry needs the decisions of I-06 and I-41 |
 | I-28 | S2 | Text | Methods describe several steps differently from what was run | open |
 | I-29 | S2 | Text | qPCR and "mitochondrial abundance" claims appear only in the Discussion and are not supported by the data in the repository | needs decision; pipeline done (step 12) |
 | I-30 | S3 | Text | Manuscript structure: empty abstract, numbering gaps, orphan section, about 60 citations missing from the reference list | open |
@@ -595,6 +595,8 @@ Panels B and C were built from histogram bar heights read off 44 per-sample plot
 ### I-27 (S3) Supplementary lists
 
 Section 7 cites lists of DML, GO terms, and genes that are not assembled. The pipeline will write them.
+
+**Update 2026-11-19.** Step 13 assembles them in `05_manuscript/supplement/` from the outputs of steps 05, 08, 09 and 10: the three DML lists and the genes that hold them, for both modes; the nine GO tables of the draft's analysis (legacy mode only; they reproduce an analysis that I-03, I-39, I-40 and I-43 find unsound); and the gene-level results. Which of these lists the paper should carry depends on the decisions of I-06 and I-41: under the analysis that I-06 supports there is no list of ploidy or heat loci to supply.
 
 ---
 

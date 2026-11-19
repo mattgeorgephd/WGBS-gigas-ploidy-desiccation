@@ -6,14 +6,14 @@ The two tables that tie the manuscript draft to the pipeline. Both are read by `
 
 | File | Contents |
 |---|---|
-| `manuscript_values_map.csv` | One row per quantitative statement of the draft, with an R expression that recomputes the quantity from the pipeline outputs. 253 rows so far: Methods, Results 3.1 to 3.3, and the figure legends. Results 3.4 and 3.5, Table 1 and the Discussion are being added. |
+| `manuscript_values_map.csv` | One row per quantitative statement of the draft, with an R expression that recomputes the quantity from the pipeline outputs. 545 rows: Methods, Results 3.1 to 3.5, Table 1, the figure legends, the Discussion and Conclusions, and the section headed 3.5 that follows the Conclusions. Every row was written by one agent and checked by a second one against the draft and against the tables. |
 | `manuscript_items_map.csv` | One row per file that step 13 copies into `05_manuscript/` under the number the manuscript uses (figures, Table 1, supplementary lists). |
 
 ### Columns of `manuscript_values_map.csv`
 
 | Column | Meaning |
 |---|---|
-| `id` | Section prefix and running number: `M2.5-003` (Methods 2.5), `R3.2-010` (Results 3.2), `F3-001` (legend of Figure 3), `FS1-001` (Figure S1) |
+| `id` | Section prefix and running number: `M2.5-003` (Methods 2.5), `R3.2-010` (Results 3.2), `T1-004` (Table 1), `F3-001` (legend of Figure 3), `FS1-001` (Figure S1), `D4.3-002` (Discussion 4.3; `D4.9` is the Conclusions), `D3.5x-001` (the section headed 3.5 that follows the Conclusions) |
 | `section` | Section of the draft |
 | `manuscript_line` | Line of the text copy of the draft (see below) |
 | `quote` | The clause that holds the value, copied exactly from the draft, at most 250 characters. This is what ties a row to the manuscript: search for it in the Google Doc |
@@ -22,7 +22,7 @@ The two tables that tie the manuscript draft to the pipeline. Both are read by `
 | `kind` | count, percent, statistic, p_value, parameter, design, coordinate, identifier, inequality, ranking, software_version, other |
 | `tolerance` | Largest difference from the manuscript value that still counts as a match: 0 for counts, identifiers and statements answered by TRUE or FALSE; half a unit of the last printed digit for rounded values (0.05 for a percentage printed with one decimal, 0.5 for one printed as a whole number) |
 | `expression_legacy` | R expression that recomputes the quantity as the draft's analysis did. Empty when the pipeline cannot regenerate the statement (a laboratory detail, for example); the note says why |
-| `expression_corrected` | R expression for the same quantity in corrected mode (upper coverage filter of the Methods, I-05; gene-level GO analysis of step 10), where that differs |
+| `expression_corrected` | R expression for the same quantity in corrected mode (upper coverage filter of the Methods, I-05; gene-level GO analysis of step 10), where that differs. For a statement about what a contrast means ("baseline" differences, loci that respond to heat differently by ploidy) it is the test of that meaning with the diagnostic analysis that fits it (`06_diagnostics/dml_sensitivity/`), and the note says which |
 | `issue` | The entries of [`issues.md`](../../issues.md) that concern the statement |
 | `note` | Why a value differs, why it cannot be regenerated, or what must be known to read a match |
 
