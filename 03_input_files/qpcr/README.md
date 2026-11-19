@@ -1,6 +1,6 @@
 # qpcr
 
-Raw quantification cycle (Cq) values from the qPCR assays on ctenidia of animals in the heat experiment. Whether and how these data enter the manuscript is undecided; see issue I-29 in [`issues.md`](../../issues.md).
+Raw quantification cycle (Cq) values from the qPCR assays on ctenidia of animals in the heat experiment. Whether and how these data enter the manuscript is undecided; see issues I-29, I-46 and I-47 in [`issues.md`](../../issues.md). The files are analysed by `01_pipeline/12_qpcr.R`; its tables and figures are in `04_output/12_qpcr/`.
 
 ## Files
 

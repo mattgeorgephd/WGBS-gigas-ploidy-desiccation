@@ -36,6 +36,7 @@ Outputs that depend on an analysis mode carry the mode in the file name, for exa
 | `08_gene_annotation/` | `gene_table_<mode>.csv.gz`, `genes_with_dml_<set>_<mode>.csv`, `dml_gene_overlap_<set>_<mode>.csv`, `gene_go_map.csv.gz`, `transcript_table.csv.gz`, `annotation_summary.csv`, `dml_go_annotation_<set>_legacy.tsv.gz` | |
 | `09_go_enrichment_legacy/` | `legacy_fisher_<set>_<ontology>.csv`, `legacy_funnel.csv`, `legacy_reader_loss.csv`, `legacy_universe_by_chromosome.csv`, `figure_5_values_legacy.csv`, `figure_9_values_legacy.csv`, `table_1_legacy.csv` | Figures 5 and 9 as in the draft |
 | `10_go_enrichment_gene_level/` | `go_gene_level_<set>_<mode>.csv`, `go_gene_level_summary.csv`, `go_enriched_terms.csv`, `legacy_top10_at_gene_level.csv`, `dml_probability_by_cpg_count.csv`, `go_terms_by_analysis.csv` | bias by CpG count; terms called enriched by each analysis |
+| `12_qpcr/` | `qpcr_per_animal.csv`, `qpcr_delta_cq.csv`, `qpcr_consolidated_check.csv`, `qpcr_nondetects.csv`, `qpcr_anova_legacy.csv`, `qpcr_tukey_legacy.csv`, `qpcr_group_summary.csv`, `qpcr_models.csv`, `qpcr_censored_test_size.csv`, `qpcr_sensitivity.csv`, `qpcr_reference_gene.csv`, `qpcr_normalization_check.csv`, `qpcr_cox1.csv`, `qpcr_manuscript_statements.csv` | Relative expression per animal by gene; raw Cq of actin and COX1 |
 
 `shared` in a file name is the set the draft calls interaction-DML: the loci that are in both the ploidy and the heat list (issue I-02).
 

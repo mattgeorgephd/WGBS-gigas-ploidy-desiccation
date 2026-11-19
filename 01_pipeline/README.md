@@ -19,7 +19,7 @@ For the project overview see the [root README](../README.md); for the design and
 | 09 | `09_go_enrichment_legacy.R` | The GO enrichment exactly as run for the draft (transcripts as genes, legacy universe, legacy reader, GO.db 3.13.0), with a record of what that procedure did | Results 3.4, 3.5; Figures 5 and 9; Table 1; term lists behind Figures 6 to 8 | done |
 | 10 | `10_go_enrichment_gene_level.R` | Gene-level GO enrichment against tested genes and against eligible genes; Fisher and Wallenius tests; false discovery rate; each term of the draft retested | Replacement candidates for the same items | done |
 | 11 | `11_semantic_similarity.R` | Semantic similarity clustering and plots of GO terms | Figures 6 to 8 | planned |
-| 12 | `12_qpcr.R` | Relative expression from raw Cq values | Discussion (see issue I-29) | planned |
+| 12 | `12_qpcr.R` | Per-animal Cq from the replicate-level qPCR files, checked against the hand-built consolidated file; the legacy delta Cq ANOVA and Tukey tests under both treatments of non-detects, checked against the knitted legacy output; delta Cq models by complete cases and by censored regression, with fold changes, confidence intervals, q-values and leave-one-out ranges; a simulation of how often the censored test rejects a true null; checks of the reference gene and of the normalization; raw Cq of COX1; every qPCR statement of the draft with its numbers and a verdict | Discussion 4.2, 4.5, 4.7; Conclusions (issues I-29, I-46, I-47) | done |
 | 13 | `13_manuscript_values.R` | Collects every number quoted in the manuscript, compares it with the regenerated value, and assembles `05_manuscript/` | all | planned |
 
 The status column is updated as each script is added and validated. "Done" means the script runs from a clean R process and, in legacy mode, its outputs agree with the legacy outputs wherever a legacy output exists (`06_diagnostics/legacy_check_results.csv`).
@@ -48,6 +48,7 @@ Measured on 4 cores and 15 GB of memory, with the downloads already in the cache
 | 06, 07, 08 | under 1 each | |
 | 09 | 3 | |
 | 10 | 3 | |
+| 12 | under 1 | About 35 seconds, 24 of them the simulation; reads one file from `08_archive/` |
 
 ## How a step is written
 
