@@ -1,0 +1,90 @@
+      library             cohort   ploidy reads_at_mito_cpgs pooled_pct
+ 1:  zr3534_1    heat_experiment  diploid              55430      0.500
+ 2:  zr3534_2    heat_experiment  diploid              49373      0.350
+ 3:  zr3534_3    heat_experiment  diploid              33668      0.321
+ 4:  zr3534_4    heat_experiment  diploid              58904      0.341
+ 5:  zr3534_5    heat_experiment  diploid              45689      0.416
+ 6:  zr3534_6    heat_experiment triploid              60317      0.358
+ 7:  zr3534_7    heat_experiment triploid              68274      0.319
+ 8:  zr3534_8    heat_experiment triploid              61237      0.333
+ 9:  zr3534_9    heat_experiment triploid              66855      0.310
+10: zr3534_10    heat_experiment triploid              81922      0.583
+11:  zr3644_1 control_experiment  diploid             148984      2.400
+12:  zr3644_2 control_experiment  diploid             147866      3.208
+13:  zr3644_3 control_experiment  diploid             146050      3.405
+14:  zr3644_4 control_experiment  diploid             184567      2.629
+15:  zr3644_5 control_experiment  diploid             163388      3.241
+16:  zr3644_6 control_experiment  diploid             137740      3.231
+17: zr3644_13 control_experiment triploid             234941      1.980
+18: zr3644_14 control_experiment triploid             119736      2.920
+19: zr3644_15 control_experiment triploid             253834      2.366
+20: zr3644_16 control_experiment triploid             212231      2.209
+21: zr3644_17 control_experiment triploid             254548      3.638
+22: zr3644_18 control_experiment triploid             264104      2.579
+      library             cohort   ploidy reads_at_mito_cpgs pooled_pct
+    mean_of_cpg_pct median_of_cpg_pct zero max_cpg_pct mean_cov
+ 1:           0.500             0.376  178         3.2      153
+ 2:           0.336             0.000  236         2.7      136
+ 3:           0.306             0.000  275         3.6       93
+ 4:           0.340             0.000  215         2.5      162
+ 5:           0.426             0.000  224         4.9      126
+ 6:           0.368             0.000  201         2.8      166
+ 7:           0.322             0.000  206         2.6      188
+ 8:           0.327             0.000  206         2.8      169
+ 9:           0.306             0.000  209         2.2      184
+10:           0.584             0.481  117         3.1      226
+11:           2.466             2.465    6         7.4      410
+12:           3.315             3.000    0        10.8      407
+13:           3.399             3.313    6         8.6      402
+14:           2.612             2.493    6         7.0      508
+15:           3.346             3.166    1         9.3      450
+16:           3.314             3.042    2        10.4      379
+17:           2.039             1.913    3         5.4      647
+18:           2.934             2.680    8         9.5      330
+19:           2.391             2.299    2         5.9      699
+20:           2.212             2.116    2         5.1      585
+21:           3.700             3.380    1        10.2      701
+22:           2.699             2.500    4        10.1      728
+    mean_of_cpg_pct median_of_cpg_pct zero max_cpg_pct mean_cov
+
+pooled percent, range by cohort:
+               cohort  min  max mean_cov_min mean_cov_max
+1:    heat_experiment 0.31 0.58           93          226
+2: control_experiment 1.98 3.64          330          728
+ratio of cohort means of the pooled percent (control / heat): 7.35 
+ratio of cohort medians: 8.02 
+
+per-CpG pooled percent by cohort (363 CpGs):
+            0%    5%  25%   50%   75%  95% 100%
+heat    0.0000 0.139 0.29 0.382 0.494 0.68 1.19
+control 0.0586 1.181 1.97 2.753 3.472 4.85 5.95
+CpGs with a higher pooled percent in the control cohort: 363 of 363 
+CpGs with pooled percent above 10 in the control cohort: 0 ; in the heat cohort: 0 
+CpGs with pooled percent above 5 in the control cohort: 17 ; in the heat cohort: 0 
+share of the summed per-CpG excess (control minus heat) carried by the 10 CpGs with the largest excess: 5.8 % ; by the 36 largest (10% of CpGs): 18.6 %
+pooled percent without the 36 CpGs of largest excess: heat 0.395  control 2.585 
+heat : Pearson chi-squared of per-CpG counts against one common rate = 362 on 362 df ; ratio 1 
+control : Pearson chi-squared of per-CpG counts against one common rate = 8977 on 362 df ; ratio 24.8 
+correlation across CpGs of the per-CpG pooled percent, heat against control: Pearson 0.171  Spearman 0.133 
+correlation across CpGs of pooled percent with coverage (Mechta et al. report an inverse relation): heat 0.022  control -0.088 
+
+the 12 CpGs with the largest control-cohort percent:
+      pos heat_cov heat_pct ctrl_cov ctrl_pct
+ 1: 14341     1602     0.50     6482     5.95
+ 2:  4099      674     0.59     2774     5.66
+ 3:  4720      417     0.48     1816     5.62
+ 4:  6793      540     0.37     2375     5.60
+ 5: 14348     1624     0.31     6591     5.49
+ 6:  4104      668     0.15     2743     5.47
+ 7:  6807      577     0.35     2495     5.41
+ 8:  6203      766     0.52     3063     5.35
+ 9:  4715      405     0.99     1817     5.28
+10:  8780     2920     0.34    11584     5.27
+11:  6798      549     0.36     2429     5.23
+12:  6181      668     0.45     2757     5.19
+          third   n  from    to heat_pct ctrl_pct
+1:  first third 121    34  6219    0.401    2.620
+2: middle third 121  6270 12394    0.377    2.726
+3:   last third 121 12439 18185    0.393    2.918
+
+mean normalized coverage per mitochondrial CpG and library: heat 160  control 521 

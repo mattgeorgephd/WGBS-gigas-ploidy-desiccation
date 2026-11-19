@@ -1,0 +1,22 @@
+image 1800 x 1256
+
+  gridline centres: [80.0, 136.0, 192.5, 248.0, 304.5, 361.0, 417.0, 473.0, 529.5] -> 9 lines, 1.00 at the top one and 0.00 at the bottom one
+  DSS                          bars found: 3  values by effect size 5,10,15,20,25: [0.069, 0.194, 0.385]
+  limma                        bars found: 4  values by effect size 5,10,15,20,25: [0.018, 0.051, 0.107, 0.133]
+  methylKit Chisq (default)    bars found: 5  values by effect size 5,10,15,20,25: [0.445, 0.596, 0.699, 0.825, 0.881]
+  methylKit Chisq OC           bars found: 5  values by effect size 5,10,15,20,25: [0.1, 0.202, 0.285, 0.423, 0.505]
+  methylKit F OC               bars found: 5  values by effect size 5,10,15,20,25: [0.024, 0.051, 0.067, 0.096, 0.093]
+
+  gridline centres: [80.0, 136.0, 192.5, 248.0, 304.5, 361.0, 417.0, 473.0, 529.5] -> 9 lines, 1.00 at the top one and 0.00 at the bottom one
+  DSS                          bars found: 5  values by effect size 5,10,15,20,25: [0.994, 0.997, 0.994, 0.99, 0.986]
+  limma                        bars found: 5  values by effect size 5,10,15,20,25: [0.997, 0.994, 0.997, 0.992, 0.992]
+  methylKit Chisq (default)    bars found: 5  values by effect size 5,10,15,20,25: [0.712, 0.705, 0.694, 0.676, 0.692]
+  methylKit Chisq OC           bars found: 5  values by effect size 5,10,15,20,25: [0.948, 0.95, 0.948, 0.93, 0.939]
+  methylKit F OC               bars found: 5  values by effect size 5,10,15,20,25: [0.988, 0.988, 0.99, 0.983, 0.99]
+
+  gridline centres: [715.5, 771.5, 827.5, 884.0, 939.5, 996.0, 1052.5, 1109.0, 1164.5] -> 9 lines, 1.00 at the top one and 0.00 at the bottom one
+  DSS                          bars found: 4  values by effect size 5,10,15,20,25: [0.02, 0.129, 0.325, 0.552]
+  limma                        bars found: 4  values by effect size 5,10,15,20,25: [0.04, 0.102, 0.194, 0.236]
+  methylKit Chisq (default)    bars found: 5  values by effect size 5,10,15,20,25: [0.514, 0.63, 0.695, 0.766, 0.806]
+  methylKit Chisq OC           bars found: 5  values by effect size 5,10,15,20,25: [0.174, 0.325, 0.425, 0.568, 0.646]
+  methylKit F OC               bars found: 5  values by effect size 5,10,15,20,25: [0.049, 0.102, 0.127, 0.174, 0.171]

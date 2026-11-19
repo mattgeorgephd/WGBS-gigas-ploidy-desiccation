@@ -1,11 +1,8 @@
 {
  "workflow": "check-sensitivity-text",
  "run_id": "wf_147f1667-8df",
- "agents_finished": 4,
- "agents_running_or_lost": [
-  "check:S5-literature",
-  "check:S5-literature"
- ],
+ "agents_finished": 5,
+ "agents_running_or_lost": [],
  "results": [
   {
    "agent": "check:S2-I49-evidence-and-alternatives",
@@ -1277,6 +1274,762 @@
      }
     ],
     "notes": "VERDICT. The code computes what the header says in all eight parts; I found no wrong calculation. All 13 committed tables are reproduced byte for byte (md5) by two runs of a copy in which only the out_dir line was changed, and the two runs are identical. Working tree and last commit are the same for the script, the 13 tables and the README.\n\nINDEPENDENT RECOMPUTATION (other code: data.table long format with by-group sums, bit-pattern enumeration, exact integer arithmetic for every threshold decision, base R tests, no helper of the repository). Every numeric cell that I recomputed agrees: contrast_direction.csv (16 rows, incl. n_exactly_at_threshold: 20 and 8 for the two within-cohort contrasts, legacy 13,028/1,915/11,113 and 3,349/2,688/661); contrast_agreement.csv; leave_one_library_out.csv (44 rows); level_slope_prediction.csv and level_slope_deciles.csv; relabelling_reference.csv (12 rows; the acute heat shock row of legacy mode: 3,994, 100 groupings, median 4,120.5, 3,028.85, 6,156.7, minimum 2,907, largest other 7,350, 55 at or above, 0.55); relabelling_small_sets.csv (1,166 rows, count and both flags); level_group_tests.csv (30 rows); level_correlations.csv (as R computes them); pair_similarity.csv (8 rows); library_level.csv; both part 8 tables. The script's own relabel_reference() run on the real tables equals my exact counts in all 5,917 groupings of each mode. Twenty-two invariants between the tables hold (cross_table_invariants.R).\n\nIS ANY COMMITTED NUMBER WRONG. No number is miscalculated. Fifteen values of level_correlations.csv, column spearman_p_exact, are not what the column name says (Edgeworth approximations; nine differ from the exact value by 4% to 24%).\n\nNUMBERS THAT CHANGE UNDER MY PROPOSED FIXES. Only level_correlations.csv, column spearman_p_exact, and only if exact values replace the approximations (14 values at six digits, listed in the code finding on line 456); with the rename, none. The exact integer rule changes no number of the 13 tables (verified on every contrast, left-out library and grouping). All other fixes are guards with no effect at current settings. For information, not proposed: if the code pass instead adopts methylKit's rule without margin in this script, these change: contrast_direction.csv n_above_threshold of 'ploidy inside the control cohort' 3,349 to 3,350 (corrected 3,252 to 3,253) and of the acute heat shock contrast 3,994 to 3,995 (3,823 to 3,824); relabelling_reference.csv, nearly every reference value by 1 to 3 (legacy heat cohort: minimum 2,720 to 2,721, p05 2,983 to 2,984, median 4,018.5 to 4,019.5, largest other 12,822 to 12,824; full list in out/reference_with_and_without_observed.log), and in the row 'ploidy, both cohorts, without the high libraries' groupings_at_or_above_observed 1,552 to 1,549 (p 0.351927 to 0.351247) and 1,566 to 1,560 in corrected mode.\n\nCOUNTS IN THIS REPORT. statements_checked = 9,562 table cells recomputed independently + 86 statements of the header and of the README section + 18 values of permutation_reference.csv reproduced. Not confirmed: the 11 statements under discrepancies and the 15 Spearman p-values.\n\nWHAT I DID NOT CHECK. The reading of these tables in issues.md (I-49) and README point 4, which belong to another check; the inputs of steps 02 to 04 themselves; the rows of permutation_reference.csv made with 1,000 random labellings; the script on united tables with libraries without reads (cannot occur, smallest numCs + numTs is 10). Exact Spearman values for n = 22 rest on two independent sources that agree (my integer dynamic programme for the six small tails, and the published table of CRAN package pspearman 0.3-1 for all rows, downloaded into its own folder and read as data; nothing about the project was sent).\n\nOTHER REMARKS. The task text says 'at most a few thousand reads': legacy mode has up to 10,335 reads in one library at one CpG and up to 57,711 pooled reads per group. The task text names 11 CSV files in one place; the folder, the header and the README all have 13. An older folder .../wf/S3-code-review-library-level holds partial work of an attempt cut short by the usage limit; I did not use its results (its timing record, 122 s and 147 s with 1,468 MB, agrees with mine). Timing was taken while one to three R jobs of other agents ran.\n\nFILES (all under /tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/S3-code-review-library-level-r2). Scripts: scripts/library_methylation_level_copy.R (out_dir line only), scripts/timed_run.py, scripts/indep_01_contrasts.R (parts 1, 3, 4, 5, 8), scripts/indep_02_relabel.R (part 6 and task 4), scripts/indep_03_levels.R (parts 2 and 7), scripts/task4_details.R, scripts/relabel_function_on_real_data.R, scripts/tests_edge_cases.R, scripts/cross_table_invariants.R, scripts/reference_with_and_without_observed.R, scripts/alternative_gap_cut.R, scripts/within_cohort_against_methylkit.R, scripts/spearman_exact_tail.py, scripts/spearman_exact_from_table.R. Results: run1/, run2/ (the 13 tables of each run), run1.log, run2.log and their .timing files, out/indep_01_legacy.log, out/indep_01_corrected.log, out/indep_02_legacy.log, out/indep_02_corrected.log, out/indep_03.log, out/task4_details.log, out/relabel_all_groupings_legacy.csv and _corrected.csv (every grouping with exact, no-margin and margin counts), out/relabel_cpgs_where_no_margin_differs_legacy.csv (the 1,148 cases), out/ties_within_cohort_legacy.csv, out/level_correlations_exact_p.csv, out/tests_edge_cases.log, out/cross_table_invariants.log, out/alternative_gap_cut.log, out/within_cohort_against_methylkit.log, out/spearman_exact_tail.log."
+   }
+  },
+  {
+   "agent": "check:S5-literature",
+   "phase": "Check",
+   "result": {
+    "check_id": "S5-literature",
+    "statements_checked": 65,
+    "confirmed": 55,
+    "discrepancies": [
+     {
+      "where": "issues.md, I-06, paragraph \"Why it matters\" (text of 2026-11-18), sentence beginning \"The methylKit authors' own benchmark shows\"",
+      "quote": "The methylKit authors' own benchmark shows a markedly higher false positive rate without the correction and recommends `overdispersion = \"MN\"` with a chi-squared test (Wreczycka et al. 2017, J Biotechnol 261:105, doi:10.1016/j.jbiotec.2017.08.007).",
+      "problem": "One-sided. The first half holds: the article reports the lowest specificity and the highest false positive rate for the default test. The second half does not hold as worded: the article recommends by purpose, not one test. It rates the default test best in overall accuracy (highest F-score) and accepts it for exploratory analysis, names DSS, limma and the F test with the correction for work that must limit false positives, and calls the chi-squared test with the correction a compromise between the two. The page range is 105-115.",
+      "evidence": "Article read in full in the publisher's version (PDF metadata: Journal of Biotechnology, 261 (2017) 105-115), open copy at https://edoc.mdc-berlin.de/16722/, saved as /tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/S5-literature/downloads/mdc/16722oa.pdf (this folder is written [S5] below) (sha256 53caa73bc4359bd64b661882016b25097dc105a98cfdb18973685e6f6c42fe74), text in [S5]/text/wreczycka2017_mdc16722_raw.txt. Sections 4.1, 4.2 and 9; verbatim sentences under citations. Figure 2b measured from the embedded 300 dpi image ([S5]/scripts/measure_fig2_bars.py, output [S5]/text/fig2_bar_measurements.txt): specificity of the default test 0.68 to 0.71 over the five effect sizes, chi-squared test with the correction 0.93 to 0.95, F test with the correction 0.98 to 0.99, DSS and limma 0.99 to 1.00. The F-score panel equals the F1 score computed from the measured sensitivity and specificity with 2,500 changed and 2,500 unchanged CpGs to within 0.006 at all 22 measurable bars (0.002 at the five bars of the default test; [S5]/text/fig2_f1_identity_check.txt), which validates the readings.",
+      "proposed_text": "The methylKit authors' own benchmark reports the lowest specificity and the highest false positive rate for the default test without the correction. It also reports the highest F-score for that test, which it calls the best overall accuracy, accepts the default test for exploratory analysis, names the stringent tests (DSS, limma and methylKit's F test with the correction) for work that must limit false positives, and calls the chi-squared test with the correction a good compromise between the two (Wreczycka et al. 2017, J Biotechnol 261:105-115, doi:10.1016/j.jbiotec.2017.08.007).",
+      "severity": "medium"
+     },
+     {
+      "where": "issues.md, I-06, paragraph \"**Correction to \"Why it matters\" (2026-11-19).**\", sentences \"What that paper found and what it recommends are therefore unverified in this log.\" and \"That account has not been confirmed by a second reading ...\"",
+      "quote": "That account has not been confirmed by a second reading and is unverified in the same sense; an author with access to the journal should check it.",
+      "problem": "Stale after this check. The article was read in full: all four points of the account in the script header are confirmed in the published version, and no journal access is needed (the article is open access, CC BY-NC-ND, and an open copy is in the repository of the Max Delbrück Center). The sentence \"What that paper found and what it recommends are therefore unverified in this log.\" of the same paragraph is stale for the same reason. The preprint itself could not be opened (bioRxiv answered HTTP 429 three times), so the confirmation is against the published article, not against the preprint text.",
+      "evidence": "Verbatim, [S5]/text/wreczycka2017_mdc16722_raw.txt (ligatures normalized). Point 1: \"MethylKit without overdispersion showed the lowest specificity (the overdispersion correction usually improves specificity).\" (4.1); \"MethylKit without overdispersion had the highest F-score (Fig. 3c), but also the lowest specificity.\" and \"although it is still the best method when overall accuracy is considered\" (4.2); \"A very relaxed method, such as the default methylKit method, has the best accuracy overall but highest false positive rate.\" (9). Point 2: \"F-test with overdispersion has similar results to DSS\" (4.1). Point 3: \"We believe that a good compromise between the DSS/limma/F-test and default methylKit test is the overdispersion corrected methylKit Chi-square test.\" (4.1); \"A good compromise between stringent and relaxed methods seems to be Chi-squared test with overdispersion correction.\" (4.2). Point 4: \"We simulated a dataset consisting of 6 samples (3 controls and 3 samples with treatment).\" (4.1). The methylKit help text quoted in the paragraph was compared with the installed methylKit 1.28.0 ([S5]/text/methylkit_help.txt) and is exact.",
+      "proposed_text": "**Correction to \"Why it matters\" (2026-11-19; the article was read the same day).** The sentence on the benchmark of Wreczycka et al. 2017 was written from memory and is one-sided. The check of the citations then read the article in the publisher's version (J Biotechnol 261:105-115; open copy in the repository of the Max Delbrück Center, https://edoc.mdc-berlin.de/16722/). The publisher's site and the preprint server refused automated access, so the preprint (doi:10.1101/109512) was not compared. What the article reports, in its sections 4.1, 4.2 and 9:\n- *Design of the benchmark.* A simulation of six samples, three per group, with sets of 5,000 CpGs in each of which half were changed by 5, 10, 15, 20 or 25 points, called at q < 0.01 without a difference threshold; and RRBS data of 19 cell lines with two replicates each. No comparison is between groups that do not differ.\n- *The default test.* \"MethylKit without overdispersion showed the lowest specificity (the overdispersion correction usually improves specificity).\" In the simulation it called about 30% of the unchanged CpGs, against 5% to 7% for the chi-squared test with the correction, 1% to 2% for the F test with the correction and at most 1.5% for DSS and limma (bar heights of its Figure 2b, the article prints no numbers; `fig2_bar_measurements.txt` in `07_documentation/agent_workflows/verification_scripts/S5-literature/`, measured once by the check of the citations). It also had the highest F-score, and the article concludes that the default method \"has the best accuracy overall but highest false positive rate\". With half of the CpGs changed, that score rewards sensitivity.\n- *The corrected tests.* \"F-test with overdispersion has similar results to DSS\". The article does not recommend one test. The default test \"can be used for more exploratory analysis\"; limma, DSS and the F test with the correction \"can be applied when there is a need to limit false positive rates, such as when picking regions or CpGs for validation\"; and \"A good compromise between stringent and relaxed methods seems to be Chi-squared test with overdispersion correction.\"\n\nThe account in the header of `06_diagnostics/dml_sensitivity.R` (note \"Which of the two tests\") is confirmed on its four points: lowest specificity and best overall accuracy for the default test, results close to DSS for the F test with the correction, the chi-squared test with the correction as a compromise, three samples per group in the simulation. The original sentence was right about the false positive rate; it left out that the same article rates the default test best in overall accuracy and accepts it for exploratory work. That rating does not carry over to these data: it rests on comparisons in which half of the CpGs truly differ, whereas here the ploidy list cannot be told apart in length from lists of relabelled libraries (item 5). Items 2, 4 and 7 below measure the three tests on these 22 libraries directly. Item 4 finds that the chi-squared form does not hold its level here, which is in line with the 5% to 7% of unchanged CpGs that it called in the benchmark at q < 0.01. Also verified is the documentation of methylKit 1.28.0 (`?calculateDiffMeth`): for `overdispersion`, \"If set to \"none\"(default), no overdispersion correction will be attempted. If set to \"MN\", basic overdispersion correction, proposed by McCullagh and Nelder (1989) will be applied\"; in the Details section (and in the vignette, section \"Correcting for overdispersion\"), \"If overdispersion correction is applied, the function automatically switches to the F-test. The Chisq-test can be manually chosen in this case as well\". The help page cites the correction as McCullagh and Nelder (1989), *Generalized Linear Models*, Chapman and Hall.",
+      "severity": "medium"
+     },
+     {
+      "where": "issues.md, I-06, last line of the issue",
+      "quote": "**Needs from authors.** Which option; and the check of the Wreczycka et al. citation.",
+      "problem": "Stale after this check: the citation has been checked against the article.",
+      "evidence": "See the two entries above.",
+      "proposed_text": "**Needs from authors.** Which option.",
+      "severity": "low"
+     },
+     {
+      "where": "issues.md, I-06, **Options**, item 3 (\"Use a method built for replicated bisulfite data ...\")",
+      "quote": "Either may recover some power, and a method that shares information between CpGs when it estimates the dispersion does not have the weakness of item 7.",
+      "problem": "The item names Park and Wu 2016 as the DSS model \"for designs with covariates\" and then credits the option with sharing information between CpGs. Only the two-group model of DSS (Feng et al. 2014) does that. The general-design model of Park and Wu 2016, which is the one the draft's contrasts (ploidy with heat as covariate, heat with ploidy as covariate, the interaction) would need, estimates the dispersion CpG by CpG from a Pearson chi-squared statistic without shrinkage, bounds it at 0.001, and uses a normal reference distribution; its authors report a slightly inflated type I error with three replicates per group. The DSS functions for that model also return no methylation difference, so the draft's 20-point criterion cannot be applied inside DSS.",
+      "evidence": "Park and Wu 2016, full text read at https://pmc.ncbi.nlm.nih.gov/articles/PMC12157722/ ([S5]/text/park2016_PMC12157722.txt): the dispersion of each CpG is estimated from \"Pearson χ2 statistics based on transformed linear model\" and restricted \"to be bounded by 0.001 and 0.999\"; \"The Wald test statistics approximately follow normal distribution\"; \"Under our setting, the EB-type of shrinkage method cannot be easily adopted because of the complicated relationship between the dispersion and data distribution\"; Table 1 (type I error at 0.05; 3 and 10 replicates in each group of a 2 x 2 design): DSS-general 0.063 and 0.053, BiSeq 0.052 and 0.046, RADMeth 0.081 and 0.061, binomial GLM 0.151 and 0.175. DSS user's guide of DSS 2.60.0 (https://bioconductor.org/packages/release/bioc/vignettes/DSS/inst/doc/DSS.html, [S5]/text/DSS_vignette.txt): \"for results from for multifactor design, {delta} is NOT supported\". Feng et al. 2014 (PMC4005660): two-group comparison only; \"in future work we plan to extend our model for two treatment groups to multifactor experimental designs\". Lea, Tung and Zhou 2015 (PMC4657956): \"methods based on beta-binomial models only account for over-dispersion due to independent variation, making them unsuited for data sets containing population structure or related individuals\".",
+      "proposed_text": "3. Use a method built for replicated bisulfite data with few animals per group, or test regions instead of single CpGs. The two-group model of DSS is a beta-binomial model that shrinks the dispersion of each CpG towards a prior estimated from all CpGs (Feng, Conneely and Wu 2014, Nucleic Acids Res 42:e69, doi:10.1093/nar/gku154); it shares information between CpGs, does not have the weakness of item 7 and fits the ploidy contrast inside one cohort, but it takes no covariate. For a design with a covariate or an interaction DSS uses another model (Park and Wu 2016, cited in I-02), which estimates the dispersion CpG by CpG from a Pearson chi-squared statistic, without shrinkage, bounds it between 0.001 and 0.999 and refers a Wald statistic to the normal distribution. Its authors report a type I error of 0.063 at the 0.05 level with three replicates in each of four groups and 0.053 with ten (0.151 and 0.175 for a binomial model without overdispersion; their Table 1), and its functions return no methylation difference (DSS user's guide, version 2.60.0), so the 20-point criterion would have to be computed apart. For the draft's two contrasts and for the interaction that model is not shown to avoid the weakness of item 7. Beta-binomial models also take the animals of a group as independent; where relatedness among animals is aligned with the tested variable they give inflated statistics (Lea, Tung and Zhou 2015, PLoS Genet 11:e1005650, doi:10.1371/journal.pgen.1005650; I-49). A test of regions (for example dmrseq, Korthauer et al. 2019, Biostatistics 20:367-383, doi:10.1093/biostatistics/kxy007) may recover some power. No method removes the confound of I-01 or the structure described in I-49, and any list should be checked against relabelled libraries in the same way.",
+      "severity": "medium"
+     },
+     {
+      "where": "06_diagnostics/README.md, section \"How to read the size of a list\", paragraph after point 6 (\"The analyses of this script are tests of single CpGs ...\")",
+      "quote": "Methods made for few animals share information between CpGs when they estimate that variation, or test regions (DSS: Feng, Conneely and Wu 2014, Nucleic Acids Res 42:e69, doi:10.1093/nar/gku154; dmrseq: Korthauer et al. 2019, Biostatistics 20:367-383, doi:10.1093/biostatistics/kxy007).",
+      "problem": "Correct for the two-group model of DSS and for dmrseq, but a reader will take it to cover the draft's contrasts, which have a covariate. The DSS model for such designs (Park and Wu 2016) does not share information between CpGs.",
+      "evidence": "Same sources as the entry on I-06, Options, item 3.",
+      "proposed_text": "Methods made for few animals share information between CpGs when they estimate that variation (the two-group model of DSS: Feng, Conneely and Wu 2014, Nucleic Acids Res 42:e69, doi:10.1093/nar/gku154), or test regions (dmrseq: Korthauer et al. 2019, Biostatistics 20:367-383, doi:10.1093/biostatistics/kxy007). The model of DSS for designs with a covariate estimates the dispersion CpG by CpG, without sharing (Park and Wu 2016, Bioinformatics 32:1446-1453, doi:10.1093/bioinformatics/btw026).",
+      "severity": "low"
+     },
+     {
+      "where": "issues.md, I-08, paragraph \"Why it matters\" (text of 2026-11-18), first sentence",
+      "quote": "In bisulfite data a C-to-T variant is indistinguishable from an unmethylated cytosine (Liu et al. 2012, Genome Biol 13:R61, doi:10.1186/gb-2012-13-7-r61).",
+      "problem": "The cited paper says the opposite of \"indistinguishable\": its subject is that the reads of the opposite strand distinguish a C-to-T variant from bisulfite conversion. Only the reads of the strand that carries the cytosine cannot. The consequence drawn in I-08 stands, because Bismark does not look at variants, and the proposed resolution of I-08 (call variants from the alignments and mask them) relies on exactly this distinction.",
+      "evidence": "Liu et al. 2012, full text from Europe PMC (PMC3491382; [S5]/text/liu2012_PMC3491382.txt): \"This strand-specificity principle has been exploited in order to distinguish bisulfite conversion from C>T SNPs\"; \"approximately half the reads at a given cytosine position (those mapping to the 'C-strand') can be used for methylation quantification but cannot distinguish C>T SNPs. The other half (those mapping to the 'G-strand', boxed in Figure 1a) yield no methylation information but can be used to identify C>T SNPs.\" Venkataraman et al. 2022 (PMC9351233) on BS-Snper: \"a thymine paired with an adenine indicates a C->T SNP, while a thymine paired with a guanine is a bisulfite-converted unmethylated cytosine\" and \"C->T single nucleotide polymorphisms (SNPs) would be interpreted by Bismark as an unmethylated cytosine\".",
+      "proposed_text": "In the reads of the strand that carries the cytosine, a C-to-T variant cannot be told from an unmethylated cytosine, and Bismark counts it as unmethylated; the reads of the opposite strand show an A in place of a G and identify the variant, which is the principle of Bis-SNP (Liu et al. 2012, Genome Biol 13:R61, doi:10.1186/gb-2012-13-7-r61) and of the BS-Snper step of Venkataraman et al. 2022.",
+      "severity": "medium"
+     },
+     {
+      "where": "issues.md, I-02, paragraph \"Why it matters\" (text of 2026-11-18), last sentence",
+      "quote": "Inferring an interaction from two separate significance calls is a known error (Gelman and Stern 2006, Am Stat 60:328, doi:10.1198/000313006X152649; Nieuwenhuis et al. 2011, Nat Neurosci 14:1105, doi:10.1038/nn.2886).",
+      "problem": "Both papers describe another form of the error than the draft's: concluding that two effects differ because one is significant and the other is not. The draft's set requires two main effects (ploidy, heat) to be significant at the same CpG and compares no effects. The principle the papers state (a difference between effects must itself be tested) covers the draft's claim; the sentence as worded attributes to them an error they do not describe.",
+      "evidence": "Nieuwenhuis et al. 2011, abstract (Europe PMC, PMID 21878926): \"this comparison is often based on an incorrect procedure involving two separate tests in which researchers conclude that effects differ when one effect is significant (P < 0.05) but the other is not (P > 0.05)\". Gelman and Stern 2006, abstract (OpenAlex record of the DOI): \"changes in statistical significance are often not themselves statistically significant\". Metadata of both verified at Crossref (Am Stat 60(4):328-331; Nat Neurosci 14(9):1105-1107).",
+      "proposed_text": "A claim that an effect differs between groups needs a test of that difference, and separate significance calls do not provide one (Gelman and Stern 2006, Am Stat 60:328, doi:10.1198/000313006X152649; Nieuwenhuis et al. 2011, Nat Neurosci 14:1105, doi:10.1038/nn.2886, who describe the commonest form, one effect significant and the other not). The draft's set is further from such a test than that form: it requires two main effects to be significant at one CpG and compares no effects.",
+      "severity": "low"
+     }
+    ],
+    "challenges": [
+     {
+      "claim": "I-06, correction paragraph, and header of 06_diagnostics/dml_sensitivity.R (note \"Which of the two tests\"), point 1: in the benchmark of Wreczycka et al. the default test without the correction had the lowest specificity and the best overall accuracy.",
+      "objection": "The account was read by one agent in a preprint that nobody else could open; it might misstate the article, for example by taking the F-score of one data set for a general statement.",
+      "test_done": "Read the published article in full (publisher's PDF from https://edoc.mdc-berlin.de/16722/; text in [S5]/text/wreczycka2017_mdc16722_raw.txt); located every statement on the default test in sections 4.1, 4.2 and 9; measured the bars of Figure 2 from the embedded image (scripts/measure_fig2_bars.py).",
+      "result": "Confirmed in three places. Simulation (4.1): \"MethylKit without overdispersion showed the lowest specificity (the overdispersion correction usually improves specificity).\" Cell lines (4.2): \"MethylKit without overdispersion had the highest F-score (Fig. 3c), but also the lowest specificity.\" and \"it is still the best method when overall accuracy is considered\". Conclusions (9): \"has the best accuracy overall but highest false positive rate\". Measured in Figure 2: specificity 0.68 to 0.71 for the default test (others 0.93 to 1.00); F-score 0.51 to 0.81 for the default test, the highest at every effect size (next: chi-squared with correction, 0.17 to 0.65).",
+      "verdict": "claim_stands",
+      "proposed_text": ""
+     },
+     {
+      "claim": "Same account, point 2: the F test with the correction gave results close to DSS.",
+      "objection": "\"Close to DSS\" might hold for specificity only.",
+      "test_done": "Same reading; Figure 2 measured.",
+      "result": "Text (4.1): \"F-test with overdispersion has similar results to DSS\". Measured: specificity 0.98 to 0.99 (F test with correction) against 0.99 to 1.00 (DSS); sensitivity 0.02 to 0.10 against 0.00 to 0.39, so at effect sizes of 20 and 25 points DSS is the more sensitive of the two. The article's sentence is as the account gives it.",
+      "verdict": "claim_stands",
+      "proposed_text": ""
+     },
+     {
+      "claim": "Same account, point 3: the chi-squared test with the correction is named as a good compromise between stringent and relaxed methods.",
+      "objection": "The article might recommend it outright (as the sentence of 2026-11-18 says) or not at all.",
+      "test_done": "Same reading.",
+      "result": "Stated twice as a compromise, once as an alternative: \"We believe that a good compromise between the DSS/limma/F-test and default methylKit test is the overdispersion corrected methylKit Chi-square test.\" (4.1); \"A good compromise between stringent and relaxed methods seems to be Chi-squared test with overdispersion correction.\" (4.2); \"A good alternative to stringent and relaxed methods is Chi-square test after overdispersion correction (implemented in methylKit).\" (9).",
+      "verdict": "claim_stands",
+      "proposed_text": ""
+     },
+     {
+      "claim": "Same account, point 4: the simulation had three samples per group.",
+      "objection": "The number might be that of the real data.",
+      "test_done": "Same reading.",
+      "result": "\"We simulated a dataset consisting of 6 samples (3 controls and 3 samples with treatment).\" (4.1). The real data had two replicates per cell line: \"ENCODE RRBS data (where each cell line has two replicates) for 19 human cell lines\" (4.2).",
+      "verdict": "claim_stands",
+      "proposed_text": ""
+     },
+     {
+      "claim": "I-06, \"Why it matters\": the benchmark \"shows a markedly higher false positive rate without the correction\".",
+      "objection": "The article prints no false positive rates; \"markedly\" may be the analyst's memory and not what the figure shows.",
+      "test_done": "Measured the bar heights of Figure 2b (specificity) from the 300 dpi image embedded in the publisher's PDF, with the axis taken from the gridlines; checked the measurement through the identity between the three panels (F-score = F1 of precision and recall with 2,500 changed and 2,500 unchanged CpGs).",
+      "result": "Share of unchanged CpGs called at q < 0.01 (1 minus specificity), by effect size 5 to 25: default test 29% to 32%; chi-squared with correction 5% to 7%; F with correction 1% to 2%; DSS 0.3% to 1.4%; limma 0.3% to 0.8%. The F-score panel is reproduced from panels a and b to within 0.006 at all 22 measurable bars (for example default test at 25 points: sensitivity 0.881, specificity 0.692, F1 0.805, measured 0.806). In the cell line data the text gives the same order without numbers. \"Markedly\" holds for the simulation: about 30% against 5% to 7% and 1% to 2%.",
+      "verdict": "claim_stands",
+      "proposed_text": ""
+     },
+     {
+      "claim": "I-06, \"Why it matters\": the benchmark \"recommends `overdispersion = \"MN\"` with a chi-squared test\".",
+      "objection": "The methylKit authors may not recommend against their own default; an author could answer the audit with the article's statement that the default test is the best in overall accuracy.",
+      "test_done": "Read sections 4.1, 4.2 and 9 for every recommendation; checked what \"accuracy\" is in the article.",
+      "result": "The article recommends by purpose: default test \"for more exploratory analysis\"; limma, DSS and the F test with the correction \"when there is a need to limit false positive rates, such as when picking regions or CpGs for validation\"; chi-squared with the correction as \"a good compromise\". \"Accuracy\" is the F-score, which in Figure 2c equals the F1 score of precision and recall in a simulation where half of the CpGs are changed; the text defines it as the harmonic mean of sensitivity and specificity, which the plotted values do not match (default test at 25 points: 0.775 by that definition, 0.806 plotted). The benchmark contains no comparison of groups that do not differ, so its rating of the default test says nothing about the situation of items 2 and 5 of I-06.",
+      "verdict": "claim_needs_qualification",
+      "proposed_text": "See the replacement sentence and the replacement of the correction paragraph under discrepancies."
+     },
+     {
+      "claim": "I-06, item 4 (and README, result of the sensitivity analyses): the chi-squared form of the correction \"does not hold its level\"; \"Its 14 and 185 CpGs are not a middle course between the two other columns.\"",
+      "objection": "The methylKit authors' benchmark names exactly this test as the good compromise, so the log may be dismissing the recommended analysis on the strength of its own relabelling runs.",
+      "test_done": "Derived from the measured Figure 2 what each test did to unchanged CpGs at the nominal q < 0.01 in the benchmark's own simulation (2,500 changed, 2,500 unchanged CpGs per effect size).",
+      "result": "Chi-squared with correction: specificity 0.930 to 0.950, so 125 to 175 of 2,500 unchanged CpGs called; with its sensitivity of 0.10 to 0.51 that is a share of false calls among all calls of about 34% at 5 points falling to about 11% at 25 points, at a nominal 1%. Default test: about 39% to 26%. F with correction: about 33% to 10% (25 to 43 false calls; these small counts carry a reading error of about 8). DSS: about 8% to 3.5% at 15 to 25 points. The benchmark's \"compromise\" is one of sensitivity against specificity; its own figure shows that the chi-squared form called four to six times as many unchanged CpGs as the F form, which agrees with item 4 (7.2%, 2.2% and 0.47% of p-values below 0.05, 0.01 and 0.001 under relabelling). All values are pixel readings of a published figure and approximate.",
+      "verdict": "claim_stands",
+      "proposed_text": ""
+     },
+     {
+      "claim": "I-06, \"What follows for the manuscript\", first point: \"The draft's settings are those of the methylKit vignette (default model, q < 0.01 and a difference threshold), so this is a finding about what common practice gives on these 22 libraries, not about an error of execution.\"",
+      "objection": "Common practice in this laboratory may have been the corrected model: the paper whose Methods the draft's section 2.5 follows (I-28) might have used it.",
+      "test_done": "Read the vignette of the installed methylKit 1.28.0 (methylKit.Rmd) and the Methods of Venkataraman et al. 2022 (BMC Genomics 23:556, full text from Europe PMC, PMC9351233; [S5]/text/venkataraman2022_PMC9351233.txt).",
+      "result": "Vignette: `calculateDiffMeth(meth)` with defaults, then `getMethylDiff(myDiff,difference=25,qvalue=0.01)`; the statement on the vignette holds, with a 25-point threshold. Venkataraman et al. 2022: \"A logistic regression (calculateDiffMeth) modeled the log odds ratio based on the proportion of methylation at each CpG locus. ... Additionally, an overdispersion correction with a chi-squared test (overdispersion = \"MN\", test = \"Chisq\") was applied.\"; DML \"with at least a 50% methylation difference\" that \"did not overlap with C->T SNPs\". The draft's Methods repeat the first of these sentences nearly word for word and omit the second; the draft's run had no correction, a 20-point threshold and no variant step. So the settings are those of the vignette, but not those of the paper the Methods are modelled on.",
+      "verdict": "claim_needs_qualification",
+      "proposed_text": "The draft's settings are those of the methylKit vignette (default model, q < 0.01 and a difference threshold, 25 points in the vignette), so this is a finding about what a common default gives on these 22 libraries. It is not the practice of the paper on which the draft's Methods 2.5 are modelled (I-28): Venkataraman et al. 2022 applied the correction with the chi-squared test, a 50% difference threshold and the removal of CpGs at C-to-T variants, and the draft's sentence on the model omits the correction."
+     },
+     {
+      "claim": "I-01, update, first point: \"A uniform excess fits a difference in the conversion of mitochondrial DNA better than reads of another origin, which would be confined to the stretches they resemble; that is an inference, and the cause is not established.\"",
+      "objection": "(a) The excess could be reads of nuclear copies of mitochondrial sequence, a variant, or real methylation at particular sites. (b) The published work on mitochondrial DNA in bisulfite data might not support incomplete conversion as the usual cause.",
+      "test_done": "(a) Extracted the 363 mitochondrial rows of 04_output/05_differential_methylation/tables/united_cpg_legacy.csv.gz and computed, per library and per CpG, pooled percent methylation, the spread among CpGs against binomial sampling at one rate (Pearson chi-squared over degrees of freedom), and the share of the excess carried by the most extreme CpGs ([S5]/scripts/mito_cpg_check.R and mito_coverage_ratio.py; outputs in [S5]/mito/). (b) Read Liu et al. 2016, Mechta et al. 2017, Owa et al. 2018 (full texts), Hong et al. 2013 and Bicci et al. 2021 (abstracts).",
+      "result": "(a) Every number of the paragraph is reproduced: 0.31% to 0.58% and 1.98% to 3.64%; cohort means 0.38% and 2.82%; control above heat at 363 of 363 CpGs; quartiles of the differences 1.64 and 3.14 points; coverage ratio 3.3 to 7.5 and 15.8 to 29.1. In addition: no CpG exceeds 5.95% in the control cohort (1.19% in the heat cohort); the ten CpGs with the largest excess carry 5.8% of the summed excess and the 36 largest 18.6%; without those 36 the cohort values are 0.395% and 2.585%. Among CpGs the control values are far more variable than binomial sampling at one rate gives (ratio 24.8) and the heat values are not (1.00). The heat-cohort rate equals the nuclear non-CpG rate (0.47% to 0.53%), the control rate is four to seven times it. (b) The literature attributes such signals to incomplete conversion of intact circular or supercoiled mitochondrial DNA, removed by linearization, with local unevenness (Liu 2016; Mechta 2017; Owa 2018). The inference stands and can be stated with sources.",
+      "verdict": "claim_stands",
+      "proposed_text": ""
+     },
+     {
+      "claim": "I-01, update (\"the mitochondrial genome, a sequence expected to be unmethylated\") and I-49, item 2 (\"The 363 tested CpGs of the mitochondrial genome, which is expected to be unmethylated\").",
+      "objection": "The expectation comes from mammals and is contested even there; it may not hold for bivalves.",
+      "test_done": "Searched Europe PMC for mitochondrial DNA methylation in molluscs and read the abstracts of the mammalian studies.",
+      "result": "Mammals: absence, or values below 2% after linearization, in Hong et al. 2013, Liu et al. 2016, Mechta et al. 2017, Owa et al. 2018 and Bicci et al. 2021. Bivalves: one study, on gonads of Mytilus edulis, reports \"the presence in mitochondria of methylated cytosines and adenines and methyltransferases\" (Leroux et al. 2024). Nothing on oysters was found. In these data the heat libraries are at the level of nuclear non-CpG calls, which is what no methylation gives; the control libraries are not, and the literature offers incomplete conversion as the reason. As used in I-49, item 2, the mitochondrial rate measures the conversion of mitochondrial DNA, which in the control cohort is not that of nuclear DNA (2.0% to 3.6% against 0.5%), so there it is weak evidence about nuclear non-conversion.",
+      "verdict": "claim_needs_qualification",
+      "proposed_text": "In I-49, item 2, replace \"which is expected to be unmethylated\" by \"which in mammals carries no CpG methylation or nearly none (sources in I-01; for bivalves the question is open)\" and add after the parenthesis: \"In the control cohort the mitochondrial rate is four to seven times the nuclear non-CpG rate, so it measures the conversion of mitochondrial DNA and not that of nuclear DNA (I-01); the comparison within cohort is not affected by this.\" The text for I-01 is under additions."
+     },
+     {
+      "claim": "I-49, item 2: \"Neither incomplete bisulfite conversion nor the amount of sequencing explains the level.\" and \"Whether the cause is biological ... or lies in library preparation cannot be decided from these data.\"",
+      "objection": "The literature describes a technical cause that is neither of the two excluded: over-representation of methylated DNA through loss of unmethylated fragments during bisulfite treatment and through amplification, which raises the absolute level without raising non-conversion.",
+      "test_done": "Read Olova et al. 2018 (full text) and Ji et al. 2014 (abstract) for the mechanism and for what it predicts; compared with the observations of item 2 and with the coverage ratio that check S2 computed (07_documentation/agent_workflows/verification_scripts/S2-I49-evidence-and-alternatives/02_alt1_artifacts.out; not recomputed by me).",
+      "result": "Olova et al.: \"depletion of unmethylated fragments, leading to an overestimation of the absolute 5mC values\"; highly degrading conversion protocols \"cause a direct 5-10% increase in the global estimate of DNA methylation\"; \"changes of up to 20% in DNA methylation can be purely technical\". Ji et al.: enrichment for methylated DNA \"is exacerbated by higher cycles of PCR\". A selection of molecules by methylation state multiplies the odds of methylation at each CpG, which is the constant shift on the logit scale that item 2 reports, and leaves non-CpG calls nearly unchanged; item 2 does not exclude it. Both studies compared protocols; Olova et al. note that technical replicates of one technique gave few differences. In S2's output the ratio of coverage at methylated to unmethylated CpGs is unrelated to the level in the heat cohort (Spearman -0.27) and weakly related in the control cohort (0.57, p = 0.055), so the data give no positive sign of the mechanism either. The heading and the last sentence stand; the paragraph should name the mechanism and ask for the number of PCR cycles.",
+      "verdict": "claim_stands",
+      "proposed_text": ""
+     },
+     {
+      "claim": "I-49, item 2: \"Methylation in CHH context, the usual measure of non-conversion\".",
+      "objection": "In a species with real non-CpG methylation the CHH rate would not measure non-conversion.",
+      "test_done": "Read Wang et al. 2014 (abstract), Wreczycka et al. 2017 (section 3) and Lea et al. 2017 (full text).",
+      "result": "C. gigas: \"more than 99% methylation modification was restricted to cytosines in CpG context\" (Wang et al. 2014). Practice: \"For species without major non-CpG methylation, such as human, we can calibrate the conversion rate by using the percentage of non-CpG methylation ... typical values for a good experiment will be higher than 99.5%\" (Wreczycka et al. 2017); the libraries here are at 99.5%. Lea et al. 2017 list CHH and CHG sites among the accepted estimators and add that spike-ins \"seem to best capture a sample prep-related batch effect\".",
+      "verdict": "claim_stands",
+      "proposed_text": ""
+     },
+     {
+      "claim": "I-49, \"Why it matters\": a response to heat confined to the diploids would produce the two differences; \"so would five diploid animals that differed from the others before the treatment, or libraries that differ through their preparation.\"",
+      "objection": "Differences between animals of one hatchery might be too small to matter beside a treatment, in which case the alternative would be a formality.",
+      "test_done": "Searched Europe PMC and Crossref for family, genotype and sex effects on methylation in oysters; read abstracts and, where open, full texts.",
+      "result": "Family: in 80 C. virginica of six full-sib families grown at two sites, \"methylation patterns were largely driven by genetic differences among families\", with \"nearly a two orders of magnitude greater number of genes differentially methylated between families than between environments\" (Johnson, Sirovy and Kelly 2022). C. gigas: parental methylated loci \"stably transmitted to offspring\" (Jiang et al. 2016); patterns \"more similar between the two sires and their offspring\" than between stages (Olson and Roberts 2014, preprint); \"approximately half of the differentially methylated sites between the two parental strains were conserved in their offspring\" (Teng et al. 2025). Sex: \"females exhibiting a global reduction compared to males\" in adductor muscle (Teng et al. 2025); male gonads more methylated (Sun, Li and Yu 2022); sex-specific methylation in gill of Ostrea edulis (Valk et al. 2025). The alternative is the better documented of the two in oysters; the one counter-example found is Johnson and Kelly 2020, where population-specific methylation was \"not directly associated with single nucleotide polymorphisms\".",
+      "verdict": "claim_stands",
+      "proposed_text": ""
+     },
+     {
+      "claim": "I-08, Evidence: \"Diploid and triploid oysters in each cohort come from different crosses, and the two cohorts are different stocks (inference from the design; to be confirmed by the authors).\" (repeated in I-01, update, third point: \"come, by inference, from different crosses\").",
+      "objection": "Triploids can be made in eggs of the cross that gives the diploids, in which case the two ploidy groups of a cohort are full sibs; and the draft's Methods name one hatchery for all animals.",
+      "test_done": "Read the FAO manual on triploid spat production (Vignier, Adams and Lovatelli 2024, full text), the abstracts of Miller et al. 2014 and 2016, and the Crossref record of Guo, DeBrosse and Allen 1996 (the article itself could not be opened).",
+      "result": "Two methods exist. Mated triploids: \"Sperm from tetraploid males (2n) is used to fertilise eggs from diploid females (1n)\"; \"Currently most hatcheries utilise the tetraploid approach ... however, in some places direct induction is used\". A mated triploid has a tetraploid sire, so it cannot be a full sib of a diploid (the manual's cover shows \"half-sibling diploid and triploid adult oysters\"). An induced triploid comes from diploid parents and can be a full sib of diploids. \"Different crosses\" therefore holds if the triploids were mated triploids and is open otherwise; the method used for these animals is not recorded. Nothing in the literature bears on whether the two cohorts are different stocks.",
+      "verdict": "claim_needs_qualification",
+      "proposed_text": "Diploid and triploid oysters of a cohort come from different crosses if the triploids were made by mating tetraploid males with diploid females, the usual hatchery method (Guo, DeBrosse and Allen 1996, Aquaculture 142:149, doi:10.1016/0044-8486(95)01243-5; Vignier, Adams and Lovatelli 2024, FAO Fisheries and Aquaculture Technical Paper 698, doi:10.4060/cd1852en): such a triploid has a tetraploid sire and cannot be a full sib of a diploid. Triploids induced in eggs of a diploid cross can be full sibs of diploids. Which method was used, and whether the two cohorts are different stocks, is not recorded (inference from the design; to be confirmed by the authors)."
+     },
+     {
+      "claim": "I-49, item 6: \"A profile shared with animals of another experiment does not call for one cross or one processing batch among the triploids.\"",
+      "objection": "If triploids are made from a tetraploid stock of little diversity, the triploids of both experiments could be related through their sires, and a shared profile would then be a family profile after all.",
+      "test_done": "Read what the sources say about tetraploid stocks and parental contributions (Vignier et al. 2024; Miller et al. 2014, 2016) and set it against the observation of item 6.",
+      "result": "The sources support relatedness among mated triploids: \"the genetic diversity of tetraploids is generally limited\" (Vignier et al. 2024); in two commercial triploid cohorts the effective population size was \"34-49% lower than the census population\" (Miller et al. 2016). But item 6 reports that the heat triploids resemble the control libraries of both ploidies (120 of 120 comparisons), and relatedness through tetraploid sires cannot make triploids resemble diploids of another experiment. The sentence stands. The sources bear on item 7 instead (complete separation of the heat triploids at 98 CpGs), which is what alleles from a common tetraploid sire line would give.",
+      "verdict": "claim_stands",
+      "proposed_text": ""
+     },
+     {
+      "claim": "I-01, \"What is not affected\": \"The ELISA (N = 32) used the heat experiment's own control animals on one plate, so its heat effect is free of this confound\".",
+      "objection": "Free of the confound with experiment and sequencing batch, but the heat effect is then tested with animals as replicates. If the sixteen heat-treated animals were emersed together in one container and run, the treatment was applied once and the animals are subsamples of that application (pseudoreplication in the sense of Hurlbert 1984).",
+      "test_done": "Read Hurlbert 1984 (abstract) and Lazic 2010 (full text); searched README.md, 03_input_files/metadata/README.md and 07_documentation/*.md for how the emersion was applied.",
+      "result": "Hurlbert: pseudoreplication is testing \"for treatment effects with data from experiments where either treatments are not replicated (though samples may be) or replicates are not statistically independent\". Lazic: with a within-group correlation of 0.30 and ten per group a two-group test rejects 37% of the time at a nominal 5%. The repository records the treatment (24 h aerial emersion at 27 C) and not the number of containers or runs. The sentence holds as worded; whether the animals are independent replicates of the treatment cannot be tested from the repository.",
+      "verdict": "could_not_test",
+      "proposed_text": "Add to I-01, \"Needs from authors\": \"Whether the 24 h emersion was applied to the heat-treated animals in one container and one run or in several, and how the control animals of that experiment were held meanwhile. If each treatment was applied once to one group of animals, the animals are subsamples of a single application of the treatment (Hurlbert 1984, Ecol Monogr 54:187, doi:10.2307/1942661), also for the ELISA (I-10).\""
+     },
+     {
+      "claim": "I-49, \"What would settle it\": \"Variant calls from the alignments (I-08); the same calls give the pairwise relatedness of the animals, which tests whether the triploids, or the diploids, of the heat experiment are one family without the pedigree.\"",
+      "objection": "Genotypes called from bisulfite reads may be too error-prone for relatedness.",
+      "test_done": "Read Lea et al. 2017 (full text) and Liu et al. 2012.",
+      "result": "Supported with a caveat: \"recent tools for calling SNP genotypes directly from BS reads (e.g., BisSNP and BS-SNPer) can help with constructing kinship/relatedness matrices, although not without error\" (Lea et al. 2017; reference numbers removed from the quotation). Bis-SNP \"correctly identified 96% of SNPs\" at 30x coverage (Liu et al. 2012); the libraries here have a mean genome-wide coverage of 6 to 12 (column mean_cov_genome of 02_alt1_artifacts.out of check S2), and triploid genotypes add dosage classes.",
+      "verdict": "claim_needs_qualification",
+      "proposed_text": "Variant calls from the alignments (I-08); the same calls give an estimate of the pairwise relatedness of the animals, which tests whether the triploids, or the diploids, of the heat experiment are one family without the pedigree. Genotypes called from bisulfite reads carry error (Lea et al. 2017, cited in item 2), more so at the coverage of these libraries and in triploids, so the estimate separates full sibs from unrelated animals more safely than it grades relatedness."
+     },
+     {
+      "claim": "06_diagnostics/README.md: \"`share_of_labellings_at_least_observed` is a permutation p-value in which the observed labelling counts as one labelling (Phipson and Smyth 2010 ...)\".",
+      "objection": "The paper might recommend something else for randomly drawn permutations.",
+      "test_done": "Read the abstract (Crossref and Europe PMC records).",
+      "result": "The paper's point is that permutation p-values are \"often computed incorrectly, understated by about 1/m, where m is the number of permutations\" and that \"permutation should be viewed as generating an exact discrete null distribution\"; counting the observed labelling as one of the labellings is the correction it argues for. Metadata exact (Stat Appl Genet Mol Biol 9(1), Article 39).",
+      "verdict": "claim_stands",
+      "proposed_text": ""
+     },
+     {
+      "claim": "I-01, \"Why it matters\": \"When a batch variable is perfectly aligned with the variable of interest, no statistical adjustment can separate them (Leek et al. 2010 ...)\".",
+      "objection": "The review might only recommend adjustment methods and not state this limit.",
+      "test_done": "Read the author manuscript at PMC (PMC3880143; [S5]/text/leek2010_PMC3880143.txt).",
+      "result": "\"a confounded experiment will lead to incorrect biological conclusions because results due to batch will be impossible to distinguish from real biological effects\"; \"These approaches are most effective when batch effects are not highly confounded, or correlated, with the biological variables of interest.\" The sentence is a fair statement of the source.",
+      "verdict": "claim_stands",
+      "proposed_text": ""
+     }
+    ],
+    "additions": [
+     {
+      "item": "I-06: published statements on the uncorrected model that do not depend on the benchmark, and the practice of the paper the draft's Methods follow.",
+      "why_it_matters": "The first sentence of \"Why it matters\" carries the issue and now rests on one citation whose account was one-sided. Four independent sources state it directly, one of them with error rates for the same kind of design, and the methylKit paper itself says that the sample size is the number of reads. The paper on which the draft's Methods 2.5 are modelled applied the correction, which changes how the omission is to be read.",
+      "where_to_add": "issues.md, I-06, new paragraph directly after the paragraph \"Correction to \"Why it matters\"\".",
+      "proposed_text": "**What other published work says about the uncorrected model (2026-11-19).** The first sentence of \"Why it matters\" does not depend on that benchmark. The methylKit paper states that \"the relevant sample sizes in logistic regression are not merely the number of biological samples but rather the total read coverages summed over all samples in each group separately\" (Akalin et al. 2012, Genome Biol 13:R87, doi:10.1186/gb-2012-13-10-r87) and does not mention overdispersion. Taking reads of one animal as independent observations is pseudoreplication (Hurlbert 1984; Lazic 2010; both cited in I-49). In a simulation of a two by two design, a binomial regression without overdispersion had a type I error of 0.151 at the 0.05 level with three replicates per group and 0.175 with ten, which its authors call \"not acceptable\" (Park and Wu 2016, Table 1; cited in I-02). A guide for ecological studies calls binomial models \"extremely false positive-prone\" (Lea et al. 2017, cited in I-49), and pooling reads over replicates \"ignores variation among biological replicates\" (Feng, Conneely and Wu 2014, cited under Options). The paper on which the draft's Methods 2.5 are modelled (I-28) applied the correction: \"an overdispersion correction with a chi-squared test (overdispersion = \"MN\", test = \"Chisq\") was applied\", with a 50% difference threshold and after the removal of CpGs at C-to-T variants (Venkataraman et al. 2022, BMC Genomics 23:556, doi:10.1186/s12864-022-08781-5). The draft repeats that paper's sentence on the logistic regression and omits the one on the correction.",
+      "severity": "medium"
+     },
+     {
+      "item": "I-01: published work on apparent methylation of mitochondrial DNA, and what the 363 CpGs show beyond the uniform excess.",
+      "why_it_matters": "The paragraph leaves the cause open as an inference. The literature names it (incomplete conversion of intact mitochondrial DNA, dependent on the state of the DNA and on the preparation), two further features of the data fit it, and without the sources a reader may take the sevenfold difference for an effect of heat on mitochondria, which the draft's Discussion would invite. \"Expected to be unmethylated\" also needs its source and its limit.",
+      "where_to_add": "issues.md, I-01, update of 2026-11-19, first point, directly after the sentence \"A uniform excess fits a difference in the conversion of mitochondrial DNA better than reads of another origin, which would be confined to the stretches they resemble; that is an inference, and the cause is not established.\"",
+      "proposed_text": "Published work supports the inference. In mammals, where the question has been studied most, CpG methylation of mitochondrial DNA is absent or below 2% once the DNA is linearized before conversion, and higher values are an artifact: intact circular or supercoiled mitochondrial DNA resists bisulfite conversion, to an extent that differs between sample types and along the molecule (Hong et al. 2013, Mol Cell Biol 33:2683, doi:10.1128/MCB.00220-13; Liu et al. 2016, Sci Rep 6:23421, doi:10.1038/srep23421; Mechta et al. 2017, Front Genet 8:166, doi:10.3389/fgene.2017.00166; Owa et al. 2018, PLoS ONE 13:e0192722, doi:10.1371/journal.pone.0192722). \"Expected to be unmethylated\" rests on that mammalian evidence; for bivalves one study reports methylated mitochondrial DNA in gonads of the mussel Mytilus edulis (Leroux et al. 2024, Sci Rep 14:31544, doi:10.1038/s41598-024-83368-6), so the expectation is not established for this species. Two more features of the data fit incomplete conversion. In the heat libraries the mitochondrial rate (0.31% to 0.58%) is at the level of nuclear non-CpG methylation (CHH 0.47% to 0.53% in all 22 libraries; `04_output/02_alignment_qc/tables/bismark_by_library.csv`), so their mitochondrial DNA was converted as completely as their nuclear DNA; in the control libraries it is four to seven times that level. And among the 363 CpGs the control values vary far more than sampling gives (Pearson chi-squared over degrees of freedom 24.8; largest value 5.95%), where the heat values vary as binomial sampling around one rate does (1.00); Owa et al. describe such local unevenness of conversion (`mito_cpg_check.out` in `07_documentation/agent_workflows/verification_scripts/S5-literature/`; computed once by the check of the citations, not yet written by a script of the repository). On this reading the two projects differ in the state of the DNA at conversion or in the conversion itself (extraction, fragmentation, denaturation, kit), none of which is recorded for the control libraries (I-36). It cannot be read as an effect of heat on mitochondrial DNA. Methylation at the non-CpG cytosines of the mitochondrial genome, which the alignments hold, would settle the cause: equal rates at CpG and non-CpG cytosines mean non-conversion.",
+      "severity": "medium"
+     },
+     {
+      "item": "I-49, item 2: the technical and the biological causes of a raised overall level that the literature describes.",
+      "why_it_matters": "The item ends on \"cannot be decided\" without saying what the candidates are. One technical cause that the item's two checks do not exclude is documented (over-representation of methylated DNA), and one biological cause is documented for oysters and cannot be examined because it was not recorded (sex). Naming them makes the questions to the authors precise.",
+      "where_to_add": "issues.md, I-49, item 2, directly after its last sentence (\"Whether the cause is biological ... cannot be decided from these data.\").",
+      "proposed_text": "Published work gives candidates of both kinds. *Library preparation.* Fragments that carry unmethylated cytosines are lost preferentially during bisulfite treatment, and amplification builds on that loss, so that reads from methylated DNA are over-represented and the absolute level is overestimated by an amount that depends on the conversion protocol, the polymerase and the number of PCR cycles (Ji et al. 2014, Front Genet 5:341, doi:10.3389/fgene.2014.00341; Olova et al. 2018, Genome Biol 19:33, doi:10.1186/s13059-018-1408-2, who conclude that \"changes of up to 20% in DNA methylation can be purely technical\"). Such a bias multiplies the odds of methylation at every CpG, which is the constant shift on the logit scale described above, and it leaves the non-conversion rate unchanged, so the checks of this item do not exclude it. Both studies compared protocols; technical replicates of one protocol differed little in Olova et al., and no report of a difference of this size between libraries of one kit and one run was found. The efficiency of conversion can also differ between samples or groups of samples prepared together, and spike-in controls capture such batch effects better than non-CpG cytosines do (Lea et al. 2017, Nat Ecol Evol 1:1074, doi:10.1038/s41559-017-0229-0), which is the reason for asking for the values of the E. coli amplicons below. *The animal.* In adductor muscle of oysters, females have a globally lower methylation than males (Teng et al. 2025, Mar Biotechnol 27:31, doi:10.1007/s10126-024-10409-6); in C. gigas gonad the male is the more methylated sex (Sun, Li and Yu 2022, Gene 820:146260, doi:10.1016/j.gene.2022.146260); and gill tissue of the flat oyster Ostrea edulis carries sex-specific methylation (Valk et al. 2025, BMC Genomics 26:567, doi:10.1186/s12864-025-11736-1). The sample sheet (`03_input_files/metadata/wgbs_libraries.csv`) records no sex, so this cannot be examined. Methylation also follows family (see \"Why it matters\").",
+      "severity": "medium"
+     },
+     {
+      "item": "I-49, \"Why it matters\": what published work says about family, ploidy, and the independence of animals, including how triploids are produced.",
+      "why_it_matters": "I-49 states the alternatives to a response to heat without a source. The literature on oysters makes one of them (family) the expected state of affairs, shows that earlier ploidy comparisons give no precedent for a ploidy difference in overall level in a somatic tissue, and explains why the triploids of an experiment are likely to be related through their sires without being one cross. This is what an author needs in order to answer the questions under \"Needs from authors\".",
+      "where_to_add": "issues.md, I-49, \"Why it matters\", as a new fourth point after the point on the ELISA.",
+      "proposed_text": "- What published work says about the alternatives. *Family.* In oysters methylation follows family more than environment: among 80 eastern oysters (Crassostrea virginica) of six full-sib families grown at two sites, methylation patterns \"were largely driven by genetic differences among families\", with nearly two orders of magnitude more genes differentially methylated between families than between sites (Johnson, Sirovy and Kelly 2022, J Anim Ecol 91:1135, doi:10.1111/1365-2656.13645). In C. gigas methylation patterns are transmitted from parents to offspring and differ between families (Jiang et al. 2016, Mar Biotechnol 18:124, doi:10.1007/s10126-015-9674-4; Olson and Roberts 2014, bioRxiv, doi:10.1101/012831, a preprint; Teng et al. 2025, cited in item 2), and in the Olympia oyster pairwise methylation distance correlates with genetic distance (Pearson 0.27; Silliman et al. 2023, Genome Biol Evol 15:evad013, doi:10.1093/gbe/evad013). Two groups of animals from different crosses are therefore expected to differ at many CpGs whatever their ploidy or treatment. *Ploidy.* The two published comparisons of diploid and triploid C. gigas report no difference in the global level (methylation-sensitive amplified polymorphism; Jiang et al. 2016) and, in gonad, a decreased CpG methylation level in infertile triploids and the opposite in fertile ones (WGBS; Sun, Yu and Li 2022, Mar Biotechnol 24:18, doi:10.1007/s10126-021-10083-y). Neither is on ctenidium or on a response to heat, and no comparison in another bivalve was found; they give no precedent for a ploidy difference in overall level in a somatic tissue. *Independence.* Animals of one cross, or animals treated together in one container, are not independent replicates of a ploidy or of a treatment (Hurlbert 1984, Ecol Monogr 54:187, doi:10.2307/1942661; Lazic 2010, BMC Neurosci 11:5, doi:10.1186/1471-2202-11-5; Lazic and Essioux 2013, BMC Neurosci 14:37, doi:10.1186/1471-2202-14-37, for litters), and in bisulfite data relatedness that is aligned with the tested variable gives spurious associations (Lea, Tung and Zhou 2015, cited in I-06; Lea et al. 2017, cited in item 2). Triploids for aquaculture are mostly made by mating tetraploid males with diploid females (Guo, DeBrosse and Allen 1996, Aquaculture 142:149, doi:10.1016/0044-8486(95)01243-5; Vignier, Adams and Lovatelli 2024, FAO Fisheries and Aquaculture Technical Paper 698, doi:10.4060/cd1852en). Two of the three chromosome sets of such a triploid come from a tetraploid stock whose genetic diversity \"is generally limited\" (Vignier et al. 2024; Miller et al. 2014, Aquaculture 433:318, doi:10.1016/j.aquaculture.2014.06.025), and a mated triploid cannot be a full sib of a diploid. Commercial triploid cohorts are mostly made by mass spawning of several parents, not as one cross, but the parents contribute unequally: in two such cohorts the effective population size was 34% to 49% below the census number (Miller et al. 2016, Aquac Res 47:1288, doi:10.1111/are.12588). How the triploids of the two experiments were made is not recorded.",
+      "severity": "medium"
+     },
+     {
+      "item": "I-49, \"Needs from authors\": four questions that follow from the literature.",
+      "why_it_matters": "The present list asks for source, crosses, batches and records of seven animals. The sources show that four more facts decide between the alternatives: how the triploids were produced and from how many parents, the sex of all 22 animals, the preparation details that set the absolute level (kit and conversion protocol of project zr3644, number of PCR cycles), and whether the treatment was applied to one group of animals at once.",
+      "where_to_add": "issues.md, I-49, \"Needs from authors\": the first text is appended to the first point; the three others are new points before the last one.",
+      "proposed_text": "(appended to the first point) How were the triploids of each experiment produced: by mating tetraploid males with diploid females, or by induction in eggs of the cross that gave the diploids? How many sires and dams contributed to each of the four groups?\n- The sex of all 22 animals, if it was recorded or can be read from histology (item 2).\n- For both projects: the method of DNA extraction, the amount of DNA that went into each library, the library kit and bisulfite conversion protocol, and the number of PCR cycles of each library. The sample sheet records the kit for the heat libraries only (`03_input_files/metadata/wgbs_libraries.csv`, column `library_kit`); absolute methylation levels depend on the conversion protocol, the polymerase and the number of cycles (item 2), and the conversion of mitochondrial DNA differs between the two projects (I-01).\n- Whether the 24 h emersion was applied to the heat-treated animals in one container and one run or in several, and how the control animals of that experiment were held meanwhile. If each treatment was applied once to one group of animals, the animals are subsamples of a single application of the treatment (Hurlbert 1984, cited under \"Why it matters\"), also for the ELISA (I-01, I-10).",
+      "severity": "medium"
+     },
+     {
+      "item": "I-08: how often C-to-T variants produced candidate DML in C. gigas in the study whose methods the draft follows, and the one result that points the other way.",
+      "why_it_matters": "I-08 argues from principle. A number exists for this species, tissue type aside, with the same laboratory's pipeline: one candidate DML in five overlapped a C-to-T variant among siblings. It turns \"can appear as DML\" into an expected share and supports the proposed resolution.",
+      "where_to_add": "issues.md, I-08, new paragraph after \"Why it matters\" (before \"Proposed resolution\").",
+      "proposed_text": "**What published work adds (2026-11-19).** How often this happens in this species is on record. In the WGBS study of C. gigas gonad on which the draft's Methods are modelled (I-28), 315 of 1,599 candidate DML (19.7%) overlapped C-to-T variants called from the same reads and were removed, \"even though specimens were sibling oysters with similar genomic backgrounds\" (Venkataraman et al. 2022, BMC Genomics 23:556, doi:10.1186/s12864-022-08781-5; eight animals, 50% difference threshold). Unless the animals compared here are as closely related as siblings, the share is not expected to be smaller. Besides variants at the CpG itself, methylation follows genotype through variants elsewhere (I-49, \"Why it matters\"). One result points the other way: in Olympia oysters, variants that create or remove a CpG were only slightly more frequent near DML than other variants (0.9% against 0.4% within 350 bp), with sparse genotyping (Silliman et al. 2023, Genome Biol Evol 15:evad013, doi:10.1093/gbe/evad013).",
+      "severity": "medium"
+     },
+     {
+      "item": "Corrections table: rows for the sentence on the benchmark and for the three other cited statements.",
+      "why_it_matters": "The table keeps the record of statements found wrong or too strong; the present row on I-06 ends with the account being unconfirmed.",
+      "where_to_add": "issues.md, \"Corrections after verification\", after the row \"| I-06 (correction paragraph) | The benchmark \"could not be opened\" ...\".",
+      "proposed_text": "| I-06 (\"Why it matters\", 2026-11-18, and its correction paragraph) | The benchmark \"shows a markedly higher false positive rate without the correction and recommends `overdispersion = \"MN\"` with a chi-squared test\"; then \"unverified in this log\" | The article was read. It reports the lowest specificity and the highest false positive rate for the default test, rates that test best in overall accuracy (F-score) and accepts it for exploratory analysis, names the F test with the correction for limiting false positives and the chi-squared test with the correction as a compromise. The four points of the account in `dml_sensitivity.R` are confirmed | Written from memory; the article could be read in the open copy of the repository of the Max Delbrück Center |\n| I-06 (Options, item 3; also `06_diagnostics/README.md`) | DSS \"for designs with covariates\" as a method that \"shares information between CpGs\" | Only the two-group model of DSS shares information; its model for designs with a covariate estimates the dispersion CpG by CpG and returns no methylation difference | Park and Wu 2016 state that shrinkage could not be adopted in that model |\n| I-08 (\"Why it matters\", 2026-11-18) | A C-to-T variant \"is indistinguishable from an unmethylated cytosine\" | Indistinguishable in the reads of the strand that carries the cytosine; the opposite strand identifies it | The cited paper (Liu et al. 2012) is about that distinction |\n| I-02 (\"Why it matters\", 2026-11-18) | \"Inferring an interaction from two separate significance calls is a known error\" (Gelman and Stern; Nieuwenhuis et al.) | The papers state the principle and describe another form of the error (one effect significant, the other not) | The draft's set is an overlap of two main-effect lists |",
+      "severity": "low"
+     },
+     {
+      "item": "I-28 table: the model of the paper the Methods follow.",
+      "why_it_matters": "The table lists where the Methods differ from what was run, and names Venkataraman et al. 2022 as the source of the wording of sections 2.5 and 2.6, but not that the model of that paper differs from the model that was run.",
+      "where_to_add": "issues.md, I-28, new row of the table, after the row \"Ploidy and treatment \"as covariates\"\".",
+      "proposed_text": "| DML model worded as in Venkataraman et al. 2022 (logistic regression, `calculateDiffMeth`) | That paper's analysis had `overdispersion = \"MN\"` with `test = \"Chisq\"`, a 50% difference threshold and the removal of CpGs at C-to-T variants; the draft's sentence omits the correction, and the run had none of the three (I-06, I-08) | Venkataraman et al. 2022, Methods; methylKit script |",
+      "severity": "low"
+     },
+     {
+      "item": "Header of 06_diagnostics/dml_sensitivity.R, note \"Which of the two tests\": state that the account is confirmed in the published article.",
+      "why_it_matters": "The header says the benchmark was read in the preprint; the log treated that as unconfirmed. The published article says the same on all four points.",
+      "where_to_add": "06_diagnostics/dml_sensitivity.R, header, lines 109 and 110: replace \"read in the preprint version of August 2017, doi:10.1101/109512)\".",
+      "proposed_text": "read in the preprint version of August 2017, doi:10.1101/109512, and confirmed in the published article on 2026-11-19)",
+      "severity": "low"
+     },
+     {
+      "item": "Top of issues.md, \"Updates\", fourth pass: the last sentence says the check of the citations is still running.",
+      "why_it_matters": "It will be stale once this result is applied.",
+      "where_to_add": "issues.md, \"Updates\", point \"2026-11-19, fourth pass\": replace the last sentence \"The check of the citations is still running.\"",
+      "proposed_text": "The check of the citations read the article of Wreczycka et al. 2017 and confirmed the account of it in the script header (I-06, correction paragraph). It found one cited statement that its source contradicts as worded (I-08, C-to-T variants) and two that needed a qualifier (I-02; I-06, Options, item 3), and it added published sources to I-01, I-06, I-08 and I-49. Its scripts are in `07_documentation/agent_workflows/verification_scripts/S5-literature/`.",
+      "severity": "low"
+     }
+    ],
+    "citations": [
+     {
+      "citation_as_written": "Wreczycka et al. 2017, J Biotechnol 261:105, doi:10.1016/j.jbiotec.2017.08.007",
+      "where_used": "issues.md I-06, \"Why it matters\" (benchmark sentence); also I-06 \"Needs from authors\"",
+      "metadata_verified": true,
+      "source_checked": "https://api.crossref.org/works/10.1016/j.jbiotec.2017.08.007 ; Europe PMC REST search (DOI) (PMID 28822795); full text: publisher's PDF from https://edoc.mdc-berlin.de/16722/ (www.sciencedirect.com answered HTTP 403)",
+      "correct_metadata": "Wreczycka K, Gosdschan A, Yusuf D, Grüning B, Assenov Y, Akalin A. 2017. Strategies for analyzing bisulfite sequencing data. Journal of Biotechnology 261:105-115. doi:10.1016/j.jbiotec.2017.08.007. PMID 28822795. Epub 16 August 2017, issue of November 2017. Open access (CC BY-NC-ND). Preprint: bioRxiv doi:10.1101/109512.",
+      "content_supports_use": "partly",
+      "excerpt": "MethylKit without overdispersion showed the lowest specificity (the overdispersion correction usually improves specificity). F-test with overdispersion has similar results to DSS, whereas the Chi-squared test with overdispersion correction has similar specificity to stringent methods such as DSS and limma but achieves higher sensitivity (Fig. 2c). Overall, DSS and limma are not very sensitive but very specific. We believe that a good compromise between the DSS/limma/F-test and default methylKit test is the overdispersion corrected methylKit Chi-square test.",
+      "note": "Supports \"higher false positive rate without the correction\" (measured from Figure 2b: about 30% of unchanged CpGs called by the default test, 5% to 7% by the chi-squared test with the correction, 1% to 2% by the F test with the correction). Does not support \"recommends\" as worded: the chi-squared test with the correction is a compromise, the default test is rated best in overall accuracy and accepted for exploratory analysis. Page range 105-115. The text defines the F-score as the harmonic mean of sensitivity and specificity; the plotted values are the F1 score of precision and recall at 50% changed CpGs."
+     },
+     {
+      "citation_as_written": "Wreczycka et al. 2017 as read in the header of 06_diagnostics/dml_sensitivity.R (Journal of Biotechnology 261:105-115)",
+      "where_used": "issues.md I-06, correction paragraph (the four points quoted from the script header); 06_diagnostics/dml_sensitivity.R, header note \"Which of the two tests\"",
+      "metadata_verified": true,
+      "source_checked": "publisher's PDF from https://edoc.mdc-berlin.de/16722/ (sections 4.1, 4.2 and 9)",
+      "correct_metadata": "As above.",
+      "content_supports_use": "yes",
+      "excerpt": "We simulated a dataset consisting of 6 samples (3 controls and 3 samples with treatment). ... Taken together with the simulation results, methylKit without overdispersion can be used for more exploratory analysis as it achieves higher sensitivity but lower specificity, although it is still the best method when overall accuracy is considered. ... A good compromise between stringent and relaxed methods seems to be Chi-squared test with overdispersion correction.",
+      "note": "All four points confirmed in the published article (the three dots mark omitted text between sentences of sections 4.1 and 4.2). Conclusions: \"A very relaxed method, such as the default methylKit method, has the best accuracy overall but highest false positive rate.\""
+     },
+     {
+      "citation_as_written": "preprint, doi:10.1101/109512 (version of August 2017)",
+      "where_used": "issues.md I-06, correction paragraph; header of 06_diagnostics/dml_sensitivity.R",
+      "metadata_verified": true,
+      "source_checked": "https://api.biorxiv.org/details/biorxiv/10.1101/109512 (metadata and abstract); full text https://www.biorxiv.org/content/early/2017/08/09/109512.source.xml answered HTTP 429 (error 1015) on three attempts within an hour; the copy listed at the MDC repository as eprint 16393 answered 401 and 410",
+      "correct_metadata": "Wreczycka K, Gosdschan A, Yusuf D, Gruening B, Assenov Y, Akalin A. Strategies for analyzing bisulfite sequencing data. bioRxiv 109512. doi:10.1101/109512. Version 1 posted 17 February 2017, version 2 posted 9 August 2017. Published as doi:10.1016/j.jbiotec.2017.08.007.",
+      "content_supports_use": "could_not_check",
+      "excerpt": "We introduce various differential methylation methods and compare their performance using simulated and real bisulfite sequencing datasets.",
+      "note": "The August 2017 version exists (version 2). Its text could not be opened, so the account in the script header was confirmed against the published article, not against the preprint. Excerpt from the abstract, which is identical in both versions and in the article."
+     },
+     {
+      "citation_as_written": "Feng, Conneely and Wu 2014, Nucleic Acids Res 42:e69, doi:10.1093/nar/gku154",
+      "where_used": "issues.md I-06, Options, item 3; 06_diagnostics/README.md, \"How to read the size of a list\"",
+      "metadata_verified": true,
+      "source_checked": "https://api.crossref.org/works/10.1093/nar/gku154 ; Europe PMC REST search (DOI); full text Europe PMC PMC4005660",
+      "correct_metadata": "Feng H, Conneely KN, Wu H. 2014. A Bayesian hierarchical model to detect differentially methylated loci from single nucleotide resolution sequencing data. Nucleic Acids Research 42(8):e69. doi:10.1093/nar/gku154. PMID 24561809. PMC4005660.",
+      "content_supports_use": "yes",
+      "excerpt": "The sequencing counts are described by a lognormal-beta-binomial hierarchical model, which provides a basis for information sharing across different CpG sites. A Wald test is developed for hypothesis testing at each CpG site. Simulation results show that the proposed method yields improved DML detection compared to existing methods, particularly when the number of replicates is low.",
+      "note": "Supports \"beta-binomial model\", \"few animals per group\" and \"shares information between CpGs\". The model is for two groups only (\"in future work we plan to extend our model for two treatment groups to multifactor experimental designs\"). Also states that pooling reads over replicates \"ignores variation among biological replicates\" and reports an \"anti-conservative bias\" of Fisher's exact test."
+     },
+     {
+      "citation_as_written": "Park and Wu 2016, Bioinformatics 32:1446, doi:10.1093/bioinformatics/btw026",
+      "where_used": "issues.md I-02, Options, item 2 (\"DSS fits the general design directly\"); I-06, Options, item 3 (\"for designs with covariates\")",
+      "metadata_verified": true,
+      "source_checked": "https://api.crossref.org/works/10.1093/bioinformatics/btw026 ; Europe PMC REST search (DOI); full text https://pmc.ncbi.nlm.nih.gov/articles/PMC12157722/ (Europe PMC fullTextXML answered HTTP 500; NCBI efetch returns front matter only)",
+      "correct_metadata": "Park Y, Wu H. 2016. Differential methylation analysis for BS-seq data under general experimental design. Bioinformatics 32(10):1446-1453. doi:10.1093/bioinformatics/btw026. PMID 26819470. PMC12157722.",
+      "content_supports_use": "partly",
+      "excerpt": "Under our setting, the EB-type of shrinkage method cannot be easily adopted because of the complicated relationship between the dispersion and data distribution, i.e. it is difficult to express the data likelihood as a function of the dispersion. ... Both RADMeth and DSS-general have slightly inflated type-I rate and the inflation is reduced with increases of sample sizes. ... Binomial GLM's type-I error rate appears not acceptable and does not improve even when sample sizes become larger.",
+      "note": "Supports the use in I-02 (a model for general designs, interaction terms included). Does not support the use in I-06, item 3, where the option is credited with sharing information between CpGs: dispersion is estimated CpG by CpG (Pearson chi-squared, bounded at 0.001 and 0.999), Wald statistic referred to the normal distribution. Table 1, type I error at 0.05 with 3 and 10 replicates per group of a 2 x 2 design: DSS-general 0.063, 0.053; binomial GLM 0.151, 0.175. Also: the method \"cannot be directly applied to analyzing data from more complexed designs such as paired or clustered\"."
+     },
+     {
+      "citation_as_written": "Korthauer et al. 2019, Biostatistics 20:367-383, doi:10.1093/biostatistics/kxy007",
+      "where_used": "06_diagnostics/README.md, \"How to read the size of a list\"",
+      "metadata_verified": true,
+      "source_checked": "https://api.crossref.org/works/10.1093/biostatistics/kxy007 ; Europe PMC REST search (DOI) (abstract); the PMC page answered with a browser check and the Europe PMC full text with HTTP 500",
+      "correct_metadata": "Korthauer K, Chakraborty S, Benjamini Y, Irizarry RA. 2019. Detection and accurate false discovery rate control of differentially methylated regions from whole genome bisulfite sequencing. Biostatistics 20(3):367-383. doi:10.1093/biostatistics/kxy007. PMID 29481604. PMC6587918. Online 22 February 2018.",
+      "content_supports_use": "yes",
+      "excerpt": "We develop an inferential approach, based on a pooled null distribution, that can be implemented even when as few as two samples per population are available. ... We find that the new method improves the specificity and sensitivity of lists of regions and accurately controls the false discovery rate.",
+      "note": "Abstract only. Supports \"test regions\" and \"few animals\"."
+     },
+     {
+      "citation_as_written": "Phipson and Smyth 2010, Stat Appl Genet Mol Biol 9:Article 39, doi:10.2202/1544-6115.1585",
+      "where_used": "06_diagnostics/README.md, \"How to read the size of a list\", point 2",
+      "metadata_verified": true,
+      "source_checked": "https://api.crossref.org/works/10.2202/1544-6115.1585 ; Europe PMC REST search (DOI) (PMID 21044043)",
+      "correct_metadata": "Phipson B, Smyth GK. 2010. Permutation P-values should never be zero: calculating exact P-values when permutations are randomly drawn. Statistical Applications in Genetics and Molecular Biology 9(1):Article 39. doi:10.2202/1544-6115.1585. PMID 21044043.",
+      "content_supports_use": "yes",
+      "excerpt": "Yet permutation p-values published in the genomic literature are often computed incorrectly, understated by about 1/m, where m is the number of permutations. ... We argue instead that permutation should be viewed as generating an exact discrete null distribution.",
+      "note": "Abstract only. Counting the observed labelling as one labelling is the correction the paper argues for."
+     },
+     {
+      "citation_as_written": "McCullagh and Nelder 1989, Generalized Linear Models, 2nd ed., Chapman and Hall",
+      "where_used": "issues.md I-06, correction paragraph (as cited by the methylKit help page); header of 06_diagnostics/dml_sensitivity.R",
+      "metadata_verified": true,
+      "source_checked": "https://api.crossref.org/works/10.1007/978-1-4899-3242-6 and https://api.crossref.org/works/10.1201/9780203753736 ; help page and vignette of the installed methylKit 1.28.0",
+      "correct_metadata": "McCullagh P, Nelder JA. 1989. Generalized Linear Models. Second edition. London: Chapman and Hall. ISBN 978-0-412-31760-6. DOI of the book record at Springer: 10.1007/978-1-4899-3242-6; e-book reissue of the second edition by Routledge (2019): 10.1201/9780203753736.",
+      "content_supports_use": "could_not_check",
+      "excerpt": "",
+      "note": "Metadata only, as asked. The methylKit help page lists \"McCullagh and Nelder. (1989). Generalized Linear Models. Chapman and Hall. London New York.\" and the two help-page sentences quoted in I-06 are exact (the second continues \", but the F-test only works with overdispersion correction switched on\"). The vignette gives the estimator as the Pearson statistic over N minus P."
+     },
+     {
+      "citation_as_written": "Leek et al. 2010, Nat Rev Genet 11:733, doi:10.1038/nrg2825",
+      "where_used": "issues.md I-01, \"Why it matters\"",
+      "metadata_verified": true,
+      "source_checked": "https://api.crossref.org/works/10.1038/nrg2825 ; Europe PMC REST search (DOI); author manuscript https://pmc.ncbi.nlm.nih.gov/articles/PMC3880143/",
+      "correct_metadata": "Leek JT, Scharpf RB, Bravo HC, Simcha D, Langmead B, Johnson WE, Geman D, Baggerly K, Irizarry RA. 2010. Tackling the widespread and critical impact of batch effects in high-throughput data. Nature Reviews Genetics 11(10):733-739. doi:10.1038/nrg2825. PMID 20838408. PMC3880143.",
+      "content_supports_use": "yes",
+      "excerpt": "Therefore, if one is not aware of the batch effect, a confounded experiment will lead to incorrect biological conclusions because results due to batch will be impossible to distinguish from real biological effects. ... If the biological variables are highly correlated with processing group or time, it is difficult to determine whether observed differences across biological groups are due to biology or artefacts.",
+      "note": "The sentence in I-01 is a fair statement of the source."
+     },
+     {
+      "citation_as_written": "Gelman and Stern 2006, Am Stat 60:328, doi:10.1198/000313006X152649",
+      "where_used": "issues.md I-02, \"Why it matters\"",
+      "metadata_verified": true,
+      "source_checked": "https://api.crossref.org/works/10.1198/000313006X152649 ; abstract from https://api.openalex.org/works/doi:10.1198/000313006X152649",
+      "correct_metadata": "Gelman A, Stern H. 2006. The difference between \"significant\" and \"not significant\" is not itself statistically significant. The American Statistician 60(4):328-331. doi:10.1198/000313006X152649.",
+      "content_supports_use": "partly",
+      "excerpt": "Here we discuss one problem with such declarations, namely that changes in statistical significance are often not themselves statistically significant.",
+      "note": "Abstract only. States the principle; the error it describes (comparing significance levels of two effects) is not the draft's procedure (overlap of two main-effect lists)."
+     },
+     {
+      "citation_as_written": "Nieuwenhuis et al. 2011, Nat Neurosci 14:1105, doi:10.1038/nn.2886",
+      "where_used": "issues.md I-02, \"Why it matters\"",
+      "metadata_verified": true,
+      "source_checked": "https://api.crossref.org/works/10.1038/nn.2886 ; Europe PMC REST search (DOI) (PMID 21878926)",
+      "correct_metadata": "Nieuwenhuis S, Forstmann BU, Wagenmakers E-J. 2011. Erroneous analyses of interactions in neuroscience: a problem of significance. Nature Neuroscience 14(9):1105-1107. doi:10.1038/nn.2886. PMID 21878926.",
+      "content_supports_use": "partly",
+      "excerpt": "In theory, a comparison of two experimental effects requires a statistical test on their difference. In practice, this comparison is often based on an incorrect procedure involving two separate tests in which researchers conclude that effects differ when one effect is significant (P < 0.05) but the other is not (P > 0.05).",
+      "note": "Abstract only. Same remark as for Gelman and Stern."
+     },
+     {
+      "citation_as_written": "Liu et al. 2012, Genome Biol 13:R61, doi:10.1186/gb-2012-13-7-r61",
+      "where_used": "issues.md I-08, \"Why it matters\"",
+      "metadata_verified": true,
+      "source_checked": "https://api.crossref.org/works/10.1186/gb-2012-13-7-r61 ; Europe PMC REST search (DOI); full text Europe PMC PMC3491382",
+      "correct_metadata": "Liu Y, Siegmund KD, Laird PW, Berman BP. 2012. Bis-SNP: combined DNA methylation and SNP calling for Bisulfite-seq data. Genome Biology 13(7):R61. doi:10.1186/gb-2012-13-7-r61. PMID 22784381. PMC3491382.",
+      "content_supports_use": "no",
+      "excerpt": "Figure 1 illustrates the directional protocol, where approximately half the reads at a given cytosine position (those mapping to the 'C-strand') can be used for methylation quantification but cannot distinguish C>T SNPs. The other half (those mapping to the 'G-strand', boxed in Figure 1a) yield no methylation information but can be used to identify C>T SNPs.",
+      "note": "The log says \"indistinguishable\"; the paper is about distinguishing them through the opposite strand. The practical point of I-08 stands because the pipeline did not look at variants. The paper also notes that the non-conversion rate is often estimated from a spike-in control or from \"the unmethylated mitochondrial genome\"."
+     },
+     {
+      "citation_as_written": "Akalin et al. 2012, Genome Biology 13:R87, doi:10.1186/gb-2012-13-10-r87",
+      "where_used": "header of 06_diagnostics/dml_sensitivity.R (\"That paper does not mention overdispersion; it takes the read coverage summed over a group as the sample size.\")",
+      "metadata_verified": true,
+      "source_checked": "https://api.crossref.org/works/10.1186/gb-2012-13-10-r87 ; Europe PMC REST search (DOI); full text Europe PMC PMC3491415",
+      "correct_metadata": "Akalin A, Kormaksson M, Li S, Garrett-Bakelman FE, Figueroa ME, Melnick A, Mason CE. 2012. methylKit: a comprehensive R package for the analysis of genome-wide DNA methylation profiles. Genome Biology 13(10):R87. doi:10.1186/gb-2012-13-10-r87. PMID 23034086. PMC3491415.",
+      "content_supports_use": "yes",
+      "excerpt": "However, it is important to keep in mind that the relevant sample sizes in logistic regression are not merely the number of biological samples but rather the total read coverages summed over all samples in each group separately.",
+      "note": "Both statements of the script header confirmed: the word overdispersion does not occur in the full text. Proposed as a source for I-06."
+     },
+     {
+      "citation_as_written": "Wang, Tuominen and Tsai 2011, Bioinformatics 27:225-231, doi:10.1093/bioinformatics/btq650",
+      "where_used": "header of 06_diagnostics/dml_sensitivity.R (SLIM q-values)",
+      "metadata_verified": true,
+      "source_checked": "https://api.crossref.org/works/10.1093/bioinformatics/btq650 ; Europe PMC REST search (DOI) (PMID 21098430)",
+      "correct_metadata": "Wang H-Q, Tuominen LK, Tsai C-J. 2011. SLIM: a sliding linear model for estimating the proportion of true null hypotheses in datasets with dependence structures. Bioinformatics 27(2):225-231. doi:10.1093/bioinformatics/btq650. PMID 21098430.",
+      "content_supports_use": "could_not_check",
+      "excerpt": "",
+      "note": "Metadata only; the statement that a SLIM q-value in methylKit 1.28.0 is the Benjamini-Hochberg value times the estimated share of true nulls was checked from code by check S1, not by me."
+     },
+     {
+      "citation_as_written": "Benjamini and Hochberg 1995, Journal of the Royal Statistical Society B 57:289-300",
+      "where_used": "header of 06_diagnostics/dml_sensitivity.R",
+      "metadata_verified": true,
+      "source_checked": "https://api.crossref.org/works/10.1111/j.2517-6161.1995.tb02031.x",
+      "correct_metadata": "Benjamini Y, Hochberg Y. 1995. Controlling the false discovery rate: a practical and powerful approach to multiple testing. Journal of the Royal Statistical Society Series B 57(1):289-300. doi:10.1111/j.2517-6161.1995.tb02031.x.",
+      "content_supports_use": "could_not_check",
+      "excerpt": "",
+      "note": "Metadata only."
+     },
+     {
+      "citation_as_written": "Olova N, et al. 2018, Genome Biol 19:33, doi:10.1186/s13059-018-1408-2 (candidate for 2a)",
+      "where_used": "not yet cited; proposed for issues.md I-49, item 2, and \"Needs from authors\"",
+      "metadata_verified": true,
+      "source_checked": "https://api.crossref.org/works/10.1186/s13059-018-1408-2 ; Europe PMC REST search (DOI); full text Europe PMC PMC5856372",
+      "correct_metadata": "Olova N, Krueger F, Andrews S, Oxley D, Berrens RV, Branco MR, Reik W. 2018. Comparison of whole-genome bisulfite sequencing library preparation strategies identifies sources of biases affecting DNA methylation data. Genome Biology 19:33. doi:10.1186/s13059-018-1408-2. PMID 29544553. PMC5856372. Correction: Genome Biology 20:43 (2019), doi:10.1186/s13059-019-1656-9 (a wrong Additional file 3 replaced; no change to the text).",
+      "content_supports_use": "yes",
+      "excerpt": "Such cytosine-specific effect could lead to two possible biases: 1) depletion of cytosine-rich DNA from the total sequence pool, resulting in a skewed representation of genomic sequences; and 2) depletion of unmethylated fragments, leading to an overestimation of the absolute 5mC values. ... Our data show that changes of up to 20% in DNA methylation can be purely technical.",
+      "note": "Shows that the absolute level measured by WGBS depends on the conversion protocol and on amplification (loss of unmethylated fragments during bisulfite treatment, PCR building on it, unconverted cytosines). The comparisons are between protocols; of one protocol it says \"A comparison of technical replicates of the same technique yielded a small number of methylation differences\". It does not show a 10% difference between libraries of one kit and run."
+     },
+     {
+      "citation_as_written": "Ji L, et al. 2014, Front Genet 5:341 (found for 2a)",
+      "where_used": "not yet cited; proposed for issues.md I-49, item 2",
+      "metadata_verified": true,
+      "source_checked": "https://api.crossref.org/works/10.3389/fgene.2014.00341 ; Europe PMC REST search (DOI) (PMID 25374580)",
+      "correct_metadata": "Ji L, Sasaki T, Sun X, Ma P, Lewis ZA, Schmitz RJ. 2014. Methylated DNA is over-represented in whole-genome bisulfite sequencing data. Frontiers in Genetics 5:341. doi:10.3389/fgene.2014.00341. PMID 25374580. PMC4204604.",
+      "content_supports_use": "yes",
+      "excerpt": "Here we present empirical evidence for an over-representation of reads from methylated DNA in WGBS. This enrichment for methylated DNA is exacerbated by higher cycles of PCR and is influenced by the type of uracil-insensitive DNA polymerase used for amplifying the sequencing library.",
+      "note": "Abstract only. The dependence on the number of PCR cycles is the reason to ask for the cycles of each library."
+     },
+     {
+      "citation_as_written": "Lea AJ, et al. 2017, Nat Ecol Evol 1:1074 (found for 2a and 2d)",
+      "where_used": "not yet cited; proposed for issues.md I-49 (item 2, \"Why it matters\", \"What would settle it\") and I-06",
+      "metadata_verified": true,
+      "source_checked": "https://api.crossref.org/works/10.1038/s41559-017-0229-0 ; Europe PMC REST search (DOI); author manuscript Europe PMC PMC5656403",
+      "correct_metadata": "Lea AJ, Vilgalys TP, Durst PAP, Tung J. 2017. Maximizing ecological and evolutionary insight in bisulfite sequencing data sets. Nature Ecology and Evolution 1(8):1074-1083. doi:10.1038/s41559-017-0229-0. PMID 29046582. PMC5656403.",
+      "content_supports_use": "yes",
+      "excerpt": "Finally, the efficacy of the bisulfite conversion step can vary across samples or groups of samples prepared together, creating global batch effects. ... Analyses that do not take genetic relationships into account can therefore produce spurious associations if the predictor of interest also covaries with kinship or ancestry.",
+      "note": "Also: binomial models are \"extremely false positive-prone\"; \"sample-specific bisulfite conversion rates should be directly estimated and taken into account\"; spike-ins \"seem to best capture a sample prep-related batch effect\"; genotypes called from bisulfite reads help with relatedness \"although not without error\"."
+     },
+     {
+      "citation_as_written": "Olson CE, Roberts SB, \"Indication of family-specific DNA methylation patterns in developing oysters\" (bioRxiv; candidate for 2b)",
+      "where_used": "not yet cited; proposed for issues.md I-49, \"Why it matters\"",
+      "metadata_verified": true,
+      "source_checked": "https://api.biorxiv.org/details/biorxiv/10.1101/012831 ; https://api.crossref.org/works/10.1101/012831",
+      "correct_metadata": "Olson CE, Roberts SB. 2014. Indication of family-specific DNA methylation patterns in developing oysters. bioRxiv 012831. doi:10.1101/012831. Version 1 posted 16 December 2014, version 3 posted 13 March 2015. Not published in a journal according to the bioRxiv record.",
+      "content_supports_use": "yes",
+      "excerpt": "Our data suggest that DNA methylation patterns are inherited, as methylation patterns were more similar between the two sires and their offspring compared to methylations pattern differences among developmental stages. Loci differing between the two paternal full-sib families (189) were found throughout the genome but were concentrated in transposable elements.",
+      "note": "Abstract only (bioRxiv API). A preprint; C. gigas sperm and larvae of two full-sib families, so the evidence is thin and should be cited as a preprint."
+     },
+     {
+      "citation_as_written": "Silliman K, Spencer LH, White SJ, Roberts SB, 2023, \"Epigenetic and genetic population structure is coupled in a marine invertebrate\", Genome Biol Evol (candidate for 2b)",
+      "where_used": "not yet cited; proposed for issues.md I-49, \"Why it matters\", and I-08",
+      "metadata_verified": true,
+      "source_checked": "https://api.crossref.org/works/10.1093/gbe/evad013 ; Europe PMC REST search (DOI); full text Europe PMC PMC10468963",
+      "correct_metadata": "Silliman K, Spencer LH, White SJ, Roberts SB. 2023. Epigenetic and genetic population structure is coupled in a marine invertebrate. Genome Biology and Evolution 15(2):evad013. doi:10.1093/gbe/evad013. PMID 36740242. PMC10468963.",
+      "content_supports_use": "partly",
+      "excerpt": "we first compared pairwise genetic distances between MBD18 samples with pairwise Manhattan distance based on all filtered methylation data and found a weak, but significant relationship (Pearson's R = 0.27, P = 0.00077 and Spearman's ρ = 0.22, P = 0.0069; fig. 4A).",
+      "note": "Olympia oyster (Ostrea lurida), not C. gigas; 18 animals of two populations. The abstract's \"27% of variation in interindividual methylation differences explained by genotype\" is this correlation of 0.27 between pairwise distances, so it should be quoted as a correlation. On variants at CpGs it reports that they \"only play a minor role in creating DMLs\" (0.9% against 0.4% within 350 bp of a DML), with sparse genotyping."
+     },
+     {
+      "citation_as_written": "Johnson KM, Sirovy KA, Kelly MW 2022, J Anim Ecol 91:1135 (found for 2b)",
+      "where_used": "not yet cited; proposed for issues.md I-49, \"Why it matters\"",
+      "metadata_verified": true,
+      "source_checked": "https://api.crossref.org/works/10.1111/1365-2656.13645 ; Europe PMC REST search (DOI) (PMID 34882793)",
+      "correct_metadata": "Johnson KM, Sirovy KA, Kelly MW. 2022. Differential DNA methylation across environments has no effect on gene expression in the eastern oyster. Journal of Animal Ecology 91(6):1135-1147. doi:10.1111/1365-2656.13645. PMID 34882793. Online 21 December 2021.",
+      "content_supports_use": "yes",
+      "excerpt": "Instead, methylation patterns were largely driven by genetic differences among families, with a PERMANOVA analysis indicating nearly a two orders of magnitude greater number of genes differentially methylated between families than between environments.",
+      "note": "Abstract only. The strongest peer-reviewed source found for family effects in an oyster: 80 Crassostrea virginica of six full-sib families, reduced representation bisulfite sequencing, two sites. It is reference 17 of Venkataraman et al. 2022."
+     },
+     {
+      "citation_as_written": "Teng W, et al. 2025, Mar Biotechnol 27:31 (found for 2b and for sex)",
+      "where_used": "not yet cited; proposed for issues.md I-49, item 2 and \"Why it matters\"",
+      "metadata_verified": true,
+      "source_checked": "https://api.crossref.org/works/10.1007/s10126-024-10409-6 ; Europe PMC REST search (DOI) (PMID 39808191); related preprints https://api.crossref.org/works/10.1101/2022.02.22.481396 and doi:10.21203/rs.3.rs-3866716/v1",
+      "correct_metadata": "Teng W, Xu C, Liu S, Yu H, Kong L, Li Q. 2025. DNA methylation of somatic tissues in oysters is influenced by sex and heredity. Marine Biotechnology 27(1):31. doi:10.1007/s10126-024-10409-6. PMID 39808191.",
+      "content_supports_use": "yes",
+      "excerpt": "Our analysis identified significant differences in DNA methylation between sexes, with females exhibiting a global reduction compared to males. Furthermore, approximately half of the differentially methylated sites between the two parental strains were conserved in their offspring.",
+      "note": "Abstract only (the article is behind a subscription). The abstract says \"oyster strains\" without the species; the bioRxiv preprint of the same group (Li Y, Teng W, et al. 2022, doi:10.1101/2022.02.22.481396) names C. gigas and reports \"extensive hypomethylation\" in females. Adductor muscle, not ctenidium; the size of the sex difference could not be read."
+     },
+     {
+      "citation_as_written": "Johnson KM, Kelly MW 2020, Evol Appl 13:945 (found for 2b; counter-evidence)",
+      "where_used": "not cited; listed for balance",
+      "metadata_verified": true,
+      "source_checked": "https://api.crossref.org/works/10.1111/eva.12912 ; Europe PMC REST search (DOI) (PMID 32431745)",
+      "correct_metadata": "Johnson KM, Kelly MW. 2020. Population epigenetic divergence exceeds genetic divergence in the Eastern oyster Crassostrea virginica in the Northern Gulf of Mexico. Evolutionary Applications 13(5):945-959. doi:10.1111/eva.12912. PMID 32431745. PMC7232765.",
+      "content_supports_use": "partly",
+      "excerpt": "we observed population-specific DNA methylation profiles that were not directly associated with single nucleotide polymorphisms",
+      "note": "Abstract only. Points away from a simple genotype explanation at the level of populations; the later study of the same group with families (Johnson, Sirovy and Kelly 2022) found methylation \"largely driven by genetic differences among families\"."
+     },
+     {
+      "citation_as_written": "Gawra J, et al. 2023, Sci Adv 9:eadh8990 (found for 2b)",
+      "where_used": "not cited; listed as a C. gigas source for genetic effects on methylation",
+      "metadata_verified": true,
+      "source_checked": "https://api.crossref.org/works/10.1126/sciadv.adh8990 ; Europe PMC REST search (DOI) (PMID 37683000)",
+      "correct_metadata": "Gawra J, Valdivieso A, Roux F, Laporte M, de Lorgeril J, Gueguen Y, Saccas M, Escoubas J-M, Montagnani C, Destoumieux-Garzón D, Lagarde F, Leroy MA, Haffner P, Petton B, Cosseau C, Morga B, Dégremont L, Mitta G, Grunau C, Vidal-Dupiol J. 2023. Epigenetic variations are more substantial than genetic variations in rapid adaptation of oyster to Pacific oyster mortality syndrome. Science Advances 9(36):eadh8990. doi:10.1126/sciadv.adh8990. PMID 37683000. PMC10491289.",
+      "content_supports_use": "partly",
+      "excerpt": "By combining correlation, DNA methylation quantitative trait loci, and variance partitioning, we revealed that a third of phenotypic variation was explained by interactions between the genetic and epigenetic information, ~14% by the genome, and up to 25% by the epigenome alone.",
+      "note": "Abstract only. Shows that methylation quantitative trait loci were mapped in C. gigas; the abstract gives no share of methylation variation under genetic control, so it is not used in the proposed text."
+     },
+     {
+      "citation_as_written": "Jiang Q, Li Q, Yu H, Kong L 2016, Mar Biotechnol 18:124 (found for 2c and 2b)",
+      "where_used": "cited in the draft's Introduction; not yet in issues.md; proposed for I-49, \"Why it matters\"",
+      "metadata_verified": true,
+      "source_checked": "https://api.crossref.org/works/10.1007/s10126-015-9674-4 ; Europe PMC REST search (DOI) (PMID 26585587); https://link.springer.com/article/10.1007/s10126-015-9674-4 (abstract; full text behind a subscription)",
+      "correct_metadata": "Jiang Q, Li Q, Yu H, Kong L. 2016. Inheritance and variation of genomic DNA methylation in diploid and triploid Pacific oyster (Crassostrea gigas). Marine Biotechnology 18(1):124-132. doi:10.1007/s10126-015-9674-4. PMID 26585587. Online 19 November 2015.",
+      "content_supports_use": "yes",
+      "excerpt": "This study also compared global DNA methylation level and individual methylated loci between diploid and triploid oysters. Results showed no difference in global methylation state but a few ploidy-specific loci were detected. DNA methylation variation during polyploidization was less than autonomous methylation variation from parents to offspring.",
+      "note": "Abstract only. Method: fluorescent-labeled methylation-sensitive amplified polymorphism. Variation among individuals is not reported in the abstract beyond the last sentence. Also: \"Most of parental methylated loci were stably transmitted to offspring\"."
+     },
+     {
+      "citation_as_written": "Sun D, Yu H, Li Q 2022, Mar Biotechnol 24:18 (found for 2c)",
+      "where_used": "cited in the draft's Introduction; not yet in issues.md; proposed for I-49, \"Why it matters\"",
+      "metadata_verified": true,
+      "source_checked": "https://api.crossref.org/works/10.1007/s10126-021-10083-y ; Europe PMC REST search (DOI) (PMID 35041105)",
+      "correct_metadata": "Sun D, Yu H, Li Q. 2022. Genome-wide differential DNA methylomes provide insights into the infertility of triploid oysters. Marine Biotechnology 24(1):18-31. doi:10.1007/s10126-021-10083-y. PMID 35041105. Online 18 January 2022.",
+      "content_supports_use": "yes",
+      "excerpt": "The overall DNA methylation profiles in gene regions and transposable regions of fertile and infertile triploid oysters were consistent with those of diploid oysters. The DNA methylation level of CG context decreased in infertile triploid oysters, with more hypomethylated than hypermethylated regions, and the opposite is true in fertile triploid oysters.",
+      "note": "Abstract only. Gonad, WGBS, C. gigas. The draft's Introduction cites it for similar broad-scale levels across ploidy; the abstract reports level differences that depend on the fertility type of the triploid. Variation among individuals is not reported in the abstract."
+     },
+     {
+      "citation_as_written": "Jiang Q, Li Q, Yu H, Kong L 2017, Genes Genom 39:997 (found for 2c)",
+      "where_used": "not cited",
+      "metadata_verified": true,
+      "source_checked": "https://api.crossref.org/works/10.1007/s13258-017-0563-2 (no abstract at Crossref, not in Europe PMC)",
+      "correct_metadata": "Jiang Q, Li Q, Yu H, Kong L. 2017. Expression and DNA methylation pattern of reproduction-related genes in partially fertile triploid Pacific oysters Crassostrea gigas. Genes and Genomics 39(9):997-1006. doi:10.1007/s13258-017-0563-2.",
+      "content_supports_use": "could_not_check",
+      "excerpt": "",
+      "note": "Metadata only; by its title a study of single genes in gonad, not of the overall level."
+     },
+     {
+      "citation_as_written": "Sun D, Li Q, Yu H 2022, Gene 820:146260 (found for sex)",
+      "where_used": "not yet cited; proposed for issues.md I-49, item 2",
+      "metadata_verified": true,
+      "source_checked": "https://api.crossref.org/works/10.1016/j.gene.2022.146260 ; Europe PMC REST search (DOI) (PMID 35121028)",
+      "correct_metadata": "Sun D, Li Q, Yu H. 2022. DNA methylation differences between male and female gonads of the oyster reveal the role of epigenetics in sex determination. Gene 820:146260. doi:10.1016/j.gene.2022.146260. PMID 35121028.",
+      "content_supports_use": "yes",
+      "excerpt": "Comparative analysis of gonadal DNA methylation of females and males revealed that male gonads displayed a higher level of DNA methylation and a greater number of hypermethylated genes.",
+      "note": "Abstract only. C. gigas gonad."
+     },
+     {
+      "citation_as_written": "Valk S, et al. 2025, BMC Genomics 26:567 (found for sex)",
+      "where_used": "not yet cited; proposed for issues.md I-49, item 2",
+      "metadata_verified": true,
+      "source_checked": "https://api.crossref.org/works/10.1186/s12864-025-11736-1 ; Europe PMC REST search (DOI) (PMID 40481401)",
+      "correct_metadata": "Valk S, Engelsma M, Megens H-J, Kamermans P, Murk AJ, Nijland R. 2025. Oysters in transition: hermaphrodite oysters display unique DNA methylation patterns in gill tissue. BMC Genomics 26:567. doi:10.1186/s12864-025-11736-1. PMID 40481401. PMC12144841.",
+      "content_supports_use": "yes",
+      "excerpt": "By comparing whole-genome methylomes of 35 oysters of different sex phenotypes using nanopore sequencing, we demonstrate the presence of sex-specific DNA methylation patterns in somatic gill tissue.",
+      "note": "Abstract only. European flat oyster (Ostrea edulis), a sequential hermaphrodite; the only source found on gill tissue."
+     },
+     {
+      "citation_as_written": "Hurlbert SH 1984, Ecol Monogr 54:187, doi:10.2307/1942661 (candidate for 2d)",
+      "where_used": "not yet cited; proposed for issues.md I-49, I-06 and I-01",
+      "metadata_verified": true,
+      "source_checked": "https://api.crossref.org/works/10.2307/1942661 (abstract)",
+      "correct_metadata": "Hurlbert SH. 1984. Pseudoreplication and the design of ecological field experiments. Ecological Monographs 54(2):187-211. doi:10.2307/1942661.",
+      "content_supports_use": "yes",
+      "excerpt": "Pseudoreplication is defined as the use of inferential statistics to test for treatment effects with data from experiments where either treatments are not replicated (though samples may be) or replicates are not statistically independent.",
+      "note": "Abstract only."
+     },
+     {
+      "citation_as_written": "Lazic SE 2010, BMC Neurosci 11:5, doi:10.1186/1471-2202-11-5 (candidate for 2d)",
+      "where_used": "not yet cited; proposed for issues.md I-49 and I-06",
+      "metadata_verified": true,
+      "source_checked": "https://api.crossref.org/works/10.1186/1471-2202-11-5 ; Europe PMC REST search (DOI); full text Europe PMC PMC2817684",
+      "correct_metadata": "Lazic SE. 2010. The problem of pseudoreplication in neuroscientific studies: is it affecting your analysis? BMC Neuroscience 11:5. doi:10.1186/1471-2202-11-5. PMID 20074371. PMC2817684.",
+      "content_supports_use": "yes",
+      "excerpt": "Pseudoreplication occurs when observations are not statistically independent, but treated as if they are. This can occur when there are multiple observations on the same subjects, when samples are nested or hierarchically organised, or when measurements are correlated in time or space.",
+      "note": "Covers repeated observations on one subject (here: reads of one animal). It does not discuss related animals; for those see Lazic and Essioux 2013. Gives the size of the effect: with a within-group correlation of 0.30 and ten per group, \"37% of the time (and not 5%) the null hypotheses would be (erroneously) rejected\"."
+     },
+     {
+      "citation_as_written": "Lazic SE, Essioux L 2013, BMC Neurosci 14:37 (found for 2d)",
+      "where_used": "not yet cited; proposed for issues.md I-49, \"Why it matters\"",
+      "metadata_verified": true,
+      "source_checked": "https://api.crossref.org/works/10.1186/1471-2202-14-37 ; Europe PMC REST search (DOI) (PMID 23522086)",
+      "correct_metadata": "Lazic SE, Essioux L. 2013. Improving basic and translational science by accounting for litter-to-litter variation in animal models. BMC Neuroscience 14:37. doi:10.1186/1471-2202-14-37. PMID 23522086. PMC3661356.",
+      "content_supports_use": "yes",
+      "excerpt": "Animals from the same litter are often more alike compared with animals from different litters. ... With this type of experiment the sample size is the number of litters and not the total number of offspring.",
+      "note": "Abstract only. The source for \"related animals are not independent replicates\"."
+     },
+     {
+      "citation_as_written": "Lea AJ, Tung J, Zhou X 2015, PLoS Genet 11:e1005650 (found for 2d)",
+      "where_used": "not yet cited; proposed for issues.md I-06, Options, item 3, and I-49",
+      "metadata_verified": true,
+      "source_checked": "https://api.crossref.org/works/10.1371/journal.pgen.1005650 ; Europe PMC REST search (DOI); full text Europe PMC PMC4657956",
+      "correct_metadata": "Lea AJ, Tung J, Zhou X. 2015. A flexible, efficient binomial mixed model for identifying differential DNA methylation in bisulfite sequencing data. PLoS Genetics 11(11):e1005650. doi:10.1371/journal.pgen.1005650. PMID 26599596. PMC4657956.",
+      "content_supports_use": "yes",
+      "excerpt": "However, methods based on beta-binomial models only account for over-dispersion due to independent variation, making them unsuited for data sets containing population structure or related individuals. ... As a result, DNA methylation levels will frequently covary with kinship or population structure, and failure to account for this covariance could lead to spurious associations or reduced power to detect true effects.",
+      "note": "Bears directly on option 3 of I-06: a beta-binomial model does not help where relatedness is aligned with the tested variable."
+     },
+     {
+      "citation_as_written": "Hansen KD, Langmead B, Irizarry RA 2012, Genome Biol 13:R83 (found for 2d)",
+      "where_used": "not cited; listed as a further source for the need of biological replicates",
+      "metadata_verified": true,
+      "source_checked": "https://api.crossref.org/works/10.1186/gb-2012-13-10-r83 ; Europe PMC REST search (DOI); full text Europe PMC PMC3491411",
+      "correct_metadata": "Hansen KD, Langmead B, Irizarry RA. 2012. BSmooth: from whole genome bisulfite sequencing reads to differentially methylated regions. Genome Biology 13(10):R83. doi:10.1186/gb-2012-13-10-r83. PMID 23034175. PMC3491411.",
+      "content_supports_use": "yes",
+      "excerpt": "A problem with this approach is that Fisher's exact test accounts for DNA sampling variability but not biological variability. Biological variability is well-established [4] and necessitates biological replicates from each group under consideration [1].",
+      "note": "Full text read. Not used in the proposed text; a further source if one is wanted for the need of biological replicates."
+     },
+     {
+      "citation_as_written": "Mechta M, et al. 2017, Front Genet 8:166, doi:10.3389/fgene.2017.00166 (candidate for 2f)",
+      "where_used": "not yet cited; proposed for issues.md I-01, update, first point",
+      "metadata_verified": true,
+      "source_checked": "https://api.crossref.org/works/10.3389/fgene.2017.00166 ; Europe PMC REST search (DOI); full text Europe PMC PMC5671948",
+      "correct_metadata": "Mechta M, Ingerslev LR, Fabre O, Picard M, Barrès R. 2017. Evidence suggesting absence of mitochondrial DNA methylation. Frontiers in Genetics 8:166. doi:10.3389/fgene.2017.00166. PMID 29163634. PMC5671948.",
+      "content_supports_use": "yes",
+      "excerpt": "However, removal of supercoiled structures of mtDNA with the restriction enzyme BamHI prior to bisulfite sequencing decreased cytosine unconversion rate to <1.5% at all the investigated regions: D-loop, tRNA-F+12S, 16S, ND5 and CYTB, suggesting that mtDNA supercoiled structure blocks the access to bisulfite conversion. Here, we identified an artifact of mtDNA bisulfite sequencing that can lead to an overestimation of mtDNA methylation levels.",
+      "note": "Human and mouse. It also reports that the unconverted share at a position falls with its sequencing depth; in the 363 CpGs here the pooled percent is unrelated to coverage (Spearman 0.02 in the heat cohort, -0.09 in the control cohort)."
+     },
+     {
+      "citation_as_written": "Liu B, et al. 2016, Sci Rep 6:23421 (found for 2f)",
+      "where_used": "not yet cited; proposed for issues.md I-01, update, first point",
+      "metadata_verified": true,
+      "source_checked": "https://api.crossref.org/works/10.1038/srep23421 ; Europe PMC REST search (DOI); full text Europe PMC PMC4800444",
+      "correct_metadata": "Liu B, Du Q, Chen L, Fu G, Li S, Fu L, Zhang X, Ma C, Bin C. 2016. CpG methylation patterns of human mitochondrial DNA. Scientific Reports 6:23421. doi:10.1038/srep23421. PMID 26996456. PMC4800444.",
+      "content_supports_use": "yes",
+      "excerpt": "The results demonstrated that the linear mtDNA had significantly higher bisulfite conversion efficiency compared with circular mtDNA. Furthermore, the methylation values obtained from linear mtDNA were significantly lower than that of circular mtDNA, which was verified by SEQUENOM MassARRAY. The above impacts of circular structure were also observed in lung DNA samples but not in saliva DNA samples.",
+      "note": "Human; pyrosequencing. Values of 3.6% to 11.7% for circular against 0.3% to 1.7% for linearized DNA at four amplicons, which is the order of the difference between the two cohorts here. The dependence on sample type shows that the state of the DNA matters."
+     },
+     {
+      "citation_as_written": "Owa C, et al. 2018, PLoS ONE 13:e0192722 (found for 2f)",
+      "where_used": "not yet cited; proposed for issues.md I-01, update, first point",
+      "metadata_verified": true,
+      "source_checked": "https://api.crossref.org/works/10.1371/journal.pone.0192722 ; Europe PMC REST search (DOI); full text Europe PMC PMC5805350",
+      "correct_metadata": "Owa C, Poulin M, Yan L, Shioda T. 2018. Technical adequacy of bisulfite sequencing and pyrosequencing for detection of mitochondrial DNA methylation: sources and avoidance of false-positive detection. PLoS ONE 13(2):e0192722. doi:10.1371/journal.pone.0192722. PMID 29420656. PMC5805350.",
+      "content_supports_use": "yes",
+      "excerpt": "Shotgun bisulfite sequencing of human mtDNA detected extremely low levels of CpG methylation (<0.65%) over non-CpG methylation (<0.55%). ... We also show significant local heterogeneity in bisulfite conversion efficiency and propose strategies to evaluate and avoid artifacts derived from such heterogeneous incompleteness of bisulfite conversion.",
+      "note": "Human and mouse. Gives the test proposed for I-01: apparent CpG methylation that is matched by equal bisulfite resistance at adjacent non-CpG cytosines is non-conversion."
+     },
+     {
+      "citation_as_written": "Hong EE, et al. 2013, Mol Cell Biol 33:2683 (found for 2f)",
+      "where_used": "not yet cited; proposed for issues.md I-01, update, first point",
+      "metadata_verified": true,
+      "source_checked": "https://api.crossref.org/works/10.1128/MCB.00220-13 ; Europe PMC REST search (DOI) (PMID 23671186)",
+      "correct_metadata": "Hong EE, Okitsu CY, Smith AD, Hsieh C-L. 2013. Regionally specific and genome-wide analyses conclusively demonstrate the absence of CpG methylation in human mitochondrial DNA. Molecular and Cellular Biology 33(14):2683-2690. doi:10.1128/MCB.00220-13. PMID 23671186. PMC3700126.",
+      "content_supports_use": "yes",
+      "excerpt": "Furthermore, unbiased next-generation sequencing of sodium bisulfite treated total DNA from HCT116 cells and analysis of genome-wide sodium bisulfite sequencing data sets from several other DNA sources confirmed this absence of CpG methylation in mtDNA.",
+      "note": "Abstract only. Human."
+     },
+     {
+      "citation_as_written": "Bicci I, et al. 2021, Nucleic Acids Res 49:12757 (found for 2f)",
+      "where_used": "not cited; listed as a recent confirmation",
+      "metadata_verified": true,
+      "source_checked": "https://api.crossref.org/works/10.1093/nar/gkab1179 ; Europe PMC REST search (DOI) (PMID 34850165)",
+      "correct_metadata": "Bicci I, Calabrese C, Golder ZJ, Gomez-Duran A, Chinnery PF. 2021. Single-molecule mitochondrial DNA sequencing shows no evidence of CpG methylation in human cells and tissues. Nucleic Acids Research 49(22):12757-12768. doi:10.1093/nar/gkab1179. PMID 34850165. PMC8682748.",
+      "content_supports_use": "yes",
+      "excerpt": "We conclude that there is no evidence for CpG methylation in human mtDNA, thus resolving previous controversies.",
+      "note": "Abstract only. Human; nanopore sequencing; states that it validates \"the technical concerns of WGBS\"."
+     },
+     {
+      "citation_as_written": "Leroux É, et al. 2024, Sci Rep 14:31544 (found for 2f; the one bivalve study)",
+      "where_used": "not yet cited; proposed for issues.md I-01, update, first point, as the limit of \"expected to be unmethylated\"",
+      "metadata_verified": true,
+      "source_checked": "https://api.crossref.org/works/10.1038/s41598-024-83368-6 ; Europe PMC REST search (DOI) (PMID 39733193)",
+      "correct_metadata": "Leroux É, Khorami HH, Angers A, Angers B, Breton S. 2024. Mitochondrial epigenetics brings new perspectives on doubly uniparental inheritance in bivalves. Scientific Reports 14:31544. doi:10.1038/s41598-024-83368-6. PMID 39733193. PMC11682101.",
+      "content_supports_use": "partly",
+      "excerpt": "Our results confirm the presence in mitochondria of methylated cytosines and adenines and methyltransferases and unveil a more variable cytosine methylation state among males than females.",
+      "note": "Abstract only. Mytilus edulis gonads, a species with doubly uniparental inheritance of mitochondria; whether its bisulfite-based part controlled for the conversion artifact could not be read. It is the reason not to state as a fact that bivalve mitochondrial DNA is unmethylated."
+     },
+     {
+      "citation_as_written": "Guo X, DeBrosse GA, Allen SK 1996, Aquaculture 142:149, doi:10.1016/0044-8486(95)01243-5 (candidate for 2e)",
+      "where_used": "not yet cited; proposed for issues.md I-08 and I-49",
+      "metadata_verified": true,
+      "source_checked": "https://api.crossref.org/works/10.1016/0044-8486(95)01243-5 (no abstract; none at OpenAlex, Semantic Scholar or Europe PMC; www.sciencedirect.com answered HTTP 403)",
+      "correct_metadata": "Guo X, DeBrosse GA, Allen SK Jr. 1996. All-triploid Pacific oysters (Crassostrea gigas Thunberg) produced by mating tetraploids and diploids. Aquaculture 142(3-4):149-161. doi:10.1016/0044-8486(95)01243-5.",
+      "content_supports_use": "could_not_check",
+      "excerpt": "",
+      "note": "The article could not be opened. Its title and the FAO manual's sentence that cites it (\"Crossing mature tetraploid and diploid oysters results in 100 percent of offspring being triploid (Guo, DeBrosse and Allen, 1996) and the tetraploid male is always used with a diploid female.\") establish the method. It is a method paper and says nothing, as far as could be seen, on how many parents a commercial batch has."
+     },
+     {
+      "citation_as_written": "Vignier J, Adams S, Lovatelli A 2024, FAO Fisheries and Aquaculture Technical Paper 698 (found for 2e)",
+      "where_used": "not yet cited; proposed for issues.md I-08 and I-49",
+      "metadata_verified": true,
+      "source_checked": "https://api.crossref.org/works/10.4060/cd1852en ; full text https://openknowledge.fao.org/handle/20.500.14283/cd1852en (PDF)",
+      "correct_metadata": "Vignier J, Adams S, Lovatelli A. 2024. Production of triploid Pacific oyster (Crassostrea gigas) spat. A practical manual. FAO Fisheries and Aquaculture Technical Paper No. 698. Rome: FAO. doi:10.4060/cd1852en. ISBN 978-92-5-139010-8.",
+      "content_supports_use": "yes",
+      "excerpt": "Currently most hatcheries utilise the tetraploid approach (or \"indirect Rutgers method\") to produce commercial triploid oysters; however, in some places direct induction is used as it has the advantage that triploid production can be more readily integrated into selective breeding programmes.",
+      "note": "A manual, not a primary study. Also: \"Because tetraploids are mostly obtained from a few fertile triploid females, in addition to low efficiency of the induction treatment which results in a small population of tetraploids to be perpetuated, the genetic diversity of tetraploids is generally limited.\" It gives no number of parents per commercial batch."
+     },
+     {
+      "citation_as_written": "Miller PA, et al. 2014, Aquaculture 433:318 (found for 2e)",
+      "where_used": "not yet cited; proposed for issues.md I-49, \"Why it matters\"",
+      "metadata_verified": true,
+      "source_checked": "https://api.crossref.org/works/10.1016/j.aquaculture.2014.06.025 ; Europe PMC REST search (DOI) (AGRICOLA record, abstract)",
+      "correct_metadata": "Miller PA, Elliott NG, Vaillancourt RE, Kube PD, Koutoulis A. 2014. Genetic diversity and pedigree assignment in tetraploid Pacific oysters (Crassostrea gigas). Aquaculture 433:318-324. doi:10.1016/j.aquaculture.2014.06.025.",
+      "content_supports_use": "yes",
+      "excerpt": "Similar to diploids, pedigree assignment in tetraploids showed unequal parental contributions and an effective population size smaller than the census population, thus the potential for inbreeding to occur in the future is high.",
+      "note": "Abstract only. Primary source for the limited diversity of a commercial tetraploid stock."
+     },
+     {
+      "citation_as_written": "Miller PA, et al. 2016, Aquac Res 47:1288 (found for 2e)",
+      "where_used": "not yet cited; proposed for issues.md I-49, \"Why it matters\"",
+      "metadata_verified": true,
+      "source_checked": "https://api.crossref.org/works/10.1111/are.12588 ; Europe PMC REST search (DOI) (AGRICOLA record, abstract)",
+      "correct_metadata": "Miller PA, Elliott NG, Vaillancourt RE, Koutoulis A, Henshall JM. 2016. Assignment of parentage in triploid species using microsatellite markers with null alleles, an example from Pacific oysters (Crassostrea gigas). Aquaculture Research 47(4):1288-1298. doi:10.1111/are.12588. Online 26 September 2014.",
+      "content_supports_use": "yes",
+      "excerpt": "The analysis of the triploid cohorts showed that mass spawning to produce triploid oysters, like that for diploid and tetraploids, results in a strong bias in parental contributions, with the effective population size being 34-49% lower than the census population.",
+      "note": "Abstract only. The primary source closest to the question of 2e: two commercial triploid cohorts, made by mass spawning (\"Triploids are mostly produced through mass spawning techniques, meaning that exact pedigree is unknown.\"), so not one cross, with unequal parental contributions. The numbers of parents are in the full text, which could not be opened."
+     },
+     {
+      "citation_as_written": "Venkataraman et al. 2022, BMC Genomics 23:556, doi:10.1186/s12864-022-08781-5",
+      "where_used": "issues.md I-08 (Evidence), I-28 and I-37 (as the source of the Methods wording); proposed for I-06 and I-08",
+      "metadata_verified": true,
+      "source_checked": "https://api.crossref.org/works/10.1186/s12864-022-08781-5 ; Europe PMC REST search (DOI); full text Europe PMC PMC9351233",
+      "correct_metadata": "Venkataraman YR, White SJ, Roberts SB. 2022. Differential DNA methylation in Pacific oyster reproductive tissue in response to ocean acidification. BMC Genomics 23:556. doi:10.1186/s12864-022-08781-5. PMID 35927609. PMC9351233.",
+      "content_supports_use": "yes",
+      "excerpt": "Additionally, an overdispersion correction with a chi-squared test (overdispersion = \"MN\", test = \"Chisq\") was applied. ... Initially, 1599 CpG loci were identified as potential DML using a 50% methylation difference threshold. Of these CpG loci, 315 (19.7%) overlapped with C->T SNPs, and thus were removed from downstream analysis.",
+      "note": "Confirms what I-08 says of it (variants called with BS-Snper and used to exclude loci). New for the log: the paper on which the draft's Methods 2.5 are modelled applied the overdispersion correction, a 50% threshold and variant removal; \"We also identified several C->T SNPs that overlapped with DML even though specimens were sibling oysters with similar genomic backgrounds.\" In the source the arrow is printed with spaces."
+     },
+     {
+      "citation_as_written": "Wang et al. 2014, BMC Genomics 15:1119, doi:10.1186/1471-2164-15-1119",
+      "where_used": "issues.md I-41 (already cited there); proposed as the source for non-CpG methylation being negligible in C. gigas (I-49, item 2)",
+      "metadata_verified": true,
+      "source_checked": "https://api.crossref.org/works/10.1186/1471-2164-15-1119 ; Europe PMC REST search (DOI)",
+      "correct_metadata": "Wang X, Li Q, Lian J, Li L, Jin L, Cai H, Xu F, Qi H, Zhang L, Wu F, Meng J, Que H, Fang X, Guo X, Zhang G. 2014. Genome-wide and single-base resolution DNA methylomes of the Pacific oyster Crassostrea gigas provide insight into the evolution of invertebrate CpG methylation. BMC Genomics 15:1119. doi:10.1186/1471-2164-15-1119. PMID 25514978. PMC4378273.",
+      "content_supports_use": "yes",
+      "excerpt": "Whole-genome bisulfite sequencing (BS-seq) of the oyster's mantle tissues revealed that more than 99% methylation modification was restricted to cytosines in CpG context and methylated CpGs accumulated in the bodies of genes that were moderately expressed.",
+      "note": "Abstract only. Supports the use of CHH calls as the measure of non-conversion in this species. The author list is from the Crossref record."
+     }
+    ],
+    "notes": "Access. Reached: Crossref, Europe PMC (search; full text of open-access articles), the bioRxiv API (metadata and abstracts), OpenAlex, Semantic Scholar, the MDC repository, PMC article pages (two pages, then a browser check), bioconductor.org, the FAO repository, the Springer abstract page. Refused: bioRxiv full text (HTTP 429, error 1015, three attempts within an hour), www.sciencedirect.com (HTTP 403, captcha), Europe PMC full text of author manuscripts (HTTP 500). I did not try to get around any of them. Requests carried a generic client name and only DOIs, titles and generic search terms. Not checked for these reasons: the text of the preprint of Wreczycka et al. (the published article was read instead); the text of Guo et al. 1996; the full texts of Jiang et al. 2016, Sun et al. 2022 (both), Teng et al. 2025, Johnson et al. 2022, Miller et al. 2014 and 2016, Hurlbert 1984, Gelman and Stern 2006, Nieuwenhuis et al. 2011, Korthauer et al. 2019 and Phipson and Smyth 2010 (abstracts only), so what they report on variation among individuals, on effect sizes and on numbers of parents is not known to me. The numbers given for Figure 2 of Wreczycka et al. are pixel measurements of the figure and approximate; the three panels agree with each other to 0.006 at all 22 measurable bars through the F1 identity (text/fig2_f1_identity_check.txt in my folder), which is my only validation. In verbatim excerpts, typographic ligatures and quotation marks are normalized and reference numbers are removed; three dots mark omitted text. State of the log. issues.md was edited by the session while I worked (results of checks S3 and S4). Everything above refers to issues.md with md5 c97c68020458e0cd2262335e4b2d50fc and 06_diagnostics/README.md with md5 8c5aab3f40d16fe074e57ae15bd254db; the seven quoted passages occur exactly once (six in issues.md, one in the README). One discrepancy I had found (\"about a sixfold difference\" at the mitochondrial CpGs) was already corrected there to \"about a sevenfold difference (0.38% against 2.82% on average)\"; I reproduce the corrected paragraph in full: 0.31% to 0.58% and 1.98% to 3.64%, 363 of 363 CpGs, quartiles 1.6 and 3.1 points, coverage ratios 3.3 to 7.5 and 15.8 to 29.1, and the \"about fourfold\" of I-29 (3.8). Count of statements. 65 compared: metadata of 10 citations (10 confirmed), 14 uses of them in the text (9), the four points of the benchmark account (4), 7 statements of the script header (7), 3 statements of the correction paragraph (1), 13 statements on the mitochondrial CpGs (12), 4 on the vignette, the Methods source and the crosses (2), the 7 candidate sources named in the task (7), 3 values at NC_047565.1:35,030,701 (3). Proposed text. The folder `07_documentation/agent_workflows/verification_scripts/S5-literature/` named in the proposed text assumes that my scratch folder is copied there as was done for S1, S2 and S4; until then the files are in /tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/S5-literature (written [S5] in the entries; index in /tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/S5-literature/README_check.txt; this result as a file in /tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/S5-literature/out/s5_final.json). The proposed paragraph for I-06 refers to Hurlbert and Lazic as \"cited in I-49\" and to Lea et al. 2017 likewise, so it depends on the additions to I-49 being applied. Teng et al. 2025 does not name the species in its abstract; the proposed text says \"oysters\" for that reason. Observations outside the task, not followed up. (1) At NC_047565.1:35,030,701 and the CpG 16 bp away, the five heat-cohort triploids have 11/24, 12/32, 10/24, 11/31 and 10/16 methylated reads, and 13/24, 14/33, 13/28, 11/32 and 16/20; that is four animals between 34% and 54% (40% and 44% with their reads pooled) and one at 62% and 80%. One or two copies of an allele among three chromosome sets would give 33% and 67%; the counts are compatible with that and do not decide it. A single substitution would not create two CpGs, as the log says; two linked substitutions or a variant acting in cis on one haplotype would. (2) The draft's Methods 2.2 describe the DNA extraction in the words of Venkataraman et al. 2022, where the tissue was cut from paraffin histology blocks and treated with xylene; whether the ctenidia of either project were processed in that way is not recorded, and fixed or embedded tissue yields fragmented DNA, which would bear on the difference in the conversion of mitochondrial DNA between the projects (I-01, I-28). (3) The draft's Introduction cites Sun et al. 2022 for similar broad-scale methylation across ploidy; the abstract of that paper reports level differences by fertility type. Machine. Other agents' R processes were running during my few short R calls (help pages, package list, a 363-row table); mine used little memory and one thread. The united table was streamed with zcat and Python, not loaded into R."
    }
   }
  ]

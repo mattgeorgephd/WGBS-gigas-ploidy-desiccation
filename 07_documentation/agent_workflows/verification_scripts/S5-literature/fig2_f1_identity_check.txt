@@ -1,0 +1,23 @@
+default   effect  5  sens 0.445 spec 0.712  false calls  720  share of false calls among calls  39.3%  F1 0.514  measured F 0.514  harmonic mean of sens and spec 0.548
+default   effect 10  sens 0.596 spec 0.705  false calls  738  share of false calls among calls  33.1%  F1 0.630  measured F 0.630  harmonic mean of sens and spec 0.646
+default   effect 15  sens 0.699 spec 0.694  false calls  765  share of false calls among calls  30.4%  F1 0.697  measured F 0.695  harmonic mean of sens and spec 0.696
+default   effect 20  sens 0.825 spec 0.676  false calls  810  share of false calls among calls  28.2%  F1 0.768  measured F 0.766  harmonic mean of sens and spec 0.743
+default   effect 25  sens 0.881 spec 0.692  false calls  770  share of false calls among calls  25.9%  F1 0.805  measured F 0.806  harmonic mean of sens and spec 0.775
+chisq_OC  effect  5  sens 0.100 spec 0.948  false calls  130  share of false calls among calls  34.2%  F1 0.174  measured F 0.174  harmonic mean of sens and spec 0.181
+chisq_OC  effect 10  sens 0.202 spec 0.950  false calls  125  share of false calls among calls  19.8%  F1 0.323  measured F 0.325  harmonic mean of sens and spec 0.333
+chisq_OC  effect 15  sens 0.285 spec 0.948  false calls  130  share of false calls among calls  15.4%  F1 0.426  measured F 0.425  harmonic mean of sens and spec 0.438
+chisq_OC  effect 20  sens 0.423 spec 0.930  false calls  175  share of false calls among calls  14.2%  F1 0.567  measured F 0.568  harmonic mean of sens and spec 0.582
+chisq_OC  effect 25  sens 0.505 spec 0.939  false calls  153  share of false calls among calls  10.8%  F1 0.645  measured F 0.646  harmonic mean of sens and spec 0.657
+F_OC      effect  5  sens 0.024 spec 0.988  false calls   30  share of false calls among calls  33.3%  F1 0.046  measured F 0.049  harmonic mean of sens and spec 0.047
+F_OC      effect 10  sens 0.051 spec 0.988  false calls   30  share of false calls among calls  19.0%  F1 0.096  measured F 0.102  harmonic mean of sens and spec 0.097
+F_OC      effect 15  sens 0.067 spec 0.990  false calls   25  share of false calls among calls  13.0%  F1 0.124  measured F 0.127  harmonic mean of sens and spec 0.126
+F_OC      effect 20  sens 0.096 spec 0.983  false calls   43  share of false calls among calls  15.0%  F1 0.173  measured F 0.174  harmonic mean of sens and spec 0.175
+F_OC      effect 25  sens 0.093 spec 0.990  false calls   25  share of false calls among calls   9.7%  F1 0.169  measured F 0.171  harmonic mean of sens and spec 0.170
+DSS       effect 15  sens 0.069 spec 0.994  false calls   15  share of false calls among calls   8.0%  F1 0.128  measured F 0.129  harmonic mean of sens and spec 0.129
+DSS       effect 20  sens 0.194 spec 0.990  false calls   25  share of false calls among calls   4.9%  F1 0.322  measured F 0.325  harmonic mean of sens and spec 0.324
+DSS       effect 25  sens 0.385 spec 0.986  false calls   35  share of false calls among calls   3.5%  F1 0.550  measured F 0.552  harmonic mean of sens and spec 0.554
+limma     effect 10  sens 0.018 spec 0.994  false calls   15  share of false calls among calls  25.0%  F1 0.035  measured F 0.040  harmonic mean of sens and spec 0.035
+limma     effect 15  sens 0.051 spec 0.997  false calls    8  share of false calls among calls   5.6%  F1 0.097  measured F 0.102  harmonic mean of sens and spec 0.097
+limma     effect 20  sens 0.107 spec 0.992  false calls   20  share of false calls among calls   7.0%  F1 0.192  measured F 0.194  harmonic mean of sens and spec 0.193
+limma     effect 25  sens 0.133 spec 0.992  false calls   20  share of false calls among calls   5.7%  F1 0.233  measured F 0.236  harmonic mean of sens and spec 0.235
+largest |F1 - measured F| = 0.0060 ; largest |harmonic mean(sens, spec) - measured F| = 0.034

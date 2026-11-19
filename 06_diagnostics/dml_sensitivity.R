@@ -107,7 +107,8 @@
 #           - Which of the two tests. In the benchmark of Wreczycka et al. 2017
 #             (Journal of Biotechnology 261:105-115,
 #             doi:10.1016/j.jbiotec.2017.08.007; read in the preprint version of
-#             August 2017, doi:10.1101/109512), the default test without the
+#             August 2017, doi:10.1101/109512, and confirmed in the published
+#             article on 2026-11-19), the default test without the
 #             correction had the lowest specificity and the best overall
 #             accuracy, the F test with the correction gave results similar to
 #             DSS, one of the stringent methods, and the chi-squared test with

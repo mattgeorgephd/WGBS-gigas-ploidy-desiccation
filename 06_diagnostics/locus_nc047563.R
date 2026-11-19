@@ -14,7 +14,8 @@
 #                the excess differs by ploidy or cohort (Wilcoxon rank-sum tests);
 #             c. how many CpGs of the region still differ by more than
 #                config$dml_difference points when one library at a time is left
-#                out of the read-pooled group means;
+#                out of the read-pooled group means, among the CpGs tested with
+#                all libraries and among those testable without that library;
 #             d. percent methylation of the region in each library, compared
 #                between ploidies (Wilcoxon rank-sum tests);
 #             e. the genes, exons and transposable elements annotated at the block;
@@ -115,9 +116,11 @@
 #           - No random numbers are used. The 30-mer sample of part f is one
 #             30-mer every kmer_sample_step bases, from the first base of the block.
 #           - Columns: "region" is the tested CpGs of the DML region, "block" and
-#             "flank" are all CpG sites with reads. ploidy_difference and
-#             heat_difference of the profile are step 05's meth.diff (legacy).
-#             Shares of reads are shares of the normalized reads of a group.
+#             "flank" are all CpG sites with reads; region_cpgs_testable of the
+#             leave-one-out table is the exception described above.
+#             ploidy_difference and heat_difference of the profile are step 05's
+#             meth.diff (legacy). Shares of reads are shares of the normalized
+#             reads of a group.
 
 suppressPackageStartupMessages(library(here))
 source(here("run_config.R"))
@@ -584,7 +587,8 @@ fact(sec, "most_influential_library_pct_of_ploidy_normalized_reads", decimal(sha
 # The exact tests need untied values, and they must be repeatable from the
 # per-library table, which gives percent methylation with pct_decimals decimals.
 if (anyDuplicated(round(region_pct_meth, pct_decimals)))
-  stop("Two libraries have the same percent methylation to ", pct_decimals, " decimals; the exact Wilcoxon test needs untied values.")
+  stop("Two libraries have the same percent methylation at the precision of the per-library table (pct_decimals = ", pct_decimals,
+       "); the exact Wilcoxon test needs untied values.")
 sec <- "d. methylation per library"
 pct_text <- "read-pooled percent methylation of the tested CpGs of the DML region, raw counts, one value per library"
 compare_groups <- function(label, members, grouping, described) {
@@ -819,8 +823,9 @@ print(per_library[, .(library_id, ploidy, treatment, region_median_coverage, ove
                       over_cutoff = region_coverage_over_cutoff, at_cutoff = region_cpgs_at_or_above_cutoff, carries_excess,
                       pct_meth = region_pct_methylation, block_over_flanks)])
 cat("\nLeave one library out (CpGs of the region over the difference threshold: of the tested CpGs, and of the CpGs testable without the library):\n")
-print(loo_table[, .(libraries_left_out, ploidy_cpgs_over_difference, ploidy_difference_median, heat_cpgs_over_difference, heat_difference_median,
-                    region_cpgs_testable, ploidy_testable_cpgs_over_difference, heat_testable_cpgs_over_difference)])
+print(loo_table[, .(libraries_left_out, ploidy_over = ploidy_cpgs_over_difference, ploidy_median = ploidy_difference_median,
+                    heat_over = heat_cpgs_over_difference, heat_median = heat_difference_median, testable_cpgs = region_cpgs_testable,
+                    ploidy_over_of_testable = ploidy_testable_cpgs_over_difference, heat_over_of_testable = heat_testable_cpgs_over_difference)])
 cat("\nFacts:\n")
 print(as.data.frame(summary_table[, .(section, quantity, value)]), right = FALSE, row.names = FALSE)
 log_msg("wrote %s", paste(basename(vapply(c("summary", "per_library", "leave_one_out", "coverage_profile"), out_file, "")), collapse = ", "))
