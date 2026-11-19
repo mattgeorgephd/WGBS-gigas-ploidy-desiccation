@@ -23,7 +23,7 @@
 #             transcript_table.csv.gz           transcript, gene, product, GO flags
 #             gene_go_map.csv.gz                gene_id, go_id (union over the gene's mRNAs)
 #             go_map_id_repair.csv              what the legacy transcript names stand for
-#             gene_table_<mode>.csv.gz          one row per gene: tested CpGs, DML per set
+#             gene_table_<mode>.csv.gz          one row per gene: tested and eligible CpGs, DML per set
 #             dml_gene_overlap_<set>_<mode>.csv one row per (DML, gene)
 #             genes_with_dml_<set>_<mode>.csv   one row per gene that holds a DML
 #             dml_go_annotation_<set>_legacy.tsv.gz   legacy ten-column table, no header
@@ -96,9 +96,14 @@ log_msg("%d genes (%d protein coding); %d with GO terms; %d of those have a tran
 legacy_terms <- read_legacy_go_terms()
 summary_rows <- list()
 for (mode in config$modes) {
-  united <- fread(dml_file(sprintf("united_cpg_%s.csv.gz", mode)), select = c("chr", "start"))
+  united <- fread(dml_file(sprintf("united_cpg_%s.csv.gz", mode)))
+  eligible <- dml_eligible(mean_percent_methylation(united), config)
+  united <- united[, .(chr, start)]
   gene_tab <- copy(gene_base)
+  # Tested CpGs in the gene body, and those of them that can be DML at all.
   gene_tab[, n_cpg_tested := suppressWarnings(countOverlaps(gene_gr, cpg_ranges(united$chr, united$start), ignore.strand = TRUE))]
+  gene_tab[, n_cpg_eligible := suppressWarnings(countOverlaps(gene_gr, cpg_ranges(united$chr[eligible], united$start[eligible]),
+                                                              ignore.strand = TRUE))]
 
   for (set in dml_sets) {
     dml <- fread(dml_file(sprintf("dml_%s_%s.csv", set, mode)))
@@ -119,7 +124,7 @@ for (mode in config$modes) {
     gene_tab[, (paste0("n_dml_", set)) := per_gene[.SD, on = "gene_id", n_dml]]
     set(gene_tab, which(is.na(gene_tab[[paste0("n_dml_", set)]])), paste0("n_dml_", set), 0L)
     with_dml <- merge(gene_tab[, .(gene_id, gene, biotype, product, chr, gene_start = start, gene_end = end, strand,
-                                   n_transcripts, n_go_terms, in_legacy_universe, n_cpg_tested)],
+                                   n_transcripts, n_go_terms, in_legacy_universe, n_cpg_tested, n_cpg_eligible)],
                       per_gene, by = "gene_id")
     setorder(with_dml, -n_dml, gene_id)
     write_table(with_dml, tab(sprintf("genes_with_dml_%s_%s.csv", set, mode)))
@@ -160,8 +165,9 @@ for (mode in config$modes) {
   }
   setorder(gene_tab, chr, start)
   write_table(gene_tab, tab(sprintf("gene_table_%s.csv.gz", mode)))
-  log_msg("[%s] genes with at least one tested CpG: %d of %d; with GO terms as well: %d", mode,
-          sum(gene_tab$n_cpg_tested > 0), nrow(gene_tab), sum(gene_tab$n_cpg_tested > 0 & gene_tab$n_go_terms > 0))
+  log_msg("[%s] genes with a tested CpG: %d of %d (%d with GO terms); with an eligible CpG: %d (%d with GO terms)", mode,
+          sum(gene_tab$n_cpg_tested > 0), nrow(gene_tab), sum(gene_tab$n_cpg_tested > 0 & gene_tab$n_go_terms > 0),
+          sum(gene_tab$n_cpg_eligible > 0), sum(gene_tab$n_cpg_eligible > 0 & gene_tab$n_go_terms > 0))
 }
 write_table(rbindlist(summary_rows, fill = TRUE), tab("annotation_summary.csv"))
 

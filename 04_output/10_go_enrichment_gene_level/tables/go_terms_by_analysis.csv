@@ -1,0 +1,46 @@
+set,ontology,analysis,n_terms,set_label
+ploidy,BP,"Draft: transcripts, p < 0.01, no correction",383,ploidy DML
+ploidy,CC,"Draft: transcripts, p < 0.01, no correction",43,ploidy DML
+ploidy,MF,"Draft: transcripts, p < 0.01, no correction",68,ploidy DML
+heat,BP,"Draft: transcripts, p < 0.01, no correction",856,heat DML
+heat,CC,"Draft: transcripts, p < 0.01, no correction",145,heat DML
+heat,MF,"Draft: transcripts, p < 0.01, no correction",172,heat DML
+shared,BP,"Draft: transcripts, p < 0.01, no correction",341,in both lists
+shared,CC,"Draft: transcripts, p < 0.01, no correction",36,in both lists
+shared,MF,"Draft: transcripts, p < 0.01, no correction",74,in both lists
+ploidy,BP,"Genes, tested universe, Fisher, FDR",102,ploidy DML
+heat,BP,"Genes, tested universe, Fisher, FDR",197,heat DML
+shared,BP,"Genes, tested universe, Fisher, FDR",0,in both lists
+ploidy,CC,"Genes, tested universe, Fisher, FDR",48,ploidy DML
+heat,CC,"Genes, tested universe, Fisher, FDR",82,heat DML
+shared,CC,"Genes, tested universe, Fisher, FDR",11,in both lists
+ploidy,MF,"Genes, tested universe, Fisher, FDR",52,ploidy DML
+heat,MF,"Genes, tested universe, Fisher, FDR",78,heat DML
+shared,MF,"Genes, tested universe, Fisher, FDR",0,in both lists
+ploidy,BP,"Genes, eligible universe, Fisher, FDR",0,ploidy DML
+heat,BP,"Genes, eligible universe, Fisher, FDR",22,heat DML
+shared,BP,"Genes, eligible universe, Fisher, FDR",0,in both lists
+ploidy,CC,"Genes, eligible universe, Fisher, FDR",2,ploidy DML
+heat,CC,"Genes, eligible universe, Fisher, FDR",0,heat DML
+shared,CC,"Genes, eligible universe, Fisher, FDR",0,in both lists
+ploidy,MF,"Genes, eligible universe, Fisher, FDR",8,ploidy DML
+heat,MF,"Genes, eligible universe, Fisher, FDR",31,heat DML
+shared,MF,"Genes, eligible universe, Fisher, FDR",0,in both lists
+ploidy,BP,"Genes, eligible universe, Wallenius, FDR",0,ploidy DML
+heat,BP,"Genes, eligible universe, Wallenius, FDR",0,heat DML
+shared,BP,"Genes, eligible universe, Wallenius, FDR",0,in both lists
+ploidy,CC,"Genes, eligible universe, Wallenius, FDR",0,ploidy DML
+heat,CC,"Genes, eligible universe, Wallenius, FDR",0,heat DML
+shared,CC,"Genes, eligible universe, Wallenius, FDR",0,in both lists
+ploidy,MF,"Genes, eligible universe, Wallenius, FDR",0,ploidy DML
+heat,MF,"Genes, eligible universe, Wallenius, FDR",0,heat DML
+shared,MF,"Genes, eligible universe, Wallenius, FDR",0,in both lists
+ploidy,BP,"Same, DML called with the coverage filter",0,ploidy DML
+heat,BP,"Same, DML called with the coverage filter",0,heat DML
+shared,BP,"Same, DML called with the coverage filter",0,in both lists
+ploidy,CC,"Same, DML called with the coverage filter",0,ploidy DML
+heat,CC,"Same, DML called with the coverage filter",0,heat DML
+shared,CC,"Same, DML called with the coverage filter",0,in both lists
+ploidy,MF,"Same, DML called with the coverage filter",0,ploidy DML
+heat,MF,"Same, DML called with the coverage filter",0,heat DML
+shared,MF,"Same, DML called with the coverage filter",0,in both lists

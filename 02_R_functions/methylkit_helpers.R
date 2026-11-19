@@ -66,3 +66,25 @@ dml_table <- function(diffmeth, difference, qvalue) {
   data.table::as.data.table(methylKit::getData(
     methylKit::getMethylDiff(diffmeth, difference = difference, qvalue = qvalue)))
 }
+
+# Mean percent methylation of each CpG of a united table (columns numCs<j>,
+# numTs<j>) across its libraries.
+mean_percent_methylation <- function(united) {
+  n_lib <- sum(grepl("^coverage", names(united)))
+  rowMeans(vapply(seq_len(n_lib), function(j) {
+    100 * united[[paste0("numCs", j)]] / (united[[paste0("numCs", j)]] + united[[paste0("numTs", j)]])
+  }, numeric(nrow(united))))
+}
+
+# CpGs that can be a DML at all. Two groups of similar size that differ by d
+# percentage points have a pooled mean between d/2 and 100 - d/2, so a CpG whose
+# mean methylation across libraries lies outside that range cannot reach the
+# difference threshold (config$dml_difference). In this genome that removes most
+# CpGs: about 85% of the analysed CpGs are below 10% methylation. The mean across
+# all libraries says nothing about which group is higher, so using it to define
+# the background does not bias a comparison of DML with other CpGs (Bourgon,
+# Gentleman and Huber 2010, PNAS 107:9546).
+dml_eligible <- function(mean_pm, config) {
+  half <- config$dml_difference / 2
+  mean_pm >= half & mean_pm <= 100 - half
+}

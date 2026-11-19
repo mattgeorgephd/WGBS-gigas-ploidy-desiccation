@@ -28,10 +28,13 @@
 #             methylation, in the same mode. The legacy background was assembled
 #             from two other CpG sets (issue I-14).
 #           - Two backgrounds are used for the association tests: all analysed
-#             CpGs, and analysed CpGs with mean methylation of at least 10%. DML
-#             can only arise where methylation exists, and in this genome that
-#             is mostly gene bodies, so enrichment of DML in genes relative to
-#             all CpGs is expected whatever the treatment.
+#             CpGs, and "eligible" CpGs, those whose mean methylation across
+#             libraries is between 10% and 90%. A 20-point difference between
+#             two groups needs a pooled mean in that range, so the other CpGs
+#             (about 86% of those analysed) cannot be DML. Methylation in this
+#             genome sits mostly in gene bodies, so enrichment of DML in genes
+#             relative to all CpGs is expected whatever the treatment; the
+#             eligible background removes that.
 #           - "legacy_share_pct" reproduces the manuscript's percentages: the
 #             overlap count of a track divided by the sum of the counts of eight
 #             tracks. Those shares double count loci that lie in two tracks.
@@ -54,7 +57,6 @@ tab <- function(name) output_path(step, "tables", name)
 
 tracks <- names(feature_track_files())
 track_gr <- lapply(setNames(tracks, tracks), function(t) { log_msg("reading track %s", t); read_feature_track(t) })
-methylated_threshold <- 10   # percent; mean methylation across libraries that counts a CpG as methylated
 legacy_eight <- c("exon_UTR", "CDS", "intron", "upstream_flank", "downstream_flank", "lncRNA", "TE", "intergenic")
 class_priority <- c("CDS", "lncRNA", "exon_UTR", "intron", "upstream_flank", "downstream_flank", "intergenic")
 class_labels <- c(CDS = "CDS", lncRNA = "lncRNA", exon_UTR = "UTR or other non-coding exon", intron = "Intron",
@@ -69,10 +71,8 @@ setnames(genes_per_seq, "N", "n_genes")
 for (mode in config$modes) {
   log_msg("[%s] reading analysed CpGs and DML", mode)
   united <- fread(dml_dir(sprintf("united_cpg_%s.csv.gz", mode)))
-  n_lib <- sum(grepl("^coverage", names(united)))
-  # Mean percent methylation across libraries, to define the methylated background.
-  mean_pm <- rowMeans(vapply(seq_len(n_lib), function(j) 100 * united[[paste0("numCs", j)]] /
-                               (united[[paste0("numCs", j)]] + united[[paste0("numTs", j)]]), numeric(nrow(united))))
+  # CpGs that can reach the difference threshold (see dml_eligible()).
+  eligible <- dml_eligible(mean_percent_methylation(united), config)
   cpg <- united[, .(chr, start)]
   cpg[, united_row := .I]
   rm(united); gc(verbose = FALSE)
@@ -81,10 +81,9 @@ for (mode in config$modes) {
   shared <- fread(dml_dir(sprintf("dml_shared_%s.csv", mode)))
 
   # Set membership of every analysed CpG.
-  methylated <- mean_pm >= methylated_threshold
   sets <- list(
     `all analysed CpGs`  = rep(TRUE, nrow(cpg)),
-    `methylated CpGs`    = methylated,
+    `eligible CpGs`      = eligible,
     `ploidy DML`         = cpg$united_row %in% dml$ploidy$united_row,
     `heat DML`           = cpg$united_row %in% dml$heat$united_row,
     `shared`             = cpg$united_row %in% shared$united_row,
@@ -119,12 +118,11 @@ for (mode in config$modes) {
   # Per track: is a DML more or less likely than other analysed CpGs to lie in it?
   # Loci are treated as independent, which they are not where DML cluster, so
   # these p-values are optimistic; see the region summary below.
-  # Two backgrounds: every analysed CpG, and analysed CpGs that are methylated
-  # (mean across libraries at least `methylated_threshold` percent). Most CpGs
-  # in this genome are unmethylated and cannot differ between groups, and
-  # methylation is concentrated in gene bodies, so the second background asks
-  # the sharper question.
-  backgrounds <- list(`all analysed CpGs` = rep(TRUE, nrow(cpg)), `methylated CpGs` = methylated)
+  # Two backgrounds: every analysed CpG, and the eligible CpGs. Most CpGs in this
+  # genome are unmethylated and cannot differ between groups, and methylation is
+  # concentrated in gene bodies, so the second background asks the sharper
+  # question.
+  backgrounds <- list(`all analysed CpGs` = rep(TRUE, nrow(cpg)), `eligible CpGs` = eligible)
   tests <- rbindlist(lapply(names(backgrounds), function(b) {
     rbindlist(lapply(c("ploidy DML", "heat DML", "shared"), function(s) {
       rbindlist(lapply(c(legacy_eight, "gene"), function(t) {

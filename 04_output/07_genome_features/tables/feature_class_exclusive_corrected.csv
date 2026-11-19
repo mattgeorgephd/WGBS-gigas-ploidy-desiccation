@@ -7,14 +7,14 @@ corrected,all analysed CpGs,454555,upstream_flank,16088,3.53928567500083,22.5634
 corrected,all analysed CpGs,454555,downstream_flank,10365,2.28025211470559,35.89001447178
 corrected,all analysed CpGs,454555,intergenic,102722,22.5983654343259,40.3477346624871
 corrected,all analysed CpGs,454555,other,0,0,
-corrected,methylated CpGs,69476,CDS,22044,31.7289423685877,2.54944656142261
-corrected,methylated CpGs,69476,lncRNA,1982,2.85278369508895,33.1483350151362
-corrected,methylated CpGs,69476,exon_UTR,3799,5.46807530658069,7.23874703869439
-corrected,methylated CpGs,69476,intron,34719,49.9726524267373,35.4330481868717
-corrected,methylated CpGs,69476,upstream_flank,633,0.911105993436582,54.1864139020537
-corrected,methylated CpGs,69476,downstream_flank,1018,1.46525418849675,53.2416502946955
-corrected,methylated CpGs,69476,intergenic,5281,7.60118602107203,63.3024048475668
-corrected,methylated CpGs,69476,other,0,0,
+corrected,eligible CpGs,61056,CDS,15755,25.804179769392,3.5353855918756
+corrected,eligible CpGs,61056,lncRNA,1961,3.21180555555556,33.299337072922
+corrected,eligible CpGs,61056,exon_UTR,3538,5.79468029350105,7.5183719615602
+corrected,eligible CpGs,61056,intron,32936,53.9439203354298,35.4839689094001
+corrected,eligible CpGs,61056,upstream_flank,623,1.02037473794549,54.8956661316212
+corrected,eligible CpGs,61056,downstream_flank,1000,1.63784067085954,53.4
+corrected,eligible CpGs,61056,intergenic,5243,8.58719863731656,63.5323288193782
+corrected,eligible CpGs,61056,other,0,0,
 corrected,ploidy DML,952,CDS,369,38.7605042016807,0.813008130081301
 corrected,ploidy DML,952,lncRNA,10,1.05042016806723,10
 corrected,ploidy DML,952,exon_UTR,59,6.19747899159664,8.47457627118644
