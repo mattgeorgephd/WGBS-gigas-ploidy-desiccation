@@ -169,7 +169,7 @@ percentile   <- config$upper_coverage_percentile
 # default mincov of methRead in the installed methylKit.
 base_import  <- as.integer(config$import_min_coverage)
 bases        <- sort(unique(c(1L, 2L, as.integer(formals(methylKit::methRead)$mincov), base_import)))
-cutoff_decimals <- 3L                  # decimals of the cutoffs in the written table; they hold a 99.9th percentile exactly (see Notes)
+cutoff_decimals <- 3L                  # decimals of the cutoffs in the written table; enough for a percentile with one decimal (see Notes)
 run_gap_bp   <- 1000L                  # removed CpGs no further apart than this form one run (the gap of step 07's DML regions)
 run_min_cpgs <- 10L                    # the run statistic counts removed CpGs in runs of at least this many
 n_draws      <- 1000L                  # random sets of tested CpGs that give the reference for the run statistic
@@ -324,16 +324,45 @@ must(isTRUE(all.equal(unname(cutoff_library[, as.character(base_import)]), recor
        all(kept_complete["n", ] == record$corrected$n_cpg_min_coverage) && all(kept_corrected["n", ] == record$corrected$n_cpg_kept) &&
        all(kept_complete["n", ] - kept_corrected["n", ] == record$corrected$n_removed_by_upper) &&
        all(kept_corrected["median", ] == record$corrected$median_coverage),
-     "The histograms do not give the cutoffs, CpG numbers and median coverages of library_filtering_corrected.csv.")
+     "The histograms do not give the cutoffs, CpG numbers and median coverages of library_filtering_corrected.csv. Step 05 must have run with the ",
+     "config$import_min_coverage of this run (", base_import, ").")
 
-n_removed_from_library <- function(cutoffs) vapply(seq_len(n_lib), function(lib_i)
-  sum(counts[reads_axis >= config$min_coverage & reads_axis >= cutoffs[lib_i], lib_i]), integer(1))
+# Number of CpGs that an upper bound takes from each library: those with at
+# least config$min_coverage reads at or above the bound (above it where above_only).
+n_removed_from_library <- function(cutoffs, above_only = FALSE) vapply(seq_len(n_lib), function(lib_i)
+  sum(counts[reads_axis >= config$min_coverage & (if (above_only) reads_axis > cutoffs[lib_i] else reads_axis >= cutoffs[lib_i]), lib_i]), integer(1))
+# Margin of the median: the largest number of its most covered CpGs that each
+# library can lose with its median coverage unchanged (CpGs with at least
+# config$min_coverage reads, every line read). An upper bound takes the most
+# covered CpGs of a library, and the median of those that remain cannot rise as
+# more are taken, so the number is found by bisection.
+median_margin <- vapply(seq_len(n_lib), function(lib_i) {
+  kept <- replace(counts[, lib_i], reads_axis < config$min_coverage, 0L)
+  n_kept <- sum(kept); n_below <- cumsum(c(0, kept[-max_reads]))        # n_below[v]: kept CpGs with fewer than v reads
+  median_without <- function(n_top) hist_quantile(pmin(kept, pmax(n_kept - n_top - n_below, 0)), 0.5)
+  n_holds <- 0; n_fails <- n_kept                  # the median is unchanged without n_holds of the CpGs; without all of them there is none
+  while (n_fails - n_holds > 1) {
+    middle <- (n_holds + n_fails) %/% 2
+    if (median_without(middle) == median_without(0)) n_holds <- middle else n_fails <- middle
+  }
+  as.integer(n_holds)
+}, integer(1))
+# Cutoffs as they are written: rounding takes the floating-point error of an
+# interpolated quantile away and must take nothing else.
+written_cutoff <- function(cutoffs) {
+  rounded <- round(cutoffs, cutoff_decimals)
+  must(all(abs(rounded - cutoffs) < 10^-(cutoff_decimals + 3L)),
+       "A cutoff has more than ", cutoff_decimals, " decimals, as a percentile with more than one decimal gives. Raise cutoff_decimals, so that the written ",
+       "cutoffs lose nothing.")
+  rounded
+}
 cutoff_table <- data.table(library_id = lib$library_id, cohort = lib$cohort, ploidy = as.character(lib$ploidy), treatment = as.character(lib$treatment))
 for (base_reads in bases) set(cutoff_table, j = sprintf("n_cpg_base_%d", base_reads), value = as.integer(colSums(counts[reads_axis >= base_reads, , drop = FALSE])))
-for (base_reads in bases) set(cutoff_table, j = sprintf("cutoff_base_%d", base_reads), value = cutoff_library[, as.character(base_reads)])
-set(cutoff_table, j = "cutoff_pooled", value = cutoff_pooled)
+for (base_reads in bases) set(cutoff_table, j = sprintf("cutoff_base_%d", base_reads), value = written_cutoff(cutoff_library[, as.character(base_reads)]))
+set(cutoff_table, j = "cutoff_pooled", value = written_cutoff(cutoff_pooled))
 for (base_reads in bases) set(cutoff_table, j = sprintf("n_removed_base_%d", base_reads), value = n_removed_from_library(cutoff_library[, as.character(base_reads)]))
 set(cutoff_table, j = "n_removed_pooled", value = n_removed_from_library(rep(cutoff_pooled, n_lib)))
+set(cutoff_table, j = "n_removable_before_median_changes", value = median_margin)
 
 # ---- 4. Filter rules (b) -----------------------------------------------------------------------
 majority <- n_lib %/% 2L + 1L                                        # more than half of the libraries
@@ -367,14 +396,22 @@ keep <- lapply(seq_len(n_rules), function(rule_i) {
   if (rules$cutoff[rule_i] == "none") return(rep(TRUE, n_tested))
   libraries_at_cutoff(rule_cutoffs(rule_i), rules$above_only[rule_i]) < rules$min_libraries[rule_i]
 })
-# Median coverage of each library over the CpGs it keeps under the rule, every
-# line read. Only a rule that removes a CpG as soon as one library is at its
-# cutoff filters within a library (methylKit's filterByCoverage); the other
-# rules leave the libraries as legacy mode filtered them.
+# Number of libraries whose median coverage over the CpGs they keep under the
+# rule, every line read, differs from the median in legacy mode. Only a rule
+# that removes a CpG as soon as one library is at its cutoff filters within a
+# library (methylKit's filterByCoverage). The other rules leave the libraries as
+# legacy mode filtered them, apart from line 1, and get no value. That line 1
+# changes no median is required of the inputs first.
+must(all(kept_complete["median", ] == kept_legacy["median", ]),
+     "The median coverage of a library changes when line 1 of its coverage file is read. The scaling of legacy mode then does not hold for a complete ",
+     "read, and the DML of legacy mode at kept CpGs are not the DML of a rule of this script.")
 changed_median <- vapply(seq_len(n_rules), function(rule_i) {
-  within_library <- rules$cutoff[rule_i] != "none" && rules$min_libraries[rule_i] == 1L
-  kept <- if (within_library) library_kept(counts, rule_cutoffs(rule_i), rules$above_only[rule_i]) else kept_complete
-  sum(kept["median", ] != kept_legacy["median", ])
+  if (rules$cutoff[rule_i] == "none" || rules$min_libraries[rule_i] > 1L) return(NA_integer_)
+  cutoffs <- rule_cutoffs(rule_i); above_only <- rules$above_only[rule_i]
+  changed <- library_kept(counts, cutoffs, above_only)["median", ] != kept_legacy["median", ]
+  # The margin must tell the same: a median changes when the rule takes more CpGs from the library than its margin.
+  stopifnot(identical(changed, n_removed_from_library(cutoffs, above_only) > median_margin))
+  sum(changed)
 }, integer(1))
 
 dml_legacy <- step05$legacy$dml
@@ -402,9 +439,13 @@ must(n_recounted == variants$cpg_kept[rules$cutoff == "none"], "The recount from
 
 # ---- 5. The CpGs that corrected mode removes (c) ------------------------------------------------
 corrected_rule <- which(rules$step05_mode == "corrected")
+removed <- !keep[[corrected_rule]]                  # section 4 has checked that the kept CpGs are those of united_cpg_corrected.csv.gz
 n_at_cutoff <- libraries_at_cutoff(rule_cutoffs(corrected_rule))
-removed <- n_at_cutoff >= 1L
-must(identical(removed, !keep[[corrected_rule]]), "The removed CpGs are not those of the rule of corrected mode.")
+# Not a check of the inputs: this holds by the definition of the rule of
+# corrected mode in section 4 (at or above the cutoff in at least one library).
+# It stops the script if that definition is ever changed, because the three
+# sets "removed: ..." below would then no longer divide the removed CpGs.
+stopifnot(identical(removed, n_at_cutoff >= 1L))
 n_removed <- sum(removed)
 in_repeat <- overlaps_track(cpg_ranges(tested$chr, tested$start), read_feature_track("TE"))
 is_mito <- tested$chr == config$mito_sequence
@@ -466,7 +507,10 @@ q_row <- function(cpg_set, q_values, contrast_name, legacy_rows, difference, q) 
 }
 q_stored <- rbindlist(lapply(names(step05), function(mode_name) rbindlist(lapply(contrast_names, function(contrast_name) {
   s <- step05[[mode_name]]$stats[[contrast_name]]
-  q_row(paste(mode_name, "mode"), "as stored by step 05", contrast_name, step05[[mode_name]]$legacy_row, s$difference, s$qvalue)
+  stored <- q_row(paste(mode_name, "mode"), "as stored by step 05", contrast_name, step05[[mode_name]]$legacy_row, s$difference, s$qvalue)
+  # For legacy mode itself the last column would compare the legacy list with itself; it gets no value.
+  if (mode_name == "legacy") set(stored, j = "list_is_legacy_dml_at_these_cpgs", value = NA)
+  stored
 }))))
 
 # q-values of each rule: methylKit's SLIM estimate on the p-values of the kept CpGs.
@@ -498,7 +542,7 @@ options(width = 250)
 cat("\nFilter rules: CpGs kept and legacy DML at kept CpGs\n")
 print(variants[, .(rule, cpg_kept, cpg_removed, pct_removed, ploidy_dml, heat_dml, dml_in_both_lists, libraries_with_changed_median, lists_same_with_reestimated_q)])
 cat("\nCutoffs per library\n")
-print(cutoff_table[, c("library_id", grep("^cutoff_|^n_removed_", names(cutoff_table), value = TRUE)), with = FALSE])
+print(cutoff_table[, c("library_id", grep("^cutoff_|^n_removed_|^n_removable_", names(cutoff_table), value = TRUE)), with = FALSE])
 cat("\nCpGs removed by the rule of corrected mode\n")
 print(removed_table)
 cat("\nThe q-value rule\n")
