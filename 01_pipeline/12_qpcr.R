@@ -56,7 +56,7 @@
 #             of each ploidy) are in the replicate files and were left out of the
 #             legacy analysis. They are kept in qpcr_per_animal.csv, with their
 #             flag, and in the figures, and are left out of every model and
-#             test. With two animals per group they cannot be a group of their
+#             test. Two animals per group are too few to form groups of their
 #             own, and counted as control or heat animals they would change
 #             what those groups are.
 #           - Scale. Delta Cq is Cq target minus Cq actin; a lower delta Cq is a
@@ -152,13 +152,14 @@
 #             leave-one-out.
 #           - Repeated fits. Two analyses of a gene can use the same animals with
 #             the same values and the same censoring. Excluding a failed sample
-#             changes nothing for a gene in which that sample has no value; a
-#             gene without replicate-level data has no known one-well animals;
-#             and without a censored animal the censored regression is the
-#             linear model. qpcr_models.csv names the earlier fit in the column
-#             same_fit_as. Counts of analyses in qpcr_sensitivity.csv and in
-#             the statement table count results that differ: p values that
-#             agree to six significant digits are one result.
+#             changes nothing in a complete-case fit of a gene in which that
+#             sample has no value; a gene without replicate-level data has no
+#             known one-well animals; and without a censored animal the
+#             censored regression is the linear model. qpcr_models.csv names
+#             the earlier fit in the column same_fit_as. Counts of analyses in
+#             qpcr_sensitivity.csv and in the statement table count results
+#             that differ: p values that agree to six significant digits are
+#             one result.
 #           - One reference gene. Normalization against a single reference gene
 #             needs evidence that the gene is stable under the conditions
 #             compared (Bustin et al. 2009, section 8.1; Vandesompele et al.
@@ -340,9 +341,11 @@ consolidated_check[, result := fifelse(!replicate_file, "cannot be checked: no r
                                        "differs from the replicate-level file"))]
 consolidated_check <- consolidated_check[match(cons_genes, gene)]
 write_tab(consolidated_check, "qpcr_consolidated_check.csv")
-log_msg("consolidated file against the replicate files: %d genes compared, %d cells differ; %d missing cells in the file",
+log_msg(paste("consolidated file against the replicate files: %d genes compared, %d cells differ; %d missing cells in the file",
+              "(%d without a detected well in the replicate files; %d in genes without a replicate-level file)"),
         sum(consolidated_check$replicate_file), sum(consolidated_check$cells_that_differ, na.rm = TRUE),
-        sum(consolidated_check$consolidated_missing))
+        sum(consolidated_check$consolidated_missing), sum(consolidated_check$missing_in_both, na.rm = TRUE),
+        consolidated_check[replicate_file == FALSE, sum(consolidated_missing)])
 
 # =============================================================================
 # 3. Reference gene and failed samples; the per-animal table
@@ -836,10 +839,15 @@ if (length(censored_share) > 0) {
   test_size[, level_check := fifelse(rejection_rate > 1.5 * nominal_level, "rejects too often",
                              fifelse(rejection_rate < 0.5 * nominal_level, "rejects too seldom (conservative)",
                                      "within 0.5 to 1.5 times the nominal level"))]
-  log_msg(paste("censored regression under the null, %d data sets per share of censored animals (%s): the corrected test rejects at %g in",
-                "%.1f%% to %.1f%%, the uncorrected test in %.1f%% to %.1f%%"),
-          opt$size_check_runs, paste(sprintf("%.2f", shares), collapse = ", "), opt$alpha, 100 * min(test_size$rejection_rate),
-          100 * max(test_size$rejection_rate), 100 * min(test_size$rejection_rate_uncorrected), 100 * max(test_size$rejection_rate_uncorrected))
+  log_msg(paste("censored regression under the null, %d data sets per share of censored animals (%s; %d to %d of them fitted):",
+                "the corrected test rejects at %g in %.1f%% to %.1f%%, the uncorrected test in %.1f%% to %.1f%%"),
+          opt$size_check_runs, paste(sprintf("%.2f", shares), collapse = ", "), min(test_size$data_sets_fitted), max(test_size$data_sets_fitted),
+          opt$alpha, 100 * min(test_size$rejection_rate), 100 * max(test_size$rejection_rate),
+          100 * min(test_size$rejection_rate_uncorrected), 100 * max(test_size$rejection_rate_uncorrected))
+  if (any(test_size$level_check == "rejects too seldom (conservative)")) {
+    log_msg("the corrected test is conservative at a censored share of %s",
+            paste(sprintf("%.2f", test_size[level_check == "rejects too seldom (conservative)", unique(share_censored_expected)]), collapse = ", "))
+  }
 } else log_msg("no fit has a censored animal: the censored regression is the linear model throughout, and no simulation is needed")
 write_tab(test_size, "qpcr_censored_test_size.csv")
 if (any(test_size$level_check == "rejects too often")) {
@@ -1266,8 +1274,7 @@ statements[, `:=`(statement_id = sprintf("Q%02d", .I), statement = quoted[senten
 # Notes: what else a reader of the sentence needs to know.
 id_of <- function(sentence_i, claim_i) statements[sentence == sentence_i & claim_key == claim_i, statement_id]
 notes <- c(
-  d45_p2_s1 = sprintf("The draft calls the data physiological measurements. The repository holds no data on mitochondria other than the %s Cq.",
-                      mito),
+  d45_p2_s1 = sprintf("The draft calls the data 'physiological measurements'. The qPCR data hold one mitochondrial target, %s.", mito),
   d45_p2_s3 = sprintf("'This finding' is the statement before it (%s). The sentence depends on that statement and reports no qPCR result of its own.",
                       id_of("d45_p2_s2", "mito_triploid")),
   d45_p3_s1 = "The draft says 'companion experiments'. Methods and Results do not describe the qPCR or its animals.",

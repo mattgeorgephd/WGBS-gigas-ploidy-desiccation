@@ -1,0 +1,16 @@
+share_censored_expected,mean_delta_cq,sd_delta_cq,n_animals,data_sets,data_sets_fitted,share_censored_simulated,term,contrast,nominal_level,rejection_rate,rejection_rate_uncorrected,monte_carlo_se,level_check
+0.1,11.43328711,1.299171283,31,2000,2000,0.1005806452,ploidy,"triploid vs diploid, averaged over the two treatments",0.05,0.045,0.068,0.004635461142,within 0.5 to 1.5 times the nominal level
+0.1,11.43328711,1.299171283,31,2000,2000,0.1005806452,treatment,"heat vs control, averaged over the two ploidies",0.05,0.0595,0.0955,0.005289600647,within 0.5 to 1.5 times the nominal level
+0.1,11.43328711,1.299171283,31,2000,2000,0.1005806452,interaction,"heat vs control in triploids, relative to heat vs control in diploids",0.05,0.047,0.078,0.004732388403,within 0.5 to 1.5 times the nominal level
+0.2,12.87630086,1.299171283,31,2000,2000,0.1997741935,ploidy,"triploid vs diploid, averaged over the two treatments",0.05,0.0545,0.089,0.005075911248,within 0.5 to 1.5 times the nominal level
+0.2,12.87630086,1.299171283,31,2000,2000,0.1997741935,treatment,"heat vs control, averaged over the two ploidies",0.05,0.0495,0.0815,0.004850244839,within 0.5 to 1.5 times the nominal level
+0.2,12.87630086,1.299171283,31,2000,2000,0.1997741935,interaction,"heat vs control in triploids, relative to heat vs control in diploids",0.05,0.0495,0.0785,0.004850244839,within 0.5 to 1.5 times the nominal level
+0.3,13.71604086,1.299171283,31,2000,1997,0.2998548387,ploidy,"triploid vs diploid, averaged over the two treatments",0.05,0.05458187281,0.08863294942,0.005083316451,within 0.5 to 1.5 times the nominal level
+0.3,13.71604086,1.299171283,31,2000,1997,0.2998548387,treatment,"heat vs control, averaged over the two ploidies",0.05,0.05458187281,0.08612919379,0.005083316451,within 0.5 to 1.5 times the nominal level
+0.3,13.71604086,1.299171283,31,2000,1997,0.2998548387,interaction,"heat vs control in triploids, relative to heat vs control in diploids",0.05,0.0450676014,0.07661492238,0.004642260465,within 0.5 to 1.5 times the nominal level
+0.4,14.34671454,1.299171283,31,2000,1961,0.3991129032,ploidy,"triploid vs diploid, averaged over the two treatments",0.05,0.04487506374,0.08006119327,0.004675131535,within 0.5 to 1.5 times the nominal level
+0.4,14.34671454,1.299171283,31,2000,1961,0.3991129032,treatment,"heat vs control, averaged over the two ploidies",0.05,0.04589495156,0.07190209077,0.004725434612,within 0.5 to 1.5 times the nominal level
+0.4,14.34671454,1.299171283,31,2000,1961,0.3991129032,interaction,"heat vs control in triploids, relative to heat vs control in diploids",0.05,0.05201427843,0.08057113717,0.005014450982,within 0.5 to 1.5 times the nominal level
+0.4375,14.55642572,1.299171283,31,2000,1914,0.4362903226,ploidy,"triploid vs diploid, averaged over the two treatments",0.05,0.04911180773,0.07419017764,0.004939542434,within 0.5 to 1.5 times the nominal level
+0.4375,14.55642572,1.299171283,31,2000,1914,0.4362903226,treatment,"heat vs control, averaged over the two ploidies",0.05,0.04911180773,0.07941483804,0.004939542434,within 0.5 to 1.5 times the nominal level
+0.4375,14.55642572,1.299171283,31,2000,1914,0.4362903226,interaction,"heat vs control in triploids, relative to heat vs control in diploids",0.05,0.04858934169,0.08045977011,0.004914547614,within 0.5 to 1.5 times the nominal level
