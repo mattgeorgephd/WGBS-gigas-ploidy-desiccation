@@ -2,7 +2,7 @@
 
 How to continue this work from the repository alone, for a new session or a person. The working session rewrites the "State" and "In flight" sections whenever it pushes.
 
-Last updated: 2026-11-19 06:25 UTC.
+Last updated: 2026-11-19 06:21 UTC.
 
 ## If the session ends or its machine is replaced
 
@@ -56,7 +56,9 @@ Six agent runs (scripts and partial results in `07_documentation/agent_workflows
 | `build-dml-sensitivity` | build, review | fix | The snapshot of the script is in git. Review it, then run it in full. |
 | `check-issues-integration` (launched 06:08 UTC) | nothing yet | ten checks that `issues.md` carries the nine verification reports faithfully | Run the script again; it is read-only. |
 | `build-diagnostics` (launched 06:20 UTC) | nothing yet | five scripts under `06_diagnostics/` (`feature_odds_matched`, `locus_nc047563`, `legacy_reader_mechanism`, `coverage_filter_variants`, `check_methylkit_equivalence`), each built, reviewed, fixed | Files the agents have written so far are in git as snapshots; run the script again for the rest. |
-| Full run of `06_diagnostics/dml_sensitivity.R` (not an agent run; started 04:33 UTC with `WGBS_CORES=3`; 22 model fits, about three hours) | 8 of 22 fits (7 to 10 minutes each on three cores). On the full data the primary fits reproduce step 05 exactly (q-values, both DML lists, loci in both lists). | the other fits | Start it again from the repository root: `WGBS_CORES=3 Rscript 06_diagnostics/dml_sensitivity.R`. Finished fits are cached under `06_diagnostics/dml_sensitivity/cache/` on the machine and are lost with it. If the review changes the fitting code, rerun. |
+| Full run of `06_diagnostics/dml_sensitivity.R` (not an agent run; started 04:33 UTC with `WGBS_CORES=3`; 22 model fits, about three hours) | 13 of 22 fits at 06:17 UTC (5 to 13 minutes each on three cores). On the full data the primary fits reproduce step 05 exactly (q-values, both DML lists, loci in both lists). | the other fits | Start it again from the repository root: `WGBS_CORES=3 Rscript 06_diagnostics/dml_sensitivity.R`. Finished fits are cached under `06_diagnostics/dml_sensitivity/cache/` on the machine and are lost with it. If the review changes the fitting code, rerun. |
+
+Note on the sensitivity script: the fix stage of `build-dml-sensitivity` edits `06_diagnostics/dml_sensitivity.R` while the full run, started from the earlier version, is still fitting. The fits are cached, so when both have finished the script is run once more from the cache to write the final tables with the final code. Do not read the tables in `06_diagnostics/dml_sensitivity/` as final before that rerun.
 
 ## Next actions, in order
 
