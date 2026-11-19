@@ -24,9 +24,12 @@
 #                median coverage and scaling factor of every library; the CpGs
 #                and every count of the united table; difference, p-value and
 #                q-value of every CpG for both contrasts; the DML lists.
-#             4. The two legacy defects in methylKit's own objects: what
-#                methRead loses with its default header = TRUE (I-38), and what
-#                the misspelled upper filter of the legacy call does (I-05).
+#             4. The legacy call in methylKit's own objects: what methRead loses
+#                with its default header = TRUE (I-38); what the misspelled
+#                upper filter of the legacy call does (I-05); and what changes
+#                when the covariate of the test is coded as the legacy script
+#                coded it (a character vector) and not as step 05 codes it (a
+#                factor).
 #             5. The tables of step 05 at the CpGs of the extract. The counts
 #                that step 05 wrote must be the lines of the coverage files
 #                scaled by scale_counts_like_methylkit. This ties the routes
@@ -41,7 +44,7 @@
 #           One row is written per comparison. The script stops with an error
 #           if a comparison that must agree does not.
 #
-# Run       Rscript 06_diagnostics/check_methylkit_equivalence.R      (about 8 minutes; 2 GB of memory; one core)
+# Run       Rscript 06_diagnostics/check_methylkit_equivalence.R      (about 9 minutes; 2 GB of memory; one core)
 #           Needs the 22 coverage files in the cache (step 01) and the tables of step 05.
 #
 # Reads     03_input_files/metadata/wgbs_libraries.csv
@@ -95,33 +98,44 @@
 #             of counts is built. The legacy script passed character vectors
 #             (yes / no, D / T). methylKit turns a factor covariate into its
 #             integer codes and a character covariate into an indicator. For
-#             two levels that is the same model; the arithmetic differs, so
-#             p-values agree with those of the legacy coding to rounding and
-#             not bit for bit. That comparison is not made here; the DML lists
+#             two levels that is the same model, fitted by different
+#             arithmetic: the methylation difference does not depend on the
+#             covariate, and the p-values need not be the same bit for bit.
+#             Part 4 therefore fits methylKit's route once more per contrast
+#             with the legacy coding and sets it against the helper route with
+#             the coding of step 05. The methylation differences and the DML
+#             lists must agree; the differences between the p-values and
+#             between the q-values are recorded. On the full data the DML lists
 #             of legacy mode are compared with the lists of the draft in
 #             check_legacy_outputs.R.
-#           - glm.fit warns at CpGs where a fitted proportion reaches 0 or 1,
-#             which happens where a group has no methylated or no unmethylated
-#             read. These warnings are counted by message and written to the
-#             log, not printed one by one.
+#           - glm.fit warns at CpGs where a fitted proportion is numerically 0
+#             or 1. On the extract almost all of these are CpGs whose
+#             methylated reads all come from libraries of one ploidy and of one
+#             cohort (looked at once; not computed here). Both routes fit the
+#             same counts, so the warnings do not bear on the comparison. They
+#             are counted by message and written to the log, not printed one by
+#             one.
 #           - Full libraries (part 2): the first library of each of the four
 #             groups in the order of the sample sheet, every library whose
 #             first line has at least config$min_coverage reads (the first-line
 #             rule then changes the rows kept), and every library whose upper
 #             cutoff in the record of step 05 is not a whole number. The part
 #             runs before the routes on the extract because methRead on a full
-#             file needs the most memory of all parts (about 1.5 GB).
-#             methylKit's normalizeCoverage and unite are not run on full
-#             libraries: they need all 22 at once. Their arithmetic is checked
-#             on the extract (all 22 libraries), on the synthetic counts, and
-#             against the tables of step 05 (part 5).
+#             file needs the most memory of all parts; the peak of the run is
+#             reached here. methylKit's normalizeCoverage and unite are not run
+#             on full libraries: they need all 22 at once. Their arithmetic is
+#             checked on the extract (all 22 libraries), on the synthetic
+#             counts, and against the tables of step 05 (part 5).
 #           - Part 5 does not use methylKit. It shows that the united tables of
 #             step 05 hold, at the CpGs of the regions, the raw counts scaled
 #             by the helper with the factor max(median) / median of the medians
 #             that step 05 recorded. In legacy mode the CpGs of step 05 inside
 #             the regions must be the united CpGs of the extract. In corrected
 #             mode they need not be, because the cutoffs of the extract differ;
-#             the numbers are recorded.
+#             the numbers are recorded. Which CpGs each mode keeps on the full
+#             files is checked in coverage_filter_variants.R, which derives
+#             both sets from the 22 files and stops unless they are the CpGs
+#             of step 05.
 #           - Synthetic counts (part 6): synthetic_sets (20) sets of four
 #             libraries with synthetic_cpgs (30,001) CpGs each, drawn after
 #             set.seed(seed). Per library: coverage from a negative binomial
@@ -272,6 +286,7 @@ region_group <- c(seq_len(n_interval_regions), rep(n_interval_regions + 1L, nrow
 n_groups <- n_interval_regions + 1L
 
 part_extract   <- sprintf("extract, all %d libraries", n_lib)
+part_coding    <- sprintf("legacy coding of the covariate, extract, all %d libraries", n_lib)
 part_tables    <- "tables of step 05 inside the regions"
 part_synthetic <- sprintf("synthetic counts (%d libraries of %s CpGs)", 4L * synthetic_sets, count_text(synthetic_cpgs))
 part_order     <- function(level) sprintf("order of operations of step 04, CpGs with at least %g read%s in all libraries", level, if (level == 1) "" else "s")
@@ -496,13 +511,25 @@ helper_route <- function(mode_name) {
   list(kept = kept, chr_levels = chr_levels, filtering = filtering, united = list(ploidy = meth_ploidy, heat = meth_heat))
 }
 
-# methylKit's test, with the covariates as step 05 passes them. Warnings are
-# counted by message and logged.
+# The covariate of each contrast as step 05 passes it (a factor), and as the
+# legacy script passed it: a character vector, "yes" and "no" for heat, "D" and
+# "T" for ploidy (08_archive/code/2_WGBS_Methylkit-all-gigas.R, lines 143 to
+# 150, where the vectors are typed in by position). Here they come from the
+# sample sheet and must be the vectors of that script.
 covariates <- list(ploidy = data.frame(heat = lib$treatment), heat = data.frame(ploidy = lib$ploidy))
-run_test <- function(united, contrast_name, label) {
+covariates_legacy <- list(ploidy = data.frame(HEAT = ifelse(lib$treatment == "heat", "yes", "no"), stringsAsFactors = FALSE),
+                          heat = data.frame(PLOIDY = ifelse(lib$ploidy == "triploid", "T", "D"), stringsAsFactors = FALSE))
+must(identical(covariates_legacy$ploidy$HEAT, rep(c("yes", "no"), c(10, 12))) &&
+       identical(covariates_legacy$heat$PLOIDY, rep(c("D", "T", "D", "T"), c(5, 5, 6, 6))),
+     "The sample sheet does not give the covariate vectors of the legacy script.")
+coding_pair <- "methylKit's route with the legacy coding against the helper route with the coding of step 05"
+
+# methylKit's test with one covariate table. Warnings are counted by message
+# and logged.
+run_test <- function(united, covariate_table, label) {
   seen <- character(0)
   fit <- withCallingHandlers(
-    suppressMessages(calculateDiffMeth(united, covariates = covariates[[contrast_name]], mc.cores = config$cores)),
+    suppressMessages(calculateDiffMeth(united, covariates = covariate_table, mc.cores = config$cores)),
     warning = function(w) { seen <<- c(seen, conditionMessage(w)); invokeRestart("muffleWarning") })
   tally <- table(seen)
   log_msg("%s: %d CpGs tested; warnings: %s", label, nrow(getData(fit)),
@@ -589,10 +616,10 @@ for (mode_name in config$modes) {
   }
 
   # -- tests
-  dml <- list()
+  dml <- list(); dml_legacy_coding <- list()
   for (contrast_name in names(native_united)) {
-    fit_a <- run_test(native_united[[contrast_name]], contrast_name, sprintf("[%s] %s, methylKit's route", mode_name, contrast_name))
-    fit_b <- run_test(helper$united[[contrast_name]], contrast_name, sprintf("[%s] %s, helper route", mode_name, contrast_name))
+    fit_a <- run_test(native_united[[contrast_name]], covariates[[contrast_name]], sprintf("[%s] %s, methylKit's route", mode_name, contrast_name))
+    fit_b <- run_test(helper$united[[contrast_name]], covariates[[contrast_name]], sprintf("[%s] %s, helper route", mode_name, contrast_name))
     a <- as.data.table(getData(fit_a)); b <- as.data.table(getData(fit_b))
     key_a <- cpg_key(a$chr, a$start, extract_levels); key_b <- cpg_key(b$chr, b$start, extract_levels)
     both <- intersect(key_a, key_b); row_a <- match(both, key_a); row_b <- match(both, key_b)
@@ -622,12 +649,43 @@ for (mode_name in config$modes) {
            note = paste("DML by threshold:",
                         paste(sprintf("%s: %d", names(by_threshold), vapply(by_threshold, function(x) length(x$a), integer(1))), collapse = "; ")))
     dml[[contrast_name]] <- configured
-    rm(fit_a, fit_b, a, b)
+
+    # Part 4, the coding of the covariate: methylKit's route once more, with
+    # the covariate as the legacy script passed it, against the helper route
+    # with the coding of step 05 (fit_b).
+    fit_legacy_coding <- run_test(native_united[[contrast_name]], covariates_legacy[[contrast_name]],
+                                  sprintf("[%s] %s, methylKit's route, covariate coded as in the legacy script", mode_name, contrast_name))
+    coded <- as.data.table(getData(fit_legacy_coding))
+    must(identical(cpg_key(coded$chr, coded$start, extract_levels), key_a), "The test with the legacy coding did not return the CpGs of its united table.")
+    label_coding <- sprintf("%s contrast, %s: ", contrast_name, coding_pair)
+    record_values(part_coding, mode_name, paste0(label_coding, "methylation difference (meth.diff)"), "CpG", coded$meth.diff[row_a], b$meth.diff[row_b],
+                  rule = "tolerance", note = "the difference does not depend on the covariate")
+    record_values(part_coding, mode_name, paste0(label_coding, "p-value"), "CpG", coded$pvalue[row_a], b$pvalue[row_b], rule = "recorded",
+                  note = "one model, with the covariate as an indicator (legacy script) or as the integer codes of a factor (step 05)")
+    record_values(part_coding, mode_name, paste0(label_coding, "q-value (SLIM)"), "CpG", coded$qvalue[row_a], b$qvalue[row_b], rule = "recorded")
+    called_legacy_coding <- lapply(thresholds, function(threshold) {
+      called <- getData(getMethylDiff(fit_legacy_coding, difference = threshold, qvalue = config$dml_qvalue))
+      cpg_key(called$chr, called$start, extract_levels)
+    })
+    names(called_legacy_coding) <- thresholds
+    record(part_coding, mode_name,
+           sprintf("%sDML at q < %g, at each difference threshold of the sweep (%s points)", label_coding, config$dml_qvalue,
+                   paste(range(config$dml_difference_sweep), collapse = " to ")),
+           "DML", sum(vapply(names(by_threshold), function(x) length(union(called_legacy_coding[[x]], by_threshold[[x]]$b)), numeric(1))),
+           sum(vapply(names(by_threshold), function(x) {
+             length(setdiff(called_legacy_coding[[x]], by_threshold[[x]]$b)) + length(setdiff(by_threshold[[x]]$b, called_legacy_coding[[x]]))
+           }, numeric(1))),
+           note = paste("DML by threshold with the legacy coding:",
+                        paste(sprintf("%s: %d", names(called_legacy_coding), lengths(called_legacy_coding)), collapse = "; ")))
+    dml_legacy_coding[[contrast_name]] <- called_legacy_coding[[as.character(config$dml_difference)]]
+    rm(fit_a, fit_b, fit_legacy_coding, a, b, coded)
   }
   record_sets(part_extract, mode_name, "loci in both DML lists", "locus",
               intersect(dml$ploidy$a, dml$heat$a), intersect(dml$ploidy$b, dml$heat$b))
+  record_sets(part_coding, mode_name, paste0(coding_pair, ": loci in both DML lists"), "locus",
+              intersect(dml_legacy_coding$ploidy, dml_legacy_coding$heat), intersect(dml$ploidy$b, dml$heat$b))
   extract_facts[[mode_name]] <- facts
-  rm(native, native_united, helper, facts, scaled, united_now, dml); gc(verbose = FALSE)
+  rm(native, native_united, helper, facts, scaled, united_now, dml, dml_legacy_coding); gc(verbose = FALSE)
 }
 
 if ("corrected" %in% config$modes) {
@@ -635,7 +693,9 @@ if ("corrected" %in% config$modes) {
        "The lines removed by the upper filter, counted by region, are not the rows that the routes removed.")
 }
 
-# ---- 4. The two legacy defects in methylKit's own objects ---------------------------------
+# ---- 4. The legacy call in methylKit's own objects -----------------------------------------
+# The coding of the covariate was compared above, next to the tests. Here: the
+# two legacy defects.
 # I-38: with header = FALSE methRead returns the rows it returns with its default
 # header = TRUE, and the first line of the file where that line has at least
 # import_min_coverage reads. Nothing else differs.
@@ -797,9 +857,10 @@ unlink(extract_dir, recursive = TRUE)
 
 # ---- 8. Write -------------------------------------------------------------------------------
 # Rows in the order of the argument: the extract, the tables of step 05, the
-# full libraries, the synthetic counts, the order of operations of step 04.
+# full libraries, the coding of the covariate in the legacy script, the
+# synthetic counts, the order of operations of step 04.
 comparisons <- rbindlist(comparisons)
-part_levels <- c(part_extract, part_tables, part_full, part_synthetic, vapply(levels_step04, part_order, character(1)))
+part_levels <- c(part_extract, part_tables, part_full, part_coding, part_synthetic, vapply(levels_step04, part_order, character(1)))
 must(all(comparisons$part %in% part_levels), "A comparison belongs to no part.")
 comparisons <- comparisons[order(match(part, part_levels))]          # a stable sort: rows of one part stay in the order they were made
 comparisons[, methylkit_version := as.character(utils::packageVersion("methylKit"))]
