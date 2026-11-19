@@ -18,8 +18,8 @@
 #                 are in both primary lists (the legacy "interaction-DML").
 #                 Heat is confounded with cohort (issue I-01), so this is a
 #                 ploidy by cohort interaction, and must be described as one.
-#             A3  both contrasts without the four heat libraries that also had
-#                 the acute heat shock (issue I-04).
+#             A3  both contrasts without the heat libraries that also had the
+#                 acute heat shock (issue I-04).
 #             A4  ploidy within one cohort (issues I-07 and I-01): diploid
 #                 against triploid among the controls alone, and among the
 #                 heat-treated libraries alone. The control-only contrast is what
@@ -122,6 +122,15 @@
 #             minus (diploid heat minus diploid control), from the same pooled
 #             percentages. The test is on the log-odds scale and the effect
 #             size on the percentage scale, as for the main effects.
+#           - Reading the list sizes. The difference between two small groups
+#             is noisier than the difference between two large ones, so it
+#             passes the difference cutoff by chance more often. This applies to
+#             the analyses on fewer libraries (A3, A4, A5) and to the
+#             interaction contrast of A2, whose four groups are each about half
+#             the size of a main-effect group. Without the overdispersion
+#             correction such an analysis can return more DML than the primary
+#             one; a longer list is then not by itself evidence of more
+#             differences.
 #           - The primary lists and the loci in both are read from step 05. In a
 #             full run A0 must reproduce them exactly, and the script stops if
 #             it does not. In test mode the p-values and differences of A0 must
@@ -253,9 +262,9 @@ registry <- rbindlist(list(
            "interaction", "all", "ploidy + heat", "none", "Chisq", both_modes),
   analysis("A2_interaction_mn_f", "The same interaction test with the variation among animals estimated and the F test. Issues I-02 and I-06.",
            "interaction", "all", "ploidy + heat", "MN", "F", both_modes),
-  analysis("A3_ploidy_no_acute", "Do the ploidy DML depend on the four heat libraries that also had the acute heat shock? Issue I-04.",
+  analysis("A3_ploidy_no_acute", "Do the ploidy DML depend on the heat libraries that also had the acute heat shock? Issue I-04.",
            "ploidy", "without_acute_heat_shock", "heat", "none", "Chisq"),
-  analysis("A3_heat_no_acute", "Do the heat DML depend on the four heat libraries that also had the acute heat shock? Issue I-04.",
+  analysis("A3_heat_no_acute", "Do the heat DML depend on the heat libraries that also had the acute heat shock? Issue I-04.",
            "heat", "without_acute_heat_shock", "ploidy", "none", "Chisq"),
   analysis("A4_ploidy_in_control", "Which CpGs differ between diploids and triploids among the control animals alone? This is what 'under control conditions' describes. Issues I-07 and I-01.",
            "ploidy", "control_only", "none", "none", "Chisq"),

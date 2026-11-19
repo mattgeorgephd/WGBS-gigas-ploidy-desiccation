@@ -119,7 +119,7 @@ figure_numbers  <- c(ploidy = 6L, heat = 7L, shared = 8L)   # figure of the draf
 figure_ontology <- "BP"                                     # the three figures show biological process only (their captions)
 label_seed      <- 11L                                      # seed of the label placement (ggrepel)
 label_width     <- 28L                                      # characters per line in a label
-subtitle_width  <- 78L                                      # characters per line in a panel subtitle
+subtitle_width  <- 90L                                      # characters per line in a panel subtitle
 value_tolerance <- 0.025                                    # a REVIGO value "equals" log10 p within this (p rounded to two digits)
 revigo_exports  <- c(code_revigo      = "code/Revigo.R",    # plot scripts exported by REVIGO, relative to 08_archive/
                      code_old_revigo  = "code/OLD/Revigo.R",
@@ -150,7 +150,8 @@ secondary_ids <- unique(as.data.table(AnnotationDbi::toTable(GO.db::GOSYNONYM))[
 obsolete_ids <- AnnotationDbi::keys(GO.db::GOOBSOLETE)
 primary_id <- function(ids) {            # the current ID of a term given under a secondary ID; other IDs unchanged
   hit <- secondary_ids$primary_id[match(ids, secondary_ids$secondary_id)]
-  ifelse(is.na(hit), ids, hit)
+  out <- as.character(ids); out[!is.na(hit)] <- hit[!is.na(hit)]
+  out
 }
 
 # Legacy enrichment: every tested term of the nine Fisher tables.

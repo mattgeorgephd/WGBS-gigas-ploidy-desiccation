@@ -2,7 +2,7 @@
 
 How to continue this work from the repository alone, for a new session or a person. The working session rewrites the "State" and "In flight" sections whenever it pushes.
 
-Last updated: 2026-11-19 03:25 UTC.
+Last updated: 2026-11-19 03:45 UTC.
 
 ## If the session ends or its machine is replaced
 
@@ -34,7 +34,15 @@ What a new session cannot get from git: the download cache (step 4 restores it);
 | Step 11 (semantic similarity) and step 12 (qPCR) | Written by agents; committed as unreviewed snapshots; independent review and fixes in progress. `01_pipeline/README.md` still lists them as planned. |
 | Step 13 (manuscript values) | The script works. `03_input_files/manuscript/manuscript_values_map.csv` holds three starter rows; the full inventory is being produced (see "In flight"). |
 | Sensitivity analyses | `06_diagnostics/dml_sensitivity.R` written by an agent and tested on 20,000 CpGs only; unreviewed. The full model fits have not been run (about two hours on four cores: `Rscript 06_diagnostics/dml_sensitivity.R`). |
-| Verification of the audit | In progress (see "In flight"). Reports received so far, not yet carried into `issues.md`: claim C1 (incomplete GO universe, I-39) confirmed, with the cause now shown directly in the file on gannet and six small corrections; claim C2 (file-reading fault, I-40) confirmed in its numbers, with four corrections to the issue text and one new defect to log (the legacy Fisher tests counted their totals in map lines and their term counts in transcripts). Both reports are in `agent_workflows/results/audit-verification.json`. |
+| Verification of the audit | In progress (see "In flight"). Four of nine claim reports received, none yet carried into `issues.md`; all are in `agent_workflows/results/audit-verification.json`. Summary below. |
+
+### Verification reports received and still to be carried into `issues.md`
+
+- **C1, incomplete GO universe (I-39): confirmed.** The cause is now shown in the file on gannet (a line cut at a byte offset that is a multiple of 4,096, followed by a line from the far side of the gap). Six small corrections to the issue text. The control-only universe has the same defect.
+- **C2, file-reading fault (I-40): numbers confirmed.** Four corrections to the issue text; the shared set lost no transcripts, so its tests are unaffected by this fault. New defect to log: the legacy Fisher tests counted their totals in map lines (48,263) and their term counts in transcripts (27,469).
+- **C3, ontology release (I-37, I-28): reproduction exact, one inference withdrawn.** The tables pin GO.db 3.13.0 only; topGO 2.34.0, 2.44.0 and 2.54.0 give identical files. The version strings in the Methods are verbatim from Venkataraman et al. 2022. To log: three "-new" tables in the archive come from a later run on GO.db 3.16.0; and the REVIGO figures (Figures 6 to 8) were drawn from all GO terms attached to DML-bearing transcripts, not from terms with p < 0.01, so most plotted and named terms are not enriched even by the draft's own test. This changes I-22, the header of step 09, and the premise of step 11.
+- **C4a, the eligible-universe argument (I-41): central result holds, one conclusion must be withdrawn.** "No GO term enriched" was reproduced independently at the configured settings; the broadest term ("organelle") crosses q = 0.05 under some settings, so the statement needs its sensitivity. To withdraw: "DML are about twice as likely as other eligible CpGs to lie in gene bodies". Lists made by shuffling ploidy labels show the same odds ratio, so it is a property of the selection rule. The eligible background is fairer than all CpGs but not fair.
+- **New finding, checked a second time by the working session:** with ploidy labels shuffled within cohort (1,000 permutations), a median of 751 CpGs pass the 20-point rule (5th to 95th percentile 514 to 1,316) against 1,040 observed; 12% of permutations reach the observed count (14% with the coverage filter). The q-value filter removes none of the CpGs above 20 points. The number of ploidy DML is therefore not distinguishable from chance differences among animals. This belongs with I-06 and bears on every ploidy result. Script: scratch only so far; to be added to `06_diagnostics/dml_sensitivity.R` as a permutation analysis.
 
 ## In flight when this file was last updated
 
@@ -42,8 +50,8 @@ Four agent runs (scripts and partial results in `07_documentation/agent_workflow
 
 | Run | Finished | Still to come | If lost |
 |---|---|---|---|
-| `audit-verification` | claims C1, C2 | claims C3 to C8 (ontology release; eligible-universe argument, by theory and by independent re-implementation; feature odds ratios; coverage filter and the 2.2 kb locus; legacy GO definitions and Table 1; CpG counts and correlations), six code reviews, six verifications | Run the script again; or check by hand the claims that matter most to the authors (C4, C5, C6). |
-| `build-steps-11-12` | none | build, review, fix for both steps | The snapshot of both scripts is in git. Review each (run twice, compare outputs, recompute key numbers), then mark done in `01_pipeline/README.md`. |
+| `audit-verification` | claims C1, C2, C3, C4a | claims C4b to C8 (eligible-universe result by independent re-implementation; feature odds ratios; coverage filter and the 2.2 kb locus; legacy GO definitions and Table 1; CpG counts and correlations), six code reviews, six verifications | Run the script again; or check by hand the claims that matter most to the authors (C4, C5, C6). |
+| `build-steps-11-12` | build of step 12 | build of step 11; review and fix for both | The snapshot of both scripts is in git. Review each (run twice, compare outputs, recompute key numbers), then mark done in `01_pipeline/README.md`. |
 | `manuscript-values`, first batch (Methods, Results 3.1 to 3.3, figure legends) | extraction for all four parts; mapping for Results 3.1 | mapping for three parts; verification for four | Extracted statements and finished mappings are in `results/manuscript-values-batch1.json`. Run the script for the unfinished parts. |
 | `build-dml-sensitivity` | none | build, review, fix | The snapshot of the script is in git. Review it, then run it in full. |
 
