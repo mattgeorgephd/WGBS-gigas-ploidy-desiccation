@@ -22,13 +22,14 @@
 #                how many libraries they reach the cutoff, how many lie in the
 #                repeat track and on the mitochondrial sequence, and what share
 #                lies in runs of removed CpGs;
-#             d. shows that the DML counts of b are the lists that step 05 would
-#                report under each rule: in the tables of step 05 the q-value
-#                rule decides almost nothing, no rule changes the scaling of a
-#                library, and q-values estimated again on the kept CpGs give
-#                the same lists.
+#             d. gives the evidence on whether the DML counts of b are the
+#                lists that step 05 would report under each rule: how many CpGs
+#                above the difference threshold fail the q-value rule in the
+#                tables of step 05, whether a rule changes the scaling of a
+#                library, and whether q-values estimated again on the kept CpGs
+#                give the same lists.
 #
-# Run       Rscript 06_diagnostics/coverage_filter_variants.R      (about 12 minutes; 1.5 GB of memory; one core)
+# Run       Rscript 06_diagnostics/coverage_filter_variants.R      (about 7 minutes; 1.6 GB of memory; one core)
 #           Needs the 22 coverage files in the cache (step 01).
 #
 # Reads     03_input_files/metadata/wgbs_libraries.csv
@@ -40,18 +41,18 @@
 # Writes    06_diagnostics/coverage_filter_variants.csv       one row per filter rule
 #           06_diagnostics/coverage_filter_cutoffs.csv        one row per library
 #           06_diagnostics/coverage_filter_removed_cpgs.csv   one row per set of CpGs
-#           06_diagnostics/coverage_filter_qvalue_rule.csv    one row per CpG set and contrast
+#           06_diagnostics/coverage_filter_qvalue_rule.csv    one row per set of CpGs and contrast
 #
 # Notes     - What methylKit does (read in the source of methylKit 1.28.0):
 #             filterByCoverage(hi.perc = p) computes for each library
 #             quantile(coverage, p / 100), R's default quantile (type 7), over
 #             the rows that the import kept, and keeps the rows with coverage
 #             below that value. Which rows the import kept is set by
-#             methRead(mincov = ...). normalizeCoverage() then multiplies the
-#             counts of a library by the largest median coverage among the
-#             libraries divided by its own median, and unite() keeps the CpGs
-#             present in every library. A CpG is therefore lost when a single
-#             library is at or above its cutoff there.
+#             methRead(mincov = ...). normalizeCoverage() then scales the counts
+#             of a library by the largest median coverage among the libraries
+#             divided by its own median, and unite() keeps the CpGs present in
+#             every library. A CpG is therefore lost when a single library is at
+#             or above its cutoff there.
 #           - "Base" is the lowest read count of the CpGs over which the
 #             percentile is taken. Base 2 is config$import_min_coverage, the
 #             mincov of the legacy DML script, and the base of corrected mode.
@@ -62,7 +63,12 @@
 #             unless each is identical to the value that the pipeline's
 #             upper_coverage_cutoff() gives for the same file, and unless the
 #             cutoffs of base 2 are those in library_filtering_corrected.csv.
-#             "Pooled" is one cutoff from the summed histograms of all libraries.
+#             The pooled cutoff is taken from the summed histograms of all
+#             libraries (base 2) and applied to every library. In the cutoff
+#             table, n_cpg_base_<b> is the number of CpGs over which the
+#             percentile is taken, and n_removed_<...> is the number of CpGs
+#             with at least config$min_coverage reads at or above the cutoff:
+#             the rows that the filter takes from the library.
 #           - Rules. "per library": each library has its own cutoff. "above the
 #             cutoff only": a CpG with exactly the cutoff number of reads stays.
 #             The last three rules remove a CpG only when at least 2 libraries,
@@ -70,15 +76,18 @@
 #             their cutoffs. methylKit has no such rule, because its filter acts
 #             within one library. Here these three rules drop CpGs from the
 #             united table of legacy mode, after the libraries were scaled.
-#           - Column cpg_removed counts CpGs of legacy mode that a rule drops.
-#             ploidy_dml, heat_dml and dml_in_both_lists count the DML of legacy
-#             mode at kept CpGs. They are the lists that step 05 would give
-#             under the rule if two things hold, and the table reports both.
+#           - Column cpg_removed counts the CpGs of legacy mode that a rule
+#             drops. ploidy_dml, heat_dml and dml_in_both_lists count the DML of
+#             legacy mode at kept CpGs. They are the lists that step 05 would
+#             give under the rule if two things hold, and the table reports both.
 #             (1) libraries_with_changed_median: the number of libraries whose
 #             median coverage, over the CpGs that the library keeps under the
 #             rule, differs from its median in legacy mode. Where it is 0 the
 #             scaling factors, the normalized counts, and with them the p-value
 #             and the difference of every kept CpG are those of legacy mode.
+#             For corrected mode this is also checked in the tables of step 05:
+#             the script stops unless the p-values and the differences of the
+#             CpGs of corrected mode are identical in both modes.
 #             (2) lists_same_with_reestimated_q: q-values depend on the set of
 #             CpGs tested. They are estimated again on the kept CpGs with the
 #             function that calculateDiffMeth applies (methylKit's p.adjusted,
@@ -87,12 +96,18 @@
 #             for locus. The script stops unless this estimate reproduces the
 #             q-values of step 05 in both modes to a relative difference below
 #             q_tolerance.
+#           - The q-value table gives, for each set of CpGs and contrast, the
+#             CpGs above the difference threshold (n_above_difference), those of
+#             them that fail the q-value rule (n_failing_q), and how close the
+#             q-values come to the cutoff from either side (largest_q_of_dml,
+#             smallest_q_failing; three significant digits).
 #           - A run is a set of removed CpGs on one sequence in which neighbours
 #             are no more than run_gap_bp apart, the rule by which step 07
 #             groups DML into regions. Kept CpGs may lie between them. The share
-#             of removed CpGs in runs of run_min_cpgs or more is set against the
-#             same share for random sets of as many tested CpGs: n_draws draws
-#             without replacement, set.seed(seed).
+#             of removed CpGs in runs of run_min_cpgs (10) or more is set
+#             against the same share for random sets of as many tested CpGs:
+#             n_draws (1,000) sets, each drawn without replacement, after
+#             set.seed(seed). Nothing else in the script is random.
 #           - First line of a file. Legacy mode lost it (issue I-38). As in the
 #             pipeline, the cutoff of a library is computed from every line in
 #             both modes. The tested CpGs are looked up in each file as legacy
@@ -102,6 +117,8 @@
 #             give exactly the CpGs of united_cpg_legacy.csv.gz.
 #           - The repeat track is the transposable element track of step 07
 #             (RepeatMasker annotation), with the overlap rule of step 07.
+#             Unplaced scaffolds are all sequences other than the ten linkage
+#             groups and the mitochondrial sequence (run_config.R).
 #           - Raw coverage of the tested CpGs is held in memory only; no table
 #             with one row per CpG is written.
 
@@ -113,14 +130,18 @@ setDTthreads(config$cores)             # results do not depend on the number of 
 
 # ---- Settings --------------------------------------------------------------------------
 percentile   <- config$upper_coverage_percentile
-base_import  <- as.integer(config$import_min_coverage)                # base of corrected mode
+# Lowest read count of the CpGs over which the percentile is taken ("base"):
+# every CpG with reads (mincov = 1 of the legacy coverage script), the import
+# threshold of the pipeline (mincov = 2 of the legacy DML script; the base of
+# corrected mode), and the default mincov of methRead in the installed methylKit.
+base_import  <- as.integer(config$import_min_coverage)
 bases        <- c(1L, base_import, as.integer(formals(methylKit::methRead)$mincov))
 run_gap_bp   <- 1000L                  # removed CpGs no further apart than this form one run (the gap of step 07's DML regions)
-run_min_cpgs <- 10L                    # a run of at least this many removed CpGs is a long run
-n_draws      <- 1000L                  # random sets of tested CpGs for the reference of the run statistic
-seed         <- 20261119L
-q_tolerance  <- 1e-9                   # largest relative difference accepted between re-estimated and stored q-values
-contrasts    <- c(ploidy = "ploidy", heat = "heat")
+run_min_cpgs <- 10L                    # the run statistic counts removed CpGs in runs of at least this many
+n_draws      <- 1000L                  # random sets of tested CpGs that give the reference for the run statistic
+seed         <- 20261119L              # for those draws; nothing else in this script is random
+q_tolerance  <- 1e-9                   # largest relative difference accepted between a q-value estimated here and the one step 05 stored
+contrast_names <- c(ploidy = "ploidy", heat = "heat")
 stopifnot(!anyDuplicated(bases))
 
 out_file <- function(name) here("06_diagnostics", paste0("coverage_filter_", name, ".csv"))
@@ -141,8 +162,8 @@ hist_quantile <- function(counts, prob) {
   h <- index - lo
   if (h > 0 && value_hi != value_lo) (1 - h) * value_lo + h * value_hi else as.numeric(value_lo)
 }
-# Upper cutoff from a histogram: the percentile over the CpGs with at least `base` reads.
-cutoff_of <- function(counts, base) hist_quantile(replace(counts, seq_along(counts) < base, 0L), percentile / 100)
+# Upper cutoff from a histogram: the percentile over the CpGs with at least base_reads reads.
+cutoff_of <- function(counts, base_reads) hist_quantile(replace(counts, seq_along(counts) < base_reads, 0L), percentile / 100)
 
 # ---- 1. Tables of step 05 ------------------------------------------------------------------
 lib <- read_libraries(); n_lib <- nrow(lib)
@@ -160,19 +181,19 @@ read_mode <- function(mode_name) {
   legacy_row <- match(cpg_key(position$chr, position$start, seq_levels), tested_key)
   must(!anyNA(legacy_row) && !is.unsorted(legacy_row, strictly = TRUE),
        "The CpGs of ", mode_name, " mode are not CpGs of legacy mode in the same order; an upper filter can only remove CpGs.")
-  stats <- lapply(contrasts, function(contrast_name) {
+  stats <- lapply(contrast_names, function(contrast_name) {
     d <- fread(tab05(sprintf("diffmeth_%s_%s.csv.gz", contrast_name, mode_name)), select = c("chr", "start", "pvalue", "qvalue", "meth.diff"))
     must(identical(d$chr, position$chr) && identical(d$start, position$start) && !anyNA(d$pvalue) && !anyNA(d$qvalue) && !anyNA(d$meth.diff),
          "diffmeth_", contrast_name, "_", mode_name, ".csv.gz does not hold one complete row per CpG of the united table.")
     list(pvalue = d$pvalue, qvalue = d$qvalue, difference = d$meth.diff)
   })
-  dml <- lapply(c(contrasts, shared = "shared"), function(set_name) {
+  dml <- lapply(c(contrast_names, shared = "shared"), function(set_name) {
     d <- fread(tab05(sprintf("dml_%s_%s.csv", set_name, mode_name)), select = c("chr", "start"))
     rows <- match(cpg_key(d$chr, d$start, seq_levels), tested_key)
     must(!anyNA(rows) && !anyDuplicated(rows), "dml_", set_name, "_", mode_name, ".csv holds a locus that is not a tested CpG, or a locus twice.")
     sort(rows)
   })
-  for (contrast_name in contrasts) {   # the lists are the two rules of step 05 applied to its table of all CpGs
+  for (contrast_name in contrast_names) {   # the lists are the two rules of step 05 applied to its table of all CpGs
     s <- stats[[contrast_name]]
     must(identical(dml[[contrast_name]], legacy_row[s$qvalue < config$dml_qvalue & abs(s$difference) > config$dml_difference]),
          "dml_", contrast_name, "_", mode_name, ".csv is not the q-value rule and the difference rule applied to the diffmeth table.")
@@ -186,7 +207,7 @@ must(identical(record$legacy$library_id, lib$library_id) && identical(record$cor
      "The library_filtering tables of step 05 are not in the order of the sample sheet.")
 # At the CpGs of both modes the p-values and the differences must be the same:
 # the filter of corrected mode did not change the normalized counts.
-for (contrast_name in contrasts) {
+for (contrast_name in contrast_names) {
   s_legacy <- step05$legacy$stats[[contrast_name]]; s_corrected <- step05$corrected$stats[[contrast_name]]; rows <- step05$corrected$legacy_row
   must(identical(s_legacy$pvalue[rows], s_corrected$pvalue) && identical(s_legacy$difference[rows], s_corrected$difference),
        "The ", contrast_name, " p-values or differences of a CpG differ between the modes of step 05; the DML of legacy mode at kept CpGs ",
@@ -213,9 +234,9 @@ for (lib_i in seq_len(n_lib)) {
   rm(cov_table)
   histograms[[lib_i]] <- tabulate(reads)
   first_line_reads[lib_i] <- reads[1L]
-  for (base in bases)
-    must(identical(cutoff_of(histograms[[lib_i]], base), as.numeric(upper_coverage_cutoff(reads, base, percentile))),
-         "The cutoff from the histogram of ", lib$library_id[lib_i], " (base ", base, ") is not the value of upper_coverage_cutoff().")
+  for (base_reads in bases)
+    must(identical(cutoff_of(histograms[[lib_i]], base_reads), as.numeric(upper_coverage_cutoff(reads, base_reads, percentile))),
+         "The cutoff from the histogram of ", lib$library_id[lib_i], " (base ", base_reads, ") is not the value of upper_coverage_cutoff().")
   enough <- reads >= config$min_coverage
   in_all_complete <- if (lib_i == 1L) key[enough] else in_all_complete[in_all_complete %in% key[enough]]
   if (first_line_lost("legacy")) enough[1L] <- FALSE                # legacy mode never saw line 1
@@ -240,7 +261,7 @@ rm(in_all_complete, in_all_legacy)
 max_reads <- max(lengths(histograms))
 counts <- vapply(histograms, function(h) c(h, integer(max_reads - length(h))), integer(max_reads))   # read count by library
 reads_axis <- seq_len(max_reads)
-cutoff_library <- vapply(bases, function(base) apply(counts, 2L, cutoff_of, base = base), numeric(n_lib))
+cutoff_library <- vapply(bases, function(base_reads) apply(counts, 2L, cutoff_of, base_reads = base_reads), numeric(n_lib))
 dimnames(cutoff_library) <- list(lib$library_id, as.character(bases))
 cutoff_pooled <- cutoff_of(rowSums(counts), base_import)
 log_msg("pooled cutoff over all libraries (base %d): %g reads", base_import, cutoff_pooled)
@@ -275,21 +296,26 @@ must(isTRUE(all.equal(unname(cutoff_library[, as.character(base_import)]), recor
 n_removed_from_library <- function(cutoffs) vapply(seq_len(n_lib), function(lib_i)
   sum(counts[reads_axis >= config$min_coverage & reads_axis >= cutoffs[lib_i], lib_i]), integer(1))
 cutoff_table <- data.table(library_id = lib$library_id, cohort = lib$cohort, ploidy = as.character(lib$ploidy), treatment = as.character(lib$treatment))
-for (base in bases) set(cutoff_table, j = sprintf("n_cpg_base_%d", base), value = as.integer(colSums(counts[reads_axis >= base, , drop = FALSE])))
-for (base in bases) set(cutoff_table, j = sprintf("cutoff_base_%d", base), value = cutoff_library[, as.character(base)])
+for (base_reads in bases) set(cutoff_table, j = sprintf("n_cpg_base_%d", base_reads), value = as.integer(colSums(counts[reads_axis >= base_reads, , drop = FALSE])))
+for (base_reads in bases) set(cutoff_table, j = sprintf("cutoff_base_%d", base_reads), value = cutoff_library[, as.character(base_reads)])
 set(cutoff_table, j = "cutoff_pooled", value = cutoff_pooled)
-for (base in bases) set(cutoff_table, j = sprintf("n_removed_base_%d", base), value = n_removed_from_library(cutoff_library[, as.character(base)]))
+for (base_reads in bases) set(cutoff_table, j = sprintf("n_removed_base_%d", base_reads), value = n_removed_from_library(cutoff_library[, as.character(base_reads)]))
 set(cutoff_table, j = "n_removed_pooled", value = n_removed_from_library(rep(cutoff_pooled, n_lib)))
 
 # ---- 4. Filter rules (b) -----------------------------------------------------------------------
 majority <- n_lib %/% 2L + 1L                                        # more than half of the libraries
-new_rule <- function(label, cutoff, base = base_import, above_only = FALSE, min_libraries = 1L, step05_mode = NA_character_)
-  data.table(rule = label, cutoff = cutoff, base = base, above_only = above_only, min_libraries = min_libraries, step05_mode = step05_mode)
+# One row per rule: where the cutoff comes from, the base of its percentile,
+# whether a CpG at the cutoff stays, how many libraries must reach the cutoff
+# for a CpG to be removed, and the mode of step 05 that applies the rule.
+new_rule <- function(label, cutoff, percentile_base = base_import, above_only = FALSE, min_libraries = 1L, step05_mode = NA_character_)
+  data.table(rule = label, cutoff = cutoff, percentile_base = percentile_base, above_only = above_only, min_libraries = min_libraries,
+             step05_mode = step05_mode)
 rules <- rbind(
-  new_rule("no upper filter", "none", base = NA_integer_, above_only = NA, min_libraries = NA_integer_, step05_mode = "legacy"),
+  new_rule("no upper filter", "none", percentile_base = NA_integer_, above_only = NA, min_libraries = NA_integer_, step05_mode = "legacy"),
   new_rule(sprintf("per library, base %d", base_import), "per library", step05_mode = "corrected"),
   new_rule(sprintf("per library, base %d, above the cutoff only", base_import), "per library", above_only = TRUE),
-  rbindlist(lapply(setdiff(bases, base_import), function(base) new_rule(sprintf("per library, base %d", base), "per library", base = base))),
+  rbindlist(lapply(setdiff(bases, base_import), function(base_reads)
+    new_rule(sprintf("per library, base %d", base_reads), "per library", percentile_base = base_reads))),
   new_rule(sprintf("pooled, base %d", base_import), "pooled"),
   new_rule(sprintf("per library, base %d, at least 2 libraries", base_import), "per library", min_libraries = 2L),
   new_rule(sprintf("per library, base %d, more than half of the libraries", base_import), "per library", min_libraries = majority),
@@ -297,7 +323,7 @@ rules <- rbind(
 n_rules <- nrow(rules)
 stopifnot(!anyDuplicated(rules$rule))
 rule_cutoffs <- function(rule_i) switch(rules$cutoff[rule_i], none = no_bound, pooled = rep(cutoff_pooled, n_lib),
-                                        `per library` = unname(cutoff_library[, as.character(rules$base[rule_i])]))
+                                        `per library` = unname(cutoff_library[, as.character(rules$percentile_base[rule_i])]))
 # Number of libraries in which each tested CpG is at or above the cutoff (above it where above_only).
 libraries_at_cutoff <- function(cutoffs, above_only = FALSE) {
   n <- integer(n_tested)
@@ -320,9 +346,9 @@ changed_median <- vapply(seq_len(n_rules), function(rule_i) {
 
 dml_legacy <- step05$legacy$dml
 variants <- data.table(
-  rule = rules$rule, cutoff = rules$cutoff, percentile_base_reads = rules$base,
+  rule = rules$rule, cutoff = rules$cutoff, percentile_base_reads = rules$percentile_base,
   removed_when = fifelse(rules$cutoff == "none", NA_character_, fifelse(rules$above_only, "above the cutoff", "at or above the cutoff")),
-  min_libraries = rules$min_libraries, step05_mode = rules$step05_mode,
+  in_at_least_n_libraries = rules$min_libraries, step05_mode = rules$step05_mode,
   cpg_kept = vapply(keep, sum, integer(1)), cpg_removed = n_tested - vapply(keep, sum, integer(1)),
   pct_removed = round(100 * (1 - vapply(keep, mean, numeric(1))), 2),
   ploidy_dml = vapply(keep, function(k) sum(k[dml_legacy$ploidy]), integer(1)),
@@ -370,6 +396,7 @@ random_pct <- replicate(n_draws, {
   100 * mean(run_size(selected) >= run_min_cpgs)
 })
 
+# One row per set of CpGs. The run columns are filled for sets of removed CpGs only.
 describe_set <- function(label, in_set, within_removed) data.table(
   cpg_set = label, n_cpg = sum(in_set), pct_of_removed = if (within_removed) round(100 * sum(in_set) / n_removed, 2) else NA_real_,
   n_in_repeat_track = sum(in_set & in_repeat), pct_in_repeat_track = round(100 * sum(in_set & in_repeat) / sum(in_set), 2),
@@ -388,6 +415,7 @@ all_removed <- removed_table$cpg_set == "removed by the rule of corrected mode"
 set(removed_table, j = "random_sets_pct_in_long_runs_median", value = fifelse(all_removed, round(median(random_pct), 2), NA_real_))
 set(removed_table, j = "random_sets_pct_in_long_runs_max", value = fifelse(all_removed, round(max(random_pct), 2), NA_real_))
 set(removed_table, j = "random_sets_drawn", value = fifelse(all_removed, n_draws, NA_integer_))
+setnames(removed_table, names(removed_table), sub("long_runs", sprintf("runs_of_%d_or_more", run_min_cpgs), names(removed_table), fixed = TRUE))
 
 # ---- 6. The q-value rule (d) ----------------------------------------------------------------------
 # One row per CpG set and contrast: the CpGs above the difference threshold, how
@@ -403,15 +431,15 @@ q_row <- function(cpg_set, q_values, contrast_name, legacy_rows, difference, q) 
              smallest_q_failing = if (any(above & !passes)) signif(min(q[above & !passes]), 3) else NA_real_,
              list_is_legacy_dml_at_these_cpgs = identical(legacy_rows[above & passes], legacy_list[legacy_list %in% legacy_rows]))
 }
-q_stored <- rbindlist(lapply(names(step05), function(mode_name) rbindlist(lapply(contrasts, function(contrast_name) {
+q_stored <- rbindlist(lapply(names(step05), function(mode_name) rbindlist(lapply(contrast_names, function(contrast_name) {
   s <- step05[[mode_name]]$stats[[contrast_name]]
   q_row(paste(mode_name, "mode"), "as stored by step 05", contrast_name, step05[[mode_name]]$legacy_row, s$difference, s$qvalue)
 }))))
 
 # q-values of each rule: methylKit's SLIM estimate on the p-values of the kept CpGs.
 slim_q <- getFromNamespace("p.adjusted", "methylKit")
-log_msg("estimating q-values again on the CpGs kept by each of %d rules, 2 contrasts", n_rules)
-q_estimated <- rbindlist(lapply(seq_len(n_rules), function(rule_i) rbindlist(lapply(contrasts, function(contrast_name) {
+log_msg("estimating q-values again on the CpGs kept by each of %d rules, for %d contrasts", n_rules, length(contrast_names))
+q_estimated <- rbindlist(lapply(seq_len(n_rules), function(rule_i) rbindlist(lapply(contrast_names, function(contrast_name) {
   s <- step05$legacy$stats[[contrast_name]]; kept_rows <- which(keep[[rule_i]])
   q_here <- slim_q(s$pvalue[kept_rows], method = "SLIM")
   mode_name <- rules$step05_mode[rule_i]

@@ -12,6 +12,7 @@ Checks that the pipeline reproduces what it should, and controls for the analyse
 | `cohort_separation.R` | Do the libraries group by cohort or by ploidy before any locus is tested? Median correlation within against between groups, and the number of libraries a single threshold on each principal component assigns to their group, each with a permutation p-value (10,000 label permutations). Reads the step 04 tables. Half a minute. Issues I-16 and I-44. | `cohort_separation_correlation.csv`, `cohort_separation_pca.csv` |
 | `universe_file_cut.R` | Shows where the gene universe of the legacy GO enrichment lost its run of 15,666 transcripts (15,653 of them to the cut): fetches 4 KB of the 20 GB table on gannet around the place where a line is cut and a line from far later in the sort order follows, and checks that the two transcripts at the cut bound the gap in the universe. A few seconds; needs gannet. Issue I-39. | `universe_file_cut.csv`, `universe_file_cut_context.txt` |
 | `table1_group_means.R` | What the "methylation difference" values of Table 1 are made of: read-pooled percent methylation of the four groups at each of its 20 loci, the ploidy difference within each cohort, the cohort difference within each ploidy, and the per-library values. Descriptive; no test. Under a minute. Issues I-02 and I-07. | `table1_group_means.csv`, `table1_library_values.csv` |
+| `library_methylation_level.R` | What the differences between groups of libraries consist of. Overall methylation level of each library; the ploidy contrast inside each cohort by direction; whether a CpG's dependence on the level predicts the contrast of the other cohort; counts with one library left out; complete enumeration of regroupings, with and without the five libraries of highest level, and for the acute heat shock; similarity of the libraries of each group; library values at the CpGs called with the overdispersion correction. Tests nothing at single CpGs. About 3 minutes, 3 GB; part 8 needs the outputs of `dml_sensitivity.R`. Issues I-49, I-01, I-02, I-04, I-07, I-08. Written by the audit session; independent review pending. | `library_methylation_level/` (11 tables, described below) |
 
 Run from the repository root, after the pipeline steps they check:
 
@@ -22,6 +23,7 @@ Rscript 06_diagnostics/table1_group_means.R
 Rscript 06_diagnostics/cohort_separation.R
 Rscript 06_diagnostics/universe_file_cut.R
 Rscript 06_diagnostics/dml_sensitivity.R                                 # full run, after step 05; hours, see below
+Rscript 06_diagnostics/library_methylation_level.R                       # after steps 02 to 05 and, for its part 8, after dml_sensitivity.R
 WGBS_SENSITIVITY_SUBSET=20000 Rscript 06_diagnostics/dml_sensitivity.R   # test of the code on a random sample of CpGs, 10 to 15 minutes
 ```
 
@@ -107,7 +109,49 @@ The analyses of this script are tests of single CpGs with the variation among an
 
 ## Result of the sensitivity analyses
 
-The full run was in progress when this section was written (all 16 analyses of legacy mode fitted; corrected mode fitting). The result will be summarized here and in `issues.md` (I-02, I-04, I-06, I-07) when the run has written its tables.
+Full run of 2026-11-19 (22 fits; 16 in legacy mode, 6 in corrected mode; A0 reproduces step 05 exactly in both). The reading is in `issues.md`, I-06, with the consequences for the interaction (I-02), the acute heat shock libraries (I-04), the control-only contrast (I-07) and the confound (I-01). In short, legacy mode, with corrected mode in parentheses where it was run:
+
+| Analysis | Libraries | DML, uncorrected | DML with the correction, F test | Share of eligible CpGs with p < 0.05, uncorrected and corrected |
+|---|---|---|---|---|
+| Ploidy, heat as covariate (the draft) | 22 | 1,038 (952) | 2 (2); 14 with the chi-squared test | 33% and 5.7% |
+| Heat, ploidy as covariate (the draft) | 22 | 2,351 (2,273) | 16 (6); 185 with the chi-squared test | 43% and 11% |
+| Ploidy by heat interaction | 22 | 16,971 (16,257) | 2 (2) | 50% and 20% |
+| Ploidy without the acute heat shock libraries | 18 | 1,202 | not run | 30% |
+| Heat without the acute heat shock libraries | 18 | 3,545 | not run | 39% |
+| Ploidy among the controls | 12 | 2,768 | 2 | 37% and 6.7% |
+| Ploidy among the heat-treated | 10 | 12,405 | 125 | 50% and 18% |
+| Heat among the diploids | 11 | 12,487 | not run | 49% |
+| Heat among the triploids | 11 | 6,632 | not run | 46% |
+
+- Dispersion at eligible CpGs: median 3.67 for the observed counts, 1.18 for binomial reads scaled as in step 05 (corrected mode 3.59 and 1.19).
+- Relabelling reference, CpGs above 20 points with the observed ploidy labels against labels reassigned within cohort: all libraries 1,038 against a median of 749, reached by 113 of 1,000 relabellings (corrected mode 952 against 706.5, 137 of 1,000); without the acute heat shock libraries 1,214 against 1,220.5 (505 of 1,000); controls only 3,350 against 2,912.5 (242 of all 924); heat-treated only 13,028 against 4,019.5 (2 of all 252, the smallest share possible); interaction 23,503 against 9,379 (1 of 1,000; corrected mode 22,846 against 9,017, 1 of 1,000).
+- Of the draft's 200 loci in both lists, 99 pass the tested interaction without the correction and none with it (58 and none of the 159 in corrected mode).
+
+What the script does not yet write, and what a statement in I-06 therefore takes from a scratch computation on the cached fits: the number of CpGs with q < 0.01 by whether the coverage filter keeps them (157 of the 287 corrected heat CpGs of legacy mode are removed by the filter, 138 of them mitochondrial), and the lists under the Benjamini-Hochberg adjustment (15 and 4 heat CpGs). To be added to the script in the code pass.
+
+## What the group differences consist of
+
+`library_methylation_level.R` describes the libraries one by one and the contrasts between groups of them (I-49). Files in `library_methylation_level/`:
+
+| File | Content |
+|---|---|
+| `library_level.csv` | One row per library: genome-wide percent CpG, CHG and CHH methylation (Bismark, step 02), mean percent methylation over the tested and over the eligible CpGs in each mode, principal components 1 to 4 of step 04, the ELISA value of the animal where one exists, and `high_level` (above the largest gap in the sorted genome-wide values; `gap_rule` states the gap) |
+| `level_group_tests.csv` | Exact Wilcoxon rank-sum tests of each level measure: ploidy inside each cohort, cohort, ploidy over all libraries, acute heat shock inside the heat cohort; ranges, medians, and whether the two groups are completely separated |
+| `level_correlations.csv` | Genome-wide level against the principal components, the means over tested and eligible CpGs, non-CpG methylation (all libraries and by cohort) and the ELISA value (six animals) |
+| `contrast_direction.csv` | For eight contrasts and both modes: CpGs whose read-pooled difference exceeds the DML threshold, by sign; CpGs exactly at the threshold; mean, median and quartiles of the difference over the eligible CpGs |
+| `contrast_agreement.csv` | The ploidy difference of the heat cohort against that of the control cohort across CpGs: Pearson and Spearman correlation, CpGs above the threshold in both, how many of these have the same sign, and the overlap expected if the two sets were unrelated; with all libraries and without the high ones |
+| `level_slope_prediction.csv`, `level_slope_deciles.csv` | Slope of each CpG's methylation on the genome-wide level, estimated among the libraries of one cohort, against the ploidy difference of the other cohort: correlations, and by tenth of slope the share of eligible CpGs above the threshold in each direction |
+| `leave_one_library_out.csv` | CpGs above the threshold for the ploidy contrast inside each cohort with each library left out in turn |
+| `relabelling_reference.csv` | Complete enumeration: CpGs above the threshold for the observed grouping against every regrouping of the same libraries into groups of the same sizes. Six comparisons per mode; `largest_other_grouping` excludes the observed grouping and its mirror image |
+| `relabelling_small_sets.csv` | Every grouping, with its count, for the comparisons that have at most 252 groupings |
+| `pair_similarity.csv` | Mean pairwise correlation among the diploids and among the triploids of each cohort, against all subsets of the same size from that cohort |
+| `corrected_dml_library_values.csv`, `corrected_dml_group_apart.csv` | Percent methylation of every library at the CpGs that `dml_sensitivity.R` calls with the overdispersion correction, the range of each group, and whether one group lies outside the range of all other libraries |
+
+Three points for reading these tables.
+
+1. **Thresholds and ties.** A CpG counts as above the threshold when the absolute difference exceeds 20 points by more than 1e-9. A difference of exactly 20 points is not counted; `contrast_direction.csv` reports such CpGs separately (20 for the ploidy contrast inside the heat cohort). `dml_sensitivity.R` compares floating-point values without that margin, so its counts can differ from these by a few CpGs (3,350 against 3,349 for the control cohort; medians 4,019.5 against 4,018.5 for the heat cohort). The code pass will give both scripts one rule.
+2. **Complete enumeration.** Where all regroupings are counted, the share at or above the observed count is an exact p-value for the hypothesis that the grouping is unrelated to methylation. It cannot fall below (groupings as extreme as the observed one) divided by (all groupings): 2 of 252 for five against five, 1 of 21 for two against five.
+3. **Exploratory rows.** The five high libraries are found by a rule that ignores the group labels. Setting them aside is nevertheless a choice made after seeing the data, and the rows "without the high libraries" must be read as exploration.
 
 ## Still to be written
 

@@ -1,0 +1,9 @@
+mode,list,n_cpg,n_diploid_heat_apart,n_triploid_heat_apart,n_diploid_control_apart,n_triploid_control_apart,n_no_group_apart
+legacy,A1_ploidy_mn_f,2,0,1,0,0,1
+legacy,A1_heat_mn_f,16,1,2,0,0,13
+legacy,A2_interaction_mn_f,2,0,0,0,0,2
+legacy,A4_ploidy_in_control_mn_f,2,0,0,0,0,2
+legacy,A4_ploidy_in_heat_mn_f,125,6,11,0,0,108
+corrected,A1_ploidy_mn_f,2,0,1,0,0,1
+corrected,A1_heat_mn_f,6,0,1,0,0,5
+corrected,A2_interaction_mn_f,2,0,0,0,0,2

@@ -1,4 +1,4 @@
-cpg_set,n_cpg,pct_of_removed,n_in_repeat_track,pct_in_repeat_track,n_mitochondrial,n_unplaced_scaffold,n_in_long_runs,pct_in_long_runs,random_sets_pct_in_long_runs_median,random_sets_pct_in_long_runs_max,random_sets_drawn
+cpg_set,n_cpg,pct_of_removed,n_in_repeat_track,pct_in_repeat_track,n_mitochondrial,n_unplaced_scaffold,n_in_runs_of_10_or_more,pct_in_runs_of_10_or_more,random_sets_pct_in_runs_of_10_or_more_median,random_sets_pct_in_runs_of_10_or_more_max,random_sets_drawn
 tested in legacy mode,480579,,109966,22.88,363,24592,,,,,
 kept by the rule of corrected mode,454555,,98671,21.71,0,20470,,,,,
 removed by the rule of corrected mode,26024,100,11295,43.4,363,4122,16216,62.31,0.53,1,1000

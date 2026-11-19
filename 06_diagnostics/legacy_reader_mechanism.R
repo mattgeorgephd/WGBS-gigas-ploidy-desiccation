@@ -48,7 +48,7 @@
 #                 lines of the universe map, as in step 09 (issue I-43), and
 #                 counted in transcripts.
 #
-# Run       Rscript 06_diagnostics/legacy_reader_mechanism.R      (about 3 minutes)
+# Run       Rscript 06_diagnostics/legacy_reader_mechanism.R      (2 to 3 minutes)
 #
 # Reads     03_input_files/annotation/legacy/DML-Cov10-20-BOTH-{PLOIDY,HEAT,COMBO}.GeneIDs.geneOverlap.transcriptIDs.GOAnnot.gz
 #           03_input_files/annotation/geneid2go-union1x-BOTH.tab.gz
@@ -105,8 +105,9 @@
 #             hypergeometric tail, computed from the term members of the topGO
 #             object; the script stops unless that computation gives the
 #             p-values of topGO for the two fixed lists, bit for bit, in both
-#             units. 200 lists of each of the three random kinds (600 draws),
-#             set.seed(20261119); the same lists are used for both units.
+#             units. 200 lists of each of the three random kinds (600 draws
+#             without replacement), set.seed(20261119); the same lists are
+#             used for both units.
 #           - The random lists are lists of transcripts. They do not keep the
 #             isoforms of a gene together as a list of genes with a DML does
 #             (issue I-03), so they show what position does and are no null
@@ -114,6 +115,8 @@
 #           - Warning texts are part of the output. They are those of the R
 #             version named in the first row of legacy_reader_mechanism.csv;
 #             the script asks R for English messages.
+#           - The three files are written at the end, after every check has
+#             passed.
 #           - Legacy mode only: the tables and the test belong to the legacy
 #             analysis.
 
@@ -379,12 +382,16 @@ universe <- unique(map_names)
 universe_accession <- accession_number(universe)
 # Every line of a transcript carries the same GO IDs, so one entry per transcript is well defined.
 go_text <- vapply(gene2go, paste, character(1), collapse = ",")
-stopifnot(uniqueN(data.table(map_names, go_text)) == length(universe), !anyDuplicated(universe_accession))
+stopifnot("Lines of one transcript in the universe map carry different GO IDs" =
+            uniqueN(data.table(map_names, go_text)) == length(universe),
+          "Two names of the universe map share an accession number" = !anyDuplicated(universe_accession))
 
 tx_table <- fread(output_path("08_gene_annotation", "tables", "transcript_table.csv.gz"), colClasses = c(gene_id = "character"))
-stopifnot(!anyDuplicated(tx_table$transcript_id), !any(tx_table$chr == config$mito_sequence),
-          setequal(universe, tx_table[in_legacy_universe == TRUE, transcript_id]),
-          tx_table[, uniqueN(chr), by = gene_id][, all(V1 == 1L)])
+stopifnot("The transcript table of step 08 names a transcript twice or places an mRNA on the mitochondrial sequence" =
+            !anyDuplicated(tx_table$transcript_id) && !any(tx_table$chr == config$mito_sequence),
+          "The universe map and the column in_legacy_universe of the transcript table differ" =
+            setequal(universe, tx_table[in_legacy_universe == TRUE, transcript_id]),
+          "A gene of the transcript table lies on two sequences" = tx_table[, uniqueN(chr), by = gene_id][, all(V1 == 1L)])
 sequence_levels <- c(config$linkage_groups, "unplaced scaffolds")
 sequence_of <- function(chr_names) ifelse(chr_names %in% config$linkage_groups, chr_names, "unplaced scaffolds")
 count_by_sequence <- function(sequence_names) as.integer(table(factor(sequence_names, levels = sequence_levels)))
@@ -419,12 +426,16 @@ for (tbl in names(table_tags)) {
   fields <- tstrsplit(paste0(file_lines, "\t"), "\t", fixed = TRUE)    # the added tab keeps a last field that is empty
   # Input as the description above assumes it: ten fields on every line, no comment character, no carriage return,
   # the replacement character absent, quote characters in GO term names only, lines sorted by transcript accession.
-  stopifnot(n_file_lines > 0, length(fields) == length(dml_annotation_columns()), !anyNA(fields[[10]]),
-            nrow(complete) == n_file_lines, identical(complete$transcript, fields[[1]]), identical(complete$GOterm, fields[[8]]),
-            !any(grepl("#", file_lines, fixed = TRUE)), !any(grepl("\r", file_lines, fixed = TRUE)),
-            !any(grepl(replacement, file_lines, fixed = TRUE)),
-            !any(grepl("[\"']", unlist(fields[-8]))),
-            !is.unsorted(accession_number(complete$transcript)))
+  stopifnot(
+    "The table has a line that does not have ten fields" =
+      n_file_lines > 0 && length(fields) == length(dml_annotation_columns()) && !anyNA(fields[[10]]),
+    "The complete read of the pipeline does not return the lines of the table" =
+      nrow(complete) == n_file_lines && identical(complete$transcript, fields[[1]]) && identical(complete$GOterm, fields[[8]]),
+    "The table holds a comment character, a carriage return or the replacement character" =
+      !any(grepl("#", file_lines, fixed = TRUE)) && !any(grepl("\r", file_lines, fixed = TRUE)) &&
+      !any(grepl(replacement, file_lines, fixed = TRUE)),
+    "The table holds a quote character outside the GO term names" = !any(grepl("[\"']", unlist(fields[-8]))),
+    "The table is not sorted by transcript accession" = !is.unsorted(accession_number(complete$transcript)))
 
   # ---- (a) four reads --------------------------------------------------------------------
   add(tbl, "lines_in_file", count_text(n_file_lines))
@@ -449,9 +460,13 @@ for (tbl in names(table_tags)) {
   # Step 09 made the same two reads of the copies that step 08 regenerates.
   s9_complete <- one_row(step09_loss[set == tbl & grepl("^every line", reader)], "legacy_reader_loss.csv")
   s9_default  <- one_row(step09_loss[set == tbl & grepl("^read.table defaults", reader)], "legacy_reader_loss.csv")
-  stopifnot(s9_complete$rows == n_file_lines, s9_complete$transcripts == uniqueN(complete$transcript),
-            s9_complete$genes == uniqueN(complete$geneID), s9_default$rows == nrow(default_read),
-            s9_default$transcripts == uniqueN(default_read$transcript), s9_default$genes == uniqueN(default_read$geneID))
+  stopifnot(
+    "Lines, transcripts or genes of the table differ from legacy_reader_loss.csv of step 09" =
+      s9_complete$rows == n_file_lines && s9_complete$transcripts == uniqueN(complete$transcript) &&
+      s9_complete$genes == uniqueN(complete$geneID),
+    "Rows, transcripts or genes of the default read differ from legacy_reader_loss.csv of step 09" =
+      s9_default$rows == nrow(default_read) && s9_default$transcripts == uniqueN(default_read$transcript) &&
+      s9_default$genes == uniqueN(default_read$geneID))
 
   # ---- (b) unpaired apostrophes, merged rows, interventions ----------------------------------
   # A line with an unpaired apostrophe is one that, read alone, ends inside a string that an apostrophe opened.
@@ -461,7 +476,8 @@ for (tbl in names(table_tags)) {
   unpaired <- rows_default$alone == "'"
   outside_double_quotes <- gsub("\"[^\"]*\"", "", file_lines)
   apostrophes_outside <- nchar(outside_double_quotes) - nchar(gsub("'", "", outside_double_quotes, fixed = TRUE))
-  stopifnot(identical(unpaired, apostrophes_outside %% 2L == 1L), !any(rows_default$alone == "\""))
+  stopifnot("A line ends inside a quoted string for another reason than an odd number of apostrophes outside double quotes" =
+              identical(unpaired, apostrophes_outside %% 2L == 1L) && !any(rows_default$alone == "\""))
   lines_per_row <- rows_default$last_line - rows_default$first_line + 1L
   add(tbl, "lines_with_apostrophe", count_text(sum(has_apostrophe)))
   add(tbl, "lines_with_unpaired_apostrophe", count_text(sum(unpaired)))
@@ -471,8 +487,9 @@ for (tbl in names(table_tags)) {
   add(tbl, "skipped_lines", count_text(n_file_lines - nrow(default_read)))
 
   # The interventions are read from memory. That route returns what the read of the file returns.
-  stopifnot(identical(as.data.frame(suppressWarnings(read_lines_with_quotes(file_lines, quote_settings$default_quotes))),
-                      as.data.frame(default_read)))
+  stopifnot("A read of the lines held in memory does not return what the read of the file returns" =
+              identical(as.data.frame(suppressWarnings(read_lines_with_quotes(file_lines, quote_settings$default_quotes))),
+                        as.data.frame(default_read)))
   repaired <- file_lines
   repaired[unpaired] <- gsub("'", replacement, file_lines[unpaired], fixed = TRUE)
   repaired_read <- with_warnings(read_lines_with_quotes(repaired, quote_settings$default_quotes))
@@ -496,8 +513,10 @@ for (tbl in names(table_tags)) {
                          sequences_named = uniqueN(chr), n_lines = .N, n_rows = sum(starts_row),
                          has_unpaired_term = any(unpaired_line)), by = transcript]
   in_table <- match(per_tx$transcript, tx_table$transcript_id)
-  stopifnot(all(per_tx$genes_named == 1L), all(per_tx$sequences_named == 1L), !anyNA(in_table),
-            identical(tx_table$gene_id[in_table], per_tx$gene_id), identical(tx_table$chr[in_table], per_tx$chr))
+  stopifnot("A transcript of the table is named with two genes or two sequences" =
+              all(per_tx$genes_named == 1L) && all(per_tx$sequences_named == 1L),
+            "Gene or sequence of a transcript differs between the table and the transcript table of step 08" =
+              !anyNA(in_table) && identical(tx_table$gene_id[in_table], per_tx$gene_id) && identical(tx_table$chr[in_table], per_tx$chr))
   per_tx[, `:=`(survives = n_rows > 0L, in_universe = transcript %chin% universe,
                 accession = accession_number(transcript), sequence = sequence_of(chr))]
   stopifnot(setequal(per_tx[survives == TRUE, transcript], default_read$transcript), !anyDuplicated(per_tx$accession))
@@ -589,8 +608,9 @@ for (tbl in names(table_tags)) {
       percent_text(per_tx[survives == FALSE & in_universe == TRUE, .N], per_tx[survives == FALSE, .N]))
   s9_reader <- one_row(step09_funnel[set == tbl & grepl("^3 ", stage)], "legacy_funnel.csv")
   s9_tested <- one_row(step09_funnel[set == tbl & grepl("^4 ", stage)], "legacy_funnel.csv")
-  stopifnot(s9_reader$genes == per_gene[survives == TRUE, .N], s9_reader$transcripts == n_surviving,
-            s9_tested$genes == per_gene[tested == TRUE, .N], s9_tested$transcripts == n_tested)
+  stopifnot("Genes or transcripts kept by the reader, or tested, differ from legacy_funnel.csv of step 09" =
+              s9_reader$genes == per_gene[survives == TRUE, .N] && s9_reader$transcripts == n_surviving &&
+              s9_tested$genes == per_gene[tested == TRUE, .N] && s9_tested$transcripts == n_tested)
 
   # ---- (f) survival by number of transcripts and by annotation ---------------------------------
   size_classes <- list(one = c(1, 1), two_to_five = c(2, 5), more_than_five = c(6, Inf))
@@ -693,12 +713,15 @@ step09_bp <- fread(step09("legacy_fisher_ploidy_BP.csv"))
 stopifnot(all(c("go_id", "rank", "p_fisher", "below_p_cutoff") %in% names(step09_bp)))
 p_legacy <- topgo_results[["lines legacy_list"]]
 top_terms <- step09_bp[rank <= config$go_legacy_topn, go_id]
-stopifnot(setequal(step09_bp$go_id, names(p_legacy)),
-          isTRUE(all.equal(unname(p_legacy[step09_bp$go_id]), step09_bp$p_fisher, tolerance = 1e-9)),
-          sum(p_legacy < cutoff) == sum(step09_bp$below_p_cutoff),
-          length(top_terms) == config$go_legacy_topn,
-          setequal(names(sort(p_legacy))[seq_len(config$go_legacy_topn)], top_terms),
-          sort(p_legacy)[config$go_legacy_topn] < sort(p_legacy)[config$go_legacy_topn + 1L])
+stopifnot(
+  "The BP test of the legacy list does not give the terms and p-values of legacy_fisher_ploidy_BP.csv of step 09" =
+    setequal(step09_bp$go_id, names(p_legacy)) &&
+    isTRUE(all.equal(unname(p_legacy[step09_bp$go_id]), step09_bp$p_fisher, tolerance = 1e-9)) &&
+    sum(p_legacy < cutoff) == sum(step09_bp$below_p_cutoff),
+  "The top terms of step 09 are not the terms with the smallest p-values, or p-values tie at the end of the list" =
+    length(top_terms) == config$go_legacy_topn &&
+    setequal(names(sort(p_legacy))[seq_len(config$go_legacy_topn)], top_terms) &&
+    sort(p_legacy)[[config$go_legacy_topn]] < sort(p_legacy)[[config$go_legacy_topn + 1L]])
 
 # ---- Lists: two fixed, three kinds of random list --------------------------------------------
 set.seed(seed, kind = "Mersenne-Twister", normal.kind = "Inversion", sample.kind = "Rejection")

@@ -41,6 +41,13 @@
 #                from that cohort. (The mean, not the median: a subset that
 #                holds four of five similar libraries has six similar pairs
 #                out of ten, so its median can equal that of the full group.)
+#             8. The CpGs that the sensitivity analyses call with the
+#                overdispersion correction: percent methylation of every
+#                library, and whether one of the four groups lies entirely
+#                outside the range of the other libraries. A CpG at which one
+#                group of animals is uniformly different from all others is
+#                what a sequence variant or an allele shared by related
+#                animals looks like in bisulfite data (issue I-08).
 #
 # Run       Rscript 06_diagnostics/library_methylation_level.R   (about 3 minutes, 3 GB)
 #
@@ -51,6 +58,8 @@
 #           04_output/04_cpg_coverage/tables/library_correlation_10x_<mode>.csv
 #           04_output/05_differential_methylation/tables/united_cpg_<mode>.csv.gz
 #           04_output/05_differential_methylation/tables/diffmeth_{ploidy,heat}_<mode>.csv.gz
+#           06_diagnostics/dml_sensitivity/dml_<analysis>_mn_f_<mode>.csv   (part 8; skipped
+#             with a message if 06_diagnostics/dml_sensitivity.R has not been run)
 # Writes    06_diagnostics/library_methylation_level/
 #             library_level.csv               one row per library
 #             level_group_tests.csv           group comparisons of the level
@@ -64,6 +73,8 @@
 #             relabelling_small_sets.csv      part 6, every grouping of the comparisons
 #                                             that have at most 252 groupings
 #             pair_similarity.csv             part 7
+#             corrected_dml_library_values.csv  part 8, one row per CpG and mode
+#             corrected_dml_group_apart.csv     part 8, counts per list
 #
 # Notes     - "Difference" is the definition methylKit uses for meth.diff: the
 #             percent methylation of one group minus that of the other, with
@@ -210,6 +221,9 @@ relabel_reference <- function(m, strata, chunk = 100) {
 
 direction_rows <- list(); agreement_rows <- list(); slope_rows <- list(); decile_rows <- list()
 loo_rows <- list(); relabel_rows <- list(); small_rows <- list(); similarity_rows <- list()
+value_rows <- list(); apart_rows <- list()
+corrected_lists <- c("A1_ploidy_mn_f", "A1_heat_mn_f", "A2_interaction_mn_f", "A4_ploidy_in_control_mn_f", "A4_ploidy_in_heat_mn_f")
+sens_dir <- here("06_diagnostics", "dml_sensitivity")
 
 for (mode in config$modes) {
   m <- read_counts(mode)
@@ -245,16 +259,22 @@ for (mode in config$modes) {
       share_eligible_positive = mean(x[eligible] > 0))
   }
   d_heat <- d[["ploidy inside the heat cohort"]]; d_ctrl <- d[["ploidy inside the control cohort"]]
-  for (set in c("all tested CpGs", "eligible CpGs")) {
-    k <- if (set == "all tested CpGs") rep(TRUE, length(d_heat)) else eligible
+  agreement_sets <- list(
+    "all libraries of each cohort" = list(h = d_heat, c = d_ctrl),
+    "without the high libraries" = list(h = d[["ploidy inside the heat cohort, without the high libraries"]],
+                                        c = d[["ploidy inside the control cohort, without the high libraries"]]))
+  for (libs_used in names(agreement_sets)) for (set in c("all tested CpGs", "eligible CpGs")) {
+    xh <- agreement_sets[[libs_used]]$h; xc <- agreement_sets[[libs_used]]$c
+    k <- if (set == "all tested CpGs") rep(TRUE, length(xh)) else eligible
+    both <- above(xh[k]) & above(xc[k])
     agreement_rows[[length(agreement_rows) + 1]] <- data.table(
-      mode = mode, cpg_set = set, n_cpg = sum(k),
-      pearson = cor(d_heat[k], d_ctrl[k]), spearman = cor(d_heat[k], d_ctrl[k], method = "spearman"),
-      n_above_in_heat_cohort = sum(above(d_heat[k])), n_above_in_control_cohort = sum(above(d_ctrl[k])),
-      n_above_in_both = sum(above(d_heat[k]) & above(d_ctrl[k])),
-      n_above_in_both_same_sign = sum(above(d_heat[k]) & above(d_ctrl[k]) & sign(d_heat[k]) == sign(d_ctrl[k])),
+      mode = mode, libraries = libs_used, cpg_set = set, n_cpg = sum(k),
+      pearson = cor(xh[k], xc[k]), spearman = cor(xh[k], xc[k], method = "spearman"),
+      n_above_in_heat_cohort = sum(above(xh[k])), n_above_in_control_cohort = sum(above(xc[k])),
+      n_above_in_both = sum(both),
+      n_above_in_both_same_sign = sum(both & sign(xh[k]) == sign(xc[k])),
       # Expected overlap if the two sets of CpGs were unrelated draws from this CpG set.
-      n_above_in_both_expected_if_unrelated = sum(above(d_heat[k])) * sum(above(d_ctrl[k])) / sum(k))
+      n_above_in_both_expected_if_unrelated = sum(above(xh[k])) * sum(above(xc[k])) / sum(k))
   }
 
   # ---- 4. Slope on the level, estimated in the other cohort ------------------------------
@@ -365,6 +385,44 @@ for (mode in config$modes) {
         p_enumeration = sum(ref >= obs - 1e-12) / length(subsets))
     }
   }
+
+  # ---- 8. Library values at the CpGs called with the overdispersion correction -----------
+  files <- file.path(sens_dir, sprintf("dml_%s_%s.csv", corrected_lists, mode))
+  present <- file.exists(files)
+  if (!any(present)) {
+    message("Part 8 skipped for ", mode, " mode: no dml_*_mn_f_", mode, ".csv under 06_diagnostics/dml_sensitivity/")
+  } else {
+    called <- rbindlist(lapply(which(present), function(i) {
+      x <- fread(files[i], select = c("chr", "start")); x[, list_id := corrected_lists[i]]; x
+    }))
+    called[, key := paste(chr, start)]
+    stopifnot(all(called$key %in% m$key))
+    per_cpg <- called[, .(lists = paste(list_id, collapse = "; ")), by = .(chr, start, key)]
+    rows <- match(per_cpg$key, m$key)
+    v <- pm[rows, , drop = FALSE]
+    # A group is "apart" when the range of its libraries does not overlap the
+    # range of all other libraries.
+    apart <- vapply(names(grp), function(g) {
+      own <- grp[[g]]; rest <- setdiff(seq_len(n_lib), own)
+      lo_own <- do.call(pmin, as.data.frame(v[, own, drop = FALSE])); hi_own <- do.call(pmax, as.data.frame(v[, own, drop = FALSE]))
+      lo_rest <- do.call(pmin, as.data.frame(v[, rest, drop = FALSE])); hi_rest <- do.call(pmax, as.data.frame(v[, rest, drop = FALSE]))
+      lo_own > hi_rest | hi_own < lo_rest
+    }, logical(nrow(v)))
+    if (is.null(dim(apart))) apart <- matrix(apart, nrow = 1, dimnames = list(NULL, names(grp)))
+    per_cpg[, group_apart_from_all_other_libraries := apply(apart, 1, function(a) if (any(a)) paste(names(grp)[a], collapse = "; ") else "none")]
+    for (g in names(grp)) per_cpg[, paste0("range_", gsub(" ", "_", g)) :=
+      sprintf("%.0f to %.0f", do.call(pmin, as.data.frame(v[, grp[[g]], drop = FALSE])), do.call(pmax, as.data.frame(v[, grp[[g]], drop = FALSE])))]
+    vals <- as.data.table(round(v, 1)); setnames(vals, lib$library_id)
+    value_rows[[length(value_rows) + 1]] <- cbind(data.table(mode = mode), per_cpg[, !"key"], vals)
+    for (l in corrected_lists[present]) {
+      k <- per_cpg$key %in% called[list_id == l, key]
+      apart_rows[[length(apart_rows) + 1]] <- data.table(
+        mode = mode, list = l, n_cpg = sum(k),
+        n_diploid_heat_apart = sum(apart[k, "diploid heat"]), n_triploid_heat_apart = sum(apart[k, "triploid heat"]),
+        n_diploid_control_apart = sum(apart[k, "diploid control"]), n_triploid_control_apart = sum(apart[k, "triploid control"]),
+        n_no_group_apart = sum(!apply(apart[k, , drop = FALSE], 1, any)))
+    }
+  }
   rm(m, pm, d); invisible(gc())
 }
 
@@ -434,6 +492,10 @@ write_table(relabel_tab, file.path(out_dir, "relabelling_reference.csv"))
 write_table(rbindlist(small_rows), file.path(out_dir, "relabelling_small_sets.csv"))
 similarity_tab <- round_cols(rbindlist(similarity_rows))
 write_table(similarity_tab, file.path(out_dir, "pair_similarity.csv"))
+if (length(value_rows)) {
+  write_table(rbindlist(value_rows), file.path(out_dir, "corrected_dml_library_values.csv"))
+  write_table(rbindlist(apart_rows), file.path(out_dir, "corrected_dml_group_apart.csv"))
+}
 
 options(width = 220)
 cat("High libraries (", level$gap_rule[1], "):\n  ", paste(level[high_level == TRUE, sprintf("%s (%s)", library_id, group)], collapse = ", "), "\n\n", sep = "")
@@ -448,6 +510,10 @@ cat("\nSimilarity of the libraries of one group (mean pairwise correlation)\n")
 print(similarity_tab[, .(mode, cohort, group, within = round(mean_r_within_group, 4), other_group = round(mean_r_within_other_group, 4),
                          between = round(mean_r_between_groups, 4), top_pairs = pairs_of_group_among_the_n_pairs_most_similar_in_cohort, n_pairs,
                          at_or_above = subsets_at_or_above_observed, subsets = subsets_of_this_size, p = signif(p_enumeration, 3))])
+if (length(apart_rows)) {
+  cat("\nCpGs called with the overdispersion correction: is one group outside the range of all other libraries?\n")
+  print(rbindlist(apart_rows))
+}
 cat("\nRelabelling references\n")
 print(relabel_tab[, .(mode, comparison = substr(comparison, 1, 60), observed = n_above_threshold_observed, groupings, reference_median,
                       largest_other_grouping, at_or_above = groupings_at_or_above_observed, p = signif(p_enumeration, 3))])
