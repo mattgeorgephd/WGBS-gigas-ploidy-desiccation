@@ -1,0 +1,44 @@
+minutes: 3.49 
+
+Shares (percent) of the 3000 sampled eligible CpGs with p < 0.05, 0.01, 0.001
+OBSERVED labels:
+  none       33.867, 20.867, 11.467
+  mn_chisq   7.567, 2.367, 0.533
+  mn_f       5.733, 1.3, 0.133
+  int_none   49.033, 38.367, 27.033
+  int_mn_f   20.133, 7.867, 1.3
+
+RELABELLED, first 30 relabellings:
+none                               mean 33.847, 21.648, 12.171 | median 32.417, 20.35, 11.167 | 5th pct 26.283, 14.95, 7.578 | 95th pct 42.598, 30.15, 19.102 | min 25.833, 14.633, 7.4 | max 44.667, 31.5, 20.1
+mn_chisq                           mean 7.218, 2.111, 0.44 | median 6.483, 1.833, 0.35 | 5th pct 4.712, 1.015, 0.197 | 95th pct 11.323, 3.522, 0.94 | min 4.533, 0.8, 0.1 | max 11.8, 3.633, 1.033
+mn_f                               mean 5.612, 1.149, 0.123 | median 5.067, 1.017, 0.1 | 5th pct 3.5, 0.6, 0 | 95th pct 9.135, 2.058, 0.285 | min 3.2, 0.4, 0 | max 9.6, 2.233, 0.367
+int_none                           mean 33.063, 20.932, 11.734 | median 32.133, 19.467, 10.55 | 5th pct 27.64, 16.562, 8.56 | 95th pct 40.172, 27.985, 17.452 | min 27, 14.567, 7.433 | max 41.033, 28.467, 17.867
+int_mn_f                           mean 5.378, 1.057, 0.116 | median 4.95, 1.05, 0.1 | 5th pct 3.987, 0.648, 0.033 | 95th pct 8.018, 1.652, 0.237 | min 3.233, 0.467, 0 | max 8.167, 1.667, 0.267
+
+RELABELLED, first 150 relabellings:
+none                               mean 33.475, 21.356, 12.009 | median 31.617, 19.317, 10.217 | 5th pct 26.948, 15.457, 7.648 | 95th pct 43.333, 31.193, 20.338 | min 24.933, 14.033, 7.1 | max 47.667, 36.933, 26.933
+mn_chisq                           mean 7.503, 2.309, 0.52 | median 6.317, 1.767, 0.367 | 5th pct 4.748, 1.1, 0.167 | 95th pct 13.89, 5.653, 1.583 | min 4.1, 0.8, 0.1 | max 22.5, 12.733, 4.733
+mn_f                               mean 5.906, 1.318, 0.161 | median 4.883, 0.967, 0.1 | 5th pct 3.53, 0.533, 0 | 95th pct 11.653, 3.497, 0.418 | min 2.933, 0.4, 0 | max 19.7, 8.767, 1.567
+int_none                           mean 33.408, 21.288, 12.016 | median 32.133, 19.583, 10.5 | 5th pct 27.015, 15.748, 7.93 | 95th pct 42.147, 30.003, 18.847 | min 25.367, 13.867, 7.267 | max 49, 35.8, 24.667
+int_mn_f                           mean 5.761, 1.201, 0.127 | median 5.083, 1, 0.1 | 5th pct 3.482, 0.567, 0 | 95th pct 9.65, 2.155, 0.303 | min 3, 0.333, 0 | max 16.3, 6.567, 0.9
+
+Relabellings (of 150 ) whose share is at least the observed share, by level 0.05, 0.01, 0.001:
+  none       59, 62, 59
+  mn_chisq   45, 37, 34
+  mn_f       49, 41, 65
+  int_none   0, 0, 0
+  int_mn_f   0, 0, 0
+
+CpGs above 20 points per labelling (in the sample): observed 46 ; relabelled median 32 ; of all relabelled CpG-instances above 20 points, 5664 , share with uncorrected p < 2.3e-4: 0.9995 ; observed: 46 of 46 
+
+Correlation across relabellings of the MN F share below 0.05 with the number of labels moved (heat cohort, control cohort): -0.14 0.044 
+MN F share below 0.05 by number of labels moved in the heat cohort:
+   0    2    4    6    8 
+8.13 9.41 5.13 5.00 7.94 
+
+ 0  2  4  6  8 
+ 2 17 58 57 16 
+
+real	3m30.043s
+user	3m26.760s
+sys	0m0.216s

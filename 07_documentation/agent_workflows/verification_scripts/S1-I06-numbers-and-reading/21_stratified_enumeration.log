@@ -1,0 +1,11 @@
+CpGs whose library values span more than 20 points: 101727 of 480579 
+non-high heat libraries: 7 with 5 triploid; non-high control libraries: 10 with 4 triploid
+minutes: 0.57 
+observed: 1038 (must be 1038)
+all 4410 labellings with the five high-level libraries fixed: median 740.5, 5th to 95th percentile 526.45 to 1165.55, min 406, max 1629; labellings with at least the observed count: 509 (p = 0.1154)
+heat cohort at its real labels, control non-high reassigned (210): median 1211; at least observed 189
+control cohort at its real labels, heat non-high reassigned (21): median 669; at least observed 2; counts: 547 548 553 565 605 638 641 642 653 659 669 677 689 692 787 830 854 857 871 1038 1063
+
+real	0m38.402s
+user	0m26.885s
+sys	0m7.938s

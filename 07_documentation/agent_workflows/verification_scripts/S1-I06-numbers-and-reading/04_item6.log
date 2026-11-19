@@ -1,0 +1,101 @@
+legacy CpGs 480579 ; kept by the filter 454555 ; removed 26024 ; mitochondrial among tested (legacy) 363 ; mitochondrial kept 0 
+
+===== A1_heat_mn_f =====
+legacy: q < 0.01: 287 ; of these removed by the filter: 157 ; kept: 130 
+  removed and mitochondrial: 138 ; removed with |difference| > 20: 0 ; largest |difference| among removed: 12.2 
+  removed by chromosome:
+
+   NC_001276.1    NC_047559.1    NC_047560.1    NC_047563.1    NC_047564.1    NC_047565.1    NC_047566.1    NC_047568.1 NW_022994810.1 
+           138              7              3              2              1              1              2              2              1 
+  q < 0.01 legacy, mitochondrial in all (removed or kept): 138 
+  CpGs in both modes: 454555 ; largest |p_legacy - p_corrected|: 0 ; identical(): TRUE ; largest |diff_legacy - diff_corrected|: 0 
+corrected: q < 0.01: 84 ; of the legacy-significant CpGs kept by the filter, still q < 0.01: 84 ; significant in corrected but not in legacy: 0 
+DML legacy: 16 ; DML corrected: 6 ; corrected DML that are legacy DML: 6 
+DML that leave the list in corrected mode: 10 
+               chr    start in_corrected_table     p_legacy  p_corrected    q_legacy q_corrected      diff
+ 1:    NC_047559.1 22978292               TRUE 2.674668e-06 2.674668e-06 0.005298536  0.01221410  44.62672
+ 2:    NC_047559.1 38959400               TRUE 6.042104e-06 6.042104e-06 0.009433289  0.01955324 -25.27461
+ 3:    NC_047559.1 49265387               TRUE 3.988220e-06 3.988220e-06 0.006946428  0.01476693  24.90119
+ 4:    NC_047561.1 11288545               TRUE 3.523698e-06 3.523698e-06 0.006498375  0.01436051 -25.50234
+ 5:    NC_047561.1 23951945               TRUE 4.426885e-06 4.426885e-06 0.007473223  0.01568464 -32.06978
+ 6:    NC_047565.1 18464323               TRUE 3.457717e-06 3.457717e-06 0.006430733  0.01436051  50.73862
+ 7:    NC_047565.1 34102203               TRUE 2.343018e-06 2.343018e-06 0.004828131  0.01106855 -35.21857
+ 8:    NC_047565.1 56102995               TRUE 3.783841e-06 3.783841e-06 0.006727511  0.01454182  31.31620
+ 9:    NC_047567.1 30942332               TRUE 3.785893e-06 3.785893e-06 0.006727511  0.01454182 -36.96206
+10: NW_022994921.1   205104               TRUE 2.129460e-06 2.129460e-06 0.004493545  0.01029638 -26.08696
+  q legacy range 0.00449 to 0.00943; q corrected range 0.01030 to 0.01955; p identical: TRUE
+BH: q < 0.01 legacy 277 , corrected 78 ; DML legacy 15 , corrected 4 
+  SLIM q over BH q (the share of true nulls that SLIM estimated): legacy 0.91331 to 0.91331; corrected 0.90417 to 0.90417
+               chr    start            p q_slim_legacy  q_bh_legacy q_slim_corrected q_bh_corrected      diff
+ 1:    NC_047559.1 22978292 2.674668e-06  5.298536e-03 5.801465e-03     1.221410e-02   1.350871e-02  44.62672
+ 2:    NC_047559.1 38959400 6.042104e-06  9.433289e-03 1.032868e-02     1.955324e-02   2.162574e-02 -25.27461
+ 3:    NC_047559.1 38959406 1.830688e-06  4.058188e-03 4.443385e-03     9.404995e-03   1.040186e-02 -34.27961
+ 4:    NC_047559.1 49265387 3.988220e-06  6.946428e-03 7.605772e-03     1.476693e-02   1.633212e-02  24.90119
+ 5:    NC_047561.1 11288545 3.523698e-06  6.498375e-03 7.115191e-03     1.436051e-02   1.588262e-02 -25.50234
+ 6:    NC_047561.1 23951945 4.426885e-06  7.473223e-03 8.182570e-03     1.568464e-02   1.734709e-02 -32.06978
+ 7:    NC_047564.1 15078385 1.665091e-06  3.826375e-03 4.189569e-03     8.773592e-03   9.703529e-03 -22.98666
+ 8:    NC_047565.1  6510372 5.240136e-07  1.782937e-03 1.952170e-03     4.350958e-03   4.812128e-03 -42.97636
+ 9:    NC_047565.1 18464323 3.457717e-06  6.430733e-03 7.041128e-03     1.436051e-02   1.588262e-02  50.73862
+10:    NC_047565.1 34102203 2.343018e-06  4.828131e-03 5.286410e-03     1.106855e-02   1.224173e-02 -35.21857
+11:    NC_047565.1 35030701 3.761222e-22  1.650867e-16 1.807564e-16     1.545835e-16   1.709682e-16  22.40000
+12:    NC_047565.1 56102995 3.783841e-06  6.727511e-03 7.366076e-03     1.454182e-02   1.608315e-02  31.31620
+13:    NC_047566.1   545376 1.909106e-06  4.148219e-03 4.541961e-03     9.453357e-03   1.045534e-02 -29.70588
+14:    NC_047567.1 30942332 3.785893e-06  6.727511e-03 7.366076e-03     1.454182e-02   1.608315e-02 -36.96206
+15:    NC_047568.1 20497600 4.809247e-09  5.025864e-05 5.502912e-05     1.411833e-04   1.561477e-04  24.27377
+16: NW_022994921.1   205104 2.129460e-06  4.493545e-03 4.920065e-03     1.029638e-02   1.138772e-02 -26.08696
+  p-value rank of each legacy DML in legacy and in corrected mode:
+       start rank_legacy rank_corrected
+ 1: 22978292         221             90
+ 2: 38959400         281            127
+ 3: 38959406         198             80
+ 4: 49265387         252            111
+ 5: 11288545         238            100
+ 6: 23951945         260            116
+ 7: 15078385         191             78
+ 8:  6510372         129             49
+ 9: 18464323         236             98
+10: 34102203         213             87
+11: 35030701           1              1
+12: 56102995         246            106
+13:   545376         202             83
+14: 30942332         247            107
+15: 20497600          42             14
+16:   205104         208             85
+
+===== A1_ploidy_mn_f =====
+legacy: q < 0.01: 24 ; of these removed by the filter: 1 ; kept: 23 
+  removed and mitochondrial: 0 ; removed with |difference| > 20: 0 ; largest |difference| among removed: 3.98 
+  removed by chromosome:
+
+NC_047562.1 
+          1 
+  q < 0.01 legacy, mitochondrial in all (removed or kept): 0 
+  CpGs in both modes: 454555 ; largest |p_legacy - p_corrected|: 0 ; identical(): TRUE ; largest |diff_legacy - diff_corrected|: 0 
+corrected: q < 0.01: 23 ; of the legacy-significant CpGs kept by the filter, still q < 0.01: 23 ; significant in corrected but not in legacy: 0 
+DML legacy: 2 ; DML corrected: 2 ; corrected DML that are legacy DML: 2 
+DML that leave the list in corrected mode: 0 
+Empty data.table (0 rows and 8 cols): chr,start,in_corrected_table,p_legacy,p_corrected,q_legacy...
+BH: q < 0.01 legacy 21 , corrected 20 ; DML legacy 1 , corrected 1 
+  SLIM q over BH q (the share of true nulls that SLIM estimated): legacy 0.93153 to 0.93153; corrected 0.92758 to 0.92758
+           chr    start            p q_slim_legacy  q_bh_legacy q_slim_corrected q_bh_corrected     diff
+1: NC_047562.1 40685928 4.968797e-07  9.926035e-03 1.065568e-02     9.755194e-03   1.051686e-02 30.24253
+2: NC_047565.1 35030701 1.836813e-17  8.222888e-12 8.827336e-12     7.744637e-12   8.349324e-12 20.16061
+  p-value rank of each legacy DML in legacy and in corrected mode:
+      start rank_legacy rank_corrected
+1: 40685928          22             21
+2: 35030701           1              1
+A1_ploidy_mn_chisq legacy: SLIM q<0.01 168; BH q<0.01 162; pi0 implied 0.9266
+A1_heat_mn_chisq legacy: SLIM q<0.01 1124; BH q<0.01 1082; pi0 implied 0.9024
+A4_ploidy_in_heat_mn_f legacy: SLIM q<0.01 220; BH q<0.01 210; pi0 implied 0.8030
+A4_ploidy_in_control_mn_f legacy: SLIM q<0.01 7; BH q<0.01 7; pi0 implied 0.7947
+A2_interaction_mn_f legacy: SLIM q<0.01 4; BH q<0.01 4; pi0 implied 0.8601
+A0_ploidy legacy: SLIM q<0.01 10275; BH q<0.01 10012; pi0 implied 0.9300; largest p with q<0.01 0.00023; CpGs above 20 points without q<0.01: 0
+A0_ploidy corrected: SLIM q<0.01 8429; BH q<0.01 8224; pi0 implied 0.9255; largest p with q<0.01 0.0002; CpGs above 20 points without q<0.01: 0
+A0_heat legacy: SLIM q<0.01 20062; BH q<0.01 19486; pi0 implied 0.8857; largest p with q<0.01 0.000471; CpGs above 20 points without q<0.01: 1
+           chr    start       pvalue     qvalue meth.diff
+1: NC_047567.1 31559118 0.0009828738 0.01786161 -20.35039
+A0_heat corrected: SLIM q<0.01 16494; BH q<0.01 15902; pi0 implied 0.8801; largest p with q<0.01 0.000412; CpGs above 20 points without q<0.01: 0
+
+real	0m7.208s
+user	0m5.752s
+sys	0m0.260s

@@ -1,0 +1,14 @@
+
+===== heat_cohort (A4_ploidy_in_heat_mn_f; 8 residual df; 125 other labellings; 2.4 min) =====
+p threshold of the observed analysis (largest p with q < 0.01): 5.58e-06; cached list: 125 CpGs with q < 0.01 and above 20 points
+observed labels:
+   labelling n_above called called_chisq_route single single_chisq_route n_phi_le1
+1:         0   13028    125                124     58                 58       262
+other labellings, called at the observed p threshold: median 10, 5th to 95th percentile 4 to 40.6, max 69 ; labellings with at least the observed number: 0 of 125 
+   of the called CpGs over all other labellings, share called through the chi-squared route (dispersion estimate not above 1): 0.999 
+other labellings, called on their own (p < 0.01 / 480,579): median 4, 5th to 95th percentile 0 to 13.8, max 29 ; observed 58 ; labellings with at least the observed number: 0 
+   mean number per labelling: 5.44 ; expected for 480,579 true null tests at that p: 0.01
+
+real	2m22.890s
+user	2m13.608s
+sys	0m0.850s

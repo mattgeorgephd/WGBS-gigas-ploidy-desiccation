@@ -1,0 +1,40 @@
+A1_ploidy_mn_f               all CpGs with p unchanged by the correction: 290133 (60.37%); eligible: 0.96% | q < 0.01: 24, of them unchanged 22 | DML: 2, of them unchanged 1; DML with a group entirely at 0% or 100%: 0
+           chr    start  p_corrected p_uncorrected unchanged effect group_all_0_or_100
+1: NC_047562.1 40685928 4.968797e-07  2.135193e-23     FALSE   30.2              FALSE
+2: NC_047565.1 35030701 1.836813e-17  1.836813e-17      TRUE   20.2              FALSE
+A1_heat_mn_f                 all CpGs with p unchanged by the correction: 290139 (60.37%); eligible: 0.96% | q < 0.01: 287, of them unchanged 142 | DML: 16, of them unchanged 2; DML with a group entirely at 0% or 100%: 3
+               chr    start  p_corrected p_uncorrected unchanged effect group_all_0_or_100
+ 1:    NC_047559.1 22978292 2.674668e-06  6.782828e-39     FALSE   44.6              FALSE
+ 2:    NC_047559.1 38959400 6.042104e-06  1.311222e-21     FALSE  -25.3              FALSE
+ 3:    NC_047559.1 38959406 1.830688e-06  1.557026e-27     FALSE  -34.3              FALSE
+ 4:    NC_047559.1 49265387 3.988220e-06  2.959937e-22     FALSE   24.9               TRUE
+ 5:    NC_047561.1 11288545 3.523698e-06  2.406786e-16     FALSE  -25.5              FALSE
+ 6:    NC_047561.1 23951945 4.426885e-06  3.292778e-14     FALSE  -32.1              FALSE
+ 7:    NC_047564.1 15078385 1.665091e-06  2.024620e-14     FALSE  -23.0              FALSE
+ 8:    NC_047565.1  6510372 5.240136e-07  3.011459e-24     FALSE  -43.0              FALSE
+ 9:    NC_047565.1 18464323 3.457717e-06  6.257910e-28     FALSE   50.7              FALSE
+10:    NC_047565.1 34102203 2.343018e-06  5.081006e-28     FALSE  -35.2              FALSE
+11:    NC_047565.1 35030701 3.761222e-22  3.761222e-22      TRUE   22.4               TRUE
+12:    NC_047565.1 56102995 3.783841e-06  3.860786e-33     FALSE   31.3              FALSE
+13:    NC_047566.1   545376 1.909106e-06  3.129987e-34     FALSE  -29.7               TRUE
+14:    NC_047567.1 30942332 3.785893e-06  2.748559e-34     FALSE  -37.0              FALSE
+15:    NC_047568.1 20497600 4.809247e-09  4.809247e-09      TRUE   24.3              FALSE
+16: NW_022994921.1   205104 2.129460e-06  1.676265e-18     FALSE  -26.1              FALSE
+A2_interaction_mn_f          all CpGs with p unchanged by the correction: 328187 (68.29%); eligible: 1.20% | q < 0.01: 4, of them unchanged 4 | DML: 2, of them unchanged 2; DML with a group entirely at 0% or 100%: 1
+           chr    start  p_corrected p_uncorrected unchanged effect group_all_0_or_100
+1: NC_047559.1 26237308 2.595473e-12  2.595473e-12      TRUE  -63.6              FALSE
+2: NC_047561.1 19005422 7.144976e-11  7.144976e-11      TRUE   26.0               TRUE
+A4_ploidy_in_control_mn_f    all CpGs with p unchanged by the correction: 323249 (67.26%); eligible: 3.32% | q < 0.01: 7, of them unchanged 7 | DML: 2, of them unchanged 2; DML with a group entirely at 0% or 100%: 1
+           chr    start  p_corrected p_uncorrected unchanged effect group_all_0_or_100
+1: NC_047561.1   799855 8.623397e-11  8.623397e-11      TRUE  -22.4               TRUE
+2: NC_047568.1 17094385 7.441588e-08  7.441588e-08      TRUE   29.7              FALSE
+A4_ploidy_in_heat_mn_f       all CpGs with p unchanged by the correction: 327318 (68.11%); eligible: 6.12% | q < 0.01: 220, of them unchanged 219 | DML: 125, of them unchanged 124; DML with a group entirely at 0% or 100%: 12
+
+heat-cohort corrected list (125): triploids all 0%: 1 ; diploids all 0%: 11 ; triploids all 100%: 0 ; diploids all 100%: 0 ; called with the chi-squared reference (dispersion estimate not above 1): 124 ; called with the F reference: 1 
+  F statistic needed with q < 0.01 when 220 CpGs are significant together: p about 5.58e-06 -> F(1,8) of 111.8 or chi-squared of 20.6 
+  of the 220 significant: unchanged 219 
+  eligible CpGs with a heat-cohort ploidy group entirely at 0% or 100%: 405 of 65480 
+
+real	0m4.637s
+user	0m3.790s
+sys	0m0.793s

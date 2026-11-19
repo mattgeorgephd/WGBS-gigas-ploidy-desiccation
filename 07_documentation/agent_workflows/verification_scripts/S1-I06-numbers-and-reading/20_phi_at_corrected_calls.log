@@ -1,0 +1,10 @@
+A1_ploidy_mn_f : dispersion estimates at the 2 calls: 0.54 1.8 
+A1_heat_mn_f : dispersion estimates at the 16 calls: 0.54 0.94 1.26 1.43 1.62 1.72 1.89 2.31 2.38 2.58 2.73 2.88 3.27 3.5 3.63 3.93 
+A4_ploidy_in_heat_mn_f: dispersion estimates at the 125 calls: not above 1 at 124 ; quartiles 0.17 0.64 0.8 0.91 1.14 
+  of the 125: the five diploids and the five triploids do not overlap at 124 ; median within-group range (points): diploids 14 , triploids 19.4 ; median |difference| 28.7 
+A4_ploidy_in_control_mn_f: dispersion estimates at the 2 calls: 0.85 0.96 
+P(chi-squared_8 / 8 * phi <= 1) for a true dispersion phi of 2, 3, 3.67, 5: 0.1429 0.0465 0.025 0.0091 ; with 10 df: 0.1088 0.0275 0.0128 0.0037 ; with 19 df: 0.0358 0.00299 0.000733 7.14e-05 
+
+real	0m2.321s
+user	0m1.551s
+sys	0m0.477s

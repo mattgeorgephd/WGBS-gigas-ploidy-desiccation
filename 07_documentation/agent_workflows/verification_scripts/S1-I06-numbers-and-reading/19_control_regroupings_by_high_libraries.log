@@ -1,0 +1,7 @@
+high-level control libraries in the same group: n = 70 | corrected F mean 6.59, 1.21, 0.16, median 6.43, 1.17, 0.13, 95th pct 8.27, 1.77, 0.33 | at least observed (7.2, 1.6, 0.167 on the sample): 21, 9, 32 | CpGs above 20: median 152 (observed 152), at least observed 36
+high-level control libraries in different groups: n = 80 | corrected F mean 4.39, 0.88, 0.13, median 4.33, 0.87, 0.1, 95th pct 5.83, 1.27, 0.27 | at least observed (7.2, 1.6, 0.167 on the sample): 0, 0, 26 | CpGs above 20: median 115 (observed 152), at least observed 7
+observed grouping has them together: TRUE 
+heat cohort, three high libraries together, 1 exchange(s): n = 10 | corrected F mean 13.43, 3.1, 0.46, max 16.7, 4.4, 0.87 | CpGs above 20 (sample): median 454.5, max 547 (observed 539)
+heat cohort, three high libraries together, 2 exchange(s): n = 10 | corrected F mean 10.28, 2.06, 0.3, max 12.3, 3.23, 0.53 | CpGs above 20 (sample): median 385.5, max 462 (observed 539)
+heat cohort, three high libraries split 2:1, 1 exchange(s): n = 15 | corrected F mean 5.6, 1.26, 0.25, max 7.83, 2.2, 0.57 | CpGs above 20 (sample): median 232, max 312 (observed 539)
+heat cohort, three high libraries split 2:1, 2 exchange(s): n = 90 | corrected F mean 4.11, 0.84, 0.15, max 6.13, 1.57, 0.43 | CpGs above 20 (sample): median 174.5, max 226 (observed 539)

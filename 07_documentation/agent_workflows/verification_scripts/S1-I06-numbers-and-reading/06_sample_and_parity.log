@@ -1,0 +1,17 @@
+          used (Mb) gc trigger  (Mb) max used  (Mb)
+Ncells  398092 21.3     837269  44.8   664391  35.5
+Vcells 2334973 17.9   18072460 137.9 22549912 172.1
+seconds for 3000 CpGs (two fits each): 1.8 
+largest relative difference to the cached p-values: MN F 1.190871e-11 ; MN chisq 1.206653e-11 ; uncorrected 2.398165e-11 
+identical to cache: MN F FALSE ; number of CpGs with any difference 2675 
+largest relative difference to methylKit:::logReg at 300 CpGs: 6.918555e-13 
+observed labels, the 3,000 sampled CpGs: share p < 0.05, 0.01, 0.001
+  uncorrected: 33.8 20.867 12.067 
+  MN chisq: 7.467 2.267 0.5 
+  MN F: 6.133 1.1 0.133 
+  dispersion (raw, not floored): median 3.723 ; quartiles 2.519 5.567 ; share above 1.5: 0.9416667 ; share at or below 1: 0.008333333 
+  median uncorrected statistic over the median of chi-squared(1): 3.904 ; median corrected statistic over the median of F(1,19): 1.014 
+
+real	0m12.195s
+user	0m11.480s
+sys	0m0.652s

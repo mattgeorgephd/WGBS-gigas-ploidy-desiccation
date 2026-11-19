@@ -1,0 +1,31 @@
+
+===== pooled (A1_ploidy_mn_f; 19 residual df; 200 other labellings; 1.5 min) =====
+p threshold of the observed analysis (largest p with q < 0.01): 5.32e-07; cached list: 2 CpGs with q < 0.01 and above 20 points
+observed labels:
+   labelling n_above called called_chisq_route single single_chisq_route n_phi_le1
+1:         0    1038      2                  1      1                  1         1
+other labellings, called at the observed p threshold: median 0, 5th to 95th percentile 0 to 1, max 5 ; labellings with at least the observed number: 8 of 200 
+   of the called CpGs over all other labellings, share called through the chi-squared route (dispersion estimate not above 1): 0.8 
+other labellings, called on their own (p < 0.01 / 480,579): median 0, 5th to 95th percentile 0 to 1, max 4 ; observed 1 ; labellings with at least the observed number: 24 
+   mean number per labelling: 0.14 ; expected for 480,579 true null tests at that p: 0.01
+pooled, labellings with two exchanges in the heat cohort (n = 156 ): called at the observed threshold: median 0 , max 2 ; with at least 2: 7 ; called on their own: median 0 , mean 0.13 
+
+===== control_cohort (A4_ploidy_in_control_mn_f; 10 residual df; 150 other labellings; 1.6 min) =====
+p threshold of the observed analysis (largest p with q < 0.01): 7.44e-08; cached list: 2 CpGs with q < 0.01 and above 20 points
+observed labels:
+   labelling n_above called called_chisq_route single single_chisq_route n_phi_le1
+1:         0    3350      2                  2      1                  1        28
+other labellings, called at the observed p threshold: median 2, 5th to 95th percentile 0 to 7, max 19 ; labellings with at least the observed number: 95 of 150 
+   of the called CpGs over all other labellings, share called through the chi-squared route (dispersion estimate not above 1): 1 
+other labellings, called on their own (p < 0.01 / 480,579): median 2, 5th to 95th percentile 0 to 6, max 18 ; observed 1 ; labellings with at least the observed number: 114 
+   mean number per labelling: 2.19 ; expected for 480,579 true null tests at that p: 0.01
+
+heat cohort by exchanges from the real grouping (1 exchange = 2 labels moved):
+   labels_moved labellings called_median called_max single_median single_mean single_max
+1:            0          1           125        125            58       58.00         58
+2:            2         25            30         69            10       11.64         29
+3:            4        100             9         51             3        3.89         13
+
+real	3m5.937s
+user	3m3.153s
+sys	0m0.892s

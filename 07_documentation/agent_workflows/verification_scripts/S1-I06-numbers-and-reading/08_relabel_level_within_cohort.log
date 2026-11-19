@@ -1,0 +1,32 @@
+
+===== heat_experiment: 10 libraries, 5 against 5; 126 distinct groupings, 125 used besides the observed one =====
+largest relative difference of my p-values (observed labels) to the cached fit A4_ploidy_in_heat_mn_f : 0 
+minutes: 1.3 
+none      observed 51.4, 38.733, 27 | regrouped: mean 34.383, 22.094, 12.844 | median 32.467, 20.567, 11.5 | 5th pct 28.607, 16.867, 8.74 | 95th pct 44.393, 32.6, 22.207 | max 48.533, 37.967, 27.2 | regroupings at or above observed 0, 0, 1 of 125
+mn_chisq  observed 24.133, 13.067, 4.967 | regrouped: mean 8.915, 3.404, 1.029 | median 7.433, 2.567, 0.733 | 5th pct 5.54, 1.6, 0.367 | 95th pct 18.52, 8.6, 2.667 | max 23, 11.8, 4.333 | regroupings at or above observed 0, 0, 0 of 125
+mn_f      observed 17.367, 5.067, 1.033 | regrouped: mean 5.53, 1.167, 0.201 | median 4.367, 0.9, 0.167 | 5th pct 3.073, 0.507, 0.067 | 95th pct 12.593, 2.66, 0.433 | max 16.7, 4.4, 0.867 | regroupings at or above observed 0, 0, 0 of 125
+CpGs above 20 points in the sample: observed 539 ; regrouped median 188 ; max 547 
+MN F share below 0.05 by number of labels moved (up to the mirror image):
+   2    4 
+8.74 4.73 
+
+  2   4 
+ 25 100 
+
+===== control_experiment: 12 libraries, 6 against 6; 462 distinct groupings, 150 used besides the observed one =====
+largest relative difference of my p-values (observed labels) to the cached fit A4_ploidy_in_control_mn_f : 0 
+minutes: 1.51 
+none      observed 35.133, 23.033, 13.233 | regrouped: mean 32.226, 19.99, 10.938 | median 31.4, 18.967, 10.567 | 5th pct 26.13, 14.39, 6.848 | 95th pct 39.352, 26.233, 15.47 | max 40.933, 27.867, 16.7 | regroupings at or above observed 49, 44, 39 of 150
+mn_chisq  observed 10.033, 3.467, 1.167 | regrouped: mean 8.431, 2.758, 0.708 | median 8.383, 2.617, 0.667 | 5th pct 5.415, 1.615, 0.382 | 95th pct 11.937, 4.337, 1.167 | max 13.767, 4.933, 1.533 | regroupings at or above observed 39, 28, 11 of 150
+mn_f      observed 7.2, 1.6, 0.167 | regrouped: mean 5.419, 1.032, 0.14 | median 5.267, 0.983, 0.133 | 5th pct 3.467, 0.582, 0.033 | 95th pct 7.858, 1.618, 0.3 | max 9.433, 2.267, 0.5 | regroupings at or above observed 21, 9, 58 of 150
+CpGs above 20 points in the sample: observed 152 ; regrouped median 132 ; max 204 
+MN F share below 0.05 by number of labels moved (up to the mirror image):
+   2    4    6 
+6.04 5.36 5.36 
+
+ 2  4  6 
+13 78 59 
+
+real	2m48.986s
+user	2m47.137s
+sys	0m0.129s

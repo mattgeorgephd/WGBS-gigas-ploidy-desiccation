@@ -1,0 +1,33 @@
+block order: control_experiment heat_experiment 
+minutes: 0.92 
+[corrected] observed 952; min 386, q05 482.95, q25 596.75, median 706.5, q75 826.25, q95 1191.15, max 3781
+labellings (of 1,000, the observed one included) with at least the observed count: 137 ; random labellings (of 999) with at least: 136 ; strictly more: 135 ; exactly equal: 1 
+median and quantiles over the 999 random labellings only: median 706 ; 5th 482.9 ; 95th 1191.3 
+distinct labellings among the 1,000: 999 ; distinct up to the mirror image: 997 ; random labellings equal to the observed one: 0 ; equal to its mirror image: 0 
+
+By the split of the five high-level libraries between the two groups (observed labelling: imbalance 1 ):
+   high_imbalance labellings median     q05    q95  max at_least_observed
+1:              1        688  662.0  464.70  938.9 1356                33
+2:              3        284  803.5  575.75 1250.4 1748                76
+3:              5         27 2343.0 1890.10 3361.4 3781                27
+Among the 688 random labellings with the same imbalance as the observed one: median 662; at least observed 33; p = (33 + 1)/(688 + 1) = 0.049
+
+By labels moved in the heat cohort (0 = heat cohort keeps its true labels or their mirror; 10 = all exchanged):
+   heat_dist labellings median  max at_least_observed
+1:         0          7   1372 2849                 7
+2:         2        195    835 3781                73
+3:         4        797    677 3479                56
+By labels moved in the control cohort:
+   ctrl_dist labellings median  max at_least_observed
+1:         0          2  764.5  796                 0
+2:         2         63  675.0 2346                10
+3:         4        506  700.0 3479                69
+4:         6        428  714.5 3781                57
+Spearman correlation of the count with heat_dist: -0.379 ; with ctrl_dist: 0.04 ; with high_imbalance: 0.452 
+
+Heat cohort keeps its true labels, control cohort regrouped in all 924 ways: median 1458, 5th to 95th 1003.3 to 3534.85, min 882, max 4232; regroupings with at least the observed 952: 904
+Control cohort keeps its true labels, heat cohort regrouped in all 252 ways: median 705, 5th to 95th 480 to 2338.55, min 422, max 3427; regroupings with at least the observed 952: 44
+
+real	1m52.928s
+user	1m16.957s
+sys	0m20.571s

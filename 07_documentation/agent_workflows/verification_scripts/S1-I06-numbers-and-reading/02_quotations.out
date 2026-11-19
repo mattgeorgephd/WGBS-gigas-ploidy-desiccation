@@ -1,0 +1,225 @@
+methylKit 1.28.0 
+Rd files: calculateDiffMeth-methods.Rd calculateDiffMethDSS-methods.Rd 
+
+================  calculateDiffMeth-methods.Rd  ================
+Calculate differential methylation statistics
+
+Description:
+
+     The function calculates differential methylation statistics between two groups of samples. The function uses either logistic regression test or Fisher's Exact test to calculate differential methylation.  See the rest of the help page and references for detailed explanation on statistics.
+
+Usage:
+
+     calculateDiffMeth(
+       .Object,
+       covariates = NULL,
+       overdispersion = c("none", "MN", "shrinkMN"),
+       adjust = c("SLIM", "holm", "hochberg", "hommel", "bonferroni", "BH", "BY", "fdr",
+         "none", "qvalue"),
+       effect = c("wmean", "mean", "predicted"),
+       parShrinkMN = list(),
+       test = c("F", "Chisq", "fast.fisher", "midPval"),
+       mc.cores = 1,
+       slim = TRUE,
+       weighted.mean = TRUE,
+       chunk.size = 1e+06,
+       save.db = FALSE,
+       ...
+     )
+     
+     ## S4 method for signature 'methylBaseDB'
+     calculateDiffMeth(
+       .Object,
+       covariates = NULL,
+       overdispersion = c("none", "MN", "shrinkMN"),
+       adjust = c("SLIM", "holm", "hochberg", "hommel", "bonferroni", "BH", "BY", "fdr",
+         "none", "qvalue"),
+       effect = c("wmean", "mean", "predicted"),
+       parShrinkMN = list(),
+       test = c("F", "Chisq", "fast.fisher", "midPval"),
+       mc.cores = 1,
+       slim = TRUE,
+       weighted.mean = TRUE,
+       chunk.size = 1e+06,
+       save.db = TRUE,
+       ...
+     )
+     
+Arguments:
+
+ .Object: a 'methylBase' or 'methylBaseDB' object to calculate differential methylation
+
+covariates: a 'data.frame' containing covariates, which should be included in the test.
+
+overdispersion: If set to "none"(default), no overdispersion correction will be attempted.  If set to "MN", basic overdispersion correction, proposed by McCullagh and Nelder (1989) will be applied.This correction applies a scaling parameter to variance estimated by the model.  EXPERIMENTAL: If set to "shrinkMN", scaling parameter will be shrunk towards a common value (not thoroughly tested as of yet).
+
+  adjust: different methods to correct the p-values for multiple testing.  Default is "SLIM" from methylKit. For "qvalue" please see 'qvalue' and for all other methods see 'p.adjust'.
+
+  effect: method to calculate the mean methylation different between groups using read coverage as weights (default). When set to "mean", the generic mean is applied and when set to "predicted", predicted means from the logistic regression model is used for calculating the effect.
+
+parShrinkMN: a list for squeezeVar(). (NOT IMPLEMENTED)
+
+    test: the statistical test used to determine the methylation differences.  The Chisq-test is used by default for more than two groups, while the F-test can be chosen if overdispersion control is applied. If there is one sample per group the Fisher's exact test will be applied using "fast.fisher", while "midPval" can be choosen to boost calculation speed.  See details section for more information.
+
+mc.cores: integer denoting how many cores should be used for parallel differential methylation calculations (can only be used in machines with multiple cores).
+
+    slim: If set to FALSE, 'adjust' will be set to "BH" (default behaviour of earlier versions)
+
+weighted.mean: If set to FALSE, 'effect' will be set to "mean" (default behaviour of earlier versions)
+
+chunk.size: Number of rows to be taken as a chunk for processing the 'methylBaseDB' objects (default: 1e6)
+
+ save.db: A Logical to decide whether the resulting object should be saved as flat file database or not, default: explained in Details section.
+
+     ...: optional Arguments used when save.db is TRUE
+
+          'suffix' A character string to append to the name of the output flat file database, only used if save.db is true, default actions: The default suffix is a 13-character random string appended to the fixed prefix "methylDiff", e.g.  "methylDiff_16d3047c1a254.txt.bgz".
+
+          'dbdir' The directory where flat file database(s) should be stored, defaults to getwd(), working directory for newly stored databases and to same directory for already existing database
+
+          'dbtype' The type of the flat file database, currently only option is "tabix" (only used for newly stored databases)
+
+Value:
+
+     a 'methylDiff' object containing the differential methylation statistics and locations for regions or bases
+
+Details:
+
+     Covariates can be included in the analysis. The function will then try to separate the influence of the covariates from the treatment effect via a linear model.
+     The Chisq-test is used per default only when no overdispersion correction is applied. If overdispersion correction is applied, the function automatically switches to the F-test. The Chisq-test can be manually chosen in this case as well, but the F-test only works with overdispersion correction switched on.
+     If there is one sample in each group, e.g. after applying the pooling samples, the Fisher's exact test will be applied for differential methylation.  methyKit offers two implementations to perform this test, which yield slightly different results but differ much in computation time.  "fast.fisher" is a cut down version `fisher.test()` that should produce the exact same results as the base implementation, while "midPval" will produce marginaly different p-values, but offers a large boost in calculation speed.
+
+     The parameter 'chunk.size' is only used when working with 'methylBaseDB' objects, as they are read in chunk by chunk to enable processing large-sized objects which are stored as flat file database. Per default the chunk.size is set to 1M rows, which should work for most systems.  If you encounter memory problems or have a high amount of memory available feel free to adjust the 'chunk.size'.
+
+     The parameter 'save.db' is per default TRUE for methylDB objects as 'methylBaseDB', while being per default FALSE for 'methylBase'.  If you wish to save the result of an in-memory-calculation as flat file database or if the size of the database allows the calculation in-memory, then you might want to change the value of this parameter.
+
+References:
+
+     Altuna Akalin, Matthias Kormaksson, Sheng Li, Francine E. Garrett-Bakelman, Maria E. Figueroa, Ari Melnick, Christopher E. Mason. (2012).  "methylKit: A comprehensive R package for the analysis of genome-wide DNA methylation profiles." Genome Biology.
+
+     McCullagh and Nelder. (1989). Generalized Linear Models. Chapman and Hall. London New York.
+
+     Barnard. (1989). On alleged gains in power from lower P-values.  Statistics in Medicine.  Armitage and Berry. (1994) Statistical Methods in Medical Research (3rd edition). Blackwell.
+
+See Also:
+
+     'pool', 'reorganize' 'dataSim'
+
+Examples:
+
+     data(methylKit)
+     
+     # The Chisq-test will be applied when no overdispersion control is chosen.
+     my.diffMeth=calculateDiffMeth(methylBase.obj,covariates=NULL,
+                                   overdispersion=c("none"),
+                                   adjust=c("SLIM"))
+     
+     # pool samples in each group
+     pooled.methylBase=pool(methylBase.obj,sample.ids=c("test","control"))
+      
+     # After applying the pool() function, there is one sample in each group.
+     # The Fisher's exact test will be applied for differential methylation.
+     my.diffMeth2=calculateDiffMeth(pooled.methylBase,covariates=NULL,
+                                    overdispersion=c("none"),
+                                    adjust=c("SLIM"))
+                                    
+     # Covariates and overdispersion control:
+     # generate a methylBase object with age as a covariate
+     covariates=data.frame(age=c(30,80,30,80))
+     sim.methylBase<-dataSim(replicates=4,sites=1000,treatment=c(1,1,0,0),
+                             covariates=covariates,
+                             sample.ids=c("test1","test2","ctrl1","ctrl2"))
+     
+     # Apply overdispersion correction and include covariates 
+     # in differential methylation calculations.
+     my.diffMeth3<-calculateDiffMeth(sim.methylBase,
+                                     covariates=covariates,
+                                     overdispersion="MN",test="Chisq",mc.cores=1)
+     
+
+================  calculateDiffMethDSS-methods.Rd  ================
+calculate Differential Methylation with DSS
+
+Description:
+
+     This function provides an interface to the beta-binomial model from DSS package by Hao Wu. It calculates the differential methylation statistics using a beta-binomial model with parameter shrinkage. See the reference for details.
+
+Usage:
+
+     calculateDiffMethDSS(
+       meth,
+       adjust = c("SLIM", "holm", "hochberg", "hommel", "bonferroni", "BH", "BY", "fdr",
+         "none", "qvalue"),
+       mc.cores = 1
+     )
+     
+     ## S4 method for signature 'methylBase'
+     calculateDiffMethDSS(
+       meth,
+       adjust = c("SLIM", "holm", "hochberg", "hommel", "bonferroni", "BH", "BY", "fdr",
+         "none", "qvalue"),
+       mc.cores = 1
+     )
+     
+Arguments:
+
+    meth: a methylBase object
+
+  adjust: different methods to correct the p-values for multiple testing.  Default is "SLIM" from methylKit. For "qvalue" please see 'qvalue' and for all other methods see 'p.adjust'.
+
+mc.cores: integer denoting how many cores should be used for parallel differential methylation calculations (can only be used in machines with multiple cores).
+
+Value:
+
+     a methylDiff object
+
+References:
+
+     Feng H, Conneely K and Wu H (2014). A bayesian hierarchical model to detect differentially methylated loci from single nucleotide resolution sequencing data. Nucleic acids research
+
+Examples:
+
+     data(methylKit)
+     
+     dssDiffay <- calculateDiffMethDSS(methylBase.obj, adjust="SLIM", mc.cores=1)
+     
+
+================ vignette files ================
+[1] "/usr/local/lib/R/site-library/methylKit/doc/index.html"    
+[2] "/usr/local/lib/R/site-library/methylKit/doc/methylKit.R"   
+[3] "/usr/local/lib/R/site-library/methylKit/doc/methylKit.Rmd" 
+[4] "/usr/local/lib/R/site-library/methylKit/doc/methylKit.html"
+
+================ p.adjusted ================
+function (pvals, method = c("SLIM", "holm", "hochberg", "hommel", 
+    "bonferroni", "BH", "BY", "fdr", "none", "qvalue"), n = length(pvals), 
+    fdr.level = NULL, pfdr = FALSE, STA = 0.1, Divi = 10, Pz = 0.05, 
+    B = 100, Bplot = FALSE) 
+{
+    method <- match.arg(method)
+    qvals = switch(method, SLIM = {
+        QValuesfun(pvals, SLIMfunc(pvals, STA = STA, Divi = Divi, 
+            Pz = Pz, B = B, Bplot = Bplot)$pi0_Est)
+    }, holm = {
+        p.adjust(pvals, method = method, n)
+    }, hochberg = {
+        p.adjust(pvals, method = method, n)
+    }, hommel = {
+        p.adjust(pvals, method = method, n)
+    }, bonferroni = {
+        p.adjust(pvals, method = method, n)
+    }, BH = {
+        p.adjust(pvals, method = method, n)
+    }, BY = {
+        p.adjust(pvals, method = method, n)
+    }, fdr = {
+        p.adjust(pvals, method = method, n)
+    }, none = {
+        p.adjust(pvals, method = method, n)
+    }, qvalue = {
+        qvalue(pvals, fdr.level, pfdr)$qvalues
+    })
+    return(qvals)
+}
+<bytecode: 0x5635399f1100>
+<environment: namespace:methylKit>

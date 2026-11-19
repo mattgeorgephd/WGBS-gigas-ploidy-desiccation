@@ -1,0 +1,73 @@
+### I-06 (S1) No overdispersion correction in the differential methylation model
+
+**Where.** Methods 2.5; all DML.
+
+**Evidence (verified).** `code/2_WGBS_Methylkit-all-gigas.R:154-162` calls `calculateDiffMeth()` with a covariate and all other arguments at their defaults, which means `overdispersion = "none"`: a binomial logistic regression in which reads from different animals are treated as exchangeable draws.
+
+**Why it matters.** With biological replicates, variation among animals exceeds binomial sampling variation, and a model without overdispersion is anticonservative. The methylKit authors' own benchmark shows a markedly higher false positive rate without the correction and recommends `overdispersion = "MN"` with a chi-squared test (Wreczycka et al. 2017, J Biotechnol 261:105, doi:10.1016/j.jbiotec.2017.08.007). The 20% difference threshold limits but does not remove the problem.
+
+**Proposed resolution.** Report a sensitivity analysis with the correction; if the authors agree, make it primary.
+
+**Needs from authors.** Whether to change the primary model.
+
+**Rating.** S2 on 2026-11-18, before the effect of the correction had been measured; raised to S1 on 2026-11-19. The DML lists on which Results 3.2 to 3.5 rest do not hold up when variation among animals is modelled.
+
+**Correction to "Why it matters" (2026-11-19).** The sentence on the benchmark of Wreczycka et al. 2017 was written from memory, and the paper could not be opened from the audit environment (the publisher and the preprint server refused automated access). What that paper found and what it recommends are therefore unverified here; an author with access to the journal should check it before the sentence is used anywhere. What is verified is the documentation of methylKit 1.28.0 (`?calculateDiffMeth`): for `overdispersion`, "If set to "none"(default), no overdispersion correction will be attempted. If set to "MN", basic overdispersion correction, proposed by McCullagh and Nelder (1989) will be applied"; for `test`, "If overdispersion correction is applied, the function automatically switches to the F-test. The Chisq-test can be manually chosen in this case as well". The correction is that of McCullagh and Nelder, *Generalized Linear Models*, 2nd edition, Chapman and Hall, 1989.
+
+**Update 2026-11-19: sensitivity analyses (computed).** `06_diagnostics/dml_sensitivity.R` refits the two contrasts of the draft and 14 variants of them in legacy mode (480,579 CpGs), and 6 of these fits again in corrected mode (454,555 CpGs), all at the draft's thresholds (q < 0.01, difference above 20 points). The script was written by one agent, reviewed by a second and fixed before the full run. Its first two fits reproduce step 05 exactly in both modes: the same q-values and the same DML lists (`dml_sensitivity/equivalence_with_step05.csv`). Outputs, all in `06_diagnostics/dml_sensitivity/`: `analyses.csv` (what each fit is), `dml_counts.csv`, `permutation_reference.csv`, `dispersion_summary.csv`, one DML list per fit, `figure_dml_sensitivity.png`. Numbers below are legacy mode unless stated; corrected mode reads the same.
+
+1. *Variation among animals is about three times what the model assumes.* The dispersion estimate (Pearson chi-squared over residual degrees of freedom; 1 for binomial data) at 5,000 randomly chosen eligible CpGs has a median of 3.67 (quartiles 2.45 to 5.35) and exceeds 1.5 at 94% of them. Binomial reads simulated at the same coverage give 0.98, and 1.18 after the coverage scaling and rounding that step 05 applies, so 1.18 is the value to compare with. The test statistic of the uncorrected model is thus inflated about threefold at a typical CpG. In corrected mode: 3.59, 1.19 and 0.99.
+
+2. *The uncorrected p-values are not usable, and the corrected ones show no ploidy signal.* Share of the 65,480 eligible CpGs with p below 0.05, 0.01 and 0.001. A calibrated test of groups that do not differ gives 5%, 1% and 0.1%.
+
+   | Contrast | Libraries | Uncorrected (the draft's model) | With the correction, F test |
+   |---|---|---|---|
+   | Ploidy, heat as covariate (the draft) | 22 | 33%, 21%, 12% | 5.7%, 1.2%, 0.14% |
+   | Heat, ploidy as covariate (the draft; a contrast between cohorts, I-01) | 22 | 43%, 30%, 19% | 11%, 3.6%, 0.67% |
+   | Ploidy by heat interaction (I-02) | 22 | 50%, 38%, 27% | 20%, 7.9%, 1.2% |
+   | Ploidy among the controls | 12 | 37%, 24%, 14% | 6.7%, 1.2%, 0.17% |
+   | Ploidy among the heat-treated | 10 | 50%, 39%, 27% | 18%, 5.3%, 0.98% |
+
+   With the correction, the ploidy contrast of the draft and the ploidy contrast among the controls have nearly the p-value distribution of groups that do not differ. The cohort contrast, the ploidy contrast inside the heat cohort and the interaction keep an excess of small p-values: those groups of libraries do differ, at many CpGs, by amounts that are small or variable at any single CpG. What these differences consist of is described in I-49.
+
+3. *The q-value threshold filters almost nothing in the uncorrected model.* It is passed by 10,275 CpGs for ploidy and 20,062 for heat, which is why every CpG above 20 points but one also has q < 0.01 (I-05; the exception is one heat CpG of legacy mode: 2,352 CpGs above 20 points, 2,351 DML). The lists of the draft are defined by the 20-point difference alone. With the correction, 24 and 287 CpGs have q < 0.01.
+
+4. *DML under each analysis* (q < 0.01 and more than 20 points; in parentheses, corrected mode where it was run):
+
+   | Analysis | Libraries | Uncorrected | With the correction, F test | With the correction, chi-squared test |
+   |---|---|---|---|---|
+   | Ploidy, heat as covariate (the draft) | 22 | 1,038 (952) | 2 (2) | 14 |
+   | Heat, ploidy as covariate (the draft) | 22 | 2,351 (2,273) | 16 (6) | 185 |
+   | Ploidy by heat interaction, tested | 22 | 16,971 (16,257) | 2 (2) | not run |
+   | Ploidy, without the four acute heat shock libraries | 18 | 1,202 | not run | not run |
+   | Heat, without the four acute heat shock libraries | 18 | 3,545 | not run | not run |
+   | Ploidy among the controls | 12 | 2,768 | 2 | not run |
+   | Ploidy among the heat-treated | 10 | 12,405 | 125 | not run |
+   | Heat among the diploids | 11 | 12,487 | not run | not run |
+   | Heat among the triploids | 11 | 6,632 | not run | not run |
+
+   The uncorrected lists grow as libraries are removed, because a pooled difference of 20 points is reached more easily by chance with fewer libraries. The size of an uncorrected list therefore says nothing by itself; it has to be read against items 2 and 5.
+
+5. *The draft's ploidy list is no longer than lists made from relabelled libraries.* With the ploidy labels reassigned among the libraries of each cohort (the observed labelling and 999 random ones of the 232,848 possible), the number of CpGs above 20 points has a median of 749 (5th to 95th percentile 523 to 1,235), and 113 of the 1,000 labellings reach the observed 1,038. In corrected mode: observed 952, median 706.5 (483 to 1,191), 137 of 1,000. A grouping of the same animals that has nothing to do with ploidy thus yields about 750 "DML", and more than one such grouping in ten yields more than the real one. The agents who verified I-41 obtained the same from their own permutations (medians 739 to 762). No reference of this kind can be built for the heat contrast, because the heat label does not vary within a cohort (I-01).
+
+6. *What survives the correction.* Ploidy: two CpGs, the same in both modes (NC_047562.1:40,685,928 and NC_047565.1:35,030,701); 14 with the chi-squared test. Heat: 16 CpGs, 6 in corrected mode. The ten that drop are tested in both modes with identical p-values. Their q-values rise from between 0.0045 and 0.0094 to between 0.010 and 0.020, because 157 of the 287 CpGs with q < 0.01 in legacy mode are high-coverage CpGs that the filter removes (138 of them mitochondrial, none with a difference above 20 points), and a q-value depends on how many other CpGs are significant. With the Benjamini-Hochberg adjustment in place of methylKit's SLIM the heat list has 15 and 4 CpGs. (The counts in the last two sentences come from a scratch computation on the cached fits; the script does not yet write them.) The corrected heat list is therefore not stable at its threshold.
+   NC_047565.1:35,030,701 is in both corrected lists and is one of the draft's 200 "interaction" loci. All five heat-cohort triploids are 35% to 62% methylated there; 16 of the other 17 libraries are at 0% and one is at 7% (`06_diagnostics/library_methylation_level/corrected_dml_library_values.csv`). A CpG at which one group of animals is uniformly different from all others is what an allele or a sequence variant shared by related animals produces in bisulfite data (I-08, I-49).
+
+7. *What the corrected lists do not show.* With 11 libraries against 11, the correction, and 480,579 tests, a single CpG needs an F statistic above 84 (p below 2.1e-8) to be called on its own; with 5 against 5, above 474 (`dml_counts.csv`, column `statistic_needed_for_a_single_call`). A short corrected list is therefore not evidence that two groups are alike at every CpG. It is evidence that these data cannot name the CpGs at which they differ. Item 2 is the better guide to whether groups differ at all.
+
+**What follows for the manuscript.**
+- *Ploidy.* The 1,038 ploidy DML cannot be reported as differences between diploid and triploid oysters. Lists of that size arise from arbitrary groupings of these animals (item 5), the corrected test finds nearly the p-value distribution of no difference (item 2), and the ploidy difference of one cohort is not found in the other (I-01, I-49). This removes the basis of Results 3.2 to 3.5 as far as they concern ploidy: Table 1, Figures 2 to 9 where they show ploidy DML, and the "interaction" set that is built from the ploidy list (I-02).
+- *Heat.* The 2,351 heat DML are a contrast between two experiments (I-01). The experiments do differ (item 2; I-44), but which CpGs differ cannot be named: 16 CpGs pass with the correction, 6 with the coverage filter.
+- *Ploidy inside the heat cohort.* Diploids and triploids of the heat experiment differ: 12,405 DML uncorrected, 125 corrected, and the number of CpGs above 20 points (13,028) is the largest that any of the 252 relabellings of those ten libraries gives. I-49 describes the difference: three diploid libraries with a higher overall methylation level, and five triploid libraries that resemble each other. Whether heat produced it cannot be decided without WGBS of that experiment's own control animals.
+
+**Options.**
+1. Make the corrected model primary and report what it supports: no list of ploidy loci, no list of heat loci, and a difference between the ploidy groups of the heat cohort that is described at the level of libraries (I-49). This is the option the evidence supports.
+2. Keep the uncorrected model and present its lists as descriptive, with the relabelling reference beside every count. This cannot carry statements about single loci, genes or functions.
+3. Use a method built for replicated bisulfite data with few animals per group, for example the beta-binomial model of DSS (Feng, Conneely and Wu 2014, Nucleic Acids Res 42:e69, doi:10.1093/nar/gku154; Park and Wu 2016 for designs with covariates, cited in I-02), or test regions instead of single CpGs. Either may recover some power. Neither removes the confound of I-01 or the structure described in I-49.
+
+**Needs from authors.** Which option; and the check of the Wreczycka et al. citation.
+
+---
+
+### I-07 (S2) Ploidy-DML are described as control-only differences but were computed across all 22 libraries
+

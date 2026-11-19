@@ -1,0 +1,43 @@
+
+[legacy] CpGs 480579; eligible 65480
+
+[corrected] CpGs 454555; eligible 61056
+
+Agreement of my recomputation with dml_counts.csv (all must be TRUE):
+      n above  sig  dml hyper hypo          p05          p01         p001
+1: TRUE  TRUE TRUE TRUE  TRUE TRUE 4.440892e-16 4.996004e-16 4.996004e-16
+            med
+1: 5.329071e-15
+                  analysis_id      mode n_above n_sig n_dml n_hyper n_hypo   p05   p01   p001   n05   n01  n001 med_eff_elig all05 all01 all001
+ 1:                 A0_ploidy    legacy    1038 10275  1038     442    596 33.37 21.09 11.706 21852 13813  7665        -1.25 13.42  6.35  3.116
+ 2:                   A0_heat    legacy    2352 20062  2351    1150   1201 42.64 29.97 19.145 27921 19623 12536         0.37 15.81  8.59  4.895
+ 3:            A1_ploidy_mn_f    legacy    1038    24     2       2      0  5.74  1.24  0.136  3758   809    89        -1.25  6.26  1.15  0.187
+ 4:              A1_heat_mn_f    legacy    2352   287    16       6     10 11.01  3.55  0.673  7209  2326   441         0.37  7.90  2.02  0.462
+ 5:        A1_ploidy_mn_chisq    legacy    1038   168    14       9      5  7.30  2.25  0.461  4781  1471   302        -1.25  6.85  1.59  0.348
+ 6:          A1_heat_mn_chisq    legacy    2352  1124   185      95     90 13.24  5.52  1.718  8670  3616  1125         0.37  8.66  2.72  0.850
+ 7:            A2_interaction    legacy   23503 21701 16971    1746  15225 50.01 38.08 27.243 32749 24936 17839        -8.91 13.47  7.90  5.073
+ 8:       A2_interaction_mn_f    legacy   23503     4     2       1      1 20.26  7.87  1.187 13265  5156   777        -8.91  6.74  1.94  0.294
+ 9:        A3_ploidy_no_acute    legacy    1214  7503  1202     672    530 29.53 17.94  9.655 19338 11745  6322         0.63 11.65  5.44  2.574
+10:          A3_heat_no_acute    legacy    3557 16439  3545    1708   1837 38.97 26.78 16.880 25519 17535 11053         0.09 14.11  7.46  4.191
+11:      A4_ploidy_in_control    legacy    3350  9567  2768    2211    557 36.58 23.90 13.655 23952 15649  8941         3.64 10.99  5.89  2.973
+12: A4_ploidy_in_control_mn_f    legacy    3350     7     2       1      1  6.71  1.21  0.168  4391   793   110         3.64  3.34  0.50  0.074
+13:         A4_ploidy_in_heat    legacy   13028 25121 12405    1806  10599 50.46 38.53 27.277 33042 25230 17861        -5.71 13.78  8.82  5.701
+14:    A4_ploidy_in_heat_mn_f    legacy   13028   220   125      24    101 17.83  5.32  0.979 11676  3485   641        -5.71  5.81  1.43  0.267
+15:        A5_heat_in_diploid    legacy   12964 25870 12487   10535   1952 48.94 37.55 26.885 32048 24585 17604         4.53 14.21  9.09  5.808
+16:       A5_heat_in_triploid    legacy    7206 18592  6632    1540   5092 45.80 32.84 21.294 29993 21504 13943        -4.70 13.14  7.90  4.613
+17:                 A0_ploidy corrected     952  8429   952     430    522 32.81 20.47 11.114 20030 12497  6786        -1.33 12.85  5.91  2.845
+18:                   A0_heat corrected    2273 16494  2273    1089   1184 42.07 29.33 18.504 25686 17906 11298         0.35 15.04  7.95  4.413
+19:            A1_ploidy_mn_f corrected     952    23     2       2      0  5.62  1.22  0.131  3430   742    80        -1.33  6.16  1.10  0.176
+20:              A1_heat_mn_f corrected    2273    84     6       2      4 10.94  3.52  0.690  6679  2148   421         0.35  7.59  1.82  0.362
+21:            A2_interaction corrected   22846 19475 16257    1550  14707 49.72 37.76 26.923 30356 23053 16438        -9.32 12.90  7.53  4.840
+22:       A2_interaction_mn_f corrected   22846     4     2       1      1 20.56  8.14  1.237 12551  4971   755        -9.32  6.60  1.91  0.289
+                  analysis_id      mode n_above n_sig n_dml n_hyper n_hypo   p05   p01   p001   n05   n01  n001 med_eff_elig all05 all01 all001
+
+Statistic needed for a single call (q cutoff / number tested):
+[legacy] p = 2.081e-08; chisq(1) 31.418; F(1,19) 84.112; F(1,18) 89.509; F(1,10) 250.607; F(1,8) 474.471
+[corrected] p = 2.2e-08; chisq(1) 31.310; F(1,19) 83.516; F(1,18) 88.853; F(1,10) 247.731; F(1,8) 467.813
+choose(10,5)*choose(12,6) = 232848 ; choose(12,6) = 924 ; choose(10,5) = 252 ; without acute: choose(6,3)*choose(12,6) = 18480 
+
+real	0m8.776s
+user	0m5.648s
+sys	0m0.952s

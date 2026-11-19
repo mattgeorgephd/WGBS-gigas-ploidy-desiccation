@@ -2,7 +2,9 @@
 
 How to continue this work from the repository alone, for a new session or a person. The working session rewrites the "State" and "In flight" sections whenever it pushes.
 
-Last updated: 2026-11-19 09:38 UTC.
+Last updated: 2026-11-19 15:59 UTC.
+
+**Note of 2026-11-19, 16:00 UTC.** Work stopped from 09:43 to 15:54 UTC because the account's usage limit was reached; eight agents failed in mid-task. Nothing was lost: every commit had been pushed, and when the session was continued the machine had restarted but kept its disk (scratch directory, download cache, workflow journals), so the two unfinished workflows could be resumed from their journals.
 
 ## If the session ends or its machine is replaced
 
@@ -61,8 +63,8 @@ Agent runs (scripts and partial results in `07_documentation/agent_workflows/`).
 | `manuscript-values`, second batch (Results 3.4 and 3.5, Table 1, Discussion) | finished and integrated (292 rows; 545 in all) | nothing | Not needed. |
 | `build-dml-sensitivity` | finished: build, review, fix. The script is final (1,110 lines); its documentation is in `06_diagnostics/README.md` | nothing | Not needed. |
 | `check-issues-integration` (launched 06:08 UTC) | finished and applied: all ten checks (reports C1 to C8 and the cross-file check), about 190 corrections to `issues.md`, the manuscript values map, README files and the plan; two wrong numbers, two corrections rated high | nothing | Not needed. |
-| `build-diagnostics` (launched 06:20 UTC) | build stage of `feature_odds_matched`, `locus_nc047563` and `legacy_reader_mechanism` (all reproduce their targets; see the notes below this table) | build of `coverage_filter_variants` and `check_methylkit_equivalence`; review and fix of all five | Files the agents have written so far are in git as snapshots; run the script again for the rest. |
-| `check-sensitivity-text` (launched 08:33 UTC) | S2 (I-49: numbers reproduced; one reading withdrawn, eleven narrowed; I-49 rewritten, with changes to I-01, I-06, I-08, the README and plan decision 16; the checker's scripts are in `agent_workflows/verification_scripts/S2-I49-evidence-and-alternatives/`) | S1 (I-06 numbers and reading), S3 (code review of `library_methylation_level.R`), S4 (cross-file consistency of the fourth pass), S5 (literature) | Run `agent_workflows/scripts/check-sensitivity-text.js` again with `resumeFromRunId`; it is read-only. |
+| `build-diagnostics` (launched 06:20 UTC; resumed 15:57 UTC after the restart) | build of `feature_odds_matched`, `locus_nc047563`, `legacy_reader_mechanism`, `coverage_filter_variants`; review of `locus_nc047563` | build of `check_methylkit_equivalence` (a partial script and tables are in git as a snapshot); review of three scripts; fix of all five | Resume with `resumeFromRunId` (wf_1f1a6a86-611) and the script `agent_workflows/scripts/build-diagnostics.js`. |
+| `check-sensitivity-text` (launched 08:33 UTC; resumed after the restart of 15:54 UTC) | S1 (I-06) and S2 (I-49): both reproduced every number; S2 withdrew one reading and narrowed eleven, S1 narrowed nine and added that methylKit's corrected test applies no correction where its dispersion estimate is not above 1. Both issues are rewritten; the checkers' scripts are in `agent_workflows/verification_scripts/` | S3 (code review of `library_methylation_level.R`), S4 (cross-file consistency of the fourth pass), S5 (literature); these three failed on a usage limit and were started again | Run `agent_workflows/scripts/check-sensitivity-text.js` again with `resumeFromRunId` (wf_147f1667-8df); it is read-only. |
 | Full run of `06_diagnostics/dml_sensitivity.R` (not an agent run; 22 model fits) | finished 08:03 UTC; outputs committed | nothing | To regenerate: `WGBS_CORES=2 Rscript 06_diagnostics/dml_sensitivity.R` from the repository root; about three hours on three cores when no fit is cached (the cache under `06_diagnostics/dml_sensitivity/cache/` is on the machine only). |
 
 Build-stage reports of `build-diagnostics` (not yet reviewed; carry into `issues.md` after the review and fix stages):

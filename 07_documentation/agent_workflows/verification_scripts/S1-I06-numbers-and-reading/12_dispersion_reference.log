@@ -1,0 +1,23 @@
+scaling factors: range 1 1.307692 ; mean 1.156133 ; mean heat cohort 1.057083 ; mean control cohort 1.238675 
+share of sampled CpG-library cells where numCs + numTs differs from the coverage column: 0.01312121 
+observed dispersion, quartiles: 2.519 / 3.723 / 5.567 ; mean 4.391 
+simulation 1: binomial, scaled and rounded: dispersion quartiles 0.949 / 1.186 / 1.461, mean 1.225; median uncorrected statistic over chi-squared median 5.526; share p < 0.05, 0.01, 0.001 uncorrected: 40.73, 28.17, 16.5
+              binomial, not scaled:        dispersion quartiles 0.764 / 0.964 / 1.197, mean 1.000; median uncorrected statistic over chi-squared median 4.552; share p < 0.05, 0.01, 0.001 uncorrected: 36.43, 24.53, 14.37
+simulation 2: binomial, scaled and rounded: dispersion quartiles 0.936 / 1.173 / 1.432, mean 1.209; median uncorrected statistic over chi-squared median 5.259; share p < 0.05, 0.01, 0.001 uncorrected: 39.47, 27.7, 16.97
+              binomial, not scaled:        dispersion quartiles 0.76 / 0.955 / 1.175, mean 0.989; median uncorrected statistic over chi-squared median 4.636; share p < 0.05, 0.01, 0.001 uncorrected: 37.3, 25, 14.43
+simulation 3: binomial, scaled and rounded: dispersion quartiles 0.949 / 1.166 / 1.455, mean 1.213; median uncorrected statistic over chi-squared median 5.565; share p < 0.05, 0.01, 0.001 uncorrected: 40.23, 27.03, 16.27
+              binomial, not scaled:        dispersion quartiles 0.773 / 0.976 / 1.2, mean 1.008; median uncorrected statistic over chi-squared median 4.355; share p < 0.05, 0.01, 0.001 uncorrected: 36.17, 23.03, 13.17
+
+Observed counts: median uncorrected statistic over the chi-squared(1) median: 3.904 ; mean statistic (chi-squared mean is 1): 4.801 
+20 relabellings: median uncorrected statistic over the chi-squared median: mean 3.935 , range 2.984 6.576 ; mean statistic: mean 4.477 , range 3.581 7.329 
+Spearman correlation of the dispersion estimate with the mean normalized coverage of the CpG: 0.016 
+    [16,22]   (22,25.5] (25.5,32.7]  (32.7,578] 
+       3.71        3.86        3.64        3.72 
+mean normalized coverage per library at the sampled CpGs: median 25.45455 ; quartiles 22.04545 32.65909 
+F(1,19) tail beyond the chi-squared value needed for a single call (31.4176): 2.09604e-05 ; ratio to 2.08e-8: 1007.313 
+F(1,19) tail beyond the chi-squared quantiles of 0.05, 0.01, 0.001: 0.06483348 0.01851466 0.00384655 
+t equivalents of the single-call F: 11 v 11: 9.171259 -> standardized difference 3.910638 ; 6 v 6: 15.83056 -> 9.139779 ; 5 v 5: 21.78235 -> 13.77637 ; 10 v 12: 3.926899 
+
+real	0m35.255s
+user	0m34.519s
+sys	0m0.306s

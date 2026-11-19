@@ -4,6 +4,11 @@
  "agents_finished": 5,
  "agents_running_or_lost": [
   "build:check_methylkit_equivalence",
+  "review:feature_odds_matched",
+  "review:legacy_reader_mechanism",
+  "review:coverage_filter_variants",
+  "fix:locus_nc047563",
+  "build:check_methylkit_equivalence",
   "review:feature_odds_matched"
  ],
  "results": [

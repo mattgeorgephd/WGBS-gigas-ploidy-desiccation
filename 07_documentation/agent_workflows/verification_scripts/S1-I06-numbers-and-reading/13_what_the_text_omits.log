@@ -1,0 +1,33 @@
+draft's ploidy DML: 1038 
+  within the heat cohort: same sign as the pooled difference 1024 ; above 20 points with that sign 880 ; median |difference| 34.1 
+  within the control cohort: same sign as the pooled difference 952 ; above 20 points with that sign 335 ; opposite sign 85 ; median |difference| 14.8 
+  above 20 points with the pooled sign in both cohorts: 179 ; in the heat cohort only: 701 ; in the control cohort only: 156 ; in neither: 2 
+  larger |difference| in the heat cohort than in the control cohort: 823 
+  of the 1,038: DML in the heat-only fit 860 ; in the control-only fit 300 ; in both 139 ; in neither 17 ; in both with the same sign 139 
+  heat-only DML: 12405 ; control-only DML: 2768 ; in both: 751 ; of these with the same sign: 139 
+
+corrected heat-cohort ploidy list: 125 ; hyper 24 ; hypo 101 ; among the draft's 1,038: 7 ; among the uncorrected heat-only list: 125 ; contains the two corrected pooled ploidy CpGs: 0 ; contains corrected heat (cohort) CpGs: 0 
+  with Benjamini-Hochberg: 122 ; q-values of the 125: range 2.54e-25 0.00902 ; p-values: largest 5.1e-06 ; SLIM share of true nulls 0.803 
+  with q < 0.05 instead of 0.01 (same 20 points): 192 ; pooled ploidy with q < 0.05: 3 ; with q < 0.1: 6 ; cohort contrast q < 0.05: 55 ; q < 0.1: 125 
+  control-cohort corrected CpGs:
+           chr    start       pvalue       qvalue meth.diff in_draft_list pooled_corrected_q
+1: NC_047561.1   799855 8.623397e-11 3.293605e-05 -22.41379         FALSE           0.617305
+2: NC_047568.1 17094385 7.441588e-08 4.060325e-03  29.68873         FALSE           0.617305
+  pooled corrected ploidy CpGs:
+           chr    start       pvalue       qvalue meth.diff heat_cohort_diff control_cohort_diff heat_only_q control_only_q
+1: NC_047562.1 40685928 4.968797e-07 9.926035e-03  30.24253         51.84113            10.01105   0.1407619      0.5461765
+2: NC_047565.1 35030701 1.836813e-17 8.222888e-12  20.16061         40.89367             0.00000   0.0599067      0.7947461
+  the 24 CpGs with corrected q < 0.01 for ploidy: |difference| quartiles 3.8 5.8 7.3 9.9 30.2 
+  the 287 CpGs with corrected q < 0.01 for heat: |difference| quartiles 1.2 2.8 4.1 6.9 50.7 
+
+Of the draft's 1,038 ploidy DML: corrected p < 0.05 in the heat-only fit 547 ; in the control-only fit 199 ; in both 41 ; both and same sign 40 
+Of the draft's 2351 heat DML: corrected p < 0.05 at 1928 (82.0%) ; < 0.01 at 1014 (43.1%) ; < 0.001 at 279 (11.9%) ; < 0.0001 at 67 (2.85%) 
+Of the draft's 1,038 ploidy DML (from the cache): corrected p < 0.05 at 782 ; < 0.01 at 278 ; < 0.001 at 48 ; < 0.0001 at 10 
+
+control cohort, 150 regroupings (3,000 CpGs): with a corrected-F share at least the full-data share (6.7%, 1.2%, 0.17%): 29 38 36 
+heat cohort, 125 regroupings: with a corrected-F share at least the full-data share (18%, 5.3%, 0.98%): 0 0 0 ; farthest regroupings (two exchanges, n = 100 ): mean share 4.729 0.961 0.167 
+control cohort regroupings: mean share 5.419 1.032 0.14 
+
+real	0m2.971s
+user	0m2.376s
+sys	0m0.517s

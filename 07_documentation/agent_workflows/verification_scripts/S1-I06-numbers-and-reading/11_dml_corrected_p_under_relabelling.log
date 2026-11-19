@@ -1,0 +1,18 @@
+minutes: 1.1 
+OBSERVED labels:
+   labelling n_above n_unc_p_below_2.3e4 n_f_05 n_f_01 n_f_001 n_f_0001 median_phi median_abs_diff
+1:         0    1038                1038    782    278      48       10   6.569422        23.39881
+  of the 1038 CpGs above 20 points: corrected p < 0.05 at 782 (75.3%), < 0.01 at 278 (26.8%), < 0.001 at 48 (4.6%), < 0.0001 at 10 (0.96%); uncorrected p < 2.3e-4 at 1038
+RELABELLED (150 labellings), share of the CpGs above 20 points with a corrected p below each level:
+  s05    mean 71.6% | median 70.6% | 5th 64.2% | 95th 79.7% | labellings with a share at least the observed: 27 of 150
+  s01    mean 28.3% | median 26.1% | 5th 21.0% | 95th 36.6% | labellings with a share at least the observed: 66 of 150
+  s001   mean 4.7% | median 3.9% | 5th 2.1% | 95th 10.1% | labellings with a share at least the observed: 48 of 150
+  s0001  mean 0.6% | median 0.5% | 5th 0.0% | 95th 1.4% | labellings with a share at least the observed: 20 of 150
+  counts: corrected p < 0.01 among CpGs above 20 points: observed 278; relabelled median 191, 5th to 95th 118.9 to 463.95; labellings with at least the observed count: 26
+  counts: corrected p < 0.001: observed 48; relabelled median 28.5, 5th to 95th 13 to 85.2; at least observed: 27
+  uncorrected p < 2.3e-4 (the largest p with q < 0.01 in the draft's ploidy analysis) among relabelled CpGs above 20 points: 99.98% overall; smallest share in a labelling 99.55%
+  median dispersion at the CpGs above 20 points: observed 6.57; relabelled median 6.16 (5th to 95th 4.91 to 6.63)
+
+real	1m7.852s
+user	1m6.447s
+sys	0m0.525s
