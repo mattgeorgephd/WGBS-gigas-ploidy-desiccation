@@ -1,0 +1,18 @@
+CpG methylation of mitochondrial DNA is absent or below 2% once the DNA is linearized before conversion, and higher values are an artifact
+for bivalves one study reports methylated mitochondrial DNA in gonads of the mussel Mytilus edulis (Leroux et al. 2024, Sci Rep 14:31544, doi:10.1038/s41598-024-83368-6), so the expectation is not established for this species
+Owa et al. describe such local unevenness of conversion
+would settle the cause: equal rates at CpG and non-CpG cytosines mean non-conversion
+Hong et al. and Leroux et al. in the abstract only, so whether the mussel study controlled for the conversion artifact is not known here
+Methylation in CHH context, the usual measure of non-conversion,
+(sources in I-01; for bivalves the question is open)
+so there it measures the conversion of mitochondrial DNA and not that of nuclear DNA (I-01)
+Such a bias multiplies the odds of methylation at every CpG, which is the constant shift on the logit scale described above,
+and it leaves the non-conversion rate unchanged, so the checks of this item do not exclude it.
+Both studies compared protocols;
+and spike-in controls capture such batch effects better than non-CpG cytosines do
+(Read in full: Olova et al., Lea et al.; in the abstract only: Ji et al., Teng et al., Sun et al., Valk et al.,
+In mammals it carries no CpG methylation or nearly none once the DNA is linearized; for bivalves the question is open (one study reports methylated mitochondrial DNA in a mussel)
+no report of a difference of this size between libraries of one kit and one run was found
+Published work supports the inference.
+which in mammals carries no CpG methylation or nearly none
+technical replicates of one protocol differed little in Olova et al.

@@ -4,13 +4,14 @@
 #           table and a quarter of the heat table when it read them, and what
 #           the loss did to the test (issue I-40, with the universe gap of
 #           I-39). The legacy script read three tables (one line per DML,
-#           transcript and GO term) with read.table() and its default quote
-#           characters, the double quote and the apostrophe. GO term names hold
-#           apostrophes ("mRNA 3'-UTR binding"). An apostrophe without a
-#           partner on its line opens a quoted string, and every line up to the
-#           next such apostrophe goes into one field of one row. Step 09
-#           repeats that read in order to reproduce the draft. This script
-#           documents it for the three legacy tables (ploidy, heat, shared):
+#           transcript, GO term and GOslim bin) with read.table() and its
+#           default quote characters, the double quote and the apostrophe. GO
+#           term names hold apostrophes ("mRNA 3'-UTR binding"). An apostrophe
+#           without a partner on its line opens a quoted string, and every
+#           line up to the next such apostrophe goes into one field of one
+#           row. Step 09 repeats that read in order to reproduce the draft.
+#           This script documents it for the three legacy tables (ploidy,
+#           heat, shared):
 #             (a) lines, transcripts and genes in the file and in the rows of
 #                 four reads (default quote characters, no quote character,
 #                 the double quote alone, the apostrophe alone), with the
@@ -32,23 +33,26 @@
 #             (f) survival of a gene by the number of its transcripts in the
 #                 table, and of a transcript by whether it carries a term with
 #                 an unpaired apostrophe;
-#             (g) a position-only control for the BP test of the ploidy table.
-#                 Nearly all transcripts of interest of that test lie in one
-#                 accession run. To see what position alone does to the test,
-#                 every universe transcript of the run is taken as the list of
-#                 interest, with no DML information, and tested as step 09
-#                 tests (transcripts as genes, the legacy universe with its
-#                 repeated names, classic Fisher test of topGO, GO.db 3.13.0).
-#                 The number of BP terms with p below the cutoff is compared
-#                 with that of random lists of the same size from the
-#                 universe. That list is many times as long as the legacy
-#                 list, so random lists of the size of the legacy list are
-#                 also drawn, from the run and from the whole universe. Every
-#                 list is tested twice: with the totals of the test counted in
-#                 lines of the universe map, as in step 09 (issue I-43), and
-#                 counted in transcripts.
+#             (g) an accession-run control for the BP test of the ploidy table.
+#                 Nearly all transcripts handed to that test lie in one
+#                 accession run. Every universe transcript of the run is taken
+#                 as the list of interest, with no DML information, and tested
+#                 as step 09 tests (transcripts as genes, the legacy universe
+#                 with its repeated names, classic Fisher test of topGO, GO.db
+#                 3.13.0). The number of BP terms with p below the cutoff is
+#                 compared with that of two kinds of random list of the same
+#                 size: transcripts drawn singly from the universe, and random
+#                 gene sets that keep the isoforms of a gene together as the
+#                 run does. The run is many times as long as the legacy list,
+#                 so random lists of the size of the legacy list are also
+#                 drawn, as single transcripts, from four pools: the run, the
+#                 whole universe, the linkage groups that hold the run, and
+#                 random gene sets matched to the run. Every list is tested
+#                 twice: with the totals of the test counted in lines of the
+#                 universe map, as in step 09 (issue I-43), and counted in
+#                 transcripts.
 #
-# Run       Rscript 06_diagnostics/legacy_reader_mechanism.R      (2 to 3 minutes)
+# Run       Rscript 06_diagnostics/legacy_reader_mechanism.R      (about 4 minutes)
 #
 # Reads     03_input_files/annotation/legacy/DML-Cov10-20-BOTH-{PLOIDY,HEAT,COMBO}.GeneIDs.geneOverlap.transcriptIDs.GOAnnot.gz
 #           03_input_files/annotation/geneid2go-union1x-BOTH.tab.gz
@@ -72,12 +76,26 @@
 #           06_diagnostics/legacy_reader_position_control.csv
 #             Part (g): one row per list of interest and unit of the totals.
 #             For a single list the median, minimum and maximum are its value.
+#             isoforms_kept_together says whether the transcripts of a gene
+#             enter a list together (yes) or one by one (no);
+#             genes_in_list_median and
+#             genes_with_every_universe_transcript_in_list_median are the
+#             numbers behind it (the gene of a transcript is that of the
+#             transcript table of step 08).
+#             lists_with_at_least_as_many_terms_as_accession_run places the
+#             run among the random lists of its size. For the lists drawn from
+#             random gene sets, gene_sets is the number of sets, and the two
+#             set_median columns are the lowest and the highest median of a
+#             set. The word position in the file name is the question the
+#             control was built for, not its result (see Notes).
 #
 # Notes     - The three tables are the legacy files, which the legacy script
 #             read. Step 09 reads copies that step 08 regenerates. The script
 #             stops unless its row, transcript and gene counts equal those of
-#             legacy_reader_loss.csv and legacy_funnel.csv, and its p-values
-#             for the legacy list those of legacy_fisher_ploidy_BP.csv.
+#             legacy_reader_loss.csv and legacy_funnel.csv, and every p-value
+#             of its test of the legacy list equals that of
+#             legacy_fisher_ploidy_BP.csv (term by term, to a relative
+#             difference of 1e-9; the table holds 15 digits).
 #           - Which line starts which row is predicted from the quote rule of
 #             scan(), which read.table() calls: in a file with a separator a
 #             quote character opens a quoted string wherever in a field it
@@ -98,20 +116,57 @@
 #           - The linkage groups are also reported as two halves in the order
 #             of config$linkage_groups, because the annotated mRNAs in the
 #             accession range of the ploidy run lie on the first five and on
-#             unplaced scaffolds (quantity mrnas_in_run_range_by_sequence).
-#           - Position control: the two fixed lists are tested by topGO itself,
-#             on the map as it is and on the map with one entry per
-#             transcript. The random lists are tested with the same
+#             unplaced scaffolds (quantity mrnas_in_run_range_by_sequence);
+#             the script stops if they do not. The heat and the shared table
+#             are reported by the same two halves so that the three tables
+#             can be compared; the longest run of the heat table also covers
+#             other linkage groups (same quantity).
+#           - Accession-run control, the tests: the two fixed lists are tested
+#             by topGO itself, on the map as it is and on the map with one
+#             entry per transcript. The random lists are tested with the same
 #             hypergeometric tail, computed from the term members of the topGO
 #             object; the script stops unless that computation gives the
 #             p-values of topGO for the two fixed lists, bit for bit, in both
-#             units. 200 lists of each of the three random kinds (600 draws
-#             without replacement), set.seed(20261119); the same lists are
-#             used for both units.
-#           - The random lists are lists of transcripts. They do not keep the
-#             isoforms of a gene together as a list of genes with a DML does
-#             (issue I-03), so they show what position does and are no null
-#             distribution for the number of terms of the legacy list.
+#             units.
+#           - Accession-run control, the random lists: set.seed(20261119);
+#             200 lists of each of five kinds, and 200 from each of 20 gene
+#             sets for the sixth (5,000 lists, each drawn without
+#             replacement). The same lists are used for both units. The kinds
+#             are drawn in the order of the code, and a kind that is added is
+#             drawn after the others, so that their lists stay the same.
+#           - A gene set matched to the run: every gene of the run is replaced
+#             by a random gene with as many universe transcripts, and as many
+#             transcripts of that gene are taken, at random, as the run holds
+#             of the gene it replaces. The set has the transcripts, the genes
+#             and the transcripts per gene of the run, and its genes share no
+#             position. The match is made on both numbers because the run
+#             does not hold every universe transcript of each of its genes
+#             (column genes_with_every_universe_transcript_in_list_median).
+#           - What the control can show. The run holds the isoforms of a gene
+#             together and a list of single transcripts does not, so the run
+#             against single transcripts shows the isoform unit of issue I-03
+#             together with the place of the run, and cannot tell them apart.
+#             The run against the matched gene sets is the comparison of like
+#             with like. In the same way a list of single transcripts drawn
+#             from a part of the universe carries the composition of that
+#             part, whatever the part is: lists from the run are to be read
+#             against lists from the matched gene sets and from the linkage
+#             groups of the run, not against lists from the whole universe
+#             alone. No random list here is a null distribution for the number
+#             of terms of the legacy list, which holds the isoforms of genes
+#             with a DML (issue I-03).
+#           - With the totals counted in map lines, the share of the list is
+#             counted in lines and the transcripts of a term once each. A list
+#             whose transcripts have more map lines each than those of the
+#             universe is then tested against too large a share and gives
+#             fewer terms. The transcripts of the run have more lines each
+#             (of_interest_as_counted_median over
+#             transcripts_with_bp_term_median, against the ratio of the two
+#             values of total_as_counted), so the run and the lists drawn from
+#             it come out lower under these totals than under transcript
+#             totals. The matched gene sets and the other pools have the lines
+#             of their own transcripts, so under line totals a difference
+#             between the run and them holds this effect as well.
 #           - Warning texts are part of the output. They are those of the R
 #             version named in the first row of legacy_reader_mechanism.csv;
 #             the script asks R for English messages.
@@ -129,7 +184,9 @@ setDTthreads(1)                                      # the tables are small
 # Warning texts are part of the output: ask R for English messages (Sys.setLanguage() exists from R 4.2.0).
 if (exists("Sys.setLanguage", mode = "function")) invisible(Sys.setLanguage("en")) else Sys.setenv(LANGUAGE = "en")
 
-n_draws <- 200L                                      # random lists of each kind in the position control
+n_draws <- 200L                                      # random lists of each kind in the accession-run control
+n_gene_set_pools <- 20L                              # random gene sets from which lists of the size of the legacy list are drawn
+p_tolerance <- 1e-9                                  # relative difference allowed between a p-value and its 15 digits in a table of step 09
 seed <- 20261119L
 table_tags <- c(ploidy = "PLOIDY", heat = "HEAT", shared = "COMBO")   # each table and its tag in the legacy file name
 quote_settings <- list(                              # the four reads of part (a): the quote characters of each
@@ -288,7 +345,7 @@ definitions <- c(
   universe_transcripts_last_five_linkage_groups = paste("Universe transcripts on", lg_last_text),
   percent_universe_last_five_linkage_groups = paste("Percent of the universe transcripts on", lg_last_text),
   universe_transcripts_unplaced_scaffolds = "Universe transcripts on unplaced scaffolds",
-  lines_in_file = "Lines of the annotation table (one line per DML, transcript and GO term)",
+  lines_in_file = "Lines of the annotation table (one line per DML, transcript, GO term and GOslim bin)",
   transcripts_in_file = "Distinct transcripts named in the table",
   genes_in_file = "Distinct genes named in the table",
   percent_rows_default_quotes = "Rows of the default read as a percent of the lines of the table",
@@ -333,8 +390,8 @@ definitions <- c(
   tested_transcripts_unplaced_scaffolds = "Transcripts that survive and are in the legacy universe, on unplaced scaffolds",
   transcripts_admitted_by_universe_alone = "Transcripts of the table that are in the legacy universe: admitted if the universe were the only filter",
   transcripts_admitted_by_reader_alone = "Transcripts of the table that survive the default read: admitted if the reader were the only filter",
-  transcripts_admitted_by_both = paste("Transcripts that survive the default read and are in the legacy universe:",
-                                       "the transcripts of interest of the legacy test"),
+  transcripts_admitted_by_both = paste("Transcripts that survive the default read and are in the legacy universe: handed to the legacy",
+                                       "test as transcripts of interest (those with a term of an ontology take part in the test of that ontology)"),
   genes_admitted_by_universe_alone = "Genes with at least one transcript of the table in the legacy universe",
   genes_admitted_by_reader_alone = "Genes with at least one transcript that survives the default read",
   genes_admitted_by_both = "Genes with at least one transcript that survives the default read and is in the legacy universe",
@@ -627,7 +684,8 @@ for (tbl in names(table_tags)) {
       percent_text(per_tx[has_unpaired_term == FALSE & survives == TRUE, .N], per_tx[has_unpaired_term == FALSE, .N]))
 
   survivors[[tbl]] <- list(transcripts = per_tx[survives == TRUE, transcript], run_range = run_range,
-                           run_first = run_first, run_last = run_last)
+                           run_first = run_first, run_last = run_last,
+                           run_linkage_groups = intersect(sequence_levels[mrnas_in_range > 0], config$linkage_groups))
   log_msg(paste("%-6s %6d lines; default read %6d rows, %4d of %4d transcripts, %4d of %4d genes;",
                 "%2d lines with an unpaired apostrophe, %2d merged rows; warnings: %s"),
           tbl, n_file_lines, nrow(default_read), n_surviving, nrow(per_tx), per_gene[survives == TRUE, .N], nrow(per_gene),
@@ -636,14 +694,17 @@ for (tbl in names(table_tags)) {
 mechanism <- rbindlist(mechanism)
 by_sequence <- rbindlist(by_sequence)
 stopifnot(!anyDuplicated(mechanism[, .(table, quantity)]))
+# The two halves by which the linkage groups are reported are those of the accession run of the ploidy table.
+stopifnot("The linkage groups that hold the mRNAs of the accession range of the ploidy run are not the first five: the two halves do not describe the run" =
+            identical(survivors$ploidy$run_linkage_groups, lg_first))
 
 # ==========================================================================================
-# 4. Position-only control for the BP test of the ploidy table (part g)
+# 4. Accession-run control for the BP test of the ploidy table (part g)
 # ==========================================================================================
 cutoff <- config$go_pvalue
-legacy_list <- intersect(survivors$ploidy$transcripts, universe)                 # the transcripts of interest of the legacy test
+legacy_list <- intersect(survivors$ploidy$transcripts, universe)                 # handed to the legacy test as transcripts of interest
 run_pool <- universe[universe_accession >= survivors$ploidy$run_range[1] & universe_accession <= survivors$ploidy$run_range[2]]
-log_msg("position control: legacy list %d transcripts; accession run %s to %s holds %d of the %d universe transcripts",
+log_msg("accession-run control: legacy list %d transcripts; accession run %s to %s holds %d of the %d universe transcripts",
         length(legacy_list), survivors$ploidy$run_first, survivors$ploidy$run_last, length(run_pool), length(universe))
 
 # ---- topGO as step 09 calls it, on the map as it is and on one entry per transcript ---------
@@ -716,39 +777,96 @@ top_terms <- step09_bp[rank <= config$go_legacy_topn, go_id]
 stopifnot(
   "The BP test of the legacy list does not give the terms and p-values of legacy_fisher_ploidy_BP.csv of step 09" =
     setequal(step09_bp$go_id, names(p_legacy)) &&
-    isTRUE(all.equal(unname(p_legacy[step09_bp$go_id]), step09_bp$p_fisher, tolerance = 1e-9)) &&
+    all(abs(unname(p_legacy[step09_bp$go_id]) - step09_bp$p_fisher) <= p_tolerance * step09_bp$p_fisher) &&   # term by term
     sum(p_legacy < cutoff) == sum(step09_bp$below_p_cutoff),
   "The top terms of step 09 are not the terms with the smallest p-values, or p-values tie at the end of the list" =
     length(top_terms) == config$go_legacy_topn &&
     setequal(names(sort(p_legacy))[seq_len(config$go_legacy_topn)], top_terms) &&
     sort(p_legacy)[[config$go_legacy_topn]] < sort(p_legacy)[[config$go_legacy_topn + 1L]])
 
-# ---- Lists: two fixed, three kinds of random list --------------------------------------------
+# ---- Genes of the universe transcripts, and gene sets matched to the run ---------------------
+universe_gene <- tx_table$gene_id[match(universe, tx_table$transcript_id)]
+stopifnot(!anyNA(universe_gene))
+gene_ids <- unique(universe_gene)
+gene_of <- match(universe_gene, gene_ids)                            # for every universe transcript, the index of its gene
+gene_size <- tabulate(gene_of, nbins = length(gene_ids))             # universe transcripts of every gene
+taken_by_run <- tabulate(gene_of[universe %chin% run_pool], nbins = length(gene_ids))   # those of them in the accession run
+genes_by_size <- order(gene_size)
+# The genes of a list: for every gene the number of its transcripts in the list, the number of genes named, and
+# the number of genes of which the list holds every universe transcript.
+genes_of_list <- function(of_interest) {
+  at <- chmatch(of_interest, universe)
+  if (anyNA(at)) stop("A list of interest names a transcript that is not in the universe", call. = FALSE)
+  taken <- tabulate(gene_of[at], nbins = length(gene_ids))
+  list(taken = taken, genes = sum(taken > 0L), whole = sum(taken > 0L & taken == gene_size))
+}
+# One gene set matched to the run (see Notes). Within each class of genes with the same number of universe
+# transcripts, the numbers of transcripts that the run takes are dealt to the genes in random order. Then that
+# many transcripts of each gene are taken at random.
+draw_gene_set <- function() {
+  dealt <- integer(length(gene_ids))
+  dealt[order(gene_size, sample.int(length(gene_ids)))] <- taken_by_run[genes_by_size]
+  by_gene <- order(gene_of, sample.int(length(universe)))            # transcripts gene by gene, in random order within a gene
+  universe[by_gene[sequence(gene_size) <= dealt[gene_of[by_gene]]]]
+}
+# The genes of a list as one sorted code per gene (its universe transcripts and those taken), to compare two lists.
+gene_structure <- function(taken) sort(gene_size[taken > 0L] * (max(gene_size) + 1L) + taken[taken > 0L])
+
+# ---- Lists: two fixed, six kinds of random list ----------------------------------------------
+n_run <- length(run_pool)
+n_legacy <- length(legacy_list)
+linkage_group_pool <- universe[universe_sequence %in% survivors$ploidy$run_linkage_groups]
+kinds <- data.table(
+  list_of_interest = c("legacy_list", "accession_run", "random_universe_size_of_run", "random_gene_sets_matched_to_run",
+                       "random_run_size_of_legacy_list", "random_universe_size_of_legacy_list",
+                       "random_linkage_groups_of_run_size_of_legacy_list", "random_matched_gene_sets_size_of_legacy_list"),
+  description = c(
+    "Transcripts handed to the legacy test as transcripts of interest: returned by the default read of the ploidy table and in the legacy universe",
+    "Every universe transcript whose accession lies in the longest surviving run of the ploidy table; no DML information",
+    "Random universe transcripts, drawn singly, as many as the accession run holds",
+    paste("Random genes in place of the genes of the accession run: every gene of the run is replaced by a random universe gene with",
+          "as many universe transcripts, and as many transcripts of that gene are taken as the run holds of the gene it replaces"),
+    "Random transcripts confined to the accession run, drawn singly from its universe transcripts, as many as the legacy list holds",
+    "Random universe transcripts, drawn singly, as many as the legacy list holds",
+    sprintf("Random universe transcripts of the linkage groups that hold the mRNAs of the accession run, %s, drawn singly, as many as the legacy list holds",
+            lg_first_text),
+    sprintf(paste("Random transcripts confined to a random gene set matched to the run, drawn singly, as many as the legacy list holds:",
+                  "%d lists from each of the first %d sets of random_gene_sets_matched_to_run"), n_draws, n_gene_set_pools)),
+  uses_dml_information = c("yes", "no", "no", "no", "no", "no", "no", "no"),
+  isoforms_kept_together = c("yes", "yes", "no", "yes", "no", "no", "no", "no"))
+lists_from_gene_sets <- "random_matched_gene_sets_size_of_legacy_list"
+stopifnot(n_gene_set_pools <= n_draws, lists_from_gene_sets %in% kinds$list_of_interest)
+
 set.seed(seed, kind = "Mersenne-Twister", normal.kind = "Inversion", sample.kind = "Rejection")
 draw_from <- function(pool, size) pool[sample.int(length(pool), size)]
-kinds <- data.table(
-  list_of_interest = c("legacy_list", "accession_run", "random_universe_size_of_run", "random_run_size_of_legacy_list",
-                       "random_universe_size_of_legacy_list"),
-  description = c(
-    "Transcripts of interest of the legacy test: returned by the default read of the ploidy table and in the legacy universe",
-    "Every universe transcript whose accession lies in the longest surviving run of the ploidy table; no DML information",
-    "Random universe transcripts, as many as the accession run holds",
-    "Random universe transcripts of the accession run, as many as the legacy list holds",
-    "Random universe transcripts, as many as the legacy list holds"),
-  uses_dml_information = c("yes", "no", "no", "no", "no"))
-all_lists <- c(
-  list(legacy_list = list(legacy_list), accession_run = list(run_pool)),
-  list(random_universe_size_of_run = replicate(n_draws, draw_from(universe, length(run_pool)), simplify = FALSE)),
-  list(random_run_size_of_legacy_list = replicate(n_draws, draw_from(run_pool, length(legacy_list)), simplify = FALSE)),
-  list(random_universe_size_of_legacy_list = replicate(n_draws, draw_from(universe, length(legacy_list)), simplify = FALSE)))
-stopifnot(identical(names(all_lists), kinds$list_of_interest))
+drawn <- list()                                                      # the random kinds, in the order of drawing (see Notes)
+drawn$random_universe_size_of_run <- replicate(n_draws, draw_from(universe, n_run), simplify = FALSE)
+drawn$random_run_size_of_legacy_list <- replicate(n_draws, draw_from(run_pool, n_legacy), simplify = FALSE)
+drawn$random_universe_size_of_legacy_list <- replicate(n_draws, draw_from(universe, n_legacy), simplify = FALSE)
+drawn$random_linkage_groups_of_run_size_of_legacy_list <- replicate(n_draws, draw_from(linkage_group_pool, n_legacy), simplify = FALSE)
+drawn$random_gene_sets_matched_to_run <- replicate(n_draws, draw_gene_set(), simplify = FALSE)
+drawn[[lists_from_gene_sets]] <- unlist(lapply(seq_len(n_gene_set_pools), function(s) {   # list number: sets in turn, n_draws lists of each
+  replicate(n_draws, draw_from(drawn$random_gene_sets_matched_to_run[[s]], n_legacy), simplify = FALSE)
+}), recursive = FALSE)
+run_structure <- gene_structure(taken_by_run)
+stopifnot(
+  "A random gene set does not have the transcripts, the genes and the transcripts per gene of the accession run" =
+    all(vapply(drawn$random_gene_sets_matched_to_run, function(gene_set) {
+      length(gene_set) == n_run && !anyDuplicated(gene_set) && identical(gene_structure(genes_of_list(gene_set)$taken), run_structure)
+    }, logical(1))),
+  setequal(names(drawn), setdiff(kinds$list_of_interest, c("legacy_list", "accession_run"))))
+all_lists <- c(list(legacy_list = list(legacy_list), accession_run = list(run_pool)), drawn)[kinds$list_of_interest]
 
 per_list <- rbindlist(lapply(names(all_lists), function(kind_name) {
   rbindlist(lapply(seq_along(all_lists[[kind_name]]), function(i) {
+    in_genes <- genes_of_list(all_lists[[kind_name]][[i]])
     rbindlist(lapply(names(maps), function(counted_in) {
       res <- direct_test(all_lists[[kind_name]][[i]], counted_in)
-      data.table(list_of_interest = kind_name, list_number = i, unit = counted_in,
+      data.table(list_of_interest = kind_name, list_number = i,
+                 gene_set = if (kind_name == lists_from_gene_sets) (i - 1L) %/% n_draws + 1L else NA_integer_,
+                 unit = counted_in,
                  transcripts_in_list = length(all_lists[[kind_name]][[i]]),
+                 genes_in_list = in_genes$genes, whole_genes_in_list = in_genes$whole,
                  transcripts_in_test = res$transcripts_in_test, of_interest_as_counted = res$of_interest_as_counted,
                  total_as_counted = res$total_as_counted,
                  terms_below = sum(res$p < cutoff), top_terms_below = sum(res$p[top_terms] < cutoff),
@@ -760,6 +878,8 @@ per_list <- rbindlist(lapply(names(all_lists), function(kind_name) {
 unit_text <- c(lines = "lines of the universe map, as in step 09", transcripts = "transcripts, one entry per transcript")
 control <- per_list[, .(
   lists = .N, transcripts_in_list = transcripts_in_list[1L],
+  genes_in_list_median = median(as.numeric(genes_in_list)),
+  genes_with_every_universe_transcript_in_list_median = median(as.numeric(whole_genes_in_list)),
   transcripts_with_bp_term_median = median(as.numeric(transcripts_in_test)),
   of_interest_as_counted_median = median(as.numeric(of_interest_as_counted)), total_as_counted = total_as_counted[1L],
   bp_terms = length(bp_terms), p_cutoff = cutoff,
@@ -773,13 +893,35 @@ control <- per_list[, .(
   legacy_top_terms_not_below_cutoff = if (.N == 1L) top_terms_not_below[1L] else NA_character_),
   by = .(unit, list_of_interest)]
 stopifnot(per_list[, uniqueN(transcripts_in_list) == 1L && uniqueN(total_as_counted) == 1L, by = .(unit, list_of_interest)][, all(V1)])
+# Lists drawn from several gene sets: the median of every set, and the lowest and the highest of these medians.
+by_set <- per_list[!is.na(gene_set), .(set_median = median(as.numeric(terms_below)), lists_of_set = .N),
+                   by = .(unit, list_of_interest, gene_set)]
+stopifnot(nrow(by_set) == n_gene_set_pools * length(maps), all(by_set$lists_of_set == n_draws))
+by_set <- by_set[, .(gene_sets = .N, terms_below_cutoff_lowest_set_median = min(set_median),
+                     terms_below_cutoff_highest_set_median = max(set_median)), by = .(unit, list_of_interest)]
+# Where the accession run falls among the random lists of its size.
+run_terms <- per_list[list_of_interest == "accession_run", .(unit, terms_of_run = terms_below)]
+placed <- per_list[transcripts_in_list == n_run & list_of_interest != "accession_run"][run_terms, on = "unit"][
+  , .(lists_with_at_least_as_many_terms_as_accession_run = sum(terms_below >= terms_of_run)), by = .(unit, list_of_interest)]
+stopifnot(nrow(run_terms) == length(maps), nrow(placed) > 0)
+control <- merge(control, by_set, by = c("unit", "list_of_interest"), all.x = TRUE, sort = FALSE)
+control <- merge(control, placed, by = c("unit", "list_of_interest"), all.x = TRUE, sort = FALSE)
 control <- merge(kinds, control, by = "list_of_interest", sort = FALSE)
+stopifnot(nrow(control) == nrow(kinds) * length(maps))
 control[, totals_counted_in := unit_text[unit]]
 control[, unit_order := match(unit, names(maps))]
 control[, list_order := match(list_of_interest, kinds$list_of_interest)]
 setorder(control, unit_order, list_order)
 control[, c("unit", "unit_order", "list_order") := NULL]
-setcolorder(control, c("totals_counted_in", "list_of_interest", "description", "uses_dml_information"))
+setcolorder(control, c(
+  "totals_counted_in", "list_of_interest", "description", "uses_dml_information", "isoforms_kept_together", "lists", "gene_sets",
+  "transcripts_in_list", "genes_in_list_median", "genes_with_every_universe_transcript_in_list_median",
+  "transcripts_with_bp_term_median", "of_interest_as_counted_median", "total_as_counted", "bp_terms", "p_cutoff",
+  "terms_below_cutoff_median", "terms_below_cutoff_min", "terms_below_cutoff_q05", "terms_below_cutoff_q95", "terms_below_cutoff_max",
+  "terms_below_cutoff_lowest_set_median", "terms_below_cutoff_highest_set_median", "lists_with_at_least_as_many_terms_as_accession_run",
+  "legacy_top_terms", "legacy_top_terms_below_cutoff_median", "legacy_top_terms_below_cutoff_min", "legacy_top_terms_below_cutoff_max",
+  "lists_with_no_legacy_top_term_below_cutoff", "legacy_top_terms_not_below_cutoff"))
+stopifnot(!anyNA(control$totals_counted_in), !anyDuplicated(control[, .(totals_counted_in, list_of_interest)]))
 
 # Every check has passed: write the three tables.
 fwrite(mechanism, out_file("legacy_reader_mechanism.csv"))
@@ -807,9 +949,11 @@ print_quantities(c("transcripts_in_file", "transcripts_default_quotes", "transcr
        "genes_admitted_by_both", "percent_genes_with_one_transcript_surviving", "percent_genes_with_more_than_five_transcripts_surviving"))
 cat(sprintf("\nUniverse transcripts on %s: %s%%\n", lg_first_text,
             mechanism[table == "universe" & quantity == "percent_universe_first_five_linkage_groups", value]))
-cat(sprintf("\nPosition-only control, BP test of the ploidy table: terms with p < %g (%d random lists of each kind)\n", cutoff, n_draws))
-print(control[, .(totals = sub(",.*$", "", totals_counted_in), list_of_interest, lists, transcripts_in_list,
-                  median = terms_below_cutoff_median, min = terms_below_cutoff_min, max = terms_below_cutoff_max,
+cat(sprintf("\nAccession-run control, BP test of the ploidy table: terms with p < %g\n", cutoff))
+print(control[, .(totals = sub(",.*$", "", totals_counted_in), list_of_interest, lists, transcripts = transcripts_in_list,
+                  genes = genes_in_list_median, median = terms_below_cutoff_median, min = terms_below_cutoff_min,
+                  max = terms_below_cutoff_max, at_least_run = lists_with_at_least_as_many_terms_as_accession_run,
+                  lowest_set_median = terms_below_cutoff_lowest_set_median, highest_set_median = terms_below_cutoff_highest_set_median,
                   top_terms_median = legacy_top_terms_below_cutoff_median, top_terms_max = legacy_top_terms_below_cutoff_max,
                   lists_with_no_top_term = lists_with_no_legacy_top_term_below_cutoff)], row.names = FALSE)
 log_msg("wrote legacy_reader_mechanism.csv (%d rows), legacy_reader_by_linkage_group.csv (%d rows), legacy_reader_position_control.csv (%d rows)",

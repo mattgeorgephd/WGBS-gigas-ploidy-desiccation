@@ -1,0 +1,3 @@
+With the exception of Fisher's exact test and logistic regression, all methods tend to have low type I error rate
+Among the six tools that control type I errors well, RADMeth, DSS-general and MethylSig performed similarly with higher powers and AUCs compared with other tools.
+MethylKit [[20]] uses logistic regression for DML/DMR detection which can induce type 1 error inflation

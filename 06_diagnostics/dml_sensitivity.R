@@ -183,12 +183,13 @@
 #             direction (n_hyper against n_hypo) without standing out from the
 #             other CpGs.
 #             Methods made for few animals share information between CpGs when
-#             they estimate the variation among animals, or test regions: DSS
-#             (Feng, Conneely and Wu 2014, Nucleic Acids Research 42:e69,
-#             doi:10.1093/nar/gku154; general designs: Park and Wu 2016,
-#             Bioinformatics 32:1446-1453, doi:10.1093/bioinformatics/btw026)
-#             and dmrseq (Korthauer et al. 2019, Biostatistics 20:367-383,
-#             doi:10.1093/biostatistics/kxy007). They are not run here.
+#             they estimate the variation among animals, or test regions: the
+#             two-group model of DSS (Feng, Conneely and Wu 2014, Nucleic Acids
+#             Research 42:e69, doi:10.1093/nar/gku154) and dmrseq (Korthauer et
+#             al. 2019, Biostatistics 20:367-383, doi:10.1093/biostatistics/kxy007).
+#             The model of DSS for general designs estimates the dispersion CpG
+#             by CpG, without sharing (Park and Wu 2016, Bioinformatics
+#             32:1446-1453, doi:10.1093/bioinformatics/btw026). They are not run here.
 #           - Permutation reference (permutation_reference.csv). For each
 #             contrast and set of libraries, the label of the contrast is
 #             permuted among the libraries of each cohort, group sizes kept;

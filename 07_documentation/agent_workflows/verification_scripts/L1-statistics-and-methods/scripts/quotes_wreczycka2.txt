@@ -1,0 +1,10 @@
+We believe that a good compromise between the DSS/limma/F-test and default methylKit test is the overdispersion corrected methylKit Chi-square test.
+A good alternative to stringent and relaxed methods is Chi-square test after overdispersion correction (implemented in methylKit).
+This method has high sensitivity without sacrificing too much for specificity.
+the Chi-squared test with overdispersion correction has similar specificity to stringent methods such as DSS and limma but achieves higher sensitivity
+we defined differentially methylated CpG sites with q-values below 0.01 for all examined methods
+One can choose methods based on the overall goal of their research.
+The code that we used to generate the results is available online on the website:
+for 19 human cell lines
+MethylKit without overdispersion had the highest F-score
+although it is still the best method when overall accuracy is considered

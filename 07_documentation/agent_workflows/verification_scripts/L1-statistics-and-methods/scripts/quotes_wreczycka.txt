@@ -1,0 +1,6 @@
+MethylKit without overdispersion showed the lowest specificity (the overdispersion correction usually improves specificity).
+has the best accuracy overall but highest false positive rate
+F-test with overdispersion has similar results to DSS
+can be used for more exploratory analysis
+can be applied when there is a need to limit false positive rates, such as when picking regions or CpGs for validation
+A good compromise between stringent and relaxed methods seems to be Chi-squared test with overdispersion correction.

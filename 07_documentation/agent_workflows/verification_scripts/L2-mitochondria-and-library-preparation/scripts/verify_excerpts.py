@@ -1,0 +1,71 @@
+# Check that excerpts quoted as evidence occur verbatim in the saved plain texts (python3 -I). Usage: verify_excerpts.py <textdir>
+import sys, os, re
+d = sys.argv[1]
+checks = [
+ ("liu2016_PMC4800444.txt", "We found that the average methylation levels of nine regions were all less than 2% for both sample types."),
+ ("liu2016_PMC4800444.txt", "other than two CpG sites within D-loop region, the methylation levels of the rest of the 81 CpG sites were all less than 3%. The mean methylation levels at CpG16 site (nt544) and CpG429 site (nt16411) within D-loop region were relatively high and obviously prominent, which were both about 5% in blood samples and saliva samples."),
+ ("liu2016_PMC4800444.txt", "The above impacts of circular structure were also observed in lung DNA samples but not in saliva DNA samples."),
+ ("mechta2017_PMC5671948.txt", "prior to bisulfite sequencing decreased cytosine unconversion rate to <1.5% at all the investigated regions: D-loop, tRNA-F+12S, 16S, ND5 and CYTB, suggesting that mtDNA supercoiled structure blocks the access to bisulfite conversion."),
+ ("mechta2017_PMC5671948.txt", "We identified a likely source of an artifact as a cause for the overestimation of cytosine methylation in mtDNA"),
+ ("mechta2017_PMC5671948.txt", "While cytosine unconversion rate in WMGBS was detected up to 100% at certain positions, suggesting 100% methylation at a few specific mtDNA sites, it was striking to observe that cytosine unconversion rate was negatively associated with sequencing depth"),
+ ("owa2018_PMC5805350.txt", "Bisulfite-seq deep sequencing of linearized, gel-purified human mtDNA detected 9.4%-14.8% brCs for 9 CpG sites in ND1 gene. However, because all these brCs were associated with adjacent non-CpG brCs showing the same degrees of bisulfite resistance, DNA methylation in this mtDNA-encoded gene was not confirmed."),
+ ("owa2018_PMC5805350.txt", "In all mtDNA-encoded genes and lambda DNA, CpG methylation did not exceed 1.0%, except for three CpG sites in ND2, COX2, and D-Loop (Fig 6B)."),
+ ("owa2018_PMC5805350.txt", "No apparent regional bias in bisulfite conversion efficiency was observed (S9 Fig)."),
+ ("owa2018_PMC5805350.txt", "Low and consistent levels of cytosine methylation in non-CpG context (0.50%-0.55%) was detected throughout the length of mtDNA"),
+ ("owa2018_PMC5805350.txt", "Evaluation of bisulfite conversion efficiency of mtDNA using brC levels at non-CpG sites is depending on an assumption that mtDNA methylation is specific to CpG sites."),
+ ("owa2018_PMC5805350.txt", "Future studies will be necessary to determine the exact levels of DNA methylation in the mitochondrial genome, which could show tissue specificity and/or affected by diseases or environmental factors."),
+ ("owa2018_PMC5805350.txt", "We also show significant local heterogeneity in bisulfite conversion efficiency"),
+ ("owa2018_PMC5805350.txt", "strength of the negative impact of the mtDNA topology to targeted bisulfite sequencing is not homogenous throughout the entire mitochondrial genome"),
+ ("owa2018_PMC5805350.txt", "we presume that our deep sequencing detection of cytosine methylation with equal strength for all CpG and non-CpG sites in human ND1 gene was likely reflecting false-positive artifact rather than a biological phenomenon"),
+ ("leroux2024_PMC11682101.txt", "Overall, the mapped mt-methylseq data showed very low global methylation rates along the M and F mtDNAs of these three male samples, either on CpGs (M = 0.3% and F = 0.5%) and non-CpGs (M = 0.6% and F = 0.8%). These results contrast with methylation rates observed on CpGs of nuclear DNA (10.0%; Supplementary Fig. S5) but are comparable to the rates on non-CpGs (0.9%; Supplementary Fig. S5)."),
+ ("leroux2024_PMC11682101.txt", "Despite clear evidence of CpG methylation shown by MSRE and ICC results, mt-methylseq data revealed very low CCGG methylation rates (Supplementary Table S4), and only non-CpG methylation in the d-loop where one clear peak was observed in both M and F mtDNAs, at homologous positions."),
+ ("leroux2024_PMC11682101.txt", "The estimate of conversion rates indicated that only three male samples had conversion rates > 99%, which were kept for further quantitative analysis; the other samples were thus discarded (Fig. 4A)."),
+ ("leroux2024_PMC11682101.txt", "which shears DNA prior to base modification and uses enzymes to deaminate Cs into uracils and to oxidize 5mCs, protecting them from deamination"),
+ ("leroux2024_PMC11682101.txt", "mtDNA was linearized prior to DNA shearing with an overnight incubation at 25 °C with 10 µl of SwaI restriction enzyme"),
+ ("leroux2024_PMC11682101.txt", "This d-loop methylation peak reached the highest overall methylation level (12.3–24.8% on the M mtDNA, 16.4–35.5% on the F mtDNA)"),
+ ("leroux2024_PMC11682101.txt", "Globally, two contradictory cytosine methylation status were observed in M. edulis male germ cells."),
+ ("olson2014_PMC4060414.txt", "The oyster mitochondrial genome is predominantly unmethylated. With an average coverage of 39.76-fold, of the 2518 cytosines with at least 5x coverage, 2316 cytosines were converted upon bisulfite treatment and no cytosines were considered methylated."),
+ ("olson2014_PMC4060414.txt", "Sodium bisulfite conversion efficiency was estimated to be 99.72% based on analysis of lambda phage DNA."),
+ ("olson2014_PMC4060414.txt", "This is the first characterization of DNA methylation in bivalve mitochondrial DNA."),
+ ("olova2018_PMC5856372.txt", "Our data show that changes of up to 20% in DNA methylation can be purely technical."),
+ ("olova2018_PMC5856372.txt", "The biases lead to overestimated absolute levels of both CG and CH context methylation, skewed relative methylation differences between samples and under- or over-representation of vulnerable genomic regions."),
+ ("olova2018_PMC5856372.txt", "These results can be explained by the preferential amplification of poorly converted reads, which are less likely to be degraded, whereas well converted C-rich reads from the bottom strand tend to be degraded, as we have shown."),
+ ("olova2018_PMC5856372.txt", "This revealed that the largest discrepancies lay in the middle range of CG methylation values, i.e. the moderately or variably methylated genomic regions"),
+ ("olova2018_PMC5856372.txt", "These results further highlight that some regions are more susceptible to biases than others and the method variability in estimation of 5mC across the genome does not follow a linear fashion."),
+ ("olova2018_PMC5856372.txt", "A comparison of technical replicates of the same technique yielded a small number of methylation differences, showing that our analysis is picking up relevant differences that are associated with the choice of protocol."),
+ ("olova2018_PMC5856372.txt", "It is also common to use genomic non-CG context methylation as an indication for conversion efficiency, which may be appropriate for some samples but also risky"),
+ ("olova2018_PMC5856372.txt", "PCR amplification was found to build on the over-represented methylated sequences and conversion artefacts"),
+ ("olova2018_PMC5856372.txt", "In summary, BS-induced DNA degradation leads to depletion of genomic regions enriched for unmethylated cytosines, which creates a biased sequence representation and directly affects the final estimation of 5mC levels."),
+ ("ji2014_PMC4204604.txt", "A comparison between 4, 8, and 15 PCR cycles revealed that 15 cycles results in an exacerbation in the preferential enrichment of methylated DNA (Figures 3B–G)."),
+ ("ji2014_PMC4204604.txt", "Interestingly, this change in amplification bias is not observed with the Kapa HiFi Uracil + enzyme in comparison to the others tested."),
+ ("ji2014_PMC4204604.txt", "In general, it is difficult to precisely quantify the effect of this observed bias in WGBS data on percent methylation calculations."),
+ ("ji2014_PMC4204604.txt", "The A. thaliana Col-0 accession was used for all."),
+ ("lea2017_PMC5656403.txt", "Finally, the efficacy of the bisulfite conversion step can vary across samples or groups of samples prepared together, creating global batch effects."),
+ ("lea2017_PMC5656403.txt", "suggests that spike-ins, CHH/CHG, and RRBS read end estimates roughly agree, but CHH/CHG estimates tend to be underestimated relative to the other methods and spike-ins seem to best capture a sample prep-related batch effect (Supplementary Figure 2)."),
+ ("wang2014_PMC4378273.txt", "To estimate the non-conversion rate of our bisulfite conversion, we added unmethylated lambda DNA into each library (see Methods)."),
+ ("wang2014_PMC4378273.txt", "Among all the mCs, more than 99% were in the CpG context"),
+ ("guitton2022epi_PMC9423827.txt", "The three cytosine contexts showed comparable methylation scores (CpG: 0.39 ± 0.23%, CHG: 0.36 ± 0.14%, CHH: 0.37 ± 0.14%)."),
+ ("guitton2022epi_PMC9423827.txt", "the CpG position at m.545, situated in HSP1 showed the highest methylation levels at 5.49 ± 0.97%"),
+ ("guitton2022epi_PMC9423827.txt", "which was ~57 times less than the H-strand in their experiment"),
+ ("guitton2022nar_PMC9458446.txt", "However, the existence of methylation in the mammalian mtDNA remains the subject of debate"),
+ ("guitton2022nar_PMC9458446.txt", "In conclusion, while our reanalysis does not provide proof of the absence of methylation in mtDNA"),
+ ("patil2019_PMC6821263.txt", "The data show that mitochondrial genomes are extensively methylated predominantly at non-CpG sites."),
+ ("patil2019_PMC6821263.txt", "Hepatocytes had 37% of all cytosines were methylated, whereas HepG2 had 44% of their mitochondria methylated"),
+ ("dou2019_PMC6771398.txt", "the H strand had an average methylation of only 8%, whereas the L strand was 23% methylated"),
+ ("dou2019_PMC6771398.txt", "Unmethylated lambda DNA was used as a spike-in control, and two PCR products of mtDNA were used as an unmethylated mtDNA negative control to ensure bisulfite conversion efficiency"),
+ ("yin2026_PMC13688742.txt", "Fisher’s exact test OR = 17.64, 95% CI = 10.80–28.80"),
+ ("yin2026_PMC13688742.txt", "91 datasets showed elevated mtDNA CpG methylation despite low λ DNA CpG methylation"),
+ ("yin2026_PMC13688742.txt", "the existence of cytosine methylation in mitochondrial DNA (mtDNA) remains highly controversial"),
+ ("zhou2019_PMC6637168.txt", "For TruSeq, methylation signals were high (44.1% ± 5.3%) for libraries prepared by provider A, but very low for those by provider B (3.8% ± 6.3%). This is likely due to differences in DNA input, whereby Provider A did not perform any form of DNA fragmentation prior to bisulfite conversion, while Provider B sonicated the input DNA."),
+ ("morrison2021_PMC8214260.txt", "The beta values show a broad distribution centered slightly below 0.2 for Sample A and about 0.25 for Sample B."),
+ ("morrison2021_PMC8214260.txt", "This also shows the limitation of using mitochondrial DNA as negative controls."),
+ ("foox2021_PMC8650396.txt", "the low number of replicates per protocol per cell line limited our ability to distinguish assay-specific signal from technical noise"),
+]
+ok = 0
+for f, s in checks:
+    t = open(os.path.join(d, f), encoding="utf-8").read()
+    t1 = re.sub(r"\s+", " ", t)
+    hit = re.sub(r"\s+", " ", s) in t1
+    ok += hit
+    print("OK  " if hit else "MISS", f, "|", s[:90])
+print(ok, "of", len(checks), "excerpts found verbatim")
