@@ -7,8 +7,9 @@
 #
 #           The legacy procedure (5_WGBS_Functional-enrichement-analysis-BOTH.R):
 #             1. "Genes" are transcripts. The universe is the transcript-to-GO map
-#                geneid2go-union1x-BOTH.tab, from which one block of 15,666
-#                consecutive transcript accessions is missing (issue I-39).
+#                geneid2go-union1x-BOTH.tab, from which 15,666 annotated mRNAs
+#                that are adjacent when sorted by accession are missing
+#                (XM_011455141.3 to XM_034461018.1; issue I-39).
 #             2. The transcripts of interest are those named in the DML
 #                annotation table, read with read.table() defaults. Apostrophes in
 #                GO term names made that reader skip most of the ploidy table and
@@ -94,7 +95,7 @@ by_chr <- annotated[, .(mRNAs_with_GO_terms = .N, in_legacy_universe = sum(in_le
 by_chr <- rbind(by_chr, data.table(sequence = "all", mRNAs_with_GO_terms = nrow(annotated),
                                    in_legacy_universe = sum(annotated$in_legacy_universe)))
 by_chr[, percent_in_universe := round(100 * in_legacy_universe / mRNAs_with_GO_terms, 1)]
-# The missing transcripts form one block of consecutive accession numbers.
+# Nearly all missing transcripts are adjacent when the annotated mRNAs are sorted by accession.
 setorder(annotated, transcript_id)
 runs <- rle(annotated$in_legacy_universe)
 longest <- which.max(ifelse(runs$values, 0L, runs$lengths))

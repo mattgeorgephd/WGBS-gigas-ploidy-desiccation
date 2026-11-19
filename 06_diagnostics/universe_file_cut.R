@@ -1,7 +1,8 @@
 # universe_file_cut.R
 #
-# Purpose   Show where the gene universe of the legacy GO enrichment lost 15,666
-#           transcripts (issue I-39). The universe was read off the first column
+# Purpose   Show where the gene universe of the legacy GO enrichment lost its run of
+#           15,666 transcripts (issue I-39; 15,653 of them to the cut shown here,
+#           the other 13 would be absent in any case). The universe was read off the first column
 #           of a 20 GB table on gannet,
 #             data/gene_annotations/BOTH/union_1x-BOTH.GeneIDs.geneOverlap.transcriptIDs.GOAnnot
 #           which a notebook cell wrote with `join ... | sort | uniq > file`; the
