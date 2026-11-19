@@ -162,19 +162,20 @@ setDTthreads(config$cores)             # results do not depend on the number of 
 
 # ---- Settings --------------------------------------------------------------------------
 percentile   <- config$upper_coverage_percentile
-# Lowest read count of the CpGs over which the percentile is taken ("base"):
-# every CpG with reads (mincov = 1 of the legacy coverage script), the import
-# threshold of the pipeline (mincov = 2 of the legacy DML script; the base of
-# corrected mode), and the default mincov of methRead in the installed methylKit.
+# Lowest read count of the CpGs over which the percentile is taken ("base"). The
+# base of corrected mode is the import threshold of the pipeline. Three readings
+# are computed whatever that threshold is: every CpG with reads (mincov = 1 of
+# the legacy coverage script), mincov = 2 of the legacy DML script, and the
+# default mincov of methRead in the installed methylKit.
 base_import  <- as.integer(config$import_min_coverage)
-bases        <- c(1L, base_import, as.integer(formals(methylKit::methRead)$mincov))
+bases        <- sort(unique(c(1L, 2L, as.integer(formals(methylKit::methRead)$mincov), base_import)))
+cutoff_decimals <- 3L                  # decimals of the cutoffs in the written table; they hold a 99.9th percentile exactly (see Notes)
 run_gap_bp   <- 1000L                  # removed CpGs no further apart than this form one run (the gap of step 07's DML regions)
 run_min_cpgs <- 10L                    # the run statistic counts removed CpGs in runs of at least this many
 n_draws      <- 1000L                  # random sets of tested CpGs that give the reference for the run statistic
 seed         <- 20261119L              # for those draws; nothing else in this script is random
 q_tolerance  <- 1e-9                   # largest relative difference accepted between a q-value estimated here and the one step 05 stored
 contrast_names <- c(ploidy = "ploidy", heat = "heat")
-stopifnot(!anyDuplicated(bases))
 
 out_file <- function(name) here("06_diagnostics", paste0("coverage_filter_", name, ".csv"))
 tab05 <- function(file) output_path("05_differential_methylation", "tables", file)
