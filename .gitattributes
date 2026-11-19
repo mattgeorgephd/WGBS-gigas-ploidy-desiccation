@@ -1,0 +1,40 @@
+# .gitattributes
+#
+# Git must not convert line endings in the data of this repository. The tables
+# the pipeline writes are compared byte for byte after a rerun
+# (04_output/README.md), step 01 records the md5 of every file under
+# 03_input_files/, and one input (manuscript/manuscript_values_map.csv) is kept
+# with CRLF line endings on purpose. Without the lines below, a checkout on
+# Windows, or on any machine with core.autocrlf set, holds other bytes than the
+# commit: 69 of the 100 inputs get another md5.
+#
+# "-text" means: store and check out the file exactly as it is.
+
+# Tables and tracks, wherever they are (inputs, outputs, diagnostics, archive)
+*.csv -text
+*.tsv -text
+*.tab -text
+*.bed -text
+*.gff -text
+
+# Compressed tables, saved R objects, figures and office files: never text
+*.gz   binary
+*.rds  binary
+*.pdf  binary
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.tiff binary
+*.xls  binary
+*.xlsx binary
+*.pptx binary
+
+# Every input, whatever its type: README files and build scripts as well,
+# because step 01 takes the md5 of each of them
+03_input_files/** -text
+
+# Everything the pipeline and the checks write (session_info.txt and the text
+# files of the diagnostics are not tables by their extension)
+04_output/**      -text
+05_manuscript/**  -text
+06_diagnostics/** -text

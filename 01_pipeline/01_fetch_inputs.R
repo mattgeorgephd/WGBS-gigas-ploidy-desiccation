@@ -9,12 +9,21 @@
 #
 # Inputs    03_input_files/gannet_manifest.csv
 #           03_input_files/metadata/wgbs_libraries.csv
+#           every other file under 03_input_files/ (size and md5 only)
 #           https://gannet.fish.washington.edu/panopea/ (coverage files, reference genome)
 #           Bioconductor archive (GO.db; address and md5 in run_config.R)
 # Outputs   04_output/01_fetch_inputs/tables/input_inventory.csv
 #           cache: 03_input_files/gannet_cache/ (or $WGBS_CACHE_DIR)
 #
-# Manuscript items: none. First run downloads 9.8 GB.
+# Manuscript items: none.
+# Notes     - The first run downloads 10.5 GB from gannet and the 31 MB GO.db
+#             archive. Sizes are in decimal units (1 GB = 1e9 bytes), as in the
+#             README files.
+#           - input_inventory.csv lists every file under 03_input_files/ with its
+#             size and md5, README files included, so it changes whenever one of
+#             them is edited: rerun this step and commit the table with the
+#             edit. Its rows are in byte order of the path, whatever the
+#             collation of the locale.
 
 suppressPackageStartupMessages(library(here))
 source(here("run_config.R"))
@@ -32,7 +41,7 @@ if (length(missing_cov) > 0) {
   stop("Coverage files in the sample sheet but not in the manifest: ", paste(missing_cov, collapse = ", "))
 }
 log_msg("%d files in the gannet manifest, %.2f GB; cache: %s", nrow(manifest),
-        sum(manifest$bytes) / 1024^3, gannet_cache_dir(config))
+        sum(manifest$bytes) / 1e9, gannet_cache_dir(config))
 
 local <- vapply(manifest$file, fetch_gannet_file, character(1), config = config,
                 manifest = manifest, verify_md5 = TRUE)
@@ -43,6 +52,7 @@ log_msg("all %d gannet files present and verified", nrow(manifest))
 # ---- Inputs kept in the repository -------------------------------------------
 repo_files <- list.files(input_path(), recursive = TRUE, full.names = FALSE)
 repo_files <- repo_files[!grepl("^gannet_cache/", repo_files)]
+repo_files <- sort(repo_files, method = "radix")     # byte order; list.files() sorts by the collation of the locale
 repo <- data.frame(location = "repository", file = repo_files,
                    bytes = file.size(input_path(repo_files)),
                    md5 = unname(tools::md5sum(input_path(repo_files))),
@@ -66,6 +76,6 @@ log_msg("GO.db %s available in %s", config$legacy_go_db$version, legacy_go_db_li
 inventory <- rbind(repo, gannet, bioc)
 write_table(inventory, output_path(step, "tables", "input_inventory.csv"))
 log_msg("%d repository inputs (%.0f MB) and %d gannet inputs (%.2f GB) inventoried",
-        nrow(repo), sum(repo$bytes) / 1024^2, nrow(gannet), sum(gannet$bytes) / 1024^3)
+        nrow(repo), sum(repo$bytes) / 1e6, nrow(gannet), sum(gannet$bytes) / 1e9)
 
 finish_step(step, t0)

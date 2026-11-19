@@ -8,7 +8,7 @@ For the project overview see the [root README](../README.md); for the design and
 
 | Step | Script | What it does | Manuscript items | Status |
 |---|---|---|---|---|
-| 01 | `01_fetch_inputs.R` | Downloads the files listed in `03_input_files/gannet_manifest.csv` into the cache and verifies their checksums; installs the ontology release of the legacy enrichment into the cache | none | done |
+| 01 | `01_fetch_inputs.R` | Downloads the files listed in `03_input_files/gannet_manifest.csv` into the cache and verifies their checksums; installs the ontology release of the legacy enrichment into the cache; writes the size and md5 of every input to `input_inventory.csv` | none | done |
 | 02 | `02_alignment_qc.R` | Per-library read, mapping, duplication, and methylation table from the Bismark reports; comparison of the two sequencing batches | Methods 2.4; Figure 1B inputs | done |
 | 03 | `03_global_methylation.R` | %5-mC from raw ELISA absorbance; models and post hoc tests for %5-mC and %mCpG | Results 3.1; Figure 1 | done |
 | 04 | `04_cpg_coverage.R` | CpG counts by coverage threshold and sample set; the overlap of each of those CpG sets with the genome feature tracks (`cpg_counts_by_feature_track.csv`), with the percentages computed the two ways the draft computed them (issue I-15); CpG sites in the reference; methylation distributions; library correlations; whole-data PCA | Results 3.1; Figure S1 | done |
@@ -17,16 +17,16 @@ For the project overview see the [root README](../README.md); for the design and
 | 07 | `07_genome_features.R` | Overlap of the analysed CpGs and each DML set with the 13 genome feature tracks; one exclusive class per CpG; Fisher tests per track against all analysed CpGs and against eligible CpGs, and a chi-squared test on the classes against all analysed CpGs; counts per linkage group; DML grouped into regions. The track called TE is every RepeatMasker repeat, read as the legacy analysis read it (`03_input_files/genome_features/README.md`). A set without loci gets NA in place of a test | Results 3.3; Figure 3 | done |
 | 08 | `08_gene_annotation.R` | Transcript, gene, and GO tables; for each configured mode every (DML, gene) overlap and per-gene counts of tested CpGs, eligible CpGs, and DML, with a summary row per mode and DML set; in legacy mode the legacy annotation tables, regenerated line for line | Supplementary lists; inputs of steps 09 and 10 | done |
 | 09 | `09_go_enrichment_legacy.R` | The GO enrichment exactly as run for the draft (transcripts as genes, legacy universe, legacy reader, GO.db 3.13.0), with a record of what that procedure did. Legacy mode only: when `legacy` is not a configured mode the step says so and ends without reading or writing anything | Results 3.4, 3.5; Figures 5 and 9; Table 1 | done |
-| 10 | `10_go_enrichment_gene_level.R` | Gene-level GO enrichment against tested genes and against eligible genes; Fisher and Wallenius tests; false discovery rate; each term of the draft retested | Replacement candidates for the same items | done |
-| 11 | `11_semantic_similarity.R` | Semantic similarity of GO terms in R (rrvgo, Rel measure) in place of the REVIGO web server: similarity matrix, clusters and a deterministic layout for the nine legacy term lists (p < 0.01), for the three lists the draft's figures were in fact drawn from (every BP term annotated to a gene with a DML), and for the gene-level terms (none at present); a check of how far the clusters depend on the order of the terms; each surviving REVIGO export matched to its term list and redrawn; every GO term named in Results 3.4 traced | Figures 6 to 8; Results 3.4; Methods 2.6, last sentence (issues I-22, I-48) | done |
+| 10 | `10_go_enrichment_gene_level.R` | Gene-level GO enrichment against tested genes and against eligible genes; Fisher and Wallenius tests; false discovery rate; each term of the draft retested. Known defect, left as it is by the scope decision of 2026-11-19: GO IDs that are secondary IDs of current terms are dropped, and with them replaced by their primary IDs the step calls one term (organelle; heat set, CC) where it now calls none (`issues.md`, I-41) | Replacement candidates for the same items | done |
+| 11 | `11_semantic_similarity.R` | Semantic similarity of GO terms in R (rrvgo, Rel measure) in place of the REVIGO web server: similarity matrix, clusters and a deterministic layout for the nine legacy term lists (p < 0.01), for the three lists the draft's figures were in fact drawn from (every BP term annotated to a gene with a DML), and for the gene-level terms (none at present); a check of how far the clusters depend on the order of the terms; each surviving REVIGO export matched to its term list and redrawn; every GO term named in Results 3.4 traced. Legacy mode only: when `legacy` is not a configured mode the step says so and ends without reading or writing anything | Figures 6 to 8; Results 3.4; Methods 2.6, last sentence (issues I-22, I-48) | done |
 | 12 | `12_qpcr.R` | Per-animal Cq from the replicate-level qPCR files, checked against the hand-built consolidated file; the legacy delta Cq ANOVA and Tukey tests under both treatments of non-detects, checked against the knitted legacy output; delta Cq models by complete cases and by censored regression, with fold changes, confidence intervals, q-values and leave-one-out ranges; a simulation of how often the censored test rejects a true null; checks of the reference gene and of the normalization; raw Cq of COX1; every qPCR statement of the draft with its numbers and a verdict | Discussion 4.2, 4.5, 4.7; Conclusions (issues I-29, I-46, I-47) | done |
-| 13 | `13_manuscript_values.R` | Evaluates the map of the manuscript's quantitative statements (545 rows), compares each with the regenerated value, and assembles `05_manuscript/` (figures, Table 1, supplementary lists) | all | done |
+| 13 | `13_manuscript_values.R` | Evaluates the map of the manuscript's quantitative statements (545 rows), compares each with the value that legacy mode regenerates and, when `corrected` is configured, with the value of corrected mode, and assembles `05_manuscript/` (figures, Table 1, supplementary lists). When `legacy` is not a configured mode the step says so and ends without reading or writing anything | all | done |
 
 The status column is updated as each script is added and validated. "Done" means the script runs from a clean R process and, in legacy mode, its outputs agree with the legacy outputs wherever a legacy output exists (`06_diagnostics/legacy_check_results.csv`).
 
 ## Modes
 
-Steps 04 to 08 and step 10 write one set of outputs for each mode listed in `run_config.R`, with the mode in the file name.
+`modes` in `run_config.R` is `"legacy"`, `"corrected"` or both (the setting in the repository); any other value stops every script with a message. Steps 04 to 08 and step 10 write one set of outputs for each mode listed, with the mode in the file name. Every step prints the configured modes under its banner, and `run_pipeline.R` prints them at the start and at the end of a run.
 
 | Mode | Coverage filter | Coverage files |
 |---|---|---|
@@ -34,6 +34,16 @@ Steps 04 to 08 and step 10 write one set of outputs for each mode listed in `run
 | `corrected` | CpGs at or above the 99.9th percentile of coverage in a library are removed from that library, as the Methods describe | Every line read |
 
 Legacy mode reproduces the numbers of the draft. Step 09 exists only for the legacy mode; it repeats the legacy GO procedure, defects included, so that the GO numbers of the draft can be traced. When `legacy` is not among the modes of `run_config.R`, step 08 writes no legacy annotation table and no legacy row in `annotation_summary.csv` (tables of an earlier legacy run stay in the folder as they were), and step 09 says so, reads and writes nothing, and ends with exit status 0, so that `run_pipeline.R` goes on to the next step. Step 09 stops with an error when `legacy` is configured and the summary of step 08 has no legacy rows, that is when step 08 last ran without the legacy mode. Step 10 applies one procedure to the DML of both modes.
+
+What a run does with each setting:
+
+| `modes` | Steps 04 to 08 | Steps 09 and 11 | Step 10 | Step 13 |
+|---|---|---|---|---|
+| `c("legacy", "corrected")` | both sets of outputs | run | both modes | both columns of `manuscript_values.csv`; all items copied |
+| `"legacy"` | the legacy outputs | run | legacy mode alone; the tables that span the modes hold legacy rows only | the legacy values; the corrected columns are empty, and the items of corrected mode are not copied |
+| `"corrected"` | the corrected outputs | say so and end with status 0 | not started by `run_pipeline.R` | says so and ends with status 0 |
+
+Steps 01 to 03 and 12 do not depend on the mode. Steps 11 and 13 end in the same way as step 09, through one helper (`require_mode()` in `02_R_functions/logging.R`). Step 10 has no check of its own: started alone without the legacy mode it finishes and gives every term of the draft the status "no eligible gene carries it", which is wrong, so `run_pipeline.R` leaves it out; a check inside the step is one of the changes that wait for the author's decision. Outputs of a mode that is not configured are neither written nor removed: files of an earlier run stay in `04_output/` and `05_manuscript/` as they were.
 
 ## Run times
 
@@ -49,34 +59,36 @@ Measured on 4 cores and 15 GB of memory, with the downloads already in the cache
 | 09 | 3 | |
 | 10 | 3 | |
 | 11 | 5 | About 1.4 GB of memory |
-| 12 | under 1 | About 35 seconds, 24 of them the simulation; reads one file from `08_archive/` |
+| 12 | under 1 | About 35 seconds, 24 of them the simulation |
 | 13 | under 1 | About 10 seconds for 545 statements and 67 copied files |
 
 ## How a step is written
 
 1. A header block states the purpose, the inputs with their locations, the outputs, and the manuscript items the step is responsible for.
-2. The step sources `run_config.R` and every file in `02_R_functions/`, and loads its packages through one helper, so a missing package is reported by name before any work starts.
+2. The step sources `run_config.R` and every file in `02_R_functions/`, and loads its packages through one helper, so a missing package is reported by name before any work starts. The helper also asks for R.utils whenever a step names data.table, because `fread()` reads the `.gz` tables through it. `run_config.R` checks its settings as it is sourced, so a setting that cannot work stops the step at this point too.
 3. All paths are built with `here::here()`. There is no `setwd()`, no `rstudioapi`, and no absolute path. A script runs the same from RStudio (Source) and from a terminal (`Rscript 01_pipeline/05_differential_methylation.R`).
 4. Sample groups come from `03_input_files/metadata/wgbs_libraries.csv`, never from positions in a list.
-5. No number is typed into a script and no spreadsheet is edited between steps.
+5. No number is typed into a script and no spreadsheet is edited between steps. Settings are in `run_config.R`, with one list for a step that has many (`semantic_similarity` for step 11, `qpcr` for step 12).
 6. Where the legacy analysis and a corrected analysis differ, the script produces both (the modes listed in `run_config.R`), and the mode is part of the output file names.
 7. The step ends by writing its session information to `04_output/<step>/session_info.txt`.
 
 ## Running
 
-From the repository root:
-
 ```sh
-Rscript run_pipeline.R              # all steps in order
-Rscript run_pipeline.R --steps 5:7  # a subset
+Rscript run_pipeline.R                   # all steps in order
+Rscript run_pipeline.R --steps 5:7       # steps 05, 06 and 07
+Rscript run_pipeline.R --steps 2:3,6:10  # steps 02, 03 and 06 to 10
+Rscript run_pipeline.R --list            # show the steps and exit
 ```
 
 or source an individual script in RStudio with the project (`WGBS-gigas-ploidy-desiccation.Rproj`) open.
 
+`run_pipeline.R` can be started from any working directory: it takes the repository to be the folder it lies in and starts each step there. It reads and checks `run_config.R` before the first step, stops at the first step that fails, and ends with a table of the steps, their minutes and their result. The selection after `--steps` is one word without spaces; a selection it cannot read (`--steps 3, 12`, an empty selection, a second `--steps`, a range that runs downward, a step that does not exist) stops the run before any step starts. A single step is started with the working directory inside the repository (`Rscript 01_pipeline/12_qpcr.R`); see How paths work in the root README.
+
 Steps 04 and 05 need the 22 coverage files and the reference genome (10.5 GB, downloaded once by step 01), and about 9.5 GB (step 04) and about 10 GB (step 05 with `WGBS_CORES=4`) of memory. Step 05 keeps its two model fits in `04_output/05_differential_methylation/cache/` and reuses a fit only while the settings, sample sheet, coverage files, methylKit version and fitting code it was made from are unchanged; otherwise it fits again. Every later step runs from files that are in the repository, except that step 09 also needs the GO.db 3.13.0 package (31 MB, fetched from the Bioconductor archive into the cache by step 01, or by step 09 itself if step 01 was skipped).
 
-Two environment variables are read by `run_config.R`: `WGBS_CACHE_DIR` (where downloads are kept; default `03_input_files/gannet_cache/`) and `WGBS_CORES` (cores for the model fits of step 05; default 1).
+Two environment variables are read by `run_config.R`: `WGBS_CACHE_DIR` (where downloads are kept; default `03_input_files/gannet_cache/`) and `WGBS_CORES` (cores for the model fits of step 05; default 1). `WGBS_CORES` must be a whole number of 1 or more; set to anything else, an empty value included, it stops every script at once. On Windows leave it unset: the fits fork their workers, which Windows cannot do, and a larger value is replaced by 1 with a message.
 
 Steps 09 and 10 load different releases of GO.db and must not share an R session; `run_pipeline.R` starts each step in a fresh process, and both steps stop with a message if the wrong release is already loaded. Step 11 uses the GO.db of the R installation, as step 10 does, and stops if the legacy release is loaded; it checks that the outputs of steps 08, 09 and 10 exist before it starts.
 
-Steps 11 and 12 also read a few legacy files from `08_archive/` (the REVIGO exports and three Fisher tables for step 11; the knitted legacy qPCR output for step 12), which they redraw or compare with. These are to be copied into `03_input_files/` so that no step depends on the archive.
+No step reads `08_archive/`. The legacy files that steps 11 and 12 redraw or compare with are copies under `03_input_files/`: the REVIGO exports and three Fisher tables of another analysis in `annotation/legacy/revigo_exports/` and `annotation/legacy/fisher_other_analysis/` (step 11), and the knitted legacy qPCR output in `qpcr/legacy/` (step 12). The README of each folder says where a file came from. The checks in `06_diagnostics/` do read the archive.

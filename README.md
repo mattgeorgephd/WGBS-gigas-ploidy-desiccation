@@ -49,6 +49,9 @@ WGBS-gigas-ploidy-desiccation/
 ├── 08_archive/           Everything from before the reorganization, original paths preserved
 ├── issues.md             Issue log: what is wrong, the evidence, what needs deciding
 ├── README.md             This file
+├── run_config.R          Settings of every step, checked each time a script reads them
+├── run_pipeline.R        Runs the steps in order
+├── .gitattributes        Keeps git from converting line endings in the data files
 ├── .gitignore
 └── WGBS-gigas-ploidy-desiccation.Rproj
 ```
@@ -64,11 +67,11 @@ WGBS-gigas-ploidy-desiccation/
 | `07_documentation/` | Plan, audit, provenance | [07_documentation/README.md](07_documentation/README.md) |
 | `08_archive/` | Legacy code, outputs, figures, slides, with a guide to which legacy script produced which manuscript item | [08_archive/README.md](08_archive/README.md) |
 
-At the root: `run_config.R` is the single control surface (thresholds, analysis modes, cache location) and `run_pipeline.R` runs the numbered steps in order, each in a fresh R process. Still to be added: the `renv` lockfile.
+At the root: `run_config.R` is the single control surface (thresholds, analysis modes, cache location, and the settings of each step) and `run_pipeline.R` runs the numbered steps in order, each in a fresh R process. Every script reads `run_config.R` first, and the file checks its own settings: a value that cannot work (an unknown mode, a `WGBS_CORES` that is empty or not a whole number, a threshold out of range) stops the script at once with a message that names the setting. `.gitattributes` tells git to store and check out the tables and every input exactly as they are, so that a checkout on Windows holds the same bytes. Still to be added: the `renv` lockfile.
 
 ### How paths work
 
-Scripts build every path with `here::here()`, which anchors on the repository root (found through the `.Rproj` file), not on the location of the script or the working directory. A script therefore runs unchanged from RStudio or from a terminal, on any operating system, and no script calls `setwd()`. If a numbered folder is renamed, update the matching string in `02_R_functions/paths.R` and the places that cannot use it: the line of each script that sources `02_R_functions/`, `run_pipeline.R` (`01_pipeline`), the two build scripts under `03_input_files/`, step 13 and the diagnostics scripts (which name `04_output` and `06_diagnostics`), and the `source` column of `03_input_files/manuscript/manuscript_items_map.csv`.
+Scripts build every path with `here::here()`, which looks for the repository root (the folder with the `.Rproj` file) upward from the working directory. A step therefore runs unchanged from RStudio, with the project open, or from a terminal whose working directory is anywhere inside the repository, on any operating system, and no step calls `setwd()`. Two folders of the archive, `08_archive/gene_expression/` and `08_archive/ELISA/`, hold project files of their own: a step started from inside one of them does not find the repository and stops at its first line. `run_pipeline.R` can be started from any directory: it takes the repository to be the folder it lies in, starts every step with that folder as working directory, and stops with an error when it finds no steps there. If a numbered folder is renamed, update the matching string in `02_R_functions/paths.R` and the places that cannot use it: the line of each script that sources `02_R_functions/`, `run_pipeline.R` (`01_pipeline`), the two build scripts under `03_input_files/`, step 13 and the diagnostics scripts (which name `04_output` and `06_diagnostics`), and the `source` column of `03_input_files/manuscript/manuscript_items_map.csv`.
 
 ## Where the data live
 
@@ -93,10 +96,11 @@ Other locations, for reference:
 Steps 01 to 13 run end to end (see the status column in [`01_pipeline/README.md`](01_pipeline/README.md)).
 
 1. Install R (4.3 or later) and the packages. Until the `renv` lockfile is added, the package list is the one in `07_documentation/cloud_environment_setup.sh`, which sets up a clean Ubuntu 24.04 machine (R 4.3.3, Bioconductor 3.18).
-2. Open `WGBS-gigas-ploidy-desiccation.Rproj`, or start R in the repository root.
-3. Run `Rscript run_pipeline.R` for everything, `Rscript run_pipeline.R --steps 6:10` for a subset, or source the numbered scripts in `01_pipeline/` one at a time, each in a fresh R session.
+2. Run `Rscript run_pipeline.R` for everything or `Rscript run_pipeline.R --steps 6:10` for a subset (the selection is one word without spaces, such as `5:7`, `3,12` or `2:3,6:10`; anything else on the command line stops the run before a step starts). Or open `WGBS-gigas-ploidy-desiccation.Rproj` and source the numbered scripts in `01_pipeline/` one at a time, each in a fresh R session.
 
-The first run downloads 10.5 GB (plus the 31 MB GO.db archive). Step 04 needs about 8 GB of memory and step 05 about 10 GB with `WGBS_CORES=4`; together they take about half an hour on four cores; every other step takes a few minutes or less and runs from files in the repository. To use the outputs already in the repository and skip the heavy steps, start at step 06.
+The first run downloads 10.5 GB (plus the 31 MB GO.db archive). Step 04 needs about 9.5 GB of memory and step 05 about 10 GB with `WGBS_CORES=4`; together they take about half an hour on four cores; every other step takes a few minutes or less and runs from files in the repository. To use the outputs already in the repository and skip the heavy steps, start at step 06.
+
+`modes` in `run_config.R` says which analysis runs: `"legacy"` (the analysis of the draft), `"corrected"`, or both, which is the setting in the repository. Every log names the modes of its run. With `"legacy"` alone the pipeline writes the results of the draft and nothing of corrected mode. With `"corrected"` alone the steps that repeat the draft's analysis or compare the draft with it (09, 10, 11 and 13) are not run, and the log says so. Outputs of a mode that is not configured are neither written nor removed.
 
 ## Conventions
 

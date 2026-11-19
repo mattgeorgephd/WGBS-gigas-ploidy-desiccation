@@ -41,12 +41,17 @@
 #                         are none; the step then writes a one-row table that says
 #                         so and draws nothing.
 #
+# Run       Rscript 01_pipeline/11_semantic_similarity.R
+#           (after steps 08, 09 and 10, run with "legacy" in config$modes; about
+#           5 minutes and 1.4 GB of memory)
+#
 # Inputs    04_output/09_go_enrichment_legacy/tables/legacy_fisher_<set>_<ontology>.csv, legacy_reader_loss.csv
 #           04_output/08_gene_annotation/tables/dml_go_annotation_<set>_legacy.tsv.gz
 #           04_output/10_go_enrichment_gene_level/tables/go_enriched_terms.csv, go_gene_level_<set>_legacy.csv
-#           08_archive/code/Revigo.R, 08_archive/code/OLD/Revigo.R,
-#             08_archive/figures/revigo_figure/Revigo-PLOIDY-BP.R   (plot scripts exported by REVIGO, data embedded)
-#           08_archive/tables/ploidy-<ontology>-FisherTestResults.csv (Fisher tables of another analysis; comparison only)
+#           03_input_files/annotation/legacy/revigo_exports/code_Revigo.R, code_OLD_Revigo.R, Revigo-PLOIDY-BP.R
+#             (plot scripts exported by REVIGO, data embedded; read as text, never run)
+#           03_input_files/annotation/legacy/fisher_other_analysis/ploidy-<ontology>-FisherTestResults.csv
+#             (Fisher tables of another analysis; comparison only)
 #           GO.db and the organism database of the R installation
 # Outputs   04_output/11_semantic_similarity/tables/
 #             semantic_clusters_legacy_<set>_<ontology>.csv    one row per term: p, score, cluster, representative, coordinates
@@ -65,7 +70,26 @@
 #
 # Manuscript items: Figures 6, 7 and 8; Results 3.4 (the three paragraphs on semantic
 #           clustering); Methods 2.6, last sentence.
-# Notes     - Which terms the draft plotted. The REVIGO export behind Figure 6
+# Notes     - Modes. The step redraws figures of the draft from the legacy
+#             enrichment and reads legacy-mode tables only. When "legacy" is not
+#             in config$modes the step says so and ends before it reads or
+#             writes anything; under Rscript the exit status is 0, so that
+#             run_pipeline.R goes on to the next step. The gene-level part
+#             takes the terms of every mode that step 10 wrote.
+#           - Legacy files. The REVIGO exports and the three Fisher tables are
+#             copies of files in 08_archive/ (code/Revigo.R, code/OLD/Revigo.R,
+#             figures/revigo_figure/Revigo-PLOIDY-BP.R, tables/ploidy-<ontology>-
+#             FisherTestResults.csv), kept under 03_input_files/ so that no step
+#             reads the archive. The two files named code_ are the same export.
+#             revigo_exports.csv names each file by its path in the repository.
+#           - Settings. Every setting named in this header and in the comments
+#             below (threshold, n_labels, order_check_n, gzip_above_mb,
+#             cluster_palette, label_rings and the others) is an element of the
+#             list config$semantic_similarity in run_config.R, where each one
+#             is explained. The code reads the list as cfg. The checks of
+#             run_config.R stop the step when n_labels is larger than the
+#             number of colours in cluster_palette.
+#           - Which terms the draft plotted. The REVIGO export behind Figure 6
 #             (Revigo-PLOIDY-BP.R) holds no p-values, and its terms are not the
 #             terms below the p-value cutoff: every one of them is a BP term
 #             annotated to a transcript of a gene with a ploidy DML
@@ -142,73 +166,27 @@
 suppressPackageStartupMessages(library(here))
 source(here("run_config.R"))
 invisible(lapply(list.files(here("02_R_functions"), pattern = "\\.R$", full.names = TRUE), source))
+
+step <- "11_semantic_similarity"
+t0 <- start_step(step, "semantic similarity of GO terms (Figures 6 to 8)")
+# Without the legacy mode the step ends here, before a package is loaded or a file is read (see Notes).
+require_mode("legacy", "step 11 redraws Figures 6 to 8 of the draft from the legacy enrichment")
+
 # Rcpp is in the list because GOSemSim calls compiled code of Rcpp without loading it.
 load_packages(c("data.table", "GO.db", "Rcpp", "GOSemSim", "rrvgo", config$semantic_similarity$organism_db, "ggplot2", "ggrepel", "patchwork"))
 if (as.character(packageVersion("GO.db")) == config$legacy_go_db$version) {
   stop("GO.db ", config$legacy_go_db$version, " (the legacy release) is loaded. Run this step in a fresh R process.")
 }
 
-step <- "11_semantic_similarity"
-t0 <- start_step(step, "semantic similarity of GO terms (Figures 6 to 8)")
-
-# ---- Settings of this step that are not in run_config.R -----------------------------
-# Facts about the draft and about the archive.
-figure_numbers  <- c(ploidy = 6L, heat = 7L, shared = 8L)   # figure of the draft for each DML set (manuscript)
-figure_ontology <- "BP"                                     # the three figures show biological process only (their captions)
-value_tolerance <- 0.025                                    # a REVIGO value "equals" log10 p within this (p rounded to two digits)
-revigo_exports  <- c(code_revigo      = "code/Revigo.R",    # plot scripts exported by REVIGO, relative to 08_archive/
-                     code_old_revigo  = "code/OLD/Revigo.R",
-                     revigo_ploidy_bp = "figures/revigo_figure/Revigo-PLOIDY-BP.R")
-other_fisher    <- "tables/ploidy-%s-FisherTestResults.csv" # Fisher tables of another analysis, relative to 08_archive/
-# Clusters and tables.
-tie_tolerance    <- 1e-9   # uniqueness values closer than this count as equal when a cluster is named
-order_check_n    <- 50L    # random orders of the terms in which each list is clustered again
-order_check_seed <- 11L    # seed of those orders
-gzip_above_mb    <- 5      # a similarity matrix larger than this (MB) is written as .csv.gz
-# Figures. Sizes in inches unless stated.
-cluster_palette  <- c("#2364a0", "#69a500", "#aa2300", "#a082f0", "#0000fa", "#d7737d", "#009bb4", "#87196e", "#006437", "#5f19b9",
-                      "#9b6e00", "#d20073", "#4664ff", "#ff46c3", "#af37cd")   # one colour per labelled cluster, by cluster number (see Notes)
-grey_other       <- "grey72"                # every cluster that is not labelled
-revigo_colours   <- c(low = "#b30000", high = "#f7d038")   # red for low values, yellow for high, as in the archived REVIGO screenshots
-tint_share       <- 0.16                    # share of the cluster colour in the fill of its label; the rest is white
-max_circle       <- 9                       # ggplot2 point size of the circle of the largest cluster of a figure
-circle_stroke    <- 0.6                     # ggplot2 stroke of the circles of the labelled clusters
-panel_margin     <- 0.14                    # empty margin around the terms, as a share of the larger axis range
-panel_in         <- 6.5                     # side of a panel as saved (measured: 6.7 to 6.8); sizes the label boxes when labels are placed
-figure_size      <- c(15, 9.6)              # width and height of Figures 6 to 8 (two panels)
-gene_figure_size <- c(7.6, 9.8)             # width and height of a gene-level figure (one panel)
-export_size      <- c(10.5, 8)              # width and height of a redrawn REVIGO export
-export_panel_in  <- c(8, 6.6)               # width and height of its panel as saved (measured: 8.3 to 8.8, and 6.9)
-export_margin    <- c(0.08, 0.06)           # empty margin around its bubbles, as a share of the range of each axis
-export_bubble    <- c(1.2, 9)               # ggplot2 point size of its smallest and largest bubble
-export_stroke    <- 0.4                     # ggplot2 stroke of its bubbles
-label_seed       <- 11L                     # seed of ggrepel
-label_mm         <- c(cluster = 2.5, export = 2.4)   # font size of the labels, mm
-label_width      <- 28L                     # characters per line in a label
-subtitle_width   <- 90L                     # characters per line in a panel subtitle
-caption_per_in   <- 16                      # characters of caption per inch of figure width
-# Label placement by rule (place_labels). Lengths and costs in inches.
-label_angles     <- seq(0, 350, by = 10) * pi / 180   # directions tried around a circle
-label_rings      <- c(0.08, 0.15, 0.22, 0.3, 0.4, 0.5, 0.62, 0.75, 0.9, 1.05, 1.2, 1.4, 1.6, 1.8, 2, 2.2)   # distances tried between the
-                                            # circle and the label box
-label_gap        <- 0.05                    # clearance kept around circles and label boxes
-crowd_radius     <- 1                       # labelled circles within this distance make a place crowded (one of the orders of placement)
-charge_circle    <- 0.33                    # cost of an unlabelled circle under a label box
-charge_leader    <- 0.5                     # cost of a labelled circle or a label under a leader line, and of two leader lines that cross
-charge_turn      <- 0.06                    # cost of pointing towards the middle of the labelled circles and not away from it
-leader_steps     <- seq(0.05, 0.95, by = 0.05)   # places along a leader line that are tested
-label_padding    <- 0.15                    # padding inside a label box, in lines of 14.4 points (ggrepel label.padding)
-label_box_em     <- c(char = 0.57, first_line = 0.75, next_line = 1.08)   # box per character, for one line and per further line, in font
-                                            # sizes; measured on PNG and PDF: 0.40 to 0.56, 0.71 to 0.73, 1.08
-
+# ---- Settings ------------------------------------------------------------------------
+# All settings of this step are in run_config.R, list config$semantic_similarity:
+# the similarity measure and the threshold, the facts about the draft and the
+# legacy files, the seeds, and the sizes and costs that lay out the figures.
 cfg  <- config$semantic_similarity
 sets <- c(ploidy = "ploidy-DML", heat = "heat-DML", shared = "interaction-DML")   # names used in the draft
 onts <- c(BP = "P", CC = "C", MF = "F")                                           # ontology and its code in the annotation tables
 tab  <- function(name) output_path(step, "tables", name)
 fig  <- function(name) output_path(step, "figures", name)
-if (cfg$n_labels < 1 || cfg$n_labels > length(cluster_palette)) {
-  stop("config$semantic_similarity$n_labels must be between 1 and ", length(cluster_palette), ", the number of colours in cluster_palette.")
-}
 go_db_version <- as.character(packageVersion("GO.db"))
 log_msg("GO.db %s (ontology of %s), %s %s, rrvgo %s, GOSemSim %s; measure %s, threshold %g", go_db_version, go_source_date(),
         cfg$organism_db, as.character(packageVersion(cfg$organism_db)), as.character(packageVersion("rrvgo")),
@@ -221,14 +199,14 @@ reader_loss_file   <- output_path("09_go_enrichment_legacy", "tables", "legacy_r
 annotation_file    <- function(s_i) output_path("08_gene_annotation", "tables", sprintf("dml_go_annotation_%s_legacy.tsv.gz", s_i))
 gene_level_file    <- function(s_i) output_path("10_go_enrichment_gene_level", "tables", sprintf("go_gene_level_%s_legacy.csv", s_i))
 enriched_file      <- output_path("10_go_enrichment_gene_level", "tables", "go_enriched_terms.csv")
-export_file        <- function(e_i) archive_path(revigo_exports[[e_i]])
-other_fisher_file  <- function(o_i) archive_path(sprintf(other_fisher, o_i))
+export_file        <- function(e_i) input_path(cfg$revigo_exports[[e_i]])
+other_fisher_file  <- function(o_i) input_path(sprintf(cfg$other_fisher, o_i))
 input_files <- c(unlist(lapply(names(sets), function(s_i) vapply(names(onts), function(o_i) legacy_fisher_file(s_i, o_i), ""))), reader_loss_file,
                  vapply(names(sets), annotation_file, ""), vapply(names(sets), gene_level_file, ""), enriched_file,
-                 vapply(names(revigo_exports), export_file, ""), vapply(names(onts), other_fisher_file, ""))
+                 vapply(names(cfg$revigo_exports), export_file, ""), vapply(names(onts), other_fisher_file, ""))
 if (!all(file.exists(input_files))) {
   stop("Input file(s) not found:\n  ", paste(repo_relative(input_files[!file.exists(input_files)]), collapse = "\n  "),
-       "\nSteps 08, 09 and 10 write the files under 04_output; run them first.", call. = FALSE)
+       "\nSteps 08, 09 and 10 write the files under 04_output; run them first, with \"legacy\" in config$modes.", call. = FALSE)
 }
 enriched <- fread(enriched_file)                 # the gene-level terms (section 6); read here so that a faulty table stops the step at once
 need <- c("mode", "set", "ontology", "go_id", "term", "p_wallenius", "q_wallenius")
@@ -295,7 +273,7 @@ lists_compared <- rbindlist(lapply(names(sets), function(s_i) rbindlist(lapply(n
              annotated_terms_tested_legacy = sum(a_list %chin% legacy[set == s_i & ontology == o_i, go_id]))
 }))))
 lists_compared[, `:=`(percent_of_annotated_with_p_below_cutoff = round(100 * terms_in_both / terms_annotated_legacy_reader, 1),
-                      draft_figure = fifelse(ontology == figure_ontology, paste("Figure", figure_numbers[set]), ""))]
+                      draft_figure = fifelse(ontology == cfg$figure_ontology, paste("Figure", cfg$figure_numbers[set]), ""))]
 write_table(lists_compared, tab("term_lists_compared.csv"))
 
 # =============================================================================
@@ -332,7 +310,7 @@ name_clusters <- function(ids, membership, scores, sim) {
   d <- data.table(term_id = ids, at = match(ids, rownames(sim)), member_of = membership, term_score = scores)
   d[, apart := { m <- sim[at, at, drop = FALSE]; diag(m) <- 0; 1 - rowMeans(m) }, by = member_of]
   d[, eligible := term_score == max(term_score), by = member_of]
-  d[eligible == TRUE, eligible := apart >= max(apart) - tie_tolerance, by = member_of]
+  d[eligible == TRUE, eligible := apart >= max(apart) - cfg$tie_tolerance, by = member_of]
   named <- d[eligible == TRUE, .(representative = max(term_id), top_score = term_score[1]), by = member_of]
   named <- merge(named, d[, .(terms = .N), by = member_of], by = "member_of")
   if (nrow(named) != uniqueN(membership)) stop("A cluster has no representative or more than one")
@@ -351,15 +329,15 @@ adjusted_rand <- function(part_a, part_b) {
 # both in the row order of `sim`; `labelled_reference` holds the representatives of the labelled clusters.
 order_check <- function(sim, scores, reference, labelled_reference) {
   ids <- rownames(sim)
-  set.seed(order_check_seed)
+  set.seed(cfg$order_check_seed)
   one_order <- function(k) {
     shuffled <- sample(length(ids))
     part <- stats::cutree(stats::hclust(stats::as.dist(1 - sim[shuffled, shuffled])), h = cfg$threshold)[ids]
     named <- name_clusters(ids, part, scores, sim)$clusters
     c(adjusted_rand(part, reference), nrow(named), sum(named[number <= cfg$n_labels, representative] %chin% labelled_reference))
   }
-  found <- vapply(seq_len(order_check_n), one_order, numeric(3))      # rows: index, clusters, labelled representatives kept
-  list(tried = order_check_n, other = sum(found[1, ] < 1 - 1e-12), rand = min(found[1, ]), fewest = min(found[2, ]), most = max(found[2, ]),
+  found <- vapply(seq_len(cfg$order_check_n), one_order, numeric(3))      # rows: index, clusters, labelled representatives kept
+  list(tried = cfg$order_check_n, other = sum(found[1, ] < 1 - 1e-12), rand = min(found[1, ]), fewest = min(found[2, ]), most = max(found[2, ]),
        kept = min(found[3, ]))
 }
 
@@ -477,7 +455,7 @@ write_similarity <- function(sim, name) {
   if (is.null(sim)) return(invisible(NULL))
   as_table <- data.table(go_id = rownames(sim), as.data.table(sim))
   write_table(as_table, plain)
-  if (file.size(plain) > gzip_above_mb * 1e6) { write_table(as_table, zipped); unlink(plain) }
+  if (file.size(plain) > cfg$gzip_above_mb * 1e6) { write_table(as_table, zipped); unlink(plain) }
   invisible(NULL)
 }
 
@@ -504,29 +482,29 @@ for (s_i in names(sets)) for (o_i in names(onts)) {
   run_list("legacy", label_legacy, s_i, o_i, x$go_id, setNames(x$p_fisher, x$go_id), setNames(x$term, x$go_id))
 }
 for (s_i in names(sets)) {
-  x <- annotated_lists[set == s_i & ontology == figure_ontology]
-  run_list("as_drawn", label_drawn, s_i, figure_ontology, x$go_id, NULL, setNames(x$term_annotation, x$go_id))
+  x <- annotated_lists[set == s_i & ontology == cfg$figure_ontology]
+  run_list("as_drawn", label_drawn, s_i, cfg$figure_ontology, x$go_id, NULL, setNames(x$term_annotation, x$go_id))
 }
 
 # =============================================================================
 # 3. Figures 6, 7 and 8
 # =============================================================================
 wrap_text   <- function(x, width) paste(strwrap(x, width), collapse = "\n")
-wrap_label  <- function(x) vapply(x, wrap_text, character(1), width = label_width, USE.NAMES = FALSE)
+wrap_label  <- function(x) vapply(x, wrap_text, character(1), width = cfg$label_width, USE.NAMES = FALSE)
 size_breaks <- function(size_max) { b <- pretty(c(1, size_max), n = 4); sort(unique(c(1, b[b > 1 & b <= size_max & b == round(b)]))) }
 n_of        <- function(n, noun) sprintf("%s %s%s", format(n, big.mark = ","), noun, if (n == 1) "" else "s")       # "1 term", "2 terms"
-circle_size <- function(n_terms, size_max) max_circle * sqrt(n_terms / size_max)       # area in proportion to the number of terms
+circle_size <- function(n_terms, size_max) cfg$max_circle * sqrt(n_terms / size_max)       # area in proportion to the number of terms
 tint_of <- function(colour) {                                                           # the colour mixed with white
-  mixed <- grDevices::col2rgb(colour) * tint_share + 255 * (1 - tint_share)
+  mixed <- grDevices::col2rgb(colour) * cfg$tint_share + 255 * (1 - cfg$tint_share)
   grDevices::rgb(mixed[1, ], mixed[2, ], mixed[3, ], maxColorValue = 255)
 }
 # Radius in inches of a ggplot2 point of shape 21: R draws the circle with a radius of 0.375 font sizes.
 circle_radius_in <- function(size, stroke) 0.375 * (size * ggplot2::.pt + stroke * ggplot2::.stroke / 2) / 72
 # Width and height in inches of the box ggrepel draws around a label, estimated from the text (no graphics device is needed).
 label_box_in <- function(text, font_mm) {
-  parts <- strsplit(text, "\n", fixed = TRUE); font_pt <- font_mm * ggplot2::.pt; pad_pt <- label_padding * 14.4
-  data.table(w = (vapply(parts, function(v) max(nchar(v)), numeric(1)) * label_box_em[["char"]] * font_pt + 2 * pad_pt) / 72,
-             h = ((label_box_em[["first_line"]] + label_box_em[["next_line"]] * (lengths(parts) - 1)) * font_pt + 2 * pad_pt) / 72)
+  parts <- strsplit(text, "\n", fixed = TRUE); font_pt <- font_mm * ggplot2::.pt; pad_pt <- cfg$label_padding * 14.4
+  data.table(w = (vapply(parts, function(v) max(nchar(v)), numeric(1)) * cfg$label_box_em[["char"]] * font_pt + 2 * pad_pt) / 72,
+             h = ((cfg$label_box_em[["first_line"]] + cfg$label_box_em[["next_line"]] * (lengths(parts) - 1)) * font_pt + 2 * pad_pt) / 72)
 }
 
 # Positions of the labels of one panel, chosen by rule. All lengths are in inches from the lower left corner of the panel.
@@ -546,9 +524,9 @@ place_labels <- function(lab, circles, panel) {
   n_lab <- nrow(lab)
   if (n_lab == 0) return(data.table(label_u = numeric(0), label_v = numeric(0), rules_dropped = integer(0)))
   fixed <- circles[hard == TRUE]; loose <- circles[hard == FALSE]
-  crowd <- vapply(seq_len(n_lab), function(i) sum((fixed$u - lab$u[i])^2 + (fixed$v - lab$v[i])^2 < crowd_radius^2), numeric(1))
+  crowd <- vapply(seq_len(n_lab), function(i) sum((fixed$u - lab$u[i])^2 + (fixed$v - lab$v[i])^2 < cfg$crowd_radius^2), numeric(1))
   middle <- c(mean(fixed$u), mean(fixed$v))
-  cand <- CJ(ring = label_rings, angle = label_angles, sorted = FALSE); n_cand <- nrow(cand)
+  cand <- CJ(ring = cfg$label_rings, angle = cfg$label_angles, sorted = FALSE); n_cand <- nrow(cand)
   ux <- cos(cand$angle); uy <- sin(cand$angle)
   touches <- function(x1, y1, x2, y2, cu, cv, cr) {               # which boxes touch the circle
     dx <- pmax(x1 - cu, 0, cu - x2); dy <- pmax(y1 - cv, 0, cv - y2); dx^2 + dy^2 < cr^2
@@ -557,22 +535,22 @@ place_labels <- function(lab, circles, panel) {
   # Every position of every label, and what does not depend on the labels placed before it.
   positions <- lapply(seq_len(n_lab), function(i) {
     p <- lab[i]
-    reach <- p$r + label_gap + cand$ring + p$w / 2 * abs(ux) + p$h / 2 * abs(uy)          # the box clears the label's own circle
+    reach <- p$r + cfg$label_gap + cand$ring + p$w / 2 * abs(ux) + p$h / 2 * abs(uy)          # the box clears the label's own circle
     bu <- p$u + reach * ux; bv <- p$v + reach * uy                                         # middle of the box
     x1 <- bu - p$w / 2; x2 <- bu + p$w / 2; y1 <- bv - p$h / 2; y2 <- bv + p$h / 2
-    lu <- p$u + outer(bu - p$u, leader_steps); lv <- p$v + outer(bv - p$v, leader_steps)     # leader: from the circle to the middle of the box
+    lu <- p$u + outer(bu - p$u, cfg$leader_steps); lv <- p$v + outer(bv - p$v, cfg$leader_steps)     # leader: from the circle to the middle of the box
     free <- !(lu > x1 & lu < x2 & lv > y1 & lv < y2)                                         # the part of the leader not under its own box
-    inside <- x1 >= label_gap & x2 <= panel[1] - label_gap & y1 >= label_gap & y2 <= panel[2] - label_gap
+    inside <- x1 >= cfg$label_gap & x2 <= panel[1] - cfg$label_gap & y1 >= cfg$label_gap & y2 <= panel[2] - cfg$label_gap
     hard_hit <- rep(FALSE, n_cand); leader_hit <- numeric(n_cand); loose_hit <- numeric(n_cand)
     for (k in which(fixed$id != p$id)) {
-      hard_hit <- hard_hit | touches(x1, y1, x2, y2, fixed$u[k], fixed$v[k], fixed$r[k] + label_gap)
+      hard_hit <- hard_hit | touches(x1, y1, x2, y2, fixed$u[k], fixed$v[k], fixed$r[k] + cfg$label_gap)
       leader_hit <- leader_hit + (rowSums(free & (lu - fixed$u[k])^2 + (lv - fixed$v[k])^2 < fixed$r[k]^2) > 0)
     }
     for (k in seq_len(nrow(loose))) loose_hit <- loose_hit + touches(x1, y1, x2, y2, loose$u[k], loose$v[k], loose$r[k])
     outward <- atan2(p$v - middle[2], p$u - middle[1])
     turn <- abs(atan2(sin(cand$angle - outward), cos(cand$angle - outward))) / pi          # 0: away from the middle of the labelled circles
     list(pu = p$u, pv = p$v, bu = bu, bv = bv, x1 = x1, y1 = y1, x2 = x2, y2 = y2, lu = lu, lv = lv, free = free, inside = inside,
-         hard_hit = hard_hit, cost = cand$ring + charge_circle * loose_hit + charge_leader * leader_hit + charge_turn * turn)
+         hard_hit = hard_hit, cost = cand$ring + cfg$charge_circle * loose_hit + cfg$charge_leader * leader_hit + cfg$charge_turn * turn)
   })
   place_in_order <- function(turns) {
     at_u <- rep(NA_real_, n_lab); at_v <- rep(NA_real_, n_lab); dropped <- rep(NA_integer_, n_lab); paid <- 0
@@ -581,7 +559,7 @@ place_labels <- function(lab, circles, panel) {
       o <- positions[[i]]
       label_hit <- rep(FALSE, n_cand); leader_bad <- numeric(n_cand)
       for (q in placed) {
-        label_hit <- label_hit | (o$x1 < q$x2 + label_gap & o$x2 > q$x1 - label_gap & o$y1 < q$y2 + label_gap & o$y2 > q$y1 - label_gap)
+        label_hit <- label_hit | (o$x1 < q$x2 + cfg$label_gap & o$x2 > q$x1 - cfg$label_gap & o$y1 < q$y2 + cfg$label_gap & o$y2 > q$y1 - cfg$label_gap)
         # two leader lines cross when the ends of each lie on both sides of the other
         crossing <- turn_of(o$pu, o$pv, o$bu, o$bv, q$pu, q$pv) * turn_of(o$pu, o$pv, o$bu, o$bv, q$bu, q$bv) < 0 &
                     turn_of(q$pu, q$pv, q$bu, q$bv, o$pu, o$pv) * turn_of(q$pu, q$pv, q$bu, q$bv, o$bu, o$bv) < 0
@@ -589,7 +567,7 @@ place_labels <- function(lab, circles, panel) {
         over_leader <- rowSums(outer(o$x1, q$lu, "<") & outer(o$x2, q$lu, ">") & outer(o$y1, q$lv, "<") & outer(o$y2, q$lv, ">")) > 0
         leader_bad <- leader_bad + crossing + under_label + over_leader
       }
-      cost <- o$cost + charge_leader * leader_bad
+      cost <- o$cost + cfg$charge_leader * leader_bad
       allowed <- list(o$inside & !label_hit & !o$hard_hit & leader_bad == 0, o$inside & !label_hit & !o$hard_hit, o$inside & !label_hit, o$inside,
                       rep(TRUE, n_cand))
       level <- which(vapply(allowed, any, logical(1)))[1]
@@ -616,42 +594,42 @@ placement_note <- function(what, spot) {
 
 # One panel: every term a dot, every cluster a circle at its representative, each labelled cluster in its own colour.
 semantic_panel <- function(terms, title, subtitle, size_max) {
-  subtitle <- wrap_text(subtitle, subtitle_width)
+  subtitle <- wrap_text(subtitle, cfg$subtitle_width)
   if (nrow(terms) < 3) {
     return(ggplot() + annotate("text", x = 0, y = 0, label = "Fewer than three terms placed.\nNo layout is drawn.", size = 3.5) +
              labs(title = title, subtitle = subtitle) + theme_void(base_size = 11) +
              theme(plot.title = element_text(size = 10.5, face = "bold"), plot.subtitle = element_text(size = 8.5)))
   }
-  terms <- copy(terms)[, hue := fifelse(labelled, cluster_palette[pmin(cluster, length(cluster_palette))], grey_other)]
+  terms <- copy(terms)[, hue := fifelse(labelled, cfg$cluster_palette[pmin(cluster, length(cfg$cluster_palette))], cfg$grey_other)]
   reps <- terms[is_representative == TRUE][order(-cluster_size, cluster)]                  # large circles first: small ones stay in view
   reps[, `:=`(circle = circle_size(cluster_size, size_max), label_text = fifelse(labelled, wrap_label(term), ""), tint = tint_of(hue))]
   rays <- merge(terms[labelled == TRUE & is_representative == FALSE], reps[, .(cluster, rep_1 = mds_1, rep_2 = mds_2)], by = "cluster")
   # A square panel with one scale on both axes (a map of distances), whatever the shape of the cloud of terms.
   half <- max(diff(range(terms$mds_1)), diff(range(terms$mds_2))) / 2
-  half <- (if (half > 0) half else 1) * (1 + 2 * panel_margin)
+  half <- (if (half > 0) half else 1) * (1 + 2 * cfg$panel_margin)
   lim_1 <- mean(range(terms$mds_1)) + c(-half, half); lim_2 <- mean(range(terms$mds_2)) + c(-half, half)
   # Label positions by rule; ggrepel starts from them.
-  inches <- function(x, lim) (x - lim[1]) / (2 * half) * panel_in
-  circles <- reps[, .(id = .I, u = inches(mds_1, lim_1), v = inches(mds_2, lim_2), r = circle_radius_in(circle, circle_stroke), hard = labelled)]
+  inches <- function(x, lim) (x - lim[1]) / (2 * half) * cfg$panel_in
+  circles <- reps[, .(id = .I, u = inches(mds_1, lim_1), v = inches(mds_2, lim_2), r = circle_radius_in(circle, cfg$circle_stroke), hard = labelled)]
   lab <- circles[hard == TRUE]
-  spot <- place_labels(cbind(lab[, .(id, u, v, r)], label_box_in(reps$label_text[lab$id], label_mm[["cluster"]])), circles, c(panel_in, panel_in))
+  spot <- place_labels(cbind(lab[, .(id, u, v, r)], label_box_in(reps$label_text[lab$id], cfg$label_mm[["cluster"]])), circles, c(cfg$panel_in, cfg$panel_in))
   placement_note(title, spot)
   callouts <- reps[lab$id]
-  callouts[, `:=`(nudge_1 = (spot$label_u - lab$u) / panel_in * 2 * half, nudge_2 = (spot$label_v - lab$v) / panel_in * 2 * half)]
+  callouts[, `:=`(nudge_1 = (spot$label_u - lab$u) / cfg$panel_in * 2 * half, nudge_2 = (spot$label_v - lab$v) / cfg$panel_in * 2 * half)]
   breaks <- size_breaks(size_max)
   ggplot(terms, aes(mds_1, mds_2)) +
-    geom_point(data = terms[labelled == FALSE], colour = grey_other, size = 0.7) +
+    geom_point(data = terms[labelled == FALSE], colour = cfg$grey_other, size = 0.7) +
     geom_segment(data = rays, aes(xend = rep_1, yend = rep_2, colour = hue), linewidth = 0.25, alpha = 0.5) +
-    geom_point(data = reps[labelled == FALSE], aes(size = circle), shape = 21, fill = grey_other, colour = "white", stroke = 0.5) +
+    geom_point(data = reps[labelled == FALSE], aes(size = circle), shape = 21, fill = cfg$grey_other, colour = "white", stroke = 0.5) +
     geom_point(data = terms[labelled == TRUE], aes(colour = hue), size = 0.9) +
-    geom_point(data = reps[labelled == TRUE], aes(size = circle, fill = hue), shape = 21, colour = "white", stroke = circle_stroke) +
+    geom_point(data = reps[labelled == TRUE], aes(size = circle, fill = hue), shape = 21, colour = "white", stroke = cfg$circle_stroke) +
     ggrepel::geom_label_repel(data = callouts, aes(label = label_text, point.size = circle, segment.colour = hue, fill = tint),
-                              nudge_x = callouts$nudge_1, nudge_y = callouts$nudge_2, size = label_mm[["cluster"]], lineheight = 0.9,
+                              nudge_x = callouts$nudge_1, nudge_y = callouts$nudge_2, size = cfg$label_mm[["cluster"]], lineheight = 0.9,
                               colour = "black", label.size = 0.2,
-                              label.padding = label_padding, box.padding = 0.1, point.padding = 0.1, min.segment.length = 0, segment.size = 0.5,
-                              max.overlaps = Inf, max.iter = 20000, max.time = Inf, seed = label_seed, show.legend = FALSE) +
+                              label.padding = cfg$label_padding, box.padding = 0.1, point.padding = 0.1, min.segment.length = 0, segment.size = 0.5,
+                              max.overlaps = Inf, max.iter = 20000, max.time = Inf, seed = cfg$label_seed, show.legend = FALSE) +
     scale_colour_identity() + scale_fill_identity() +
-    scale_size_identity(guide = "legend", limits = c(0, max_circle), breaks = circle_size(breaks, size_max), labels = breaks,
+    scale_size_identity(guide = "legend", limits = c(0, cfg$max_circle), breaks = circle_size(breaks, size_max), labels = breaks,
                         name = "Terms in the cluster") +
     coord_equal(xlim = lim_1, ylim = lim_2, expand = FALSE) +
     guides(size = guide_legend(override.aes = list(fill = "grey45"))) +
@@ -677,32 +655,32 @@ figure_caption <- function(score_note, panel_note, closing_note, figure_width) {
            "When terms share the highest score of a cluster, the one least similar to the others names it, then the higher GO ID."),
     sprintf("Layout: classical multidimensional scaling of 1 - similarity (%s measure, %s). Clusters: rrvgo, threshold %g.%s", cfg$measure,
             cfg$organism_db, cfg$threshold, closing_note))
-  paste(vapply(lines, wrap_text, character(1), width = floor(caption_per_in * figure_width)), collapse = "\n")
+  paste(vapply(lines, wrap_text, character(1), width = floor(cfg$caption_per_in * figure_width)), collapse = "\n")
 }
 caption_theme <- theme(plot.caption = element_text(size = 7.5, hjust = 0, lineheight = 1.1))
 reproduction_note <- " The legacy enrichment is unsound (issues I-03, I-39, I-40); this figure is a reproduction, not a result."
 for (s_i in names(sets)) {
-  drawn <- results[[paste("as_drawn", s_i, figure_ontology, sep = "_")]]; described <- results[[paste("legacy", s_i, figure_ontology, sep = "_")]]
-  both <- lists_compared[set == s_i & ontology == figure_ontology]
+  drawn <- results[[paste("as_drawn", s_i, cfg$figure_ontology, sep = "_")]]; described <- results[[paste("legacy", s_i, cfg$figure_ontology, sep = "_")]]
+  both <- lists_compared[set == s_i & ontology == cfg$figure_ontology]
   size_max <- max(1L, drawn$table$cluster_size, described$table$cluster_size)
-  log_msg("drawing figure_%d_legacy (%s)", figure_numbers[[s_i]], sets[[s_i]])
-  panel_a <- semantic_panel(drawn$table, sprintf("A  As drawn: all %s terms annotated to genes with a DML of this set", figure_ontology),
+  log_msg("drawing figure_%d_legacy (%s)", cfg$figure_numbers[[s_i]], sets[[s_i]])
+  panel_a <- semantic_panel(drawn$table, sprintf("A  As drawn: all %s terms annotated to genes with a DML of this set", cfg$figure_ontology),
                             paste(panel_subtitle(drawn, "its term with the most annotated genes"),
                                   sprintf("%d of the %s terms of the list have p < %g in the legacy test.", both$terms_in_both,
                                           format(both$terms_annotated_legacy_reader, big.mark = ","), config$go_pvalue), layout_fit(drawn)), size_max)
-  panel_b <- semantic_panel(described$table, sprintf("B  As described: %s terms with p < %g in the legacy test", figure_ontology, config$go_pvalue),
+  panel_b <- semantic_panel(described$table, sprintf("B  As described: %s terms with p < %g in the legacy test", cfg$figure_ontology, config$go_pvalue),
                             paste(panel_subtitle(described, "its term with the smallest p-value"),
                                   sprintf("%d of the %d terms of the list are also in the list of panel A.", both$terms_in_both,
                                           both$terms_legacy_p_below_cutoff), layout_fit(described)), size_max)
   figure <- (panel_a | panel_b) + plot_layout(guides = "collect") +
-    plot_annotation(title = sprintf("Figure %d of the draft, regenerated in R: semantic similarity of GO terms, %s", figure_numbers[[s_i]],
+    plot_annotation(title = sprintf("Figure %d of the draft, regenerated in R: semantic similarity of GO terms, %s", cfg$figure_numbers[[s_i]],
                                     sets[[s_i]]),
                     caption = figure_caption(" (panel A: most annotated genes; panel B: smallest p-value)",
                                              "The same colour in the two panels does not mark the same cluster. ", reproduction_note,
-                                             figure_size[1]),
+                                             cfg$figure_size[1]),
                     theme = theme(plot.title = element_text(size = 12, face = "bold")) + caption_theme) &
     theme(legend.position = "bottom")
-  save_figure(figure, fig(sprintf("figure_%d_legacy", figure_numbers[[s_i]])), width = figure_size[1], height = figure_size[2])
+  save_figure(figure, fig(sprintf("figure_%d_legacy", cfg$figure_numbers[[s_i]])), width = cfg$figure_size[1], height = cfg$figure_size[2])
 }
 
 # =============================================================================
@@ -736,7 +714,7 @@ read_other_fisher <- function(path) {
   list(data = d, lines_not_read = sum(!good))
 }
 
-exports <- lapply(setNames(names(revigo_exports), names(revigo_exports)), function(e_i) read_revigo_export(export_file(e_i)))
+exports <- lapply(setNames(names(cfg$revigo_exports), names(cfg$revigo_exports)), function(e_i) read_revigo_export(export_file(e_i)))
 candidates <- list()
 add_candidate <- function(list_name, source_file, ids, p = NULL) {
   candidates[[length(candidates) + 1]] <<- list(list_name = list_name, source_file = repo_relative(source_file), ids = ids, p = p)
@@ -765,7 +743,7 @@ export_rows <- rbindlist(lapply(names(exports), function(e_i) {
   rbindlist(lapply(candidates, function(cand) {
     same_id <- ids %chin% cand$ids
     by_secondary <- !same_id & ids %chin% primary_id(cand$ids)
-    same_p <- if (is.null(cand$p) || !has_p) NA_integer_ else sum(abs(d$value - log10(cand$p[ids])) < value_tolerance, na.rm = TRUE)
+    same_p <- if (is.null(cand$p) || !has_p) NA_integer_ else sum(abs(d$value - log10(cand$p[ids])) < cfg$value_tolerance, na.rm = TRUE)
     data.table(export = export_path(e_i), same_content_as = if (first_with_md5[[e_i]] == e_i) "" else export_path(first_with_md5[[e_i]]),
                export_terms = length(ids), export_has_p_values = has_p, term_list = cand$list_name, term_list_source = cand$source_file,
                list_terms = length(cand$ids), export_terms_in_list = sum(same_id), export_terms_in_list_by_secondary_id = sum(by_secondary),
@@ -781,38 +759,38 @@ print(export_rows[best_match == TRUE, .(export, export_terms, term_list, list_te
 # Redraw each distinct export from its own data, with the label rule of its own plot code. Label positions: place_labels().
 for (e_i in names(exports)) {
   if (first_with_md5[[e_i]] != e_i) {
-    log_msg("%s has the same content as %s; not drawn twice", revigo_exports[[e_i]], revigo_exports[[first_with_md5[[e_i]]]])
+    log_msg("%s has the same content as %s; not drawn twice", export_path(e_i), export_path(first_with_md5[[e_i]]))
     next
   }
   d <- copy(exports[[e_i]]$data)[order(-log_size)]; label_cut <- exports[[e_i]]$label_below_dispensability
   has_p <- "value" %in% names(d)
   spread <- diff(range(d$log_size))
-  bubble_size <- function(v) if (spread > 0) export_bubble[1] + diff(export_bubble) * sqrt((v - min(d$log_size)) / spread) else mean(export_bubble)
+  bubble_size <- function(v) if (spread > 0) cfg$export_bubble[1] + diff(cfg$export_bubble) * sqrt((v - min(d$log_size)) / spread) else mean(cfg$export_bubble)
   d[, `:=`(shade = if (has_p) value else uniqueness, label_text = fifelse(dispensability < label_cut, wrap_label(description), ""),
            bubble = bubble_size(log_size))]
-  lim_x <- range(d$plot_X) + c(-1, 1) * export_margin[1] * diff(range(d$plot_X))
-  lim_y <- range(d$plot_Y) + c(-1, 1) * export_margin[2] * diff(range(d$plot_Y))
-  circles <- d[, .(id = .I, u = (plot_X - lim_x[1]) / diff(lim_x) * export_panel_in[1], v = (plot_Y - lim_y[1]) / diff(lim_y) * export_panel_in[2],
-                   r = circle_radius_in(bubble, export_stroke), hard = label_text != "")]
+  lim_x <- range(d$plot_X) + c(-1, 1) * cfg$export_margin[1] * diff(range(d$plot_X))
+  lim_y <- range(d$plot_Y) + c(-1, 1) * cfg$export_margin[2] * diff(range(d$plot_Y))
+  circles <- d[, .(id = .I, u = (plot_X - lim_x[1]) / diff(lim_x) * cfg$export_panel_in[1], v = (plot_Y - lim_y[1]) / diff(lim_y) * cfg$export_panel_in[2],
+                   r = circle_radius_in(bubble, cfg$export_stroke), hard = label_text != "")]
   lab <- circles[hard == TRUE]
-  spot <- place_labels(cbind(lab[, .(id, u, v, r)], label_box_in(d$label_text[lab$id], label_mm[["export"]])), circles, export_panel_in)
+  spot <- place_labels(cbind(lab[, .(id, u, v, r)], label_box_in(d$label_text[lab$id], cfg$label_mm[["export"]])), circles, cfg$export_panel_in)
   placement_note(export_path(e_i), spot)
   callouts <- d[lab$id]
-  callouts[, `:=`(nudge_1 = (spot$label_u - lab$u) / export_panel_in[1] * diff(lim_x),
-                  nudge_2 = (spot$label_v - lab$v) / export_panel_in[2] * diff(lim_y))]
+  callouts[, `:=`(nudge_1 = (spot$label_u - lab$u) / cfg$export_panel_in[1] * diff(lim_x),
+                  nudge_2 = (spot$label_v - lab$v) / cfg$export_panel_in[2] * diff(lim_y))]
   size_keys <- pretty(d$log_size, n = 3); size_keys <- size_keys[size_keys >= min(d$log_size) & size_keys <= max(d$log_size)]
   best <- export_rows[export == export_path(e_i) & best_match == TRUE]
   n_secondary <- best$export_terms_in_list_by_secondary_id
   p_export <- ggplot(d, aes(plot_X, plot_Y)) +
-    geom_point(aes(size = bubble, fill = shade), shape = 21, colour = "white", stroke = export_stroke, alpha = 0.9) +
+    geom_point(aes(size = bubble, fill = shade), shape = 21, colour = "white", stroke = cfg$export_stroke, alpha = 0.9) +
     ggrepel::geom_label_repel(data = callouts, aes(label = label_text, point.size = bubble), nudge_x = callouts$nudge_1, nudge_y = callouts$nudge_2,
-                              size = label_mm[["export"]], lineheight = 0.9, colour = "black", fill = scales::alpha("white", 0.9), label.size = 0.2,
-                              label.padding = label_padding, box.padding = 0.1, point.padding = 0.1, min.segment.length = 0,
+                              size = cfg$label_mm[["export"]], lineheight = 0.9, colour = "black", fill = scales::alpha("white", 0.9), label.size = 0.2,
+                              label.padding = cfg$label_padding, box.padding = 0.1, point.padding = 0.1, min.segment.length = 0,
                               segment.colour = "grey25", segment.size = 0.3, max.overlaps = Inf, max.iter = 20000, max.time = Inf,
-                              seed = label_seed) +
-    scale_fill_gradient(low = revigo_colours[["low"]], high = revigo_colours[["high"]],
+                              seed = cfg$label_seed) +
+    scale_fill_gradient(low = cfg$revigo_colours[["low"]], high = cfg$revigo_colours[["high"]],
                         name = if (has_p) "Value in the export\n(log10 p)" else "Uniqueness\n(REVIGO)") +
-    scale_size_identity(guide = "legend", limits = c(0, export_bubble[2]), breaks = bubble_size(size_keys), labels = size_keys,
+    scale_size_identity(guide = "legend", limits = c(0, cfg$export_bubble[2]), breaks = bubble_size(size_keys), labels = size_keys,
                         name = "Log size\n(REVIGO)") +
     coord_cartesian(xlim = lim_x, ylim = lim_y, expand = FALSE) +
     guides(size = guide_legend(order = 1, override.aes = list(fill = "grey45")), fill = guide_colourbar(order = 2)) +
@@ -825,7 +803,7 @@ for (e_i in names(exports)) {
                                    format(best$list_terms, big.mark = ","), best$export_terms_in_list + n_secondary,
                                    if (n_secondary > 0) sprintf(", %d of them under a secondary ID", n_secondary) else ""))) +
     theme_wgbs(base_size = 11) + theme(plot.title = element_text(size = 10.5, face = "bold"), plot.subtitle = element_text(size = 8.5))
-  save_figure(p_export, fig(paste0("figure_revigo_export_", e_i)), width = export_size[1], height = export_size[2])
+  save_figure(p_export, fig(paste0("figure_revigo_export_", e_i)), width = cfg$export_size[1], height = cfg$export_size[2])
 }
 
 # =============================================================================
@@ -874,14 +852,14 @@ named <- merge(named, legacy[, .(set, go_id, legacy_rank = rank, legacy_p = p_fi
                                  genes_behind_transcripts_of_interest = genes_significant)],
                by = c("set", "go_id"), all.x = TRUE, sort = FALSE)
 named[is.na(in_legacy_p_list), in_legacy_p_list := FALSE]
-drawn_ids <- function(s_i) annotated_lists[set == s_i & ontology == figure_ontology, go_id]
+drawn_ids <- function(s_i) annotated_lists[set == s_i & ontology == cfg$figure_ontology, go_id]
 named[, in_list_as_drawn := unname(mapply(function(s_i, g) {
   if (is.na(g)) return("no")
   ids <- drawn_ids(s_i); via <- ids[primary_id(ids) == g & ids != g]
   if (g %chin% ids) "yes" else if (length(via) > 0) paste0("under a secondary ID (", paste(via, collapse = ", "), ")") else "no"
 }, set, go_id))]
 drawn_clusters <- rbindlist(lapply(names(sets), function(s_i) {       # where the term sits in panel A of the regenerated figure
-  x <- results[[paste("as_drawn", s_i, figure_ontology, sep = "_")]]$table
+  x <- results[[paste("as_drawn", s_i, cfg$figure_ontology, sep = "_")]]$table
   cbind(data.table(set = rep(s_i, nrow(x))), x[, .(go_id, as_drawn_cluster = cluster, as_drawn_cluster_named_after = parent_term)])
 }))
 named <- merge(named, drawn_clusters, by = c("set", "go_id"), all.x = TRUE, sort = FALSE)
@@ -896,7 +874,7 @@ named[, gene_level_result := fifelse(is.na(go_id), "no GO term matched",
                              fifelse(is.na(gene_level_genes_annotated), "not tested: no eligible gene carries the term",
                              fifelse(!gene_level_tested, sprintf("not tested: fewer than %d eligible genes carry the term", config$go_min_genes),
                              fifelse(gene_level_q_wallenius < config$go_fdr, "enriched", "not enriched")))))]
-named[, `:=`(manuscript_set = unname(sets[set]), draft_figure = paste("Figure", figure_numbers[set]))]
+named[, `:=`(manuscript_set = unname(sets[set]), draft_figure = paste("Figure", cfg$figure_numbers[set]))]
 named_out <- named[order(row_in_text),
                    .(set, manuscript_set, draft_figure, phrase, read_as, match_type, reading_note, name_matched_in, go_id, term_current,
                      term_legacy_release, ontology, in_legacy_p_list, legacy_rank, legacy_p, transcripts_annotated, transcripts_of_interest,
@@ -912,11 +890,13 @@ print(named_out[, .(named_terms = .N, matched = sum(match_type != "not found"), 
 gene_level_columns <- c("mode", "set", "ontology", cluster_columns, "q_wallenius", "note")
 label_gene <- sprintf("gene level, q < %g", config$go_fdr)
 if (nrow(enriched) == 0) {
-  no_terms <- sprintf(paste("No GO term is enriched at gene level (q < %g, eligible universe, Wallenius test) in any DML set, ontology or mode.",
+  # Step 10 calls no term at its settings; that is not the same as no term being enriched (issues.md, I-41).
+  no_terms <- sprintf(paste("Step 10 calls no GO term at gene level at its configured settings (q < %g, eligible universe, Wallenius test)",
+                            "in any DML set, ontology or mode; issues.md, I-41, gives the settings and tests under which terms pass.",
                             "Nothing was clustered and no figure was drawn."), config$go_fdr)
   gene_table <- as.data.table(c(setNames(rep(list(NA), length(gene_level_columns) - 1), head(gene_level_columns, -1)), list(note = no_terms)))
   summary_rows[["gene_level"]] <- cbind(data.table(term_list = label_gene, mode = "all", set = "all", ontology = "all"),
-                                        cluster_term_list(character(0), numeric(0), figure_ontology)$summary)
+                                        cluster_term_list(character(0), numeric(0), cfg$figure_ontology)$summary)
   log_msg("%s", no_terms)
 } else {
   groups <- unique(enriched[, .(mode, set, ontology)])
@@ -935,8 +915,8 @@ if (nrow(enriched) == 0) {
       log_msg("drawing figure_semantic_gene_level_%s", key)
       p_gene <- semantic_panel(res$table, sprintf("%s terms enriched at gene level: %s set, %s mode", o_i, s_i, m_i),
                                paste(panel_subtitle(res, "its term with the smallest p-value"), layout_fit(res)), max(res$table$cluster_size)) +
-        labs(caption = figure_caption(" (smallest p-value)", "", "", gene_figure_size[1])) + caption_theme + theme(legend.position = "bottom")
-      save_figure(p_gene, fig(sprintf("figure_semantic_gene_level_%s", key)), width = gene_figure_size[1], height = gene_figure_size[2])
+        labs(caption = figure_caption(" (smallest p-value)", "", "", cfg$gene_figure_size[1])) + caption_theme + theme(legend.position = "bottom")
+      save_figure(p_gene, fig(sprintf("figure_semantic_gene_level_%s", key)), width = cfg$gene_figure_size[1], height = cfg$gene_figure_size[2])
     }
     log_msg("%-22s %-6s %s (%s): %d terms, %d placed, %d clusters", label_gene, s_i, o_i, m_i, res$summary$terms_in, res$summary$terms_placed,
             res$summary$clusters)

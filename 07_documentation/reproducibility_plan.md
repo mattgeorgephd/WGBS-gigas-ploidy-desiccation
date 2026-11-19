@@ -82,7 +82,7 @@ Each row is one script in `01_pipeline/`. "Reproduces" names the manuscript item
 | 01 | `01_fetch_inputs.R` | `gannet_manifest.csv` | verified cache, `input_inventory.csv` | none (inputs) |
 | 02 | `02_alignment_qc.R` | Bismark reports | per-library read, mapping, duplication, and methylation table; batch comparison | Methods 2.4; Fig. 1B inputs |
 | 03 | `03_global_methylation.R` | ELISA plate reads, plate map, step 02 table | per-sample %5-mC from raw absorbance, model tables, post hoc tests | Results 3.1 (ELISA, %mCpG); Fig. 1 |
-| 04 | `04_cpg_coverage.R` | 22 coverage files | CpG counts by coverage threshold and sample set, methylation distributions, sample correlations, global PCA | Results 3.1; Fig. S1 |
+| 04 | `04_cpg_coverage.R` | 22 coverage files, reference genome, feature tracks | CpG counts by coverage threshold and sample set, the same CpG sets by genome feature track, CpG sites in the reference, methylation distributions, sample correlations, global PCA | Results 3.1; Fig. S1 |
 | 05 | `05_differential_methylation.R` | 22 coverage files | united 10x table, per-CpG statistics, DML lists by threshold, BED files | Results 3.2; Fig. 2A, 2B |
 | 06 | `06_dml_figures.R` | step 05 | PCA, heat maps, paired-difference plot | Fig. 2C to 2G; Fig. 4 |
 | 07 | `07_genome_features.R` | step 05, feature tracks | feature overlap counts for the analysed CpG set and each DML set, association tests, per-chromosome counts | Results 3.3; Fig. 3 |

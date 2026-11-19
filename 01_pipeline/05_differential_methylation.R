@@ -42,7 +42,12 @@
 #             02_R_functions/methylkit_helpers.R. The tests are methylKit's own.
 #           - Differences are group 1 minus group 0: triploid minus diploid for
 #             ploidy, heat minus control for heat. "hyper" means higher in
-#             triploid, or higher in heat.
+#             triploid, or higher in heat. A locus in both lists has two
+#             differences; where it is counted as hyper or hypo, the sign is that
+#             of its heat difference alone: n_hyper, n_hypo and pct_hyper of the
+#             set "shared" in dml_counts_by_threshold_<mode>.csv, and the fourth
+#             column of bed/dml_shared_<mode>.bed. Its class (both hyper, both
+#             hypo, opposite) is in dml_shared_<mode>.csv and dml_counts_by_mode.csv.
 #           - The heat contrast compares two cohorts that were sequenced
 #             separately (issue I-01). The shared set is an overlap of two
 #             lists, not a test of interaction (issue I-02).

@@ -16,15 +16,19 @@ Only files above that ceiling stay on gannet. They are listed in `gannet_manifes
 |---|---|---|---|
 | `metadata/` | Library and animal sample sheets | lab records | all steps |
 | `elisa/` | Raw plate absorbance and plate map for the global 5-mC ELISA (N = 32) | plate reader exports, 2019-02-06 | step 03 |
-| `qpcr/` | Raw Cq values, nine per-gene replicate tables and one consolidated table | qPCR instrument exports | step 12 |
+| `qpcr/` | Raw Cq values, nine per-gene replicate tables and one consolidated table; in `legacy/`, the printed output of the legacy analysis that step 12 compares with | qPCR instrument exports; the legacy output is a copy from `08_archive/` | step 12 |
 | `manuscript/` | The table that ties each quantitative statement of the draft to an R expression over the pipeline outputs, and the table of files to copy into `05_manuscript/`. The manuscript text itself is not in the repository | written during the audit, 2026-11-19 | step 13 |
 | `bismark_reports/` | Bismark alignment, deduplication, and summary reports for the 22 libraries, all from the June 2021 alignment | gannet `/panopea/061021-big/` | steps 02, 03 |
-| `genome_features/` | Thirteen feature tracks for the Roslin v1 assembly, gzipped | Venkataraman et al. 2022, OSF doi:10.17605/OSF.IO/YGCTB | steps 07, 08 |
-| `annotation/` | blastx hits against Swiss-Prot and the transcript-to-GO map | gannet project directory | steps 08, 09 |
+| `genome_features/` | Thirteen feature tracks for the Roslin v1 assembly, gzipped | Venkataraman et al. 2022, OSF doi:10.17605/OSF.IO/YGCTB | steps 04, 07, 08 |
+| `annotation/` | blastx hits against Swiss-Prot and the transcript-to-GO map; in `legacy/`, outputs of the legacy analysis that the checks and step 11 compare with (annotation tables, REVIGO exports, three Fisher tables of another analysis) | gannet project directory; the REVIGO exports and the Fisher tables are copies from `08_archive/` | steps 08, 09, 11 |
 | `gannet_manifest.csv` | The inputs that stay on gannet, with URL, size and md5: the 22 coverage files (9.8 GB) and the reference genome (0.66 GB), 10.5 GB in total | gannet project directory, `cov_files/`, and `/panopea/Cg-roslin/` | steps 01, 04, 05 |
 | `gannet_cache/` | Download cache; created on first run; not tracked | | |
 
 Each subfolder has its own README with a file inventory.
+
+No step reads `08_archive/`: a legacy file that a step needs is copied into the fitting subfolder here, and the README of that subfolder names the file it was copied from.
+
+Step 01 writes the size and md5 of every file in this folder to `04_output/01_fetch_inputs/tables/input_inventory.csv`, README files included. After any edit here, rerun step 01 and commit the table with the edit. `.gitattributes` at the repository root tells git not to convert line endings anywhere in this folder, so the checksums are the same on every operating system.
 
 ## The coverage files
 

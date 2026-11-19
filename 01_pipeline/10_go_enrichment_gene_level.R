@@ -44,6 +44,12 @@
 #             2021 against Swiss-Prot, GO terms from a 2017 UniProt table). The
 #             ontology is the GO.db of the R installation, recorded in
 #             go_gene_level_summary.csv; GO IDs it no longer holds are dropped.
+#           - Known defect, left as it is by the scope decision of 2026-11-19: the
+#             830 GO IDs of the annotation that are not primary IDs of the GO.db
+#             in use are dropped without a message, 395 of them secondary IDs of
+#             current terms, and with those replaced by their primary IDs the
+#             step calls one term (organelle; heat set, CC) where it now calls
+#             none (issues.md, I-41).
 #           - The heat contrast is confounded with cohort and sequencing batch
 #             (issue I-01). Enrichment of "heat" DML genes describes genes that
 #             differ between the two cohorts, whatever the cause.

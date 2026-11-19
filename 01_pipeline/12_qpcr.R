@@ -23,9 +23,15 @@
 #             5. Reports COX1 as what it is, a raw Cq without a reference, and
 #                sets every qPCR statement of the draft beside the numbers.
 #
+# Run       Rscript 01_pipeline/12_qpcr.R
+#           (needs no other step; under a minute, most of it the simulation
+#           that checks the test of the censored fit. The step does not depend
+#           on config$modes.)
+#
 # Inputs    03_input_files/qpcr/raw/qpcr_data_<gene>.csv   two wells per animal, 40 animals
 #           03_input_files/qpcr/raw/qpcr_data_consolidated.csv   one row per animal, 32 animals
-#           08_archive/ELISA/dct_analysis_NA-to-45_COX1convert.md   printed legacy ANOVA and TukeyHSD tables
+#           03_input_files/qpcr/legacy/dct_analysis_NA-to-45_COX1convert.md   printed legacy ANOVA and TukeyHSD
+#             tables (a copy of 08_archive/ELISA/dct_analysis_NA-to-45_COX1convert.md)
 # Outputs   04_output/12_qpcr/tables/
 #             qpcr_per_animal.csv               one row per animal: Cq, detected wells, replicate difference
 #             qpcr_delta_cq.csv                 one row per animal and target: delta Cq as analysed
@@ -127,7 +133,8 @@
 #             treatment of non-detects. A gene detected in fewer than half of the
 #             wells of any group is not analysed: the centre of that group is not
 #             observed, and an estimate would rest on the assumed distribution
-#             alone. Both thresholds are settings below; the class of each gene
+#             alone. Both thresholds are settings (lod_detected and min_detected
+#             of config$qpcr in run_config.R); the class of each gene
 #             is written to the log and to qpcr_nondetects.csv.
 #           - Terms. The main effect of a factor is its effect averaged over the
 #             two levels of the other factor. With unequal group sizes this
@@ -194,22 +201,13 @@ load_packages(c("data.table", "survival", "ggplot2", "patchwork", "ggrepel", "sc
 step <- "12_qpcr"
 t0 <- start_step(step, "qPCR: legacy analysis, censored regression, reference gene, COX1")
 
-# ---- Settings that are not in run_config.R yet (proposed additions to config$qpcr) ----
-opt <- c(config$qpcr, list(
-  mito_gene        = "COX1",   # measured without a reference gene; never normalized here
-  lod_detected     = 0.95,     # a gene is "quantifiable" when at least this share of its wells is detected
-  min_detected     = 0.5,      # a gene is not analysed when a group has a smaller share of detected wells
-  failed_fence_iqr = 3,        # reference Cq above Q3 + this many interquartile ranges marks a failed sample
-  conf_level       = 0.95,     # confidence level of the intervals
-  alpha            = 0.05,     # unadjusted p value used in the verdicts
-  fdr              = 0.05,     # Benjamini-Hochberg q value used in the verdicts
-  cq_tolerance     = 0.0005,   # two Cq values agree when they differ by no more than half of the third decimal
-  same_p_tolerance = 1e-6,     # two p values closer than this, relative to the larger one, are one result
-  size_check_runs  = 2000,     # simulated data sets per share of censored animals, check of the censored test
-  size_check_seed  = 20261119  # seed of that simulation
-))
-# Facts about the files, from 03_input_files/qpcr/README.md. The script stops if the data disagree.
-design <- list(wells_per_animal = 2, animals_per_group = 8, acute_per_group = 2, nondetect_text = "N/A")
+# ---- Settings ------------------------------------------------------------------------
+# All settings of this step are in run_config.R, list config$qpcr: the reference
+# gene, the cycle limit, the thresholds of the detection classes and of the
+# verdicts, the seed of the simulation, and, as config$qpcr$design, the facts
+# about the files that the step checks the data against.
+opt <- config$qpcr
+design <- opt$design
 
 group_levels <- c("diploid control", "diploid heat", "triploid control", "triploid heat")
 animal_sets <- c(all = "all animals", clean = "failed samples excluded")
@@ -543,7 +541,7 @@ legacy_anova <- rbindlist(legacy_anova); legacy_tukey <- rbindlist(legacy_tukey)
 legacy_tukey[, ratio := fifelse(response == "ln(Cq)", NA_real_, exp(difference))]
 
 # ---- the printed legacy output: ANOVA and TukeyHSD tables of the knitted R Markdown file ----
-knitted_file <- archive_path("ELISA", "dct_analysis_NA-to-45_COX1convert.md")
+knitted_file <- input_path("qpcr", "legacy", "dct_analysis_NA-to-45_COX1convert.md")
 if (!file.exists(knitted_file)) stop("Legacy output not found: ", knitted_file)
 read_knitted <- function(path) {
   l <- readLines(path, warn = FALSE)

@@ -6,25 +6,43 @@
 #                Each row is one quantitative statement of the draft, with an R
 #                expression that computes the same quantity from the pipeline
 #                outputs as the draft's analysis did (expression_legacy) and,
-#                where the audit recommends a different analysis, an expression
-#                for that one (expression_corrected).
+#                where it differs, an expression for the same quantity in
+#                corrected mode (expression_corrected): the draft's model with
+#                the upper coverage filter that the Methods describe (I-05), and
+#                for GO the gene-level analysis of step 10.
 #             2. Compare the regenerated values with the manuscript and write the
 #                result, one row per statement, to 05_manuscript/manuscript_values.csv.
 #             3. Copy the figures and tables of the pipeline into 05_manuscript/
 #                under the numbers the manuscript uses, as listed in
 #                03_input_files/manuscript/manuscript_items_map.csv.
 #
+# Run       Rscript 01_pipeline/13_manuscript_values.R
+#           (after every other step, with "legacy" in config$modes; a few
+#           seconds. Rerun it after any step that changes an output.)
+#
 # Inputs    03_input_files/manuscript/manuscript_values_map.csv
 #           03_input_files/manuscript/manuscript_items_map.csv
 #             (item, analysis, source, destination, rows)
 #           04_output/<step>/tables and figures of steps 02 to 12
+#           the tables of 06_diagnostics/ that an expression names
 # Outputs   05_manuscript/manuscript_values.csv
 #           05_manuscript/manuscript_values_summary.csv
 #           05_manuscript/<destination> for every row of the items map
 #           04_output/13_manuscript_values/tables/expression_errors.csv (empty when all expressions run)
+#           04_output/13_manuscript_values/tables/manuscript_items_copied.csv
 #
 # Manuscript items: all.
-# Notes     - Status of a statement:
+# Notes     - Modes. The step compares the draft with the outputs of legacy mode.
+#             When "legacy" is not in config$modes it says so and ends before it
+#             reads or writes anything; under Rscript the exit status is 0, so
+#             that run_pipeline.R ends normally. When "corrected" is not in
+#             config$modes the corrected expressions are not evaluated: the
+#             columns regenerated_corrected and corrected_differs and the column
+#             change_in_corrected_mode of the summary are empty, and the items
+#             of the items map whose analysis is "corrected" are neither copied
+#             nor listed in manuscript_items_copied.csv. Files that an earlier
+#             run with both modes left in 05_manuscript/ stay as they were.
+#           - Status of a statement:
 #               matches          the regenerated value equals the manuscript value within the tolerance of the row
 #               differs          it does not
 #               not regenerated  the row has no expression; its note says why (for example a value
@@ -32,8 +50,10 @@
 #           - A row can match and still be wrong science: "matches" means the
 #             pipeline reproduces the number, not that the number means what the
 #             text says. The issue column points to the entry of issues.md that
-#             covers it, and corrected_differs marks rows whose value changes
-#             under the recommended analysis.
+#             covers it, and corrected_differs marks rows whose value changes in
+#             corrected mode; the summary counts them in change_in_corrected_mode.
+#             Corrected mode is not an analysis that issues.md recommends for the
+#             DML themselves (I-06) or for their location (I-41).
 #           - Expressions are R code evaluated with these helpers in scope:
 #               tab(step, file)    a table from 04_output/<step>/tables/ as a data.table (cached)
 #               diagnostic(file)   a table from 06_diagnostics/
@@ -53,6 +73,12 @@ load_packages(c("data.table"))
 
 step <- "13_manuscript_values"
 t0 <- start_step(step, "manuscript values and manuscript folder")
+# Without the legacy mode the step ends here, before a file is read or written (see Notes).
+require_mode("legacy", "step 13 compares the draft with the outputs of legacy mode")
+with_corrected <- "corrected" %in% config$modes
+if (!with_corrected) {
+  log_msg("\"corrected\" is not in config$modes: the corrected expressions are not evaluated and the items of corrected mode are not copied")
+}
 
 # =============================================================================
 # 1. Evaluate the map
@@ -88,7 +114,7 @@ evaluate <- function(expression_text) {
   list(value = out, error = NA_character_)
 }
 legacy <- lapply(map$expression_legacy, evaluate)
-corrected <- lapply(map$expression_corrected, evaluate)
+corrected <- lapply(if (with_corrected) map$expression_corrected else rep(NA_character_, nrow(map)), evaluate)
 
 as_text <- function(v) if (is.null(v) || is.na(v)) NA_character_ else if (is.numeric(v)) format(signif(v, 10), scientific = FALSE, trim = TRUE) else as.character(v)
 agrees <- function(manuscript_numeric, manuscript_value, value, tolerance) {
@@ -117,7 +143,8 @@ dir.create(manuscript_path(), showWarnings = FALSE)
 write_table(values[, !"expression_error"], manuscript_path("manuscript_values.csv"))
 summary_tab <- values[, .(statements = .N, matches = sum(status == "matches"), differs = sum(status == "differs"),
                           not_regenerated = sum(status == "not regenerated"), not_comparable = sum(status == "not comparable"),
-                          change_under_recommended_analysis = sum(corrected_differs, na.rm = TRUE)), by = section]
+                          change_in_corrected_mode = if (with_corrected) sum(corrected_differs, na.rm = TRUE) else NA_integer_),
+                      by = section]
 summary_tab <- rbind(summary_tab, summary_tab[, c(list(section = "all"), lapply(.SD, sum)), .SDcols = -"section"])
 write_table(summary_tab, manuscript_path("manuscript_values_summary.csv"))
 print(summary_tab)
@@ -133,7 +160,14 @@ write_table(errors, output_path(step, "tables", "expression_errors.csv"))
 # other rows are copied as files.
 items <- as.data.table(utils::read.csv(input_path("manuscript", "manuscript_items_map.csv"), stringsAsFactors = FALSE,
                                        na.strings = "", encoding = "UTF-8", colClasses = "character"))
-stopifnot(!anyDuplicated(items$destination))
+stopifnot(!anyDuplicated(items$destination), all(is.na(items$analysis) | items$analysis %in% c("legacy", "corrected", "both")))
+# An item of a mode that is not configured is left out; "both" and an empty analysis do not depend on one mode.
+other_mode <- !is.na(items$analysis) & items$analysis %in% setdiff(c("legacy", "corrected"), config$modes)
+if (any(other_mode)) {
+  log_msg("%d manuscript items of %s mode not copied: the mode is not in config$modes", sum(other_mode),
+          paste(unique(items$analysis[other_mode]), collapse = " and "))
+  items <- items[!other_mode]
+}
 items[, source_exists := file.exists(here(source))]
 for (i in which(items$source_exists)) {
   dest <- manuscript_path(items$destination[i])
