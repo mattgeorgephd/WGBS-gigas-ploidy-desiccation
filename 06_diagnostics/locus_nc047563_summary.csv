@@ -1,0 +1,154 @@
+section,quantity,value,how_defined
+DML region,dml_region,NC_047563.1:39633323-39635520,Run of legacy ploidy DML with the most DML (step 07: neighbours within 1 kb). Start of its first and of its last DML CpG.
+DML region,dml_region_length_bp,2199,From the C of the first DML CpG to the G of the last.
+DML region,ploidy_dml_in_region,53 of 1038,"Legacy ploidy DML inside the DML region, of all legacy ploidy DML."
+DML region,heat_dml_in_region,39 of 2351,"Legacy heat DML inside the DML region, of all legacy heat DML."
+DML region,loci_in_both_lists_in_region,39 of 200,"Loci in both legacy DML lists inside the DML region, of all such loci."
+DML region,tested_cpgs_in_region_legacy,54 of 480579,"Tested CpGs of legacy mode inside the DML region, of all tested CpGs of legacy mode."
+DML region,tested_cpgs_in_region_corrected,0,Tested CpGs of corrected mode inside the DML region: those that the upper coverage filter leaves.
+b. libraries that carry the excess,libraries_with_excess,13 of 22,Libraries with at least one tested CpG of the DML region at or above their upper cutoff (99.9th percentile of coverage of the library).
+b. libraries that carry the excess,libraries_classified_otherwise_by_median_rule,0,Libraries that change class under another rule: median coverage of the tested CpGs of the DML region at or above the upper cutoff.
+b. libraries that carry the excess,region_relative_coverage_with_excess,10.61 to 35.50,Median coverage of the tested CpGs of the DML region over the library median; range among libraries with the excess.
+b. libraries that carry the excess,region_relative_coverage_without_excess,2.00 to 5.92,Same; range among libraries without the excess.
+b. libraries that carry the excess,region_coverage_over_cutoff_with_excess,1.04 to 3.01,Median coverage of the tested CpGs of the DML region over the upper cutoff of the library; range among libraries with the excess.
+b. libraries that carry the excess,region_coverage_over_cutoff_without_excess,0.18 to 0.43,Same; range among libraries without the excess.
+b. libraries that carry the excess,region_cpgs_at_cutoff_per_library_with_excess,29 to 54 of 54,"Tested CpGs of the DML region at or above the upper cutoff, per library; range among libraries with the excess."
+b. libraries that carry the excess,libraries_with_every_region_cpg_at_cutoff,9,Libraries in which every tested CpG of the DML region is at or above the upper cutoff.
+b. libraries that carry the excess,libraries_at_cutoff_per_region_cpg,9 to 13,"Libraries at or above their upper cutoff, per tested CpG of the DML region; range among those CpGs."
+b. libraries that carry the excess,with_excess_heat_cohort,4 of 10,Libraries with the excess among the heat cohort.
+b. libraries that carry the excess,with_excess_control_cohort,9 of 12,Libraries with the excess among the control cohort.
+b. libraries that carry the excess,with_excess_diploid,5 of 11,Libraries with the excess among diploids.
+b. libraries that carry the excess,with_excess_triploid,8 of 11,Libraries with the excess among triploids.
+b. libraries that carry the excess,with_excess_diploid_control,4 of 6,Libraries with the excess among the group diploid control.
+b. libraries that carry the excess,with_excess_diploid_heat,1 of 5,Libraries with the excess among the group diploid heat.
+b. libraries that carry the excess,with_excess_triploid_control,5 of 6,Libraries with the excess among the group triploid control.
+b. libraries that carry the excess,with_excess_triploid_heat,3 of 5,Libraries with the excess among the group triploid heat.
+b. libraries that carry the excess,fisher_p_excess_by_ploidy,0.387,"Fisher exact test, two-sided, of carrying the excess against ploidy; 22 libraries."
+b. libraries that carry the excess,fisher_p_excess_by_cohort,0.192,"Fisher exact test, two-sided, of carrying the excess against cohort; 22 libraries."
+a. block of excess coverage,window,NC_047563.1:39623323-39645520,The DML region and window_margin_bp of sequence on either side; raw coverage was read for this window.
+a. block of excess coverage,window_cpg_sites,351,CpG sites of the window with at least one read in at least one library.
+a. block of excess coverage,runs_of_excess_coverage_in_window,1,Runs of CpGs with excess coverage in the window. A CpG has excess coverage when at least one library is at or above its upper cutoff; CpGs within run_gap_bp of each other form a run.
+a. block of excess coverage,block,NC_047563.1:39633065-39636662,The run of CpGs with excess coverage that holds the DML region. Start of its first and of its last CpG.
+a. block of excess coverage,block_length_bp,3599,From the C of the first CpG of the block to the G of the last.
+a. block of excess coverage,block_cpg_sites,82,CpG sites inside the block with at least one read in at least one library.
+a. block of excess coverage,block_cpg_sites_with_excess,82 of 82,CpG sites of the block at which at least one library is at or above its upper cutoff.
+a. block of excess coverage,block_cpg_sites_with_reads_in_every_library,82 of 82,CpG sites of the block with at least one read in each of the 22 libraries.
+a. block of excess coverage,block_tested_cpgs_legacy,56,Tested CpGs of legacy mode inside the block.
+a. block of excess coverage,block_tested_cpgs_corrected,0,Tested CpGs of corrected mode inside the block.
+a. block of excess coverage,block_cpg_sites_at_cutoff_per_library_without_excess,0 to 0,"CpG sites of the block at or above the upper cutoff, per library; range among libraries without the excess."
+a. block of excess coverage,cutoff_reached_outside_block,0 of 5570,"Pairs of CpG site and library at or above the upper cutoff, of all pairs with reads, in the window outside the block."
+a. block of excess coverage,block_core,NC_047563.1:39633065-39636622,A stricter rule for comparison: first and last CpG of the block at which at least half of the libraries with the excess are at or above their upper cutoff.
+a. block of excess coverage,bases_to_next_cpg_site_upstream,182,Bases between the first CpG of the block and the nearest CpG site with reads before it.
+a. block of excess coverage,relative_coverage_at_next_cpg_site_upstream,2.50,Coverage over the library median at that site; median of the libraries with the excess.
+a. block of excess coverage,bases_to_next_cpg_site_downstream,183,Bases between the last CpG of the block and the nearest CpG site with reads after it.
+a. block of excess coverage,relative_coverage_at_next_cpg_site_downstream,1.33,Coverage over the library median at that site; median of the libraries with the excess.
+a. block of excess coverage,block_relative_coverage_with_excess,9.56 to 32.00,Median coverage of the CpG sites of the block over the library median; range among libraries with the excess.
+a. block of excess coverage,block_relative_coverage_without_excess,1.70 to 4.83,Same; range among libraries without the excess.
+a. block of excess coverage,flank_cpg_sites_upstream,61,CpG sites with reads in at least one library whose start lies in the flank_bp before the first CpG of the block.
+a. block of excess coverage,flank_cpg_sites_downstream,76,CpG sites with reads in at least one library whose start lies in the flank_bp after the last CpG of the block.
+a. block of excess coverage,flank_relative_coverage_upstream,0.56 to 1.40,Median coverage of the CpG sites of the upstream flank over the library median; range among the 22 libraries.
+a. block of excess coverage,flank_relative_coverage_downstream,0.71 to 1.72,Same for the downstream flank.
+a. block of excess coverage,flank_relative_coverage,0.56 to 1.72,Range over both flanks and the 22 libraries.
+a. block of excess coverage,flank_tested_cpgs_corrected_of_legacy,0 of 0,"Tested CpGs of corrected mode, of the tested CpGs of legacy mode, in the two flanks."
+a. block of excess coverage,block_over_flanks_with_excess,10.75 to 32.00,"Median coverage of the CpG sites of the block over the median coverage of the CpG sites of both flanks, per library; range among libraries with the excess."
+a. block of excess coverage,block_over_flanks_without_excess,1.31 to 4.83,Same; range among libraries without the excess.
+c. leave one library out,ploidy_region_cpgs_failing_qvalue_rule,0 of 54,"Tested CpGs of the DML region with q at or above config$dml_qvalue for the ploidy contrast, all 22 libraries (diffmeth_ploidy_legacy.csv.gz)."
+c. leave one library out,ploidy_region_cpgs_over_difference_all_libraries,53 of 54,"Number of tested CpGs of the DML region whose read-pooled difference (normalized counts) exceeds config$dml_difference in absolute value, ploidy contrast, all 22 libraries."
+c. leave one library out,ploidy_region_cpgs_over_difference_without_most_influential_library,1,"Same count with the most influential library left out. The difference rule only: the model is not refitted, so this is the largest possible number of DML."
+c. leave one library out,ploidy_region_cpgs_over_difference_without_one_other_library,50 to 53,Same count with one of the other 21 libraries left out; range among them.
+c. leave one library out,ploidy_region_cpgs_over_difference_libraries_without_excess_only,37,Same count from the libraries without the excess alone.
+c. leave one library out,heat_region_cpgs_failing_qvalue_rule,0 of 54,"Tested CpGs of the DML region with q at or above config$dml_qvalue for the heat contrast, all 22 libraries (diffmeth_heat_legacy.csv.gz)."
+c. leave one library out,heat_region_cpgs_over_difference_all_libraries,39 of 54,"Number of tested CpGs of the DML region whose read-pooled difference (normalized counts) exceeds config$dml_difference in absolute value, heat contrast, all 22 libraries."
+c. leave one library out,heat_region_cpgs_over_difference_without_most_influential_library,0,"Same count with the most influential library left out. The difference rule only: the model is not refitted, so this is the largest possible number of DML."
+c. leave one library out,heat_region_cpgs_over_difference_without_one_other_library,29 to 53,Same count with one of the other 21 libraries left out; range among them.
+c. leave one library out,heat_region_cpgs_over_difference_libraries_without_excess_only,24,Same count from the libraries without the excess alone.
+c. leave one library out,most_influential_library,zr3534_4,"The library whose omission leaves the fewest CpGs over the difference threshold, ploidy and heat contrasts added."
+c. leave one library out,most_influential_library_group,diploid heat,Ploidy and cohort of that library.
+c. leave one library out,most_influential_library_relative_coverage,34.44,"Median coverage of the tested CpGs of the DML region over the library median, that library."
+c. leave one library out,most_influential_library_pct_methylation,84.4,"Read-pooled percent methylation of the tested CpGs of the DML region, raw counts, that library."
+c. leave one library out,most_influential_library_share_of_cohort_reads_pct,39.2,Its share of the normalized reads of its cohort at the tested CpGs of the DML region.
+c. leave one library out,most_influential_library_share_of_ploidy_reads_pct,25.9,Its share of the normalized reads of its ploidy at the tested CpGs of the DML region.
+d. methylation per animal,ploidy_all_libraries_n,11 diploid and 11 triploid,Libraries compared: all 22 libraries.
+d. methylation per animal,ploidy_all_libraries_median_diploid,34.1,"Median of the read-pooled percent methylation of the tested CpGs of the DML region, raw counts, one value per library; diploid, all 22 libraries."
+d. methylation per animal,ploidy_all_libraries_median_triploid,3.2,Same; triploid.
+d. methylation per animal,ploidy_all_libraries_range_diploid,3.8 to 84.4,"Lowest and highest value; diploid, all 22 libraries."
+d. methylation per animal,ploidy_all_libraries_range_triploid,0.4 to 44.7,Same; triploid.
+d. methylation per animal,ploidy_all_libraries_wilcoxon_p_exact,0.00524,"Wilcoxon rank-sum test, two-sided, exact; diploid against triploid, all 22 libraries."
+d. methylation per animal,ploidy_all_libraries_wilcoxon_p_normal_approximation,0.0071,Same test by the normal approximation with continuity correction.
+d. methylation per animal,ploidy_heat_cohort_n,5 diploid and 5 triploid,Libraries compared: heat cohort.
+d. methylation per animal,ploidy_heat_cohort_median_diploid,42.1,"Median of the read-pooled percent methylation of the tested CpGs of the DML region, raw counts, one value per library; diploid, heat cohort."
+d. methylation per animal,ploidy_heat_cohort_median_triploid,0.8,Same; triploid.
+d. methylation per animal,ploidy_heat_cohort_range_diploid,33.8 to 84.4,"Lowest and highest value; diploid, heat cohort."
+d. methylation per animal,ploidy_heat_cohort_range_triploid,0.4 to 18.7,Same; triploid.
+d. methylation per animal,ploidy_heat_cohort_wilcoxon_p_exact,0.00794,"Wilcoxon rank-sum test, two-sided, exact; diploid against triploid, heat cohort."
+d. methylation per animal,ploidy_heat_cohort_wilcoxon_p_normal_approximation,0.0122,Same test by the normal approximation with continuity correction.
+d. methylation per animal,ploidy_control_cohort_n,6 diploid and 6 triploid,Libraries compared: control cohort.
+d. methylation per animal,ploidy_control_cohort_median_diploid,10.4,"Median of the read-pooled percent methylation of the tested CpGs of the DML region, raw counts, one value per library; diploid, control cohort."
+d. methylation per animal,ploidy_control_cohort_median_triploid,4.5,Same; triploid.
+d. methylation per animal,ploidy_control_cohort_range_diploid,3.8 to 53.6,"Lowest and highest value; diploid, control cohort."
+d. methylation per animal,ploidy_control_cohort_range_triploid,1.3 to 44.7,Same; triploid.
+d. methylation per animal,ploidy_control_cohort_wilcoxon_p_exact,0.0931,"Wilcoxon rank-sum test, two-sided, exact; diploid against triploid, control cohort."
+d. methylation per animal,ploidy_control_cohort_wilcoxon_p_normal_approximation,0.0927,Same test by the normal approximation with continuity correction.
+d. methylation per animal,ploidy_without_most_influential_library_n,10 diploid and 11 triploid,Libraries compared: all libraries but the most influential one of part c.
+d. methylation per animal,ploidy_without_most_influential_library_median_diploid,34.0,"Median of the read-pooled percent methylation of the tested CpGs of the DML region, raw counts, one value per library; diploid, all libraries but the most influential one of part c."
+d. methylation per animal,ploidy_without_most_influential_library_median_triploid,3.2,Same; triploid.
+d. methylation per animal,ploidy_without_most_influential_library_range_diploid,3.8 to 53.6,"Lowest and highest value; diploid, all libraries but the most influential one of part c."
+d. methylation per animal,ploidy_without_most_influential_library_range_triploid,0.4 to 44.7,Same; triploid.
+d. methylation per animal,ploidy_without_most_influential_library_wilcoxon_p_exact,0.0101,"Wilcoxon rank-sum test, two-sided, exact; diploid against triploid, all libraries but the most influential one of part c."
+d. methylation per animal,ploidy_without_most_influential_library_wilcoxon_p_normal_approximation,0.0124,Same test by the normal approximation with continuity correction.
+d. methylation per animal,cohort_all_libraries_n,12 control and 10 heat,Libraries compared: all 22 libraries.
+d. methylation per animal,cohort_all_libraries_median_control,6.7,"Median of the read-pooled percent methylation of the tested CpGs of the DML region, raw counts, one value per library; control, all 22 libraries."
+d. methylation per animal,cohort_all_libraries_median_heat,26.3,Same; heat.
+d. methylation per animal,cohort_all_libraries_range_control,1.3 to 53.6,"Lowest and highest value; control, all 22 libraries."
+d. methylation per animal,cohort_all_libraries_range_heat,0.4 to 84.4,Same; heat.
+d. methylation per animal,cohort_all_libraries_wilcoxon_p_exact,0.628,"Wilcoxon rank-sum test, two-sided, exact; control against heat, all 22 libraries."
+d. methylation per animal,cohort_all_libraries_wilcoxon_p_normal_approximation,0.621,Same test by the normal approximation with continuity correction.
+d. methylation per animal,library_with_highest_pct_methylation,zr3534_4,"Library with the highest read-pooled percent methylation of the tested CpGs of the DML region, raw counts, one value per library."
+e. annotation of the block,genes_overlapping_block,3,Records of the gene track that overlap the block by at least one base.
+e. annotation of the block,gene_LOC105317102_biotype,protein_coding,Biotype of a gene that overlaps the block (gene track).
+e. annotation of the block,gene_LOC105317102_position,NC_047563.1:39486038-39676714 (-),"Its first and last base, 1-based, and its strand."
+e. annotation of the block,gene_LOC105317102_block_bases_inside_gene,3599 of 3599,"Bases of the block inside the gene, of all bases of the block."
+e. annotation of the block,gene_LOC105317102_exons_overlapping_block,0,"Exons of the gene that overlap the block, exons of all its transcripts merged (exon track)."
+e. annotation of the block,gene_LOC105317102_block_bases_in_exons,0,Bases of the block inside those exons.
+e. annotation of the block,gene_LOC105318567_biotype,lncRNA,Biotype of a gene that overlaps the block (gene track).
+e. annotation of the block,gene_LOC105318567_position,NC_047563.1:39630104-39639606 (+),"Its first and last base, 1-based, and its strand."
+e. annotation of the block,gene_LOC105318567_block_bases_inside_gene,3599 of 3599,"Bases of the block inside the gene, of all bases of the block."
+e. annotation of the block,gene_LOC105318567_exons_overlapping_block,0,"Exons of the gene that overlap the block, exons of all its transcripts merged (exon track)."
+e. annotation of the block,gene_LOC105318567_block_bases_in_exons,0,Bases of the block inside those exons.
+e. annotation of the block,gene_LOC105341636_biotype,lncRNA,Biotype of a gene that overlaps the block (gene track).
+e. annotation of the block,gene_LOC105341636_position,NC_047563.1:39632579-39636536 (+),"Its first and last base, 1-based, and its strand."
+e. annotation of the block,gene_LOC105341636_block_bases_inside_gene,3471 of 3599,"Bases of the block inside the gene, of all bases of the block."
+e. annotation of the block,gene_LOC105341636_exons_overlapping_block,5,"Exons of the gene that overlap the block, exons of all its transcripts merged (exon track)."
+e. annotation of the block,gene_LOC105341636_block_bases_in_exons,2040,Bases of the block inside those exons.
+e. annotation of the block,gene_LOC105341636_block_cpg_sites_in_exons,53,CpG sites of the block that overlap an exon of the gene.
+e. annotation of the block,gene_LOC105341636_block_cpg_sites_in_introns,26,CpG sites of the block inside the gene and outside its exons.
+e. annotation of the block,gene_LOC105341636_relative_coverage_in_exons,18.86,"Coverage over the library median, median of the libraries with the excess at each CpG site; median of the CpG sites in exons."
+e. annotation of the block,gene_LOC105341636_relative_coverage_in_introns,20.54,Same; median of the CpG sites in introns.
+e. annotation of the block,transposable_elements_overlapping_block,0,Records of the transposable element track (RepeatMasker) that overlap the block.
+e. annotation of the block,block_cpg_sites_in_transposable_elements,0 of 82,CpG sites of the block that overlap a record of that track.
+e. annotation of the block,bases_to_nearest_transposable_element_upstream,799,Bases between the block and the last transposable element that ends before it.
+e. annotation of the block,bases_to_nearest_transposable_element_downstream,585,Bases between the block and the first transposable element that begins after it.
+f. reference sequence of the block,block_bases,3599,Length of the block in the reference: from the C of its first CpG to the G of its last.
+f. reference sequence of the block,block_cpg_dinucleotides_in_reference,82,CG dinucleotides in the reference sequence of the block.
+f. reference sequence of the block,block_gc_pct,42.5,"G plus C, percent of the bases of the block."
+f. reference sequence of the block,flank_gc_pct_upstream,30.9,"G plus C, percent of the flank_bp bases before the block."
+f. reference sequence of the block,flank_gc_pct_downstream,32.7,"G plus C, percent of the flank_bp bases after the block."
+f. reference sequence of the block,block_30mers,3570,"30-mers of the block, one starting at every base."
+f. reference sequence of the block,block_30mers_once_in_reference,2471 of 3570,"30-mers of the block that occur once in the reference, both strands of all sequences counted."
+f. reference sequence of the block,block_30mers_once_in_reference_pct,69.2,The same as a percentage.
+f. reference sequence of the block,block_30mers_twice_in_reference,874 of 3570,30-mers of the block that occur exactly twice in the reference.
+f. reference sequence of the block,block_30mers_3_to_9_times_in_reference,141 of 3570,30-mers of the block that occur 3 to 9 times in the reference.
+f. reference sequence of the block,block_30mers_10_or_more_times_in_reference,84 of 3570,30-mers of the block that occur 10 times or more in the reference.
+f. reference sequence of the block,block_30mers_10_or_more_times_copies,11 to 61,Number of copies of those 30-mers in the reference; lowest and highest.
+f. reference sequence of the block,block_30mers_10_or_more_times_position,NC_047563.1:39636552-39636664,"First and last base of the block that those 30-mers cover, 1-based."
+f. reference sequence of the block,sampled_30mers_once_in_reference,42 of 60,"The same count for a sample: one 30-mer every kmer_sample_step bases, from the first base of the block."
+f. reference sequence of the block,sampled_30mers_twice_in_reference,15 of 60,30-mers of the sample that occur exactly twice in the reference.
+f. reference sequence of the block,sampled_30mers_3_or_more_times_in_reference,3 of 60,30-mers of the sample that occur three times or more.
+f. reference sequence of the block,second_copies_inside_block,0 of 874,"Of the 30-mers with exactly two copies, those whose second copy also lies inside the block."
+f. reference sequence of the block,second_copies_elsewhere_on_same_sequence,0 of 874,"Of the 30-mers with exactly two copies, those whose second copy lies outside the block on the sequence of the block."
+f. reference sequence of the block,second_copies_place_1,NC_047560.1:13874789-13881520,"A place that holds second copies of 30-mers of the block: first and last base, 1-based. Second copies within copy_gap_bp of each other on one sequence are one place; places are ranked by the number of 30-mers."
+f. reference sequence of the block,second_copies_place_1_30mers,474 of 874,30-mers with exactly two copies whose second copy lies there.
+f. reference sequence of the block,second_copies_place_2,NC_047559.1:4498648-4509003,"A place that holds second copies of 30-mers of the block: first and last base, 1-based. Second copies within copy_gap_bp of each other on one sequence are one place; places are ranked by the number of 30-mers."
+f. reference sequence of the block,second_copies_place_2_30mers,294 of 874,30-mers with exactly two copies whose second copy lies there.
+f. reference sequence of the block,second_copies_place_3,NC_047561.1:36696412-36696653,"A place that holds second copies of 30-mers of the block: first and last base, 1-based. Second copies within copy_gap_bp of each other on one sequence are one place; places are ranked by the number of 30-mers."
+f. reference sequence of the block,second_copies_place_3_30mers,100 of 874,30-mers with exactly two copies whose second copy lies there.

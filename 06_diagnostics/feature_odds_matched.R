@@ -216,8 +216,8 @@ difference_above_threshold <- function(counts_c, counts_w, labels, threshold) {
 odds_row <- function(mode_name, set_name, track_name, comparison, estimate, estimate_method, interval_method,
                      k, n_strata, notes) {
   data.table(mode = mode_name, dml_set = set_name, track = track_name, comparison = comparison,
-             odds_ratio = estimate[1], ci_low = estimate[2], ci_high = estimate[3],
-             interval_method = interval_method, estimate_method = estimate_method, n_strata_used = n_strata,
+             interval_method = interval_method, odds_ratio = estimate[1], ci_low = estimate[2], ci_high = estimate[3],
+             n_strata_used = n_strata, estimate_method = estimate_method,
              n_dml = k[1] + k[2], n_dml_in_track = k[1], n_other_cpg = k[3] + k[4], n_other_cpg_in_track = k[3],
              notes = notes)
 }
@@ -353,7 +353,7 @@ analyse_mode <- function(mode_name) {
     dml <- is_dml[[set_name]]
     outside_note <- function(background) {
       n_out <- sum(dml & !background)
-      if (n_out == 0) "" else sprintf("%d DML of the list lie outside the background and are counted as DML", n_out)
+      if (n_out == 0) "" else sprintf("DML of the list outside the background, counted as DML: %d", n_out)
     }
     for (track_name in tracks) {
       feature <- in_track[, track_name]
@@ -509,7 +509,8 @@ analyse_mode <- function(mode_name) {
       perm_rows[[length(perm_rows) + 1]] <- data.table(
         mode = mode_name, dml_set = "ploidy", permutation_scheme = scheme, track = tracks[j],
         odds_ratio_real = real_odds[[j]], perm_median = median(perm_odds[, j]),
-        perm_pct2.5 = quantile(perm_odds[, j], 0.025, names = FALSE), perm_pct97.5 = quantile(perm_odds[, j], 0.975, names = FALSE),
+        perm_percentile_2.5 = quantile(perm_odds[, j], 0.025, names = FALSE),
+        perm_percentile_97.5 = quantile(perm_odds[, j], 0.975, names = FALSE),
         share_perm_at_least_real = mean(perm_odds[, j] >= real_odds[[j]]), n_permutations = n_perm,
         pct_eligible_called_in_track = 100 * sum(times_all[inside]) / (sum(inside) * n_perm),
         pct_eligible_called_outside_track = 100 * sum(times_all[outside]) / (sum(outside) * n_perm),
@@ -542,7 +543,7 @@ analyse_mode <- function(mode_name) {
                       numeric(1))
   perm_rows[[length(perm_rows) + 1]] <- data.table(
     mode = mode_name, dml_set = "heat", permutation_scheme = "none", track = tracks, odds_ratio_real = heat_odds,
-    perm_median = NA_real_, perm_pct2.5 = NA_real_, perm_pct97.5 = NA_real_, share_perm_at_least_real = NA_real_,
+    perm_median = NA_real_, perm_percentile_2.5 = NA_real_, perm_percentile_97.5 = NA_real_, share_perm_at_least_real = NA_real_,
     n_permutations = 0L, pct_eligible_called_in_track = NA_real_, pct_eligible_called_outside_track = NA_real_,
     notes = no_heat_permutation)
   counts[[length(counts) + 1]] <- count_row(mode_name, "heat", "none", "CpGs called per permutation", NA_real_,
@@ -566,7 +567,7 @@ round_columns(sd_tab, c("sd_from", "sd_to", "median_sd_dml", "median_sd_other_el
                         "pct_other_eligible_in_gene_body"), 2)
 perm_tab[, ratio_in_to_outside := pct_eligible_called_in_track / pct_eligible_called_outside_track]
 setcolorder(perm_tab, c(setdiff(names(perm_tab), "notes"), "notes"))
-round_columns(perm_tab, c("odds_ratio_real", "perm_median", "perm_pct2.5", "perm_pct97.5", "share_perm_at_least_real",
+round_columns(perm_tab, c("odds_ratio_real", "perm_median", "perm_percentile_2.5", "perm_percentile_97.5", "share_perm_at_least_real",
                           "pct_eligible_called_in_track", "pct_eligible_called_outside_track", "ratio_in_to_outside"), 4)
 count_tab[, value := signif(value, 6)]
 fwrite(odds_tab, out_file("feature_odds_matched.csv"))
@@ -576,16 +577,16 @@ fwrite(count_tab, out_file("feature_odds_label_permutation_counts.csv"))
 
 # ---- Summary for the log ---------------------------------------------------------------------
 options(width = 250)
-show <- odds_tab[, .(mode, dml_set, track, comparison = substr(comparison, 1, 60), interval = substr(interval_method, 1, 20),
-                     odds_ratio, ci_low, ci_high, n_strata_used)]
+show <- odds_tab[, .(mode, dml_set, track, comparison = substr(comparison, 1, 62),
+                     interval = fifelse(interval_method == interval_block, "block bootstrap", "CpGs independent"),
+                     odds_ratio, ci_low, ci_high, n_strata_used, n_dml)]
 cat("\nOdds ratio of a DML lying in a gene body, by comparison:\n"); print(show[track == "gene"], nrows = 200)
-cat("\nOdds ratios against eligible CpGs in the same methylation bin and SD decile (block interval):\n")
-print(odds_tab[comparison == label_bin_sd & interval_method == interval_block,
-               .(mode, dml_set, track, odds_ratio, ci_low, ci_high, n_strata_used, n_dml)], nrows = 200)
+cat("\nOdds ratios against eligible CpGs in the same methylation bin and SD decile:\n")
+print(show[odds_tab$comparison == label_bin_sd, !"comparison"], nrows = 200)
 cat("\nLabel permutation, ploidy:\n")
-print(perm_tab[dml_set == "ploidy", .(mode, permutation_scheme, track, odds_ratio_real, perm_median, perm_pct2.5, perm_pct97.5,
-                                      share_perm_at_least_real, ratio_in_to_outside)], nrows = 200)
+print(perm_tab[dml_set == "ploidy", !c("dml_set", "n_permutations", "notes")], nrows = 200)
 cat("\nMedian within-group SD (percentage points):\n"); print(sd_tab[sd_group == "all"])
 cat("\nDifference rule, q-value rule, and CpGs called per permutation:\n")
-print(count_tab[mean_methylation_bin == "all", .(mode, dml_set, permutation_scheme, quantity = substr(quantity, 1, 80), value)], nrows = 300)
+print(count_tab[mean_methylation_bin == "all", .(mode, dml_set, permutation_scheme, quantity = substr(quantity, 1, 80),
+                                                 value = sprintf("%.6g", value))], nrows = 300)
 log_msg("feature_odds_matched finished in %.1f min", as.numeric(difftime(Sys.time(), t_start, units = "mins")))

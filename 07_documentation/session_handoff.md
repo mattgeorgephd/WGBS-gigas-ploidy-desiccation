@@ -2,7 +2,7 @@
 
 How to continue this work from the repository alone, for a new session or a person. The working session rewrites the "State" and "In flight" sections whenever it pushes.
 
-Last updated: 2026-11-19 06:40 UTC.
+Last updated: 2026-11-19 06:47 UTC.
 
 ## If the session ends or its machine is replaced
 
@@ -73,4 +73,5 @@ Note on the sensitivity tables: the files under `06_diagnostics/dml_sensitivity/
 4. Sensitivity analyses: after review, run `06_diagnostics/dml_sensitivity.R` in full, and write the results into `issues.md` (I-02 interaction, I-04 acute heat-shock libraries, I-06 overdispersion, I-07 ploidy within controls).
 5. Issue I-15: the genomic distribution of CpGs at 1x in Results 3.1 has no pipeline output yet. Extend step 04 to write the overlap of its CpG sets with the feature tracks (the draft's numbers appear to come from the heat-only 10x set), then rerun step 04 (8 minutes, 8 GB).
 6. `renv.lock` for the audit environment; a full run from a clean clone; final pass over the READMEs; remove obsolete items from the "still to be written" list in `06_diagnostics/README.md`.
-7. Put the open decisions to the authors (`reproducibility_plan.md`, section 7: thirteen items).
+7. Put the open decisions to the authors (`reproducibility_plan.md`, section 7: fourteen items; decisions already taken are in the table "Decided" below that list).
+8. Manuscript text copy: the author approved committing a plain-text copy of the draft (2026-11-19). It is NOT committed yet, because the repository is public and the session asked the author to confirm with that in mind. The copy is on the session machine only (scratch directory, `manuscript/manuscript_gdoc.txt`, 205 lines, md5 f852956ab244b18fbf05f17c22f83630; exported from the Google Doc on 2026-11-18). If the session is lost before it is committed, export the Google Doc again and check the section line ranges in `agent_workflows/scripts/manuscript-values.js` against the new copy. When committing, replace the corresponding author's e-mail address on the title page with a placeholder unless the author asks to keep it.

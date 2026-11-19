@@ -1,0 +1,25 @@
+libraries_left_out,ploidy,treatment,carries_excess,share_of_ploidy_reads_pct,share_of_cohort_reads_pct,n_left_out,diploid_used,triploid_used,control_used,heat_used,region_cpgs,ploidy_cpgs_over_difference,ploidy_difference_median,heat_cpgs_over_difference,heat_difference_median
+none,,,,,,0,11,11,12,10,54,53,-31.98,39,22.44
+zr3534_1,diploid,heat,FALSE,2.3,3.4,1,10,11,12,9,54,53,-31.88,39,22.54
+zr3534_2,diploid,heat,FALSE,1.6,2.5,1,10,11,12,9,54,53,-31.95,40,22.75
+zr3534_3,diploid,heat,FALSE,3.8,5.7,1,10,11,12,9,54,53,-31.86,41,22.41
+zr3534_4,diploid,heat,TRUE,25.9,39.2,1,10,11,12,9,54,1,-15.66,0,-5.66
+zr3534_5,diploid,heat,FALSE,1.6,2.4,1,10,11,12,9,54,53,-32.07,40,22.52
+zr3534_6,triploid,heat,TRUE,7.5,12,1,11,10,12,9,54,53,-31.01,52,28.17
+zr3534_7,triploid,heat,TRUE,8.2,13.2,1,11,10,12,9,54,53,-30.94,53,29.01
+zr3534_8,triploid,heat,TRUE,8.3,13.4,1,11,10,12,9,54,53,-32.46,49,26.31
+zr3534_9,triploid,heat,FALSE,2.6,4.2,1,11,10,12,9,54,53,-31.63,45,24.52
+zr3534_10,triploid,heat,FALSE,2.5,4,1,11,10,12,9,54,53,-32.01,42,23.57
+zr3644_1,diploid,control,FALSE,3.3,2.3,1,10,11,11,10,54,53,-33.06,38,22.34
+zr3644_2,diploid,control,FALSE,3.5,2.5,1,10,11,11,10,54,53,-33.14,38,22.26
+zr3644_3,diploid,control,TRUE,18.1,12.9,1,10,11,11,10,54,53,-32.95,48,25.46
+zr3644_4,diploid,control,TRUE,15,10.7,1,10,11,11,10,54,50,-29.89,52,26.41
+zr3644_5,diploid,control,TRUE,12.1,8.6,1,10,11,11,10,54,53,-36.93,36,21.44
+zr3644_6,diploid,control,TRUE,12.9,9.2,1,10,11,11,10,54,53,-37.51,34,20.63
+zr3644_13,triploid,control,TRUE,12.5,9.5,1,11,10,11,10,54,51,-30.4,32,20.4
+zr3644_14,triploid,control,TRUE,12.9,9.8,1,11,10,11,10,54,52,-30.21,33,20.72
+zr3644_15,triploid,control,TRUE,15.5,11.8,1,11,10,11,10,54,52,-30.75,29,20.59
+zr3644_16,triploid,control,TRUE,18.3,13.9,1,11,10,11,10,54,53,-39.37,51,26.44
+zr3644_17,triploid,control,FALSE,2.5,1.9,1,11,10,11,10,54,53,-31.64,38,21.89
+zr3644_18,triploid,control,TRUE,9.3,7.1,1,11,10,11,10,54,53,-31.17,36,21.25
+all libraries with the excess,,,,,,13,6,3,3,6,54,37,-21.95,24,19.22
