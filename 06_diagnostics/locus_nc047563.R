@@ -93,7 +93,7 @@ locus_sequence   <- "NC_047563.1"   # the sequence this script is about; the DML
 window_margin_bp <- 10000L          # raw coverage is read for the DML region and this much sequence on either side
 flank_bp         <- 5000L           # width of each flank of the block
 run_gap_bp       <- 1000L           # CpGs with excess coverage closer than this form one run (the gap of step 07's DML regions)
-kmer_width       <- 30L             # part f: length of the words counted in the reference
+kmer_width       <- 30L             # part f: length of the words (k-mers) of the block that are counted in the reference
 kmer_sample_step <- 60L             # part f: the sample takes one word every 60 bases
 copy_gap_bp      <- 20000L          # part f: second copies closer than this on one reference sequence are one place
 n_places         <- 3L              # part f: number of such places reported
@@ -548,14 +548,14 @@ fact(sec, "block_kmers_twice_in_reference", x_of_y(sum(copies == 2L), n_kmers), 
 fact(sec, "block_kmers_3_to_9_times_in_reference", x_of_y(sum(copies >= 3L & copies <= 9L), n_kmers), paste0(kmer_name, " of the block that occur 3 to 9 times in the reference."))
 fact(sec, "block_kmers_10_or_more_times_in_reference", x_of_y(length(many_copies), n_kmers), paste0(kmer_name, " of the block that occur 10 times or more in the reference."))
 if (length(many_copies) > 0L) {
-  fact(sec, "block_kmers_10_or_more_times_copies", a_to_b(copies[many_copies], 0), "Number of copies of those in the reference; lowest and highest.")
+  fact(sec, "block_kmers_10_or_more_times_copies", a_to_b(copies[many_copies], 0), paste0("Copies in the reference of those ", kmer_name, "; lowest and highest."))
   fact(sec, "block_kmers_10_or_more_times_position", interval(block_from + min(many_copies), block_from + max(many_copies) + kmer_width - 1L),
-       "First and last base of the block that those cover, 1-based.")
+       paste0("First and last base of the block that those ", kmer_name, " cover, 1-based."))
 }
 fact(sec, "sampled_kmers_once_in_reference", x_of_y(sum(copies[sampled] == 1L), length(sampled)),
      paste0("The same count for a sample: one of the ", kmer_name, " every ", kmer_sample_step, " bases, from the first base of the block."))
-fact(sec, "sampled_kmers_twice_in_reference", x_of_y(sum(copies[sampled] == 2L), length(sampled)), "Words of the sample that occur exactly twice in the reference.")
-fact(sec, "sampled_kmers_3_or_more_times_in_reference", x_of_y(sum(copies[sampled] >= 3L), length(sampled)), "Words of the sample that occur three times or more.")
+fact(sec, "sampled_kmers_twice_in_reference", x_of_y(sum(copies[sampled] == 2L), length(sampled)), paste0(kmer_name, " of the sample that occur exactly twice in the reference."))
+fact(sec, "sampled_kmers_3_or_more_times_in_reference", x_of_y(sum(copies[sampled] >= 3L), length(sampled)), paste0(kmer_name, " of the sample that occur three times or more."))
 fact(sec, "second_copies_inside_block", x_of_y(length(two_copies) - nrow(second_copy), length(two_copies)),
      paste0("Of the ", kmer_name, " with exactly two copies, those whose second copy also lies inside the block."))
 fact(sec, "second_copies_elsewhere_on_same_sequence", x_of_y(sum(second_copy$sequence == locus_sequence), length(two_copies)),
