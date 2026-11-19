@@ -1,0 +1,17 @@
+x,y,libraries,n,pearson,spearman,spearman_p_exact
+pct_mCpG_genome,pc1_10x_legacy,all 22,22,0.934568,0.725579,0.000199846
+pct_mCpG_genome,pc2_10x_legacy,all 22,22,-0.225163,-0.372106,0.0889
+pct_mCpG_genome,pc3_10x_legacy,all 22,22,0.107536,0.123659,0.582163
+pct_mCpG_genome,pc4_10x_legacy,all 22,22,-0.119774,-0.330322,0.133397
+pct_mCpG_genome,mean_pct_tested_legacy,all 22,22,0.969065,0.757199,6.92281e-05
+pct_mCpG_genome,mean_pct_eligible_legacy,all 22,22,0.970098,0.753811,7.84148e-05
+pct_mCpG_genome,pc1_10x_corrected,all 22,22,0.936991,0.725579,0.000199846
+pct_mCpG_genome,pc2_10x_corrected,all 22,22,-0.223353,-0.367589,0.0930786
+pct_mCpG_genome,pc3_10x_corrected,all 22,22,0.104641,0.140599,0.531012
+pct_mCpG_genome,pc4_10x_corrected,all 22,22,-0.116012,-0.25127,0.258159
+pct_mCpG_genome,mean_pct_tested_corrected,all 22,22,0.968774,0.763975,5.34275e-05
+pct_mCpG_genome,mean_pct_eligible_corrected,all 22,22,0.970605,0.776398,3.19312e-05
+pct_mCpG_genome,pct_mCHH_genome,all 22,22,0.681312,0.713156,0.000287951
+pct_mCpG_genome,pct_mCHH_genome,heat cohort,10,0.681044,0.818182,0.00681113
+pct_mCpG_genome,pct_mCHH_genome,control cohort,12,0.697595,0.825175,0.0017186
+pct_mCpG_genome,elisa_percent_5mC,animals with both a WGBS library and an ELISA value,6,0.75301,0.542857,0.297222

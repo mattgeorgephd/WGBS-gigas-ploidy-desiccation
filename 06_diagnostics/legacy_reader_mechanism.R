@@ -20,9 +20,9 @@
 #                 lines alone the default read returns every line, and with
 #                 the apostrophes replaced on all other lines it returns the
 #                 rows it returned before;
-#             (c) what is lost: the transcripts and genes that are in no
-#                 returned row, and the share of the skipped lines that are
-#                 theirs;
+#             (c) what is lost: the transcripts and genes that the default
+#                 read does not return, and the share of the skipped lines
+#                 that are theirs;
 #             (d) where the survivors are: the longest run of surviving
 #                 transcripts in accession order, and surviving and lost
 #                 transcripts and genes by linkage group;
@@ -55,9 +55,23 @@
 #           04_output/08_gene_annotation/tables/transcript_table.csv.gz
 #           04_output/09_go_enrichment_legacy/tables/legacy_reader_loss.csv, legacy_funnel.csv, legacy_fisher_ploidy_BP.csv
 #           GO.db 3.13.0 (side library in the cache, as step 09)
-# Writes    06_diagnostics/legacy_reader_mechanism.csv            long format: table, quantity, value, definition
-#           06_diagnostics/legacy_reader_by_linkage_group.csv     one row per table and sequence
-#           06_diagnostics/legacy_reader_position_control.csv     one row per kind of list and unit of the totals
+# Writes    06_diagnostics/legacy_reader_mechanism.csv
+#             Parts (a) to (f), long format: table, quantity, value,
+#             definition. `table` is ploidy, heat or shared; "universe" for
+#             facts about the legacy universe; "session" for the R version.
+#             `value` is text: a count, a percentage, yes or no, a transcript
+#             name, or the warnings of a read.
+#           06_diagnostics/legacy_reader_by_linkage_group.csv
+#             Part (d): one row per table and sequence (ten linkage groups,
+#             unplaced scaffolds, all). Transcripts and genes of the table,
+#             surviving and lost; those in the legacy universe
+#             (table_..._in_universe) and those that survive and are in it
+#             (tested_...); the universe itself; the universe transcripts and
+#             the annotated mRNAs in the accession range of the longest
+#             surviving run of the table.
+#           06_diagnostics/legacy_reader_position_control.csv
+#             Part (g): one row per list of interest and unit of the totals.
+#             For a single list the median, minimum and maximum are its value.
 #
 # Notes     - The three tables are the legacy files, which the legacy script
 #             read. Step 09 reads copies that step 08 regenerates. The script
@@ -71,6 +85,10 @@
 #             row stand for the character itself (R sources, src/main/scan.c,
 #             fillBuffer()). The script stops unless each of the four reads
 #             returns exactly the predicted rows.
+#           - The four reads of part (a) are made of the files. The
+#             interventions of part (b) are made of the lines held in memory,
+#             after a check that such a read returns what the read of the
+#             file returns.
 #           - A transcript survives when it is named in the transcript column
 #             of a row of the default read, a gene when one of its transcripts
 #             survives. A skipped line is a line that does not start a row.
@@ -81,13 +99,18 @@
 #             of config$linkage_groups, because the annotated mRNAs in the
 #             accession range of the ploidy run lie on the first five and on
 #             unplaced scaffolds (quantity mrnas_in_run_range_by_sequence).
-#           - Position control: the two fixed lists are tested by topGO itself.
-#             The random lists are tested with the same hypergeometric tail
-#             computed from the term members of the topGO object, which the
-#             script shows to be identical to the p-values of topGO for the
-#             two fixed lists, in both units. 200 lists of each of the three
-#             random kinds (600 draws), set.seed(20261119); the same lists are
-#             used for both units.
+#           - Position control: the two fixed lists are tested by topGO itself,
+#             on the map as it is and on the map with one entry per
+#             transcript. The random lists are tested with the same
+#             hypergeometric tail, computed from the term members of the topGO
+#             object; the script stops unless that computation gives the
+#             p-values of topGO for the two fixed lists, bit for bit, in both
+#             units. 200 lists of each of the three random kinds (600 draws),
+#             set.seed(20261119); the same lists are used for both units.
+#           - The random lists are lists of transcripts. They do not keep the
+#             isoforms of a gene together as a list of genes with a DML does
+#             (issue I-03), so they show what position does and are no null
+#             distribution for the number of terms of the legacy list.
 #           - Warning texts are part of the output. They are those of the R
 #             version named in the first row of legacy_reader_mechanism.csv.
 #           - Legacy mode only: the tables and the test belong to the legacy
@@ -194,10 +217,11 @@ predict_rows <- function(text_lines, quote_chars) {
        ends_inside_string = ends_inside_string, alone = alone)
 }
 
-# Stop unless read.table() returned the predicted rows: the first seven fields
-# of a row are those of its first line, the last two those of its last line,
-# and the rows that hold a line break are the rows predicted to hold more than
-# one line. `complete` is the table with every line as a row.
+# Stop unless read.table() returned the predicted rows: the transcript, gene,
+# position and GO ID of a row are those of its first line, its GOslim bin and
+# ontology letter those of its last line, and the rows that hold a line break
+# are the rows predicted to hold more than one line. `complete` is the table
+# with every line as a row.
 check_predicted_rows <- function(returned, predicted, complete, label) {
   first <- predicted$first_line
   last <- predicted$last_line
@@ -275,12 +299,13 @@ definitions <- c(
                                            "and gives no warning (yes or no)"),
   rows_after_replacing_all_other_apostrophes = paste("Rows of the default read after every apostrophe on all other lines was replaced",
                                                      "by a caret and the lines with an unpaired apostrophe were left as they are"),
-  control_read_returns_the_same_rows = "Whether that read returns rows that start on the same lines as those of the default read (yes or no)",
-  transcripts_lost = "Transcripts of the table that are in no row of the default read",
-  genes_lost = "Genes of the table that are in no row of the default read",
-  skipped_lines_of_lost_transcripts = "Skipped lines that belong to transcripts in no row of the default read",
+  control_read_returns_the_same_rows = paste("Whether that read returns as many rows as the default read, with the same transcript,",
+                                             "position and GO ID in every row (yes or no)"),
+  transcripts_lost = "Transcripts of the table that the default read does not return: named in the transcript column of no row",
+  genes_lost = "Genes of the table that the default read does not return: none of their transcripts is returned",
+  skipped_lines_of_lost_transcripts = "Skipped lines that belong to transcripts the default read does not return",
   percent_skipped_lines_of_lost_transcripts = "Those lines as a percent of the skipped lines",
-  skipped_lines_of_lost_genes = "Skipped lines that belong to genes in no row of the default read",
+  skipped_lines_of_lost_genes = "Skipped lines that belong to genes the default read does not return",
   percent_skipped_lines_of_lost_genes = "Those lines as a percent of the skipped lines",
   runs_of_surviving_transcripts = "Runs of surviving transcripts when the transcripts of the table are put in accession order",
   longest_surviving_run_transcripts = "Transcripts in the longest such run",
@@ -371,6 +396,8 @@ add("universe", "universe_transcripts_unplaced_scaffolds", count_text(sum(univer
 # ==========================================================================================
 step09_loss <- fread(step09("legacy_reader_loss.csv"))
 step09_funnel <- fread(step09("legacy_funnel.csv"))
+stopifnot(all(c("set", "reader", "rows", "transcripts", "genes") %in% names(step09_loss)),
+          all(c("set", "stage", "genes", "transcripts") %in% names(step09_funnel)))
 by_sequence <- list()
 survivors <- list()                                  # per table: the transcripts of the default read and the longest run
 for (tbl in names(tables)) {
@@ -395,9 +422,10 @@ for (tbl in names(tables)) {
   add(tbl, "genes_in_file", count_text(uniqueN(complete$geneID)))
   reads <- list(); predicted <- list(); read_warnings <- list()
   for (r in names(quote_settings)) {
-    read <- with_warnings(if (r == "default_quotes") read_dml_annotation(path, "legacy") else read_with_quotes(path, quote_settings[[r]]))
-    reads[[r]] <- read$value
-    read_warnings[[r]] <- if (length(read$warnings) > 0) paste(read$warnings, collapse = " | ") else "none"
+    this_read <- with_warnings(if (r == "default_quotes") read_dml_annotation(path, "legacy")   # the legacy reader of the pipeline
+                               else read_with_quotes(path, quote_settings[[r]]))
+    reads[[r]] <- this_read$value
+    read_warnings[[r]] <- if (length(this_read$warnings) > 0) paste(this_read$warnings, collapse = " | ") else "none"
     predicted[[r]] <- predict_rows(file_lines, quote_settings[[r]])
     check_predicted_rows(reads[[r]], predicted[[r]], complete, paste(tbl, r))
     add(tbl, paste0("rows_", r), count_text(nrow(reads[[r]])))
@@ -443,13 +471,13 @@ for (tbl in names(tables)) {
       yes_no(nrow(repaired_read$value) == n_file_lines && length(repaired_read$warnings) == 0 &&
                identical(repaired_read$value$transcript, complete$transcript) && identical(repaired_read$value$GOID, complete$GOID)))
   others <- has_apostrophe & !unpaired
-  control <- file_lines
-  control[others] <- gsub("'", replacement, file_lines[others], fixed = TRUE)
-  control_read <- suppressWarnings(read_lines_with_quotes(control, quote_settings$default_quotes))
-  add(tbl, "rows_after_replacing_all_other_apostrophes", count_text(nrow(control_read)))
+  others_replaced <- file_lines
+  others_replaced[others] <- gsub("'", replacement, file_lines[others], fixed = TRUE)
+  others_read <- suppressWarnings(read_lines_with_quotes(others_replaced, quote_settings$default_quotes))
+  add(tbl, "rows_after_replacing_all_other_apostrophes", count_text(nrow(others_read)))
   add(tbl, "control_read_returns_the_same_rows",
-      yes_no(nrow(control_read) == nrow(default_read) && identical(control_read$transcript, default_read$transcript) &&
-               identical(control_read$GOID, default_read$GOID) && identical(control_read$start, default_read$start)))
+      yes_no(nrow(others_read) == nrow(default_read) && identical(others_read$transcript, default_read$transcript) &&
+               identical(others_read$GOID, default_read$GOID) && identical(others_read$start, default_read$start)))
 
   # ---- (c) what is lost ------------------------------------------------------------------------
   complete[, `:=`(starts_row = FALSE, unpaired_line = unpaired)]
@@ -513,10 +541,10 @@ for (tbl in names(tables)) {
     genes_in_table = count_by_sequence(per_gene$sequence),
     genes_surviving = count_by_sequence(per_gene[survives == TRUE, sequence]),
     genes_lost = count_by_sequence(per_gene[survives == FALSE, sequence]),
-    transcripts_in_universe = count_by_sequence(per_tx[in_universe == TRUE, sequence]),
-    transcripts_tested = tested_by_sequence,
-    genes_in_universe = count_by_sequence(per_gene[in_universe == TRUE, sequence]),
-    genes_tested = count_by_sequence(per_gene[tested == TRUE, sequence]),
+    table_transcripts_in_universe = count_by_sequence(per_tx[in_universe == TRUE, sequence]),
+    tested_transcripts = tested_by_sequence,
+    table_genes_in_universe = count_by_sequence(per_gene[in_universe == TRUE, sequence]),
+    tested_genes = count_by_sequence(per_gene[tested == TRUE, sequence]),
     universe_transcripts = universe_by_sequence,
     universe_transcripts_in_run_range = count_by_sequence(universe_sequence[universe_in_range]),
     annotated_mrnas_in_run_range = mrnas_in_range)
@@ -524,8 +552,13 @@ for (tbl in names(tables)) {
   seq_tab <- rbind(seq_tab, cbind(data.table(table = tbl, sequence = "all"), seq_tab[, lapply(.SD, sum), .SDcols = count_columns]))
   seq_tab[, `:=`(percent_transcripts_surviving = round(100 * transcripts_surviving / transcripts_in_table, 1),
                  percent_genes_surviving = round(100 * genes_surviving / genes_in_table, 1),
-                 percent_of_tested_transcripts = round(100 * transcripts_tested / n_tested, 1),
+                 percent_of_tested_transcripts = round(100 * tested_transcripts / n_tested, 1),
                  percent_of_universe_transcripts = round(100 * universe_transcripts / length(universe), 1))]
+  setcolorder(seq_tab, c("table", "sequence", "transcripts_in_table", "transcripts_surviving", "transcripts_lost",
+                         "percent_transcripts_surviving", "genes_in_table", "genes_surviving", "genes_lost", "percent_genes_surviving",
+                         "table_transcripts_in_universe", "tested_transcripts", "percent_of_tested_transcripts",
+                         "universe_transcripts", "percent_of_universe_transcripts", "table_genes_in_universe", "tested_genes",
+                         "universe_transcripts_in_run_range", "annotated_mrnas_in_run_range"))
   by_sequence[[tbl]] <- seq_tab
 
   # ---- (e) overlap with the universe gap -------------------------------------------------------
@@ -559,7 +592,8 @@ for (tbl in names(tables)) {
 
   survivors[[tbl]] <- list(transcripts = per_tx[survives == TRUE, transcript], run_range = run_range,
                            run_first = run_first, run_last = run_last)
-  log_msg("%-6s %6d lines; default read %6d rows, %4d of %4d transcripts, %4d of %4d genes; %2d lines with an unpaired apostrophe, %2d merged rows; warnings: %s",
+  log_msg(paste("%-6s %6d lines; default read %6d rows, %4d of %4d transcripts, %4d of %4d genes;",
+                "%2d lines with an unpaired apostrophe, %2d merged rows; warnings: %s"),
           tbl, n_file_lines, nrow(default_read), n_surviving, nrow(per_tx), per_gene[survives == TRUE, .N], nrow(per_gene),
           sum(unpaired), sum(lines_per_row > 1L), read_warnings$default_quotes)
 }
@@ -597,11 +631,14 @@ maps <- list(lines = gene2go, transcripts = gene2go[!duplicated(map_names)])
 fixed_lists <- list(legacy_list = legacy_list, accession_run = run_pool)
 topgo_results <- list()
 objects <- list()
-for (u in names(maps)) {
-  objects[[u]] <- topgo_object(maps[[u]], legacy_list)
-  for (l in names(fixed_lists)) topgo_results[[paste(u, l)]] <- topgo_p(objects[[u]], maps[[u]], fixed_lists[[l]])
-  log_msg("topGO, totals in %s: %d BP terms; p < %g for %d (legacy list) and %d (accession run)", u, length(topgo_results[[paste(u, "legacy_list")]]),
-          cutoff, sum(topgo_results[[paste(u, "legacy_list")]] < cutoff), sum(topgo_results[[paste(u, "accession_run")]] < cutoff))
+for (totals_in in names(maps)) {
+  objects[[totals_in]] <- topgo_object(maps[[totals_in]], legacy_list)
+  for (list_name in names(fixed_lists)) {
+    topgo_results[[paste(totals_in, list_name)]] <- topgo_p(objects[[totals_in]], maps[[totals_in]], fixed_lists[[list_name]])
+  }
+  log_msg("topGO, totals in %s: %d BP terms; p < %g for %d (legacy list) and %d (accession run)", totals_in,
+          length(topgo_results[[paste(totals_in, "legacy_list")]]), cutoff,
+          sum(topgo_results[[paste(totals_in, "legacy_list")]] < cutoff), sum(topgo_results[[paste(totals_in, "accession_run")]] < cutoff))
 }
 
 # ---- The same test computed directly ---------------------------------------------------------
@@ -630,15 +667,16 @@ direct_test <- function(of_interest, totals_in) {
   names(p) <- bp_terms
   list(p = p, transcripts_in_test = sum(in_list), of_interest_as_counted = n_interest, total_as_counted = n_total)
 }
-for (u in names(maps)) for (l in names(fixed_lists)) {
-  from_topgo <- topgo_results[[paste(u, l)]]
-  if (!identical(direct_test(fixed_lists[[l]], u)$p[names(from_topgo)], from_topgo)) {
-    stop("The direct test does not give the p-values of topGO: ", u, ", ", l, call. = FALSE)
+for (totals_in in names(maps)) for (list_name in names(fixed_lists)) {
+  from_topgo <- topgo_results[[paste(totals_in, list_name)]]
+  if (!identical(direct_test(fixed_lists[[list_name]], totals_in)$p[names(from_topgo)], from_topgo)) {
+    stop("The direct test does not give the p-values of topGO: ", totals_in, ", ", list_name, call. = FALSE)
   }
 }
 
 # ---- The legacy result of step 09 and its top terms ------------------------------------------
 step09_bp <- fread(step09("legacy_fisher_ploidy_BP.csv"))
+stopifnot(all(c("go_id", "rank", "p_fisher", "below_p_cutoff") %in% names(step09_bp)))
 p_legacy <- topgo_results[["lines legacy_list"]]
 top_terms <- step09_bp[rank <= config$go_legacy_topn, go_id]
 stopifnot(setequal(step09_bp$go_id, names(p_legacy)),
@@ -670,14 +708,15 @@ stopifnot(identical(names(all_lists), kinds$list_of_interest))
 
 per_list <- rbindlist(lapply(names(all_lists), function(kind_name) {
   rbindlist(lapply(seq_along(all_lists[[kind_name]]), function(i) {
-    rbindlist(lapply(names(maps), function(u) {
-      res <- direct_test(all_lists[[kind_name]][[i]], u)
-      data.table(list_of_interest = kind_name, list_number = i, unit = u,
+    rbindlist(lapply(names(maps), function(counted_in) {
+      res <- direct_test(all_lists[[kind_name]][[i]], counted_in)
+      data.table(list_of_interest = kind_name, list_number = i, unit = counted_in,
                  transcripts_in_list = length(all_lists[[kind_name]][[i]]),
                  transcripts_in_test = res$transcripts_in_test, of_interest_as_counted = res$of_interest_as_counted,
                  total_as_counted = res$total_as_counted,
                  terms_below = sum(res$p < cutoff), top_terms_below = sum(res$p[top_terms] < cutoff),
-                 top_terms_not_below = if (all(res$p[top_terms] < cutoff)) "none" else paste(top_terms[res$p[top_terms] >= cutoff], collapse = "; "))
+                 top_terms_not_below = if (all(res$p[top_terms] < cutoff)) "none"
+                                       else paste(top_terms[res$p[top_terms] >= cutoff], collapse = "; "))
     }))
   }))
 }))

@@ -1,0 +1,11 @@
+mode,contrast,n_cpg,n_eligible,n_above_threshold,n_positive,n_negative,n_exactly_at_threshold,share_in_majority_direction,mean_difference_eligible,median_difference_eligible,q25_difference_eligible,q75_difference_eligible,share_eligible_positive
+legacy,"ploidy, all 22 libraries (the draft's ploidy contrast)",480579,65480,1038,442,596,0,0.574181,-1.1399,-1.24624,-5.50168,3.06832,0.420434
+legacy,"cohort, all 22 libraries (the draft's heat contrast)",480579,65480,2352,1150,1202,1,0.511054,0.283562,0.373805,-5.01348,5.73995,0.520525
+legacy,ploidy inside the heat cohort,480579,65480,13028,1915,11113,20,0.853009,-6.24878,-5.71093,-15.1285,2.0148,0.311668
+legacy,ploidy inside the control cohort,480579,65480,3349,2688,661,8,0.802628,3.76441,3.63832,-2.18178,9.93382,0.660736
+legacy,interaction (heat-cohort ploidy difference minus control-cohort ploidy difference),480579,65480,23503,2876,20627,1,0.877633,-10.0132,-8.90786,-22.1917,1.84049,0.290257
+corrected,"ploidy, all 22 libraries (the draft's ploidy contrast)",454555,61056,952,430,522,0,0.548319,-1.17981,-1.32706,-5.63188,3.08704,0.41706
+corrected,"cohort, all 22 libraries (the draft's heat contrast)",454555,61056,2273,1089,1184,1,0.520897,0.229393,0.345494,-5.18312,5.80837,0.518589
+corrected,ploidy inside the heat cohort,454555,61056,12767,1813,10954,20,0.857993,-6.49405,-6.05074,-15.7031,1.95469,0.307881
+corrected,ploidy inside the control cohort,454555,61056,3252,2659,593,8,0.817651,3.91688,3.80854,-2.1678,10.2028,0.663227
+corrected,interaction (heat-cohort ploidy difference minus control-cohort ploidy difference),454555,61056,22846,2687,20159,1,0.882386,-10.4109,-9.32276,-23.0824,1.68933,0.285967

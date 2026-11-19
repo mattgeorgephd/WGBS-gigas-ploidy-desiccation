@@ -1,0 +1,11 @@
+mode,comparison,n_diploid,n_triploid,n_above_threshold_observed,labellings,reference_median,reference_p05,reference_p95,reference_min,reference_max,second_largest,labellings_at_or_above_observed,p_enumeration
+legacy,"ploidy inside the heat cohort, all 10 libraries",5,5,13028,252,4018.5,2983,10297,2720,13028,13028,2,0.00793651
+legacy,"ploidy inside the control cohort, all 12 libraries",6,6,3349,924,2912.5,2083,3948,1725,4749,4749,242,0.261905
+legacy,"ploidy inside the heat cohort, without the high libraries",2,5,10732,21,7234,6238,8737,6122,10732,8737,1,0.047619
+legacy,"ploidy inside the control cohort, without the high libraries",6,4,3190,210,3713,2970.75,4775.6,2752,5806,5719,179,0.852381
+legacy,"ploidy, both cohorts, without the high libraries",8,9,1425,4410,1318,980.9,1899.55,793,2612,2601,1552,0.351927
+corrected,"ploidy inside the heat cohort, all 10 libraries",5,5,12767,252,3825,2871,10119,2580,12767,12767,2,0.00793651
+corrected,"ploidy inside the control cohort, all 12 libraries",6,6,3252,924,2830.5,2015,3872,1700,4595,4595,244,0.264069
+corrected,"ploidy inside the heat cohort, without the high libraries",2,5,10266,21,6953,6089,8290,5985,10266,8290,1,0.047619
+corrected,"ploidy inside the control cohort, without the high libraries",6,4,3063,210,3600,2870.8,4618.05,2684,5572,5497,186,0.885714
+corrected,"ploidy, both cohorts, without the high libraries",8,9,1376,4410,1269,945.45,1842.55,777,2528,2502,1566,0.355102

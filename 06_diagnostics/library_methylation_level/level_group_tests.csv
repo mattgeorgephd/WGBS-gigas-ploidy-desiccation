@@ -1,0 +1,25 @@
+measure,comparison,group_a,n_a,group_b,n_b,min_a,median_a,max_a,min_b,median_b,max_b,difference_of_means_b_minus_a,a_libraries_above_every_b_library,b_libraries_above_every_a_library,complete_separation,wilcoxon_p,wilcoxon_p_is_exact
+pct_mCpG_genome,ploidy inside the heat cohort,diploid heat,5,triploid heat,5,10.2087,11.018,11.5506,9.81346,9.92952,10.1861,-0.850262,5,0,TRUE,0.00793651,TRUE
+pct_mCpG_genome,ploidy inside the control cohort,diploid control,6,triploid control,6,9.46043,10.0968,10.234,10.181,10.4062,11.6148,0.650814,0,5,FALSE,0.00865801,TRUE
+pct_mCpG_genome,cohort,control cohort,12,heat cohort,10,9.46043,10.2191,11.6148,9.81346,10.1974,11.5506,0.0627351,1,0,FALSE,0.821204,TRUE
+pct_mCpG_genome,"ploidy, all 22 libraries",diploid,11,triploid,11,9.46043,10.2087,11.5506,9.81346,10.1861,11.6148,-0.0314935,0,1,FALSE,0.897663,TRUE
+mean_pct_tested_legacy,ploidy inside the heat cohort,diploid heat,5,triploid heat,5,8.28622,9.32231,10.0287,7.86349,8.08481,8.26922,-1.01557,5,0,TRUE,0.00793651,TRUE
+mean_pct_tested_legacy,ploidy inside the control cohort,diploid control,6,triploid control,6,7.62839,8.27924,8.41244,8.14644,8.44942,10.0309,0.609247,0,4,FALSE,0.0649351,TRUE
+mean_pct_tested_legacy,cohort,control cohort,12,heat cohort,10,7.62839,8.35525,10.0309,7.86349,8.27772,10.0287,0.0747413,1,0,FALSE,0.582414,TRUE
+mean_pct_tested_legacy,"ploidy, all 22 libraries",diploid,11,triploid,11,7.62839,8.31058,10.0287,7.86349,8.26922,10.0309,-0.129308,0,1,FALSE,0.561888,TRUE
+mean_pct_eligible_legacy,ploidy inside the heat cohort,diploid heat,5,triploid heat,5,42.9982,49.226,54.2422,40.3462,41.8046,42.8166,-6.40696,5,0,TRUE,0.00793651,TRUE
+mean_pct_eligible_legacy,ploidy inside the control cohort,diploid control,6,triploid control,6,37.9398,43.1279,43.9828,42.1273,44.0595,54.3489,3.99633,0,3,FALSE,0.0930736,TRUE
+mean_pct_eligible_legacy,cohort,control cohort,12,heat cohort,10,37.9398,43.7778,54.3489,40.3462,42.9074,54.2422,0.264926,1,0,FALSE,0.346279,TRUE
+mean_pct_eligible_legacy,"ploidy, all 22 libraries",diploid,11,triploid,11,37.9398,43.205,54.2422,40.3462,42.8166,54.3489,-0.732439,0,1,FALSE,0.477855,TRUE
+mean_pct_tested_corrected,ploidy inside the heat cohort,diploid heat,5,triploid heat,5,8.30824,9.41422,10.1019,7.89356,8.12174,8.30209,-1.03725,5,0,TRUE,0.00793651,TRUE
+mean_pct_tested_corrected,ploidy inside the control cohort,diploid control,6,triploid control,6,7.70464,8.32996,8.45905,8.19221,8.50357,10.1402,0.622128,0,4,FALSE,0.0649351,TRUE
+mean_pct_tested_corrected,cohort,control cohort,12,heat cohort,10,7.70464,8.41064,10.1402,7.89356,8.30517,10.1019,0.0619021,1,0,FALSE,0.538659,TRUE
+mean_pct_tested_corrected,"ploidy, all 22 libraries",diploid,11,triploid,11,7.70464,8.35866,10.1019,7.89356,8.30209,10.1402,-0.132133,0,1,FALSE,0.519032,TRUE
+mean_pct_eligible_corrected,ploidy inside the heat cohort,diploid heat,5,triploid heat,5,43.2825,50.0531,55.0145,40.6622,42.2019,43.1604,-6.63168,5,0,TRUE,0.00793651,TRUE
+mean_pct_eligible_corrected,ploidy inside the control cohort,diploid control,6,triploid control,6,38.5026,43.6055,44.4826,42.592,44.6157,55.3897,4.13992,0,4,FALSE,0.0649351,TRUE
+mean_pct_eligible_corrected,cohort,control cohort,12,heat cohort,10,38.5026,44.209,55.3897,40.6622,43.2215,55.0145,0.194366,1,0,FALSE,0.346279,TRUE
+mean_pct_eligible_corrected,"ploidy, all 22 libraries",diploid,11,triploid,11,38.5026,43.6472,55.0145,40.6622,43.1604,55.3897,-0.756261,0,1,FALSE,0.519032,TRUE
+pct_mCHH_genome,ploidy inside the heat cohort,diploid heat,5,triploid heat,5,0.514318,0.5238,0.526867,0.474979,0.512006,0.518647,-0.020779,3,0,FALSE,0.0952381,TRUE
+pct_mCHH_genome,ploidy inside the control cohort,diploid control,6,triploid control,6,0.473472,0.497321,0.507793,0.505943,0.516079,0.519711,0.019772,0,5,FALSE,0.004329,TRUE
+pct_mCHH_genome,cohort,control cohort,12,heat cohort,10,0.473472,0.506868,0.519711,0.474979,0.516379,0.526867,0.00662767,0,3,FALSE,0.122911,TRUE
+pct_mCHH_genome,"ploidy, all 22 libraries",diploid,11,triploid,11,0.473472,0.507793,0.526867,0.474979,0.513872,0.519711,0.00133969,3,0,FALSE,0.796936,TRUE

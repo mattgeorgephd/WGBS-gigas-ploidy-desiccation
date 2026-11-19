@@ -1,0 +1,13 @@
+analysis_id,mode,cpg_group,n_cpg,n_interaction_significant,n_interaction_dml,share_interaction_significant,share_interaction_dml,q_cutoff,difference_cutoff,run_scope
+A2_interaction,corrected,"in both primary lists, both_hyper",27,6,6,0.222222222222222,0.222222222222222,0.01,20,all tested CpGs
+A2_interaction,corrected,"in both primary lists, both_hypo",49,24,24,0.489795918367347,0.489795918367347,0.01,20,all tested CpGs
+A2_interaction,corrected,"in both primary lists, opposite",83,29,28,0.349397590361446,0.337349397590361,0.01,20,all tested CpGs
+A2_interaction,corrected,"in both primary lists, all classes",159,59,58,0.371069182389937,0.364779874213836,0.01,20,all tested CpGs
+A2_interaction,corrected,not in both primary lists,454396,19416,16199,0.0427292493771952,0.0356495215626898,0.01,20,all tested CpGs
+A2_interaction,corrected,all tested CpGs,454555,19475,16257,0.0428441002738943,0.0357646489423722,0.01,20,all tested CpGs
+A2_interaction_mn_f,corrected,"in both primary lists, both_hyper",27,0,0,0,0,0.01,20,all tested CpGs
+A2_interaction_mn_f,corrected,"in both primary lists, both_hypo",49,0,0,0,0,0.01,20,all tested CpGs
+A2_interaction_mn_f,corrected,"in both primary lists, opposite",83,0,0,0,0,0.01,20,all tested CpGs
+A2_interaction_mn_f,corrected,"in both primary lists, all classes",159,0,0,0,0,0.01,20,all tested CpGs
+A2_interaction_mn_f,corrected,not in both primary lists,454396,4,2,8.80289439167598e-06,4.40144719583799e-06,0.01,20,all tested CpGs
+A2_interaction_mn_f,corrected,all tested CpGs,454555,4,2,8.79981520388072e-06,4.39990760194036e-06,0.01,20,all tested CpGs

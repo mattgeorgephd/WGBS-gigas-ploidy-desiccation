@@ -36,12 +36,12 @@ ploidy,skipped_lines,35647,Lines that do not start a row of the default read: li
 ploidy,rows_after_replacing_unpaired_apostrophes,46626,"Rows of the default read after every apostrophe on the lines with an unpaired apostrophe, and on no other line, was replaced by a caret"
 ploidy,repaired_read_returns_every_line,yes,"Whether that read returns one row per line, with the transcript and the GO ID of the line, and gives no warning (yes or no)"
 ploidy,rows_after_replacing_all_other_apostrophes,10979,Rows of the default read after every apostrophe on all other lines was replaced by a caret and the lines with an unpaired apostrophe were left as they are
-ploidy,control_read_returns_the_same_rows,yes,Whether that read returns rows that start on the same lines as those of the default read (yes or no)
-ploidy,transcripts_lost,1725,Transcripts of the table that are in no row of the default read
-ploidy,genes_lost,451,Genes of the table that are in no row of the default read
-ploidy,skipped_lines_of_lost_transcripts,35436,Skipped lines that belong to transcripts in no row of the default read
+ploidy,control_read_returns_the_same_rows,yes,"Whether that read returns as many rows as the default read, with the same transcript, position and GO ID in every row (yes or no)"
+ploidy,transcripts_lost,1725,Transcripts of the table that the default read does not return: named in the transcript column of no row
+ploidy,genes_lost,451,Genes of the table that the default read does not return: none of their transcripts is returned
+ploidy,skipped_lines_of_lost_transcripts,35436,Skipped lines that belong to transcripts the default read does not return
 ploidy,percent_skipped_lines_of_lost_transcripts,99.4,Those lines as a percent of the skipped lines
-ploidy,skipped_lines_of_lost_genes,32947,Skipped lines that belong to genes in no row of the default read
+ploidy,skipped_lines_of_lost_genes,32947,Skipped lines that belong to genes the default read does not return
 ploidy,percent_skipped_lines_of_lost_genes,92.4,Those lines as a percent of the skipped lines
 ploidy,runs_of_surviving_transcripts,7,Runs of surviving transcripts when the transcripts of the table are put in accession order
 ploidy,longest_surviving_run_transcripts,603,Transcripts in the longest such run
@@ -104,12 +104,12 @@ heat,skipped_lines,25512,Lines that do not start a row of the default read: line
 heat,rows_after_replacing_unpaired_apostrophes,106621,"Rows of the default read after every apostrophe on the lines with an unpaired apostrophe, and on no other line, was replaced by a caret"
 heat,repaired_read_returns_every_line,yes,"Whether that read returns one row per line, with the transcript and the GO ID of the line, and gives no warning (yes or no)"
 heat,rows_after_replacing_all_other_apostrophes,81109,Rows of the default read after every apostrophe on all other lines was replaced by a caret and the lines with an unpaired apostrophe were left as they are
-heat,control_read_returns_the_same_rows,yes,Whether that read returns rows that start on the same lines as those of the default read (yes or no)
-heat,transcripts_lost,1162,Transcripts of the table that are in no row of the default read
-heat,genes_lost,288,Genes of the table that are in no row of the default read
-heat,skipped_lines_of_lost_transcripts,25156,Skipped lines that belong to transcripts in no row of the default read
+heat,control_read_returns_the_same_rows,yes,"Whether that read returns as many rows as the default read, with the same transcript, position and GO ID in every row (yes or no)"
+heat,transcripts_lost,1162,Transcripts of the table that the default read does not return: named in the transcript column of no row
+heat,genes_lost,288,Genes of the table that the default read does not return: none of their transcripts is returned
+heat,skipped_lines_of_lost_transcripts,25156,Skipped lines that belong to transcripts the default read does not return
 heat,percent_skipped_lines_of_lost_transcripts,98.6,Those lines as a percent of the skipped lines
-heat,skipped_lines_of_lost_genes,10611,Skipped lines that belong to genes in no row of the default read
+heat,skipped_lines_of_lost_genes,10611,Skipped lines that belong to genes the default read does not return
 heat,percent_skipped_lines_of_lost_genes,41.6,Those lines as a percent of the skipped lines
 heat,runs_of_surviving_transcripts,13,Runs of surviving transcripts when the transcripts of the table are put in accession order
 heat,longest_surviving_run_transcripts,1955,Transcripts in the longest such run
@@ -172,12 +172,12 @@ shared,skipped_lines,88,Lines that do not start a row of the default read: lines
 shared,rows_after_replacing_unpaired_apostrophes,7029,"Rows of the default read after every apostrophe on the lines with an unpaired apostrophe, and on no other line, was replaced by a caret"
 shared,repaired_read_returns_every_line,yes,"Whether that read returns one row per line, with the transcript and the GO ID of the line, and gives no warning (yes or no)"
 shared,rows_after_replacing_all_other_apostrophes,6941,Rows of the default read after every apostrophe on all other lines was replaced by a caret and the lines with an unpaired apostrophe were left as they are
-shared,control_read_returns_the_same_rows,yes,Whether that read returns rows that start on the same lines as those of the default read (yes or no)
-shared,transcripts_lost,0,Transcripts of the table that are in no row of the default read
-shared,genes_lost,0,Genes of the table that are in no row of the default read
-shared,skipped_lines_of_lost_transcripts,0,Skipped lines that belong to transcripts in no row of the default read
+shared,control_read_returns_the_same_rows,yes,"Whether that read returns as many rows as the default read, with the same transcript, position and GO ID in every row (yes or no)"
+shared,transcripts_lost,0,Transcripts of the table that the default read does not return: named in the transcript column of no row
+shared,genes_lost,0,Genes of the table that the default read does not return: none of their transcripts is returned
+shared,skipped_lines_of_lost_transcripts,0,Skipped lines that belong to transcripts the default read does not return
 shared,percent_skipped_lines_of_lost_transcripts,0.0,Those lines as a percent of the skipped lines
-shared,skipped_lines_of_lost_genes,0,Skipped lines that belong to genes in no row of the default read
+shared,skipped_lines_of_lost_genes,0,Skipped lines that belong to genes the default read does not return
 shared,percent_skipped_lines_of_lost_genes,0.0,Those lines as a percent of the skipped lines
 shared,runs_of_surviving_transcripts,1,Runs of surviving transcripts when the transcripts of the table are put in accession order
 shared,longest_surviving_run_transcripts,379,Transcripts in the longest such run
