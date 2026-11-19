@@ -1,0 +1,10 @@
+{
+ "workflow": "pipeline-hardening",
+ "run_id": "wf_0d998304-306",
+ "agents_finished": 0,
+ "agents_running_or_lost": [
+  "fix:A-steps-04-05",
+  "fix:B-steps-06-07"
+ ],
+ "results": []
+}
