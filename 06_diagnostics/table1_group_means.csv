@@ -1,0 +1,21 @@
+table1_row,dml_set,gene_id,gene_name,sequence,start,table1_value,pct_diploid_control,pct_diploid_heat,pct_triploid_control,pct_triploid_heat,triploid_minus_diploid_all_libraries,heat_minus_control_all_libraries,table1_value_is,triploid_minus_diploid_control_cohort,triploid_minus_diploid_heat_cohort,heat_minus_control_diploids,heat_minus_control_triploids
+1,ploidy-DML,105318079,MAP kinase-activating death domain protein,NC_047559.1,17423557,22.24,14.55,16.8,30.09,44.14,22.24,9.06,"triploid minus diploid, all libraries",15.54,27.34,2.25,14.05
+2,ploidy-DML,105328103,neurexin-1,NC_047561.1,51312262,-22.95,79.13,80.7,69.29,43.59,-22.95,-12.06,"triploid minus diploid, all libraries",-9.84,-37.11,1.57,-25.7
+3,ploidy-DML,105328103,neurexin-1,NC_047561.1,51346481,-32.15,46.93,68.35,30.56,15.09,-32.15,8.25,"triploid minus diploid, all libraries",-16.37,-53.26,21.43,-15.46
+4,ploidy-DML,105329309,nesprin-1,NC_047561.1,28607016,23.04,12.39,11.61,15.97,56.15,23.04,21.14,"triploid minus diploid, all libraries",3.58,44.55,-0.78,40.18
+5,ploidy-DML,105329309,nesprin-1,NC_047561.1,28607026,20.69,70.4,52.14,80.6,83.97,20.69,-6.72,"triploid minus diploid, all libraries",10.2,31.83,-18.26,3.37
+6,ploidy-DML,105329309,nesprin-1,NC_047561.1,28607119,-24.05,89.9,84.44,56.3,71.88,-24.05,6.4,"triploid minus diploid, all libraries",-33.6,-12.57,-5.45,15.57
+7,ploidy-DML,105329309,nesprin-1,NC_047561.1,28608523,25.56,84.26,43.14,76.85,93.5,25.56,-14.98,"triploid minus diploid, all libraries",-7.41,50.36,-41.12,16.64
+8,ploidy-DML,105329645,ubiquitin-like-specific protease 1,NC_047561.1,27733219,-21.01,77.96,87.79,67.95,59.86,-21.01,-0.25,"triploid minus diploid, all libraries",-10.01,-27.92,9.83,-8.09
+9,ploidy-DML,105335651,"1-phosphatidylinositol 4,5-bisphosphate phosphodiesterase beta-1",NC_047561.1,19405662,21.61,45.52,54.9,68.84,74.49,21.61,7.15,"triploid minus diploid, all libraries",23.32,19.59,9.38,5.65
+10,ploidy-DML,105347767,F-box DNA helicase 1,NC_047561.1,2676336,-21.47,43.8,23.48,16.89,7.09,-21.47,-14.38,"triploid minus diploid, all libraries",-26.9,-16.4,-20.31,-9.81
+11,heat-DML,105320544,kinesin-like protein unc-104,NC_047564.1,40471809,41.68,27.48,66.07,35.24,78.81,13.03,41.68,"heat cohort minus control cohort, all libraries",7.76,12.74,38.59,43.58
+12,heat-DML,105326303,phosphatidylinositol-binding clathrin assembly protein LAP,NC_047563.1,1749458,-20.15,69.78,55,70.89,46.34,-3.46,-20.15,"heat cohort minus control cohort, all libraries",1.1,-8.66,-14.78,-24.54
+13,heat-DML,105326303,phosphatidylinositol-binding clathrin assembly protein LAP,NC_047563.1,1761560,20.24,38.06,74.36,44.69,49.36,-9.4,20.24,"heat cohort minus control cohort, all libraries",6.63,-25,36.29,4.67
+14,heat-DML,105326303,phosphatidylinositol-binding clathrin assembly protein LAP,NC_047563.1,1771931,-23.09,70.62,47.35,74.85,54.89,10.26,-23.09,"heat cohort minus control cohort, all libraries",4.23,7.54,-23.27,-19.96
+15,heat-DML,105326303,phosphatidylinositol-binding clathrin assembly protein LAP,NC_047563.1,1780314,-27.65,54.91,22.3,56.85,45.86,19.92,-27.65,"heat cohort minus control cohort, all libraries",1.94,23.56,-32.61,-10.99
+16,heat-DML,105344721,ataxin-2-like protein,NC_047564.1,22005779,-21.12,92.96,65.38,95.33,80.14,8.19,-21.12,"heat cohort minus control cohort, all libraries",2.38,14.76,-27.57,-15.19
+17,heat-DML,117680672,uncharacterized LOC117680672,NC_047563.1,684534,-21.16,58.99,37.97,55.96,33.33,-0.81,-21.16,"heat cohort minus control cohort, all libraries",-3.03,-4.63,-21.02,-22.63
+18,interaction-DML,105319299,CAD protein,NC_047564.1,8425110,-30.96,97.48,42.96,97.08,88.65,24.3,-30.96,"heat cohort minus control cohort, all libraries",-0.4,45.69,-54.52,-8.43
+19,interaction-DML,105329309,nesprin-1,NC_047561.1,28607016,21.14,12.39,11.61,15.97,56.15,23.04,21.14,"heat cohort minus control cohort, all libraries",3.58,44.55,-0.78,40.18
+20,interaction-DML,105340590,dihydropyrimidinase,NW_022994979.1,42498,31.37,25.93,50,40.34,75.37,22.27,31.37,"heat cohort minus control cohort, all libraries",14.41,25.37,24.07,35.04

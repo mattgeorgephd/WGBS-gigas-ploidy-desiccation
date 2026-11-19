@@ -1,0 +1,441 @@
+table1_row,dml_set,gene_name,sequence,start,library_id,group,normalized_reads,pct_methylation
+1,ploidy-DML,MAP kinase-activating death domain protein,NC_047559.1,17423557,zr3534_1,diploid heat,30,53.3
+1,ploidy-DML,MAP kinase-activating death domain protein,NC_047559.1,17423557,zr3534_2,diploid heat,14,0
+1,ploidy-DML,MAP kinase-activating death domain protein,NC_047559.1,17423557,zr3534_3,diploid heat,27,0
+1,ploidy-DML,MAP kinase-activating death domain protein,NC_047559.1,17423557,zr3534_4,diploid heat,32,0
+1,ploidy-DML,MAP kinase-activating death domain protein,NC_047559.1,17423557,zr3534_5,diploid heat,22,22.7
+1,ploidy-DML,MAP kinase-activating death domain protein,NC_047559.1,17423557,zr3534_6,triploid heat,35,37.1
+1,ploidy-DML,MAP kinase-activating death domain protein,NC_047559.1,17423557,zr3534_7,triploid heat,33,45.5
+1,ploidy-DML,MAP kinase-activating death domain protein,NC_047559.1,17423557,zr3534_8,triploid heat,21,66.7
+1,ploidy-DML,MAP kinase-activating death domain protein,NC_047559.1,17423557,zr3534_9,triploid heat,28,17.9
+1,ploidy-DML,MAP kinase-activating death domain protein,NC_047559.1,17423557,zr3534_10,triploid heat,28,60.7
+1,ploidy-DML,MAP kinase-activating death domain protein,NC_047559.1,17423557,zr3644_1,diploid control,23,34.8
+1,ploidy-DML,MAP kinase-activating death domain protein,NC_047559.1,17423557,zr3644_2,diploid control,21,0
+1,ploidy-DML,MAP kinase-activating death domain protein,NC_047559.1,17423557,zr3644_3,diploid control,16,0
+1,ploidy-DML,MAP kinase-activating death domain protein,NC_047559.1,17423557,zr3644_4,diploid control,20,40
+1,ploidy-DML,MAP kinase-activating death domain protein,NC_047559.1,17423557,zr3644_5,diploid control,18,0
+1,ploidy-DML,MAP kinase-activating death domain protein,NC_047559.1,17423557,zr3644_6,diploid control,12,0
+1,ploidy-DML,MAP kinase-activating death domain protein,NC_047559.1,17423557,zr3644_13,triploid control,18,0
+1,ploidy-DML,MAP kinase-activating death domain protein,NC_047559.1,17423557,zr3644_14,triploid control,14,42.9
+1,ploidy-DML,MAP kinase-activating death domain protein,NC_047559.1,17423557,zr3644_15,triploid control,16,31.2
+1,ploidy-DML,MAP kinase-activating death domain protein,NC_047559.1,17423557,zr3644_16,triploid control,21,42.9
+1,ploidy-DML,MAP kinase-activating death domain protein,NC_047559.1,17423557,zr3644_17,triploid control,25,0
+1,ploidy-DML,MAP kinase-activating death domain protein,NC_047559.1,17423557,zr3644_18,triploid control,19,73.7
+2,ploidy-DML,neurexin-1,NC_047561.1,51312262,zr3534_1,diploid heat,24,87.5
+2,ploidy-DML,neurexin-1,NC_047561.1,51312262,zr3534_2,diploid heat,20,50
+2,ploidy-DML,neurexin-1,NC_047561.1,51312262,zr3534_3,diploid heat,28,85.7
+2,ploidy-DML,neurexin-1,NC_047561.1,51312262,zr3534_4,diploid heat,24,91.7
+2,ploidy-DML,neurexin-1,NC_047561.1,51312262,zr3534_5,diploid heat,18,83.3
+2,ploidy-DML,neurexin-1,NC_047561.1,51312262,zr3534_6,triploid heat,22,59.1
+2,ploidy-DML,neurexin-1,NC_047561.1,51312262,zr3534_7,triploid heat,24,45.8
+2,ploidy-DML,neurexin-1,NC_047561.1,51312262,zr3534_8,triploid heat,25,32
+2,ploidy-DML,neurexin-1,NC_047561.1,51312262,zr3534_9,triploid heat,22,45.5
+2,ploidy-DML,neurexin-1,NC_047561.1,51312262,zr3534_10,triploid heat,24,37.5
+2,ploidy-DML,neurexin-1,NC_047561.1,51312262,zr3644_1,diploid control,12,41.7
+2,ploidy-DML,neurexin-1,NC_047561.1,51312262,zr3644_2,diploid control,28,92.9
+2,ploidy-DML,neurexin-1,NC_047561.1,51312262,zr3644_3,diploid control,16,100
+2,ploidy-DML,neurexin-1,NC_047561.1,51312262,zr3644_4,diploid control,27,66.7
+2,ploidy-DML,neurexin-1,NC_047561.1,51312262,zr3644_5,diploid control,16,93.8
+2,ploidy-DML,neurexin-1,NC_047561.1,51312262,zr3644_6,diploid control,16,68.8
+2,ploidy-DML,neurexin-1,NC_047561.1,51312262,zr3644_13,triploid control,24,75
+2,ploidy-DML,neurexin-1,NC_047561.1,51312262,zr3644_14,triploid control,20,80
+2,ploidy-DML,neurexin-1,NC_047561.1,51312262,zr3644_15,triploid control,21,81
+2,ploidy-DML,neurexin-1,NC_047561.1,51312262,zr3644_16,triploid control,16,75
+2,ploidy-DML,neurexin-1,NC_047561.1,51312262,zr3644_17,triploid control,19,52.6
+2,ploidy-DML,neurexin-1,NC_047561.1,51312262,zr3644_18,triploid control,27,55.6
+3,ploidy-DML,neurexin-1,NC_047561.1,51346481,zr3534_1,diploid heat,29,0
+3,ploidy-DML,neurexin-1,NC_047561.1,51346481,zr3534_2,diploid heat,23,87
+3,ploidy-DML,neurexin-1,NC_047561.1,51346481,zr3534_3,diploid heat,35,88.6
+3,ploidy-DML,neurexin-1,NC_047561.1,51346481,zr3534_4,diploid heat,34,88.2
+3,ploidy-DML,neurexin-1,NC_047561.1,51346481,zr3534_5,diploid heat,37,73
+3,ploidy-DML,neurexin-1,NC_047561.1,51346481,zr3534_6,triploid heat,20,10
+3,ploidy-DML,neurexin-1,NC_047561.1,51346481,zr3534_7,triploid heat,14,35.7
+3,ploidy-DML,neurexin-1,NC_047561.1,51346481,zr3534_8,triploid heat,22,40.9
+3,ploidy-DML,neurexin-1,NC_047561.1,51346481,zr3534_9,triploid heat,27,0
+3,ploidy-DML,neurexin-1,NC_047561.1,51346481,zr3534_10,triploid heat,23,0
+3,ploidy-DML,neurexin-1,NC_047561.1,51346481,zr3644_1,diploid control,22,45.5
+3,ploidy-DML,neurexin-1,NC_047561.1,51346481,zr3644_2,diploid control,35,0
+3,ploidy-DML,neurexin-1,NC_047561.1,51346481,zr3644_3,diploid control,29,69
+3,ploidy-DML,neurexin-1,NC_047561.1,51346481,zr3644_4,diploid control,28,50
+3,ploidy-DML,neurexin-1,NC_047561.1,51346481,zr3644_5,diploid control,26,69.2
+3,ploidy-DML,neurexin-1,NC_047561.1,51346481,zr3644_6,diploid control,39,56.4
+3,ploidy-DML,neurexin-1,NC_047561.1,51346481,zr3644_13,triploid control,33,3
+3,ploidy-DML,neurexin-1,NC_047561.1,51346481,zr3644_14,triploid control,27,11.1
+3,ploidy-DML,neurexin-1,NC_047561.1,51346481,zr3644_15,triploid control,27,81.5
+3,ploidy-DML,neurexin-1,NC_047561.1,51346481,zr3644_16,triploid control,30,33.3
+3,ploidy-DML,neurexin-1,NC_047561.1,51346481,zr3644_17,triploid control,34,41.2
+3,ploidy-DML,neurexin-1,NC_047561.1,51346481,zr3644_18,triploid control,29,17.2
+4,ploidy-DML,nesprin-1,NC_047561.1,28607016,zr3534_1,diploid heat,23,0
+4,ploidy-DML,nesprin-1,NC_047561.1,28607016,zr3534_2,diploid heat,27,0
+4,ploidy-DML,nesprin-1,NC_047561.1,28607016,zr3534_3,diploid heat,18,0
+4,ploidy-DML,nesprin-1,NC_047561.1,28607016,zr3534_4,diploid heat,18,0
+4,ploidy-DML,nesprin-1,NC_047561.1,28607016,zr3534_5,diploid heat,26,50
+4,ploidy-DML,nesprin-1,NC_047561.1,28607016,zr3534_6,triploid heat,27,18.5
+4,ploidy-DML,nesprin-1,NC_047561.1,28607016,zr3534_7,triploid heat,33,39.4
+4,ploidy-DML,nesprin-1,NC_047561.1,28607016,zr3534_8,triploid heat,20,80
+4,ploidy-DML,nesprin-1,NC_047561.1,28607016,zr3534_9,triploid heat,28,71.4
+4,ploidy-DML,nesprin-1,NC_047561.1,28607016,zr3534_10,triploid heat,22,86.4
+4,ploidy-DML,nesprin-1,NC_047561.1,28607016,zr3644_1,diploid control,28,0
+4,ploidy-DML,nesprin-1,NC_047561.1,28607016,zr3644_2,diploid control,19,0
+4,ploidy-DML,nesprin-1,NC_047561.1,28607016,zr3644_3,diploid control,14,35.7
+4,ploidy-DML,nesprin-1,NC_047561.1,28607016,zr3644_4,diploid control,14,28.6
+4,ploidy-DML,nesprin-1,NC_047561.1,28607016,zr3644_5,diploid control,14,35.7
+4,ploidy-DML,nesprin-1,NC_047561.1,28607016,zr3644_6,diploid control,24,0
+4,ploidy-DML,nesprin-1,NC_047561.1,28607016,zr3644_13,triploid control,27,0
+4,ploidy-DML,nesprin-1,NC_047561.1,28607016,zr3644_14,triploid control,16,0
+4,ploidy-DML,nesprin-1,NC_047561.1,28607016,zr3644_15,triploid control,25,20
+4,ploidy-DML,nesprin-1,NC_047561.1,28607016,zr3644_16,triploid control,27,0
+4,ploidy-DML,nesprin-1,NC_047561.1,28607016,zr3644_17,triploid control,22,40.9
+4,ploidy-DML,nesprin-1,NC_047561.1,28607016,zr3644_18,triploid control,27,33.3
+5,ploidy-DML,nesprin-1,NC_047561.1,28607026,zr3534_1,diploid heat,30,30
+5,ploidy-DML,nesprin-1,NC_047561.1,28607026,zr3534_2,diploid heat,26,76.9
+5,ploidy-DML,nesprin-1,NC_047561.1,28607026,zr3534_3,diploid heat,18,72.2
+5,ploidy-DML,nesprin-1,NC_047561.1,28607026,zr3534_4,diploid heat,19,21.1
+5,ploidy-DML,nesprin-1,NC_047561.1,28607026,zr3534_5,diploid heat,24,62.5
+5,ploidy-DML,nesprin-1,NC_047561.1,28607026,zr3534_6,triploid heat,27,70.4
+5,ploidy-DML,nesprin-1,NC_047561.1,28607026,zr3534_7,triploid heat,31,90.3
+5,ploidy-DML,nesprin-1,NC_047561.1,28607026,zr3534_8,triploid heat,22,90.9
+5,ploidy-DML,nesprin-1,NC_047561.1,28607026,zr3534_9,triploid heat,27,85.2
+5,ploidy-DML,nesprin-1,NC_047561.1,28607026,zr3534_10,triploid heat,24,83.3
+5,ploidy-DML,nesprin-1,NC_047561.1,28607026,zr3644_1,diploid control,30,33.3
+5,ploidy-DML,nesprin-1,NC_047561.1,28607026,zr3644_2,diploid control,23,78.3
+5,ploidy-DML,nesprin-1,NC_047561.1,28607026,zr3644_3,diploid control,16,75
+5,ploidy-DML,nesprin-1,NC_047561.1,28607026,zr3644_4,diploid control,14,78.6
+5,ploidy-DML,nesprin-1,NC_047561.1,28607026,zr3644_5,diploid control,20,80
+5,ploidy-DML,nesprin-1,NC_047561.1,28607026,zr3644_6,diploid control,22,95.5
+5,ploidy-DML,nesprin-1,NC_047561.1,28607026,zr3644_13,triploid control,24,91.7
+5,ploidy-DML,nesprin-1,NC_047561.1,28607026,zr3644_14,triploid control,17,82.4
+5,ploidy-DML,nesprin-1,NC_047561.1,28607026,zr3644_15,triploid control,24,45.8
+5,ploidy-DML,nesprin-1,NC_047561.1,28607026,zr3644_16,triploid control,23,82.6
+5,ploidy-DML,nesprin-1,NC_047561.1,28607026,zr3644_17,triploid control,22,90.9
+5,ploidy-DML,nesprin-1,NC_047561.1,28607026,zr3644_18,triploid control,24,91.7
+6,ploidy-DML,nesprin-1,NC_047561.1,28607119,zr3534_1,diploid heat,26,88.5
+6,ploidy-DML,nesprin-1,NC_047561.1,28607119,zr3534_2,diploid heat,17,94.1
+6,ploidy-DML,nesprin-1,NC_047561.1,28607119,zr3534_3,diploid heat,15,100
+6,ploidy-DML,nesprin-1,NC_047561.1,28607119,zr3534_4,diploid heat,18,55.6
+6,ploidy-DML,nesprin-1,NC_047561.1,28607119,zr3534_5,diploid heat,14,85.7
+6,ploidy-DML,nesprin-1,NC_047561.1,28607119,zr3534_6,triploid heat,15,86.7
+6,ploidy-DML,nesprin-1,NC_047561.1,28607119,zr3534_7,triploid heat,18,77.8
+6,ploidy-DML,nesprin-1,NC_047561.1,28607119,zr3534_8,triploid heat,15,73.3
+6,ploidy-DML,nesprin-1,NC_047561.1,28607119,zr3534_9,triploid heat,22,68.2
+6,ploidy-DML,nesprin-1,NC_047561.1,28607119,zr3534_10,triploid heat,26,61.5
+6,ploidy-DML,nesprin-1,NC_047561.1,28607119,zr3644_1,diploid control,19,63.2
+6,ploidy-DML,nesprin-1,NC_047561.1,28607119,zr3644_2,diploid control,23,95.7
+6,ploidy-DML,nesprin-1,NC_047561.1,28607119,zr3644_3,diploid control,13,92.3
+6,ploidy-DML,nesprin-1,NC_047561.1,28607119,zr3644_4,diploid control,14,100
+6,ploidy-DML,nesprin-1,NC_047561.1,28607119,zr3644_5,diploid control,18,94.4
+6,ploidy-DML,nesprin-1,NC_047561.1,28607119,zr3644_6,diploid control,12,100
+6,ploidy-DML,nesprin-1,NC_047561.1,28607119,zr3644_13,triploid control,21,57.1
+6,ploidy-DML,nesprin-1,NC_047561.1,28607119,zr3644_14,triploid control,13,76.9
+6,ploidy-DML,nesprin-1,NC_047561.1,28607119,zr3644_15,triploid control,27,59.3
+6,ploidy-DML,nesprin-1,NC_047561.1,28607119,zr3644_16,triploid control,17,41.2
+6,ploidy-DML,nesprin-1,NC_047561.1,28607119,zr3644_17,triploid control,19,36.8
+6,ploidy-DML,nesprin-1,NC_047561.1,28607119,zr3644_18,triploid control,22,68.2
+7,ploidy-DML,nesprin-1,NC_047561.1,28608523,zr3534_1,diploid heat,27,88.9
+7,ploidy-DML,nesprin-1,NC_047561.1,28608523,zr3534_2,diploid heat,35,2.9
+7,ploidy-DML,nesprin-1,NC_047561.1,28608523,zr3534_3,diploid heat,27,0
+7,ploidy-DML,nesprin-1,NC_047561.1,28608523,zr3534_4,diploid heat,26,34.6
+7,ploidy-DML,nesprin-1,NC_047561.1,28608523,zr3534_5,diploid heat,38,84.2
+7,ploidy-DML,nesprin-1,NC_047561.1,28608523,zr3534_6,triploid heat,22,100
+7,ploidy-DML,nesprin-1,NC_047561.1,28608523,zr3534_7,triploid heat,24,91.7
+7,ploidy-DML,nesprin-1,NC_047561.1,28608523,zr3534_8,triploid heat,23,95.7
+7,ploidy-DML,nesprin-1,NC_047561.1,28608523,zr3534_9,triploid heat,22,81.8
+7,ploidy-DML,nesprin-1,NC_047561.1,28608523,zr3534_10,triploid heat,32,96.9
+7,ploidy-DML,nesprin-1,NC_047561.1,28608523,zr3644_1,diploid control,25,68
+7,ploidy-DML,nesprin-1,NC_047561.1,28608523,zr3644_2,diploid control,15,100
+7,ploidy-DML,nesprin-1,NC_047561.1,28608523,zr3644_3,diploid control,14,92.9
+7,ploidy-DML,nesprin-1,NC_047561.1,28608523,zr3644_4,diploid control,20,95
+7,ploidy-DML,nesprin-1,NC_047561.1,28608523,zr3644_5,diploid control,16,93.8
+7,ploidy-DML,nesprin-1,NC_047561.1,28608523,zr3644_6,diploid control,18,66.7
+7,ploidy-DML,nesprin-1,NC_047561.1,28608523,zr3644_13,triploid control,17,100
+7,ploidy-DML,nesprin-1,NC_047561.1,28608523,zr3644_14,triploid control,17,100
+7,ploidy-DML,nesprin-1,NC_047561.1,28608523,zr3644_15,triploid control,25,24
+7,ploidy-DML,nesprin-1,NC_047561.1,28608523,zr3644_16,triploid control,16,93.8
+7,ploidy-DML,nesprin-1,NC_047561.1,28608523,zr3644_17,triploid control,20,80
+7,ploidy-DML,nesprin-1,NC_047561.1,28608523,zr3644_18,triploid control,13,92.3
+8,ploidy-DML,ubiquitin-like-specific protease 1,NC_047561.1,27733219,zr3534_1,diploid heat,40,87.5
+8,ploidy-DML,ubiquitin-like-specific protease 1,NC_047561.1,27733219,zr3534_2,diploid heat,64,85.9
+8,ploidy-DML,ubiquitin-like-specific protease 1,NC_047561.1,27733219,zr3534_3,diploid heat,76,81.6
+8,ploidy-DML,ubiquitin-like-specific protease 1,NC_047561.1,27733219,zr3534_4,diploid heat,20,95
+8,ploidy-DML,ubiquitin-like-specific protease 1,NC_047561.1,27733219,zr3534_5,diploid heat,62,95.2
+8,ploidy-DML,ubiquitin-like-specific protease 1,NC_047561.1,27733219,zr3534_6,triploid heat,58,37.9
+8,ploidy-DML,ubiquitin-like-specific protease 1,NC_047561.1,27733219,zr3534_7,triploid heat,42,61.9
+8,ploidy-DML,ubiquitin-like-specific protease 1,NC_047561.1,27733219,zr3534_8,triploid heat,63,73
+8,ploidy-DML,ubiquitin-like-specific protease 1,NC_047561.1,27733219,zr3534_9,triploid heat,51,45.1
+8,ploidy-DML,ubiquitin-like-specific protease 1,NC_047561.1,27733219,zr3534_10,triploid heat,75,74.7
+8,ploidy-DML,ubiquitin-like-specific protease 1,NC_047561.1,27733219,zr3644_1,diploid control,35,82.9
+8,ploidy-DML,ubiquitin-like-specific protease 1,NC_047561.1,27733219,zr3644_2,diploid control,28,96.4
+8,ploidy-DML,ubiquitin-like-specific protease 1,NC_047561.1,27733219,zr3644_3,diploid control,38,68.4
+8,ploidy-DML,ubiquitin-like-specific protease 1,NC_047561.1,27733219,zr3644_4,diploid control,42,78.6
+8,ploidy-DML,ubiquitin-like-specific protease 1,NC_047561.1,27733219,zr3644_5,diploid control,21,42.9
+8,ploidy-DML,ubiquitin-like-specific protease 1,NC_047561.1,27733219,zr3644_6,diploid control,22,95.5
+8,ploidy-DML,ubiquitin-like-specific protease 1,NC_047561.1,27733219,zr3644_13,triploid control,36,61.1
+8,ploidy-DML,ubiquitin-like-specific protease 1,NC_047561.1,27733219,zr3644_14,triploid control,26,84.6
+8,ploidy-DML,ubiquitin-like-specific protease 1,NC_047561.1,27733219,zr3644_15,triploid control,32,65.6
+8,ploidy-DML,ubiquitin-like-specific protease 1,NC_047561.1,27733219,zr3644_16,triploid control,30,43.3
+8,ploidy-DML,ubiquitin-like-specific protease 1,NC_047561.1,27733219,zr3644_17,triploid control,11,81.8
+8,ploidy-DML,ubiquitin-like-specific protease 1,NC_047561.1,27733219,zr3644_18,triploid control,21,90.5
+9,ploidy-DML,"1-phosphatidylinositol 4,5-bisphosphate phosphodiesterase beta-1",NC_047561.1,19405662,zr3534_1,diploid heat,17,82.4
+9,ploidy-DML,"1-phosphatidylinositol 4,5-bisphosphate phosphodiesterase beta-1",NC_047561.1,19405662,zr3534_2,diploid heat,18,38.9
+9,ploidy-DML,"1-phosphatidylinositol 4,5-bisphosphate phosphodiesterase beta-1",NC_047561.1,19405662,zr3534_3,diploid heat,23,34.8
+9,ploidy-DML,"1-phosphatidylinositol 4,5-bisphosphate phosphodiesterase beta-1",NC_047561.1,19405662,zr3534_4,diploid heat,29,93.1
+9,ploidy-DML,"1-phosphatidylinositol 4,5-bisphosphate phosphodiesterase beta-1",NC_047561.1,19405662,zr3534_5,diploid heat,15,0
+9,ploidy-DML,"1-phosphatidylinositol 4,5-bisphosphate phosphodiesterase beta-1",NC_047561.1,19405662,zr3534_6,triploid heat,18,77.8
+9,ploidy-DML,"1-phosphatidylinositol 4,5-bisphosphate phosphodiesterase beta-1",NC_047561.1,19405662,zr3534_7,triploid heat,22,68.2
+9,ploidy-DML,"1-phosphatidylinositol 4,5-bisphosphate phosphodiesterase beta-1",NC_047561.1,19405662,zr3534_8,triploid heat,23,78.3
+9,ploidy-DML,"1-phosphatidylinositol 4,5-bisphosphate phosphodiesterase beta-1",NC_047561.1,19405662,zr3534_9,triploid heat,16,56.2
+9,ploidy-DML,"1-phosphatidylinositol 4,5-bisphosphate phosphodiesterase beta-1",NC_047561.1,19405662,zr3534_10,triploid heat,19,89.5
+9,ploidy-DML,"1-phosphatidylinositol 4,5-bisphosphate phosphodiesterase beta-1",NC_047561.1,19405662,zr3644_1,diploid control,30,56.7
+9,ploidy-DML,"1-phosphatidylinositol 4,5-bisphosphate phosphodiesterase beta-1",NC_047561.1,19405662,zr3644_2,diploid control,22,31.8
+9,ploidy-DML,"1-phosphatidylinositol 4,5-bisphosphate phosphodiesterase beta-1",NC_047561.1,19405662,zr3644_3,diploid control,16,56.2
+9,ploidy-DML,"1-phosphatidylinositol 4,5-bisphosphate phosphodiesterase beta-1",NC_047561.1,19405662,zr3644_4,diploid control,29,58.6
+9,ploidy-DML,"1-phosphatidylinositol 4,5-bisphosphate phosphodiesterase beta-1",NC_047561.1,19405662,zr3644_5,diploid control,18,22.2
+9,ploidy-DML,"1-phosphatidylinositol 4,5-bisphosphate phosphodiesterase beta-1",NC_047561.1,19405662,zr3644_6,diploid control,19,36.8
+9,ploidy-DML,"1-phosphatidylinositol 4,5-bisphosphate phosphodiesterase beta-1",NC_047561.1,19405662,zr3644_13,triploid control,17,29.4
+9,ploidy-DML,"1-phosphatidylinositol 4,5-bisphosphate phosphodiesterase beta-1",NC_047561.1,19405662,zr3644_14,triploid control,20,95
+9,ploidy-DML,"1-phosphatidylinositol 4,5-bisphosphate phosphodiesterase beta-1",NC_047561.1,19405662,zr3644_15,triploid control,23,73.9
+9,ploidy-DML,"1-phosphatidylinositol 4,5-bisphosphate phosphodiesterase beta-1",NC_047561.1,19405662,zr3644_16,triploid control,21,66.7
+9,ploidy-DML,"1-phosphatidylinositol 4,5-bisphosphate phosphodiesterase beta-1",NC_047561.1,19405662,zr3644_17,triploid control,28,53.6
+9,ploidy-DML,"1-phosphatidylinositol 4,5-bisphosphate phosphodiesterase beta-1",NC_047561.1,19405662,zr3644_18,triploid control,29,86.2
+10,ploidy-DML,F-box DNA helicase 1,NC_047561.1,2676336,zr3534_1,diploid heat,22,0
+10,ploidy-DML,F-box DNA helicase 1,NC_047561.1,2676336,zr3534_2,diploid heat,26,0
+10,ploidy-DML,F-box DNA helicase 1,NC_047561.1,2676336,zr3534_3,diploid heat,26,0
+10,ploidy-DML,F-box DNA helicase 1,NC_047561.1,2676336,zr3534_4,diploid heat,26,69.2
+10,ploidy-DML,F-box DNA helicase 1,NC_047561.1,2676336,zr3534_5,diploid heat,32,40.6
+10,ploidy-DML,F-box DNA helicase 1,NC_047561.1,2676336,zr3534_6,triploid heat,22,31.8
+10,ploidy-DML,F-box DNA helicase 1,NC_047561.1,2676336,zr3534_7,triploid heat,17,11.8
+10,ploidy-DML,F-box DNA helicase 1,NC_047561.1,2676336,zr3534_8,triploid heat,30,0
+10,ploidy-DML,F-box DNA helicase 1,NC_047561.1,2676336,zr3534_9,triploid heat,27,0
+10,ploidy-DML,F-box DNA helicase 1,NC_047561.1,2676336,zr3534_10,triploid heat,31,0
+10,ploidy-DML,F-box DNA helicase 1,NC_047561.1,2676336,zr3644_1,diploid control,22,68.2
+10,ploidy-DML,F-box DNA helicase 1,NC_047561.1,2676336,zr3644_2,diploid control,27,92.6
+10,ploidy-DML,F-box DNA helicase 1,NC_047561.1,2676336,zr3644_3,diploid control,25,28
+10,ploidy-DML,F-box DNA helicase 1,NC_047561.1,2676336,zr3644_4,diploid control,20,0
+10,ploidy-DML,F-box DNA helicase 1,NC_047561.1,2676336,zr3644_5,diploid control,20,35
+10,ploidy-DML,F-box DNA helicase 1,NC_047561.1,2676336,zr3644_6,diploid control,23,26.1
+10,ploidy-DML,F-box DNA helicase 1,NC_047561.1,2676336,zr3644_13,triploid control,33,18.2
+10,ploidy-DML,F-box DNA helicase 1,NC_047561.1,2676336,zr3644_14,triploid control,16,0
+10,ploidy-DML,F-box DNA helicase 1,NC_047561.1,2676336,zr3644_15,triploid control,29,0
+10,ploidy-DML,F-box DNA helicase 1,NC_047561.1,2676336,zr3644_16,triploid control,15,26.7
+10,ploidy-DML,F-box DNA helicase 1,NC_047561.1,2676336,zr3644_17,triploid control,27,55.6
+10,ploidy-DML,F-box DNA helicase 1,NC_047561.1,2676336,zr3644_18,triploid control,28,0
+11,heat-DML,kinesin-like protein unc-104,NC_047564.1,40471809,zr3534_1,diploid heat,23,34.8
+11,heat-DML,kinesin-like protein unc-104,NC_047564.1,40471809,zr3534_2,diploid heat,19,68.4
+11,heat-DML,kinesin-like protein unc-104,NC_047564.1,40471809,zr3534_3,diploid heat,22,77.3
+11,heat-DML,kinesin-like protein unc-104,NC_047564.1,40471809,zr3534_4,diploid heat,28,78.6
+11,heat-DML,kinesin-like protein unc-104,NC_047564.1,40471809,zr3534_5,diploid heat,20,70
+11,heat-DML,kinesin-like protein unc-104,NC_047564.1,40471809,zr3534_6,triploid heat,30,80
+11,heat-DML,kinesin-like protein unc-104,NC_047564.1,40471809,zr3534_7,triploid heat,23,78.3
+11,heat-DML,kinesin-like protein unc-104,NC_047564.1,40471809,zr3534_8,triploid heat,23,82.6
+11,heat-DML,kinesin-like protein unc-104,NC_047564.1,40471809,zr3534_9,triploid heat,19,73.7
+11,heat-DML,kinesin-like protein unc-104,NC_047564.1,40471809,zr3534_10,triploid heat,23,78.3
+11,heat-DML,kinesin-like protein unc-104,NC_047564.1,40471809,zr3644_1,diploid control,13,84.6
+11,heat-DML,kinesin-like protein unc-104,NC_047564.1,40471809,zr3644_2,diploid control,24,20.8
+11,heat-DML,kinesin-like protein unc-104,NC_047564.1,40471809,zr3644_3,diploid control,29,3.4
+11,heat-DML,kinesin-like protein unc-104,NC_047564.1,40471809,zr3644_4,diploid control,20,35
+11,heat-DML,kinesin-like protein unc-104,NC_047564.1,40471809,zr3644_5,diploid control,21,0
+11,heat-DML,kinesin-like protein unc-104,NC_047564.1,40471809,zr3644_6,diploid control,24,50
+11,heat-DML,kinesin-like protein unc-104,NC_047564.1,40471809,zr3644_13,triploid control,18,33.3
+11,heat-DML,kinesin-like protein unc-104,NC_047564.1,40471809,zr3644_14,triploid control,21,57.1
+11,heat-DML,kinesin-like protein unc-104,NC_047564.1,40471809,zr3644_15,triploid control,21,47.6
+11,heat-DML,kinesin-like protein unc-104,NC_047564.1,40471809,zr3644_16,triploid control,12,8.3
+11,heat-DML,kinesin-like protein unc-104,NC_047564.1,40471809,zr3644_17,triploid control,14,42.9
+11,heat-DML,kinesin-like protein unc-104,NC_047564.1,40471809,zr3644_18,triploid control,19,10.5
+12,heat-DML,phosphatidylinositol-binding clathrin assembly protein LAP,NC_047563.1,1749458,zr3534_1,diploid heat,12,0
+12,heat-DML,phosphatidylinositol-binding clathrin assembly protein LAP,NC_047563.1,1749458,zr3534_2,diploid heat,22,63.6
+12,heat-DML,phosphatidylinositol-binding clathrin assembly protein LAP,NC_047563.1,1749458,zr3534_3,diploid heat,22,86.4
+12,heat-DML,phosphatidylinositol-binding clathrin assembly protein LAP,NC_047563.1,1749458,zr3534_4,diploid heat,23,60.9
+12,heat-DML,phosphatidylinositol-binding clathrin assembly protein LAP,NC_047563.1,1749458,zr3534_5,diploid heat,21,38.1
+12,heat-DML,phosphatidylinositol-binding clathrin assembly protein LAP,NC_047563.1,1749458,zr3534_6,triploid heat,18,55.6
+12,heat-DML,phosphatidylinositol-binding clathrin assembly protein LAP,NC_047563.1,1749458,zr3534_7,triploid heat,24,37.5
+12,heat-DML,phosphatidylinositol-binding clathrin assembly protein LAP,NC_047563.1,1749458,zr3534_8,triploid heat,26,53.8
+12,heat-DML,phosphatidylinositol-binding clathrin assembly protein LAP,NC_047563.1,1749458,zr3534_9,triploid heat,24,25
+12,heat-DML,phosphatidylinositol-binding clathrin assembly protein LAP,NC_047563.1,1749458,zr3534_10,triploid heat,31,58.1
+12,heat-DML,phosphatidylinositol-binding clathrin assembly protein LAP,NC_047563.1,1749458,zr3644_1,diploid control,18,66.7
+12,heat-DML,phosphatidylinositol-binding clathrin assembly protein LAP,NC_047563.1,1749458,zr3644_2,diploid control,25,84
+12,heat-DML,phosphatidylinositol-binding clathrin assembly protein LAP,NC_047563.1,1749458,zr3644_3,diploid control,18,27.8
+12,heat-DML,phosphatidylinositol-binding clathrin assembly protein LAP,NC_047563.1,1749458,zr3644_4,diploid control,26,76.9
+12,heat-DML,phosphatidylinositol-binding clathrin assembly protein LAP,NC_047563.1,1749458,zr3644_5,diploid control,31,71
+12,heat-DML,phosphatidylinositol-binding clathrin assembly protein LAP,NC_047563.1,1749458,zr3644_6,diploid control,21,81
+12,heat-DML,phosphatidylinositol-binding clathrin assembly protein LAP,NC_047563.1,1749458,zr3644_13,triploid control,25,76
+12,heat-DML,phosphatidylinositol-binding clathrin assembly protein LAP,NC_047563.1,1749458,zr3644_14,triploid control,33,78.8
+12,heat-DML,phosphatidylinositol-binding clathrin assembly protein LAP,NC_047563.1,1749458,zr3644_15,triploid control,24,79.2
+12,heat-DML,phosphatidylinositol-binding clathrin assembly protein LAP,NC_047563.1,1749458,zr3644_16,triploid control,29,75.9
+12,heat-DML,phosphatidylinositol-binding clathrin assembly protein LAP,NC_047563.1,1749458,zr3644_17,triploid control,26,65.4
+12,heat-DML,phosphatidylinositol-binding clathrin assembly protein LAP,NC_047563.1,1749458,zr3644_18,triploid control,21,42.9
+13,heat-DML,phosphatidylinositol-binding clathrin assembly protein LAP,NC_047563.1,1761560,zr3534_1,diploid heat,33,45.5
+13,heat-DML,phosphatidylinositol-binding clathrin assembly protein LAP,NC_047563.1,1761560,zr3534_2,diploid heat,31,90.3
+13,heat-DML,phosphatidylinositol-binding clathrin assembly protein LAP,NC_047563.1,1761560,zr3534_3,diploid heat,35,94.3
+13,heat-DML,phosphatidylinositol-binding clathrin assembly protein LAP,NC_047563.1,1761560,zr3534_4,diploid heat,31,48.4
+13,heat-DML,phosphatidylinositol-binding clathrin assembly protein LAP,NC_047563.1,1761560,zr3534_5,diploid heat,26,96.2
+13,heat-DML,phosphatidylinositol-binding clathrin assembly protein LAP,NC_047563.1,1761560,zr3534_6,triploid heat,29,65.5
+13,heat-DML,phosphatidylinositol-binding clathrin assembly protein LAP,NC_047563.1,1761560,zr3534_7,triploid heat,33,27.3
+13,heat-DML,phosphatidylinositol-binding clathrin assembly protein LAP,NC_047563.1,1761560,zr3534_8,triploid heat,31,54.8
+13,heat-DML,phosphatidylinositol-binding clathrin assembly protein LAP,NC_047563.1,1761560,zr3534_9,triploid heat,24,25
+13,heat-DML,phosphatidylinositol-binding clathrin assembly protein LAP,NC_047563.1,1761560,zr3534_10,triploid heat,39,66.7
+13,heat-DML,phosphatidylinositol-binding clathrin assembly protein LAP,NC_047563.1,1761560,zr3644_1,diploid control,24,83.3
+13,heat-DML,phosphatidylinositol-binding clathrin assembly protein LAP,NC_047563.1,1761560,zr3644_2,diploid control,24,66.7
+13,heat-DML,phosphatidylinositol-binding clathrin assembly protein LAP,NC_047563.1,1761560,zr3644_3,diploid control,27,33.3
+13,heat-DML,phosphatidylinositol-binding clathrin assembly protein LAP,NC_047563.1,1761560,zr3644_4,diploid control,24,33.3
+13,heat-DML,phosphatidylinositol-binding clathrin assembly protein LAP,NC_047563.1,1761560,zr3644_5,diploid control,31,0
+13,heat-DML,phosphatidylinositol-binding clathrin assembly protein LAP,NC_047563.1,1761560,zr3644_6,diploid control,25,24
+13,heat-DML,phosphatidylinositol-binding clathrin assembly protein LAP,NC_047563.1,1761560,zr3644_13,triploid control,25,40
+13,heat-DML,phosphatidylinositol-binding clathrin assembly protein LAP,NC_047563.1,1761560,zr3644_14,triploid control,17,52.9
+13,heat-DML,phosphatidylinositol-binding clathrin assembly protein LAP,NC_047563.1,1761560,zr3644_15,triploid control,35,22.9
+13,heat-DML,phosphatidylinositol-binding clathrin assembly protein LAP,NC_047563.1,1761560,zr3644_16,triploid control,34,32.4
+13,heat-DML,phosphatidylinositol-binding clathrin assembly protein LAP,NC_047563.1,1761560,zr3644_17,triploid control,34,100
+13,heat-DML,phosphatidylinositol-binding clathrin assembly protein LAP,NC_047563.1,1761560,zr3644_18,triploid control,34,23.5
+14,heat-DML,phosphatidylinositol-binding clathrin assembly protein LAP,NC_047563.1,1771931,zr3534_1,diploid heat,40,65
+14,heat-DML,phosphatidylinositol-binding clathrin assembly protein LAP,NC_047563.1,1771931,zr3534_2,diploid heat,90,40
+14,heat-DML,phosphatidylinositol-binding clathrin assembly protein LAP,NC_047563.1,1771931,zr3534_3,diploid heat,63,34.9
+14,heat-DML,phosphatidylinositol-binding clathrin assembly protein LAP,NC_047563.1,1771931,zr3534_4,diploid heat,88,47.7
+14,heat-DML,phosphatidylinositol-binding clathrin assembly protein LAP,NC_047563.1,1771931,zr3534_5,diploid heat,40,65
+14,heat-DML,phosphatidylinositol-binding clathrin assembly protein LAP,NC_047563.1,1771931,zr3534_6,triploid heat,16,31.2
+14,heat-DML,phosphatidylinositol-binding clathrin assembly protein LAP,NC_047563.1,1771931,zr3534_7,triploid heat,39,59
+14,heat-DML,phosphatidylinositol-binding clathrin assembly protein LAP,NC_047563.1,1771931,zr3534_8,triploid heat,21,57.1
+14,heat-DML,phosphatidylinositol-binding clathrin assembly protein LAP,NC_047563.1,1771931,zr3534_9,triploid heat,33,81.8
+14,heat-DML,phosphatidylinositol-binding clathrin assembly protein LAP,NC_047563.1,1771931,zr3534_10,triploid heat,24,25
+14,heat-DML,phosphatidylinositol-binding clathrin assembly protein LAP,NC_047563.1,1771931,zr3644_1,diploid control,41,53.7
+14,heat-DML,phosphatidylinositol-binding clathrin assembly protein LAP,NC_047563.1,1771931,zr3644_2,diploid control,17,100
+14,heat-DML,phosphatidylinositol-binding clathrin assembly protein LAP,NC_047563.1,1771931,zr3644_3,diploid control,38,89.5
+14,heat-DML,phosphatidylinositol-binding clathrin assembly protein LAP,NC_047563.1,1771931,zr3644_4,diploid control,20,50
+14,heat-DML,phosphatidylinositol-binding clathrin assembly protein LAP,NC_047563.1,1771931,zr3644_5,diploid control,27,66.7
+14,heat-DML,phosphatidylinositol-binding clathrin assembly protein LAP,NC_047563.1,1771931,zr3644_6,diploid control,34,70.6
+14,heat-DML,phosphatidylinositol-binding clathrin assembly protein LAP,NC_047563.1,1771931,zr3644_13,triploid control,25,80
+14,heat-DML,phosphatidylinositol-binding clathrin assembly protein LAP,NC_047563.1,1771931,zr3644_14,triploid control,21,81
+14,heat-DML,phosphatidylinositol-binding clathrin assembly protein LAP,NC_047563.1,1771931,zr3644_15,triploid control,33,39.4
+14,heat-DML,phosphatidylinositol-binding clathrin assembly protein LAP,NC_047563.1,1771931,zr3644_16,triploid control,24,91.7
+14,heat-DML,phosphatidylinositol-binding clathrin assembly protein LAP,NC_047563.1,1771931,zr3644_17,triploid control,31,93.5
+14,heat-DML,phosphatidylinositol-binding clathrin assembly protein LAP,NC_047563.1,1771931,zr3644_18,triploid control,29,72.4
+15,heat-DML,phosphatidylinositol-binding clathrin assembly protein LAP,NC_047563.1,1780314,zr3534_1,diploid heat,37,78.4
+15,heat-DML,phosphatidylinositol-binding clathrin assembly protein LAP,NC_047563.1,1780314,zr3534_2,diploid heat,95,15.8
+15,heat-DML,phosphatidylinositol-binding clathrin assembly protein LAP,NC_047563.1,1780314,zr3534_3,diploid heat,119,16.8
+15,heat-DML,phosphatidylinositol-binding clathrin assembly protein LAP,NC_047563.1,1780314,zr3534_4,diploid heat,150,12
+15,heat-DML,phosphatidylinositol-binding clathrin assembly protein LAP,NC_047563.1,1780314,zr3534_5,diploid heat,52,36.5
+15,heat-DML,phosphatidylinositol-binding clathrin assembly protein LAP,NC_047563.1,1780314,zr3534_6,triploid heat,22,63.6
+15,heat-DML,phosphatidylinositol-binding clathrin assembly protein LAP,NC_047563.1,1780314,zr3534_7,triploid heat,31,29
+15,heat-DML,phosphatidylinositol-binding clathrin assembly protein LAP,NC_047563.1,1780314,zr3534_8,triploid heat,29,62.1
+15,heat-DML,phosphatidylinositol-binding clathrin assembly protein LAP,NC_047563.1,1780314,zr3534_9,triploid heat,52,40.4
+15,heat-DML,phosphatidylinositol-binding clathrin assembly protein LAP,NC_047563.1,1780314,zr3534_10,triploid heat,23,43.5
+15,heat-DML,phosphatidylinositol-binding clathrin assembly protein LAP,NC_047563.1,1780314,zr3644_1,diploid control,69,44.9
+15,heat-DML,phosphatidylinositol-binding clathrin assembly protein LAP,NC_047563.1,1780314,zr3644_2,diploid control,29,96.6
+15,heat-DML,phosphatidylinositol-binding clathrin assembly protein LAP,NC_047563.1,1780314,zr3644_3,diploid control,26,61.5
+15,heat-DML,phosphatidylinositol-binding clathrin assembly protein LAP,NC_047563.1,1780314,zr3644_4,diploid control,33,63.6
+15,heat-DML,phosphatidylinositol-binding clathrin assembly protein LAP,NC_047563.1,1780314,zr3644_5,diploid control,35,25.7
+15,heat-DML,phosphatidylinositol-binding clathrin assembly protein LAP,NC_047563.1,1780314,zr3644_6,diploid control,32,56.2
+15,heat-DML,phosphatidylinositol-binding clathrin assembly protein LAP,NC_047563.1,1780314,zr3644_13,triploid control,62,74.2
+15,heat-DML,phosphatidylinositol-binding clathrin assembly protein LAP,NC_047563.1,1780314,zr3644_14,triploid control,42,40.5
+15,heat-DML,phosphatidylinositol-binding clathrin assembly protein LAP,NC_047563.1,1780314,zr3644_15,triploid control,46,47.8
+15,heat-DML,phosphatidylinositol-binding clathrin assembly protein LAP,NC_047563.1,1780314,zr3644_16,triploid control,59,66.1
+15,heat-DML,phosphatidylinositol-binding clathrin assembly protein LAP,NC_047563.1,1780314,zr3644_17,triploid control,49,49
+15,heat-DML,phosphatidylinositol-binding clathrin assembly protein LAP,NC_047563.1,1780314,zr3644_18,triploid control,34,52.9
+16,heat-DML,ataxin-2-like protein,NC_047564.1,22005779,zr3534_1,diploid heat,26,53.8
+16,heat-DML,ataxin-2-like protein,NC_047564.1,22005779,zr3534_2,diploid heat,33,48.5
+16,heat-DML,ataxin-2-like protein,NC_047564.1,22005779,zr3534_3,diploid heat,23,30.4
+16,heat-DML,ataxin-2-like protein,NC_047564.1,22005779,zr3534_4,diploid heat,24,100
+16,heat-DML,ataxin-2-like protein,NC_047564.1,22005779,zr3534_5,diploid heat,24,100
+16,heat-DML,ataxin-2-like protein,NC_047564.1,22005779,zr3534_6,triploid heat,31,93.5
+16,heat-DML,ataxin-2-like protein,NC_047564.1,22005779,zr3534_7,triploid heat,14,92.9
+16,heat-DML,ataxin-2-like protein,NC_047564.1,22005779,zr3534_8,triploid heat,34,97.1
+16,heat-DML,ataxin-2-like protein,NC_047564.1,22005779,zr3534_9,triploid heat,32,34.4
+16,heat-DML,ataxin-2-like protein,NC_047564.1,22005779,zr3534_10,triploid heat,30,90
+16,heat-DML,ataxin-2-like protein,NC_047564.1,22005779,zr3644_1,diploid control,27,85.2
+16,heat-DML,ataxin-2-like protein,NC_047564.1,22005779,zr3644_2,diploid control,24,95.8
+16,heat-DML,ataxin-2-like protein,NC_047564.1,22005779,zr3644_3,diploid control,24,100
+16,heat-DML,ataxin-2-like protein,NC_047564.1,22005779,zr3644_4,diploid control,16,93.8
+16,heat-DML,ataxin-2-like protein,NC_047564.1,22005779,zr3644_5,diploid control,26,100
+16,heat-DML,ataxin-2-like protein,NC_047564.1,22005779,zr3644_6,diploid control,25,84
+16,heat-DML,ataxin-2-like protein,NC_047564.1,22005779,zr3644_13,triploid control,29,100
+16,heat-DML,ataxin-2-like protein,NC_047564.1,22005779,zr3644_14,triploid control,17,100
+16,heat-DML,ataxin-2-like protein,NC_047564.1,22005779,zr3644_15,triploid control,33,97
+16,heat-DML,ataxin-2-like protein,NC_047564.1,22005779,zr3644_16,triploid control,15,100
+16,heat-DML,ataxin-2-like protein,NC_047564.1,22005779,zr3644_17,triploid control,26,100
+16,heat-DML,ataxin-2-like protein,NC_047564.1,22005779,zr3644_18,triploid control,30,80
+17,heat-DML,uncharacterized LOC117680672,NC_047563.1,684534,zr3534_1,diploid heat,38,84.2
+17,heat-DML,uncharacterized LOC117680672,NC_047563.1,684534,zr3534_2,diploid heat,54,29.6
+17,heat-DML,uncharacterized LOC117680672,NC_047563.1,684534,zr3534_3,diploid heat,79,17.7
+17,heat-DML,uncharacterized LOC117680672,NC_047563.1,684534,zr3534_4,diploid heat,92,29.3
+17,heat-DML,uncharacterized LOC117680672,NC_047563.1,684534,zr3534_5,diploid heat,32,71.9
+17,heat-DML,uncharacterized LOC117680672,NC_047563.1,684534,zr3534_6,triploid heat,14,21.4
+17,heat-DML,uncharacterized LOC117680672,NC_047563.1,684534,zr3534_7,triploid heat,27,33.3
+17,heat-DML,uncharacterized LOC117680672,NC_047563.1,684534,zr3534_8,triploid heat,43,41.9
+17,heat-DML,uncharacterized LOC117680672,NC_047563.1,684534,zr3534_9,triploid heat,37,54.1
+17,heat-DML,uncharacterized LOC117680672,NC_047563.1,684534,zr3534_10,triploid heat,29,0
+17,heat-DML,uncharacterized LOC117680672,NC_047563.1,684534,zr3644_1,diploid control,47,63.8
+17,heat-DML,uncharacterized LOC117680672,NC_047563.1,684534,zr3644_2,diploid control,28,92.9
+17,heat-DML,uncharacterized LOC117680672,NC_047563.1,684534,zr3644_3,diploid control,24,54.2
+17,heat-DML,uncharacterized LOC117680672,NC_047563.1,684534,zr3644_4,diploid control,47,38.3
+17,heat-DML,uncharacterized LOC117680672,NC_047563.1,684534,zr3644_5,diploid control,29,44.8
+17,heat-DML,uncharacterized LOC117680672,NC_047563.1,684534,zr3644_6,diploid control,42,66.7
+17,heat-DML,uncharacterized LOC117680672,NC_047563.1,684534,zr3644_13,triploid control,35,54.3
+17,heat-DML,uncharacterized LOC117680672,NC_047563.1,684534,zr3644_14,triploid control,24,54.2
+17,heat-DML,uncharacterized LOC117680672,NC_047563.1,684534,zr3644_15,triploid control,29,62.1
+17,heat-DML,uncharacterized LOC117680672,NC_047563.1,684534,zr3644_16,triploid control,29,55.2
+17,heat-DML,uncharacterized LOC117680672,NC_047563.1,684534,zr3644_17,triploid control,40,62.5
+17,heat-DML,uncharacterized LOC117680672,NC_047563.1,684534,zr3644_18,triploid control,36,47.2
+18,interaction-DML,CAD protein,NC_047564.1,8425110,zr3534_1,diploid heat,27,92.6
+18,interaction-DML,CAD protein,NC_047564.1,8425110,zr3534_2,diploid heat,27,33.3
+18,interaction-DML,CAD protein,NC_047564.1,8425110,zr3534_3,diploid heat,32,3.1
+18,interaction-DML,CAD protein,NC_047564.1,8425110,zr3534_4,diploid heat,26,11.5
+18,interaction-DML,CAD protein,NC_047564.1,8425110,zr3534_5,diploid heat,23,87
+18,interaction-DML,CAD protein,NC_047564.1,8425110,zr3534_6,triploid heat,23,95.7
+18,interaction-DML,CAD protein,NC_047564.1,8425110,zr3534_7,triploid heat,24,66.7
+18,interaction-DML,CAD protein,NC_047564.1,8425110,zr3534_8,triploid heat,25,100
+18,interaction-DML,CAD protein,NC_047564.1,8425110,zr3534_9,triploid heat,35,94.3
+18,interaction-DML,CAD protein,NC_047564.1,8425110,zr3534_10,triploid heat,34,85.3
+18,interaction-DML,CAD protein,NC_047564.1,8425110,zr3644_1,diploid control,22,95.5
+18,interaction-DML,CAD protein,NC_047564.1,8425110,zr3644_2,diploid control,23,100
+18,interaction-DML,CAD protein,NC_047564.1,8425110,zr3644_3,diploid control,16,100
+18,interaction-DML,CAD protein,NC_047564.1,8425110,zr3644_4,diploid control,20,95
+18,interaction-DML,CAD protein,NC_047564.1,8425110,zr3644_5,diploid control,17,100
+18,interaction-DML,CAD protein,NC_047564.1,8425110,zr3644_6,diploid control,21,95.2
+18,interaction-DML,CAD protein,NC_047564.1,8425110,zr3644_13,triploid control,17,100
+18,interaction-DML,CAD protein,NC_047564.1,8425110,zr3644_14,triploid control,13,100
+18,interaction-DML,CAD protein,NC_047564.1,8425110,zr3644_15,triploid control,19,94.7
+18,interaction-DML,CAD protein,NC_047564.1,8425110,zr3644_16,triploid control,21,95.2
+18,interaction-DML,CAD protein,NC_047564.1,8425110,zr3644_17,triploid control,35,97.1
+18,interaction-DML,CAD protein,NC_047564.1,8425110,zr3644_18,triploid control,32,96.9
+19,interaction-DML,nesprin-1,NC_047561.1,28607016,zr3534_1,diploid heat,23,0
+19,interaction-DML,nesprin-1,NC_047561.1,28607016,zr3534_2,diploid heat,27,0
+19,interaction-DML,nesprin-1,NC_047561.1,28607016,zr3534_3,diploid heat,18,0
+19,interaction-DML,nesprin-1,NC_047561.1,28607016,zr3534_4,diploid heat,18,0
+19,interaction-DML,nesprin-1,NC_047561.1,28607016,zr3534_5,diploid heat,26,50
+19,interaction-DML,nesprin-1,NC_047561.1,28607016,zr3534_6,triploid heat,27,18.5
+19,interaction-DML,nesprin-1,NC_047561.1,28607016,zr3534_7,triploid heat,33,39.4
+19,interaction-DML,nesprin-1,NC_047561.1,28607016,zr3534_8,triploid heat,20,80
+19,interaction-DML,nesprin-1,NC_047561.1,28607016,zr3534_9,triploid heat,28,71.4
+19,interaction-DML,nesprin-1,NC_047561.1,28607016,zr3534_10,triploid heat,22,86.4
+19,interaction-DML,nesprin-1,NC_047561.1,28607016,zr3644_1,diploid control,28,0
+19,interaction-DML,nesprin-1,NC_047561.1,28607016,zr3644_2,diploid control,19,0
+19,interaction-DML,nesprin-1,NC_047561.1,28607016,zr3644_3,diploid control,14,35.7
+19,interaction-DML,nesprin-1,NC_047561.1,28607016,zr3644_4,diploid control,14,28.6
+19,interaction-DML,nesprin-1,NC_047561.1,28607016,zr3644_5,diploid control,14,35.7
+19,interaction-DML,nesprin-1,NC_047561.1,28607016,zr3644_6,diploid control,24,0
+19,interaction-DML,nesprin-1,NC_047561.1,28607016,zr3644_13,triploid control,27,0
+19,interaction-DML,nesprin-1,NC_047561.1,28607016,zr3644_14,triploid control,16,0
+19,interaction-DML,nesprin-1,NC_047561.1,28607016,zr3644_15,triploid control,25,20
+19,interaction-DML,nesprin-1,NC_047561.1,28607016,zr3644_16,triploid control,27,0
+19,interaction-DML,nesprin-1,NC_047561.1,28607016,zr3644_17,triploid control,22,40.9
+19,interaction-DML,nesprin-1,NC_047561.1,28607016,zr3644_18,triploid control,27,33.3
+20,interaction-DML,dihydropyrimidinase,NW_022994979.1,42498,zr3534_1,diploid heat,15,80
+20,interaction-DML,dihydropyrimidinase,NW_022994979.1,42498,zr3534_2,diploid heat,18,16.7
+20,interaction-DML,dihydropyrimidinase,NW_022994979.1,42498,zr3534_3,diploid heat,27,29.6
+20,interaction-DML,dihydropyrimidinase,NW_022994979.1,42498,zr3534_4,diploid heat,20,80
+20,interaction-DML,dihydropyrimidinase,NW_022994979.1,42498,zr3534_5,diploid heat,28,53.6
+20,interaction-DML,dihydropyrimidinase,NW_022994979.1,42498,zr3534_6,triploid heat,20,80
+20,interaction-DML,dihydropyrimidinase,NW_022994979.1,42498,zr3534_7,triploid heat,23,73.9
+20,interaction-DML,dihydropyrimidinase,NW_022994979.1,42498,zr3534_8,triploid heat,35,57.1
+20,interaction-DML,dihydropyrimidinase,NW_022994979.1,42498,zr3534_9,triploid heat,33,84.8
+20,interaction-DML,dihydropyrimidinase,NW_022994979.1,42498,zr3534_10,triploid heat,23,87
+20,interaction-DML,dihydropyrimidinase,NW_022994979.1,42498,zr3644_1,diploid control,33,45.5
+20,interaction-DML,dihydropyrimidinase,NW_022994979.1,42498,zr3644_2,diploid control,19,0
+20,interaction-DML,dihydropyrimidinase,NW_022994979.1,42498,zr3644_3,diploid control,18,27.8
+20,interaction-DML,dihydropyrimidinase,NW_022994979.1,42498,zr3644_4,diploid control,16,25
+20,interaction-DML,dihydropyrimidinase,NW_022994979.1,42498,zr3644_5,diploid control,21,19
+20,interaction-DML,dihydropyrimidinase,NW_022994979.1,42498,zr3644_6,diploid control,28,25
+20,interaction-DML,dihydropyrimidinase,NW_022994979.1,42498,zr3644_13,triploid control,18,55.6
+20,interaction-DML,dihydropyrimidinase,NW_022994979.1,42498,zr3644_14,triploid control,17,29.4
+20,interaction-DML,dihydropyrimidinase,NW_022994979.1,42498,zr3644_15,triploid control,29,24.1
+20,interaction-DML,dihydropyrimidinase,NW_022994979.1,42498,zr3644_16,triploid control,18,44.4
+20,interaction-DML,dihydropyrimidinase,NW_022994979.1,42498,zr3644_17,triploid control,20,40
+20,interaction-DML,dihydropyrimidinase,NW_022994979.1,42498,zr3644_18,triploid control,17,58.8

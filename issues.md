@@ -129,7 +129,7 @@ Under I-01, a formally tested interaction is still ploidy by cohort, and the tex
 
 **Update 2026-11-19 (verified).** Step 05 regenerates the set in both modes: 200 loci without the upper coverage filter (28, 49, 123) and 159 with it (27, 49, 83); see I-05 and I-09. Because the legacy table carries the heat contrast's values, every "methylation difference" quoted for an interaction-DML in Table 1, Figure 9 and Results 3.5 is heat cohort minus control cohort at that locus, for all animals; for example the "+21%" of nesprin-1 and the "-31%" of the CAD protein. None of these numbers describes a difference between ploidies in the response to heat.
 
-**Verification 2026-11-19.** The 20 values of Table 1 were recomputed from the 22 coverage files as read-pooled differences over all 22 libraries: triploid minus diploid for the ploidy rows, heat cohort minus control cohort for the heat rows and for the interaction rows. All 20 agree within 0.005 points. Across all 200 shared loci the archived interaction table equals the heat list (largest difference 5e-9) and never the ploidy value. A second recomputation, from `04_output/05_differential_methylation/tables/united_cpg_legacy.csv.gz`, gives the same values. What follows for the text:
+**Verification 2026-11-19.** The 20 values of Table 1 were recomputed from the 22 coverage files as read-pooled differences over all 22 libraries: triploid minus diploid for the ploidy rows, heat cohort minus control cohort for the heat rows and for the interaction rows. All 20 agree within 0.005 points. Across all 200 shared loci the archived interaction table equals the heat list (largest difference 5e-9) and never the ploidy value. `06_diagnostics/table1_group_means.R` regenerates them from the step 05 table, together with the values of each of the four groups and of each library (`table1_group_means.csv`, `table1_library_values.csv`); the numbers below are from those files. What follows for the text:
 
 - The three interaction values of Table 1 describe neither ploidy. Heat cohort minus control cohort within each ploidy, in percentage points, read-pooled over the 5 or 6 libraries of each group (descriptive; no test):
 
@@ -266,7 +266,7 @@ The DML that disappear are concentrated in a few high-coverage regions; the larg
 
 **Resolution.** Change the text to describe a ploidy main effect adjusted for cohort, or report the control-only analysis. The pipeline produces both and the overlap between them.
 
-**Verification 2026-11-19.** The ten ploidy values of Table 1 are triploid minus diploid, read-pooled over all 22 libraries (reproduced from the coverage files within 0.005 points). In the control cohort alone only 3 of the 10 loci reach 20 points:
+**Verification 2026-11-19.** The ten ploidy values of Table 1 are triploid minus diploid, read-pooled over all 22 libraries (reproduced from the coverage files within 0.005 points, and by `06_diagnostics/table1_group_means.R`, whose output `table1_group_means.csv` holds the numbers below). In the control cohort alone only 3 of the 10 loci reach 20 points:
 
 | Locus (value in Table 1) | Control cohort only | Heat cohort only |
 |---|---|---|
@@ -276,7 +276,7 @@ The DML that disappear are concentrated in a few high-coverage regions; the larg
 | Ubiquitin-like-specific protease 1 (-21) | -10.0 | -27.9 |
 | F-box DNA helicase 1 (-21) | -26.9 | -16.4 |
 
-For half of the table the value printed as a baseline difference comes mostly from the heat cohort, and at one nesprin-1 locus the sign in the control cohort is the opposite of the printed one. "Under control conditions", "baseline" and "controls only" do not describe these values. Values are read-pooled over the 5 or 6 libraries of each group and carry no test.
+The table shows five of the ten loci; all ten are in `06_diagnostics/table1_group_means.csv`. At seven of the ten the difference is larger in the heat cohort than in the control cohort, and at one nesprin-1 locus the sign in the control cohort is the opposite of the printed one. "Under control conditions", "baseline" and "controls only" do not describe these values. Values are read-pooled over the 5 or 6 libraries of each group and carry no test.
 
 ---
 

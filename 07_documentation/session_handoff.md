@@ -2,7 +2,7 @@
 
 How to continue this work from the repository alone, for a new session or a person. The working session rewrites the "State" and "In flight" sections whenever it pushes.
 
-Last updated: 2026-11-19 06:45 UTC.
+Last updated: 2026-11-19 06:07 UTC.
 
 ## If the session ends or its machine is replaced
 
