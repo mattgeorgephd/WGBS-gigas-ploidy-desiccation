@@ -5,7 +5,9 @@
  "agents_running_or_lost": [
   "check:S3-code-review-library-level",
   "check:S4-updates-and-cross-file",
-  "check:S5-literature"
+  "check:S5-literature",
+  "check:S3-code-review-library-level",
+  "check:S4-updates-and-cross-file"
  ],
  "results": [
   {
