@@ -38,8 +38,11 @@
 #               tab(step, file)    a table from 04_output/<step>/tables/ as a data.table (cached)
 #               diagnostic(file)   a table from 06_diagnostics/
 #               config             the settings list of run_config.R
-#             An expression must return one value. A character result is compared
-#             as text; anything else is compared as a number.
+#             An expression must return one value. A number is compared with the
+#             manuscript value within the tolerance of the row; a character
+#             result is compared as text; TRUE or FALSE is the answer itself, for
+#             statements that are an inequality or a ranking (p < 0.05; "the
+#             largest share was introns"), and TRUE counts as a match.
 #           - The step stops with an error after writing its outputs if any
 #             expression fails to run, so a broken row cannot pass unnoticed.
 
@@ -90,6 +93,7 @@ corrected <- lapply(map$expression_corrected, evaluate)
 as_text <- function(v) if (is.null(v) || is.na(v)) NA_character_ else if (is.numeric(v)) format(signif(v, 10), scientific = FALSE, trim = TRUE) else as.character(v)
 agrees <- function(manuscript_numeric, manuscript_value, value, tolerance) {
   if (is.na(value)) return(NA)
+  if (is.logical(value)) return(value)
   if (is.character(value)) return(identical(trimws(value), trimws(manuscript_value)))
   if (is.na(manuscript_numeric)) return(NA)
   abs(as.numeric(value) - manuscript_numeric) <= tolerance + 1e-9
