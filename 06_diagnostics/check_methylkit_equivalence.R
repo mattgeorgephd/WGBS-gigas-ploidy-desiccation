@@ -45,10 +45,10 @@
 #                methylKit computes round(new_cov * (nc / cv)): how many values
 #                of the extract differ, and by how much.
 #           One row is written per comparison. If a comparison that must agree
-#           does not, the tables are still written and the script then stops
-#           with an error that lists the comparisons that failed.
+#           does not, the tables are still written; the script then lists the
+#           comparisons that failed and stops with an error.
 #
-# Run       Rscript 06_diagnostics/check_methylkit_equivalence.R      (about 9 minutes; 2 GB of memory; one core)
+# Run       Rscript 06_diagnostics/check_methylkit_equivalence.R      (about 9 minutes; 2.2 GB of memory; one core)
 #           Needs the 22 coverage files in the cache (step 01) and the tables of step 05.
 #
 # Reads     03_input_files/metadata/wgbs_libraries.csv
@@ -77,14 +77,14 @@
 #             counts and not its factors. The cutoff and the factor that stand
 #             beside those of the helpers (columns
 #             upper_cutoff_from_methylkit_rows and
-#             scaling_factor_from_methylkit_medians of the library table, and
-#             the two comparisons named after them) are the expressions of
-#             methylKit's source evaluated in this script: the percentile of
-#             the rows that methRead imported, and the largest median among the
-#             libraries divided by the library's own median, from the rows that
-#             filterByCoverage kept. That methylKit applied these values is
-#             shown by other comparisons: the rows it kept, the rows it
-#             removed, and its normalized counts.
+#             scaling_factor_from_methylkit_medians of the library table; the
+#             comparisons that begin with "upper cutoff" and "scaling factor")
+#             are the expressions of methylKit's source evaluated in this
+#             script: the percentile of the rows that methRead imported, and
+#             the largest median among the libraries divided by the library's
+#             own median, from the rows that filterByCoverage kept. That
+#             methylKit applied these values is shown by other comparisons: the
+#             rows it kept, the rows it removed, and its normalized counts.
 #           - How a row is judged (column rule). "identical": whole numbers,
 #             positions and sets; any difference fails. "tolerance": floating
 #             point values (cutoffs, scaling factors, differences, p-values,
@@ -381,7 +381,7 @@ extract_file <- file.path(extract_dir, lib$cov_file)
 lines_by_group <- removed_by_group <- matrix(0L, n_lib, n_groups)
 relative_median <- matrix(NA_real_, n_lib, n_groups)
 file_facts <- vector("list", n_lib)
-whole05 <- lapply(keys05, function(keys) c(values = 0, different = 0, half = 0))   # part 5, whole tables: tally over the libraries
+whole05 <- setNames(rep(list(c(values = 0, different = 0, half = 0)), length(config$modes)), config$modes)   # part 5, whole tables: tally over the libraries
 for (lib_i in seq_len(n_lib)) {
   whole <- read_whole_lines(cov_file[lib_i])
   # Part 5, whole tables: the line of this file for every CpG of the tables of
@@ -436,7 +436,7 @@ tables05 <- lapply(tables05, function(united05) {
   inside <- region_of(united05$chr, united05$start) > 0L
   united05[inside]
 })
-rm(keys05, all_keys05, index05); gc(verbose = FALSE)
+rm(keys05, all_keys05, index05); invisible(gc(verbose = FALSE))
 
 # ---- Facts about one library, from each route ---------------------------------------------
 # What methylKit did to one library. `imported` and `kept` are the tables of its
