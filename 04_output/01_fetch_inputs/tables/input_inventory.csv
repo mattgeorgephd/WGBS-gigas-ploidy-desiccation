@@ -1,8 +1,18 @@
 location,file,bytes,md5,status
 repository,README.md,2933,bfeab063d49c372dd77b5122f38f99e0,present
 repository,annotation/20210605-cgigas-roslin-mito-blastx.outfmt6.gz,2239941,05af17e095098b8b604bd643621c3e57,present
-repository,annotation/README.md,1662,1a7ed8a90f865ca54fbc0540902a6cb7,present
+repository,annotation/README.md,4063,7fd00e99a479d2a84774ba77179c3686,present
+repository,annotation/build_legacy_go_terms.R,2300,e3d5ac5ca8e82ebe4dcb02644e264c75,present
 repository,annotation/geneid2go-union1x-BOTH.tab.gz,457135,943f945177cbea9e72d5233c535bf9ca,present
+repository,annotation/geneid2go.tab.gz,711254,3b712e09acd89c9aff568379053dce84,present
+repository,annotation/legacy/DML-Cov10-20-BOTH-COMBO.GeneIDs.geneOverlap.transcriptIDs.GOAnnot.gz,53368,47742b270f5cbddcaaa83e7c6edb85c0,present
+repository,annotation/legacy/DML-Cov10-20-BOTH-COMBO.geneOverlap.transcriptIDs.gz,5396,99e2eb5353d8e744ae447f2f613cea2d,present
+repository,annotation/legacy/DML-Cov10-20-BOTH-HEAT.GeneIDs.geneOverlap.transcriptIDs.GOAnnot.gz,699612,1b0358ff550e954e18cdddd6199cc9d0,present
+repository,annotation/legacy/DML-Cov10-20-BOTH-HEAT.geneOverlap.transcriptIDs.gz,80214,30367629bbf6c5bdf15dea83789cb6b9,present
+repository,annotation/legacy/DML-Cov10-20-BOTH-PLOIDY.GeneIDs.geneOverlap.transcriptIDs.GOAnnot.gz,309488,51b8a1b1305969690cdd265b2f198117,present
+repository,annotation/legacy/DML-Cov10-20-BOTH-PLOIDY.geneOverlap.transcriptIDs.gz,32255,c6bdfe6a8c850a31e379ae977e926827,present
+repository,annotation/legacy/cgigas_uk_roslin_v1_mRNA.transcriptID.geneID.gz,261409,a138a82e39aadcae1bf28772367fca56,present
+repository,annotation/legacy_go_goslim_terms.tsv.gz,57709,95e3f7f24f606b0d7601e7c817566ef4,present
 repository,bismark_reports/061021-big_bismark_summary_report.txt,12044,ce03dbe541cdafd19ebba8bc7bd5371a,present
 repository,bismark_reports/README.md,1436,efdbc55bdcf0baad983ea7a102879124,present
 repository,bismark_reports/zr3534_10_R1_bismark_bt2_PE_report.txt,1871,36a2791c936fee9816141c729ab5cdb6,present
@@ -54,7 +64,7 @@ repository,elisa/raw/20190131_RonitsSamplesforGlobalDNAMeth.xlsx,69438,844403a0f
 repository,elisa/raw/20190206_2ndReadingSTRIGG.xls,35328,0a4daf13f3770bd474b95e091528f06d,present
 repository,elisa/raw/20190206_3rdReadingSTRIGG.xls,35328,60f3a2797e50be4ed73af6269e4576a2,present
 repository,elisa/raw/20190206_FirstReadingSTRIGG.xls,35328,203ba52d92fd7cdfc418aac2a8f3319d,present
-repository,gannet_manifest.csv,8257,5d86e9e3be95606f5fa18b93e26e23ca,present
+repository,gannet_manifest.csv,8586,c6699703a577ffd9b99d8dca3e76fe15,present
 repository,genome_features/README.md,2686,9b1d1d787fcffc97b74747cff6263d41,present
 repository,genome_features/cgigas_uk_roslin_v1_CDS.gff.gz,6614050,9c47aae5269fd093e7013151d5670228,present
 repository,genome_features/cgigas_uk_roslin_v1_downstream.gff.gz,744616,051c78f93f26256cb3d56aa736e54d89,present
@@ -108,3 +118,5 @@ gannet (cached),zr3644_15_R1.CpG_report.merged_CpG_evidence.cov,451550118,2717c5
 gannet (cached),zr3644_16_R1.CpG_report.merged_CpG_evidence.cov,436427091,6a223763d8821b9464d650f3d587ff30,"present, md5 verified"
 gannet (cached),zr3644_17_R1.CpG_report.merged_CpG_evidence.cov,434247889,cc4fc8e5e3c66d89b7eeb47ee57259ce,"present, md5 verified"
 gannet (cached),zr3644_18_R1.CpG_report.merged_CpG_evidence.cov,441683187,a6152f063432c571ff85d76a75c3fffc,"present, md5 verified"
+gannet (cached),cgigas_uk_roslin_v1_genomic-mito.fa,656030650,d1d1e708529e459f27322c9131cc846e,"present, md5 verified"
+Bioconductor archive (cached),GO.db_3.13.0.tar.gz,30765734,796f6a26af270310d8a1f7c9c3913330,GO.db 3.13.0 installed in the side library

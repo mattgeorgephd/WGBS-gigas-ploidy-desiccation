@@ -86,17 +86,19 @@ Each row is one script in `01_pipeline/`. "Reproduces" names the manuscript item
 | 05 | `05_differential_methylation.R` | 22 coverage files | united 10x table, per-CpG statistics, DML lists by threshold, BED files | Results 3.2; Fig. 2A, 2B |
 | 06 | `06_dml_figures.R` | step 05 | PCA, heat maps, paired-difference plot | Fig. 2C to 2G; Fig. 4 |
 | 07 | `07_genome_features.R` | step 05, feature tracks | feature overlap counts for the analysed CpG set and each DML set, association tests, per-chromosome counts | Results 3.3; Fig. 3 |
-| 08 | `08_gene_annotation.R` | step 05, blastx, GO mapping, feature tracks | transcript and gene annotation tables, DML to gene tables, tested-gene background | Supplementary lists |
-| 09 | `09_go_enrichment.R` | step 08 | enrichment tables per DML set and ontology, DML within enriched genes | Results 3.4, 3.5; Fig. 5, Fig. 9; Table 1 |
-| 10 | `10_semantic_similarity.R` | step 09 | semantic similarity plots and cluster tables | Fig. 6, 7, 8 |
-| 11 | `11_qpcr.R` | qPCR Cq tables | relative expression tables and tests | Discussion statements on HSP90 and COX1 (see issue I-29) |
-| 12 | `12_manuscript_values.R` | all steps | `05_manuscript/` figures, tables, and `manuscript_values.csv` (manuscript value, regenerated value, status) | Every number in the text |
+| 08 | `08_gene_annotation.R` | step 05, blastx, GO maps, feature tracks | transcript and gene annotation tables, DML to gene tables, per-gene counts of tested and eligible CpGs, the legacy annotation tables | Supplementary lists |
+| 09 | `09_go_enrichment_legacy.R` | step 08, legacy universe, GO.db 3.13.0 | the legacy enrichment tables, Figure 5 and Figure 9 values, Table 1, and a record of what the legacy procedure did | Results 3.4, 3.5; Fig. 5, Fig. 9; Table 1 |
+| 10 | `10_go_enrichment_gene_level.R` | steps 08 and 09 | gene-level enrichment per DML set, ontology, universe, and mode; each term of the draft retested | Replacement candidates for the same items |
+| 11 | `11_semantic_similarity.R` | steps 09 and 10 | semantic similarity plots and cluster tables | Fig. 6, 7, 8 |
+| 12 | `12_qpcr.R` | qPCR Cq tables | relative expression tables and tests | Discussion statements on HSP90 and COX1 (see issue I-29) |
+| 13 | `13_manuscript_values.R` | all steps | `05_manuscript/` figures, tables, and `manuscript_values.csv` (manuscript value, regenerated value, status) | Every number in the text |
 
 Design notes:
 
 - **Memory.** The legacy analysis saved an 8.9 GB workspace. The new steps read one coverage file at a time and keep only filtered tables, so steps 04 and 05 run within 16 GB.
-- **Step 05 is the expensive one** (about 9.7 GB of downloads the first time, then roughly an hour of single-core model fitting). Its small outputs, including the united 10x methylation table (gzipped), are committed, so steps 06 to 12 can be rerun from GitHub alone.
-- **Legacy and corrected modes** (rule 6) apply to: the upper coverage filter (issue I-05), the definition of interaction loci (I-02), the unit and background of the GO test (I-03), and the definition of "enriched" (I-21).
+- **Step 05 is the expensive one** (about 9.8 GB of downloads the first time, then 18 minutes of model fitting on four cores, about an hour on one). Its outputs, including the united 10x methylation table (gzipped), are committed, so steps 06 to 13 can be rerun from GitHub alone.
+- **Legacy and corrected modes** (rule 6). As built: the modes of `run_config.R` cover the upper coverage filter (issue I-05) and the lost first line of each coverage file (I-38), and steps 04 to 08 and 10 write both. The GO enrichment was split into two steps instead of two modes, because the legacy procedure differs from a sound one in too many ways to share a script: step 09 repeats it exactly (I-03, I-21, I-39, I-40, and the 2021 ontology release), and step 10 is the gene-level analysis. Still to be built under this rule: a formally tested interaction next to the legacy overlap set (I-02).
+- **The plan had twelve steps; the pipeline has thirteen**, because of that split. Steps 10 to 12 of the first version of this plan are now steps 11 to 13.
 
 ## 5. Phases and commits
 
@@ -104,13 +106,13 @@ Each phase ends in one or more pushed commits on `reproducibility-audit`.
 
 | Phase | Content | State |
 |---|---|---|
-| 0 | Audit; `issues.md`; this plan; gannet manifest; upstream processing scripts | this commit |
-| 1 | Reorganization into the numbered layout; README per folder; lock files removed | next |
-| 2 | `run_config.R`, `run_pipeline.R`, `02_R_functions/`, input manifest, inputs brought into GitHub under the 50 MB rule | |
-| 3 | Steps 01 to 05 in legacy mode, each validated against legacy outputs (CpG counts, DML lists row by row) | 480,579 CpG count already reproduced in a prototype |
-| 4 | Steps 06 to 10 in legacy mode, validated against legacy outputs | |
-| 5 | Corrected modes for the items in section 4, with side-by-side comparison tables | needs the decisions listed in section 7 |
-| 6 | Steps 11 and 12; `05_manuscript/`; traceability table; list of manuscript edits implied by the results | |
+| 0 | Audit; `issues.md`; this plan; gannet manifest; upstream processing scripts | done (`d6a8112`, `503bf22`) |
+| 1 | Reorganization into the numbered layout; README per folder; lock files removed | done (`117be05`) |
+| 2 | `run_config.R`, `run_pipeline.R`, `02_R_functions/`, input manifest, inputs brought into GitHub under the 50 MB rule | done (`879969b`, `6a6a3c8`) |
+| 3 | Steps 01 to 05, each validated against legacy outputs (CpG counts, DML lists row by row) | done; all 25 CpG counts and the three DML lists reproduced exactly |
+| 4 | Steps 06 to 10, validated against legacy outputs | done; DML location percentages, the nine GO tables, Figure 5, Figure 9, and Table 1 reproduced exactly. Semantic similarity (Figures 6 to 8) moved to phase 6 |
+| 5 | Corrected analyses, with side-by-side comparison tables | coverage filter and gene-level GO enrichment done; interaction test, overdispersion, acute heat-shock libraries, within-cohort contrasts, and variant masking need the decisions listed in section 7 |
+| 6 | Steps 11 to 13; `05_manuscript/`; traceability table; list of manuscript edits implied by the results | next |
 | 7 | `renv.lock`, final READMEs, clean checkout test from a fresh container | |
 
 ## 6. Validation targets
@@ -128,6 +130,8 @@ Legacy mode is accepted for a step when these are matched exactly:
 | topGO tables | 9 files, term by term | `GOterms/BOTH-*/*FisherTestResults.csv` |
 | ELISA and %mCpG model tables | F and p as in the manuscript | `stats/*.csv` |
 
+**State on 2026-11-19.** All of these are matched. `06_diagnostics/check_legacy_outputs.R` records 331 comparisons in `06_diagnostics/legacy_check_results.csv`; 329 match exactly. The two that differ are explained by the legacy files, not by the pipeline: the %mCpG interaction F (14.43 regenerated, 14.49 legacy; the legacy sheet mixed two alignment runs, issue I-13) and one threshold count where the legacy workbook has two typed values swapped (I-19). Beyond the targets above, the comparison also covers the values of Figure 5 and Figure 9 and the gene lists behind Table 1. Matching the topGO tables required the ontology release of 2021 (GO.db 3.13.0) and a replica of a file-reading fault in the legacy script (I-40).
+
 ## 7. Decisions needed from the authors
 
 These do not block phases 1 to 4. They decide what phase 5 builds and what the manuscript can claim. Details and evidence are in `issues.md` under the issue numbers given.
@@ -135,10 +139,13 @@ These do not block phases 1 to 4. They decide what phase 5 builds and what the m
 1. **Control and heat libraries come from different experiments and sequencing batches (I-01).** Do tissue or DNA from the heat experiment's own control animals (D01 to D08, T01 to T08) still exist, and is sequencing them possible? If not, how should the heat contrast be framed?
 2. **Four of the ten heat libraries also received a 45 C acute heat shock (I-04).** Keep them pooled and disclose it, drop them, or model the heat shock as a covariate?
 3. **"Interaction" loci (I-02).** Keep the overlap set under a different name, fit a formal ploidy by heat model, or both?
-4. **GO enrichment (I-03).** Is moving to a gene-level test with a tested-gene background and false discovery control acceptable as the primary analysis, with the legacy transcript-level run kept for traceability?
+4. **GO enrichment (I-03, I-39, I-40, I-41).** The gene-level analysis is built (step 10). Compared with the genes that could hold a DML, and adjusted for the number of such CpGs per gene, no GO term is enriched in any DML set. The draft's enrichment results also rest on an incomplete gene universe and on an input table that was mostly skipped when read. Two ways forward: report the absence of enrichment and replace Figures 5 to 9 and Table 1 with a descriptive table of genes that hold DML; or design a different functional analysis (new work, for example a region-level statistic within one cohort). Which?
 5. **Upper coverage filter (I-05).** Apply the 99.9th percentile filter the Methods describe (454,555 CpGs), or keep the analysis as run (480,579 CpGs) and change the Methods?
 6. **ELISA (I-10, I-12).** What DNA mass was loaded per well, and which scale of analysis should be reported?
 7. **qPCR (I-29).** Bring the qPCR data into Methods and Results with a pipeline step, or remove the statements from the Discussion?
 8. **Provenance of the control animals (I-01, I-36).** Source experiment, location, holding conditions, age, and relationship to the heat-treated cohort; animal IDs and SRA accessions for zr3644.
 9. **Computing environment (I-37).** Which R version and operating system should the lockfile target?
 10. **Bulky legacy files (I-34).** May regenerable legacy outputs above 10 MB be dropped from the working tree (they stay in git history and on gannet)?
+11. **Location of DML (I-41).** Report the genomic distribution of DML against the CpGs that can be DML (mean methylation 10% to 90%) instead of against all CpGs? Against that background the gene-body enrichment is about twofold instead of six to sevenfold, and introns are not enriched.
+12. **Functional annotation (I-42).** The GO terms are a July 2017 UniProt snapshot. Keep it frozen, or refresh it from current UniProt (one download, then frozen in the repository)? Only matters if a functional analysis stays in the paper.
+13. **Pipeline outputs in git.** Step 05 commits six tables of 14 to 22 MB each (about 100 MB in total) so that later steps run without the coverage files. This follows the GitHub-first rule but makes the repository heavier with every rerun that changes them. Keep them in git, or move them to gannet and fetch them like the coverage files?

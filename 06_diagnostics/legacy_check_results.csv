@@ -109,3 +109,224 @@ DML count by difference threshold,"shared, 45%",0,0,match,""
 DML count by difference threshold,"shared, 45%, hyper",0,0,match,""
 DML count by difference threshold,"shared, 50%",0,0,match,""
 DML count by difference threshold,"shared, 50%, hyper",0,0,match,""
+DML overlapping a genome feature track,"ploidy DML, exon_UTR",96,96,match,""
+DML overlapping a genome feature track,"heat DML, exon_UTR",185,185,match,""
+DML overlapping a genome feature track,"shared, exon_UTR",30,30,match,""
+DML overlapping a genome feature track,"shared, both hypo, exon_UTR",2,2,match,""
+DML overlapping a genome feature track,"shared, both hyper, exon_UTR",2,2,match,""
+DML overlapping a genome feature track,"shared, opposite, exon_UTR",26,26,match,""
+DML overlapping a genome feature track,"ploidy DML, CDS",371,371,match,""
+DML overlapping a genome feature track,"heat DML, CDS",802,802,match,""
+DML overlapping a genome feature track,"shared, CDS",59,59,match,""
+DML overlapping a genome feature track,"shared, both hypo, CDS",16,16,match,""
+DML overlapping a genome feature track,"shared, both hyper, CDS",9,9,match,""
+DML overlapping a genome feature track,"shared, opposite, CDS",34,34,match,""
+DML overlapping a genome feature track,"ploidy DML, intron",515,515,match,""
+DML overlapping a genome feature track,"heat DML, intron",1218,1218,match,""
+DML overlapping a genome feature track,"shared, intron",105,105,match,""
+DML overlapping a genome feature track,"shared, both hypo, intron",28,28,match,""
+DML overlapping a genome feature track,"shared, both hyper, intron",16,16,match,""
+DML overlapping a genome feature track,"shared, opposite, intron",61,61,match,""
+DML overlapping a genome feature track,"ploidy DML, upstream_flank",1,1,match,""
+DML overlapping a genome feature track,"heat DML, upstream_flank",13,13,match,""
+DML overlapping a genome feature track,"shared, upstream_flank",0,0,match,""
+DML overlapping a genome feature track,"shared, both hypo, upstream_flank",0,0,match,""
+DML overlapping a genome feature track,"shared, both hyper, upstream_flank",0,0,match,""
+DML overlapping a genome feature track,"shared, opposite, upstream_flank",0,0,match,""
+DML overlapping a genome feature track,"ploidy DML, downstream_flank",23,23,match,""
+DML overlapping a genome feature track,"heat DML, downstream_flank",42,42,match,""
+DML overlapping a genome feature track,"shared, downstream_flank",3,3,match,""
+DML overlapping a genome feature track,"shared, both hypo, downstream_flank",2,2,match,""
+DML overlapping a genome feature track,"shared, both hyper, downstream_flank",0,0,match,""
+DML overlapping a genome feature track,"shared, opposite, downstream_flank",1,1,match,""
+DML overlapping a genome feature track,"ploidy DML, lncRNA",65,65,match,""
+DML overlapping a genome feature track,"heat DML, lncRNA",84,84,match,""
+DML overlapping a genome feature track,"shared, lncRNA",42,42,match,""
+DML overlapping a genome feature track,"shared, both hypo, lncRNA",0,0,match,""
+DML overlapping a genome feature track,"shared, both hyper, lncRNA",1,1,match,""
+DML overlapping a genome feature track,"shared, opposite, lncRNA",41,41,match,""
+DML overlapping a genome feature track,"ploidy DML, TE",194,194,match,""
+DML overlapping a genome feature track,"heat DML, TE",463,463,match,""
+DML overlapping a genome feature track,"shared, TE",28,28,match,""
+DML overlapping a genome feature track,"shared, both hypo, TE",10,10,match,""
+DML overlapping a genome feature track,"shared, both hyper, TE",8,8,match,""
+DML overlapping a genome feature track,"shared, opposite, TE",10,10,match,""
+DML overlapping a genome feature track,"ploidy DML, intergenic",34,34,match,""
+DML overlapping a genome feature track,"heat DML, intergenic",94,94,match,""
+DML overlapping a genome feature track,"shared, intergenic",4,4,match,""
+DML overlapping a genome feature track,"shared, both hypo, intergenic",1,1,match,""
+DML overlapping a genome feature track,"shared, both hyper, intergenic",1,1,match,""
+DML overlapping a genome feature track,"shared, opposite, intergenic",2,2,match,""
+DML overlapping a genome feature track,"ploidy DML, gene",981,981,match,""
+DML overlapping a genome feature track,"heat DML, gene",2203,2203,match,""
+DML overlapping a genome feature track,"shared, gene",193,193,match,""
+DML overlapping a genome feature track,"shared, both hypo, gene",46,46,match,""
+DML overlapping a genome feature track,"shared, both hyper, gene",27,27,match,""
+DML overlapping a genome feature track,"shared, opposite, gene",120,120,match,""
+DML overlapping a genome feature track,"ploidy DML, exon",467,467,match,""
+DML overlapping a genome feature track,"heat DML, exon",987,987,match,""
+DML overlapping a genome feature track,"shared, exon",89,89,match,""
+DML overlapping a genome feature track,"shared, both hypo, exon",18,18,match,""
+DML overlapping a genome feature track,"shared, both hyper, exon",11,11,match,""
+DML overlapping a genome feature track,"shared, opposite, exon",60,60,match,""
+DML overlapping a genome feature track,"ploidy DML, mRNA",977,977,match,""
+DML overlapping a genome feature track,"heat DML, mRNA",2178,2178,match,""
+DML overlapping a genome feature track,"shared, mRNA",192,192,match,""
+DML overlapping a genome feature track,"shared, both hypo, mRNA",46,46,match,""
+DML overlapping a genome feature track,"shared, both hyper, mRNA",27,27,match,""
+DML overlapping a genome feature track,"shared, opposite, mRNA",119,119,match,""
+DML overlapping a genome feature track,"ploidy DML, nonCDS",572,572,match,""
+DML overlapping a genome feature track,"heat DML, nonCDS",1366,1366,match,""
+DML overlapping a genome feature track,"shared, nonCDS",112,112,match,""
+DML overlapping a genome feature track,"shared, both hypo, nonCDS",31,31,match,""
+DML overlapping a genome feature track,"shared, both hyper, nonCDS",17,17,match,""
+DML overlapping a genome feature track,"shared, opposite, nonCDS",64,64,match,""
+DML overlapping a genome feature track,"ploidy DML, flanks",23,23,match,""
+DML overlapping a genome feature track,"heat DML, flanks",54,54,match,""
+DML overlapping a genome feature track,"shared, flanks",3,3,match,""
+DML overlapping a genome feature track,"shared, both hypo, flanks",2,2,match,""
+DML overlapping a genome feature track,"shared, both hyper, flanks",0,0,match,""
+DML overlapping a genome feature track,"shared, opposite, flanks",1,1,match,""
+Transcript to gene map,transcripts,63341,63341,match,""
+Transcript to gene map,same gene ID,63317,63317,match,"the others are mRNAs of genes with a hyphen in their name, which the legacy parsing assigned to the word GeneID"
+"DML annotation table, ploidy",lines,46626,46626,match,""
+"DML annotation table, ploidy","text columns identical, line for line (of 9)",9,9,match,""
+"DML annotation table, ploidy",largest difference in meth.diff,0,4.99e-09,match,the legacy files hold 10 significant digits for ploidy and shared
+"DML annotation table, ploidy",DML x transcript rows before the GO join,3695,3695,match,""
+"DML annotation table, ploidy",rows returned by the legacy reader,10979,10979,match,legacy value from comments in 5_WGBS_Functional-enrichement-analysis-BOTH.R
+"DML annotation table, heat",lines,106621,106621,match,""
+"DML annotation table, heat","text columns identical, line for line (of 9)",9,9,match,""
+"DML annotation table, heat",largest difference in meth.diff,0,1.03e-13,match,the legacy files hold 10 significant digits for ploidy and shared
+"DML annotation table, heat",DML x transcript rows before the GO join,8132,8132,match,""
+"DML annotation table, heat",rows returned by the legacy reader,81109,81109,match,legacy value from comments in 5_WGBS_Functional-enrichement-analysis-BOTH.R
+"DML annotation table, shared",lines,7029,7029,match,""
+"DML annotation table, shared","text columns identical, line for line (of 9)",9,9,match,""
+"DML annotation table, shared",largest difference in meth.diff,0,4.99e-09,match,the legacy files hold 10 significant digits for ploidy and shared
+"DML annotation table, shared",DML x transcript rows before the GO join,545,545,match,""
+"DML annotation table, shared",rows returned by the legacy reader,6941,6941,match,legacy value from comments in 5_WGBS_Functional-enrichement-analysis-BOTH.R
+"topGO table, ploidy BP",terms,12720,12720,match,""
+"topGO table, ploidy BP",terms in both,12720,12720,match,""
+"topGO table, ploidy BP",terms with the same annotated and significant counts,12720,12720,match,""
+"topGO table, ploidy BP",ten top-ranked terms in common,10,10,match,""
+"topGO table, ploidy BP",terms with p < 0.01,383,383,match,""
+"DML in genes with a top-ten term, ploidy BP",rows,10,10,match,""
+"DML in genes with a top-ten term, ploidy BP","rows in both (gene, position)",10,10,match,""
+"topGO table, ploidy CC",terms,1594,1594,match,""
+"topGO table, ploidy CC",terms in both,1594,1594,match,""
+"topGO table, ploidy CC",terms with the same annotated and significant counts,1594,1594,match,""
+"topGO table, ploidy CC",ten top-ranked terms in common,10,10,match,""
+"topGO table, ploidy CC",terms with p < 0.01,43,43,match,""
+"DML in genes with a top-ten term, ploidy CC",rows,24,24,match,""
+"DML in genes with a top-ten term, ploidy CC","rows in both (gene, position)",24,24,match,""
+"topGO table, ploidy MF",terms,3398,3398,match,""
+"topGO table, ploidy MF",terms in both,3398,3398,match,""
+"topGO table, ploidy MF",terms with the same annotated and significant counts,3398,3398,match,""
+"topGO table, ploidy MF",ten top-ranked terms in common,10,10,match,""
+"topGO table, ploidy MF",terms with p < 0.01,68,68,match,""
+"DML in genes with a top-ten term, ploidy MF",rows,15,15,match,""
+"DML in genes with a top-ten term, ploidy MF","rows in both (gene, position)",15,15,match,""
+"topGO table, heat BP",terms,12720,12720,match,""
+"topGO table, heat BP",terms in both,12720,12720,match,""
+"topGO table, heat BP",terms with the same annotated and significant counts,12720,12720,match,""
+"topGO table, heat BP",ten top-ranked terms in common,10,10,match,""
+"topGO table, heat BP",terms with p < 0.01,856,856,match,""
+"DML in genes with a top-ten term, heat BP",rows,7,7,match,""
+"DML in genes with a top-ten term, heat BP","rows in both (gene, position)",7,7,match,""
+"topGO table, heat CC",terms,1594,1594,match,""
+"topGO table, heat CC",terms in both,1594,1594,match,""
+"topGO table, heat CC",terms with the same annotated and significant counts,1594,1594,match,""
+"topGO table, heat CC",ten top-ranked terms in common,10,10,match,""
+"topGO table, heat CC",terms with p < 0.01,145,145,match,""
+"DML in genes with a top-ten term, heat CC",rows,54,54,match,""
+"DML in genes with a top-ten term, heat CC","rows in both (gene, position)",54,54,match,""
+"topGO table, heat MF",terms,3398,3398,match,""
+"topGO table, heat MF",terms in both,3398,3398,match,""
+"topGO table, heat MF",terms with the same annotated and significant counts,3398,3398,match,""
+"topGO table, heat MF",ten top-ranked terms in common,10,10,match,""
+"topGO table, heat MF",terms with p < 0.01,172,172,match,""
+"DML in genes with a top-ten term, heat MF",rows,134,134,match,""
+"DML in genes with a top-ten term, heat MF","rows in both (gene, position)",134,134,match,""
+"topGO table, shared BP",terms,12720,12720,match,""
+"topGO table, shared BP",terms in both,12720,12720,match,""
+"topGO table, shared BP",terms with the same annotated and significant counts,12720,12720,match,""
+"topGO table, shared BP",ten top-ranked terms in common,10,10,match,""
+"topGO table, shared BP",terms with p < 0.01,341,341,match,""
+"DML in genes with a top-ten term, shared BP",rows,3,3,match,""
+"DML in genes with a top-ten term, shared BP","rows in both (gene, position)",3,3,match,""
+"topGO table, shared CC",terms,1594,1594,match,""
+"topGO table, shared CC",terms in both,1594,1594,match,""
+"topGO table, shared CC",terms with the same annotated and significant counts,1594,1594,match,""
+"topGO table, shared CC",ten top-ranked terms in common,10,10,match,""
+"topGO table, shared CC",terms with p < 0.01,36,36,match,""
+"DML in genes with a top-ten term, shared CC",rows,16,16,match,""
+"DML in genes with a top-ten term, shared CC","rows in both (gene, position)",16,16,match,""
+"topGO table, shared MF",terms,3398,3398,match,""
+"topGO table, shared MF",terms in both,3398,3398,match,""
+"topGO table, shared MF",terms with the same annotated and significant counts,3398,3398,match,""
+"topGO table, shared MF",ten top-ranked terms in common,10,10,match,""
+"topGO table, shared MF",terms with p < 0.01,74,74,match,""
+"DML in genes with a top-ten term, shared MF",rows,8,8,match,""
+"DML in genes with a top-ten term, shared MF","rows in both (gene, position)",8,8,match,""
+Figure 5 value,"GO terms, ploidy, BP",4379,4379,match,legacy value typed in gene-plots.Rmd
+Figure 5 value,"GO terms, heat, BP",39688,39688,match,legacy value typed in gene-plots.Rmd
+Figure 5 value,"GO terms, interaction, BP",3332,3332,match,legacy value typed in gene-plots.Rmd
+Figure 5 value,"Unique transcripts, ploidy, BP",128,128,match,legacy value typed in gene-plots.Rmd
+Figure 5 value,"Unique transcripts, heat, BP",93,93,match,legacy value typed in gene-plots.Rmd
+Figure 5 value,"Unique transcripts, interaction, BP",55,55,match,legacy value typed in gene-plots.Rmd
+Figure 5 value,"Unique genes, ploidy, BP",1,1,match,legacy value typed in gene-plots.Rmd
+Figure 5 value,"Unique genes, heat, BP",3,3,match,legacy value typed in gene-plots.Rmd
+Figure 5 value,"Unique genes, interaction, BP",1,1,match,legacy value typed in gene-plots.Rmd
+Figure 5 value,"Gene products, ploidy, BP",199,199,match,legacy value typed in gene-plots.Rmd
+Figure 5 value,"Gene products, heat, BP",1441,1441,match,legacy value typed in gene-plots.Rmd
+Figure 5 value,"Gene products, interaction, BP",165,165,match,legacy value typed in gene-plots.Rmd
+Figure 5 value,"GO terms, ploidy, CC",4145,4145,match,legacy value typed in gene-plots.Rmd
+Figure 5 value,"GO terms, heat, CC",26084,26084,match,legacy value typed in gene-plots.Rmd
+Figure 5 value,"GO terms, interaction, CC",2337,2337,match,legacy value typed in gene-plots.Rmd
+Figure 5 value,"Unique transcripts, ploidy, CC",601,601,match,legacy value typed in gene-plots.Rmd
+Figure 5 value,"Unique transcripts, heat, CC",727,727,match,legacy value typed in gene-plots.Rmd
+Figure 5 value,"Unique transcripts, interaction, CC",610,610,match,legacy value typed in gene-plots.Rmd
+Figure 5 value,"Unique genes, ploidy, CC",12,12,match,legacy value typed in gene-plots.Rmd
+Figure 5 value,"Unique genes, heat, CC",17,17,match,legacy value typed in gene-plots.Rmd
+Figure 5 value,"Unique genes, interaction, CC",10,10,match,legacy value typed in gene-plots.Rmd
+Figure 5 value,"Gene products, ploidy, CC",1420,1420,match,legacy value typed in gene-plots.Rmd
+Figure 5 value,"Gene products, heat, CC",1698,1698,match,legacy value typed in gene-plots.Rmd
+Figure 5 value,"Gene products, interaction, CC",1145,1145,match,legacy value typed in gene-plots.Rmd
+Figure 5 value,"GO terms, ploidy, MF",2443,2443,match,legacy value typed in gene-plots.Rmd
+Figure 5 value,"GO terms, heat, MF",15213,15213,match,legacy value typed in gene-plots.Rmd
+Figure 5 value,"GO terms, interaction, MF",1262,1262,match,legacy value typed in gene-plots.Rmd
+Figure 5 value,"Unique transcripts, ploidy, MF",178,178,match,legacy value typed in gene-plots.Rmd
+Figure 5 value,"Unique transcripts, heat, MF",1841,1841,match,legacy value typed in gene-plots.Rmd
+Figure 5 value,"Unique transcripts, interaction, MF",207,207,match,legacy value typed in gene-plots.Rmd
+Figure 5 value,"Unique genes, ploidy, MF",6,6,match,legacy value typed in gene-plots.Rmd
+Figure 5 value,"Unique genes, heat, MF",49,49,match,legacy value typed in gene-plots.Rmd
+Figure 5 value,"Unique genes, interaction, MF",4,4,match,legacy value typed in gene-plots.Rmd
+Figure 5 value,"Gene products, ploidy, MF",392,392,match,legacy value typed in gene-plots.Rmd
+Figure 5 value,"Gene products, heat, MF",5801,5801,match,legacy value typed in gene-plots.Rmd
+Figure 5 value,"Gene products, interaction, MF",318,318,match,legacy value typed in gene-plots.Rmd
+Figure 9 value,"total, ploidy, BP",10,10,match,legacy value typed in gene-plots.Rmd
+Figure 9 value,"hyper, ploidy, BP",5,5,match,legacy value typed in gene-plots.Rmd
+Figure 9 value,"hypo, ploidy, BP",5,5,match,legacy value typed in gene-plots.Rmd
+Figure 9 value,"total, heat, BP",7,7,match,legacy value typed in gene-plots.Rmd
+Figure 9 value,"hyper, heat, BP",2,2,match,legacy value typed in gene-plots.Rmd
+Figure 9 value,"hypo, heat, BP",5,5,match,legacy value typed in gene-plots.Rmd
+Figure 9 value,"total, interaction, BP",3,3,match,legacy value typed in gene-plots.Rmd
+Figure 9 value,"hyper, interaction, BP",2,2,match,legacy value typed in gene-plots.Rmd
+Figure 9 value,"hypo, interaction, BP",1,1,match,legacy value typed in gene-plots.Rmd
+Figure 9 value,"total, ploidy, CC",24,24,match,legacy value typed in gene-plots.Rmd
+Figure 9 value,"hyper, ploidy, CC",12,12,match,legacy value typed in gene-plots.Rmd
+Figure 9 value,"hypo, ploidy, CC",12,12,match,legacy value typed in gene-plots.Rmd
+Figure 9 value,"total, heat, CC",54,54,match,legacy value typed in gene-plots.Rmd
+Figure 9 value,"hyper, heat, CC",30,30,match,legacy value typed in gene-plots.Rmd
+Figure 9 value,"hypo, heat, CC",24,24,match,legacy value typed in gene-plots.Rmd
+Figure 9 value,"total, interaction, CC",16,16,match,legacy value typed in gene-plots.Rmd
+Figure 9 value,"hyper, interaction, CC",8,8,match,legacy value typed in gene-plots.Rmd
+Figure 9 value,"hypo, interaction, CC",8,8,match,legacy value typed in gene-plots.Rmd
+Figure 9 value,"total, ploidy, MF",15,15,match,legacy value typed in gene-plots.Rmd
+Figure 9 value,"hyper, ploidy, MF",5,5,match,legacy value typed in gene-plots.Rmd
+Figure 9 value,"hypo, ploidy, MF",10,10,match,legacy value typed in gene-plots.Rmd
+Figure 9 value,"total, heat, MF",134,134,match,legacy value typed in gene-plots.Rmd
+Figure 9 value,"hyper, heat, MF",87,87,match,legacy value typed in gene-plots.Rmd
+Figure 9 value,"hypo, heat, MF",47,47,match,legacy value typed in gene-plots.Rmd
+Figure 9 value,"total, interaction, MF",8,8,match,legacy value typed in gene-plots.Rmd
+Figure 9 value,"hyper, interaction, MF",5,5,match,legacy value typed in gene-plots.Rmd
+Figure 9 value,"hypo, interaction, MF",3,3,match,legacy value typed in gene-plots.Rmd

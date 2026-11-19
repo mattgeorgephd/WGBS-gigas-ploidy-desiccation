@@ -1,0 +1,61 @@
+list_size,draw,ontology,genes_hit,A_tested_fisher,A_strongest_term,B_eligible_fisher,C_eligible_wallenius
+ploidy,1,BP,788,38,cellular component organization or biogenesis,69,0
+ploidy,1,CC,788,48,non-membrane-bounded organelle,11,0
+ploidy,1,MF,788,49,adenyl ribonucleotide binding,0,0
+ploidy,2,BP,751,36,organelle organization,35,0
+ploidy,2,CC,751,46,non-membrane-bounded organelle,13,0
+ploidy,2,MF,751,41,GTPase activator activity,1,0
+ploidy,3,BP,766,15,regulation of small GTPase mediated signal transduction,17,0
+ploidy,3,CC,766,21,intracellular anatomical structure,2,0
+ploidy,3,MF,766,44,adenyl ribonucleotide binding,0,0
+ploidy,4,BP,771,21,cytoskeleton organization,0,0
+ploidy,4,CC,771,33,intracellular anatomical structure,3,0
+ploidy,4,MF,771,30,heterocyclic compound binding,0,0
+ploidy,5,BP,769,33,microtubule-based process,32,0
+ploidy,5,CC,769,26,intracellular anatomical structure,2,0
+ploidy,5,MF,769,35,binding,2,0
+ploidy,6,BP,761,91,cytoskeleton organization,64,0
+ploidy,6,CC,761,58,intracellular anatomical structure,19,0
+ploidy,6,MF,761,32,actin binding,1,0
+ploidy,7,BP,752,133,cytoskeleton organization,126,0
+ploidy,7,CC,752,64,intracellular anatomical structure,31,0
+ploidy,7,MF,752,42,actin binding,3,0
+ploidy,8,BP,790,105,cell projection organization,146,0
+ploidy,8,CC,790,39,intracellular anatomical structure,21,0
+ploidy,8,MF,790,37,actin binding,5,0
+ploidy,9,BP,750,20,organelle organization,31,0
+ploidy,9,CC,750,40,intracellular anatomical structure,10,0
+ploidy,9,MF,750,50,protein binding,8,0
+ploidy,10,BP,745,67,cellular component organization,102,0
+ploidy,10,CC,745,40,intracellular anatomical structure,15,0
+ploidy,10,MF,745,36,dynein light chain binding,8,0
+heat,1,BP,1494,108,organelle organization,109,0
+heat,1,CC,1494,73,intracellular anatomical structure,28,0
+heat,1,MF,1494,70,protein binding,14,0
+heat,2,BP,1485,104,organelle organization,62,0
+heat,2,CC,1485,71,intracellular anatomical structure,17,0
+heat,2,MF,1485,78,protein binding,34,0
+heat,3,BP,1458,143,organelle organization,86,0
+heat,3,CC,1458,80,intracellular anatomical structure,25,0
+heat,3,MF,1458,59,protein binding,15,0
+heat,4,BP,1483,116,macromolecule localization,73,0
+heat,4,CC,1483,90,intracellular anatomical structure,28,0
+heat,4,MF,1483,65,binding,8,0
+heat,5,BP,1438,109,organelle organization,71,0
+heat,5,CC,1438,61,intracellular anatomical structure,27,0
+heat,5,MF,1438,53,cytoskeletal motor activity,3,0
+heat,6,BP,1451,158,regulation of small GTPase mediated signal transduction,89,0
+heat,6,CC,1451,62,intracellular anatomical structure,17,0
+heat,6,MF,1451,61,actin binding,0,0
+heat,7,BP,1483,200,organelle organization,194,0
+heat,7,CC,1483,73,intracellular anatomical structure,20,0
+heat,7,MF,1483,74,GTPase regulator activity,32,0
+heat,8,BP,1439,116,organelle organization,50,0
+heat,8,CC,1439,64,intracellular organelle,18,0
+heat,8,MF,1439,66,protein binding,6,0
+heat,9,BP,1503,177,organelle organization,163,0
+heat,9,CC,1503,64,intracellular anatomical structure,12,0
+heat,9,MF,1503,44,cytoskeletal protein binding,9,0
+heat,10,BP,1473,170,organelle organization,116,0
+heat,10,CC,1473,61,intracellular anatomical structure,24,0
+heat,10,MF,1473,62,protein binding,16,0

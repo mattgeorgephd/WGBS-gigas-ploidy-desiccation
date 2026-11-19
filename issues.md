@@ -13,7 +13,10 @@ Opened 2026-11-18 on branch `reproducibility-audit`, from a full read of the man
 - **S3**: wording, labels, small inconsistencies.
 - **R**: repository and reproducibility engineering; no effect on results by itself.
 
-**Status values.** `open`, `needs decision` (authors), `needs information` (authors), `fix planned` (phase in the plan), `resolved`.
+**Status values.** `open`, `needs decision` (authors), `needs information` (authors), `fix planned` (phase in the plan), `pipeline done` (the pipeline now produces the corrected item; the manuscript still has to adopt it), `resolved`.
+
+**Updates.** Dated paragraphs inside an issue record what later work found; the original text is left as written.
+- 2026-11-19: pipeline steps 04 to 10 built. Issues I-38 to I-42 added. I-02, I-03, I-05, I-09, I-14, I-16, I-19, I-20, I-21, I-28, I-33 and I-37 updated with regenerated numbers.
 
 **How things were verified.** Statements marked *verified* were checked directly: by reading the code, by recomputing from files in the repository or on gannet, or by rerunning the step in R 4.3.3 with methylKit 1.28.0. Anything not verified is labelled as an inference or as undetermined.
 
@@ -31,35 +34,40 @@ Opened 2026-11-18 on branch `reproducibility-audit`, from a full read of the man
 | I-06 | S2 | Statistics | Differential methylation model has no overdispersion correction although groups are biological replicates | needs decision |
 | I-07 | S2 | Text vs code | Ploidy-DML are described as control-only ("baseline") differences but were computed across all 22 libraries | open |
 | I-08 | S2 | Design | Sequence variants were not masked; ploidy groups and cohorts differ genetically | open |
-| I-09 | S2 | Interpretation | DML are spatially clustered; one 2.2 kb locus supplies 39 of the 200 "interaction" loci and all of the reported lncRNA signal | open |
+| I-09 | S2 | Interpretation | DML are spatially clustered; one 2.2 kb locus supplies 39 of the 200 "interaction" loci and all of the reported lncRNA signal, and it is removed entirely by the coverage filter the Methods describe | open |
 | I-10 | S2 | Statistics | ELISA conclusions for ploidy and interaction depend on the transformation, which was chosen by a test on the wrong quantity | needs decision |
-| I-11 | S2 | Figure | Figure 1A drops three of the eight diploid heat samples through its axis limits | fix planned (3) |
+| I-11 | S2 | Figure | Figure 1A drops three of the eight diploid heat samples through its axis limits | pipeline done (step 03) |
 | I-12 | S2 | Data | ELISA calculation rests on unverified inputs (DNA mass per well, standards, extrapolation) | needs information |
-| I-13 | S2 | Data | Figure 1B values come from a hand-built sheet that mixes two alignment runs and carries four wrong sample names | fix planned (3) |
-| I-14 | S2 | Number | The "all CpG" genomic background in Figure 3A and Results 3.3 was not computed from the analysed CpGs | fix planned (4) |
+| I-13 | S2 | Data | Figure 1B values come from a hand-built sheet that mixes two alignment runs and carries four wrong sample names | pipeline done (step 03) |
+| I-14 | S2 | Number | The "all CpG" genomic background in Figure 3A and Results 3.3 was not computed from the analysed CpGs | pipeline done (step 07) |
 | I-15 | S2 | Number | The 1x genomic distribution in Results 3.1 double counts exons and comes from an unidentified CpG set | fix planned (4) |
-| I-16 | S3 | Number | CpG counts: the 1x value is defined differently from the 5x, 10x, 20x values; 480,479 is a typo | fix planned (3) |
-| I-17 | S2 | Statistics | The chi-squared test of genomic location has spreadsheet errors and is not reported in Results | fix planned (4) |
-| I-18 | S3 | Method | Genomic feature percentages are shares of overlap events, not of loci | open |
-| I-19 | S3 | Figure | Figure 3A: hypo and hyper counts swapped; Figure 2D legend says "desiccation" | fix planned (4) |
+| I-16 | S3 | Number | CpG counts: the 1x value is defined differently from the 5x, 10x, 20x values and cannot be traced; 480,479 is a typo; the correlation range is not reproduced | pipeline done (step 04) |
+| I-17 | S2 | Statistics | The chi-squared test of genomic location has spreadsheet errors and is not reported in Results | pipeline done (step 07) |
+| I-18 | S3 | Method | Genomic feature percentages are shares of overlap events, not of loci | pipeline done (step 07) |
+| I-19 | S3 | Figure | Figure 3A: hypo and hyper counts swapped; Figure 2D legend says "desiccation"; one Figure 2B value swapped | pipeline done (steps 06, 07) |
 | I-20 | S2 | Figure | Figure 5 plots row counts of join tables, not the quantities its panel titles name | needs decision |
 | I-21 | S2 | Text vs code | "Enriched" terms behind Figure 9, Table 1, and Section 3.5 are the top ten by p-value, not p < 0.01 | needs decision |
-| I-22 | S2 | Figure | Figures 6 to 8 depend on the REVIGO web server; inputs and labels cannot be regenerated | fix planned (4) |
-| I-23 | S3 | Figure | Figure 2C to 2G: PCA on selected loci is circular; loci are matched by start coordinate only | fix planned (4) |
+| I-22 | S2 | Figure | Figures 6 to 8 depend on the REVIGO web server; inputs and labels cannot be regenerated | fix planned (step 11) |
+| I-23 | S3 | Figure | Figure 2C to 2G: PCA on selected loci is circular; loci are matched by start coordinate only | pipeline done (step 06) |
 | I-24 | S2 | Text | The "CAD" gene is misidentified in the Discussion and Conclusions | open |
-| I-25 | S3 | Number | Chromosome percentages are hand-computed and do not match the DML lists exactly | fix planned (4) |
-| I-26 | S3 | Figure | Figure S1 B and C were built from hand-transcribed histogram values | fix planned (3) |
+| I-25 | S3 | Number | Chromosome percentages are hand-computed and do not match the DML lists exactly | pipeline done (step 07) |
+| I-26 | S3 | Figure | Figure S1 B and C were built from hand-transcribed histogram values | pipeline done (step 04) |
 | I-27 | S3 | Text | Supplementary lists are cited but not assembled | fix planned (6) |
 | I-28 | S2 | Text | Methods describe several steps differently from what was run | open |
 | I-29 | S2 | Text | qPCR and "mitochondrial abundance" claims appear only in the Discussion and are not supported by the data in the repository | needs decision |
 | I-30 | S3 | Text | Manuscript structure: empty abstract, numbering gaps, orphan section, about 60 citations missing from the reference list | open |
-| I-31 | R | Code | No analysis script runs as committed | fix planned (3, 4) |
-| I-32 | R | Code | Non-R and manual steps (Python, bash, bedtools, spreadsheets, PowerPoint, REVIGO) | fix planned (3, 4) |
+| I-31 | R | Code | No analysis script runs as committed | pipeline done for steps 01 to 10; qPCR and semantic similarity pending |
+| I-32 | R | Code | Non-R and manual steps (Python, bash, bedtools, spreadsheets, PowerPoint, REVIGO) | pipeline done except REVIGO (step 11) |
 | I-33 | R | Data | Inputs on a retired server; one annotation source has no surviving copy | fix planned (2) |
 | I-34 | R | Repo | Repository hygiene: duplicates, lock files, misplaced files, 613 MB | fix planned (1) |
 | I-35 | R | Data | gannet directory: about 200 GB of redundant intermediates, one incomplete upload, one mislabelled sample set | needs decision |
 | I-36 | R | Data | Sample metadata are incomplete for the control libraries | needs information |
 | I-37 | R | Environment | Software versions are not recorded anywhere | needs information |
+| I-38 | S3 | Code | The first CpG of every coverage file was dropped on import (`methRead` left at `header = TRUE`) | resolved |
+| I-39 | S1 | Code | The gene universe of the GO enrichment is missing one block of 15,666 transcripts, 36% of the annotated mRNAs | needs decision |
+| I-40 | S1 | Code | `read.table` skipped 76% of the ploidy annotation table and 24% of the heat table because GO term names contain apostrophes | needs decision |
+| I-41 | S1 | Statistics | Enrichment claims compare DML with CpGs and genes that cannot be DML; against those that can, no GO term is enriched and the gene-body enrichment shrinks threefold | needs decision |
+| I-42 | S2 | Data | The functional annotation is a 2017 GO snapshot; the ontology release that was run is not the one the Methods name | needs decision |
 
 ---
 
@@ -115,6 +123,8 @@ Under I-01, a formally tested interaction is still ploidy by cohort, and the tex
 
 **Needs from authors.** Choice among the options. The pipeline will implement the legacy overlap set (to reproduce the manuscript numbers) and the formal test.
 
+**Update 2026-11-19 (verified).** Step 05 regenerates the set in both modes: 200 loci without the upper coverage filter (28, 49, 123) and 159 with it (27, 49, 83); see I-05 and I-09. Because the legacy table carries the heat contrast's values, every "methylation difference" quoted for an interaction-DML in Table 1, Figure 9 and Results 3.5 is heat cohort minus control cohort at that locus, for all animals; for example the "+21%" of nesprin-1 and the "-31%" of the CAD protein. None of these numbers describes a difference between ploidies in the response to heat.
+
 ---
 
 ### I-03 (S1) GO enrichment treats every transcript isoform as an independent gene
@@ -144,6 +154,12 @@ Under I-01, a formally tested interaction is still ploidy by cohort, and the tex
 
 **Needs from authors.** Agreement to make the gene-level analysis primary.
 
+**Update 2026-11-19 (verified).**
+- Step 09 (`01_pipeline/09_go_enrichment_legacy.R`) now repeats the legacy enrichment and reproduces all nine archived Fisher tables term for term, so the counts below come from an exact reproduction and not from a partial recomputation. For every term it records the number of distinct genes behind the transcript counts (`04_output/09_go_enrichment_legacy/tables/legacy_fisher_<set>_<ontology>.csv`, column `genes_significant`).
+- Of the 90 top-ten terms, **45 rest on a single gene and 70 on two genes or fewer** (the count of 43 above came from the earlier partial recomputation). All ten ploidy BP terms and all ten interaction BP terms rest on one or two genes; their p-values run from 1e-19 to 4e-17.
+- Exact reproduction required two further defects to be replicated, logged separately: an incomplete gene universe (I-39) and an input table that was mostly skipped when read (I-40).
+- Step 10 (`01_pipeline/10_go_enrichment_gene_level.R`) runs the gene-level analysis proposed above. The prediction that few or no terms survive is confirmed: against the genes that could hold a DML, **no term is enriched at FDR 0.05 in any DML set, ontology, or mode**. Of the draft's 90 terms, 51 are carried by fewer than five such genes and the other 39 are not enriched (`04_output/10_go_enrichment_gene_level/tables/legacy_top10_at_gene_level.csv`). Details and the reasoning for the choice of universe are in I-41.
+
 ---
 
 ### I-04 (S2) Four of the ten heat libraries also received a 45 C acute heat shock
@@ -171,6 +187,19 @@ Under I-01, a formally tested interaction is still ploidy by cohort, and the tex
 **Options.** Apply the filter and update all downstream numbers, or keep the analysis as run and correct the Methods. Applying it is the more defensible choice.
 
 **Needs from authors.** Choice. The pipeline implements both.
+
+**Update 2026-11-19 (verified).** Both versions run in every step from 04 on (`legacy` and `corrected` in `run_config.R`). With the filter applied as the Methods describe:
+
+| | No upper filter (as run) | With the 99.9th percentile filter |
+|---|---|---|
+| CpGs tested | 480,579 | 454,555 |
+| Ploidy DML (hyper / hypo) | 1,038 (442 / 596) | 952 (430 / 522) |
+| Heat DML (hyper / hypo) | 2,351 (1,150 / 1,201) | 2,273 (1,089 / 1,184) |
+| Loci in both lists (both hyper / both hypo / opposite) | 200 (28 / 49 / 123) | 159 (27 / 49 / 83) |
+| Largest run of DML within 1 kb of each other (ploidy, heat, both) | 53, 39, 39 | 11, 16, 2 |
+| DML inside lncRNA genes (ploidy, heat, both) | 65, 84, 42 | 11, 44, 3 |
+
+The DML that disappear are concentrated in a few high-coverage regions; the largest is the locus of I-09. The "opposite sign" class of the shared loci loses a third of its members (123 to 83), and the lncRNA result of Results 3.3 does not survive the filter. Source: `04_output/05_differential_methylation/tables/dml_counts_by_mode.csv`, `04_output/07_genome_features/tables/dml_region_summary_<mode>.csv`, `04_output/08_gene_annotation/tables/annotation_summary.csv`.
 
 ---
 
@@ -221,6 +250,8 @@ Under I-01, a formally tested interaction is still ploidy by cohort, and the tex
 **Why it matters.** The lncRNA "enrichment" among interaction loci, and the link drawn to "gene silencing by RNA", describe one locus, not a genome-wide pattern. Counting neighbouring CpGs as independent loci also overstates the number of independent differences throughout. A block of many adjacent CpGs that differs between groups of animals from different stocks is also what a structural or copy-number variant looks like (see I-08).
 
 **Proposed resolution.** Report regions as well as loci (number of distinct regions and genes), and describe this locus explicitly.
+
+**Update 2026-11-19 (verified).** The region holds 54 of the 480,579 tested CpGs, and every one of them is removed by the upper coverage filter that the Methods describe (I-05): each lies at or above the 99.9th percentile of coverage in at least one library. With the filter the region contributes no DML, the shared loci inside lncRNA genes drop from 42 to 3, and lncRNA genes become depleted of DML relative to other eligible CpGs (odds ratio 0.32 for ploidy, 0.53 for heat) instead of enriched. Coverage far above the genome-wide distribution over a 2.2 kb block is the signature of a collapsed repeat or a copy-number difference, which strengthens the reading that this locus reflects sequence, not methylation regulated by ploidy or heat. The sentence in Results 3.4 that ties "the concentration of interaction-DML in lncRNA loci (15.5%)" to "gene silencing by RNA" rests on this one region. Step 07 writes the regions (`dml_regions_<mode>.csv`): 1,038 ploidy DML form 830 regions, 2,351 heat DML form 1,834, and the 200 shared loci form 152.
 
 ---
 
@@ -284,6 +315,8 @@ Residual normality is Shapiro-Wilk on model residuals; equal variance is Brown-F
 
 **Resolution.** Compute the background from the analysed CpG set. The percentages in Results 3.3 and the enrichment and depletion statements will be regenerated.
 
+**Update 2026-11-19 (verified).** Step 07 computes the background from the 480,579 tested CpGs. The legacy shares turn out to be within 0.5 percentage points of the correct ones, so this error by itself changes little. Step 07 also reproduces every DML location percentage quoted in Results 3.3 (column `legacy_share_pct` of `feature_overlap_by_track_legacy.csv`), which confirms how they were computed (I-18). The larger problem with the background is one of definition, not arithmetic: see I-41.
+
 ### I-15 (S2) The 1x genomic distribution double counts exons
 
 **Where.** Results 3.1, last paragraph ("exon UTR (27.3%)").
@@ -297,6 +330,12 @@ Residual normality is Shapiro-Wilk on model residuals; equal variance is Brown-F
 **Evidence (verified).** The 5x, 10x, and 20x counts (2,297,236; 480,579; 29,884) are CpGs covered in all 22 libraries. The corresponding 1x count in the code and in `analyses/coverage_summary.xlsx` is 5,852,939. The manuscript's 12,794,074 is on a different definition (CpGs covered in at least one library) and its source is not in the repository. Section 3.2 and Figure 3A say 480,479; the value is 480,579. The percentages of genomic CpGs (96.6%, 3.6%) need a stated denominator.
 
 **Resolution.** Report both definitions, labelled; compute the genome total from the reference sequence.
+
+**Update 2026-11-19 (verified).**
+- Step 04 reproduces all 25 counts of `analyses/coverage_summary.xlsx` exactly (five sample sets at 1x, 3x, 5x, 10x, 20x), once the loss of the first line of each file is replicated (I-38).
+- The reference (Roslin v1 plus the mitochondrial genome) holds 13,245,836 CpG sites, which is the denominator behind both percentages in the text (12,794,074 / 13,245,836 = 96.6%; 480,579 / 13,245,836 = 3.6%).
+- CpGs with at least one read in at least one library number **12,918,252** (97.5%). The manuscript's 12,794,074 could not be traced: it is not in any script, comment or table of the repository, and it is not the row count of either union file on gannet (`bed_files/BOTH/union_1x.BOTH.bedgraph.bed`, 12,910,231 rows; `union_1x.bedgraph.bed`, 12,726,299 rows).
+- Results 3.1 gives pairwise Pearson correlations of "0.87 to 0.93 across all samples" at 1x. Regenerated with methylKit's own normalization: 0.79 to 0.90 at 1x (5,852,939 CpGs) and 0.84 to 0.94 at 10x (480,579 CpGs). The source of the quoted range is undetermined. The sentence also reads the range as "consistent methylation patterns within treatment groups"; the median correlation is 0.862 within a cohort and 0.856 between cohorts at 1x, so the libraries are about as similar across groups as within them.
 
 ### I-17 (S2) Chi-squared test of genomic location
 
@@ -314,17 +353,32 @@ Residual normality is Shapiro-Wilk on model residuals; equal variance is Brown-F
 
 Figure 3A labels the bars "hypo (28)" and "hyper (49)"; the data have 28 loci positive in both contrasts and 49 negative in both, as the text says. Figure 2D's legend says "desiccation". Figure 3A says 480,479.
 
+**Update 2026-11-19 (verified).** Step 05 regenerates the threshold sweep behind Figure 2A and 2B. Of its 60 values, 59 match `analyses/DML_difference_threshold_comparison.xlsx`; the exception is the heat set at 50%, where the workbook has 1 hypermethylated and 3 hypomethylated and the data (and the legacy script's own comments) have 3 and 1. Steps 06 and 07 draw Figures 2, 3 and 4 from the tables, with labels generated from the data.
+
 ### I-20 (S2) Figure 5 does not plot what its panels name
 
 **Evidence (verified).** The values are typed into `code/gene-plots.Rmd:61-66` and match `GOterms/summary_table.xlsx`, whose entries in turn match row counts noted in comments of the enrichment script. "GO terms" (for example 39,688 for heat BP) is the number of rows in a table of DML x transcript x term combinations, not a number of terms. "Unique transcripts" and "gene products" count transcripts annotated to the ten top terms. "Unique genes" (1, 3, 1 for BP) disagrees with Table 1, which lists six genes for ploidy BP.
 
 **Options.** Replace with defined quantities computed by the pipeline (genes containing DML, by set), or drop the figure.
 
+**Update 2026-11-19 (verified).** Step 09 reproduces all 36 values of the figure and writes, next to each, what it counts (`04_output/09_go_enrichment_legacy/tables/figure_5_values_legacy.csv`):
+
+| Panel title in the draft | What the number is |
+|---|---|
+| Unique transcripts (128 for ploidy BP) | Transcripts of the gene universe annotated to one of the ten top-ranked terms, whether or not their gene holds a DML |
+| GO terms (4,379 for ploidy BP) | Rows of the DML x transcript x GO term table for that ontology, after the faulty read of I-40 |
+| Unique genes (1 for ploidy BP) | Genes that hold a DML and are annotated directly with one of the ten top-ranked terms |
+| Gene products (199 for ploidy BP) | Rows of a table that pairs each of the ten top-ranked terms with the universe transcripts carrying it, repeated for each DML and GOslim bin |
+
+None of the four is the quantity its title names, three of them depend on the choice of ten terms, and all inherit I-39 and I-40. For reference, the quantities the titles suggest are in `04_output/08_gene_annotation/tables/annotation_summary.csv`: genes holding a DML number 724 (ploidy), 1,476 (heat) and 143 (in both lists); 625, 1,246 and 119 of them have GO terms.
+
 ### I-21 (S2) "Enriched" means top ten
 
 **Evidence (verified).** `code/5_WGBS_Functional-enrichement-analysis-BOTH.R:321-340` takes rows 1 to 10 of each topGO table. The Methods say p < 0.01. Between 36 and 856 terms per set and ontology have p < 0.01, so Figure 9, Table 1, and the percentages in Section 3.5 (for example "CC 49%, MF 31%, BP 20%") describe ten terms each. The "Category" column of Table 1 is hand-assigned.
 
 **Resolution.** Tied to I-03.
+
+**Update 2026-11-19 (verified).** Step 09 reproduces the 18 counts of Figure 9 and the 20 rows of Table 1 exactly from the ten top-ranked terms per ontology. Terms with p < 0.01 number 383, 856 and 341 (BP), 43, 145 and 36 (CC), 68, 172 and 74 (MF) for ploidy, heat and the shared loci. A "DML within a gene with an enriched GO term" is, in the code, any DML of any transcript that carries one of the ten terms directly or through a child term, so Figure 9 counts DML of a handful of genes (for ploidy BP: 10 DML in 6 genes, 4 of them in nesprin-1). Under the gene-level analysis no term is enriched (I-41), so Figure 9 and Table 1 have no corrected counterpart.
 
 ### I-22 (S2) Figures 6 to 8 depend on the REVIGO web server
 
@@ -370,7 +424,8 @@ Section 7 cites lists of DML, GO terms, and genes that are not assembled. The pi
 | "alignment scores must exceed 90%" | `--score_min L,0,-0.6`, a minimum alignment score function, not a percentage | job scripts |
 | Methylation calls extracted, then BAMs deduplicated | Deduplication first, then extraction | job scripts |
 | CpGs in the 99.9th percentile of coverage removed | Not applied (I-05) | methylKit script |
-| GO background: genes with CpGs at 10x in all samples | Transcripts with a CpG at 1x in any sample (I-03) | annotation notebook |
+| GO background: genes with CpGs at 10x in all samples | Transcripts with a CpG at 1x in any sample (I-03), minus a block of 15,666 transcripts lost to a failed write (I-39) | annotation notebook; `geneid2go-union1x-BOTH.tab` |
+| GO terms "matched using Uniprot Accession codes" | From a UniProt table dated July 2017, joined to blastx hits of June 2021 (I-42) | annotation notebook, download of `uniprot-SP-GO.sorted` |
 | Enriched terms: Fisher p < 0.01 | Top ten for Table 1 and Figure 9; p < 0.01 for Figures 6 to 8 (I-21) | enrichment script |
 | Ploidy and treatment "as covariates" | Each factor tested with the other as covariate; no interaction term (I-02) | methylKit script |
 | Chi-squared contingency test | Spreadsheet with errors; not reported (I-17) | workbook |
@@ -378,7 +433,8 @@ Section 7 cites lists of DML, GO terms, and genes that are not assembled. The pi
 | Controls from a mesocosm experiment "investigating ... gonad methylation" | Control libraries are ctenidia from Zymo project zr3644, a separate diploid/triploid experiment with ambient and low pH arms; details to be confirmed (I-36) | `metadata.xlsx` |
 | ELISA: 5 ng/uL, "4 mL"; standards 0.1 to 5% | 25 ng assumed; standards 0 to 1% used (I-12) | ELISA script |
 | BioProject PRJNAXXXX | zr3534 is PRJNA678408 in the sample sheet; zr3644 not recorded | `zr3534_wgbs_info.csv` |
-| methylKit v1.17.4, topGO v2.34.0 | Not recorded anywhere (I-37) | none |
+| methylKit v1.17.4, topGO v2.34.0 | Not recorded anywhere (I-37). The archived GO tables are reproduced exactly with GO.db 3.13.0 and with no later release, so the enrichment ran under Bioconductor 3.13, whose topGO is 2.44.0 | step 09 |
+| Semantic similarity in REVIGO | REVIGO for the figures; simplifyEnrichment for the archived PDFs (I-22) | enrichment script |
 
 ### I-29 (S2) qPCR and "mitochondrial abundance" claims
 
@@ -418,6 +474,8 @@ Feature overlap and GO annotation are in Python and bash notebooks that call bed
 
 `owl.fish.washington.edu` does not respond. It held the exon and CDS tracks (also on OSF, doi:10.17605/OSF.IO/YGCTB, and now being brought into GitHub) and the UniProt-to-GO table `uniprot-SP-GO.sorted` used to build the gene-to-GO map, for which no copy has been found. The derived map (`geneid2go*.tab`) survives on gannet and will be used as the frozen annotation; the alternative is to rebuild from current UniProt, which would change the annotation.
 
+**Update 2026-11-19.** The complete transcript-to-GO map (`data/geneid2go.tab` on gannet, 47,266 transcript names) is now in `03_input_files/annotation/`, together with the three legacy DML annotation tables. The GO-to-GOslim table of the same server (`GO-GOslim.sorted`) is also lost; the 5,217 rows of it that the legacy tables used were recovered from those tables (`03_input_files/annotation/build_legacy_go_terms.R`), which is enough to regenerate the tables line for line and for nothing else. See I-42 for the age of the annotation.
+
 ### I-34 (R) Repository hygiene
 
 613 MB; `old_WGBS/` duplicates code and data; `tables/` duplicates parts of `GOterms/`; qPCR analysis sits under `ELISA/`; the WGBS sample sheet and sequencing reports sit under `gene_expression/`; Office lock files and `.DS_Store` are committed; the README links to paths that no longer exist; no license; no lockfile.
@@ -439,3 +497,109 @@ No animal IDs, source experiment description, holding conditions, or accessions 
 No script records `sessionInfo()`. The versions in the Methods (methylKit 1.17.4, topGO 2.34.0) cannot be confirmed; topGO 2.34.0 dates from 2018 and may have been carried over from an earlier paper. The audit environment is R 4.3.3 with Bioconductor 3.18 (methylKit 1.28.0, topGO 2.54.0); the CpG count reproduces exactly under it.
 
 **Needs from authors.** The R version and operating system to target for the lockfile.
+
+**Update 2026-11-19 (verified).** Every pipeline step now writes `session_info.txt` to its output folder. One legacy version has been pinned down from the outputs: the nine archived topGO tables are reproduced exactly with GO.db 3.13.0 (GO release of 2021-02-01), and not with 3.14.0 or 3.18.0, so the enrichment ran under Bioconductor 3.13 (R 4.1, topGO 2.44.0). The methylKit version remains unknown; the DML lists reproduce exactly under 1.28.0, with q-values equal to five significant digits.
+
+---
+
+## Added 2026-11-19
+
+### I-38 (S3) The first CpG of every coverage file was dropped on import
+
+**Where.** Every legacy methylKit import; the 1x and 3x CpG counts.
+
+**Evidence (verified).** `code/1_coverage_analysis.R:108-141` and `code/2_WGBS_Methylkit-all-gigas.R:100-112` call `methylKit::methRead()` without `header = FALSE`. The default is `header = TRUE` (methylKit 1.28.0), and Bismark coverage files have no header line, so the first line of each of the 22 files was consumed as column names. For two libraries read both ways, `methRead` returns exactly one row fewer than the file has lines, and the missing row is line 1.
+
+**Effect.** One CpG per library. The legacy counts at 1x are 1 or 2 lower than a complete read (5,852,939 against 5,852,940 for all libraries), and the heat-only 3x count is 1 lower. None of the 22 first-line CpGs has 10x coverage in all libraries, so no DML result changes.
+
+**Resolution.** Legacy mode reproduces the loss, which is why all 25 counts of the coverage workbook now match exactly; corrected mode reads every line (`read_cov()` and `first_line_lost()` in `02_R_functions/coverage_io.R`). No decision needed.
+
+### I-39 (S1) The gene universe of the GO enrichment is missing 36% of the annotated transcripts
+
+**Where.** Methods 2.6; Results 3.4 and 3.5; Figures 5 to 9; Table 1.
+
+**Evidence (verified).**
+- The universe handed to topGO is `geneid2go-union1x-BOTH.tab`: 27,469 transcripts. The complete map built by the same notebook (`data/geneid2go.tab` on gannet) holds GO terms for 43,184 mRNAs of the annotation.
+- The 15,715 missing mRNAs are not scattered. 15,666 of them are one unbroken run of accession numbers, XM_011455141.3 to XM_034461018.1, within which no annotated transcript is present; only 49 others are absent.
+- Because accession numbers follow annotation history and genome position, the loss is uneven across the genome. The share of annotated mRNAs present in the universe is 18% on NC_047567.1, 24% on NC_047566.1, 35% on NC_047565.1 and NC_047568.1, 64% on NC_047559.1, and 84% to 96% on the other five linkage groups (`04_output/09_go_enrichment_legacy/tables/legacy_universe_by_chromosome.csv`).
+- Likely cause (inference): the universe was taken from a 19 GB table (`union_1x-BOTH.GeneIDs.geneOverlap.transcriptIDs.GOAnnot`) written by a `join ... | sort | uniq > file` cell of `code/4_WGBS_GOterm-Annotation-BOTH.ipynb`, whose saved output is `uniq: write error`. The equivalent tables of the other two datasets on gannet are 30 GB and 33 GB.
+- The intended universe was transcripts overlapping a CpG with 1x coverage in any library, not genes with CpGs at 10x in all samples as the Methods say (already noted in I-03).
+
+**Why it matters.** A gene outside the universe can be neither a gene of interest nor part of the background. Of the genes that hold a DML and have GO terms, the universe contains 73% (ploidy), 75% (heat) and 78% (shared loci). Both sides of every Fisher test were a subset of the genome defined by accession number.
+
+**Resolution.** The gene-level analysis (step 10) builds its universe in R from the CpGs that were tested. Step 09 keeps the legacy universe for reproduction only.
+
+### I-40 (S1) Most of the ploidy annotation table and a quarter of the heat table were skipped when read into R
+
+**Where.** Same items as I-39, plus the "GO terms" panel of Figure 5.
+
+**Evidence (verified).**
+- `code/5_WGBS_Functional-enrichement-analysis-BOTH.R:71-84` reads the three DML annotation tables with `read.table(file, header = FALSE, sep = "\t", col.names = ...)`. `read.table` treats `'` and `"` as quote characters unless told otherwise. GO term names contain apostrophes ("RNA 3'-end processing", "'de novo' pyrimidine base biosynthetic process", "Peyer's patch development"), so each apostrophe opens a quoted field that runs on to the next apostrophe, and every line in between is absorbed into that one field.
+- Lines in the file against rows read: ploidy 46,626 against 10,979 (24% read); heat 106,621 against 81,109 (76%); shared loci 7,029 against 6,941 (99%). The script's own comments record the smaller numbers (`# 10979`, `# 81109`, `# 6941`).
+- Transcripts carried into the test: 623 of 2,348 (ploidy), 3,444 of 4,606 (heat), 379 of 379 (shared). Genes: 171 of 622, 949 of 1,237, 117 of 117.
+- Together with I-39, the genes that entered the test as genes of interest were 168 of 622 (27%) for ploidy, 610 of 1,237 (49%) for heat, and 91 of 117 (78%) for the shared loci (`04_output/09_go_enrichment_legacy/tables/legacy_funnel.csv`).
+- Confirmation: with this reader, the legacy universe, and GO.db 3.13.0, step 09 reproduces all nine archived Fisher tables exactly (every term, both counts). With a correct reader the tables differ; for example the BP test for ploidy has about 2.5 times as many transcripts of interest (1,254 against 498, counted under GO.db 3.18.0).
+
+**Why it matters.** Which genes were dropped depends on where apostrophes happen to fall in a table sorted by accession number. Three quarters of the genes with ploidy DML never reached the test. The ranking of terms, the top-ten lists, Figure 9 and Table 1 would all differ had the table been read in full.
+
+**Resolution.** Steps 08 and 10 read the tables with quoting disabled. The faulty reader is kept in one place (`read_dml_annotation(reader = "legacy")`) and used by step 09 only.
+
+### I-41 (S1) Enrichment claims compare DML with CpGs and genes that cannot be DML
+
+**Where.** Results 3.3 ("strongly biased toward gene-associated sequences, with substantial enrichment in introns and coding sequences"), 3.4, 3.5; Figure 3A; Discussion sections that interpret location or function of DML.
+
+**Evidence (verified).**
+- A DML is a CpG whose methylation differs by at least 20 percentage points between two groups of similar size. That requires a mean methylation across libraries between 10% and 90%. Of the 480,579 tested CpGs, 84.6% have a mean below 10% and 1.8% a mean above 90%; **65,480 (13.6%) can be DML at all** ("eligible" CpGs). All but 2 of the 3,389 ploidy and heat DML lie in that range.
+- Methylation in this genome is concentrated in gene bodies (Gavery and Roberts 2010, BMC Genomics 11:483, doi:10.1186/1471-2164-11-483), and in invertebrates generally in broadly expressed, conserved genes (Sarda et al. 2012, Mol Biol Evol 29:1907, doi:10.1093/molbev/mss062). Any set of methylated CpGs, DML or not, will therefore look enriched in genes and in housekeeping functions when compared with all CpGs.
+- Location (step 07, `feature_association_tests_legacy.csv`). Odds ratio of a DML lying in a feature, against all tested CpGs and against eligible CpGs:
+
+  | Feature | Ploidy DML, all tested | Ploidy DML, eligible | Heat DML, all tested | Heat DML, eligible |
+  |---|---|---|---|---|
+  | Gene body | 7.1 | 2.5 | 6.1 | 2.2 |
+  | Intron | 1.9 | 0.80 | 2.0 | 0.87 |
+  | CDS | 1.5 | 1.7 | 1.4 | 1.6 |
+  | Transposable element | 0.77 | 0.54 | 0.83 | 0.57 |
+  | Intergenic | 0.11 | 0.30 | 0.14 | 0.37 |
+
+  Against the CpGs that could have been DML, the gene-body enrichment is a third as large, the intron "enrichment" becomes a mild depletion, and only coding sequence stays enriched.
+- Function (step 10). Only 8,199 of the 21,026 genes with a tested CpG hold an eligible CpG. Against genes with a tested CpG, the gene-level Fisher test with Benjamini-Hochberg adjustment calls 102, 48 and 52 terms enriched for ploidy (BP, CC, MF) and 197, 82 and 78 for heat; the strongest are "nucleus", "organelle", "intracellular organelle", "RNA metabolic process". Against genes with an eligible CpG, and adjusting for the number of eligible CpGs per gene (Wallenius test of goseq; Young et al. 2010, Genome Biol 11:R14, doi:10.1186/gb-2010-11-2-r14), **no term is enriched at FDR 0.05** for any DML set, ontology, or mode. The smallest q-values are 0.27 (ploidy), 0.075 (heat; the term is "organelle") and 0.34 (shared loci).
+- The number of eligible CpGs in a gene strongly predicts whether it holds a DML: from 5% of genes with one eligible CpG to 69% of genes with more than 100 for heat, and from 3% to 52% for ploidy (`dml_probability_by_cpg_count.csv`). A test that ignores this favours terms annotated to long, heavily methylated genes.
+- Negative control (`06_diagnostics/go_random_cpg_control.R`). CpGs drawn at random from the eligible CpGs, as many as there are DML, and passed through the same code as if they were DML:
+
+  | Analysis | Random CpGs, ploidy-sized list (median of 10 draws; BP, CC, MF) | Real ploidy DML | Random CpGs, heat-sized list | Real heat DML |
+  |---|---|---|---|---|
+  | Tested universe, Fisher, FDR | 37, 40, 39 | 102, 48, 52 | 129.5, 67.5, 63.5 | 197, 82, 78 |
+  | Eligible universe, Fisher, FDR | 49.5, 12, 1.5 | 0, 2, 8 | 87.5, 22, 11.5 | 22, 0, 31 |
+  | Eligible universe, Wallenius, FDR | 0, 0, 0 | 0, 0, 0 | 0, 0, 0 | 0, 0, 0 |
+
+  Random CpGs produce dozens to hundreds of "enriched" terms under the first two analyses (up to 200 BP terms in a single heat-sized draw, against 197 for the real heat DML) and none under the third in any of the 20 draws. Enrichment against the tested universe is therefore a property of the methylation landscape, and the third analysis keeps its error rate.
+
+**Why it matters.** The location and function results in the draft are presented as effects of ploidy and heat. Most of what they show is where methylation sits in the oyster genome. What remains after the comparison is made fair: DML are about twice as likely as other eligible CpGs to lie in gene bodies, with the excess in coding sequence, and they show no functional preference that this analysis can detect. The second half of that sentence removes the basis for Results 3.4 and 3.5, Figures 5 to 9, Table 1, and the mechanistic passages of the Discussion (DNA replication and meiosis for ploidy; MAPK, ER overload and RNA processing for heat; tRNA modification and "alarm system" thresholds for the interaction).
+
+**Limits of this conclusion.** (1) Absence of enrichment is not evidence that the DML are functionally irrelevant; with 625 to 1,246 annotated DML genes the test has reasonable power for large categories and little for small ones. (2) The annotation is old (I-42) and covers 65% of protein-coding genes (20,279 of 31,371). (3) DML are assigned to gene bodies only; promoters are not considered. (4) The eligible range follows from the 20-point threshold; a different threshold moves it. (5) The heat contrast remains a cohort contrast (I-01) whatever the enrichment method.
+
+**Options.**
+1. Report location against eligible CpGs and state that no GO category is over-represented among genes holding DML; replace Figures 5 to 9 and Table 1 with a descriptive supplementary table of genes holding DML, labelled as descriptive.
+2. Keep a functional analysis but change its question, for example enrichment among genes ranked by a region-level statistic within one cohort (ploidy within controls, ploidy within heat), which also avoids I-01. This is new analysis, not a correction.
+3. Refresh the annotation first (I-42) and repeat option 1; it is unlikely to change the outcome, because the null result comes from the choice of universe and the bias adjustment, not from annotation coverage, but that has not been tested.
+
+**Needs from authors.** Choice among the options. Option 1 is what the current data support.
+
+### I-42 (S2) The functional annotation is a 2017 GO snapshot
+
+**Where.** Methods 2.6; every GO result.
+
+**Evidence (verified).**
+- `code/4_WGBS_GOterm-Annotation-BOTH.ipynb` downloads the accession-to-GO table (`uniprot-SP-GO.sorted`) and the GOslim table (`GO-GOslim.sorted`) from a directory named `17-07-20`. The GO terms attached to each transcript are therefore those UniProt held in July 2017, joined by accession to blastx hits made in June 2021 (`20210605-cgigas-roslin-mito-blastx.outfmt6`). Accessions that entered Swiss-Prot after 2017 have no terms; 1,920 of the 47,266 transcripts with a hit carry none.
+- 1,333 GO IDs attached to transcripts of DML genes are absent from the 2017 GOslim table and were dropped from the descriptive tables, though not from the tests, which used a different file.
+- The enrichment ran on the ontology of February 2021 (GO.db 3.13.0; see I-37). Under the current ontology (GO.db 3.18.0, July 2023), 245 of the 4,564 GO IDs in the legacy tables no longer exist and are dropped.
+- Neither 2017 table survives (I-33).
+
+**Options.**
+1. Keep the frozen annotation. Reproducible from the repository; nine years old at submission.
+2. Refresh: keep the 2021 blastx hits (or rerun blastx against current Swiss-Prot), pull current GO terms for the 21,000 accessions from UniProt, and freeze that table in the repository with its retrieval date. Requires one download from UniProt; changes every GO number.
+
+**Recommendation.** If a functional analysis stays in the paper, option 2. If I-41 is resolved by dropping the functional claims, the annotation is needed only for gene names, which come from the RefSeq annotation and are current.
+
+**Needs from authors.** Choice.
+

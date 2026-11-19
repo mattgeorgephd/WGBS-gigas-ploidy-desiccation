@@ -22,4 +22,21 @@ Larger intermediates (per-library filtered objects, model fits) are written unde
 
 Outputs that depend on an analysis mode carry the mode in the file name, for example `dml_ploidy_legacy.csv` and `dml_ploidy_corrected.csv`. The modes are defined in `run_config.R` and described in `07_documentation/reproducibility_plan.md`, section 4.
 
-No outputs exist yet; this folder fills as the pipeline steps are added.
+## Folders
+
+| Folder | Main tables | Figures |
+|---|---|---|
+| `01_fetch_inputs/` | `input_inventory.csv` | |
+| `02_alignment_qc/` | per-library alignment statistics; batch comparison | |
+| `03_global_methylation/` | `elisa_percent_5mC.csv`, `anova_by_scale.csv`, post hoc tests | Figure 1 |
+| `04_cpg_coverage/` | `cpg_counts_by_coverage.csv`, `genome_cpg_total.csv`, `library_coverage.csv`, correlations, PCA | Figure S1 |
+| `05_differential_methylation/` | `united_cpg_<mode>.csv.gz` (the tested CpGs with counts), `diffmeth_<contrast>_<mode>.csv.gz`, `dml_{ploidy,heat,shared}_<mode>.csv`, `dml_counts_by_threshold_<mode>.csv`, `dml_counts_by_mode.csv`, `bed/` | |
+| `06_dml_figures/` | PCA scores and variance on the DML | Figures 2 and 4 |
+| `07_genome_features/` | `feature_overlap_by_track_<mode>.csv`, `feature_class_exclusive_<mode>.csv`, `feature_association_tests_<mode>.csv`, `dml_by_linkage_group_<mode>.csv`, `dml_regions_<mode>.csv` | Figure 3 |
+| `08_gene_annotation/` | `gene_table_<mode>.csv.gz`, `genes_with_dml_<set>_<mode>.csv`, `dml_gene_overlap_<set>_<mode>.csv`, `gene_go_map.csv.gz`, `transcript_table.csv.gz`, `annotation_summary.csv`, `dml_go_annotation_<set>_legacy.tsv.gz` | |
+| `09_go_enrichment_legacy/` | `legacy_fisher_<set>_<ontology>.csv`, `legacy_funnel.csv`, `legacy_reader_loss.csv`, `legacy_universe_by_chromosome.csv`, `figure_5_values_legacy.csv`, `figure_9_values_legacy.csv`, `table_1_legacy.csv` | Figures 5 and 9 as in the draft |
+| `10_go_enrichment_gene_level/` | `go_gene_level_<set>_<mode>.csv`, `go_gene_level_summary.csv`, `go_enriched_terms.csv`, `legacy_top10_at_gene_level.csv`, `dml_probability_by_cpg_count.csv`, `go_terms_by_analysis.csv` | bias by CpG count; terms called enriched by each analysis |
+
+`shared` in a file name is the set the draft calls interaction-DML: the loci that are in both the ploidy and the heat list (issue I-02).
+
+PDF figures and `session_info.txt` carry a time stamp, so they show as changed after a rerun even when the content is the same. The CSV files do not.

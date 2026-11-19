@@ -6,7 +6,7 @@ apt-get update -qq || echo "WARN: apt-get update failed" >&2
 apt-get install -y --no-install-recommends r-base-core r-base-dev \
   libcurl4-openssl-dev libbz2-dev liblzma-dev zlib1g-dev libglpk40 libxml2-dev libssl-dev \
   r-bioc-genomicranges r-bioc-rtracklayer r-bioc-go.db r-bioc-annotationdbi r-bioc-qvalue \
-  r-bioc-rsamtools r-bioc-rhtslib r-bioc-limma r-bioc-complexheatmap r-bioc-gosemsim \
+  r-bioc-rsamtools r-bioc-rhtslib r-bioc-limma r-bioc-complexheatmap r-bioc-gosemsim r-bioc-goseq \
   r-cran-biocmanager r-cran-tidyverse r-cran-data.table r-cran-readxl r-cran-pheatmap \
   r-cran-vegan r-cran-here r-cran-multcomp r-cran-emmeans r-cran-patchwork r-cran-car \
   r-cran-r.utils r-cran-ggrepel r-cran-renv r-cran-knitr r-cran-rmarkdown r-cran-writexl \
