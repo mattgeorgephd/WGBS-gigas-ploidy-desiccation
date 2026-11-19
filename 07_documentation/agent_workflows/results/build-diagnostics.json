@@ -1,10 +1,10 @@
 {
  "workflow": "build-diagnostics",
  "run_id": "wf_1f1a6a86-611",
- "agents_finished": 12,
+ "agents_finished": 13,
  "agents_running_or_lost": [
-  "fix:feature_odds_matched",
-  "fix:coverage_filter_variants"
+  "fix:coverage_filter_variants",
+  "fix:check_methylkit_equivalence"
  ],
  "results": [
   {
@@ -2066,6 +2066,373 @@
     ],
     "readme_row": "| `legacy_reader_mechanism.R` | How the legacy enrichment script lost most of the ploidy annotation table and a quarter of the heat table: `read.table()` with its default quote characters, and apostrophes in GO term names. For the three legacy tables: rows, transcripts and genes returned by four reads (default quote characters, no quote character, the double quote alone, the apostrophe alone) with the warnings R gives; the lines with an unpaired apostrophe, the merged rows, and the proof by intervention; the transcripts and genes that vanish; where the survivors lie (accession run, linkage groups); the overlap with the universe gap; survival by number of transcripts per gene. For ploidy, an accession-run control of the BP test: every universe transcript of the surviving accession run as the list of interest, with no DML information, against random lists of single transcripts and against random gene sets with the run's numbers of genes and of transcripts per gene; and lists of the length of the legacy list drawn from the run, from the whole universe, from the linkage groups of the run and from 20 of the gene sets (5,000 seeded lists in all). Every list is tested with the totals counted in map lines (as step 09) and in transcripts. The run against single transcripts shows the isoform unit of I-03 together with the place of the run; the gene sets are the like-for-like comparison. Stops unless every read returns the rows predicted from the quote rule of `scan()` and its counts and p-values equal those of step 09. About 4 minutes, 1.3 GB; needs the outputs of steps 08 and 09 and GO.db 3.13.0 in the cache. Issues I-40, I-39, I-43, I-03. | `legacy_reader_mechanism.csv` (long format: table, quantity, value, definition), `legacy_reader_by_linkage_group.csv`, `legacy_reader_position_control.csv` (the accession-run control) |",
     "notes": "All five review findings were checked with my own code, found right, and applied. The script ran clean twice from the repository root (237 s and 235 s, peak memory 1.30 GB) and the three CSV files are byte-identical between the two runs. Every target of parts (a) to (f) still holds exactly.\n\nOne result differs from the reviewer's, and it matters for the issue text. The reviewer's random gene sets are all whole genes, but the run holds 702 of its 5,264 genes only in part. Matched exactly, random gene sets give a median of 888 terms with transcript totals (run 1,041; 25 of 200 sets reach it) and 763 with line totals (run 555; 189 of 200). The reviewer had 1,072.5 and 963, which I reproduced exactly before changing the match. The reading of finding 1 stands: the excess of the run over single transcripts (47) is the isoform unit, and the run lies within the range of gene sets with no common position. The handoff (07_documentation/session_handoff.md, the two paragraphs on this script) quotes the reviewer's 1,072.5 and 963 and the builder's proposed text; both are superseded.\n\nAt the length of the legacy list the picture is less clean than either earlier text said:\n- Line totals, as the legacy test: run 36, universe 43.5, five linkage groups 35.5, random gene sets 60 (set medians 45 to 90). The run lies below all 20 sets.\n- Transcript totals: run 81, universe 38, five linkage groups 48, random gene sets 64 (53.5 to 79). The run lies just above all 20 sets.\nSo most of the excess of run lists appears for any gene set of that size, but I would not write that position adds nothing. The proposed I-40 text says only what the table supports.\n\nChecks behind the new code, all in scratch:\n- The 200 gene sets have the structure of the run by a second method (data.table grouping).\n- An explicit gene-by-gene version of the draw under another seed gives the same distribution (medians 770 and 890.5).\n- topGO itself, called as step 09 calls it, gives bit-identical p-values for five of the new lists in both units.\n- Every summary column of the control table was recomputed with base R from the per-list results: no mismatch in 16 rows.\n- Three altered copies stop with a plain message and write nothing: halves that do not match the run, one wrong p-value in the step 09 table (the old all.equal check lets it pass), and wrongly dealt gene sets.\n\nLimits and things not done:\n- A median of 200 lists has a bootstrap standard error of about 2 to 4 terms (12 to 19 for the gene sets), so differences of a few terms between kinds mean nothing. This number is from scratch, not from the script, and is not in the proposed issue text.\n- The lists of 612 are single transcripts. A control with random isoform sets of the legacy size (168 genes), from the run and from the universe, would be the direct null for the 383 terms. The review did not ask for it and I did not add it.\n- The reviewer's comparison with other accession windows is not in the script.\n- The output file keeps the name legacy_reader_position_control.csv because the specification names it; the header says what the word stands for.\n- Only R 4.3.3 was available.\n\nNo file was removed from 06_diagnostics: the script writes the same three files. I edited no README, helper, pipeline script, run_config.R or issues.md and ran no state-changing git command. The parent session's snapshot commit 7251365 already holds the final script and tables (same md5 as on disk), though its message says not final. The run line of 06_diagnostics/README.md still says review pending; a fitting comment is \"about 4 minutes; after steps 08 and 09\".\n\nScratch work, including the reviewer-design reproduction and the three failure tests, is in /tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/fix-legacy_reader_mechanism."
+   }
+  },
+  {
+   "agent": "fix:feature_odds_matched",
+   "phase": "Fix",
+   "result": {
+    "script": "/home/user/WGBS-gigas-ploidy-desiccation/06_diagnostics/feature_odds_matched.R",
+    "outputs": [
+     "/home/user/WGBS-gigas-ploidy-desiccation/06_diagnostics/feature_odds_matched.csv",
+     "/home/user/WGBS-gigas-ploidy-desiccation/06_diagnostics/feature_odds_matched_within_group_sd.csv",
+     "/home/user/WGBS-gigas-ploidy-desiccation/06_diagnostics/feature_odds_label_permutation.csv",
+     "/home/user/WGBS-gigas-ploidy-desiccation/06_diagnostics/feature_odds_label_permutation_counts.csv"
+    ],
+    "changes_made": [
+     "Finding 1 (medium, Monte Carlo error of the label permutation), applied by complete enumeration: comparison 8 now evaluates every labelling of the ploidy labels within cohort instead of 1,000 draws. That is 252 x 924 = 232,848 labellings, of which 110,880 are also balanced on the acute heat shock (one of each mirror pair is computed; the script checks both totals against the binomial coefficients). Exact for both schemes, with no seed: CpGs called per labelling (median, 5th and 95th percentile, smallest, largest, number and share of labellings reaching the real number), share of eligible CpGs called by 5-point and 10-point methylation bin and inside and outside each track, and the median, 2.5th and 97.5th percentile of the odds ratio against eligible CpGs per track with the share of labellings at or above the real value.",
+     "Estimator for the labellings: the odds ratio of a labelling is the cross-product ratio (a d / b c). fisher.test for about 815,000 tables per mode is not feasible, and its absolute tolerance is coarse for the small odds ratios that some labellings give. feature_odds_label_permutation.csv has a new column odds_ratio_real_cross_product beside odds_ratio_real (they differ by at most 1 in the fourth decimal), and the share at or above the real value compares cross-product ratios on both sides.",
+     "The 1,000 random labellings per scheme (same seed 20261119, same draws as before) are kept only for comparison 3 under shuffled labels, which needs the SD and its deciles again for every labelling. New columns give the 95% Monte Carlo range of the median, of the 2.5th and of the 97.5th percentile (order statistics, function quantile_mc_range) and the standard error of the share. The notes column says that a difference between the two schemes inside those ranges is sampling error. matched_n_permutations (1,000) is now separate from n_permutations (232,848 or 110,880).",
+     "New checks inside the script: each of the 2,000 random labellings is looked up in the enumeration and the script stops unless all 16 counts agree (this also guards the pruning of the enumeration); the row of the real labelling must equal the list of the whole-number rule; the labelling with the ploidy labels exchanged in one cohort must give the count computed directly.",
+     "Method of the enumeration: candidates are the CpGs whose per-library percentages span more than the threshold; they are processed 8,000 at a time; for each choice of labels in the first cohort a CpG is evaluated over the 924 choices of the second cohort only if a bound computed on whole numbers allows a call (about 15% of the candidate rows in legacy mode). About 70 seconds per mode.",
+     "Finding 2 (low, resampling error of the block intervals): n_boot raised from 2,000 to 10,000 (same seed; the first 2,000 resamples are those of the earlier version). The notes column of every block row now gives the 95% range of each end from order statistics. To hold memory, the weights are filled in place, and a cell held by more than a tenth of the blocks is multiplied without copying its weights (identical counts, whole numbers).",
+     "Finding 3 (low, decile cuts): SD deciles are now groups of equal size by rank among the eligible CpGs, ties in row order (function rank_group), in comparison 3 and in the code for shuffled labels. A DML outside the eligible range gets the decile of the eligible CpG next below it in SD. The check that both code paths agree for the real labels is tightened from 1e-3 to 1e-9 and stops with a message. sd_from and sd_to of the SD table are now the smallest and largest SD among the eligible CpGs of the group.",
+     "Finding 4 (low, ties at the threshold): the stored-difference rule of step 05 and the whole-number rule of the script are compared at every CpG that is not an exact tie. The counts table has three new rows per contrast and mode: exact ties, ties that step 05 counted as above the threshold, CpGs called by the whole-number rule. Result: heat has one exact tie in both modes (NW_022994958.1:20934), not called by step 05; ploidy has none. The header says how step 05 treats ties. The labellings are compared with the list that the whole-number rule calls under the real labels, and the script requires the threshold to be a whole number.",
+     "Finding 5 (low): in the counts table only values that are not whole numbers are rounded to six significant digits.",
+     "Finding 6 (low, precision of fisher.test): no change of method or of digits. The header and the estimate_method column now state the tolerance of the root search (about 0.0001).",
+     "Finding 7 (low, comparison 4): each range is written twice, labelled 'every DML of the list' (as before; the notes give the number of DML outside) and 'DML inside the range only' (56 new rows; for 15% to 85% in legacy mode gene body 2.2274 and 1.8884).",
+     "Header rewritten for all of the above (run time about 10 minutes, about 2.1 GB). Effect on the files: feature_odds_matched.csv has 320 rows (264 before). The 152 rows of comparisons 1, 2, 5, 6 and of comparison 4 with every DML are identical to before. Comparison 3 is identical in legacy mode; in corrected mode 5 of its 14 rows change in the fourth decimal, because three CpGs change decile. All block rows changed (10,000 resamples). The SD table is unchanged in legacy mode apart from sd_from and sd_to. The matched columns of the permutation table are identical to before in legacy mode."
+    ],
+    "findings_not_applied": [
+     "All seven findings were checked, found right and applied; none was rejected. Where the review offered two fixes, the alternatives below were not taken.",
+     "Finding 1, alternative 'keep the draws and write intervals beside them': used only for the matched odds ratios (comparison 3 under shuffled labels). A complete enumeration of those would need the SD and its deciles for 116,424 labellings per mode, about an hour per mode at 25 to 30 ms each.",
+     "Finding 1, estimator: the enumeration writes cross-product ratios for the labellings, not fisher.test estimates. In scratch the cross-product ratio stayed within 0.04% of the conditional estimate solved at high precision for tables of this kind, while fisher.test itself was off by several percent for odds ratios below 0.001. For the real list the two agree to the fourth decimal.",
+     "Finding 2, alternative 'write block intervals to 2 decimals': not applied. The number of resamples was raised instead and the resampling range of each end is in the notes column. All odds columns keep four decimals so that the table has one format.",
+     "Finding 4, window of 1e-9: not used. The whole-number rule identifies exact ties, so the two rules are compared at every CpG that is not an exact tie, which is the sharper check. In these data the nearest non-tie is 0.0014 points from the threshold and the largest total coverage of a CpG is 115,301 reads, so rounding cannot move a non-tie across the threshold.",
+     "Finding 6, alternative 'write 3 significant digits': not applied, so that the rows stay comparable with step 07 digit for digit. The tolerance is stated in the header and in the estimate_method column instead."
+    ],
+    "final_run_clean": true,
+    "run_time_minutes": 10.4,
+    "targets": [
+     {
+      "quantity": "Equality of comparison 1 with step 07 (feature_association_tests_<mode>.csv): 7 tracks x 2 lists x 2 backgrounds x 2 modes",
+      "target": "equal",
+      "obtained": "all 56 cells equal (counts exact, odds ratio and interval within 1e-9); checked inside the script, which stops otherwise",
+      "agrees": true
+     },
+     {
+      "quantity": "Eligible background, gene body (legacy; ploidy, heat)",
+      "target": "2.52 and 2.20",
+      "obtained": "2.5204 (1.9268 to 3.3562) and 2.2034 (1.8617 to 2.6246)",
+      "agrees": true
+     },
+     {
+      "quantity": "Eligible background, CDS",
+      "target": "1.68 and 1.57",
+      "obtained": "1.6772 and 1.5749",
+      "agrees": true
+     },
+     {
+      "quantity": "Eligible background, intron",
+      "target": "0.80 and 0.87",
+      "obtained": "0.7993 and 0.8714",
+      "agrees": true
+     },
+     {
+      "quantity": "Eligible background, transposable element",
+      "target": "0.54 and 0.57",
+      "obtained": "0.5409 and 0.5718",
+      "agrees": true
+     },
+     {
+      "quantity": "Eligible background, intergenic",
+      "target": "0.30 and 0.37",
+      "obtained": "0.3043 and 0.3696",
+      "agrees": true
+     },
+     {
+      "quantity": "Within 5-point methylation bins, gene body",
+      "target": "2.0 and 1.7",
+      "obtained": "2.0418 (1.5547 to 2.6815) and 1.6829 (1.4185 to 1.9965); 16 strata",
+      "agrees": true
+     },
+     {
+      "quantity": "Within bin and SD decile, gene body, point estimate",
+      "target": "1.13 and 1.01",
+      "obtained": "1.1294 and 1.0078 (115 and 140 strata; intervals with CpGs independent 0.8568 to 1.4889 and 0.8453 to 1.2016)",
+      "agrees": true,
+      "comment": "Unchanged by the rank-based deciles in legacy mode."
+     },
+     {
+      "quantity": "Within bin and SD decile, gene body, block interval",
+      "target": "(0.76 to 1.70) and (0.76 to 1.34)",
+      "obtained": "(0.7625 to 1.7888) and (0.7621 to 1.3582) with 10,000 resamples; 95% resampling range of the ends: ploidy 0.7550 to 0.7693 and 1.7634 to 1.8127, heat 0.7568 to 0.7680 and 1.3483 to 1.3755",
+      "agrees": false,
+      "comment": "The upper ends differ (1.79 against 1.70, 1.36 against 1.34). The script is right: the target came from 1,000 resamples and was a low draw. A scratch run of 50,000 resamples over five seeds gave 0.7545 to 1.7739 (ploidy) and 0.7618 to 1.3613 (heat); the reviewer's 20,000 gave 0.7476 to 1.7806 and 0.7658 to 1.3578. The script's ploidy lower end (0.7625) sits about 0.01 above those long-run values, just outside its own 95% range."
+     },
+     {
+      "quantity": "Within bin and SD decile, CDS",
+      "target": "1.25 and 1.17",
+      "obtained": "1.2500 and 1.1670",
+      "agrees": true
+     },
+     {
+      "quantity": "Within bin and SD decile, intron",
+      "target": "0.81 and 0.87",
+      "obtained": "0.8059 and 0.8708",
+      "agrees": true
+     },
+     {
+      "quantity": "Within bin and SD decile, transposable element",
+      "target": "1.05 and 1.02",
+      "obtained": "1.0529 and 1.0240",
+      "agrees": true
+     },
+     {
+      "quantity": "Within bin and SD decile, intergenic",
+      "target": "0.80 and 0.92",
+      "obtained": "0.8038 and 0.9212",
+      "agrees": true
+     },
+     {
+      "quantity": "Range 15% to 85%, gene body",
+      "target": "2.10 and 1.84",
+      "obtained": "2.1050 and 1.8406 with every DML of the list (39 and 73 DML outside the range); 2.2274 and 1.8884 with the DML inside the range only",
+      "agrees": true,
+      "comment": "The target is the first form. The second form is the new row of finding 7."
+     },
+     {
+      "quantity": "Range 5% to 95%, gene body",
+      "target": "3.59 and 3.14",
+      "obtained": "3.5928 and 3.1413 (no DML outside the range, so both forms are equal)",
+      "agrees": true
+     },
+     {
+      "quantity": "Transposable element, top quartile of mean coverage",
+      "target": "0.20 and 0.29",
+      "obtained": "0.2112 (0.1319 to 0.3269) and 0.2901",
+      "agrees": false,
+      "comment": "Ploidy differs in the second decimal, as before the fix. The script keeps the convention of step 07, so the one ploidy DML outside the eligible range stays in (26 of 134 against 25 of 133 in the verification). issues.md already says 0.21."
+     },
+     {
+      "quantity": "Transposable element, lower three coverage quartiles",
+      "target": "0.81 and 0.83",
+      "obtained": "0.8121 and 0.8314",
+      "agrees": true
+     },
+     {
+      "quantity": "CDS against intron within gene bodies",
+      "target": "1.60 and 1.47",
+      "obtained": "1.6025 and 1.4749",
+      "agrees": true
+     },
+     {
+      "quantity": "Shuffled labels, gene body against eligible CpGs: median (2.5th to 97.5th percentile)",
+      "target": "2.68 (1.44 to 4.53)",
+      "obtained": "2.6475 (1.4618 to 4.5218) over all 232,848 labellings within cohort; 2.6512 (1.4728 to 4.4642) over the 110,880 also balanced on the acute heat shock",
+      "agrees": true,
+      "comment": "The target (250 permutations) lies within its own sampling error of the exact value. The script's values are exact and equal the reviewer's enumeration."
+     },
+     {
+      "quantity": "Share of labellings whose gene-body odds ratio reaches the real 2.52",
+      "target": "58%",
+      "obtained": "56.24% within cohort; 56.36% with the acute heat shock balanced (exact)",
+      "agrees": true,
+      "comment": "58% from 250 permutations has a standard error of 3 points."
+     },
+     {
+      "quantity": "Shuffled labels, medians for CDS, transposable element, intergenic",
+      "target": "1.58, 0.44, 0.30",
+      "obtained": "1.5830, 0.4438, 0.2998 within cohort; 1.5776, 0.4403, 0.2994 with the acute heat shock balanced",
+      "agrees": true
+     },
+     {
+      "quantity": "CpGs called per labelling, median",
+      "target": "751 to 762",
+      "obtained": "752 within cohort; 749 with the acute heat shock balanced (exact)",
+      "agrees": true,
+      "comment": "The scheme of the verification was the balanced one; its exact median, 749, is just below the range of the earlier random runs."
+     },
+     {
+      "quantity": "CpGs called per labelling, 5th to 95th percentile",
+      "target": "about 510 to 1,320",
+      "obtained": "520 to 1,387 within cohort; 521 to 1,461 with the acute heat shock balanced; smallest 335 and 341, largest 4,293",
+      "agrees": false,
+      "comment": "The 95th percentile is higher than the target. The script is right: the upper tail is heavy, and 1,000 random labellings give a 95th percentile anywhere between about 1,240 and 1,680."
+     },
+     {
+      "quantity": "Share of labellings calling at least 1,038 CpGs",
+      "target": "12% to 13%",
+      "obtained": "12.83% within cohort (29,878 of 232,848); 13.79% with the acute heat shock balanced (15,288 of 110,880); the real labelling and its mirror image are counted",
+      "agrees": true
+     },
+     {
+      "quantity": "Share of eligible CpGs called per labelling, mean methylation 10% to 20%",
+      "target": "0.30%",
+      "obtained": "0.386% within cohort; 0.403% with the acute heat shock balanced (exact)",
+      "agrees": false,
+      "comment": "The target is low. It came from 300 permutations that under-sampled the labellings with very many calls. issues.md already says 0.3% to 0.4%."
+     },
+     {
+      "quantity": "Share of eligible CpGs called per labelling, mean methylation 50% to 60%",
+      "target": "2.70%",
+      "obtained": "2.693% within cohort; 2.721% with the acute heat shock balanced",
+      "agrees": true
+     },
+     {
+      "quantity": "Chance of being called inside against outside gene bodies (eligible CpGs)",
+      "target": "2.55 times higher",
+      "obtained": "2.5745 within cohort (1.3798% against 0.5359%); 2.5841 with the acute heat shock balanced",
+      "agrees": true,
+      "comment": "Exact values; the target differs in the third digit by sampling error."
+     },
+     {
+      "quantity": "Median within-group SD, DML against other eligible CpGs",
+      "target": "22 points and 15 points",
+      "obtained": "ploidy 22.23 against 15.11; heat 20.98 against 15.00 (corrected: 22.70 against 15.37; 21.06 against 15.27)",
+      "agrees": true
+     },
+     {
+      "quantity": "q-value rule not binding (real data, from the diffmeth tables)",
+      "target": "every CpG above 20 points also has q below 0.01",
+      "obtained": "ploidy 1,038 of 1,038 (legacy, largest q 0.004641) and 952 of 952 (corrected, 0.005191); heat 2,351 of 2,352 (legacy, one CpG with q 0.01786) and 2,273 of 2,273 (corrected)",
+      "agrees": true,
+      "comment": "True for ploidy, the only contrast that is permuted."
+     },
+     {
+      "quantity": "Row added to issues.md after the task was written: shuffled-label lists against the matched background, gene body and CDS",
+      "target": "1.10 (0.58 to 2.33) and 1.18 (0.87 to 1.46); real CDS 1.25 reached in 29%",
+      "obtained": "1,000 random labellings within cohort: 1.0635 (0.5458 to 2.1419) and 1.1675 (0.8500 to 1.4522), 29.4% (standard error 1.4 points). With the acute heat shock balanced: 1.0773 (0.5805 to 2.3302) and 1.1693 (0.8287 to 1.4386), 26.2%. Monte Carlo ranges are in the file, for example 2.01 to 2.35 and 2.21 to 2.52 for the two 97.5th percentiles of the gene body",
+      "agrees": true,
+      "comment": "Same draws as before the fix. The real gene-body value 1.13 is reached in 44.1% and 43.3%."
+     }
+    ],
+    "issues_md_changes": [
+     {
+      "issue": "I-41, Evidence, location against two backgrounds (ranges)",
+      "current_text": "With 5% to 95% the gene-body odds ratio is half of its value against all tested CpGs (3.6 and 3.1) and introns show no difference (0.95, 95% interval 0.84 to 1.07, and 1.04, 0.95 to 1.13). With 15% to 85% it is 0.30 of that value (2.1 and 1.8) and the intron odds ratio is 0.74 and 0.80.",
+      "proposed_text": "With 5% to 95% the gene-body odds ratio is half of its value against all tested CpGs (3.6 and 3.1) and introns show no difference (0.95, 95% interval 0.84 to 1.07, and 1.04, 0.95 to 1.13). With 15% to 85% it is 0.30 of that value (2.1 and 1.8) and the intron odds ratio is 0.74 and 0.80. These values keep the 39 ploidy and 73 heat DML whose mean lies outside 15% to 85% in the DML row; with those DML left out the gene-body odds ratio is 2.2 and 1.9 and the intron odds ratio 0.75 and 0.81 (`06_diagnostics/feature_odds_matched.csv`, which holds both forms for both ranges).",
+      "reason": "Confirmed by the script (3.5928, 3.1413; 0.9471 and 1.0355; 2.1050, 1.8406; 0.7357, 0.8001) and now reproducible. Review finding 7: the unqualified sentence reads as a comparison inside the range, which gives 2.2274 and 1.8884."
+     },
+     {
+      "issue": "I-41, Evidence, location against two backgrounds (corrected mode)",
+      "current_text": "Corrected mode reads the same: the gene-body odds ratio is 8.8 against all tested CpGs and 2.8 against eligible CpGs for ploidy, and 6.2 and 2.0 for heat; against eligible CpGs the intron odds ratio is 0.78 (ploidy) and 0.83 (heat) and the CDS odds ratio is 1.84 and 1.57.",
+      "proposed_text": "Corrected mode reads the same: the gene-body odds ratio is 8.8 against all tested CpGs and 2.8 against eligible CpGs for ploidy, and 6.2 and 2.0 for heat; against eligible CpGs the intron odds ratio is 0.78 (ploidy) and 0.83 (heat) and the CDS odds ratio is 1.84 and 1.57. Matched on methylation bin and decile of within-group standard deviation, the gene-body odds ratio of corrected mode is 1.24 (block interval 0.85 to 1.96) for ploidy and 0.94 (0.72 to 1.26) for heat (`06_diagnostics/feature_odds_matched.csv`).",
+      "reason": "Confirmed (8.8474, 2.8491, 6.2271, 2.0174; 0.7807, 0.8334; 1.8395, 1.5692). The matched values of corrected mode (1.2418, 0.8532 to 1.9554; 0.9410, 0.7234 to 1.2634) were not in the text."
+     },
+     {
+      "issue": "I-41, Evidence, location against two backgrounds (block units)",
+      "current_text": "The tests treat every CpG as independent; with 100 kb blocks as units the standard errors are 1.3 to 1.9 times larger and all 20 cells of the table still exclude 1 (heat intron, 0.77 to 0.99, is at the edge).",
+      "proposed_text": "The tests treat every CpG as independent. For the ten cells against eligible CpGs, `06_diagnostics/feature_odds_matched.csv` gives intervals from a bootstrap over 100 kb blocks (10,000 resamples): they are 1.25 to 1.83 times as wide on the log scale as the Fisher intervals, and all ten still exclude 1 (heat intron, 0.77 to 0.99, is at the edge). For the ten cells against all tested CpGs the block computation exists only in the verification record (standard errors 1.3 to 1.9 times larger over all 20 cells, all excluding 1).",
+      "reason": "The script writes block intervals for the cells against eligible CpGs only. Ratios of the log widths in legacy mode: gene 1.47 and 1.64, intron 1.25 and 1.54, CDS 1.69 and 1.54, transposable element 1.56 and 1.83, intergenic 1.50 and 1.62; heat intron 0.7658 to 0.9890."
+     },
+     {
+      "issue": "I-41, Evidence, location against two backgrounds (lncRNA and exon UTR)",
+      "current_text": "Ploidy DML also stay nominally enriched against eligible CpGs in lncRNA (1.6) and exon UTR (1.3); both come from the 53 DML of the locus in I-09 and disappear without it (0.29 and 0.88).",
+      "proposed_text": "Ploidy DML also stay nominally enriched against eligible CpGs in lncRNA (1.6) and exon UTR (1.3) when CpGs are treated as independent. With 100 kb blocks as units neither interval excludes 1 (0.16 to 4.79 and 0.70 to 2.27; `06_diagnostics/feature_odds_matched.csv`). Both come from the 53 DML of the locus in I-09 and disappear without it (0.29 and 0.88; verification record, not yet written by a script).",
+      "reason": "Script: 1.5870 (block interval 0.1607 to 4.7942) and 1.2910 (0.7010 to 2.2663). The values without the locus are not computed by the script."
+     },
+     {
+      "issue": "I-41, Evidence, the eligible background is still not a fair one (share called by methylation bin)",
+      "current_text": "With ploidy labels shuffled within cohort and acute-heat-shock stratum, 0.3% to 0.4% of CpGs with a mean of 10% to 20% pass (0.30% in the verification run of 300 permutations, 0.38% to 0.41% in repeats with 1,000 to 3,000) and 2.7% of CpGs with a mean of 50% to 60%, about seven times as many; the chance is 2.55 times higher inside gene bodies than outside (2.58 to 2.61 in the repeats).",
+      "proposed_text": "Over all 110,880 labellings of the ploidy labels within cohort and acute-heat-shock stratum, 0.40% of the eligible CpGs with a mean of 10% to 20% pass and 2.72% of those with a mean of 50% to 60%, 6.8 times as many; the chance is 2.58 times higher inside gene bodies than outside. Over all 232,848 labellings within cohort the values are 0.39%, 2.69% (7.0 times as many) and 2.57. These are complete enumerations and carry no sampling error (`06_diagnostics/feature_odds_label_permutation_counts.csv` and `feature_odds_label_permutation.csv`); the earlier runs with 300 to 3,000 random labellings had given 0.30% to 0.46% for the first value.",
+      "reason": "The script now enumerates every labelling: 0.403011% and 2.72091% (ratio 6.75), in against out 2.5841; within cohort 0.386459%, 2.69329% (6.97) and 2.5745. The quoted ranges were sampling error of random runs."
+     },
+     {
+      "issue": "I-41, Evidence, the eligible background is still not a fair one (within-group standard deviation)",
+      "current_text": "DML sit where animals of the same group differ most: the median within-group standard deviation is 22 points for ploidy DML and 21 points for heat DML, against 15 points for the other eligible CpGs.",
+      "proposed_text": "DML sit where animals of the same group differ most: the median within-group standard deviation is 22 points for ploidy DML and 21 points for heat DML, against 15 points for the other eligible CpGs (`06_diagnostics/feature_odds_matched_within_group_sd.csv`).",
+      "reason": "Confirmed (22.23 against 15.11; 20.98 against 15.00); the sentence can now cite a repository file."
+     },
+     {
+      "issue": "I-41, Evidence, location against a matched or permuted background (sentence before the table)",
+      "current_text": "Two independent recomputations agree on the two matched rows. The label-permutation row was computed by one agent (250 permutations) and repeated in the integration check (3,000 permutations: gene body 2.65, 2.5th to 97.5th percentile 1.47 to 4.52; CDS 1.59):",
+      "proposed_text": "The table is written by `06_diagnostics/feature_odds_matched.R` (`feature_odds_matched.csv` and `feature_odds_label_permutation.csv`). Before the script existed, two independent recomputations had agreed on the two matched rows. The fourth row covers every labelling of the ploidy labels within cohort (232,848) and has no sampling error; the fifth row rests on 1,000 of these labellings drawn at random:",
+      "reason": "The table is now reproducible from the repository, and the shuffled-label row is a complete enumeration that the reviewer's own enumeration reproduces."
+     },
+     {
+      "issue": "I-41, second table, matched row",
+      "current_text": "| DML against eligible CpGs in the same methylation bin and the same decile of within-group standard deviation | 1.13 (0.76 to 1.70) | 1.01 (0.76 to 1.34) | 1.25, 1.17 | 0.81, 0.87 | 1.05, 1.02 |",
+      "proposed_text": "| DML against eligible CpGs in the same methylation bin and the same decile of within-group standard deviation | 1.13 (0.76 to 1.79) | 1.01 (0.76 to 1.36) | 1.25, 1.17 | 0.81, 0.87 | 1.05, 1.02 |",
+      "reason": "Block intervals with 10,000 resamples: 0.7625 to 1.7888 and 0.7621 to 1.3582. The earlier upper ends (1.70, 1.34) were low draws of a 1,000-resample run. Point estimates are unchanged."
+     },
+     {
+      "issue": "I-41, second table, shuffled-label row",
+      "current_text": "| CpGs that pass the 20-point rule under shuffled ploidy labels, against eligible CpGs (median of the permutations) | 2.68 (2.5th to 97.5th percentile 1.44 to 4.53) | no permutation possible, see below | 1.58 | | 0.44 |",
+      "proposed_text": "| CpGs that pass the 20-point rule under shuffled ploidy labels, against eligible CpGs (median over all 232,848 labellings within cohort) | 2.65 (2.5th to 97.5th percentile 1.46 to 4.52) | no permutation possible, see below | 1.58 | 0.86 | 0.44 |",
+      "reason": "Exact values of the enumeration: gene body 2.6475 (1.4618 to 4.5218), CDS 1.5830, intron 0.8625, transposable element 0.4438. With the acute heat shock also balanced: 2.6512 (1.4728 to 4.4642), 1.5776, 0.8670, 0.4403."
+     },
+     {
+      "issue": "I-41, second table, matched shuffled-label row",
+      "current_text": "| The same shuffled-label lists, against eligible CpGs in the same methylation bin and the same class of within-group standard deviation, recomputed for each shuffle (median of 1,000 permutations; integration check, one run) | 1.10 (0.58 to 2.33) | no permutation possible | 1.18 (0.87 to 1.46) | | |",
+      "proposed_text": "| 1,000 of these shuffled-label lists, drawn at random, against eligible CpGs in the same methylation bin and the same decile of within-group standard deviation, the standard deviation and its deciles recomputed for each labelling (median) | 1.06 (0.55 to 2.14) | no permutation possible | 1.17 (0.85 to 1.45) | 0.85 (0.69 to 1.29) | 0.88 (0.33 to 1.24) |",
+      "reason": "Script values for 1,000 random labellings within cohort: 1.0635 (0.5458 to 2.1419), 1.1675 (0.8500 to 1.4522), 0.8515 (0.6927 to 1.2910), 0.8786 (0.3313 to 1.2370). The earlier numbers came from one scratch run with the acute heat shock balanced; the script gives 1.08 (0.58 to 2.33) and 1.17 (0.83 to 1.44) for that scheme, and the two schemes differ by sampling error (Monte Carlo ranges in the file)."
+     },
+     {
+      "issue": "I-41, text after the second table (share reaching the real gene-body value)",
+      "current_text": "The gene-body odds ratio of the real ploidy DML (2.52) is reached or exceeded in 58% of the label permutations.",
+      "proposed_text": "The gene-body odds ratio of the real ploidy DML (2.52) is reached or exceeded in 56% of the labellings (56.2% of the 232,848 within cohort, 56.4% of the 110,880 that are also balanced on the acute heat shock).",
+      "reason": "Exact shares 0.5624 and 0.5636; the 58% came from 250 permutations."
+     },
+     {
+      "issue": "I-41, text after the second table (block intervals)",
+      "current_text": "The intervals in the table (0.76 to 1.70 and 0.76 to 1.34) come from a bootstrap over 100 kb blocks and are about 1.5 times as wide on the log scale; for the matched ploidy estimate of 1.13 the interval with CpGs treated as independent is 0.86 to 1.49.",
+      "proposed_text": "The intervals in the table (0.76 to 1.79 and 0.76 to 1.36) come from a bootstrap over 100 kb blocks with 10,000 resamples and are 1.5 and 1.6 times as wide on the log scale as the intervals with CpGs treated as independent (0.86 to 1.49 for the matched ploidy estimate of 1.13, 0.85 to 1.20 for the heat estimate of 1.01). Their ends carry resampling error: the 95% ranges are 0.755 to 0.769 and 1.76 to 1.81 for ploidy, and 0.757 to 0.768 and 1.35 to 1.38 for heat (notes column of `feature_odds_matched.csv`).",
+      "reason": "New intervals and their stated resampling error (review finding 2). Ratios of the log widths: 1.54 and 1.64."
+     },
+     {
+      "issue": "I-41, text after the second table (coding sequence under shuffled labels)",
+      "current_text": "against eligible CpGs the coding-sequence odds ratio of the real ploidy DML (1.68) is reached in 30% of the label permutations (median 1.58), and after the same matching the shuffled-label lists give a median of 1.18 (2.5th to 97.5th percentile 0.87 to 1.46; the real 1.25 is reached in 29% of 1,000 permutations).",
+      "proposed_text": "against eligible CpGs the coding-sequence odds ratio of the real ploidy DML (1.68) is reached in 33% of the 232,848 labellings within cohort (median 1.58), and after the same matching 1,000 random labellings give a median of 1.17 (2.5th to 97.5th percentile 0.85 to 1.45; the real 1.25 is reached in 29%, standard error 1.4 points; with the acute heat shock also balanced: 1.17, 0.83 to 1.44, 26%).",
+      "reason": "Exact share 0.3276 (0.3208 for the balanced scheme); matched values from the script: 1.1675 (0.8500 to 1.4522), share 0.294; balanced 1.1693 (0.8287 to 1.4386), 0.262."
+     },
+     {
+      "issue": "I-41, text after the second table (CDS against intron, transposable elements by coverage)",
+      "current_text": "within genes the odds ratio of CDS against intron is 1.60 and 1.47. Most of the depletion in transposable elements belongs to deeply covered, probably multi-copy sequence: it is 0.21 and 0.29 in the top coverage quartile and 0.81 and 0.83 in the rest. The upper coverage filter of corrected mode (I-05) does not remove this pattern: with the filter the odds ratio against eligible CpGs is 0.59 and 0.62, and it is 0.37 and 0.39 in the top coverage quartile against 0.87 and 0.89 in the rest.",
+      "proposed_text": "within genes the odds ratio of CDS against intron is 1.60 and 1.47. Most of the depletion in transposable elements belongs to deeply covered, probably multi-copy sequence: it is 0.21 and 0.29 in the top coverage quartile and 0.81 and 0.83 in the rest. The upper coverage filter of corrected mode (I-05) does not remove this pattern: with the filter the odds ratio against eligible CpGs is 0.59 and 0.62, and it is 0.37 and 0.39 in the top coverage quartile against 0.87 and 0.89 in the rest (all in `06_diagnostics/feature_odds_matched.csv`).",
+      "reason": "All confirmed by the script (1.6025, 1.4749; 0.2112, 0.2901; 0.8121, 0.8314; corrected 0.5861, 0.6248; 0.3656, 0.3926; 0.8686, 0.8939). Only the citation is added."
+     },
+     {
+      "issue": "I-41, Why it matters",
+      "current_text": "is also shown by CpG lists made with shuffled ploidy labels (median 1.18 after the same matching)",
+      "proposed_text": "is also shown by CpG lists made with shuffled ploidy labels (median 1.17 after the same matching)",
+      "reason": "Script: 1.1675 within cohort, 1.1693 with the acute heat shock balanced."
+     },
+     {
+      "issue": "I-41, paragraph after Why it matters (number of CpGs called under shuffled labels)",
+      "current_text": "A further result from the same permutations bears on every ploidy finding and is taken up in I-06: with ploidy labels shuffled within cohort and acute-heat-shock stratum (300 permutations), a median of 762 CpGs pass the DML rule (5th to 95th percentile 510 to 1,226), against 1,038 observed, and 13% of the permutations reach 1,038. Repeats with 1,000 to 3,000 permutations give medians of 739 to 753, a 95th percentile of 1,388 to 1,491, and 13% to 16% at or above 1,038; with labels shuffled within cohort only, the sensitivity script gives a median of 749 and 11% (113 of 1,000).",
+      "proposed_text": "A further result from the same labellings bears on every ploidy finding and is taken up in I-06. Over all 232,848 labellings of the ploidy labels within cohort, a median of 752 CpGs pass the 20-point rule (5th to 95th percentile 520 to 1,387; smallest 335, largest 4,293), against 1,038 observed, and 29,878 labellings (12.8%) reach 1,038. Over the 110,880 labellings that are also balanced on the acute heat shock the median is 749 (521 to 1,461) and 15,288 (13.8%) reach 1,038 (`06_diagnostics/feature_odds_label_permutation_counts.csv`; complete enumeration, the real labelling and its mirror image included). The earlier runs with 300 to 3,000 random labellings (medians of 739 to 762, 95th percentiles of 1,226 to 1,491, 11% to 16% at or above 1,038) were samples of these labellings and differed by sampling error.",
+      "reason": "The script replaces four random runs by the complete enumeration. The paragraph currently gives three different values for one quantity."
+     },
+     {
+      "issue": "I-41, Limits of this conclusion, item 10",
+      "current_text": "For ploidy the shuffled-label row of the table gives the matched odds ratios that arise without any ploidy signal (2.5th to 97.5th percentile 0.58 to 2.33); for heat there is no such reference.",
+      "proposed_text": "For ploidy the last row of the table gives the matched odds ratios that arise without any ploidy signal (2.5th to 97.5th percentile 0.55 to 2.14 over 1,000 random labellings within cohort, and 0.58 to 2.33 with the acute heat shock also balanced; the two differ by sampling error, since the 95% ranges of the upper end are 2.01 to 2.35 and 2.21 to 2.52); for heat there is no such reference.",
+      "reason": "The quoted 0.58 to 2.33 holds for the balanced scheme only; the script gives both schemes with their Monte Carlo ranges (`feature_odds_label_permutation.csv`)."
+     },
+     {
+      "issue": "I-41, Status of the pipeline",
+      "current_text": "a label-permutation control and a spike-in positive control in `06_diagnostics/`; the matched and permuted location comparisons as a diagnostic that writes the second table above. Until those exist, the numbers of that table, of columns 2 to 4 of the table under \"How firm\", of the sentences on \"organelle\" and the vesicle-coat group, of the calibration and power paragraphs and of limits 1, 4, 5 and 7 come from the verification record",
+      "proposed_text": "a label-permutation control and a spike-in positive control in `06_diagnostics/`. The matched and permuted location comparisons exist: `06_diagnostics/feature_odds_matched.R` writes the second table above, the two ranges, the comparison by coverage quartile for transposable elements, CDS against intron and the within-group standard deviations. Still without a script are the location estimates with coverage added to the matching (1.23 and 1.48), those without the locus of I-09 (1.02, 0.97, 0.99, 0.89, and 0.29 and 0.88 for lncRNA and exon UTR), the share of DML by coverage quartile (with 53.6% and 20.8%), the comparison with binomial sampling (18 against 9.8 points), the 56% coding sequence of the intron comparison group, and the block computation for the ten cells against all tested CpGs. Until those exist, these numbers and the numbers of columns 2 to 4 of the table under \"How firm\", of the sentences on \"organelle\" and the vesicle-coat group, of the calibration and power paragraphs and of limits 1, 4, 5 and 7 come from the verification record",
+      "reason": "The diagnostic now exists. The list of what still rests on the verification record is taken from the review and from what the script does not compute."
+     },
+     {
+      "issue": "I-06, item 5 (first sentences)",
+      "current_text": "With the ploidy labels reassigned among the libraries of each cohort (the observed labelling and 999 random ones of the 232,848 possible), the number of CpGs above 20 points has a median of 749 (5th to 95th percentile 523 to 1,235), and 113 of the 1,000 labellings reach the observed 1,038 (the 113 include the observed labelling itself). In corrected mode: observed 952, median 706.5 (483 to 1,191), 137 of 1,000.",
+      "proposed_text": "With the ploidy labels reassigned among the libraries of each cohort (the observed labelling and 999 random ones of the 232,848 possible), the number of CpGs above 20 points has a median of 749 (5th to 95th percentile 523 to 1,235), and 113 of the 1,000 labellings reach the observed 1,038 (the 113 include the observed labelling itself). In corrected mode: observed 952, median 706.5 (483 to 1,191), 137 of 1,000. All 232,848 labellings are evaluated in `06_diagnostics/feature_odds_matched.R` (`feature_odds_label_permutation_counts.csv`): median 752 (5th to 95th percentile 520 to 1,387), and 29,878 labellings (12.8%) reach 1,038, the observed labelling and its mirror image among them; in corrected mode the median is 708 (484 to 1,327) and 34,656 (14.9%) reach 952. The 1,000 labellings of the sensitivity script are a sample of these, and both of its 95th percentiles are low draws.",
+      "reason": "Same quantity, now without sampling error. The 95th percentiles 1,235 and 1,191 are shown to be low by the enumeration (1,387 and 1,327)."
+     },
+     {
+      "issue": "I-06, item 5 (last sentence)",
+      "current_text": "The agents who verified I-41 obtained similar values from their own permutations, in which the labels were shuffled within cohort and acute heat shock stratum (medians 739 to 762; 13% to 16% of the permutations at or above 1,038).",
+      "proposed_text": "For labellings that also keep the acute heat shock balanced, the complete enumeration of `06_diagnostics/feature_odds_matched.R` gives a median of 749 and 15,288 of 110,880 labellings (13.8%) at or above 1,038; the random samples of the agents who verified I-41 had given medians of 739 to 762 and 13% to 16%.",
+      "reason": "The enumeration replaces the range of random runs for that scheme."
+     },
+     {
+      "issue": "I-06, item 4 (reference for 22 libraries)",
+      "current_text": "with relabelled libraries the median number of CpGs above 20 points is 749 with 22 libraries, 1,220.5 with 18, 2,912.5 with the 12 controls and 4,019.5 with the 10 heat-treated libraries (`permutation_reference.csv`).",
+      "proposed_text": "with relabelled libraries the median number of CpGs above 20 points is 749 with 22 libraries (752 over all 232,848 labellings, `06_diagnostics/feature_odds_label_permutation_counts.csv`), 1,220.5 with 18, 2,912.5 with the 12 controls and 4,019.5 with the 10 heat-treated libraries (`permutation_reference.csv`).",
+      "reason": "Optional. The first of the four medians now has an exact counterpart; 749 is the value of 1,000 random labellings."
+     },
+     {
+      "issue": "Corrections after verification, I-41 row on the withdrawn gene-body sentence",
+      "current_text": "CpGs that pass the 20-point rule under shuffled ploidy labels show the same odds ratio (median 2.7; real 2.5).",
+      "proposed_text": "CpGs that pass the 20-point rule under shuffled ploidy labels show the same odds ratio (median 2.65 over all 232,848 labellings; real 2.52).",
+      "reason": "The exact median is 2.6475, which rounds to 2.6, not 2.7; the 2.7 came from the run of 250 permutations (2.68)."
+     }
+    ],
+    "readme_row": "| `feature_odds_matched.R` | Are DML more likely than comparable CpGs to lie in gene bodies, CDS, introns, exon UTR, lncRNA, transposable elements or intergenic sequence? Repeats the odds ratios of step 07 and stops if they differ; then compares DML with eligible CpGs of the same 5-point methylation bin, of the same bin and decile of within-group SD, with other ranges of mean methylation (5% to 95%, 15% to 85%; with every DML and with the DML inside the range only), by coverage quartile (transposable elements) and CDS against intron; adds intervals from a bootstrap over 100 kb blocks (10,000 resamples; the resampling error of each end is in the notes column). For ploidy it evaluates every labelling of the ploidy labels within cohort (232,848; 110,880 of them also balanced on the acute heat shock): number of CpGs called, share called by methylation bin and by track, and the odds ratios against eligible CpGs, all without sampling error; the matched odds ratios are given for 1,000 random labellings per scheme with their Monte Carlo ranges. The permutation applies the difference rule only; no permutation exists for heat. Both modes. About 10 minutes, 2.1 GB. Issues I-41 and I-06. Written by an agent, reviewed by an independent agent that reproduced its numbers with code of its own, and revised after that review | `feature_odds_matched.csv`, `feature_odds_matched_within_group_sd.csv`, `feature_odds_label_permutation.csv`, `feature_odds_label_permutation_counts.csv` |",
+    "notes": "Final runs. The script was run twice from the repository root (WGBS_CACHE_DIR set, WGBS_CORES=1): exit 0 both times, 618 s and 630 s, peak resident memory 2,053 and 2,072 MB, one thread, empty stderr. The four CSV files are byte-identical between the two runs (md5: feature_odds_matched.csv 4fba4dac..., within_group_sd 7dbb04aa..., label_permutation 12a6f17a..., label_permutation_counts bff59413...) and are the copies now in 06_diagnostics/. No output file had to be removed: the script writes the same four files as before. I ran no git command that changes state; a snapshot commit of the main session (a6e0a1b) already holds the revised script, and the four CSV files show as modified.\n\nCost of the fixes. Run time rose from about 4 to about 10 minutes and peak memory from about 1.4 to about 2.1 GB (limit 3 GB). The 10,000 block resamples take about 3 minutes per mode, the enumeration about 70 seconds per mode. The first full development run peaked at 2.9 GB; the enumeration in slices and the handling of the resampling weights brought it down.\n\nDeparture from the task text. The task asked for 1,000 permutations with a fixed seed. Counts, shares and the odds ratios against eligible CpGs now cover all labellings instead, as the review proposed; the 1,000 random labellings per scheme remain for the matched odds ratios only. The rows of the counts table keep their names (\"CpGs called per permutation, median\" and so on), but the row \"permutations\" now reads 232,848 or 110,880.\n\nOne fault of my own, repaired before the final runs: a product of two integer counts overflowed in the first draft and gave NA shares with a warning. The final runs have no warning.\n\nChecks outside the script (scratch, not reproducible from the repository): (1) two prototype enumerations with different pruning gave counts identical to each other for all 116,424 x 16 cells and reproduce the reviewer's enumeration in every figure quoted in the review, in both modes; (2) an independent block bootstrap with the script's seed reproduces 0.7625 to 1.7888 and 0.7621 to 1.3582, and its first 2,000 resamples reproduce the earlier 0.7725 to 1.8228; (3) three mutated copies (bound too strict, wrong row index, mirror image handled wrongly) all stop at a check; (4) my own recomputation confirmed findings 3, 4, 6 and 7 before I changed anything (four whole quantile indices in corrected mode and three CpGs that change decile; one exact heat tie stored as exactly 20; fisher.test off by up to 3.9e-5 relative; 2.2274 and 1.8884 for DML inside 15% to 85%).\n\nFor the analyst. (a) The block bootstrap of the script's seed sits slightly high: 50,000 resamples in scratch give 0.75 to 1.77 for the matched ploidy gene-body interval and 0.76 to 1.36 for heat, so 0.76 to 1.79 should be quoted with its resampling range. (b) I-06 item 5 says \"40 of the 252 regroupings of the heat cohort do (median 754)\"; my scratch enumeration gives 40 of 252 and a median of 753.5, and confirms 903 of 924 with median 1,530. The script does not write these, so they are not in issues_md_changes. (c) The same superseded numbers stand outside issues.md: 07_documentation/reproducibility_plan.md, decision 11 (\"median 2.7\", \"1.18 after the same matching\") and 07_documentation/session_handoff.md lines 74 and 79 (2.61, 55%, 0.77 to 1.82, 0.37%). (d) Corrected mode, not in the task targets: matched gene body 1.24 (block interval 0.85 to 1.96) and 0.94 (0.72 to 1.26); 708 CpGs called at the median (484 to 1,327), 34,656 labellings (14.9%) at or above 952; gene-body odds ratio under shuffled labels 3.11 (2.02 to 5.12), real 2.85 reached in 66.1%.\n\nScratch directory: /tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/fix-feature_odds_matched (baseline/ holds the files before the fix, run1/ and run2/ the logs and outputs of the final runs, work/ the check scripts)."
    }
   }
  ]

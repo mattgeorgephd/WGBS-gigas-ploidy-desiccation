@@ -30,10 +30,13 @@
 #                when the covariate of the test is coded as the legacy script
 #                coded it (a character vector) and not as step 05 codes it (a
 #                factor).
-#             5. The tables of step 05 at the CpGs of the extract. The counts
-#                that step 05 wrote must be the lines of the coverage files
-#                scaled by scale_counts_like_methylkit. This ties the routes
-#                compared here to the tables that the pipeline uses.
+#             5. The tables of step 05. Every count that step 05 wrote must be
+#                the count of the coverage file scaled by
+#                scale_counts_like_methylkit, at every CpG of the table and in
+#                every library. Inside the regions of the extract the CpGs of
+#                the table must be the CpGs that pass the rule of the mode in
+#                every library. This ties the routes compared here to the
+#                tables that the pipeline uses.
 #             6. Rounding. methylKit::normalizeCoverage against
 #                scale_counts_like_methylkit on synthetic counts built to hold
 #                many values exactly halfway between two whole numbers.
@@ -41,8 +44,9 @@
 #                its correlations and PCA as round(new_cov * nc / cv) where
 #                methylKit computes round(new_cov * (nc / cv)): how many values
 #                of the extract differ, and by how much.
-#           One row is written per comparison. The script stops with an error
-#           if a comparison that must agree does not.
+#           One row is written per comparison. If a comparison that must agree
+#           does not, the tables are still written and the script then stops
+#           with an error that lists the comparisons that failed.
 #
 # Run       Rscript 06_diagnostics/check_methylkit_equivalence.R      (about 9 minutes; 2 GB of memory; one core)
 #           Needs the 22 coverage files in the cache (step 01) and the tables of step 05.
@@ -68,6 +72,19 @@
 #             round(factor * coverage), and each count round(new coverage *
 #             (count / coverage)). unite() keeps the CpGs present in every
 #             library and sorts them by sequence name and position.
+#           - What methylKit does not report. filterByCoverage returns the rows
+#             it kept and not its cutoff; normalizeCoverage returns the scaled
+#             counts and not its factors. The cutoff and the factor that stand
+#             beside those of the helpers (columns
+#             upper_cutoff_from_methylkit_rows and
+#             scaling_factor_from_methylkit_medians of the library table, and
+#             the two comparisons named after them) are the expressions of
+#             methylKit's source evaluated in this script: the percentile of
+#             the rows that methRead imported, and the largest median among the
+#             libraries divided by the library's own median, from the rows that
+#             filterByCoverage kept. That methylKit applied these values is
+#             shown by other comparisons: the rows it kept, the rows it
+#             removed, and its normalized counts.
 #           - How a row is judged (column rule). "identical": whole numbers,
 #             positions and sets; any difference fails. "tolerance": floating
 #             point values (cutoffs, scaling factors, differences, p-values,
@@ -84,15 +101,17 @@
 #             table where the data allow it. The percentile cutoffs of the
 #             extract are those of the extract files, not of the full files;
 #             both routes see the same files. The extract table gives, for each
-#             region, what the reason rests on (lines per library, coverage
-#             relative to the whole extract, lines that the upper filter
-#             removes, files that begin there) and the share of the CpGs tested
-#             by step 05 that lie in it.
+#             region, what the reason rests on (lines per library, median reads
+#             of the region relative to the median of the whole coverage file,
+#             lines that the upper filter removes, files that begin there) and
+#             the share of the CpGs tested by step 05 that lie in it.
 #           - The helper route of part 3 repeats the chain of helper calls of
 #             fit_mode() in 01_pipeline/05_differential_methylation.R, because
 #             step 05 does not offer that chain as a function. If the chain of
-#             step 05 changes, this script must follow; part 5 fails when the
-#             tables that step 05 wrote are no longer what this chain gives.
+#             step 05 changes, this script must follow. Part 5 fails when a
+#             table that step 05 wrote no longer holds the raw counts scaled by
+#             the helper, or holds, inside the regions, other CpGs than the
+#             rule of its mode keeps.
 #           - Both routes run the two tests with the covariates as step 05
 #             passes them (factors), so the routes differ only in how the table
 #             of counts is built. The legacy script passed character vectors
@@ -109,12 +128,15 @@
 #             of legacy mode are compared with the lists of the draft in
 #             check_legacy_outputs.R.
 #           - glm.fit warns at CpGs where a fitted proportion is numerically 0
-#             or 1. On the extract almost all of these are CpGs whose
-#             methylated reads all come from libraries of one ploidy and of one
-#             cohort (looked at once; not computed here). Both routes fit the
-#             same counts, so the warnings do not bear on the comparison. They
-#             are counted by message and written to the log, not printed one by
-#             one.
+#             or 1. Both routes fit the same counts, so the warnings do not
+#             bear on the comparison. They are counted by message and written
+#             to the log, not printed one by one.
+#           - getMethylDiff of methylKit 1.28.0 warns ("no non-missing
+#             arguments to max; returning -Inf") when no CpG passes its
+#             thresholds, because its row selection takes max() of an empty
+#             index. The selection is then empty, as it should be. The warnings
+#             of the DML selections are counted by message and logged for each
+#             mode, beside the number of selections that returned no CpG.
 #           - Full libraries (part 2): the first library of each of the four
 #             groups in the order of the sample sheet, every library whose
 #             first line has at least config$min_coverage reads (the first-line
@@ -126,13 +148,23 @@
 #             on full libraries: they need all 22 at once. Their arithmetic is
 #             checked on the extract (all 22 libraries), on the synthetic
 #             counts, and against the tables of step 05 (part 5).
-#           - Part 5 does not use methylKit. It shows that the united tables of
-#             step 05 hold, at the CpGs of the regions, the raw counts scaled
-#             by the helper with the factor max(median) / median of the medians
-#             that step 05 recorded. In legacy mode the CpGs of step 05 inside
-#             the regions must be the united CpGs of the extract. In corrected
-#             mode they need not be, because the cutoffs of the extract differ;
-#             the numbers are recorded. Which CpGs each mode keeps on the full
+#           - Part 5 does not use methylKit. Counts: at every CpG of
+#             united_cpg_<mode>.csv.gz and in every library, the three counts
+#             of the table must be the counts of the line of the whole coverage
+#             file, scaled by the helper with the factor max(median) / median
+#             of the medians that step 05 recorded. This is compared during the
+#             pass of part 1, while a whole file is in memory, and once more
+#             inside the regions on the lines of the extract files. CpGs:
+#             inside the regions, where the extract holds every line of every
+#             library, the CpGs of the table must be the CpGs with at least
+#             config$min_coverage reads in every library and, in corrected
+#             mode, fewer reads than the cutoff that step 05 recorded for the
+#             whole file (in legacy mode, not on the first line of a file).
+#             The CpGs of the table inside the regions are also set against
+#             the united CpGs of the extract. In legacy mode the two sets must
+#             be equal. In corrected mode they need not be, because the
+#             cutoffs of the extract are not those of the whole files; the
+#             numbers are recorded. Which CpGs each mode keeps on the whole
 #             files is checked in coverage_filter_variants.R, which derives
 #             both sets from the 22 files and stops unless they are the CpGs
 #             of step 05.
@@ -152,8 +184,12 @@
 #           - Part 7 selects the rows of each library by the rule of step 04
 #             (its function covered()), at 1 read and at config$min_coverage
 #             reads, the two levels at which step 04 computes correlations. At
-#             config$min_coverage the selection must give the united CpGs of
-#             the helper route; the script stops if it does not.
+#             config$min_coverage the selection must give the united CpGs and
+#             the scaling factors of the helper route; both are compared and
+#             judged like the comparisons of the other parts.
+#           - In the library table, lines_read is the number of lines of the
+#             file that both routes read: the extract file in scope "extract",
+#             the whole coverage file in scope "full library".
 #           - Nothing is written with one row per CpG. The extract files are
 #             temporary and are deleted at the end.
 
@@ -259,6 +295,38 @@ records05 <- lapply(setNames(config$modes, config$modes), function(mode_name) {
   must(identical(recorded$library_id, lib$library_id), "library_filtering_", mode_name, ".csv does not list the libraries of the sample sheet in its order.")
   recorded
 })
+# The scaling factor as step 05 computes it. The factor written in the table is
+# rounded to 15 digits; the medians are written exactly.
+factor05 <- lapply(records05, function(recorded) max(recorded$median_coverage) / recorded$median_coverage)
+
+# The tables of tested CpGs that step 05 wrote, for part 5. `keys05` numbers
+# their CpGs over the sequences of the tables; `all_keys05` holds every CpG of
+# the tables once, and `index05` the place of each CpG of a table in it.
+tables05 <- lapply(setNames(config$modes, config$modes), function(mode_name) {
+  united05 <- fread(tab05(sprintf("united_cpg_%s.csv.gz", mode_name)))
+  must(ncol(united05) == 4 + 3 * n_lib &&
+         all(paste0(rep(c("coverage", "numCs", "numTs"), n_lib), rep(seq_len(n_lib), each = 3)) == names(united05)[-(1:4)]),
+       "united_cpg_", mode_name, ".csv.gz does not hold coverage, numCs and numTs of the ", n_lib, " libraries.")
+  must(!anyDuplicated(united05, by = c("chr", "start")), "united_cpg_", mode_name, ".csv.gz holds a CpG twice.")
+  united05
+})
+levels05 <- unique(unlist(lapply(tables05, function(united05) united05$chr), use.names = FALSE))
+keys05 <- lapply(tables05, function(united05) cpg_key(united05$chr, united05$start, levels05))
+all_keys05 <- unique(unlist(keys05, use.names = FALSE))
+index05 <- lapply(keys05, match, table = all_keys05)
+# One library of a table of step 05 against the lines of a coverage file.
+# `written`: the table; `n_methylated`, `n_unmethylated`: the two counts on the
+# line of each CpG of the table. Returns the number of values compared, the
+# number that are not the counts of the line scaled as step 05 scales them, and
+# the number that lie exactly halfway between two whole numbers before rounding.
+table_against_lines <- function(written, lib_i, n_methylated, n_unmethylated, scaling_factor) {
+  reads <- n_methylated + n_unmethylated
+  expected <- scale_counts_like_methylkit(reads, n_methylated, n_unmethylated, scaling_factor)
+  unrounded <- c(scaling_factor * reads, expected$coverage * (n_methylated / reads), expected$coverage * (n_unmethylated / reads))
+  c(values = 3 * length(reads),
+    different = sum(vapply(c("coverage", "numCs", "numTs"), function(what) sum(expected[[what]] != written[[paste0(what, lib_i)]]), numeric(1))),
+    half = sum(is_half(unrounded)))
+}
 
 # All six columns of a coverage file. read_cov() of the pipeline drops the end
 # coordinate and the percentage; here they are needed to write lines back
@@ -287,7 +355,7 @@ n_groups <- n_interval_regions + 1L
 
 part_extract   <- sprintf("extract, all %d libraries", n_lib)
 part_coding    <- sprintf("legacy coding of the covariate, extract, all %d libraries", n_lib)
-part_tables    <- "tables of step 05 inside the regions"
+part_tables    <- "tables of step 05"
 part_synthetic <- sprintf("synthetic counts (%d libraries of %s CpGs)", 4L * synthetic_sets, count_text(synthetic_cpgs))
 part_order     <- function(level) sprintf("order of operations of step 04, CpGs with at least %g read%s in all libraries", level, if (level == 1) "" else "s")
 levels_step04  <- unique(c(1, config$min_coverage))      # the two levels at which step 04 computes correlations
@@ -313,8 +381,24 @@ extract_file <- file.path(extract_dir, lib$cov_file)
 lines_by_group <- removed_by_group <- matrix(0L, n_lib, n_groups)
 relative_median <- matrix(NA_real_, n_lib, n_groups)
 file_facts <- vector("list", n_lib)
+whole05 <- lapply(keys05, function(keys) c(values = 0, different = 0, half = 0))   # part 5, whole tables: tally over the libraries
 for (lib_i in seq_len(n_lib)) {
   whole <- read_whole_lines(cov_file[lib_i])
+  # Part 5, whole tables: the line of this file for every CpG of the tables of
+  # step 05, and the counts of the tables against the counts of those lines.
+  on_tested <- which(whole$chr %chin% levels05)
+  hit <- match(cpg_key(whole$chr[on_tested], whole$start[on_tested], levels05), all_keys05)
+  found <- which(!is.na(hit))
+  must(!anyDuplicated(hit[found]), lib$cov_file[lib_i], " holds a CpG of the tables of step 05 on two lines.")
+  line_of <- integer(length(all_keys05)); line_of[hit[found]] <- on_tested[found]
+  for (mode_name in config$modes) {
+    at <- line_of[index05[[mode_name]]]
+    must(all(at > 0L), "united_cpg_", mode_name, ".csv.gz holds a CpG that has no line in ", lib$cov_file[lib_i], ".")
+    whole05[[mode_name]] <- whole05[[mode_name]] +
+      table_against_lines(tables05[[mode_name]], lib_i, whole$nC[at], whole$nT[at], factor05[[mode_name]][lib_i])
+  }
+  rm(on_tested, hit, found, line_of, at)
+  library_median <- stats::median(whole$nC + whole$nT)    # median reads over all lines of the file
   region_index <- region_of(whole$chr, whole$start)
   taken <- whole[region_index > 0L]
   must(nrow(whole) > 1 && region_index[1L] > 0L && !anyDuplicated(taken, by = c("chr", "start")),
@@ -328,13 +412,13 @@ for (lib_i in seq_len(n_lib)) {
          identical(readLines(extract_file[lib_i], n = 1L), readLines(cov_file[lib_i], n = 1L)),
        "The extract of ", lib$library_id[lib_i], " does not reproduce the lines of the coverage file.")
   # What each region contributes in this library: lines, median reads relative
-  # to the median of the whole extract file, and lines that corrected mode
+  # to the median of the whole coverage file, and lines that corrected mode
   # removes (at least min_coverage reads and at least the cutoff of the extract file).
   group_taken <- region_group[region_index[region_index > 0L]]
   reads <- taken$nC + taken$nT
   cutoff <- upper_coverage_cutoff(reads, config$import_min_coverage, config$upper_coverage_percentile)
   lines_by_group[lib_i, ] <- tabulate(group_taken, nbins = n_groups)
-  relative_median[lib_i, ] <- as.numeric(tapply(reads, factor(group_taken, levels = seq_len(n_groups)), stats::median)) / stats::median(reads)
+  relative_median[lib_i, ] <- as.numeric(tapply(reads, factor(group_taken, levels = seq_len(n_groups)), stats::median)) / library_median
   removed_by_group[lib_i, ] <- tabulate(group_taken[reads >= config$min_coverage & reads >= cutoff], nbins = n_groups)
   file_facts[[lib_i]] <- data.table(library_id = lib$library_id[lib_i], lines_in_file = nrow(whole), lines_in_extract = nrow(taken))
   log_msg("%-10s %9d lines, %6d in the extract", lib$library_id[lib_i], nrow(whole), nrow(taken))
@@ -342,6 +426,17 @@ for (lib_i in seq_len(n_lib)) {
 }
 file_facts <- rbindlist(file_facts)
 must(all(colSums(lines_by_group)[seq_len(n_interval_regions)] > 0), "A region of the extract holds no line in any library.")
+# Of the tables of step 05, the later parts need the rows inside the regions only.
+n_tested05 <- lapply(tables05, nrow)
+tested05_by_region <- lapply(tables05, function(united05) {
+  inside <- region_of(united05$chr, united05$start)
+  tabulate(inside[inside > 0L], nbins = nrow(regions))
+})
+tables05 <- lapply(tables05, function(united05) {
+  inside <- region_of(united05$chr, united05$start) > 0L
+  united05[inside]
+})
+rm(keys05, all_keys05, index05); gc(verbose = FALSE)
 
 # ---- Facts about one library, from each route ---------------------------------------------
 # What methylKit did to one library. `imported` and `kept` are the tables of its
@@ -350,7 +445,8 @@ facts_of_methylkit <- function(imported, kept, mode_name, first_chr, first_start
   upper <- mode_name == "corrected"
   enough <- imported$coverage >= config$min_coverage
   # filterByCoverage does not return its cutoff. This is the expression in its
-  # source, and the rows that it kept must be the rows below this value.
+  # source, evaluated here on the rows that methRead imported; the rows that
+  # filterByCoverage kept must be the rows below this value.
   cutoff <- if (upper) unname(stats::quantile(imported$coverage, config$upper_coverage_percentile / 100)) else NA_real_
   must(nrow(kept) == if (upper) sum(enough & imported$coverage < cutoff) else sum(enough),
        "filterByCoverage did not keep the rows that the rule in its source keeps.")
@@ -358,7 +454,7 @@ facts_of_methylkit <- function(imported, kept, mode_name, first_chr, first_start
     rows_imported_methylkit = nrow(imported),
     first_line_imported_methylkit = any(imported$chr == first_chr & imported$start == first_start),
     rows_min_coverage_methylkit = sum(enough),
-    upper_cutoff_methylkit = cutoff,
+    upper_cutoff_from_methylkit_rows = cutoff,
     rows_with_cutoff_reads = if (upper) sum(imported$coverage == cutoff) else NA_integer_,
     rows_removed_by_upper_methylkit = sum(enough) - nrow(kept),
     rows_kept_methylkit = nrow(kept),
@@ -398,10 +494,11 @@ record_library_facts <- function(part, mode_name, facts) {
                          sum(facts$first_line_imported_methylkit), nrow(facts)))
   compare("rows with at least min_coverage reads", facts$rows_min_coverage_methylkit, facts$rows_min_coverage_helper)
   if (mode_name == "corrected") {
-    compare("upper cutoff: the percentile that filterByCoverage computes against upper_coverage_cutoff",
-            facts$upper_cutoff_methylkit, facts$upper_cutoff_helper, rule = "tolerance",
+    compare(paste("upper cutoff: percentile of the rows that methRead imported, which is the expression in the source of filterByCoverage",
+                  "evaluated in this script, against upper_coverage_cutoff"),
+            facts$upper_cutoff_from_methylkit_rows, facts$upper_cutoff_helper, rule = "tolerance",
             note = sprintf("cutoffs that are whole numbers: %d; that are not: %d; rows with exactly as many reads as their cutoff, which both routes remove: %s",
-                           sum(facts$upper_cutoff_methylkit %% 1 == 0), sum(facts$upper_cutoff_methylkit %% 1 != 0),
+                           sum(facts$upper_cutoff_from_methylkit_rows %% 1 == 0), sum(facts$upper_cutoff_from_methylkit_rows %% 1 != 0),
                            count_text(sum(facts$rows_with_cutoff_reads))))
     compare("rows removed by the upper filter", facts$rows_removed_by_upper_methylkit, facts$rows_removed_by_upper_helper,
             note = sprintf("%s rows removed in all", count_text(sum(facts$rows_removed_by_upper_methylkit))))
@@ -422,9 +519,11 @@ full_facts <- list()
 for (mode_name in config$modes) {
   rows <- list()
   for (lib_i in full_set) {
+    # methylKit's own calls, written out for each mode; no helper decides them.
+    # Legacy mode leaves methRead at its default header = TRUE.
     read_args <- list(location = cov_file[lib_i], sample.id = sample_ids[lib_i], assembly = "Roslin_v1",
                       pipeline = "bismarkCoverage", mincov = config$import_min_coverage)
-    if (!first_line_lost(mode_name)) read_args$header <- FALSE
+    if (mode_name == "corrected") read_args$header <- FALSE
     imported <- suppressMessages(do.call(methRead, read_args))
     gc(verbose = FALSE)
     kept <- getData(if (mode_name == "legacy") filterByCoverage(imported, lo.count = config$min_coverage)
@@ -436,7 +535,7 @@ for (mode_name in config$modes) {
     by_helper <- facts_of_helper(helper, kept, mode_name, first_line$chr[lib_i], first_line$start[lib_i])
     rows[[length(rows) + 1L]] <- cbind(
       data.table(scope = "full library", mode = mode_name, library_id = lib$library_id[lib_i],
-                 lines_in_file = file_facts$lines_in_file[lib_i], first_line_reads = first_line$reads[lib_i]),
+                 lines_read = file_facts$lines_in_file[lib_i], first_line_reads = first_line$reads[lib_i]),
       by_methylkit, by_helper)
     log_msg("[%s] %-10s full library: %d rows kept by methylKit, %d by the helper, %d rows differ", mode_name, lib$library_id[lib_i],
             by_methylkit$rows_kept_methylkit, by_helper$rows_kept_helper, by_helper$kept_rows_differing)
@@ -454,8 +553,10 @@ for (mode_name in config$modes) {
                 "value", as.numeric(unlist(lapply(pairs, function(column) facts[[column]]))),
                 as.numeric(unlist(lapply(names(pairs), function(column) recorded[[column]]))))
   if (mode_name == "corrected") {
-    record_values(part_full, mode_name, "methylKit on the full file against library_filtering_corrected.csv of step 05: upper_cutoff", "value",
-                  facts$upper_cutoff_methylkit, recorded$upper_cutoff, rule = "tolerance", note = "the table holds 15 significant digits")
+    record_values(part_full, mode_name,
+                  "percentile of the rows that methRead imported from the full file against upper_cutoff of library_filtering_corrected.csv of step 05",
+                  "value", facts$upper_cutoff_from_methylkit_rows, recorded$upper_cutoff, rule = "tolerance",
+                  note = "the table holds 15 significant digits")
   }
   full_facts[[mode_name]] <- facts
 }
@@ -473,11 +574,13 @@ if (all(c("legacy", "corrected") %in% config$modes)) {
 # ---- 3. Both routes on the extract ------------------------------------------------------
 # methylKit's own route for one treatment vector. Legacy mode leaves methRead at
 # its default header = TRUE and applies no upper filter; corrected mode reads
-# every line and passes the percentile under its real name.
+# every line and passes the percentile under its real name. Both calls are
+# written out here, so that this route uses no helper of the route it is
+# compared with.
 methylkit_route <- function(mode_name, treatment_vector) {
   read_args <- list(location = as.list(extract_file), sample.id = as.list(sample_ids), assembly = "Roslin_v1",
                     treatment = treatment_vector, pipeline = "bismarkCoverage", mincov = config$import_min_coverage)
-  if (!first_line_lost(mode_name)) read_args$header <- FALSE
+  if (mode_name == "corrected") read_args$header <- FALSE
   imported <- suppressMessages(do.call(methRead, read_args))
   filtered <- if (mode_name == "legacy") filterByCoverage(imported, lo.count = config$min_coverage)
               else filterByCoverage(imported, lo.count = config$min_coverage, hi.perc = config$upper_coverage_percentile)
@@ -536,6 +639,18 @@ run_test <- function(united, covariate_table, label) {
           if (length(seen) == 0) "none" else paste(sprintf("%d x '%s'", as.integer(tally), names(tally)), collapse = "; "))
   fit
 }
+# A DML selection (getMethylDiff, or dml_table() of the helpers, which calls
+# it), with its warnings collected. getMethylDiff warns when no CpG passes (see
+# Notes). The selections made, those without a CpG and the warnings are logged
+# for each mode.
+selections <- list(made = 0L, empty = 0L, warnings = character(0))
+quiet_selection <- function(selected) {
+  result <- withCallingHandlers(selected, warning = function(w) {
+    selections$warnings <<- c(selections$warnings, conditionMessage(w)); invokeRestart("muffleWarning") })
+  selections$made <<- selections$made + 1L
+  selections$empty <<- selections$empty + (nrow(result) == 0L)
+  result
+}
 
 thresholds <- sort(unique(c(config$dml_difference, config$dml_difference_sweep)))
 extract_facts <- list(); united_keys <- list(); imported_keys <- list(); tested_by_region <- list(); misspelled <- NULL
@@ -549,20 +664,24 @@ for (mode_name in config$modes) {
   facts <- rbindlist(lapply(seq_len(n_lib), function(lib_i) {
     kept <- getData(native$filtered[[lib_i]])
     cbind(data.table(scope = "extract", mode = mode_name, library_id = lib$library_id[lib_i],
-                     lines_in_file = file_facts$lines_in_extract[lib_i], first_line_reads = first_line$reads[lib_i]),
+                     lines_read = file_facts$lines_in_extract[lib_i], first_line_reads = first_line$reads[lib_i]),
           facts_of_methylkit(getData(native$imported[[lib_i]]), kept, mode_name, first_line$chr[lib_i], first_line$start[lib_i]),
           facts_of_helper(list(counts = helper$kept[[lib_i]], record = helper$filtering[lib_i], chr_levels = helper$chr_levels),
                           kept, mode_name, first_line$chr[lib_i], first_line$start[lib_i]))
   }))
   # normalizeCoverage does not return its factors. This is the expression in its
-  # source; the normalized counts compared below show that it was applied.
-  facts[, scaling_factor_methylkit := max(median_coverage_methylkit) / median_coverage_methylkit]
+  # source, evaluated here on the medians of the rows that filterByCoverage
+  # kept; the normalized counts compared below show that it was applied.
+  facts[, scaling_factor_from_methylkit_medians := max(median_coverage_methylkit) / median_coverage_methylkit]
   facts[, scaling_factor_helper := helper$filtering$scaling_factor]
   record_library_facts(part_extract, mode_name, facts)
-  record_values(part_extract, mode_name, "scaling factor: largest median over own median", "library",
-                facts$scaling_factor_methylkit, facts$scaling_factor_helper, rule = "tolerance",
-                note = sprintf("%d distinct factors, from %s to %s", uniqueN(facts$scaling_factor_methylkit),
-                               format(min(facts$scaling_factor_methylkit), digits = 6), format(max(facts$scaling_factor_methylkit), digits = 6)))
+  record_values(part_extract, mode_name,
+                paste("scaling factor: largest median over own median, which is the expression in the source of normalizeCoverage",
+                      "evaluated in this script on the medians of the rows that filterByCoverage kept, against the factor of the helper route"),
+                "library", facts$scaling_factor_from_methylkit_medians, facts$scaling_factor_helper, rule = "tolerance",
+                note = sprintf("%d distinct factors, from %s to %s", uniqueN(facts$scaling_factor_from_methylkit_medians),
+                               format(min(facts$scaling_factor_from_methylkit_medians), digits = 6),
+                               format(max(facts$scaling_factor_from_methylkit_medians), digits = 6)))
 
   # -- normalized counts of every kept row of every library, not only of the united CpGs
   scaled <- rbindlist(lapply(seq_len(n_lib), function(lib_i) {
@@ -631,9 +750,10 @@ for (mode_name in config$modes) {
     # DML: methylKit's getMethylDiff on its own route; the rule as step 05
     # writes it on the helper route, checked against dml_table() as in step 05.
     by_threshold <- lapply(thresholds, function(threshold) {
-      called_a <- getData(getMethylDiff(fit_a, difference = threshold, qvalue = config$dml_qvalue))
+      called_a <- quiet_selection(getData(getMethylDiff(fit_a, difference = threshold, qvalue = config$dml_qvalue)))
       called_b <- b[qvalue < config$dml_qvalue & abs(meth.diff) > threshold]
-      must(nrow(called_b) == nrow(dml_table(fit_b, threshold, config$dml_qvalue)), "The DML rule of step 05 and dml_table() disagree.")
+      must(nrow(called_b) == nrow(quiet_selection(dml_table(fit_b, threshold, config$dml_qvalue))),
+           "The DML rule of step 05 and dml_table() disagree.")
       list(a = cpg_key(called_a$chr, called_a$start, extract_levels), b = cpg_key(called_b$chr, called_b$start, extract_levels))
     })
     names(by_threshold) <- thresholds
@@ -664,7 +784,7 @@ for (mode_name in config$modes) {
                   note = "one model, with the covariate as an indicator (legacy script) or as the integer codes of a factor (step 05)")
     record_values(part_coding, mode_name, paste0(label_coding, "q-value (SLIM)"), "CpG", coded$qvalue[row_a], b$qvalue[row_b], rule = "recorded")
     called_legacy_coding <- lapply(thresholds, function(threshold) {
-      called <- getData(getMethylDiff(fit_legacy_coding, difference = threshold, qvalue = config$dml_qvalue))
+      called <- quiet_selection(getData(getMethylDiff(fit_legacy_coding, difference = threshold, qvalue = config$dml_qvalue)))
       cpg_key(called$chr, called$start, extract_levels)
     })
     names(called_legacy_coding) <- thresholds
@@ -684,13 +804,21 @@ for (mode_name in config$modes) {
               intersect(dml$ploidy$a, dml$heat$a), intersect(dml$ploidy$b, dml$heat$b))
   record_sets(part_coding, mode_name, paste0(coding_pair, ": loci in both DML lists"), "locus",
               intersect(dml_legacy_coding$ploidy, dml_legacy_coding$heat), intersect(dml$ploidy$b, dml$heat$b))
+  warned <- table(selections$warnings)
+  log_msg("[%s] DML selections: %d made, %d of them without a CpG; warnings: %s", mode_name, selections$made, selections$empty,
+          if (length(warned) == 0) "none" else paste(sprintf("%d x '%s'", as.integer(warned), names(warned)), collapse = "; "))
+  selections <- list(made = 0L, empty = 0L, warnings = character(0))
   extract_facts[[mode_name]] <- facts
   rm(native, native_united, helper, facts, scaled, united_now, dml, dml_legacy_coding); gc(verbose = FALSE)
 }
 
 if ("corrected" %in% config$modes) {
-  must(sum(removed_by_group) == sum(extract_facts$corrected$rows_removed_by_upper_methylkit),
-       "The lines removed by the upper filter, counted by region, are not the rows that the routes removed.")
+  # The extract table gives, region by region, the lines that the upper filter
+  # removes; part 1 counted them with upper_coverage_cutoff. Summed over the
+  # regions they must be the rows that filterByCoverage removed in each library.
+  record_values(part_extract, "corrected",
+                "lines that the upper filter removes, as counted by region for the extract table, against the rows that filterByCoverage removed",
+                "library", rowSums(removed_by_group), extract_facts$corrected$rows_removed_by_upper_methylkit)
 }
 
 # ---- 4. The legacy call in methylKit's own objects -----------------------------------------
@@ -718,17 +846,13 @@ if (all(c("legacy", "corrected") %in% config$modes)) {
          "library", n_lib, sum(!misspelled), note = "the misspelled arguments are ignored")
 }
 
-# ---- 5. The tables of step 05 at the CpGs of the extract -----------------------------------
-tested05_by_region <- list(); n_tested05 <- list()
+# ---- 5. The tables of step 05 ---------------------------------------------------------------
+# The whole tables were set against the whole coverage files during the pass of
+# part 1 (tally `whole05`). Here: the rows of the tables inside the regions,
+# against the lines of the extract files.
 for (mode_name in config$modes) {
-  united05 <- fread(tab05(sprintf("united_cpg_%s.csv.gz", mode_name)))
-  must(ncol(united05) == 4 + 3 * n_lib &&
-         all(paste0(rep(c("coverage", "numCs", "numTs"), n_lib), rep(seq_len(n_lib), each = 3)) == names(united05)[-(1:4)]),
-       "united_cpg_", mode_name, ".csv.gz does not hold coverage, numCs and numTs of the ", n_lib, " libraries.")
-  n_tested05[[mode_name]] <- nrow(united05)
-  region05 <- region_of(united05$chr, united05$start)
-  tested05_by_region[[mode_name]] <- tabulate(region05[region05 > 0L], nbins = nrow(regions))
-  united05 <- united05[region05 > 0L]
+  united05 <- tables05[[mode_name]]                                    # the rows inside the regions
+  recorded <- records05[[mode_name]]
   key05 <- cpg_key(united05$chr, united05$start, extract_levels)
   record_sets(part_tables, mode_name,
               sprintf("CpGs of united_cpg_%s.csv.gz inside the regions against the united CpGs of the extract", mode_name), "CpG",
@@ -737,23 +861,43 @@ for (mode_name in config$modes) {
                              count_text(length(key05)), count_text(length(setdiff(key05, united_keys[[mode_name]]))),
                              count_text(length(united_keys[[mode_name]])),
                              if (mode_name == "legacy") "" else "; the cutoffs of the extract are not those of the full files, so the sets may differ"))
-  # The scaling factor as step 05 computes it. The factor written in the table
-  # is rounded to 15 digits; the medians are written exactly.
-  factor05 <- max(records05[[mode_name]]$median_coverage) / records05[[mode_name]]$median_coverage
-  n_values <- 0; n_differing <- 0
+  # The CpGs of the regions that pass the rule of the mode in every library. The
+  # extract holds every line of the regions, and its first line is the first
+  # line of the coverage file. The upper cutoff is the one that step 05 recorded
+  # for the whole file, not the cutoff of the extract file.
+  inside <- c(values = 0, different = 0, half = 0); passing <- NULL
   for (lib_i in seq_len(n_lib)) {
     lines <- read_cov(extract_file[lib_i])
-    at <- match(key05, cpg_key(lines$chr, lines$start, extract_levels))
+    key_lines <- cpg_key(lines$chr, lines$start, extract_levels)
+    reads <- lines$nC + lines$nT
+    passes <- reads >= config$min_coverage
+    if (mode_name == "legacy") passes[1L] <- FALSE                     # the first line of the file was not read
+    if (mode_name == "corrected") passes <- passes & reads < recorded$upper_cutoff[lib_i]
+    passing <- if (is.null(passing)) key_lines[passes] else passing[passing %in% key_lines[passes]]
+    at <- match(key05, key_lines)
     must(!anyNA(at), "A CpG that step 05 tested in mode ", mode_name, " has no line in the extract of ", lib$library_id[lib_i], ".")
-    expected <- scale_counts_like_methylkit(lines$nC[at] + lines$nT[at], lines$nC[at], lines$nT[at], factor05[lib_i])
-    for (what in c("coverage", "numCs", "numTs")) n_differing <- n_differing + sum(expected[[what]] != united05[[paste0(what, lib_i)]])
-    n_values <- n_values + 3 * length(at)
+    inside <- inside + table_against_lines(united05, lib_i, lines$nC[at], lines$nT[at], factor05[[mode_name]][lib_i])
   }
+  record_sets(part_tables, mode_name,
+              sprintf("CpGs of united_cpg_%s.csv.gz inside the regions against the CpGs of the regions that pass the rule of the mode in every library",
+                      mode_name),
+              "CpG", key05, passing,
+              note = sprintf("the rule: at least %g reads%s; %s CpGs of the regions pass it in every library", config$min_coverage,
+                             if (mode_name == "legacy") ", and not the first line of a coverage file"
+                             else sprintf(" and fewer reads than upper_cutoff of library_filtering_%s.csv, the cutoff of the whole file", mode_name),
+                             count_text(length(passing))))
+  factor_note <- sprintf("factor: largest median over own median, from the medians in library_filtering_%s.csv", mode_name)
   record(part_tables, mode_name,
-         sprintf("counts of united_cpg_%s.csv.gz at those CpGs against the lines of the coverage files scaled by scale_counts_like_methylkit", mode_name),
-         "count", n_values, n_differing,
-         note = sprintf("factor: largest median over own median, from the medians in library_filtering_%s.csv", mode_name))
-  rm(united05, region05, key05, lines, at, expected); gc(verbose = FALSE)
+         sprintf("counts of united_cpg_%s.csv.gz at the CpGs inside the regions against the lines of the extract files scaled by scale_counts_like_methylkit",
+                 mode_name),
+         "count", inside[["values"]], inside[["different"]], note = factor_note)
+  record(part_tables, mode_name,
+         sprintf("counts of united_cpg_%s.csv.gz at every CpG of the table against the lines of the whole coverage files scaled by scale_counts_like_methylkit",
+                 mode_name),
+         "count", whole05[[mode_name]][["values"]], whole05[[mode_name]][["different"]],
+         note = sprintf("%s CpGs in %d libraries; %s; %s values are exactly halfway between two whole numbers before rounding",
+                        count_text(n_tested05[[mode_name]]), n_lib, factor_note, count_text(whole05[[mode_name]][["half"]])))
+  rm(united05, recorded, key05, lines, key_lines, reads, passes, passing, at); gc(verbose = FALSE)
 }
 
 # ---- 6. Rounding: synthetic counts ----------------------------------------------------------
@@ -823,8 +967,12 @@ for (mode_name in config$modes) for (level in levels_step04) {
   factors <- vapply(counted, function(x) stats::median(x$coverage), numeric(1))
   factors <- max(factors) / factors
   if (level == config$min_coverage) {
-    must(setequal(in_all, united_keys[[mode_name]]) && identical(factors, extract_facts[[mode_name]]$scaling_factor_helper),
-         "The rule of step 04 at ", level, " reads does not give the CpGs and the scaling factors of the helper route in mode ", mode_name, ".")
+    # At this level step 04 and step 05 select by one rule, so the selection made
+    # here must give the united CpGs and the scaling factors of the helper route.
+    record_sets(part_order(level), mode_name, "CpGs selected by the rule of step 04 against the united CpGs of the helper route", "CpG",
+                in_all, united_keys[[mode_name]])
+    record_values(part_order(level), mode_name, "scaling factors by the rule of step 04 against the factors of the helper route", "library",
+                  factors, extract_facts[[mode_name]]$scaling_factor_helper, rule = "tolerance")
   }
   pm_methylkit <- pm_step04 <- matrix(NA_real_, length(in_all), n_lib)
   differing <- c(numCs = 0, numTs = 0)
@@ -873,12 +1021,12 @@ library_table <- rbind(rbindlist(extract_facts), rbindlist(full_facts), fill = T
 sheet_row <- match(library_table$library_id, lib$library_id)
 library_table[, `:=`(ploidy = as.character(lib$ploidy[sheet_row]), treatment = as.character(lib$treatment[sheet_row]))]
 setcolorder(library_table, c(
-  "scope", "mode", "library_id", "ploidy", "treatment", "lines_in_file", "first_line_reads",
+  "scope", "mode", "library_id", "ploidy", "treatment", "lines_read", "first_line_reads",
   "rows_imported_methylkit", "rows_imported_helper", "first_line_imported_methylkit",
-  "rows_min_coverage_methylkit", "rows_min_coverage_helper", "upper_cutoff_methylkit", "upper_cutoff_helper", "rows_with_cutoff_reads",
+  "rows_min_coverage_methylkit", "rows_min_coverage_helper", "upper_cutoff_from_methylkit_rows", "upper_cutoff_helper", "rows_with_cutoff_reads",
   "rows_removed_by_upper_methylkit", "rows_removed_by_upper_helper", "rows_kept_methylkit", "rows_kept_helper", "kept_rows_differing",
   "first_line_kept_methylkit", "first_line_kept_helper", "median_coverage_methylkit", "median_coverage_helper",
-  "max_coverage_kept_methylkit", "max_coverage_kept_helper", "scaling_factor_methylkit", "scaling_factor_helper"))
+  "max_coverage_kept_methylkit", "max_coverage_kept_helper", "scaling_factor_from_methylkit_medians", "scaling_factor_helper"))
 fwrite(library_table, out_file("_libraries"))
 
 # One row per region; the positions of first lines outside the other regions form one row.
@@ -894,8 +1042,8 @@ extract_table <- data.table(
   libraries_with_lines = colSums(lines_by_group > 0),
   lines_per_library_min = apply(lines_by_group, 2, min), lines_per_library_max = apply(lines_by_group, 2, max),
   files_that_begin_here = as.integer(tabulate(region_group[first_region], nbins = n_groups)),
-  median_reads_over_median_of_extract_min = round(apply(relative_median, 2, min, na.rm = TRUE), 2),
-  median_reads_over_median_of_extract_max = round(apply(relative_median, 2, max, na.rm = TRUE), 2),
+  median_reads_over_library_median_min = round(apply(relative_median, 2, min, na.rm = TRUE), 2),
+  median_reads_over_library_median_max = round(apply(relative_median, 2, max, na.rm = TRUE), 2),
   lines_removed_by_upper_filter = colSums(removed_by_group))
 for (mode_name in config$modes) {
   set(extract_table, j = paste0("cpg_united_on_extract_", mode_name), value = by_group(tested_by_region[[mode_name]]))
