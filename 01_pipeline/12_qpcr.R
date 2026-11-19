@@ -114,7 +114,11 @@
 #             animals of the primary analysis, with their censoring bounds, at
 #             shares of censored animals up to the largest share among the fits
 #             of the step. qpcr_censored_test_size.csv and the log give how
-#             often the corrected and the uncorrected test reject.
+#             often the corrected and the uncorrected test reject. The step
+#             stops if the corrected test rejects more than 1.5 times as often
+#             as its nominal level (the liberal criterion of Bradley 1978,
+#             British Journal of Mathematical and Statistical Psychology 31:144,
+#             doi:10.1111/j.2044-8317.1978.tb00581.x).
 #           - Which genes are analysed. The limit of detection of a qPCR assay is
 #             the concentration at which 95% of wells are detected (Bustin et al.
 #             2009, Clinical Chemistry 55:611, doi:10.1373/clinchem.2008.112797,
@@ -350,7 +354,7 @@ no_reference <- animals[is.na(reference_cq), animal_id]
 if (length(no_reference) > 0) {
   log_msg("no %s Cq for: %s; counted as failed sample(s) and left out of every model of delta Cq", ref, paste(no_reference, collapse = ", "))
 }
-if (animals[in_models == TRUE, sum(!is.na(reference_cq))] < 2) stop("Fewer than two animals in the models have a ", ref, " Cq.")
+if (animals[in_models == TRUE, sum(!is.na(reference_cq))] < 2) stop("Fewer than two animals in the models have a Cq of the reference gene ", ref, ".")
 ref_quartiles <- quantile(animals[in_models == TRUE & !is.na(reference_cq), reference_cq], c(0.25, 0.75), names = FALSE)
 ref_fence <- ref_quartiles[2] + opt$failed_fence_iqr * diff(ref_quartiles)
 animals[, failed_sample := is.na(reference_cq) | reference_cq > ref_fence]
@@ -653,13 +657,22 @@ fit_groups <- function(d, method, with_covariate = FALSE) {
     f <- lm.fit(X[use, , drop = FALSE], d$y[use])
     if (f$rank < k || n <= k) stop("Model not estimable: too few animals with a value in a group.")
     V <- chol2inv(f$qr$qr[seq_len(k), seq_len(k), drop = FALSE]) * sum(f$residuals^2) / (n - k)
-    list(b = unname(f$coefficients), V = V, df = n - k, n = n, n_censored = 0L, residuals = f$residuals, group = d$group[use])
+    list(b = unname(f$coefficients), V = V, df = n - k, n = n, n_censored = 0L, residual_sd = sqrt(sum(f$residuals^2) / (n - k)),
+         residuals = f$residuals, group = d$group[use])
   } else {
     n <- nrow(d)
     f <- tryCatch(survreg(Surv(d$y, d$exact) ~ 0 + X, dist = "gaussian"),
                   warning = function(w) stop("Censored regression did not fit cleanly: ", conditionMessage(w), call. = FALSE))
-    list(b = unname(coef(f)), V = f$var[seq_len(k), seq_len(k), drop = FALSE] * n / (n - k), df = n - k, n = n, n_censored = sum(!d$exact))
+    list(b = unname(coef(f)), V = f$var[seq_len(k), seq_len(k), drop = FALSE] * n / (n - k), df = n - k, n = n, n_censored = sum(!d$exact),
+         residual_sd = f$scale * sqrt(n / (n - k)))
   }
+}
+# What goes into a fit: the animals used, their values, and which values are bounds. Two fits of a gene with the same
+# content are one fit; without a bound the censored regression is the linear model.
+fit_content <- function(d, method) {
+  used <- if (method == "complete cases") d[d$exact, ] else d
+  used <- used[order(used$animal_id), ]
+  paste(used$animal_id, used$y, used$exact, collapse = ";")
 }
 contrast_table <- function(f) {
   est <- drop(K %*% f$b[seq_len(n_groups)])
@@ -672,28 +685,41 @@ contrast_table <- function(f) {
 # Brown and Forsythe (1974, Journal of the American Statistical Association 69:364): one-way ANOVA of the absolute
 # deviations from the group medians.
 brown_forsythe_p <- function(y, g) anova(lm(abs(y - ave(y, g, FUN = median)) ~ g))[1, "Pr(>F)"]
-# Student and Welch tests of a simple effect on its two groups alone.
-two_group_p <- function(d, term_i) {
+# Student and Welch tests of a simple effect on its two groups alone, and both tests again with each animal of the two
+# groups left out in turn. The tests need two animals with a value in each group, the leave-one-out runs three.
+two_group_tests <- function(d, term_i) {
   w <- K[term_i, ]
-  a <- d$y[d$exact & d$group == names(w)[w > 0]]; b <- d$y[d$exact & d$group == names(w)[w < 0]]
-  if (length(a) < 2 || length(b) < 2) return(c(NA_real_, NA_real_))
-  c(t.test(a, b, var.equal = TRUE)$p.value, t.test(a, b)$p.value)
+  used <- d[d$exact & d$group %in% names(w)[w != 0], ]
+  in_first <- used$group == names(w)[w > 0]
+  both_tests <- function(keep) c(t.test(used$y[in_first & keep], used$y[!in_first & keep], var.equal = TRUE)$p.value,
+                                 t.test(used$y[in_first & keep], used$y[!in_first & keep])$p.value)
+  smallest_group <- min(sum(in_first), sum(!in_first))
+  p_full <- if (smallest_group >= 2) both_tests(TRUE) else c(NA_real_, NA_real_)
+  p_left_out <- if (smallest_group >= 3) vapply(seq_len(nrow(used)), function(j) both_tests(seq_len(nrow(used)) != j), numeric(2)) else NULL
+  range_of <- function(i) if (is.null(p_left_out)) list(NA_real_, NA_real_, NA_integer_) else
+    list(min(p_left_out[i, ]), max(p_left_out[i, ]), sum(p_left_out[i, ] < opt$alpha))
+  student <- range_of(1); welch <- range_of(2)
+  data.table(n_two_groups = nrow(used), p_two_groups_student = p_full[1], p_two_groups_welch = p_full[2],
+             p_student_leave_one_out_low = student[[1]], p_student_leave_one_out_high = student[[2]],
+             n_student_leave_one_out_p_below_alpha = student[[3]],
+             p_welch_leave_one_out_low = welch[[1]], p_welch_leave_one_out_high = welch[[2]], n_welch_leave_one_out_p_below_alpha = welch[[3]])
 }
-# The fit repeated with one animal left out at a time: lowest and highest p of each contrast, and the animal left out.
+# The fit repeated with one animal left out at a time: lowest and highest p of each contrast, the animal left out, and
+# the number of these fits with p below alpha.
 leave_one_out <- function(d, method) {
   rows_i <- if (method == "complete cases") which(d$exact) else seq_len(nrow(d))
   p <- vapply(rows_i, function(j) contrast_table(fit_groups(d[-j, ], method))$p_value, numeric(nrow(term_info)))
   data.table(p_leave_one_out_low = apply(p, 1, min), left_out_for_low = d$animal_id[rows_i[apply(p, 1, which.min)]],
-             p_leave_one_out_high = apply(p, 1, max), left_out_for_high = d$animal_id[rows_i[apply(p, 1, which.max)]])
+             p_leave_one_out_high = apply(p, 1, max), left_out_for_high = d$animal_id[rows_i[apply(p, 1, which.max)]],
+             n_leave_one_out = length(rows_i), n_leave_one_out_p_below_alpha = as.integer(rowSums(p < opt$alpha)))
 }
 
-models <- list(); group_fit <- list()
+models <- list(); group_fit <- list(); primary_sd <- list()
 for (set_i in names(animal_sets)) for (gene_i in targets) {
   d_i <- model_data(gene_i, set_i)
   data_for <- setNames(list(d_i, d_i, model_data(gene_i, set_i, one_well_as_bound = TRUE)), methods)
   id_cols <- data.table(gene = gene_i, replicate_data = gene_i %in% targets_rep, detection_class = class_of(gene_i, set_i),
                         animals_included = animal_sets[[set_i]], n_animals_without_value = sum(!d_i$exact))
-  fits <- list()
   for (m_i in methods) {
     d_m <- data_for[[m_i]]
     # A fit needs two animals with a value in every group; a gene that is not analysed gets empty rows as well.
@@ -701,39 +727,58 @@ for (set_i in names(animal_sets)) for (gene_i in targets) {
       models[[length(models) + 1]] <- cbind(id_cols, analysis = m_i, term_info)
       next
     }
-    fits[[m_i]] <- fit_groups(d_m, m_i)
-    rows <- cbind(id_cols, analysis = m_i, contrast_table(fits[[m_i]]), leave_one_out(d_m, m_i))
+    fit_m <- fit_groups(d_m, m_i)
+    rows <- cbind(id_cols, analysis = m_i, contrast_table(fit_m), leave_one_out(d_m, m_i), fit_content = fit_content(d_m, m_i))
     if (m_i == "complete cases") {
-      rows[, `:=`(residual_shapiro_p = shapiro.test(fits[[m_i]]$residuals)$p.value,
-                  brown_forsythe_p = brown_forsythe_p(fits[[m_i]]$residuals, fits[[m_i]]$group))]
-      tg <- vapply(simple_terms, function(term_i) two_group_p(d_m, term_i), numeric(2))
-      rows[match(simple_terms, term), `:=`(p_two_groups_student = tg[1, ], p_two_groups_welch = tg[2, ])]
+      rows[, `:=`(residual_shapiro_p = shapiro.test(fit_m$residuals)$p.value,
+                  brown_forsythe_p = brown_forsythe_p(fit_m$residuals, fit_m$group))]
+      two_groups <- rbindlist(lapply(simple_terms, function(term_i) two_group_tests(d_m, term_i)))
+      rows[match(simple_terms, term), (names(two_groups)) := two_groups]
     }
+    if (m_i == methods[2] && set_i == "clean") primary_sd[[gene_i]] <- fit_m$residual_sd
     models[[length(models) + 1]] <- rows
     group_fit[[length(group_fit) + 1]] <- data.table(
       gene = gene_i, animals_included = animal_sets[[set_i]], analysis = m_i, group = group_levels,
-      mean_delta_cq = fits[[m_i]]$b[seq_len(n_groups)], se_mean = sqrt(diag(fits[[m_i]]$V)[seq_len(n_groups)]))
-  }
-  # Without a censored animal the linear model and the censored regression are the same model and must give the same numbers.
-  if (all(d_i$exact) && all(methods[1:2] %in% names(fits))) {
-    a <- contrast_table(fits[[methods[1]]]); b <- contrast_table(fits[[methods[2]]])
-    if (max(abs(c(a$difference_cycles - b$difference_cycles, a$se_cycles - b$se_cycles, a$p_value - b$p_value))) > 1e-6) {
-      stop("Censored regression and linear model disagree for ", gene_i, " (", animal_sets[[set_i]], ") although nothing is censored.")
-    }
+      mean_delta_cq = fit_m$b[seq_len(n_groups)], se_mean = sqrt(diag(fit_m$V)[seq_len(n_groups)]))
   }
 }
 models <- rbindlist(models, fill = TRUE); group_fit <- rbindlist(group_fit)
+if (!"p_value" %in% names(models) || length(primary_sd) == 0) {
+  stop("No gene could be fitted in the primary analysis: every analysed gene has a group with fewer than two animals with a value.")
+}
 bh <- function(p) { q <- rep(NA_real_, length(p)); q[!is.na(p)] <- p.adjust(p[!is.na(p)], method = "BH"); q }
 models[, `:=`(q_value = bh(p_value), q_two_groups_student = bh(p_two_groups_student), q_two_groups_welch = bh(p_two_groups_welch),
               genes_in_correction = sum(!is.na(p_value))), by = .(analysis, animals_included, term)]
 models[, primary := analysis == methods[2] & animals_included == animal_sets[["clean"]]]
 models <- models[order(match(animals_included, animal_sets), match(analysis, methods), match(gene, targets), match(term, term_info$term))]
-setcolorder(models, c("gene", "replicate_data", "detection_class", "analysis", "animals_included", "primary", "term", "contrast",
+# A fit with the content of an earlier fit of the same gene is named after that fit. Such fits must give the same numbers;
+# this includes the linear model against the censored regression where nothing is censored.
+models[, fit_label := paste(analysis, animals_included, sep = ", ")]
+models[!is.na(fit_content), same_fit_as := fit_label[match(fit_content, fit_content)], by = gene]
+models[same_fit_as == fit_label, same_fit_as := NA_character_]
+repeats <- models[!is.na(fit_content), .(p_gap = diff(range(p_value)), p_largest = max(p_value), estimate_gap = diff(range(difference_cycles)),
+                                         se_gap = diff(range(se_cycles))), by = .(gene, term, fit_content)]
+if (repeats[, any(p_gap > opt$same_p_tolerance * p_largest | estimate_gap > 1e-6 | se_gap > 1e-6)]) {
+  stop("Fits of the same animals and values give different numbers for: ",
+       paste(repeats[p_gap > opt$same_p_tolerance * p_largest | estimate_gap > 1e-6 | se_gap > 1e-6, unique(gene)], collapse = ", "))
+}
+models[, c("fit_content", "fit_label") := NULL]
+setcolorder(models, c("gene", "replicate_data", "detection_class", "analysis", "animals_included", "primary", "same_fit_as", "term", "contrast",
                       "n_animals", "n_censored", "n_animals_without_value", "difference_cycles", "se_cycles", "ci_low_cycles", "ci_high_cycles",
                       "fold_change", "fold_low", "fold_high", "t_value", "df_residual", "p_value", "q_value", "genes_in_correction",
-                      "p_leave_one_out_low", "left_out_for_low", "p_leave_one_out_high", "left_out_for_high", "p_two_groups_student",
-                      "q_two_groups_student", "p_two_groups_welch", "q_two_groups_welch", "residual_shapiro_p", "brown_forsythe_p"))
+                      "p_leave_one_out_low", "left_out_for_low", "p_leave_one_out_high", "left_out_for_high", "n_leave_one_out",
+                      "n_leave_one_out_p_below_alpha", "n_two_groups", "p_two_groups_student", "q_two_groups_student",
+                      "p_student_leave_one_out_low", "p_student_leave_one_out_high", "n_student_leave_one_out_p_below_alpha",
+                      "p_two_groups_welch", "q_two_groups_welch", "p_welch_leave_one_out_low", "p_welch_leave_one_out_high",
+                      "n_welch_leave_one_out_p_below_alpha", "residual_shapiro_p", "brown_forsythe_p"))
 write_tab(models, "qpcr_models.csv")
+# Analyses of the same animals and values give the same p value. Counts of analyses count such repeats once:
+# first_result() is TRUE for a p value that equals none of the values before it, within the tolerance.
+first_result <- function(p) vapply(seq_along(p), function(i) {
+  earlier <- p[seq_len(i - 1)]
+  !any(abs(earlier - p[i]) <= opt$same_p_tolerance * pmax(earlier, p[i]))
+}, logical(1))
+distinct_p <- function(p) { p <- p[!is.na(p)]; p[first_result(p)] }
 pick <- function(gene_i, term_i, analysis_i = methods[2], set_i = "clean") {
   r <- models[gene == gene_i & term == term_i & analysis == analysis_i & animals_included == animal_sets[[set_i]]]
   stopifnot(nrow(r) == 1); r
@@ -742,6 +787,65 @@ smallest_q <- vapply(model_terms, function(term_i) models[primary == TRUE & term
 log_msg("delta Cq models: %d genes analysed; primary analysis (censored regression, %s): smallest q per term: %s",
         models[primary == TRUE & term == "ploidy", sum(!is.na(p_value))], animal_sets[["clean"]],
         paste(sprintf("%s %.2f", model_terms, smallest_q), collapse = ", "))
+
+# ---- how often the test of the censored regression rejects a true null hypothesis (simulation) ----
+# The small-sample correction in fit_groups() is exact when nothing is censored. Here it is checked with censoring.
+# One delta Cq per animal of the primary analysis is drawn from one normal distribution, so that no group differs. A
+# value above the animal's bound (max_cycles minus its reference Cq) becomes a bound, as for a non-detect, and the data
+# set is fitted and tested as in the analysis. The standard deviation is the median residual SD of the primary fits.
+# The mean is set so that the expected share of censored animals rises in steps of 0.1 to the largest share among the
+# fits above. A test is taken to hold its level when it rejects in 0.5 to 1.5 times the nominal share of data sets
+# (Bradley 1978, British Journal of Mathematical and Statistical Psychology 31:144, the liberal criterion). The step
+# stops if the corrected test rejects more often than that. A test that rejects less often is conservative: its p
+# values are too large, not too small, and the table says so.
+censored_share <- models[!is.na(p_value) & n_censored > 0, n_censored / n_animals]
+test_size <- data.table(share_censored_expected = numeric(0), mean_delta_cq = numeric(0), sd_delta_cq = numeric(0), n_animals = integer(0),
+                        data_sets = integer(0), data_sets_fitted = integer(0), share_censored_simulated = numeric(0), term = character(0),
+                        contrast = character(0), nominal_level = numeric(0), rejection_rate = numeric(0),
+                        rejection_rate_uncorrected = numeric(0), monte_carlo_se = numeric(0), level_check = character(0))
+if (length(censored_share) > 0) {
+  sim <- animals[match(in_set$clean, animal_id), .(group, bound = opt$max_cycles - reference_cq)]
+  sd_null <- median(unlist(primary_sd))
+  steps <- seq(0.1, 0.9, by = 0.1)
+  shares <- c(steps[steps < max(censored_share) - 1e-9], max(censored_share))
+  n_terms <- length(model_terms)
+  set.seed(opt$size_check_seed, kind = "Mersenne-Twister", normal.kind = "Inversion")
+  one_data_set <- function(mean_null) {       # p of the three model terms, corrected then uncorrected, and the share censored
+    drawn <- rnorm(nrow(sim), mean_null, sd_null)
+    exact <- drawn < sim$bound
+    not_fitted <- c(rep(NA_real_, 2 * n_terms), mean(!exact))
+    if (min(table(sim$group[exact])) < 2) return(not_fitted)                 # the step does not fit such a gene
+    f <- tryCatch(fit_groups(data.frame(group = sim$group, y = pmin(drawn, sim$bound), exact = exact), methods[2]), error = function(e) NULL)
+    if (is.null(f)) return(not_fitted)
+    ct <- contrast_table(f)[match(model_terms, term)]
+    c(ct$p_value, 2 * pnorm(-abs(ct$t_value) * sqrt(f$n / f$df)), mean(!exact))    # without the correction: z test, maximum likelihood SE
+  }
+  test_size <- rbindlist(lapply(shares, function(share_i) {
+    mean_null <- uniroot(function(m) mean(pnorm(sim$bound, m, sd_null, lower.tail = FALSE)) - share_i,
+                         range(sim$bound) + c(-10, 10) * sd_null, tol = 1e-9)$root
+    runs <- t(replicate(opt$size_check_runs, one_data_set(mean_null)))
+    fitted <- !is.na(runs[, 1])
+    if (!any(fitted)) stop("Check of the censored test: no simulated data set could be fitted at a censored share of ", share_i, ".")
+    rate <- function(columns) colMeans(runs[fitted, columns, drop = FALSE] < opt$alpha)
+    data.table(share_censored_expected = share_i, mean_delta_cq = mean_null, sd_delta_cq = sd_null, n_animals = nrow(sim),
+               data_sets = nrow(runs), data_sets_fitted = sum(fitted), share_censored_simulated = mean(runs[, 2 * n_terms + 1]),
+               term = model_terms, contrast = contrast_of(model_terms), nominal_level = opt$alpha,
+               rejection_rate = rate(seq_len(n_terms)), rejection_rate_uncorrected = rate(n_terms + seq_len(n_terms)))
+  }))
+  test_size[, monte_carlo_se := sqrt(rejection_rate * (1 - rejection_rate) / data_sets_fitted)]
+  test_size[, level_check := fifelse(rejection_rate > 1.5 * nominal_level, "rejects too often",
+                             fifelse(rejection_rate < 0.5 * nominal_level, "rejects too seldom (conservative)",
+                                     "within 0.5 to 1.5 times the nominal level"))]
+  log_msg(paste("censored regression under the null, %d data sets per share of censored animals (%s): the corrected test rejects at %g in",
+                "%.1f%% to %.1f%%, the uncorrected test in %.1f%% to %.1f%%"),
+          opt$size_check_runs, paste(sprintf("%.2f", shares), collapse = ", "), opt$alpha, 100 * min(test_size$rejection_rate),
+          100 * max(test_size$rejection_rate), 100 * min(test_size$rejection_rate_uncorrected), 100 * max(test_size$rejection_rate_uncorrected))
+} else log_msg("no fit has a censored animal: the censored regression is the linear model throughout, and no simulation is needed")
+write_tab(test_size, "qpcr_censored_test_size.csv")
+if (any(test_size$level_check == "rejects too often")) {
+  stop("The corrected test of the censored regression rejects a true null hypothesis too often (qpcr_censored_test_size.csv):\n",
+       paste(capture.output(print(test_size[level_check == "rejects too often", .(share_censored_expected, term, rejection_rate)])), collapse = "\n"))
+}
 
 # ---- relative expression by group ----
 group_summary <- list()
@@ -787,17 +891,24 @@ sensitivity <- merge(sensitivity, models[primary == TRUE & term %chin% model_ter
 stopifnot(nrow(sensitivity) == length(targets) * length(model_terms))
 p_cols <- c("p_legacy_nondetects_substituted", "p_legacy_nondetects_dropped", "p_complete_all", "p_complete_without_failed", "p_censored_all",
             "p_censored_without_failed", "p_censored_bounds_all", "p_censored_bounds_without_failed")
-sensitivity[, analyses_with_p_below_alpha := rowSums(.SD < opt$alpha, na.rm = TRUE), .SDcols = p_cols]
-sensitivity[, analyses_run := rowSums(!is.na(.SD)), .SDcols = p_cols]
+# Several of the eight analyses can be one fit of the same animals (same_fit_as in qpcr_models.csv; the two legacy variants
+# of a gene without a missing value). The counts below are counts of results that differ. Every analysis of this table
+# normalizes to the reference gene; qpcr_normalization_check.csv holds the other normalizations.
+p_by_row <- as.matrix(sensitivity[, ..p_cols])
+sensitivity[, analyses_run := rowSums(!is.na(p_by_row))]
+sensitivity[, distinct_results := apply(p_by_row, 1, function(p) length(distinct_p(p)))]
+sensitivity[, distinct_results_p_below_alpha := apply(p_by_row, 1, function(p) sum(distinct_p(p) < opt$alpha))]
+of_this_table <- sprintf("distinct results of this table (all relative to %s)", tolower(ref))
 sensitivity[, reading := fifelse(detection_class == "not analysed", "legacy analyses only: the gene is not analysed here",
-                         fifelse(analyses_with_p_below_alpha == 0, sprintf("p >= %g in every analysis", opt$alpha),
-                         fifelse(analyses_with_p_below_alpha == analyses_run, sprintf("p < %g in every analysis", opt$alpha),
-                                 sprintf("p < %g in some analyses only: the conclusion depends on the analysis", opt$alpha))))]
+  fifelse(distinct_results_p_below_alpha == 0, sprintf("p >= %g in each of the %d %s", opt$alpha, distinct_results, of_this_table),
+  fifelse(distinct_results_p_below_alpha == distinct_results, sprintf("p < %g in each of the %d %s", opt$alpha, distinct_results, of_this_table),
+          sprintf("p < %g in %d of the %d %s: the conclusion depends on the analysis", opt$alpha, distinct_results_p_below_alpha,
+                  distinct_results, of_this_table))))]
 sensitivity <- sensitivity[order(match(gene, targets), match(term, model_terms))]
 setcolorder(sensitivity, c("gene", "term", "detection_class", p_cols))
 write_tab(sensitivity, "qpcr_sensitivity.csv")
 cat("Gene and term with p <", opt$alpha, "in at least one analysis:\n")
-print(sensitivity[analyses_with_p_below_alpha > 0, c("gene", "term", p_cols, "q_value_primary"), with = FALSE][
+print(sensitivity[distinct_results_p_below_alpha > 0, c("gene", "term", p_cols, "q_value_primary"), with = FALSE][
   , lapply(.SD, function(v) if (is.double(v)) round(v, 3) else v)])
 
 # =============================================================================
@@ -816,10 +927,14 @@ for (set_i in names(animal_sets)) {
                                              template_ratio = fold_change, t_value, df_residual, p_value)]
 }
 ref_rows[[length(ref_rows) + 1]] <- if (length(failed_ids) > 0) {
-  merge(animals[failed_sample == TRUE, .(section = "3 failed samples", animals_included = animal_sets[["all"]], item = animal_id, n = 1L,
-                                         mean_cq = reference_cq)],
-        dq[animal_id %chin% failed_ids & replicate_data == TRUE, .(targets_with_no_detected_well = sum(detection == "no well detected"),
-                                                                   targets_measured = .N), by = .(item = animal_id)], by = "item", sort = FALSE)
+  failed_rows <- merge(
+    animals[match(failed_ids, animal_id), .(section = "3 failed samples", item = animal_id, n = 1L, mean_cq = reference_cq,
+                                            animals_included = fifelse(is.na(reference_cq), "in no model of delta Cq", animal_sets[["all"]]))],
+    dq[animal_id %chin% failed_ids & replicate_data == TRUE, .(targets_with_no_detected_well = sum(detection == "no well detected"),
+                                                               targets_measured = .N), by = .(item = animal_id)],
+    by = "item", all.x = TRUE, sort = FALSE)
+  stopifnot(nrow(failed_rows) == length(failed_ids))
+  failed_rows
 } else data.table(section = "3 failed samples", animals_included = animal_sets[["all"]], item = "none", n = 0L)
 reference_gene <- rbindlist(ref_rows, fill = TRUE)
 reference_gene[section == "3 failed samples",
@@ -828,8 +943,9 @@ reference_gene[, what_it_is := fifelse(
   grepl("^1", section), sprintf("%s Cq per animal (mean of the detected wells); a later Cq means less %s template in the well", ref, ref),
   fifelse(grepl("^2", section), paste("contrast of group means of the", ref, "Cq, in cycles; template_ratio is 2^-difference, the ratio of", ref,
                                       "template that the difference implies; every delta Cq inherits this difference with the opposite sign"),
+  fifelse(item %chin% no_reference, sprintf("animal without a detected %s well: it has no delta Cq", ref),
           sprintf("animal whose %s Cq (in mean_cq) is above the outer fence: third quartile + %g interquartile ranges of the animals in the models",
-                  ref, opt$failed_fence_iqr)))]
+                  ref, opt$failed_fence_iqr))))]
 setcolorder(reference_gene, c("section", "animals_included", "item"))
 write_tab(reference_gene, "qpcr_reference_gene.csv")
 cat(sprintf("Difference in %s Cq between groups (cycles):\n", ref))
@@ -837,6 +953,7 @@ print(reference_gene[grepl("^2", section), .(animals_included, item, difference_
                                              ci_high = round(ci_high, 2), p_value = round(p_value, 3))])
 
 # ---- each effect under three normalizations (censored regression) ----
+# All seven contrasts, the simple effects included, so that a claim about one group pair can be checked on that pair.
 normalizations <- c("delta Cq", "raw Cq", sprintf("raw Cq with the %s Cq as covariate", ref))
 slope_term <- sprintf("slope of the target Cq on the %s Cq", ref)
 norm_rows <- list()
@@ -845,11 +962,12 @@ for (set_i in names(animal_sets)) for (gene_i in targets) {
   for (norm_i in normalizations) {
     covariate_i <- norm_i == normalizations[3]
     f_i <- fit_groups(model_data(gene_i, set_i, norm_i), "censored regression", with_covariate = covariate_i)
-    rows <- contrast_table(f_i)[term %chin% model_terms, .(term, null_value = 0, estimate = difference_cycles, ci_low = ci_low_cycles,
-                                                            ci_high = ci_high_cycles, fold_change, p_value)]
+    rows <- contrast_table(f_i)[, .(term, contrast, null_value = 0, estimate = difference_cycles, ci_low = ci_low_cycles,
+                                    ci_high = ci_high_cycles, fold_change, p_value)]
     if (covariate_i) {      # the slope is 1 when the target Cq follows the reference Cq cycle for cycle
       slope <- f_i$b[n_groups + 1]; slope_se <- sqrt(f_i$V[n_groups + 1, n_groups + 1])
-      rows <- rbind(rows, data.table(term = slope_term, null_value = 1, estimate = slope, ci_low = slope - t_half(f_i$df, slope_se),
+      rows <- rbind(rows, data.table(term = slope_term, contrast = sprintf("cycles of target Cq per cycle of %s Cq, within groups", ref),
+                                     null_value = 1, estimate = slope, ci_low = slope - t_half(f_i$df, slope_se),
                                      ci_high = slope + t_half(f_i$df, slope_se), fold_change = NA_real_,
                                      p_value = 2 * pt(-abs((slope - 1) / slope_se), f_i$df)))
     }
@@ -867,11 +985,17 @@ log_msg("slope of the target Cq on the %s Cq (%s; 1 if %s tracks the template): 
 # 8. COX1: a raw Cq without a reference
 # =============================================================================
 mito_cq <- if (mito %in% rep_genes) per_gene[gene == mito, .(animal_id, cq)] else cons_long[gene == mito, .(animal_id, cq = cq_consolidated)]
-mito_d <- merge(animals[in_models == TRUE], mito_cq, by = "animal_id", sort = FALSE)[!is.na(cq)]
+mito_d <- merge(animals[in_models == TRUE], mito_cq, by = "animal_id", all.x = TRUE, sort = FALSE)
+stopifnot(nrow(mito_d) == sum(animals$in_models))
+if (anyNA(mito_d$cq)) {
+  log_msg("%s: no value for %d of the %d animals in the models (%s); they are in no %s test", mito, sum(is.na(mito_d$cq)), nrow(mito_d),
+          paste(mito_d[is.na(cq), animal_id], collapse = ", "), mito)
+}
+mito_d <- mito_d[!is.na(cq)]
 mito_frame <- data.frame(group = mito_d$group, y = mito_d$cq, exact = TRUE)
 describe_mito <- function(d) d[, .(n = .N, mean_cq = mean(cq), sd_cq = sd(cq), median_cq = median(cq), min_cq = min(cq), max_cq = max(cq))]
 mito_ct <- contrast_table(fit_groups(mito_frame, "complete cases"))
-mito_two <- vapply(simple_terms, function(term_i) two_group_p(mito_frame, term_i), numeric(2))
+mito_two <- rbindlist(lapply(simple_terms, function(term_i) two_group_tests(mito_frame, term_i)))
 mito_tukey <- legacy_tukey[gene == mito & response == "ln(2^-Cq)" & nondetects == legacy_variants[["dropped"]] &
                              legacy_term == legacy_terms[["interaction"]]]
 mito_r <- cor.test(mito_d$cq, mito_d$reference_cq)
@@ -894,13 +1018,13 @@ cox1 <- rbind(
   mito_ct[, .(quantity = "difference in raw Cq, two-way model", what_it_is = what$contrast, level = contrast, n = n_animals,
               estimate = difference_cycles, ci_low = ci_low_cycles, ci_high = ci_high_cycles, ratio_2_to_minus_estimate = fold_change,
               F_value = t_value^2, df_residual, p_value,
-              p_two_groups_student = c(rep(NA_real_, length(model_terms)), mito_two[1, ]),
-              p_two_groups_welch = c(rep(NA_real_, length(model_terms)), mito_two[2, ]))],
+              p_two_groups_student = c(rep(NA_real_, length(model_terms)), mito_two$p_two_groups_student),
+              p_two_groups_welch = c(rep(NA_real_, length(model_terms)), mito_two$p_two_groups_welch))],
   if (nrow(mito_tukey) > 0) data.table(
     quantity = "smallest Tukey-adjusted p among the six pairs of groups", what_it_is = what$tukey,
     level = mito_tukey[which.min(p_adjusted), comparison], n = nrow(mito_d), p_value = mito_tukey[, min(p_adjusted)]),
   data.table(quantity = sprintf("Pearson correlation of the %s Cq with the %s Cq", mito, ref), what_it_is = what$r_mito, level = "all groups",
-             n = nrow(mito_d), estimate = unname(mito_r$estimate), ci_low = mito_r$conf.int[1], ci_high = mito_r$conf.int[2],
+             n = sum(!is.na(mito_d$reference_cq)), estimate = unname(mito_r$estimate), ci_low = mito_r$conf.int[1], ci_high = mito_r$conf.int[2],
              p_value = mito_r$p.value),
   data.table(quantity = sprintf("Pearson correlation of the analysed genes with the %s Cq: median, lowest, highest", ref),
              what_it_is = what$r_targets, level = "all groups", n = nrow(other_r), estimate = median(other_r$r), ci_low = min(other_r$r),
@@ -919,7 +1043,8 @@ log_msg("%s raw Cq: %s; interaction %s; correlation with the %s Cq r = %.3f (ana
 # Each sentence is paired with the claim it makes about these data. Numbers and verdicts are built from the tables
 # above; the rule behind each verdict is written out where the claim is evaluated.
 hsp <- "HSP90"                                   # the one expression gene the draft names
-of_n <- function(p) sprintf("%d of %d", sum(p < opt$alpha), length(p))
+# Counts of tests in the text are counts of results that differ (distinct_p): a repeat of one fit is not counted again.
+of_n <- function(p) { p <- distinct_p(p); sprintf("%d of %d", sum(p < opt$alpha), length(p)) }
 p_span <- function(p) if (diff(range(p)) < 5e-4) fmt_p(p[1]) else sprintf("p = %.3f to %.3f", min(p), max(p))
 fold_ci <- function(r) sprintf("%.2f-fold (%s %.2f to %.2f)", r$fold_change, ci_label, r$fold_low, r$fold_high)
 with_conditions <- function(verdict, conditions) {
@@ -938,70 +1063,98 @@ if (!hsp %in% targets || any(vapply(names(animal_sets), function(set_i) class_of
   legacy_of <- function(term_i) legacy_anova[gene == hsp & term == term_i]
   legacy_text <- function(d) sprintf("p = %.3f (non-detects %s) and %.3f (non-detects %s)",
                                      d$p_value[1], d$nondetects[1], d$p_value[2], d$nondetects[2])
-  norm_of <- function(term_i) normalization_check[gene == hsp & animals_included == animal_sets[["clean"]] & term == term_i]
+  norm_of <- function(term_i) {
+    r <- normalization_check[gene == hsp & animals_included == animal_sets[["clean"]] & term == term_i]
+    stopifnot(nrow(r) == length(normalizations)); r
+  }
   by_norm <- function(d) paste(sprintf("%s %.2f-fold (%s)", d$normalization, d$fold_change, fmt_p(d$p_value)), collapse = "; ")
-  two <- function(term_i) h(term_i)[analysis == "complete cases",
-                                    .(animals_included, student = p_two_groups_student, welch = p_two_groups_welch,
-                                      q_student = q_two_groups_student, q_welch = q_two_groups_welch)]
-  loo <- function(r) sprintf("p = %.3f to %.3f with one animal left out", r$p_leave_one_out_low, r$p_leave_one_out_high)
+  # The tests of a simple effect on its two groups alone: one row per test and set of animals.
+  two <- function(term_i) {
+    r <- h(term_i)[analysis == "complete cases"]
+    rbind(r[, .(test = "Student", animals_included, n = n_two_groups, p = p_two_groups_student, q = q_two_groups_student,
+                loo_low = p_student_leave_one_out_low, loo_high = p_student_leave_one_out_high,
+                loo_below = n_student_leave_one_out_p_below_alpha)],
+          r[, .(test = "Welch", animals_included, n = n_two_groups, p = p_two_groups_welch, q = q_two_groups_welch,
+                loo_low = p_welch_leave_one_out_low, loo_high = p_welch_leave_one_out_high,
+                loo_below = n_welch_leave_one_out_p_below_alpha)])
+  }
+  loo <- function(r) sprintf("p = %.3f to %.3f with one animal left out, below %g in %d of %d fits", r$p_leave_one_out_low,
+                             r$p_leave_one_out_high, opt$alpha, r$n_leave_one_out_p_below_alpha, r$n_leave_one_out)
+  two_text <- function(t) sprintf("%s %s (q = %.2f; %s)", t$test, fmt_p(t$p), t$q, ifelse(
+    is.na(t$loo_high), "no leave-one-out run: a group has two animals",
+    sprintf("p = %.3f to %.3f with one animal left out, below %g in %d of %d tests", t$loo_low, t$loo_high, opt$alpha, t$loo_below, t$n)))
 
   # Claim: HSP90 is higher in triploid than in diploid control animals.
   #   supported         the direction holds in every fit and under each normalization; every test of the contrast has
-  #                     p < alpha and q < fdr; and p stays below alpha whichever single animal is left out
+  #                     p < alpha and q < fdr; and no test of this step loses p < alpha when one animal is left out
   #   partly supported  the direction holds and at least one test has p < alpha
   #   not supported     otherwise
+  # "Partly supported" lists each requirement of "supported" that is not met. The leave-one-out condition looks at the
+  # tests with p < alpha, which carry the verdict. The legacy tests are reproduced as run and have no leave-one-out.
   cc <- h("ploidy_in_control"); p1 <- h1("ploidy_in_control"); av <- h1("ploidy"); tw <- two("ploidy_in_control")
   tw1 <- tw[animals_included == animal_sets[["clean"]]]
-  tk <- legacy_tukey[gene == hsp & legacy_comparison == "T:C-D:C"]; nrm <- norm_of("ploidy")
-  ld <- legacy_input("substituted"); controls <- ld$Desiccation == "C"        # the two control groups alone, legacy substitution
-  p_substituted <- t.test((ld[[hsp]] - ld[[ref]])[controls] ~ ld$Ploidy[controls], var.equal = TRUE)$p.value
-  tests <- list("fits of the two-way model" = cc$p_value, "tests of the two control groups alone" = c(tw$student, tw$welch),
-                "legacy Tukey tests" = tk$p_adjusted)
-  q_all <- c(cc$q_value, tw$q_student, tw$q_welch)
+  tk <- legacy_tukey[gene == hsp & legacy_comparison == "T:C-D:C"]            # one row per legacy treatment of non-detects
+  nrm <- norm_of("ploidy_in_control"); nrm_av <- norm_of("ploidy")
+  p_substituted <- tk[nondetects == legacy_variants[["substituted"]], p_two_groups_student]
+  stopifnot(nrow(tk) == length(legacy_variants), nrow(tw1) == 2, length(p_substituted) == 1)
+  tests <- rbind(
+    cc[, .(family = "fits of the two-way model", label = paste0("fit by ", analysis, ", ", animals_included), p = p_value,
+           loo_high = p_leave_one_out_high, loo_below = n_leave_one_out_p_below_alpha, loo_n = n_leave_one_out, legacy = FALSE)],
+    tw[, .(family = "tests of the two control groups alone", label = paste(test, "test"), p, loo_high, loo_below, loo_n = n, legacy = FALSE)],
+    tk[, .(family = "legacy Tukey tests", label = paste("non-detects", nondetects), p = p_adjusted, loo_high = NA_real_,
+           loo_below = NA_integer_, loo_n = NA_integer_, legacy = TRUE)])[!is.na(p)]
+  tests[, first_of_its_result := first_result(p), by = family]
+  tests <- tests[first_of_its_result == TRUE]                                 # a repeat of one fit or test is one result
+  q_all <- c(cc$q_value, tw$q)
   direction_ok <- all(cc$fold_change > 1) && all(nrm$fold_change > 1)
-  stable <- p1$p_leave_one_out_high < opt$alpha
-  verdict <- if (!direction_ok || !any(unlist(tests) < opt$alpha)) "not supported" else
-    if (all(unlist(tests) < opt$alpha) && all(q_all < opt$fdr) && stable) "supported" else "partly supported"
-  significant_in <- names(tests)[vapply(tests, function(p) any(p < opt$alpha), logical(1))]
-  conditions <- c(if (!all(unlist(tests) < opt$alpha)) sprintf("p < %g only in %s", opt$alpha, paste(significant_in, collapse = " and ")),
+  carrying <- tests[p < opt$alpha & legacy == FALSE]
+  stable <- all(!is.na(carrying$loo_high) & carrying$loo_high < opt$alpha)
+  verdict <- if (!direction_ok || !any(tests$p < opt$alpha)) "not supported" else
+    if (all(tests$p < opt$alpha) && all(q_all < opt$fdr) && stable) "supported" else "partly supported"
+  significant_in <- tests[, .(some = any(p < opt$alpha)), by = family][some == TRUE, family]
+  loo_condition <- if (any(carrying$loo_high >= opt$alpha, na.rm = TRUE)) "not in every test that leaves one animal out" else
+    "leave-one-out could not be run for every test"
+  conditions <- c(if (!all(tests$p < opt$alpha)) sprintf("p < %g only in %s", opt$alpha, paste(significant_in, collapse = " and ")),
                   if (!all(q_all < opt$fdr)) sprintf("not after correction across %d genes", p1$genes_in_correction),
-                  if (all(unlist(tests) < opt$alpha) && !stable) "not in every fit that leaves one animal out")
+                  if (!stable) loo_condition)
+  counts <- tests[, .(text = sprintf("%s %s", of_n(p), family[1])), by = family]$text
   claims$hsp_control <- list(
     numbers = paste(
-      sprintf("%s, triploid vs diploid, control animals: %s, %s in the two-way model (primary analysis; %s over the %d fits; %s),",
-              hsp, fold_ci(p1), fmt_p(p1$p_value), p_span(cc$p_value), nrow(cc), loo(p1)),
-      sprintf("q = %.2f across %d genes; the two control groups alone: Student %s (q = %.2f), Welch %s (q = %.2f);",
-              p1$q_value, p1$genes_in_correction, fmt_p(tw1$student), tw1$q_student, fmt_p(tw1$welch), tw1$q_welch),
+      sprintf("%s, triploid vs diploid, control animals: %s, %s in the two-way model (primary analysis; %s over the %d distinct fits; %s),",
+              hsp, fold_ci(p1), fmt_p(p1$p_value), p_span(cc$p_value), length(distinct_p(cc$p_value)), loo(p1)),
+      sprintf("q = %.2f across %d genes; the two control groups alone, %d animals: %s;", p1$q_value, p1$genes_in_correction, tw1$n[1],
+              paste(two_text(tw1), collapse = ", ")),
       sprintf("the same Student test with the legacy substitution of Cq %g: %s;", opt$legacy_nondetect, fmt_p(p_substituted)),
       sprintf("legacy Tukey p = %.2f (non-detects %s) and %.2f (non-detects %s).",
               tk$p_adjusted[1], tk$nondetects[1], tk$p_adjusted[2], tk$nondetects[2]),
-      sprintf("Ploidy averaged over treatments: %s, %s (%s), q = %.2f; legacy ANOVA %s.", fold_ci(av), fmt_p(av$p_value), loo(av), av$q_value,
-              legacy_text(legacy_of("ploidy"))),
-      sprintf("Ploidy effect by normalization: %s.", by_norm(nrm))),
+      sprintf("The same contrast by normalization: %s.", by_norm(nrm)),
+      sprintf("Ploidy averaged over treatments: %s, %s (%s), q = %.2f; legacy ANOVA %s; by normalization: %s.", fold_ci(av),
+              fmt_p(av$p_value), loo(av), av$q_value, legacy_text(legacy_of("ploidy")), by_norm(nrm_av))),
     verdict = with_conditions(verdict, conditions),
-    reasoning = sprintf(paste("The primary estimate is %.1f-fold and the direction %s; p is below %g in %s,",
-                              "and the smallest q across the %d genes analysed is %.2f."),
-                        p1$fold_change,
-                        if (direction_ok) "is the stated one in every fit and under every normalization" else "is not the stated one in every fit",
-                        opt$alpha, paste(sprintf("%s %s", vapply(tests, of_n, ""), names(tests)), collapse = ", "),
-                        p1$genes_in_correction, min(q_all)))
+    reasoning = paste0(
+      sprintf("The primary estimate is %.1f-fold and the direction %s; ", p1$fold_change,
+              if (direction_ok) "is the stated one in every fit and under each normalization" else
+                "is not the stated one in every fit and under each normalization"),
+      sprintf("counting results that differ, p is below %g in %s; ", opt$alpha, paste(counts, collapse = ", ")),
+      if (nrow(carrying) > 0) sprintf("with one animal left out, p stays below %g in %s; ", opt$alpha, paste(sprintf(
+        "%d of %d runs of the %s", carrying$loo_below, carrying$loo_n, carrying$label), collapse = " and ")) else "",
+      sprintf("the smallest q across the %d genes analysed is %.2f.", p1$genes_in_correction, min(q_all))))
 
   # Claim: heat raises HSP90 in diploids and in triploids.
   #   supported         the direction holds in both ploidies; p < alpha for the heat effect within each ploidy in every
-  #                     test; q < fdr; the effect has p < alpha under each normalization; and p stays below alpha
-  #                     whichever single animal is left out
+  #                     test; q < fdr; the effect has p < alpha under each normalization; and no fit of the effect
+  #                     averaged over the ploidies loses p < alpha when one animal is left out
   #   partly supported  the direction holds in both ploidies and p < alpha for the heat effect averaged over the
   #                     ploidies in at least one analysis
   #   not supported     otherwise
   avg <- h("treatment"); p1 <- h1("treatment"); dip <- h("treatment_in_diploid"); tri <- h("treatment_in_triploid")
   d1 <- h1("treatment_in_diploid"); t1 <- h1("treatment_in_triploid"); nrm <- norm_of("treatment"); lg <- legacy_of("treatment")
   tests_avg <- c(avg$p_value, lg$p_value)
-  tests_each <- list(diploids = c(dip$p_value, unlist(two("treatment_in_diploid")[, .(student, welch)])),
-                     triploids = c(tri$p_value, unlist(two("treatment_in_triploid")[, .(student, welch)])))
+  tests_each <- list(diploids = c(dip$p_value, two("treatment_in_diploid")$p), triploids = c(tri$p_value, two("treatment_in_triploid")$p))
   ref_shift <- reference_gene[grepl("^2", section) & animals_included == animal_sets[["clean"]] & item == contrast_of("treatment")]
-  stopifnot(nrow(ref_shift) == 1, nrow(nrm) == length(normalizations))
+  stopifnot(nrow(ref_shift) == 1, !anyNA(tests_avg), !anyNA(unlist(tests_each)))
   robust <- all(nrm$fold_change > 1 & nrm$p_value < opt$alpha)
-  stable <- p1$p_leave_one_out_high < opt$alpha
+  stable <- all(avg[p_value < opt$alpha, p_leave_one_out_high] < opt$alpha)
   direction_ok <- all(dip$fold_change > 1) && all(tri$fold_change > 1)
   verdict <- if (!direction_ok || !any(tests_avg < opt$alpha)) "not supported" else
     if (all(unlist(tests_each) < opt$alpha) && all(avg$q_value < opt$fdr) && robust && stable) "supported" else "partly supported"
@@ -1011,18 +1164,23 @@ if (!hsp %in% targets || any(vapply(names(animal_sets), function(set_i) class_of
                   if (!stable) "not in every fit that leaves one animal out")
   claims$hsp_heat <- list(
     numbers = paste(
-      sprintf("%s, heat vs control averaged over ploidies: %s, %s (primary analysis; %s over the %d fits; %s), q = %.2f across %d genes;",
-              hsp, fold_ci(p1), fmt_p(p1$p_value), p_span(avg$p_value), nrow(avg), loo(p1), p1$q_value, p1$genes_in_correction),
+      sprintf("%s, heat vs control averaged over ploidies: %s, %s (primary analysis; %s over the %d distinct fits; %s), q = %.2f across %d genes;",
+              hsp, fold_ci(p1), fmt_p(p1$p_value), p_span(avg$p_value), length(distinct_p(avg$p_value)), loo(p1), p1$q_value,
+              p1$genes_in_correction),
       sprintf("legacy ANOVA %s.", legacy_text(lg)),
       sprintf("Within diploids: %s, %s; within triploids: %s, %s; interaction %s.", fold_ci(d1), fmt_p(d1$p_value), fold_ci(t1), fmt_p(t1$p_value),
               fmt_p(h1("interaction")$p_value)),
-      sprintf("Heat effect by normalization: %s.", by_norm(nrm)),
+      sprintf("Heat effect averaged over ploidies, by normalization: %s.", by_norm(nrm)),
       sprintf("%s Cq, heat minus control animals: %.2f cycles (%s %.2f to %.2f, %s).", ref, ref_shift$difference_cycles, ci_label,
               ref_shift$ci_low, ref_shift$ci_high, fmt_p(ref_shift$p_value))),
     verdict = with_conditions(verdict, conditions),
     reasoning = paste(
-      sprintf("Relative to %s the heat effect has p < %g in %s analyses when the ploidies are averaged,", tolower(ref), opt$alpha, of_n(tests_avg)),
-      sprintf("in %s tests within diploids and in %s within triploids;", of_n(tests_each$diploids), of_n(tests_each$triploids)),
+      sprintf("Relative to %s, and counting results that differ, the heat effect has p < %g in %s analyses of the same data when the",
+              tolower(ref), opt$alpha, of_n(tests_avg)),
+      sprintf("ploidies are averaged, in %s tests within diploids and in %s within triploids;", of_n(tests_each$diploids),
+              of_n(tests_each$triploids)),
+      sprintf("with one animal left out the primary analysis has p < %g in %d of %d fits;", opt$alpha, p1$n_leave_one_out_p_below_alpha,
+              p1$n_leave_one_out),
       sprintf("heat minus control is %.2f cycles for the raw %s Cq and %.2f cycles for the %s Cq, and the effect %s.",
               nrm[normalization == "raw Cq", estimate], hsp, ref_shift$difference_cycles, tolower(ref),
               if (robust) "holds under each normalization" else sprintf("does not hold under each normalization, so it rests on %s", tolower(ref)))))
@@ -1075,6 +1233,8 @@ quoted <- c(
                      "relative mitochondrial abundance) following stress exposure to meet the increasing energy needs of the cell."),
   d45_p2_s2 = paste0("Conversely, triploids showed decreased relative mitochondrial abundance following stress exposure, suggesting an ",
                      "inability to launch an effective mitochondrial biogenesis response."),
+  d45_p2_s3 = paste0("This finding is consistent with prior transcriptomic and metabolic evidence that triploids experience metabolic ",
+                     "depression following heatwave exposure (George et al., 2023)."),
   d45_p3_s1 = paste0("Third, qPCR results from companion experiments indicated that triploids expressed HSP90 at high levels even in control ",
                      "conditions, suggesting non-optimal allocation of energy towards maintaining a heightened immune/stress response when ",
                      "not needed."),
@@ -1087,20 +1247,37 @@ quoted <- c(
   c49_p2_s1 = paste0("The lack of global 5-mC methylation change in triploids following stress exposure, combined with their decreased ",
                      "mitochondrial abundance, suggests that triploids may have an impaired capacity for adaptive epigenetic responses ",
                      "compared to diploids."))
+# One row per sentence and claim, in the order of the draft. A sentence that only refers back to another sentence is
+# listed with the claim of that sentence.
 statements <- data.table(
-  sentence = c("d42_s2", "d42_s3", "d45_p2_s1", "d45_p2_s2", "d45_p3_s1", "d45_p3_s2", "d45_p3_s2", "d45_p4_s1", "d47_item3", "c49_p2_s1"),
+  sentence = c("d42_s2", "d42_s3", "d45_p2_s1", "d45_p2_s2", "d45_p2_s3", "d45_p3_s1", "d45_p3_s2", "d45_p3_s2", "d45_p4_s1", "d47_item3",
+               "c49_p2_s1"),
   location = c("Discussion 4.2, paragraph 3, sentence 2", "Discussion 4.2, paragraph 3, sentence 3", "Discussion 4.5, paragraph 2, sentence 1",
-               "Discussion 4.5, paragraph 2, sentence 2", "Discussion 4.5, paragraph 3, sentence 1", "Discussion 4.5, paragraph 3, sentence 2",
-               "Discussion 4.5, paragraph 3, sentence 2", "Discussion 4.5, paragraph 4, sentence 1",
+               "Discussion 4.5, paragraph 2, sentence 2", "Discussion 4.5, paragraph 2, sentence 3", "Discussion 4.5, paragraph 3, sentence 1",
+               "Discussion 4.5, paragraph 3, sentence 2", "Discussion 4.5, paragraph 3, sentence 2", "Discussion 4.5, paragraph 4, sentence 1",
                "Discussion 4.7, third item of the list on summer mortality", "Conclusions 4.9, paragraph 2, sentence 1"),
-  claim_key = c("mito_diploid", "mito_triploid", "mito_diploid", "mito_triploid", "hsp_control", "hsp_heat", "hsp_control", "mito_diploid",
-                "hsp_control", "mito_triploid"))
+  claim_key = c("mito_diploid", "mito_triploid", "mito_diploid", "mito_triploid", "mito_triploid", "hsp_control", "hsp_heat", "hsp_control",
+                "mito_diploid", "hsp_control", "mito_triploid"))
+stopifnot(setequal(statements$sentence, names(quoted)), all(statements$claim_key %in% names(claims)))
 from_claim <- function(keys, field) vapply(keys, function(k_i) claims[[k_i]][[field]], "")
 statements[, `:=`(statement_id = sprintf("Q%02d", .I), statement = quoted[sentence], claim_tested = claim_text[claim_key],
                   numbers = from_claim(claim_key, "numbers"), verdict = from_claim(claim_key, "verdict"),
                   reasoning = from_claim(claim_key, "reasoning"))]
-stopifnot(!anyNA(statements$statement), !anyNA(statements$claim_tested))
-write_tab(statements[, .(statement_id, location, statement, claim_tested, numbers, verdict, reasoning)], "qpcr_manuscript_statements.csv")
+# Notes: what else a reader of the sentence needs to know.
+id_of <- function(sentence_i, claim_i) statements[sentence == sentence_i & claim_key == claim_i, statement_id]
+notes <- c(
+  d45_p2_s1 = sprintf("The draft calls the data physiological measurements. The repository holds no data on mitochondria other than the %s Cq.",
+                      mito),
+  d45_p2_s3 = sprintf("'This finding' is the statement before it (%s). The sentence depends on that statement and reports no qPCR result of its own.",
+                      id_of("d45_p2_s2", "mito_triploid")),
+  d45_p3_s1 = "The draft says 'companion experiments'. Methods and Results do not describe the qPCR or its animals.",
+  d45_p4_s1 = "The sentence also names 5-mC changes, which step 03 covers. The sentence after it builds on this one.",
+  c49_p2_s1 = "The sentence also names the global 5-mC result, which step 03 covers. The sentence after it builds on this one.")
+statements[, note := fifelse(sentence %chin% names(notes), unname(notes[sentence]), "")]
+other_claim <- c(hsp_heat = id_of("d45_p3_s2", "hsp_control"), hsp_control = id_of("d45_p3_s2", "hsp_heat"))
+statements[sentence == "d45_p3_s2", note := sprintf("The sentence makes two claims; the other one is %s.", other_claim[claim_key])]
+stopifnot(!anyNA(statements$statement), !anyNA(statements$claim_tested), !anyNA(statements$note))
+write_tab(statements[, .(statement_id, location, statement, claim_tested, numbers, verdict, reasoning, note)], "qpcr_manuscript_statements.csv")
 for (k_i in names(claims)) log_msg("%-13s %s", k_i, claims[[k_i]]$verdict)
 
 # =============================================================================
@@ -1118,7 +1295,12 @@ bar <- function(d) geom_segment(data = d, aes(x = x_mid - 0.19, xend = x_mid + 0
                                 inherit.aes = FALSE)
 
 # ---- relative expression, every gene with replicate-level data ----
-fig <- merge(dq[replicate_data == TRUE & !is.na(reference_cq)], animals[, .(animal_id, x_pos)], by = "animal_id", sort = FALSE)
+# An animal without a reference Cq has no relative expression and no place in panel A of the second figure.
+not_shown <- if (length(no_reference) == 0) "" else
+  sprintf("Not shown: %s (no %s Cq). ", paste(no_reference, collapse = ", "), tolower(ref))
+fig_rows <- dq[replicate_data == TRUE & !is.na(reference_cq)]
+fig <- merge(fig_rows, animals[, .(animal_id, x_pos)], by = "animal_id", sort = FALSE)
+stopifnot(nrow(fig) == nrow(fig_rows))
 fig[, y := fifelse(censored, relative_expression_below, relative_expression)]
 fig[, mark := factor(names(marks)[fifelse(n_detected == design$wells_per_animal, 1L, fifelse(n_detected > 0, 2L, 3L))], levels = names(marks))]
 class_levels <- c("quantifiable", "near the detection limit", "not analysed")
@@ -1126,9 +1308,10 @@ panel_class <- vapply(targets_rep, class_of, "", set_i = "clean")
 panel_levels <- sprintf("%s\n%s", targets_rep, panel_class)[order(match(panel_class, class_levels))]   # quantifiable genes first
 panel_of <- function(g) factor(sprintf("%s\n%s", g, panel_class[as.character(g)]), levels = panel_levels)
 fig[, panel := panel_of(gene)]
-bars <- merge(group_fit[analysis == "censored regression" & animals_included == animal_sets[["clean"]] & gene %chin% targets_rep],
-              centres, by = "group")
+bar_rows <- group_fit[analysis == "censored regression" & animals_included == animal_sets[["clean"]] & gene %chin% targets_rep]
+bars <- merge(bar_rows, centres, by = "group")
 bars[, `:=`(y = 2^-mean_delta_cq, panel = panel_of(gene))]
+stopifnot(nrow(bars) == nrow(bar_rows), !anyNA(bars$y), !anyNA(fig$y))
 p_expr <- ggplot(fig, aes(x_pos, y)) +
   bar(bars) + ring(fig[failed_sample == TRUE]) +
   geom_point(aes(colour = ploidy, shape = mark), size = 1.9, stroke = 0.7) +
@@ -1141,8 +1324,7 @@ p_expr <- ggplot(fig, aes(x_pos, y)) +
   labs(x = NULL, y = sprintf("Expression relative to %s, 2^-(delta Cq)", tolower(ref)), caption = paste0(
     "One mark per animal. Bars: group means of the censored regression without failed samples; none where a gene is not analysed. ",
     "Ring: failed sample (", tolower(ref), " Cq above the outer fence).\nAnimals given the acute heat shock (+ acute) are shown and ",
-    if (opt$include_acute_heat_shock) "are counted with their treatment group in the models. " else "are in no model. ",
-    "Under each gene: its detection class.")) +
+    "are in no model. ", not_shown, "Under each gene: its detection class.")) +
   guides(colour = guide_legend(order = 1), shape = guide_legend(order = 2)) +
   theme_wgbs(base_size = 11) +
   theme(legend.position = "bottom", legend.box = "vertical", legend.margin = margin(0, 0, 0, 0), axis.text.x = element_text(size = 7.5),
@@ -1150,9 +1332,12 @@ p_expr <- ggplot(fig, aes(x_pos, y)) +
 save_figure(p_expr, output_path(step, "figures", "figure_qpcr_expression"), width = 12.5, height = 7.6)
 
 # ---- raw Cq of the reference gene and of COX1 ----
-ref_fig <- merge(animals[!is.na(reference_cq)], per_gene[gene == ref, .(animal_id, n_detected)], by = "animal_id", sort = FALSE)
+ref_fig_rows <- animals[!is.na(reference_cq)]
+ref_fig <- merge(ref_fig_rows, per_gene[gene == ref, .(animal_id, n_detected)], by = "animal_id", sort = FALSE)
 ref_fig[, mark := factor(names(marks)[fifelse(n_detected == design$wells_per_animal, 1L, 2L)], levels = names(marks)[1:2])]
-ref_bars <- merge(animals[animal_id %chin% in_set$clean, .(y = mean(reference_cq)), by = group], centres, by = "group")
+ref_bar_rows <- animals[animal_id %chin% in_set$clean, .(y = mean(reference_cq)), by = group]
+ref_bars <- merge(ref_bar_rows, centres, by = "group")
+stopifnot(nrow(ref_fig) == nrow(ref_fig_rows), nrow(ref_bars) == nrow(ref_bar_rows), !anyNA(ref_bars$y))
 p_ref <- ggplot(ref_fig, aes(x_pos, reference_cq)) +
   geom_hline(yintercept = ref_fence, linewidth = 0.3, colour = "grey45") +
   annotate("text", x = length(x_labels) + 0.5, y = ref_fence, label = "outer fence", hjust = 1, vjust = -0.5, size = 2.9, colour = "grey30") +
@@ -1166,9 +1351,11 @@ p_ref <- ggplot(ref_fig, aes(x_pos, reference_cq)) +
   coord_cartesian(ylim = range(ref_fig$reference_cq) + c(-0.6, 0.9)) +      # a fence far above the data must not stretch the axis
   labs(x = NULL, y = sprintf("%s Cq (a later cycle means less template)", ref)) + theme_wgbs(base_size = 11)
 mito_fig <- merge(mito_d, animals[, .(animal_id, x_pos, x_axis)], by = "animal_id", sort = FALSE)
+stopifnot(nrow(mito_fig) == nrow(mito_d))
 x_used <- sort(unique(mito_fig$x_axis))                                    # only the columns that hold data
 mito_fig[, x_two := match(x_axis, x_used) + x_pos - x_axis]
-mito_bars <- mito_fig[acute_heat_shock == FALSE, .(y = mean(cq), x_mid = mean(x_two)), by = group]
+mito_bars <- mito_fig[, .(y = mean(cq), x_mid = mean(x_two)), by = group]   # the animals in the models, as in qpcr_cox1.csv
+stopifnot(!anyNA(mito_bars$y))
 p_mito <- ggplot(mito_fig, aes(x_two, cq)) +
   bar(mito_bars) + ring(mito_fig[failed_sample == TRUE]) +
   geom_point(aes(colour = ploidy), shape = 16, size = 2.1, show.legend = FALSE) +   # panel A carries the colour legend
@@ -1177,8 +1364,9 @@ p_mito <- ggplot(mito_fig, aes(x_two, cq)) +
   labs(x = NULL, y = sprintf("%s Cq, not normalized", mito)) + theme_wgbs(base_size = 11)
 p_raw <- p_ref + p_mito + plot_layout(guides = "collect", widths = c(1.7, 1)) +
   plot_annotation(tag_levels = "A", caption = paste0(
-    "One mark per animal. Bars: group means (A without failed samples, B all animals). Ring: failed sample, ", tolower(ref),
-    " Cq above the outer fence.\n",
+    "One mark per animal. Bars: group means (A: control and heat animals without failed samples; B: all animals shown).\n",
+    "Ring: failed sample (", tolower(ref), " Cq above the outer fence", if (length(no_reference) > 0) sprintf(" or no %s Cq", tolower(ref)) else "",
+    ").", if (nzchar(not_shown)) paste0(" ", trimws(sub("Not shown", "Not in A", not_shown))) else "", "\n",
     mito, if (mito %in% rep_genes) " values are means of the detected wells; no nuclear reference exists for them." else
       " values come from the consolidated file; no replicate-level data and no nuclear reference exist for them.")) &
   theme(legend.position = "bottom", legend.box = "vertical", legend.margin = margin(0, 0, 0, 0), plot.caption = element_text(size = 8, hjust = 0))
