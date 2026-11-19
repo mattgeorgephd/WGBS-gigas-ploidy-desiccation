@@ -144,6 +144,8 @@ p_value  <- function(p) {
 x_of_y   <- function(x, y) paste(whole(x), "of", whole(y))
 a_to_b   <- function(x, digits) paste(decimal(min(x), digits), "to", decimal(max(x), digits))
 interval <- function(from, to, sequence = locus_sequence) sprintf("%s:%d-%d", sequence, from, to)
+# The summary writes positions in two conventions, and each definition says which.
+zero_based <- "Both positions are the 0-based start of the C, as in the coverage files."
 
 # ---- 1. Libraries, the DML region, the window ---------------------------------------------
 lib <- read_libraries(); n_lib <- nrow(lib)
@@ -244,7 +246,7 @@ diffmeth_window <- lapply(c(ploidy = "ploidy", heat = "heat"), function(s) {
 
 sec <- "DML region"
 fact(sec, "dml_region", interval(region_from, region_to),
-     "Run of legacy ploidy DML with the most DML, as step 07 groups them (dml_regions_legacy.csv). Start of its first and of its last DML CpG.")
+     paste("Run of legacy ploidy DML with the most DML, as step 07 groups them (dml_regions_legacy.csv): its first and its last DML CpG.", zero_based))
 fact(sec, "dml_region_length_bp", whole(region_to + 2L - region_from), "From the C of the first DML CpG to the G of the last.")
 fact(sec, "lists_whose_largest_run_is_this_region", paste(same_run, collapse = "; "),
      "DML lists of step 07 whose run with the most DML has the same first and last CpG as this region.")
@@ -308,13 +310,16 @@ stopifnot(length(half_at_cutoff) > 0L)
 sec <- "a. block of excess coverage"
 cutoff_text <- paste0("its upper cutoff (", config$upper_coverage_percentile, "th percentile of coverage of the library)")
 fact(sec, "window", interval(window_from, window_to),
-     paste0("The DML region and ", window_margin_bp, " bp on either side; raw coverage was read for this window."))
+     paste0("The DML region and ", window_margin_bp, " bp on either side; raw coverage was read for the CpGs whose 0-based start lies between these two positions."))
 fact(sec, "window_cpg_sites", whole(n_site), "CpG sites of the window with at least one read in at least one library.")
 fact(sec, "runs_of_excess_coverage_in_window", whole(max(run_of_site, na.rm = TRUE)),
      paste0("Runs of CpGs with excess coverage in the window. A CpG has excess coverage when at least one library is at or above ", cutoff_text,
             "; such CpGs within ", run_gap_bp, " bp of each other form a run."))
 fact(sec, "block", interval(block_from, block_to),
-     "The run of CpGs with excess coverage that holds the DML region. Start of its first and of its last CpG.")
+     paste("The run of CpGs with excess coverage that holds the DML region: its first and its last CpG.", zero_based))
+fact(sec, "block_first_and_last_base", interval(block_from + 1L, block_to + 2L),
+     paste("The same block as bases of the reference sequence, 1-based: the C of its first CpG and the G of its last.",
+           "The positions of genes, 30-mers and second copies in this table are 1-based bases as well."))
 fact(sec, "block_length_bp", whole(block_to + 2L - block_from), "From the C of the first CpG of the block to the G of the last.")
 fact(sec, "block_cpg_sites", whole(sum(in_block)), "CpG sites inside the block with at least one read in at least one library.")
 fact(sec, "block_cpg_sites_with_excess", x_of_y(sum(in_block & excess_site), sum(in_block)),
@@ -326,7 +331,8 @@ fact(sec, "block_tested_cpgs_corrected", whole(sum(in_block & tested_corrected))
 fact(sec, "cutoff_reached_outside_block", x_of_y(sum(at_cutoff[!in_block, ]), sum(reads_raw[!in_block, ] > 0)),
      "Pairs of CpG site and library at or above the upper cutoff, of all pairs with reads, in the window outside the block.")
 fact(sec, "block_under_stricter_rule", interval(site_start[min(half_at_cutoff)], site_start[max(half_at_cutoff)]),
-     "For comparison: first and last CpG of the block at which at least half of the libraries with the excess are at or above their upper cutoff.")
+     paste("For comparison: first and last CpG of the block at which at least half of the libraries with the excess are at or above their upper cutoff.",
+           zero_based))
 fact(sec, "next_cpg_site_upstream_distance_bp", whole(block_from - site_start[site_before] - 2L),
      "Bases between the first CpG of the block and the nearest CpG site with reads before it.")
 fact(sec, "next_cpg_site_upstream_relative_coverage", decimal(with_excess_median[site_before], 2),
