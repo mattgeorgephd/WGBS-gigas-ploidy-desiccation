@@ -1,0 +1,26 @@
+                              y      libraries  n  spearman sum_d2   committed       exact exact_own_dp committed_over_exact_minus_1
+ 1:              pc1_10x_legacy         all 22 22  0.725579    486 1.99846e-04 2.12418e-04           NA                      -0.0592
+ 2:              pc2_10x_legacy         all 22 22 -0.372106   2430 8.89000e-02 8.89020e-02           NA                       0.0000
+ 3:              pc3_10x_legacy         all 22 22  0.123659   1552 5.82163e-01 5.82163e-01           NA                       0.0000
+ 4:              pc4_10x_legacy         all 22 22 -0.330322   2356 1.33397e-01 1.33404e-01           NA                      -0.0001
+ 5:      mean_pct_tested_legacy         all 22 22  0.757199    430 6.92281e-05 8.08651e-05           NA                      -0.1439
+ 6:    mean_pct_eligible_legacy         all 22 22  0.753811    436 7.84148e-05 9.02679e-05           NA                      -0.1313
+ 7:           pc1_10x_corrected         all 22 22  0.725579    486 1.99846e-04 2.12418e-04           NA                      -0.0592
+ 8:           pc2_10x_corrected         all 22 22 -0.367589   2422 9.30786e-02 9.30812e-02           NA                       0.0000
+ 9:           pc3_10x_corrected         all 22 22  0.140599   1522 5.31012e-01 5.31013e-01           NA                       0.0000
+10:           pc4_10x_corrected         all 22 22 -0.251270   2216 2.58159e-01 2.58166e-01           NA                       0.0000
+11:   mean_pct_tested_corrected         all 22 22  0.763975    418 5.34275e-05 6.45590e-05           NA                      -0.1724
+12: mean_pct_eligible_corrected         all 22 22  0.776398    396 3.19312e-05 4.19088e-05           NA                      -0.2381
+13:             pct_mCHH_genome         all 22 22  0.713156    508 2.87951e-04 3.00167e-04           NA                      -0.0407
+14:             pct_mCHH_genome    heat cohort 10  0.818182     30 6.81113e-03 5.81845e-03   0.00581845                       0.1706
+15:             pct_mCHH_genome control cohort 12  0.825175     50 1.71860e-03 1.59199e-03   0.00159199                       0.0795
+16:           elisa_percent_5mC animals with b  6  0.542857     16 2.97222e-01 2.97222e-01   0.29722200                       0.0000
+
+n = 22, my dynamic programme against the table:
+  S = 396: 4.190884e-05 and 4.190884e-05
+  S = 418: 6.455901e-05 and 6.455901e-05
+  S = 430: 8.086514e-05 and 8.086514e-05
+  S = 436: 9.026788e-05 and 9.026788e-05
+  S = 486: 2.124182e-04 and 2.124182e-04
+  S = 508: 3.001668e-04 and 3.001668e-04
+n = 10, S = 30: 5.818452e-03 (mine 5.818452e-03); n = 12, S = 50: 1.591991e-03 (mine 1.591991e-03)

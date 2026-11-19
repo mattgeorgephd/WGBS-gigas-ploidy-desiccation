@@ -1,0 +1,118 @@
+largest difference between my genome-wide level and the pct_mCpG column: 4.618528e-14 
+gaps in the sorted genome-wide level, largest three: 0.6075, 0.4639, 0.353 ; position of the largest (number of libraries below it): 17 
+high libraries: zr3534_3 zr3534_4 zr3534_5 zr3644_14 zr3644_15 
+
+dcLN dhHA dhHN dhLN tcHN tcLN thLA thLN 
+   6    2    1    2    2    4    2    3 
+CpG x library cells where coverage != numCs + numTs: 18982 of 10000210 
+smallest numCs + numTs: 10 ; largest: 111 
+eligible CpGs: 61056 of 454555 
+CpGs with mean within 1e-9 of 10 or of 90: 0 ; within 1e-6: 0 
+library_level.csv:
+  mean_pct_tested_corrected                                      identical at 6 significant digits (largest relative difference 3.96e-06)
+  mean_pct_eligible_corrected                                    identical at 6 significant digits (largest relative difference 8.08e-07)
+  pct_mCpG_genome                                                identical at 6 significant digits (largest relative difference 4.70e-06)
+gaps in the sorted mean over eligible CpGs, largest three: 5.346, 4.436, 2.16 ; libraries above the largest: zr3534_3 zr3534_4 zr3534_5 zr3644_14 zr3644_15 
+gaps in the sorted mean over tested CpGs, largest three: 0.831, 0.589, 0.189 ; libraries above the largest: zr3534_3 zr3534_4 zr3534_5 zr3644_14 zr3644_15 
+interaction: CpGs within 1e-6 of 20 points: 1 ; of these |d| > 20 in the script's arithmetic without margin: 0 ; in the arithmetic of dml_sensitivity.R: 0 
+
+contrast_direction.csv (corrected):
+  n_cpg                        all 8 rows equal
+  n_eligible                   all 8 rows equal
+  n_above_threshold            all 8 rows equal
+  n_positive                   all 8 rows equal
+  n_negative                   all 8 rows equal
+  n_exactly_at_threshold       all 8 rows equal
+  share_in_majority_direction                                    identical at 6 significant digits (largest relative difference 9.45e-07)
+  mean_difference_eligible                                       identical at 6 significant digits (largest relative difference 4.04e-06)
+  median_difference_eligible                                     identical at 6 significant digits (largest relative difference 3.58e-06)
+  q25_difference_eligible                                        identical at 6 significant digits (largest relative difference 1.48e-06)
+  q75_difference_eligible                                        identical at 6 significant digits (largest relative difference 3.55e-06)
+  share_eligible_positive                                        identical at 6 significant digits (largest relative difference 9.48e-07)
+                                        contrast n_above_threshold n_positive n_negative n_exactly_at_threshold n_above_no_margin_methylkit_form n_above_no_margin_script_form ties_above_20_in_methylkit_form ties_above_20_in_script_form
+1: ploidy, all 22 libraries (the draft's ploidy                952        430        522                      0                              952                           952                               0                            0
+2: cohort, all 22 libraries (the draft's heat co              2273       1089       1184                      1                             2273                          2273                               0                            0
+3:                 ploidy inside the heat cohort             12767       1813      10954                     20                            12767                         12767                               0                            0
+4:              ploidy inside the control cohort              3252       2659        593                      8                             3253                          3252                               1                            0
+5: ploidy inside the heat cohort, without the hi             10266       4263       6003                     31                            10266                         10267                               0                            1
+6: ploidy inside the control cohort, without the              3063       1899       1164                      6                             3063                          3064                               0                            1
+7: acute heat shock inside the heat cohort (4 li              3823       2066       1757                      9                             3824                          3823                               1                            0
+8: interaction (heat-cohort ploidy difference mi             22846       2687      20159                      1                            22846                         22846                               0                            0
+   ties_at_exactly_20_in_methylkit_form ties_below_20_in_methylkit_form largest_float_error_at_ties smallest_distance_of_a_non_tie_from_20 largest_pooled_reads_product
+1:                                    0                               0                          NA                                0.02060                       775000
+2:                                    0                               1                    3.55e-15                                0.00140                       775000
+3:                                   19                               1                    3.55e-15                                0.00131                       201000
+4:                                    6                               1                    7.11e-15                                0.00129                       187000
+5:                                   27                               4                    7.11e-15                                0.00235                        82800
+6:                                    3                               3                    7.11e-15                                0.00186                       132000
+7:                                    5                               3                    7.11e-15                                0.00392                       196000
+8:                                    1                               0                    0.00e+00                                0.00167                           NA
+
+exact ties of the within-cohort contrasts (corrected):
+                           contrast counted_by_rule_without_margin counted_by_cached_fit  N
+1:    ploidy inside the heat cohort                          FALSE                    NA 20
+2: ploidy inside the control cohort                          FALSE                    NA  7
+3: ploidy inside the control cohort                           TRUE                    NA  1
+
+contrast_agreement.csv (corrected):
+  n_cpg                        all 4 rows equal
+  n_above_in_heat_cohort       all 4 rows equal
+  n_above_in_control_cohort    all 4 rows equal
+  n_above_in_both              all 4 rows equal
+  n_above_in_both_same_sign    all 4 rows equal
+  pearson                                                        identical at 6 significant digits (largest relative difference 2.23e-06)
+  spearman                                                       identical at 6 significant digits (largest relative difference 2.04e-06)
+  n_above_in_both_expected_if_unrelated                          identical at 6 significant digits (largest relative difference 5.75e-07)
+                      libraries         cpg_set spearman_script_form spearman_methylkit_form spearman_values_rounded_to_1e_9 distinct_values_heat_script_form distinct_values_heat_rounded
+1: all libraries of each cohort all tested CpGs         -0.102189791            -0.102189300                    -0.102189537                           148448                       142813
+2: all libraries of each cohort   eligible CpGs         -0.256794881            -0.256794750                    -0.256794808                            59917                        58858
+3:   without the high libraries all tested CpGs         -0.009962288            -0.009962788                    -0.009962648                           111525                       104358
+4:   without the high libraries   eligible CpGs         -0.021871170            -0.021870954                    -0.021871040                            57710                        55079
+
+leave_one_library_out.csv (corrected): all rows equal 22 rows; exact ties per row: 25 19 18 28 34 22 26 23 29 23 15 5 8 15 13 15 18 4 11 12 16 15 
+slope estimated in the control cohort: largest difference between the two formulas 2.77e-13; exact zeros 130610 (uncentred formula) and 130615 (centred); Spearman with the centred slopes, all tested CpGs -0.133638437, eligible -0.373800271
+slope estimated in the heat cohort: largest difference between the two formulas 5.91e-14; exact zeros 122705 (uncentred formula) and 122707 (centred); Spearman with the centred slopes, all tested CpGs 0.110529090, eligible 0.305944933
+
+level_slope_prediction.csv (corrected):
+  n_cpg                                                          identical at 6 significant digits (largest relative difference 0.00e+00)
+  level_difference_triploid_minus_diploid                        identical at 6 significant digits (largest relative difference 4.43e-07)
+  median_slope                                                   identical at 6 significant digits (largest relative difference 6.15e-07)
+  pearson                                                        identical at 6 significant digits (largest relative difference 1.63e-06)
+  spearman                                                       DIFFERENT (largest relative difference 2.74e-05)
+   slope_estimated_in         cpg_set spearman_mine spearman_rounded_to_1e_9 distinct_slopes distinct_slopes_rounded
+1:     control cohort all tested CpGs  -0.133637041             -0.133638333          182636                  182631
+2:     control cohort   eligible CpGs  -0.373800271             -0.373800305           61051                   61051
+3:        heat cohort all tested CpGs   0.110525971              0.110528916          189385                  189383
+4:        heat cohort   eligible CpGs   0.305944933              0.305944914           61048                   61048
+   spearman_committed
+1:          -0.133638
+2:          -0.373800
+3:           0.110529
+4:           0.305945
+level_slope_deciles.csv (corrected):
+  n_cpg                                                          all 20 rows equal
+  median_slope                                                   identical at 6 significant digits (largest relative difference 4.00e-06)
+  share_above_threshold_triploid_higher                          identical at 6 significant digits (largest relative difference 2.93e-06)
+  share_above_threshold_diploid_higher                           identical at 6 significant digits (largest relative difference 4.28e-06)
+  median_difference                                              identical at 6 significant digits (largest relative difference 2.17e-06)
+        mode slope_estimated_in breaks_unique slopes_equal_to_an_inner_break slopes_within_1e_9_of_an_inner_break cpgs_in_another_tenth_by_rank eligible_slopes_exactly_zero distinct_slopes     n all_tested_slopes_exactly_zero
+1: corrected     control cohort          TRUE                              4                                    4                             2                            4           61051 61056                         130610
+2: corrected        heat cohort          TRUE                              4                                    4                             2                            9           61048 61056                         122705
+
+part 8, lists with the correction and the F test found for corrected : A1_heat_mn_f, A1_ploidy_mn_f, A2_interaction_mn_f 
+  lists with the correction and the chi-squared test (not read by the script):  
+corrected_dml_group_apart.csv (corrected): all rows equal 
+                  list n_cpg n_diploid_heat_apart n_triploid_heat_apart n_diploid_control_apart n_triploid_control_apart n_no_group_apart n_two_groups_apart
+1:        A1_heat_mn_f     6                    0                     1                       0                        0                5                  0
+2:      A1_ploidy_mn_f     2                    0                     1                       0                        0                1                  0
+3: A2_interaction_mn_f     2                    0                     0                       0                        0                2                  0
+  groups whose range touches the range of the other libraries without overlapping (strict inequality decides): 7 
+corrected_dml_library_values.csv (corrected): 9 CpGs; largest difference of a library value rounded to one decimal: 0
+  label column group_apart_from_all_other_libraries: all rows equal 
+  column lists: the same set of lists in 9 of 9 rows; CpGs in more than one list: 1 
+  range columns: all rows equal 
+
+elapsed seconds: 16 
+            used  (Mb) gc trigger   (Mb)  max used   (Mb)
+Ncells    508189  27.2    1001207   53.5   1001207   53.5
+Vcells 128115119 977.5  199235548 1520.1 198816893 1516.9

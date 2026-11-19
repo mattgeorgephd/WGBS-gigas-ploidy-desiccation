@@ -1,0 +1,5 @@
+mode,slope_estimated_in,contrast,cpg_set,n_cpg,level_difference_triploid_minus_diploid,median_slope,pearson,spearman,spearman_rounded_to_1e_9,distinct_slopes,distinct_slopes_rounded
+corrected,control cohort,ploidy inside the heat cohort,all tested CpGs,454555,-0.8502623762719,0,-0.451012699552657,-0.133637041090205,-0.133638332921685,182636,182631
+corrected,control cohort,ploidy inside the heat cohort,eligible CpGs,61056,-0.8502623762719,6.15458621204848,-0.348707284733182,-0.373800271092644,-0.373800305331943,61051,61051
+corrected,heat cohort,ploidy inside the control cohort,all tested CpGs,454555,0.650813930083965,0,0.38176853230931,0.110525971493737,0.110528916419811,189385,189383
+corrected,heat cohort,ploidy inside the control cohort,eligible CpGs,61056,0.650813930083965,6.51471089219468,0.283166539765124,0.30594493322344,0.305944914343361,61048,61048

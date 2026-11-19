@@ -1,0 +1,80 @@
+library_level.csv against my values (6 significant digits):
+  pct_mCpG_genome                TRUE
+  mean_pct_tested_legacy         TRUE
+  mean_pct_eligible_legacy       TRUE
+  mean_pct_tested_corrected      TRUE
+  mean_pct_eligible_corrected    TRUE
+  pct_mCHH_genome                TRUE
+  pct_mCHG_genome                TRUE
+  elisa_percent_5mC              TRUE ; animals with both: D11 D12 D13 T11 T12 T13 ; of these above the top standard of the ELISA curve: D13
+  level_rank equals rank of -level: TRUE 
+  principal components 1 to 4 of both modes equal the step 04 tables at 6 significant digits: TRUE
+
+level_group_tests.csv (30 rows):
+  n_a                                  TRUE
+  n_b                                  TRUE
+  min_a                                TRUE
+  median_a                             TRUE
+  max_a                                TRUE
+  min_b                                TRUE
+  median_b                             TRUE
+  max_b                                TRUE
+  difference_of_means_b_minus_a        TRUE
+  a_libraries_above_every_b_library    TRUE
+  b_libraries_above_every_a_library    TRUE
+  wilcoxon_p                           TRUE
+  complete_separation                  TRUE
+  wilcoxon_p_is_exact (no ties)        TRUE
+  R's exact p = my enumeration         TRUE (largest difference 1.11e-16)
+                                comparison n_a n_b median_a median_b       diff a_above b_above complete_separation wilcoxon_p        own as_extreme assignments
+1:           ploidy inside the heat cohort   5   5  11.0180  9.92952 -0.8502620       5       0                TRUE 0.00793651 0.00793651          2         252
+2:        ploidy inside the control cohort   6   6  10.0968 10.40620  0.6508140       0       5               FALSE 0.00865801 0.00865801          8         924
+3:                                  cohort  12  10  10.2191 10.19740  0.0627351       1       0               FALSE 0.82120400 0.82120400     531028      646646
+4:                ploidy, all 22 libraries  11  11  10.2087 10.18610 -0.0314935       0       1               FALSE 0.89766300 0.89766300     633240      705432
+5: acute heat shock inside the heat cohort   6   4  10.1974 10.42770  0.0736559       1       0               FALSE 0.76190500 0.76190500        160         210
+
+level_correlations.csv (16 rows):
+  n                            TRUE
+  pearson                      TRUE
+  spearman                     TRUE
+  spearman_p_exact = cor.test  TRUE
+                              y      libraries  n  spearman sum_d2 p_committed p_exact_own relative_error p_t_approximation
+ 1:              pc1_10x_legacy         all 22 22  0.725579    486 1.99846e-04          NA             NA       1.32584e-04
+ 2:              pc2_10x_legacy         all 22 22 -0.372106   2430 8.89000e-02          NA             NA       8.81354e-02
+ 3:              pc3_10x_legacy         all 22 22  0.123659   1552 5.82163e-01          NA             NA       5.83509e-01
+ 4:              pc4_10x_legacy         all 22 22 -0.330322   2356 1.33397e-01          NA             NA       1.33246e-01
+ 5:      mean_pct_tested_legacy         all 22 22  0.757199    430 6.92281e-05          NA             NA       4.50604e-05
+ 6:    mean_pct_eligible_legacy         all 22 22  0.753811    436 7.84148e-05          NA             NA       5.09648e-05
+ 7:           pc1_10x_corrected         all 22 22  0.725579    486 1.99846e-04          NA             NA       1.32584e-04
+ 8:           pc2_10x_corrected         all 22 22 -0.367589   2422 9.30786e-02          NA             NA       9.23716e-02
+ 9:           pc3_10x_corrected         all 22 22  0.140599   1522 5.31012e-01          NA             NA       5.32573e-01
+10:           pc4_10x_corrected         all 22 22 -0.251270   2216 2.58159e-01          NA             NA       2.59327e-01
+11:   mean_pct_tested_corrected         all 22 22  0.763975    418 5.34275e-05          NA             NA       3.50147e-05
+12: mean_pct_eligible_corrected         all 22 22  0.776398    396 3.19312e-05          NA             NA       2.15704e-05
+13:             pct_mCHH_genome         all 22 22  0.713156    508 2.87951e-04          NA             NA       1.94882e-04
+14:             pct_mCHH_genome    heat cohort 10  0.818182     30 6.81113e-03  0.00581845         0.1710       3.81492e-03
+15:             pct_mCHH_genome control cohort 12  0.825175     50 1.71860e-03  0.00159199         0.0795       9.51363e-04
+16:           elisa_percent_5mC animals with b  6  0.542857     16 2.97222e-01  0.29722200         0.0000       2.65703e-01
+
+pair_similarity.csv (8 rows):
+  n_libraries                                                TRUE
+  n_pairs                                                    TRUE
+  mean_r_within_group                                        TRUE
+  min_r_within_group                                         TRUE
+  max_r_within_group                                         TRUE
+  mean_r_within_other_group                                  TRUE
+  mean_r_between_groups                                      TRUE
+  largest_mean_r_of_another_subset                           TRUE
+  pairs_of_group_among_the_n_pairs_most_similar_in_cohort    TRUE
+  subsets_of_this_size                                       TRUE
+  subsets_at_or_above_observed                               TRUE
+  p_enumeration                                              TRUE
+        mode         cohort    group mean_r_within_group largest_other                                    largest_other_subset own_libraries_in_it at_or_above at_or_below subsets          p near_ties min_gap
+1:    legacy    heat cohort  diploid            0.898140      0.929014           zr3534_6 zr3534_7 zr3534_8 zr3534_9 zr3534_10                   0         229          24     252 0.90873000         0 2.7e-05
+2:    legacy    heat cohort triploid            0.929014      0.923599           zr3534_1 zr3534_7 zr3534_8 zr3534_9 zr3534_10                   4           1         252     252 0.00396825         0 2.7e-05
+3:    legacy control cohort  diploid            0.911586      0.933812 zr3644_3 zr3644_4 zr3644_5 zr3644_6 zr3644_13 zr3644_16                   4         375         550     924 0.40584400         0 8.1e-07
+4:    legacy control cohort triploid            0.907761      0.933812 zr3644_3 zr3644_4 zr3644_5 zr3644_6 zr3644_13 zr3644_16                   2         499         426     924 0.54004300         0 8.1e-07
+5: corrected    heat cohort  diploid            0.899277      0.930098           zr3534_6 zr3534_7 zr3534_8 zr3534_9 zr3534_10                   0         230          23     252 0.91269800         0 2.4e-05
+6: corrected    heat cohort triploid            0.930098      0.924700           zr3534_1 zr3534_7 zr3534_8 zr3534_9 zr3534_10                   4           1         252     252 0.00396825         0 2.4e-05
+7: corrected control cohort  diploid            0.912934      0.934417 zr3644_3 zr3644_4 zr3644_5 zr3644_6 zr3644_13 zr3644_16                   4         357         568     924 0.38636400         0 9.1e-06
+8: corrected control cohort triploid            0.908078      0.934417 zr3644_3 zr3644_4 zr3644_5 zr3644_6 zr3644_13 zr3644_16                   2         509         416     924 0.55086600         0 9.1e-06

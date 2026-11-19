@@ -1,0 +1,4 @@
+ploidy inside the heat cohort: 480579 CpGs; largest |difference() - meth.diff of methylKit| = 2.22e-14; |meth.diff| > 20 in 13028 CpGs; above() counts 13028; CpGs where the two decisions differ: 0
+ploidy inside the control cohort: 480579 CpGs; largest |difference() - meth.diff of methylKit| = 2.35e-14; |meth.diff| > 20 in 3350 CpGs; above() counts 3349; CpGs where the two decisions differ: 1
+step 05, ploidy: largest |difference() - meth.diff| = 6.75e-14 (the script accepts up to 1e-8); decisions differ at 0 CpGs
+step 05, heat: largest |difference() - meth.diff| = 6.75e-14 (the script accepts up to 1e-8); decisions differ at 0 CpGs

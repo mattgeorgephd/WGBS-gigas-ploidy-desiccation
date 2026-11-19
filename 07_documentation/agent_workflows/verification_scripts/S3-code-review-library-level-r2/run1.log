@@ -1,0 +1,83 @@
+High libraries (largest gap in the sorted genome-wide values: 10.41 to 11.02 (0.61 points; second largest gap 0.46)):
+  zr3534_3 (diploid heat), zr3534_4 (diploid heat), zr3534_5 (diploid heat), zr3644_14 (triploid control), zr3644_15 (triploid control)
+
+    library_id            group acute_heat_shock pct_mCpG_genome mean_pct_eligible_legacy high_level elisa
+ 1:   zr3534_1     diploid heat               no           10.24                     43.0      FALSE  2.99
+ 2:   zr3534_2     diploid heat               no           10.21                     43.0      FALSE  3.59
+ 3:   zr3534_3     diploid heat               no           11.55                     54.2       TRUE  4.37
+ 4:   zr3534_4     diploid heat              yes           11.02                     49.2       TRUE    NA
+ 5:   zr3534_5     diploid heat              yes           11.09                     49.7       TRUE    NA
+ 6:   zr3534_6    triploid heat               no           10.19                     42.8      FALSE  2.60
+ 7:   zr3534_7    triploid heat               no            9.93                     40.4      FALSE  3.00
+ 8:   zr3534_8    triploid heat               no           10.08                     41.8      FALSE  1.80
+ 9:   zr3534_9    triploid heat              yes            9.84                     40.3      FALSE    NA
+10:  zr3534_10    triploid heat              yes            9.81                     41.8      FALSE    NA
+11:   zr3644_1  diploid control               no            9.46                     37.9      FALSE    NA
+12:   zr3644_2  diploid control               no           10.03                     44.0      FALSE    NA
+13:   zr3644_3  diploid control               no           10.16                     43.6      FALSE    NA
+14:   zr3644_4  diploid control               no            9.95                     43.2      FALSE    NA
+15:   zr3644_5  diploid control               no           10.23                     42.5      FALSE    NA
+16:   zr3644_6  diploid control               no           10.20                     43.1      FALSE    NA
+17:  zr3644_13 triploid control               no           10.30                     44.0      FALSE    NA
+18:  zr3644_14 triploid control               no           11.61                     54.3       TRUE    NA
+19:  zr3644_15 triploid control               no           11.04                     49.7       TRUE    NA
+20:  zr3644_16 triploid control               no           10.41                     44.0      FALSE    NA
+21:  zr3644_17 triploid control               no           10.18                     44.2      FALSE    NA
+22:  zr3644_18 triploid control               no           10.40                     42.1      FALSE    NA
+    library_id            group acute_heat_shock pct_mCpG_genome mean_pct_eligible_legacy high_level elisa
+
+Group comparisons of the genome-wide level
+                                comparison median_a median_b complete_separation wilcoxon_p
+1:           ploidy inside the heat cohort    11.02     9.93                TRUE    0.00794
+2:        ploidy inside the control cohort    10.10    10.41               FALSE    0.00866
+3:                                  cohort    10.22    10.20               FALSE    0.82100
+4:                ploidy, all 22 libraries    10.21    10.19               FALSE    0.89800
+5: acute heat shock inside the heat cohort    10.20    10.43               FALSE    0.76200
+
+CpGs above the threshold, by direction (legacy mode)
+                                                       contrast n_above_threshold n_positive n_negative n_exactly_at_threshold majority median_eligible
+1:       ploidy, all 22 libraries (the draft's ploidy contrast)              1038        442        596                      0    0.574           -1.25
+2:         cohort, all 22 libraries (the draft's heat contrast)              2352       1150       1202                      1    0.511            0.37
+3:                                ploidy inside the heat cohort             13028       1915      11113                     20    0.853           -5.71
+4:                             ploidy inside the control cohort              3349       2688        661                      8    0.803            3.64
+5: interaction (heat-cohort ploidy difference minus control-coh             23503       2876      20627                      1    0.878           -8.91
+6:    ploidy inside the heat cohort, without the high libraries             10732       4433       6299                     31    0.587           -1.60
+7: ploidy inside the control cohort, without the high libraries              3190       1943       1247                      6    0.609            1.07
+8: acute heat shock inside the heat cohort (4 libraries with it              3994       2167       1827                      9    0.543            0.99
+
+Similarity of the libraries of one group (mean pairwise correlation)
+        mode         cohort    group within other_group between top_pairs n_pairs at_or_above subsets       p
+1:    legacy    heat cohort  diploid 0.8981      0.9290  0.8981         0      10         229     252 0.90900
+2:    legacy    heat cohort triploid 0.9290      0.8981  0.8981        10      10           1     252 0.00397
+3:    legacy control cohort  diploid 0.9116      0.9078  0.9085         3      15         375     924 0.40600
+4:    legacy control cohort triploid 0.9078      0.9116  0.9085         3      15         499     924 0.54000
+5: corrected    heat cohort  diploid 0.8993      0.9301  0.8992         0      10         230     252 0.91300
+6: corrected    heat cohort triploid 0.9301      0.8993  0.8992        10      10           1     252 0.00397
+7: corrected control cohort  diploid 0.9129      0.9081  0.9093         3      15         357     924 0.38600
+8: corrected control cohort triploid 0.9081      0.9129  0.9093         3      15         509     924 0.55100
+
+CpGs called with the overdispersion correction: is one group outside the range of all other libraries?
+        mode                      list n_cpg n_diploid_heat_apart n_triploid_heat_apart n_diploid_control_apart n_triploid_control_apart n_no_group_apart
+1:    legacy            A1_ploidy_mn_f     2                    0                     1                       0                        0                1
+2:    legacy              A1_heat_mn_f    16                    1                     2                       0                        0               13
+3:    legacy       A2_interaction_mn_f     2                    0                     0                       0                        0                2
+4:    legacy A4_ploidy_in_control_mn_f     2                    0                     0                       0                        0                2
+5:    legacy    A4_ploidy_in_heat_mn_f   125                    6                    11                       0                        0              108
+6: corrected            A1_ploidy_mn_f     2                    0                     1                       0                        0                1
+7: corrected              A1_heat_mn_f     6                    0                     1                       0                        0                5
+8: corrected       A2_interaction_mn_f     2                    0                     0                       0                        0                2
+
+Relabelling references
+         mode                                                   comparison observed groupings reference_median largest_other_grouping at_or_above       p
+ 1:    legacy              ploidy inside the heat cohort, all 10 libraries    13028       252           4018.5                  12822           2 0.00794
+ 2:    legacy           ploidy inside the control cohort, all 12 libraries     3349       924           2912.5                   4749         242 0.26200
+ 3:    legacy    ploidy inside the heat cohort, without the high libraries    10732        21           7234.0                   8737           1 0.04760
+ 4:    legacy ploidy inside the control cohort, without the high libraries     3190       210           3713.0                   5806         179 0.85200
+ 5:    legacy             ploidy, both cohorts, without the high libraries     1425      4410           1318.0                   2612        1552 0.35200
+ 6:    legacy                      acute heat shock inside the heat cohort     3994       100           4120.5                   7350          55 0.55000
+ 7: corrected              ploidy inside the heat cohort, all 10 libraries    12767       252           3825.0                  12504           2 0.00794
+ 8: corrected           ploidy inside the control cohort, all 12 libraries     3252       924           2830.5                   4595         244 0.26400
+ 9: corrected    ploidy inside the heat cohort, without the high libraries    10266        21           6953.0                   8290           1 0.04760
+10: corrected ploidy inside the control cohort, without the high libraries     3063       210           3600.0                   5572         186 0.88600
+11: corrected             ploidy, both cohorts, without the high libraries     1376      4410           1269.0                   2528        1566 0.35500
+12: corrected                      acute heat shock inside the heat cohort     3823       100           3930.5                   7157          55 0.55000

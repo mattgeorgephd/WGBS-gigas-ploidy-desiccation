@@ -1,0 +1,7 @@
+mode,comparison,n_libraries,groupings,cpgs_kept_by_screen,cpgs_kept_by_exact_screen,screen_float_differs_from_exact,cpgs_with_span_exactly_20,largest_count_of_dropped_cpgs_above_exactly,largest_count_of_dropped_cpgs_above_without_margin,groupings_where_L_differs_from_exact,groupings_where_S_differs_from_exact,largest_S_minus_exact,smallest_S_minus_exact,largest_product_of_pooled_reads,smallest_possible_distance_from_20
+legacy,"ploidy inside the heat cohort, all 10 libraries",10,252,82085,82085,0,1301,0,0,0,160,6,0,516264210,3.87398537659622e-08
+legacy,"ploidy inside the control cohort, all 12 libraries",12,924,89060,89060,0,1417,0,0,0,552,4,0,1220035037,1.63929718356113e-08
+legacy,"ploidy inside the heat cohort, without the high libraries",7,21,65442,65441,1,1194,0,0,0,20,10,0,216218475,9.24990336741576e-08
+legacy,"ploidy inside the control cohort, without the high libraries",10,210,79213,79213,0,1428,0,0,0,145,4,0,936941663,2.13460461732077e-08
+legacy,"ploidy, both cohorts, without the high libraries",17,4410,90605,90605,0,1738,0,0,0,926,4,0,2111402496,9.47237679120372e-09
+legacy,acute heat shock inside the heat cohort,10,100,82085,82085,0,1301,0,0,0,66,4,0,514305162,3.88874183611636e-08

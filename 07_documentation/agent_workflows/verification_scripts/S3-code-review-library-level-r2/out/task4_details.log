@@ -1,0 +1,36 @@
+                                           comparison cases distinct_cpgs groupings all_exact_ties in_observed_or_mirror
+1:    ploidy inside the heat cohort, all 10 libraries   292           129       160           TRUE                     0
+2: ploidy inside the control cohort, all 12 libraries   856           290       552           TRUE                     2
+integer check of all cases: TRUE 
+
+the cases in the observed grouping or its mirror image:
+                         comparison                                        libraries_in_group_a         chr    start c_a n_a c_b n_b d_float
+1: ploidy inside the control cohort       zr3644_1 zr3644_2 zr3644_3 zr3644_4 zr3644_5 zr3644_6 NC_047563.1 63152425  77 110  72  80      20
+2: ploidy inside the control cohort zr3644_13 zr3644_14 zr3644_15 zr3644_16 zr3644_17 zr3644_18 NC_047563.1 63152425  72  80  77 110     -20
+
+ploidy inside the heat cohort, all 10 libraries: the grouping with the smallest count: exact 2720, without margin 2721 (zr3534_1 zr3534_3 zr3534_6 zr3534_7 zr3534_8)
+           chr    start c_a n_a c_b n_b pct_a pct_b d_float
+1: NC_047565.1 14897380  66 110  72  90    60    80      20
+  sorted counts at the two middle positions: exact 3981 and 4056; without margin 3983 and 4056
+  sorted positions at which the two sets of counts differ: 160 of 252
+
+ploidy inside the control cohort, all 12 libraries: the grouping with the smallest count: exact 1725, without margin 1726 (zr3644_1 zr3644_3 zr3644_6 zr3644_13 zr3644_15 zr3644_17)
+           chr    start c_a n_a c_b n_b   pct_a   pct_b d_float
+1: NC_047559.1 29941608  76 120 105 126 63.3333 83.3333      20
+  sorted counts at the two middle positions: exact 2912 and 2913; without margin 2912 and 2913
+  sorted positions at which the two sets of counts differ: 580 of 924
+
+most frequent pairs of pooled percentages among the cases (group a, group b):
+          pa       pb d_float   N
+ 1: 60.00000 80.00000      20 137
+ 2: 80.00000 60.00000     -20 137
+ 3: 86.66667 66.66667     -20  69
+ 4: 66.66667 86.66667      20  69
+ 5: 90.00000 70.00000     -20  40
+ 6: 70.00000 90.00000      20  40
+ 7: 83.33333 63.33333     -20  24
+ 8: 63.33333 83.33333      20  24
+ 9: 73.33333 93.33333      20  18
+10: 93.33333 73.33333     -20  18
+11: 54.54545 74.54546      20  12
+12: 74.54546 54.54545     -20  12

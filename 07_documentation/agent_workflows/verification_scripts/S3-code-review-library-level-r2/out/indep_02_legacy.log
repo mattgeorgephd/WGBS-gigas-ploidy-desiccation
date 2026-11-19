@@ -1,0 +1,88 @@
+ploidy inside the heat cohort, all 10 libraries: 252 groupings done at 11 s
+ploidy inside the control cohort, all 12 libraries: 924 groupings done at 42 s
+ploidy inside the heat cohort, without the high libraries: 21 groupings done at 43 s
+ploidy inside the control cohort, without the high libraries: 210 groupings done at 50 s
+ploidy, both cohorts, without the high libraries: 4410 groupings done at 198 s
+acute heat shock inside the heat cohort: 100 groupings done at 201 s
+     mode                                                   comparison n_libraries groupings cpgs_kept_by_screen cpgs_kept_by_exact_screen screen_float_differs_from_exact cpgs_with_span_exactly_20 largest_count_of_dropped_cpgs_above_exactly
+1: legacy              ploidy inside the heat cohort, all 10 libraries          10       252               82085                     82085                               0                      1301                                           0
+2: legacy           ploidy inside the control cohort, all 12 libraries          12       924               89060                     89060                               0                      1417                                           0
+3: legacy    ploidy inside the heat cohort, without the high libraries           7        21               65442                     65441                               1                      1194                                           0
+4: legacy ploidy inside the control cohort, without the high libraries          10       210               79213                     79213                               0                      1428                                           0
+5: legacy             ploidy, both cohorts, without the high libraries          17      4410               90605                     90605                               0                      1738                                           0
+6: legacy                      acute heat shock inside the heat cohort          10       100               82085                     82085                               0                      1301                                           0
+   largest_count_of_dropped_cpgs_above_without_margin groupings_where_L_differs_from_exact groupings_where_S_differs_from_exact largest_S_minus_exact smallest_S_minus_exact largest_product_of_pooled_reads smallest_possible_distance_from_20
+1:                                                  0                                    0                                  160                     6                      0                       516264210                       3.873985e-08
+2:                                                  0                                    0                                  552                     4                      0                      1220035037                       1.639297e-08
+3:                                                  0                                    0                                   20                    10                      0                       216218475                       9.249903e-08
+4:                                                  0                                    0                                  145                     4                      0                       936941663                       2.134605e-08
+5:                                                  0                                    0                                  926                     4                      0                      2111402496                       9.472377e-09
+6:                                                  0                                    0                                   66                     4                      0                       514305162                       3.888742e-08
+
+relabelling_reference.csv (legacy) against my exact counts:
+  n_above_threshold_observed         all 6 rows equal
+  groupings                          all 6 rows equal
+  reference_median                   all 6 rows equal
+  reference_p05                      all 6 rows equal
+  reference_p95                      all 6 rows equal
+  reference_min                      all 6 rows equal
+  largest_other_grouping             all 6 rows equal
+  observed_over_reference_median     all 6 rows equal
+  groupings_at_or_above_observed     all 6 rows equal
+  p_enumeration                      all 6 rows equal
+                                                     comparison n_above_threshold_observed groupings reference_median reference_p05 reference_p95 reference_min largest_other_grouping observed_over_reference_median groupings_at_or_above_observed
+1:              ploidy inside the heat cohort, all 10 libraries                      13028       252           4018.5       2983.00      10297.00          2720                  12822                      3.2420057                              2
+2:           ploidy inside the control cohort, all 12 libraries                       3349       924           2912.5       2083.00       3948.00          1725                   4749                      1.1498712                            242
+3:    ploidy inside the heat cohort, without the high libraries                      10732        21           7234.0       6238.00       8737.00          6122                   8737                      1.4835499                              1
+4: ploidy inside the control cohort, without the high libraries                       3190       210           3713.0       2970.75       4775.60          2752                   5806                      0.8591435                            179
+5:             ploidy, both cohorts, without the high libraries                       1425      4410           1318.0        980.90       1899.55           793                   2612                      1.0811836                           1552
+6:                      acute heat shock inside the heat cohort                       3994       100           4120.5       3028.85       6156.70          2907                   7350                      0.9692998                             55
+   p_enumeration n_mirror reference_max second_largest_distinct
+1:   0.007936508        1         13028                   12822
+2:   0.261904762        1          4749                    4552
+3:   0.047619048        0         10732                    8737
+4:   0.852380952        0          5806                    5719
+5:   0.351927438        0          2612                    2601
+6:   0.550000000        0          7350                    6937
+  n_a and n_b: all 6 rows equal 
+
+relabelling_small_sets.csv (legacy): 583 rows; matched to my groupings: 583; counts equal: 583; observed flag equal: 583; mirror flag equal: 583
+  rows per comparison in the committed table:
+                                                     comparison   N
+1:              ploidy inside the heat cohort, all 10 libraries 252
+2:    ploidy inside the heat cohort, without the high libraries  21
+3: ploidy inside the control cohort, without the high libraries 210
+4:                      acute heat shock inside the heat cohort 100
+  sorted by decreasing count within comparison in the committed table: TRUE 
+
+ploidy inside the heat cohort, all 10 libraries
+  counts without margin (S): observed 13028 (permutation_reference.csv: 13028); quantiles 2721 2984 3340 4019.5 4911 10297 13028
+  permutation_reference.csv:                 quantiles 2721 2984 3340 4019.5 4911 10297 13028
+  identical: TRUE; at least observed: 2 (2)
+  exact counts:                              observed 13028; quantiles 2720 2983 3339 4018.5 4910 10297 13028; at least observed: 2
+  groupings in which S counts more than the exact rule: 160 of 252; by 1: 86; by 2: 42; by 3 or more: 32; fewer: 0
+  exact ties per grouping: median 7, range 1 to 28; share of ties that the rule without margin counts: 0.1289
+
+ploidy inside the control cohort, all 12 libraries
+  counts without margin (S): observed 3350 (permutation_reference.csv: 3350); quantiles 1726 2083 2413 2912.5 3360 3948 4749
+  permutation_reference.csv:                 quantiles 1726 2083 2413 2912.5 3360 3948 4749
+  identical: TRUE; at least observed: 242 (242)
+  exact counts:                              observed 3349; quantiles 1725 2083 2412 2912.5 3358 3948 4749; at least observed: 242
+  groupings in which S counts more than the exact rule: 552 of 924; by 1: 316; by 2: 180; by 3 or more: 56; fewer: 0
+  exact ties per grouping: median 6, range 0 to 13; share of ties that the rule without margin counts: 0.1603
+
+CpG by grouping cases where the rule without margin differs from the exact rule: 1148 ; all exact ties: TRUE ; distinct CpGs: 416 ; dropped by the screen of the script: 0 
+                                           comparison             d_float   N
+1: ploidy inside the control cohort, all 12 libraries  20.000000000000007 419
+2: ploidy inside the control cohort, all 12 libraries -20.000000000000007 419
+3: ploidy inside the control cohort, all 12 libraries  20.000000000000004   9
+4: ploidy inside the control cohort, all 12 libraries -20.000000000000004   9
+5:    ploidy inside the heat cohort, all 10 libraries  20.000000000000007 144
+6:    ploidy inside the heat cohort, all 10 libraries -20.000000000000007 144
+7:    ploidy inside the heat cohort, all 10 libraries  20.000000000000004   2
+8:    ploidy inside the heat cohort, all 10 libraries -20.000000000000004   2
+
+elapsed seconds: 202 
+           used  (Mb) gc trigger  (Mb)  max used  (Mb)
+Ncells   518839  27.8     906384  48.5    906384  48.5
+Vcells 62337091 475.6  103588090 790.4 103587211 790.4

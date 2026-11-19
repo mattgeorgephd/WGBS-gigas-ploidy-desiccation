@@ -1,0 +1,39 @@
+         mode                                                 comparison groupings median_all median_others p05_all p05_others  p95_all p95_others observed ratio_all ratio_others strictly_above equal_incl_obs
+ 1:    legacy            ploidy inside the heat cohort, all 10 libraries       252     4018.5          3981 2983.00     2983.0 10297.00    10282.0    13028   3.24201      3.27254              0              2
+ 2:    legacy         ploidy inside the control cohort, all 12 libraries       924     2912.5          2912 2083.00     2083.0  3948.00     3948.0     3349   1.14987      1.15007            240              2
+ 3:    legacy  ploidy inside the heat cohort, without the high libraries        21     7234.0          7073 6238.00     6232.2  8737.00     8596.4    10732   1.48355      1.51732              0              1
+ 4:    legacy ploidy inside the control cohort, without the high librari       210     3713.0          3714 2970.75     2970.0  4775.60     4776.2     3190   0.85914      0.85891            178              1
+ 5:    legacy           ploidy, both cohorts, without the high libraries      4410     1318.0          1318  980.90      980.8  1899.55     1899.6     1425   1.08118      1.08118           1547              5
+ 6:    legacy                    acute heat shock inside the heat cohort       100     4120.5          4133 3028.85     3026.7  6156.70     6159.4     3994   0.96930      0.96637             54              1
+ 7: corrected            ploidy inside the heat cohort, all 10 libraries       252     3825.0          3799 2871.00     2871.0 10119.00    10101.0    12767   3.33778      3.36062              0              2
+ 8: corrected         ploidy inside the control cohort, all 12 libraries       924     2830.5          2828 2015.00     2015.0  3872.00     3872.0     3252   1.14891      1.14993            242              2
+ 9: corrected  ploidy inside the heat cohort, without the high libraries        21     6953.0          6818 6089.00     6083.8  8290.00     8274.8    10266   1.47648      1.50572              0              1
+10: corrected ploidy inside the control cohort, without the high librari       210     3600.0          3600 2870.80     2870.6  4618.05     4620.6     3063   0.85083      0.85083            185              1
+11: corrected           ploidy, both cohorts, without the high libraries      4410     1269.0          1269  945.45      945.4  1842.55     1842.6     1376   1.08432      1.08432           1557              9
+12: corrected                    acute heat shock inside the heat cohort       100     3930.5          3935 2849.95     2848.9  5998.85     6002.7     3823   0.97265      0.97154             54              1
+         mode                                                 comparison observed_exact observed_S median_exact median_S min_exact min_S p05_exact   p05_S p95_exact    p95_S max_other_exact max_other_S at_or_above_exact at_or_above_S ties_observed
+ 1:    legacy            ploidy inside the heat cohort, all 10 libraries          13028      13028       4018.5   4019.5      2720  2721   2983.00 2984.00  10297.00 10297.00           12822       12824                 2             2            20
+ 2:    legacy         ploidy inside the control cohort, all 12 libraries           3349       3350       2912.5   2912.5      1725  1726   2083.00 2083.00   3948.00  3948.00            4749        4749               242           242             8
+ 3:    legacy  ploidy inside the heat cohort, without the high libraries          10732      10732       7234.0   7236.0      6122  6125   6238.00 6241.00   8737.00  8739.00            8737        8739                 1             1            31
+ 4:    legacy ploidy inside the control cohort, without the high librari           3190       3190       3713.0   3714.0      2752  2752   2970.75 2972.30   4775.60  4775.60            5806        5807               179           179             6
+ 5:    legacy           ploidy, both cohorts, without the high libraries           1425       1426       1318.0   1318.0       793   793    980.90  980.90   1899.55  1900.55            2612        2612              1552          1549             1
+ 6:    legacy                    acute heat shock inside the heat cohort           3994       3995       4120.5   4123.5      2907  2910   3028.85 3028.90   6156.70  6156.75            7350        7351                55            55             9
+ 7: corrected            ploidy inside the heat cohort, all 10 libraries          12767      12767       3825.0   3826.0      2580  2581   2871.00 2872.00  10119.00 10119.00           12504       12506                 2             2            20
+ 8: corrected         ploidy inside the control cohort, all 12 libraries           3252       3253       2830.5   2831.0      1700  1701   2015.00 2017.00   3872.00  3873.00            4595        4595               244           244             8
+ 9: corrected  ploidy inside the heat cohort, without the high libraries          10266      10266       6953.0   6955.0      5985  5988   6089.00 6092.00   8290.00  8292.00            8290        8292                 1             1            31
+10: corrected ploidy inside the control cohort, without the high librari           3063       3063       3600.0   3601.0      2684  2684   2870.80 2872.35   4618.05  4618.05            5572        5573               186           186             6
+11: corrected           ploidy, both cohorts, without the high libraries           1376       1377       1269.0   1269.0       777   777    945.45  946.00   1842.55  1843.00            2528        2528              1566          1560             1
+12: corrected                    acute heat shock inside the heat cohort           3823       3824       3930.5   3931.5      2746  2749   2849.95 2850.95   5998.85  5998.90            7157        7158                55            55             9
+    max_ties
+ 1:       28
+ 2:       13
+ 3:       33
+ 4:       16
+ 5:        7
+ 6:       20
+ 7:       27
+ 8:       13
+ 9:       32
+10:       16
+11:        7
+12:       20

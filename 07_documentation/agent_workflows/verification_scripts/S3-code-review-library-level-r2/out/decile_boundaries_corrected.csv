@@ -1,0 +1,3 @@
+mode,slope_estimated_in,breaks_unique,slopes_equal_to_an_inner_break,slopes_within_1e_9_of_an_inner_break,cpgs_in_another_tenth_by_rank,eligible_slopes_exactly_zero,distinct_slopes,n,all_tested_slopes_exactly_zero
+corrected,control cohort,TRUE,4,4,2,4,61051,61056,130610
+corrected,heat cohort,TRUE,4,4,2,9,61048,61056,122705

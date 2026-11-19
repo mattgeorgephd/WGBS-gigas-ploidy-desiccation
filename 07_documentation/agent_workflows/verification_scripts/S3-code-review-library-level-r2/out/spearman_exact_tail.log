@@ -1,0 +1,12 @@
+check for n = 8 against all 40320 permutations: identical counts up to S = 60
+n = 10  S = 30  rho = 0.818182  permutations with sum(d^2) <= S: 10557  two-sided exact p = 2 * 10557 / 10! = 5.818452e-03
+   largest number of masks kept in a layer: 26; seconds so far 0
+n = 12  S = 50  rho = 0.825175  permutations with sum(d^2) <= S: 381283  two-sided exact p = 2 * 381283 / 12! = 1.591991e-03
+   largest number of masks kept in a layer: 57; seconds so far 0
+n = 22  S = 396  rho = 0.776398  permutations with sum(d^2) <= S: 23552780576882248  two-sided exact p = 2 * 23552780576882248 / 22! = 4.190884e-05
+n = 22  S = 418  rho = 0.763975  permutations with sum(d^2) <= S: 36282184674220197  two-sided exact p = 2 * 36282184674220197 / 22! = 6.455901e-05
+n = 22  S = 430  rho = 0.757199  permutations with sum(d^2) <= S: 45446239853440888  two-sided exact p = 2 * 45446239853440888 / 22! = 8.086514e-05
+n = 22  S = 436  rho = 0.753811  permutations with sum(d^2) <= S: 50730579835359796  two-sided exact p = 2 * 50730579835359796 / 22! = 9.026788e-05
+n = 22  S = 486  rho = 0.725579  permutations with sum(d^2) <= S: 119379112782942007  two-sided exact p = 2 * 119379112782942007 / 22! = 2.124182e-04
+n = 22  S = 508  rho = 0.713156  permutations with sum(d^2) <= S: 168693867530213375  two-sided exact p = 2 * 168693867530213375 / 22! = 3.001668e-04
+   largest number of masks kept in a layer: 70072; seconds so far 15

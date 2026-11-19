@@ -1,0 +1,82 @@
+== 1. above_largest_gap ==
+largest gap at the bottom, values 9.46 9.9 10.0 10.1 10.2: high = FALSE TRUE TRUE TRUE TRUE (4 of 5 libraries marked high)
+two equal largest gaps, values 1 2 3 3.5: high = FALSE TRUE TRUE TRUE; gap 1; second_gap 1 (equal, no warning)
+all values equal: high = FALSE FALSE FALSE; gap 0
+a missing value (1 NA 3 10): high = FALSE NA FALSE TRUE (sort() drops the NA silently)
+
+== 2. relabel_reference against exact integer arithmetic on random counts ==
+4 against 4: 70 groupings; counts equal to exact arithmetic in all: TRUE; observed 1627; mirror present: TRUE; CpGs kept by the screen: 17369 of 20000
+2 against 5: 21 groupings; counts equal to exact arithmetic in all: TRUE; observed 2533; mirror present: FALSE; CpGs kept by the screen: 16934 of 20000
+two strata, 2+1 against 2+3: 24 groupings; counts equal to exact arithmetic in all: TRUE; observed 1768; mirror present: FALSE; CpGs kept by the screen: 17369 of 20000
+the 50 built ties (60% against 80%): value in the matrix form 20.000000000000007, in the form of difference() 20, span 20
+  counted by '> 20' in the matrix form: 50; kept by the screen 'span > 20': 0 -> without the margin the screen would remove CpGs that the unscreened rule counts
+  counted by above() (with the margin): 0; at_threshold(): 50
+
+== 3. relabel_reference with a stratum of one library (combn(x, m) reads a single number x as 1:x) ==
+strata {1,2 | 3,4} and {7 | none}: groupings enumerated 42 (6 exist); group a of the first few: 1,1,2 ; 1,1,3 ; 1,1,4 ; 1,2,3 ; 1,2,4 ; 1,3,4 ; 1,2,2 ; 1,2,3
+empty group a: groupings 1; counts NA; observed NA
+
+== 4. round_cols ==
+   median_of_counts      p05            p   n_int median_of_counts      p05
+1:           4018.5  2970.75 7.936508e-03   13028           4018.5  2970.75
+2:         123456.5 10297.25 1.234568e-10 1234567         123456.0 10297.20
+3:        1234567.0 98765.45 5.000000e-02       3        1234570.0 98765.40
+             p   n_int
+1: 7.93651e-03   13028
+2: 1.23457e-10 1234567
+3: 5.00000e-02       3
+integer column untouched: TRUE
+committed relabelling_reference.csv: largest reference value 10297; values with more than 6 significant digits before rounding are impossible to see after it; half-integers or quantiles of counts of 100,000 or more would be altered; here the largest count is 13028
+
+== 5. integer overflow in the expected overlap ==
+warning: NAs produced by integer overflow
+sum(logical) * sum(logical) with two counts of 50,000: NA
+largest product of the two counts in the committed table: 43630772 (limit 2147483647)
+
+== 6. cut() with quantile breaks ==
+slopes with 40% exact zeros: error: 'breaks' are not unique
+20 distinct values: sizes of the tenths 2 2 2 2 2 2 2 2 2 2; a value equal to an inner break goes to the lower tenth
+
+== 7. part 8 on synthetic lists: one CpG in total, an empty list file, a position missing from the united table ==
+one CpG in one list: 
+     mode  chr start lists group_apart_from_all_other_libraries
+1: legacy chr1   100     A                        triploid heat
+   range_diploid_control range_diploid_heat range_triploid_control
+1:                0 to 0             0 to 0                 0 to 0
+   range_triploid_heat L1 L2 L3 L4 L5 L6 L7 L8
+1:            50 to 60  0  0  0  0  0  0 50 60
+     mode list n_cpg n_diploid_heat_apart n_triploid_heat_apart
+1: legacy    A     1                    0                     1
+   n_diploid_control_apart n_triploid_control_apart n_no_group_apart
+1:                       0                        0                0
+a second list whose file holds a header and no row: 
+     mode list n_cpg n_diploid_heat_apart n_triploid_heat_apart
+1: legacy    A     1                    0                     1
+2: legacy    B     0                    0                     0
+   n_diploid_control_apart n_triploid_control_apart n_no_group_apart
+1:                       0                        0                0
+2:                       0                        0                0
+the only list is empty: values rows 1; apart table: 
+     mode list n_cpg n_diploid_heat_apart n_triploid_heat_apart
+1: legacy    A     0                    0                     0
+   n_diploid_control_apart n_triploid_control_apart n_no_group_apart
+1:                       0                        0                0
+a called position that is not in the united table: error: all(called$key %in% m$key) is not TRUE
+start = 100000 stored as a double in the list file (fwrite writes 1e+05): error: all(called$key %in% m$key) is not TRUE
+three CpGs; the third has group 'triploid heat' at 0 and 0.4 against 0 elsewhere (ranges touch at 0): 
+     mode  chr  start lists group_apart_from_all_other_libraries
+1: legacy chr1    100     A                        triploid heat
+2: legacy chr1    200     A       diploid control; triploid heat
+3: legacy chr1 100000     A                                 none
+   range_diploid_control range_diploid_heat range_triploid_control
+1:                0 to 0             0 to 0                 0 to 0
+2:              10 to 20           30 to 40               50 to 60
+3:                0 to 0             0 to 0                 0 to 0
+   range_triploid_heat
+1:            50 to 60
+2:            70 to 80
+3:              0 to 0
+     mode list n_cpg n_diploid_heat_apart n_triploid_heat_apart
+1: legacy    A     3                    0                     2
+   n_diploid_control_apart n_triploid_control_apart n_no_group_apart
+1:                       1                        0                1

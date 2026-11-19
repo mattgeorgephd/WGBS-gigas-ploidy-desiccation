@@ -1,0 +1,5 @@
+mode,libraries,cpg_set,n_cpg,pearson,spearman,spearman_methylkit_form,spearman_values_rounded_to_1e_9,distinct_values_heat_script_form,distinct_values_heat_rounded,n_above_in_heat_cohort,n_above_in_control_cohort,n_above_in_both,n_above_in_both_same_sign,n_above_in_both_expected_if_unrelated
+corrected,all libraries of each cohort,all tested CpGs,454555,-0.311423552986863,-0.102189791035382,-0.102189300355643,-0.102189537403155,148448,142813,12767,3252,957,177,91.3383066955594
+corrected,all libraries of each cohort,eligible CpGs,61056,-0.220787508423242,-0.256794880823242,-0.25679475020541,-0.256794808405713,59917,58858,11750,3223,957,177,620.254356656185
+corrected,without the high libraries,all tested CpGs,454555,-0.0323077355219815,-0.00996228755173258,-0.00996278765405094,-0.00996264795948512,111525,104358,10266,3063,884,402,69.1770148826875
+corrected,without the high libraries,eligible CpGs,61056,-0.026822671455033,-0.0218711700184454,-0.0218709539846955,-0.0218710404473196,57710,55079,9423,3000,883,401,463.001179245283

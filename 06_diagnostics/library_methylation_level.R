@@ -16,8 +16,12 @@
 #                eligible CpGs marks other libraries.
 #             2. Group comparisons of the level (exact Wilcoxon rank-sum
 #                tests), and its correlation with principal components 1 to 4
-#                of step 04, with non-CpG methylation, and with the ELISA
-#                value of the animals that have both measurements.
+#                of step 04, with the means over tested and eligible CpGs,
+#                with CHH methylation, and with the ELISA value of the animals
+#                that have both measurements. The p-value of Spearman's test
+#                is exact only below 10 libraries; above, R returns an
+#                Edgeworth series approximation (the column name
+#                spearman_p_exact is therefore wrong for 15 of its 16 rows).
 #             3. The ploidy contrast inside each cohort across CpGs: how many
 #                CpGs differ by more than the DML threshold, in which
 #                direction, and whether the two cohorts agree (correlation of
@@ -29,27 +33,35 @@
 #             5. The same counts with one library left out at a time.
 #             6. Relabelling references by complete enumeration: the number of
 #                CpGs above the threshold for the observed grouping against
-#                the number for every other grouping of the same libraries
-#                into groups of the same sizes. For ploidy inside each cohort,
-#                with all libraries and without the "high" ones; and for the
-#                acute heat shock inside the heat cohort (issue I-04), with
-#                labels moved within ploidy.
+#                the number for every grouping of the same libraries into
+#                groups of the same sizes. The reference median, percentiles
+#                and minimum are taken over all groupings, the observed one
+#                and its mirror image included; largest_other_grouping leaves
+#                both out. Six comparisons: ploidy inside each cohort, with
+#                all libraries and without the "high" ones; ploidy over both
+#                cohorts without the "high" ones, with labels moved within
+#                cohort; and the acute heat shock inside the heat cohort
+#                (issue I-04), with labels moved within ploidy.
 #             7. Similarity of the libraries of one group to each other: the
 #                mean pairwise Pearson correlation (step 04, CpGs with 10x
 #                in all libraries) among the diploids and among the triploids
 #                of each cohort, against every other subset of the same size
 #                from that cohort. (The mean, not the median: a subset that
 #                holds four of five similar libraries has six similar pairs
-#                out of ten, so its median can equal that of the full group.)
+#                out of ten, so its median can equal that of the full group.
+#                With the median, 6 of the 252 subsets of the heat cohort
+#                reach the value of the triploids instead of 1.)
 #             8. The CpGs that the sensitivity analyses call with the
-#                overdispersion correction: percent methylation of every
+#                overdispersion correction and the F test (the lists
+#                dml_<analysis>_mn_f_<mode>.csv; the two lists made with the
+#                chi-squared test are not read): percent methylation of every
 #                library, and whether one of the four groups lies entirely
 #                outside the range of the other libraries. A CpG at which one
 #                group of animals is uniformly different from all others is
 #                what a sequence variant or an allele shared by related
 #                animals looks like in bisulfite data (issue I-08).
 #
-# Run       Rscript 06_diagnostics/library_methylation_level.R   (about 3 minutes, 3 GB)
+# Run       Rscript 06_diagnostics/library_methylation_level.R   (about 2 minutes, 1.5 GB)
 #
 # Reads     03_input_files/metadata/wgbs_libraries.csv
 #           04_output/02_alignment_qc/tables/bismark_by_library.csv
@@ -100,8 +112,8 @@
 #             between two sets of animals; nothing here attributes it to
 #             ploidy or to heat.
 #           - "High" libraries are found by a rule that does not use the group
-#             labels, but leaving them out in part 6 is a choice made after
-#             seeing the data. Those rows are exploratory.
+#             labels, but leaving them out in parts 3 and 6 is a choice made
+#             after seeing the data. Those rows are exploratory.
 #           - Part 7: a group whose libraries resemble each other more than
 #             other libraries of the cohort do is not by itself evidence of
 #             one cross or one processing batch. The correlation between two
@@ -112,9 +124,13 @@
 #             (issues.md, I-49, item 6).
 #           - The smallest p-value a complete enumeration can give is
 #             (groupings as extreme as the observed one) / (all groupings).
-#             With two groups of equal size every split occurs twice (labels
-#             exchanged), so the smallest value is 2/252 for 5 against 5; for
-#             2 against 5 it is 1/21.
+#             In part 6, with two groups of equal size every split occurs
+#             twice (labels exchanged), so the smallest value is 2/252 for 5
+#             against 5; for 2 against 5 it is 1/21. In part 7 the statistic
+#             belongs to one subset and the complementary subset has its own
+#             value, so the p-value is one-sided (subsets at least as similar
+#             as the group) and its smallest value is 1/252 for 5 of 10
+#             libraries and 1/924 for 6 of 12.
 
 suppressPackageStartupMessages(library(here))
 source(here("run_config.R"))
@@ -196,8 +212,12 @@ relabel_reference <- function(m, strata, chunk = 100) {
   libs <- unlist(lapply(strata, function(s) c(s$a, s$b)))
   pm <- 100 * m$C[, libs, drop = FALSE] / m$N[, libs, drop = FALSE]
   # A pooled group value lies between the smallest and the largest library
-  # value, so a CpG whose library values span no more than the threshold can
-  # never be counted. Dropping those CpGs changes no count.
+  # value of its group, so at a CpG whose library values span no more than the
+  # threshold the difference cannot exceed the threshold by more than rounding
+  # error (about 1e-13), far less than the margin of above(). Dropping those
+  # CpGs therefore changes no count. This relies on the margin: with a plain
+  # '> cutoff', a CpG whose groups sit at exactly 60% and 80% has a span of 20
+  # and a computed difference of 20.000000000000007.
   span <- do.call(pmax, as.data.frame(pm)) - do.call(pmin, as.data.frame(pm))
   keep <- which(span > cutoff)
   C <- m$C[keep, , drop = FALSE]; N <- m$N[keep, , drop = FALSE]

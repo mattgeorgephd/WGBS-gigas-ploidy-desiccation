@@ -1,0 +1,38 @@
+contrast_direction: n_positive + n_negative = n_above_threshold (16 rows)                                      holds
+contrast_direction: share_in_majority_direction = max(pos, neg) / n_above at 6 digits                          holds
+matrix path (relabelling_reference) = rowSums path (contrast_direction) in 10 shared rows                      holds
+leave_one_library_out: count with all libraries = contrast_direction (4 rows)                                  holds
+contrast_agreement: counts above in each cohort = contrast_direction                                           holds
+contrast_agreement: expected overlap = n1 * n2 / n at 6 digits                                                 holds
+contrast_agreement: same-sign count <= overlap <= each count                                                   holds
+relabelling_reference: p = groupings at or above / groupings at 6 digits                                       holds
+relabelling_reference: groupings are 252, 924, 21, 210, 4410, 100 in both modes                                holds
+relabelling_reference: groupings = product of binomial coefficients of the group sizes                         holds
+relabelling_small_sets: 8 comparisons, rows = groupings, all groupings distinct, one observed row each         holds
+relabelling_small_sets: observed count, median, minimum, largest other, at-or-above = relabelling_reference    holds
+relabelling_small_sets: a mirror row exists exactly where the two groups have the same size                    holds
+pair_similarity: within-other of one group = within of the other group of the cohort                           holds
+pair_similarity: p = subsets at or above / subsets at 6 digits                                                 holds
+level_slope_prediction: level difference = difference of means in level_group_tests                            holds
+level_slope_deciles: tenths sum to the number of eligible CpGs                                                 holds
+level_slope_deciles: CpGs above the threshold summed over tenths = eligible counts of contrast_agreement       holds
+corrected_dml_library_values rows per mode: legacy 145; corrected 9 | sum of n_cpg over lists: legacy 147; corrected 10 (a CpG in two lists is one row)
+corrected_dml_group_apart: none-apart count = rows labelled 'none' among the CpGs of each list                 holds
+n_cpg and n_eligible = dml_sensitivity/dml_counts.csv (480,579 / 65,480 and 454,555 / 61,056)                  holds
+
+counts above the threshold here against n_effect_above_cutoff of dml_counts.csv (rows: ploidy 22, heat 22, ploidy in heat, ploidy in control, interaction):
+        mode  here  pos   neg  sens n_dml n_hyper n_hypo
+1: corrected   952  430   522   952   952     430    522
+2:    legacy  1038  442   596  1038  1038     442    596
+3: corrected  2273 1089  1184  2273  2273    1089   1184
+4:    legacy  2352 1150  1202  2352  2351    1150   1201
+5:    legacy 13028 1915 11113 13028 12405    1806  10599
+6:    legacy  3349 2688   661  3350  2768    2211    557
+7: corrected 22846 2687 20159 22846 16257    1550  14707
+8:    legacy 23503 2876 20627 23503 16971    1746  15225
+
+NC_047563.1:63152425 in dml_A4_ploidy_in_control_legacy.csv: 0 row(s)
+Empty data.table (0 rows and 7 cols): chr,start,pvalue,qvalue,effect_size,direction...
+lists with the correction and the chi-squared test (not in part 8):
+  dml_A1_ploidy_mn_chisq_legacy.csv 14 CpGs; of the 2 CpGs of the F-test list 2 are among them
+  dml_A1_heat_mn_chisq_legacy.csv 185 CpGs; of the 16 CpGs of the F-test list 16 are among them
