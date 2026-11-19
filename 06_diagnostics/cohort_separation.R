@@ -34,7 +34,10 @@
 #             between the two experiments and cannot be attributed to heat.
 #           - Ploidy is balanced across cohorts (5 + 6 against 5 + 6), so its
 #             labels are permuted freely as well; permuting them within cohort
-#             gives the same reading and is reported in a second column.
+#             is reported in a second column. In legacy mode it gives lower
+#             p-values on PC3 and PC4 at 1x (0.03 and 0.04 against 0.21 and
+#             0.08); none of the 16 ploidy tests survives a correction for
+#             their number (issue I-44).
 #           - 10,000 permutations; with a fixed seed the output is reproducible.
 
 suppressPackageStartupMessages(library(here))
