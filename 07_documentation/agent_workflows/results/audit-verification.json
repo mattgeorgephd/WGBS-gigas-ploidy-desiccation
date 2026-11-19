@@ -1,10 +1,10 @@
 {
  "workflow": "audit-verification",
  "run_id": "wf_824ebfd3-506",
- "agents_finished": 7,
+ "agents_finished": 8,
  "agents_running_or_lost": [
-  "claim:C7-legacy-go-semantics",
-  "claim:C8-counts-and-correlations"
+  "claim:C8-counts-and-correlations",
+  "review:R1-coverage-dml"
  ],
  "results": [
   {
@@ -586,6 +586,153 @@
      "One group among the draft's own heat terms is not clearly null: coated vesicle (27 of 73 genes against 15.7 expected; exact q 0.10, 0.027 under uniform permutation) and its relatives membrane coat and vesicle coat. The statement that the basis for all functional passages is removed should except this group as unresolved, not present it as refuted.",
      "Dropping the 395 secondary GO IDs, and the choice of minimum term size, change the number of heat CC terms below q 0.05 under the exact test from 1 to between 5 and 10. The ploidy result and heat BP and MF do not change.",
      "The asymptotic versions of the logistic test should not be used for small terms: the score test produced 50 false calls (28 of the 38 ploidy ones with under 2 expected genes), and the likelihood-ratio p-value is 1.3 to 3 times too small for terms of 5 to 40 genes. Any replacement of the Wallenius test should be exact or permutation-based."
+    ]
+   }
+  },
+  {
+   "agent": "claim:C7-legacy-go-semantics",
+   "phase": "Verify claims",
+   "result": {
+    "claim_id": "C7-legacy-go-semantics",
+    "verdict": "partly_confirmed",
+    "summary": "The reproduction holds; one of the four Figure 5 definitions in I-20 is not right, and one sentence of I-20 is wrong.\n\nWhat holds. I ported the legacy enrichment script literally (same dplyr calls, a new topGO object per test) and ran it on the original gannet files, not on pipeline outputs. It gives all 36 values of Figure 5 and all 27 typed values of Figure 9, and its lists are identical to the nine archived legacy DML lists and nine archived term-transcript tables. Step 09's outputs equal the same archive in all nine cases, and the committed script regenerates its 34 committed tables byte for byte. Its joins, unique() calls and the >= 0 / <= 0 counts are equivalent to the legacy lines; no methylation difference is 0, so nothing is counted twice. Terms with p < 0.01 number 383, 856, 341 (BP), 43, 145, 36 (CC), 68, 172, 74 (MF), as I-21 says. All 20 rows of manuscript Table 1 match table_1_legacy.csv in set, gene, name, coordinates and order, and every value rounds to the printed integer. The interaction rows carry the heat contrast: across all 200 loci the archived interaction table equals the heat list within 5e-9 and never equals the ploidy value. From the 22 raw coverage files I reproduce all 20 Table 1 values within 0.005 points as heat cohort minus control cohort (heat and interaction rows) or triploid minus diploid (ploidy rows), pooled over all 22 libraries.\n\nWhat is wrong in the audit. \"Unique genes\" is not \"genes that hold a DML and are annotated directly with one of the ten terms\". By that definition the cited example, ploidy BP, is 6, not 1 (shared BP is 2, not 1). The panel needs a line for the term in the DML annotation table, and that table lacks 1,333 of the 5,897 GO IDs its transcripts carry, including 38 of the 90 top-ten terms (9 of 10 for ploidy BP). The sentence \"all inherit I-39 and I-40\" is wrong for the \"GO terms\" panel, which does not depend on the universe. Three smaller wording points are in errors_found.\n\nManuscript against regenerated values. One number differs: \"MF (68%)\" is 134 of 195, 68.7%. Wording that describes something other than the numbers:\n- Results 3.4 says heat is highest in every panel; ploidy has more unique transcripts in BP (128 against 93).\n- The section \"3.5 Ploidy-Dependent Methylation Responses\" and Discussion 4.3 call nesprin-1 and dihydropyrimidinase \"contrasting\"; both have the same sign in both contrasts. They call LAP an interaction locus; it has no ploidy or shared DML.\n- Ploidy values presented as \"under control conditions\" reach 20 points in the control cohort alone at 3 of 10 loci.\n- The interaction values (-31, +21, +31) average very different differences in the two ploidies, for example CAD -54.5 in diploids and -8.4 in triploids.\n\nScripts and outputs are in /tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/C7-legacy-go-semantics (A_literal_port.R, B_definitions.R, B3_direct.R, B5_p001.R, B9_missing_terms.R, B10_orphan35.R, C_raw.R; A_counts.csv, B_decomposition.csv, B_fig9_lists.csv, C_table1_from_raw.csv).",
+    "checks_run": [
+     "Literal port of 5_WGBS_Functional-enrichement-analysis-BOTH.R (lines 72-85, 186-303, 345-938) on the original gannet files with GO.db 3.13.0, without pipeline helpers: 36 of 36 Figure 5 values and 27 of 27 Figure 9 values (total, hyper, hypo) typed in gene-plots.Rmd reproduced. Step 09's csv files: also 36 of 36 and 27 of 27.",
+     "Archived images 08_archive/plots/transcripts-goterms-genes-gene-products.png and DML-in-enriched-genes.png, read by eye: they show the typed values (for example unique transcripts BP 128, 93, 55; interaction BP 2 hyper, 1 hypo).",
+     "08_archive/GOterms/summary_table.xlsx and the four PowerPoint tables in 08_archive/tables: the 'control + heat' rows equal the typed values. The workbook names the third set 'overlap'.",
+     "Nine archived GENELIST-*-EnrichedGO-DMLOnly.csv files (rows, hyper, hypo): ploidy 10/5/5, 24/12/12, 15/5/10; heat 7/2/5, 54/30/24, 134/87/47; shared 3/2/1, 16/8/8, 8/5/3. My port and step 09 hold the same (gene, position) rows in 9 of 9; largest value difference 4.4e-9.",
+     "Nine archived all-*-EnrichedGO-DML-withTranscript.csv files: 199, 1420, 392, 1441, 1698, 5801, 165, 1145, 318 rows (the 'Gene products' values). The (GO ID, transcript, gene) sets are identical in my port and in step 09 for 9 of 9.",
+     "Nine Fisher tables (12,720 BP, 1,594 CC, 3,398 MF terms) against the archive, for my port and for step 09: same GO ID order in every row, same Annotated, Significant and Expected; p-values within the archive's two printed digits (largest relative difference 4.8%). Terms with p < 0.01: 383/43/68 (ploidy), 856/145/172 (heat), 341/36/74 (shared) from port, archive and step 09.",
+     "Ties at the top-ten boundary: only heat BP has rank 10 equal to rank 11 (p = 1.19e-29; GO:1902004 and its parent GO:1902993, the same 77 transcripts). Taking rank 11 instead changes no value (93, 3, 1,441, 7).",
+     "Committed 01_pipeline/09_go_enrichment_legacy.R run in a scratch copy of the repository (2.9 minutes): 34 of 34 regenerated tables byte-identical to the committed ones.",
+     "Line-by-line equivalence of step 09 and the legacy code: the term-to-transcript left join has 0 unmatched terms in 9 of 9 tests, so step 09's inner merge is equivalent; the archived -Product files have the row counts of the -withTranscript files in 9 of 9, so omitting the product join changes nothing; no methylation difference is 0, so >= 0 and <= 0 equal > 0 and < 0 in 9 of 9; the GOcat filter removes no row and no gene in 9 of 9; updateGenes() in place of a new object gives identical tables.",
+     "Legacy reader, on the original files: ploidy 46,626 lines to 10,979 rows (623 transcripts, 171 genes), heat 106,621 to 81,109 (3,444; 949), shared 7,029 to 6,941 (379; 117). In the legacy universe: 612/168, 2,148/610, 247/91 transcripts/genes. All equal step 09's legacy_reader_loss.csv and legacy_funnel.csv.",
+     "'Unique transcripts' definition: every (top-ten term, transcript) pair of topGO is explained by the transcript's own terms or their ancestors (GO.db 3.13.0 ancestor tables) in 9 of 9 tests. Ploidy BP: 128 transcripts of 30 genes, 77 of them from the 6 genes holding a DML. Definition exact.",
+     "'Gene products' definition: rows = pairs with no line in the annotation table + sum over matched pairs of (DML x GOslim bins); the identity holds in 9 of 9. Ploidy BP: 175 unmatched + 24 matched = 199. Definition exact.",
+     "'GO terms' definition: rows with the ontology letter after the faulty read: 4,379 / 39,688 / 3,332 for BP (21,940 / 52,506 / 3,396 with every line read). These are 3,792 / 33,642 / 3,060 distinct DML x transcript x term combinations; a term in several GOslim bins gives up to 4 rows. Rows from transcripts outside the legacy universe: 98 of 4,379 (ploidy), 15,275 of 39,688 (heat, 38%), 1,663 of 3,332 (shared, 50%).",
+     "'Unique genes' definition tested against direct annotation in the transcript-to-GO map the test used. Genes holding a DML and directly annotated with a top-ten term: 6, 12, 6 (ploidy BP, CC, MF), 3, 17, 49 (heat), 2, 10, 4 (shared). Panel values: 1, 12, 6, 3, 17, 49, 1, 10, 4. Two cells differ, including the example cited in I-20.",
+     "Why they differ. Ploidy BP has 144 (term, DML-bearing transcript) pairs: 24 are lines of the annotation table, 92 are direct in the map but absent from the table, 28 are reached only through a child term. Top-ten terms absent from all three annotation tables: 9, 3, 2 (ploidy), 8, 3, 3 (heat), 4, 3, 3 (shared); 38 of 90. No pair was lost to the reader in any test.",
+     "Same point by grep: GO:0097116 is on the map line of all 13 neurexin-1 transcripts and on 0 lines of the three annotation tables. Nine of the ten ploidy BP terms have 0 lines in all three tables; GO:0043647 has 24 (LOC105335651, the one gene counted).",
+     "Scale of the missing terms: the 5,898 transcripts in the three tables carry 5,897 GO IDs on their map lines; 4,564 occur in the tables and 1,333 never do. Of 84,088 (transcript, GO ID) pairs, 74,590 (88.7%) are table lines. No GO ID is partly present, as an inner join on GO ID would produce.",
+     "Figure 9 lists: no DML is counted twice within a list. Across the three ontologies the sums 49 / 195 / 27 are 32 / 160 / 21 distinct DML in 17 / 97 / 16 genes; 8 of 10 ploidy BP rows, 6 of 7 heat BP rows and 3 of 3 shared BP rows are also in the CC or MF list.",
+     "Same ten terms with every line of the tables read: ploidy 11 / 36 / 15 rows (7 / 22 / 7 genes) against 10 / 24 / 15; heat 7 / 71 / 156 against 7 / 54 / 134; shared unchanged. The ploidy BP row lost is LOC105331671, NC_047565.1:55327448, -22.85.",
+     "Lists under the Methods' rule (all terms with p < 0.01) in place of ten terms: ploidy 89 / 99 / 70 DML (BP, CC, MF), heat 680 / 385 / 384, shared 45 / 33 / 27. Heat shares would be BP 47%, CC 27%, MF 27% against the draft's 4%, 28%, 68%.",
+     "Genes behind the 90 top-ten terms: 45 rest on one gene, 70 on two or fewer; my count equals step 09's genes_significant for 90 of 90.",
+     "How the interaction table was built (2_WGBS_Methylkit-all-gigas.R:400-413): merge of the two DML tables on row names, then rows selected from the heat object. Archived tables: the 200 loci are exactly the chr+start intersection of the 1,038 and 2,351; largest |interaction - heat| = 5.0e-9; 0 of 200 equal the ploidy value; signs 28 both positive, 49 both negative, 123 opposite; by heat sign 106 and 94. The 171 DML of the COMBO annotation table all carry the heat value.",
+     "Direction of the contrasts: metadata.xlsx codes ploidy 0 = diploid, 1 = triploid, and trt 1 = the ten zr3534 libraries, 0 = the twelve zr3644. methylKit 1.28.0 logReg returns the pooled percentage of group 1 minus group 0, not adjusted for the covariate.",
+     "Table 1 from raw counts: 19 loci x 22 files = 418 lines extracted with awk; median coverage of CpGs with at least 10 reads is 13 to 17 per library; counts scaled as normalizeCoverage does. All 20 Table 1 values reproduced, largest difference 0.0046 points.",
+     "Group means at the three interaction rows (diploid control, triploid control, diploid heat, triploid heat): CAD 97.5, 97.1, 43.0, 88.7; nesprin-1 12.4, 16.0, 11.6, 56.2; dihydropyrimidinase 25.9, 40.3, 50.0, 75.4. Heat minus control in diploids and in triploids: -54.5 and -8.4; -0.8 and +40.2; +24.1 and +35.0.",
+     "Ploidy rows of Table 1, triploid minus diploid within each cohort: 3 of 10 reach 20 points in the control cohort, 7 of 10 in the heat cohort; nesprin-1 28608523 is -7.4 in controls against +25.6 pooled.",
+     "Manuscript Table 1 against table_1_legacy.csv, parsed from the text copy: 20 of 20 rows matched on set, gene ID, chromosome and start; 20 of 20 gene names, end coordinates and row positions identical; 20 of 20 regenerated values round to the printed integer.",
+     "Gene names and positions against the genome tracks: the 12 gene IDs carry the product names printed in Table 1 in the mRNA track, and all 20 DML lie inside their gene's span.",
+     "Gene-level statements of Results 3.5: unc-104 +42 (41.68), ataxin-2-like -21 (-21.12), CAD -31 (-30.96), nesprin-1 +21 (21.14), dihydropyrimidinase +31 (31.37), F-box DNA helicase 1 -21 (-21.47), neurexin-1 -32 (-32.15; its second DML is -22.95), MADD +22 (22.24). Nesprin-1 has 3 positive and 1 negative ploidy DML; LAP has 1 positive and 3 negative heat DML. All agree.",
+     "Percentages of Results 3.5: ploidy 24, 15, 10 of 49 = 48.98%, 30.61%, 20.41% (draft 49, 31, 20). Heat 134, 54, 7 of 195 = 68.72%, 27.69%, 3.59% (draft 68, 28, 4). Interaction counts 2/1, 8/8, 5/3 agree.",
+     "Interaction entries of Figure 9 by the three classes of Results 3.2: BP 2 both positive, 0 both negative, 1 opposite; CC 6, 4, 6; MF 4, 0, 4. Eleven of the 27 entries are opposite-sign loci.",
+     "Statements about the interaction set outside Results 3.5 (section '3.5 Ploidy-Dependent Methylation Responses to Heat Stress' and Discussion 4.3): LAP (LOC105326303) has 4 heat DML, 0 ploidy DML, 0 shared loci. Shared loci: CAD +24.3 ploidy / -31.0 heat; nesprin-1 +23.0 / +21.1; dihydropyrimidinase +22.3 / +31.4; adenylate kinase 9 (LOC105318231) two loci, +23.4 / -26.4 and +24.1 / -24.2.",
+     "Reference quantities quoted in I-20, recounted from the archived DML lists and the gene track: genes holding a DML 724 / 1,476 / 143; with GO terms 625 / 1,246 / 119. Both agree.",
+     "Comments of the legacy script against the 36 Figure 5 values: 30 values are stated in a comment; two comments (lines 704-705) give 1 and 55 where code and figure give 10 and 610; four 'Gene products' values have no number in any comment.",
+     "Shared set by mode, read from step 05's output tables and not recomputed (step 05 was not to be run): legacy 200 (28, 49, 123), corrected 159 (27, 49, 83), as the I-02 update states."
+    ],
+    "errors_found": [
+     {
+      "where": "issues.md I-20, update table, row 'Unique genes'; the same wording in 01_pipeline/09_go_enrichment_legacy.R:176 and in the what_it_counts column of 04_output/09_go_enrichment_legacy/tables/figure_5_values_legacy.csv",
+      "problem": "The definition 'genes that hold a DML and are annotated directly with one of the ten top-ranked terms' does not give the panel value in the example it cites. By direct annotation in the transcript-to-GO map the test used, ploidy BP is 6 and shared BP is 2; the panel has 1 and 1. The legacy join looks the term up in the DML annotation table, and that table holds only GO IDs that survived the notebook's join to the 2017 GO-to-GOslim lookup: 1,333 of 5,897 GO IDs are absent, among them 38 of the 90 top-ten terms (9 of 10 for ploidy BP). Neurexin-1 carries four of the ten ploidy BP terms on its own map lines and is not counted.",
+      "correction": "Genes that hold a DML and have, in the DML annotation table as read, a line naming one of the ten top-ranked terms for a transcript of the universe. That table lacks every GO ID dropped by the GO-to-GOslim join (I-42), so 38 of the 90 top-ten terms can never match. Ploidy BP: 6 genes are directly annotated with a top-ten term and 1 is counted (LOC105335651, through GO:0043647). This, not direct against inherited annotation, is why the panel shows 1 where Table 1 lists 6 genes. The value 1 itself is reproduced correctly.",
+      "severity": "medium"
+     },
+     {
+      "where": "issues.md I-20, update, sentence 'all inherit I-39 and I-40'",
+      "problem": "The 'GO terms' panel does not depend on the gene universe. It counts lines of the DML annotation table, which was built without the universe file: 38% of the heat BP rows (15,275 of 39,688) and 50% of the shared BP rows (1,663 of 3,332) belong to transcripts outside the legacy universe.",
+      "correction": "The three panels built on the ten terms inherit I-39 and I-40; 'GO terms' inherits I-40 and the GOslim-join loss of I-42, not I-39.",
+      "severity": "low"
+     },
+     {
+      "where": "issues.md I-20, update table, row 'GO terms'; same wording in figure_5_values_legacy.csv",
+      "problem": "A row of the table is a DML x transcript x GO term x GOslim bin combination, not a DML x transcript x GO term combination. Ploidy BP: 4,379 rows for 3,792 distinct combinations (heat 39,688 for 33,642; shared 3,332 for 3,060); one term gives up to 4 rows.",
+      "correction": "Rows of the DML x transcript x GO term x GOslim bin table for that ontology, after the faulty read of I-40.",
+      "severity": "low"
+     },
+     {
+      "where": "issues.md I-20, original evidence: 'whose entries in turn match row counts noted in comments of the enrichment script'",
+      "problem": "True for 30 of the 36 values. Lines 704-705 of the script state 1 unique gene and 55 unique transcripts for the shared CC block, where the code and the figure give 10 and 610 (the comments are copies from the BP block). Four 'Gene products' values (1,441, 165, 1,145, 318) appear in no comment.",
+      "correction": "Cite the archived output files as the source: the row counts of GOterms/BOTH-*/all-*-EnrichedGO-DML-withTranscript.csv equal all nine 'Gene products' values, and the workbook equals all 36. Note that two comments are stale.",
+      "severity": "low"
+     },
+     {
+      "where": "issues.md I-21, update: 'Figure 9 counts DML of a handful of genes'",
+      "problem": "Holds for BP only (6, 4, 3 genes). The CC lists hold 13, 37, 12 genes and the MF lists 7, 77, 6.",
+      "correction": "For BP, Figure 9 counts DML of 6, 4 and 3 genes; the heat CC and MF lists reach 37 and 77 genes.",
+      "severity": "low"
+     },
+     {
+      "where": "Manuscript, Results 3.5: 'primarily linked to MF (68%)'",
+      "problem": "134 of 195 is 68.7%, which rounds to 69. The other five percentages of the paragraph are rounded correctly.",
+      "correction": "69% (68.7%), if the sentence is kept.",
+      "severity": "low"
+     },
+     {
+      "where": "Manuscript, Results 3.4: 'Across all categories, heat-DML mapped to substantially more functional features ... Heat-DML were linked to the greatest numbers of unique transcripts, GO terms, unique genes, and gene products'",
+      "problem": "Not true of Figure 5 as drawn: unique transcripts in BP are 128 for ploidy against 93 for heat. Heat exceeds ploidy by about a fifth in unique transcripts CC (727 against 601) and gene products CC (1,698 against 1,420). The large gap in 'GO terms' is mostly the reading fault: 39,688 against 4,379 as read, 52,506 against 21,940 with every line read (ratio 2.4, close to the ratio of DML counts, 2.3).",
+      "correction": "Remove the sentence or restrict it to what the panels show. Heat is highest in 11 of the 12 panel-by-ontology cells, and none of the four quantities is what its title names (I-20).",
+      "severity": "medium"
+     },
+     {
+      "where": "Manuscript, section '3.5 Ploidy-Dependent Methylation Responses to Heat Stress' (after the Conclusions) and Discussion 4.3: nesprin-1 and dihydropyrimidinase as examples of 'contrasting methylation patterns'",
+      "problem": "By the manuscript's own classes (Results 3.2), the shared loci of these two genes are jointly hypermethylated: nesprin-1 +23.0 (ploidy) and +21.1 (heat); dihydropyrimidinase +22.3 and +31.4. Only CAD (+24.3, -31.0) and adenylate kinase 9 (two loci, +23.4/-26.4 and +24.1/-24.2) have opposite signs.",
+      "correction": "Nesprin-1 and dihydropyrimidinase belong to the 28 loci positive in both contrasts, not to the 123 with opposite signs.",
+      "severity": "medium"
+     },
+     {
+      "where": "Manuscript, same two sections: LAP 'showed stress-accentuated ploidy differences'; 'amplification of methylation differences at the LAP locus following heat exposure'",
+      "problem": "LAP (LOC105326303) holds 4 heat DML, no ploidy DML and none of the 200 shared loci. Table 1 lists it under heat-DML only.",
+      "correction": "LAP is not in the ploidy or the shared set of this analysis; remove it from the interaction discussion or state the analysis the statement comes from.",
+      "severity": "medium"
+     },
+     {
+      "where": "Manuscript, Results 3.5, ploidy paragraph ('under control conditions', 'baseline') and Figure 9 legend ('ploidy-DML; controls only')",
+      "problem": "The Table 1 ploidy values are triploid minus diploid pooled over all 22 libraries (reproduced from raw counts within 0.005). In the control cohort alone only 3 of the 10 reach 20 points. Neurexin-1 '-32%' is -16.4 in controls and -53.3 in the heat cohort; MADD '+22%' is +15.5; F-box DNA helicase 1 '-21%' is -26.9; nesprin-1 at 28608523 ('+26') is -7.4 in controls and +50.4 in the heat cohort. This is I-07, here with the numbers for Table 1.",
+      "correction": "Describe the values as ploidy differences across both cohorts, or report control-cohort values.",
+      "severity": "medium"
+     },
+     {
+      "where": "Manuscript, Results 3.5 interaction paragraph; Table 1 legend ('triploids following heat exposure (interaction-DML)'); Figure 9 legend ('in both diploids and triploids following heat stress')",
+      "problem": "The three interaction values are heat cohort minus control cohort pooled over both ploidies (CAD -30.96, nesprin-1 +21.14, dihydropyrimidinase +31.37), not a difference between ploidies and not a value for triploids. Within ploidy the differences are -54.5 (diploids) and -8.4 (triploids) for CAD, -0.8 and +40.2 for nesprin-1, +24.1 and +35.0 for dihydropyrimidinase, so the printed value describes neither ploidy. This confirms the I-02 update.",
+      "correction": "Label the set as loci in both lists; give the value as the heat-cohort difference, or report the four group means.",
+      "severity": "high"
+     },
+     {
+      "where": "Manuscript, Results 3.5: '2 hypermethylated and 1 hypomethylated ... 8 and 8 ... 5 and 3'",
+      "problem": "The counts are right, but 'hyper' and 'hypo' here mean the sign of the heat contrast. Eleven of the 27 entries (1 BP, 6 CC, 4 MF) are opposite-sign loci, which Results 3.2 calls 'contrasting'; the BP 'hypomethylated' locus (CAD) is higher in triploids than in diploids by 24.3 points. The 27 entries are 21 distinct loci, because the three lists overlap.",
+      "correction": "State that direction refers to the heat-cohort contrast, or use the three classes of Results 3.2 (BP 2, 0, 1; CC 6, 4, 6; MF 4, 0, 4).",
+      "severity": "medium"
+     },
+     {
+      "where": "Manuscript, Results 3.5: 'CC 49%, MF 31%, BP 20%' and 'MF 68%, CC 28%, BP 4%'",
+      "problem": "The percentages are shares of the sum of three overlapping lists (49 entries for 32 distinct ploidy DML; 195 for 160 heat DML), and they depend on the cut at ten terms. Under the Methods' own rule (p < 0.01) heat would be BP 47%, CC 27%, MF 27% and ploidy CC 38%, BP 34%, MF 27%.",
+      "correction": "Drop the percentages, or state that they describe the ten top-ranked terms per ontology and that a DML can appear under more than one ontology.",
+      "severity": "medium"
+     },
+     {
+      "where": "Manuscript, Table 1 column heads",
+      "problem": "'Chromosome' holds an unplaced scaffold (NW_022994979.1) for dihydropyrimidinase. 'Methylation Difference' gives no unit and no direction; the values are percentage points, triploid minus diploid for the ploidy rows and heat cohort minus control cohort for the other two sets. The text's '+42%' is likewise 42 percentage points.",
+      "correction": "Head the columns 'Sequence' and 'Methylation difference (percentage points)', and state the direction in the legend.",
+      "severity": "low"
+     }
+    ],
+    "missing_caveats": [
+     "I-20 and I-21 should say that the Figure 9 and Table 1 lists use inherited annotation (any child term) on the map the test used, while the 'Unique genes' and 'Gene products' matches use the DML annotation table, which lacks the 1,333 GO IDs dropped by the GOslim join. The two parts of the legacy script therefore disagree by construction (6 genes against 1 for ploidy BP).",
+     "I-21 should state that a Figure 9 entry is a (gene, DML) pair within one ontology list and that the lists overlap: 32, 160 and 21 distinct DML against sums of 49, 195 and 27. The percentages of Results 3.5 do not partition the DML.",
+     "I-21 could give what the Methods' rule would have produced, since it shows how much the cut at ten matters: 89, 680 and 45 DML for BP against 10, 7 and 3, and the order of ontologies reverses for heat.",
+     "I-21 (with I-40): even with the same ten terms, the reading fault removed entries from the lists: 1 of 11 ploidy BP rows (LOC105331671, which would be a 21st row of Table 1), 12 of 36 ploidy CC, 17 of 71 heat CC, 22 of 156 heat MF. The shared lists lost none.",
+     "I-21's definition should add that the transcript must be in the legacy universe and in the rows the reader kept, and that a DML is attached to every transcript of a gene by gene-body overlap, so 'DML of a transcript' means a DML anywhere in the gene.",
+     "I-02: at the three Table 1 interaction loci one of the four groups deviates (diploid heat for CAD, triploid heat for nesprin-1). An overlap of two pooled contrasts selects for exactly this, so 'two additive effects' does not describe these loci. The difference of differences is 46, 41 and 11 points; I did not test it, and a formal interaction test could flag such loci.",
+     "I-02, alternative explanation at these loci: the deviation rests on few animals. At CAD three of the five diploid heat libraries are at 3%, 12% and 32% while the other 19 libraries are at 67% to 100%; nesprin-1 is similarly bimodal among animals. Genotype (I-08) and cohort (I-01) explain this as well as ploidy by heat does.",
+     "I-02 or I-21 should note that 'hypermethylated' for the interaction set has two meanings in the draft: both contrasts positive in Results 3.2 and Figure 4 (28 loci), heat contrast positive in Figure 9 and Results 3.5 (106 loci).",
+     "The top-ten cut is not affected by tie-breaking: the one tie at the boundary (heat BP, ranks 10 and 11) involves a parent and child term with the same 77 transcripts.",
+     "Not determined: whether the images embedded in the Google Doc as Figures 5 and 9 are the archived PNG files; the text copy has only placeholders. The archived PNGs show the typed values.",
+     "Not determined: why the 1,333 GO IDs are absent from the annotation tables. The lookup file is lost; absence is all-or-none per GO ID, which fits an inner join on GO ID but does not prove the IDs were missing from the lookup.",
+     "Not checked by me: the last sentence of the I-21 update (no term enriched at gene level, so Figure 9 and Table 1 have no corrected counterpart).",
+     "My within-cohort and within-ploidy differences pool 5 or 6 libraries per group from normalized counts. They are descriptive and carry no test."
     ]
    }
   }
