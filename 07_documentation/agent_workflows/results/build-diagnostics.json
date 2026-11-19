@@ -1,0 +1,10 @@
+{
+ "workflow": "build-diagnostics",
+ "run_id": "wf_1f1a6a86-611",
+ "agents_finished": 0,
+ "agents_running_or_lost": [
+  "build:feature_odds_matched",
+  "build:locus_nc047563"
+ ],
+ "results": []
+}

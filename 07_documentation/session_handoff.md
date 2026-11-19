@@ -2,7 +2,7 @@
 
 How to continue this work from the repository alone, for a new session or a person. The working session rewrites the "State" and "In flight" sections whenever it pushes.
 
-Last updated: 2026-11-19 06:07 UTC.
+Last updated: 2026-11-19 06:20 UTC.
 
 ## If the session ends or its machine is replaced
 
@@ -46,7 +46,7 @@ What a new session cannot get from git: the download cache (step 4 restores it);
 
 ## In flight when this file was last updated
 
-Four agent runs (scripts and partial results in `07_documentation/agent_workflows/`). If the machine is lost, the finished agents' results are in `results/`; the rest must be run again.
+Six agent runs (scripts and partial results in `07_documentation/agent_workflows/`). If the machine is lost, the finished agents' results are in `results/`; the rest must be run again.
 
 | Run | Finished | Still to come | If lost |
 |---|---|---|---|
@@ -54,6 +54,8 @@ Four agent runs (scripts and partial results in `07_documentation/agent_workflow
 | `build-steps-11-12` | build and review of both steps; fix of step 12 | fix of step 11 | The snapshot of both scripts is in git. Review each (run twice, compare outputs, recompute key numbers), then mark done in `01_pipeline/README.md`. |
 | `manuscript-values`, first batch (Methods, Results 3.1 to 3.3, figure legends) | finished and integrated | second batch to be launched: `results34_35`, `discussion` | Run `manuscript-values.js` with args `{"sections": ["results34_35", "discussion"]}`; append its verified rows to the map. |
 | `build-dml-sensitivity` | build, review | fix | The snapshot of the script is in git. Review it, then run it in full. |
+| `check-issues-integration` (launched 06:08 UTC) | nothing yet | ten checks that `issues.md` carries the nine verification reports faithfully | Run the script again; it is read-only. |
+| `build-diagnostics` (launched 06:20 UTC) | nothing yet | five scripts under `06_diagnostics/` (`feature_odds_matched`, `locus_nc047563`, `legacy_reader_mechanism`, `coverage_filter_variants`, `check_methylkit_equivalence`), each built, reviewed, fixed | Files the agents have written so far are in git as snapshots; run the script again for the rest. |
 | Full run of `06_diagnostics/dml_sensitivity.R` (not an agent run; started 04:33 UTC with `WGBS_CORES=3`; 22 model fits, about three hours) | 8 of 22 fits (7 to 10 minutes each on three cores). On the full data the primary fits reproduce step 05 exactly (q-values, both DML lists, loci in both lists). | the other fits | Start it again from the repository root: `WGBS_CORES=3 Rscript 06_diagnostics/dml_sensitivity.R`. Finished fits are cached under `06_diagnostics/dml_sensitivity/cache/` on the machine and are lost with it. If the review changes the fitting code, rerun. |
 
 ## Next actions, in order
