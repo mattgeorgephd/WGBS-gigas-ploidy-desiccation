@@ -2,7 +2,7 @@
 
 How to continue this work from the repository alone, for a new session or a person. The working session rewrites the "State" and "In flight" sections whenever it pushes.
 
-Last updated: 2026-11-19 06:32 UTC.
+Last updated: 2026-11-19 06:35 UTC.
 
 ## If the session ends or its machine is replaced
 
@@ -39,7 +39,11 @@ What a new session cannot get from git: the download cache (step 4 restores it);
 
 ### Reports received and not yet carried into the repository
 
-- **Code review R2 (steps 06 and 07, feature tracks).** In `agent_workflows/results/audit-verification.json`. Findings, all awaiting the workflow's verification stage: steps 06 and 07 fail or write a meaningless test when a DML set has fewer than two loci (not at default settings); the "transposable element" track is the complete RepeatMasker output with 1-based coordinates, read with a one-base shift (101 CpGs miscounted; simple repeats included in "TE"); three descriptions in the track README are wrong (nonCDS, exonUTR, mitochondrial coverage); header and README omissions for `feature_class_chisq_<mode>.csv`; "hyper" and "hypo" of the shared set mean the sign of the heat difference; label defects in Figures 2 and 3. To log as I-46 once verified.
+Code reviews (in `agent_workflows/results/audit-verification.json`). Each finding is re-examined by a second agent before it is fixed; fixes are made in one pass when all six reviews are in. Text-only points of R3 that could be checked from the tables are already in `issues.md`.
+- **R1 (steps 04 and 05): no wrong number in the committed outputs.** Findings: the model fit cached by step 05 is reused whatever has changed since (medium); step 04 rounds in a different order from methylKit at exact ties; thresholds are applied to unrounded differences, so one sweep count (heat at 15 points) rests on floating-point error; `read_libraries()` accepts unexpected labels; the unfiltered union count is only in the log; README wording ("union" for an intersection; "read counts" for normalized counts).
+- **R2 (steps 06 and 07, feature tracks): area sound.** Findings: steps 06 and 07 fail or write a meaningless test when a DML set has fewer than two loci (not at default settings); the "transposable element" track is the complete RepeatMasker output with 1-based coordinates, read with a one-base shift (101 CpGs miscounted; simple repeats included in "TE"); three descriptions in the track README are wrong (nonCDS, exonUTR, mitochondrial coverage); header and README omissions for `feature_class_chisq_<mode>.csv`; "hyper" and "hypo" of the shared set mean the sign of the heat difference; label defects in Figures 2 and 3. To log as an issue once verified.
+- **R3 (steps 08 and 09): code sound; all tables reproduced byte for byte.** Findings: the step 09 header and the README still say the p < 0.01 terms fed Figures 6 to 8; two definitions in `figure_5_values_legacy.csv` are the uncorrected wording; "9 genes whose name holds a hyphen" should be 5 genes with 24 mRNAs; `write_table()` does not fix the line ending, so Windows would write CRLF, and there is no `.gitattributes`; `R.utils` is needed to read `.gz` tables and is in no `load_packages()` list. For the setup script: `rsync`, `time` and `column` are not installed (agents asked for them).
+
 - **Sensitivity script, review report: no error found in what the script computes.** The fix stage is adding, without refitting, the number of CpGs above the difference cutoff whatever q, the share of small p-values among eligible CpGs, and a label-permutation reference.
 - **First numbers from the full sensitivity run, read from its cached fits twice; provisional until the run ends and writes its tables:** legacy mode, same thresholds. Ploidy DML: 1,038 as in the draft; 14 with between-animal variation estimated ("MN") and the chi-squared test; 2 with "MN" and the F test. Heat DML: 2,351; 185; 16. With ploidy labels shuffled within cohort (1,000 permutations), a median of 751 CpGs pass the 20-point rule (5th to 95th percentile 514 to 1,316) against 1,040 observed; 12% of permutations reach the observed count. A verifying agent obtained 762 and 13% independently. This goes into I-06 when the run has written its tables, and I-06 should then be rated S1.
 
