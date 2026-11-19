@@ -4,8 +4,9 @@
 #           methylKit, on the 22 libraries. For each analysis mode in
 #           config$modes (see run_config.R):
 #             1. import each library's coverage file; keep CpGs with at least
-#                config$min_coverage reads (and, in corrected mode, below the
-#                library's 99.9th percentile of coverage)
+#                config$min_coverage reads (and, in corrected mode, with fewer
+#                reads than the library's 99.9th percentile of coverage, taken
+#                over its CpGs with at least config$import_min_coverage reads)
 #             2. keep the CpGs present in all 22 libraries and normalize coverage
 #                between libraries (methylKit's median scaling)
 #             3. per CpG, logistic regression of methylation on ploidy with heat
@@ -13,23 +14,31 @@
 #             4. DML = q < config$dml_qvalue and |difference| > config$dml_difference
 #             5. loci in both DML lists ("shared"; the legacy "interaction-DML")
 #
+# Run       Rscript 01_pipeline/05_differential_methylation.R     (after step 01)
+#           WGBS_CORES sets the number of forked workers of the model fits
+#           (default 1; leave it at 1 on Windows). Time and memory are in the
+#           last note.
+#
 # Inputs    03_input_files/metadata/wgbs_libraries.csv
 #           22 coverage files listed in 03_input_files/gannet_manifest.csv (cache)
 # Outputs   04_output/05_differential_methylation/tables/
 #             library_filtering_<mode>.csv       per-library CpG counts, cutoffs, scaling
-#             united_cpg_<mode>.csv.gz           read counts at every analysed CpG, all libraries
+#             united_cpg_<mode>.csv.gz           normalized counts at every analysed CpG, all libraries
+#                                                (median-scaled and rounded as by methylKit; not raw
+#                                                read counts)
 #             diffmeth_<contrast>_<mode>.csv.gz  p, q, difference at every analysed CpG
 #             dml_<contrast>_<mode>.csv          DML at the configured thresholds
 #             dml_shared_<mode>.csv              loci in both DML lists, with both differences
-#             dml_counts_by_threshold_<mode>.csv DML counts at 5% to 50% difference
+#             dml_counts_by_threshold_<mode>.csv DML counts at difference thresholds of 5 to 50 points
 #             dml_counts_by_mode.csv             headline counts, modes side by side
 #           04_output/05_differential_methylation/bed/dml_<set>_<mode>.bed
 #           04_output/05_differential_methylation/cache/methylkit_<mode>.rds   (not tracked)
+#           04_output/05_differential_methylation/session_info.txt
 #
 # Manuscript items: Results 3.2 (CpG and DML counts); data for Figures 2, 3, 4.
 # Notes     - Steps 1 and 2 follow methylKit's rules (methRead, filterByCoverage,
 #             normalizeCoverage, unite) but are applied one library at a time
-#             with data.table, so the step needs about 3 GB instead of 9 GB; see
+#             with data.table, so the import needs about 3 GB instead of 9 GB; see
 #             02_R_functions/methylkit_helpers.R. The tests are methylKit's own.
 #           - Differences are group 1 minus group 0: triploid minus diploid for
 #             ploidy, heat minus control for heat. "hyper" means higher in
@@ -44,8 +53,44 @@
 #             rounded separately after scaling, as methylKit does, so coverage
 #             can differ by 1 from numCs + numTs (19,811 cells of the legacy
 #             table). methylKit's tests and the diagnostics use numCs + numTs.
-#           - Fitting takes about 20 minutes per contrast on one core. Results
-#             are cached; delete the cache file to refit.
+#             The column scaling_factor of library_filtering_<mode>.csv is
+#             written with 15 significant digits. To reproduce the normalized
+#             counts from raw counts, compute the factor as max(median_coverage)
+#             / median_coverage: the written 1.21428571428571 (17/14) scales a
+#             coverage of 133 reads to 161 where the factor itself gives 162.
+#           - Thresholds are applied as methylKit applies them (getMethylDiff),
+#             in both modes: abs(meth.diff) > threshold, on the difference as
+#             methylKit computed it, a double that is not rounded. The DML lists
+#             and the counts by threshold are taken this way, and the counts of
+#             the draft depend on it: the legacy script reports 5,910 heat loci
+#             at 15 points, which holds only because two differences of exactly
+#             15 points are held as -15.000000000000002. The tables are written
+#             with 15 significant digits, so a count retaken from a written
+#             table differs at such ties. Three loci of the heat contrast are
+#             concerned, the same in both modes:
+#               NC_047559.1:17861107   heat 121/352, control 158/320
+#                                      written -15, held -15.000000000000002
+#               NC_047562.1:49679999   heat 152/280, control 194/280
+#                                      written -15, held -15.000000000000002
+#               NW_022994958.1:20934   heat 128/256, control 182/260
+#                                      written -20, held -19.999999999999996
+#             The first two are counted here at 15 points and are not counted
+#             from diffmeth_heat_<mode>.csv.gz (5,908 instead of 5,910 in legacy
+#             mode, 5,669 instead of 5,671 in corrected mode). The third is not
+#             a DML at 20 points here and would be one from the written table
+#             under "at least 20" (2,352 instead of 2,351; 2,274 instead of
+#             2,273). With ">" at the configured threshold of 20 points the
+#             written tables give exactly the DML lists of this step.
+#           - Fitting both modes takes about 18 minutes at WGBS_CORES=4 and about
+#             an hour on one core. The import needs about 3 GB; with the forked
+#             workers of the tests the step needs about 10 GB at WGBS_CORES=4.
+#             A fit is kept in the cache folder and reused only while what it
+#             was made from is unchanged: the mode and the coverage settings,
+#             the sample sheet, the coverage files, the methylKit version and
+#             the fitting code (fit_fingerprint() below). Otherwise, and when a
+#             cache file cannot be read, the mode is fitted again; nothing has
+#             to be deleted by hand. The thresholds of step 4 are applied after
+#             the fit, so changing them does not refit.
 
 suppressPackageStartupMessages(library(here))
 source(here("run_config.R"))

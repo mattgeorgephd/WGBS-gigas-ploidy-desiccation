@@ -23,7 +23,8 @@
 #             feature_class_exclusive_<mode>.csv    one class per locus, per set: n, pct, and pct_in_TE,
 #                                                   the percent of the loci of the class that also
 #                                                   overlap the repeat track (TE)
-#             feature_association_tests_<mode>.csv  Fisher test per track, DML set and background
+#             feature_association_tests_<mode>.csv  Fisher test per track, DML set and background;
+#                                                   with track_label
 #             feature_class_chisq_<mode>.csv        chi-squared test of DML status by exclusive class,
 #                                                   per DML set, against all analysed CpGs only
 #             dml_by_linkage_group_<mode>.csv       analysed CpGs, DML of each list (all, hyper, hypo),
@@ -95,9 +96,11 @@
 #             they come from the code review and its check
 #             (07_documentation/agent_workflows/verification_scripts/
 #             R2-figures-features/). The column track_label of the two tables
-#             written by track says what TE holds; the names TE, pct_in_TE and
-#             legacy_share_pct are kept because other scripts read them. See
-#             03_input_files/genome_features/README.md, "The repeat track".
+#             written by track says what TE holds. The track keeps the name TE,
+#             and the column pct_in_TE with it, because the scripts of
+#             06_diagnostics and the values map of step 13 select the track by
+#             that name. See 03_input_files/genome_features/README.md, "The
+#             repeat track".
 #           - "hyper" and "hypo" are the sign of the difference of the list:
 #             triploid minus diploid for ploidy, heat minus control for heat. A
 #             locus in both lists has two differences. Its columns here,
@@ -112,14 +115,15 @@
 #             hypo" and "shared, opposite" of the first two tables and of
 #             Figure 3A.
 #           - Figure 3B draws the ten linkage groups only and stacks the ploidy
-#             and the heat list, so a locus in both lists is counted in each.
-#             Its caption gives the number of such loci and what lies on the
-#             other sequences, which are in dml_by_linkage_group_<mode>.csv.
+#             and the heat list, so a locus in both lists is counted twice. Its
+#             caption gives the number of such loci in the panel and what lies on
+#             the other sequences, which are in dml_by_linkage_group_<mode>.csv.
 #           - A set can be empty (a high config$dml_difference, or a stricter
 #             model). For a set without loci the percentages and the Fisher and
 #             chi-squared rows hold NA, the region summary has a row of zeros,
 #             and Figure 3A keeps its label without a bar; the log names every
-#             such set. Nothing is tested for it.
+#             such set. Nothing is tested for it. With no DML on any linkage
+#             group, Figure 3B is replaced by a panel that says so.
 
 suppressPackageStartupMessages(library(here))
 source(here("run_config.R"))
@@ -288,7 +292,8 @@ for (mode in config$modes) {
                    make_regions(shared, "meth.diff_heat", "shared"))
   regions[, mode := mode]; setorder(regions, set, -n_dml)
   write_table(regions, tab(sprintf("dml_regions_%s.csv", mode)))
-  # One row per set, also for a set without loci, which gets zeros.
+  # One row per set in the order of the regions table, also for a set without loci,
+  # which gets zeros.
   region_summary <- rbindlist(lapply(c("heat DML", "ploidy DML", "shared"), function(s) {
     r <- regions[set == s]
     data.table(mode = mode, set = s, n_dml = sum(r$n_dml), n_regions = nrow(r), n_single_locus_regions = sum(r$n_dml == 1),
@@ -318,20 +323,26 @@ for (mode in config$modes) {
                   measure.vars = c("ploidy_dml_hypo", "ploidy_dml_hyper", "heat_dml_hypo", "heat_dml_hyper"))
   lg_long[, variable := factor(variable, levels = c("heat_dml_hyper", "heat_dml_hypo", "ploidy_dml_hyper", "ploidy_dml_hypo"),
                                labels = c("Heat, hyper", "Heat, hypo", "Ploidy, hyper", "Ploidy, hypo"))]
-  # With no DML on any linkage group the bars have no height; the gene line is then scaled to 1.
-  gene_scale <- max(on_lg$n_genes) / max(lg_long[, sum(value), by = sequence]$V1, 1)
-  pB <- ggplot(lg_long, aes(sequence, value)) +
-    geom_col(aes(fill = variable), colour = "black", linewidth = 0.3) +
-    geom_line(data = on_lg, aes(sequence, n_genes / gene_scale, group = 1), linewidth = 0.7) +
-    geom_point(data = on_lg, aes(sequence, n_genes / gene_scale), size = 2.4) +
-    scale_fill_manual(values = c("orangered3", "orangered1", "royalblue3", "royalblue1"), name = NULL) +
-    scale_y_continuous(sec.axis = sec_axis(~ . * gene_scale, name = "Genes")) +
-    labs(x = "Linkage group", y = "DML (ploidy and heat lists stacked)",
-         caption = sprintf(paste0("The two lists are stacked: a locus in both lists (%s loci) is counted in each.\n",
-                                  "Not drawn: %s ploidy DML, %s heat DML and %s genes on sequences outside the ten linkage groups."),
-                           format(nrow(shared), big.mark = ","), format(sum(off_lg$ploidy_dml), big.mark = ","),
-                           format(sum(off_lg$heat_dml), big.mark = ","), format(sum(off_lg$n_genes), big.mark = ","))) +
-    theme_wgbs() + theme(plot.caption = element_text(size = 9, hjust = 0))
+  if (sum(lg_long$value) == 0) {
+    # Nothing to stack and no scale for the gene line: the panel says so.
+    log_msg("[%s] Figure 3B: no DML on a linkage group; the panel is left empty", mode)
+    pB <- ggplot() + annotate("text", x = 0, y = 0, label = "no DML on a linkage group", size = 3.6) + theme_void() +
+      theme(plot.tag = element_text(face = "bold"))
+  } else {
+    gene_scale <- max(on_lg$n_genes) / max(lg_long[, sum(value), by = sequence]$V1)
+    pB <- ggplot(lg_long, aes(sequence, value)) +
+      geom_col(aes(fill = variable), colour = "black", linewidth = 0.3) +
+      geom_line(data = on_lg, aes(sequence, n_genes / gene_scale, group = 1), linewidth = 0.7) +
+      geom_point(data = on_lg, aes(sequence, n_genes / gene_scale), size = 2.4) +
+      scale_fill_manual(values = c("orangered3", "orangered1", "royalblue3", "royalblue1"), name = NULL) +
+      scale_y_continuous(sec.axis = sec_axis(~ . * gene_scale, name = "Genes")) +
+      labs(x = "Linkage group", y = "DML (ploidy and heat lists stacked)",
+           caption = sprintf(paste0("The two lists are stacked, so a locus in both lists is counted twice (such loci drawn here: %s).\n",
+                                    "Not drawn: %s ploidy DML, %s heat DML and %s genes on sequences outside the ten linkage groups."),
+                             format(sum(on_lg$shared), big.mark = ","), format(sum(off_lg$ploidy_dml), big.mark = ","),
+                             format(sum(off_lg$heat_dml), big.mark = ","), format(sum(off_lg$n_genes), big.mark = ","))) +
+      theme_wgbs() + theme(plot.caption = element_text(size = 9, hjust = 0))
+  }
   fig <- pA / pB + plot_annotation(tag_levels = "A")
   save_figure(fig, output_path(step, "figures", sprintf("figure_3_%s", mode)), width = 10, height = 10)
   rm(ov, gr, cls); gc(verbose = FALSE)

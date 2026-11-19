@@ -1,10 +1,10 @@
 # genome_features
 
-Genome feature tracks for the *Crassostrea gigas* Roslin v1 assembly (RefSeq GCF_902806645.1) with the mitochondrial genome (NC_001276.1). These are the tracks the legacy analysis intersected with CpG and DML positions. They were generated for Venkataraman et al. (2022, BMC Genomics 23:556) and are archived on OSF, doi:10.17605/OSF.IO/YGCTB, folder `genome-feature-files/`; the notebook that built them is `code/08-Generating-Genome-Feature-Tracks.ipynb` in the same archive.
+Genome feature tracks for the *Crassostrea gigas* Roslin v1 assembly (RefSeq GCF_902806645.1). The tracks cover its 236 nuclear sequences only. The reference used for alignment also holds the mitochondrial genome (NC_001276.1), and no track has a record on it, so a mitochondrial CpG overlaps no track; these are the CpGs of class `other` in step 07 (363 in legacy mode, none in corrected mode). These are the tracks the legacy analysis intersected with CpG and DML positions. They were generated for Venkataraman et al. (2022, BMC Genomics 23:556) and are archived on OSF, doi:10.17605/OSF.IO/YGCTB, folder `genome-feature-files/`; the notebook that built them is `code/08-Generating-Genome-Feature-Tracks.ipynb` in the same archive.
 
-All files are gzipped copies of the originals. `md5_uncompressed.txt` holds the md5 of each file before compression. The sizes of all thirteen match the OSF copies, and the md5 of the CDS and exon tracks, which were downloaded from OSF, match the OSF records.
+All files are gzipped copies of the originals. `md5_uncompressed.txt` holds the md5 of each file before compression. The md5 of all thirteen equal the md5 that OSF records for its copies (OSF API, checked 2026-11-19).
 
-GFF files use 1-based closed coordinates. BED files use 0-based half-open coordinates. The pipeline converts both to the same convention when it reads them (`02_R_functions/`).
+GFF files use 1-based closed coordinates. The intron, nonCDS and intergenic BED files use 0-based half-open coordinates. `cgigas_uk_roslin_v1_rm.te.bed` is a BED file in name only: its coordinates are 1-based closed, and the pipeline reads it as a BED file all the same, because the legacy analysis did (see "The repeat track" below). The pipeline converts what it reads to one convention (`02_R_functions/genomic_overlaps.R`).
 
 ## Files
 
@@ -14,18 +14,29 @@ GFF files use 1-based closed coordinates. BED files use 0-based half-open coordi
 | `cgigas_uk_roslin_v1_mRNA.gff.gz` | mRNA transcripts (63,341) | this repository |
 | `cgigas_uk_roslin_v1_exon.gff.gz` | Exons | OSF |
 | `cgigas_uk_roslin_v1_CDS.gff.gz` | Coding sequence | OSF |
-| `cgigas_uk_roslin_v1_exonUTR.gff.gz` | Untranslated regions of exons | this repository |
+| `cgigas_uk_roslin_v1_exonUTR.gff.gz` | Exon minus coding sequence: untranslated regions and every exon of non-coding genes (6.8 of its 36.9 Mb lie in lncRNA transcripts) | this repository |
 | `cgigas_uk_roslin_v1_intron.bed.gz` | Introns | this repository |
-| `cgigas_uk_roslin_v1_nonCDS.bed.gz` | Complement of coding sequence | this repository |
+| `cgigas_uk_roslin_v1_nonCDS.bed.gz` | Complement of the exon track, not of coding sequence (the file name is historical): untranslated regions and non-coding exons are outside it | this repository |
 | `cgigas_uk_roslin_v1_lncRNA.gff.gz` | Long non-coding RNA | this repository |
 | `cgigas_uk_roslin_v1_upstream.gff.gz` | 1 kb upstream flanks | this repository |
 | `cgigas_uk_roslin_v1_downstream.gff.gz` | 1 kb downstream flanks | this repository |
 | `cgigas_uk_roslin_v1_flanks.gff.gz` | Upstream and downstream flanks together | this repository |
 | `cgigas_uk_roslin_v1_intergenic.bed.gz` | Intergenic regions | this repository |
-| `cgigas_uk_roslin_v1_rm.te.bed.gz` | Transposable elements (RepeatMasker) | this repository |
+| `cgigas_uk_roslin_v1_rm.te.bed.gz` | Repeats of every class that RepeatMasker reports, simple repeats included; the "transposable elements" of the draft and the track `TE` of the pipeline. 1-based closed coordinates | this repository |
 
 Flank width, checked in the tracks themselves: 1,000 bp for 78% of records, shorter where a neighbouring feature or the end of a sequence intervenes, and zero length for a few records, which the pipeline drops on import.
 
-The tracks overlap one another: a transposable element inside an intron is in both tracks, and exon contains CDS and UTR. See issue I-18 in [`issues.md`](../../issues.md) for what that means for percentages.
+Two names say something else than the files hold. In the tables of step 07 a CpG that overlaps `nonCDS` lies outside every exon, not merely outside coding sequence: in legacy mode 63.7% of the analysed CpGs overlap `nonCDS`, while 72.9% do not overlap CDS. A CpG that overlaps `exonUTR` (track `exon_UTR`) lies in an untranslated region or in an exon of a non-coding gene. The column `track_label` of those tables repeats this for every track.
+
+## The repeat track
+
+`cgigas_uk_roslin_v1_rm.te.bed` is the track that the draft calls transposable elements and the pipeline calls `TE`. It is columns 5 to 7 (sequence, begin, end) of NCBI's RepeatMasker output for the assembly, `GCF_902806645.1_cgigas_uk_roslin_v1_rm.out.gz`, without its three header lines: 781,312 records, the same line for line (the notebook of the OSF archive builds it so, cells 64 to 67). Two things follow. Neither is corrected in the pipeline, in either analysis mode: the numbers of the draft come from this file read this way, and by the scope decision of 2026-11-19 the pipeline reproduces them and says what they are. What a corrected reading would change is a note for the authors in [`issues.md`](../../issues.md).
+
+- **Coordinates.** RepeatMasker positions are 1-based closed. The legacy notebooks gave the file to `intersectBed`, which took it for a BED file with a 0-based start, so that every interval was read without its first base; `read_feature_track()` reads it the same way. That the starts are 1-based shows in the file and in the reference: no record starts at 0 and 47 start at 1, and the first record, `(C)n` at 4109 to 4128 of NC_047559.1, is a run of exactly 20 C in the reference, of which the pipeline reads 19. The effect on the counts is small. In legacy mode 101 of the 480,579 analysed CpGs touch a repeat with the lost base alone (their G is the first base of a record) and are counted outside the track: 109,966 CpGs are counted where the coordinates give 110,067. Among the 101 are 15 eligible CpGs (19,411 counted against 19,426) and 2 of the 2,351 heat DML (463 against 465); no ploidy DML and no locus in both lists is among them. In corrected mode it is 92 of 454,555 CpGs (98,671 against 98,763), 11 eligible CpGs and 1 heat DML (458 against 459). In legacy mode no percentage of the kind the draft prints (`legacy_share_pct` of step 07, one decimal) changes, and the odds ratios of step 07 for this track move by less than 0.004.
+- **Content.** The file holds every repeat class, not transposable elements alone: DNA transposons 380,683 records, simple repeats 165,597, rolling-circle elements (Helitrons) 151,061, LINE 29,494, low complexity 21,815, LTR 19,774, unknown 9,973, satellites 1,461, SINE 1,391, rRNA 63. Simple repeats, low complexity, satellites and rRNA are 24% of the records and 4% of their bases. Of the 109,966 analysed CpGs counted in the track in legacy mode, 3,697 (3.4%) overlap no DNA, RC, LTR, LINE or SINE record; 2,158 of those lie in a record of class unknown. With those five classes alone the track would hold 106,269 of the analysed CpGs (22.1% instead of 22.9%), 189 of the ploidy DML instead of 194 and 455 of the heat DML instead of 463, and the same 28 loci in both lists. As shares of overlaps, which is what the draft prints, the track would fall by 0.5 points for the analysed CpGs, 0.3 for the ploidy DML and 0.2 for the heat DML, and the shares of the other features would rise by up to 0.2 points, because each share is taken over the summed overlaps of eight tracks (issue I-18). Whether the "transposable elements" of the manuscript should leave out simple repeats, low complexity, satellites and rRNA is for the authors to decide. The repeat class is column 11 of the RepeatMasker output, which this repository does not hold.
+
+These numbers come from the code review of 2026-11-19 and were recomputed in the code pass that followed, with code that does not use the pipeline's helpers (`07_documentation/agent_workflows/verification_scripts/R2-figures-features/` holds the scripts of the review). No pipeline step writes them.
+
+The tracks overlap one another: a repeat inside an intron is in both tracks, and exon contains CDS and UTR. See issue I-18 in [`issues.md`](../../issues.md) for what that means for percentages.
 
 The exon and CDS tracks were previously fetched by the legacy notebooks from `owl.fish.washington.edu`, which no longer responds.
