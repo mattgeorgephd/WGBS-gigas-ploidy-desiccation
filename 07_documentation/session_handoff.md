@@ -2,7 +2,7 @@
 
 How to continue this work from the repository alone, for a new session or a person. The working session rewrites the "State" and "In flight" sections whenever it pushes.
 
-Last updated: 2026-11-19 04:00 UTC.
+Last updated: 2026-11-19 04:15 UTC.
 
 ## If the session ends or its machine is replaced
 
@@ -55,7 +55,7 @@ Four agent runs (scripts and partial results in `07_documentation/agent_workflow
 |---|---|---|---|
 | `audit-verification` | claims C1, C2, C3, C4a, C5 | claims C4b, C6, C7, C8 (eligible-universe result by independent re-implementation; coverage filter and the 2.2 kb locus; legacy GO definitions and Table 1; CpG counts and correlations), six code reviews, six verifications | Run the script again; or check by hand the claims that matter most to the authors (C4, C5, C6). |
 | `build-steps-11-12` | build of both steps; review of step 12 | review of step 11; fix for both | The snapshot of both scripts is in git. Review each (run twice, compare outputs, recompute key numbers), then mark done in `01_pipeline/README.md`. |
-| `manuscript-values`, first batch (Methods, Results 3.1 to 3.3, figure legends) | extraction for all four parts; mapping for Methods, Results 3.1, Results 3.2 and 3.3 | mapping for the legends; verification for four | Extracted statements and finished mappings are in `results/manuscript-values-batch1.json`. Run the script for the unfinished parts. |
+| `manuscript-values`, first batch (Methods, Results 3.1 to 3.3, figure legends) | extraction and mapping for all four parts | verification for four | Extracted statements and finished mappings are in `results/manuscript-values-batch1.json`. Run the script for the unfinished parts. |
 | `build-dml-sensitivity` | none | build, review, fix | The snapshot of the script is in git. Review it, then run it in full. |
 
 ## Next actions, in order

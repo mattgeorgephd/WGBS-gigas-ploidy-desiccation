@@ -188,8 +188,8 @@ if (test_mode) out_dir <- file.path(out_dir, "test_subset")
 cache_dir <- file.path(out_dir, "cache")
 dir.create(cache_dir, recursive = TRUE, showWarnings = FALSE)
 out_file  <- function(name) file.path(out_dir, name)
-run_scope <- if (test_mode) sprintf("TEST RUN: random subset of %d CpGs per mode; not a result", subset_n) else "all tested CpGs"
-log_msg("%s; outputs in %s", run_scope, out_dir)
+scope_text <- if (test_mode) sprintf("TEST RUN: random subset of %d CpGs per mode; not a result", subset_n) else "all tested CpGs"
+log_msg("%s; outputs in %s", scope_text, out_dir)
 if (test_mode) {
   writeLines(c(sprintf("The files in this folder come from a test run of 06_diagnostics/dml_sensitivity.R on a random sample of %d CpGs per mode (seed %d).",
                        subset_n, seed),
@@ -243,8 +243,8 @@ covariate_frame <- function(covariate_spec, keep) {
 }
 
 # ---- Registry of analyses --------------------------------------------------------------------
-# One line per analysis. To add an analysis, add a line; the id becomes part of
-# the output file names.
+# One entry per analysis. To add an analysis, add an entry; its id becomes part
+# of the output file names.
 #   contrast        "ploidy", "heat", or "interaction" (a name of contrast_defs)
 #   libraries       a name of library_sets
 #   covariates      "none", "ploidy", "heat", or "ploidy + heat"
@@ -267,7 +267,7 @@ registry <- rbindlist(list(
            "ploidy", "all", "heat", "MN", "Chisq"),
   analysis("A1_heat_mn_chisq", "As A1_heat_mn_f with the chi-squared test, the less stringent form of the correction. Issue I-06.",
            "heat", "all", "ploidy", "MN", "Chisq"),
-  analysis("A2_interaction", "At which CpGs does the difference between the heat cohort and the control cohort depend on ploidy? A tested interaction, to set against the loci in both primary lists. Issues I-02 and I-01.",
+  analysis("A2_interaction", "Where does the difference between the heat cohort and the control cohort depend on ploidy? The tested interaction. Issues I-02 and I-01.",
            "interaction", "all", "ploidy + heat", "none", "Chisq", both_modes),
   analysis("A2_interaction_mn_f", "The same interaction test with the variation among animals estimated and the F test. Issues I-02 and I-06.",
            "interaction", "all", "ploidy + heat", "MN", "F", both_modes),
@@ -275,7 +275,7 @@ registry <- rbindlist(list(
            "ploidy", "without_acute_heat_shock", "heat", "none", "Chisq"),
   analysis("A3_heat_no_acute", "Do the heat DML depend on the heat libraries that also had the acute heat shock? Issue I-04.",
            "heat", "without_acute_heat_shock", "ploidy", "none", "Chisq"),
-  analysis("A4_ploidy_in_control", "Which CpGs differ between diploids and triploids among the control animals alone? This is what 'under control conditions' describes. Issues I-07 and I-01.",
+  analysis("A4_ploidy_in_control", "Which CpGs differ between diploids and triploids among the controls alone ('under control conditions')? Issues I-07 and I-01.",
            "ploidy", "control_only", "none", "none", "Chisq"),
   analysis("A4_ploidy_in_control_mn_f", "As A4_ploidy_in_control with the variation among animals estimated and the F test.",
            "ploidy", "control_only", "none", "MN", "F"),
@@ -283,9 +283,9 @@ registry <- rbindlist(list(
            "ploidy", "heat_only", "none", "none", "Chisq"),
   analysis("A4_ploidy_in_heat_mn_f", "As A4_ploidy_in_heat with the variation among animals estimated and the F test.",
            "ploidy", "heat_only", "none", "MN", "F"),
-  analysis("A5_heat_in_diploid", "Which CpGs differ between the heat cohort and the control cohort among diploids alone? Still a contrast between cohorts. Issue I-01.",
+  analysis("A5_heat_in_diploid", "Which CpGs differ between the heat cohort and the control cohort among diploids alone? Still a cohort contrast. Issue I-01.",
            "heat", "diploid_only", "none", "none", "Chisq"),
-  analysis("A5_heat_in_triploid", "Which CpGs differ between the heat cohort and the control cohort among triploids alone? Still a contrast between cohorts. Issue I-01.",
+  analysis("A5_heat_in_triploid", "Which CpGs differ between the heat cohort and the control cohort among triploids alone? Still a cohort contrast. Issue I-01.",
            "heat", "triploid_only", "none", "none", "Chisq")))
 
 # The two rows that must be step 05 itself. The equivalence check uses them.
@@ -342,8 +342,9 @@ for (contrast_i in names(primary_ids)) {
   if (!isTRUE(ok)) stop("Registry row ", primary_ids[[contrast_i]], " must stay the analysis of step 05.", call. = FALSE)
 }
 write_table(cbind(registry[, .(analysis_id, question, contrast, tested_indicator, libraries, n_libraries, n_indicator_1, n_indicator_0,
-                               group_sizes, covariates, overdispersion, test, residual_df, effect_size_definition, primary_list, modes)],
-                  q_cutoff = config$dml_qvalue, difference_cutoff = config$dml_difference, run_scope = run_scope),
+                               group_sizes, covariates, overdispersion, test, residual_df, effect_size_definition, primary_list, modes,
+                               figure_label = label)],
+                  q_cutoff = config$dml_qvalue, difference_cutoff = config$dml_difference, run_scope = scope_text),
             out_file("analyses.csv"))
 log_msg("%d analyses in the registry; DML: q < %g and absolute effect size above %g points", nrow(registry),
         config$dml_qvalue, config$dml_difference)
@@ -499,7 +500,7 @@ dispersion_summary <- function(counts, eligible, mode_i) {
   cbind(data.table(mode = mode_i, model = "ploidy + heat, all libraries", residual_df = nrow(design) - ncol(design),
                    n_cpg_eligible = length(eligible), n_cpg_sampled = length(picked), n_cpg_estimated = length(phi),
                    dispersion_q25 = quartiles[1], dispersion_median = quartiles[2], dispersion_q75 = quartiles[3]),
-        as.data.table(shares), run_scope = run_scope)
+        as.data.table(shares), run_scope = scope_text)
 }
 
 # ---- One mode: fits, DML lists, comparisons ---------------------------------------------------
@@ -606,7 +607,7 @@ run_mode <- function(mode_i) {
   equivalence[, shared_loci_identical := if (test_mode) NA else
     setequal(which(a0_ploidy$is_dml & a0_heat$is_dml), primary$shared$position) &&
     identical(a0_class[primary$shared$position], primary$shared$value)]
-  equivalence[, run_scope := run_scope]
+  equivalence[, run_scope := scope_text]
   log_msg("[%s] A0 against step 05: largest relative difference in p %.1e, largest difference in effect size %.1e points", mode_i,
           max(equivalence$largest_relative_difference_pvalue), max(equivalence$largest_absolute_difference_effect))
   if (!all(equivalence$p_values_and_effects_equal)) {
@@ -649,7 +650,7 @@ run_mode <- function(mode_i) {
                n_in_primary_same_direction = same_direction,
                share_of_primary_recovered = if (nrow(reference) > 0) sum(in_reference) / nrow(reference) else NA_real_,
                share_of_list_in_primary = if (length(listed) > 0) sum(in_reference) / length(listed) else NA_real_,
-               run_scope = run_scope)
+               run_scope = scope_text)
   }))
 
   # Tested interaction against the loci in both primary lists.
@@ -673,7 +674,7 @@ run_mode <- function(mode_i) {
     }))
     cross[, share_interaction_significant := fifelse(n_cpg > 0, n_interaction_significant / n_cpg, NA_real_)]
     cross[, share_interaction_dml := fifelse(n_cpg > 0, n_interaction_dml / n_cpg, NA_real_)]
-    cross[, `:=`(q_cutoff = config$dml_qvalue, difference_cutoff = config$dml_difference, run_scope = run_scope)]
+    cross[, `:=`(q_cutoff = config$dml_qvalue, difference_cutoff = config$dml_difference, run_scope = scope_text)]
     write_table(cross, out_file(sprintf("interaction_vs_shared_%s.csv", mode_i)))
   }
 
@@ -739,7 +740,7 @@ bars <- vapply(shown, function(contrast_i) dml_counts[contrast == contrast_i, un
 figure <- wrap_plots(panels, ncol = 1, heights = bars + 1) +
   plot_annotation(
     title = "DML under each alternative analysis",
-    subtitle = if (test_mode) run_scope else NULL,
+    subtitle = if (test_mode) scope_text else NULL,
     caption = paste("Vertical line: size of the step 05 list that the bars are compared with.",
                     "A row without a number was not run in that mode."),
     theme = theme(plot.title = element_text(face = "bold", size = 13), plot.caption = element_text(hjust = 0, size = 9),

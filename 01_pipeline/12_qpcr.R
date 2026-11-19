@@ -32,9 +32,12 @@
 #             qpcr_consolidated_check.csv       the consolidated file against the table built here
 #             qpcr_nondetects.csv               non-detects per gene and group; which genes are analysed
 #             qpcr_anova_legacy.csv             legacy ANOVA, both variants, checked against the legacy output
-#             qpcr_tukey_legacy.csv             legacy TukeyHSD comparisons, checked against the legacy output
+#             qpcr_tukey_legacy.csv             legacy TukeyHSD comparisons, checked against the legacy output;
+#                                               for two groups also the Student test of those groups alone
 #             qpcr_group_summary.csv            relative expression by group
-#             qpcr_models.csv                   complete-case and censored fits: fold changes, intervals, p, q
+#             qpcr_models.csv                   complete-case and censored fits: fold changes, intervals, p, q,
+#                                               leave-one-out ranges; fits that repeat an earlier fit are marked
+#             qpcr_censored_test_size.csv       simulation: how often the test of the censored fit rejects a true null
 #             qpcr_sensitivity.csv              each gene and term under every analysis, side by side
 #             qpcr_reference_gene.csv           actin by group, group differences, failed samples
 #             qpcr_normalization_check.csv      each effect with and without normalization to actin
@@ -51,9 +54,11 @@
 #             D heat).
 #           - Acute heat shock. The 8 animals given it (numbers 09, 10, 19, 20
 #             of each ploidy) are in the replicate files and were left out of the
-#             legacy analysis. They are kept in qpcr_per_animal.csv and in the
-#             expression figure and are left out of every model unless
-#             include_acute_heat_shock is set to TRUE below.
+#             legacy analysis. They are kept in qpcr_per_animal.csv, with their
+#             flag, and in the figures, and are left out of every model and
+#             test. With two animals per group they cannot be a group of their
+#             own, and counted as control or heat animals they would change
+#             what those groups are.
 #           - Scale. Delta Cq is Cq target minus Cq actin; a lower delta Cq is a
 #             higher expression. A difference is the first-named group minus the
 #             second, in cycles, and its fold change is 2^-difference. This
@@ -89,13 +94,27 @@
 #             that: a Gaussian regression with right-censored observations
 #             (Tobin 1958, Econometrica 26:24, doi:10.2307/1907382), fitted with
 #             survival::survreg. It assumes that a non-detect is caused by a low
-#             template and that delta Cq is normally distributed within a group.
-#             Maximum likelihood standard errors are too small in a sample of
-#             this size, so they are multiplied by sqrt(n / (n - k)), k being
-#             the number of mean parameters, and tests use the t distribution
-#             with n - k degrees of freedom. A gene without non-detects then
-#             gives the same estimates, intervals and p values as the linear
-#             model of (a); the script stops if it does not.
+#             template, that delta Cq is normally distributed within a group,
+#             and that an animal's bound says nothing about its delta Cq. The
+#             last assumption is doubtful here: the bound falls as the actin Cq
+#             rises, and so does delta Cq wherever a target Cq rises by less
+#             than one cycle per cycle of actin (see "One reference gene"). The
+#             fit with the actin Cq as covariate in
+#             qpcr_normalization_check.csv has one bound, max_cycles, for every
+#             animal and does not need that assumption.
+#           - Small-sample correction of the censored regression. Maximum
+#             likelihood standard errors are too small in a sample of this size,
+#             so they are multiplied by sqrt(n / (n - k)), k being the number of
+#             mean parameters, and tests use the t distribution with n - k
+#             degrees of freedom. Without censoring this is the linear model of
+#             (a): a gene without non-detects gives the same estimates,
+#             intervals and p values, and the script stops if it does not. With
+#             censoring the correction has no derivation, so the step checks it
+#             by simulation: values are drawn under the null hypothesis for the
+#             animals of the primary analysis, with their censoring bounds, at
+#             shares of censored animals up to the largest share among the fits
+#             of the step. qpcr_censored_test_size.csv and the log give how
+#             often the corrected and the uncorrected test reject.
 #           - Which genes are analysed. The limit of detection of a qPCR assay is
 #             the concentration at which 95% of wells are detected (Bustin et al.
 #             2009, Clinical Chemistry 55:611, doi:10.1373/clinchem.2008.112797,
@@ -114,14 +133,28 @@
 #             the table adds Student and Welch tests on the two groups alone
 #             (Welch 1947, Biometrika 34:28; Ruxton 2006, Behavioral Ecology
 #             17:688, doi:10.1093/beheco/ark016). Simple effects are not adjusted
-#             for the four simple effects of a gene.
+#             for the four simple effects of a gene. qpcr_tukey_legacy.csv
+#             carries the same Student test, on the legacy response, beside
+#             each Tukey comparison of two groups; the audit note quotes it.
 #           - Multiple testing. Benjamini and Hochberg (1995, Journal of the
 #             Royal Statistical Society B 57:289) across the analysed genes,
 #             separately for each term, analysis and set of animals.
 #           - Leave one out. With 8 animals per group one animal can decide a
 #             test, so every fit is repeated with each animal left out in turn;
-#             the table gives the lowest and the highest p value and the animal
-#             whose removal produced it.
+#             the table gives the lowest and the highest p value, the animal
+#             whose removal produced it, and the number of these fits with p
+#             below alpha. The tests of two groups alone are repeated in the
+#             same way. The legacy tests are reproduced as run and have no
+#             leave-one-out.
+#           - Repeated fits. Two analyses of a gene can use the same animals with
+#             the same values and the same censoring. Excluding a failed sample
+#             changes nothing for a gene in which that sample has no value; a
+#             gene without replicate-level data has no known one-well animals;
+#             and without a censored animal the censored regression is the
+#             linear model. qpcr_models.csv names the earlier fit in the column
+#             same_fit_as. Counts of analyses in qpcr_sensitivity.csv and in
+#             the statement table count results that differ: p values that
+#             agree to six significant digits are one result.
 #           - One reference gene. Normalization against a single reference gene
 #             needs evidence that the gene is stable under the conditions
 #             compared (Bustin et al. 2009, section 8.1; Vandesompele et al.
@@ -136,7 +169,10 @@
 #             models: third quartile plus three interquartile ranges (Tukey
 #             1977, Exploratory Data Analysis, Addison-Wesley). The analysis
 #             this step treats as primary is the censored regression without
-#             failed samples; every fit is also made with them.
+#             failed samples; every fit is also made with them. A sample
+#             without any detected actin well is failed as well; it has no
+#             delta Cq and is in no model of delta Cq, with or without the
+#             failed samples.
 #           - COX1 has no replicate-level file and no nuclear reference measured
 #             on the same template. Mitochondrial abundance is the ratio of a
 #             mitochondrial to a nuclear target in the same DNA (Quiros et al.
@@ -155,7 +191,6 @@ t0 <- start_step(step, "qPCR: legacy analysis, censored regression, reference ge
 
 # ---- Settings that are not in run_config.R yet (proposed additions to config$qpcr) ----
 opt <- c(config$qpcr, list(
-  include_acute_heat_shock = FALSE,  # TRUE puts the animals given the acute heat shock into the models
   mito_gene        = "COX1",   # measured without a reference gene; never normalized here
   lod_detected     = 0.95,     # a gene is "quantifiable" when at least this share of its wells is detected
   min_detected     = 0.5,      # a gene is not analysed when a group has a smaller share of detected wells
@@ -163,7 +198,10 @@ opt <- c(config$qpcr, list(
   conf_level       = 0.95,     # confidence level of the intervals
   alpha            = 0.05,     # unadjusted p value used in the verdicts
   fdr              = 0.05,     # Benjamini-Hochberg q value used in the verdicts
-  cq_tolerance     = 0.0005    # two Cq values agree when they differ by no more than half of the third decimal
+  cq_tolerance     = 0.0005,   # two Cq values agree when they differ by no more than half of the third decimal
+  same_p_tolerance = 1e-6,     # two p values closer than this, relative to the larger one, are one result
+  size_check_runs  = 2000,     # simulated data sets per share of censored animals, check of the censored test
+  size_check_seed  = 20261119  # seed of that simulation
 ))
 # Facts about the files, from 03_input_files/qpcr/README.md. The script stops if the data disagree.
 design <- list(wells_per_animal = 2, animals_per_group = 8, acute_per_group = 2, nondetect_text = "N/A")
@@ -260,7 +298,7 @@ if (!setequal(cons$animal_id, animals[acute_heat_shock == FALSE, animal_id])) {
 n_animals_read <- nrow(animals)
 animals <- merge(animals, cons[, .(animal_id, consolidated_id = Sample)], by = "animal_id", all.x = TRUE)
 stopifnot(nrow(animals) == n_animals_read)
-animals[, in_models := !acute_heat_shock | opt$include_acute_heat_shock]
+animals[, in_models := !acute_heat_shock]                                # see the header note on the acute heat shock
 cons_only <- setdiff(cons_genes, rep_genes)                              # genes without a replicate-level file
 log_msg("%d replicate-level files (%s); %d animals, %d wells; %d non-detect wells",
         length(rep_genes), paste(rep_genes, collapse = ", "), nrow(animals), nrow(wells), sum(!wells$detected))
@@ -307,20 +345,26 @@ log_msg("consolidated file against the replicate files: %d genes compared, %d ce
 # =============================================================================
 animals <- merge(animals, per_gene[gene == ref, .(animal_id, reference_cq = cq)], by = "animal_id", all.x = TRUE, sort = FALSE)
 stopifnot(nrow(animals) == n_animals_read)
-if (animals[in_models == TRUE, any(is.na(reference_cq))]) {
-  log_msg("no %s Cq for: %s; these animals cannot be normalized and are left out of the delta Cq models",
-          ref, paste(animals[in_models == TRUE & is.na(reference_cq), animal_id], collapse = ", "))
+# An animal without a detected reference well has no delta Cq: it is a failed sample and is in no model of delta Cq.
+no_reference <- animals[is.na(reference_cq), animal_id]
+if (length(no_reference) > 0) {
+  log_msg("no %s Cq for: %s; counted as failed sample(s) and left out of every model of delta Cq", ref, paste(no_reference, collapse = ", "))
 }
+if (animals[in_models == TRUE, sum(!is.na(reference_cq))] < 2) stop("Fewer than two animals in the models have a ", ref, " Cq.")
 ref_quartiles <- quantile(animals[in_models == TRUE & !is.na(reference_cq), reference_cq], c(0.25, 0.75), names = FALSE)
 ref_fence <- ref_quartiles[2] + opt$failed_fence_iqr * diff(ref_quartiles)
-animals[, failed_sample := !is.na(reference_cq) & reference_cq > ref_fence]
+animals[, failed_sample := is.na(reference_cq) | reference_cq > ref_fence]
 setorder(animals, ploidy, animal_number)
-failed_ids <- animals[failed_sample == TRUE, animal_id]
+failed_ids <- animals[in_models == TRUE & failed_sample == TRUE, animal_id]            # failed samples among the animals in the models
 failed_text <- if (length(failed_ids) == 0) "none" else
-  paste(sprintf("%s (%.2f)", failed_ids, animals[failed_sample == TRUE, reference_cq]), collapse = ", ")
-log_msg("%s Cq of the %d animals in the models: quartiles %.2f and %.2f, outer fence %.2f; failed sample(s): %s",
-        ref, sum(animals$in_models), ref_quartiles[1], ref_quartiles[2], ref_fence, failed_text)
-in_set <- list(all = animals[in_models == TRUE, animal_id], clean = animals[in_models == TRUE & failed_sample == FALSE, animal_id])
+  paste(sprintf("%s (%s)", failed_ids, animals[match(failed_ids, animal_id), fifelse(is.na(reference_cq), "no Cq", sprintf("%.2f", reference_cq))]),
+        collapse = ", ")
+log_msg("%s Cq of the %d animals in the models (%d with a Cq): quartiles %.2f and %.2f, outer fence %.2f; failed sample(s): %s",
+        ref, sum(animals$in_models), animals[in_models == TRUE, sum(!is.na(reference_cq))], ref_quartiles[1], ref_quartiles[2], ref_fence,
+        failed_text)
+# The two sets of animals of the delta Cq models. "All animals" are the animals in the models that have a reference Cq.
+in_set <- list(all = animals[in_models == TRUE & !is.na(reference_cq), animal_id],
+               clean = animals[in_models == TRUE & failed_sample == FALSE, animal_id])
 
 wide <- dcast(per_gene, animal_id ~ gene, value.var = c("cq", "n_detected", "replicate_difference"))
 for (gene_i in rep_genes) setnames(wide, paste0(c("cq_", "n_detected_", "replicate_difference_"), gene_i),
@@ -369,16 +413,21 @@ count_wells <- function(ids, scope, with_consolidated = TRUE) {
   w <- wells_by_group[animal_id %chin% ids]
   by_group <- function(by_cols) {
     a <- w[, .(n_det = sum(detected)), by = c("gene", "animal_id", by_cols)]
-    merge(w[, .(n_wells = .N, n_wells_not_detected = sum(!detected), median_cq_detected_wells = median(cq[detected]),
-                latest_cq_detected = if (any(detected)) max(cq[detected]) else NA_real_), by = c("gene", by_cols)],
-          a[, .(n_animals = .N, n_animals_both_wells = sum(n_det == design$wells_per_animal),
-                n_animals_one_well = sum(n_det > 0 & n_det < design$wells_per_animal), n_animals_no_well = sum(n_det == 0)),
-            by = c("gene", by_cols)], by = c("gene", by_cols))
+    of_wells <- w[, .(n_wells = .N, n_wells_not_detected = sum(!detected), median_cq_detected_wells = median(cq[detected]),
+                      latest_cq_detected = if (any(detected)) max(cq[detected]) else NA_real_), by = c("gene", by_cols)]
+    of_animals <- a[, .(n_animals = .N, n_animals_both_wells = sum(n_det == design$wells_per_animal),
+                        n_animals_one_well = sum(n_det > 0 & n_det < design$wells_per_animal), n_animals_no_well = sum(n_det == 0)),
+                    by = c("gene", by_cols)]
+    both <- merge(of_wells, of_animals, by = c("gene", by_cols))
+    stopifnot(nrow(both) == nrow(of_wells), nrow(both) == nrow(of_animals))
+    both
   }
   out <- rbind(by_group("group"), cbind(by_group(character(0)), group = "all groups"), use.names = TRUE)
   cons_part <- cons_long[gene %chin% targets_cons & animal_id %chin% ids]
   if (with_consolidated && nrow(cons_part) > 0) {     # no wells are known; an animal without a value counts as "no well"
+    n_cons_part <- nrow(cons_part)
     cons_part <- merge(cons_part, animals[, .(animal_id, group)], by = "animal_id", sort = FALSE)
+    stopifnot(nrow(cons_part) == n_cons_part)
     cons_counts <- function(d) d[, .(n_wells = NA_integer_, n_wells_not_detected = NA_integer_, median_cq_detected_wells = NA_real_,
                                      latest_cq_detected = NA_real_, n_animals = .N, n_animals_both_wells = NA_integer_,
                                      n_animals_one_well = NA_integer_, n_animals_no_well = sum(is.na(cq_consolidated)))]
@@ -445,9 +494,18 @@ legacy_input <- function(variant) {
   if (variant == "substituted") d[is.na(d)] <- opt$legacy_nondetect       # the legacy line: dCt[is.na(dCt)] <- 45
   cbind(d, legacy_code)
 }
+# Student test of two groups alone on a legacy response, not adjusted. It is not part of the legacy analysis: the audit
+# note quotes it for the two control groups. pair is a comparison as TukeyHSD() prints it, "T:C-D:C".
+legacy_pair_p <- function(pair, response_values, cell_of_row) {
+  cells <- strsplit(pair, "-", fixed = TRUE)[[1]]
+  a <- response_values[cell_of_row == cells[1] & !is.na(response_values)]
+  b <- response_values[cell_of_row == cells[2] & !is.na(response_values)]
+  if (length(a) < 2 || length(b) < 2) NA_real_ else t.test(a, b, var.equal = TRUE)$p.value
+}
 legacy_anova <- list(); legacy_tukey <- list()
 for (variant_i in names(legacy_variants)) {
   ld <- legacy_input(variant_i)
+  legacy_cell <- paste(ld$Ploidy, ld$Desiccation, sep = ":")
   responses <- c(
     lapply(legacy_targets, function(gene_i) list(gene = gene_i, response = legacy_response, y = log(2^-(ld[[gene_i]] - ld[[ref]])))),
     if (mito %in% cons_genes) list(
@@ -467,7 +525,9 @@ for (variant_i in names(legacy_variants)) {
       data.table(legacy_term = k_i, legacy_comparison = rownames(m),
                  comparison = if (k_i == "Ploidy") "triploid vs diploid" else if (k_i == "Desiccation") "heat vs control" else
                    vapply(rownames(m), legacy_words, ""),
-                 difference = m[, "diff"], lower = m[, "lwr"], upper = m[, "upr"], p_adjusted = m[, "p adj"])
+                 difference = m[, "diff"], lower = m[, "lwr"], upper = m[, "upr"], p_adjusted = m[, "p adj"],
+                 p_two_groups_student = if (k_i != legacy_terms[["interaction"]]) NA_real_ else
+                   vapply(rownames(m), legacy_pair_p, 0, response_values = ld$y, cell_of_row = legacy_cell))
     })))
   }
 }
