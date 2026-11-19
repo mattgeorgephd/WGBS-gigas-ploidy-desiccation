@@ -8,6 +8,7 @@ Checks that the pipeline reproduces what it should, and controls for the analyse
 |---|---|---|
 | `check_legacy_outputs.R` | Compares the legacy-mode outputs of the pipeline with the outputs of the legacy analysis (`08_archive/`, and the legacy tables in `03_input_files/annotation/legacy/` that exist only on gannet). One row per comparison. | `legacy_check_results.csv` |
 | `go_random_cpg_control.R` | Negative control for the GO enrichment: CpGs drawn at random from the eligible CpGs are passed through the gene-level tests as if they were DML. About 10 minutes. | `go_random_cpg_control.csv` (every draw), `go_random_cpg_control_summary.csv` |
+| `cohort_separation.R` | Do the libraries group by cohort or by ploidy before any locus is tested? Median correlation within against between groups, and the number of libraries a single threshold on each principal component assigns to their group, each with a permutation p-value (10,000 label permutations). Reads the step 04 tables. Half a minute. Issues I-16 and I-44. | `cohort_separation_correlation.csv`, `cohort_separation_pca.csv` |
 | `table1_group_means.R` | What the "methylation difference" values of Table 1 are made of: read-pooled percent methylation of the four groups at each of its 20 loci, the ploidy difference within each cohort, the cohort difference within each ploidy, and the per-library values. Descriptive; no test. Under a minute. Issues I-02 and I-07. | `table1_group_means.csv`, `table1_library_values.csv` |
 
 Run from the repository root, after the pipeline steps they check:
@@ -16,6 +17,7 @@ Run from the repository root, after the pipeline steps they check:
 Rscript 06_diagnostics/check_legacy_outputs.R
 Rscript 06_diagnostics/go_random_cpg_control.R
 Rscript 06_diagnostics/table1_group_means.R
+Rscript 06_diagnostics/cohort_separation.R
 ```
 
 ## Result of the legacy comparison

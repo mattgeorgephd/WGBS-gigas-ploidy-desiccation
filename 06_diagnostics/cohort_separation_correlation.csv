@@ -1,0 +1,9 @@
+mode,min_coverage,grouping,median_r_within,median_r_between,within_minus_between,p_permutation,p_permutation_within_cohort,median_r_within_by_group,permutations
+legacy,1,cohort,0.8624,0.8561,0.0063,0.0054994500549945,,control: 0.8563; heat: 0.8652,10000
+legacy,1,ploidy,0.8575,0.8603,-0.0028,0.893310668933107,0.864813518648135,diploid: 0.8514; triploid: 0.8690,10000
+legacy,10,cohort,0.9112,0.9068,0.0044,0.0330966903309669,,control: 0.9139; heat: 0.9073,10000
+legacy,10,ploidy,0.9088,0.9077,0.001,0.261773822617738,0.214378562143786,diploid: 0.8949; triploid: 0.9179,10000
+corrected,1,cohort,0.8625,0.8562,0.0063,0.0062993700629937,,control: 0.8563; heat: 0.8652,10000
+corrected,1,ploidy,0.8575,0.8603,-0.0028,0.904109589041096,0.873412658734127,diploid: 0.8515; triploid: 0.8690,10000
+corrected,10,cohort,0.9123,0.9079,0.0044,0.0353964603539646,,control: 0.9149; heat: 0.9085,10000
+corrected,10,ploidy,0.9096,0.9088,8e-04,0.368063193680632,0.321067893210679,diploid: 0.8965; triploid: 0.9190,10000
