@@ -27,9 +27,20 @@
 #                in one cohort and compared with the ploidy difference of the
 #                other cohort, so no library is on both sides.
 #             5. The same counts with one library left out at a time.
-#             6. The ploidy contrast among the libraries that are not "high",
-#                against every relabelling of those libraries (complete
-#                enumeration, labels moved within cohort only).
+#             6. Relabelling references by complete enumeration: the number of
+#                CpGs above the threshold for the observed grouping against
+#                the number for every other grouping of the same libraries
+#                into groups of the same sizes. For ploidy inside each cohort,
+#                with all libraries and without the "high" ones; and for the
+#                acute heat shock inside the heat cohort (issue I-04), with
+#                labels moved within ploidy.
+#             7. Similarity of the libraries of one group to each other: the
+#                mean pairwise Pearson correlation (step 04, CpGs with 10x
+#                in all libraries) among the diploids and among the triploids
+#                of each cohort, against every other subset of the same size
+#                from that cohort. (The mean, not the median: a subset that
+#                holds four of five similar libraries has six similar pairs
+#                out of ten, so its median can equal that of the full group.)
 #
 # Run       Rscript 06_diagnostics/library_methylation_level.R   (about 3 minutes, 3 GB)
 #
@@ -37,6 +48,7 @@
 #           04_output/02_alignment_qc/tables/bismark_by_library.csv
 #           04_output/03_global_methylation/tables/elisa_percent_5mC.csv
 #           04_output/04_cpg_coverage/tables/pca_scores_10x_<mode>.csv
+#           04_output/04_cpg_coverage/tables/library_correlation_10x_<mode>.csv
 #           04_output/05_differential_methylation/tables/united_cpg_<mode>.csv.gz
 #           04_output/05_differential_methylation/tables/diffmeth_{ploidy,heat}_<mode>.csv.gz
 # Writes    06_diagnostics/library_methylation_level/
@@ -48,7 +60,10 @@
 #             level_slope_prediction.csv      part 4, correlations
 #             level_slope_deciles.csv         part 4, by decile of slope
 #             leave_one_library_out.csv       part 5
-#             relabelling_reference.csv       part 6
+#             relabelling_reference.csv       part 6, one row per comparison
+#             relabelling_small_sets.csv      part 6, every grouping of the comparisons
+#                                             that have at most 252 groupings
+#             pair_similarity.csv             part 7
 #
 # Notes     - "Difference" is the definition methylKit uses for meth.diff: the
 #             percent methylation of one group minus that of the other, with
@@ -59,7 +74,11 @@
 #             exceeds config$dml_difference by more than 1e-9. A difference of
 #             exactly 20 points is not above 20; in floating-point arithmetic
 #             such a CpG can fall on either side, so ties are counted
-#             separately (column n_exactly_at_threshold).
+#             separately (column n_exactly_at_threshold). Counts here can
+#             therefore differ by a few CpGs from counts made without that
+#             margin (dml_sensitivity/permutation_reference.csv: 3,350 against
+#             3,349 for the control cohort, medians 4,019.5 against 4,018.5
+#             for the heat cohort).
 #           - Sign: triploid minus diploid for ploidy contrasts, heat cohort
 #             minus control cohort for the cohort contrast. The interaction
 #             contrast is the ploidy difference of the heat cohort minus that
@@ -71,9 +90,15 @@
 #             ploidy or to heat.
 #           - "High" libraries are found by a rule that does not use the group
 #             labels, but leaving them out in part 6 is a choice made after
-#             seeing the data. Part 6 is exploratory.
+#             seeing the data. Those rows are exploratory.
+#           - Part 7: a group whose libraries resemble each other more than
+#             other libraries of the cohort do is what related animals (one
+#             cross), a shared processing batch, or a real group property
+#             would each produce. The correlation between two libraries also
+#             falls with sequencing noise and with a difference in level, so
+#             a low value does not by itself mean a biological difference.
 #           - The smallest p-value a complete enumeration can give is
-#             (labellings as extreme as the observed one) / (all labellings).
+#             (groupings as extreme as the observed one) / (all groupings).
 #             With two groups of equal size every split occurs twice (labels
 #             exchanged), so the smallest value is 2/252 for 5 against 5; for
 #             2 against 5 it is 1/21.
@@ -93,6 +118,8 @@ n_lib <- nrow(lib)
 grp <- split(seq_len(n_lib), lib$group)
 heat_lib <- which(lib$treatment == "heat")
 ctrl_lib <- which(lib$treatment == "control")
+acute <- which(lib$acute_heat_shock == "yes")
+stopifnot(length(acute) == 4, all(acute %in% heat_lib))
 
 above <- function(d) abs(d) > cutoff + tie_tolerance
 at_threshold <- function(d) abs(abs(d) - cutoff) <= tie_tolerance
@@ -117,6 +144,7 @@ above_largest_gap <- function(x) {
 }
 gap_genome <- above_largest_gap(L)
 level[, high_level := gap_genome$high]
+high <- which(level$high_level)
 
 # Methylation matrices of one mode: C (methylated reads) and N (all reads) per
 # CpG and library, in the library order of the sample sheet.
@@ -138,44 +166,50 @@ contrasts <- list(
   "ploidy inside the heat cohort"                           = function(m) difference(m, grp[["diploid heat"]], grp[["triploid heat"]]),
   "ploidy inside the control cohort"                        = function(m) difference(m, grp[["diploid control"]], grp[["triploid control"]]),
   "interaction (heat-cohort ploidy difference minus control-cohort ploidy difference)" = function(m)
-    difference(m, grp[["diploid heat"]], grp[["triploid heat"]]) - difference(m, grp[["diploid control"]], grp[["triploid control"]]))
+    difference(m, grp[["diploid heat"]], grp[["triploid heat"]]) - difference(m, grp[["diploid control"]], grp[["triploid control"]]),
+  "ploidy inside the heat cohort, without the high libraries" = function(m)
+    difference(m, setdiff(grp[["diploid heat"]], high), setdiff(grp[["triploid heat"]], high)),
+  "ploidy inside the control cohort, without the high libraries" = function(m)
+    difference(m, setdiff(grp[["diploid control"]], high), setdiff(grp[["triploid control"]], high)),
+  "acute heat shock inside the heat cohort (4 libraries with it minus 6 without)" = function(m)
+    difference(m, setdiff(heat_lib, acute), acute))
 
-# Complete enumeration of the relabellings of a set of libraries. `sets` is a
-# list with one element per cohort: list(a = libraries of group a, b = of
-# group b). Labels move within a cohort only and group sizes are kept. Returns
-# the number of CpGs above the threshold for the observed labelling and for
-# every labelling.
-relabel_reference <- function(m, sets, chunk = 100) {
-  libs <- unlist(lapply(sets, function(s) c(s$a, s$b)))
+# Complete enumeration of the regroupings of a set of libraries. `strata` is a
+# list with one element per stratum: list(a = libraries of group a, b = of
+# group b). Labels move within a stratum only and group sizes are kept. Returns
+# the number of CpGs above the threshold for the observed grouping and for
+# every grouping, with the libraries of group a in each.
+relabel_reference <- function(m, strata, chunk = 100) {
+  libs <- unlist(lapply(strata, function(s) c(s$a, s$b)))
   pm <- 100 * m$C[, libs, drop = FALSE] / m$N[, libs, drop = FALSE]
   # A pooled group value lies between the smallest and the largest library
   # value, so a CpG whose library values span no more than the threshold can
   # never be counted. Dropping those CpGs changes no count.
-  span <- apply(pm, 1, max) - apply(pm, 1, min)
+  span <- do.call(pmax, as.data.frame(pm)) - do.call(pmin, as.data.frame(pm))
   keep <- which(span > cutoff)
   C <- m$C[keep, , drop = FALSE]; N <- m$N[keep, , drop = FALSE]
-  per_cohort <- lapply(sets, function(s) combn(c(s$a, s$b), length(s$a), simplify = FALSE))
-  grid <- as.matrix(expand.grid(lapply(per_cohort, seq_along)))
+  per_stratum <- lapply(strata, function(s) combn(c(s$a, s$b), length(s$a), simplify = FALSE))
+  grid <- as.matrix(expand.grid(lapply(per_stratum, seq_along)))
+  group_a <- lapply(seq_len(nrow(grid)), function(i)
+    sort(unlist(lapply(seq_along(strata), function(k) per_stratum[[k]][[grid[i, k]]]))))
   counts <- integer(nrow(grid))
   for (start in seq(1, nrow(grid), by = chunk)) {
     rows <- start:min(start + chunk - 1, nrow(grid))
     A <- matrix(0, n_lib, length(rows)); B <- A
-    for (j in seq_along(rows)) {
-      a <- unlist(lapply(seq_along(sets), function(k) per_cohort[[k]][[grid[rows[j], k]]]))
-      A[a, j] <- 1; B[setdiff(libs, a), j] <- 1
-    }
+    for (j in seq_along(rows)) { A[group_a[[rows[j]]], j] <- 1; B[setdiff(libs, group_a[[rows[j]]]), j] <- 1 }
     d <- 100 * ((C %*% B) / (N %*% B) - (C %*% A) / (N %*% A))
     counts[rows] <- colSums(above(d))
   }
-  a_obs <- unlist(lapply(sets, `[[`, "a")); b_obs <- unlist(lapply(sets, `[[`, "b"))
-  observed <- sum(above(100 * (rowSums(C[, b_obs, drop = FALSE]) / rowSums(N[, b_obs, drop = FALSE]) -
-                               rowSums(C[, a_obs, drop = FALSE]) / rowSums(N[, a_obs, drop = FALSE]))))
-  list(observed = observed, counts = counts, n_cpg_screened = length(keep))
+  a_obs <- sort(unlist(lapply(strata, `[[`, "a"))); b_obs <- sort(unlist(lapply(strata, `[[`, "b")))
+  is_observed <- vapply(group_a, function(a) identical(a, a_obs), logical(1))
+  is_mirror <- vapply(group_a, function(a) identical(a, b_obs), logical(1))
+  stopifnot(sum(is_observed) == 1)
+  list(observed = counts[is_observed], counts = counts, group_a = group_a, is_observed = is_observed, is_mirror = is_mirror,
+       n_cpg_screened = length(keep))
 }
 
 direction_rows <- list(); agreement_rows <- list(); slope_rows <- list(); decile_rows <- list()
-loo_rows <- list(); relabel_rows <- list()
-high <- which(level$high_level)
+loo_rows <- list(); relabel_rows <- list(); small_rows <- list(); similarity_rows <- list()
 
 for (mode in config$modes) {
   m <- read_counts(mode)
@@ -216,9 +250,11 @@ for (mode in config$modes) {
     agreement_rows[[length(agreement_rows) + 1]] <- data.table(
       mode = mode, cpg_set = set, n_cpg = sum(k),
       pearson = cor(d_heat[k], d_ctrl[k]), spearman = cor(d_heat[k], d_ctrl[k], method = "spearman"),
+      n_above_in_heat_cohort = sum(above(d_heat[k])), n_above_in_control_cohort = sum(above(d_ctrl[k])),
       n_above_in_both = sum(above(d_heat[k]) & above(d_ctrl[k])),
       n_above_in_both_same_sign = sum(above(d_heat[k]) & above(d_ctrl[k]) & sign(d_heat[k]) == sign(d_ctrl[k])),
-      n_above_in_heat_cohort = sum(above(d_heat[k])), n_above_in_control_cohort = sum(above(d_ctrl[k])))
+      # Expected overlap if the two sets of CpGs were unrelated draws from this CpG set.
+      n_above_in_both_expected_if_unrelated = sum(above(d_heat[k])) * sum(above(d_ctrl[k])) / sum(k))
   }
 
   # ---- 4. Slope on the level, estimated in the other cohort ------------------------------
@@ -259,45 +295,90 @@ for (mode in config$modes) {
       n_above_threshold_without_it = sum(above(difference(m, setdiff(a, k), setdiff(b, k)))))
   }
 
-  # ---- 6. Relabelling reference ----------------------------------------------------------
-  sets <- list(
-    "ploidy inside the heat cohort, all 10 libraries" =
-      list(heat = list(a = grp[["diploid heat"]], b = grp[["triploid heat"]])),
-    "ploidy inside the control cohort, all 12 libraries" =
-      list(control = list(a = grp[["diploid control"]], b = grp[["triploid control"]])),
-    "ploidy inside the heat cohort, without the high libraries" =
-      list(heat = list(a = setdiff(grp[["diploid heat"]], high), b = setdiff(grp[["triploid heat"]], high))),
-    "ploidy inside the control cohort, without the high libraries" =
-      list(control = list(a = setdiff(grp[["diploid control"]], high), b = setdiff(grp[["triploid control"]], high))),
-    "ploidy, both cohorts, without the high libraries" =
-      list(heat = list(a = setdiff(grp[["diploid heat"]], high), b = setdiff(grp[["triploid heat"]], high)),
-           control = list(a = setdiff(grp[["diploid control"]], high), b = setdiff(grp[["triploid control"]], high))))
-  for (nm in names(sets)) {
-    r <- relabel_reference(m, sets[[nm]])
-    n_a <- sum(vapply(sets[[nm]], function(s) length(s$a), integer(1)))
-    n_b <- sum(vapply(sets[[nm]], function(s) length(s$b), integer(1)))
+  # ---- 6. Relabelling references ---------------------------------------------------------
+  dh <- grp[["diploid heat"]]; th <- grp[["triploid heat"]]; dc <- grp[["diploid control"]]; tc <- grp[["triploid control"]]
+  comparisons <- list(
+    list(name = "ploidy inside the heat cohort, all 10 libraries", group_a = "diploid", group_b = "triploid",
+         labels_moved = "among the 10 libraries of the heat cohort",
+         strata = list(list(a = dh, b = th))),
+    list(name = "ploidy inside the control cohort, all 12 libraries", group_a = "diploid", group_b = "triploid",
+         labels_moved = "among the 12 libraries of the control cohort",
+         strata = list(list(a = dc, b = tc))),
+    list(name = "ploidy inside the heat cohort, without the high libraries", group_a = "diploid", group_b = "triploid",
+         labels_moved = "among the 7 libraries of the heat cohort that are not high",
+         strata = list(list(a = setdiff(dh, high), b = setdiff(th, high)))),
+    list(name = "ploidy inside the control cohort, without the high libraries", group_a = "diploid", group_b = "triploid",
+         labels_moved = "among the 10 libraries of the control cohort that are not high",
+         strata = list(list(a = setdiff(dc, high), b = setdiff(tc, high)))),
+    list(name = "ploidy, both cohorts, without the high libraries", group_a = "diploid", group_b = "triploid",
+         labels_moved = "within cohort, among the 17 libraries that are not high",
+         strata = list(list(a = setdiff(dh, high), b = setdiff(th, high)), list(a = setdiff(dc, high), b = setdiff(tc, high)))),
+    list(name = "acute heat shock inside the heat cohort", group_a = "with acute heat shock", group_b = "without",
+         labels_moved = "within ploidy, among the 10 libraries of the heat cohort",
+         strata = list(list(a = intersect(dh, acute), b = setdiff(dh, acute)), list(a = intersect(th, acute), b = setdiff(th, acute)))))
+  for (cp in comparisons) {
+    r <- relabel_reference(m, cp$strata)
+    others <- r$counts[!r$is_observed & !r$is_mirror]
     relabel_rows[[length(relabel_rows) + 1]] <- data.table(
-      mode = mode, comparison = nm, n_diploid = n_a, n_triploid = n_b,
-      n_above_threshold_observed = r$observed, labellings = length(r$counts),
+      mode = mode, comparison = cp$name, group_a = cp$group_a,
+      n_a = sum(vapply(cp$strata, function(s) length(s$a), integer(1))),
+      group_b = cp$group_b, n_b = sum(vapply(cp$strata, function(s) length(s$b), integer(1))),
+      labels_moved = cp$labels_moved,
+      n_above_threshold_observed = r$observed, groupings = length(r$counts),
       reference_median = median(r$counts), reference_p05 = unname(quantile(r$counts, 0.05)),
-      reference_p95 = unname(quantile(r$counts, 0.95)), reference_min = min(r$counts), reference_max = max(r$counts),
-      second_largest = sort(r$counts, decreasing = TRUE)[2],
-      labellings_at_or_above_observed = sum(r$counts >= r$observed),
+      reference_p95 = unname(quantile(r$counts, 0.95)), reference_min = min(r$counts),
+      largest_other_grouping = max(others),
+      observed_over_reference_median = r$observed / median(r$counts),
+      groupings_at_or_above_observed = sum(r$counts >= r$observed),
       p_enumeration = sum(r$counts >= r$observed) / length(r$counts))
+    if (length(r$counts) <= 252) small_rows[[length(small_rows) + 1]] <- data.table(
+      mode = mode, comparison = cp$name, group_a = cp$group_a,
+      libraries_in_group_a = vapply(r$group_a, function(a) paste(lib$library_id[a], collapse = " "), character(1)),
+      n_above_threshold = r$counts, observed_grouping = r$is_observed, observed_grouping_with_labels_exchanged = r$is_mirror)[
+        order(-n_above_threshold)]
+  }
+
+  # ---- 7. Similarity of the libraries of one group ---------------------------------------
+  cm <- fread(output_path("04_cpg_coverage", "tables", sprintf("library_correlation_10x_%s.csv", mode)))
+  stopifnot(identical(cm$library_id, lib$library_id))
+  r <- as.matrix(cm[, -1]); dimnames(r) <- NULL
+  mean_within <- function(idx) { s <- r[idx, idx]; mean(s[upper.tri(s)]) }
+  for (coh in c("heat", "control")) {
+    members <- if (coh == "heat") heat_lib else ctrl_lib
+    pair_r <- combn(members, 2, function(p) r[p[1], p[2]])
+    pair_ids <- combn(members, 2, simplify = FALSE)
+    for (pl in c("diploid", "triploid")) {
+      own <- grp[[paste(pl, coh)]]; other <- setdiff(members, own)
+      subsets <- combn(members, length(own), simplify = FALSE)
+      ref <- vapply(subsets, mean_within, numeric(1))
+      obs <- mean_within(own)
+      own_pair <- vapply(pair_ids, function(p) all(p %in% own), logical(1))
+      top <- order(-pair_r)[seq_len(sum(own_pair))]
+      similarity_rows[[length(similarity_rows) + 1]] <- data.table(
+        mode = mode, cohort = paste(coh, "cohort"), group = pl, n_libraries = length(own), n_pairs = sum(own_pair),
+        mean_r_within_group = obs, min_r_within_group = min(pair_r[own_pair]), max_r_within_group = max(pair_r[own_pair]),
+        mean_r_within_other_group = mean_within(other),
+        mean_r_between_groups = mean(r[own, other]),
+        largest_mean_r_of_another_subset = max(ref[!vapply(subsets, function(s) setequal(s, own), logical(1))]),
+        pairs_of_group_among_the_n_pairs_most_similar_in_cohort = sum(own_pair[top]),
+        subsets_of_this_size = length(subsets), subsets_at_or_above_observed = sum(ref >= obs - 1e-12),
+        p_enumeration = sum(ref >= obs - 1e-12) / length(subsets))
+    }
   }
   rm(m, pm, d); invisible(gc())
 }
 
 # ---- 2. Group comparisons and correlations of the level ----------------------------------
 measures <- c("pct_mCpG_genome", grep("^mean_pct_", names(level), value = TRUE), "pct_mCHH_genome")
-comparisons <- list(
+level_comparisons <- list(
   "ploidy inside the heat cohort"    = list(a = grp[["diploid heat"]], b = grp[["triploid heat"]], la = "diploid heat", lb = "triploid heat"),
   "ploidy inside the control cohort" = list(a = grp[["diploid control"]], b = grp[["triploid control"]], la = "diploid control", lb = "triploid control"),
   "cohort"                           = list(a = ctrl_lib, b = heat_lib, la = "control cohort", lb = "heat cohort"),
-  "ploidy, all 22 libraries"         = list(a = which(lib$ploidy == "diploid"), b = which(lib$ploidy == "triploid"), la = "diploid", lb = "triploid"))
+  "ploidy, all 22 libraries"         = list(a = which(lib$ploidy == "diploid"), b = which(lib$ploidy == "triploid"), la = "diploid", lb = "triploid"),
+  "acute heat shock inside the heat cohort" = list(a = setdiff(heat_lib, acute), b = acute, la = "without acute heat shock", lb = "with acute heat shock"))
 test_rows <- list()
-for (ms in measures) for (nm in names(comparisons)) {
-  cp <- comparisons[[nm]]; x <- level[[ms]][cp$a]; y <- level[[ms]][cp$b]
+for (ms in measures) for (nm in names(level_comparisons)) {
+  cp <- level_comparisons[[nm]]; x <- level[[ms]][cp$a]; y <- level[[ms]][cp$b]
   ties <- anyDuplicated(c(x, y)) > 0
   test_rows[[length(test_rows) + 1]] <- data.table(
     measure = ms, comparison = nm, group_a = cp$la, n_a = length(x), group_b = cp$lb, n_b = length(y),
@@ -336,8 +417,8 @@ level[, gap_rule := sprintf("largest gap in the sorted genome-wide values: %.2f 
 
 # ---- Write -------------------------------------------------------------------------------
 round_cols <- function(x) {
-  num <- names(x)[vapply(x, function(v) is.double(v), logical(1))]
-  x[, (num) := lapply(.SD, signif, 6), .SDcols = num]
+  num <- names(x)[vapply(x, is.double, logical(1))]
+  if (length(num)) x[, (num) := lapply(.SD, signif, 6), .SDcols = num]
   x
 }
 write_table(round_cols(copy(level)), file.path(out_dir, "library_level.csv"))
@@ -348,7 +429,11 @@ write_table(round_cols(rbindlist(agreement_rows)), file.path(out_dir, "contrast_
 write_table(round_cols(rbindlist(slope_rows)), file.path(out_dir, "level_slope_prediction.csv"))
 write_table(round_cols(rbindlist(decile_rows)), file.path(out_dir, "level_slope_deciles.csv"))
 write_table(rbindlist(loo_rows), file.path(out_dir, "leave_one_library_out.csv"))
-write_table(round_cols(rbindlist(relabel_rows)), file.path(out_dir, "relabelling_reference.csv"))
+relabel_tab <- round_cols(rbindlist(relabel_rows))
+write_table(relabel_tab, file.path(out_dir, "relabelling_reference.csv"))
+write_table(rbindlist(small_rows), file.path(out_dir, "relabelling_small_sets.csv"))
+similarity_tab <- round_cols(rbindlist(similarity_rows))
+write_table(similarity_tab, file.path(out_dir, "pair_similarity.csv"))
 
 options(width = 220)
 cat("High libraries (", level$gap_rule[1], "):\n  ", paste(level[high_level == TRUE, sprintf("%s (%s)", library_id, group)], collapse = ", "), "\n\n", sep = "")
@@ -357,8 +442,12 @@ print(level[, .(library_id, group, acute_heat_shock, pct_mCpG_genome = round(pct
 cat("\nGroup comparisons of the genome-wide level\n")
 print(test_tab[measure == "pct_mCpG_genome", .(comparison, median_a = round(median_a, 2), median_b = round(median_b, 2), complete_separation, wilcoxon_p = signif(wilcoxon_p, 3))])
 cat("\nCpGs above the threshold, by direction (legacy mode)\n")
-print(rbindlist(direction_rows)[mode == "legacy", .(contrast = substr(contrast, 1, 48), n_above_threshold, n_positive, n_negative, n_exactly_at_threshold,
+print(rbindlist(direction_rows)[mode == "legacy", .(contrast = substr(contrast, 1, 60), n_above_threshold, n_positive, n_negative, n_exactly_at_threshold,
                                                     majority = round(share_in_majority_direction, 3), median_eligible = round(median_difference_eligible, 2))])
-cat("\nRelabelling reference\n")
-print(rbindlist(relabel_rows)[, .(mode, comparison = substr(comparison, 1, 58), observed = n_above_threshold_observed, labellings, reference_median,
-                                  reference_max, at_or_above = labellings_at_or_above_observed, p = signif(p_enumeration, 3))])
+cat("\nSimilarity of the libraries of one group (mean pairwise correlation)\n")
+print(similarity_tab[, .(mode, cohort, group, within = round(mean_r_within_group, 4), other_group = round(mean_r_within_other_group, 4),
+                         between = round(mean_r_between_groups, 4), top_pairs = pairs_of_group_among_the_n_pairs_most_similar_in_cohort, n_pairs,
+                         at_or_above = subsets_at_or_above_observed, subsets = subsets_of_this_size, p = signif(p_enumeration, 3))])
+cat("\nRelabelling references\n")
+print(relabel_tab[, .(mode, comparison = substr(comparison, 1, 60), observed = n_above_threshold_observed, groupings, reference_median,
+                      largest_other_grouping, at_or_above = groupings_at_or_above_observed, p = signif(p_enumeration, 3))])

@@ -4,8 +4,14 @@ legacy,"cohort, all 22 libraries (the draft's heat contrast)",480579,65480,2352,
 legacy,ploidy inside the heat cohort,480579,65480,13028,1915,11113,20,0.853009,-6.24878,-5.71093,-15.1285,2.0148,0.311668
 legacy,ploidy inside the control cohort,480579,65480,3349,2688,661,8,0.802628,3.76441,3.63832,-2.18178,9.93382,0.660736
 legacy,interaction (heat-cohort ploidy difference minus control-cohort ploidy difference),480579,65480,23503,2876,20627,1,0.877633,-10.0132,-8.90786,-22.1917,1.84049,0.290257
+legacy,"ploidy inside the heat cohort, without the high libraries",480579,65480,10732,4433,6299,31,0.586936,-1.5955,-1.6015,-9.83479,6.31037,0.441173
+legacy,"ploidy inside the control cohort, without the high libraries",480579,65480,3190,1943,1247,6,0.609091,1.21721,1.07147,-4.29765,6.78975,0.554887
+legacy,acute heat shock inside the heat cohort (4 libraries with it minus 6 without),480579,65480,3994,2167,1827,9,0.542564,0.882057,0.989036,-5.14548,7.03667,0.544976
 corrected,"ploidy, all 22 libraries (the draft's ploidy contrast)",454555,61056,952,430,522,0,0.548319,-1.17981,-1.32706,-5.63188,3.08704,0.41706
 corrected,"cohort, all 22 libraries (the draft's heat contrast)",454555,61056,2273,1089,1184,1,0.520897,0.229393,0.345494,-5.18312,5.80837,0.518589
 corrected,ploidy inside the heat cohort,454555,61056,12767,1813,10954,20,0.857993,-6.49405,-6.05074,-15.7031,1.95469,0.307881
 corrected,ploidy inside the control cohort,454555,61056,3252,2659,593,8,0.817651,3.91688,3.80854,-2.1678,10.2028,0.663227
 corrected,interaction (heat-cohort ploidy difference minus control-cohort ploidy difference),454555,61056,22846,2687,20159,1,0.882386,-10.4109,-9.32276,-23.0824,1.68933,0.285967
+corrected,"ploidy inside the heat cohort, without the high libraries",454555,61056,10266,4263,6003,31,0.584746,-1.50335,-1.4424,-9.81735,6.46941,0.446279
+corrected,"ploidy inside the control cohort, without the high libraries",454555,61056,3063,1899,1164,6,0.61998,1.22601,1.05263,-4.39243,6.84211,0.553099
+corrected,acute heat shock inside the heat cohort (4 libraries with it minus 6 without),454555,61056,3823,2066,1757,9,0.540413,1.01463,1.205,-5.03292,7.32219,0.554327

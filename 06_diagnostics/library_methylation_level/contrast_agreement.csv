@@ -1,5 +1,5 @@
-mode,cpg_set,n_cpg,pearson,spearman,n_above_in_both,n_above_in_both_same_sign,n_above_in_heat_cohort,n_above_in_control_cohort
-legacy,all tested CpGs,480579,-0.300317,-0.10121,969,181,13028,3349
-legacy,eligible CpGs,65480,-0.213844,-0.252536,969,181,12006,3318
-corrected,all tested CpGs,454555,-0.311424,-0.10219,957,177,12767,3252
-corrected,eligible CpGs,61056,-0.220788,-0.256795,957,177,11750,3223
+mode,cpg_set,n_cpg,pearson,spearman,n_above_in_heat_cohort,n_above_in_control_cohort,n_above_in_both,n_above_in_both_same_sign,n_above_in_both_expected_if_unrelated
+legacy,all tested CpGs,480579,-0.300317,-0.10121,13028,3349,969,181,90.7879
+legacy,eligible CpGs,65480,-0.213844,-0.252536,12006,3318,969,181,608.368
+corrected,all tested CpGs,454555,-0.311424,-0.10219,12767,3252,957,177,91.3383
+corrected,eligible CpGs,61056,-0.220788,-0.256795,11750,3223,957,177,620.254

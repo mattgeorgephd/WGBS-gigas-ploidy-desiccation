@@ -1,0 +1,7 @@
+cpg_set,n_cpg,pct_of_removed,n_in_repeat_track,pct_in_repeat_track,n_mitochondrial,n_unplaced_scaffold,n_in_long_runs,pct_in_long_runs,random_sets_pct_in_long_runs_median,random_sets_pct_in_long_runs_max,random_sets_drawn
+tested in legacy mode,480579,,109966,22.88,363,24592,,,,,
+kept by the rule of corrected mode,454555,,98671,21.71,0,20470,,,,,
+removed by the rule of corrected mode,26024,100,11295,43.4,363,4122,16216,62.31,0.53,1,1000
+removed: at or above the cutoff in exactly 1 library,7741,29.75,3490,45.08,0,1112,3334,43.07,,,
+removed: at or above the cutoff in 2 to 21 libraries,16315,62.69,7169,43.94,249,2716,10980,67.3,,,
+removed: at or above the cutoff in all 22 libraries,1968,7.56,636,32.32,114,294,1902,96.65,,,

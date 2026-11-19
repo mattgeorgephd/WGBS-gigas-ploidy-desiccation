@@ -1,5 +1,7 @@
 table,quantity,value,definition
 session,r_version,R version 4.3.3 (2024-02-29),R version that made the reads and gave the warnings reported in this table
+session,go_db_version,3.13.0,Version of the GO.db package (the ontology) behind legacy_reader_position_control.csv
+session,topgo_version,2.54.0,Version of the topGO package behind legacy_reader_position_control.csv
 universe,universe_map_lines,48263,Lines of the legacy universe map (one line per blastx alignment of a transcript)
 universe,universe_transcripts,27469,Distinct transcripts of the legacy universe
 universe,universe_transcripts_first_five_linkage_groups,17070,Universe transcripts on the first five linkage groups (NC_047559.1 to NC_047563.1)
@@ -49,7 +51,11 @@ ploidy,longest_surviving_run_first,XM_034462509.1,First transcript of the longes
 ploidy,longest_surviving_run_last,XM_034479694.1,Last transcript of the longest run
 ploidy,percent_surviving_transcripts_in_longest_run,96.8,Transcripts of the longest run as a percent of the surviving transcripts
 ploidy,universe_transcripts_in_run_range,11284,Universe transcripts whose accession lies between the first and the last transcript of the longest run
+ploidy,tested_transcripts_in_longest_run,603,Transcripts of the longest run that are in the legacy universe
 ploidy,mrnas_in_run_range_by_sequence,NC_047559.1: 1629; NC_047560.1: 4034; NC_047561.1: 3807; NC_047562.1: 3435; NC_047563.1: 4232; unplaced scaffolds: 49,"Annotated XM mRNAs (transcript table of step 08) whose accession lies in that range, counted by sequence; sequences with none are left out"
+ploidy,surviving_transcripts_first_five_linkage_groups,608,Surviving transcripts on the first five linkage groups (NC_047559.1 to NC_047563.1)
+ploidy,surviving_transcripts_last_five_linkage_groups,9,Surviving transcripts on the last five linkage groups (NC_047564.1 to NC_047568.1)
+ploidy,surviving_transcripts_unplaced_scaffolds,6,Surviving transcripts on unplaced scaffolds
 ploidy,tested_transcripts_first_five_linkage_groups,601,"Transcripts that survive and are in the legacy universe, on the first five linkage groups (NC_047559.1 to NC_047563.1)"
 ploidy,percent_tested_transcripts_first_five_linkage_groups,98.2,Those transcripts as a percent of all that survive and are in the universe
 ploidy,tested_transcripts_last_five_linkage_groups,5,"Transcripts that survive and are in the legacy universe, on the last five linkage groups (NC_047564.1 to NC_047568.1)"
@@ -117,7 +123,11 @@ heat,longest_surviving_run_first,XM_034456493.1,First transcript of the longest 
 heat,longest_surviving_run_last,XM_034483609.1,Last transcript of the longest run
 heat,percent_surviving_transcripts_in_longest_run,56.8,Transcripts of the longest run as a percent of the surviving transcripts
 heat,universe_transcripts_in_run_range,14665,Universe transcripts whose accession lies between the first and the last transcript of the longest run
+heat,tested_transcripts_in_longest_run,1611,Transcripts of the longest run that are in the legacy universe
 heat,mrnas_in_run_range_by_sequence,NC_047559.1: 2541; NC_047560.1: 4034; NC_047561.1: 3807; NC_047562.1: 3435; NC_047563.1: 4412; NC_047564.1: 3387; NC_047568.1: 2439; unplaced scaffolds: 3062,"Annotated XM mRNAs (transcript table of step 08) whose accession lies in that range, counted by sequence; sequences with none are left out"
+heat,surviving_transcripts_first_five_linkage_groups,1662,Surviving transcripts on the first five linkage groups (NC_047559.1 to NC_047563.1)
+heat,surviving_transcripts_last_five_linkage_groups,1631,Surviving transcripts on the last five linkage groups (NC_047564.1 to NC_047568.1)
+heat,surviving_transcripts_unplaced_scaffolds,151,Surviving transcripts on unplaced scaffolds
 heat,tested_transcripts_first_five_linkage_groups,1379,"Transcripts that survive and are in the legacy universe, on the first five linkage groups (NC_047559.1 to NC_047563.1)"
 heat,percent_tested_transcripts_first_five_linkage_groups,64.2,Those transcripts as a percent of all that survive and are in the universe
 heat,tested_transcripts_last_five_linkage_groups,628,"Transcripts that survive and are in the legacy universe, on the last five linkage groups (NC_047564.1 to NC_047568.1)"
@@ -185,7 +195,11 @@ shared,longest_surviving_run_first,XM_011413849.3,First transcript of the longes
 shared,longest_surviving_run_last,XM_034483405.1,Last transcript of the longest run
 shared,percent_surviving_transcripts_in_longest_run,100.0,Transcripts of the longest run as a percent of the surviving transcripts
 shared,universe_transcripts_in_run_range,27279,Universe transcripts whose accession lies between the first and the last transcript of the longest run
+shared,tested_transcripts_in_longest_run,247,Transcripts of the longest run that are in the legacy universe
 shared,mrnas_in_run_range_by_sequence,NC_047559.1: 6624; NC_047560.1: 4672; NC_047561.1: 6656; NC_047562.1: 5286; NC_047563.1: 6048; NC_047564.1: 6849; NC_047565.1: 7788; NC_047566.1: 5174; NC_047567.1: 2946; NC_047568.1: 6970; unplaced scaffolds: 3863,"Annotated XM mRNAs (transcript table of step 08) whose accession lies in that range, counted by sequence; sequences with none are left out"
+shared,surviving_transcripts_first_five_linkage_groups,217,Surviving transcripts on the first five linkage groups (NC_047559.1 to NC_047563.1)
+shared,surviving_transcripts_last_five_linkage_groups,144,Surviving transcripts on the last five linkage groups (NC_047564.1 to NC_047568.1)
+shared,surviving_transcripts_unplaced_scaffolds,18,Surviving transcripts on unplaced scaffolds
 shared,tested_transcripts_first_five_linkage_groups,160,"Transcripts that survive and are in the legacy universe, on the first five linkage groups (NC_047559.1 to NC_047563.1)"
 shared,percent_tested_transcripts_first_five_linkage_groups,64.8,Those transcripts as a percent of all that survive and are in the universe
 shared,tested_transcripts_last_five_linkage_groups,69,"Transcripts that survive and are in the legacy universe, on the last five linkage groups (NC_047564.1 to NC_047568.1)"

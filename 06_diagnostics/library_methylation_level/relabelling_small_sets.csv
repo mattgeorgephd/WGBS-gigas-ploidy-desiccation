@@ -1,0 +1,1167 @@
+mode,comparison,group_a,libraries_in_group_a,n_above_threshold,observed_grouping,observed_grouping_with_labels_exchanged
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_3 zr3534_4 zr3534_5,13028,TRUE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_6 zr3534_7 zr3534_8 zr3534_9 zr3534_10,13028,FALSE,TRUE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_7 zr3534_8 zr3534_9 zr3534_10,12822,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_3 zr3534_4 zr3534_5 zr3534_6,12822,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_3 zr3534_4 zr3534_5 zr3534_6,12017,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_7 zr3534_8 zr3534_9 zr3534_10,12017,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_6 zr3534_7 zr3534_8 zr3534_9,11067,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_3 zr3534_4 zr3534_5 zr3534_10,11067,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_6 zr3534_8 zr3534_9 zr3534_10,10963,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_3 zr3534_4 zr3534_5 zr3534_7,10963,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_6 zr3534_7 zr3534_9 zr3534_10,10948,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_3 zr3534_4 zr3534_5 zr3534_8,10948,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_8 zr3534_9 zr3534_10,10297,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_3 zr3534_4 zr3534_5 zr3534_6 zr3534_7,10297,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_7 zr3534_8 zr3534_9,10282,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_3 zr3534_4 zr3534_5 zr3534_6 zr3534_10,10282,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_3 zr3534_4 zr3534_5 zr3534_10,10233,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_6 zr3534_7 zr3534_8 zr3534_9,10233,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_3 zr3534_4 zr3534_5 zr3534_8,10138,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_6 zr3534_7 zr3534_9 zr3534_10,10138,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_7 zr3534_9 zr3534_10,10127,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_3 zr3534_4 zr3534_5 zr3534_6 zr3534_8,10127,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_3 zr3534_4 zr3534_5 zr3534_7,10071,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_6 zr3534_8 zr3534_9 zr3534_10,10071,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_6 zr3534_7 zr3534_8 zr3534_10,10029,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_3 zr3534_4 zr3534_5 zr3534_9,10029,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_7 zr3534_8 zr3534_10,9374,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_3 zr3534_4 zr3534_5 zr3534_6 zr3534_9,9374,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_3 zr3534_4 zr3534_5 zr3534_9,9368,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_6 zr3534_7 zr3534_8 zr3534_10,9368,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_6 zr3534_7 zr3534_9,9026,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_3 zr3534_4 zr3534_5 zr3534_8 zr3534_10,9026,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_6 zr3534_8 zr3534_9,8766,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_3 zr3534_4 zr3534_5 zr3534_7 zr3534_10,8766,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_6 zr3534_9 zr3534_10,8624,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_3 zr3534_4 zr3534_5 zr3534_7 zr3534_8,8624,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_6 zr3534_8 zr3534_10,8568,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_3 zr3534_4 zr3534_5 zr3534_7 zr3534_9,8568,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_6 zr3534_7 zr3534_10,7879,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_3 zr3534_4 zr3534_5 zr3534_8 zr3534_9,7879,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_6 zr3534_7 zr3534_8,7876,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_3 zr3534_4 zr3534_5 zr3534_9 zr3534_10,7876,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_3 zr3534_5 zr3534_6,6320,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_4 zr3534_7 zr3534_8 zr3534_9 zr3534_10,6320,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_3 zr3534_4 zr3534_6,6222,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_5 zr3534_7 zr3534_8 zr3534_9 zr3534_10,6222,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_3 zr3534_4 zr3534_10,5613,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_5 zr3534_6 zr3534_7 zr3534_8 zr3534_9,5613,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_3 zr3534_4 zr3534_8,5381,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_5 zr3534_6 zr3534_7 zr3534_9 zr3534_10,5381,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_3 zr3534_5 zr3534_10,5336,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_4 zr3534_6 zr3534_7 zr3534_8 zr3534_9,5336,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_3 zr3534_4 zr3534_7,5212,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_5 zr3534_6 zr3534_8 zr3534_9 zr3534_10,5212,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_3 zr3534_5 zr3534_8,5131,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_4 zr3534_6 zr3534_7 zr3534_9 zr3534_10,5131,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_4 zr3534_7 zr3534_8 zr3534_9,5046,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_3 zr3534_5 zr3534_6 zr3534_10,5046,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_5 zr3534_7 zr3534_8 zr3534_9,5034,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_3 zr3534_4 zr3534_6 zr3534_10,5034,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_3 zr3534_4 zr3534_9,4983,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_5 zr3534_6 zr3534_7 zr3534_8 zr3534_10,4983,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_3 zr3534_5 zr3534_7,4910,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_4 zr3534_6 zr3534_8 zr3534_9 zr3534_10,4910,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_4 zr3534_7 zr3534_9 zr3534_10,4899,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_3 zr3534_5 zr3534_6 zr3534_8,4899,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_5 zr3534_6 zr3534_7 zr3534_9,4775,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_3 zr3534_4 zr3534_8 zr3534_10,4775,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_4 zr3534_8 zr3534_9 zr3534_10,4772,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_3 zr3534_5 zr3534_6 zr3534_7,4772,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_3 zr3534_5 zr3534_9,4716,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_4 zr3534_6 zr3534_7 zr3534_8 zr3534_10,4716,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_5 zr3534_7 zr3534_9 zr3534_10,4713,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_3 zr3534_4 zr3534_6 zr3534_8,4713,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_5 zr3534_8 zr3534_9 zr3534_10,4681,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_3 zr3534_4 zr3534_6 zr3534_7,4681,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_3 zr3534_6 zr3534_10,4574,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_4 zr3534_5 zr3534_7 zr3534_8 zr3534_9,4574,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_3 zr3534_8 zr3534_10,4540,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_4 zr3534_5 zr3534_6 zr3534_7 zr3534_9,4540,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_4 zr3534_6 zr3534_7 zr3534_9,4536,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_3 zr3534_5 zr3534_8 zr3534_10,4536,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_4 zr3534_7 zr3534_8 zr3534_10,4430,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_3 zr3534_5 zr3534_6 zr3534_9,4430,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_3 zr3534_6 zr3534_8,4420,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_4 zr3534_5 zr3534_7 zr3534_9 zr3534_10,4420,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_5 zr3534_6 zr3534_8 zr3534_9,4360,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_3 zr3534_4 zr3534_7 zr3534_10,4360,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_5 zr3534_6 zr3534_8 zr3534_10,4322,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_3 zr3534_4 zr3534_7 zr3534_9,4322,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_4 zr3534_5 zr3534_6,4308,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_3 zr3534_7 zr3534_8 zr3534_9 zr3534_10,4308,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_4 zr3534_5 zr3534_6 zr3534_10,4289,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_3 zr3534_7 zr3534_8 zr3534_9,4289,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_4 zr3534_5 zr3534_7 zr3534_9,4272,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_3 zr3534_6 zr3534_8 zr3534_10,4272,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_3 zr3534_7 zr3534_9,4264,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_4 zr3534_5 zr3534_6 zr3534_8 zr3534_10,4264,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_5 zr3534_6 zr3534_9 zr3534_10,4257,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_3 zr3534_4 zr3534_7 zr3534_8,4257,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_3 zr3534_5 zr3534_6 zr3534_10,4197,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_5 zr3534_7 zr3534_8 zr3534_10,4197,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_3 zr3534_4 zr3534_6 zr3534_9,4197,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_4 zr3534_7 zr3534_8 zr3534_9,4197,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_3 zr3534_6 zr3534_7,4194,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_4 zr3534_5 zr3534_8 zr3534_9 zr3534_10,4194,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_4 zr3534_6 zr3534_8 zr3534_10,4158,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_3 zr3534_5 zr3534_7 zr3534_9,4158,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_4 zr3534_5 zr3534_6 zr3534_8,4138,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_3 zr3534_7 zr3534_9 zr3534_10,4138,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_4 zr3534_5 zr3534_6 zr3534_7,4115,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_3 zr3534_8 zr3534_9 zr3534_10,4115,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_4 zr3534_5 zr3534_6 zr3534_9,4107,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_3 zr3534_7 zr3534_8 zr3534_10,4107,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_4 zr3534_6 zr3534_8 zr3534_9,4099,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_3 zr3534_5 zr3534_7 zr3534_10,4099,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_4 zr3534_6 zr3534_9 zr3534_10,4097,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_3 zr3534_5 zr3534_7 zr3534_8,4097,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_3 zr3534_5 zr3534_6 zr3534_8,4075,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_4 zr3534_7 zr3534_9 zr3534_10,4075,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_3 zr3534_6 zr3534_9,4068,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_4 zr3534_5 zr3534_7 zr3534_8 zr3534_10,4068,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_3 zr3534_7 zr3534_10,4066,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_4 zr3534_5 zr3534_6 zr3534_8 zr3534_9,4066,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_3 zr3534_4 zr3534_6 zr3534_10,4056,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_5 zr3534_7 zr3534_8 zr3534_9,4056,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_4 zr3534_5 zr3534_8 zr3534_10,3981,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_3 zr3534_6 zr3534_7 zr3534_9,3981,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_5 zr3534_6 zr3534_7 zr3534_10,3975,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_3 zr3534_4 zr3534_8 zr3534_9,3975,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_3 zr3534_8 zr3534_9,3966,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_4 zr3534_5 zr3534_6 zr3534_7 zr3534_10,3966,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_3 zr3534_7 zr3534_8,3959,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_4 zr3534_5 zr3534_6 zr3534_9 zr3534_10,3959,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_5 zr3534_6 zr3534_7 zr3534_8,3935,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_3 zr3534_4 zr3534_9 zr3534_10,3935,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_4 zr3534_6 zr3534_7 zr3534_10,3923,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_3 zr3534_5 zr3534_8 zr3534_9,3923,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_3 zr3534_9 zr3534_10,3916,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_4 zr3534_5 zr3534_6 zr3534_7 zr3534_8,3916,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_3 zr3534_5 zr3534_6 zr3534_7,3853,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_4 zr3534_8 zr3534_9 zr3534_10,3853,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_4 zr3534_7 zr3534_9,3821,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_3 zr3534_5 zr3534_6 zr3534_8 zr3534_10,3821,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_4 zr3534_6 zr3534_7 zr3534_8,3819,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_3 zr3534_5 zr3534_9 zr3534_10,3819,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_3 zr3534_4 zr3534_8 zr3534_10,3740,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_5 zr3534_6 zr3534_7 zr3534_9,3740,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_4 zr3534_5 zr3534_8 zr3534_9,3720,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_3 zr3534_6 zr3534_7 zr3534_10,3720,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_3 zr3534_5 zr3534_6 zr3534_9,3697,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_4 zr3534_7 zr3534_8 zr3534_10,3697,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_4 zr3534_5 zr3534_7 zr3534_8,3689,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_3 zr3534_6 zr3534_9 zr3534_10,3689,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_3 zr3534_4 zr3534_6 zr3534_8,3678,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_5 zr3534_7 zr3534_9 zr3534_10,3678,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_3 zr3534_4 zr3534_6 zr3534_7,3660,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_5 zr3534_8 zr3534_9 zr3534_10,3660,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_4 zr3534_5 zr3534_9 zr3534_10,3650,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_3 zr3534_6 zr3534_7 zr3534_8,3650,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_3 zr3534_5 zr3534_8 zr3534_10,3642,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_4 zr3534_6 zr3534_7 zr3534_9,3642,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_4 zr3534_5 zr3534_7 zr3534_10,3639,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_3 zr3534_6 zr3534_8 zr3534_9,3639,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_4 zr3534_8 zr3534_10,3606,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_3 zr3534_5 zr3534_6 zr3534_7 zr3534_9,3606,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_4 zr3534_5 zr3534_10,3529,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_3 zr3534_6 zr3534_7 zr3534_8 zr3534_9,3529,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_4 zr3534_5 zr3534_8,3475,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_5 zr3534_7 zr3534_9,3475,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_3 zr3534_4 zr3534_6 zr3534_8 zr3534_10,3475,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_3 zr3534_6 zr3534_7 zr3534_9 zr3534_10,3475,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_4 zr3534_6 zr3534_10,3471,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_3 zr3534_5 zr3534_7 zr3534_8 zr3534_9,3471,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_3 zr3534_4 zr3534_7 zr3534_9,3444,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_5 zr3534_6 zr3534_8 zr3534_10,3444,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_3 zr3534_7 zr3534_8 zr3534_9,3410,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_4 zr3534_5 zr3534_6 zr3534_10,3410,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_4 zr3534_5 zr3534_7,3406,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_3 zr3534_6 zr3534_8 zr3534_9 zr3534_10,3406,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_3 zr3534_8 zr3534_9 zr3534_10,3399,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_4 zr3534_5 zr3534_6 zr3534_7,3399,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_4 zr3534_9 zr3534_10,3366,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_3 zr3534_5 zr3534_6 zr3534_7 zr3534_8,3366,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_5 zr3534_6 zr3534_10,3355,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_3 zr3534_4 zr3534_7 zr3534_8 zr3534_9,3355,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_3 zr3534_4 zr3534_6 zr3534_9,3347,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_5 zr3534_7 zr3534_8 zr3534_10,3347,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_4 zr3534_8 zr3534_9,3339,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_3 zr3534_5 zr3534_6 zr3534_7 zr3534_10,3339,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_4 zr3534_7 zr3534_10,3336,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_3 zr3534_5 zr3534_6 zr3534_8 zr3534_9,3336,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_3 zr3534_5 zr3534_7 zr3534_9,3334,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_4 zr3534_6 zr3534_8 zr3534_10,3334,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_3 zr3534_6 zr3534_8 zr3534_10,3327,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_4 zr3534_5 zr3534_7 zr3534_9,3327,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_3 zr3534_7 zr3534_9 zr3534_10,3319,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_4 zr3534_5 zr3534_6 zr3534_8,3319,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_4 zr3534_6 zr3534_7,3308,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_3 zr3534_5 zr3534_8 zr3534_9 zr3534_10,3308,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_4 zr3534_5 zr3534_9,3294,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_3 zr3534_6 zr3534_7 zr3534_8 zr3534_10,3294,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_3 zr3534_4 zr3534_7 zr3534_10,3289,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_5 zr3534_6 zr3534_8 zr3534_9,3289,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_5 zr3534_6 zr3534_9,3237,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_3 zr3534_4 zr3534_7 zr3534_8 zr3534_10,3237,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_5 zr3534_8 zr3534_10,3229,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_3 zr3534_4 zr3534_6 zr3534_7 zr3534_9,3229,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_4 zr3534_6 zr3534_9,3223,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_3 zr3534_5 zr3534_7 zr3534_8 zr3534_10,3223,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_5 zr3534_6 zr3534_8,3209,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_3 zr3534_4 zr3534_7 zr3534_9 zr3534_10,3209,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_4 zr3534_6 zr3534_8,3200,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_3 zr3534_5 zr3534_7 zr3534_9 zr3534_10,3200,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_3 zr3534_4 zr3534_7 zr3534_8,3197,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_5 zr3534_6 zr3534_9 zr3534_10,3197,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_4 zr3534_7 zr3534_8,3184,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_3 zr3534_5 zr3534_6 zr3534_9 zr3534_10,3184,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_3 zr3534_6 zr3534_7 zr3534_9,3177,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_4 zr3534_5 zr3534_8 zr3534_10,3177,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_3 zr3534_4 zr3534_8 zr3534_9,3170,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_5 zr3534_6 zr3534_7 zr3534_10,3170,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_3 zr3534_5 zr3534_8 zr3534_9,3151,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_4 zr3534_6 zr3534_7 zr3534_10,3151,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_5 zr3534_6 zr3534_7,3132,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_3 zr3534_4 zr3534_8 zr3534_9 zr3534_10,3132,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_3 zr3534_7 zr3534_8 zr3534_10,3119,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_4 zr3534_5 zr3534_6 zr3534_9,3119,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_5 zr3534_8 zr3534_9,3100,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_3 zr3534_4 zr3534_6 zr3534_7 zr3534_10,3100,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_3 zr3534_4 zr3534_9 zr3534_10,3083,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_5 zr3534_6 zr3534_7 zr3534_8,3083,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_3 zr3534_5 zr3534_7 zr3534_8,3070,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_4 zr3534_6 zr3534_9 zr3534_10,3070,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_3 zr3534_5 zr3534_7 zr3534_10,3039,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_4 zr3534_6 zr3534_8 zr3534_9,3039,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_5 zr3534_9 zr3534_10,3019,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_3 zr3534_4 zr3534_6 zr3534_7 zr3534_8,3019,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_3 zr3534_5 zr3534_9 zr3534_10,2983,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_4 zr3534_6 zr3534_7 zr3534_8,2983,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_3 zr3534_6 zr3534_8 zr3534_9,2890,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_4 zr3534_5 zr3534_7 zr3534_10,2890,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_3 zr3534_6 zr3534_9 zr3534_10,2885,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_4 zr3534_5 zr3534_7 zr3534_8,2885,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_5 zr3534_7 zr3534_10,2877,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_3 zr3534_4 zr3534_6 zr3534_8 zr3534_9,2877,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_5 zr3534_7 zr3534_8,2824,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_3 zr3534_4 zr3534_6 zr3534_9 zr3534_10,2824,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_3 zr3534_6 zr3534_7 zr3534_10,2762,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_4 zr3534_5 zr3534_8 zr3534_9,2762,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_3 zr3534_6 zr3534_7 zr3534_8,2720,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_4 zr3534_5 zr3534_9 zr3534_10,2720,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, without the high libraries",diploid,zr3534_1 zr3534_2,10732,TRUE,FALSE
+legacy,"ploidy inside the heat cohort, without the high libraries",diploid,zr3534_2 zr3534_6,8737,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, without the high libraries",diploid,zr3534_1 zr3534_6,8589,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, without the high libraries",diploid,zr3534_7 zr3534_9,7894,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, without the high libraries",diploid,zr3534_2 zr3534_10,7561,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, without the high libraries",diploid,zr3534_1 zr3534_10,7500,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, without the high libraries",diploid,zr3534_1 zr3534_9,7402,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, without the high libraries",diploid,zr3534_1 zr3534_7,7377,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, without the high libraries",diploid,zr3534_1 zr3534_8,7349,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, without the high libraries",diploid,zr3534_2 zr3534_7,7317,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, without the high libraries",diploid,zr3534_2 zr3534_8,7234,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, without the high libraries",diploid,zr3534_2 zr3534_9,6912,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, without the high libraries",diploid,zr3534_8 zr3534_10,6912,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, without the high libraries",diploid,zr3534_6 zr3534_10,6653,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, without the high libraries",diploid,zr3534_6 zr3534_7,6556,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, without the high libraries",diploid,zr3534_8 zr3534_9,6466,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, without the high libraries",diploid,zr3534_6 zr3534_8,6403,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, without the high libraries",diploid,zr3534_6 zr3534_9,6364,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, without the high libraries",diploid,zr3534_7 zr3534_10,6285,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, without the high libraries",diploid,zr3534_7 zr3534_8,6238,FALSE,FALSE
+legacy,"ploidy inside the heat cohort, without the high libraries",diploid,zr3534_9 zr3534_10,6122,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_3 zr3644_4 zr3644_5 zr3644_13 zr3644_16 zr3644_18,5806,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_3 zr3644_4 zr3644_6 zr3644_13 zr3644_16 zr3644_18,5719,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_4 zr3644_5 zr3644_6 zr3644_13 zr3644_16 zr3644_18,5690,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_3 zr3644_4 zr3644_5 zr3644_6 zr3644_13 zr3644_16,5588,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_3 zr3644_5 zr3644_6 zr3644_13 zr3644_16 zr3644_18,5585,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_3 zr3644_4 zr3644_5 zr3644_6 zr3644_16 zr3644_18,5372,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_3 zr3644_4 zr3644_5 zr3644_6 zr3644_13 zr3644_18,5043,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_4 zr3644_5 zr3644_13 zr3644_16 zr3644_18,5004,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_4 zr3644_5 zr3644_6 zr3644_13 zr3644_18,4909,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_3 zr3644_4 zr3644_13 zr3644_16 zr3644_18,4884,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_5 zr3644_6 zr3644_13 zr3644_16 zr3644_18,4781,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_4 zr3644_6 zr3644_13 zr3644_16 zr3644_18,4769,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_3 zr3644_6 zr3644_13 zr3644_16 zr3644_17,4718,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_4 zr3644_5 zr3644_6 zr3644_16 zr3644_18,4692,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_3 zr3644_4 zr3644_5 zr3644_13 zr3644_18,4684,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_3 zr3644_5 zr3644_13 zr3644_16 zr3644_18,4647,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_3 zr3644_4 zr3644_5 zr3644_13 zr3644_16,4576,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_3 zr3644_4 zr3644_13 zr3644_16 zr3644_17,4521,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_3 zr3644_4 zr3644_6 zr3644_16 zr3644_17,4506,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_3 zr3644_4 zr3644_6 zr3644_16 zr3644_18,4485,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_5 zr3644_6 zr3644_17 zr3644_18,4462,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_3 zr3644_4 zr3644_5 zr3644_6 zr3644_18,4458,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_3 zr3644_5 zr3644_13 zr3644_16 zr3644_17,4403,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_4 zr3644_6 zr3644_17 zr3644_18,4393,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_3 zr3644_5 zr3644_6 zr3644_16 zr3644_17,4377,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_3 zr3644_4 zr3644_5 zr3644_16 zr3644_18,4376,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_3 zr3644_6 zr3644_13 zr3644_16 zr3644_18,4372,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_3 zr3644_4 zr3644_5 zr3644_13 zr3644_16 zr3644_17,4369,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_3 zr3644_5 zr3644_6 zr3644_13 zr3644_16 zr3644_17,4313,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_3 zr3644_5 zr3644_6 zr3644_13 zr3644_16,4297,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_3 zr3644_5 zr3644_6 zr3644_13 zr3644_18,4271,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_3 zr3644_4 zr3644_6 zr3644_13 zr3644_16 zr3644_17,4269,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_3 zr3644_4 zr3644_6 zr3644_13 zr3644_16,4267,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_3 zr3644_4 zr3644_6 zr3644_13 zr3644_16,4255,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_5 zr3644_6 zr3644_13 zr3644_16 zr3644_17,4253,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_3 zr3644_4 zr3644_6 zr3644_13 zr3644_18,4247,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_3 zr3644_5 zr3644_6 zr3644_13 zr3644_17,4237,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_4 zr3644_5 zr3644_6 zr3644_13 zr3644_16,4209,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_3 zr3644_5 zr3644_6 zr3644_16 zr3644_18,4195,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_3 zr3644_5 zr3644_6 zr3644_13 zr3644_16,4188,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_3 zr3644_4 zr3644_13 zr3644_16 zr3644_17 zr3644_18,4169,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_4 zr3644_5 zr3644_6 zr3644_17,4131,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_4 zr3644_5 zr3644_13 zr3644_16 zr3644_17 zr3644_18,4114,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_3 zr3644_4 zr3644_5 zr3644_6 zr3644_17,4109,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_3 zr3644_5 zr3644_6 zr3644_17,4094,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_3 zr3644_4 zr3644_6 zr3644_17,4091,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_4 zr3644_6 zr3644_13 zr3644_16 zr3644_17,4066,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_4 zr3644_5 zr3644_17 zr3644_18,4062,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_3 zr3644_6 zr3644_13 zr3644_16 zr3644_18,4046,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_4 zr3644_5 zr3644_6 zr3644_17 zr3644_18,4045,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_3 zr3644_4 zr3644_13 zr3644_16 zr3644_18,4043,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_3 zr3644_4 zr3644_5 zr3644_13 zr3644_16,4039,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_3 zr3644_6 zr3644_17 zr3644_18,4015,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_3 zr3644_4 zr3644_6 zr3644_16 zr3644_18,4009,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_5 zr3644_6 zr3644_13 zr3644_16 zr3644_17 zr3644_18,4009,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_3 zr3644_5 zr3644_13 zr3644_16 zr3644_17 zr3644_18,4005,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_3 zr3644_4 zr3644_5 zr3644_6 zr3644_16 zr3644_17,4002,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_3 zr3644_4 zr3644_5 zr3644_6 zr3644_16,3987,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_3 zr3644_4 zr3644_5 zr3644_6 zr3644_13,3980,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_4 zr3644_5 zr3644_6 zr3644_13 zr3644_16 zr3644_17,3980,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_4 zr3644_5 zr3644_6 zr3644_17 zr3644_18,3978,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_5 zr3644_6 zr3644_13 zr3644_17,3964,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_5 zr3644_13 zr3644_17 zr3644_18,3956,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_3 zr3644_6 zr3644_16 zr3644_17 zr3644_18,3944,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_3 zr3644_4 zr3644_5 zr3644_16 zr3644_17,3936,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_3 zr3644_6 zr3644_16 zr3644_17,3931,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_3 zr3644_13 zr3644_16 zr3644_17 zr3644_18,3926,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_5 zr3644_6 zr3644_13 zr3644_17 zr3644_18,3912,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_3 zr3644_13 zr3644_16 zr3644_17,3907,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_3 zr3644_5 zr3644_6 zr3644_17 zr3644_18,3899,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_6 zr3644_13 zr3644_17 zr3644_18,3898,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_3 zr3644_4 zr3644_5 zr3644_6 zr3644_16,3884,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_4 zr3644_5 zr3644_6 zr3644_16 zr3644_17,3884,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_3 zr3644_5 zr3644_13 zr3644_16 zr3644_18,3883,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_6 zr3644_13 zr3644_16 zr3644_17 zr3644_18,3883,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_4 zr3644_6 zr3644_13 zr3644_16 zr3644_17 zr3644_18,3883,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_3 zr3644_4 zr3644_6 zr3644_16 zr3644_17 zr3644_18,3878,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_3 zr3644_4 zr3644_6 zr3644_17 zr3644_18,3876,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_5 zr3644_6 zr3644_13 zr3644_16 zr3644_18,3873,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_3 zr3644_4 zr3644_6 zr3644_13 zr3644_17,3867,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_4 zr3644_5 zr3644_6 zr3644_18,3852,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_4 zr3644_5 zr3644_6 zr3644_16 zr3644_17 zr3644_18,3846,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_4 zr3644_6 zr3644_13 zr3644_16 zr3644_18,3837,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_3 zr3644_6 zr3644_13 zr3644_16 zr3644_17 zr3644_18,3836,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_4 zr3644_13 zr3644_17 zr3644_18,3831,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_3 zr3644_4 zr3644_17 zr3644_18,3829,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_3 zr3644_6 zr3644_13 zr3644_17,3823,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_3 zr3644_4 zr3644_5 zr3644_13 zr3644_17,3819,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_3 zr3644_5 zr3644_13 zr3644_17,3813,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_3 zr3644_4 zr3644_5 zr3644_17,3806,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_4 zr3644_6 zr3644_16 zr3644_17 zr3644_18,3806,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_4 zr3644_5 zr3644_13 zr3644_17 zr3644_18,3799,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_4 zr3644_5 zr3644_6 zr3644_13 zr3644_17,3798,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_4 zr3644_5 zr3644_6 zr3644_13 zr3644_17 zr3644_18,3786,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_4 zr3644_5 zr3644_13 zr3644_16 zr3644_17,3774,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_3 zr3644_4 zr3644_16 zr3644_17,3740,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_4 zr3644_6 zr3644_16 zr3644_17,3734,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_3 zr3644_4 zr3644_5 zr3644_16 zr3644_17 zr3644_18,3733,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_3 zr3644_4 zr3644_16 zr3644_17 zr3644_18,3732,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_5 zr3644_6 zr3644_16 zr3644_17 zr3644_18,3732,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_6 zr3644_16 zr3644_17 zr3644_18,3728,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_3 zr3644_5 zr3644_17 zr3644_18,3724,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_5 zr3644_6 zr3644_16 zr3644_17,3721,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_4 zr3644_5 zr3644_6 zr3644_13 zr3644_16,3721,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_3 zr3644_5 zr3644_6 zr3644_16 zr3644_18,3714,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_4 zr3644_5 zr3644_13 zr3644_17,3712,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_6 zr3644_13 zr3644_16 zr3644_17,3683,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_3 zr3644_4 zr3644_5 zr3644_6 zr3644_13 zr3644_17,3681,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_3 zr3644_4 zr3644_13 zr3644_17,3678,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_3 zr3644_4 zr3644_5 zr3644_6 zr3644_17 zr3644_18,3676,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_3 zr3644_4 zr3644_5 zr3644_6 zr3644_18,3671,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_4 zr3644_5 zr3644_6 zr3644_16 zr3644_18,3669,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_13 zr3644_16 zr3644_17 zr3644_18,3666,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_3 zr3644_13 zr3644_17 zr3644_18,3661,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_3 zr3644_4 zr3644_5 zr3644_13 zr3644_17 zr3644_18,3655,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_5 zr3644_13 zr3644_16 zr3644_17 zr3644_18,3648,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_4 zr3644_6 zr3644_13 zr3644_17,3641,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_4 zr3644_13 zr3644_16 zr3644_17 zr3644_18,3639,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_3 zr3644_6 zr3644_13 zr3644_17 zr3644_18,3638,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_3 zr3644_5 zr3644_6 zr3644_16 zr3644_17 zr3644_18,3630,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_5 zr3644_6 zr3644_13 zr3644_17 zr3644_18,3626,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_4 zr3644_6 zr3644_13 zr3644_17 zr3644_18,3619,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_4 zr3644_13 zr3644_16 zr3644_17 zr3644_18,3619,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_5 zr3644_6 zr3644_13 zr3644_18,3609,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_4 zr3644_5 zr3644_6 zr3644_13 zr3644_18,3609,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_4 zr3644_16 zr3644_17 zr3644_18,3603,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_5 zr3644_13 zr3644_16 zr3644_17 zr3644_18,3599,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_3 zr3644_5 zr3644_6 zr3644_13 zr3644_18,3593,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_4 zr3644_5 zr3644_13 zr3644_16 zr3644_18,3559,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_4 zr3644_13 zr3644_16 zr3644_17,3556,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_3 zr3644_4 zr3644_13 zr3644_16 zr3644_17,3527,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_3 zr3644_4 zr3644_5 zr3644_6 zr3644_13,3526,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_3 zr3644_5 zr3644_16 zr3644_17,3514,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_5 zr3644_13 zr3644_16 zr3644_17,3512,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_4 zr3644_5 zr3644_13 zr3644_17 zr3644_18,3491,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_3 zr3644_4 zr3644_6 zr3644_13 zr3644_18,3482,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_3 zr3644_5 zr3644_13 zr3644_17 zr3644_18,3477,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_3 zr3644_4 zr3644_5 zr3644_17 zr3644_18,3475,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_3 zr3644_4 zr3644_5 zr3644_16 zr3644_18,3466,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_3 zr3644_4 zr3644_6 zr3644_18,3464,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_3 zr3644_5 zr3644_6 zr3644_13 zr3644_17 zr3644_18,3458,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_3 zr3644_4 zr3644_13 zr3644_17 zr3644_18,3451,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_3 zr3644_4 zr3644_5 zr3644_17 zr3644_18,3443,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_3 zr3644_5 zr3644_13 zr3644_16 zr3644_17,3438,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_4 zr3644_6 zr3644_13 zr3644_18,3423,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_3 zr3644_5 zr3644_16 zr3644_17 zr3644_18,3420,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_4 zr3644_5 zr3644_13 zr3644_18,3414,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_4 zr3644_5 zr3644_16 zr3644_17 zr3644_18,3383,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_3 zr3644_5 zr3644_6 zr3644_18,3379,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_3 zr3644_13 zr3644_16 zr3644_18,3374,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_4 zr3644_6 zr3644_16 zr3644_18,3370,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_5 zr3644_16 zr3644_17 zr3644_18,3365,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_3 zr3644_16 zr3644_17 zr3644_18,3360,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_4 zr3644_5 zr3644_13 zr3644_16 zr3644_17,3354,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_3 zr3644_13 zr3644_16 zr3644_17 zr3644_18,3343,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_4 zr3644_6 zr3644_13 zr3644_17 zr3644_18,3343,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_4 zr3644_6 zr3644_16 zr3644_17 zr3644_18,3312,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_3 zr3644_4 zr3644_13 zr3644_16,3311,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_3 zr3644_5 zr3644_13 zr3644_17 zr3644_18,3309,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_3 zr3644_4 zr3644_6 zr3644_13 zr3644_17 zr3644_18,3307,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_3 zr3644_6 zr3644_13 zr3644_16,3297,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_3 zr3644_4 zr3644_6 zr3644_16,3290,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_4 zr3644_5 zr3644_16 zr3644_17 zr3644_18,3285,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_3 zr3644_4 zr3644_5 zr3644_18,3277,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_6 zr3644_13 zr3644_16 zr3644_18,3275,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_3 zr3644_4 zr3644_5 zr3644_13 zr3644_18,3275,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_4 zr3644_13 zr3644_16 zr3644_18,3263,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_3 zr3644_4 zr3644_5 zr3644_13 zr3644_17,3256,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_3 zr3644_4 zr3644_16 zr3644_17 zr3644_18,3254,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_3 zr3644_5 zr3644_13 zr3644_16,3250,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_5 zr3644_6 zr3644_16 zr3644_18,3239,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_3 zr3644_4 zr3644_13 zr3644_17 zr3644_18,3236,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_4 zr3644_5 zr3644_16 zr3644_17,3232,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_3 zr3644_4 zr3644_6 zr3644_17 zr3644_18,3222,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_3 zr3644_5 zr3644_6 zr3644_17 zr3644_18,3212,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_5 zr3644_6 zr3644_13 zr3644_16 zr3644_17,3211,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_5 zr3644_6 zr3644_16 zr3644_17 zr3644_18,3209,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_3 zr3644_6 zr3644_13 zr3644_18,3196,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_3 zr3644_4 zr3644_5 zr3644_6,3190,TRUE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_3 zr3644_6 zr3644_16 zr3644_18,3184,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_3 zr3644_4 zr3644_16 zr3644_18,3183,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_5 zr3644_13 zr3644_16 zr3644_18,3183,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_3 zr3644_4 zr3644_13 zr3644_18,3179,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_6 zr3644_13 zr3644_16 zr3644_17 zr3644_18,3178,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_3 zr3644_5 zr3644_6 zr3644_13,3174,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_3 zr3644_5 zr3644_13 zr3644_18,3161,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_4 zr3644_5 zr3644_6 zr3644_13 zr3644_17,3159,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_3 zr3644_6 zr3644_13 zr3644_16 zr3644_17,3130,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_3 zr3644_4 zr3644_6 zr3644_16 zr3644_17,3113,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_3 zr3644_4 zr3644_5 zr3644_6 zr3644_17,3111,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_3 zr3644_5 zr3644_6 zr3644_13 zr3644_17,3108,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_3 zr3644_5 zr3644_6 zr3644_16,3106,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_3 zr3644_4 zr3644_5 zr3644_16 zr3644_17,3093,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_5 zr3644_6 zr3644_13 zr3644_16,3055,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_4 zr3644_5 zr3644_6 zr3644_16 zr3644_17,3027,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_4 zr3644_6 zr3644_13 zr3644_16 zr3644_17,3017,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_4 zr3644_5 zr3644_16 zr3644_18,3003,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_4 zr3644_5 zr3644_6 zr3644_13,3000,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_3 zr3644_4 zr3644_5 zr3644_13,2979,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_3 zr3644_5 zr3644_16 zr3644_17 zr3644_18,2964,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_3 zr3644_4 zr3644_6 zr3644_13,2942,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_3 zr3644_5 zr3644_6 zr3644_16 zr3644_17,2928,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_4 zr3644_6 zr3644_13 zr3644_16,2923,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_3 zr3644_5 zr3644_16 zr3644_18,2872,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_4 zr3644_5 zr3644_6 zr3644_16,2856,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_3 zr3644_4 zr3644_5 zr3644_16,2839,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_3 zr3644_6 zr3644_16 zr3644_17 zr3644_18,2824,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_4 zr3644_5 zr3644_13 zr3644_16,2790,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_3 zr3644_6 zr3644_13 zr3644_17 zr3644_18,2784,FALSE,FALSE
+legacy,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_3 zr3644_4 zr3644_6 zr3644_13 zr3644_17,2752,FALSE,FALSE
+legacy,acute heat shock inside the heat cohort,with acute heat shock,zr3534_1 zr3534_2 zr3534_7 zr3534_9,7350,FALSE,FALSE
+legacy,acute heat shock inside the heat cohort,with acute heat shock,zr3534_1 zr3534_2 zr3534_8 zr3534_9,6937,FALSE,FALSE
+legacy,acute heat shock inside the heat cohort,with acute heat shock,zr3534_1 zr3534_2 zr3534_9 zr3534_10,6727,FALSE,FALSE
+legacy,acute heat shock inside the heat cohort,with acute heat shock,zr3534_1 zr3534_2 zr3534_8 zr3534_10,6671,FALSE,FALSE
+legacy,acute heat shock inside the heat cohort,with acute heat shock,zr3534_1 zr3534_2 zr3534_7 zr3534_8,6208,FALSE,FALSE
+legacy,acute heat shock inside the heat cohort,with acute heat shock,zr3534_1 zr3534_2 zr3534_7 zr3534_10,6154,FALSE,FALSE
+legacy,acute heat shock inside the heat cohort,with acute heat shock,zr3534_1 zr3534_2 zr3534_6 zr3534_9,6064,FALSE,FALSE
+legacy,acute heat shock inside the heat cohort,with acute heat shock,zr3534_1 zr3534_2 zr3534_6 zr3534_10,5839,FALSE,FALSE
+legacy,acute heat shock inside the heat cohort,with acute heat shock,zr3534_3 zr3534_5 zr3534_6 zr3534_10,5766,FALSE,FALSE
+legacy,acute heat shock inside the heat cohort,with acute heat shock,zr3534_1 zr3534_2 zr3534_6 zr3534_8,5757,FALSE,FALSE
+legacy,acute heat shock inside the heat cohort,with acute heat shock,zr3534_3 zr3534_5 zr3534_6 zr3534_8,5720,FALSE,FALSE
+legacy,acute heat shock inside the heat cohort,with acute heat shock,zr3534_3 zr3534_5 zr3534_6 zr3534_7,5610,FALSE,FALSE
+legacy,acute heat shock inside the heat cohort,with acute heat shock,zr3534_1 zr3534_2 zr3534_6 zr3534_7,5606,FALSE,FALSE
+legacy,acute heat shock inside the heat cohort,with acute heat shock,zr3534_3 zr3534_4 zr3534_6 zr3534_7,5058,FALSE,FALSE
+legacy,acute heat shock inside the heat cohort,with acute heat shock,zr3534_3 zr3534_5 zr3534_6 zr3534_9,5035,FALSE,FALSE
+legacy,acute heat shock inside the heat cohort,with acute heat shock,zr3534_3 zr3534_4 zr3534_6 zr3534_10,5028,FALSE,FALSE
+legacy,acute heat shock inside the heat cohort,with acute heat shock,zr3534_3 zr3534_5 zr3534_8 zr3534_10,4923,FALSE,FALSE
+legacy,acute heat shock inside the heat cohort,with acute heat shock,zr3534_3 zr3534_4 zr3534_6 zr3534_8,4897,FALSE,FALSE
+legacy,acute heat shock inside the heat cohort,with acute heat shock,zr3534_2 zr3534_3 zr3534_6 zr3534_10,4871,FALSE,FALSE
+legacy,acute heat shock inside the heat cohort,with acute heat shock,zr3534_2 zr3534_3 zr3534_8 zr3534_10,4795,FALSE,FALSE
+legacy,acute heat shock inside the heat cohort,with acute heat shock,zr3534_4 zr3534_5 zr3534_6 zr3534_7,4756,FALSE,FALSE
+legacy,acute heat shock inside the heat cohort,with acute heat shock,zr3534_3 zr3534_5 zr3534_7 zr3534_9,4718,FALSE,FALSE
+legacy,acute heat shock inside the heat cohort,with acute heat shock,zr3534_4 zr3534_5 zr3534_6 zr3534_8,4710,FALSE,FALSE
+legacy,acute heat shock inside the heat cohort,with acute heat shock,zr3534_2 zr3534_3 zr3534_6 zr3534_8,4689,FALSE,FALSE
+legacy,acute heat shock inside the heat cohort,with acute heat shock,zr3534_2 zr3534_3 zr3534_7 zr3534_9,4686,FALSE,FALSE
+legacy,acute heat shock inside the heat cohort,with acute heat shock,zr3534_4 zr3534_5 zr3534_6 zr3534_10,4680,FALSE,FALSE
+legacy,acute heat shock inside the heat cohort,with acute heat shock,zr3534_4 zr3534_5 zr3534_7 zr3534_9,4649,FALSE,FALSE
+legacy,acute heat shock inside the heat cohort,with acute heat shock,zr3534_3 zr3534_4 zr3534_8 zr3534_10,4596,FALSE,FALSE
+legacy,acute heat shock inside the heat cohort,with acute heat shock,zr3534_3 zr3534_5 zr3534_7 zr3534_8,4569,FALSE,FALSE
+legacy,acute heat shock inside the heat cohort,with acute heat shock,zr3534_1 zr3534_4 zr3534_7 zr3534_9,4567,FALSE,FALSE
+legacy,acute heat shock inside the heat cohort,with acute heat shock,zr3534_3 zr3534_5 zr3534_7 zr3534_10,4507,FALSE,FALSE
+legacy,acute heat shock inside the heat cohort,with acute heat shock,zr3534_1 zr3534_5 zr3534_7 zr3534_9,4495,FALSE,FALSE
+legacy,acute heat shock inside the heat cohort,with acute heat shock,zr3534_2 zr3534_3 zr3534_6 zr3534_7,4463,FALSE,FALSE
+legacy,acute heat shock inside the heat cohort,with acute heat shock,zr3534_4 zr3534_5 zr3534_8 zr3534_10,4443,FALSE,FALSE
+legacy,acute heat shock inside the heat cohort,with acute heat shock,zr3534_4 zr3534_5 zr3534_6 zr3534_9,4432,FALSE,FALSE
+legacy,acute heat shock inside the heat cohort,with acute heat shock,zr3534_3 zr3534_4 zr3534_7 zr3534_9,4411,FALSE,FALSE
+legacy,acute heat shock inside the heat cohort,with acute heat shock,zr3534_2 zr3534_3 zr3534_7 zr3534_8,4361,FALSE,FALSE
+legacy,acute heat shock inside the heat cohort,with acute heat shock,zr3534_2 zr3534_3 zr3534_7 zr3534_10,4346,FALSE,FALSE
+legacy,acute heat shock inside the heat cohort,with acute heat shock,zr3534_3 zr3534_4 zr3534_6 zr3534_9,4338,FALSE,FALSE
+legacy,acute heat shock inside the heat cohort,with acute heat shock,zr3534_2 zr3534_3 zr3534_6 zr3534_9,4313,FALSE,FALSE
+legacy,acute heat shock inside the heat cohort,with acute heat shock,zr3534_3 zr3534_4 zr3534_7 zr3534_10,4300,FALSE,FALSE
+legacy,acute heat shock inside the heat cohort,with acute heat shock,zr3534_3 zr3534_5 zr3534_8 zr3534_9,4276,FALSE,FALSE
+legacy,acute heat shock inside the heat cohort,with acute heat shock,zr3534_1 zr3534_5 zr3534_6 zr3534_9,4266,FALSE,FALSE
+legacy,acute heat shock inside the heat cohort,with acute heat shock,zr3534_2 zr3534_3 zr3534_8 zr3534_9,4243,FALSE,FALSE
+legacy,acute heat shock inside the heat cohort,with acute heat shock,zr3534_3 zr3534_4 zr3534_7 zr3534_8,4228,FALSE,FALSE
+legacy,acute heat shock inside the heat cohort,with acute heat shock,zr3534_4 zr3534_5 zr3534_7 zr3534_8,4208,FALSE,FALSE
+legacy,acute heat shock inside the heat cohort,with acute heat shock,zr3534_4 zr3534_5 zr3534_7 zr3534_10,4182,FALSE,FALSE
+legacy,acute heat shock inside the heat cohort,with acute heat shock,zr3534_4 zr3534_5 zr3534_8 zr3534_9,4137,FALSE,FALSE
+legacy,acute heat shock inside the heat cohort,with acute heat shock,zr3534_1 zr3534_5 zr3534_6 zr3534_10,4137,FALSE,FALSE
+legacy,acute heat shock inside the heat cohort,with acute heat shock,zr3534_1 zr3534_4 zr3534_8 zr3534_10,4133,FALSE,FALSE
+legacy,acute heat shock inside the heat cohort,with acute heat shock,zr3534_1 zr3534_5 zr3534_6 zr3534_8,4108,FALSE,FALSE
+legacy,acute heat shock inside the heat cohort,with acute heat shock,zr3534_1 zr3534_5 zr3534_6 zr3534_7,4100,FALSE,FALSE
+legacy,acute heat shock inside the heat cohort,with acute heat shock,zr3534_2 zr3534_3 zr3534_9 zr3534_10,4098,FALSE,FALSE
+legacy,acute heat shock inside the heat cohort,with acute heat shock,zr3534_3 zr3534_5 zr3534_9 zr3534_10,4053,FALSE,FALSE
+legacy,acute heat shock inside the heat cohort,with acute heat shock,zr3534_4 zr3534_5 zr3534_9 zr3534_10,3994,TRUE,FALSE
+legacy,acute heat shock inside the heat cohort,with acute heat shock,zr3534_1 zr3534_5 zr3534_8 zr3534_10,3976,FALSE,FALSE
+legacy,acute heat shock inside the heat cohort,with acute heat shock,zr3534_1 zr3534_4 zr3534_8 zr3534_9,3969,FALSE,FALSE
+legacy,acute heat shock inside the heat cohort,with acute heat shock,zr3534_1 zr3534_5 zr3534_8 zr3534_9,3903,FALSE,FALSE
+legacy,acute heat shock inside the heat cohort,with acute heat shock,zr3534_3 zr3534_4 zr3534_8 zr3534_9,3894,FALSE,FALSE
+legacy,acute heat shock inside the heat cohort,with acute heat shock,zr3534_1 zr3534_4 zr3534_6 zr3534_10,3884,FALSE,FALSE
+legacy,acute heat shock inside the heat cohort,with acute heat shock,zr3534_1 zr3534_4 zr3534_6 zr3534_9,3883,FALSE,FALSE
+legacy,acute heat shock inside the heat cohort,with acute heat shock,zr3534_1 zr3534_4 zr3534_6 zr3534_7,3865,FALSE,FALSE
+legacy,acute heat shock inside the heat cohort,with acute heat shock,zr3534_1 zr3534_5 zr3534_9 zr3534_10,3828,FALSE,FALSE
+legacy,acute heat shock inside the heat cohort,with acute heat shock,zr3534_1 zr3534_4 zr3534_9 zr3534_10,3797,FALSE,FALSE
+legacy,acute heat shock inside the heat cohort,with acute heat shock,zr3534_1 zr3534_4 zr3534_7 zr3534_10,3791,FALSE,FALSE
+legacy,acute heat shock inside the heat cohort,with acute heat shock,zr3534_2 zr3534_4 zr3534_7 zr3534_9,3783,FALSE,FALSE
+legacy,acute heat shock inside the heat cohort,with acute heat shock,zr3534_1 zr3534_4 zr3534_6 zr3534_8,3781,FALSE,FALSE
+legacy,acute heat shock inside the heat cohort,with acute heat shock,zr3534_1 zr3534_4 zr3534_7 zr3534_8,3766,FALSE,FALSE
+legacy,acute heat shock inside the heat cohort,with acute heat shock,zr3534_3 zr3534_4 zr3534_9 zr3534_10,3736,FALSE,FALSE
+legacy,acute heat shock inside the heat cohort,with acute heat shock,zr3534_1 zr3534_5 zr3534_7 zr3534_8,3699,FALSE,FALSE
+legacy,acute heat shock inside the heat cohort,with acute heat shock,zr3534_1 zr3534_3 zr3534_8 zr3534_10,3616,FALSE,FALSE
+legacy,acute heat shock inside the heat cohort,with acute heat shock,zr3534_1 zr3534_5 zr3534_7 zr3534_10,3604,FALSE,FALSE
+legacy,acute heat shock inside the heat cohort,with acute heat shock,zr3534_2 zr3534_5 zr3534_7 zr3534_9,3538,FALSE,FALSE
+legacy,acute heat shock inside the heat cohort,with acute heat shock,zr3534_1 zr3534_3 zr3534_6 zr3534_10,3518,FALSE,FALSE
+legacy,acute heat shock inside the heat cohort,with acute heat shock,zr3534_1 zr3534_3 zr3534_7 zr3534_9,3454,FALSE,FALSE
+legacy,acute heat shock inside the heat cohort,with acute heat shock,zr3534_2 zr3534_4 zr3534_8 zr3534_10,3406,FALSE,FALSE
+legacy,acute heat shock inside the heat cohort,with acute heat shock,zr3534_2 zr3534_5 zr3534_6 zr3534_10,3395,FALSE,FALSE
+legacy,acute heat shock inside the heat cohort,with acute heat shock,zr3534_1 zr3534_3 zr3534_6 zr3534_8,3377,FALSE,FALSE
+legacy,acute heat shock inside the heat cohort,with acute heat shock,zr3534_2 zr3534_5 zr3534_6 zr3534_8,3336,FALSE,FALSE
+legacy,acute heat shock inside the heat cohort,with acute heat shock,zr3534_2 zr3534_5 zr3534_6 zr3534_9,3310,FALSE,FALSE
+legacy,acute heat shock inside the heat cohort,with acute heat shock,zr3534_2 zr3534_5 zr3534_6 zr3534_7,3307,FALSE,FALSE
+legacy,acute heat shock inside the heat cohort,with acute heat shock,zr3534_2 zr3534_5 zr3534_8 zr3534_10,3246,FALSE,FALSE
+legacy,acute heat shock inside the heat cohort,with acute heat shock,zr3534_1 zr3534_3 zr3534_6 zr3534_9,3245,FALSE,FALSE
+legacy,acute heat shock inside the heat cohort,with acute heat shock,zr3534_2 zr3534_4 zr3534_7 zr3534_10,3216,FALSE,FALSE
+legacy,acute heat shock inside the heat cohort,with acute heat shock,zr3534_1 zr3534_3 zr3534_8 zr3534_9,3209,FALSE,FALSE
+legacy,acute heat shock inside the heat cohort,with acute heat shock,zr3534_2 zr3534_4 zr3534_6 zr3534_10,3205,FALSE,FALSE
+legacy,acute heat shock inside the heat cohort,with acute heat shock,zr3534_2 zr3534_4 zr3534_6 zr3534_7,3199,FALSE,FALSE
+legacy,acute heat shock inside the heat cohort,with acute heat shock,zr3534_1 zr3534_3 zr3534_6 zr3534_7,3191,FALSE,FALSE
+legacy,acute heat shock inside the heat cohort,with acute heat shock,zr3534_2 zr3534_5 zr3534_8 zr3534_9,3147,FALSE,FALSE
+legacy,acute heat shock inside the heat cohort,with acute heat shock,zr3534_2 zr3534_4 zr3534_7 zr3534_8,3111,FALSE,FALSE
+legacy,acute heat shock inside the heat cohort,with acute heat shock,zr3534_2 zr3534_4 zr3534_8 zr3534_9,3103,FALSE,FALSE
+legacy,acute heat shock inside the heat cohort,with acute heat shock,zr3534_1 zr3534_3 zr3534_9 zr3534_10,3068,FALSE,FALSE
+legacy,acute heat shock inside the heat cohort,with acute heat shock,zr3534_1 zr3534_3 zr3534_7 zr3534_10,3050,FALSE,FALSE
+legacy,acute heat shock inside the heat cohort,with acute heat shock,zr3534_2 zr3534_4 zr3534_6 zr3534_8,3036,FALSE,FALSE
+legacy,acute heat shock inside the heat cohort,with acute heat shock,zr3534_2 zr3534_4 zr3534_9 zr3534_10,3031,FALSE,FALSE
+legacy,acute heat shock inside the heat cohort,with acute heat shock,zr3534_2 zr3534_4 zr3534_6 zr3534_9,2988,FALSE,FALSE
+legacy,acute heat shock inside the heat cohort,with acute heat shock,zr3534_1 zr3534_3 zr3534_7 zr3534_8,2974,FALSE,FALSE
+legacy,acute heat shock inside the heat cohort,with acute heat shock,zr3534_2 zr3534_5 zr3534_7 zr3534_8,2948,FALSE,FALSE
+legacy,acute heat shock inside the heat cohort,with acute heat shock,zr3534_2 zr3534_5 zr3534_9 zr3534_10,2927,FALSE,FALSE
+legacy,acute heat shock inside the heat cohort,with acute heat shock,zr3534_2 zr3534_5 zr3534_7 zr3534_10,2907,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_3 zr3534_4 zr3534_5,12767,TRUE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_6 zr3534_7 zr3534_8 zr3534_9 zr3534_10,12767,FALSE,TRUE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_7 zr3534_8 zr3534_9 zr3534_10,12504,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_3 zr3534_4 zr3534_5 zr3534_6,12504,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_3 zr3534_4 zr3534_5 zr3534_6,11794,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_7 zr3534_8 zr3534_9 zr3534_10,11794,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_6 zr3534_7 zr3534_8 zr3534_9,10831,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_3 zr3534_4 zr3534_5 zr3534_10,10831,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_6 zr3534_8 zr3534_9 zr3534_10,10728,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_3 zr3534_4 zr3534_5 zr3534_7,10728,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_6 zr3534_7 zr3534_9 zr3534_10,10711,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_3 zr3534_4 zr3534_5 zr3534_8,10711,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_8 zr3534_9 zr3534_10,10119,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_3 zr3534_4 zr3534_5 zr3534_6 zr3534_7,10119,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_7 zr3534_8 zr3534_9,10101,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_3 zr3534_4 zr3534_5 zr3534_6 zr3534_10,10101,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_3 zr3534_4 zr3534_5 zr3534_10,10058,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_6 zr3534_7 zr3534_8 zr3534_9,10058,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_3 zr3534_4 zr3534_5 zr3534_8,9952,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_6 zr3534_7 zr3534_9 zr3534_10,9952,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_3 zr3534_4 zr3534_5 zr3534_7,9914,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_6 zr3534_8 zr3534_9 zr3534_10,9914,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_7 zr3534_9 zr3534_10,9909,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_3 zr3534_4 zr3534_5 zr3534_6 zr3534_8,9909,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_6 zr3534_7 zr3534_8 zr3534_10,9791,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_3 zr3534_4 zr3534_5 zr3534_9,9791,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_7 zr3534_8 zr3534_10,9206,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_3 zr3534_4 zr3534_5 zr3534_6 zr3534_9,9206,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_3 zr3534_4 zr3534_5 zr3534_9,9200,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_6 zr3534_7 zr3534_8 zr3534_10,9200,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_6 zr3534_7 zr3534_9,8864,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_3 zr3534_4 zr3534_5 zr3534_8 zr3534_10,8864,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_6 zr3534_8 zr3534_9,8630,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_3 zr3534_4 zr3534_5 zr3534_7 zr3534_10,8630,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_6 zr3534_9 zr3534_10,8493,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_3 zr3534_4 zr3534_5 zr3534_7 zr3534_8,8493,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_6 zr3534_8 zr3534_10,8349,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_3 zr3534_4 zr3534_5 zr3534_7 zr3534_9,8349,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_6 zr3534_7 zr3534_8,7748,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_3 zr3534_4 zr3534_5 zr3534_9 zr3534_10,7748,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_6 zr3534_7 zr3534_10,7741,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_3 zr3534_4 zr3534_5 zr3534_8 zr3534_9,7741,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_3 zr3534_5 zr3534_6,6093,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_4 zr3534_7 zr3534_8 zr3534_9 zr3534_10,6093,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_3 zr3534_4 zr3534_6,5975,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_5 zr3534_7 zr3534_8 zr3534_9 zr3534_10,5975,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_3 zr3534_4 zr3534_10,5337,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_5 zr3534_6 zr3534_7 zr3534_8 zr3534_9,5337,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_3 zr3534_5 zr3534_10,5179,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_4 zr3534_6 zr3534_7 zr3534_8 zr3534_9,5179,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_3 zr3534_4 zr3534_8,5152,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_5 zr3534_6 zr3534_7 zr3534_9 zr3534_10,5152,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_3 zr3534_4 zr3534_7,5027,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_5 zr3534_6 zr3534_8 zr3534_9 zr3534_10,5027,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_3 zr3534_5 zr3534_8,4962,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_4 zr3534_6 zr3534_7 zr3534_9 zr3534_10,4962,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_4 zr3534_7 zr3534_8 zr3534_9,4816,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_3 zr3534_5 zr3534_6 zr3534_10,4816,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_3 zr3534_4 zr3534_9,4789,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_5 zr3534_6 zr3534_7 zr3534_8 zr3534_10,4789,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_5 zr3534_7 zr3534_8 zr3534_9,4742,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_3 zr3534_4 zr3534_6 zr3534_10,4742,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_3 zr3534_5 zr3534_7,4735,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_4 zr3534_6 zr3534_8 zr3534_9 zr3534_10,4735,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_4 zr3534_7 zr3534_9 zr3534_10,4657,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_3 zr3534_5 zr3534_6 zr3534_8,4657,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_3 zr3534_5 zr3534_9,4559,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_4 zr3534_6 zr3534_7 zr3534_8 zr3534_10,4559,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_4 zr3534_8 zr3534_9 zr3534_10,4551,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_3 zr3534_5 zr3534_6 zr3534_7,4551,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_5 zr3534_6 zr3534_7 zr3534_9,4491,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_3 zr3534_4 zr3534_8 zr3534_10,4491,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_5 zr3534_8 zr3534_9 zr3534_10,4470,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_3 zr3534_4 zr3534_6 zr3534_7,4470,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_5 zr3534_7 zr3534_9 zr3534_10,4445,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_3 zr3534_4 zr3534_6 zr3534_8,4445,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_4 zr3534_6 zr3534_7 zr3534_9,4350,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_3 zr3534_5 zr3534_8 zr3534_10,4350,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_3 zr3534_6 zr3534_10,4317,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_4 zr3534_5 zr3534_7 zr3534_8 zr3534_9,4317,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_3 zr3534_8 zr3534_10,4282,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_4 zr3534_5 zr3534_6 zr3534_7 zr3534_9,4282,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_4 zr3534_7 zr3534_8 zr3534_10,4243,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_3 zr3534_5 zr3534_6 zr3534_9,4243,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_3 zr3534_6 zr3534_8,4156,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_4 zr3534_5 zr3534_7 zr3534_9 zr3534_10,4156,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_5 zr3534_6 zr3534_8 zr3534_9,4136,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_3 zr3534_4 zr3534_7 zr3534_10,4136,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_4 zr3534_5 zr3534_6,4109,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_3 zr3534_7 zr3534_8 zr3534_9 zr3534_10,4109,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_5 zr3534_6 zr3534_8 zr3534_10,4093,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_3 zr3534_4 zr3534_7 zr3534_9,4093,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_4 zr3534_5 zr3534_6 zr3534_10,4088,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_3 zr3534_7 zr3534_8 zr3534_9,4088,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_5 zr3534_6 zr3534_9 zr3534_10,4075,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_3 zr3534_4 zr3534_7 zr3534_8,4075,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_3 zr3534_7 zr3534_9,4029,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_4 zr3534_5 zr3534_6 zr3534_8 zr3534_10,4029,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_3 zr3534_6 zr3534_7,4021,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_4 zr3534_5 zr3534_8 zr3534_9 zr3534_10,4021,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_3 zr3534_5 zr3534_6 zr3534_10,4012,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_4 zr3534_7 zr3534_8 zr3534_9,4012,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_5 zr3534_7 zr3534_8 zr3534_10,3999,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_3 zr3534_4 zr3534_6 zr3534_9,3999,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_4 zr3534_5 zr3534_7 zr3534_9,3989,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_3 zr3534_6 zr3534_8 zr3534_10,3989,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_4 zr3534_6 zr3534_8 zr3534_10,3937,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_3 zr3534_5 zr3534_7 zr3534_9,3937,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_4 zr3534_6 zr3534_9 zr3534_10,3933,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_3 zr3534_5 zr3534_7 zr3534_8,3933,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_4 zr3534_6 zr3534_8 zr3534_9,3924,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_3 zr3534_5 zr3534_7 zr3534_10,3924,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_4 zr3534_5 zr3534_6 zr3534_7,3918,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_3 zr3534_8 zr3534_9 zr3534_10,3918,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_4 zr3534_5 zr3534_6 zr3534_8,3904,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_3 zr3534_7 zr3534_9 zr3534_10,3904,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_3 zr3534_6 zr3534_9,3894,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_4 zr3534_5 zr3534_7 zr3534_8 zr3534_10,3894,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_4 zr3534_5 zr3534_6 zr3534_9,3886,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_3 zr3534_7 zr3534_8 zr3534_10,3886,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_3 zr3534_4 zr3534_6 zr3534_10,3867,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_5 zr3534_7 zr3534_8 zr3534_9,3867,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_3 zr3534_5 zr3534_6 zr3534_8,3860,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_4 zr3534_7 zr3534_9 zr3534_10,3860,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_3 zr3534_7 zr3534_10,3851,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_4 zr3534_5 zr3534_6 zr3534_8 zr3534_9,3851,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_5 zr3534_6 zr3534_7 zr3534_10,3799,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_3 zr3534_4 zr3534_8 zr3534_9,3799,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_3 zr3534_8 zr3534_9,3790,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_4 zr3534_5 zr3534_6 zr3534_7 zr3534_10,3790,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_4 zr3534_5 zr3534_8 zr3534_10,3789,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_3 zr3534_6 zr3534_7 zr3534_9,3789,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_3 zr3534_7 zr3534_8,3781,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_4 zr3534_5 zr3534_6 zr3534_9 zr3534_10,3781,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_4 zr3534_6 zr3534_7 zr3534_10,3764,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_3 zr3534_5 zr3534_8 zr3534_9,3764,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_3 zr3534_9 zr3534_10,3745,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_4 zr3534_5 zr3534_6 zr3534_7 zr3534_8,3745,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_5 zr3534_6 zr3534_7 zr3534_8,3726,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_3 zr3534_4 zr3534_9 zr3534_10,3726,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_3 zr3534_5 zr3534_6 zr3534_7,3698,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_4 zr3534_8 zr3534_9 zr3534_10,3698,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_4 zr3534_6 zr3534_7 zr3534_8,3686,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_3 zr3534_5 zr3534_9 zr3534_10,3686,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_4 zr3534_7 zr3534_9,3632,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_3 zr3534_5 zr3534_6 zr3534_8 zr3534_10,3632,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_3 zr3534_4 zr3534_8 zr3534_10,3547,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_5 zr3534_6 zr3534_7 zr3534_9,3547,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_3 zr3534_5 zr3534_6 zr3534_9,3539,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_4 zr3534_7 zr3534_8 zr3534_10,3539,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_3 zr3534_4 zr3534_6 zr3534_7,3534,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_5 zr3534_8 zr3534_9 zr3534_10,3534,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_4 zr3534_5 zr3534_7 zr3534_8,3515,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_3 zr3534_6 zr3534_9 zr3534_10,3515,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_4 zr3534_5 zr3534_8 zr3534_9,3514,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_3 zr3534_6 zr3534_7 zr3534_10,3514,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_3 zr3534_4 zr3534_6 zr3534_8,3499,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_5 zr3534_7 zr3534_9 zr3534_10,3499,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_3 zr3534_5 zr3534_8 zr3534_10,3482,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_4 zr3534_6 zr3534_7 zr3534_9,3482,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_4 zr3534_5 zr3534_7 zr3534_10,3480,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_3 zr3534_6 zr3534_8 zr3534_9,3480,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_4 zr3534_5 zr3534_9 zr3534_10,3474,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_3 zr3534_6 zr3534_7 zr3534_8,3474,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_4 zr3534_8 zr3534_10,3425,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_3 zr3534_5 zr3534_6 zr3534_7 zr3534_9,3425,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_4 zr3534_5 zr3534_10,3360,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_3 zr3534_6 zr3534_7 zr3534_8 zr3534_9,3360,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_4 zr3534_5 zr3534_8,3307,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_3 zr3534_6 zr3534_7 zr3534_9 zr3534_10,3307,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_4 zr3534_6 zr3534_10,3302,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_3 zr3534_5 zr3534_7 zr3534_8 zr3534_9,3302,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_5 zr3534_7 zr3534_9,3279,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_3 zr3534_4 zr3534_6 zr3534_8 zr3534_10,3279,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_3 zr3534_4 zr3534_7 zr3534_9,3272,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_5 zr3534_6 zr3534_8 zr3534_10,3272,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_4 zr3534_5 zr3534_7,3245,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_3 zr3534_6 zr3534_8 zr3534_9 zr3534_10,3245,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_4 zr3534_9 zr3534_10,3229,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_3 zr3534_5 zr3534_6 zr3534_7 zr3534_8,3229,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_3 zr3534_7 zr3534_8 zr3534_9,3220,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_4 zr3534_5 zr3534_6 zr3534_10,3220,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_5 zr3534_6 zr3534_10,3203,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_3 zr3534_4 zr3534_7 zr3534_8 zr3534_9,3203,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_3 zr3534_8 zr3534_9 zr3534_10,3194,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_4 zr3534_5 zr3534_6 zr3534_7,3194,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_4 zr3534_7 zr3534_10,3193,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_3 zr3534_5 zr3534_6 zr3534_8 zr3534_9,3193,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_3 zr3534_4 zr3534_6 zr3534_9,3191,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_5 zr3534_7 zr3534_8 zr3534_10,3191,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_4 zr3534_6 zr3534_7,3188,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_3 zr3534_5 zr3534_8 zr3534_9 zr3534_10,3188,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_4 zr3534_8 zr3534_9,3179,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_3 zr3534_5 zr3534_6 zr3534_7 zr3534_10,3179,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_3 zr3534_4 zr3534_7 zr3534_10,3131,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_5 zr3534_6 zr3534_8 zr3534_9,3131,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_3 zr3534_5 zr3534_7 zr3534_9,3130,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_4 zr3534_6 zr3534_8 zr3534_10,3130,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_4 zr3534_5 zr3534_9,3113,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_3 zr3534_6 zr3534_7 zr3534_8 zr3534_10,3113,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_5 zr3534_6 zr3534_9,3101,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_3 zr3534_4 zr3534_7 zr3534_8 zr3534_10,3101,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_4 zr3534_6 zr3534_9,3097,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_3 zr3534_5 zr3534_7 zr3534_8 zr3534_10,3097,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_3 zr3534_7 zr3534_9 zr3534_10,3083,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_4 zr3534_5 zr3534_6 zr3534_8,3083,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_3 zr3534_6 zr3534_8 zr3534_10,3080,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_4 zr3534_5 zr3534_7 zr3534_9,3080,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_5 zr3534_8 zr3534_10,3077,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_3 zr3534_4 zr3534_6 zr3534_7 zr3534_9,3077,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_3 zr3534_4 zr3534_7 zr3534_8,3074,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_5 zr3534_6 zr3534_9 zr3534_10,3074,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_4 zr3534_7 zr3534_8,3072,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_3 zr3534_5 zr3534_6 zr3534_9 zr3534_10,3072,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_4 zr3534_6 zr3534_8,3045,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_3 zr3534_5 zr3534_7 zr3534_9 zr3534_10,3045,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_5 zr3534_6 zr3534_8,3024,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_3 zr3534_4 zr3534_7 zr3534_9 zr3534_10,3024,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_3 zr3534_4 zr3534_8 zr3534_9,3001,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_5 zr3534_6 zr3534_7 zr3534_10,3001,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_3 zr3534_5 zr3534_8 zr3534_9,2997,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_4 zr3534_6 zr3534_7 zr3534_10,2997,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_5 zr3534_6 zr3534_7,2992,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_3 zr3534_4 zr3534_8 zr3534_9 zr3534_10,2992,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_3 zr3534_6 zr3534_7 zr3534_9,2989,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_4 zr3534_5 zr3534_8 zr3534_10,2989,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_5 zr3534_8 zr3534_9,2951,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_3 zr3534_4 zr3534_6 zr3534_7 zr3534_10,2951,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_3 zr3534_5 zr3534_7 zr3534_8,2936,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_4 zr3534_6 zr3534_9 zr3534_10,2936,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_3 zr3534_4 zr3534_9 zr3534_10,2927,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_5 zr3534_6 zr3534_7 zr3534_8,2927,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_3 zr3534_5 zr3534_7 zr3534_10,2923,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_4 zr3534_6 zr3534_8 zr3534_9,2923,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_3 zr3534_7 zr3534_8 zr3534_10,2918,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_4 zr3534_5 zr3534_6 zr3534_9,2918,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_5 zr3534_9 zr3534_10,2895,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_3 zr3534_4 zr3534_6 zr3534_7 zr3534_8,2895,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_3 zr3534_5 zr3534_9 zr3534_10,2871,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_4 zr3534_6 zr3534_7 zr3534_8,2871,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_5 zr3534_7 zr3534_10,2741,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_3 zr3534_4 zr3534_6 zr3534_8 zr3534_9,2741,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_3 zr3534_6 zr3534_9 zr3534_10,2726,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_4 zr3534_5 zr3534_7 zr3534_8,2726,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_3 zr3534_6 zr3534_8 zr3534_9,2719,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_4 zr3534_5 zr3534_7 zr3534_10,2719,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_2 zr3534_5 zr3534_7 zr3534_8,2696,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_3 zr3534_4 zr3534_6 zr3534_9 zr3534_10,2696,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_3 zr3534_6 zr3534_7 zr3534_10,2592,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_4 zr3534_5 zr3534_8 zr3534_9,2592,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_1 zr3534_3 zr3534_6 zr3534_7 zr3534_8,2580,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, all 10 libraries",diploid,zr3534_2 zr3534_4 zr3534_5 zr3534_9 zr3534_10,2580,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, without the high libraries",diploid,zr3534_1 zr3534_2,10266,TRUE,FALSE
+corrected,"ploidy inside the heat cohort, without the high libraries",diploid,zr3534_2 zr3534_6,8290,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, without the high libraries",diploid,zr3534_1 zr3534_6,8274,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, without the high libraries",diploid,zr3534_7 zr3534_9,7574,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, without the high libraries",diploid,zr3534_2 zr3534_10,7219,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, without the high libraries",diploid,zr3534_1 zr3534_10,7197,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, without the high libraries",diploid,zr3534_1 zr3534_7,7095,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, without the high libraries",diploid,zr3534_1 zr3534_9,7086,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, without the high libraries",diploid,zr3534_1 zr3534_8,7061,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, without the high libraries",diploid,zr3534_2 zr3534_7,7031,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, without the high libraries",diploid,zr3534_2 zr3534_8,6953,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, without the high libraries",diploid,zr3534_2 zr3534_9,6683,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, without the high libraries",diploid,zr3534_8 zr3534_10,6639,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, without the high libraries",diploid,zr3534_6 zr3534_10,6401,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, without the high libraries",diploid,zr3534_8 zr3534_9,6274,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, without the high libraries",diploid,zr3534_6 zr3534_7,6273,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, without the high libraries",diploid,zr3534_6 zr3534_9,6136,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, without the high libraries",diploid,zr3534_6 zr3534_8,6113,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, without the high libraries",diploid,zr3534_7 zr3534_10,6092,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, without the high libraries",diploid,zr3534_7 zr3534_8,6089,FALSE,FALSE
+corrected,"ploidy inside the heat cohort, without the high libraries",diploid,zr3534_9 zr3534_10,5985,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_3 zr3644_4 zr3644_5 zr3644_13 zr3644_16 zr3644_18,5572,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_3 zr3644_4 zr3644_6 zr3644_13 zr3644_16 zr3644_18,5497,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_4 zr3644_5 zr3644_6 zr3644_13 zr3644_16 zr3644_18,5479,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_3 zr3644_5 zr3644_6 zr3644_13 zr3644_16 zr3644_18,5405,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_3 zr3644_4 zr3644_5 zr3644_6 zr3644_13 zr3644_16,5387,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_3 zr3644_4 zr3644_5 zr3644_6 zr3644_16 zr3644_18,5174,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_3 zr3644_4 zr3644_5 zr3644_6 zr3644_13 zr3644_18,4880,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_4 zr3644_5 zr3644_13 zr3644_16 zr3644_18,4871,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_4 zr3644_5 zr3644_6 zr3644_13 zr3644_18,4748,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_3 zr3644_4 zr3644_13 zr3644_16 zr3644_18,4682,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_4 zr3644_6 zr3644_13 zr3644_16 zr3644_18,4641,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_5 zr3644_6 zr3644_13 zr3644_16 zr3644_18,4590,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_3 zr3644_6 zr3644_13 zr3644_16 zr3644_17,4580,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_3 zr3644_4 zr3644_5 zr3644_13 zr3644_18,4571,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_4 zr3644_5 zr3644_6 zr3644_16 zr3644_18,4562,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_3 zr3644_5 zr3644_13 zr3644_16 zr3644_18,4528,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_3 zr3644_4 zr3644_5 zr3644_13 zr3644_16,4405,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_3 zr3644_4 zr3644_6 zr3644_16 zr3644_17,4367,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_3 zr3644_4 zr3644_6 zr3644_16 zr3644_18,4344,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_3 zr3644_4 zr3644_5 zr3644_6 zr3644_18,4319,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_3 zr3644_4 zr3644_13 zr3644_16 zr3644_17,4310,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_3 zr3644_5 zr3644_13 zr3644_16 zr3644_17,4300,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_3 zr3644_6 zr3644_13 zr3644_16 zr3644_18,4274,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_3 zr3644_5 zr3644_6 zr3644_16 zr3644_17,4269,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_4 zr3644_6 zr3644_17 zr3644_18,4268,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_5 zr3644_6 zr3644_17 zr3644_18,4256,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_3 zr3644_4 zr3644_5 zr3644_16 zr3644_18,4219,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_3 zr3644_4 zr3644_5 zr3644_13 zr3644_16 zr3644_17,4216,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_3 zr3644_5 zr3644_6 zr3644_13 zr3644_16,4196,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_3 zr3644_5 zr3644_6 zr3644_13 zr3644_16 zr3644_17,4184,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_3 zr3644_4 zr3644_6 zr3644_13 zr3644_18,4141,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_3 zr3644_5 zr3644_6 zr3644_13 zr3644_18,4138,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_3 zr3644_5 zr3644_6 zr3644_13 zr3644_16,4123,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_3 zr3644_4 zr3644_6 zr3644_13 zr3644_16,4120,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_5 zr3644_6 zr3644_13 zr3644_16 zr3644_17,4117,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_3 zr3644_4 zr3644_6 zr3644_13 zr3644_16,4104,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_3 zr3644_4 zr3644_6 zr3644_13 zr3644_16 zr3644_17,4104,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_3 zr3644_5 zr3644_6 zr3644_13 zr3644_17,4102,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_4 zr3644_5 zr3644_6 zr3644_13 zr3644_16,4091,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_3 zr3644_5 zr3644_6 zr3644_16 zr3644_18,4082,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_4 zr3644_5 zr3644_13 zr3644_16 zr3644_17 zr3644_18,4023,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_3 zr3644_4 zr3644_5 zr3644_6 zr3644_17,4004,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_4 zr3644_5 zr3644_6 zr3644_17,4002,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_3 zr3644_4 zr3644_13 zr3644_16 zr3644_17 zr3644_18,3997,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_4 zr3644_5 zr3644_17 zr3644_18,3967,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_4 zr3644_5 zr3644_6 zr3644_17 zr3644_18,3965,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_3 zr3644_4 zr3644_6 zr3644_17,3957,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_3 zr3644_5 zr3644_6 zr3644_17,3956,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_3 zr3644_6 zr3644_13 zr3644_16 zr3644_18,3950,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_4 zr3644_6 zr3644_13 zr3644_16 zr3644_17,3933,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_3 zr3644_6 zr3644_17 zr3644_18,3912,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_3 zr3644_4 zr3644_5 zr3644_13 zr3644_16,3904,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_3 zr3644_4 zr3644_5 zr3644_6 zr3644_13,3884,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_3 zr3644_4 zr3644_13 zr3644_16 zr3644_18,3881,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_3 zr3644_5 zr3644_13 zr3644_16 zr3644_17 zr3644_18,3881,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_3 zr3644_4 zr3644_6 zr3644_16 zr3644_18,3878,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_4 zr3644_5 zr3644_6 zr3644_13 zr3644_16 zr3644_17,3877,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_3 zr3644_4 zr3644_5 zr3644_6 zr3644_16,3869,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_3 zr3644_6 zr3644_16 zr3644_17 zr3644_18,3853,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_4 zr3644_5 zr3644_6 zr3644_17 zr3644_18,3852,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_3 zr3644_4 zr3644_5 zr3644_6 zr3644_16 zr3644_17,3847,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_3 zr3644_6 zr3644_16 zr3644_17,3826,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_5 zr3644_6 zr3644_13 zr3644_16 zr3644_17 zr3644_18,3817,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_3 zr3644_4 zr3644_5 zr3644_16 zr3644_17,3816,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_3 zr3644_13 zr3644_16 zr3644_17 zr3644_18,3814,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_4 zr3644_5 zr3644_6 zr3644_16 zr3644_17,3812,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_3 zr3644_4 zr3644_6 zr3644_17 zr3644_18,3807,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_5 zr3644_13 zr3644_17 zr3644_18,3799,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_5 zr3644_6 zr3644_13 zr3644_17,3797,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_3 zr3644_5 zr3644_13 zr3644_16 zr3644_18,3787,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_3 zr3644_5 zr3644_6 zr3644_17 zr3644_18,3784,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_5 zr3644_6 zr3644_13 zr3644_17 zr3644_18,3782,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_4 zr3644_6 zr3644_13 zr3644_16 zr3644_17 zr3644_18,3776,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_3 zr3644_13 zr3644_16 zr3644_17,3764,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_6 zr3644_13 zr3644_17 zr3644_18,3759,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_3 zr3644_4 zr3644_5 zr3644_6 zr3644_16,3756,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_6 zr3644_13 zr3644_16 zr3644_17 zr3644_18,3756,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_3 zr3644_4 zr3644_6 zr3644_13 zr3644_17,3754,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_4 zr3644_6 zr3644_16 zr3644_17 zr3644_18,3753,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_3 zr3644_6 zr3644_13 zr3644_17,3741,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_4 zr3644_13 zr3644_17 zr3644_18,3741,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_4 zr3644_6 zr3644_13 zr3644_16 zr3644_18,3739,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_3 zr3644_4 zr3644_17 zr3644_18,3729,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_3 zr3644_5 zr3644_13 zr3644_17,3726,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_5 zr3644_6 zr3644_13 zr3644_16 zr3644_18,3725,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_4 zr3644_5 zr3644_6 zr3644_16 zr3644_17 zr3644_18,3725,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_4 zr3644_5 zr3644_6 zr3644_18,3723,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_4 zr3644_5 zr3644_13 zr3644_17 zr3644_18,3723,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_3 zr3644_4 zr3644_6 zr3644_16 zr3644_17 zr3644_18,3719,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_3 zr3644_4 zr3644_5 zr3644_13 zr3644_17,3712,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_3 zr3644_6 zr3644_13 zr3644_16 zr3644_17 zr3644_18,3706,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_4 zr3644_5 zr3644_6 zr3644_13 zr3644_17,3693,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_3 zr3644_4 zr3644_5 zr3644_17,3687,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_4 zr3644_5 zr3644_13 zr3644_16 zr3644_17,3675,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_4 zr3644_5 zr3644_6 zr3644_13 zr3644_17 zr3644_18,3659,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_3 zr3644_5 zr3644_6 zr3644_16 zr3644_18,3628,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_4 zr3644_6 zr3644_16 zr3644_17,3624,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_5 zr3644_6 zr3644_16 zr3644_17 zr3644_18,3621,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_3 zr3644_4 zr3644_16 zr3644_17 zr3644_18,3618,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_6 zr3644_16 zr3644_17 zr3644_18,3616,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_4 zr3644_5 zr3644_6 zr3644_13 zr3644_16,3612,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_4 zr3644_5 zr3644_13 zr3644_17,3607,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_5 zr3644_6 zr3644_16 zr3644_17,3606,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_3 zr3644_5 zr3644_17 zr3644_18,3601,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_4 zr3644_5 zr3644_6 zr3644_16 zr3644_18,3600,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_3 zr3644_4 zr3644_5 zr3644_16 zr3644_17 zr3644_18,3600,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_3 zr3644_4 zr3644_16 zr3644_17,3592,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_3 zr3644_4 zr3644_5 zr3644_6 zr3644_13 zr3644_17,3583,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_3 zr3644_4 zr3644_5 zr3644_13 zr3644_17 zr3644_18,3575,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_3 zr3644_4 zr3644_5 zr3644_6 zr3644_17 zr3644_18,3574,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_3 zr3644_13 zr3644_17 zr3644_18,3564,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_6 zr3644_13 zr3644_16 zr3644_17,3558,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_3 zr3644_4 zr3644_13 zr3644_17,3556,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_4 zr3644_6 zr3644_13 zr3644_17 zr3644_18,3552,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_5 zr3644_13 zr3644_16 zr3644_17 zr3644_18,3550,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_4 zr3644_6 zr3644_13 zr3644_17,3542,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_3 zr3644_4 zr3644_5 zr3644_6 zr3644_18,3539,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_3 zr3644_6 zr3644_13 zr3644_17 zr3644_18,3536,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_4 zr3644_13 zr3644_16 zr3644_17 zr3644_18,3530,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_13 zr3644_16 zr3644_17 zr3644_18,3508,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_4 zr3644_13 zr3644_16 zr3644_17 zr3644_18,3508,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_4 zr3644_16 zr3644_17 zr3644_18,3506,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_3 zr3644_5 zr3644_6 zr3644_16 zr3644_17 zr3644_18,3504,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_4 zr3644_5 zr3644_13 zr3644_16 zr3644_18,3489,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_4 zr3644_5 zr3644_6 zr3644_13 zr3644_18,3483,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_5 zr3644_6 zr3644_13 zr3644_17 zr3644_18,3480,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_5 zr3644_6 zr3644_13 zr3644_18,3468,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_5 zr3644_13 zr3644_16 zr3644_17 zr3644_18,3463,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_4 zr3644_5 zr3644_13 zr3644_17 zr3644_18,3440,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_3 zr3644_5 zr3644_6 zr3644_13 zr3644_18,3438,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_4 zr3644_13 zr3644_16 zr3644_17,3418,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_3 zr3644_5 zr3644_16 zr3644_17,3416,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_3 zr3644_4 zr3644_5 zr3644_6 zr3644_13,3414,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_3 zr3644_5 zr3644_13 zr3644_17 zr3644_18,3402,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_3 zr3644_4 zr3644_6 zr3644_18,3379,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_3 zr3644_4 zr3644_5 zr3644_17 zr3644_18,3377,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_3 zr3644_4 zr3644_6 zr3644_13 zr3644_18,3376,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_5 zr3644_13 zr3644_16 zr3644_17,3372,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_3 zr3644_4 zr3644_5 zr3644_17 zr3644_18,3361,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_3 zr3644_4 zr3644_5 zr3644_16 zr3644_18,3354,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_3 zr3644_4 zr3644_13 zr3644_16 zr3644_17,3351,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_3 zr3644_4 zr3644_13 zr3644_17 zr3644_18,3350,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_3 zr3644_5 zr3644_16 zr3644_17 zr3644_18,3338,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_4 zr3644_6 zr3644_13 zr3644_18,3331,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_3 zr3644_5 zr3644_13 zr3644_16 zr3644_17,3329,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_3 zr3644_5 zr3644_6 zr3644_13 zr3644_17 zr3644_18,3308,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_4 zr3644_5 zr3644_13 zr3644_18,3304,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_4 zr3644_6 zr3644_16 zr3644_18,3299,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_3 zr3644_13 zr3644_16 zr3644_18,3285,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_4 zr3644_5 zr3644_16 zr3644_17 zr3644_18,3280,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_4 zr3644_6 zr3644_13 zr3644_17 zr3644_18,3277,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_3 zr3644_16 zr3644_17 zr3644_18,3265,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_3 zr3644_5 zr3644_6 zr3644_18,3261,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_5 zr3644_16 zr3644_17 zr3644_18,3259,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_4 zr3644_5 zr3644_13 zr3644_16 zr3644_17,3255,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_4 zr3644_5 zr3644_16 zr3644_17 zr3644_18,3249,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_3 zr3644_6 zr3644_13 zr3644_16,3236,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_3 zr3644_4 zr3644_6 zr3644_13 zr3644_17 zr3644_18,3223,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_4 zr3644_6 zr3644_16 zr3644_17 zr3644_18,3221,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_3 zr3644_5 zr3644_13 zr3644_17 zr3644_18,3203,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_3 zr3644_13 zr3644_16 zr3644_17 zr3644_18,3203,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_2 zr3644_3 zr3644_4 zr3644_5 zr3644_13 zr3644_18,3193,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_3 zr3644_5 zr3644_13 zr3644_16,3190,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_6 zr3644_13 zr3644_16 zr3644_18,3186,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_3 zr3644_4 zr3644_5 zr3644_13 zr3644_17,3179,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_3 zr3644_4 zr3644_6 zr3644_16,3177,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_3 zr3644_4 zr3644_5 zr3644_18,3163,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_4 zr3644_13 zr3644_16 zr3644_18,3157,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_5 zr3644_6 zr3644_16 zr3644_18,3156,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_3 zr3644_4 zr3644_13 zr3644_17 zr3644_18,3156,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_3 zr3644_4 zr3644_13 zr3644_16,3154,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_4 zr3644_5 zr3644_16 zr3644_17,3140,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_3 zr3644_6 zr3644_16 zr3644_18,3133,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_3 zr3644_4 zr3644_6 zr3644_17 zr3644_18,3129,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_3 zr3644_6 zr3644_13 zr3644_18,3120,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_3 zr3644_5 zr3644_6 zr3644_17 zr3644_18,3104,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_5 zr3644_6 zr3644_13 zr3644_16 zr3644_17,3096,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_5 zr3644_13 zr3644_16 zr3644_18,3087,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_3 zr3644_4 zr3644_16 zr3644_17 zr3644_18,3086,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_5 zr3644_6 zr3644_16 zr3644_17 zr3644_18,3086,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_3 zr3644_5 zr3644_6 zr3644_13,3079,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_4 zr3644_5 zr3644_6 zr3644_13 zr3644_17,3077,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_3 zr3644_4 zr3644_13 zr3644_18,3072,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_3 zr3644_5 zr3644_13 zr3644_18,3069,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_3 zr3644_4 zr3644_16 zr3644_18,3066,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_3 zr3644_4 zr3644_5 zr3644_6,3063,TRUE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_3 zr3644_5 zr3644_6 zr3644_16,3051,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_6 zr3644_13 zr3644_16 zr3644_17 zr3644_18,3035,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_3 zr3644_6 zr3644_13 zr3644_16 zr3644_17,3030,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_3 zr3644_4 zr3644_5 zr3644_6 zr3644_17,3012,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_3 zr3644_5 zr3644_6 zr3644_13 zr3644_17,3007,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_3 zr3644_4 zr3644_6 zr3644_16 zr3644_17,2988,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_5 zr3644_6 zr3644_13 zr3644_16,2968,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_3 zr3644_4 zr3644_5 zr3644_16 zr3644_17,2946,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_4 zr3644_5 zr3644_16 zr3644_18,2934,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_4 zr3644_5 zr3644_6 zr3644_16 zr3644_17,2923,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_4 zr3644_6 zr3644_13 zr3644_16 zr3644_17,2920,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_4 zr3644_5 zr3644_6 zr3644_13,2901,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_3 zr3644_4 zr3644_5 zr3644_13,2873,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_3 zr3644_5 zr3644_16 zr3644_17 zr3644_18,2869,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_3 zr3644_4 zr3644_6 zr3644_13,2848,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_3 zr3644_5 zr3644_6 zr3644_16 zr3644_17,2841,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_3 zr3644_5 zr3644_16 zr3644_18,2820,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_4 zr3644_6 zr3644_13 zr3644_16,2815,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_4 zr3644_5 zr3644_6 zr3644_16,2777,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_3 zr3644_6 zr3644_16 zr3644_17 zr3644_18,2735,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_3 zr3644_4 zr3644_5 zr3644_16,2730,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_3 zr3644_4 zr3644_6 zr3644_13 zr3644_17,2689,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_3 zr3644_6 zr3644_13 zr3644_17 zr3644_18,2688,FALSE,FALSE
+corrected,"ploidy inside the control cohort, without the high libraries",diploid,zr3644_1 zr3644_2 zr3644_4 zr3644_5 zr3644_13 zr3644_16,2684,FALSE,FALSE
+corrected,acute heat shock inside the heat cohort,with acute heat shock,zr3534_1 zr3534_2 zr3534_7 zr3534_9,7157,FALSE,FALSE
+corrected,acute heat shock inside the heat cohort,with acute heat shock,zr3534_1 zr3534_2 zr3534_8 zr3534_9,6790,FALSE,FALSE
+corrected,acute heat shock inside the heat cohort,with acute heat shock,zr3534_1 zr3534_2 zr3534_9 zr3534_10,6584,FALSE,FALSE
+corrected,acute heat shock inside the heat cohort,with acute heat shock,zr3534_1 zr3534_2 zr3534_8 zr3534_10,6468,FALSE,FALSE
+corrected,acute heat shock inside the heat cohort,with acute heat shock,zr3534_1 zr3534_2 zr3534_7 zr3534_8,6072,FALSE,FALSE
+corrected,acute heat shock inside the heat cohort,with acute heat shock,zr3534_1 zr3534_2 zr3534_7 zr3534_10,5995,FALSE,FALSE
+corrected,acute heat shock inside the heat cohort,with acute heat shock,zr3534_1 zr3534_2 zr3534_6 zr3534_9,5929,FALSE,FALSE
+corrected,acute heat shock inside the heat cohort,with acute heat shock,zr3534_1 zr3534_2 zr3534_6 zr3534_10,5659,FALSE,FALSE
+corrected,acute heat shock inside the heat cohort,with acute heat shock,zr3534_3 zr3534_5 zr3534_6 zr3534_10,5578,FALSE,FALSE
+corrected,acute heat shock inside the heat cohort,with acute heat shock,zr3534_1 zr3534_2 zr3534_6 zr3534_8,5549,FALSE,FALSE
+corrected,acute heat shock inside the heat cohort,with acute heat shock,zr3534_3 zr3534_5 zr3534_6 zr3534_8,5494,FALSE,FALSE
+corrected,acute heat shock inside the heat cohort,with acute heat shock,zr3534_1 zr3534_2 zr3534_6 zr3534_7,5477,FALSE,FALSE
+corrected,acute heat shock inside the heat cohort,with acute heat shock,zr3534_3 zr3534_5 zr3534_6 zr3534_7,5426,FALSE,FALSE
+corrected,acute heat shock inside the heat cohort,with acute heat shock,zr3534_3 zr3534_5 zr3534_6 zr3534_9,4876,FALSE,FALSE
+corrected,acute heat shock inside the heat cohort,with acute heat shock,zr3534_3 zr3534_4 zr3534_6 zr3534_7,4869,FALSE,FALSE
+corrected,acute heat shock inside the heat cohort,with acute heat shock,zr3534_3 zr3534_4 zr3534_6 zr3534_10,4847,FALSE,FALSE
+corrected,acute heat shock inside the heat cohort,with acute heat shock,zr3534_3 zr3534_5 zr3534_8 zr3534_10,4772,FALSE,FALSE
+corrected,acute heat shock inside the heat cohort,with acute heat shock,zr3534_3 zr3534_4 zr3534_6 zr3534_8,4702,FALSE,FALSE
+corrected,acute heat shock inside the heat cohort,with acute heat shock,zr3534_2 zr3534_3 zr3534_6 zr3534_10,4539,FALSE,FALSE
+corrected,acute heat shock inside the heat cohort,with acute heat shock,zr3534_3 zr3534_5 zr3534_7 zr3534_9,4531,FALSE,FALSE
+corrected,acute heat shock inside the heat cohort,with acute heat shock,zr3534_4 zr3534_5 zr3534_6 zr3534_7,4520,FALSE,FALSE
+corrected,acute heat shock inside the heat cohort,with acute heat shock,zr3534_2 zr3534_3 zr3534_8 zr3534_10,4508,FALSE,FALSE
+corrected,acute heat shock inside the heat cohort,with acute heat shock,zr3534_4 zr3534_5 zr3534_6 zr3534_10,4468,FALSE,FALSE
+corrected,acute heat shock inside the heat cohort,with acute heat shock,zr3534_4 zr3534_5 zr3534_6 zr3534_8,4460,FALSE,FALSE
+corrected,acute heat shock inside the heat cohort,with acute heat shock,zr3534_2 zr3534_3 zr3534_7 zr3534_9,4450,FALSE,FALSE
+corrected,acute heat shock inside the heat cohort,with acute heat shock,zr3534_3 zr3534_5 zr3534_7 zr3534_8,4436,FALSE,FALSE
+corrected,acute heat shock inside the heat cohort,with acute heat shock,zr3534_3 zr3534_4 zr3534_8 zr3534_10,4403,FALSE,FALSE
+corrected,acute heat shock inside the heat cohort,with acute heat shock,zr3534_2 zr3534_3 zr3534_6 zr3534_8,4384,FALSE,FALSE
+corrected,acute heat shock inside the heat cohort,with acute heat shock,zr3534_4 zr3534_5 zr3534_7 zr3534_9,4377,FALSE,FALSE
+corrected,acute heat shock inside the heat cohort,with acute heat shock,zr3534_3 zr3534_5 zr3534_7 zr3534_10,4370,FALSE,FALSE
+corrected,acute heat shock inside the heat cohort,with acute heat shock,zr3534_1 zr3534_4 zr3534_7 zr3534_9,4342,FALSE,FALSE
+corrected,acute heat shock inside the heat cohort,with acute heat shock,zr3534_4 zr3534_5 zr3534_8 zr3534_10,4247,FALSE,FALSE
+corrected,acute heat shock inside the heat cohort,with acute heat shock,zr3534_3 zr3534_4 zr3534_7 zr3534_9,4235,FALSE,FALSE
+corrected,acute heat shock inside the heat cohort,with acute heat shock,zr3534_2 zr3534_3 zr3534_6 zr3534_7,4230,FALSE,FALSE
+corrected,acute heat shock inside the heat cohort,with acute heat shock,zr3534_1 zr3534_5 zr3534_7 zr3534_9,4221,FALSE,FALSE
+corrected,acute heat shock inside the heat cohort,with acute heat shock,zr3534_4 zr3534_5 zr3534_6 zr3534_9,4210,FALSE,FALSE
+corrected,acute heat shock inside the heat cohort,with acute heat shock,zr3534_3 zr3534_4 zr3534_6 zr3534_9,4189,FALSE,FALSE
+corrected,acute heat shock inside the heat cohort,with acute heat shock,zr3534_2 zr3534_3 zr3534_7 zr3534_8,4170,FALSE,FALSE
+corrected,acute heat shock inside the heat cohort,with acute heat shock,zr3534_3 zr3534_5 zr3534_8 zr3534_9,4149,FALSE,FALSE
+corrected,acute heat shock inside the heat cohort,with acute heat shock,zr3534_3 zr3534_4 zr3534_7 zr3534_10,4142,FALSE,FALSE
+corrected,acute heat shock inside the heat cohort,with acute heat shock,zr3534_2 zr3534_3 zr3534_6 zr3534_9,4131,FALSE,FALSE
+corrected,acute heat shock inside the heat cohort,with acute heat shock,zr3534_2 zr3534_3 zr3534_7 zr3534_10,4105,FALSE,FALSE
+corrected,acute heat shock inside the heat cohort,with acute heat shock,zr3534_3 zr3534_4 zr3534_7 zr3534_8,4102,FALSE,FALSE
+corrected,acute heat shock inside the heat cohort,with acute heat shock,zr3534_2 zr3534_3 zr3534_8 zr3534_9,4075,FALSE,FALSE
+corrected,acute heat shock inside the heat cohort,with acute heat shock,zr3534_1 zr3534_5 zr3534_6 zr3534_9,4041,FALSE,FALSE
+corrected,acute heat shock inside the heat cohort,with acute heat shock,zr3534_4 zr3534_5 zr3534_7 zr3534_8,4027,FALSE,FALSE
+corrected,acute heat shock inside the heat cohort,with acute heat shock,zr3534_4 zr3534_5 zr3534_7 zr3534_10,3996,FALSE,FALSE
+corrected,acute heat shock inside the heat cohort,with acute heat shock,zr3534_3 zr3534_5 zr3534_9 zr3534_10,3963,FALSE,FALSE
+corrected,acute heat shock inside the heat cohort,with acute heat shock,zr3534_4 zr3534_5 zr3534_8 zr3534_9,3949,FALSE,FALSE
+corrected,acute heat shock inside the heat cohort,with acute heat shock,zr3534_1 zr3534_4 zr3534_8 zr3534_10,3935,FALSE,FALSE
+corrected,acute heat shock inside the heat cohort,with acute heat shock,zr3534_1 zr3534_5 zr3534_6 zr3534_10,3926,FALSE,FALSE
+corrected,acute heat shock inside the heat cohort,with acute heat shock,zr3534_2 zr3534_3 zr3534_9 zr3534_10,3912,FALSE,FALSE
+corrected,acute heat shock inside the heat cohort,with acute heat shock,zr3534_1 zr3534_5 zr3534_6 zr3534_7,3875,FALSE,FALSE
+corrected,acute heat shock inside the heat cohort,with acute heat shock,zr3534_1 zr3534_5 zr3534_6 zr3534_8,3855,FALSE,FALSE
+corrected,acute heat shock inside the heat cohort,with acute heat shock,zr3534_4 zr3534_5 zr3534_9 zr3534_10,3823,TRUE,FALSE
+corrected,acute heat shock inside the heat cohort,with acute heat shock,zr3534_1 zr3534_4 zr3534_8 zr3534_9,3777,FALSE,FALSE
+corrected,acute heat shock inside the heat cohort,with acute heat shock,zr3534_1 zr3534_5 zr3534_8 zr3534_10,3775,FALSE,FALSE
+corrected,acute heat shock inside the heat cohort,with acute heat shock,zr3534_3 zr3534_4 zr3534_8 zr3534_9,3763,FALSE,FALSE
+corrected,acute heat shock inside the heat cohort,with acute heat shock,zr3534_1 zr3534_4 zr3534_6 zr3534_9,3709,FALSE,FALSE
+corrected,acute heat shock inside the heat cohort,with acute heat shock,zr3534_1 zr3534_4 zr3534_6 zr3534_7,3707,FALSE,FALSE
+corrected,acute heat shock inside the heat cohort,with acute heat shock,zr3534_1 zr3534_5 zr3534_8 zr3534_9,3706,FALSE,FALSE
+corrected,acute heat shock inside the heat cohort,with acute heat shock,zr3534_1 zr3534_4 zr3534_6 zr3534_10,3689,FALSE,FALSE
+corrected,acute heat shock inside the heat cohort,with acute heat shock,zr3534_1 zr3534_5 zr3534_9 zr3534_10,3659,FALSE,FALSE
+corrected,acute heat shock inside the heat cohort,with acute heat shock,zr3534_1 zr3534_4 zr3534_9 zr3534_10,3631,FALSE,FALSE
+corrected,acute heat shock inside the heat cohort,with acute heat shock,zr3534_1 zr3534_4 zr3534_7 zr3534_10,3622,FALSE,FALSE
+corrected,acute heat shock inside the heat cohort,with acute heat shock,zr3534_1 zr3534_4 zr3534_7 zr3534_8,3612,FALSE,FALSE
+corrected,acute heat shock inside the heat cohort,with acute heat shock,zr3534_3 zr3534_4 zr3534_9 zr3534_10,3601,FALSE,FALSE
+corrected,acute heat shock inside the heat cohort,with acute heat shock,zr3534_1 zr3534_4 zr3534_6 zr3534_8,3583,FALSE,FALSE
+corrected,acute heat shock inside the heat cohort,with acute heat shock,zr3534_2 zr3534_4 zr3534_7 zr3534_9,3580,FALSE,FALSE
+corrected,acute heat shock inside the heat cohort,with acute heat shock,zr3534_1 zr3534_5 zr3534_7 zr3534_8,3505,FALSE,FALSE
+corrected,acute heat shock inside the heat cohort,with acute heat shock,zr3534_1 zr3534_5 zr3534_7 zr3534_10,3441,FALSE,FALSE
+corrected,acute heat shock inside the heat cohort,with acute heat shock,zr3534_1 zr3534_3 zr3534_8 zr3534_10,3383,FALSE,FALSE
+corrected,acute heat shock inside the heat cohort,with acute heat shock,zr3534_2 zr3534_5 zr3534_7 zr3534_9,3323,FALSE,FALSE
+corrected,acute heat shock inside the heat cohort,with acute heat shock,zr3534_1 zr3534_3 zr3534_6 zr3534_10,3292,FALSE,FALSE
+corrected,acute heat shock inside the heat cohort,with acute heat shock,zr3534_1 zr3534_3 zr3534_7 zr3534_9,3248,FALSE,FALSE
+corrected,acute heat shock inside the heat cohort,with acute heat shock,zr3534_2 zr3534_5 zr3534_6 zr3534_10,3212,FALSE,FALSE
+corrected,acute heat shock inside the heat cohort,with acute heat shock,zr3534_2 zr3534_4 zr3534_8 zr3534_10,3194,FALSE,FALSE
+corrected,acute heat shock inside the heat cohort,with acute heat shock,zr3534_2 zr3534_5 zr3534_6 zr3534_9,3135,FALSE,FALSE
+corrected,acute heat shock inside the heat cohort,with acute heat shock,zr3534_1 zr3534_3 zr3534_6 zr3534_8,3130,FALSE,FALSE
+corrected,acute heat shock inside the heat cohort,with acute heat shock,zr3534_2 zr3534_5 zr3534_6 zr3534_7,3110,FALSE,FALSE
+corrected,acute heat shock inside the heat cohort,with acute heat shock,zr3534_2 zr3534_5 zr3534_6 zr3534_8,3100,FALSE,FALSE
+corrected,acute heat shock inside the heat cohort,with acute heat shock,zr3534_2 zr3534_5 zr3534_8 zr3534_10,3090,FALSE,FALSE
+corrected,acute heat shock inside the heat cohort,with acute heat shock,zr3534_1 zr3534_3 zr3534_6 zr3534_9,3063,FALSE,FALSE
+corrected,acute heat shock inside the heat cohort,with acute heat shock,zr3534_2 zr3534_4 zr3534_7 zr3534_10,3044,FALSE,FALSE
+corrected,acute heat shock inside the heat cohort,with acute heat shock,zr3534_1 zr3534_3 zr3534_6 zr3534_7,3033,FALSE,FALSE
+corrected,acute heat shock inside the heat cohort,with acute heat shock,zr3534_1 zr3534_3 zr3534_8 zr3534_9,3029,FALSE,FALSE
+corrected,acute heat shock inside the heat cohort,with acute heat shock,zr3534_2 zr3534_4 zr3534_6 zr3534_7,3016,FALSE,FALSE
+corrected,acute heat shock inside the heat cohort,with acute heat shock,zr3534_2 zr3534_5 zr3534_8 zr3534_9,2997,FALSE,FALSE
+corrected,acute heat shock inside the heat cohort,with acute heat shock,zr3534_2 zr3534_4 zr3534_6 zr3534_10,2995,FALSE,FALSE
+corrected,acute heat shock inside the heat cohort,with acute heat shock,zr3534_2 zr3534_4 zr3534_7 zr3534_8,2978,FALSE,FALSE
+corrected,acute heat shock inside the heat cohort,with acute heat shock,zr3534_2 zr3534_4 zr3534_8 zr3534_9,2976,FALSE,FALSE
+corrected,acute heat shock inside the heat cohort,with acute heat shock,zr3534_1 zr3534_3 zr3534_9 zr3534_10,2906,FALSE,FALSE
+corrected,acute heat shock inside the heat cohort,with acute heat shock,zr3534_2 zr3534_4 zr3534_9 zr3534_10,2889,FALSE,FALSE
+corrected,acute heat shock inside the heat cohort,with acute heat shock,zr3534_1 zr3534_3 zr3534_7 zr3534_10,2873,FALSE,FALSE
+corrected,acute heat shock inside the heat cohort,with acute heat shock,zr3534_2 zr3534_4 zr3534_6 zr3534_9,2851,FALSE,FALSE
+corrected,acute heat shock inside the heat cohort,with acute heat shock,zr3534_2 zr3534_4 zr3534_6 zr3534_8,2830,FALSE,FALSE
+corrected,acute heat shock inside the heat cohort,with acute heat shock,zr3534_1 zr3534_3 zr3534_7 zr3534_8,2817,FALSE,FALSE
+corrected,acute heat shock inside the heat cohort,with acute heat shock,zr3534_2 zr3534_5 zr3534_9 zr3534_10,2810,FALSE,FALSE
+corrected,acute heat shock inside the heat cohort,with acute heat shock,zr3534_2 zr3534_5 zr3534_7 zr3534_8,2796,FALSE,FALSE
+corrected,acute heat shock inside the heat cohort,with acute heat shock,zr3534_2 zr3534_5 zr3534_7 zr3534_10,2746,FALSE,FALSE

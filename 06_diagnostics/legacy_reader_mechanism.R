@@ -58,9 +58,9 @@
 # Writes    06_diagnostics/legacy_reader_mechanism.csv
 #             Parts (a) to (f), long format: table, quantity, value,
 #             definition. `table` is ploidy, heat or shared; "universe" for
-#             facts about the legacy universe; "session" for the R version.
-#             `value` is text: a count, a percentage, yes or no, a transcript
-#             name, or the warnings of a read.
+#             facts about the legacy universe; "session" for the versions of
+#             R, GO.db and topGO. `value` is text: a count, a percentage, yes
+#             or no, a transcript name, or the warnings of a read.
 #           06_diagnostics/legacy_reader_by_linkage_group.csv
 #             Part (d): one row per table and sequence (ten linkage groups,
 #             unplaced scaffolds, all). Transcripts and genes of the table,
@@ -112,7 +112,8 @@
 #             (issue I-03), so they show what position does and are no null
 #             distribution for the number of terms of the legacy list.
 #           - Warning texts are part of the output. They are those of the R
-#             version named in the first row of legacy_reader_mechanism.csv.
+#             version named in the first row of legacy_reader_mechanism.csv;
+#             the script asks R for English messages.
 #           - Legacy mode only: the tables and the test belong to the legacy
 #             analysis.
 
@@ -122,11 +123,12 @@ invisible(lapply(list.files(here("02_R_functions"), pattern = "\\.R$", full.name
 go_db_version <- use_legacy_go_db(config)            # must come before topGO is loaded
 load_packages(c("data.table", "topGO"))
 setDTthreads(1)                                      # the tables are small
-Sys.setenv(LANGUAGE = "en")                          # warnings are quoted in the output: keep them in English
+# Warning texts are part of the output: ask R for English messages (Sys.setLanguage() exists from R 4.2.0).
+if (exists("Sys.setLanguage", mode = "function")) invisible(Sys.setLanguage("en")) else Sys.setenv(LANGUAGE = "en")
 
 n_draws <- 200L                                      # random lists of each kind in the position control
 seed <- 20261119L
-tables <- c(ploidy = "PLOIDY", heat = "HEAT", shared = "COMBO")   # the name of each table in its legacy file name
+table_tags <- c(ploidy = "PLOIDY", heat = "HEAT", shared = "COMBO")   # each table and its tag in the legacy file name
 quote_settings <- list(                              # the four reads of part (a): the quote characters of each
   default_quotes     = c("\"", "'"),
   no_quote_character = character(0),
@@ -274,6 +276,8 @@ read_text <- c(
   apostrophe_only    = "the apostrophe as the only quote character")
 definitions <- c(
   r_version = "R version that made the reads and gave the warnings reported in this table",
+  go_db_version = "Version of the GO.db package (the ontology) behind legacy_reader_position_control.csv",
+  topgo_version = "Version of the topGO package behind legacy_reader_position_control.csv",
   universe_map_lines = "Lines of the legacy universe map (one line per blastx alignment of a transcript)",
   universe_transcripts = "Distinct transcripts of the legacy universe",
   universe_transcripts_first_five_linkage_groups = paste("Universe transcripts on", lg_first_text),
@@ -313,8 +317,12 @@ definitions <- c(
   longest_surviving_run_last = "Last transcript of the longest run",
   percent_surviving_transcripts_in_longest_run = "Transcripts of the longest run as a percent of the surviving transcripts",
   universe_transcripts_in_run_range = "Universe transcripts whose accession lies between the first and the last transcript of the longest run",
+  tested_transcripts_in_longest_run = "Transcripts of the longest run that are in the legacy universe",
   mrnas_in_run_range_by_sequence = paste("Annotated XM mRNAs (transcript table of step 08) whose accession lies in that range,",
                                          "counted by sequence; sequences with none are left out"),
+  surviving_transcripts_first_five_linkage_groups = paste("Surviving transcripts on", lg_first_text),
+  surviving_transcripts_last_five_linkage_groups = paste("Surviving transcripts on", lg_last_text),
+  surviving_transcripts_unplaced_scaffolds = "Surviving transcripts on unplaced scaffolds",
   tested_transcripts_first_five_linkage_groups = paste("Transcripts that survive and are in the legacy universe, on", lg_first_text),
   percent_tested_transcripts_first_five_linkage_groups = "Those transcripts as a percent of all that survive and are in the universe",
   tested_transcripts_last_five_linkage_groups = paste("Transcripts that survive and are in the legacy universe, on", lg_last_text),
@@ -359,6 +367,8 @@ add <- function(table_name, quantity, value) {
 }
 yes_no <- function(x) if (isTRUE(x)) "yes" else "no"
 add("session", "r_version", R.version.string)
+add("session", "go_db_version", go_db_version)
+add("session", "topgo_version", as.character(packageVersion("topGO")))
 
 # ==========================================================================================
 # 2. The legacy universe and the transcript table
@@ -400,9 +410,9 @@ stopifnot(all(c("set", "reader", "rows", "transcripts", "genes") %in% names(step
           all(c("set", "stage", "genes", "transcripts") %in% names(step09_funnel)))
 by_sequence <- list()
 survivors <- list()                                  # per table: the transcripts of the default read and the longest run
-for (tbl in names(tables)) {
+for (tbl in names(table_tags)) {
   path <- input_path("annotation", "legacy",
-                     sprintf("DML-Cov10-20-BOTH-%s.GeneIDs.geneOverlap.transcriptIDs.GOAnnot.gz", tables[[tbl]]))
+                     sprintf("DML-Cov10-20-BOTH-%s.GeneIDs.geneOverlap.transcriptIDs.GOAnnot.gz", table_tags[[tbl]]))
   file_lines <- readLines(path)
   n_file_lines <- length(file_lines)
   complete <- read_dml_annotation(path, "exact")     # every line a row
@@ -521,8 +531,14 @@ for (tbl in names(tables)) {
   add(tbl, "longest_surviving_run_last", run_last)
   add(tbl, "percent_surviving_transcripts_in_longest_run", percent_text(runs$lengths[longest], n_surviving))
   add(tbl, "universe_transcripts_in_run_range", count_text(sum(universe_in_range)))
+  add(tbl, "tested_transcripts_in_longest_run",
+      count_text(per_tx[survives == TRUE & in_universe == TRUE & accession >= run_range[1] & accession <= run_range[2], .N]))
   add(tbl, "mrnas_in_run_range_by_sequence",
       paste(sprintf("%s: %d", sequence_levels[mrnas_in_range > 0], mrnas_in_range[mrnas_in_range > 0]), collapse = "; "))
+  surviving_by_sequence <- count_by_sequence(per_tx[survives == TRUE, sequence])
+  add(tbl, "surviving_transcripts_first_five_linkage_groups", count_text(sum(surviving_by_sequence[sequence_levels %in% lg_first])))
+  add(tbl, "surviving_transcripts_last_five_linkage_groups", count_text(sum(surviving_by_sequence[sequence_levels %in% lg_last])))
+  add(tbl, "surviving_transcripts_unplaced_scaffolds", count_text(surviving_by_sequence[sequence_levels == "unplaced scaffolds"]))
   tested_by_sequence <- count_by_sequence(per_tx[survives == TRUE & in_universe == TRUE, sequence])
   n_tested <- sum(tested_by_sequence)
   add(tbl, "tested_transcripts_first_five_linkage_groups", count_text(sum(tested_by_sequence[sequence_levels %in% lg_first])))
@@ -536,7 +552,7 @@ for (tbl in names(tables)) {
   seq_tab <- data.table(
     table = tbl, sequence = sequence_levels,
     transcripts_in_table = count_by_sequence(per_tx$sequence),
-    transcripts_surviving = count_by_sequence(per_tx[survives == TRUE, sequence]),
+    transcripts_surviving = surviving_by_sequence,
     transcripts_lost = count_by_sequence(per_tx[survives == FALSE, sequence]),
     genes_in_table = count_by_sequence(per_gene$sequence),
     genes_surviving = count_by_sequence(per_gene[survives == TRUE, sequence]),
@@ -600,8 +616,6 @@ for (tbl in names(tables)) {
 mechanism <- rbindlist(mechanism)
 by_sequence <- rbindlist(by_sequence)
 stopifnot(!anyDuplicated(mechanism[, .(table, quantity)]))
-fwrite(mechanism, out_file("legacy_reader_mechanism.csv"))
-fwrite(by_sequence, out_file("legacy_reader_by_linkage_group.csv"))
 
 # ==========================================================================================
 # 4. Position-only control for the BP test of the ploidy table (part g)
@@ -630,11 +644,11 @@ topgo_p <- function(object, go_map, of_interest) {
 maps <- list(lines = gene2go, transcripts = gene2go[!duplicated(map_names)])
 fixed_lists <- list(legacy_list = legacy_list, accession_run = run_pool)
 topgo_results <- list()
-objects <- list()
+bp_objects <- list()
 for (totals_in in names(maps)) {
-  objects[[totals_in]] <- topgo_object(maps[[totals_in]], legacy_list)
+  bp_objects[[totals_in]] <- topgo_object(maps[[totals_in]], legacy_list)
   for (list_name in names(fixed_lists)) {
-    topgo_results[[paste(totals_in, list_name)]] <- topgo_p(objects[[totals_in]], maps[[totals_in]], fixed_lists[[list_name]])
+    topgo_results[[paste(totals_in, list_name)]] <- topgo_p(bp_objects[[totals_in]], maps[[totals_in]], fixed_lists[[list_name]])
   }
   log_msg("topGO, totals in %s: %d BP terms; p < %g for %d (legacy list) and %d (accession run)", totals_in,
           length(topgo_results[[paste(totals_in, "legacy_list")]]), cutoff,
@@ -646,16 +660,16 @@ for (totals_in in names(maps)) {
 # the test once per entry of the map that has a BP term (issue I-43). With one entry per transcript the totals
 # are counts of transcripts too. The p-value is the upper tail of the hypergeometric distribution, as in
 # fisher.test(alternative = "greater"); a term with no transcript of interest has p = 1.
-term_members <- genesInTerm(objects$lines)           # term -> transcripts that carry it or a descendant of it
+term_members <- genesInTerm(bp_objects$lines)           # term -> transcripts that carry it or a descendant of it
 bp_terms <- names(term_members)
-entries <- genes(objects$lines)                      # map lines of the transcripts that have a BP term
+entries <- genes(bp_objects$lines)                      # map lines of the transcripts that have a BP term
 test_names <- unique(entries)
 entries_of_name <- tabulate(match(entries, test_names), nbins = length(test_names))
 member_term <- rep(seq_along(term_members), lengths(term_members))
 member_name <- match(unlist(term_members, use.names = FALSE), test_names)
 term_size <- unname(lengths(term_members))
-stopifnot(!anyNA(member_name), setequal(test_names, genes(objects$transcripts)),
-          identical(sort(bp_terms), sort(names(genesInTerm(objects$transcripts)))))
+stopifnot(!anyNA(member_name), setequal(test_names, genes(bp_objects$transcripts)),
+          identical(sort(bp_terms), sort(names(genesInTerm(bp_objects$transcripts)))))
 direct_test <- function(of_interest, totals_in) {
   in_list <- test_names %chin% of_interest
   hits <- tabulate(member_term[in_list[member_name]], nbins = length(bp_terms))
@@ -743,23 +757,27 @@ control[, list_order := match(list_of_interest, kinds$list_of_interest)]
 setorder(control, unit_order, list_order)
 control[, c("unit", "unit_order", "list_order") := NULL]
 setcolorder(control, c("totals_counted_in", "list_of_interest", "description", "uses_dml_information"))
+
+# Every check has passed: write the three tables.
+fwrite(mechanism, out_file("legacy_reader_mechanism.csv"))
+fwrite(by_sequence, out_file("legacy_reader_by_linkage_group.csv"))
 fwrite(control, out_file("legacy_reader_position_control.csv"))
 
 # ==========================================================================================
 # 5. Summary for the log
 # ==========================================================================================
 options(width = 250)
-show <- function(quantities) {
+print_quantities <- function(quantities) {
   wide <- dcast(mechanism[quantity %in% quantities], quantity ~ table, value.var = "value")
-  print(wide[match(quantities, quantity), c("quantity", intersect(names(tables), names(wide))), with = FALSE], row.names = FALSE)
+  print(wide[match(quantities, quantity), c("quantity", intersect(names(table_tags), names(wide))), with = FALSE], row.names = FALSE)
 }
 cat("\nRows returned by each read, and warnings of the default read\n")
-show(c("lines_in_file", paste0("rows_", names(quote_settings)), "warnings_default_quotes"))
+print_quantities(c("lines_in_file", paste0("rows_", names(quote_settings)), "warnings_default_quotes"))
 cat("\nMechanism and interventions\n")
-show(c("lines_with_unpaired_apostrophe", "merged_rows_default_quotes", "rows_after_replacing_unpaired_apostrophes",
+print_quantities(c("lines_with_unpaired_apostrophe", "merged_rows_default_quotes", "rows_after_replacing_unpaired_apostrophes",
        "repaired_read_returns_every_line", "rows_after_replacing_all_other_apostrophes", "control_read_returns_the_same_rows"))
 cat("\nWhat is lost, and where the survivors are\n")
-show(c("transcripts_in_file", "transcripts_default_quotes", "transcripts_lost", "genes_in_file", "genes_default_quotes", "genes_lost",
+print_quantities(c("transcripts_in_file", "transcripts_default_quotes", "transcripts_lost", "genes_in_file", "genes_default_quotes", "genes_lost",
        "percent_skipped_lines_of_lost_transcripts", "longest_surviving_run_transcripts", "longest_surviving_run_first",
        "longest_surviving_run_last", "transcripts_admitted_by_both", "tested_transcripts_first_five_linkage_groups",
        "percent_tested_transcripts_first_five_linkage_groups", "genes_admitted_by_universe_alone", "genes_admitted_by_reader_alone",
