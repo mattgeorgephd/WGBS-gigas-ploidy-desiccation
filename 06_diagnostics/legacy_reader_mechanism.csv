@@ -1,0 +1,213 @@
+table,quantity,value,definition
+session,r_version,R version 4.3.3 (2024-02-29),R version that made the reads and gave the warnings reported in this table
+universe,universe_map_lines,48263,Lines of the legacy universe map (one line per blastx alignment of a transcript)
+universe,universe_transcripts,27469,Distinct transcripts of the legacy universe
+universe,universe_transcripts_first_five_linkage_groups,17070,Universe transcripts on the first five linkage groups (NC_047559.1 to NC_047563.1)
+universe,percent_universe_first_five_linkage_groups,62.1,Percent of the universe transcripts on the first five linkage groups (NC_047559.1 to NC_047563.1)
+universe,universe_transcripts_last_five_linkage_groups,9041,Universe transcripts on the last five linkage groups (NC_047564.1 to NC_047568.1)
+universe,percent_universe_last_five_linkage_groups,32.9,Percent of the universe transcripts on the last five linkage groups (NC_047564.1 to NC_047568.1)
+universe,universe_transcripts_unplaced_scaffolds,1358,Universe transcripts on unplaced scaffolds
+ploidy,lines_in_file,46626,"Lines of the annotation table (one line per DML, transcript and GO term)"
+ploidy,transcripts_in_file,2348,Distinct transcripts named in the table
+ploidy,genes_in_file,622,Distinct genes named in the table
+ploidy,rows_default_quotes,10979,"Rows returned by read.table(header = FALSE, sep = tab) with the default quote characters of read.table(), the double quote and the apostrophe, as in the legacy script"
+ploidy,transcripts_default_quotes,623,Distinct transcripts in the transcript column of that read
+ploidy,genes_default_quotes,171,Distinct genes in the gene column of that read
+ploidy,warnings_default_quotes,EOF within quoted string | number of items read is not a multiple of the number of columns,"Warnings R gave for that read, distinct messages joined by ' | '; 'none' when R gave none"
+ploidy,rows_no_quote_character,46626,"Rows returned by read.table(header = FALSE, sep = tab) with no quote character (quote = """")"
+ploidy,transcripts_no_quote_character,2348,Distinct transcripts in the transcript column of that read
+ploidy,genes_no_quote_character,622,Distinct genes in the gene column of that read
+ploidy,warnings_no_quote_character,none,"Warnings R gave for that read, distinct messages joined by ' | '; 'none' when R gave none"
+ploidy,rows_double_quote_only,46626,"Rows returned by read.table(header = FALSE, sep = tab) with the double quote as the only quote character"
+ploidy,transcripts_double_quote_only,2348,Distinct transcripts in the transcript column of that read
+ploidy,genes_double_quote_only,622,Distinct genes in the gene column of that read
+ploidy,warnings_double_quote_only,none,"Warnings R gave for that read, distinct messages joined by ' | '; 'none' when R gave none"
+ploidy,rows_apostrophe_only,10981,"Rows returned by read.table(header = FALSE, sep = tab) with the apostrophe as the only quote character"
+ploidy,transcripts_apostrophe_only,624,Distinct transcripts in the transcript column of that read
+ploidy,genes_apostrophe_only,172,Distinct genes in the gene column of that read
+ploidy,warnings_apostrophe_only,EOF within quoted string | number of items read is not a multiple of the number of columns,"Warnings R gave for that read, distinct messages joined by ' | '; 'none' when R gave none"
+ploidy,percent_rows_default_quotes,23.5,Rows of the default read as a percent of the lines of the table
+ploidy,lines_with_apostrophe,68,Lines that hold at least one apostrophe (all apostrophes are in GO term names)
+ploidy,lines_with_unpaired_apostrophe,27,"Lines with an odd number of apostrophes outside a double-quoted field. Read alone with the default quote characters, such a line ends inside a quoted string"
+ploidy,merged_rows_default_quotes,14,Rows of the default read that hold more than one line of the table (a line break inside a field)
+ploidy,lines_in_largest_merged_row,14937,Lines of the table in the largest merged row of the default read
+ploidy,table_ends_inside_quoted_string,yes,Whether the last quoted string of the default read is still open at the end of the table (yes or no); R then warns of an end of file within a quoted string
+ploidy,skipped_lines,35647,Lines that do not start a row of the default read: lines of the table minus rows returned
+ploidy,rows_after_replacing_unpaired_apostrophes,46626,"Rows of the default read after every apostrophe on the lines with an unpaired apostrophe, and on no other line, was replaced by a caret"
+ploidy,repaired_read_returns_every_line,yes,"Whether that read returns one row per line, with the transcript and the GO ID of the line, and gives no warning (yes or no)"
+ploidy,rows_after_replacing_all_other_apostrophes,10979,Rows of the default read after every apostrophe on all other lines was replaced by a caret and the lines with an unpaired apostrophe were left as they are
+ploidy,control_read_returns_the_same_rows,yes,Whether that read returns rows that start on the same lines as those of the default read (yes or no)
+ploidy,transcripts_lost,1725,Transcripts of the table that are in no row of the default read
+ploidy,genes_lost,451,Genes of the table that are in no row of the default read
+ploidy,skipped_lines_of_lost_transcripts,35436,Skipped lines that belong to transcripts in no row of the default read
+ploidy,percent_skipped_lines_of_lost_transcripts,99.4,Those lines as a percent of the skipped lines
+ploidy,skipped_lines_of_lost_genes,32947,Skipped lines that belong to genes in no row of the default read
+ploidy,percent_skipped_lines_of_lost_genes,92.4,Those lines as a percent of the skipped lines
+ploidy,runs_of_surviving_transcripts,7,Runs of surviving transcripts when the transcripts of the table are put in accession order
+ploidy,longest_surviving_run_transcripts,603,Transcripts in the longest such run
+ploidy,longest_surviving_run_first,XM_034462509.1,First transcript of the longest run
+ploidy,longest_surviving_run_last,XM_034479694.1,Last transcript of the longest run
+ploidy,percent_surviving_transcripts_in_longest_run,96.8,Transcripts of the longest run as a percent of the surviving transcripts
+ploidy,universe_transcripts_in_run_range,11284,Universe transcripts whose accession lies between the first and the last transcript of the longest run
+ploidy,mrnas_in_run_range_by_sequence,NC_047559.1: 1629; NC_047560.1: 4034; NC_047561.1: 3807; NC_047562.1: 3435; NC_047563.1: 4232; unplaced scaffolds: 49,"Annotated XM mRNAs (transcript table of step 08) whose accession lies in that range, counted by sequence; sequences with none are left out"
+ploidy,tested_transcripts_first_five_linkage_groups,601,"Transcripts that survive and are in the legacy universe, on the first five linkage groups (NC_047559.1 to NC_047563.1)"
+ploidy,percent_tested_transcripts_first_five_linkage_groups,98.2,Those transcripts as a percent of all that survive and are in the universe
+ploidy,tested_transcripts_last_five_linkage_groups,5,"Transcripts that survive and are in the legacy universe, on the last five linkage groups (NC_047564.1 to NC_047568.1)"
+ploidy,percent_tested_transcripts_last_five_linkage_groups,0.8,Those transcripts as a percent of all that survive and are in the universe
+ploidy,tested_transcripts_unplaced_scaffolds,6,"Transcripts that survive and are in the legacy universe, on unplaced scaffolds"
+ploidy,transcripts_admitted_by_universe_alone,1419,Transcripts of the table that are in the legacy universe: admitted if the universe were the only filter
+ploidy,transcripts_admitted_by_reader_alone,623,Transcripts of the table that survive the default read: admitted if the reader were the only filter
+ploidy,transcripts_admitted_by_both,612,Transcripts that survive the default read and are in the legacy universe: the transcripts of interest of the legacy test
+ploidy,genes_admitted_by_universe_alone,456,Genes with at least one transcript of the table in the legacy universe
+ploidy,genes_admitted_by_reader_alone,171,Genes with at least one transcript that survives the default read
+ploidy,genes_admitted_by_both,168,Genes with at least one transcript that survives the default read and is in the legacy universe
+ploidy,percent_surviving_transcripts_in_universe,98.2,Percent of the surviving transcripts that are in the legacy universe
+ploidy,percent_lost_transcripts_in_universe,46.8,Percent of the lost transcripts that are in the legacy universe (empty when no transcript is lost)
+ploidy,genes_with_one_transcript,264,Genes with one transcript in the table
+ploidy,genes_with_one_transcript_surviving,52,"Of those genes, the ones that survive the default read"
+ploidy,percent_genes_with_one_transcript_surviving,19.7,Percent of the genes with one transcript in the table that survive
+ploidy,genes_with_two_to_five_transcripts,235,Genes with two to five transcripts in the table
+ploidy,genes_with_two_to_five_transcripts_surviving,73,"Of those genes, the ones that survive the default read"
+ploidy,percent_genes_with_two_to_five_transcripts_surviving,31.1,Percent of the genes with two to five transcripts in the table that survive
+ploidy,genes_with_more_than_five_transcripts,123,Genes with more than five transcripts in the table
+ploidy,genes_with_more_than_five_transcripts_surviving,46,"Of those genes, the ones that survive the default read"
+ploidy,percent_genes_with_more_than_five_transcripts_surviving,37.4,Percent of the genes with more than five transcripts in the table that survive
+ploidy,transcripts_with_unpaired_apostrophe_term,16,Transcripts with at least one line that holds an unpaired apostrophe
+ploidy,transcripts_with_unpaired_apostrophe_term_surviving,16,"Of those transcripts, the ones that survive the default read"
+ploidy,percent_other_transcripts_surviving,26.0,Percent of all other transcripts of the table that survive the default read
+heat,lines_in_file,106621,"Lines of the annotation table (one line per DML, transcript and GO term)"
+heat,transcripts_in_file,4606,Distinct transcripts named in the table
+heat,genes_in_file,1237,Distinct genes named in the table
+heat,rows_default_quotes,81109,"Rows returned by read.table(header = FALSE, sep = tab) with the default quote characters of read.table(), the double quote and the apostrophe, as in the legacy script"
+heat,transcripts_default_quotes,3444,Distinct transcripts in the transcript column of that read
+heat,genes_default_quotes,949,Distinct genes in the gene column of that read
+heat,warnings_default_quotes,none,"Warnings R gave for that read, distinct messages joined by ' | '; 'none' when R gave none"
+heat,rows_no_quote_character,106621,"Rows returned by read.table(header = FALSE, sep = tab) with no quote character (quote = """")"
+heat,transcripts_no_quote_character,4606,Distinct transcripts in the transcript column of that read
+heat,genes_no_quote_character,1237,Distinct genes in the gene column of that read
+heat,warnings_no_quote_character,none,"Warnings R gave for that read, distinct messages joined by ' | '; 'none' when R gave none"
+heat,rows_double_quote_only,106621,"Rows returned by read.table(header = FALSE, sep = tab) with the double quote as the only quote character"
+heat,transcripts_double_quote_only,4606,Distinct transcripts in the transcript column of that read
+heat,genes_double_quote_only,1237,Distinct genes in the gene column of that read
+heat,warnings_double_quote_only,none,"Warnings R gave for that read, distinct messages joined by ' | '; 'none' when R gave none"
+heat,rows_apostrophe_only,81109,"Rows returned by read.table(header = FALSE, sep = tab) with the apostrophe as the only quote character"
+heat,transcripts_apostrophe_only,3444,Distinct transcripts in the transcript column of that read
+heat,genes_apostrophe_only,949,Distinct genes in the gene column of that read
+heat,warnings_apostrophe_only,none,"Warnings R gave for that read, distinct messages joined by ' | '; 'none' when R gave none"
+heat,percent_rows_default_quotes,76.1,Rows of the default read as a percent of the lines of the table
+heat,lines_with_apostrophe,200,Lines that hold at least one apostrophe (all apostrophes are in GO term names)
+heat,lines_with_unpaired_apostrophe,88,"Lines with an odd number of apostrophes outside a double-quoted field. Read alone with the default quote characters, such a line ends inside a quoted string"
+heat,merged_rows_default_quotes,44,Rows of the default read that hold more than one line of the table (a line break inside a field)
+heat,lines_in_largest_merged_row,7679,Lines of the table in the largest merged row of the default read
+heat,table_ends_inside_quoted_string,no,Whether the last quoted string of the default read is still open at the end of the table (yes or no); R then warns of an end of file within a quoted string
+heat,skipped_lines,25512,Lines that do not start a row of the default read: lines of the table minus rows returned
+heat,rows_after_replacing_unpaired_apostrophes,106621,"Rows of the default read after every apostrophe on the lines with an unpaired apostrophe, and on no other line, was replaced by a caret"
+heat,repaired_read_returns_every_line,yes,"Whether that read returns one row per line, with the transcript and the GO ID of the line, and gives no warning (yes or no)"
+heat,rows_after_replacing_all_other_apostrophes,81109,Rows of the default read after every apostrophe on all other lines was replaced by a caret and the lines with an unpaired apostrophe were left as they are
+heat,control_read_returns_the_same_rows,yes,Whether that read returns rows that start on the same lines as those of the default read (yes or no)
+heat,transcripts_lost,1162,Transcripts of the table that are in no row of the default read
+heat,genes_lost,288,Genes of the table that are in no row of the default read
+heat,skipped_lines_of_lost_transcripts,25156,Skipped lines that belong to transcripts in no row of the default read
+heat,percent_skipped_lines_of_lost_transcripts,98.6,Those lines as a percent of the skipped lines
+heat,skipped_lines_of_lost_genes,10611,Skipped lines that belong to genes in no row of the default read
+heat,percent_skipped_lines_of_lost_genes,41.6,Those lines as a percent of the skipped lines
+heat,runs_of_surviving_transcripts,13,Runs of surviving transcripts when the transcripts of the table are put in accession order
+heat,longest_surviving_run_transcripts,1955,Transcripts in the longest such run
+heat,longest_surviving_run_first,XM_034456493.1,First transcript of the longest run
+heat,longest_surviving_run_last,XM_034483609.1,Last transcript of the longest run
+heat,percent_surviving_transcripts_in_longest_run,56.8,Transcripts of the longest run as a percent of the surviving transcripts
+heat,universe_transcripts_in_run_range,14665,Universe transcripts whose accession lies between the first and the last transcript of the longest run
+heat,mrnas_in_run_range_by_sequence,NC_047559.1: 2541; NC_047560.1: 4034; NC_047561.1: 3807; NC_047562.1: 3435; NC_047563.1: 4412; NC_047564.1: 3387; NC_047568.1: 2439; unplaced scaffolds: 3062,"Annotated XM mRNAs (transcript table of step 08) whose accession lies in that range, counted by sequence; sequences with none are left out"
+heat,tested_transcripts_first_five_linkage_groups,1379,"Transcripts that survive and are in the legacy universe, on the first five linkage groups (NC_047559.1 to NC_047563.1)"
+heat,percent_tested_transcripts_first_five_linkage_groups,64.2,Those transcripts as a percent of all that survive and are in the universe
+heat,tested_transcripts_last_five_linkage_groups,628,"Transcripts that survive and are in the legacy universe, on the last five linkage groups (NC_047564.1 to NC_047568.1)"
+heat,percent_tested_transcripts_last_five_linkage_groups,29.2,Those transcripts as a percent of all that survive and are in the universe
+heat,tested_transcripts_unplaced_scaffolds,141,"Transcripts that survive and are in the legacy universe, on unplaced scaffolds"
+heat,transcripts_admitted_by_universe_alone,3012,Transcripts of the table that are in the legacy universe: admitted if the universe were the only filter
+heat,transcripts_admitted_by_reader_alone,3444,Transcripts of the table that survive the default read: admitted if the reader were the only filter
+heat,transcripts_admitted_by_both,2148,Transcripts that survive the default read and are in the legacy universe: the transcripts of interest of the legacy test
+heat,genes_admitted_by_universe_alone,930,Genes with at least one transcript of the table in the legacy universe
+heat,genes_admitted_by_reader_alone,949,Genes with at least one transcript that survives the default read
+heat,genes_admitted_by_both,610,Genes with at least one transcript that survives the default read and is in the legacy universe
+heat,percent_surviving_transcripts_in_universe,62.4,Percent of the surviving transcripts that are in the legacy universe
+heat,percent_lost_transcripts_in_universe,74.4,Percent of the lost transcripts that are in the legacy universe (empty when no transcript is lost)
+heat,genes_with_one_transcript,543,Genes with one transcript in the table
+heat,genes_with_one_transcript_surviving,348,"Of those genes, the ones that survive the default read"
+heat,percent_genes_with_one_transcript_surviving,64.1,Percent of the genes with one transcript in the table that survive
+heat,genes_with_two_to_five_transcripts,475,Genes with two to five transcripts in the table
+heat,genes_with_two_to_five_transcripts_surviving,390,"Of those genes, the ones that survive the default read"
+heat,percent_genes_with_two_to_five_transcripts_surviving,82.1,Percent of the genes with two to five transcripts in the table that survive
+heat,genes_with_more_than_five_transcripts,219,Genes with more than five transcripts in the table
+heat,genes_with_more_than_five_transcripts_surviving,211,"Of those genes, the ones that survive the default read"
+heat,percent_genes_with_more_than_five_transcripts_surviving,96.3,Percent of the genes with more than five transcripts in the table that survive
+heat,transcripts_with_unpaired_apostrophe_term,47,Transcripts with at least one line that holds an unpaired apostrophe
+heat,transcripts_with_unpaired_apostrophe_term_surviving,44,"Of those transcripts, the ones that survive the default read"
+heat,percent_other_transcripts_surviving,74.6,Percent of all other transcripts of the table that survive the default read
+shared,lines_in_file,7029,"Lines of the annotation table (one line per DML, transcript and GO term)"
+shared,transcripts_in_file,379,Distinct transcripts named in the table
+shared,genes_in_file,117,Distinct genes named in the table
+shared,rows_default_quotes,6941,"Rows returned by read.table(header = FALSE, sep = tab) with the default quote characters of read.table(), the double quote and the apostrophe, as in the legacy script"
+shared,transcripts_default_quotes,379,Distinct transcripts in the transcript column of that read
+shared,genes_default_quotes,117,Distinct genes in the gene column of that read
+shared,warnings_default_quotes,none,"Warnings R gave for that read, distinct messages joined by ' | '; 'none' when R gave none"
+shared,rows_no_quote_character,7029,"Rows returned by read.table(header = FALSE, sep = tab) with no quote character (quote = """")"
+shared,transcripts_no_quote_character,379,Distinct transcripts in the transcript column of that read
+shared,genes_no_quote_character,117,Distinct genes in the gene column of that read
+shared,warnings_no_quote_character,none,"Warnings R gave for that read, distinct messages joined by ' | '; 'none' when R gave none"
+shared,rows_double_quote_only,7029,"Rows returned by read.table(header = FALSE, sep = tab) with the double quote as the only quote character"
+shared,transcripts_double_quote_only,379,Distinct transcripts in the transcript column of that read
+shared,genes_double_quote_only,117,Distinct genes in the gene column of that read
+shared,warnings_double_quote_only,none,"Warnings R gave for that read, distinct messages joined by ' | '; 'none' when R gave none"
+shared,rows_apostrophe_only,6941,"Rows returned by read.table(header = FALSE, sep = tab) with the apostrophe as the only quote character"
+shared,transcripts_apostrophe_only,379,Distinct transcripts in the transcript column of that read
+shared,genes_apostrophe_only,117,Distinct genes in the gene column of that read
+shared,warnings_apostrophe_only,none,"Warnings R gave for that read, distinct messages joined by ' | '; 'none' when R gave none"
+shared,percent_rows_default_quotes,98.7,Rows of the default read as a percent of the lines of the table
+shared,lines_with_apostrophe,17,Lines that hold at least one apostrophe (all apostrophes are in GO term names)
+shared,lines_with_unpaired_apostrophe,10,"Lines with an odd number of apostrophes outside a double-quoted field. Read alone with the default quote characters, such a line ends inside a quoted string"
+shared,merged_rows_default_quotes,5,Rows of the default read that hold more than one line of the table (a line break inside a field)
+shared,lines_in_largest_merged_row,64,Lines of the table in the largest merged row of the default read
+shared,table_ends_inside_quoted_string,no,Whether the last quoted string of the default read is still open at the end of the table (yes or no); R then warns of an end of file within a quoted string
+shared,skipped_lines,88,Lines that do not start a row of the default read: lines of the table minus rows returned
+shared,rows_after_replacing_unpaired_apostrophes,7029,"Rows of the default read after every apostrophe on the lines with an unpaired apostrophe, and on no other line, was replaced by a caret"
+shared,repaired_read_returns_every_line,yes,"Whether that read returns one row per line, with the transcript and the GO ID of the line, and gives no warning (yes or no)"
+shared,rows_after_replacing_all_other_apostrophes,6941,Rows of the default read after every apostrophe on all other lines was replaced by a caret and the lines with an unpaired apostrophe were left as they are
+shared,control_read_returns_the_same_rows,yes,Whether that read returns rows that start on the same lines as those of the default read (yes or no)
+shared,transcripts_lost,0,Transcripts of the table that are in no row of the default read
+shared,genes_lost,0,Genes of the table that are in no row of the default read
+shared,skipped_lines_of_lost_transcripts,0,Skipped lines that belong to transcripts in no row of the default read
+shared,percent_skipped_lines_of_lost_transcripts,0.0,Those lines as a percent of the skipped lines
+shared,skipped_lines_of_lost_genes,0,Skipped lines that belong to genes in no row of the default read
+shared,percent_skipped_lines_of_lost_genes,0.0,Those lines as a percent of the skipped lines
+shared,runs_of_surviving_transcripts,1,Runs of surviving transcripts when the transcripts of the table are put in accession order
+shared,longest_surviving_run_transcripts,379,Transcripts in the longest such run
+shared,longest_surviving_run_first,XM_011413849.3,First transcript of the longest run
+shared,longest_surviving_run_last,XM_034483405.1,Last transcript of the longest run
+shared,percent_surviving_transcripts_in_longest_run,100.0,Transcripts of the longest run as a percent of the surviving transcripts
+shared,universe_transcripts_in_run_range,27279,Universe transcripts whose accession lies between the first and the last transcript of the longest run
+shared,mrnas_in_run_range_by_sequence,NC_047559.1: 6624; NC_047560.1: 4672; NC_047561.1: 6656; NC_047562.1: 5286; NC_047563.1: 6048; NC_047564.1: 6849; NC_047565.1: 7788; NC_047566.1: 5174; NC_047567.1: 2946; NC_047568.1: 6970; unplaced scaffolds: 3863,"Annotated XM mRNAs (transcript table of step 08) whose accession lies in that range, counted by sequence; sequences with none are left out"
+shared,tested_transcripts_first_five_linkage_groups,160,"Transcripts that survive and are in the legacy universe, on the first five linkage groups (NC_047559.1 to NC_047563.1)"
+shared,percent_tested_transcripts_first_five_linkage_groups,64.8,Those transcripts as a percent of all that survive and are in the universe
+shared,tested_transcripts_last_five_linkage_groups,69,"Transcripts that survive and are in the legacy universe, on the last five linkage groups (NC_047564.1 to NC_047568.1)"
+shared,percent_tested_transcripts_last_five_linkage_groups,27.9,Those transcripts as a percent of all that survive and are in the universe
+shared,tested_transcripts_unplaced_scaffolds,18,"Transcripts that survive and are in the legacy universe, on unplaced scaffolds"
+shared,transcripts_admitted_by_universe_alone,247,Transcripts of the table that are in the legacy universe: admitted if the universe were the only filter
+shared,transcripts_admitted_by_reader_alone,379,Transcripts of the table that survive the default read: admitted if the reader were the only filter
+shared,transcripts_admitted_by_both,247,Transcripts that survive the default read and are in the legacy universe: the transcripts of interest of the legacy test
+shared,genes_admitted_by_universe_alone,91,Genes with at least one transcript of the table in the legacy universe
+shared,genes_admitted_by_reader_alone,117,Genes with at least one transcript that survives the default read
+shared,genes_admitted_by_both,91,Genes with at least one transcript that survives the default read and is in the legacy universe
+shared,percent_surviving_transcripts_in_universe,65.2,Percent of the surviving transcripts that are in the legacy universe
+shared,percent_lost_transcripts_in_universe,,Percent of the lost transcripts that are in the legacy universe (empty when no transcript is lost)
+shared,genes_with_one_transcript,54,Genes with one transcript in the table
+shared,genes_with_one_transcript_surviving,54,"Of those genes, the ones that survive the default read"
+shared,percent_genes_with_one_transcript_surviving,100.0,Percent of the genes with one transcript in the table that survive
+shared,genes_with_two_to_five_transcripts,47,Genes with two to five transcripts in the table
+shared,genes_with_two_to_five_transcripts_surviving,47,"Of those genes, the ones that survive the default read"
+shared,percent_genes_with_two_to_five_transcripts_surviving,100.0,Percent of the genes with two to five transcripts in the table that survive
+shared,genes_with_more_than_five_transcripts,16,Genes with more than five transcripts in the table
+shared,genes_with_more_than_five_transcripts_surviving,16,"Of those genes, the ones that survive the default read"
+shared,percent_genes_with_more_than_five_transcripts_surviving,100.0,Percent of the genes with more than five transcripts in the table that survive
+shared,transcripts_with_unpaired_apostrophe_term,8,Transcripts with at least one line that holds an unpaired apostrophe
+shared,transcripts_with_unpaired_apostrophe_term_surviving,8,"Of those transcripts, the ones that survive the default read"
+shared,percent_other_transcripts_surviving,100.0,Percent of all other transcripts of the table that survive the default read
