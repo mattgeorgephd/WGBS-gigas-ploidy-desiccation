@@ -1,9 +1,9 @@
 export const meta = {
-  name: 'code-pass',
-  description: 'Apply the verified code-review findings to the pipeline, rerun everything, explain every changed output, review the changes adversarially, fix',
+  name: 'pipeline-hardening',
+  description: 'Fix the confirmed defects of the pipeline code and its documentation (no change of any analysis), rerun everything, explain every changed output, review, repair',
   phases: [
-    { title: 'Fix', detail: 'five agents with disjoint files: steps 04-05, then the library-level diagnostic; steps 06-07; steps 08-09; step 10' },
-    { title: 'Shared code', detail: 'run_pipeline.R, run_config.R, logging, packages, steps 01, 11, 12; config requests of the other agents' },
+    { title: 'Fix', detail: 'three agents with disjoint files: steps 04-05; steps 06-07; steps 08-09' },
+    { title: 'Shared code', detail: 'run_pipeline.R, run_config.R, logging, packages, steps 01, 11, 12, 13; config requests of the other agents' },
     { title: 'Rerun', detail: 'the whole pipeline and all diagnostics in place; every changed file explained' },
     { title: 'Review', detail: 'two independent reviewers: the code diff; the outputs against the documentation' },
     { title: 'Repair', detail: 'fix what the reviewers found and rerun what it touches' },
@@ -130,6 +130,8 @@ const REVIEW_SCHEMA = {
 const COMMON = `
 Project. ${REPO} is an R pipeline that reproduces and audits the analysis of a manuscript draft on DNA methylation (WGBS) in diploid and triploid Pacific oysters. Read ${REPO}/README.md, ${REPO}/01_pipeline/README.md and ${REPO}/02_R_functions/README.md first. Numbered steps live in 01_pipeline/ (01 to 13), shared functions in 02_R_functions/, settings in run_config.R, inputs in 03_input_files/, outputs in 04_output/<step>/{tables,figures}, diagnostics in 06_diagnostics/, the audit log in issues.md. Two analysis modes run side by side: "legacy" (the analysis as the draft ran it; its outputs must keep reproducing the legacy results, see 06_diagnostics/check_legacy_outputs.R and 06_diagnostics/legacy_check_results.csv, 329 of 331 comparisons match) and "corrected".
 
+Scope, decided by the author of the manuscript on 2026-11-19 and binding for every agent: the goal is a reproducible pipeline that produces the results of the paper, with notes on where improvements would help; NO IMPROVEMENT OF AN ANALYSIS IS IMPLEMENTED without the author's approval. Legacy mode is the paper's analysis. Corrected mode, step 10 (a gene-level GO enrichment) and the scripts of 06_diagnostics/ were built earlier to test statements of the audit; they stay exactly as they are. In this workflow you fix defects of the pipeline CODE and of its DOCUMENTATION: things that stop the pipeline from running, that make a rerun give another result, that make a file say something false about what the code does, or that keep a number of the paper from being regenerated. You do not add tests, models, diagnostics, sensitivity analyses or outputs that the paper does not have (the only exceptions are named in your task), you do not change what corrected mode or step 10 compute, and you do not edit any script under 06_diagnostics/. If a finding of your file can only be met by changing an analysis, do not fix it: return it as "needs_decision" with one sentence that the author can read as a note.
+
 What this workflow does. Six independent code reviews found defects; a second agent re-examined each finding and confirmed or refuted it. You apply the confirmed findings of your group. Your findings file holds, for each finding, the reviewer's text and the second agent's verdict with its tested fix. Findings marked refuted need no change unless you find the refutation wrong. A confirmed finding may already be fixed in the tree (the reviews are some hours old): check the current file before you edit.
 
 Rules for every agent
@@ -148,15 +150,14 @@ const GROUPS = {
   A: {
     label: 'fix:A-steps-04-05',
     prompt: `${COMMON}
-Your group: A, steps 04 and 05, the sample sheet, and the two diagnostics that share their counting rule.
-Your files: 01_pipeline/04_cpg_coverage.R, 01_pipeline/05_differential_methylation.R, 02_R_functions/methylkit_helpers.R, 02_R_functions/sample_sheet.R, 06_diagnostics/dml_sensitivity.R, 06_diagnostics/table1_group_means.R, and the rows about steps 04 and 05 and these diagnostics in the README files. (06_diagnostics/library_methylation_level.R belongs to group F, which starts when you have finished and will use your threshold helper: say in your summary how to call it.)
-Findings file: ${FIND}/group_A.txt (code reviews R1 and parts of R5, R6; the check of 06_diagnostics/library_methylation_level.R; loose ends recorded in issues.md under I-16).
+Your group: A, steps 04 and 05 and the sample sheet.
+Your files: 01_pipeline/04_cpg_coverage.R, 01_pipeline/05_differential_methylation.R, 02_R_functions/methylkit_helpers.R, 02_R_functions/sample_sheet.R, and the rows about steps 04 and 05 in the README files.
+Findings file: ${FIND}/group_A.txt (code reviews R1 and parts of R5, R6; loose ends recorded in issues.md under I-16). The file also holds items about the scripts of 06_diagnostics/ and about a second counting rule for them ("rule 2"): those are DEFERRED by the scope decision; do not act on them.
 
 Tasks
-1. Apply the confirmed findings. The main ones: (a) the model fit cached by step 05 must carry a fingerprint of everything it depends on (settings used by the fit, sample sheet, the united table or its inputs, methylKit version, the fitting code) and must be refitted when the fingerprint differs or the cache file cannot be read; (b) the rule for "difference above the threshold". The session has decided the policy; implement it as two helpers in 02_R_functions/methylkit_helpers.R and say in your summary how to call each. RULE 1, for lists that methylKit makes (the DML lists and the threshold sweep of step 05, and whatever steps 06 and 07 and 06_diagnostics/dml_sensitivity.R derive from methylKit's meth.diff): methylKit's own rule, abs(meth.diff) > threshold on the double that methylKit computed, in both modes, because the legacy counts depend on it (the legacy script types 5,910 heat loci at 15 points, which holds only because two differences of exactly 15 are held as -15.000000000000002). Legacy-mode lists and sweep counts must stay exactly as they are. Since the per-CpG tables are written with 15 significant digits, a count retaken from a written table differs at such ties: make that reconcilable by writing, per mode, a small table of the CpGs with q below the cutoff whose difference is an exact tie with a sweep threshold (decided on the pooled counts without division), with the double as held, as written, and whether rule 1 counts it; name the table in the header and in the README, and state in the header that counts are taken on unrounded values as methylKit does. Ask group B through shared_file_requests if steps 06 and 07 must call the helper. RULE 2, for counts that a diagnostic makes itself from pooled read counts, with no methylKit object (relabelling references, numbers of CpGs above the threshold for a grouping): exact arithmetic on the pooled counts without division, above = 100 * abs(cb * na - ca * nb) > cutoff * na * nb, tie = equality of the two sides, with a check that the products stay below 2^53; a difference of exactly the threshold is not above it and ties are reported in a column of their own. In 06_diagnostics/dml_sensitivity.R that concerns n_effect_above_cutoff and permutation_reference.csv, which change by 1 to 2 CpGs (the review of the other diagnostic lists the expected values in ${FIND}/group_F.txt, finding S3.CF4: control cohort 3,350 to 3,349 and so on); report each changed value. Its DML lists follow rule 1 and must not change; (c) step 04's rounding order against methylKit's; (d) the count of CpGs covered in at least one library (12,918,252 when every line is read) written to a table; (e) read_libraries() must stop on unexpected labels; (f) headers and README rows.
-2. Issue I-15 (read it in issues.md): Results 3.1 of the draft gives a genomic distribution of CpGs "at 1x". Extend step 04 to write, for its CpG sets (each coverage threshold, each sample set, both modes), the overlap with the feature tracks of 03_input_files/genome_features using the functions of 02_R_functions/genomic_overlaps.R (owned by group B; do not edit it), counting each CpG once per feature (not overlap events), so that a reader can see which CpG set, if any, gives the draft's percentages. Say in the header what the draft's numbers match.
-3. 06_diagnostics/dml_sensitivity.R: write two more tables at the end of a run, from the fits it already has: for every analysis that runs in both modes, the CpGs with q below the cutoff in legacy mode split by whether the coverage filter keeps them (and how many are on the mitochondrial genome NC_001276.1); and the DML counts under the Benjamini-Hochberg adjustment beside those under SLIM. issues.md (I-06, item 6) quotes these from a scratch computation: 157 of 287, 138 mitochondrial, 15 and 4. Then run the script (the fits are cached under 06_diagnostics/dml_sensitivity/cache/, so a run takes a few minutes) and confirm that every table it wrote before is unchanged.
-Running. You MAY run step 04 in place (about 8 minutes, 8 GB): nobody else reads its outputs during this phase. You may NOT run step 05 in place: other agents are reading its outputs. To test step 05, copy the working tree without .git, 04_output and 08_archive to your scratch directory (the .Rproj file makes it a project root for here::here()), run step 05 there for both modes with WGBS_CORES=2, and compare every table it writes with the committed table of the same name in ${REPO}/04_output/05_differential_methylation/tables/ (cmp or md5sum). Test the fingerprint: an unchanged rerun must reuse the cache; a changed setting, a changed sample sheet and a truncated cache file must each cause a refit.
+1. Apply the confirmed findings that are defects of code or documentation. The main ones: (a) the model fit cached by step 05 must carry a fingerprint of everything it depends on (settings used by the fit, sample sheet, the united table or its inputs, methylKit version, the fitting code) and must be refitted when the fingerprint differs or the cache file cannot be read; (b) thresholds: step 05 applies methylKit's own rule, abs(meth.diff) > threshold on the double that methylKit computed, and that must stay exactly so in both modes, because the paper's counts depend on it (the legacy script types 5,910 heat loci at 15 points, which holds only because two differences of exactly 15 are held as -15.000000000000002). Change no list and no sweep count. What is wrong is that nothing says so: the per-CpG tables are written with 15 significant digits, and a count retaken from a written table differs at such ties (5,908 instead of 5,910 at 15 points; 2,352 instead of 2,351 with "at least 20"). State in the header of step 05 and in the README row that counts are taken on unrounded values as methylKit takes them, and name the three loci the review found (two at 15 points, one at 20 points) with their written and held values; no new table, no helper; (c) step 04's rounding order against methylKit's: apply the tested fix only if it changes no number of a committed output at the precision that issues.md, the README files or 03_input_files/manuscript/manuscript_values_map.csv quote (compare before and after); otherwise leave the code and state the difference in the header; (d) the count of CpGs covered in at least one library (12,918,252 when every line is read) is written to the log only: write it to the table where the review says it belongs; (e) read_libraries() must stop on unexpected labels; (f) headers and README rows that say something false.
+2. Issue I-15 (read it in issues.md): Results 3.1 of the draft gives a genomic distribution of CpGs "at 1x", and no pipeline output regenerates it. This is a result of the paper, so it is in scope. Extend step 04 to write, for its CpG sets in legacy mode (each coverage threshold, each sample set), the overlap with the feature tracks of 03_input_files/genome_features using the functions of 02_R_functions/genomic_overlaps.R (owned by group B; do not edit it), with the counting rule that the legacy analysis used for these numbers (find it in 08_archive/code and in the notebooks; issues.md, I-15, says the draft's numbers appear to come from the heat-only 10x set and that exons are counted twice), so that a reader can see which CpG set and which counting rule give the draft's percentages. Say in the header what the draft's numbers match and what they do not. If corrected mode gets the same table for free, write it; do not design anything for it.
+Running. You MAY run step 04 in place (about 8 minutes, 8 GB): nobody else reads its outputs during this phase. You may NOT run step 05 in place: other agents are reading its outputs. To test step 05, copy the working tree without .git, 04_output and 08_archive to your scratch directory (the .Rproj file makes it a project root for here::here()), run step 05 there for both modes with WGBS_CORES=2, and compare every table it writes with the committed table of the same name in ${REPO}/04_output/05_differential_methylation/tables/ (cmp or md5sum): all must be byte-identical. Test the fingerprint: an unchanged rerun must reuse the cache; a changed setting, a changed sample sheet and a truncated cache file must each cause a refit.
 
 Return group "A".`,
   },
@@ -164,13 +165,12 @@ Return group "A".`,
     label: 'fix:B-steps-06-07',
     prompt: `${COMMON}
 Your group: B, steps 06 and 07 and the genome feature tracks.
-Your files: 01_pipeline/06_dml_figures.R, 01_pipeline/07_genome_features.R, 02_R_functions/genomic_overlaps.R, 02_R_functions/plot_helpers.R if it exists, 03_input_files/genome_features/README.md, 06_diagnostics/feature_odds_matched.R, and the rows about steps 06 and 07 in the README files.
+Your files: 01_pipeline/06_dml_figures.R, 01_pipeline/07_genome_features.R, 02_R_functions/genomic_overlaps.R, 02_R_functions/plot_helpers.R if it exists, 03_input_files/genome_features/README.md, and the rows about steps 06 and 07 in the README files.
 Findings file: ${FIND}/group_B.txt (code review R2 and its verification; related header points of R6).
 
 Tasks
-1. Apply the confirmed findings. The main ones: (a) steps 06 and 07 must not fail or write a meaningless test when a DML set is empty or has fewer than the loci a figure needs: skip that panel or row with a logged message and still write complete, well-formed outputs; (b) the track called TE is the RepeatMasker output of the assembly with 1-based closed coordinates and all repeat classes, read as if it were BED. Find out how the LEGACY analysis read this file (08_archive/code, the notebooks and bedtools calls) and keep that reading in legacy mode if the legacy numbers depend on it; in corrected mode read the coordinates correctly. Describe the track for what it is in the README and in the outputs' labels. Report every count that changes (the verification found 101 CpGs affected) and every statement that names "transposable elements"; (c) the three wrong descriptions in the track README; (d) the header of step 07 and the README must name every file the step writes; (e) "hyper" and "hypo" of the loci in both lists are the sign of the heat difference: say so in the column documentation, the figure captions and the README; (f) the label and legend defects of Figures 2 and 3.
-2. 06_diagnostics/feature_odds_matched.R was written by another agent today and reads the same tracks: after your change to the track reading, rerun it and report what changes in its four tables.
-3. If group A asks (it owns a new helper for "difference above the threshold" in 02_R_functions/methylkit_helpers.R), steps 06 and 07 must use it. Check ${REPO}/02_R_functions/methylkit_helpers.R when you start and again before you finish; if the helper is there, use it; if it is not there yet, say so under open_points.
+1. Apply the confirmed findings. The main ones: (a) steps 06 and 07 must not fail or write a meaningless test when a DML set is empty or has fewer than the loci a figure needs: skip that panel or row with a logged message and still write complete, well-formed outputs; (b) the track called TE is the RepeatMasker output of the assembly with 1-based closed coordinates and all repeat classes, read as if it were BED. Find out how the LEGACY analysis read this file (08_archive/code, the notebooks and bedtools calls). The pipeline must keep the legacy reading, because the paper's numbers come from it; by the scope decision the reading is not corrected in either mode. What is to be fixed is the description: say in the track README, in the header of step 07 and in the labels of the outputs what the track is (all repeat classes of RepeatMasker, simple repeats included; coordinates 1-based and read as BED, so that every interval is shifted by one base) and how many CpGs that affects (the verification found 101). Return under issues_text a note for issues.md that names every statement of the draft on "transposable elements" that this bears on, and what a corrected reading would change, as a note for the author; (c) the three wrong descriptions in the track README; (d) the header of step 07 and the README must name every file the step writes; (e) "hyper" and "hypo" of the loci in both lists are the sign of the heat difference: say so in the column documentation, the figure captions and the README; (f) the label and legend defects of Figures 2 and 3.
+2. Steps 06 and 07 compare differences with the threshold as step 05 does (methylKit's rule on the unrounded value). Change no count; if a header or README row describes the rule otherwise, correct the description.
 
 Running. You may run steps 06 and 07 in place (minutes, light). Do not run steps 04 or 05. After your edits, legacy-mode tables that the findings do not touch must be byte-identical to the committed ones (compare with "git diff --stat"); run 06_diagnostics/check_legacy_outputs.R and report its count of matches (329 of 331 before the code pass).
 
@@ -180,7 +180,7 @@ Return group "B".`,
     label: 'fix:C-steps-08-09',
     prompt: `${COMMON}
 Your group: C, steps 08 and 09 (gene annotation and the legacy GO enrichment).
-Your files: 01_pipeline/08_gene_annotation.R, 01_pipeline/09_go_enrichment_legacy.R, 02_R_functions/annotation.R, 03_input_files/annotation/README.md, 06_diagnostics/legacy_reader_mechanism.R, 06_diagnostics/universe_file_cut.R, and the rows about steps 08 and 09 in the README files.
+Your files: 01_pipeline/08_gene_annotation.R, 01_pipeline/09_go_enrichment_legacy.R, 02_R_functions/annotation.R, 03_input_files/annotation/README.md, and the rows about steps 08 and 09 in the README files.
 Findings file: ${FIND}/group_C.txt (code review R3 and its verification; points of R5 and R6 about steps 08 and 09; points of the integration checks).
 
 Tasks
@@ -188,72 +188,40 @@ Tasks
 2. After your edits rerun steps 08 and 09 in place (minutes) and show that every table is byte-identical to the committed one except where a finding changes it (list those). Run 06_diagnostics/check_legacy_outputs.R and report its count of matches.
 3. Test the modes setting without editing run_config.R: copy the working tree without .git and 08_archive to your scratch directory, set modes to c("corrected") in the copy, and run steps 08 and 09 there.
 
+4. Optional, only if it is small and puts no legacy number at risk: the items of your findings file under OPTIONAL OUTPUT ADDITIONS that are marked for group C and that regenerate a number the paper states (legacy mode). Leave out anything for corrected mode.
+
 Do not run steps 04 or 05.
 
 Return group "C".`,
   },
-  D: {
-    label: 'fix:D-step-10',
-    prompt: `${COMMON}
-Your group: D, step 10 (the gene-level GO enrichment that the audit proposes in place of the legacy one) and its negative control.
-Your files: 01_pipeline/10_go_enrichment_gene_level.R, 02_R_functions/go_tests.R, 06_diagnostics/go_random_cpg_control.R, the section on the random-CpG control in 06_diagnostics/README.md, and the rows about step 10 in the README files.
-Findings file: ${FIND}/group_D.txt (code review R4 and its verification; the reports C4a and C4b of the first verification, which re-implemented step 10 and proposed changes that issues.md lists under "Status of the pipeline" in issue I-41: read that paragraph).
-
-Tasks
-1. Apply the confirmed findings. The main one changes a headline result, so be exact: go_gene_level_object() hands 2017 GO IDs to topGO unchanged and topGO drops every ID that is not a primary ID of the installed GO.db; 395 of the dropped IDs are secondary IDs of current terms. Remap secondary IDs to their primary ID (GO.db) before the tests, record how many IDs and gene-term pairs were remapped and how many remain unknown, and write that to a table. The reviewer found that with the remapping the step's own test calls "organelle" for heat, CC, in both modes (q about 0.018), and that universes and several documented counts shift. Reproduce that and report every changed count.
-2. The other findings: pin or check the GO.db release that step 10 uses and record it in the outputs; remove a stale figure_go_enriched from an earlier run when no term is enriched; the retest of the draft's terms must not be hard-wired to legacy mode (stop cleanly or adapt when legacy is not configured); Wallenius p-values above 1; the expected and enrichment columns (unadjusted, rounded Fisher values written next to a Wallenius q-value); the pmax() that does nothing; header and log slips.
-3. From issue I-41, "Status of the pipeline": add an exact conditional test beside the Wallenius approximation, and use the logarithm of the number of eligible CpGs as the bias variable if that is what the verification recommended; keep the old columns so that readers can compare. Read the two verification scripts (07_documentation/agent_workflows/verification_scripts/C4a-eligible-theory and C4b-eligible-reimplementation) before you write this.
-4. Rerun step 10 in place (both modes) and 06_diagnostics/go_random_cpg_control.R (about 10 minutes). Correct the sentence under the control's result table in 06_diagnostics/README.md that the review names. Step 11 reads no output of step 10; do not run it.
-5. Return under issues_text the replacements for every statement in issues.md, README.md and 07_documentation/reproducibility_plan.md that says no term passes at the configured settings (search for "organelle" and "no term" and "No specific").
-
-Do not run steps 04 or 05. You start after group C has finished, so the outputs of step 08 are final.
-
-Return group "D".`,
-  },
-}
-
-GROUPS.F = {
-  label: 'fix:F-library-level-diagnostic',
-  prompt: `${COMMON}
-Your group: F, the diagnostic that describes the 22 libraries one by one (issue I-49 of issues.md, which you must read in full first, with I-06 and the update paragraphs of I-01).
-Your files: 06_diagnostics/library_methylation_level.R, a second script beside it if you split it, their tables under 06_diagnostics/library_methylation_level/, and the section "What the group differences consist of" of 06_diagnostics/README.md.
-Findings file: ${FIND}/group_F.txt (the code review of the script by an independent agent, and the list of computations to bring in).
-
-Tasks
-1. Apply the code findings of the review (S3.CF1 to S3.CF12 in your findings file), following the decisions (a) to (f) that the session has taken on them (in the same file, under EXTRA ITEMS). The review's findings on the header and on the README (S3.D1 to S3.D11, S3.A1 to S3.A6) are already applied by the session: do not apply them again, and keep those texts true when you change the code.
-2. Use the helper for counts made from pooled read counts (rule 2: exact arithmetic, a difference of exactly the threshold is not above it, ties reported) that group A has put into 02_R_functions/methylkit_helpers.R (group A has finished; read its file and its summary in the header of that helper), and report every count that changes. The review found that this rule changes no number of your 13 tables.
-3. issues.md cites numbers that exist only in the scratch scripts of the agents that checked it: ${REPO}/07_documentation/agent_workflows/verification_scripts/S2-I49-evidence-and-alternatives/ (files 01 to 11 with their .out results), S4-updates-and-cross-file/ (scripts 01 to 07 with their logs) and S3-code-review-library-level-r2/ (the cut at the second largest gap; the pair-similarity share under the median). Bring those computations into your script, each writing a table, as listed in your findings file (items 1 to 18 and c, f), and reproduce the numbers that issues.md quotes from them (search issues.md for the three folder names). Where your result differs from the quoted number, find out why (seed, tie rule, normalized against raw counts, deduplicated against undeduplicated counts) and report it; do not tune the code to hit a number.
-4. Keep the script runnable in a few minutes and a few GB: permutations with a fixed seed, complete enumeration where the number of groupings allows.
-5. Run the script twice and show that the two runs write identical tables. Return under issues_text every sentence of I-49, I-01, I-02, I-04, I-06, I-07, I-08 and I-29 whose number your tables do not reproduce, with the number they give, and for every sentence that says "computed once by that check, not yet written by a script of the repository" the table and column that now hold the number.
-
-You may read the outputs of steps 02 to 05; do not run those steps.
-
-Return group "F".`,
 }
 
 const E_PROMPT = (requests) => `${COMMON}
-Your group: E, the code that every step shares, and steps 01, 11, 12 and 13.
+Your group: E, the code that every step shares, and steps 01, 02, 03, 11, 12 and 13.
 Your files: run_pipeline.R, run_config.R, 02_R_functions/logging.R, 02_R_functions/packages.R, 02_R_functions/paths.R, 02_R_functions/legacy_go_db.R, 01_pipeline/01_fetch_inputs.R, 01_pipeline/11_semantic_similarity.R, 01_pipeline/12_qpcr.R, 01_pipeline/13_manuscript_values.R, a new .gitattributes at the repository root, and the README statements about these files (README.md at the root, 01_pipeline/README.md, 02_R_functions/README.md, 03_input_files/README.md, 04_output/README.md).
 Findings file: ${FIND}/group_E.txt (code review R5 and its verification; the write_table finding of R3; documentation findings of R6 that concern these files).
 
 Tasks
 1. Apply the confirmed findings. The main ones: (a) run_config.R must reject values that cannot work, in one validation block that every step passes through because every step sources this file: modes (non-empty subset of legacy and corrected), cores (WGBS_CORES empty or not a positive whole number must stop at once with a plain message), thresholds; (b) write_table() must write the same bytes whatever the platform and the user's options (line ending fixed to LF, scipen fixed), and .gitattributes must keep git from converting line endings of the tracked tables; confirm on Linux that every committed table is reproduced byte for byte; (c) run_pipeline.R: started from outside the repository it must find the repository or stop with an error, never report success after running nothing; --steps must reject malformed selections; (d) load_packages() must name R.utils when a step reads .gz tables with fread; (e) an interrupted install of the GO.db side library must not block later runs without an explanation; (f) step 01: input_inventory.csv must not depend on the collation locale, and the committed copy must be the current one; (g) the statements that the numbered folder names live only in paths.R.
 2. Steps 11 and 12 each open with a block of settings: move the settings into run_config.R (one list per step, with the comments), keep the scripts reading them from config, and show that both steps write byte-identical tables afterwards (step 11 takes about 5 minutes, step 12 under a minute). Both steps read legacy files from 08_archive/ through archive_path(): copy those files into the fitting folder under 03_input_files/ (with a row in that folder's README saying where each came from), point the steps there, and leave 08_archive untouched.
-3. Apply the requests of the other groups for run_config.R and for files that none of them owns. Their requests:
+3. The pipeline must run with modes = c("legacy") alone, with c("corrected") alone and with both, and say plainly in the log which modes ran; steps that exist only for one kind of analysis must stop cleanly or do nothing when their mode is not configured. Test it in a scratch copy of the working tree for the light steps (02, 03, 06 to 13 read outputs of 04 and 05: copy those outputs into the scratch tree instead of rerunning them). The author may decide that legacy mode alone is the default; do not change the default yourself.
+4. Step 10 (01_pipeline/10_go_enrichment_gene_level.R, owned by nobody in this workflow) has a confirmed defect that changes its headline (secondary GO IDs are dropped, see ${FIND}/deferred_items.txt). By the scope decision it is NOT fixed. Add to its header Notes and to its row in 01_pipeline/README.md and 04_output/README.md one sentence that says so and points to issues.md, I-41; change nothing else in that file.
+5. Apply the requests of the other groups for run_config.R and for files that none of them owns. Their requests:
 ${requests}
    Judge each request: apply it, adapt it, or decline it with a reason (report which).
-4. Do not run steps 04 or 05. You may run steps 01 (it only checks the cache when the downloads are present), 02, 03, 11, 12 and 13 in place.
+6. Optional, only if small: the items of your findings file under OPTIONAL OUTPUT ADDITIONS that are marked for group E and that regenerate a number the paper states.
+7. Do not run steps 04 or 05. You may run steps 01 (it only checks the cache when the downloads are present), 02, 03, 11, 12 and 13 in place.
 
 Return group "E".`
 
 const RERUN_PROMPT = (summaries) => `${COMMON}
-Your job: rerun the whole pipeline and all diagnostics in place after the code pass, and explain every file that changed. You fix nothing; you report. Six agents have edited the code since commit ${BASE}; their summaries:
+Your job: rerun the whole pipeline and all diagnostics in place after the code pass, and explain every file that changed. You fix nothing; you report. Four agents have edited the code since commit ${BASE}; their summaries:
 ${summaries}
 
 Steps
 1. "git status --short" and "git diff --stat ${BASE}" to see what the agents left. Note every output file that already differs.
 2. Run the pipeline in order from the repository root: WGBS_CACHE_DIR=/home/user/gannet_cache WGBS_CORES=2 Rscript run_pipeline.R (all 13 steps; step 05 will refit its models because its cache now carries a fingerprint, which takes about an hour; run it in the background with nohup and poll its log, and do not start anything else heavy meanwhile). Record minutes per step, and the peak memory of steps 04 and 05 (for example by sampling "ps -o rss" of the R process every 10 seconds into a log).
-3. Run every diagnostic of 06_diagnostics/README.md, section "Files", in the order given there, including dml_sensitivity.R (its fits are cached under 06_diagnostics/dml_sensitivity/cache/; if step 05's united tables are unchanged the cache is valid, and the script says what it reuses), library_methylation_level.R, feature_odds_matched.R, locus_nc047563.R, legacy_reader_mechanism.R, coverage_filter_variants.R and check_methylkit_equivalence.R if they exist, go_random_cpg_control.R, table1_group_means.R, cohort_separation.R, universe_file_cut.R, fastq_read_names.R (it streams the start of 22 files from the lab server; if the server cannot be reached say so and leave its table as committed), and last check_legacy_outputs.R.
+3. No script of 06_diagnostics/ was edited, and no output of a pipeline step that they read should have changed, so every diagnostic must reproduce its committed tables byte for byte; a difference is a problem to report, not to explain away. Run every diagnostic of 06_diagnostics/README.md, section "Files", in the order given there, including dml_sensitivity.R (its fits are cached under 06_diagnostics/dml_sensitivity/cache/; if step 05's united tables are unchanged the cache is valid, and the script says what it reuses), library_methylation_level.R, feature_odds_matched.R, locus_nc047563.R, legacy_reader_mechanism.R, coverage_filter_variants.R and check_methylkit_equivalence.R if they exist, go_random_cpg_control.R, table1_group_means.R, cohort_separation.R, universe_file_cut.R, fastq_read_names.R (it streams the start of 22 files from the lab server; if the server cannot be reached say so and leave its table as committed), and last check_legacy_outputs.R.
 4. "git status --short" and "git diff --stat ${BASE}" again. For EVERY tracked file that differs from ${BASE} and every untracked file: say what differs (for tables: which rows, which columns, old and new values; use R or Python to diff tables, do not eyeball) and which finding or task of the summaries above explains it. Anything you cannot tie to a finding is UNEXPLAINED and goes under problems. session_info.txt files and PDF figures change on every run; list them once as a class.
 5. Step 13: compare 05_manuscript/manuscript_values.csv before (git show ${BASE}:05_manuscript/manuscript_values.csv) and after: counts by status, and every row whose status or regenerated value changed, with the reason. A row that turned to an error because a table or column was renamed is a problem to report with the fix for 03_input_files/manuscript/manuscript_values_map.csv.
 6. Reproducibility: run steps 06 to 13 a second time and confirm that no tracked table changes between the first and second run.
@@ -262,8 +230,8 @@ Steps
 Return the result in the schema. Be exact about what you did not run and why.`
 
 const REVIEW_CODE_PROMPT = `${COMMON}
-Your job: an adversarial review of the code changes of this code pass. You fix nothing. "git diff ${BASE} -- 01_pipeline 02_R_functions 06_diagnostics run_pipeline.R run_config.R .gitattributes" is the change set (the working tree is not committed; compare the working tree with ${BASE}). For each changed file read the whole file as it now stands, not only the diff.
-Look for: a fix that does not do what its finding asked (the findings are in ${FIND}/group_A.txt to group_F.txt); regressions; a legacy-mode number changed where the legacy analysis, not the pipeline, was at fault; a guard that hides an error instead of reporting it; settings read from config that run_config.R does not define, or defined and never read; headers and README rows that no longer match the code; the cache fingerprint of step 05 (try to construct a change that it misses); the two threshold helpers (rule 1, methylKit's comparison on its own double, for every list that methylKit makes; rule 2, exact arithmetic on pooled counts, for every count a diagnostic makes itself: is each used everywhere it should be, and nowhere a plain comparison left? grep for comparisons with dml_difference and with the literal 20; did any legacy-mode list or sweep count change?); 06_diagnostics/fastq_read_names.R, which the parent session wrote after the reviews and which no second agent has read (can a truncated download pass silently? is the limit of reading only the first reads stated wherever its result is quoted: issues.md I-01 and I-28, the values map rows M2.2-020 and M2.2-022?); run_config.R validation (try bad values in a scratch copy of the tree); run_pipeline.R argument handling (try it); write_table() (bytes); the secondary GO ID remapping of step 10 (is a term counted twice for a gene after remapping? are obsolete IDs handled?).
+Your job: an adversarial review of the code changes of this code pass. You fix nothing. "git diff ${BASE} -- 01_pipeline 02_R_functions 03_input_files 06_diagnostics run_pipeline.R run_config.R .gitattributes" is the change set (the working tree is not committed; compare the working tree with ${BASE}). For each changed file read the whole file as it now stands, not only the diff.
+Look for: a fix that does not do what its finding asked (the findings are in ${FIND}/group_A.txt, group_B.txt, group_C.txt and group_E.txt; ${FIND}/deferred_items.txt lists what was deliberately not done); regressions; a legacy-mode number changed where the legacy analysis, not the pipeline, was at fault; a guard that hides an error instead of reporting it; settings read from config that run_config.R does not define, or defined and never read; headers and README rows that no longer match the code; the cache fingerprint of step 05 (try to construct a change that it misses); the scope decision (did any agent change what an analysis computes, in legacy mode, in corrected mode or in step 10, or add a test, a diagnostic or an output that the paper does not have and that its task did not name? every such change is a finding of high severity); thresholds (no list and no sweep count may have changed; is the note on unrounded values true for the three loci it names?); 06_diagnostics/fastq_read_names.R, which the parent session wrote after the reviews and which no second agent has read (can a truncated download pass silently? is the limit of reading only the first reads stated wherever its result is quoted: issues.md I-01 and I-28, the values map rows M2.2-020 and M2.2-022?); run_config.R validation (try bad values in a scratch copy of the tree); run_pipeline.R argument handling (try it); write_table() (bytes); the modes setting (run the light steps of a scratch copy with legacy alone and with corrected alone).
 You may run light steps in a scratch copy of the working tree (copy without .git and 08_archive). Do not run steps 04 or 05. Report each defect with a concrete failure scenario. Return review "code".`
 
 const REVIEW_DOCS_PROMPT = (rerun) => `${COMMON}
@@ -299,27 +267,22 @@ function requestsOf(rs) {
 }
 
 phase('Fix')
-// Lane 1: A alone. Lane 2: B, then C, then D (D needs C's outputs of step 08; B and C share README files only).
-const laneA = (async () => {
-  const ra = await agent(GROUPS.A.prompt, { label: GROUPS.A.label, phase: 'Fix', schema: CHANGE_SCHEMA })
-  const rf = await agent(GROUPS.F.prompt, { label: GROUPS.F.label, phase: 'Fix', schema: CHANGE_SCHEMA })
-  return [ra, rf]
-})()
+// Lane 1: A alone (steps 04 and 05 are heavy). Lane 2: B, then C (they share README files only).
+const laneA = agent(GROUPS.A.prompt, { label: GROUPS.A.label, phase: 'Fix', schema: CHANGE_SCHEMA })
 const lane2 = (async () => {
   const b = await agent(GROUPS.B.prompt, { label: GROUPS.B.label, phase: 'Fix', schema: CHANGE_SCHEMA })
   const c = await agent(GROUPS.C.prompt, { label: GROUPS.C.label, phase: 'Fix', schema: CHANGE_SCHEMA })
-  const d = await agent(GROUPS.D.prompt, { label: GROUPS.D.label, phase: 'Fix', schema: CHANGE_SCHEMA })
-  return [b, c, d]
+  return [b, c]
 })()
-const [a, f] = await laneA
-const [b, c, d] = await lane2
-log(`Fix phase done: ${[a, f, b, c, d].filter(Boolean).length} of 5 groups returned`)
+const a = await laneA
+const [b, c] = await lane2
+log(`Fix phase done: ${[a, b, c].filter(Boolean).length} of 3 groups returned`)
 
 phase('Shared code')
-const e = await agent(E_PROMPT(requestsOf([a, f, b, c, d])), { label: 'fix:E-shared-code', phase: 'Shared code', schema: CHANGE_SCHEMA })
+const e = await agent(E_PROMPT(requestsOf([a, b, c])), { label: 'fix:E-shared-code', phase: 'Shared code', schema: CHANGE_SCHEMA })
 
 phase('Rerun')
-const summaries = [a, f, b, c, d, e].map(brief).join('\n\n')
+const summaries = [a, b, c, e].map(brief).join('\n\n')
 const rerun = await agent(RERUN_PROMPT(summaries), { label: 'rerun:whole-pipeline', phase: 'Rerun', schema: RERUN_SCHEMA })
 
 phase('Review')
@@ -340,4 +303,4 @@ if (allFindings.length || unexplained.length) {
   log('No reviewer finding and no unexplained change: repair stage skipped')
 }
 
-return { groups: { a, f, b, c, d, e }, rerun, reviews, repair }
+return { groups: { a, b, c, e }, rerun, reviews, repair }
