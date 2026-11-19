@@ -2,7 +2,7 @@
 
 How to continue this work from the repository alone, for a new session or a person. The working session rewrites the "State" and "In flight" sections whenever it pushes.
 
-Last updated: 2026-11-19 06:35 UTC.
+Last updated: 2026-11-19 06:40 UTC.
 
 ## If the session ends or its machine is replaced
 
@@ -60,9 +60,9 @@ Agent runs (scripts and partial results in `07_documentation/agent_workflows/`).
 | `build-dml-sensitivity` | build, review | fix | The snapshot of the script is in git. Review it, then run it in full. |
 | `check-issues-integration` (launched 06:08 UTC) | nothing yet | ten checks that `issues.md` carries the nine verification reports faithfully | Run the script again; it is read-only. |
 | `build-diagnostics` (launched 06:20 UTC) | nothing yet | five scripts under `06_diagnostics/` (`feature_odds_matched`, `locus_nc047563`, `legacy_reader_mechanism`, `coverage_filter_variants`, `check_methylkit_equivalence`), each built, reviewed, fixed | Files the agents have written so far are in git as snapshots; run the script again for the rest. |
-| Full run of `06_diagnostics/dml_sensitivity.R` (not an agent run; started 04:33 UTC with `WGBS_CORES=3`; 22 model fits, about three hours) | 13 of 22 fits at 06:17 UTC (5 to 13 minutes each on three cores). On the full data the primary fits reproduce step 05 exactly (q-values, both DML lists, loci in both lists). | the other fits | Start it again from the repository root: `WGBS_CORES=3 Rscript 06_diagnostics/dml_sensitivity.R`. Finished fits are cached under `06_diagnostics/dml_sensitivity/cache/` on the machine and are lost with it. If the review changes the fitting code, rerun. |
+| Full run of `06_diagnostics/dml_sensitivity.R` (not an agent run; 22 model fits) | The 16 fits of legacy mode (04:31 to 06:39 UTC, three workers). On the full data the primary fits reproduce step 05 exactly (q-values, both DML lists, loci in both lists). Stopped by the session at 06:39 UTC between two fits, because with three workers it held about 7 GB while eight agents were running, and restarted with two workers and the script as revised by its fix stage; the restart reuses all 16 cached fits. | the 6 fits of corrected mode, then the tables and figure | Start it again from the repository root: `WGBS_CORES=2 Rscript 06_diagnostics/dml_sensitivity.R`. Finished fits are cached under `06_diagnostics/dml_sensitivity/cache/` on the machine (not in git); on a new machine all 22 fits run again, about three hours on three cores. |
 
-Note on the sensitivity script: the fix stage of `build-dml-sensitivity` edits `06_diagnostics/dml_sensitivity.R` while the full run, started from the earlier version, is still fitting. The fits are cached, so when both have finished the script is run once more from the cache to write the final tables with the final code. Do not read the tables in `06_diagnostics/dml_sensitivity/` as final before that rerun.
+Note on the sensitivity tables: the files under `06_diagnostics/dml_sensitivity/` are final only when the run that started at 06:39 UTC has ended with its finished message; that run uses the script as revised by the fix stage of `build-dml-sensitivity`. If that agent changes the script again afterwards, run the script once more (it takes minutes from the cache).
 
 ## Next actions, in order
 
