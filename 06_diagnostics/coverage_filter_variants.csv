@@ -1,0 +1,10 @@
+rule,cutoff,percentile_base_reads,removed_when,in_at_least_n_libraries,step05_mode,cpg_kept,cpg_removed,pct_removed,ploidy_dml,heat_dml,dml_in_both_lists,libraries_with_changed_median,lists_same_with_reestimated_q
+no upper filter,none,,,,legacy,480579,0,0,1038,2351,200,0,TRUE
+"per library, base 2",per library,2,at or above the cutoff,1,corrected,454555,26024,5.42,952,2273,159,0,TRUE
+"per library, base 2, above the cutoff only",per library,2,above the cutoff,1,,455253,25326,5.27,952,2273,159,0,TRUE
+"per library, base 1",per library,1,at or above the cutoff,1,,451328,29251,6.09,949,2267,159,0,TRUE
+"per library, base 10",per library,10,at or above the cutoff,1,,469453,11126,2.32,959,2292,159,0,TRUE
+"pooled, base 2",pooled,2,at or above the cutoff,1,,450065,30514,6.35,949,2268,159,0,TRUE
+"per library, base 2, at least 2 libraries",per library,2,at or above the cutoff,2,,462296,18283,3.8,957,2285,159,0,TRUE
+"per library, base 2, more than half of the libraries",per library,2,at or above the cutoff,12,,475175,5404,1.12,1002,2322,176,0,TRUE
+"per library, base 2, all 22 libraries",per library,2,at or above the cutoff,22,,478611,1968,0.41,1038,2351,200,0,TRUE

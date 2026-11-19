@@ -1,10 +1,10 @@
 {
  "workflow": "build-diagnostics",
  "run_id": "wf_1f1a6a86-611",
- "agents_finished": 3,
+ "agents_finished": 4,
  "agents_running_or_lost": [
-  "build:coverage_filter_variants",
-  "build:check_methylkit_equivalence"
+  "build:check_methylkit_equivalence",
+  "review:locus_nc047563"
  ],
  "results": [
   {
@@ -709,6 +709,173 @@
      "Scratch work, including the four altered-input test copies, is in /tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/build-legacy_reader_mechanism. A safety check refused an rm there, so nothing was deleted."
     ],
     "readme_row": "| `legacy_reader_mechanism.R` | How the legacy enrichment script lost most of the ploidy annotation table and a quarter of the heat table: `read.table()` with its default quote characters, and apostrophes in GO term names. For the three legacy tables: rows, transcripts and genes returned by four reads (default quote characters, no quote character, the double quote alone, the apostrophe alone) with the warnings R gives; the lines with an unpaired apostrophe, the merged rows, and the proof by intervention; the transcripts and genes that vanish; where the survivors lie (accession run, linkage groups); the overlap with the universe gap; survival by number of transcripts per gene. For ploidy, a position-only control of the BP test: every universe transcript of the surviving accession run as the list of interest, against 200 seeded random lists of each of three kinds, with the totals counted in map lines (as step 09) and in transcripts. Stops unless every read returns the rows predicted from the quote rule of `scan()` and its counts and p-values equal those of step 09. 2 to 3 minutes, about 1.2 GB; needs the outputs of steps 08 and 09 and GO.db 3.13.0 in the cache. Issues I-40, I-39, I-43. | `legacy_reader_mechanism.csv` (long format: table, quantity, value, definition), `legacy_reader_by_linkage_group.csv`, `legacy_reader_position_control.csv` |"
+   }
+  },
+  {
+   "agent": "build:coverage_filter_variants",
+   "phase": "Build",
+   "result": {
+    "script": "/home/user/WGBS-gigas-ploidy-desiccation/06_diagnostics/coverage_filter_variants.R",
+    "outputs": [
+     "/home/user/WGBS-gigas-ploidy-desiccation/06_diagnostics/coverage_filter_variants.csv",
+     "/home/user/WGBS-gigas-ploidy-desiccation/06_diagnostics/coverage_filter_cutoffs.csv",
+     "/home/user/WGBS-gigas-ploidy-desiccation/06_diagnostics/coverage_filter_removed_cpgs.csv",
+     "/home/user/WGBS-gigas-ploidy-desiccation/06_diagnostics/coverage_filter_qvalue_rule.csv"
+    ],
+    "run_time_minutes": 6.2,
+    "peak_memory_gb": 1.6,
+    "summary": "The script is written, runs from the repository root, and reproduces every target number of I-05 exactly. Three full runs took 5.9 to 6.6 minutes on one core with a peak of 1.6 GB; the four CSV files are byte-identical between the two final runs.\n\nWhat it does:\n- (a) One pass over the 22 coverage files gives the cutoff of each library for bases 1, 2 and 10, and a pooled cutoff of 88 reads.\n- (b) Nine filter rules are applied to the 480,579 legacy CpGs. The rule of corrected mode reproduces the positions of `united_cpg_corrected.csv.gz` and the three corrected DML lists; the script stops if it does not.\n- (c) The 26,024 removed CpGs are described by number of libraries at the cutoff, repeat track, mitochondrial sequence and runs.\n- (d) The q-value rule is counted in the step 05 tables of both modes.\n\nBeyond the letter of (d), I added two checks, because \"not binding in two modes\" does not by itself prove the counts exact for the other rules:\n- **Scaling:** no rule changes the median coverage of any library, so p-values and differences at kept CpGs are those of legacy mode.\n- **q-values:** estimated again with methylKit's own SLIM function on the kept CpGs of each rule, they give the legacy lists locus for locus under all nine rules. This costs about 4.5 of the 6 minutes.\n\nFindings not yet in `issues.md`:\n- In random sets of 26,024 tested CpGs, the share in runs of 10 or more is 0.53% (median of 1,000 seeded draws; largest 1.00%), against 62.31% observed.\n- The share in such runs rises with the number of libraries at the cutoff: 43.1% (one library), 67.3% (2 to 21), 96.6% (all 22).\n- The one legacy heat candidate that fails the q-value rule is kept only under \"more than half\" and \"all 22 libraries\", and fails there too (re-estimated q 0.0183 and 0.0180).\n- Of the removed CpGs, 4,122 are on unplaced scaffolds, out of 24,592 tested there.\n\nProposed text for I-05 (I did not edit `issues.md`):\n- After the table of four definitions: \"Four further readings: removal only above the cutoff, 455,253 CpGs (952, 2,273, 159); removal when at least 2 libraries are at their cutoff, 462,296 (957, 2,285, 159); more than half of the libraries, 475,175 (1,002, 2,322, 176); all 22 libraries, 478,611 (1,038, 2,351, 200).\"\n- Replace \"which is exact because the q-value criterion is not binding (last point below)\" with: \"which is exact: no rule changes the median coverage of a library, so scaling factors, p-values and differences at retained CpGs are those of legacy mode, and q-values estimated again with methylKit's SLIM function on the retained CpGs of each rule give the same lists, locus for locus.\"\n- Add to the removed-CpG point: \"In random sets of 26,024 tested CpGs the share in such runs is 0.5% (median of 1,000 draws; largest 1.0%).\"\n- Add a source line: \"Reproducible with `06_diagnostics/coverage_filter_variants.R` (tables `coverage_filter_*.csv`).\"\n\nThe README run block also needs the line `Rscript 06_diagnostics/coverage_filter_variants.R`.",
+    "targets": [
+     {
+      "quantity": "No upper filter: CpGs kept; ploidy DML, heat DML, loci in both lists",
+      "target": "480,579; 1,038, 2,351, 200",
+      "obtained": "480,579; 1,038, 2,351, 200",
+      "agrees": true,
+      "comment": "Also recounted from the raw files, with line 1 lost and with every line read; both recounts equal the positions of united_cpg_legacy.csv.gz."
+     },
+     {
+      "quantity": "Per-library cutoff, base 2, removed at or above the cutoff in any library (corrected mode)",
+      "target": "454,555; 952, 2,273, 159; positions of united_cpg_corrected.csv.gz and the corrected DML lists",
+      "obtained": "454,555; 952, 2,273, 159; positions and all three DML lists identical",
+      "agrees": true,
+      "comment": "The script stops unless positions and lists are identical. Cutoffs, kept counts, removed counts and medians per library also equal library_filtering_corrected.csv."
+     },
+     {
+      "quantity": "Same, removed only above the cutoff",
+      "target": "455,253; 952, 2,273, 159",
+      "obtained": "455,253; 952, 2,273, 159",
+      "agrees": true
+     },
+     {
+      "quantity": "Per-library cutoff, base 1",
+      "target": "451,328; 949, 2,267, 159",
+      "obtained": "451,328; 949, 2,267, 159",
+      "agrees": true
+     },
+     {
+      "quantity": "Per-library cutoff, base 10",
+      "target": "469,453; 959, 2,292, 159",
+      "obtained": "469,453; 959, 2,292, 159",
+      "agrees": true
+     },
+     {
+      "quantity": "Pooled cutoff (base 2) and its rule",
+      "target": "88 reads; 450,065; 949, 2,268, 159",
+      "obtained": "88 reads; 450,065; 949, 2,268, 159",
+      "agrees": true
+     },
+     {
+      "quantity": "Base 2, removed when at least 2 libraries are at or above the cutoff",
+      "target": "462,296; 957, 2,285, 159",
+      "obtained": "462,296; 957, 2,285, 159",
+      "agrees": true
+     },
+     {
+      "quantity": "Base 2, removed when more than half of the libraries (12 or more) are at or above the cutoff",
+      "target": "475,175; 1,002, 2,322, 176",
+      "obtained": "475,175; 1,002, 2,322, 176",
+      "agrees": true
+     },
+     {
+      "quantity": "Base 2, removed when all 22 libraries are at or above the cutoff",
+      "target": "478,611; 1,038, 2,351, 200",
+      "obtained": "478,611; 1,038, 2,351, 200",
+      "agrees": true
+     },
+     {
+      "quantity": "Removed CpGs under the rule of corrected mode",
+      "target": "26,024",
+      "obtained": "26,024 (5.42%)",
+      "agrees": true
+     },
+     {
+      "quantity": "Removed CpGs at or above the cutoff in exactly one library",
+      "target": "7,741",
+      "obtained": "7,741 (29.75% of removed)",
+      "agrees": true
+     },
+     {
+      "quantity": "Removed CpGs at or above the cutoff in all 22 libraries",
+      "target": "1,968",
+      "obtained": "1,968 (7.56% of removed)",
+      "agrees": true,
+      "comment": "The remaining 16,315 are at the cutoff in 2 to 21 libraries."
+     },
+     {
+      "quantity": "Share in the repeat track, removed against retained CpGs",
+      "target": "43.4% against 21.7%",
+      "obtained": "43.40% (11,295 of 26,024) against 21.71% (98,671 of 454,555)",
+      "agrees": true,
+      "comment": "The counts 109,966 (all tested) and 98,671 (kept) equal the transposable element counts in step 07's feature_overlap_by_track tables; I compared by eye, the script does not read step 07."
+     },
+     {
+      "quantity": "Removed CpGs on the mitochondrial sequence",
+      "target": "363",
+      "obtained": "363",
+      "agrees": true,
+      "comment": "These are all 363 tested mitochondrial CpGs; none is kept."
+     },
+     {
+      "quantity": "Share of removed CpGs in runs of 10 or more removed CpGs",
+      "target": "62.3%",
+      "obtained": "62.31% (16,216 of 26,024)",
+      "agrees": true,
+      "comment": "Run = removed CpGs on one sequence no more than 1,000 bp apart, as in the verification and in step 07's regions. Random sets of the same size give 0.53% (median of 1,000 draws; largest 1.00%)."
+     },
+     {
+      "quantity": "q-value rule, legacy mode, ploidy: candidates above 20 points that fail q < 0.01",
+      "target": "0 of 1,038",
+      "obtained": "0 of 1,038",
+      "agrees": true,
+      "comment": "Largest q among the DML is 0.00464."
+     },
+     {
+      "quantity": "q-value rule, legacy mode, heat",
+      "target": "1 of 2,352",
+      "obtained": "1 of 2,352",
+      "agrees": true,
+      "comment": "The failing candidate has q 0.0179; the largest q among the DML is 0.00407."
+     },
+     {
+      "quantity": "q-value rule, corrected mode, ploidy and heat",
+      "target": "0 and 0",
+      "obtained": "0 of 952 and 0 of 2,273",
+      "agrees": true
+     },
+     {
+      "quantity": "CSV files byte-identical between two runs of the finished script",
+      "target": "identical",
+      "obtained": "all four files identical (cmp and md5) between the two final runs and an earlier full run",
+      "agrees": true
+     }
+    ],
+    "design_decisions": [
+     "Cutoffs come from a per-library coverage histogram, with a type-7 quantile function that copies the arithmetic of stats::quantile. The script stops unless each of the 66 cutoffs (22 libraries, 3 bases) is identical to the pipeline helper upper_coverage_cutoff() on the raw values. The pooled cutoff uses the same function on the summed histograms.",
+     "Base 10 is read from the installed methylKit (formals of methRead, mincov), base 2 from config$import_min_coverage, and base 1 is a setting. Rule labels and column names are built from these values, so no base number is typed twice.",
+     "Files are handled as the helpers do: read_cov(), the cutoff from every line, and the tested CpGs looked up with line 1 lost (first_line_lost(\"legacy\")). The script stops unless the recount with line 1 lost and the recount with every line read both give the legacy CpG set.",
+     "Checks against step 05 stop the script with a message: the dml files equal the two rules applied to the diffmeth tables, p-values and differences are identical between modes at common CpGs, and the histograms give the CpG numbers, medians and cutoffs of both library_filtering tables. Eight negative tests with perturbed inputs each stopped with the intended message.",
+     "Addition beyond (d), part 1: for each rule, the number of libraries whose median coverage over kept CpGs differs from legacy mode (column libraries_with_changed_median). Zero means the scaling factors, and so the per-CpG p-values and differences, are unchanged. It is 0 for all nine rules.",
+     "Addition beyond (d), part 2: q-values are estimated again on the kept CpGs of each rule with methylKit's p.adjusted(method = \"SLIM\"), the function calculateDiffMeth calls. The script stops unless this reproduces the stored q-values of both modes within a relative 1e-9. If this is judged out of scope it can be removed without touching the rest, apart from one column and 18 rows.",
+     "The three rules that count libraries have no methylKit counterpart. They are defined as dropping CpGs from the united legacy table after the libraries were scaled; the header states this.",
+     "A run is defined as in the verification and in step 07: removed CpGs on one sequence no more than 1,000 bp apart, with kept CpGs allowed in between. I added a reference from 1,000 random sets of the same size (seed 20261119, Mersenne-Twister, rejection sampling); nothing else in the script is random.",
+     "The removed-CpG table has one row per set of CpGs (tested, kept, removed, and removed by 1, 2 to 21, or all 22 libraries), so each share has its comparison in the same table.",
+     "Output names follow the explicit list in the task (coverage_filter_cutoffs.csv and so on), not the general pattern <name>*.csv, which only the first file matches.",
+     "The repeat share is computed with the pipeline helpers (read_feature_track(\"TE\"), cpg_ranges, overlaps_track). The script reads no step 04 or step 07 table, to keep its dependencies to step 05 and the raw files.",
+     "The script calls setDTthreads(config$cores), so it is single-threaded unless WGBS_CORES is raised. No data.table call uses a variable that shares a name with a column; values are assigned with set()."
+    ],
+    "left_out": [
+     "Nothing in the specification was left out.",
+     "Not in the specification and not covered: the sentence of I-05 on step 04's counts at 1x and 20x under base 1 (5,811,796 and 12,890). Only the 10x count of that sentence (451,328) is reproduced here."
+    ],
+    "caveats": [
+     "The DML counts of the alternative rules are not refits. They are the legacy DML at kept CpGs, shown to be what step 05 would give by the two checks above. For the three rules that count libraries, the unchanged scaling is true by how the rules are defined, not a finding.",
+     "The q-value re-estimation uses an unexported methylKit function (p.adjusted, through getFromNamespace) and starts from p-values stored with 15 significant digits. It was validated against the stored q-values of both modes, but it depends on methylKit internals as of 1.28.0.",
+     "The 62.3% depends on the run definition. With a stricter one (consecutive tested CpGs all removed, no kept CpG in between) I obtained 47.4% in a scratch exploration; the script does not compute that number.",
+     "The header says \"about 7 minutes\"; the measured runs were 5.9, 6.3 and 6.6 minutes on a shared machine. I left the comment unchanged so that the file on disk is exactly the one that produced the outputs.",
+     "The orchestrator's snapshot commits already track the script; the four CSV files are untracked. I ran no git command that changes state.",
+     "My raw coverage matrix and histograms are identical to the verifying agent's independent awk pass (its cand_matrix.rds and hist files). Scratch work, unit tests, negative tests and run logs are in /tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/build-coverage_filter_variants."
+    ],
+    "readme_row": "| `coverage_filter_variants.R` | How far the CpG and DML counts depend on how the upper coverage filter of the Methods is read. From the 22 coverage files: the 99.9th percentile cutoff of each library with the percentile taken over CpGs with at least 1, 2 or 10 reads, and one pooled cutoff; nine filter rules applied to the CpGs of legacy mode, with the CpGs kept and the legacy DML at kept CpGs; what the rule of corrected mode removes (number of libraries at the cutoff, repeat track, mitochondrial sequence, runs of removed CpGs with a reference from 1,000 seeded random draws); and whether those DML counts are what step 05 would report under each rule (q-value rule in the step 05 tables, library medians, q-values estimated again with methylKit's SLIM function). Stops unless the rule of corrected mode gives the CpGs and DML lists of step 05. About 7 minutes, 1.6 GB, one core; needs the coverage files in the cache. Issue I-05. | `coverage_filter_variants.csv` (one row per rule), `coverage_filter_cutoffs.csv` (one row per library), `coverage_filter_removed_cpgs.csv`, `coverage_filter_qvalue_rule.csv` |"
    }
   }
  ]
