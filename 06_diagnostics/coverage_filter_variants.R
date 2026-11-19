@@ -26,8 +26,9 @@
 #                lists that step 05 would report under each rule: how many CpGs
 #                above the difference threshold fail the q-value rule in the
 #                tables of step 05, whether a rule changes the scaling of a
-#                library, and whether q-values estimated again on the kept CpGs
-#                give the same lists.
+#                library and how many CpGs a library can lose before it does,
+#                and whether q-values estimated again on the kept CpGs give the
+#                same lists.
 #
 # Run       Rscript 06_diagnostics/coverage_filter_variants.R      (about 7 minutes; 1.6 GB of memory; one core)
 #           Needs the 22 coverage files in the cache (step 01).
@@ -54,21 +55,35 @@
 #             every library. A CpG is therefore lost when a single library is at
 #             or above its cutoff there.
 #           - "Base" is the lowest read count of the CpGs over which the
-#             percentile is taken. Base 2 is config$import_min_coverage, the
-#             mincov of the legacy DML script, and the base of corrected mode.
-#             Base 1 is the mincov of the legacy coverage script. Base 10 is the
-#             default mincov of methRead.
+#             percentile is taken. The base of corrected mode is
+#             config$import_min_coverage (2 unless run_config.R is changed).
+#             Three bases are computed whatever that setting is: 1, the mincov
+#             of the legacy coverage script; 2, the mincov of the legacy DML
+#             script; and the default mincov of methRead in the installed
+#             methylKit (10). A config$import_min_coverage that is none of the
+#             three is computed as a fourth base and gives a tenth rule.
 #           - The cutoffs come from a histogram of coverage over every line of a
 #             file, with the arithmetic of stats::quantile(). The script stops
 #             unless each is identical to the value that the pipeline's
 #             upper_coverage_cutoff() gives for the same file, and unless the
-#             cutoffs of base 2 are those in library_filtering_corrected.csv.
-#             The pooled cutoff is taken from the summed histograms of all
-#             libraries (base 2) and applied to every library. In the cutoff
-#             table, n_cpg_base_<b> is the number of CpGs over which the
-#             percentile is taken, and n_removed_<...> is the number of CpGs
-#             with at least config$min_coverage reads at or above the cutoff:
-#             the rows that the filter takes from the library.
+#             cutoffs of the base of corrected mode are those in
+#             library_filtering_corrected.csv. The pooled cutoff is taken from
+#             the summed histograms of all libraries (base of corrected mode)
+#             and applied to every library. In the cutoff table, n_cpg_base_<b>
+#             is the number of CpGs over which the percentile is taken, and
+#             n_removed_<...> is the number of CpGs with at least
+#             config$min_coverage reads at or above the cutoff: the rows that
+#             the filter takes from the library.
+#           - The cutoff columns are written rounded to cutoff_decimals (3)
+#             decimals. A cutoff that falls between two read counts is
+#             interpolated with a weight that is a multiple of 0.001 when the
+#             percentile has one decimal, so three decimals hold it exactly.
+#             quantile() returns such a cutoff with floating-point error near
+#             the tenth decimal (66.3680000007 for 66.368). The script compares
+#             and filters with the unrounded values, as methylKit does; read
+#             counts are whole numbers, so the error moves no CpG. The script
+#             stops if rounding would change a cutoff by more than such an
+#             error.
 #           - Rules. "per library": each library has its own cutoff. "above the
 #             cutoff only": a CpG with exactly the cutoff number of reads stays.
 #             The last three rules remove a CpG only when at least 2 libraries,
@@ -85,7 +100,20 @@
 #             rule, differs from its median in legacy mode. Where it is 0 the
 #             scaling factors, the normalized counts, and with them the p-value
 #             and the difference of every kept CpG are those of legacy mode.
-#             For corrected mode this is also checked in the tables of step 05:
+#             The column is empty for the rule without a filter and for the
+#             three rules that count libraries. These take no CpG from a single
+#             library, so their libraries are those of legacy mode by
+#             definition, apart from line 1 of each file; the script stops if
+#             reading that line changes a median. Where the column holds a 0,
+#             that is a property of these data and not of the method. Column
+#             n_removable_before_median_changes of the cutoff table gives the
+#             margin: the largest number of its most covered CpGs (among those
+#             with at least config$min_coverage reads) that a library can lose
+#             with its median unchanged, to be set against n_removed_<...>. A
+#             filter that takes more than this changes the median of the
+#             library and with it the scaling factor of the library, or of the
+#             other libraries if its median is the largest. For corrected mode
+#             the unchanged scaling is also checked in the tables of step 05:
 #             the script stops unless the p-values and the differences of the
 #             CpGs of corrected mode are identical in both modes.
 #             (2) lists_same_with_reestimated_q: q-values depend on the set of
@@ -101,6 +129,10 @@
 #             them that fail the q-value rule (n_failing_q), and how close the
 #             q-values come to the cutoff from either side (largest_q_of_dml,
 #             smallest_q_failing; three significant digits).
+#             list_is_legacy_dml_at_these_cpgs says whether the CpGs that pass
+#             both rules are the legacy DML among the CpGs of the set. It is
+#             empty in the two rows of legacy mode as stored by step 05, where
+#             it would compare each legacy list with itself.
 #           - A run is a set of removed CpGs on one sequence in which neighbours
 #             are no more than run_gap_bp apart, the rule by which step 07
 #             groups DML into regions. Kept CpGs may lie between them. The share

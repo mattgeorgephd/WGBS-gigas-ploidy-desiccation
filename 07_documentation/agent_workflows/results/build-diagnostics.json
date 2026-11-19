@@ -1,10 +1,10 @@
 {
  "workflow": "build-diagnostics",
  "run_id": "wf_1f1a6a86-611",
- "agents_finished": 11,
+ "agents_finished": 12,
  "agents_running_or_lost": [
   "fix:feature_odds_matched",
-  "fix:legacy_reader_mechanism"
+  "fix:coverage_filter_variants"
  ],
  "results": [
   {
@@ -1809,6 +1809,263 @@
      "Not in issues.md but stated as fact elsewhere and now out of date: 02_R_functions/methylkit_helpers.R, lines 8 to 12 (\"identical united tables on a small end-to-end example in both modes; identical cutoffs, kept rows and removed positions on four real libraries ... is still to be written\") and 06_diagnostics/README.md, the row under \"Still to be written\". The script gives 9,642 and 9,201 united CpGs on an extract of all 22 libraries and six whole libraries. The README sentence \"No comparison on the complete 22 libraries in corrected mode is on record\" stays true for methylKit's own route; for the pipeline's rule my whole-file recount gives 454,555 CpGs, the same set, and 0 of 30,000,630 counts different, and it is in my scratch directory only."
     ],
     "verdict": "Accept. I found no wrong number and no judged comparison that cannot fail. The script /home/user/WGBS-gigas-ploidy-desiccation/06_diagnostics/check_methylkit_equivalence.R ran twice without error (about 8.8 minutes, 1.9 GB, one core) and wrote byte-identical tables, identical to the ones in the repository. Every group of numbers in its three tables was recomputed with code of my own (awk, Python, base R glm.fit) and agrees: the extract, the per-library filter facts, the united tables, the ties, the DML lists at all ten thresholds, the differences under the legacy coding, the six whole libraries, the step 05 tables inside the regions, the synthetic counts and the order of step 04. The header's statements about methylKit 1.28.0 (methRead, filterByCoverage, normalizeCoverage, unite, how logReg codes a factor and a character covariate, the legacy lines 143 to 150) agree with the installed source and the archived script. No style rule is broken (no em dash, no absolute path, no setwd, the treatment is called heat, set.seed precedes the only draws) and no data.table scoping mistake was found.\n\nThree scratch copies with a deliberately altered helper show that the comparisons respond: the order of step 04 in the scaling and a kept first line give 38 rows DIFFERENT and the error at the end; first_line_lost() switched off is caught by the two I-38 rows; an upper filter with <= is caught too, but by a must() in part 7 that stops the script before any table is written and blames step 04. That failure path is the one finding I rate medium. The others are low: 45 unexplained (harmless) warnings in the log, the header argument of methylKit's route taken from a helper, three loose labels, part 5 weaker than it could be for corrected mode, one uncomputed sentence in the header, and one wrong percentage in the builder's report (86% to 87%, not 83% to 87%). The builder's proposed texts for the helper comment, I-05, I-38 and the README row agree with the tables.\n\nWhat the script does not show, and does not claim: methylKit's own route on all 22 whole libraries (9 GB). Whole-file evidence is import and filter on six libraries; the first-line rule never reaches a united table because no first-line CpG has 10 reads in all libraries; in corrected mode the cutoffs of the extract (182 to 701) are far above those of the whole files (59 to 112), and 2,112 of the 9,201 CpGs compared there are ones step 05 does not test. My whole-file recount in Python closes the gap for the pipeline's own rule (480,579 and 454,555 CpGs, same sets, 0 of 31,718,214 and 0 of 30,000,630 counts different) and could be added to the script's extraction pass.\n\nNothing in the repository was changed. My logs, recount scripts and the scratch copies are in /tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/review-check_methylkit_equivalence/ (run1.log, run2.log, baseline.log, mutA.log, mutB.log, mutC.log; mine/extract.awk, recount_extract.py, order_step04.py, tables05.py, whole_tables.py and whole_tables.log, B_tests.R, B2_coding.R, C_synthetic.R, methylkit_source.txt)."
+   }
+  },
+  {
+   "agent": "fix:legacy_reader_mechanism",
+   "phase": "Fix",
+   "result": {
+    "script": "/home/user/WGBS-gigas-ploidy-desiccation/06_diagnostics/legacy_reader_mechanism.R",
+    "outputs": [
+     "/home/user/WGBS-gigas-ploidy-desiccation/06_diagnostics/legacy_reader_mechanism.csv",
+     "/home/user/WGBS-gigas-ploidy-desiccation/06_diagnostics/legacy_reader_by_linkage_group.csv",
+     "/home/user/WGBS-gigas-ploidy-desiccation/06_diagnostics/legacy_reader_position_control.csv"
+    ],
+    "changes_made": [
+     "Finding 1 (part g does not isolate position), applied. New kind of list `random_gene_sets_matched_to_run` (200 sets): every gene of the run is replaced by a random universe gene with as many universe transcripts, and as many transcripts of that gene are taken as the run holds of the gene it replaces. Each set has exactly the 11,284 transcripts, the 5,264 genes and the transcripts per gene of the run; the script stops if a set does not. New column `lists_with_at_least_as_many_terms_as_accession_run` places the run among the random lists of its size.",
+     "Finding 1, the matching differs from the reviewer's own sets, on purpose. The run holds every universe transcript of only 4,562 of its 5,264 genes; 702 genes are held in part (1,748 transcripts in the run, 1,588 outside). The reviewer replaced each of these by a whole gene, which makes the random sets more complete than the run and gives more terms. I reproduced the reviewer's numbers exactly with the script's own test (medians 963 and 1,072.5, same seed), then matched on both numbers of a gene. Result: median 763 with line totals (run 555; 189 of 200 sets at least as many) and 888 with transcript totals (run 1,041; 25 of 200).",
+     "Finding 1: new columns `isoforms_kept_together` (yes or no), `genes_in_list_median` and `genes_with_every_universe_transcript_in_list_median` (the numbers behind the yes or no; the gene of a transcript is that of the step 08 transcript table).",
+     "Finding 1: wording. Header part (g), the Notes, the section title and the two log lines now say accession-run control. The Notes state what each comparison can show: the run against single transcripts shows the isoform unit of I-03 together with the place of the run and cannot tell them apart; the run against the matched gene sets is the like-for-like comparison; no random list is a null distribution for the legacy list. The header says that the word position in the file name is the question the control was built for, not its result.",
+     "Finding 2 (lists read as position are confined to the run), applied. The kind `random_run_size_of_legacy_list` is described as confined to the accession run. Two pools added for lists of 612 single transcripts: `random_linkage_groups_of_run_size_of_legacy_list` (200 lists from the 17,070 universe transcripts of NC_047559.1 to NC_047563.1) and `random_matched_gene_sets_size_of_legacy_list` (200 lists from each of the first 20 matched gene sets, 4,000 lists). For the second, new columns `gene_sets`, `terms_below_cutoff_lowest_set_median` and `terms_below_cutoff_highest_set_median` show the spread between sets, so the run can be placed among them. I used 20 sets instead of one because one random pool would give an arbitrary number (set medians run from 45 to 90).",
+     "Finding 2: a note on line totals. A list whose transcripts have more map lines each than those of the universe is tested against too large a share and gives fewer terms; the transcripts of the run have more (19,855 lines for 9,277 transcripts, against 40,748 for 22,761), and the matched sets and other pools are not matched on this.",
+     "Finding 3 (tolerance check), applied. The comparison with `legacy_fisher_ploidy_BP.csv` is now term by term: every p-value within a relative difference of `p_tolerance` = 1e-9 of the value in the table.",
+     "Finding 4 (two loose definitions), applied. `lines_in_file`: one line per DML, transcript, GO term and GOslim bin (also in the header). `transcripts_admitted_by_both`: handed to the legacy test as transcripts of interest (those with a term of an ontology take part in the test of that ontology). The description of `legacy_list` in the control table uses the same wording.",
+     "Finding 5 (typed-in halves of the linkage groups), applied as a check, the first of the two fixes the reviewer offered. The script stops unless the linkage groups with annotated mRNAs in the accession range of the ploidy run are exactly the first five. The header says that heat and shared are reported by the same two halves for comparison and that the heat run covers other linkage groups.",
+     "Order of drawing: the three kinds of the earlier version are drawn first and the new kinds after them, so their lists are unchanged. Checked: every value of the ten old rows of the control table is identical, `legacy_reader_by_linkage_group.csv` is byte-identical to the earlier copy, and `legacy_reader_mechanism.csv` differs only in the two reworded definitions (six lines).",
+     "Header: run time is now about 4 minutes (was 2 to 3); the Writes block describes the new columns. No output file was added, renamed or removed."
+    ],
+    "findings_not_applied": [],
+    "final_run_clean": true,
+    "run_time_minutes": 3.9,
+    "targets": [
+     {
+      "quantity": "Rows returned by the default read, of lines in the file (ploidy, heat, shared)",
+      "target": "10,979 of 46,626; 81,109 of 106,621; 6,941 of 7,029",
+      "obtained": "10,979 of 46,626 (23.5%); 81,109 of 106,621 (76.1%); 6,941 of 7,029 (98.7%)",
+      "agrees": true,
+      "comment": "Equal to legacy_reader_loss.csv of step 09; the script stops otherwise."
+     },
+     {
+      "quantity": "Transcripts returned by the default read, of transcripts in the file",
+      "target": "623 of 2,348; 3,444 of 4,606; 379 of 379",
+      "obtained": "623 of 2,348; 3,444 of 4,606; 379 of 379",
+      "agrees": true
+     },
+     {
+      "quantity": "Genes returned by the default read, of genes in the file",
+      "target": "171 of 622; 949 of 1,237; 117 of 117",
+      "obtained": "171 of 622; 949 of 1,237; 117 of 117",
+      "agrees": true
+     },
+     {
+      "quantity": "Reads with quote = \"\" and with the double quote as the only quote character",
+      "target": "every line read",
+      "obtained": "46,626; 106,621; 7,029 rows under both settings, with all transcripts and genes and no warning",
+      "agrees": true
+     },
+     {
+      "quantity": "Lines with an odd number of apostrophes outside a double-quoted field",
+      "target": "27, 88, 10",
+      "obtained": "27, 88, 10 (of 68, 200 and 17 lines that hold an apostrophe)",
+      "agrees": true
+     },
+     {
+      "quantity": "Merged rows of the default read",
+      "target": "14, 44, 5",
+      "obtained": "14, 44, 5; the largest hold 14,937, 7,679 and 64 lines; the ploidy table ends inside a quoted string",
+      "agrees": true
+     },
+     {
+      "quantity": "Proof by intervention: default read after replacing the apostrophes on the odd lines only",
+      "target": "returns every line",
+      "obtained": "46,626; 106,621; 7,029 rows with no warning; replacing them on all other lines leaves 10,979; 81,109; 6,941 rows",
+      "agrees": true
+     },
+     {
+      "quantity": "Ploidy rows with the apostrophe as the only quote character",
+      "target": "10,981",
+      "obtained": "10,981 (624 transcripts, 172 genes); heat 81,109 and shared 6,941",
+      "agrees": true
+     },
+     {
+      "quantity": "Warnings R gives",
+      "target": "\"EOF within quoted string\" for the ploidy table only",
+      "obtained": "ploidy, default read and apostrophe-only read: \"EOF within quoted string\" and \"number of items read is not a multiple of the number of columns\"; no warning for any other read of any table",
+      "agrees": true,
+      "comment": "Observed under R 4.3.3, which the CSV records."
+     },
+     {
+      "quantity": "Transcripts and genes that vanish entirely",
+      "target": "ploidy 1,725 and 451; heat 1,162 and 288",
+      "obtained": "ploidy 1,725 and 451; heat 1,162 and 288; shared 0 and 0",
+      "agrees": true,
+      "comment": "Share of skipped lines that belong to them: transcripts 99.4%, 98.6%, 0%; genes 92.4%, 41.6%, 0%."
+     },
+     {
+      "quantity": "Longest run of surviving ploidy transcripts in accession order",
+      "target": "603 of 623, XM_034462509.1 to XM_034479694.1",
+      "obtained": "603 of 623 (96.8%), XM_034462509.1 to XM_034479694.1; 7 runs in all",
+      "agrees": true
+     },
+     {
+      "quantity": "Tested ploidy transcripts of interest on NC_047559.1 to NC_047563.1, and share of the universe there",
+      "target": "601 of 612 (98.2%); 62.1%",
+      "obtained": "601 of 612 (98.2%); 17,070 of 27,469 (62.1%)",
+      "agrees": true,
+      "comment": "Last five linkage groups: 5 of 612 (0.8%) against 32.9% of the universe; 6 on unplaced scaffolds."
+     },
+     {
+      "quantity": "Genes admitted by the universe alone, by the reader alone, by both",
+      "target": "456, 930, 91; 171, 949, 117; 168, 610, 91",
+      "obtained": "456, 930, 91; 171, 949, 117; 168, 610, 91",
+      "agrees": true,
+      "comment": "Equal to legacy_funnel.csv of step 09; the script stops otherwise."
+     },
+     {
+      "quantity": "Survival of genes by number of transcripts in the table",
+      "target": "heat 64% (one) and 96% (more than five); ploidy 20% and 37%",
+      "obtained": "heat 348 of 543 (64.1%) and 211 of 219 (96.3%); ploidy 52 of 264 (19.7%) and 46 of 123 (37.4%)",
+      "agrees": true
+     },
+     {
+      "quantity": "Real legacy result, ploidy BP terms with p < 0.01",
+      "target": "383",
+      "obtained": "383 of 12,720; every p-value within a relative difference of 1e-9 of legacy_fisher_ploidy_BP.csv (largest difference 4.5e-15)",
+      "agrees": true
+     },
+     {
+      "quantity": "Accession-run list: BP terms with p < 0.01",
+      "target": "1,041 of 12,720",
+      "obtained": "555 of 12,720 as step 09 tests (totals in map lines); 1,041 with one entry per transcript",
+      "agrees": false,
+      "comment": "Both are right for their unit, unchanged from the build. The target was computed on a de-duplicated map; the task asks for the test as step 09 runs it, which gives 555. Both rows are in the CSV."
+     },
+     {
+      "quantity": "Median for random lists of the size of the run",
+      "target": "52.5 (ten draws, range 13 to 157)",
+      "obtained": "200 draws: 47 with line totals (8 to 287), 47.5 with transcript totals (9 to 256)",
+      "agrees": false,
+      "comment": "Number of draws only. The first ten draws of the script are the ten of the target (62 27 64 61 13 63 35 44 157 32, median 52.5), checked again after the revision."
+     },
+     {
+      "quantity": "Legacy top ten BP terms with p < 0.01 in the test of the run",
+      "target": "nine of ten",
+      "obtained": "nine of ten in both units; the exception is GO:0035561",
+      "agrees": true,
+      "comment": "Weak evidence: in the 200 matched gene sets the median is 4 of ten (range 0 to 10)."
+     },
+     {
+      "quantity": "Review finding 1: random gene sets against the run",
+      "target": "reviewer: 1,072.5 (627 to 1,570; 56% of sets reach the run) with transcript totals; 963 (517 to 1,580; 99.5%) with line totals",
+      "obtained": "888 (598 to 1,240; 25 of 200 sets reach 1,041) with transcript totals; 763 (402 to 1,461; 189 of 200 reach 555) with line totals",
+      "agrees": false,
+      "comment": "The finding holds: gene sets with no common position give 16 to 19 times the terms of single transcripts, and the run lies within their range. The numbers differ because the reviewer's sets are all whole genes and the run is not (702 of 5,264 genes in part). I reproduced the reviewer's numbers exactly, then matched exactly. An independent explicit version of my draw under another seed gives 770 and 890.5."
+     },
+     {
+      "quantity": "Review finding 2: lists of 612 from the five linkage groups",
+      "target": "reviewer: 43 to 44 against 38 to 40 (transcript totals); 32.5 to 34 against 40 to 41 (line totals)",
+      "obtained": "48 against 38 (transcript totals); 35.5 against 43.5 (line totals); 200 lists",
+      "agrees": false,
+      "comment": "Different draws, same reading: a small excess with transcript totals and none with line totals. A median of 200 lists has a bootstrap standard error of about 2 to 4 terms."
+     },
+     {
+      "quantity": "Review finding 2: lists of 612 from random gene sets of the size of the run",
+      "target": "reviewer, 12 pools: median 62 (53 to 82) with transcript totals; 66 (43.5 to 86) with line totals",
+      "obtained": "20 sets, 200 lists each: median 64 (set medians 53.5 to 79) with transcript totals; 60 (45 to 90) with line totals",
+      "agrees": true,
+      "comment": "Lists from the run: 81 and 36. The run lies just above the 20 sets with transcript totals and below all of them with line totals."
+     },
+     {
+      "quantity": "issues.md I-40: lists of 612 from the run against from the universe",
+      "target": "72.5 against 38; none of the top ten in 171 of 200",
+      "obtained": "81 against 38 with transcript totals, none in 171 of 200; 36 against 43.5 with line totals, none in 175 of 200",
+      "agrees": false,
+      "comment": "Unchanged from the build. Different draws; the doubling holds only with one entry per transcript."
+     },
+     {
+      "quantity": "issues.md I-40: the survivors come from five of the ten linkage groups",
+      "target": "five linkage groups",
+      "obtained": "608 of 623 on the first five; 9 on four of the other five; 6 on unplaced scaffolds",
+      "agrees": false,
+      "comment": "A small overstatement in the issue text."
+     },
+     {
+      "quantity": "issues.md I-40: survival of transcripts that carry a term with an unpaired apostrophe",
+      "target": "16 of 16 against 26% (ploidy); 44 of 47 against 75% (heat)",
+      "obtained": "16 of 16 against 26.0%; 44 of 47 against 74.6%",
+      "agrees": true
+     }
+    ],
+    "issues_md_changes": [
+     {
+      "issue": "I-40",
+      "current_text": "**Verification 2026-11-19.** The row, transcript and gene counts above were recomputed with code that shares nothing with the pipeline.",
+      "proposed_text": "**Verification 2026-11-19.** The row, transcript and gene counts above were recomputed with code that shares nothing with the pipeline. Where a bullet below cites `06_diagnostics/legacy_reader_mechanism.R`, its numbers are regenerated by that script from the three legacy tables (`legacy_reader_mechanism.csv`, `legacy_reader_by_linkage_group.csv` and `legacy_reader_position_control.csv` in the same folder). The script stops unless its counts and p-values equal those of step 09.",
+      "reason": "The script now regenerates the row, transcript and gene counts and checks them against legacy_reader_loss.csv and legacy_funnel.csv."
+     },
+     {
+      "issue": "I-40",
+      "current_text": "- The mechanism was confirmed by intervention. With quoting off, or with the double quote as the only quote character, every line is read; replacing the apostrophes on the 27, 88 and 10 lines alone restores every line.",
+      "proposed_text": "- The mechanism was confirmed by intervention (`06_diagnostics/legacy_reader_mechanism.R`, table `legacy_reader_mechanism.csv`). With quoting off, or with the double quote as the only quote character, every line is read; with the apostrophe as the only quote character the reads return 10,981, 81,109 and 6,941 rows. Replacing the apostrophes on the 27, 88 and 10 lines alone restores every line, and replacing them on the 41, 112 and 7 other lines that hold an apostrophe leaves the 10,979, 81,109 and 6,941 rows as they were. In the ploidy table the last quoted string is still open at the end of the file (27 such lines give 14 merged rows, the last of them cut short), which is why R warns for this table only. The largest merged rows hold 14,937, 7,679 and 64 lines.",
+      "reason": "Should cite the script. The script adds the converse intervention, the apostrophe-only read and the reason for the warning (quantities rows_apostrophe_only, rows_after_replacing_unpaired_apostrophes, rows_after_replacing_all_other_apostrophes, table_ends_inside_quoted_string, lines_in_largest_merged_row)."
+     },
+     {
+      "issue": "I-40",
+      "current_text": "- R warns for the ploidy table (\"EOF within quoted string\"; \"number of items read is not a multiple of the number of columns\") at each of the four reads of that file in the script; the heat and shared reads give no warning. This was observed under R 4.3.3 with the same call; the console output of the legacy run is not preserved.",
+      "proposed_text": "- R warns for the ploidy table (\"EOF within quoted string\"; \"number of items read is not a multiple of the number of columns\") at each of the four reads of that file in the legacy script; the heat and shared reads give no warning. This was observed under R 4.3.3 with the same call; the console output of the legacy run is not preserved. `06_diagnostics/legacy_reader_mechanism.R` captures the warnings of its own reads, which are four reads of each table with different quote characters (`legacy_reader_mechanism.csv`, quantities `warnings_...`): the two warnings come for the ploidy table with the default quote characters and with the apostrophe alone, and no other read warns.",
+      "reason": "\"The script\" is now ambiguous: the diagnostic also makes four reads of each table, with four quote settings, and only two of its ploidy reads warn."
+     },
+     {
+      "issue": "I-40",
+      "current_text": "- The loss is whole transcripts and genes, not scattered rows: 1,725 of the 2,348 ploidy transcripts and 451 of the 622 genes vanish entirely (heat: 1,162 transcripts and 288 genes).",
+      "proposed_text": "- The loss is whole transcripts, not scattered rows: 1,725 of the 2,348 ploidy transcripts and 451 of the 622 genes vanish entirely (heat: 1,162 transcripts and 288 genes), and 99.4% of the skipped lines of the ploidy table and 98.6% of those of the heat table belong to transcripts that vanish. By gene the shares are 92.4% and 41.6%: in the heat table most skipped lines belong to genes that survive through another transcript (`06_diagnostics/legacy_reader_mechanism.R`, table `legacy_reader_mechanism.csv`).",
+      "reason": "Counts confirmed and now regenerated. \"Whole genes\" holds for ploidy only: 41.6% of the skipped heat lines belong to genes that vanish."
+     },
+     {
+      "issue": "I-40",
+      "current_text": "- For ploidy the survivors come from five of the ten linkage groups. 603 of the 623 surviving transcripts are one run of accessions (XM_034462509.1 to XM_034479694.1). Accession numbers of the XM_034 series run in blocks by linkage group, not by position within a linkage group, and the mRNAs of this run lie on NC_047559.1 to NC_047563.1 and on unplaced scaffolds only. So 601 of the 612 tested transcripts of interest (98.2%) lie on NC_047559.1 to NC_047563.1, which hold 62.1% of the universe, and 5 lie on NC_047564.1 to NC_047568.1, which hold 32.9%. The legacy ploidy test therefore compared a list drawn from half the genome with a universe drawn from all of it.",
+      "proposed_text": "- For ploidy nearly all survivors come from five of the ten linkage groups: 608 of the 623 surviving transcripts lie on NC_047559.1 to NC_047563.1, 9 on four of the other five linkage groups and 6 on unplaced scaffolds (`06_diagnostics/legacy_reader_mechanism.R`, tables `legacy_reader_mechanism.csv` and `legacy_reader_by_linkage_group.csv`). 603 of the 623 are one run of accessions (XM_034462509.1 to XM_034479694.1). Accession numbers of the XM_034 series run in blocks by linkage group, not by position within a linkage group, and the mRNAs of this run lie on NC_047559.1 to NC_047563.1 and on unplaced scaffolds only. So 601 of the 612 transcripts handed to the test (98.2%) lie on NC_047559.1 to NC_047563.1, which hold 62.1% of the universe, and 5 lie on NC_047564.1 to NC_047568.1, which hold 32.9%. The list of the legacy ploidy test was therefore drawn from a part of the universe: the accession run holds 11,284 of the 27,469 universe transcripts (41.1%), 11,241 of them on those five linkage groups.",
+      "reason": "The first sentence is wrong as written (15 survivors lie elsewhere). The last sentence is loose: the five linkage groups hold 62.1% of the universe, and the list comes from the accession run, which holds 41.1%."
+     },
+     {
+      "issue": "I-40",
+      "current_text": "- How much that skew matters was tested, with limits. A list confined to that run gives more terms below p = 0.01 than a random list of the same size, whatever the DML are. With every universe transcript of the accession run as the list of interest (11,284 of the 27,469 transcripts, no DML information), 1,041 of the 12,720 BP terms have p < 0.01, against a median of 52.5 for ten random lists of the same size (range 13 to 157), and nine of the ten legacy top BP terms for ploidy are among the 1,041. That check used one entry per transcript, not the line totals of the legacy test (I-43), and a list 18 times as long as the legacy list of 612 transcripts, so it does not separate the effect of position from the effect of list length. At the length of the legacy list, position alone about doubles the number of such terms and does not produce the legacy top terms: 200 random lists of 612 transcripts drawn from the run give a median of 72.5 BP terms with p < 0.01, against 38 for lists drawn from the whole universe, and in 171 of the 200 none of the ten legacy top terms has p < 0.01 (a single run by the agent that checked this paragraph; to be regenerated by `06_diagnostics/legacy_reader_mechanism.R`). The position skew is therefore a bias of the legacy test, not the explanation of its top terms, which is the isoform count of I-03.",
+      "proposed_text": "- What that confinement does to the test was examined with an accession-run control, with limits (`06_diagnostics/legacy_reader_mechanism.R`, table `legacy_reader_position_control.csv`; 200 seeded random lists of each kind). Taken whole and with no DML information, the universe transcripts of the accession run (11,284 of the 27,469, in 5,264 genes) give 555 of the 12,720 BP terms with p < 0.01 when tested as step 09 tests, and 1,041 with one entry per transcript in place of the line totals of the legacy test (I-43). Random lists of 11,284 single transcripts give a median of 47 (range 8 to 287; 47.5 with one entry per transcript). That difference does not show an effect of position, because the run holds the isoforms of a gene together (every universe transcript of 4,562 of its 5,264 genes) and a list of single transcripts does not. Random gene sets with the run's numbers of genes and of transcripts per gene, and no common position, give a median of 763 terms (range 402 to 1,461; 189 of the 200 sets give at least 555) and 888 with one entry per transcript (598 to 1,240; 25 of the 200 give at least 1,041). The run lies within the range of such sets, so its excess over single transcripts is the isoform unit of I-03. Nine of the ten legacy top BP terms for ploidy have p < 0.01 in the test of the run (all but GO:0035561). That says little: the legacy list lies inside the run, six of the ten terms are annotated to the transcripts of a single gene each (`04_output/09_go_enrichment_legacy/tables/legacy_fisher_ploidy_BP.csv`, column `genes_annotated`), and in the random gene sets, which have nothing to do with the legacy list, the median is 4 of the ten (range 0 to 10). At the length of the legacy list (612 transcripts; the run is 18 times as long), lists of single transcripts confined to the run give no more terms than lists from the whole universe under the totals the legacy test used: the medians are 36 against 43.5, with 35.5 for lists drawn from the five linkage groups and 60 for lists drawn from 20 of the random gene sets (medians of the sets from 45 to 90). The transcripts of the run have more map lines each than those of the universe (19,855 lines for 9,277 transcripts with a BP term, 2.14 each, against 40,748 for 22,761, 1.79 each), and line totals count that against a list drawn from the run. With one entry per transcript the medians are 81 (run), 38 (universe), 48 (five linkage groups) and 64 (gene sets, 53.5 to 79): a list drawn from a part of the universe gives more terms than a list drawn from all of it, and most of the excess of the run appears for a random gene set of its size. In 175 of the 200 lists from the run (171 with one entry per transcript) none of the ten legacy top terms has p < 0.01. For lists of single transcripts, then, confinement to the run did not raise the number of terms under the totals of the legacy test, and it does not produce the legacy top terms, which rest on the isoform count of I-03. One limit remains: the lists of 612 are single transcripts, so none of them is a null distribution for the 383 terms of the legacy list (638 with one entry per transcript), which holds the isoforms of 168 genes; lists of isoform sets of that length were not drawn.",
+      "reason": "The current bullet attributes to position what the script shows to be the isoform unit. Wrong or unsupported as written: \"whatever the DML are\" as a statement about position; 1,041 without its unit (555 as step 09 tests); \"position alone about doubles\" (36 against 43.5 under the legacy totals; with transcript totals random gene sets give 64 of the 81); \"The position skew is therefore a bias of the legacy test\". The numbers 52.5 and 72.5 came from single scratch runs and are replaced by the script's (47.5 and 81)."
+     },
+     {
+      "issue": "I-40",
+      "current_text": "The two losses overlap for ploidy (98.2% of the transcripts that survive the reader are in the universe, against 46.8% of those it lost) and compound for heat (62.4% against 74.4%).",
+      "proposed_text": "The two losses overlap for ploidy (98.2% of the transcripts that survive the reader are in the universe, against 46.8% of those it lost) and compound for heat (62.4% against 74.4%). These numbers are regenerated by `06_diagnostics/legacy_reader_mechanism.R` (`legacy_reader_mechanism.csv`, quantities `genes_admitted_by_universe_alone`, `genes_admitted_by_reader_alone`, `genes_admitted_by_both`, `percent_surviving_transcripts_in_universe` and `percent_lost_transcripts_in_universe`).",
+      "reason": "All nine gene counts and the four percentages are confirmed; the bullet should cite the output."
+     },
+     {
+      "issue": "I-40",
+      "current_text": "- Survival depends on annotation and on isoform number. A line with an unpaired apostrophe that opens a quoted string starts a returned row, so transcripts that carry such a term survive more often than the others: 16 of 16 against 26% for ploidy, 44 of 47 against 75% for heat. For heat 64% of genes with one transcript in the table survive against 96% of genes with more than five (ploidy: 20% against 37%), which adds to I-03.",
+      "proposed_text": "- Survival depends on annotation and on isoform number. A line with an unpaired apostrophe that opens a quoted string starts a returned row, so transcripts that carry such a term survive more often than the others: 16 of 16 against 26% for ploidy, 44 of 47 against 75% for heat. For heat 64% of genes with one transcript in the table survive against 96% of genes with more than five (ploidy: 20% against 37%), which adds to I-03. These numbers are regenerated by `06_diagnostics/legacy_reader_mechanism.R` (`legacy_reader_mechanism.csv`): 348 of 543 genes against 211 of 219 for heat, 52 of 264 against 46 of 123 for ploidy.",
+      "reason": "Confirmed (26.0% and 74.6%; 64.1% and 96.3%; 19.7% and 37.4%); the bullet should cite the output."
+     },
+     {
+      "issue": "I-40",
+      "current_text": "27 such lines in the ploidy table, 88 in the heat table and 10 in the shared table give 14, 44 and 5 merged rows.",
+      "proposed_text": "27 such lines in the ploidy table, 88 in the heat table and 10 in the shared table give 14, 44 and 5 merged rows (`06_diagnostics/legacy_reader_mechanism.csv`, quantities `lines_with_unpaired_apostrophe` and `merged_rows_default_quotes`).",
+      "reason": "Evidence bullet, not a Verification paragraph, but no pipeline output holds these six numbers; the script regenerates them."
+     },
+     {
+      "issue": "I-43",
+      "current_text": "For BP the total is 40,748 where there are 22,761 distinct transcripts, and the number \"of interest\" is 1,581 where there are 498 (ploidy), 4,699 against 1,912 (heat), and 768 against 226 (shared loci).",
+      "proposed_text": "For BP the total is 40,748 where there are 22,761 distinct transcripts, and the number \"of interest\" is 1,581 where there are 498 (ploidy), 4,699 against 1,912 (heat), and 768 against 226 (shared loci). The two totals and the ploidy numbers are regenerated by `06_diagnostics/legacy_reader_mechanism.R` (`legacy_reader_position_control.csv`, rows `legacy_list`).",
+      "reason": "Optional citation outside I-40: the script reproduces these four numbers with topGO itself."
+     },
+     {
+      "issue": "I-43",
+      "current_text": "- With names de-duplicated, terms with p < 0.01 number 638, 1,342 and 556 (BP), 96, 228 and 88 (CC), 135, 245 and 134 (MF) for ploidy, heat and the shared loci, where the archive has 383, 856 and 341, 43, 145 and 36, 68, 172 and 74; the top-ten lists share between 4 and 10 of 10 terms with the archived ones.",
+      "proposed_text": "- With names de-duplicated, terms with p < 0.01 number 638, 1,342 and 556 (BP), 96, 228 and 88 (CC), 135, 245 and 134 (MF) for ploidy, heat and the shared loci, where the archive has 383, 856 and 341, 43, 145 and 36, 68, 172 and 74; the top-ten lists share between 4 and 10 of 10 terms with the archived ones. The 638 of the ploidy BP test is regenerated by `06_diagnostics/legacy_reader_mechanism.R` (`legacy_reader_position_control.csv`, row `legacy_list` with transcript totals); the other eight de-duplicated numbers are not regenerated by committed code.",
+      "reason": "Optional citation outside I-40: only the first of the nine de-duplicated numbers is covered by this script."
+     }
+    ],
+    "readme_row": "| `legacy_reader_mechanism.R` | How the legacy enrichment script lost most of the ploidy annotation table and a quarter of the heat table: `read.table()` with its default quote characters, and apostrophes in GO term names. For the three legacy tables: rows, transcripts and genes returned by four reads (default quote characters, no quote character, the double quote alone, the apostrophe alone) with the warnings R gives; the lines with an unpaired apostrophe, the merged rows, and the proof by intervention; the transcripts and genes that vanish; where the survivors lie (accession run, linkage groups); the overlap with the universe gap; survival by number of transcripts per gene. For ploidy, an accession-run control of the BP test: every universe transcript of the surviving accession run as the list of interest, with no DML information, against random lists of single transcripts and against random gene sets with the run's numbers of genes and of transcripts per gene; and lists of the length of the legacy list drawn from the run, from the whole universe, from the linkage groups of the run and from 20 of the gene sets (5,000 seeded lists in all). Every list is tested with the totals counted in map lines (as step 09) and in transcripts. The run against single transcripts shows the isoform unit of I-03 together with the place of the run; the gene sets are the like-for-like comparison. Stops unless every read returns the rows predicted from the quote rule of `scan()` and its counts and p-values equal those of step 09. About 4 minutes, 1.3 GB; needs the outputs of steps 08 and 09 and GO.db 3.13.0 in the cache. Issues I-40, I-39, I-43, I-03. | `legacy_reader_mechanism.csv` (long format: table, quantity, value, definition), `legacy_reader_by_linkage_group.csv`, `legacy_reader_position_control.csv` (the accession-run control) |",
+    "notes": "All five review findings were checked with my own code, found right, and applied. The script ran clean twice from the repository root (237 s and 235 s, peak memory 1.30 GB) and the three CSV files are byte-identical between the two runs. Every target of parts (a) to (f) still holds exactly.\n\nOne result differs from the reviewer's, and it matters for the issue text. The reviewer's random gene sets are all whole genes, but the run holds 702 of its 5,264 genes only in part. Matched exactly, random gene sets give a median of 888 terms with transcript totals (run 1,041; 25 of 200 sets reach it) and 763 with line totals (run 555; 189 of 200). The reviewer had 1,072.5 and 963, which I reproduced exactly before changing the match. The reading of finding 1 stands: the excess of the run over single transcripts (47) is the isoform unit, and the run lies within the range of gene sets with no common position. The handoff (07_documentation/session_handoff.md, the two paragraphs on this script) quotes the reviewer's 1,072.5 and 963 and the builder's proposed text; both are superseded.\n\nAt the length of the legacy list the picture is less clean than either earlier text said:\n- Line totals, as the legacy test: run 36, universe 43.5, five linkage groups 35.5, random gene sets 60 (set medians 45 to 90). The run lies below all 20 sets.\n- Transcript totals: run 81, universe 38, five linkage groups 48, random gene sets 64 (53.5 to 79). The run lies just above all 20 sets.\nSo most of the excess of run lists appears for any gene set of that size, but I would not write that position adds nothing. The proposed I-40 text says only what the table supports.\n\nChecks behind the new code, all in scratch:\n- The 200 gene sets have the structure of the run by a second method (data.table grouping).\n- An explicit gene-by-gene version of the draw under another seed gives the same distribution (medians 770 and 890.5).\n- topGO itself, called as step 09 calls it, gives bit-identical p-values for five of the new lists in both units.\n- Every summary column of the control table was recomputed with base R from the per-list results: no mismatch in 16 rows.\n- Three altered copies stop with a plain message and write nothing: halves that do not match the run, one wrong p-value in the step 09 table (the old all.equal check lets it pass), and wrongly dealt gene sets.\n\nLimits and things not done:\n- A median of 200 lists has a bootstrap standard error of about 2 to 4 terms (12 to 19 for the gene sets), so differences of a few terms between kinds mean nothing. This number is from scratch, not from the script, and is not in the proposed issue text.\n- The lists of 612 are single transcripts. A control with random isoform sets of the legacy size (168 genes), from the run and from the universe, would be the direct null for the 383 terms. The review did not ask for it and I did not add it.\n- The reviewer's comparison with other accession windows is not in the script.\n- The output file keeps the name legacy_reader_position_control.csv because the specification names it; the header says what the word stands for.\n- Only R 4.3.3 was available.\n\nNo file was removed from 06_diagnostics: the script writes the same three files. I edited no README, helper, pipeline script, run_config.R or issues.md and ran no state-changing git command. The parent session's snapshot commit 7251365 already holds the final script and tables (same md5 as on disk), though its message says not final. The run line of 06_diagnostics/README.md still says review pending; a fitting comment is \"about 4 minutes; after steps 08 and 09\".\n\nScratch work, including the reviewer-design reproduction and the three failure tests, is in /tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/fix-legacy_reader_mechanism."
    }
   }
  ]

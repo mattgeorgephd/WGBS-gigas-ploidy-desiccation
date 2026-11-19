@@ -1,10 +1,8 @@
 {
  "workflow": "check-literature-additions",
  "run_id": "wf_22809f1c-38e",
- "agents_finished": 2,
- "agents_running_or_lost": [
-  "read:L3-oyster-biology-and-triploids"
- ],
+ "agents_finished": 3,
+ "agents_running_or_lost": [],
  "results": [
   {
    "agent": "read:L2-mitochondria-and-library-preparation",
@@ -765,6 +763,353 @@
      "The log's sentence 'does not have the weakness of item 7' for the two-group model of DSS is an inference from how the shrinkage estimator is built (Feng et al. 2014); no source tests it at the p-values concerned, and it was not tested here (DSS is not installed)."
     ],
     "notes": "Result on the five points set for refutation. (a) Wreczycka et al.: 'best accuracy overall', 'lowest specificity', 'similar results to DSS' and the chi-squared test as 'a good compromise' are verbatim and in context, in the article and in the preprint of 9 August 2017. Three things do not hold as worded. The article's code, which the article itself names, called CpGs at q < 0.01 and a difference above 5 points, so 'without a difference threshold' is wrong. The article puts the chi-squared test with the correction forward in three places, one of them in the Conclusions as 'A good alternative ... This method has high sensitivity without sacrificing too much for specificity', so 'does not recommend one test' and 'recommends was wrong' go too far the other way. And the article calls the specificity of that test 'similar' to DSS and limma, so the contrast of 5% to 7% against 1.5% is the audit's reading of the figure. The percentages are clearly labelled as measurements; measured again from the PDF image and from uncompressed figures of the code repository they are 29% to 32%, 4.6% to 6.5%, 0.8% to 1.3% and at most 1.0%. (b) Park and Wu: the four type I errors, the per-CpG dispersion, the bounds, the normal reference and the absence of a returned methylation difference (DSS guide 2.60.0) are confirmed; the authors call the bounds 'a type of shrinkage'. (c) Venkataraman et al. 2022: all confirmed (MN with Chisq, 50%, 315 of 1,599, eight animals, 'sibling oysters'). (d) The vignette's first example uses the default model with 25 points and q < 0.01, but its only example with a covariate, and that of the help page, use overdispersion='MN' with test='Chisq'; since the draft's model has a covariate and the author now states that the correction was left out on purpose, the sentence 'The draft's settings are those of the methylKit vignette' needs that qualifier. (e) Liu et al.: the strand principle is right and is stated for directional libraries; the libraries here are non-directional.\n\nTwo findings lie outside the passages named to me and are marked so: lines 185 to 191 of the header of dml_sensitivity.R (still credit the general-design model of DSS with sharing information) and the last column of the I-06 row of the corrections table. If the corrections are applied, the corrections table of issues.md needs rows for them.\n\nissues.md changed while I worked (commit 074f9d5 of 18:41, the author's answers: I-28 rows and a new paragraph 'Answer of the author' in I-06). I re-read the changed passages; the statements that rest on literature are unchanged, and every quoted clause occurs exactly once in the current files (checked at the end).\n\nThe first check's copy of the Wreczycka PDF is byte-identical to the one I downloaded. I used no other copy of the first check: every work marked full_text_retrieved_by_me was fetched by me.\n\nCounting: 74 statements, 54 supported as worded, 20 not (19 findings; the two statements of the I-08 correction share one finding). Severity: none high; seven medium (difference threshold, the two on 'recommend', 'in line with', vignette, Liu et al., Silliman et al., R header counted with them makes eight), the rest low.\n\nFiles of this check, all under /tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/L1-statistics-and-methods: index /tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/L1-statistics-and-methods/README_check.txt; figure measurements /tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/L1-statistics-and-methods/text/fig2_measurement_L1.txt, /tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/L1-statistics-and-methods/text/fig2_measurement_repo_png_L1.txt and /tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/L1-statistics-and-methods/text/fig_counts_measurement_repo_png_L1.txt, written by scripts/measure_fig2.py, scripts/measure_repo_fig.py and scripts/measure_repo_counts.py in the same folder. The proposed text for the percentages cites figures of the article's code repository; if it is adopted, these three outputs and scripts would have to be copied into 07_documentation/agent_workflows/verification_scripts/ for the numbers to have a source in the repository. Nothing under /home/user/WGBS-gigas-ploidy-desiccation was changed and no state-changing git command was run there. Two public code repositories and the Bismark documentation were read through shallow git clones into the downloads folder; nothing from them was executed."
+   }
+  },
+  {
+   "agent": "read:L3-oyster-biology-and-triploids",
+   "phase": "Read",
+   "result": {
+    "reader": "L3-oyster-biology-and-triploids",
+    "statements_checked": 40,
+    "supported_as_worded": 30,
+    "findings": [
+     {
+      "where": "issues.md, I-49, Evidence (computed), item 2, paragraph \"Published work gives candidates of both kinds.\", part *The animal.*",
+      "quote": "gill tissue of the flat oyster Ostrea edulis carries sex-specific methylation (Valk et al. 2025, BMC Genomics 26:567, doi:10.1186/s12864-025-11736-1)",
+      "source": "Valk et al. 2025, BMC Genomics 26:567, doi:10.1186/s12864-025-11736-1",
+      "verdict": "needs_qualifier",
+      "how_read": "full_text_retrieved_by_me",
+      "evidence": "The clause is true to the abstract, but the paragraph offers it as a candidate cause of a raised overall level, and the full text (Europe PMC PMC12144841) reports regions only and no direction between the sexes. Results, \"Differentially methylated loci and regions between sex phenotypes\": \"Methylome comparison between males and females resulted in a total of 239 DMRs (125 hypermethylated in males, 114 hypermethylated in females).\" and \"The highest number of DMRs was found between HPM and HBS (3369 DMRs\" (two hermaphrodite stages). Discussion, first paragraph: \"The most distinct DNA methylation profile was observed in hermaphrodite oysters, whereas males and females demonstrated more similar patterns of DNA methylation in their gills.\" Discussion, \"Tissue specificity of sex-specific DNA methylation in oyster gills\": \"DNA methylation in gonad tissue was often found to be hypermethylated among males compared to females [29, 30, 40]. In our study, males or females did not show consistent hyper or hypomethylation for DMRs and DMGs.\" Methods: \"In total, 35 oysters were used for DNA methylome sequencing; 9 M, 8 F, 5 HPM, 9 HPF, and 4 HBS oysters.\" (wild animals, nanopore sequencing, methylKit logistic regression at 3 reads or more). No overall methylation level per sex phenotype is reported anywhere in the article.",
+      "proposed_text": "in gill of the flat oyster Ostrea edulis methylation differs between sex phenotypes at single regions and without a common direction: the differences are most numerous between hermaphrodite stages, males and females differ at 239 regions, 125 more methylated in males and 114 in females, and no overall level by sex is reported (Valk et al. 2025, BMC Genomics 26:567, doi:10.1186/s12864-025-11736-1; 35 wild animals of five sex phenotypes, nanopore sequencing). The one study of gill therefore gives no precedent for a sex difference in the overall level of that tissue",
+      "severity": "medium"
+     },
+     {
+      "where": "issues.md, I-49, Evidence (computed), item 2, closing parenthesis of the paragraph \"Published work gives candidates of both kinds.\"",
+      "quote": "in the abstract only: Teng et al., Sun et al., Valk et al., so the size of the sex differences they report is not known here.",
+      "source": "Valk et al. 2025, BMC Genomics 26:567, doi:10.1186/s12864-025-11736-1; Teng et al. 2025, Mar Biotechnol 27:31, doi:10.1007/s10126-024-10409-6; Sun, Li and Yu 2022, Gene 820:146260, doi:10.1016/j.gene.2022.146260",
+      "verdict": "how_read_note_wrong",
+      "how_read": "full_text_retrieved_by_me",
+      "evidence": "The note described the first reading correctly and no longer holds. Valk et al. is open access and was read in full (Europe PMC PMC12144841). The article of Teng et al. is behind a subscription (abstract and data availability statement read on link.springer.com); the preprint of the same study was read in full (Teng et al. 2024, Research Square, doi:10.21203/rs.3.rs-3866716/v1): \"we focused on two full-sib families of the Pacific oyster, Crassostrea gigas\"; \"the adductor muscles from both the parent oysters and six offspring\"; \"average DNA methylation levels ranged between 0.11 and 0.14 (Fig. 1A)\"; \"The first principal component distinctly separated the individuals into male and female groups (Fig. 2A)\"; \"the second principal component clearly grouped individuals into families #8 and #10\"; \"females exhibited a significant global decrease in DNA methylation compared to males (P < 0.01; Fig. 2B)\". The size of the difference between the sexes is in a figure only. The BioProject named in the article (PRJNA801419) is titled \"The whole genome bisulfite sequencing of the Pacific oyster somatic tissues\". Sun, Li and Yu remains read in the abstract (ScienceDirect refuses automated access). With the species known, \"In adductor muscle of oysters\" in the same paragraph can read \"In adductor muscle of C. gigas\".",
+      "proposed_text": "Valk et al. also in that reading; in the abstract only: Sun et al. and the article of Teng et al. The preprint of Teng et al., read in full, names C. gigas, with parents and offspring of two full-sib families, sample means of CpG methylation of 11% to 14%, the sexes apart on the first principal component and the families on the second; it shows the difference between the sexes in a figure and gives no number for it (Teng et al. 2024, Research Square, doi:10.21203/rs.3.rs-3866716/v1). Valk et al. report no overall level by sex.",
+      "severity": "low"
+     },
+     {
+      "where": "issues.md, I-49, Why it matters, point \"What published work says about the alternatives\", part *Family.*, first sentence",
+      "quote": "In oysters methylation follows family more than environment: among 80 eastern oysters (Crassostrea virginica) of six full-sib families grown at two sites",
+      "source": "Johnson, Sirovy and Kelly 2022, J Anim Ecol 91:1135, doi:10.1111/1365-2656.13645",
+      "verdict": "needs_qualifier",
+      "how_read": "full_text_retrieved_by_me",
+      "evidence": "Read in full in the copy of the published article in the NSF Public Access Repository (https://par.nsf.gov/servlets/purl/10324761; pages read as images). The quotation and \"nearly two orders of magnitude\" are verbatim from the abstract, and the lead sentence is the authors' own conclusion (Discussion 4.2: \"Our analysis indicates that genotype has a much stronger effect than the environment in shaping variation in oyster methylomes ... To our knowledge, ours is one of only a few studies to directly compare genetic versus environmental influences on CpG methylation patterns in any invertebrate\"), drawn from one experiment on another species. Three things are missing or inexact. (1) Results 3.2: \"Methylation sequencing of the 80 individuals was only considered successful for 73 samples with greater than 2 million reads.\" (2) Tissue and method: \"Approximately 1 cm2 piece of gill tissue was sampled in the field from each individual\"; reduced representation bisulfite sequencing, 1 kb tiles and gene features. (3) The families: spawned \"using three males and two females\", \"parentage assignments were unknown at the time of outplant\"; Results 3.4: \"A total of six clusters were identified using a redundancy analysis that likely represent the parentage of two females and three males ... Unfortunately, distribution of families between sites was not even.\" Table 2 (features with FDR < 0.05 among exons, promoters, introns, transposable elements): outplant site 1, 1, 4, 1; sire 93, 57, 446, 523; dam 98, 74, 490, 451. The two sites differ in salinity, not in temperature.",
+      "proposed_text": "In an experiment that set family against environment in eastern oysters, methylation followed family more than environment: among 80 animals (Crassostrea virginica; gill; reduced representation bisulfite sequencing; 73 with usable methylation data) of six full-sib families (two dams by three sires, assigned afterwards from genotypes and unevenly spread over the sites) grown for 14 months at two sites that differ in salinity",
+      "severity": "low"
+     },
+     {
+      "where": "issues.md, I-49, Why it matters, point \"What published work says about the alternatives\", part *Family.*, last sentence",
+      "quote": "One study points the other way at the level of populations: population-specific methylation that was \"not directly associated with single nucleotide polymorphisms\"",
+      "source": "Johnson and Kelly 2020, Evol Appl 13:945, doi:10.1111/eva.12912",
+      "verdict": "needs_qualifier",
+      "how_read": "full_text_retrieved_by_me",
+      "evidence": "The quotation is verbatim (abstract: \"population-specific DNA methylation profiles that were not directly associated with single nucleotide polymorphisms or broader gene-body mean FST trends\"). The full text (Europe PMC PMC7232765) adds what the sentence leaves out. Species and design: wild eastern oysters (C. virginica), \"20 individual oysters from each site\", four estuaries, collected \"between May 15, 2015, and February 10, 2016\"; \"gill tissue was dissected from each oyster\"; so origin, environment and date are not separated. Results 3.6: \"a mean PST of 0.10 and a mean FST of 0.023. This suggests that there is almost 5 times greater variation between populations in methylation than in variation of FST\". The authors read this as \"likely reflecting environmental effects on DNA methylation patterns\" (abstract) and also write (Discussion 4.3): \"The relationship between genetic and epigenetic population structure suggests some influence of genetic structure on methylation state (see Figure 5).\" \"One study\" is an undercount: two studies of C. gigas read their results the same way (see missing counter-evidence).",
+      "proposed_text": "A study of wild animals points the other way at the level of populations: among 80 eastern oysters of four estuaries (gill), methylation diverged almost five times as much as allele frequencies (mean PST 0.10 against mean FST 0.023), which the authors read as likely environmental, and population-specific methylation was \"not directly associated with single nucleotide polymorphisms\", although they also see \"some influence of genetic structure on methylation state\"",
+      "severity": "low"
+     },
+     {
+      "where": "issues.md, I-49, Why it matters, point \"What published work says about the alternatives\", part *Ploidy.*, first sentence",
+      "quote": "The two published comparisons of diploid and triploid C. gigas report no difference in the global level",
+      "source": "Jiang et al. 2016, Mar Biotechnol 18:124, doi:10.1007/s10126-015-9674-4; Sun, Yu and Li 2022, Mar Biotechnol 24:18, doi:10.1007/s10126-021-10083-y",
+      "verdict": "wrong_number",
+      "how_read": "abstract",
+      "evidence": "Both abstracts say what the sentence reports (Jiang et al. 2016: \"Results showed no difference in global methylation state but a few ploidy-specific loci were detected.\"; Sun, Yu and Li 2022: \"The DNA methylation level of CG context decreased in infertile triploid oysters, with more hypomethylated than hypermethylated regions, and the opposite is true in fertile triploid oysters.\"). The count is not right. A third published comparison exists, by the authors of the first, at two reproduction-related genes: \"Between diploid and triploid oysters, no difference was observed in total methylation level but some individual loci showed different patterns\" (Jiang, Li, Yu and Kong 2017, Genes Genom 39:997, doi:10.1007/s13258-017-0563-2; abstract on the publisher's page; not in Europe PMC, which is why abstract searches miss it; its Crossref record is among the first reader's saved files, downloads/crossref/jiang2017.json). It does not change the reading. The proposed text corrects the count without citing a further work; the sentence that would cite the third study is under missing counter-evidence.",
+      "proposed_text": "Two published comparisons of diploid and triploid C. gigas across the genome report no difference in the global level",
+      "severity": "low"
+     },
+     {
+      "where": "issues.md, I-49, Why it matters, point \"What published work says about the alternatives\", part *Ploidy.*, second sentence",
+      "quote": "Neither is on ctenidium or on a response to heat, and no comparison in another bivalve was found; they give no precedent for a ploidy difference in overall level in a somatic tissue.",
+      "source": "Jiang et al. 2016, Mar Biotechnol 18:124, doi:10.1007/s10126-015-9674-4; Sun, Yu and Li 2022, Mar Biotechnol 24:18, doi:10.1007/s10126-021-10083-y",
+      "verdict": "needs_qualifier",
+      "how_read": "abstract",
+      "evidence": "Sun, Yu and Li worked on gonad (abstract: \"DNA methylomes in gonads of triploid females ...\"). The abstract of Jiang et al. 2016 names no tissue, and the article is behind a subscription, so \"neither is on ctenidium\" goes beyond what was read for that work; an open review that cites it (Gavery and Roberts 2017, PeerJ 5:e4147) lists it without the tissue. Neither abstract mentions heat. The rest holds: searches of Europe PMC and Crossref on 2026-11-19 (titles and abstracts on triploid, tetraploid, polyploid or ploidy with methylation, in molluscs and in fish; works citing Jiang et al. 2016) found no comparison in another bivalve. Outside bivalves they found comparisons that the sentence does not mention: three in fish and one in a sea cucumber without a difference in overall level, and one in natural polyploid loach with a lower level at higher ploidy (see missing counter-evidence).",
+      "proposed_text": "Sun, Yu and Li worked on gonad, and the abstract of Jiang et al. names no tissue; neither concerns a response to heat, and no comparison in another bivalve was found. They give no precedent for a ploidy difference in overall level, in ctenidium or in any other somatic tissue.",
+      "severity": "low"
+     },
+     {
+      "where": "issues.md, I-49, Why it matters, point \"What published work says about the alternatives\", part *How triploids are made.*, first sentence",
+      "quote": "Triploids for aquaculture are mostly made by mating tetraploid males with diploid females",
+      "source": "Vignier, Adams and Lovatelli 2024, FAO Fisheries and Aquaculture Technical Paper 698, doi:10.4060/cd1852en; Guo, DeBrosse and Allen 1996, Aquaculture 142:149, doi:10.1016/0044-8486(95)01243-5",
+      "verdict": "needs_qualifier",
+      "how_read": "full_text_retrieved_by_me",
+      "evidence": "The manual says this of oysters, not of aquaculture in general. Chapter 2, p. 3: \"Currently most hatcheries utilise the tetraploid approach (or \"indirect Rutgers method\") to produce commercial triploid oysters; however, in some places direct induction is used as it has the advantage that triploid production can be more readily integrated into selective breeding programmes.\" and \"the tetraploid male is always used with a diploid female\". Abstract, p. iv: \"Most hatcheries globally produce triploids by crossing tetraploids and diploids\". Section 4.1, p. 25: \"crossbreeding tetraploids with diploids has become the industry standard to produce triploid Pacific oysters, worldwide\". For fish the same manual says (section 2.1.1, p. 4): \"Physical treatments are generally used successfully to induce triploidy in fish\". Direct induction is \"implemented commercially in New Zealand\" (Preparation of this document, p. iii). The word \"mostly\" rests on the manual alone: Guo et al. 1996 first described the method and is cited by the manual for \"Crossing mature tetraploid and diploid oysters results in 100 percent of offspring being triploid\"; it could not be read (no abstract in Crossref or OpenAlex, ScienceDirect refuses automated access), as the log's own note says.",
+      "proposed_text": "Triploid oysters for aquaculture are mostly made by mating tetraploid males with diploid females, and in some places by direct induction in eggs of diploid crosses",
+      "severity": "low"
+     },
+     {
+      "where": "issues.md, I-49, Why it matters, point \"What published work says about the alternatives\", part *How triploids are made.*, second sentence",
+      "quote": "Two of the three chromosome sets of such a triploid come from a tetraploid stock whose genetic diversity \"is generally limited\" (Vignier et al. 2024; Miller et al. 2014, Aquaculture 433:318, doi:10.1016/j.aquaculture.2014.06.025)",
+      "source": "Vignier, Adams and Lovatelli 2024, FAO Fisheries and Aquaculture Technical Paper 698, doi:10.4060/cd1852en; Miller et al. 2014, Aquaculture 433:318, doi:10.1016/j.aquaculture.2014.06.025",
+      "verdict": "needs_qualifier",
+      "how_read": "abstract",
+      "evidence": "The quotation is verbatim from the manual, read in full (section 5.3, p. 33: \"Because tetraploids are mostly obtained from a few fertile triploid females, in addition to low efficiency of the induction treatment which results in a small population of tetraploids to be perpetuated, the genetic diversity of tetraploids is generally limited.\"; p. 34: \"mated triploids have two sets of chromosomes from the tetraploid father and one from the diploid mother\"). It is not in the abstract of Miller et al. 2014, which reports something narrower, for one commercial stock: \"A significant drop in diversity was observed over two successive generations of tetraploid oysters spawned in 2008 and in 2011, likely due to different numbers of broodstock used. Similar to diploids, pedigree assignment in tetraploids showed unequal parental contributions and an effective population size smaller than the census population, thus the potential for inbreeding to occur in the future is high.\" The closing note of the paragraph says that quotations from abstract-only sources are from their abstracts, which a reader would apply to this one. The article of Miller et al. could not be opened (ScienceDirect HTTP 403; repository file under embargo), so how low the diversity of that stock was is not known here.",
+      "proposed_text": "Two of the three chromosome sets of such a triploid come from a tetraploid stock whose genetic diversity \"is generally limited\" (Vignier et al. 2024); in one commercial tetraploid stock diversity dropped over two generations and the effective population size was below the census number (Miller et al. 2014, Aquaculture 433:318, doi:10.1016/j.aquaculture.2014.06.025; abstract)",
+      "severity": "low"
+     },
+     {
+      "where": "issues.md, I-49, Evidence (computed), item 7, last sentence (\"If the triploids were made by mating tetraploid males with diploid females\")",
+      "quote": "two of their three chromosome sets come from a tetraploid stock of limited diversity",
+      "source": "Vignier, Adams and Lovatelli 2024, FAO Fisheries and Aquaculture Technical Paper 698, doi:10.4060/cd1852en",
+      "verdict": "needs_qualifier",
+      "how_read": "full_text_retrieved_by_me",
+      "evidence": "The manual states it with a hedge and as a property of tetraploid stocks in general (section 5.3, p. 33: \"the genetic diversity of tetraploids is generally limited\"), and goes on to describe how hatcheries widen it: \"This approach can help to diversify and broaden the genetic background of tetraploid populations since 50 percent of the genetic material in the tetraploids produced by this approach comes from the diploid females.\" Item 7 states the limited diversity as a fact about the stock behind the animals of this study, whose source is not recorded. The first half of the clause is supported (p. 34: \"mated triploids have two sets of chromosomes from the tetraploid father and one from the diploid mother\").",
+      "proposed_text": "two of their three chromosome sets come from a tetraploid stock, and the genetic diversity of such stocks is generally limited",
+      "severity": "low"
+     },
+     {
+      "where": "issues.md, I-49, Why it matters, point \"What published work says about the alternatives\", closing parenthesis",
+      "quote": "In the abstract only: Johnson, Sirovy and Kelly; Johnson and Kelly; Jiang et al.; Olson and Roberts; Teng et al., whose abstract does not name the species; Sun, Yu and Li; Hurlbert; Lazic and Essioux; both papers of Miller et al.",
+      "source": "Johnson, Sirovy and Kelly 2022, J Anim Ecol 91:1135, doi:10.1111/1365-2656.13645; Johnson and Kelly 2020, Evol Appl 13:945, doi:10.1111/eva.12912; Lazic and Essioux 2013, BMC Neurosci 14:37, doi:10.1186/1471-2202-14-37; Teng et al. 2025, Mar Biotechnol 27:31, doi:10.1007/s10126-024-10409-6",
+      "verdict": "how_read_note_wrong",
+      "how_read": "full_text_retrieved_by_me",
+      "evidence": "The note described the first reading correctly and no longer holds for three works, which were read in full in this reading: Johnson, Sirovy and Kelly (published version in the NSF Public Access Repository, https://par.nsf.gov/servlets/purl/10324761), Johnson and Kelly (Europe PMC PMC7232765), Lazic and Essioux (Europe PMC PMC3661356; it supports the sentence on litters: \"When a treatment is applied to a whole litter ... then the litter is the experimental unit and the sample size is the number of litters\"; \"multiple offspring within a litter can be thought of as subsamples\"). For Teng et al. the abstract indeed names no species; the preprint of the study, read in full, names C. gigas, and the BioProject named in the article (PRJNA801419) is on \"the Pacific oyster\". Still abstract only: Jiang et al. (subscription), Olson and Roberts (bioRxiv HTTP 429; three versions from 2014-12-16 to 2015-03-13, not published in a journal), Sun, Yu and Li (subscription), Hurlbert (Wiley HTTP 403), both papers of Miller et al. (HTTP 403; repository files under embargo). The rest of the parenthesis holds: Guo et al. was not opened, the two quotations in the part on family are in the abstracts of their sources, and the numbers of parents of the cohorts of Miller et al. remain unknown.",
+      "proposed_text": "Read in full in the second reading of 2026-11-19: Johnson, Sirovy and Kelly; Johnson and Kelly; Lazic and Essioux. In the abstract only: Jiang et al., whose abstract names no tissue; Olson and Roberts; Sun, Yu and Li; Hurlbert; both papers of Miller et al.; the article of Teng et al., whose abstract does not name the species and whose preprint, read in full, names C. gigas (Teng et al. 2024, Research Square, doi:10.21203/rs.3.rs-3866716/v1).",
+      "severity": "low"
+     }
+    ],
+    "sources": [
+     {
+      "citation": "Johnson, Sirovy and Kelly 2022, J Anim Ecol 91:1135, doi:10.1111/1365-2656.13645",
+      "doi_resolves_to_this_work": true,
+      "how_read": "full_text_retrieved_by_me",
+      "where_read": "https://par.nsf.gov/servlets/purl/10324761 (published version, 13 pages, NSF Public Access Repository; text layer garbled, pages read as images); abstract in Crossref and Europe PMC (MED 34882793). Wiley and the NOAA repository answered HTTP 403.",
+      "statements_resting_on_it": 5,
+      "statements_supported": 4,
+      "note": "Crossref: J Anim Ecol 91(6):1135-1147, online 2021, issue 2022. Quotation and \"nearly two orders of magnitude\" verbatim from the abstract; species, six families, two sites correct. Not exact: methylation data exist for 73 of the 80 animals. Tissue is gill; method is reduced representation bisulfite sequencing; families (two dams by three sires) were assigned from genotype clusters and were unevenly spread over the two sites. The lead sentence of the log is the authors' own conclusion (\"genotype has a much stronger effect than the environment in shaping variation in oyster methylomes\")."
+     },
+     {
+      "citation": "Johnson and Kelly 2020, Evol Appl 13:945, doi:10.1111/eva.12912",
+      "doi_resolves_to_this_work": true,
+      "how_read": "full_text_retrieved_by_me",
+      "where_read": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC7232765/fullTextXML",
+      "statements_resting_on_it": 1,
+      "statements_supported": 0,
+      "note": "Evol Appl 13(5):945-959. Quotation verbatim from the abstract. The sentence omits species (C. virginica), tissue (gill) and that the 80 animals were wild, from four estuaries, collected over nine months; the authors read the divergence as likely environmental and also report some influence of genetic structure. \"One study\" is an undercount."
+     },
+     {
+      "citation": "Jiang, Li, Yu and Kong 2016, Mar Biotechnol 18:124, doi:10.1007/s10126-015-9674-4",
+      "doi_resolves_to_this_work": true,
+      "how_read": "abstract",
+      "where_read": "Europe PMC MED 26585587; https://link.springer.com/article/10.1007/s10126-015-9674-4 (subscription preview)",
+      "statements_resting_on_it": 3,
+      "statements_supported": 2,
+      "note": "Mar Biotechnol 18(1):124-132, online 2015. Abstract supports transmission from parents to offspring (MSAP, \"Most of parental methylated loci were stably transmitted to offspring\") and \"no difference in global methylation state\" between diploids and triploids. The abstract names no tissue, so \"neither is on ctenidium\" is not established for this work."
+     },
+     {
+      "citation": "Olson and Roberts 2014, bioRxiv, doi:10.1101/012831",
+      "doi_resolves_to_this_work": true,
+      "how_read": "abstract",
+      "where_read": "Crossref and Europe PMC (PPR35466) abstract; https://api.biorxiv.org/details/biorxiv/10.1101/012831 for the versions; full text refused (HTTP 429)",
+      "statements_resting_on_it": 1,
+      "statements_supported": 1,
+      "note": "Preprint, first posted 2014-12-16, third version 2015-03-13, not published in a journal; other authors cite it as 2015. Abstract: sperm and larvae of two full-sib families of C. gigas; \"Our data suggest that DNA methylation patterns are inherited\"; \"Loci differing between the two paternal full-sib families (189)\". The log now also cites another Olson and Roberts 2014 (Front Physiol 5:224) in I-01; the two differ by journal and DOI."
+     },
+     {
+      "citation": "Teng, Xu, Liu, Yu, Kong and Li 2025, Mar Biotechnol 27:31, doi:10.1007/s10126-024-10409-6",
+      "doi_resolves_to_this_work": true,
+      "how_read": "abstract",
+      "where_read": "Europe PMC MED 39808191; https://link.springer.com/article/10.1007/s10126-024-10409-6 (abstract and data availability statement; subscription). Preprint of the same study read in full: https://www.researchsquare.com/article/rs-3866716/v1 (doi:10.21203/rs.3.rs-3866716/v1). BioProject PRJNA801419 via NCBI E-utilities.",
+      "statements_resting_on_it": 2,
+      "statements_supported": 2,
+      "note": "Mar Biotechnol 27(1), article 31. Abstract: adductor muscle, WGBS, \"females exhibiting a global reduction compared to males\", about half of the differences between the two parental strains kept in the offspring. Species is C. gigas (preprint; BioProject title names the Pacific oyster). Preprint: two full-sib families, parents and offspring, sample means 0.11 to 0.14, sexes on the first principal component and families on the second."
+     },
+     {
+      "citation": "Silliman, Spencer, White and Roberts 2023, Genome Biol Evol 15:evad013, doi:10.1093/gbe/evad013",
+      "doi_resolves_to_this_work": true,
+      "how_read": "full_text_retrieved_by_me",
+      "where_read": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC10468963/fullTextXML",
+      "statements_resting_on_it": 1,
+      "statements_supported": 1,
+      "note": "Olympia oyster (Ostrea lurida), 18 animals of two populations, adductor muscle, MBD-BS. \"found a weak, but significant relationship (Pearson's R = 0.27, P = 0.00077 and Spearman's rho = 0.22, P = 0.0069; fig. 4A)\" between pairwise genetic distance and Manhattan distance of methylation. The abstract words the same number as \"27% of variation\". Number and species correct in the log."
+     },
+     {
+      "citation": "Sun, Yu and Li 2022, Mar Biotechnol 24:18, doi:10.1007/s10126-021-10083-y",
+      "doi_resolves_to_this_work": true,
+      "how_read": "abstract",
+      "where_read": "Europe PMC MED 35041105; https://link.springer.com/article/10.1007/s10126-021-10083-y (subscription preview)",
+      "statements_resting_on_it": 2,
+      "statements_supported": 2,
+      "note": "Mar Biotechnol 24(1):18-31. Abstract supports gonad, bisulfite sequencing across the genome, lower CG methylation in infertile triploids and the opposite in fertile ones, profiles over gene and transposable regions consistent with diploids. No heat. Sizes not in the abstract."
+     },
+     {
+      "citation": "Sun, Li and Yu 2022, Gene 820:146260, doi:10.1016/j.gene.2022.146260",
+      "doi_resolves_to_this_work": true,
+      "how_read": "abstract",
+      "where_read": "Europe PMC MED 35121028; ScienceDirect refuses automated access",
+      "statements_resting_on_it": 1,
+      "statements_supported": 1,
+      "note": "Abstract: C. gigas gonads; \"male gonads displayed a higher level of DNA methylation and a greater number of hypermethylated genes\". Author order differs from the Mar Biotechnol paper and is given correctly in the log."
+     },
+     {
+      "citation": "Valk, Engelsma, Megens, Kamermans, Murk and Nijland 2025, BMC Genomics 26:567, doi:10.1186/s12864-025-11736-1",
+      "doi_resolves_to_this_work": true,
+      "how_read": "full_text_retrieved_by_me",
+      "where_read": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12144841/fullTextXML",
+      "statements_resting_on_it": 1,
+      "statements_supported": 0,
+      "note": "Gill of 35 wild Ostrea edulis of five sex phenotypes, nanopore sequencing. Sex-specific methylation is reported at regions, most between hermaphrodite stages; males against females 239 regions, 125 and 114 in the two directions; \"males or females did not show consistent hyper or hypomethylation\"; no overall level by sex. See first finding."
+     },
+     {
+      "citation": "Hurlbert 1984, Ecol Monogr 54:187, doi:10.2307/1942661",
+      "doi_resolves_to_this_work": true,
+      "how_read": "abstract",
+      "where_read": "Crossref and OpenAlex abstract; Wiley answers HTTP 403; no open copy listed",
+      "statements_resting_on_it": 3,
+      "statements_supported": 3,
+      "note": "Ecol Monogr 54(2):187-211. Abstract: \"Pseudoreplication is defined as the use of inferential statistics to test for treatment effects with data from experiments where either treatments are not replicated (though samples may be) or replicates are not statistically independent.\" This carries the three sentences that cite it (I-01, I-49 twice). Nothing else is attributed to it in the scope; I-06 cites it once for reads of one animal, also within the definition."
+     },
+     {
+      "citation": "Lazic 2010, BMC Neurosci 11:5, doi:10.1186/1471-2202-11-5",
+      "doi_resolves_to_this_work": true,
+      "how_read": "full_text_retrieved_by_me",
+      "where_read": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC2817684/fullTextXML",
+      "statements_resting_on_it": 1,
+      "statements_supported": 1,
+      "note": "\"Animals within a litter are not independent because they share the same parents and the same prenatal and early postnatal environment\"; \"Here, cage and pregnant females are the experimental units, and not the individual animals\". The example of a within-group correlation of 0.30 is not used by the log. Nothing else is attributed to it."
+     },
+     {
+      "citation": "Lazic and Essioux 2013, BMC Neurosci 14:37, doi:10.1186/1471-2202-14-37",
+      "doi_resolves_to_this_work": true,
+      "how_read": "full_text_retrieved_by_me",
+      "where_read": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC3661356/fullTextXML",
+      "statements_resting_on_it": 1,
+      "statements_supported": 1,
+      "note": "Marked abstract only in the log; open access, read in full. Supports the sentence on litters."
+     },
+     {
+      "citation": "Lea, Tung and Zhou 2015, PLoS Genet 11:e1005650, doi:10.1371/journal.pgen.1005650",
+      "doi_resolves_to_this_work": true,
+      "how_read": "full_text_retrieved_by_me",
+      "where_read": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC4657956/fullTextXML",
+      "statements_resting_on_it": 1,
+      "statements_supported": 1,
+      "note": "\"in the presence of population stratification, we expect the beta-binomial model to produce inflated test statistics (thus increasing the false positive rate)\"; section \"Binomial mixed models control for false positive associations that arise from population structure\". The inflation factors of 1.03 to 3.49 quoted in I-06 are in the text as given."
+     },
+     {
+      "citation": "Lea, Vilgalys, Durst and Tung 2017, Nat Ecol Evol 1:1074, doi:10.1038/s41559-017-0229-0",
+      "doi_resolves_to_this_work": true,
+      "how_read": "full_text_retrieved_by_me",
+      "where_read": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC5656403/fullTextXML (author manuscript)",
+      "statements_resting_on_it": 2,
+      "statements_supported": 2,
+      "note": "\"Analyses that do not take genetic relationships into account can therefore produce spurious associations if the predictor of interest also covaries with kinship or ancestry.\" Genotypes from bisulfite reads \"can help with constructing kinship/relatedness matrices, although not without error (Box 2)\"; Box 2: 45% of called variants confirmed, yet the relatedness matrix agreed with that from resequencing (Mantel r = 0.873), in 29 inbred Arabidopsis accessions. Coverage of 6 to 12 reads and triploids are the log's own reasoning, not the source's."
+     },
+     {
+      "citation": "Guo, DeBrosse and Allen 1996, Aquaculture 142:149, doi:10.1016/0044-8486(95)01243-5",
+      "doi_resolves_to_this_work": true,
+      "how_read": "metadata_only",
+      "where_read": "Crossref and OpenAlex records (no abstract); ScienceDirect refuses automated access",
+      "statements_resting_on_it": 2,
+      "statements_supported": 0,
+      "note": "Aquaculture 142(3-4):149-161, title \"All-triploid Pacific oysters (Crassostrea gigas Thunberg) produced by mating tetraploids and diploids\". Not read. The two sentences that cite it (I-49, I-08) are carried by the FAO manual, which cites it for \"Crossing mature tetraploid and diploid oysters results in 100 percent of offspring being triploid\" and for the development of mated triploids in the 1990s. The log says the same about how it was used."
+     },
+     {
+      "citation": "Vignier, Adams and Lovatelli 2024, FAO Fisheries and Aquaculture Technical Paper 698, doi:10.4060/cd1852en",
+      "doi_resolves_to_this_work": true,
+      "how_read": "full_text_retrieved_by_me",
+      "where_read": "https://openknowledge.fao.org/bitstreams/e8732dc8-6111-4fda-a1ec-882caad1960c/download (68 pages; same file as the first reader's copy by SHA-256)",
+      "statements_resting_on_it": 10,
+      "statements_supported": 8,
+      "note": "Crossref record has title and publisher only; authors and series number confirmed on the title page (\"FAO Fisheries and Aquaculture Technical Papers, No. 698\"). Supports: most hatcheries use the tetraploid cross for oysters; tetraploid male with diploid female; two sets from the tetraploid sire; \"is generally limited\" verbatim (p. 33); induced triploids with \"their full sibling diploids\" (p. 25). It also shows \"half-sibling diploid (a) and mated triploid (b)\" oysters (Figure 14, p. 26): a mated triploid cannot be a full sib of a diploid and can share its dam. Two sentences need a qualifier (oysters, not aquaculture in general; \"generally\")."
+     },
+     {
+      "citation": "Miller, Elliott, Vaillancourt, Kube and Koutoulis 2014, Aquaculture 433:318, doi:10.1016/j.aquaculture.2014.06.025",
+      "doi_resolves_to_this_work": true,
+      "how_read": "abstract",
+      "where_read": "Europe PMC AGR IND605323399; https://api.figshare.com/v2/articles/22917161 (repository record, file under embargo); ScienceDirect HTTP 403",
+      "statements_resting_on_it": 1,
+      "statements_supported": 0,
+      "note": "Aquaculture 433:318-324. The abstract reports a drop in diversity over two generations of one tetraploid stock and an effective population size below the census number; it does not contain the quoted words, which are the manual's."
+     },
+     {
+      "citation": "Miller, Elliott, Vaillancourt, Koutoulis and Henshall 2016, Aquac Res 47:1288, doi:10.1111/are.12588",
+      "doi_resolves_to_this_work": true,
+      "how_read": "abstract",
+      "where_read": "Europe PMC AGR IND605153131; https://api.figshare.com/v2/articles/22917155 (repository record, file under embargo); Wiley HTTP 403",
+      "statements_resting_on_it": 2,
+      "statements_supported": 2,
+      "note": "Aquac Res 47(4):1288-1298, online 2014. Abstract: \"Triploids are mostly produced through mass spawning techniques\"; \"two commercial cohorts of triploid oysters\"; \"a strong bias in parental contributions, with the effective population size being 34-49% lower than the census population\". The log follows the abstract; numbers of parents are not in it."
+     }
+    ],
+    "missing_counter_evidence": [
+     {
+      "statement": "I-49, Why it matters, *Family.*: \"In oysters methylation follows family more than environment\" (and I-49, first point of \"Why it matters\" and item 3, on a difference in overall level between groups after heat)",
+      "source": "Wang, Li, Wang, Que, Zhang and Li 2021, Heredity 126:10, doi:10.1038/s41437-020-0351-7",
+      "what_it_says": "C. gigas, gill, WGBS of pooled DNA (\"DNA from 15 individuals in each sampling group was equally mixed to generate three biological replicates of five individuals\"; 12 libraries): first-generation offspring of intertidal and of subtidal oysters reared in one environment, sampled before and after 6 h at 35 C. \"samples did not cluster according to the heat-stress treatment, but rather by their habitat tidal levels\". The authors attribute the difference between origins to environment: \"genotype showed limited influences on epigenetic differentiation between the two tidal oysters, suggesting that the methylation variation we detected was mainly induced by environment\" (the test is a correlation of 0.02 between gene-wise FST and methylation difference; animals of one origin were also genetically more alike, and the Discussion allows that the difference \"may result from genetic divergence\"). Overall level: \"In the control groups, on average, 15.0% and 14.5% of CpGs were methylated in intertidal and subtidal oysters, respectively. InH showed significantly lower global methylation levels (13.4%) than InC (P < 0.05), whereas SubH exhibited a slightly higher methylation level (15.4%) than SubC\". For the species and tissue of the draft this limits the lead sentence on family, and it is a published precedent for an overall level that moves by 1 to 2 points within hours of a heat shock, in a direction that depends on the origin of the animals.",
+      "how_read": "full text on the publisher's page, free to read (https://www.nature.com/articles/s41437-020-0351-7), retrieved by me; Europe PMC does not serve its XML (HTTP 500)",
+      "proposed_text": "For C. gigas the published reading differs. In gill of first-generation offspring of intertidal and of subtidal oysters reared together, libraries grouped by the origin of the parents and not by a heat shock of 6 h at 35 C, and the authors attribute the difference between origins mainly to the environment of the parents, with \"limited influences\" of genotype, while allowing that it \"may result from genetic divergence\" (Wang et al. 2021, Heredity 126:10, doi:10.1038/s41437-020-0351-7; pooled DNA, three pools of five animals per group). In that study overall CpG methylation fell from 15.0% to 13.4% after the heat shock in the offspring of intertidal oysters (P < 0.05) and rose from 14.5% to 15.4% in those of subtidal oysters, so a change of overall level after heat that differs between groups of animals has a precedent in this species and tissue."
+     },
+     {
+      "statement": "I-49, Why it matters, *Family.*: \"In oysters methylation follows family more than environment\" and \"One study points the other way at the level of populations\"",
+      "source": "Wang, Li, Wang, Zhang and Li 2021, Environ Res 197:111058, doi:10.1016/j.envres.2021.111058",
+      "what_it_says": "Abstract: intertidal and subtidal C. gigas and their offspring in a common environment, whole-genome DNA methylation. \"The undifferentiated genetic structures implied that the phenotypic and epigenetic variations were mainly induced by the environment. Approximately 41% of genes modified by DNA methylation, which play a role in responses to the variable intertidal environment, could be transmitted to the next generation and had largely consistent tendency of regulation.\" Tissue and numbers of animals are not in the abstract.",
+      "how_read": "abstract (Europe PMC, MED 33757824); ScienceDirect refuses automated access",
+      "proposed_text": "A second study of intertidal and subtidal C. gigas by the same group reads the difference between them as mainly environmental, from \"undifferentiated genetic structures\", and reports that about 41% of the genes whose methylation differed between the habitats kept the difference in offspring reared in a common environment (Wang et al. 2021, Environ Res 197:111058, doi:10.1016/j.envres.2021.111058; abstract)."
+     },
+     {
+      "statement": "I-49, Why it matters, *Ploidy.*: \"The two published comparisons of diploid and triploid C. gigas report no difference in the global level\"",
+      "source": "Jiang, Li, Yu and Kong 2017, Genes Genom 39:997, doi:10.1007/s13258-017-0563-2",
+      "what_it_says": "A third published comparison in C. gigas, at two reproduction-related genes (putative Vg and cgER) by bisulfite sequencing: \"Between diploid and triploid oysters, no difference was observed in total methylation level but some individual loci showed different patterns: significantly high methylation rate of loci 2284 in cgER was observed in triploid oyster\". The abstract describes histology of the gonad and does not name the tissue of the methylation analysis. It agrees with the other two and corrects the count.",
+      "how_read": "abstract on the publisher's page (https://link.springer.com/article/10.1007/s13258-017-0563-2); the work is not in Europe PMC",
+      "proposed_text": "A third comparison, of two reproduction-related genes by bisulfite sequencing, also found \"no difference ... in total methylation level\" between diploids and triploids and differences at single loci (Jiang et al. 2017, Genes Genom 39:997, doi:10.1007/s13258-017-0563-2; abstract)."
+     },
+     {
+      "statement": "I-49, Why it matters, *Ploidy.*: \"no comparison in another bivalve was found; they give no precedent for a ploidy difference in overall level in a somatic tissue\"",
+      "source": "Zhou et al. 2016, Int J Mol Sci 17:1299, doi:10.3390/ijms17081299",
+      "what_it_says": "The one report found of a ploidy difference in an overall measure in a somatic tissue of an aquatic animal. Loach (Misgurnus anguillicaudatus), fin (\"Genomic DNA from loach fin tissue\"), methylation-sensitive amplified polymorphism, natural diploids, triploids and tetraploids. Table 1, total methylated sites: diploid 41.21 +/- 6.40%, triploid 38.78 +/- 7.10%, tetraploid 37.03 +/- 4.83%; by the letters of the table the tetraploids differ from the diploids and the triploids from neither, while the text says \"there was a significant difference in methylated level between triploid, tetraploid and diploid (p < 0.05)\". Abstract: \"the total methylation and full methylation rates decreased on increased ploidy individuals\". Materials: diploids \"from farmers market ... in Dalian, Liaoning Province\", \"All natural triploid and tetraploid loaches were from Honghu, Hubei Province\", so ploidy is confounded with the source of the animals, and these are natural polyploid lineages, not induced triploids. It limits \"no precedent\" if that is read beyond bivalves.",
+      "how_read": "full text retrieved by me (Europe PMC PMC5000696)",
+      "proposed_text": "One report outside bivalves differs: in fin of natural polyploid loaches the share of methylated sites fell with ploidy (41.2% in diploids, 38.8% in triploids, 37.0% in tetraploids; methylation-sensitive amplified polymorphism; Zhou et al. 2016, Int J Mol Sci 17:1299, doi:10.3390/ijms17081299), with diploids and polyploids taken from different regions, so that ploidy and source are not separated there either."
+     },
+     {
+      "statement": "I-49, Why it matters, *Ploidy.*: \"no comparison in another bivalve was found; they give no precedent for a ploidy difference in overall level in a somatic tissue\"",
+      "source": "Covelo-Soto, Leunda, Perez-Figueroa and Moran 2015, Anim Genet 46:280, doi:10.1111/age.12287",
+      "what_it_says": "Supports the log's reading and extends it to gill of a fish; it shows that comparisons in somatic tissues exist outside bivalves. Abstract: \"DNA samples obtained from diploid and triploid siblings of brown trout\", methylation-sensitive amplified polymorphism: \"no significant differences between diploid and triploid brown trout in respect to brain, gill, heart, liver, kidney or muscle samples. Nonetheless, local analysis pointed to the possibility of differences in connection with concrete loci.\"",
+      "how_read": "abstract (Europe PMC, MED 25917300); Wiley refuses automated access",
+      "proposed_text": "Outside bivalves, induced triploids have been compared with diploids in fish without a difference in overall level: in six tissues of brown trout siblings, gill among them (methylation-sensitive amplified polymorphism; Covelo-Soto et al. 2015, Anim Genet 46:280, doi:10.1111/age.12287; abstract),"
+     },
+     {
+      "statement": "I-49, Why it matters, *Ploidy.*: \"no comparison in another bivalve was found; they give no precedent for a ploidy difference in overall level in a somatic tissue\"",
+      "source": "Salem, Al-Tobasei, Ali and Kenney 2022, Genes 13:1151, doi:10.3390/genes13071151",
+      "what_it_says": "Supports the log's reading for a somatic tissue of a fish. Muscle of rainbow trout, reduced representation bisulfite sequencing, methylKit (q < 0.01 and 25 points): \"The muscle tissue of 8 fish (4 fertile and 4 sterile) was collected\"; section 3.4.1: \"there were 1206 DM CpGs located in 971 genes ... This number of DM CpGs represents only 0.03% of the total CpGs (3,161,570) identified in this study, indicating no genome-wide effect of ploidy on DNA methylation\". Ploidy is confounded with reproductive state (gravid diploids, sterile triploids).",
+      "how_read": "full text retrieved by me (Europe PMC PMC9319582)",
+      "proposed_text": "in muscle of rainbow trout, where 1,206 of 3,161,570 CpGs (0.03%) differed between four gravid diploid and four sterile triploid females (Salem et al. 2022, Genes 13:1151, doi:10.3390/genes13071151),"
+     },
+     {
+      "statement": "I-49, Why it matters, *Ploidy.*: \"no comparison in another bivalve was found; they give no precedent for a ploidy difference in overall level in a somatic tissue\"",
+      "source": "Beato, Sanchez-Baizan, Felip and Piferrer 2025, BMC Genomics 26:1004, doi:10.1186/s12864-025-12220-6",
+      "what_it_says": "Supports the log's reading, in whole embryos and larvae and in a design where ploidy is not confounded with family: eggs of one fertilization (three males, three females) \"were divided into two equal groups\", one cold-shocked to induce triploidy. Reduced representation bisulfite sequencing: \"No significant differences in global methylation levels were found between the groups. At epiboly, in diploids, the mean methylation was 68.18 +/- 0.07% (mean +/- standard error), compared to 68.16 +/- 0.05% in triploids. Similarly, in hatching, diploids had a mean methylation of 61.06 +/- 0.07%, while triploids had 61.70 +/- 0.06%\"; about 30,000 cytosines differed, in balanced directions. Its introduction summarizes the field as the log does for oysters and adds brown trout.",
+      "how_read": "full text retrieved by me (Europe PMC PMC12593797)",
+      "proposed_text": "and in whole embryos and larvae of European sea bass, where triploidy was induced in half of the eggs of one fertilization (68.18% against 68.16% at epiboly, 61.06% against 61.70% at hatching; Beato et al. 2025, BMC Genomics 26:1004, doi:10.1186/s12864-025-12220-6)."
+     },
+     {
+      "statement": "I-49, Why it matters, *Ploidy.*: \"no comparison in another bivalve was found; they give no precedent for a ploidy difference in overall level in a somatic tissue\"",
+      "source": "Han et al. 2021, Sci Rep 11:7564, doi:10.1038/s41598-021-87278-9",
+      "what_it_says": "A comparison in a somatic tissue of another marine invertebrate, without a difference in an overall measure. Sea cucumber (Apostichopus japonicus), body wall, triploids induced by hydrostatic pressure, MethylRAD, \"three diploid sea cucumbers ... and three triploid sea cucumbers\": \"The average number of CCGG methylation sites was 77,027 for diploid and 76,873 for triploid sea cucumber tissues.\" 615 genes are reported as differentially methylated at CCGG sites; no overall level is compared. Its Crossref record is among the first reader's saved files (downloads/crossref/han2021.json).",
+      "how_read": "full text retrieved by me (Europe PMC PMC8027599)",
+      "proposed_text": "In body wall of a sea cucumber, three induced triploids and three diploids had the same number of methylated sites (77,027 and 76,873 at CCGG sites; Han et al. 2021, Sci Rep 11:7564, doi:10.1038/s41598-021-87278-9)."
+     }
+    ],
+    "could_not_check": [
+     "Jiang et al. 2016 (doi:10.1007/s10126-015-9674-4), full text: subscription preview only on link.springer.com, no open copy listed by OpenAlex. Not checked: the tissue, the numbers of animals and families, how the global level was measured. Statements checked against the abstract only.",
+     "Sun, Yu and Li 2022 (doi:10.1007/s10126-021-10083-y), full text: subscription preview only. Not checked: the size of the differences in CpG methylation level between infertile triploids, fertile triploids and diploids, and the numbers of animals.",
+     "Sun, Li and Yu 2022 (doi:10.1016/j.gene.2022.146260), full text: ScienceDirect refuses automated access (HTTP 403 on the one attempt made on that site, for another article); not tried again. Not checked: the size of the difference between male and female gonads.",
+     "Teng et al. 2025 (doi:10.1007/s10126-024-10409-6), article full text: subscription preview only. Species, tissue, design and the range of sample means are known here from the preprint of the same study (doi:10.21203/rs.3.rs-3866716/v1), which may differ from the article; the size of the difference between the sexes is in a figure of the preprint and was not read as a number.",
+     "Olson and Roberts 2014 (doi:10.1101/012831), full text: bioRxiv answered HTTP 429 (error 1015) to the one attempt; not retried. Checked against the abstract only.",
+     "Hurlbert 1984 (doi:10.2307/1942661), full text: Wiley answers HTTP 403 (browser check); no open copy listed by OpenAlex. The three sentences that cite it were checked against the abstract, which carries the definition they use; whether the article uses the word subsamples was not checked.",
+     "Guo, DeBrosse and Allen 1996 (doi:10.1016/0044-8486(95)01243-5): not read; no abstract in Crossref, OpenAlex or Europe PMC, and ScienceDirect refuses automated access. What the log says through it rests on the sentences of the FAO manual that cite it.",
+     "Miller et al. 2014 (doi:10.1016/j.aquaculture.2014.06.025), full text: ScienceDirect HTTP 403; the repository copy (figshare.utas.edu.au, record 22917161) is under embargo. Not checked: how low the diversity of the tetraploid stock was and the numbers of broodstock.",
+     "Miller et al. 2016 (doi:10.1111/are.12588), full text: Wiley HTTP 403; repository copy (record 22917155) under embargo. Not checked: the numbers of parents of the two commercial cohorts and whether those cohorts had tetraploid sires.",
+     "Johnson, Sirovy and Kelly 2022: Supporting Information (Figure S1 on the six genotype clusters) not retrieved; the text layer of the repository PDF is garbled, so the article was read from page images and not searched by machine.",
+     "Whether a comparison of diploid and triploid bivalves exists in work that Europe PMC and Crossref do not index under the search terms used (theses, journals without English abstracts): not checked."
+    ],
+    "notes": "The log was edited by the session at 19:11 while this reading ran (corrections of readers L1 and L2). The passages of this scope were re-read afterwards; only the closing parenthesis of item 2 had changed, and every quoted clause above occurs exactly once in the file as it stands (scripts/check_quotes.py). Index of what was read, with URLs: /tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/L3-oyster-biology-and-triploids/README_check.txt. Nothing under the repository was changed.\n\nBibliographic details: all 18 works were checked against Crossref (authors, year, journal, volume, first page or article number, DOI); no error found. The two Sun papers are correctly told apart by author order. The FAO record in Crossref carries no authors; the title page gives Vignier, Adams and Lovatelli and number 698. The three quotations in the scope (\"were largely driven by genetic differences among families\", \"not directly associated with single nucleotide polymorphisms\", \"is generally limited\") are verbatim.\n\nPoints set for refutation. (a) The numbers hold against the abstract; the full text adds that 73 of the 80 animals have methylation data, that the tissue is gill and the method reduced representation sequencing, and that the families were assigned from genotypes. \"Follows family more than environment\" is the authors' own conclusion, in nearly those words and for \"oyster methylomes\", from one experiment on C. virginica with a salinity contrast; two studies of C. gigas gill by another group conclude the opposite for their design and are not cited (first two entries of missing counter-evidence). (b) Jiang et al. 2016: MSAP, no difference in global state, tissue not in the abstract. Sun, Yu and Li 2022: gonad, bisulfite sequencing across the genome. A third C. gigas comparison exists (Jiang et al. 2017). \"No precedent\" survives for bivalves; in fish, three comparisons of induced triploids found no difference in overall level (one includes gill) and one study of natural polyploid loach reports a lower level at higher ploidy, with ploidy confounded with source. (c) Teng et al. studied C. gigas (preprint of the study and BioProject title); males are the more methylated sex. Valk et al. report regional differences among five sex phenotypes, largest between hermaphrodite stages, with no direction between males and females and no overall level. (d) \"Mostly\" by tetraploid crosses, \"is generally limited\", \"mostly produced through mass spawning\" and 34% to 49% each match their source; the first is said of oysters by the manual and rests on the manual alone, and the quoted words are the manual's, not Miller's. (e) Both halves hold by the manual (tetraploid sire; induced triploids compared with \"their full sibling diploids\"). The manual also shows half-sib diploids and mated triploids (Figure 14), so a mated triploid can share its dam with a diploid; the question to the authors on how the triploids were made could ask whether the dams were shared. This comes from a work already cited. (f) Pearson 0.27, Olympia oyster, 18 animals, adductor muscle: correct; the authors call it weak. (g) Hurlbert (abstract) and Lazic 2010 (full text) say what is attributed to them; the within-group correlation example of Lazic is not used; the only other attribution to both, in I-06 (reads of one animal as independent observations), is within their definitions.\n\nChecked in passing, outside the scope: the genomic inflation factors of Lea, Tung and Zhou quoted in I-06 (1.03 to 3.49) and the 0.9% against 0.4% of Silliman et al. quoted in I-08 are as in the sources.\n\nOn the author's decision that no further literature is added: the proposed texts of the ten findings use works already cited, except that two how-read notes name the preprint of Teng et al. as the place where the species was read; if that is not wanted, the species can be supported by the BioProject title named in the article. All other new works are under missing counter-evidence and are for the author to accept or leave. The one that bears most on I-49 is Wang et al. 2021 (Heredity): C. gigas gill, overall CpG methylation down by 1.6 points after heat in one group of animals and up by 0.9 in another.\n\nSeverity: no finding is high. The one medium finding (Valk et al.) changes what the candidate \"sex\" means for the tissue of the draft: in gill the published evidence is for regional differences without direction, while the evidence for a global difference between the sexes is from adductor muscle and gonad of C. gigas."
    }
   }
  ]
