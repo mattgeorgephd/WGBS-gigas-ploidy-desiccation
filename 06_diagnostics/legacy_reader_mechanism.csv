@@ -9,7 +9,7 @@ universe,percent_universe_first_five_linkage_groups,62.1,Percent of the universe
 universe,universe_transcripts_last_five_linkage_groups,9041,Universe transcripts on the last five linkage groups (NC_047564.1 to NC_047568.1)
 universe,percent_universe_last_five_linkage_groups,32.9,Percent of the universe transcripts on the last five linkage groups (NC_047564.1 to NC_047568.1)
 universe,universe_transcripts_unplaced_scaffolds,1358,Universe transcripts on unplaced scaffolds
-ploidy,lines_in_file,46626,"Lines of the annotation table (one line per DML, transcript and GO term)"
+ploidy,lines_in_file,46626,"Lines of the annotation table (one line per DML, transcript, GO term and GOslim bin)"
 ploidy,transcripts_in_file,2348,Distinct transcripts named in the table
 ploidy,genes_in_file,622,Distinct genes named in the table
 ploidy,rows_default_quotes,10979,"Rows returned by read.table(header = FALSE, sep = tab) with the default quote characters of read.table(), the double quote and the apostrophe, as in the legacy script"
@@ -63,7 +63,7 @@ ploidy,percent_tested_transcripts_last_five_linkage_groups,0.8,Those transcripts
 ploidy,tested_transcripts_unplaced_scaffolds,6,"Transcripts that survive and are in the legacy universe, on unplaced scaffolds"
 ploidy,transcripts_admitted_by_universe_alone,1419,Transcripts of the table that are in the legacy universe: admitted if the universe were the only filter
 ploidy,transcripts_admitted_by_reader_alone,623,Transcripts of the table that survive the default read: admitted if the reader were the only filter
-ploidy,transcripts_admitted_by_both,612,Transcripts that survive the default read and are in the legacy universe: the transcripts of interest of the legacy test
+ploidy,transcripts_admitted_by_both,612,Transcripts that survive the default read and are in the legacy universe: handed to the legacy test as transcripts of interest (those with a term of an ontology take part in the test of that ontology)
 ploidy,genes_admitted_by_universe_alone,456,Genes with at least one transcript of the table in the legacy universe
 ploidy,genes_admitted_by_reader_alone,171,Genes with at least one transcript that survives the default read
 ploidy,genes_admitted_by_both,168,Genes with at least one transcript that survives the default read and is in the legacy universe
@@ -81,7 +81,7 @@ ploidy,percent_genes_with_more_than_five_transcripts_surviving,37.4,Percent of t
 ploidy,transcripts_with_unpaired_apostrophe_term,16,Transcripts with at least one line that holds an unpaired apostrophe
 ploidy,transcripts_with_unpaired_apostrophe_term_surviving,16,"Of those transcripts, the ones that survive the default read"
 ploidy,percent_other_transcripts_surviving,26.0,Percent of all other transcripts of the table that survive the default read
-heat,lines_in_file,106621,"Lines of the annotation table (one line per DML, transcript and GO term)"
+heat,lines_in_file,106621,"Lines of the annotation table (one line per DML, transcript, GO term and GOslim bin)"
 heat,transcripts_in_file,4606,Distinct transcripts named in the table
 heat,genes_in_file,1237,Distinct genes named in the table
 heat,rows_default_quotes,81109,"Rows returned by read.table(header = FALSE, sep = tab) with the default quote characters of read.table(), the double quote and the apostrophe, as in the legacy script"
@@ -135,7 +135,7 @@ heat,percent_tested_transcripts_last_five_linkage_groups,29.2,Those transcripts 
 heat,tested_transcripts_unplaced_scaffolds,141,"Transcripts that survive and are in the legacy universe, on unplaced scaffolds"
 heat,transcripts_admitted_by_universe_alone,3012,Transcripts of the table that are in the legacy universe: admitted if the universe were the only filter
 heat,transcripts_admitted_by_reader_alone,3444,Transcripts of the table that survive the default read: admitted if the reader were the only filter
-heat,transcripts_admitted_by_both,2148,Transcripts that survive the default read and are in the legacy universe: the transcripts of interest of the legacy test
+heat,transcripts_admitted_by_both,2148,Transcripts that survive the default read and are in the legacy universe: handed to the legacy test as transcripts of interest (those with a term of an ontology take part in the test of that ontology)
 heat,genes_admitted_by_universe_alone,930,Genes with at least one transcript of the table in the legacy universe
 heat,genes_admitted_by_reader_alone,949,Genes with at least one transcript that survives the default read
 heat,genes_admitted_by_both,610,Genes with at least one transcript that survives the default read and is in the legacy universe
@@ -153,7 +153,7 @@ heat,percent_genes_with_more_than_five_transcripts_surviving,96.3,Percent of the
 heat,transcripts_with_unpaired_apostrophe_term,47,Transcripts with at least one line that holds an unpaired apostrophe
 heat,transcripts_with_unpaired_apostrophe_term_surviving,44,"Of those transcripts, the ones that survive the default read"
 heat,percent_other_transcripts_surviving,74.6,Percent of all other transcripts of the table that survive the default read
-shared,lines_in_file,7029,"Lines of the annotation table (one line per DML, transcript and GO term)"
+shared,lines_in_file,7029,"Lines of the annotation table (one line per DML, transcript, GO term and GOslim bin)"
 shared,transcripts_in_file,379,Distinct transcripts named in the table
 shared,genes_in_file,117,Distinct genes named in the table
 shared,rows_default_quotes,6941,"Rows returned by read.table(header = FALSE, sep = tab) with the default quote characters of read.table(), the double quote and the apostrophe, as in the legacy script"
@@ -207,7 +207,7 @@ shared,percent_tested_transcripts_last_five_linkage_groups,27.9,Those transcript
 shared,tested_transcripts_unplaced_scaffolds,18,"Transcripts that survive and are in the legacy universe, on unplaced scaffolds"
 shared,transcripts_admitted_by_universe_alone,247,Transcripts of the table that are in the legacy universe: admitted if the universe were the only filter
 shared,transcripts_admitted_by_reader_alone,379,Transcripts of the table that survive the default read: admitted if the reader were the only filter
-shared,transcripts_admitted_by_both,247,Transcripts that survive the default read and are in the legacy universe: the transcripts of interest of the legacy test
+shared,transcripts_admitted_by_both,247,Transcripts that survive the default read and are in the legacy universe: handed to the legacy test as transcripts of interest (those with a term of an ontology take part in the test of that ontology)
 shared,genes_admitted_by_universe_alone,91,Genes with at least one transcript of the table in the legacy universe
 shared,genes_admitted_by_reader_alone,117,Genes with at least one transcript that survives the default read
 shared,genes_admitted_by_both,91,Genes with at least one transcript that survives the default read and is in the legacy universe

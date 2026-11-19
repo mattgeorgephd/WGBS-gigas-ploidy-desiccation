@@ -137,11 +137,13 @@
 #           - A gene set matched to the run: every gene of the run is replaced
 #             by a random gene with as many universe transcripts, and as many
 #             transcripts of that gene are taken, at random, as the run holds
-#             of the gene it replaces. The set has the transcripts, the genes
-#             and the transcripts per gene of the run, and its genes share no
-#             position. The match is made on both numbers because the run
-#             does not hold every universe transcript of each of its genes
-#             (column genes_with_every_universe_transcript_in_list_median).
+#             of the gene it replaces. The set has as many transcripts and
+#             genes as the run and the same numbers of transcripts per gene,
+#             and its genes share no position. The match is made on both
+#             numbers of a gene, its universe transcripts and those the run
+#             holds, because the run does not hold every universe transcript
+#             of each of its genes (column
+#             genes_with_every_universe_transcript_in_list_median).
 #           - What the control can show. The run holds the isoforms of a gene
 #             together and a list of single transcripts does not, so the run
 #             against single transcripts shows the isoform unit of issue I-03
@@ -695,7 +697,7 @@ mechanism <- rbindlist(mechanism)
 by_sequence <- rbindlist(by_sequence)
 stopifnot(!anyDuplicated(mechanism[, .(table, quantity)]))
 # The two halves by which the linkage groups are reported are those of the accession run of the ploidy table.
-stopifnot("The linkage groups that hold the mRNAs of the accession range of the ploidy run are not the first five: the two halves do not describe the run" =
+stopifnot("The linkage groups with mRNAs in the accession range of the ploidy run are not the first five: the two halves do not describe the run" =
             identical(survivors$ploidy$run_linkage_groups, lg_first))
 
 # ==========================================================================================
@@ -828,8 +830,8 @@ kinds <- data.table(
           "as many universe transcripts, and as many transcripts of that gene are taken as the run holds of the gene it replaces"),
     "Random transcripts confined to the accession run, drawn singly from its universe transcripts, as many as the legacy list holds",
     "Random universe transcripts, drawn singly, as many as the legacy list holds",
-    sprintf("Random universe transcripts of the linkage groups that hold the mRNAs of the accession run, %s, drawn singly, as many as the legacy list holds",
-            lg_first_text),
+    sprintf(paste("Random universe transcripts of the linkage groups that hold the mRNAs of the accession run, %s,",
+                  "drawn singly, as many as the legacy list holds"), lg_first_text),
     sprintf(paste("Random transcripts confined to a random gene set matched to the run, drawn singly, as many as the legacy list holds:",
                   "%d lists from each of the first %d sets of random_gene_sets_matched_to_run"), n_draws, n_gene_set_pools)),
   uses_dml_information = c("yes", "no", "no", "no", "no", "no", "no", "no"),
