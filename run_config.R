@@ -64,6 +64,23 @@ config <- list(
   go_min_genes = 5,        # a term is tested when at least this many universe genes carry it
   go_fdr       = 0.05,     # Benjamini-Hochberg threshold for calling a term enriched
 
+  # ---- Step 11: semantic similarity of GO terms ---------------------------------
+  # rrvgo does in R what the REVIGO web server does. The organism database
+  # supplies the information content of each term.
+  semantic_similarity = list(
+    measure     = "Rel",           # the SimRel measure named in the Methods
+    threshold   = 0.7,             # terms more similar than this are merged (REVIGO "medium")
+    organism_db = "org.Hs.eg.db",
+    n_labels    = 15               # cluster representatives labelled per plot, chosen by score
+  ),
+
+  # ---- Step 12: qPCR ------------------------------------------------------------
+  qpcr = list(
+    reference_gene   = "Actin",    # the only reference gene that was measured
+    max_cycles       = 40,         # a well with no Cq by this cycle is a non-detect
+    legacy_nondetect = 45          # the Cq the legacy scripts substituted for a non-detect
+  ),
+
   # ---- Plot colours ----------------------------------------------------------
   colours = list(
     ploidy    = c(diploid = "royalblue1", triploid = "orangered1"),
