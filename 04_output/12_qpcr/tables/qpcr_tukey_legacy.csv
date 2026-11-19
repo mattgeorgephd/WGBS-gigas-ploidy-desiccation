@@ -1,0 +1,193 @@
+gene,response,nondetects,legacy_term,legacy_comparison,comparison,difference,lower,upper,p_adjusted,ratio,printed_difference,printed_lower,printed_upper,printed_p_adjusted,agrees_with_legacy_output
+HSC70,ln(2^-(Cq - Actin Cq)),dropped,Ploidy,T-D,triploid vs diploid,-0.2941543348,-0.9293290506,0.3410203811,0.3509235324,0.7451614783,,,,,
+HSC70,ln(2^-(Cq - Actin Cq)),dropped,Desiccation,D-C,heat vs control,0.004765386866,-0.630409329,0.6399401028,0.9878474675,1.004776759,,,,,
+HSC70,ln(2^-(Cq - Actin Cq)),dropped,Ploidy:Desiccation,T:C-D:C,triploid control vs diploid control,-0.3613029679,-1.558606129,0.8360001931,0.8426685404,0.6967678682,,,,,
+HSC70,ln(2^-(Cq - Actin Cq)),dropped,Ploidy:Desiccation,D:D-D:C,diploid heat vs diploid control,-0.06238324625,-1.259686407,1.134919915,0.9989474275,0.9395227492,,,,,
+HSC70,ln(2^-(Cq - Actin Cq)),dropped,Ploidy:Desiccation,T:D-D:C,triploid heat vs diploid control,-0.2893889479,-1.486692109,0.907914213,0.9111501967,0.7487209353,,,,,
+HSC70,ln(2^-(Cq - Actin Cq)),dropped,Ploidy:Desiccation,D:D-T:C,diploid heat vs triploid control,0.2989197216,-0.8983834393,1.496222883,0.9031952831,1.348401372,,,,,
+HSC70,ln(2^-(Cq - Actin Cq)),dropped,Ploidy:Desiccation,T:D-T:C,triploid heat vs triploid control,0.07191401998,-1.125389141,1.269217181,0.9983919776,1.074562949,,,,,
+HSC70,ln(2^-(Cq - Actin Cq)),dropped,Ploidy:Desiccation,T:D-D:D,triploid heat vs diploid heat,-0.2270057016,-1.424308863,0.9702974593,0.9541579948,0.7969162386,,,,,
+DNMT1,ln(2^-(Cq - Actin Cq)),dropped,Ploidy,T-D,triploid vs diploid,-0.4047484429,-1.066687591,0.2571907052,0.2185742016,0.6671446147,,,,,
+DNMT1,ln(2^-(Cq - Actin Cq)),dropped,Desiccation,D-C,heat vs control,0.5246876604,-0.1372514877,1.186626809,0.1146695688,1.689930934,,,,,
+DNMT1,ln(2^-(Cq - Actin Cq)),dropped,Ploidy:Desiccation,T:C-D:C,triploid control vs diploid control,-0.7089905447,-1.937861369,0.5198802794,0.4001123003,0.4921407409,,,,,
+DNMT1,ln(2^-(Cq - Actin Cq)),dropped,Ploidy:Desiccation,D:D-D:C,diploid heat vs diploid control,0.2177637392,-1.061285567,1.496813045,0.9646610127,1.243293291,,,,,
+DNMT1,ln(2^-(Cq - Actin Cq)),dropped,Ploidy:Desiccation,T:D-D:C,triploid heat vs diploid control,0.1005063412,-1.128364483,1.329377165,0.9957936761,1.105730653,,,,,
+DNMT1,ln(2^-(Cq - Actin Cq)),dropped,Ploidy:Desiccation,D:D-T:C,diploid heat vs triploid control,0.9267542839,-0.3522950222,2.20580359,0.2152162174,2.526296216,,,,,
+DNMT1,ln(2^-(Cq - Actin Cq)),dropped,Ploidy:Desiccation,T:D-T:C,triploid heat vs triploid control,0.8094968859,-0.4193739383,2.03836771,0.2885669373,2.246777317,,,,,
+DNMT1,ln(2^-(Cq - Actin Cq)),dropped,Ploidy:Desiccation,T:D-D:D,triploid heat vs diploid heat,-0.117257398,-1.396306704,1.161791908,0.9941088519,0.8893562451,,,,,
+MBD2,ln(2^-(Cq - Actin Cq)),dropped,Ploidy,T-D,triploid vs diploid,-0.06704548621,-0.6873704609,0.5532794885,0.8247116878,0.9351526638,,,,,
+MBD2,ln(2^-(Cq - Actin Cq)),dropped,Desiccation,D-C,heat vs control,0.8557701729,0.2372832022,1.474257144,0.008906322189,2.353186043,,,,,
+MBD2,ln(2^-(Cq - Actin Cq)),dropped,Ploidy:Desiccation,T:C-D:C,triploid control vs diploid control,-0.1349161476,-1.309549441,1.039717145,0.9884624668,0.8737891779,,,,,
+MBD2,ln(2^-(Cq - Actin Cq)),dropped,Ploidy:Desiccation,D:D-D:C,diploid heat vs diploid control,0.7826786914,-0.4362958848,2.001653268,0.3077450805,2.18732359,,,,,
+MBD2,ln(2^-(Cq - Actin Cq)),dropped,Ploidy:Desiccation,T:D-D:C,triploid heat vs diploid control,0.7835038666,-0.3911294265,1.95813716,0.276896536,2.18912926,,,,,
+MBD2,ln(2^-(Cq - Actin Cq)),dropped,Ploidy:Desiccation,D:D-T:C,diploid heat vs triploid control,0.917594839,-0.257038454,2.092228132,0.1631599016,2.503262395,,,,,
+MBD2,ln(2^-(Cq - Actin Cq)),dropped,Ploidy:Desiccation,T:D-T:C,triploid heat vs triploid control,0.9184200142,-0.2101311495,2.046971178,0.1385360586,2.505328877,,,,,
+MBD2,ln(2^-(Cq - Actin Cq)),dropped,Ploidy:Desiccation,T:D-D:D,triploid heat vs diploid heat,0.000825175215,-1.173808118,1.175458468,0.9999999972,1.000825516,,,,,
+MeCP2,ln(2^-(Cq - Actin Cq)),dropped,Ploidy,T-D,triploid vs diploid,-0.2876560799,-2.191333116,1.616020956,0.7433140069,0.7500194946,,,,,
+MeCP2,ln(2^-(Cq - Actin Cq)),dropped,Desiccation,D-C,heat vs control,-1.992567095,-3.958676283,-0.02645790661,0.04751974617,0.1363449653,,,,,
+MeCP2,ln(2^-(Cq - Actin Cq)),dropped,Ploidy:Desiccation,T:C-D:C,triploid control vs diploid control,-1.92001769,-6.338233763,2.498198383,0.5664111417,0.1466043687,,,,,
+MeCP2,ln(2^-(Cq - Actin Cq)),dropped,Ploidy:Desiccation,D:D-D:C,diploid heat vs diploid control,-3.094209014,-6.628781872,0.4403638441,0.09122734736,0.04531083853,,,,,
+MeCP2,ln(2^-(Cq - Actin Cq)),dropped,Ploidy:Desiccation,T:D-D:C,triploid heat vs diploid control,-2.372296225,-6.068841002,1.324248551,0.2635821133,0.09326631971,,,,,
+MeCP2,ln(2^-(Cq - Actin Cq)),dropped,Ploidy:Desiccation,D:D-T:C,diploid heat vs triploid control,-1.174191324,-5.223553242,2.875170594,0.811630992,0.3090688152,,,,,
+MeCP2,ln(2^-(Cq - Actin Cq)),dropped,Ploidy:Desiccation,T:D-T:C,triploid heat vs triploid control,-0.4522785353,-4.643766331,3.73920926,0.9868467718,0.6361769473,,,,,
+MeCP2,ln(2^-(Cq - Actin Cq)),dropped,Ploidy:Desiccation,T:D-D:D,triploid heat vs diploid heat,0.7219127886,-2.524799697,3.968625274,0.9022483986,2.058366668,,,,,
+HIF1A,ln(2^-(Cq - Actin Cq)),dropped,Ploidy,T-D,triploid vs diploid,-0.5502522233,-1.333691586,0.2331871396,0.1593535865,0.5768043085,,,,,
+HIF1A,ln(2^-(Cq - Actin Cq)),dropped,Desiccation,D-C,heat vs control,-0.1607441319,-0.9465117001,0.6250234364,0.675502403,0.8515099175,,,,,
+HIF1A,ln(2^-(Cq - Actin Cq)),dropped,Ploidy:Desiccation,T:C-D:C,triploid control vs diploid control,-0.6935803975,-2.137933929,0.7507731337,0.5523638669,0.4997834384,,,,,
+HIF1A,ln(2^-(Cq - Actin Cq)),dropped,Ploidy:Desiccation,D:D-D:C,diploid heat vs diploid control,-0.289884053,-1.777795686,1.19802758,0.947983643,0.7483503315,,,,,
+HIF1A,ln(2^-(Cq - Actin Cq)),dropped,Ploidy:Desiccation,T:D-D:C,triploid heat vs diploid control,-0.7267648188,-2.346208404,0.8926787666,0.6052512598,0.4834705776,,,,,
+HIF1A,ln(2^-(Cq - Actin Cq)),dropped,Ploidy:Desiccation,D:D-T:C,diploid heat vs triploid control,0.4036963445,-0.9804490895,1.787841779,0.8491084861,1.4973492,,,,,
+HIF1A,ln(2^-(Cq - Actin Cq)),dropped,Ploidy:Desiccation,T:D-T:C,triploid heat vs triploid control,-0.03318442127,-1.557840146,1.491471304,0.999918165,0.9673601414,,,,,
+HIF1A,ln(2^-(Cq - Actin Cq)),dropped,Ploidy:Desiccation,T:D-D:D,triploid heat vs diploid heat,-0.4368807658,-2.002862562,1.12910103,0.8650175657,0.6460484579,,,,,
+HATHaP2,ln(2^-(Cq - Actin Cq)),dropped,Ploidy,T-D,triploid vs diploid,-0.03897508834,-0.8746178787,0.796667702,0.9244663088,0.9617746683,,,,,
+HATHaP2,ln(2^-(Cq - Actin Cq)),dropped,Desiccation,D-C,heat vs control,0.6540426085,-0.1816001819,1.489685399,0.1199230726,1.923300284,,,,,
+HATHaP2,ln(2^-(Cq - Actin Cq)),dropped,Ploidy:Desiccation,T:C-D:C,triploid control vs diploid control,0.370152972,-1.234795681,1.975101625,0.921093648,1.447956095,,,,,
+HATHaP2,ln(2^-(Cq - Actin Cq)),dropped,Ploidy:Desiccation,D:D-D:C,diploid heat vs diploid control,1.04207252,-0.5628761331,2.647021174,0.3059959811,2.835086704,,,,,
+HATHaP2,ln(2^-(Cq - Actin Cq)),dropped,Ploidy:Desiccation,T:D-D:C,triploid heat vs diploid control,0.6634408728,-0.9415077805,2.268389526,0.6738692145,1.941461175,,,,,
+HATHaP2,ln(2^-(Cq - Actin Cq)),dropped,Ploidy:Desiccation,D:D-T:C,diploid heat vs triploid control,0.6719195482,-0.8786081581,2.222447254,0.6407275166,1.957992176,,,,,
+HATHaP2,ln(2^-(Cq - Actin Cq)),dropped,Ploidy:Desiccation,T:D-T:C,triploid heat vs triploid control,0.2932879008,-1.257239805,1.843815607,0.9541388639,1.340828761,,,,,
+HATHaP2,ln(2^-(Cq - Actin Cq)),dropped,Ploidy:Desiccation,T:D-D:D,triploid heat vs diploid heat,-0.3786316474,-1.929159354,1.171896059,0.9081079464,0.6847978133,,,,,
+HAT,ln(2^-(Cq - Actin Cq)),dropped,Ploidy,T-D,triploid vs diploid,-0.06079478396,-0.6117301279,0.4901405599,0.8217714815,0.9410163316,,,,,
+HAT,ln(2^-(Cq - Actin Cq)),dropped,Desiccation,D-C,heat vs control,0.1072837803,-0.439397173,0.6539647335,0.6890422386,1.113250128,,,,,
+HAT,ln(2^-(Cq - Actin Cq)),dropped,Ploidy:Desiccation,T:C-D:C,triploid control vs diploid control,0.4479463654,-0.6513523376,1.547245069,0.6785888788,1.56509475,,,,,
+HAT,ln(2^-(Cq - Actin Cq)),dropped,Ploidy:Desiccation,D:D-D:C,diploid heat vs diploid control,0.6352198805,-0.493875514,1.764315275,0.4237673045,1.887437106,,,,,
+HAT,ln(2^-(Cq - Actin Cq)),dropped,Ploidy:Desiccation,T:D-D:C,triploid heat vs diploid control,0.1715539272,-0.9277447759,1.27085263,0.9726547929,1.187148161,,,,,
+HAT,ln(2^-(Cq - Actin Cq)),dropped,Ploidy:Desiccation,D:D-T:C,diploid heat vs triploid control,0.187273515,-0.8107152476,1.185262278,0.9540408683,1.205957087,,,,,
+HAT,ln(2^-(Cq - Actin Cq)),dropped,Ploidy:Desiccation,T:D-T:C,triploid heat vs triploid control,-0.2763924382,-1.240541181,0.6877563049,0.8578945538,0.758515202,,,,,
+HAT,ln(2^-(Cq - Actin Cq)),dropped,Ploidy:Desiccation,T:D-D:D,triploid heat vs diploid heat,-0.4636659533,-1.461654716,0.5343228093,0.5829775457,0.628973626,,,,,
+HSP90,ln(2^-(Cq - Actin Cq)),dropped,Ploidy,T-D,triploid vs diploid,0.6416232401,-0.05087762892,1.334124109,0.06801459019,1.899561823,,,,,
+HSP90,ln(2^-(Cq - Actin Cq)),dropped,Desiccation,D-C,heat vs control,0.770896152,0.07839528295,1.463397021,0.030450392,2.1617026,,,,,
+HSP90,ln(2^-(Cq - Actin Cq)),dropped,Ploidy:Desiccation,T:C-D:C,triploid control vs diploid control,0.7404297204,-0.5895983132,2.070457754,0.4379973335,2.096836374,,,,,
+HSP90,ln(2^-(Cq - Actin Cq)),dropped,Ploidy:Desiccation,D:D-D:C,diploid heat vs diploid control,0.8448350144,-0.4851930191,2.174863048,0.3243781487,2.327593764,,,,,
+HSP90,ln(2^-(Cq - Actin Cq)),dropped,Ploidy:Desiccation,T:D-D:C,triploid heat vs diploid control,1.443974109,0.1139460751,2.774002142,0.0295741712,4.237502695,,,,,
+HSP90,ln(2^-(Cq - Actin Cq)),dropped,Ploidy:Desiccation,D:D-T:C,diploid heat vs triploid control,0.1044052941,-1.18052386,1.389334449,0.9960252834,1.110050261,,,,,
+HSP90,ln(2^-(Cq - Actin Cq)),dropped,Ploidy:Desiccation,T:D-T:C,triploid heat vs triploid control,0.7035443883,-0.5813847662,1.988473543,0.4523397681,2.020902893,,,,,
+HSP90,ln(2^-(Cq - Actin Cq)),dropped,Ploidy:Desiccation,T:D-D:D,triploid heat vs diploid heat,0.5991390942,-0.6857900603,1.884068249,0.5855402735,1.820550803,,,,,
+SOD,ln(2^-(Cq - Actin Cq)),dropped,Ploidy,T-D,triploid vs diploid,-0.05741569146,-0.9645034615,0.8496720786,0.8976287268,0.9442014913,,,,,
+SOD,ln(2^-(Cq - Actin Cq)),dropped,Desiccation,D-C,heat vs control,0.4205593502,-0.4865284199,1.32764712,0.3498887617,1.522813103,,,,,
+SOD,ln(2^-(Cq - Actin Cq)),dropped,Ploidy:Desiccation,T:C-D:C,triploid control vs diploid control,0.4541351795,-1.288031823,2.196302182,0.8909260472,1.574810865,,,,,
+SOD,ln(2^-(Cq - Actin Cq)),dropped,Ploidy:Desiccation,D:D-D:C,diploid heat vs diploid control,0.9185437905,-0.8236232116,2.660710793,0.4847175001,2.505638997,,,,,
+SOD,ln(2^-(Cq - Actin Cq)),dropped,Ploidy:Desiccation,T:D-D:C,triploid heat vs diploid control,0.4108134808,-1.331353521,2.152980483,0.9162652402,1.508044051,,,,,
+SOD,ln(2^-(Cq - Actin Cq)),dropped,Ploidy:Desiccation,D:D-T:C,diploid heat vs triploid control,0.464408611,-1.218684615,2.147501836,0.8736921125,1.591072968,,,,,
+SOD,ln(2^-(Cq - Actin Cq)),dropped,Ploidy:Desiccation,T:D-T:C,triploid heat vs triploid control,-0.04332169878,-1.726414924,1.639771527,0.9998712965,0.9576032807,,,,,
+SOD,ln(2^-(Cq - Actin Cq)),dropped,Ploidy:Desiccation,T:D-D:D,triploid heat vs diploid heat,-0.5077303098,-2.190823535,1.175362916,0.8418857365,0.6018600657,,,,,
+ATPsynthetase,ln(2^-(Cq - Actin Cq)),dropped,Ploidy,T-D,triploid vs diploid,-0.2071086643,-0.5455104894,0.1312931609,0.2195639384,0.8129313086,,,,,
+ATPsynthetase,ln(2^-(Cq - Actin Cq)),dropped,Desiccation,D-C,heat vs control,-0.2580818002,-0.5957307839,0.07956718348,0.1282409557,0.7725320362,,,,,
+ATPsynthetase,ln(2^-(Cq - Actin Cq)),dropped,Ploidy:Desiccation,T:C-D:C,triploid control vs diploid control,-0.03756610166,-0.6762712853,0.601139082,0.9984649743,0.9631307511,,,,,
+ATPsynthetase,ln(2^-(Cq - Actin Cq)),dropped,Ploidy:Desiccation,D:D-D:C,diploid heat vs diploid control,-0.07723640012,-0.7368882773,0.5824154771,0.9882712901,0.925670999,,,,,
+ATPsynthetase,ln(2^-(Cq - Actin Cq)),dropped,Ploidy:Desiccation,T:D-D:C,triploid heat vs diploid control,-0.453887627,-1.092592811,0.1848175567,0.2328692841,0.6351541034,,,,,
+ATPsynthetase,ln(2^-(Cq - Actin Cq)),dropped,Ploidy:Desiccation,D:D-T:C,diploid heat vs triploid control,-0.03967029846,-0.6783754821,0.5990348852,0.998194569,0.9611062651,,,,,
+ATPsynthetase,ln(2^-(Cq - Actin Cq)),dropped,Ploidy:Desiccation,T:D-T:C,triploid heat vs triploid control,-0.4163215253,-1.033369355,0.2007263044,0.2733836075,0.6594682007,,,,,
+ATPsynthetase,ln(2^-(Cq - Actin Cq)),dropped,Ploidy:Desiccation,T:D-D:D,triploid heat vs diploid heat,-0.3766512269,-1.015356411,0.2620539568,0.3865683753,0.6861553447,,,,,
+COX1,ln(2^-Cq),dropped,Ploidy,T-D,triploid vs diploid,-0.03465735903,-0.2124872276,0.1431725095,0.6927633543,0.9659363289,,,,,
+COX1,ln(2^-Cq),dropped,Desiccation,D-C,heat vs control,-0.035523793,-0.2133536616,0.1423060756,0.6855094711,0.9650997713,,,,,
+COX1,ln(2^-Cq),dropped,Ploidy:Desiccation,T:C-D:C,triploid control vs diploid control,0.1290986624,-0.2061103099,0.4643076347,0.72104408,1.137802377,,,,,
+COX1,ln(2^-Cq),dropped,Ploidy:Desiccation,D:D-D:C,diploid heat vs diploid control,0.1282322284,-0.2069767439,0.4634412007,0.7251489853,1.136816973,,,,,
+COX1,ln(2^-Cq),dropped,Ploidy:Desiccation,T:D-D:C,triploid heat vs diploid control,-0.07018115203,-0.4053901243,0.2650278203,0.9397085527,0.9322249302,,,,,
+COX1,ln(2^-Cq),dropped,Ploidy:Desiccation,D:D-T:C,diploid heat vs triploid control,-0.0008664339757,-0.3360754063,0.3343425383,0.9999998704,0.9991339413,,,,,
+COX1,ln(2^-Cq),dropped,Ploidy:Desiccation,T:D-T:C,triploid heat vs triploid control,-0.1992798144,-0.5344887867,0.1359291579,0.3824553386,0.8193206035,,,,,
+COX1,ln(2^-Cq),dropped,Ploidy:Desiccation,T:D-D:D,triploid heat vs diploid heat,-0.1984133804,-0.5336223527,0.1367955919,0.3862331986,0.8200307984,,,,,
+COX1,ln(Cq),dropped,Ploidy,T-D,triploid vs diploid,0.00237319379,-0.009497788326,0.01424417591,0.6852825647,,,,,,
+COX1,ln(Cq),dropped,Desiccation,D-C,heat vs control,0.002268877918,-0.009602104198,0.01413986003,0.6983854018,,,,,,
+COX1,ln(Cq),dropped,Ploidy:Desiccation,T:C-D:C,triploid control vs diploid control,-0.008694466598,-0.03107124586,0.01368231266,0.7155893883,,,,,,
+COX1,ln(Cq),dropped,Ploidy:Desiccation,D:D-D:C,diploid heat vs diploid control,-0.00879878247,-0.03117556173,0.01357799679,0.7081120063,,,,,,
+COX1,ln(Cq),dropped,Ploidy:Desiccation,T:D-D:C,triploid heat vs diploid control,0.004642071707,-0.01773470756,0.02701885097,0.9412083793,,,,,,
+COX1,ln(Cq),dropped,Ploidy:Desiccation,D:D-T:C,diploid heat vs triploid control,-0.0001043158719,-0.02248109513,0.02227246339,0.9999992398,,,,,,
+COX1,ln(Cq),dropped,Ploidy:Desiccation,T:D-T:C,triploid heat vs triploid control,0.01333653831,-0.009040240957,0.03571331757,0.3802648488,,,,,,
+COX1,ln(Cq),dropped,Ploidy:Desiccation,T:D-D:D,triploid heat vs diploid heat,0.01344085418,-0.008935925085,0.03581763344,0.3735202692,,,,,,
+HSC70,ln(2^-(Cq - Actin Cq)),set to Cq 45,Ploidy,T-D,triploid vs diploid,-0.2941543348,-0.9293290506,0.3410203811,0.3509235324,0.7451614783,-0.2941543,-0.9293291,0.3410204,0.3509235,TRUE
+HSC70,ln(2^-(Cq - Actin Cq)),set to Cq 45,Desiccation,D-C,heat vs control,0.004765386866,-0.630409329,0.6399401028,0.9878474675,1.004776759,0.004765387,-0.6304093,0.6399401,0.9878475,TRUE
+HSC70,ln(2^-(Cq - Actin Cq)),set to Cq 45,Ploidy:Desiccation,T:C-D:C,triploid control vs diploid control,-0.3613029679,-1.558606129,0.8360001931,0.8426685404,0.6967678682,-0.36130297,-1.5586061,0.8360002,0.8426685,TRUE
+HSC70,ln(2^-(Cq - Actin Cq)),set to Cq 45,Ploidy:Desiccation,D:D-D:C,diploid heat vs diploid control,-0.06238324625,-1.259686407,1.134919915,0.9989474275,0.9395227492,-0.06238325,-1.2596864,1.1349199,0.9989474,TRUE
+HSC70,ln(2^-(Cq - Actin Cq)),set to Cq 45,Ploidy:Desiccation,T:D-D:C,triploid heat vs diploid control,-0.2893889479,-1.486692109,0.907914213,0.9111501967,0.7487209353,-0.28938895,-1.4866921,0.9079142,0.9111502,TRUE
+HSC70,ln(2^-(Cq - Actin Cq)),set to Cq 45,Ploidy:Desiccation,D:D-T:C,diploid heat vs triploid control,0.2989197216,-0.8983834393,1.496222883,0.9031952831,1.348401372,0.29891972,-0.8983834,1.4962229,0.9031953,TRUE
+HSC70,ln(2^-(Cq - Actin Cq)),set to Cq 45,Ploidy:Desiccation,T:D-T:C,triploid heat vs triploid control,0.07191401998,-1.125389141,1.269217181,0.9983919776,1.074562949,0.07191402,-1.1253891,1.2692172,0.9983920,TRUE
+HSC70,ln(2^-(Cq - Actin Cq)),set to Cq 45,Ploidy:Desiccation,T:D-D:D,triploid heat vs diploid heat,-0.2270057016,-1.424308863,0.9702974593,0.9541579948,0.7969162386,-0.22700570,-1.4243089,0.9702975,0.9541580,TRUE
+DNMT1,ln(2^-(Cq - Actin Cq)),set to Cq 45,Ploidy,T-D,triploid vs diploid,-0.7709096299,-1.781178957,0.2393596974,0.1292656415,0.4625920893,-0.7709096,-1.781179,0.2393597,0.1292656,TRUE
+DNMT1,ln(2^-(Cq - Actin Cq)),set to Cq 45,Desiccation,D-C,heat vs control,0.01927815596,-0.9909911713,1.029547483,0.9690975202,1.019465179,0.01927816,-0.9909912,1.029547,0.9690975,TRUE
+DNMT1,ln(2^-(Cq - Actin Cq)),set to Cq 45,Ploidy:Desiccation,T:C-D:C,triploid control vs diploid control,-1.223837991,-3.128193798,0.6805178167,0.3157773377,0.2940992479,-1.2238380,-3.128194,0.6805178,0.3157773,TRUE
+DNMT1,ln(2^-(Cq - Actin Cq)),set to Cq 45,Ploidy:Desiccation,D:D-D:C,diploid heat vs diploid control,-0.4336502048,-2.338006012,1.470705603,0.9242483216,0.6481389317,-0.4336502,-2.338006,1.4707056,0.9242483,TRUE
+DNMT1,ln(2^-(Cq - Actin Cq)),set to Cq 45,Ploidy:Desiccation,T:D-D:C,triploid heat vs diploid control,-0.7516314739,-2.655987281,1.152724333,0.7057281484,0.4715965273,-0.7516315,-2.655987,1.1527243,0.7057281,TRUE
+DNMT1,ln(2^-(Cq - Actin Cq)),set to Cq 45,Ploidy:Desiccation,D:D-T:C,diploid heat vs triploid control,0.7901877858,-1.114168022,2.694543593,0.6727221792,2.203810232,0.7901878,-1.114168,2.6945436,0.6727222,TRUE
+DNMT1,ln(2^-(Cq - Actin Cq)),set to Cq 45,Ploidy:Desiccation,T:D-T:C,triploid heat vs triploid control,0.4722065168,-1.432149291,2.376562324,0.904923825,1.603528505,0.4722065,-1.432149,2.3765623,0.9049238,TRUE
+DNMT1,ln(2^-(Cq - Actin Cq)),set to Cq 45,Ploidy:Desiccation,T:D-D:D,triploid heat vs diploid heat,-0.3179812691,-2.222337076,1.586374538,0.9679181621,0.7276164172,-0.3179813,-2.222337,1.5863745,0.9679182,TRUE
+MBD2,ln(2^-(Cq - Actin Cq)),set to Cq 45,Ploidy,T-D,triploid vs diploid,-0.2452008151,-1.415876218,0.925474588,0.6711744714,0.7825473751,-0.2452008,-1.415876,0.9254746,0.6711745,TRUE
+MBD2,ln(2^-(Cq - Actin Cq)),set to Cq 45,Desiccation,D-C,heat vs control,0.2452008151,-0.925474588,1.415876218,0.6711744714,1.277877905,0.2452008,-0.9254746,1.415876,0.6711745,TRUE
+MBD2,ln(2^-(Cq - Actin Cq)),set to Cq 45,Ploidy:Desiccation,T:C-D:C,triploid control vs diploid control,-0.463542177,-2.67026314,1.743178786,0.939159787,0.6290514828,-0.46354218,-2.670263,1.743179,0.9391598,TRUE
+MBD2,ln(2^-(Cq - Actin Cq)),set to Cq 45,Ploidy:Desiccation,D:D-D:C,diploid heat vs diploid control,0.02685945325,-2.17986151,2.233580416,0.9999864744,1.02722342,0.02685945,-2.179862,2.233580,0.9999865,TRUE
+MBD2,ln(2^-(Cq - Actin Cq)),set to Cq 45,Ploidy:Desiccation,T:D-D:C,triploid heat vs diploid control,0,-2.206720963,2.206720963,1,1,0.00000000,-2.206721,2.206721,1.0000000,TRUE
+MBD2,ln(2^-(Cq - Actin Cq)),set to Cq 45,Ploidy:Desiccation,D:D-T:C,diploid heat vs triploid control,0.4904016302,-1.716319333,2.697122593,0.9290749884,1.632971939,0.49040163,-1.716319,2.697123,0.9290750,TRUE
+MBD2,ln(2^-(Cq - Actin Cq)),set to Cq 45,Ploidy:Desiccation,T:D-T:C,triploid heat vs triploid control,0.463542177,-1.743178786,2.67026314,0.939159787,1.589695005,0.46354218,-1.743179,2.670263,0.9391598,TRUE
+MBD2,ln(2^-(Cq - Actin Cq)),set to Cq 45,Ploidy:Desiccation,T:D-D:D,triploid heat vs diploid heat,-0.02685945325,-2.233580416,2.17986151,0.9999864744,0.9734980539,-0.02685945,-2.233580,2.179862,0.9999865,TRUE
+MeCP2,ln(2^-(Cq - Actin Cq)),set to Cq 45,Ploidy,T-D,triploid vs diploid,-1.509977811,-3.765220393,0.7452647704,0.1811128666,0.2209148798,-1.509978,-3.76522,0.7452648,0.1811129,TRUE
+MeCP2,ln(2^-(Cq - Actin Cq)),set to Cq 45,Desiccation,D-C,heat vs control,1.2929361,-0.9623064813,3.548178682,0.2501436996,3.643468455,1.292936,-0.9623065,3.548179,0.2501437,TRUE
+MeCP2,ln(2^-(Cq - Actin Cq)),set to Cq 45,Ploidy:Desiccation,T:C-D:C,triploid control vs diploid control,-1.987166323,-6.238294405,2.263961758,0.5851295875,0.1370833254,-1.9871663,-6.238294,2.263962,0.5851296,TRUE
+MeCP2,ln(2^-(Cq - Actin Cq)),set to Cq 45,Ploidy:Desiccation,D:D-D:C,diploid heat vs diploid control,0.8157475881,-3.435380494,5.06687567,0.9525994613,2.260865237,0.8157476,-3.435380,5.066876,0.9525995,TRUE
+MeCP2,ln(2^-(Cq - Actin Cq)),set to Cq 45,Ploidy:Desiccation,T:D-D:C,triploid heat vs diploid control,-0.2170417109,-4.468169793,4.034086371,0.9990093448,0.8048963956,-0.2170417,-4.468170,4.034086,0.9990093,TRUE
+MeCP2,ln(2^-(Cq - Actin Cq)),set to Cq 45,Ploidy:Desiccation,D:D-T:C,diploid heat vs triploid control,2.802913911,-1.44821417,7.054041993,0.2944278054,16.4926349,2.8029139,-1.448214,7.054042,0.2944278,TRUE
+MeCP2,ln(2^-(Cq - Actin Cq)),set to Cq 45,Ploidy:Desiccation,T:D-T:C,triploid heat vs triploid control,1.770124612,-2.481003469,6.021252694,0.6703297263,5.871584988,1.7701246,-2.481003,6.021253,0.6703297,TRUE
+MeCP2,ln(2^-(Cq - Actin Cq)),set to Cq 45,Ploidy:Desiccation,T:D-D:D,triploid heat vs diploid heat,-1.032789299,-5.283917381,3.218338783,0.9099306257,0.3560125489,-1.0327893,-5.283917,3.218339,0.9099306,TRUE
+HIF1A,ln(2^-(Cq - Actin Cq)),set to Cq 45,Ploidy,T-D,triploid vs diploid,-0.8982754243,-2.196356971,0.3998061224,0.167368766,0.4072714248,-0.8982754,-2.196357,0.3998061,0.1673688,TRUE
+HIF1A,ln(2^-(Cq - Actin Cq)),set to Cq 45,Desiccation,D-C,heat vs control,-0.7046274307,-2.002708977,0.5934541159,0.2756285553,0.4942926982,-0.7046274,-2.002709,0.5934541,0.2756286,TRUE
+HIF1A,ln(2^-(Cq - Actin Cq)),set to Cq 45,Ploidy:Desiccation,T:C-D:C,triploid control vs diploid control,-0.1239000585,-2.570781365,2.322981248,0.9990334186,0.8834681316,-0.12390006,-2.570781,2.3229812,0.9990334,TRUE
+HIF1A,ln(2^-(Cq - Actin Cq)),set to Cq 45,Ploidy:Desiccation,D:D-D:C,diploid heat vs diploid control,0.06974793504,-2.377133372,2.516629242,0.9998266321,1.072237874,0.06974794,-2.377133,2.5166292,0.9998266,TRUE
+HIF1A,ln(2^-(Cq - Actin Cq)),set to Cq 45,Ploidy:Desiccation,T:D-D:C,triploid heat vs diploid control,-1.602902855,-4.049784162,0.8439784519,0.2997831912,0.2013112915,-1.60290286,-4.049784,0.8439785,0.2997832,TRUE
+HIF1A,ln(2^-(Cq - Actin Cq)),set to Cq 45,Ploidy:Desiccation,D:D-T:C,diploid heat vs triploid control,0.1936479936,-2.253233313,2.640529301,0.9963515326,1.213668988,0.19364799,-2.253233,2.6405293,0.9963515,TRUE
+HIF1A,ln(2^-(Cq - Actin Cq)),set to Cq 45,Ploidy:Desiccation,T:D-T:C,triploid heat vs triploid control,-1.479002797,-3.925884103,0.9678785104,0.3680937747,0.2278648027,-1.47900280,-3.925884,0.9678785,0.3680938,TRUE
+HIF1A,ln(2^-(Cq - Actin Cq)),set to Cq 45,Ploidy:Desiccation,T:D-D:D,triploid heat vs diploid heat,-1.67265079,-4.119532097,0.7742305169,0.2650840295,0.187748723,-1.67265079,-4.119532,0.7742305,0.2650840,TRUE
+HATHaP2,ln(2^-(Cq - Actin Cq)),set to Cq 45,Ploidy,T-D,triploid vs diploid,0.04223865632,-0.7692598756,0.8537371883,0.9158507117,1.043143402,0.04223866,-0.7692599,0.8537372,0.9158507,TRUE
+HATHaP2,ln(2^-(Cq - Actin Cq)),set to Cq 45,Desiccation,D-C,heat vs control,0.7141582045,-0.09734032747,1.525656736,0.08220984513,2.042466619,0.7141582,-0.09734033,1.525657,0.0822098,TRUE
+HATHaP2,ln(2^-(Cq - Actin Cq)),set to Cq 45,Ploidy:Desiccation,T:C-D:C,triploid control vs diploid control,0.46310896,-1.066564267,1.992782187,0.8413905587,1.589006471,0.4631090,-1.0665643,1.992782,0.8413906,TRUE
+HATHaP2,ln(2^-(Cq - Actin Cq)),set to Cq 45,Ploidy:Desiccation,D:D-D:C,diploid heat vs diploid control,1.135028508,-0.3946447188,2.664701735,0.2027720482,3.111262238,1.1350285,-0.3946447,2.664702,0.2027720,TRUE
+HATHaP2,ln(2^-(Cq - Actin Cq)),set to Cq 45,Ploidy:Desiccation,T:D-D:C,triploid heat vs diploid control,0.7563968608,-0.7732763662,2.286070088,0.539981724,2.130585577,0.7563969,-0.7732764,2.286070,0.5399817,TRUE
+HATHaP2,ln(2^-(Cq - Actin Cq)),set to Cq 45,Ploidy:Desiccation,D:D-T:C,diploid heat vs triploid control,0.6719195482,-0.8577536789,2.201592775,0.6323517412,1.957992176,0.6719195,-0.8577537,2.201593,0.6323517,TRUE
+HATHaP2,ln(2^-(Cq - Actin Cq)),set to Cq 45,Ploidy:Desiccation,T:D-T:C,triploid heat vs triploid control,0.2932879008,-1.236385326,1.822961128,0.9527073836,1.340828761,0.2932879,-1.2363853,1.822961,0.9527074,TRUE
+HATHaP2,ln(2^-(Cq - Actin Cq)),set to Cq 45,Ploidy:Desiccation,T:D-D:D,triploid heat vs diploid heat,-0.3786316474,-1.908304874,1.15104158,0.9053653985,0.6847978133,-0.3786316,-1.9083049,1.151042,0.9053654,TRUE
+HAT,ln(2^-(Cq - Actin Cq)),set to Cq 45,Ploidy,T-D,triploid vs diploid,0.2659952305,-0.5499293546,1.081919816,0.5097347344,1.304728836,0.2659952,-0.5499294,1.08192,0.5097347,TRUE
+HAT,ln(2^-(Cq - Actin Cq)),set to Cq 45,Desiccation,D-C,heat vs control,0.3526386281,-0.463285957,1.168563213,0.3835286373,1.422816884,0.3526386,-0.463286,1.168563,0.3835286,TRUE
+HAT,ln(2^-(Cq - Actin Cq)),set to Cq 45,Ploidy:Desiccation,T:C-D:C,triploid control vs diploid control,0.8950262969,-0.6429900322,2.433042626,0.4009869354,2.447400148,0.8950263,-0.6429900,2.433043,0.4009869,TRUE
+HAT,ln(2^-(Cq - Actin Cq)),set to Cq 45,Ploidy:Desiccation,D:D-D:C,diploid heat vs diploid control,0.9816696945,-0.5563466346,2.519686024,0.32153936,2.668908786,0.9816697,-0.5563466,2.519686,0.3215394,TRUE
+HAT,ln(2^-(Cq - Actin Cq)),set to Cq 45,Ploidy:Desiccation,T:D-D:C,triploid heat vs diploid control,0.6186338586,-0.9193824705,2.156650188,0.69352269,1.856390217,0.6186339,-0.9193825,2.156650,0.6935227,TRUE
+HAT,ln(2^-(Cq - Actin Cq)),set to Cq 45,Ploidy:Desiccation,D:D-T:C,diploid heat vs triploid control,0.08664339757,-1.451372932,1.624659727,0.9986714773,1.090507733,0.0866434,-1.4513729,1.624660,0.9986715,TRUE
+HAT,ln(2^-(Cq - Actin Cq)),set to Cq 45,Ploidy:Desiccation,T:D-T:C,triploid heat vs triploid control,-0.2763924382,-1.814408767,1.261623891,0.9605341515,0.758515202,-0.2763924,-1.8144088,1.261624,0.9605342,TRUE
+HAT,ln(2^-(Cq - Actin Cq)),set to Cq 45,Ploidy:Desiccation,T:D-D:D,triploid heat vs diploid heat,-0.3630358358,-1.901052165,1.174980493,0.9165858522,0.695561507,-0.3630358,-1.9010522,1.174980,0.9165859,TRUE
+HSP90,ln(2^-(Cq - Actin Cq)),set to Cq 45,Ploidy,T-D,triploid vs diploid,0.7366854878,0.05492205997,1.418448916,0.03518737014,2.089000011,0.7366855,0.05492206,1.418449,0.0351874,TRUE
+HSP90,ln(2^-(Cq - Actin Cq)),set to Cq 45,Desiccation,D-C,heat vs control,0.8410907819,0.159327354,1.52285421,0.01742866032,2.318895006,0.8410908,0.1593274,1.522854,0.0174287,TRUE
+HSP90,ln(2^-(Cq - Actin Cq)),set to Cq 45,Ploidy:Desiccation,T:C-D:C,triploid control vs diploid control,0.8742318815,-0.4108909151,2.159354678,0.2689739269,2.397033381,0.8742319,-0.4108909,2.159355,0.2689739,TRUE
+HSP90,ln(2^-(Cq - Actin Cq)),set to Cq 45,Ploidy:Desiccation,D:D-D:C,diploid heat vs diploid control,0.9786371756,-0.306485621,2.263759972,0.1845823853,2.660827529,0.9786372,-0.3064856,2.263760,0.1845824,TRUE
+HSP90,ln(2^-(Cq - Actin Cq)),set to Cq 45,Ploidy:Desiccation,T:D-D:C,triploid heat vs diploid control,1.57777627,0.2926534732,2.862899066,0.01168116532,4.844171694,1.5777763,0.2926535,2.862899,0.0116812,TRUE
+HSP90,ln(2^-(Cq - Actin Cq)),set to Cq 45,Ploidy:Desiccation,D:D-T:C,diploid heat vs triploid control,0.1044052941,-1.180717502,1.389528091,0.996057301,1.110050261,0.1044053,-1.1807175,1.389528,0.9960573,TRUE
+HSP90,ln(2^-(Cq - Actin Cq)),set to Cq 45,Ploidy:Desiccation,T:D-T:C,triploid heat vs triploid control,0.7035443883,-0.5815784083,1.988667185,0.4539705798,2.020902893,0.7035444,-0.5815784,1.988667,0.4539706,TRUE
+HSP90,ln(2^-(Cq - Actin Cq)),set to Cq 45,Ploidy:Desiccation,T:D-D:D,triploid heat vs diploid heat,0.5991390942,-0.6859837024,1.884261891,0.5871962289,1.820550803,0.5991391,-0.6859837,1.884262,0.5871962,TRUE
+SOD,ln(2^-(Cq - Actin Cq)),set to Cq 45,Ploidy,T-D,triploid vs diploid,0.2607966267,-0.7938684914,1.315461745,0.6164514704,1.297963667,0.2607966,-0.7938685,1.315462,0.6164515,TRUE
+SOD,ln(2^-(Cq - Actin Cq)),set to Cq 45,Desiccation,D-C,heat vs control,0.7252052377,-0.3294598804,1.779870356,0.1699855525,2.065154904,0.7252052,-0.3294599,1.77987,0.1699856,TRUE
+SOD,ln(2^-(Cq - Actin Cq)),set to Cq 45,Ploidy:Desiccation,T:C-D:C,triploid control vs diploid control,1.029323563,-0.9587182276,3.017365354,0.5016512609,2.799171731,1.0293236,-0.9587182,3.017365,0.5016513,TRUE
+SOD,ln(2^-(Cq - Actin Cq)),set to Cq 45,Ploidy:Desiccation,D:D-D:C,diploid heat vs diploid control,1.493732174,-0.4943096166,3.481773965,0.1938911067,4.453686473,1.4937322,-0.4943096,3.481774,0.1938911,TRUE
+SOD,ln(2^-(Cq - Actin Cq)),set to Cq 45,Ploidy:Desiccation,T:D-D:C,triploid heat vs diploid control,0.9860018643,-1.002039926,2.974043655,0.5375195543,2.680496033,0.9860019,-1.0020399,2.974044,0.5375196,TRUE
+SOD,ln(2^-(Cq - Actin Cq)),set to Cq 45,Ploidy:Desiccation,D:D-T:C,diploid heat vs triploid control,0.464408611,-1.52363318,2.452450402,0.9188732718,1.591072968,0.4644086,-1.5236332,2.452450,0.9188733,TRUE
+SOD,ln(2^-(Cq - Actin Cq)),set to Cq 45,Ploidy:Desiccation,T:D-T:C,triploid heat vs triploid control,-0.04332169878,-2.031363489,1.944720092,0.9999224634,0.9576032807,-0.0433217,-2.0313635,1.944720,0.9999225,TRUE
+SOD,ln(2^-(Cq - Actin Cq)),set to Cq 45,Ploidy:Desiccation,T:D-D:D,triploid heat vs diploid heat,-0.5077303098,-2.4957721,1.480311481,0.8972468036,0.6018600657,-0.5077303,-2.4957721,1.480311,0.8972468,TRUE
+ATPsynthetase,ln(2^-(Cq - Actin Cq)),set to Cq 45,Ploidy,T-D,triploid vs diploid,-0.07516314739,-0.5091752709,0.3588489761,0.7254368138,0.9275921397,-0.07516315,-0.5091753,0.358849,0.7254368,TRUE
+ATPsynthetase,ln(2^-(Cq - Actin Cq)),set to Cq 45,Desiccation,D-C,heat vs control,-0.4061409261,-0.8401530496,0.02787119738,0.06551222737,0.6662162735,-0.4061409,-0.840153,0.0278712,0.0655122,TRUE
+ATPsynthetase,ln(2^-(Cq - Actin Cq)),set to Cq 45,Ploidy:Desiccation,T:C-D:C,triploid control vs diploid control,-0.06498254818,-0.8830945957,0.7531294993,0.9963119165,0.9370838171,-0.06498255,-0.8830946,0.7531295,0.9963119,TRUE
+ATPsynthetase,ln(2^-(Cq - Actin Cq)),set to Cq 45,Ploidy:Desiccation,D:D-D:C,diploid heat vs diploid control,-0.3959603269,-1.214072374,0.4221517206,0.5574438804,0.6730333967,-0.39596033,-1.2140724,0.4221517,0.5574439,TRUE
+ATPsynthetase,ln(2^-(Cq - Actin Cq)),set to Cq 45,Ploidy:Desiccation,T:D-D:C,triploid heat vs diploid control,-0.4813040735,-1.299416121,0.336807974,0.391524735,0.6179769787,-0.48130407,-1.2994161,0.3368080,0.3915247,TRUE
+ATPsynthetase,ln(2^-(Cq - Actin Cq)),set to Cq 45,Ploidy:Desiccation,D:D-T:C,diploid heat vs triploid control,-0.3309777787,-1.149089826,0.4871342688,0.6897214185,0.7182211287,-0.33097778,-1.1490898,0.4871343,0.6897214,TRUE
+ATPsynthetase,ln(2^-(Cq - Actin Cq)),set to Cq 45,Ploidy:Desiccation,T:D-T:C,triploid heat vs triploid control,-0.4163215253,-1.234433573,0.4017905222,0.5161893372,0.6594682007,-0.41632153,-1.2344336,0.4017905,0.5161893,TRUE
+ATPsynthetase,ln(2^-(Cq - Actin Cq)),set to Cq 45,Ploidy:Desiccation,T:D-D:D,triploid heat vs diploid heat,-0.08534374661,-0.9034557941,0.7327683009,0.991761911,0.9181966032,-0.08534375,-0.9034558,0.7327683,0.9917619,TRUE
+COX1,ln(2^-Cq),set to Cq 45,Ploidy,T-D,triploid vs diploid,-0.03465735903,-0.2124872276,0.1431725095,0.6927633543,0.9659363289,-0.03465736,-0.2124872,0.1431725,0.6927634,TRUE
+COX1,ln(2^-Cq),set to Cq 45,Desiccation,D-C,heat vs control,-0.035523793,-0.2133536616,0.1423060756,0.6855094711,0.9650997713,-0.03552379,-0.2133537,0.1423061,0.6855095,TRUE
+COX1,ln(2^-Cq),set to Cq 45,Ploidy:Desiccation,T:C-D:C,triploid control vs diploid control,0.1290986624,-0.2061103099,0.4643076347,0.72104408,1.137802377,0.129098662,-0.2061103,0.4643076,0.7210441,TRUE
+COX1,ln(2^-Cq),set to Cq 45,Ploidy:Desiccation,D:D-D:C,diploid heat vs diploid control,0.1282322284,-0.2069767439,0.4634412007,0.7251489853,1.136816973,0.128232228,-0.2069767,0.4634412,0.7251490,TRUE
+COX1,ln(2^-Cq),set to Cq 45,Ploidy:Desiccation,T:D-D:C,triploid heat vs diploid control,-0.07018115203,-0.4053901243,0.2650278203,0.9397085527,0.9322249302,-0.070181152,-0.4053901,0.2650278,0.9397086,TRUE
+COX1,ln(2^-Cq),set to Cq 45,Ploidy:Desiccation,D:D-T:C,diploid heat vs triploid control,-0.0008664339757,-0.3360754063,0.3343425383,0.9999998704,0.9991339413,-0.000866434,-0.3360754,0.3343425,0.9999999,TRUE
+COX1,ln(2^-Cq),set to Cq 45,Ploidy:Desiccation,T:D-T:C,triploid heat vs triploid control,-0.1992798144,-0.5344887867,0.1359291579,0.3824553386,0.8193206035,-0.199279814,-0.5344888,0.1359292,0.3824553,TRUE
+COX1,ln(2^-Cq),set to Cq 45,Ploidy:Desiccation,T:D-D:D,triploid heat vs diploid heat,-0.1984133804,-0.5336223527,0.1367955919,0.3862331986,0.8200307984,-0.198413380,-0.5336224,0.1367956,0.3862332,TRUE
+COX1,ln(Cq),set to Cq 45,Ploidy,T-D,triploid vs diploid,0.00237319379,-0.009497788326,0.01424417591,0.6852825647,,,,,,
+COX1,ln(Cq),set to Cq 45,Desiccation,D-C,heat vs control,0.002268877918,-0.009602104198,0.01413986003,0.6983854018,,,,,,
+COX1,ln(Cq),set to Cq 45,Ploidy:Desiccation,T:C-D:C,triploid control vs diploid control,-0.008694466598,-0.03107124586,0.01368231266,0.7155893883,,,,,,
+COX1,ln(Cq),set to Cq 45,Ploidy:Desiccation,D:D-D:C,diploid heat vs diploid control,-0.00879878247,-0.03117556173,0.01357799679,0.7081120063,,,,,,
+COX1,ln(Cq),set to Cq 45,Ploidy:Desiccation,T:D-D:C,triploid heat vs diploid control,0.004642071707,-0.01773470756,0.02701885097,0.9412083793,,,,,,
+COX1,ln(Cq),set to Cq 45,Ploidy:Desiccation,D:D-T:C,diploid heat vs triploid control,-0.0001043158719,-0.02248109513,0.02227246339,0.9999992398,,,,,,
+COX1,ln(Cq),set to Cq 45,Ploidy:Desiccation,T:D-T:C,triploid heat vs triploid control,0.01333653831,-0.009040240957,0.03571331757,0.3802648488,,,,,,
+COX1,ln(Cq),set to Cq 45,Ploidy:Desiccation,T:D-D:D,triploid heat vs diploid heat,0.01344085418,-0.008935925085,0.03581763344,0.3735202692,,,,,,

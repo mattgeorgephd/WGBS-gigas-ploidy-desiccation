@@ -1,0 +1,477 @@
+set,ontology,go_id,term,p_value,score,cluster,cluster_size,is_representative,parent_go_id,parent_term,labelled,term_size,uniqueness,mds_1,mds_2
+shared,BP,GO:0006139,nucleobase-containing compound metabolic process,,6165,1,11,TRUE,GO:0006139,nucleobase-containing compound metabolic process,TRUE,6165,0.9019,-0.32268,-0.35122
+shared,BP,GO:0006351,DNA-templated transcription,,3568,1,11,FALSE,GO:0006139,nucleobase-containing compound metabolic process,TRUE,3568,0.8946,-0.33795,-0.37384
+shared,BP,GO:0006355,regulation of DNA-templated transcription,,3456,1,11,FALSE,GO:0006139,nucleobase-containing compound metabolic process,TRUE,3456,0.8594,-0.35865,-0.27822
+shared,BP,GO:0006357,regulation of transcription by RNA polymerase II,,2581,1,11,FALSE,GO:0006139,nucleobase-containing compound metabolic process,TRUE,2581,0.8658,-0.34749,-0.27076
+shared,BP,GO:0045892,negative regulation of DNA-templated transcription,,1323,1,11,FALSE,GO:0006139,nucleobase-containing compound metabolic process,TRUE,1323,0.8587,-0.34691,-0.23405
+shared,BP,GO:0000122,negative regulation of transcription by RNA polymerase II,,980,1,11,FALSE,GO:0006139,nucleobase-containing compound metabolic process,TRUE,980,0.8642,-0.33749,-0.22843
+shared,BP,GO:0006364,rRNA processing,,225,1,11,FALSE,GO:0006139,nucleobase-containing compound metabolic process,TRUE,225,0.881,-0.29706,-0.27667
+shared,BP,GO:0006400,tRNA modification,,94,1,11,FALSE,GO:0006139,nucleobase-containing compound metabolic process,TRUE,94,0.9129,-0.29316,-0.32959
+shared,BP,GO:0000460,maturation of 5.8S rRNA,,36,1,11,FALSE,GO:0006139,nucleobase-containing compound metabolic process,TRUE,36,0.8964,-0.26747,-0.24669
+shared,BP,GO:0034587,piRNA processing,,23,1,11,FALSE,GO:0006139,nucleobase-containing compound metabolic process,TRUE,23,0.8926,-0.28359,-0.19896
+shared,BP,GO:0009301,snRNA transcription,,19,1,11,FALSE,GO:0006139,nucleobase-containing compound metabolic process,TRUE,19,0.9293,-0.25191,-0.27294
+shared,BP,GO:0007165,signal transduction,,6102,2,16,TRUE,GO:0007165,signal transduction,TRUE,6102,0.8853,-0.18607,0.39075
+shared,BP,GO:0007166,cell surface receptor signaling pathway,,2878,2,16,FALSE,GO:0007165,signal transduction,TRUE,2878,0.8892,-0.18025,0.39142
+shared,BP,GO:0007186,G protein-coupled receptor signaling pathway,,1287,2,16,FALSE,GO:0007165,signal transduction,TRUE,1287,0.9072,-0.15776,0.33692
+shared,BP,GO:0000165,MAPK cascade,,770,2,16,FALSE,GO:0007165,signal transduction,TRUE,770,0.9032,-0.1618,0.35527
+shared,BP,GO:0043408,regulation of MAPK cascade,,673,2,16,FALSE,GO:0007165,signal transduction,TRUE,673,0.8966,-0.16575,0.3871
+shared,BP,GO:0007264,small GTPase mediated signal transduction,,491,2,16,FALSE,GO:0007165,signal transduction,TRUE,491,0.9088,-0.15461,0.3408
+shared,BP,GO:0051896,regulation of phosphatidylinositol 3-kinase/protein kinase B signal transduction,,248,2,16,FALSE,GO:0007165,signal transduction,TRUE,248,0.9063,-0.15382,0.36148
+shared,BP,GO:0070374,positive regulation of ERK1 and ERK2 cascade,,218,2,16,FALSE,GO:0007165,signal transduction,TRUE,218,0.8878,-0.15181,0.35932
+shared,BP,GO:0019722,calcium-mediated signaling,,210,2,16,FALSE,GO:0007165,signal transduction,TRUE,210,0.9158,-0.1462,0.32198
+shared,BP,GO:0043123,positive regulation of canonical NF-kappaB signal transduction,,196,2,16,FALSE,GO:0007165,signal transduction,TRUE,196,0.8887,-0.15101,0.357
+shared,BP,GO:0051897,positive regulation of phosphatidylinositol 3-kinase/protein kinase B signal transduction,,171,2,16,FALSE,GO:0007165,signal transduction,TRUE,171,0.89,-0.14923,0.35384
+shared,BP,GO:0046328,regulation of JNK cascade,,132,2,16,FALSE,GO:0007165,signal transduction,TRUE,132,0.8936,-0.1824,0.40988
+shared,BP,GO:0035023,regulation of Rho protein signal transduction,,83,2,16,FALSE,GO:0007165,signal transduction,TRUE,83,0.9132,-0.14545,0.34343
+shared,BP,GO:0051898,negative regulation of phosphatidylinositol 3-kinase/protein kinase B signal transduction,,68,2,16,FALSE,GO:0007165,signal transduction,TRUE,68,0.9006,-0.16811,0.33037
+shared,BP,GO:0043124,negative regulation of canonical NF-kappaB signal transduction,,53,2,16,FALSE,GO:0007165,signal transduction,TRUE,53,0.9031,-0.16544,0.32462
+shared,BP,GO:0016601,Rac protein signal transduction,,42,2,16,FALSE,GO:0007165,signal transduction,TRUE,42,0.9249,-0.13293,0.29559
+shared,BP,GO:0010468,regulation of gene expression,,5467,3,12,TRUE,GO:0010468,regulation of gene expression,TRUE,5467,0.8715,-0.31891,-0.22106
+shared,BP,GO:0045893,positive regulation of DNA-templated transcription,,1687,3,12,FALSE,GO:0010468,regulation of gene expression,TRUE,1687,0.8483,-0.32686,-0.23351
+shared,BP,GO:0010629,negative regulation of gene expression,,1623,3,12,FALSE,GO:0010468,regulation of gene expression,TRUE,1623,0.8692,-0.30899,-0.18005
+shared,BP,GO:0045944,positive regulation of transcription by RNA polymerase II,,1243,3,12,FALSE,GO:0010468,regulation of gene expression,TRUE,1243,0.8537,-0.31865,-0.2285
+shared,BP,GO:0010628,positive regulation of gene expression,,1201,3,12,FALSE,GO:0010468,regulation of gene expression,TRUE,1201,0.8682,-0.27112,-0.16893
+shared,BP,GO:0031047,regulatory ncRNA-mediated gene silencing,,714,3,12,FALSE,GO:0010468,regulation of gene expression,TRUE,714,0.8794,-0.29131,-0.17014
+shared,BP,GO:0006402,mRNA catabolic process,,310,3,12,FALSE,GO:0010468,regulation of gene expression,TRUE,310,0.8563,-0.35767,-0.26989
+shared,BP,GO:0000956,nuclear-transcribed mRNA catabolic process,,128,3,12,FALSE,GO:0010468,regulation of gene expression,TRUE,128,0.8643,-0.34416,-0.26119
+shared,BP,GO:0045943,positive regulation of transcription by RNA polymerase I,,35,3,12,FALSE,GO:0010468,regulation of gene expression,TRUE,35,0.89,-0.25834,-0.18564
+shared,BP,GO:0000289,nuclear-transcribed mRNA poly(A) tail shortening,,34,3,12,FALSE,GO:0010468,regulation of gene expression,TRUE,34,0.8366,-0.36091,-0.27755
+shared,BP,GO:0043928,exonucleolytic catabolism of deadenylated mRNA,,13,3,12,FALSE,GO:0010468,regulation of gene expression,TRUE,13,0.8473,-0.34517,-0.26655
+shared,BP,GO:0016480,negative regulation of transcription by RNA polymerase III,,4,3,12,FALSE,GO:0010468,regulation of gene expression,TRUE,4,0.9074,-0.25412,-0.17041
+shared,BP,GO:0007275,multicellular organism development,,4728,4,14,TRUE,GO:0007275,multicellular organism development,TRUE,4728,0.8864,0.49363,-0.12496
+shared,BP,GO:0007399,nervous system development,,2510,4,14,FALSE,GO:0007275,multicellular organism development,TRUE,2510,0.8848,0.49684,-0.12485
+shared,BP,GO:0030182,neuron differentiation,,1405,4,14,FALSE,GO:0007275,multicellular organism development,TRUE,1405,0.8728,0.47648,-0.11987
+shared,BP,GO:0001501,skeletal system development,,530,4,14,FALSE,GO:0007275,multicellular organism development,TRUE,530,0.9042,0.42889,-0.10712
+shared,BP,GO:0051216,cartilage development,,207,4,14,FALSE,GO:0007275,multicellular organism development,TRUE,207,0.8954,0.46233,-0.12026
+shared,BP,GO:0001889,liver development,,142,4,14,FALSE,GO:0007275,multicellular organism development,TRUE,142,0.9114,0.40468,-0.10051
+shared,BP,GO:0001823,mesonephros development,,103,4,14,FALSE,GO:0007275,multicellular organism development,TRUE,103,0.9134,0.40014,-0.09944
+shared,BP,GO:0048704,embryonic skeletal system morphogenesis,,94,4,14,FALSE,GO:0007275,multicellular organism development,TRUE,94,0.8889,0.48273,-0.12825
+shared,BP,GO:0031018,endocrine pancreas development,,46,4,14,FALSE,GO:0007275,multicellular organism development,TRUE,46,0.9182,0.38124,-0.09396
+shared,BP,GO:0007431,salivary gland development,,34,4,14,FALSE,GO:0007275,multicellular organism development,TRUE,34,0.9175,0.37926,-0.09322
+shared,BP,GO:0002063,chondrocyte development,,33,4,14,FALSE,GO:0007275,multicellular organism development,TRUE,33,0.8926,0.42982,-0.10809
+shared,BP,GO:0007435,salivary gland morphogenesis,,32,4,14,FALSE,GO:0007275,multicellular organism development,TRUE,32,0.9087,0.41527,-0.10449
+shared,BP,GO:0032332,positive regulation of chondrocyte differentiation,,20,4,14,FALSE,GO:0007275,multicellular organism development,TRUE,20,0.8517,0.37283,-0.0481
+shared,BP,GO:0060346,bone trabecula formation,,10,4,14,FALSE,GO:0007275,multicellular organism development,TRUE,10,0.9139,0.3981,-0.10063
+shared,BP,GO:0006810,transport,,4490,5,8,TRUE,GO:0006810,transport,TRUE,4490,0.9583,-0.03847,0.1014
+shared,BP,GO:0034220,monoatomic ion transmembrane transport,,1040,5,8,FALSE,GO:0006810,transport,TRUE,1040,0.9532,-0.0495,0.09011
+shared,BP,GO:0032880,regulation of protein localization,,874,5,8,FALSE,GO:0006810,transport,TRUE,874,0.9136,-0.09124,0.1529
+shared,BP,GO:0051656,establishment of organelle localization,,469,5,8,FALSE,GO:0006810,transport,TRUE,469,0.9659,-0.03529,0.08949
+shared,BP,GO:0033157,regulation of intracellular protein transport,,226,5,8,FALSE,GO:0006810,transport,TRUE,226,0.9181,-0.08509,0.14825
+shared,BP,GO:0006836,neurotransmitter transport,,207,5,8,FALSE,GO:0006810,transport,TRUE,207,0.97,-0.03319,0.08401
+shared,BP,GO:0032388,positive regulation of intracellular transport,,201,5,8,FALSE,GO:0006810,transport,TRUE,201,0.9025,-0.0831,0.15382
+shared,BP,GO:0051293,establishment of spindle localization,,57,5,8,FALSE,GO:0006810,transport,TRUE,57,0.9131,-0.07355,0.12327
+shared,BP,GO:0006950,response to stress,,4034,6,18,TRUE,GO:0006950,response to stress,TRUE,4034,0.9304,-0.14692,0.39089
+shared,BP,GO:0006974,DNA damage response,,884,6,18,FALSE,GO:0006950,response to stress,TRUE,884,0.9156,-0.16765,0.38684
+shared,BP,GO:0006281,DNA repair,,601,6,18,FALSE,GO:0006950,response to stress,TRUE,601,0.8554,-0.38375,0.05779
+shared,BP,GO:0009611,response to wounding,,557,6,18,FALSE,GO:0006950,response to stress,TRUE,557,0.944,-0.12589,0.33
+shared,BP,GO:0042060,wound healing,,423,6,18,FALSE,GO:0006950,response to stress,TRUE,423,0.9451,-0.12409,0.32484
+shared,BP,GO:0006302,double-strand break repair,,307,6,18,FALSE,GO:0006950,response to stress,TRUE,307,0.865,-0.36459,0.05673
+shared,BP,GO:0034976,response to endoplasmic reticulum stress,,266,6,18,FALSE,GO:0006950,response to stress,TRUE,266,0.9237,-0.15685,0.36112
+shared,BP,GO:0042594,response to starvation,,218,6,18,FALSE,GO:0006950,response to stress,TRUE,218,0.9406,-0.12299,0.348
+shared,BP,GO:0000724,double-strand break repair via homologous recombination,,175,6,18,FALSE,GO:0006950,response to stress,TRUE,175,0.8732,-0.3483,0.05545
+shared,BP,GO:0030433,ubiquitin-dependent ERAD pathway,,85,6,18,FALSE,GO:0006950,response to stress,TRUE,85,0.8465,-0.39325,0.07466
+shared,BP,GO:0030968,endoplasmic reticulum unfolded protein response,,75,6,18,FALSE,GO:0006950,response to stress,TRUE,75,0.8916,-0.1851,0.43023
+shared,BP,GO:0006303,double-strand break repair via nonhomologous end joining,,65,6,18,FALSE,GO:0006950,response to stress,TRUE,65,0.8812,-0.33181,0.05413
+shared,BP,GO:0034198,cellular response to amino acid starvation,,51,6,18,FALSE,GO:0006950,response to stress,TRUE,51,0.9248,-0.14871,0.37617
+shared,BP,GO:0042149,cellular response to glucose starvation,,50,6,18,FALSE,GO:0006950,response to stress,TRUE,50,0.9264,-0.14649,0.36992
+shared,BP,GO:0006983,ER overload response,,11,6,18,FALSE,GO:0006950,response to stress,TRUE,11,0.9164,-0.15628,0.3329
+shared,BP,GO:0042276,error-prone translesion synthesis,,11,6,18,FALSE,GO:0006950,response to stress,TRUE,11,0.8913,-0.31491,0.027
+shared,BP,GO:0006283,transcription-coupled nucleotide-excision repair,,10,6,18,FALSE,GO:0006950,response to stress,TRUE,10,0.8955,-0.30137,0.05117
+shared,BP,GO:0051103,DNA ligation involved in DNA repair,,5,6,18,FALSE,GO:0006950,response to stress,TRUE,5,0.8995,-0.29231,0.05041
+shared,BP,GO:0008283,cell population proliferation,,3323,7,7,TRUE,GO:0008283,cell population proliferation,TRUE,3323,0.9674,0.00093,0.03553
+shared,BP,GO:0008284,positive regulation of cell population proliferation,,1286,7,7,FALSE,GO:0008283,cell population proliferation,TRUE,1286,0.9124,-0.04567,0.10286
+shared,BP,GO:0008285,negative regulation of cell population proliferation,,957,7,7,FALSE,GO:0008283,cell population proliferation,TRUE,957,0.9194,-0.07496,0.09292
+shared,BP,GO:0001938,positive regulation of endothelial cell proliferation,,111,7,7,FALSE,GO:0008283,cell population proliferation,TRUE,111,0.9276,-0.0347,0.08945
+shared,BP,GO:0002043,blood vessel endothelial cell proliferation involved in sprouting angiogenesis,,55,7,7,FALSE,GO:0008283,cell population proliferation,TRUE,55,0.8903,0.40099,-0.09356
+shared,BP,GO:0048146,positive regulation of fibroblast proliferation,,53,7,7,FALSE,GO:0008283,cell population proliferation,TRUE,53,0.933,-0.03478,0.08651
+shared,BP,GO:0010839,negative regulation of keratinocyte proliferation,,24,7,7,FALSE,GO:0008283,cell population proliferation,TRUE,24,0.9382,-0.05709,0.07742
+shared,BP,GO:0008104,protein localization,,2499,8,15,TRUE,GO:0008104,protein localization,TRUE,2499,0.9418,-0.05483,0.1045
+shared,BP,GO:0045184,establishment of protein localization,,1699,8,15,FALSE,GO:0008104,protein localization,TRUE,1699,0.9422,-0.05408,0.10454
+shared,BP,GO:0015031,protein transport,,1583,8,15,FALSE,GO:0008104,protein localization,TRUE,1583,0.942,-0.05404,0.10485
+shared,BP,GO:0006886,intracellular protein transport,,879,8,15,FALSE,GO:0008104,protein localization,TRUE,879,0.9423,-0.05337,0.10564
+shared,BP,GO:0034504,protein localization to nucleus,,310,8,15,FALSE,GO:0008104,protein localization,TRUE,310,0.9525,-0.04892,0.09466
+shared,BP,GO:0030073,insulin secretion,,199,8,15,FALSE,GO:0008104,protein localization,TRUE,199,0.8957,-0.11728,0.25701
+shared,BP,GO:0050796,regulation of insulin secretion,,165,8,15,FALSE,GO:0008104,protein localization,TRUE,165,0.886,-0.12876,0.2815
+shared,BP,GO:0051028,mRNA transport,,127,8,15,FALSE,GO:0008104,protein localization,TRUE,127,0.9651,-0.03619,0.09213
+shared,BP,GO:0019915,lipid storage,,94,8,15,FALSE,GO:0008104,protein localization,TRUE,94,0.9657,-0.03605,0.0905
+shared,BP,GO:0032370,positive regulation of lipid transport,,86,8,15,FALSE,GO:0008104,protein localization,TRUE,86,0.9194,-0.06778,0.14603
+shared,BP,GO:0032374,regulation of cholesterol transport,,80,8,15,FALSE,GO:0008104,protein localization,TRUE,80,0.9377,-0.06781,0.13594
+shared,BP,GO:0010875,positive regulation of cholesterol efflux,,27,8,15,FALSE,GO:0008104,protein localization,TRUE,27,0.926,-0.06354,0.13787
+shared,BP,GO:0045176,apical protein localization,,15,8,15,FALSE,GO:0008104,protein localization,TRUE,15,0.9621,-0.04303,0.0834
+shared,BP,GO:0033572,transferrin transport,,10,8,15,FALSE,GO:0008104,protein localization,TRUE,10,0.9598,-0.0442,0.0871
+shared,BP,GO:0045175,basal protein localization,,1,8,15,FALSE,GO:0008104,protein localization,TRUE,1,0.9675,-0.03944,0.07606
+shared,BP,GO:0006955,immune response,,2024,9,10,TRUE,GO:0006955,immune response,TRUE,2024,0.9262,-0.03299,0.33341
+shared,BP,GO:0045087,innate immune response,,974,9,10,FALSE,GO:0006955,immune response,TRUE,974,0.9058,-0.0698,0.4098
+shared,BP,GO:0002218,activation of innate immune response,,276,9,10,FALSE,GO:0006955,immune response,TRUE,276,0.8643,-0.10704,0.41924
+shared,BP,GO:0045824,negative regulation of innate immune response,,91,9,10,FALSE,GO:0006955,immune response,TRUE,91,0.8811,-0.11712,0.38416
+shared,BP,GO:0042267,natural killer cell mediated cytotoxicity,,76,9,10,FALSE,GO:0006955,immune response,TRUE,76,0.9152,-0.06889,0.34419
+shared,BP,GO:0002474,antigen processing and presentation of peptide antigen via MHC class I,,36,9,10,FALSE,GO:0006955,immune response,TRUE,36,0.9759,0.03687,0.07342
+shared,BP,GO:0019886,antigen processing and presentation of exogenous peptide antigen via MHC class II,,31,9,10,FALSE,GO:0006955,immune response,TRUE,31,0.9763,0.0362,0.0727
+shared,BP,GO:0045954,positive regulation of natural killer cell mediated cytotoxicity,,29,9,10,FALSE,GO:0006955,immune response,TRUE,29,0.8758,-0.10217,0.36545
+shared,BP,GO:0002667,regulation of T cell anergy,,8,9,10,FALSE,GO:0006955,immune response,TRUE,8,0.8993,0.29409,0.01119
+shared,BP,GO:0048541,Peyer's patch development,,8,9,10,FALSE,GO:0006955,immune response,TRUE,8,0.9076,0.3849,-0.04847
+shared,BP,GO:0006915,apoptotic process,,1973,10,5,TRUE,GO:0006915,apoptotic process,TRUE,1973,0.9809,-0.03405,0.02641
+shared,BP,GO:0042981,regulation of apoptotic process,,1523,10,5,FALSE,GO:0006915,apoptotic process,TRUE,1523,0.9464,-0.07551,0.08537
+shared,BP,GO:0043066,negative regulation of apoptotic process,,918,10,5,FALSE,GO:0006915,apoptotic process,TRUE,918,0.9299,-0.10631,0.08805
+shared,BP,GO:0043065,positive regulation of apoptotic process,,540,10,5,FALSE,GO:0006915,apoptotic process,TRUE,540,0.929,-0.07039,0.09411
+shared,BP,GO:0060544,regulation of necroptotic process,,35,10,5,FALSE,GO:0006915,apoptotic process,TRUE,35,0.9607,-0.05902,0.06994
+shared,BP,GO:0007049,cell cycle,,1824,11,7,TRUE,GO:0007049,cell cycle,TRUE,1824,0.97,-0.04135,0.04488
+shared,BP,GO:0007059,chromosome segregation,,424,11,7,FALSE,GO:0007049,cell cycle,TRUE,424,0.9722,-0.03907,0.04475
+shared,BP,GO:0000086,G2/M transition of mitotic cell cycle,,140,11,7,FALSE,GO:0007049,cell cycle,TRUE,140,0.9735,-0.03773,0.04495
+shared,BP,GO:0045931,positive regulation of mitotic cell cycle,,128,11,7,FALSE,GO:0007049,cell cycle,TRUE,128,0.9274,-0.06993,0.10217
+shared,BP,GO:0000077,DNA damage checkpoint signaling,,126,11,7,FALSE,GO:0007049,cell cycle,TRUE,126,0.8724,-0.21064,0.37724
+shared,BP,GO:0010971,positive regulation of G2/M transition of mitotic cell cycle,,29,11,7,FALSE,GO:0007049,cell cycle,TRUE,29,0.9331,-0.06512,0.09696
+shared,BP,GO:0051987,positive regulation of attachment of spindle microtubules to kinetochore,,11,11,7,FALSE,GO:0007049,cell cycle,TRUE,11,0.9111,-0.07686,0.14385
+shared,BP,GO:0007267,cell-cell signaling,,1706,12,4,TRUE,GO:0007267,cell-cell signaling,TRUE,1706,0.9311,-0.10989,0.21714
+shared,BP,GO:0016055,Wnt signaling pathway,,459,12,4,FALSE,GO:0007267,cell-cell signaling,TRUE,459,0.9033,-0.16102,0.35672
+shared,BP,GO:0030178,negative regulation of Wnt signaling pathway,,173,12,4,FALSE,GO:0007267,cell-cell signaling,TRUE,173,0.8901,-0.1817,0.35695
+shared,BP,GO:0007274,neuromuscular synaptic transmission,,27,12,4,FALSE,GO:0007267,cell-cell signaling,TRUE,27,0.9528,-0.08272,0.16817
+shared,BP,GO:0006508,proteolysis,,1648,13,8,TRUE,GO:0006508,proteolysis,TRUE,1648,0.918,-0.30163,-0.36076
+shared,BP,GO:0051603,proteolysis involved in protein catabolic process,,750,13,8,FALSE,GO:0006508,proteolysis,TRUE,750,0.9109,-0.31691,-0.38438
+shared,BP,GO:0030162,regulation of proteolysis,,618,13,8,FALSE,GO:0006508,proteolysis,TRUE,618,0.8906,-0.31723,-0.27679
+shared,BP,GO:0043161,proteasome-mediated ubiquitin-dependent protein catabolic process,,458,13,8,FALSE,GO:0006508,proteolysis,TRUE,458,0.9151,-0.30612,-0.36983
+shared,BP,GO:0045862,positive regulation of proteolysis,,350,13,8,FALSE,GO:0006508,proteolysis,TRUE,350,0.8766,-0.29677,-0.23985
+shared,BP,GO:0016485,protein processing,,245,13,8,FALSE,GO:0006508,proteolysis,TRUE,245,0.9159,-0.28672,-0.32715
+shared,BP,GO:0006457,protein folding,,223,13,8,FALSE,GO:0006508,proteolysis,TRUE,223,0.9205,-0.27621,-0.31506
+shared,BP,GO:0006919,activation of cysteine-type endopeptidase activity involved in apoptotic process,,68,13,8,FALSE,GO:0006508,proteolysis,TRUE,68,0.8847,-0.27693,-0.2157
+shared,BP,GO:0007155,cell adhesion,,1529,14,5,TRUE,GO:0007155,cell adhesion,TRUE,1529,0.9726,-0.01593,0.03143
+shared,BP,GO:0030155,regulation of cell adhesion,,802,14,5,FALSE,GO:0007155,cell adhesion,TRUE,802,0.9402,-0.05708,0.08734
+shared,BP,GO:0007162,negative regulation of cell adhesion,,312,14,5,FALSE,GO:0007155,cell adhesion,TRUE,312,0.9281,-0.08355,0.08697
+shared,BP,GO:0007156,homophilic cell adhesion via plasma membrane adhesion molecules,,168,14,5,FALSE,GO:0007155,cell adhesion,TRUE,168,0.9764,-0.01274,0.03056
+shared,BP,GO:0016339,calcium-dependent cell-cell adhesion via plasma membrane cell adhesion molecules,,47,14,5,FALSE,GO:0007155,cell adhesion,TRUE,47,0.9783,-0.01231,0.02982
+shared,BP,GO:0006468,protein phosphorylation,,1319,15,7,TRUE,GO:0006468,protein phosphorylation,TRUE,1319,0.9044,-0.31272,-0.35726
+shared,BP,GO:0042327,positive regulation of phosphorylation,,661,15,7,FALSE,GO:0006468,protein phosphorylation,TRUE,661,0.8786,-0.24963,-0.14583
+shared,BP,GO:0001933,negative regulation of protein phosphorylation,,304,15,7,FALSE,GO:0006468,protein phosphorylation,TRUE,304,0.8674,-0.33432,-0.24526
+shared,BP,GO:0018105,peptidyl-serine phosphorylation,,295,15,7,FALSE,GO:0006468,protein phosphorylation,TRUE,295,0.9175,-0.28059,-0.31861
+shared,BP,GO:0046777,protein autophosphorylation,,199,15,7,FALSE,GO:0006468,protein phosphorylation,TRUE,199,0.9212,-0.2721,-0.30799
+shared,BP,GO:0050731,positive regulation of peptidyl-tyrosine phosphorylation,,168,15,7,FALSE,GO:0006468,protein phosphorylation,TRUE,168,0.8697,-0.29622,-0.23079
+shared,BP,GO:0018107,peptidyl-threonine phosphorylation,,100,15,7,FALSE,GO:0006468,protein phosphorylation,TRUE,100,0.9238,-0.2645,-0.29898
+shared,BP,GO:0060429,epithelium development,,1237,16,12,TRUE,GO:0060429,epithelium development,FALSE,1237,0.9051,0.43256,-0.11372
+shared,BP,GO:0002009,morphogenesis of an epithelium,,516,16,12,FALSE,GO:0060429,epithelium development,FALSE,516,0.899,0.45519,-0.11949
+shared,BP,GO:0060537,muscle tissue development,,433,16,12,FALSE,GO:0060429,epithelium development,FALSE,433,0.9168,0.39212,-0.10145
+shared,BP,GO:0030856,regulation of epithelial cell differentiation,,171,16,12,FALSE,GO:0060429,epithelium development,FALSE,171,0.8523,0.40781,-0.06036
+shared,BP,GO:0001942,hair follicle development,,93,16,12,FALSE,GO:0060429,epithelium development,FALSE,93,0.9095,0.4097,-0.10696
+shared,BP,GO:0001738,morphogenesis of a polarized epithelium,,92,16,12,FALSE,GO:0060429,epithelium development,FALSE,92,0.9111,0.41296,-0.1073
+shared,BP,GO:0055017,cardiac muscle tissue growth,,89,16,12,FALSE,GO:0060429,epithelium development,FALSE,89,0.8932,0.4579,-0.1106
+shared,BP,GO:0007492,endoderm development,,83,16,12,FALSE,GO:0060429,epithelium development,FALSE,83,0.9286,0.34785,-0.08828
+shared,BP,GO:0045616,regulation of keratinocyte differentiation,,40,16,12,FALSE,GO:0060429,epithelium development,FALSE,40,0.8625,0.39724,-0.06152
+shared,BP,GO:0007398,ectoderm development,,22,16,12,FALSE,GO:0060429,epithelium development,FALSE,22,0.935,0.32088,-0.08029
+shared,BP,GO:0048339,paraxial mesoderm development,,18,16,12,FALSE,GO:0060429,epithelium development,FALSE,18,0.9284,0.34805,-0.09009
+shared,BP,GO:0048340,paraxial mesoderm morphogenesis,,10,16,12,FALSE,GO:0060429,epithelium development,FALSE,10,0.9201,0.38174,-0.09942
+shared,BP,GO:0043687,post-translational protein modification,,1092,17,6,TRUE,GO:0043687,post-translational protein modification,FALSE,1092,0.9192,-0.29842,-0.35924
+shared,BP,GO:0016567,protein ubiquitination,,751,17,6,FALSE,GO:0043687,post-translational protein modification,FALSE,751,0.9222,-0.2904,-0.34883
+shared,BP,GO:0016570,histone modification,,120,17,6,FALSE,GO:0043687,post-translational protein modification,FALSE,120,0.9334,-0.25611,-0.30445
+shared,BP,GO:0035066,positive regulation of histone acetylation,,10,17,6,FALSE,GO:0043687,post-translational protein modification,FALSE,10,0.9015,-0.25201,-0.21055
+shared,BP,GO:0006501,C-terminal protein lipidation,,5,17,6,FALSE,GO:0043687,post-translational protein modification,FALSE,5,0.9319,-0.24631,-0.28174
+shared,BP,GO:0034729,histone H3-K79 methylation,,1,17,6,FALSE,GO:0043687,post-translational protein modification,FALSE,1,0.9495,-0.20526,-0.23795
+shared,BP,GO:0030334,regulation of cell migration,,1040,18,7,TRUE,GO:0030334,regulation of cell migration,FALSE,1040,0.937,-0.06398,0.12422
+shared,BP,GO:0030336,negative regulation of cell migration,,373,18,7,FALSE,GO:0030334,regulation of cell migration,FALSE,373,0.9253,-0.09128,0.12045
+shared,BP,GO:0060326,cell chemotaxis,,325,18,7,FALSE,GO:0030334,regulation of cell migration,FALSE,325,0.9075,-0.1353,0.42963
+shared,BP,GO:0030595,leukocyte chemotaxis,,240,18,7,FALSE,GO:0030334,regulation of cell migration,FALSE,240,0.8897,-0.07287,0.43569
+shared,BP,GO:0050918,positive chemotaxis,,69,18,7,FALSE,GO:0030334,regulation of cell migration,FALSE,69,0.9389,-0.10702,0.36404
+shared,BP,GO:0050919,negative chemotaxis,,47,18,7,FALSE,GO:0030334,regulation of cell migration,FALSE,47,0.9405,-0.10494,0.35682
+shared,BP,GO:0014912,negative regulation of smooth muscle cell migration,,38,18,7,FALSE,GO:0030334,regulation of cell migration,FALSE,38,0.9373,-0.07911,0.10848
+shared,BP,GO:0007417,central nervous system development,,1028,19,13,TRUE,GO:0007417,central nervous system development,FALSE,1028,0.8939,0.46411,-0.11596
+shared,BP,GO:0007420,brain development,,723,19,13,FALSE,GO:0007417,central nervous system development,FALSE,723,0.8906,0.47677,-0.12074
+shared,BP,GO:0042552,myelination,,145,19,13,FALSE,GO:0007417,central nervous system development,FALSE,145,0.9037,0.3808,-0.09531
+shared,BP,GO:0021987,cerebral cortex development,,127,19,13,FALSE,GO:0007417,central nervous system development,FALSE,127,0.9066,0.42145,-0.105
+shared,BP,GO:0021510,spinal cord development,,102,19,13,FALSE,GO:0007417,central nervous system development,FALSE,102,0.9082,0.41747,-0.10375
+shared,BP,GO:0007405,neuroblast proliferation,,81,19,13,FALSE,GO:0007417,central nervous system development,FALSE,81,0.8923,0.39456,-0.08562
+shared,BP,GO:0021536,diencephalon development,,79,19,13,FALSE,GO:0007417,central nervous system development,FALSE,79,0.9085,0.41497,-0.10316
+shared,BP,GO:0021772,olfactory bulb development,,35,19,13,FALSE,GO:0007417,central nervous system development,FALSE,35,0.9142,0.39342,-0.09701
+shared,BP,GO:0022011,myelination in peripheral nervous system,,28,19,13,FALSE,GO:0007417,central nervous system development,FALSE,28,0.9031,0.38646,-0.09214
+shared,BP,GO:0007413,axonal fasciculation,,21,19,13,FALSE,GO:0007417,central nervous system development,FALSE,21,0.8734,0.35481,-0.06494
+shared,BP,GO:0021702,cerebellar Purkinje cell differentiation,,13,19,13,FALSE,GO:0007417,central nervous system development,FALSE,13,0.8996,0.41034,-0.10371
+shared,BP,GO:0031642,negative regulation of myelination,,9,19,13,FALSE,GO:0007417,central nervous system development,FALSE,9,0.872,0.29198,-0.03263
+shared,BP,GO:0016199,axon midline choice point recognition,,5,19,13,FALSE,GO:0007417,central nervous system development,FALSE,5,0.8772,0.35895,-0.06781
+shared,BP,GO:0035239,tube morphogenesis,,951,20,6,TRUE,GO:0035239,tube morphogenesis,FALSE,951,0.8891,0.48226,-0.12333
+shared,BP,GO:0001525,angiogenesis,,617,20,6,FALSE,GO:0035239,tube morphogenesis,FALSE,617,0.8875,0.48737,-0.12608
+shared,BP,GO:0030324,lung development,,188,20,6,FALSE,GO:0035239,tube morphogenesis,FALSE,188,0.9035,0.43609,-0.1113
+shared,BP,GO:0045766,positive regulation of angiogenesis,,185,20,6,FALSE,GO:0035239,tube morphogenesis,FALSE,185,0.8445,0.41449,-0.05286
+shared,BP,GO:0001570,vasculogenesis,,83,20,6,FALSE,GO:0035239,tube morphogenesis,FALSE,83,0.8931,0.4273,-0.11043
+shared,BP,GO:0048845,venous blood vessel morphogenesis,,9,20,6,FALSE,GO:0035239,tube morphogenesis,FALSE,9,0.919,0.37797,-0.09434
+shared,BP,GO:0034097,response to cytokine,,949,21,21,TRUE,GO:0034097,response to cytokine,FALSE,949,0.9374,-0.11726,0.37552
+shared,BP,GO:0032870,cellular response to hormone stimulus,,610,21,21,FALSE,GO:0034097,response to cytokine,FALSE,610,0.9191,-0.14333,0.40443
+shared,BP,GO:0019221,cytokine-mediated signaling pathway,,513,21,21,FALSE,GO:0034097,response to cytokine,FALSE,513,0.8881,-0.17467,0.43207
+shared,BP,GO:0032868,response to insulin,,269,21,21,FALSE,GO:0034097,response to cytokine,FALSE,269,0.9386,-0.11524,0.36669
+shared,BP,GO:0034612,response to tumor necrosis factor,,259,21,21,FALSE,GO:0034097,response to cytokine,FALSE,259,0.9449,-0.1069,0.34126
+shared,BP,GO:0043401,steroid hormone mediated signaling pathway,,138,21,21,FALSE,GO:0034097,response to cytokine,FALSE,138,0.8998,-0.15871,0.39847
+shared,BP,GO:0008286,insulin receptor signaling pathway,,125,21,21,FALSE,GO:0034097,response to cytokine,FALSE,125,0.8959,-0.16482,0.4147
+shared,BP,GO:0045471,response to ethanol,,121,21,21,FALSE,GO:0034097,response to cytokine,FALSE,121,0.9492,-0.10151,0.32342
+shared,BP,GO:0032355,response to estradiol,,113,21,21,FALSE,GO:0034097,response to cytokine,FALSE,113,0.9476,-0.10306,0.32958
+shared,BP,GO:0010803,regulation of tumor necrosis factor-mediated signaling pathway,,60,21,21,FALSE,GO:0034097,response to cytokine,FALSE,60,0.9019,-0.15906,0.40859
+shared,BP,GO:0014075,response to amine,,47,21,21,FALSE,GO:0034097,response to cytokine,FALSE,47,0.9526,-0.09764,0.30589
+shared,BP,GO:0033574,response to testosterone,,45,21,21,FALSE,GO:0034097,response to cytokine,FALSE,45,0.95,-0.09895,0.31628
+shared,BP,GO:0032570,response to progesterone,,40,21,21,FALSE,GO:0034097,response to cytokine,FALSE,40,0.9463,-0.10375,0.33263
+shared,BP,GO:0070670,response to interleukin-4,,36,21,21,FALSE,GO:0034097,response to cytokine,FALSE,36,0.9528,-0.09618,0.30522
+shared,BP,GO:0031000,response to caffeine,,15,21,21,FALSE,GO:0034097,response to cytokine,FALSE,15,0.9528,-0.09617,0.30256
+shared,BP,GO:0033147,negative regulation of intracellular estrogen receptor signaling pathway,,15,21,21,FALSE,GO:0034097,response to cytokine,FALSE,15,0.895,-0.17358,0.38573
+shared,BP,GO:0070672,response to interleukin-15,,12,21,21,FALSE,GO:0034097,response to cytokine,FALSE,12,0.9554,-0.09226,0.29194
+shared,BP,GO:0070669,response to interleukin-2,,11,21,21,FALSE,GO:0034097,response to cytokine,FALSE,11,0.9553,-0.09253,0.29287
+shared,BP,GO:0060397,growth hormone receptor signaling pathway via JAK-STAT,,10,21,21,FALSE,GO:0034097,response to cytokine,FALSE,10,0.9116,-0.14678,0.37246
+shared,BP,GO:0019236,response to pheromone,,9,21,21,FALSE,GO:0034097,response to cytokine,FALSE,9,0.959,-0.08805,0.27598
+shared,BP,GO:0051414,response to cortisol,,6,21,21,FALSE,GO:0034097,response to cytokine,FALSE,6,0.9515,-0.09624,0.30786
+shared,BP,GO:0030097,hemopoiesis,,947,22,11,TRUE,GO:0030097,hemopoiesis,FALSE,947,0.8941,0.40232,-0.09285
+shared,BP,GO:0030099,myeloid cell differentiation,,430,22,11,FALSE,GO:0030097,hemopoiesis,FALSE,430,0.9003,0.3819,-0.08637
+shared,BP,GO:0042692,muscle cell differentiation,,419,22,11,FALSE,GO:0030097,hemopoiesis,FALSE,419,0.9129,0.35022,-0.08498
+shared,BP,GO:0045638,negative regulation of myeloid cell differentiation,,95,22,11,FALSE,GO:0030097,hemopoiesis,FALSE,95,0.8369,0.33332,0.00823
+shared,BP,GO:0033077,T cell differentiation in thymus,,87,22,11,FALSE,GO:0030097,hemopoiesis,FALSE,87,0.8875,0.37547,-0.02641
+shared,BP,GO:0045600,positive regulation of fat cell differentiation,,71,22,11,FALSE,GO:0030097,hemopoiesis,FALSE,71,0.8784,0.25764,-0.0069
+shared,BP,GO:0030225,macrophage differentiation,,64,22,11,FALSE,GO:0030097,hemopoiesis,FALSE,64,0.9135,0.33986,-0.0732
+shared,BP,GO:0048741,skeletal muscle fiber development,,38,22,11,FALSE,GO:0030097,hemopoiesis,FALSE,38,0.9036,0.39528,-0.09895
+shared,BP,GO:0045648,positive regulation of erythrocyte differentiation,,33,22,11,FALSE,GO:0030097,hemopoiesis,FALSE,33,0.8451,0.33231,0.01613
+shared,BP,GO:0045651,positive regulation of macrophage differentiation,,16,22,11,FALSE,GO:0030097,hemopoiesis,FALSE,16,0.852,0.32465,0.01476
+shared,BP,GO:0045647,negative regulation of erythrocyte differentiation,,8,22,11,FALSE,GO:0030097,hemopoiesis,FALSE,8,0.8568,0.30022,0.01145
+shared,BP,GO:0001816,cytokine production,,881,23,4,TRUE,GO:0001816,cytokine production,FALSE,881,0.87,0.01645,-0.34345
+shared,BP,GO:0032728,positive regulation of interferon-beta production,,40,23,4,FALSE,GO:0001816,cytokine production,FALSE,40,0.8542,-0.00085,-0.18771
+shared,BP,GO:0010575,positive regulation of vascular endothelial growth factor production,,30,23,4,FALSE,GO:0001816,cytokine production,FALSE,30,0.8583,-0.00087,-0.18304
+shared,BP,GO:0032727,positive regulation of interferon-alpha production,,24,23,4,FALSE,GO:0001816,cytokine production,FALSE,24,0.8594,-0.00088,-0.18178
+shared,BP,GO:0006897,endocytosis,,706,24,16,TRUE,GO:0006897,endocytosis,FALSE,706,0.9481,-0.05006,0.09639
+shared,BP,GO:0006887,exocytosis,,349,24,16,FALSE,GO:0006897,endocytosis,FALSE,349,0.9477,-0.04844,0.09961
+shared,BP,GO:0030100,regulation of endocytosis,,291,24,16,FALSE,GO:0006897,endocytosis,FALSE,291,0.8874,-0.10307,0.1617
+shared,BP,GO:0006898,receptor-mediated endocytosis,,258,24,16,FALSE,GO:0006897,endocytosis,FALSE,258,0.9524,-0.04768,0.09221
+shared,BP,GO:0006888,endoplasmic reticulum to Golgi vesicle-mediated transport,,132,24,16,FALSE,GO:0006897,endocytosis,FALSE,132,0.9481,-0.05016,0.09949
+shared,BP,GO:0006906,vesicle fusion,,119,24,16,FALSE,GO:0006897,endocytosis,FALSE,119,0.9197,-0.06763,0.10863
+shared,BP,GO:0042147,"retrograde transport, endosome to Golgi",,98,24,16,FALSE,GO:0006897,endocytosis,FALSE,98,0.9508,-0.04897,0.09721
+shared,BP,GO:0045921,positive regulation of exocytosis,,78,24,16,FALSE,GO:0006897,endocytosis,FALSE,78,0.9061,-0.07792,0.15067
+shared,BP,GO:0006890,"retrograde vesicle-mediated transport, Golgi to endoplasmic reticulum",,52,24,16,FALSE,GO:0006897,endocytosis,FALSE,52,0.9573,-0.04467,0.08661
+shared,BP,GO:0043277,apoptotic cell clearance,,48,24,16,FALSE,GO:0006897,endocytosis,FALSE,48,0.9581,-0.04435,0.08585
+shared,BP,GO:0006891,intra-Golgi vesicle-mediated transport,,34,24,16,FALSE,GO:0006897,endocytosis,FALSE,34,0.9582,-0.04415,0.08556
+shared,BP,GO:0048208,COPII vesicle coating,,27,24,16,FALSE,GO:0006897,endocytosis,FALSE,27,0.9134,-0.0768,0.10798
+shared,BP,GO:0031338,regulation of vesicle fusion,,24,24,16,FALSE,GO:0006897,endocytosis,FALSE,24,0.8983,-0.09439,0.15042
+shared,BP,GO:0032510,endosome to lysosome transport via multivesicular body sorting pathway,,17,24,16,FALSE,GO:0006897,endocytosis,FALSE,17,0.957,-0.04536,0.0901
+shared,BP,GO:0043312,neutrophil degranulation,,12,24,16,FALSE,GO:0006897,endocytosis,FALSE,12,0.8716,0.12777,0.24077
+shared,BP,GO:0002576,platelet degranulation,,7,24,16,FALSE,GO:0006897,endocytosis,FALSE,7,0.9573,-0.04324,0.09187
+shared,BP,GO:0051301,cell division,,639,25,2,TRUE,GO:0051301,cell division,FALSE,639,0.9877,-0.02304,0.01784
+shared,BP,GO:0048133,male germ-line stem cell asymmetric division,,3,25,2,FALSE,GO:0051301,cell division,FALSE,3,0.9179,0.31094,-0.06852
+shared,BP,GO:0007169,transmembrane receptor protein tyrosine kinase signaling pathway,,635,26,10,TRUE,GO:0007169,transmembrane receptor protein tyrosine kinase signaling pathway,FALSE,635,0.9029,-0.16191,0.35954
+shared,BP,GO:0007259,receptor signaling pathway via JAK-STAT,,174,26,10,FALSE,GO:0007169,transmembrane receptor protein tyrosine kinase signaling pathway,FALSE,174,0.9148,-0.14702,0.32587
+shared,BP,GO:0030509,BMP signaling pathway,,167,26,10,FALSE,GO:0007169,transmembrane receptor protein tyrosine kinase signaling pathway,FALSE,167,0.9084,-0.15423,0.3544
+shared,BP,GO:0007229,integrin-mediated signaling pathway,,111,26,10,FALSE,GO:0007169,transmembrane receptor protein tyrosine kinase signaling pathway,FALSE,111,0.9199,-0.14078,0.31219
+shared,BP,GO:0030512,negative regulation of transforming growth factor beta receptor signaling pathway,,111,26,10,FALSE,GO:0007169,transmembrane receptor protein tyrosine kinase signaling pathway,FALSE,111,0.8925,-0.17858,0.36373
+shared,BP,GO:0046425,regulation of receptor signaling pathway via JAK-STAT,,106,26,10,FALSE,GO:0007169,transmembrane receptor protein tyrosine kinase signaling pathway,FALSE,106,0.9127,-0.14651,0.34622
+shared,BP,GO:0008589,regulation of smoothened signaling pathway,,86,26,10,FALSE,GO:0007169,transmembrane receptor protein tyrosine kinase signaling pathway,FALSE,86,0.9151,-0.14397,0.33992
+shared,BP,GO:0048009,insulin-like growth factor receptor signaling pathway,,52,26,10,FALSE,GO:0007169,transmembrane receptor protein tyrosine kinase signaling pathway,FALSE,52,0.9215,-0.13778,0.30944
+shared,BP,GO:0030513,positive regulation of BMP signaling pathway,,42,26,10,FALSE,GO:0007169,transmembrane receptor protein tyrosine kinase signaling pathway,FALSE,42,0.8958,-0.1444,0.35602
+shared,BP,GO:0045746,negative regulation of Notch signaling pathway,,39,26,10,FALSE,GO:0007169,transmembrane receptor protein tyrosine kinase signaling pathway,FALSE,39,0.9058,-0.16273,0.31972
+shared,BP,GO:0007283,spermatogenesis,,625,27,11,TRUE,GO:0007283,spermatogenesis,FALSE,625,0.9148,0.36152,-0.08777
+shared,BP,GO:0007281,germ cell development,,359,27,11,FALSE,GO:0007283,spermatogenesis,FALSE,359,0.8892,0.40238,-0.09427
+shared,BP,GO:0007548,sex differentiation,,288,27,11,FALSE,GO:0007283,spermatogenesis,FALSE,288,0.9275,0.32866,-0.08018
+shared,BP,GO:0051321,meiotic cell cycle,,287,27,11,FALSE,GO:0007283,spermatogenesis,FALSE,287,0.9583,0.01517,0.02494
+shared,BP,GO:0007565,female pregnancy,,186,27,11,FALSE,GO:0007283,spermatogenesis,FALSE,186,0.9409,0.25289,-0.05519
+shared,BP,GO:0048477,oogenesis,,110,27,11,FALSE,GO:0007283,spermatogenesis,FALSE,110,0.8984,0.37546,-0.08672
+shared,BP,GO:0007340,acrosome reaction,,38,27,11,FALSE,GO:0007283,spermatogenesis,FALSE,38,0.9858,0.03535,0.00287
+shared,BP,GO:0048240,sperm capacitation,,31,27,11,FALSE,GO:0007283,spermatogenesis,FALSE,31,0.9062,0.35241,-0.08012
+shared,BP,GO:0007308,oocyte construction,,8,27,11,FALSE,GO:0007283,spermatogenesis,FALSE,8,0.9138,0.32835,-0.0735
+shared,BP,GO:0046543,development of secondary female sexual characteristics,,6,27,11,FALSE,GO:0007283,spermatogenesis,FALSE,6,0.9444,0.25884,-0.05993
+shared,BP,GO:0046544,development of secondary male sexual characteristics,,2,27,11,FALSE,GO:0007283,spermatogenesis,FALSE,2,0.9311,0.30837,-0.07241
+shared,BP,GO:0007507,heart development,,617,28,5,TRUE,GO:0007507,heart development,FALSE,617,0.8912,0.47742,-0.12279
+shared,BP,GO:0035050,embryonic heart tube development,,85,28,5,FALSE,GO:0007507,heart development,FALSE,85,0.8869,0.49216,-0.13305
+shared,BP,GO:0001947,heart looping,,65,28,5,FALSE,GO:0007507,heart development,FALSE,65,0.881,0.50874,-0.13775
+shared,BP,GO:0001945,lymph vessel development,,31,28,5,FALSE,GO:0007507,heart development,FALSE,31,0.9205,0.3694,-0.09059
+shared,BP,GO:0060039,pericardium development,,19,28,5,FALSE,GO:0007507,heart development,FALSE,19,0.91,0.41279,-0.10669
+shared,BP,GO:0042110,T cell activation,,566,29,13,TRUE,GO:0042110,T cell activation,FALSE,566,0.9081,0.26592,0.00935
+shared,BP,GO:0042113,B cell activation,,278,29,13,FALSE,GO:0042110,T cell activation,FALSE,278,0.9146,0.25084,0.01073
+shared,BP,GO:0045621,positive regulation of lymphocyte differentiation,,130,29,13,FALSE,GO:0042110,T cell activation,FALSE,130,0.8267,0.36187,0.0165
+shared,BP,GO:0042102,positive regulation of T cell proliferation,,105,29,13,FALSE,GO:0042110,T cell activation,FALSE,105,0.8529,0.1939,0.07891
+shared,BP,GO:0030101,natural killer cell activation,,99,29,13,FALSE,GO:0042110,T cell activation,FALSE,99,0.9204,0.2344,0.01251
+shared,BP,GO:0046638,positive regulation of alpha-beta T cell differentiation,,52,29,13,FALSE,GO:0042110,T cell activation,FALSE,52,0.83,0.34144,0.0237
+shared,BP,GO:0042104,positive regulation of activated T cell proliferation,,27,29,13,FALSE,GO:0042110,T cell activation,FALSE,27,0.8671,0.18013,0.07553
+shared,BP,GO:0001779,natural killer cell differentiation,,25,29,13,FALSE,GO:0042110,T cell activation,FALSE,25,0.8953,0.35245,-0.02266
+shared,BP,GO:0045579,positive regulation of B cell differentiation,,16,29,13,FALSE,GO:0042110,T cell activation,FALSE,16,0.8499,0.32812,0.01723
+shared,BP,GO:0032819,positive regulation of natural killer cell proliferation,,10,29,13,FALSE,GO:0042110,T cell activation,FALSE,10,0.8813,0.17702,0.06703
+shared,BP,GO:0032825,positive regulation of natural killer cell differentiation,,8,29,13,FALSE,GO:0042110,T cell activation,FALSE,8,0.8553,0.3188,0.01776
+shared,BP,GO:0045588,positive regulation of gamma-delta T cell differentiation,,7,29,13,FALSE,GO:0042110,T cell activation,FALSE,7,0.8506,0.31218,0.02384
+shared,BP,GO:0051138,positive regulation of NK T cell differentiation,,4,29,13,FALSE,GO:0042110,T cell activation,FALSE,4,0.8551,0.30522,0.02409
+shared,BP,GO:0007005,mitochondrion organization,,553,30,16,TRUE,GO:0007005,mitochondrion organization,FALSE,553,0.9487,-0.05364,0.04691
+shared,BP,GO:0032956,regulation of actin cytoskeleton organization,,337,30,16,FALSE,GO:0007005,mitochondrion organization,FALSE,337,0.912,-0.09133,0.10595
+shared,BP,GO:0032200,telomere organization,,187,30,16,FALSE,GO:0007005,mitochondrion organization,FALSE,187,0.9518,-0.05157,0.0458
+shared,BP,GO:0006997,nucleus organization,,144,30,16,FALSE,GO:0007005,mitochondrion organization,FALSE,144,0.9547,-0.04966,0.0446
+shared,BP,GO:0007052,mitotic spindle organization,,130,30,16,FALSE,GO:0007005,mitochondrion organization,FALSE,130,0.9385,-0.05973,0.0664
+shared,BP,GO:0007040,lysosome organization,,109,30,16,FALSE,GO:0007005,mitochondrion organization,FALSE,109,0.9557,-0.04891,0.04406
+shared,BP,GO:0051298,centrosome duplication,,75,30,16,FALSE,GO:0007005,mitochondrion organization,FALSE,75,0.9401,-0.05871,0.06505
+shared,BP,GO:0031122,cytoplasmic microtubule organization,,59,30,16,FALSE,GO:0007005,mitochondrion organization,FALSE,59,0.9515,-0.05142,0.04957
+shared,BP,GO:0030838,positive regulation of actin filament polymerization,,52,30,16,FALSE,GO:0007005,mitochondrion organization,FALSE,52,0.8916,-0.09183,0.10602
+shared,BP,GO:0051496,positive regulation of stress fiber assembly,,51,30,16,FALSE,GO:0007005,mitochondrion organization,FALSE,51,0.9001,-0.0889,0.10228
+shared,BP,GO:0007099,centriole replication,,43,30,16,FALSE,GO:0007005,mitochondrion organization,FALSE,43,0.9359,-0.06518,0.06003
+shared,BP,GO:0060236,regulation of mitotic spindle organization,,42,30,16,FALSE,GO:0007005,mitochondrion organization,FALSE,42,0.9142,-0.08741,0.11112
+shared,BP,GO:0051693,actin filament capping,,40,30,16,FALSE,GO:0007005,mitochondrion organization,FALSE,40,0.8959,-0.11871,0.099
+shared,BP,GO:0007026,negative regulation of microtubule depolymerization,,26,30,16,FALSE,GO:0007005,mitochondrion organization,FALSE,26,0.9086,-0.11101,0.09522
+shared,BP,GO:0010457,centriole-centriole cohesion,,15,30,16,FALSE,GO:0007005,mitochondrion organization,FALSE,15,0.9473,-0.0545,0.06143
+shared,BP,GO:0030836,positive regulation of actin filament depolymerization,,13,30,16,FALSE,GO:0007005,mitochondrion organization,FALSE,13,0.9037,-0.08185,0.10346
+shared,BP,GO:0006417,regulation of translation,,537,31,9,TRUE,GO:0006417,regulation of translation,FALSE,537,0.8681,-0.35504,-0.30399
+shared,BP,GO:0017148,negative regulation of translation,,317,31,9,FALSE,GO:0006417,regulation of translation,FALSE,317,0.857,-0.36244,-0.2753
+shared,BP,GO:0000050,urea cycle,,11,31,9,FALSE,GO:0006417,regulation of translation,FALSE,11,0.918,-0.28892,-0.33495
+shared,BP,GO:0010998,regulation of translational initiation by eIF2 alpha phosphorylation,,10,31,9,FALSE,GO:0006417,regulation of translation,FALSE,10,0.8554,-0.37376,-0.05077
+shared,BP,GO:0000255,allantoin metabolic process,,9,31,9,FALSE,GO:0006417,regulation of translation,FALSE,9,0.935,-0.24127,-0.25881
+shared,BP,GO:0032057,negative regulation of translational initiation in response to stress,,4,31,9,FALSE,GO:0006417,regulation of translation,FALSE,4,0.8693,-0.33428,-0.06555
+shared,BP,GO:0009386,translational attenuation,,2,31,9,FALSE,GO:0006417,regulation of translation,FALSE,2,0.9115,-0.26517,-0.22687
+shared,BP,GO:0046449,creatinine metabolic process,,2,31,9,FALSE,GO:0006417,regulation of translation,FALSE,2,0.9306,-0.25433,-0.28889
+shared,BP,GO:0060734,regulation of endoplasmic reticulum stress-induced eIF2 alpha phosphorylation,,1,31,9,FALSE,GO:0006417,regulation of translation,FALSE,1,0.8691,-0.34087,-0.00639
+shared,BP,GO:0006397,mRNA processing,,518,32,9,TRUE,GO:0006397,mRNA processing,FALSE,518,0.9053,-0.3076,-0.34223
+shared,BP,GO:0008380,RNA splicing,,478,32,9,FALSE,GO:0006397,mRNA processing,FALSE,478,0.9086,-0.30055,-0.33411
+shared,BP,GO:0000398,"mRNA splicing, via spliceosome",,332,32,9,FALSE,GO:0006397,mRNA processing,FALSE,332,0.9073,-0.30228,-0.33603
+shared,BP,GO:0031123,RNA 3'-end processing,,102,32,9,FALSE,GO:0006397,mRNA processing,FALSE,102,0.9205,-0.27112,-0.2995
+shared,BP,GO:0000245,spliceosomal complex assembly,,95,32,9,FALSE,GO:0006397,mRNA processing,FALSE,95,0.8839,-0.28932,-0.26454
+shared,BP,GO:0000387,spliceosomal snRNP assembly,,52,32,9,FALSE,GO:0006397,mRNA processing,FALSE,52,0.886,-0.28564,-0.2609
+shared,BP,GO:0006378,mRNA polyadenylation,,30,32,9,FALSE,GO:0006397,mRNA processing,FALSE,30,0.9249,-0.25908,-0.28511
+shared,BP,GO:0006398,mRNA 3'-end processing by stem-loop binding and cleavage,,6,32,9,FALSE,GO:0006397,mRNA processing,FALSE,6,0.9307,-0.24397,-0.26695
+shared,BP,GO:0000349,generation of catalytic spliceosome for first transesterification step,,2,32,9,FALSE,GO:0006397,mRNA processing,FALSE,2,0.9094,-0.24086,-0.21555
+shared,BP,GO:0001503,ossification,,444,33,5,TRUE,GO:0001503,ossification,FALSE,444,0.9426,0.25288,-0.05276
+shared,BP,GO:0030282,bone mineralization,,123,33,5,FALSE,GO:0001503,ossification,FALSE,123,0.9061,0.41572,-0.10664
+shared,BP,GO:0045669,positive regulation of osteoblast differentiation,,74,33,5,FALSE,GO:0001503,ossification,FALSE,74,0.8696,0.27959,-0.01192
+shared,BP,GO:0045778,positive regulation of ossification,,53,33,5,FALSE,GO:0001503,ossification,FALSE,53,0.9027,0.18908,0.01561
+shared,BP,GO:0030501,positive regulation of bone mineralization,,44,33,5,FALSE,GO:0001503,ossification,FALSE,44,0.8608,0.37695,-0.04564
+shared,BP,GO:0006631,fatty acid metabolic process,,401,34,15,TRUE,GO:0006631,fatty acid metabolic process,FALSE,401,0.9153,-0.27416,-0.33265
+shared,BP,GO:0019369,arachidonic acid metabolic process,,58,34,15,FALSE,GO:0006631,fatty acid metabolic process,FALSE,58,0.927,-0.24418,-0.295
+shared,BP,GO:0006541,glutamine metabolic process,,27,34,15,FALSE,GO:0006631,fatty acid metabolic process,FALSE,27,0.9242,-0.26028,-0.31361
+shared,BP,GO:0006103,2-oxoglutarate metabolic process,,16,34,15,FALSE,GO:0006631,fatty acid metabolic process,FALSE,16,0.9395,-0.20842,-0.24747
+shared,BP,GO:0006107,oxaloacetate metabolic process,,9,34,15,FALSE,GO:0006631,fatty acid metabolic process,FALSE,9,0.9419,-0.20194,-0.23905
+shared,BP,GO:0006559,L-phenylalanine catabolic process,,8,34,15,FALSE,GO:0006631,fatty acid metabolic process,FALSE,8,0.9116,-0.30122,-0.35966
+shared,BP,GO:0006549,isoleucine metabolic process,,7,34,15,FALSE,GO:0006631,fatty acid metabolic process,FALSE,7,0.9292,-0.24659,-0.29618
+shared,BP,GO:0006573,valine metabolic process,,7,34,15,FALSE,GO:0006631,fatty acid metabolic process,FALSE,7,0.9285,-0.24857,-0.29868
+shared,BP,GO:0006572,tyrosine catabolic process,,6,34,15,FALSE,GO:0006631,fatty acid metabolic process,FALSE,6,0.9131,-0.29762,-0.35507
+shared,BP,GO:0006101,citrate metabolic process,,5,34,15,FALSE,GO:0006631,fatty acid metabolic process,FALSE,5,0.9405,-0.21187,-0.24934
+shared,BP,GO:0006105,succinate metabolic process,,5,34,15,FALSE,GO:0006631,fatty acid metabolic process,FALSE,5,0.9441,-0.19585,-0.23125
+shared,BP,GO:0006526,arginine biosynthetic process,,5,34,15,FALSE,GO:0006631,fatty acid metabolic process,FALSE,5,0.9208,-0.27321,-0.3289
+shared,BP,GO:0019240,citrulline biosynthetic process,,5,34,15,FALSE,GO:0006631,fatty acid metabolic process,FALSE,5,0.9229,-0.26804,-0.32238
+shared,BP,GO:0006600,creatine metabolic process,,3,34,15,FALSE,GO:0006631,fatty acid metabolic process,FALSE,3,0.9324,-0.24021,-0.28569
+shared,BP,GO:0019482,beta-alanine metabolic process,,3,34,15,FALSE,GO:0006631,fatty acid metabolic process,FALSE,3,0.9336,-0.2356,-0.28142
+shared,BP,GO:0001701,in utero embryonic development,,392,35,11,TRUE,GO:0001701,in utero embryonic development,FALSE,392,0.901,0.43819,-0.11392
+shared,BP,GO:0021915,neural tube development,,162,35,11,FALSE,GO:0001701,in utero embryonic development,FALSE,162,0.8816,0.50939,-0.13613
+shared,BP,GO:0001824,blastocyst development,,116,35,11,FALSE,GO:0001701,in utero embryonic development,FALSE,116,0.9092,0.40943,-0.10561
+shared,BP,GO:0001843,neural tube closure,,91,35,11,FALSE,GO:0001701,in utero embryonic development,FALSE,91,0.8806,0.51119,-0.13782
+shared,BP,GO:0001702,gastrulation with mouth forming second,,28,35,11,FALSE,GO:0001701,in utero embryonic development,FALSE,28,0.9108,0.40687,-0.10397
+shared,BP,GO:0030903,notochord development,,19,35,11,FALSE,GO:0001701,in utero embryonic development,FALSE,19,0.9125,0.40025,-0.10418
+shared,BP,GO:0042074,cell migration involved in gastrulation,,15,35,11,FALSE,GO:0001701,in utero embryonic development,FALSE,15,0.8981,0.37382,-0.07579
+shared,BP,GO:0010172,embryonic body morphogenesis,,11,35,11,FALSE,GO:0001701,in utero embryonic development,FALSE,11,0.9149,0.39203,-0.09969
+shared,BP,GO:0048617,embryonic foregut morphogenesis,,9,35,11,FALSE,GO:0001701,in utero embryonic development,FALSE,9,0.9124,0.40268,-0.10363
+shared,BP,GO:0048570,notochord morphogenesis,,8,35,11,FALSE,GO:0001701,in utero embryonic development,FALSE,8,0.9094,0.41318,-0.10745
+shared,BP,GO:0060715,syncytiotrophoblast cell differentiation involved in labyrinthine layer development,,3,35,11,FALSE,GO:0001701,in utero embryonic development,FALSE,3,0.9015,0.39555,-0.10386
+shared,BP,GO:0050878,regulation of body fluid levels,,365,36,3,TRUE,GO:0050878,regulation of body fluid levels,FALSE,365,0.9611,-0.05113,0.07687
+shared,BP,GO:0050821,protein stabilization,,217,36,3,FALSE,GO:0050878,regulation of body fluid levels,FALSE,217,0.9641,-0.04975,0.07359
+shared,BP,GO:0007595,lactation,,42,36,3,FALSE,GO:0050878,regulation of body fluid levels,FALSE,42,0.8783,0.26113,0.0168
+shared,BP,GO:0042176,regulation of protein catabolic process,,364,37,3,TRUE,GO:0042176,regulation of protein catabolic process,FALSE,364,0.8881,-0.32745,-0.29908
+shared,BP,GO:0016239,positive regulation of macroautophagy,,75,37,3,FALSE,GO:0042176,regulation of protein catabolic process,FALSE,75,0.8946,-0.23258,-0.15148
+shared,BP,GO:0032435,negative regulation of proteasomal ubiquitin-dependent protein catabolic process,,39,37,3,FALSE,GO:0042176,regulation of protein catabolic process,FALSE,39,0.8894,-0.31129,-0.25334
+shared,BP,GO:0032496,response to lipopolysaccharide,,348,38,7,TRUE,GO:0032496,response to lipopolysaccharide,FALSE,348,0.9291,-0.12376,0.41831
+shared,BP,GO:0051607,defense response to virus,,334,38,7,FALSE,GO:0032496,response to lipopolysaccharide,FALSE,334,0.9371,-0.1273,0.36443
+shared,BP,GO:0042742,defense response to bacterium,,330,38,7,FALSE,GO:0032496,response to lipopolysaccharide,FALSE,330,0.9354,-0.12861,0.36911
+shared,BP,GO:0050729,positive regulation of inflammatory response,,152,38,7,FALSE,GO:0032496,response to lipopolysaccharide,FALSE,152,0.895,-0.1487,0.38086
+shared,BP,GO:0050830,defense response to Gram-positive bacterium,,118,38,7,FALSE,GO:0032496,response to lipopolysaccharide,FALSE,118,0.9413,-0.12047,0.3448
+shared,BP,GO:0042832,defense response to protozoan,,28,38,7,FALSE,GO:0032496,response to lipopolysaccharide,FALSE,28,0.9483,-0.11105,0.31571
+shared,BP,GO:0070423,nucleotide-binding oligomerization domain containing signaling pathway,,28,38,7,FALSE,GO:0032496,response to lipopolysaccharide,FALSE,28,0.874,-0.11068,0.39755
+shared,BP,GO:0043010,camera-type eye development,,344,39,4,TRUE,GO:0043010,camera-type eye development,FALSE,344,0.9047,0.43118,-0.10882
+shared,BP,GO:0031100,animal organ regeneration,,64,39,4,FALSE,GO:0043010,camera-type eye development,FALSE,64,0.9335,0.33002,-0.08238
+shared,BP,GO:0001754,eye photoreceptor cell differentiation,,48,39,4,FALSE,GO:0043010,camera-type eye development,FALSE,48,0.891,0.43689,-0.11165
+shared,BP,GO:0048048,embryonic eye morphogenesis,,35,39,4,FALSE,GO:0043010,camera-type eye development,FALSE,35,0.8991,0.45034,-0.11846
+shared,BP,GO:0016042,lipid catabolic process,,334,40,7,TRUE,GO:0016042,lipid catabolic process,FALSE,334,0.934,-0.25111,-0.29702
+shared,BP,GO:0008203,cholesterol metabolic process,,140,40,7,FALSE,GO:0016042,lipid catabolic process,FALSE,140,0.9245,-0.28073,-0.34482
+shared,BP,GO:0030148,sphingolipid biosynthetic process,,110,40,7,FALSE,GO:0016042,lipid catabolic process,FALSE,110,0.9148,-0.29108,-0.33831
+shared,BP,GO:0019218,regulation of steroid metabolic process,,104,40,7,FALSE,GO:0016042,lipid catabolic process,FALSE,104,0.9128,-0.26396,-0.21878
+shared,BP,GO:0046854,phosphatidylinositol phosphate biosynthetic process,,66,40,7,FALSE,GO:0016042,lipid catabolic process,FALSE,66,0.9306,-0.23973,-0.26865
+shared,BP,GO:0046464,acylglycerol catabolic process,,38,40,7,FALSE,GO:0016042,lipid catabolic process,FALSE,38,0.9345,-0.22822,-0.25499
+shared,BP,GO:0042448,progesterone metabolic process,,16,40,7,FALSE,GO:0016042,lipid catabolic process,FALSE,16,0.9057,-0.2518,-0.22417
+shared,BP,GO:0030198,extracellular matrix organization,,321,41,1,TRUE,GO:0030198,extracellular matrix organization,FALSE,321,0.9585,-0.04717,0.03899
+shared,BP,GO:0006874,intracellular calcium ion homeostasis,,308,42,5,TRUE,GO:0006874,intracellular calcium ion homeostasis,FALSE,308,0.9913,-0.00025,0.0237
+shared,BP,GO:0043029,T cell homeostasis,,47,42,5,FALSE,GO:0006874,intracellular calcium ion homeostasis,FALSE,47,0.9341,0.22818,0.01377
+shared,BP,GO:0045494,photoreceptor cell maintenance,,43,42,5,FALSE,GO:0006874,intracellular calcium ion homeostasis,FALSE,43,0.9497,0.20921,-0.03523
+shared,BP,GO:0060314,regulation of ryanodine-sensitive calcium-release channel activity,,26,42,5,FALSE,GO:0006874,intracellular calcium ion homeostasis,FALSE,26,0.9067,-0.0983,0.13607
+shared,BP,GO:0045851,pH reduction,,6,42,5,FALSE,GO:0006874,intracellular calcium ion homeostasis,FALSE,6,0.9742,-0.02696,0.05715
+shared,BP,GO:0006260,DNA replication,,278,43,2,TRUE,GO:0006260,DNA replication,FALSE,278,0.9228,-0.26978,-0.2748
+shared,BP,GO:0006273,lagging strand elongation,,4,43,2,FALSE,GO:0006260,DNA replication,FALSE,4,0.9426,-0.21409,-0.21019
+shared,BP,GO:0050807,regulation of synapse organization,,244,44,8,TRUE,GO:0050807,regulation of synapse organization,FALSE,244,0.913,-0.09131,0.09758
+shared,BP,GO:0007043,cell-cell junction assembly,,157,44,8,FALSE,GO:0050807,regulation of synapse organization,FALSE,157,0.9475,-0.05691,0.039
+shared,BP,GO:0048041,focal adhesion assembly,,85,44,8,FALSE,GO:0050807,regulation of synapse organization,FALSE,85,0.9392,-0.04295,0.0467
+shared,BP,GO:0034332,adherens junction organization,,57,44,8,FALSE,GO:0050807,regulation of synapse organization,FALSE,57,0.9569,-0.04632,0.04075
+shared,BP,GO:0051895,negative regulation of focal adhesion assembly,,16,44,8,FALSE,GO:0050807,regulation of synapse organization,FALSE,16,0.9045,-0.0959,0.09297
+shared,BP,GO:0048790,maintenance of presynaptic active zone structure,,6,44,8,FALSE,GO:0050807,regulation of synapse organization,FALSE,6,0.9634,-0.04237,0.03832
+shared,BP,GO:0045218,zonula adherens maintenance,,3,44,8,FALSE,GO:0050807,regulation of synapse organization,FALSE,3,0.9626,-0.04223,0.0385
+shared,BP,GO:0045186,zonula adherens assembly,,1,44,8,FALSE,GO:0050807,regulation of synapse organization,FALSE,1,0.9606,-0.04766,0.03483
+shared,BP,GO:0043547,positive regulation of GTPase activity,,239,45,5,TRUE,GO:0043547,positive regulation of GTPase activity,FALSE,239,0.9675,-0.0548,0.06287
+shared,BP,GO:0010923,negative regulation of phosphatase activity,,24,45,5,FALSE,GO:0043547,positive regulation of GTPase activity,FALSE,24,0.906,-0.23097,-0.12036
+shared,BP,GO:0034260,negative regulation of GTPase activity,,24,45,5,FALSE,GO:0043547,positive regulation of GTPase activity,FALSE,24,0.9558,-0.07877,0.06545
+shared,BP,GO:0032429,regulation of phospholipase A2 activity,,10,45,5,FALSE,GO:0043547,positive regulation of GTPase activity,FALSE,10,0.9741,-0.04698,0.05445
+shared,BP,GO:0043496,regulation of protein homodimerization activity,,1,45,5,FALSE,GO:0043547,positive regulation of GTPase activity,FALSE,1,0.9784,-0.04154,0.05079
+shared,BP,GO:0007411,axon guidance,,233,46,8,TRUE,GO:0007411,axon guidance,FALSE,233,0.8389,0.44173,-0.08863
+shared,BP,GO:0035108,limb morphogenesis,,146,46,8,FALSE,GO:0007411,axon guidance,FALSE,146,0.9074,0.41519,-0.10344
+shared,BP,GO:0008360,regulation of cell shape,,140,46,8,FALSE,GO:0007411,axon guidance,FALSE,140,0.8833,0.32905,-0.03532
+shared,BP,GO:0030326,embryonic limb morphogenesis,,120,46,8,FALSE,GO:0007411,axon guidance,FALSE,120,0.8976,0.4483,-0.11632
+shared,BP,GO:0042733,embryonic digit morphogenesis,,57,46,8,FALSE,GO:0007411,axon guidance,FALSE,57,0.9042,0.42626,-0.11
+shared,BP,GO:0035136,forelimb morphogenesis,,41,46,8,FALSE,GO:0007411,axon guidance,FALSE,41,0.9163,0.38237,-0.09408
+shared,BP,GO:0035116,embryonic hindlimb morphogenesis,,28,46,8,FALSE,GO:0007411,axon guidance,FALSE,28,0.9084,0.41188,-0.10589
+shared,BP,GO:0001886,endothelial cell morphogenesis,,10,46,8,FALSE,GO:0007411,axon guidance,FALSE,10,0.908,0.38387,-0.09365
+shared,BP,GO:0007163,establishment or maintenance of cell polarity,,228,47,8,TRUE,GO:0007163,establishment or maintenance of cell polarity,FALSE,228,0.9785,-0.01157,0.01517
+shared,BP,GO:0035088,establishment or maintenance of apical/basal cell polarity,,57,47,8,FALSE,GO:0007163,establishment or maintenance of cell polarity,FALSE,57,0.9791,-0.01049,0.01518
+shared,BP,GO:0045197,establishment or maintenance of epithelial cell apical/basal polarity,,53,47,8,FALSE,GO:0007163,establishment or maintenance of cell polarity,FALSE,53,0.9792,-0.01045,0.01512
+shared,BP,GO:0045198,establishment of epithelial cell apical/basal polarity,,17,47,8,FALSE,GO:0007163,establishment or maintenance of cell polarity,FALSE,17,0.899,0.38262,-0.0974
+shared,BP,GO:0035090,maintenance of apical/basal cell polarity,,11,47,8,FALSE,GO:0007163,establishment or maintenance of cell polarity,FALSE,11,0.9812,-0.00983,0.01525
+shared,BP,GO:0030950,establishment or maintenance of actin cytoskeleton polarity,,3,47,8,FALSE,GO:0007163,establishment or maintenance of cell polarity,FALSE,3,0.9516,-0.0325,0.04112
+shared,BP,GO:0016332,establishment or maintenance of polarity of embryonic epithelium,,2,47,8,FALSE,GO:0007163,establishment or maintenance of cell polarity,FALSE,2,0.9011,0.38174,-0.10006
+shared,BP,GO:0016334,establishment or maintenance of polarity of follicular epithelium,,1,47,8,FALSE,GO:0007163,establishment or maintenance of cell polarity,FALSE,1,0.9213,0.31135,-0.07915
+shared,BP,GO:0009952,anterior/posterior pattern specification,,219,48,5,TRUE,GO:0009952,anterior/posterior pattern specification,FALSE,219,0.9155,0.38473,-0.09501
+shared,BP,GO:0009880,embryonic pattern specification,,74,48,5,FALSE,GO:0009952,anterior/posterior pattern specification,FALSE,74,0.9107,0.40299,-0.10384
+shared,BP,GO:0001756,somitogenesis,,66,48,5,FALSE,GO:0009952,anterior/posterior pattern specification,FALSE,66,0.8918,0.47271,-0.12506
+shared,BP,GO:0007354,"zygotic determination of anterior/posterior axis, embryo",,6,48,5,FALSE,GO:0009952,anterior/posterior pattern specification,FALSE,6,0.9228,0.35554,-0.09024
+shared,BP,GO:0021997,neural plate axis specification,,2,48,5,FALSE,GO:0009952,anterior/posterior pattern specification,FALSE,2,0.9172,0.38122,-0.09983
+shared,BP,GO:0051260,protein homooligomerization,,194,49,8,TRUE,GO:0051260,protein homooligomerization,FALSE,194,0.9496,-0.05797,0.03615
+shared,BP,GO:0030032,lamellipodium assembly,,72,49,8,FALSE,GO:0051260,protein homooligomerization,FALSE,72,0.9426,-0.03501,0.04524
+shared,BP,GO:0051289,protein homotetramerization,,59,49,8,FALSE,GO:0051260,protein homooligomerization,FALSE,59,0.9533,-0.05532,0.03482
+shared,BP,GO:0034063,stress granule assembly,,31,49,8,FALSE,GO:0051260,protein homooligomerization,FALSE,31,0.9532,-0.05412,0.03911
+shared,BP,GO:0010592,positive regulation of lamellipodium assembly,,28,49,8,FALSE,GO:0051260,protein homooligomerization,FALSE,28,0.9007,-0.06685,0.09808
+shared,BP,GO:0000027,ribosomal large subunit assembly,,26,49,8,FALSE,GO:0051260,protein homooligomerization,FALSE,26,0.9478,-0.06267,0.03029
+shared,BP,GO:0033962,P-body assembly,,21,49,8,FALSE,GO:0051260,protein homooligomerization,FALSE,21,0.954,-0.05365,0.03867
+shared,BP,GO:0000448,"cleavage in ITS2 between 5.8S rRNA and LSU-rRNA of tricistronic rRNA transcript (SSU-rRNA, 5.8S rRNA, LSU-rRNA)",,2,49,8,FALSE,GO:0051260,protein homooligomerization,FALSE,2,0.9129,-0.23336,-0.21155
+shared,BP,GO:0048771,tissue remodeling,,184,50,2,TRUE,GO:0048771,tissue remodeling,FALSE,184,0.9508,0.22349,-0.04502
+shared,BP,GO:0045780,positive regulation of bone resorption,,18,50,2,FALSE,GO:0048771,tissue remodeling,FALSE,18,0.9069,0.1754,0.02026
+shared,BP,GO:0007009,plasma membrane organization,,170,51,4,TRUE,GO:0007009,plasma membrane organization,FALSE,170,0.9554,-0.04824,0.04284
+shared,BP,GO:0007030,Golgi organization,,157,51,4,FALSE,GO:0007009,plasma membrane organization,FALSE,157,0.9524,-0.0504,0.04564
+shared,BP,GO:0007029,endoplasmic reticulum organization,,100,51,4,FALSE,GO:0007009,plasma membrane organization,FALSE,100,0.9529,-0.05003,0.04553
+shared,BP,GO:0033364,mast cell secretory granule organization,,2,51,4,FALSE,GO:0007009,plasma membrane organization,FALSE,2,0.9606,-0.04468,0.04393
+shared,BP,GO:0030307,positive regulation of cell growth,,163,52,7,TRUE,GO:0030307,positive regulation of cell growth,FALSE,163,0.9018,-0.05865,0.10084
+shared,BP,GO:0035264,multicellular organism growth,,147,52,7,FALSE,GO:0030307,positive regulation of cell growth,FALSE,147,0.928,0.31279,-0.0623
+shared,BP,GO:0040014,regulation of multicellular organism growth,,63,52,7,FALSE,GO:0030307,positive regulation of cell growth,FALSE,63,0.8977,0.28553,-0.0155
+shared,BP,GO:0046621,negative regulation of organ growth,,37,52,7,FALSE,GO:0030307,positive regulation of cell growth,FALSE,37,0.887,0.24515,-0.0104
+shared,BP,GO:0040018,positive regulation of multicellular organism growth,,31,52,7,FALSE,GO:0030307,positive regulation of cell growth,FALSE,31,0.8864,0.26234,-0.0022
+shared,BP,GO:0048843,negative regulation of axon extension involved in axon guidance,,28,52,7,FALSE,GO:0030307,positive regulation of cell growth,FALSE,28,0.752,0.25305,0.26052
+shared,BP,GO:0048842,positive regulation of axon extension involved in axon guidance,,7,52,7,FALSE,GO:0030307,positive regulation of cell growth,FALSE,7,0.7715,0.25385,0.24978
+shared,BP,GO:0050905,neuromuscular process,,163,53,4,TRUE,GO:0050905,neuromuscular process,FALSE,163,0.9498,0.22648,-0.04401
+shared,BP,GO:0055117,regulation of cardiac muscle contraction,,78,53,4,FALSE,GO:0050905,neuromuscular process,FALSE,78,0.9175,0.20277,0.00538
+shared,BP,GO:0010613,positive regulation of cardiac muscle hypertrophy,,35,53,4,FALSE,GO:0050905,neuromuscular process,FALSE,35,0.8776,0.121,0.19126
+shared,BP,GO:0003017,lymph circulation,,2,53,4,FALSE,GO:0050905,neuromuscular process,FALSE,2,0.9618,0.17289,-0.0293
+shared,BP,GO:0060285,cilium-dependent cell motility,,163,54,4,TRUE,GO:0060285,cilium-dependent cell motility,FALSE,163,0.9799,-0.02374,0.04205
+shared,BP,GO:0008347,glial cell migration,,60,54,4,FALSE,GO:0060285,cilium-dependent cell motility,FALSE,60,0.8944,0.38127,-0.06971
+shared,BP,GO:0010762,regulation of fibroblast migration,,39,54,4,FALSE,GO:0060285,cilium-dependent cell motility,FALSE,39,0.9513,-0.04975,0.10527
+shared,BP,GO:0008078,mesodermal cell migration,,5,54,4,FALSE,GO:0060285,cilium-dependent cell motility,FALSE,5,0.9834,-0.02033,0.03903
+shared,BP,GO:0009411,response to UV,,152,55,4,TRUE,GO:0009411,response to UV,FALSE,152,0.964,-0.08465,0.24369
+shared,BP,GO:0006970,response to osmotic stress,,81,55,4,FALSE,GO:0009411,response to UV,FALSE,81,0.9511,-0.11394,0.29691
+shared,BP,GO:0009409,response to cold,,44,55,4,FALSE,GO:0009411,response to UV,FALSE,44,0.9528,-0.10993,0.28566
+shared,BP,GO:0070417,cellular response to cold,,13,55,4,FALSE,GO:0009411,response to UV,FALSE,13,0.9411,-0.12873,0.29838
+shared,BP,GO:0043473,pigmentation,,115,56,2,TRUE,GO:0043473,pigmentation,FALSE,115,0.9981,-0.01483,0.02012
+shared,BP,GO:0032438,melanosome organization,,39,56,2,FALSE,GO:0043473,pigmentation,FALSE,39,0.9537,-0.04881,0.04646
+shared,BP,GO:0009791,post-embryonic development,,94,57,1,TRUE,GO:0009791,post-embryonic development,FALSE,94,0.9259,0.34745,-0.08286
+shared,BP,GO:0006195,purine nucleotide catabolic process,,54,58,13,TRUE,GO:0006195,purine nucleotide catabolic process,FALSE,54,0.8959,-0.34356,-0.4089
+shared,BP,GO:0046135,pyrimidine nucleoside catabolic process,,16,58,13,FALSE,GO:0006195,purine nucleotide catabolic process,FALSE,16,0.9071,-0.31166,-0.37359
+shared,BP,GO:0009263,deoxyribonucleotide biosynthetic process,,15,58,13,FALSE,GO:0006195,purine nucleotide catabolic process,FALSE,15,0.913,-0.29821,-0.35104
+shared,BP,GO:0006228,UTP biosynthetic process,,10,58,13,FALSE,GO:0006195,purine nucleotide catabolic process,FALSE,10,0.9095,-0.30995,-0.36885
+shared,BP,GO:0034356,NAD biosynthesis via nicotinamide riboside salvage pathway,,10,58,13,FALSE,GO:0006195,purine nucleotide catabolic process,FALSE,10,0.9109,-0.3076,-0.3647
+shared,BP,GO:0015949,nucleobase-containing small molecule interconversion,,8,58,13,FALSE,GO:0006195,purine nucleotide catabolic process,FALSE,8,0.9309,-0.24745,-0.2874
+shared,BP,GO:0006207,'de novo' pyrimidine nucleobase biosynthetic process,,6,58,13,FALSE,GO:0006195,purine nucleotide catabolic process,FALSE,6,0.9138,-0.29683,-0.35204
+shared,BP,GO:0046134,pyrimidine nucleoside biosynthetic process,,5,58,13,FALSE,GO:0006195,purine nucleotide catabolic process,FALSE,5,0.9138,-0.29692,-0.35394
+shared,BP,GO:0006208,pyrimidine nucleobase catabolic process,,3,58,13,FALSE,GO:0006195,purine nucleotide catabolic process,FALSE,3,0.9105,-0.30318,-0.36143
+shared,BP,GO:0006210,thymine catabolic process,,3,58,13,FALSE,GO:0006195,purine nucleotide catabolic process,FALSE,3,0.9152,-0.29155,-0.34706
+shared,BP,GO:0006148,inosine catabolic process,,2,58,13,FALSE,GO:0006195,purine nucleotide catabolic process,FALSE,2,0.919,-0.28381,-0.33802
+shared,BP,GO:0006212,uracil catabolic process,,2,58,13,FALSE,GO:0006195,purine nucleotide catabolic process,FALSE,2,0.9162,-0.28897,-0.34374
+shared,BP,GO:0006738,nicotinamide riboside catabolic process,,1,58,13,FALSE,GO:0006195,purine nucleotide catabolic process,FALSE,1,0.9229,-0.27363,-0.32418
+shared,BP,GO:0046677,response to antibiotic,,37,59,1,TRUE,GO:0046677,response to antibiotic,FALSE,37,0.9578,-0.09047,0.2832
+shared,BP,GO:0015012,heparan sulfate proteoglycan biosynthetic process,,33,60,2,TRUE,GO:0015012,heparan sulfate proteoglycan biosynthetic process,FALSE,33,0.9219,-0.27471,-0.31807
+shared,BP,GO:0019530,taurine metabolic process,,9,60,2,FALSE,GO:0015012,heparan sulfate proteoglycan biosynthetic process,FALSE,9,0.9307,-0.24465,-0.2919
+shared,BP,GO:0051642,centrosome localization,,32,61,1,TRUE,GO:0051642,centrosome localization,FALSE,32,0.9687,-0.03917,0.06982
+shared,BP,GO:0009649,entrainment of circadian clock,,30,62,2,TRUE,GO:0009649,entrainment of circadian clock,FALSE,30,0.9409,-0.09349,0.26591
+shared,BP,GO:0001553,luteinization,,12,62,2,FALSE,GO:0009649,entrainment of circadian clock,FALSE,12,0.9147,0.37301,-0.08719
+shared,BP,GO:0043101,purine-containing compound salvage,,15,63,2,TRUE,GO:0043101,purine-containing compound salvage,FALSE,15,0.9202,-0.28312,-0.31917
+shared,BP,GO:0034418,urate biosynthetic process,,2,63,2,FALSE,GO:0043101,purine-containing compound salvage,FALSE,2,0.9248,-0.27044,-0.31468
+shared,BP,GO:0042136,neurotransmitter biosynthetic process,,14,64,1,TRUE,GO:0042136,neurotransmitter biosynthetic process,FALSE,14,0.9536,-0.17222,-0.17651
+shared,BP,GO:0032025,response to cobalt ion,,10,65,1,TRUE,GO:0032025,response to cobalt ion,FALSE,10,0.9614,-0.0847,0.26373
+shared,BP,GO:0018343,protein farnesylation,,3,66,1,TRUE,GO:0018343,protein farnesylation,FALSE,3,0.9432,-0.21124,-0.23288
+shared,BP,GO:0042335,cuticle development,,3,67,1,TRUE,GO:0042335,cuticle development,FALSE,3,0.9399,0.28722,-0.06559

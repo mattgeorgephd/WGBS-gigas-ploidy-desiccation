@@ -1,0 +1,44 @@
+set,ontology,go_id,term,p_value,score,cluster,cluster_size,is_representative,parent_go_id,parent_term,labelled,term_size,uniqueness,mds_1,mds_2
+ploidy,CC,GO:0005790,smooth endoplasmic reticulum,3.90675769212489e-24,23.4082,1,3,TRUE,GO:0005790,smooth endoplasmic reticulum,TRUE,30,0.8927,-0.19341,0.005
+ploidy,CC,GO:0033017,sarcoplasmic reticulum membrane,3.54850724956379e-05,4.45,1,3,FALSE,GO:0005790,smooth endoplasmic reticulum,TRUE,44,0.8778,-0.22606,-0.01285
+ploidy,CC,GO:0071782,endoplasmic reticulum tubular network,0.00999253594848206,2.0003,1,3,FALSE,GO:0005790,smooth endoplasmic reticulum,TRUE,27,0.8891,-0.19852,0.00343
+ploidy,CC,GO:0034992,microtubule organizing center attachment site,2.7666409380339e-17,16.558,2,10,TRUE,GO:0034992,microtubule organizing center attachment site,TRUE,11,0.8049,-0.42704,-0.15097
+ploidy,CC,GO:0034993,meiotic nuclear membrane microtubule tethering complex,2.7666409380339e-17,16.558,2,10,FALSE,GO:0034992,microtubule organizing center attachment site,TRUE,11,0.769,-0.42568,-0.18114
+ploidy,CC,GO:0106083,nuclear membrane protein complex,2.7666409380339e-17,16.558,2,10,FALSE,GO:0034992,microtubule organizing center attachment site,TRUE,11,0.7796,-0.41475,-0.17543
+ploidy,CC,GO:0106094,nuclear membrane microtubule tethering complex,2.7666409380339e-17,16.558,2,10,FALSE,GO:0034992,microtubule organizing center attachment site,TRUE,11,0.7796,-0.41475,-0.17543
+ploidy,CC,GO:0005635,nuclear envelope,1.1601378623956e-16,15.9355,2,10,FALSE,GO:0034992,microtubule organizing center attachment site,TRUE,494,0.7568,-0.46243,-0.17993
+ploidy,CC,GO:0031965,nuclear membrane,1.27137384325637e-14,13.8957,2,10,FALSE,GO:0034992,microtubule organizing center attachment site,TRUE,311,0.767,-0.45933,-0.17459
+ploidy,CC,GO:0005640,nuclear outer membrane,1.06027529130823e-12,11.9746,2,10,FALSE,GO:0034992,microtubule organizing center attachment site,TRUE,31,0.7971,-0.43835,-0.15387
+ploidy,CC,GO:0005643,nuclear pore,0.000240237263080619,3.6194,2,10,FALSE,GO:0034992,microtubule organizing center attachment site,TRUE,97,0.766,-0.41984,-0.1859
+ploidy,CC,GO:0031967,organelle envelope,0.00178377487467007,2.7487,2,10,FALSE,GO:0034992,microtubule organizing center attachment site,TRUE,1270,0.8083,-0.38787,-0.15873
+ploidy,CC,GO:0031975,envelope,0.00186027509977238,2.7304,2,10,FALSE,GO:0034992,microtubule organizing center attachment site,TRUE,1270,0.8563,-0.45042,-0.14176
+ploidy,CC,GO:0032593,insulin-responsive compartment,4.07335758877672e-12,11.39,3,4,TRUE,GO:0032593,insulin-responsive compartment,TRUE,7,0.8881,-0.18543,0.03239
+ploidy,CC,GO:0031045,dense core granule,6.42837462876237e-09,8.1919,3,4,FALSE,GO:0032593,insulin-responsive compartment,TRUE,37,0.8787,-0.19796,0.02341
+ploidy,CC,GO:0042470,melanosome,0.00641441540108941,2.1928,3,4,FALSE,GO:0032593,insulin-responsive compartment,TRUE,112,0.9071,-0.04898,0.10152
+ploidy,CC,GO:0048770,pigment granule,0.00795152264385287,2.0995,3,4,FALSE,GO:0032593,insulin-responsive compartment,TRUE,112,0.9071,-0.04898,0.10152
+ploidy,CC,GO:0005882,intermediate filament,9.47711716139214e-12,11.0233,4,5,TRUE,GO:0005882,intermediate filament,TRUE,214,0.7763,0.48648,-0.19945
+ploidy,CC,GO:0016461,unconventional myosin complex,1.01609730083069e-10,9.9931,4,5,FALSE,GO:0005882,intermediate filament,TRUE,9,0.85,0.24912,-0.14516
+ploidy,CC,GO:0045111,intermediate filament cytoskeleton,3.86482062574964e-10,9.4129,4,5,FALSE,GO:0005882,intermediate filament,TRUE,250,0.8374,0.34852,-0.15056
+ploidy,CC,GO:0015630,microtubule cytoskeleton,0.00153950179138101,2.8126,4,5,FALSE,GO:0005882,intermediate filament,TRUE,1380,0.8107,0.37668,-0.18075
+ploidy,CC,GO:0016459,myosin complex,0.00511861441019529,2.2908,4,5,FALSE,GO:0005882,intermediate filament,TRUE,56,0.8303,0.26732,-0.17012
+ploidy,CC,GO:0032433,filopodium tip,3.69249190390415e-09,8.4327,5,2,TRUE,GO:0032433,filopodium tip,TRUE,19,0.9909,0.01813,0.17102
+ploidy,CC,GO:0001750,photoreceptor outer segment,0.00189106160490595,2.7233,5,2,FALSE,GO:0032433,filopodium tip,TRUE,95,0.9426,-0.01362,0.11834
+ploidy,CC,GO:0099513,polymeric cytoskeletal fiber,1.48574883276294e-08,7.8281,6,6,TRUE,GO:0099513,polymeric cytoskeletal fiber,TRUE,791,0.7633,0.49008,-0.20732
+ploidy,CC,GO:0005874,microtubule,4.0907194958554e-07,6.3882,6,6,FALSE,GO:0099513,polymeric cytoskeletal fiber,TRUE,467,0.7645,0.495,-0.2086
+ploidy,CC,GO:0035371,microtubule plus-end,3.09206215321017e-05,4.5098,6,6,FALSE,GO:0099513,polymeric cytoskeletal fiber,TRUE,24,0.8024,0.46921,-0.18214
+ploidy,CC,GO:1990752,microtubule end,3.09206215321017e-05,4.5098,6,6,FALSE,GO:0099513,polymeric cytoskeletal fiber,TRUE,34,0.7973,0.47379,-0.18615
+ploidy,CC,GO:0099081,supramolecular polymer,3.10787408278963e-05,4.5075,6,6,FALSE,GO:0099513,polymeric cytoskeletal fiber,TRUE,1044,0.8834,0.39154,-0.06487
+ploidy,CC,GO:0099512,supramolecular fiber,5.00949102947705e-05,4.3002,6,6,FALSE,GO:0099513,polymeric cytoskeletal fiber,TRUE,1036,0.8833,0.39162,-0.06492
+ploidy,CC,GO:0032045,guanyl-nucleotide exchange factor complex,0.000153362326496939,3.8143,7,2,TRUE,GO:0032045,guanyl-nucleotide exchange factor complex,TRUE,17,0.9613,-0.01717,0.05184
+ploidy,CC,GO:0097149,centralspindlin complex,0.00225116644073113,2.6476,7,2,FALSE,GO:0032045,guanyl-nucleotide exchange factor complex,TRUE,3,0.8575,0.24513,-0.12934
+ploidy,CC,GO:0045171,intercellular bridge,0.000253951919536601,3.5952,8,1,TRUE,GO:0045171,intercellular bridge,TRUE,92,1,0.01931,0.15476
+ploidy,CC,GO:0014069,postsynaptic density,0.000344109426066865,3.4633,9,5,TRUE,GO:0014069,postsynaptic density,TRUE,315,0.8776,0.03401,0.62393
+ploidy,CC,GO:0099572,postsynaptic specialization,0.000361778005766397,3.4416,9,5,FALSE,GO:0014069,postsynaptic density,TRUE,346,0.8946,0.03259,0.5875
+ploidy,CC,GO:0032279,asymmetric synapse,0.00048558393580339,3.3137,9,5,FALSE,GO:0014069,postsynaptic density,TRUE,331,0.925,0.0374,0.66965
+ploidy,CC,GO:0098984,neuron to neuron synapse,0.00048558393580339,3.3137,9,5,FALSE,GO:0014069,postsynaptic density,TRUE,362,0.9249,0.03745,0.67099
+ploidy,CC,GO:0098793,presynapse,0.00804841200299489,2.0943,9,5,FALSE,GO:0014069,postsynaptic density,TRUE,562,0.9397,0.03633,0.64353
+ploidy,CC,GO:0016605,PML body,0.000883264136255652,3.0539,10,1,TRUE,GO:0016605,PML body,TRUE,109,0.9113,-0.08615,0.00838
+ploidy,CC,GO:0005715,late recombination nodule,0.00174785164395265,2.7575,11,4,TRUE,GO:0005715,late recombination nodule,TRUE,1,0.8589,0.12157,-0.09655
+ploidy,CC,GO:0005713,recombination nodule,0.00174785164395265,2.7575,11,4,FALSE,GO:0005715,late recombination nodule,TRUE,2,0.8543,0.12396,-0.10265
+ploidy,CC,GO:0005712,chiasma,0.00509751873437337,2.2926,11,4,FALSE,GO:0005715,late recombination nodule,TRUE,2,0.8626,0.12174,-0.10002
+ploidy,CC,GO:0000781,"chromosome, telomeric region",0.00872184099872493,2.0594,11,4,FALSE,GO:0005715,late recombination nodule,TRUE,171,0.8744,0.24976,-0.08796

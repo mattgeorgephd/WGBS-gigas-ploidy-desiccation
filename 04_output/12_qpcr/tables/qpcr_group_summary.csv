@@ -1,0 +1,233 @@
+gene,group,animals_included,nondetects,n_animals,n_animals_with_value,mean_delta_cq,sd_delta_cq,se_mean_delta_cq,geometric_mean_expression,median_expression,arithmetic_mean_expression
+HSC70,diploid control,all animals,dropped,8,8,6.554375,2.152738186,,0.01063987491,0.008395230551,0.04045087344
+HSC70,diploid heat,all animals,dropped,8,8,6.644375,0.8564396297,,0.009996404528,0.00964890275,0.01184490385
+HSC70,triploid control,all animals,dropped,8,8,7.075625,0.8347986819,,0.00741352296,0.006969237799,0.008537643318
+HSC70,triploid heat,all animals,dropped,8,8,6.971875,0.5825494308,,0.007966297096,0.008542963877,0.008530270413
+DNMT1,diploid control,all animals,dropped,8,7,11.885,1.207663032,,0.0002643982045,0.0003047682004,0.0003353568901
+DNMT1,diploid heat,all animals,dropped,8,6,11.57083333,0.7433802302,,0.0003287245139,0.0003497033985,0.0003656472033
+DNMT1,triploid control,all animals,dropped,8,7,12.90785714,1.677544975,,0.0001301211282,0.0001799645041,0.0001904624552
+DNMT1,triploid heat,all animals,dropped,8,7,11.74,0.8795405998,,0.0002923531994,0.0003369915414,0.0003423239194
+MBD2,diploid control,all animals,dropped,8,6,13.8725,0.9307026915,,6.667474834e-05,6.817397393e-05,7.870807978e-05
+MBD2,diploid heat,all animals,dropped,8,6,12.74333333,1.812290448,,0.0001458392499,0.0001014785875,0.0003617742026
+MBD2,triploid control,all animals,dropped,8,7,14.06714286,0.6134455772,,5.825967354e-05,5.500796281e-05,6.28991993e-05
+MBD2,triploid heat,all animals,dropped,8,7,12.74214286,0.7594727181,,0.0001459596425,0.0001492480808,0.000164132579
+MeCP2,diploid control,all animals,dropped,8,3,9.02,4.780525599,,0.001926235751,0.001137435143,0.02266188407
+MeCP2,diploid heat,all animals,dropped,8,5,13.484,0.6851313743,,8.727935708e-05,8.905153468e-05,9.541847096e-05
+MeCP2,triploid control,all animals,dropped,8,2,11.79,1.173797257,,0.0002823945761,0.0003304319557,0.0003304319557
+MeCP2,triploid heat,all animals,dropped,8,4,12.4425,1.021261475,,0.0001796529194,0.0002076774828,0.0002110640757
+HIF1A,diploid control,all animals,dropped,8,6,12.1425,1.036652063,,0.000221178688,0.0002421656424,0.0002698156702
+HIF1A,diploid heat,all animals,dropped,8,7,12.56071429,2.065442706,,0.0001655191445,9.744853349e-05,0.000590452393
+HIF1A,triploid control,all animals,dropped,8,8,13.143125,1.240261889,,0.0001105414452,0.0001290932956,0.0001457964986
+HIF1A,triploid heat,all animals,dropped,8,5,13.191,0.4293949231,,0.0001069333881,0.0001073790376,0.0001109514054
+HATHaP2,diploid control,all animals,dropped,8,7,8.672142857,1.315762951,,0.00245146035,0.004201149963,0.003274953921
+HATHaP2,diploid heat,all animals,dropped,8,8,7.16875,2.303024021,,0.006950102644,0.003792275787,0.03707539407
+HATHaP2,triploid control,all animals,dropped,8,8,8.138125,1.139617535,,0.003549606954,0.002910914027,0.004690221581
+HATHaP2,triploid heat,all animals,dropped,8,8,7.715,1.490833899,,0.004759415092,0.004604720293,0.007845325708
+HAT,diploid control,all animals,dropped,8,5,13.29,0.5561362243,,9.984155988e-05,0.0001135015799,0.0001059294409
+HAT,diploid heat,all animals,dropped,8,7,12.37357143,1.281788185,,0.0001884446649,0.0001594067123,0.0002862792282
+HAT,triploid control,all animals,dropped,8,8,12.64375,1.052659048,,0.0001562615012,0.0001440219172,0.0001992103114
+HAT,triploid heat,all animals,dropped,8,8,13.0425,0.890914458,,0.0001185267242,0.0001293103675,0.0001352544005
+HSP90,diploid control,all animals,dropped,8,7,8.200714286,0.7237945644,,0.003398904906,0.003172860923,0.003779690779
+HSP90,diploid heat,all animals,dropped,8,8,6.981875,1.656625092,,0.007911269862,0.00562864227,0.01818124905
+HSP90,triploid control,all animals,dropped,8,8,7.1325,0.9717105683,,0.007126947439,0.007460002333,0.008451397244
+HSP90,triploid heat,all animals,dropped,8,8,6.1175,1.715269658,,0.0144028687,0.009195551571,0.02751868897
+SOD,diploid control,all animals,dropped,8,7,3.106428571,1.004911747,,0.116110587,0.0880825472,0.1441907749
+SOD,diploid heat,all animals,dropped,8,8,1.78125,2.164063225,,0.2909312147,0.1841613872,1.082888338
+SOD,triploid control,all animals,dropped,8,8,2.45125,0.7691449334,,0.182852214,0.1777767457,0.2071897266
+SOD,triploid heat,all animals,dropped,8,8,2.51375,2.450912002,,0.17509988,0.2230452687,0.3356161211
+ATPsynthetase,diploid control,all animals,dropped,8,7,10.06142857,0.7507091885,,0.0009358542151,0.000930310545,0.001073606366
+ATPsynthetase,diploid heat,all animals,dropped,8,7,10.17285714,0.4964193216,,0.0008662931062,0.0009143283666,0.0009162486652
+ATPsynthetase,triploid control,all animals,dropped,8,8,10.115625,0.5752107533,,0.0009013499731,0.0009480689468,0.0009620154927
+ATPsynthetase,triploid heat,all animals,dropped,8,8,10.71625,0.7343887157,,0.0005944116449,0.0006705788178,0.0006592278163
+HSC70,diploid control,all animals,set to Cq 45,8,8,6.554375,2.152738186,,0.01063987491,0.008395230551,0.04045087344
+HSC70,diploid heat,all animals,set to Cq 45,8,8,6.644375,0.8564396297,,0.009996404528,0.00964890275,0.01184490385
+HSC70,triploid control,all animals,set to Cq 45,8,8,7.075625,0.8347986819,,0.00741352296,0.006969237799,0.008537643318
+HSC70,triploid heat,all animals,set to Cq 45,8,8,6.971875,0.5825494308,,0.007966297096,0.008542963877,0.008530270413
+DNMT1,diploid control,all animals,set to Cq 45,8,7,11.6175,1.350018518,,0.0003182614414,0.0003541541974,0.0004391081459
+DNMT1,diploid heat,all animals,set to Cq 45,8,6,12.243125,1.447250935,,0.0002062776306,0.0002302839841,0.0002886209545
+DNMT1,triploid control,all animals,set to Cq 45,8,7,13.383125,2.054062069,,9.360045056e-05,0.0001646062924,0.000167820649
+DNMT1,triploid heat,all animals,set to Cq 45,8,7,12.701875,2.839842724,,0.0001500909906,0.0002613289465,0.0002997097862
+MBD2,diploid control,all animals,set to Cq 45,8,6,13.72875,2.07252391,,7.366046346e-05,6.817397393e-05,0.0002057600948
+MBD2,diploid heat,all animals,set to Cq 45,8,6,13.69,2.825149806,,7.566575317e-05,8.935187826e-05,0.0002820273288
+MBD2,triploid control,all animals,set to Cq 45,8,7,14.3975,1.093454552,,4.633622376e-05,4.984415621e-05,5.620280001e-05
+MBD2,triploid heat,all animals,set to Cq 45,8,7,13.72875,2.877767922,,7.366046346e-05,0.0001243721075,0.0001436927703
+MeCP2,diploid control,all animals,set to Cq 45,8,3,15.684375,6.185071565,,1.899033656e-05,3.66341861e-06,0.008499341433
+MeCP2,diploid heat,all animals,set to Cq 45,8,5,14.5075,2.384153039,,4.293459177e-05,7.681684346e-05,7.41317913e-05
+MeCP2,triploid control,all animals,set to Cq 45,8,2,18.55125,4.622820529,,2.603258487e-06,7.079930163e-07,8.403068904e-05
+MeCP2,triploid heat,all animals,set to Cq 45,8,4,15.9975,3.927288232,,1.528525345e-05,3.570375039e-05,0.0001063577525
+HIF1A,diploid control,all animals,set to Cq 45,8,6,12.964375,3.509643284,,0.0001251221649,0.0002421656424,0.0003480876576
+HIF1A,diploid heat,all animals,set to Cq 45,8,7,12.86375,2.095533942,,0.000134160724,9.546370757e-05,0.0005205004102
+HIF1A,triploid control,all animals,set to Cq 45,8,8,13.143125,1.240261889,,0.0001105414452,0.0001290932956,0.0001457964986
+HIF1A,triploid heat,all animals,set to Cq 45,8,5,15.276875,2.915408496,,2.51885046e-05,8.238866705e-05,7.024891047e-05
+HATHaP2,diploid control,all animals,set to Cq 45,8,7,8.80625,1.275849157,,0.002233853051,0.00306703656,0.003011255548
+HATHaP2,diploid heat,all animals,set to Cq 45,8,8,7.16875,2.303024021,,0.006950102644,0.003792275787,0.03707539407
+HATHaP2,triploid control,all animals,set to Cq 45,8,8,8.138125,1.139617535,,0.003549606954,0.002910914027,0.004690221581
+HATHaP2,triploid heat,all animals,set to Cq 45,8,8,7.715,1.490833899,,0.004759415092,0.004604720293,0.007845325708
+HAT,diploid control,all animals,set to Cq 45,8,5,13.935,2.662453219,,6.384795775e-05,9.108485016e-05,0.000213287649
+HAT,diploid heat,all animals,set to Cq 45,8,7,12.51875,1.255740391,,0.0001704043754,0.0001455742202,0.0002610253103
+HAT,triploid control,all animals,set to Cq 45,8,8,12.64375,1.052659048,,0.0001562615012,0.0001440219172,0.0001992103114
+HAT,triploid heat,all animals,set to Cq 45,8,8,13.0425,0.890914458,,0.0001185267242,0.0001293103675,0.0001352544005
+HSP90,diploid control,all animals,set to Cq 45,8,7,8.39375,0.8643732246,,0.002973236625,0.003167372291,0.003452900299
+HSP90,diploid heat,all animals,set to Cq 45,8,8,6.981875,1.656625092,,0.007911269862,0.00562864227,0.01818124905
+HSP90,triploid control,all animals,set to Cq 45,8,8,7.1325,0.9717105683,,0.007126947439,0.007460002333,0.008451397244
+HSP90,triploid heat,all animals,set to Cq 45,8,8,6.1175,1.715269658,,0.0144028687,0.009195551571,0.02751868897
+SOD,diploid control,all animals,set to Cq 45,8,7,3.93625,2.52475989,,0.06532368555,0.08031327092,0.1263125989
+SOD,diploid heat,all animals,set to Cq 45,8,8,1.78125,2.164063225,,0.2909312147,0.1841613872,1.082888338
+SOD,triploid control,all animals,set to Cq 45,8,8,2.45125,0.7691449334,,0.182852214,0.1777767457,0.2071897266
+SOD,triploid heat,all animals,set to Cq 45,8,8,2.51375,2.450912002,,0.17509988,0.2230452687,0.3356161211
+ATPsynthetase,diploid control,all animals,set to Cq 45,8,7,10.021875,0.7039680264,,0.0009618669715,0.0009602526747,0.001085076437
+ATPsynthetase,diploid heat,all animals,set to Cq 45,8,7,10.593125,1.274452088,,0.000647368595,0.0008060397057,0.0008122485677
+ATPsynthetase,triploid control,all animals,set to Cq 45,8,8,10.115625,0.5752107533,,0.0009013499731,0.0009480689468,0.0009620154927
+ATPsynthetase,triploid heat,all animals,set to Cq 45,8,8,10.71625,0.7343887157,,0.0005944116449,0.0006705788178,0.0006592278163
+HSC70,diploid control,all animals,censored regression,8,8,6.554375,,0.4473541387,0.01063987491,,
+HSC70,diploid heat,all animals,censored regression,8,8,6.644375,,0.4473541387,0.009996404528,,
+HSC70,triploid control,all animals,censored regression,8,8,7.075625,,0.4473541387,0.00741352296,,
+HSC70,triploid heat,all animals,censored regression,8,8,6.971875,,0.4473541387,0.007966297096,,
+DNMT1,diploid control,all animals,censored regression,8,7,11.885,,0.4899078499,0.000264398204,,
+DNMT1,diploid heat,all animals,censored regression,8,6,11.61016519,,0.5162357741,0.0003198836353,,
+DNMT1,triploid control,all animals,censored regression,8,7,12.95592127,,0.4779581456,0.000125857493,,
+DNMT1,triploid heat,all animals,censored regression,8,7,12.13527611,,0.4619645222,0.0002222889561,,
+MBD2,diploid control,all animals,censored regression,8,6,13.89283696,,0.5208808755,6.574146093e-05,,
+MBD2,diploid heat,all animals,censored regression,8,6,13.0825316,,0.4959556333,0.0001152830793,,
+MBD2,triploid control,all animals,censored regression,8,7,14.0776138,,0.4851512822,5.783836136e-05,,
+MBD2,triploid heat,all animals,censored regression,8,7,13.1594866,,0.4611313677,0.0001092948771,,
+HIF1A,diploid control,all animals,censored regression,8,6,12.78629212,,0.6177850657,0.0001415606468,,
+HIF1A,diploid heat,all animals,censored regression,8,7,12.58159559,,0.6055504744,0.0001631407047,,
+HIF1A,triploid control,all animals,censored regression,8,8,13.143125,,0.5733242881,0.0001105414452,,
+HIF1A,triploid heat,all animals,censored regression,8,5,13.88081438,,0.6251483095,6.629160075e-05,,
+HATHaP2,diploid control,all animals,censored regression,8,7,8.675294423,,0.6144853554,0.002446110982,,
+HATHaP2,diploid heat,all animals,censored regression,8,8,7.16875,,0.5763279224,0.006950102644,,
+HATHaP2,triploid control,all animals,censored regression,8,8,8.138125,,0.5763279224,0.003549606954,,
+HATHaP2,triploid heat,all animals,censored regression,8,8,7.715,,0.5763279224,0.004759415092,,
+HAT,diploid control,all animals,censored regression,8,5,13.45423465,,0.4149861553,8.909878887e-05,,
+HAT,diploid heat,all animals,censored regression,8,7,12.3735827,,0.3770735835,0.0001884431925,,
+HAT,triploid control,all animals,censored regression,8,8,12.64375,,0.3527288007,0.0001562615012,,
+HAT,triploid heat,all animals,censored regression,8,8,13.0425,,0.3527288007,0.0001185267242,,
+HSP90,diploid control,all animals,censored regression,8,7,8.202427527,,0.5097311448,0.003394871006,,
+HSP90,diploid heat,all animals,censored regression,8,8,6.981875,,0.4776925867,0.007911269862,,
+HSP90,triploid control,all animals,censored regression,8,8,7.1325,,0.4776925867,0.007126947439,,
+HSP90,triploid heat,all animals,censored regression,8,8,6.1175,,0.4776925867,0.0144028687,,
+SOD,diploid control,all animals,censored regression,8,7,3.432432858,,0.6492651116,0.09262639283,,
+SOD,diploid heat,all animals,censored regression,8,8,1.78125,,0.6395938277,0.2909312147,,
+SOD,triploid control,all animals,censored regression,8,8,2.45125,,0.6395938277,0.182852214,,
+SOD,triploid heat,all animals,censored regression,8,8,2.51375,,0.6395938277,0.17509988,,
+ATPsynthetase,diploid control,all animals,censored regression,8,7,10.06142857,,0.2440181466,0.0009358542151,,
+ATPsynthetase,diploid heat,all animals,censored regression,8,7,10.17372681,,0.2435430774,0.0008657710585,,
+ATPsynthetase,triploid control,all animals,censored regression,8,8,10.115625,,0.2282580752,0.0009013499731,,
+ATPsynthetase,triploid heat,all animals,censored regression,8,8,10.71625,,0.2282580752,0.0005944116449,,
+HSC70,diploid control,failed samples excluded,dropped,7,7,7.214285714,1.158517115,,0.006734162666,0.005391864662,0.008869393223
+HSC70,diploid heat,failed samples excluded,dropped,8,8,6.644375,0.8564396297,,0.009996404528,0.00964890275,0.01184490385
+HSC70,triploid control,failed samples excluded,dropped,8,8,7.075625,0.8347986819,,0.00741352296,0.006969237799,0.008537643318
+HSC70,triploid heat,failed samples excluded,dropped,8,8,6.971875,0.5825494308,,0.007966297096,0.008542963877,0.008530270413
+DNMT1,diploid control,failed samples excluded,dropped,7,7,11.885,1.207663032,,0.0002643982045,0.0003047682004,0.0003353568901
+DNMT1,diploid heat,failed samples excluded,dropped,8,6,11.57083333,0.7433802302,,0.0003287245139,0.0003497033985,0.0003656472033
+DNMT1,triploid control,failed samples excluded,dropped,8,7,12.90785714,1.677544975,,0.0001301211282,0.0001799645041,0.0001904624552
+DNMT1,triploid heat,failed samples excluded,dropped,8,7,11.74,0.8795405998,,0.0002923531994,0.0003369915414,0.0003423239194
+MBD2,diploid control,failed samples excluded,dropped,7,6,13.8725,0.9307026915,,6.667474834e-05,6.817397393e-05,7.870807978e-05
+MBD2,diploid heat,failed samples excluded,dropped,8,6,12.74333333,1.812290448,,0.0001458392499,0.0001014785875,0.0003617742026
+MBD2,triploid control,failed samples excluded,dropped,8,7,14.06714286,0.6134455772,,5.825967354e-05,5.500796281e-05,6.28991993e-05
+MBD2,triploid heat,failed samples excluded,dropped,8,7,12.74214286,0.7594727181,,0.0001459596425,0.0001492480808,0.000164132579
+MeCP2,diploid control,failed samples excluded,dropped,7,2,11.5775,2.542048878,,0.0003272089884,0.0006157821109,0.0006157821109
+MeCP2,diploid heat,failed samples excluded,dropped,8,5,13.484,0.6851313743,,8.727935708e-05,8.905153468e-05,9.541847096e-05
+MeCP2,triploid control,failed samples excluded,dropped,8,2,11.79,1.173797257,,0.0002823945761,0.0003304319557,0.0003304319557
+MeCP2,triploid heat,failed samples excluded,dropped,8,4,12.4425,1.021261475,,0.0001796529194,0.0002076774828,0.0002110640757
+HIF1A,diploid control,failed samples excluded,dropped,7,6,12.1425,1.036652063,,0.000221178688,0.0002421656424,0.0002698156702
+HIF1A,diploid heat,failed samples excluded,dropped,8,7,12.56071429,2.065442706,,0.0001655191445,9.744853349e-05,0.000590452393
+HIF1A,triploid control,failed samples excluded,dropped,8,8,13.143125,1.240261889,,0.0001105414452,0.0001290932956,0.0001457964986
+HIF1A,triploid heat,failed samples excluded,dropped,8,5,13.191,0.4293949231,,0.0001069333881,0.0001073790376,0.0001109514054
+HATHaP2,diploid control,failed samples excluded,dropped,7,7,8.672142857,1.315762951,,0.00245146035,0.004201149963,0.003274953921
+HATHaP2,diploid heat,failed samples excluded,dropped,8,8,7.16875,2.303024021,,0.006950102644,0.003792275787,0.03707539407
+HATHaP2,triploid control,failed samples excluded,dropped,8,8,8.138125,1.139617535,,0.003549606954,0.002910914027,0.004690221581
+HATHaP2,triploid heat,failed samples excluded,dropped,8,8,7.715,1.490833899,,0.004759415092,0.004604720293,0.007845325708
+HAT,diploid control,failed samples excluded,dropped,7,5,13.29,0.5561362243,,9.984155988e-05,0.0001135015799,0.0001059294409
+HAT,diploid heat,failed samples excluded,dropped,8,7,12.37357143,1.281788185,,0.0001884446649,0.0001594067123,0.0002862792282
+HAT,triploid control,failed samples excluded,dropped,8,8,12.64375,1.052659048,,0.0001562615012,0.0001440219172,0.0001992103114
+HAT,triploid heat,failed samples excluded,dropped,8,8,13.0425,0.890914458,,0.0001185267242,0.0001293103675,0.0001352544005
+HSP90,diploid control,failed samples excluded,dropped,7,7,8.200714286,0.7237945644,,0.003398904906,0.003172860923,0.003779690779
+HSP90,diploid heat,failed samples excluded,dropped,8,8,6.981875,1.656625092,,0.007911269862,0.00562864227,0.01818124905
+HSP90,triploid control,failed samples excluded,dropped,8,8,7.1325,0.9717105683,,0.007126947439,0.007460002333,0.008451397244
+HSP90,triploid heat,failed samples excluded,dropped,8,8,6.1175,1.715269658,,0.0144028687,0.009195551571,0.02751868897
+SOD,diploid control,failed samples excluded,dropped,7,7,3.106428571,1.004911747,,0.116110587,0.0880825472,0.1441907749
+SOD,diploid heat,failed samples excluded,dropped,8,8,1.78125,2.164063225,,0.2909312147,0.1841613872,1.082888338
+SOD,triploid control,failed samples excluded,dropped,8,8,2.45125,0.7691449334,,0.182852214,0.1777767457,0.2071897266
+SOD,triploid heat,failed samples excluded,dropped,8,8,2.51375,2.450912002,,0.17509988,0.2230452687,0.3356161211
+ATPsynthetase,diploid control,failed samples excluded,dropped,7,7,10.06142857,0.7507091885,,0.0009358542151,0.000930310545,0.001073606366
+ATPsynthetase,diploid heat,failed samples excluded,dropped,8,7,10.17285714,0.4964193216,,0.0008662931062,0.0009143283666,0.0009162486652
+ATPsynthetase,triploid control,failed samples excluded,dropped,8,8,10.115625,0.5752107533,,0.0009013499731,0.0009480689468,0.0009620154927
+ATPsynthetase,triploid heat,failed samples excluded,dropped,8,8,10.71625,0.7343887157,,0.0005944116449,0.0006705788178,0.0006592278163
+HSC70,diploid control,failed samples excluded,set to Cq 45,7,7,7.214285714,1.158517115,,0.006734162666,0.005391864662,0.008869393223
+HSC70,diploid heat,failed samples excluded,set to Cq 45,8,8,6.644375,0.8564396297,,0.009996404528,0.00964890275,0.01184490385
+HSC70,triploid control,failed samples excluded,set to Cq 45,8,8,7.075625,0.8347986819,,0.00741352296,0.006969237799,0.008537643318
+HSC70,triploid heat,failed samples excluded,set to Cq 45,8,8,6.971875,0.5825494308,,0.007966297096,0.008542963877,0.008530270413
+DNMT1,diploid control,failed samples excluded,set to Cq 45,7,7,11.885,1.207663032,,0.0002643982045,0.0003047682004,0.0003353568901
+DNMT1,diploid heat,failed samples excluded,set to Cq 45,8,6,12.243125,1.447250935,,0.0002062776306,0.0002302839841,0.0002886209545
+DNMT1,triploid control,failed samples excluded,set to Cq 45,8,7,13.383125,2.054062069,,9.360045056e-05,0.0001646062924,0.000167820649
+DNMT1,triploid heat,failed samples excluded,set to Cq 45,8,7,12.701875,2.839842724,,0.0001500909906,0.0002613289465,0.0002997097862
+MBD2,diploid control,failed samples excluded,set to Cq 45,7,6,14.29785714,1.410085273,,4.964964256e-05,6.451526126e-05,6.867340313e-05
+MBD2,diploid heat,failed samples excluded,set to Cq 45,8,6,13.69,2.825149806,,7.566575317e-05,8.935187826e-05,0.0002820273288
+MBD2,triploid control,failed samples excluded,set to Cq 45,8,7,14.3975,1.093454552,,4.633622376e-05,4.984415621e-05,5.620280001e-05
+MBD2,triploid heat,failed samples excluded,set to Cq 45,8,7,13.72875,2.877767922,,7.366046346e-05,0.0001243721075,0.0001436927703
+MeCP2,diploid control,failed samples excluded,set to Cq 45,7,2,17.36714286,4.266343924,,5.91519493e-06,2.821707743e-06,0.0001772347797
+MeCP2,diploid heat,failed samples excluded,set to Cq 45,8,5,14.5075,2.384153039,,4.293459177e-05,7.681684346e-05,7.41317913e-05
+MeCP2,triploid control,failed samples excluded,set to Cq 45,8,2,18.55125,4.622820529,,2.603258487e-06,7.079930163e-07,8.403068904e-05
+MeCP2,triploid heat,failed samples excluded,set to Cq 45,8,4,15.9975,3.927288232,,1.528525345e-05,3.570375039e-05,0.0001063577525
+HIF1A,diploid control,failed samples excluded,set to Cq 45,7,6,13.42428571,3.52084676,,9.096772416e-05,0.0002341953416,0.0002313334749
+HIF1A,diploid heat,failed samples excluded,set to Cq 45,8,7,12.86375,2.095533942,,0.000134160724,9.546370757e-05,0.0005205004102
+HIF1A,triploid control,failed samples excluded,set to Cq 45,8,8,13.143125,1.240261889,,0.0001105414452,0.0001290932956,0.0001457964986
+HIF1A,triploid heat,failed samples excluded,set to Cq 45,8,5,15.276875,2.915408496,,2.51885046e-05,8.238866705e-05,7.024891047e-05
+HATHaP2,diploid control,failed samples excluded,set to Cq 45,7,7,8.672142857,1.315762951,,0.00245146035,0.004201149963,0.003274953921
+HATHaP2,diploid heat,failed samples excluded,set to Cq 45,8,8,7.16875,2.303024021,,0.006950102644,0.003792275787,0.03707539407
+HATHaP2,triploid control,failed samples excluded,set to Cq 45,8,8,8.138125,1.139617535,,0.003549606954,0.002910914027,0.004690221581
+HATHaP2,triploid heat,failed samples excluded,set to Cq 45,8,8,7.715,1.490833899,,0.004759415092,0.004604720293,0.007845325708
+HAT,diploid control,failed samples excluded,set to Cq 45,7,5,14.53357143,2.219477631,,4.216567489e-05,6.86681204e-05,7.727632221e-05
+HAT,diploid heat,failed samples excluded,set to Cq 45,8,7,12.51875,1.255740391,,0.0001704043754,0.0001455742202,0.0002610253103
+HAT,triploid control,failed samples excluded,set to Cq 45,8,8,12.64375,1.052659048,,0.0001562615012,0.0001440219172,0.0001992103114
+HAT,triploid heat,failed samples excluded,set to Cq 45,8,8,13.0425,0.890914458,,0.0001185267242,0.0001293103675,0.0001352544005
+HSP90,diploid control,failed samples excluded,set to Cq 45,7,7,8.200714286,0.7237945644,,0.003398904906,0.003172860923,0.003779690779
+HSP90,diploid heat,failed samples excluded,set to Cq 45,8,8,6.981875,1.656625092,,0.007911269862,0.00562864227,0.01818124905
+HSP90,triploid control,failed samples excluded,set to Cq 45,8,8,7.1325,0.9717105683,,0.007126947439,0.007460002333,0.008451397244
+HSP90,triploid heat,failed samples excluded,set to Cq 45,8,8,6.1175,1.715269658,,0.0144028687,0.009195551571,0.02751868897
+SOD,diploid control,failed samples excluded,set to Cq 45,7,7,3.106428571,1.004911747,,0.116110587,0.0880825472,0.1441907749
+SOD,diploid heat,failed samples excluded,set to Cq 45,8,8,1.78125,2.164063225,,0.2909312147,0.1841613872,1.082888338
+SOD,triploid control,failed samples excluded,set to Cq 45,8,8,2.45125,0.7691449334,,0.182852214,0.1777767457,0.2071897266
+SOD,triploid heat,failed samples excluded,set to Cq 45,8,8,2.51375,2.450912002,,0.17509988,0.2230452687,0.3356161211
+ATPsynthetase,diploid control,failed samples excluded,set to Cq 45,7,7,10.06142857,0.7507091885,,0.0009358542151,0.000930310545,0.001073606366
+ATPsynthetase,diploid heat,failed samples excluded,set to Cq 45,8,7,10.593125,1.274452088,,0.000647368595,0.0008060397057,0.0008122485677
+ATPsynthetase,triploid control,failed samples excluded,set to Cq 45,8,8,10.115625,0.5752107533,,0.0009013499731,0.0009480689468,0.0009620154927
+ATPsynthetase,triploid heat,failed samples excluded,set to Cq 45,8,8,10.71625,0.7343887157,,0.0005944116449,0.0006705788178,0.0006592278163
+HSC70,diploid control,failed samples excluded,censored regression,7,7,7.214285714,,0.3288682055,0.006734162666,,
+HSC70,diploid heat,failed samples excluded,censored regression,8,8,6.644375,,0.3076280376,0.009996404528,,
+HSC70,triploid control,failed samples excluded,censored regression,8,8,7.075625,,0.3076280376,0.00741352296,,
+HSC70,triploid heat,failed samples excluded,censored regression,8,8,6.971875,,0.3076280376,0.007966297096,,
+DNMT1,diploid control,failed samples excluded,censored regression,7,7,11.885,,0.4910405894,0.0002643982045,,
+DNMT1,diploid heat,failed samples excluded,censored regression,8,6,11.61016519,,0.5174293851,0.0003198836353,,
+DNMT1,triploid control,failed samples excluded,censored regression,8,7,12.95592127,,0.4790632533,0.000125857493,,
+DNMT1,triploid heat,failed samples excluded,censored regression,8,7,12.13527611,,0.4630326503,0.0002222889561,,
+MBD2,diploid control,failed samples excluded,censored regression,7,6,13.89283696,,0.5220852259,6.574146093e-05,,
+MBD2,diploid heat,failed samples excluded,censored regression,8,6,13.0825316,,0.4971023531,0.0001152830793,,
+MBD2,triploid control,failed samples excluded,censored regression,8,7,14.0776138,,0.4862730208,5.783836136e-05,,
+MBD2,triploid heat,failed samples excluded,censored regression,8,7,13.1594866,,0.4621975688,0.0001092948771,,
+HIF1A,diploid control,failed samples excluded,censored regression,7,6,12.78629206,,0.6192135584,0.0001415606531,,
+HIF1A,diploid heat,failed samples excluded,censored regression,8,7,12.58159559,,0.6069506122,0.0001631407044,,
+HIF1A,triploid control,failed samples excluded,censored regression,8,8,13.143125,,0.5746499137,0.0001105414452,,
+HIF1A,triploid heat,failed samples excluded,censored regression,8,5,13.8808144,,0.626593766,6.629159998e-05,,
+HATHaP2,diploid control,failed samples excluded,censored regression,7,7,8.672142857,,0.617916054,0.00245146035,,
+HATHaP2,diploid heat,failed samples excluded,censored regression,8,8,7.16875,,0.5780075419,0.006950102644,,
+HATHaP2,triploid control,failed samples excluded,censored regression,8,8,8.138125,,0.5780075419,0.003549606954,,
+HATHaP2,triploid heat,failed samples excluded,censored regression,8,8,7.715,,0.5780075419,0.004759415092,,
+HAT,diploid control,failed samples excluded,censored regression,7,5,13.45423465,,0.4159456622,8.909878887e-05,,
+HAT,diploid heat,failed samples excluded,censored regression,8,7,12.3735827,,0.3779454311,0.0001884431925,,
+HAT,triploid control,failed samples excluded,censored regression,8,8,12.64375,,0.3535443597,0.0001562615012,,
+HAT,triploid heat,failed samples excluded,censored regression,8,8,13.0425,,0.3535443597,0.0001185267242,,
+HSP90,diploid control,failed samples excluded,censored regression,7,7,8.200714286,,0.5120697616,0.003398904906,,
+HSP90,diploid heat,failed samples excluded,censored regression,8,8,6.981875,,0.4789974015,0.007911269862,,
+HSP90,triploid control,failed samples excluded,censored regression,8,8,7.1325,,0.4789974015,0.007126947439,,
+HSP90,triploid heat,failed samples excluded,censored regression,8,8,6.1175,,0.4789974015,0.0144028687,,
+SOD,diploid control,failed samples excluded,censored regression,7,7,3.106428571,,0.6707460437,0.116110587,,
+SOD,diploid heat,failed samples excluded,censored regression,8,8,1.78125,,0.6274254722,0.2909312147,,
+SOD,triploid control,failed samples excluded,censored regression,8,8,2.45125,,0.6274254722,0.182852214,,
+SOD,triploid heat,failed samples excluded,censored regression,8,8,2.51375,,0.6274254722,0.17509988,,
+ATPsynthetase,diploid control,failed samples excluded,censored regression,7,7,10.06142857,,0.2445823512,0.0009358542151,,
+ATPsynthetase,diploid heat,failed samples excluded,censored regression,8,7,10.17372681,,0.2441061835,0.0008657710585,,
+ATPsynthetase,triploid control,failed samples excluded,censored regression,8,8,10.115625,,0.2287858402,0.0009013499731,,
+ATPsynthetase,triploid heat,failed samples excluded,censored regression,8,8,10.71625,,0.2287858402,0.0005944116449,,

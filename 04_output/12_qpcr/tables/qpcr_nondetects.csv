@@ -1,0 +1,156 @@
+animals_included,gene,replicate_data,group,n_wells,n_wells_not_detected,share_detected,n_animals,n_animals_both_wells,n_animals_one_well,n_animals_no_well,median_cq_detected_wells,latest_cq_detected,lowest_share_in_a_group,detection_class
+every animal in the replicate files,Actin,TRUE,diploid control,20,0,1,10,10,0,0,26.105,35.59,,
+every animal in the replicate files,Actin,TRUE,diploid heat,20,0,1,10,10,0,0,25.125,31.59,,
+every animal in the replicate files,Actin,TRUE,triploid control,20,1,0.95,10,9,1,0,24.45,28.32,,
+every animal in the replicate files,Actin,TRUE,triploid heat,20,0,1,10,10,0,0,25.24,26.99,,
+every animal in the replicate files,Actin,TRUE,all groups,80,1,0.9875,40,39,1,0,25,35.59,,
+every animal in the replicate files,HSC70,TRUE,diploid control,20,0,1,10,10,0,0,32.905,37.39,,
+every animal in the replicate files,HSC70,TRUE,diploid heat,20,0,1,10,10,0,0,32.17,36.64,,
+every animal in the replicate files,HSC70,TRUE,triploid control,20,0,1,10,10,0,0,30.74,34.71,,
+every animal in the replicate files,HSC70,TRUE,triploid heat,20,0,1,10,10,0,0,32.33,33.67,,
+every animal in the replicate files,HSC70,TRUE,all groups,80,0,1,40,40,0,0,32.225,37.39,,
+every animal in the replicate files,DNMT1,TRUE,diploid control,20,4,0.8,10,8,0,2,37.64,39.65,,
+every animal in the replicate files,DNMT1,TRUE,diploid heat,20,6,0.7,10,7,0,3,36.71,38.8,,
+every animal in the replicate files,DNMT1,TRUE,triploid control,20,3,0.85,10,8,1,1,36.61,38.48,,
+every animal in the replicate files,DNMT1,TRUE,triploid heat,20,2,0.9,10,9,0,1,37.205,39.58,,
+every animal in the replicate files,DNMT1,TRUE,all groups,80,15,0.8125,40,32,1,7,37.17,39.65,,
+every animal in the replicate files,MBD2,TRUE,diploid control,20,9,0.55,10,4,3,3,38.43,39.94,,
+every animal in the replicate files,MBD2,TRUE,diploid heat,20,8,0.6,10,5,2,3,38.01,39.81,,
+every animal in the replicate files,MBD2,TRUE,triploid control,20,3,0.85,10,8,1,1,37.48,39.07,,
+every animal in the replicate files,MBD2,TRUE,triploid heat,20,3,0.85,10,8,1,1,37.94,39.66,,
+every animal in the replicate files,MBD2,TRUE,all groups,80,23,0.7125,40,25,7,8,37.94,39.94,,
+every animal in the replicate files,MeCP2,TRUE,diploid control,20,16,0.2,10,0,4,6,38.545,39.71,,
+every animal in the replicate files,MeCP2,TRUE,diploid heat,20,14,0.3,10,0,6,4,38.935,39.42,,
+every animal in the replicate files,MeCP2,TRUE,triploid control,20,15,0.25,10,2,1,7,36.3,37.31,,
+every animal in the replicate files,MeCP2,TRUE,triploid heat,20,15,0.25,10,0,5,5,37.89,39.69,,
+every animal in the replicate files,MeCP2,TRUE,all groups,80,60,0.25,40,2,16,22,37.725,39.71,,
+every animal in the replicate files,HIF1A,TRUE,diploid control,20,10,0.5,10,4,2,4,37.555,39.67,,
+every animal in the replicate files,HIF1A,TRUE,diploid heat,20,7,0.65,10,5,3,2,38.13,39.65,,
+every animal in the replicate files,HIF1A,TRUE,triploid control,20,4,0.8,10,7,2,1,37.345,39.67,,
+every animal in the replicate files,HIF1A,TRUE,triploid heat,20,7,0.65,10,6,1,3,37.91,39.33,,
+every animal in the replicate files,HIF1A,TRUE,all groups,80,28,0.65,40,22,8,10,37.61,39.67,,
+every animal in the replicate files,HATHaP2,TRUE,diploid control,20,2,0.9,10,9,0,1,34.34,36.2,,
+every animal in the replicate files,HATHaP2,TRUE,diploid heat,20,0,1,10,10,0,0,32.97,39.24,,
+every animal in the replicate files,HATHaP2,TRUE,triploid control,20,0,1,10,10,0,0,32.235,34.76,,
+every animal in the replicate files,HATHaP2,TRUE,triploid heat,20,0,1,10,10,0,0,33.235,34.44,,
+every animal in the replicate files,HATHaP2,TRUE,all groups,80,2,0.975,40,39,0,1,32.99,39.24,,
+every animal in the replicate files,HAT,TRUE,diploid control,20,9,0.55,10,4,3,3,37.96,39.8,,
+every animal in the replicate files,HAT,TRUE,diploid heat,20,5,0.75,10,7,1,2,37.68,39.89,,
+every animal in the replicate files,HAT,TRUE,triploid control,20,1,0.95,10,9,1,0,36.73,39.49,,
+every animal in the replicate files,HAT,TRUE,triploid heat,20,2,0.9,10,8,2,0,38.35,39.65,,
+every animal in the replicate files,HAT,TRUE,all groups,80,17,0.7875,40,28,7,5,37.42,39.89,,
+every animal in the replicate files,HSP90,TRUE,diploid control,20,2,0.9,10,9,0,1,33.07,36.56,,
+every animal in the replicate files,HSP90,TRUE,diploid heat,20,1,0.95,10,9,1,0,32.99,39.81,,
+every animal in the replicate files,HSP90,TRUE,triploid control,20,0,1,10,10,0,0,30.9,35.51,,
+every animal in the replicate files,HSP90,TRUE,triploid heat,20,0,1,10,10,0,0,31.565,33.2,,
+every animal in the replicate files,HSP90,TRUE,all groups,80,3,0.9625,40,38,1,1,32.19,39.81,,
+all animals,Actin,TRUE,diploid control,16,0,1,8,8,0,0,25.6,35.59,,
+all animals,Actin,TRUE,diploid heat,16,0,1,8,8,0,0,25.125,31.59,,
+all animals,Actin,TRUE,triploid control,16,1,0.9375,8,7,1,0,23.87,28.32,,
+all animals,Actin,TRUE,triploid heat,16,0,1,8,8,0,0,25.66,26.99,,
+all animals,Actin,TRUE,all groups,64,1,0.984375,32,31,1,0,25,35.59,,
+all animals,HSC70,TRUE,diploid control,16,0,1,8,8,0,0,32.575,37.39,1,quantifiable
+all animals,HSC70,TRUE,diploid heat,16,0,1,8,8,0,0,32.17,36.49,1,quantifiable
+all animals,HSC70,TRUE,triploid control,16,0,1,8,8,0,0,30.735,34.71,1,quantifiable
+all animals,HSC70,TRUE,triploid heat,16,0,1,8,8,0,0,32.865,33.67,1,quantifiable
+all animals,HSC70,TRUE,all groups,64,0,1,32,32,0,0,32.225,37.39,1,quantifiable
+all animals,DNMT1,TRUE,diploid control,16,2,0.875,8,7,0,1,37.44,39.65,0.75,near the detection limit
+all animals,DNMT1,TRUE,diploid heat,16,4,0.75,8,6,0,2,36.52,37.8,0.75,near the detection limit
+all animals,DNMT1,TRUE,triploid control,16,2,0.875,8,7,0,1,36.31,38.25,0.75,near the detection limit
+all animals,DNMT1,TRUE,triploid heat,16,2,0.875,8,7,0,1,37.345,39.58,0.75,near the detection limit
+all animals,DNMT1,TRUE,all groups,64,10,0.84375,32,27,0,5,37.09,39.65,0.75,near the detection limit
+all animals,MBD2,TRUE,diploid control,16,7,0.5625,8,3,3,2,38.43,39.94,0.5625,near the detection limit
+all animals,MBD2,TRUE,diploid heat,16,6,0.625,8,4,2,2,38.295,39.81,0.5625,near the detection limit
+all animals,MBD2,TRUE,triploid control,16,3,0.8125,8,6,1,1,37.4,39.07,0.5625,near the detection limit
+all animals,MBD2,TRUE,triploid heat,16,3,0.8125,8,6,1,1,38.11,39.66,0.5625,near the detection limit
+all animals,MBD2,TRUE,all groups,64,19,0.703125,32,19,7,6,38.06,39.94,0.5625,near the detection limit
+all animals,MeCP2,TRUE,diploid control,16,13,0.1875,8,0,3,5,37.93,39.16,0.1875,not analysed
+all animals,MeCP2,TRUE,diploid heat,16,11,0.3125,8,0,5,3,38.58,39.42,0.1875,not analysed
+all animals,MeCP2,TRUE,triploid control,16,13,0.1875,8,1,1,6,35.61,36.49,0.1875,not analysed
+all animals,MeCP2,TRUE,triploid heat,16,12,0.25,8,0,4,4,37.96,39.69,0.1875,not analysed
+all animals,MeCP2,TRUE,all groups,64,49,0.234375,32,1,13,18,37.89,39.69,0.1875,not analysed
+all animals,HIF1A,TRUE,diploid control,16,6,0.625,8,4,2,2,37.555,39.67,0.5625,near the detection limit
+all animals,HIF1A,TRUE,diploid heat,16,5,0.6875,8,4,3,1,38.73,39.65,0.5625,near the detection limit
+all animals,HIF1A,TRUE,triploid control,16,2,0.875,8,6,2,0,37.345,39.67,0.5625,near the detection limit
+all animals,HIF1A,TRUE,triploid heat,16,7,0.5625,8,4,1,3,38.57,39.33,0.5625,near the detection limit
+all animals,HIF1A,TRUE,all groups,64,20,0.6875,32,18,8,6,37.795,39.67,0.5625,near the detection limit
+all animals,HATHaP2,TRUE,diploid control,16,2,0.875,8,7,0,1,34.685,36.2,0.875,quantifiable
+all animals,HATHaP2,TRUE,diploid heat,16,0,1,8,8,0,0,33.295,39.24,0.875,quantifiable
+all animals,HATHaP2,TRUE,triploid control,16,0,1,8,8,0,0,32.74,34.76,0.875,quantifiable
+all animals,HATHaP2,TRUE,triploid heat,16,0,1,8,8,0,0,33.34,34.44,0.875,quantifiable
+all animals,HATHaP2,TRUE,all groups,64,2,0.96875,32,31,0,1,33.3,39.24,0.875,quantifiable
+all animals,HAT,TRUE,diploid control,16,8,0.5,8,3,2,3,37.59,39.8,0.5,near the detection limit
+all animals,HAT,TRUE,diploid heat,16,3,0.8125,8,6,1,1,37.76,39.89,0.5,near the detection limit
+all animals,HAT,TRUE,triploid control,16,1,0.9375,8,7,1,0,36.47,39.49,0.5,near the detection limit
+all animals,HAT,TRUE,triploid heat,16,2,0.875,8,6,2,0,38.745,39.65,0.5,near the detection limit
+all animals,HAT,TRUE,all groups,64,14,0.78125,32,22,6,4,37.825,39.89,0.5,near the detection limit
+all animals,HSP90,TRUE,diploid control,16,2,0.875,8,7,0,1,33.905,36.56,0.875,quantifiable
+all animals,HSP90,TRUE,diploid heat,16,1,0.9375,8,7,1,0,32.99,39.81,0.875,quantifiable
+all animals,HSP90,TRUE,triploid control,16,0,1,8,8,0,0,31.31,35.51,0.875,quantifiable
+all animals,HSP90,TRUE,triploid heat,16,0,1,8,8,0,0,32.21,33.2,0.875,quantifiable
+all animals,HSP90,TRUE,all groups,64,3,0.953125,32,30,1,1,32.24,39.81,0.875,quantifiable
+all animals,SOD,FALSE,diploid control,,,0.875,8,,,1,,,0.875,quantifiable
+all animals,SOD,FALSE,diploid heat,,,1,8,,,0,,,0.875,quantifiable
+all animals,SOD,FALSE,triploid control,,,1,8,,,0,,,0.875,quantifiable
+all animals,SOD,FALSE,triploid heat,,,1,8,,,0,,,0.875,quantifiable
+all animals,SOD,FALSE,all groups,,,0.96875,32,,,1,,,0.875,quantifiable
+all animals,ATPsynthetase,FALSE,diploid control,,,0.875,8,,,1,,,0.875,near the detection limit
+all animals,ATPsynthetase,FALSE,diploid heat,,,0.875,8,,,1,,,0.875,near the detection limit
+all animals,ATPsynthetase,FALSE,triploid control,,,1,8,,,0,,,0.875,near the detection limit
+all animals,ATPsynthetase,FALSE,triploid heat,,,1,8,,,0,,,0.875,near the detection limit
+all animals,ATPsynthetase,FALSE,all groups,,,0.9375,32,,,2,,,0.875,near the detection limit
+failed samples excluded,Actin,TRUE,diploid control,14,0,1,7,7,0,0,24.64,28.17,,
+failed samples excluded,Actin,TRUE,diploid heat,16,0,1,8,8,0,0,25.125,31.59,,
+failed samples excluded,Actin,TRUE,triploid control,16,1,0.9375,8,7,1,0,23.87,28.32,,
+failed samples excluded,Actin,TRUE,triploid heat,16,0,1,8,8,0,0,25.66,26.99,,
+failed samples excluded,Actin,TRUE,all groups,62,1,0.9838709677,31,30,1,0,24.95,31.59,,
+failed samples excluded,HSC70,TRUE,diploid control,14,0,1,7,7,0,0,32.515,34.74,1,quantifiable
+failed samples excluded,HSC70,TRUE,diploid heat,16,0,1,8,8,0,0,32.17,36.49,1,quantifiable
+failed samples excluded,HSC70,TRUE,triploid control,16,0,1,8,8,0,0,30.735,34.71,1,quantifiable
+failed samples excluded,HSC70,TRUE,triploid heat,16,0,1,8,8,0,0,32.865,33.67,1,quantifiable
+failed samples excluded,HSC70,TRUE,all groups,62,0,1,31,31,0,0,32.17,36.49,1,quantifiable
+failed samples excluded,DNMT1,TRUE,diploid control,14,0,1,7,7,0,0,37.44,39.65,0.75,near the detection limit
+failed samples excluded,DNMT1,TRUE,diploid heat,16,4,0.75,8,6,0,2,36.52,37.8,0.75,near the detection limit
+failed samples excluded,DNMT1,TRUE,triploid control,16,2,0.875,8,7,0,1,36.31,38.25,0.75,near the detection limit
+failed samples excluded,DNMT1,TRUE,triploid heat,16,2,0.875,8,7,0,1,37.345,39.58,0.75,near the detection limit
+failed samples excluded,DNMT1,TRUE,all groups,62,8,0.8709677419,31,27,0,4,37.09,39.65,0.75,near the detection limit
+failed samples excluded,MBD2,TRUE,diploid control,14,5,0.6428571429,7,3,3,1,38.43,39.94,0.625,near the detection limit
+failed samples excluded,MBD2,TRUE,diploid heat,16,6,0.625,8,4,2,2,38.295,39.81,0.625,near the detection limit
+failed samples excluded,MBD2,TRUE,triploid control,16,3,0.8125,8,6,1,1,37.4,39.07,0.625,near the detection limit
+failed samples excluded,MBD2,TRUE,triploid heat,16,3,0.8125,8,6,1,1,38.11,39.66,0.625,near the detection limit
+failed samples excluded,MBD2,TRUE,all groups,62,17,0.7258064516,31,19,7,5,38.06,39.94,0.625,near the detection limit
+failed samples excluded,MeCP2,TRUE,diploid control,14,12,0.1428571429,7,0,2,5,37.375,37.93,0.1428571429,not analysed
+failed samples excluded,MeCP2,TRUE,diploid heat,16,11,0.3125,8,0,5,3,38.58,39.42,0.1428571429,not analysed
+failed samples excluded,MeCP2,TRUE,triploid control,16,13,0.1875,8,1,1,6,35.61,36.49,0.1428571429,not analysed
+failed samples excluded,MeCP2,TRUE,triploid heat,16,12,0.25,8,0,4,4,37.96,39.69,0.1428571429,not analysed
+failed samples excluded,MeCP2,TRUE,all groups,62,48,0.2258064516,31,1,12,18,37.725,39.69,0.1428571429,not analysed
+failed samples excluded,HIF1A,TRUE,diploid control,14,4,0.7142857143,7,4,2,1,37.555,39.67,0.5625,near the detection limit
+failed samples excluded,HIF1A,TRUE,diploid heat,16,5,0.6875,8,4,3,1,38.73,39.65,0.5625,near the detection limit
+failed samples excluded,HIF1A,TRUE,triploid control,16,2,0.875,8,6,2,0,37.345,39.67,0.5625,near the detection limit
+failed samples excluded,HIF1A,TRUE,triploid heat,16,7,0.5625,8,4,1,3,38.57,39.33,0.5625,near the detection limit
+failed samples excluded,HIF1A,TRUE,all groups,62,18,0.7096774194,31,18,8,5,37.795,39.67,0.5625,near the detection limit
+failed samples excluded,HATHaP2,TRUE,diploid control,14,0,1,7,7,0,0,34.685,36.2,1,quantifiable
+failed samples excluded,HATHaP2,TRUE,diploid heat,16,0,1,8,8,0,0,33.295,39.24,1,quantifiable
+failed samples excluded,HATHaP2,TRUE,triploid control,16,0,1,8,8,0,0,32.74,34.76,1,quantifiable
+failed samples excluded,HATHaP2,TRUE,triploid heat,16,0,1,8,8,0,0,33.34,34.44,1,quantifiable
+failed samples excluded,HATHaP2,TRUE,all groups,62,0,1,31,31,0,0,33.3,39.24,1,quantifiable
+failed samples excluded,HAT,TRUE,diploid control,14,6,0.5714285714,7,3,2,2,37.59,39.8,0.5714285714,near the detection limit
+failed samples excluded,HAT,TRUE,diploid heat,16,3,0.8125,8,6,1,1,37.76,39.89,0.5714285714,near the detection limit
+failed samples excluded,HAT,TRUE,triploid control,16,1,0.9375,8,7,1,0,36.47,39.49,0.5714285714,near the detection limit
+failed samples excluded,HAT,TRUE,triploid heat,16,2,0.875,8,6,2,0,38.745,39.65,0.5714285714,near the detection limit
+failed samples excluded,HAT,TRUE,all groups,62,12,0.8064516129,31,22,6,3,37.825,39.89,0.5714285714,near the detection limit
+failed samples excluded,HSP90,TRUE,diploid control,14,0,1,7,7,0,0,33.905,36.56,0.9375,quantifiable
+failed samples excluded,HSP90,TRUE,diploid heat,16,1,0.9375,8,7,1,0,32.99,39.81,0.9375,quantifiable
+failed samples excluded,HSP90,TRUE,triploid control,16,0,1,8,8,0,0,31.31,35.51,0.9375,quantifiable
+failed samples excluded,HSP90,TRUE,triploid heat,16,0,1,8,8,0,0,32.21,33.2,0.9375,quantifiable
+failed samples excluded,HSP90,TRUE,all groups,62,1,0.9838709677,31,30,1,0,32.24,39.81,0.9375,quantifiable
+failed samples excluded,SOD,FALSE,diploid control,,,1,7,,,0,,,1,quantifiable
+failed samples excluded,SOD,FALSE,diploid heat,,,1,8,,,0,,,1,quantifiable
+failed samples excluded,SOD,FALSE,triploid control,,,1,8,,,0,,,1,quantifiable
+failed samples excluded,SOD,FALSE,triploid heat,,,1,8,,,0,,,1,quantifiable
+failed samples excluded,SOD,FALSE,all groups,,,1,31,,,0,,,1,quantifiable
+failed samples excluded,ATPsynthetase,FALSE,diploid control,,,1,7,,,0,,,0.875,quantifiable
+failed samples excluded,ATPsynthetase,FALSE,diploid heat,,,0.875,8,,,1,,,0.875,quantifiable
+failed samples excluded,ATPsynthetase,FALSE,triploid control,,,1,8,,,0,,,0.875,quantifiable
+failed samples excluded,ATPsynthetase,FALSE,triploid heat,,,1,8,,,0,,,0.875,quantifiable
+failed samples excluded,ATPsynthetase,FALSE,all groups,,,0.9677419355,31,,,1,,,0.875,quantifiable

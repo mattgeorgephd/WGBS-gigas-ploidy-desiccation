@@ -1,0 +1,164 @@
+set,ontology,go_id,term,p_value,score,cluster,cluster_size,is_representative,parent_go_id,parent_term,labelled,term_size,uniqueness,mds_1,mds_2
+heat,MF,GO:0004674,protein serine/threonine kinase activity,1.4219562768603e-37,36.8471,1,20,TRUE,GO:0004674,protein serine/threonine kinase activity,TRUE,427,0.8622,0.50137,-0.03261
+heat,MF,GO:0004672,protein kinase activity,3.11478425096931e-28,27.5066,1,20,FALSE,GO:0004674,protein serine/threonine kinase activity,TRUE,563,0.8565,0.51625,-0.0337
+heat,MF,GO:0016301,kinase activity,3.04382751326812e-25,24.5166,1,20,FALSE,GO:0004674,protein serine/threonine kinase activity,TRUE,726,0.8593,0.50893,-0.0332
+heat,MF,GO:0016773,"phosphotransferase activity, alcohol group as acceptor",3.45524098711416e-23,22.4615,1,20,FALSE,GO:0004674,protein serine/threonine kinase activity,TRUE,671,0.8599,0.50669,-0.03302
+heat,MF,GO:0050145,nucleoside monophosphate kinase activity,2.08635491070885e-20,19.6806,1,20,FALSE,GO:0004674,protein serine/threonine kinase activity,TRUE,20,0.8813,0.4331,-0.02751
+heat,MF,GO:0004385,guanylate kinase activity,4.89895211584552e-15,14.3099,1,20,FALSE,GO:0004674,protein serine/threonine kinase activity,TRUE,9,0.8904,0.40681,-0.0253
+heat,MF,GO:0016772,"transferase activity, transferring phosphorus-containing groups",1.06865520174073e-10,9.9712,1,20,FALSE,GO:0004674,protein serine/threonine kinase activity,TRUE,895,0.8602,0.50714,-0.03295
+heat,MF,GO:0019205,nucleobase-containing compound kinase activity,6.79159234635054e-10,9.168,1,20,FALSE,GO:0004674,protein serine/threonine kinase activity,TRUE,43,0.8779,0.44672,-0.02854
+heat,MF,GO:0004709,MAP kinase kinase kinase activity,9.18849653524724e-10,9.0368,1,20,FALSE,GO:0004674,protein serine/threonine kinase activity,TRUE,26,0.8918,0.41625,-0.02554
+heat,MF,GO:0052742,phosphatidylinositol kinase activity,1.83751241458995e-06,5.7358,1,20,FALSE,GO:0004674,protein serine/threonine kinase activity,TRUE,26,0.8888,0.42376,-0.02627
+heat,MF,GO:0016776,"phosphotransferase activity, phosphate group as acceptor",2.25159154970716e-06,5.6475,1,20,FALSE,GO:0004674,protein serine/threonine kinase activity,TRUE,36,0.8843,0.43229,-0.02708
+heat,MF,GO:0004430,1-phosphatidylinositol 4-kinase activity,5.42791475554938e-06,5.2654,1,20,FALSE,GO:0004674,protein serine/threonine kinase activity,TRUE,4,0.9029,0.37622,-0.02223
+heat,MF,GO:0004703,G protein-coupled receptor kinase activity,4.35150376470758e-05,4.3614,1,20,FALSE,GO:0004674,protein serine/threonine kinase activity,TRUE,7,0.8995,0.39062,-0.02335
+heat,MF,GO:0019206,nucleoside kinase activity,5.26115421177257e-05,4.2789,1,20,FALSE,GO:0004674,protein serine/threonine kinase activity,TRUE,9,0.89,0.41147,-0.02559
+heat,MF,GO:0004697,protein kinase C activity,0.000602217823616085,3.2202,1,20,FALSE,GO:0004674,protein serine/threonine kinase activity,TRUE,16,0.891,0.41886,-0.02577
+heat,MF,GO:0047696,beta-adrenergic receptor kinase activity,0.00191091943961537,2.7188,1,20,FALSE,GO:0004674,protein serine/threonine kinase activity,TRUE,4,0.9055,0.37003,-0.02148
+heat,MF,GO:0004715,non-membrane spanning protein tyrosine kinase activity,0.00222341885997213,2.653,1,20,FALSE,GO:0004674,protein serine/threonine kinase activity,TRUE,45,0.8893,0.42541,-0.02622
+heat,MF,GO:0051731,polynucleotide 5'-hydroxyl-kinase activity,0.00505590972257175,2.2962,1,20,FALSE,GO:0004674,protein serine/threonine kinase activity,TRUE,4,0.8952,0.39588,-0.02432
+heat,MF,GO:0004550,nucleoside diphosphate kinase activity,0.00726866375698443,2.1385,1,20,FALSE,GO:0004674,protein serine/threonine kinase activity,TRUE,18,0.8861,0.42093,-0.02648
+heat,MF,GO:0004694,eukaryotic translation initiation factor 2alpha kinase activity,0.00741591861025201,2.1298,1,20,FALSE,GO:0004674,protein serine/threonine kinase activity,TRUE,6,0.8995,0.39062,-0.02335
+heat,MF,GO:0032050,clathrin heavy chain binding,1.61770034257702e-35,34.7911,2,2,TRUE,GO:0032050,clathrin heavy chain binding,TRUE,10,0.9666,-0.16435,-0.04838
+heat,MF,GO:0030276,clathrin binding,8.9560484270486e-28,27.0479,2,2,FALSE,GO:0032050,clathrin heavy chain binding,TRUE,70,0.9624,-0.17406,-0.05686
+heat,MF,GO:0140312,cargo adaptor activity,5.6496308375861e-30,29.248,3,2,TRUE,GO:0140312,cargo adaptor activity,TRUE,19,0.9939,-0.08818,0.01461
+heat,MF,GO:0035615,clathrin adaptor activity,5.6496308375861e-30,29.248,3,2,FALSE,GO:0140312,cargo adaptor activity,TRUE,18,0.9593,-0.17091,-0.0495
+heat,MF,GO:0005545,1-phosphatidylinositol binding,1.2158996036451e-22,21.9151,4,4,TRUE,GO:0005545,1-phosphatidylinositol binding,TRUE,14,0.977,-0.13212,-0.02715
+heat,MF,GO:0005543,phospholipid binding,0.000127415504675317,3.8948,4,4,FALSE,GO:0005545,1-phosphatidylinositol binding,TRUE,484,0.9713,-0.14446,-0.0406
+heat,MF,GO:0005544,calcium-dependent phospholipid binding,0.000583018495823976,3.2343,4,4,FALSE,GO:0005545,1-phosphatidylinositol binding,TRUE,53,0.9757,-0.13546,-0.03082
+heat,MF,GO:0035091,phosphatidylinositol binding,0.00104116775394468,2.9825,4,4,FALSE,GO:0005545,1-phosphatidylinositol binding,TRUE,276,0.9718,-0.14235,-0.03809
+heat,MF,GO:0003774,cytoskeletal motor activity,1.7097163988957e-21,20.7671,5,4,TRUE,GO:0003774,cytoskeletal motor activity,TRUE,112,0.9834,-0.0932,0.02405
+heat,MF,GO:0003777,microtubule motor activity,5.48372485907851e-21,20.2609,5,4,FALSE,GO:0003774,cytoskeletal motor activity,TRUE,68,0.9833,-0.09322,0.02406
+heat,MF,GO:0008569,minus-end-directed microtubule motor activity,1.37408437006503e-12,11.862,5,4,FALSE,GO:0003774,cytoskeletal motor activity,TRUE,17,0.9846,-0.09298,0.02396
+heat,MF,GO:0000146,microfilament motor activity,5.01867338539326e-05,4.2994,5,4,FALSE,GO:0003774,cytoskeletal motor activity,TRUE,37,0.9841,-0.09306,0.02399
+heat,MF,GO:0005516,calmodulin binding,1.04508895932746e-20,19.9808,6,1,TRUE,GO:0005516,calmodulin binding,TRUE,204,0.9703,-0.16654,-0.05566
+heat,MF,GO:0005524,ATP binding,8.28404894081777e-20,19.0818,7,8,TRUE,GO:0005524,ATP binding,TRUE,1472,0.8952,-0.35382,-0.40385
+heat,MF,GO:0030554,adenyl nucleotide binding,1.98419769208187e-17,16.7024,7,8,FALSE,GO:0005524,ATP binding,TRUE,1635,0.9209,-0.29635,-0.32581
+heat,MF,GO:0032559,adenyl ribonucleotide binding,2.9039748523576e-17,16.537,7,8,FALSE,GO:0005524,ATP binding,TRUE,1533,0.9,-0.34678,-0.39557
+heat,MF,GO:0035639,purine ribonucleoside triphosphate binding,3.74036614818336e-11,10.4271,7,8,FALSE,GO:0005524,ATP binding,TRUE,1818,0.9195,-0.29612,-0.32214
+heat,MF,GO:0017076,purine nucleotide binding,4.17821548936819e-09,8.379,7,8,FALSE,GO:0005524,ATP binding,TRUE,1988,0.9196,-0.29821,-0.32809
+heat,MF,GO:0000166,nucleotide binding,6.84583208993599e-05,4.1646,7,8,FALSE,GO:0005524,ATP binding,TRUE,2150,0.9195,-0.2988,-0.32866
+heat,MF,GO:1901265,nucleoside phosphate binding,6.84583208993599e-05,4.1646,7,8,FALSE,GO:0005524,ATP binding,TRUE,2151,0.932,-0.26546,-0.27447
+heat,MF,GO:0035198,miRNA binding,0.00701304810674736,2.1541,7,8,FALSE,GO:0005524,ATP binding,TRUE,42,0.9672,-0.19642,-0.15967
+heat,MF,GO:0045505,dynein intermediate chain binding,1.5407645712604e-18,17.8123,8,1,TRUE,GO:0045505,dynein intermediate chain binding,TRUE,37,0.9737,-0.15671,-0.04664
+heat,MF,GO:0045503,dynein light chain binding,2.06410566354344e-15,14.6853,9,1,TRUE,GO:0045503,dynein light chain binding,TRUE,9,0.9759,-0.15042,-0.04111
+heat,MF,GO:0016887,ATP hydrolysis activity,9.41313632680954e-14,13.0263,10,7,TRUE,GO:0016887,ATP hydrolysis activity,TRUE,412,0.9014,0.33231,-0.01433
+heat,MF,GO:0017111,ribonucleoside triphosphate phosphatase activity,8.7245076550308e-07,6.0593,10,7,FALSE,GO:0016887,ATP hydrolysis activity,TRUE,740,0.8951,0.35137,-0.01589
+heat,MF,GO:0016462,pyrophosphatase activity,4.00908420777659e-06,5.397,10,7,FALSE,GO:0016887,ATP hydrolysis activity,TRUE,801,0.8937,0.35621,-0.01628
+heat,MF,GO:0016817,"hydrolase activity, acting on acid anhydrides",8.00121376408688e-06,5.0968,10,7,FALSE,GO:0016887,ATP hydrolysis activity,TRUE,802,0.8936,0.3564,-0.0163
+heat,MF,GO:0016818,"hydrolase activity, acting on acid anhydrides, in phosphorus-containing anhydrides",8.00121376408688e-06,5.0968,10,7,FALSE,GO:0016887,ATP hydrolysis activity,TRUE,802,0.8936,0.35639,-0.0163
+heat,MF,GO:0004435,phosphatidylinositol phospholipase C activity,0.000490473721907086,3.3094,10,7,FALSE,GO:0016887,ATP hydrolysis activity,TRUE,26,0.9205,0.27056,-0.00929
+heat,MF,GO:0004629,phospholipase C activity,0.000490473721907086,3.3094,10,7,FALSE,GO:0016887,ATP hydrolysis activity,TRUE,29,0.9191,0.27616,-0.00974
+heat,MF,GO:0005388,P-type calcium transporter activity,2.32012275816438e-13,12.6345,11,12,TRUE,GO:0005388,P-type calcium transporter activity,TRUE,9,0.9389,-0.20282,0.57029
+heat,MF,GO:0042625,ATPase-coupled ion transmembrane transporter activity,2.79503558623403e-13,12.5536,11,12,FALSE,GO:0005388,P-type calcium transporter activity,TRUE,24,0.9427,-0.19714,0.54556
+heat,MF,GO:0019829,ATPase-coupled monoatomic cation transmembrane transporter activity,3.44856656815581e-13,12.4624,11,12,FALSE,GO:0005388,P-type calcium transporter activity,TRUE,52,0.9367,-0.20566,0.58243
+heat,MF,GO:0015662,P-type ion transporter activity,9.14027621658073e-13,12.039,11,12,FALSE,GO:0005388,P-type calcium transporter activity,TRUE,23,0.9419,-0.19982,0.55712
+heat,MF,GO:0005432,calcium:sodium antiporter activity,2.14503689007459e-07,6.6686,11,12,FALSE,GO:0005388,P-type calcium transporter activity,TRUE,10,0.9403,-0.20153,0.56437
+heat,MF,GO:0015368,calcium:monoatomic cation antiporter activity,2.14503689007459e-07,6.6686,11,12,FALSE,GO:0005388,P-type calcium transporter activity,TRUE,13,0.9399,-0.20203,0.56652
+heat,MF,GO:0015297,antiporter activity,5.71722770624625e-05,4.2428,11,12,FALSE,GO:0005388,P-type calcium transporter activity,TRUE,135,0.9379,-0.20451,0.57718
+heat,MF,GO:0015385,sodium:proton antiporter activity,0.000732058848091124,3.1355,11,12,FALSE,GO:0005388,P-type calcium transporter activity,TRUE,16,0.9401,-0.20202,0.56652
+heat,MF,GO:0051139,metal cation:proton antiporter activity,0.000732058848091124,3.1355,11,12,FALSE,GO:0005388,P-type calcium transporter activity,TRUE,25,0.9382,-0.2039,0.57466
+heat,MF,GO:0099580,monoatomic ion antiporter activity involved in regulation of postsynaptic membrane potential,0.00257527328738424,2.5892,11,12,FALSE,GO:0005388,P-type calcium transporter activity,TRUE,1,0.9547,-0.18408,0.48816
+heat,MF,GO:0044769,"ATPase activity, coupled to transmembrane movement of ions, rotational mechanism",0.00741591861025201,2.1298,11,12,FALSE,GO:0005388,P-type calcium transporter activity,TRUE,24,0.943,-0.19671,0.54371
+heat,MF,GO:0046961,"proton-transporting ATPase activity, rotational mechanism",0.00741591861025201,2.1298,11,12,FALSE,GO:0005388,P-type calcium transporter activity,TRUE,24,0.9371,-0.20308,0.57161
+heat,MF,GO:0051959,dynein light intermediate chain binding,1.26421249836382e-12,11.8982,12,1,TRUE,GO:0051959,dynein light intermediate chain binding,TRUE,28,0.9743,-0.15519,-0.04535
+heat,MF,GO:0016812,"hydrolase activity, acting on carbon-nitrogen (but not peptide) bonds, in cyclic amides",1.48057873412224e-12,11.8296,13,6,TRUE,GO:0016812,"hydrolase activity, acting on carbon-nitrogen (but not peptide) bonds, in cyclic amides",TRUE,15,0.9141,0.27835,-0.00928
+heat,MF,GO:0004157,dihydropyrimidinase activity,3.57804040233386e-12,11.4464,13,6,FALSE,GO:0016812,"hydrolase activity, acting on carbon-nitrogen (but not peptide) bonds, in cyclic amides",TRUE,1,0.9229,0.24685,-0.00677
+heat,MF,GO:0004151,dihydroorotase activity,1.8983843002416e-06,5.7216,13,6,FALSE,GO:0016812,"hydrolase activity, acting on carbon-nitrogen (but not peptide) bonds, in cyclic amides",TRUE,2,0.9217,0.25116,-0.00712
+heat,MF,GO:0000225,N-acetylglucosaminylphosphatidylinositol deacetylase activity,0.000153439153657151,3.8141,13,6,FALSE,GO:0016812,"hydrolase activity, acting on carbon-nitrogen (but not peptide) bonds, in cyclic amides",TRUE,1,0.9252,0.24505,-0.00672
+heat,MF,GO:0032129,histone H3K9 deacetylase activity,0.00505590972257175,2.2962,13,6,FALSE,GO:0016812,"hydrolase activity, acting on carbon-nitrogen (but not peptide) bonds, in cyclic amides",TRUE,3,0.9105,0.30264,-0.0119
+heat,MF,GO:0046969,NAD-dependent histone H3K9 deacetylase activity,0.00505590972257175,2.2962,13,6,FALSE,GO:0016812,"hydrolase activity, acting on carbon-nitrogen (but not peptide) bonds, in cyclic amides",TRUE,2,0.9114,0.29941,-0.01164
+heat,MF,GO:0002061,pyrimidine nucleobase binding,3.57804040233386e-12,11.4464,14,3,TRUE,GO:0002061,pyrimidine nucleobase binding,TRUE,1,0.9518,-0.23232,-0.22666
+heat,MF,GO:0002058,uracil binding,3.57804040233386e-12,11.4464,14,3,FALSE,GO:0002061,pyrimidine nucleobase binding,TRUE,1,0.9518,-0.23232,-0.22666
+heat,MF,GO:0002054,nucleobase binding,1.29017557006826e-08,7.8894,14,3,FALSE,GO:0002061,pyrimidine nucleobase binding,TRUE,4,0.949,-0.2411,-0.24035
+heat,MF,GO:0002162,dystroglycan binding,2.69522719029618e-11,10.5694,15,1,TRUE,GO:0002162,dystroglycan binding,TRUE,11,0.9756,-0.15144,-0.04196
+heat,MF,GO:0005096,GTPase activator activity,3.96825536525758e-11,10.4014,16,12,TRUE,GO:0005096,GTPase activator activity,FALSE,272,0.9537,-0.14286,0.06288
+heat,MF,GO:0008047,enzyme activator activity,1.98478540672924e-10,9.7023,16,12,FALSE,GO:0005096,GTPase activator activity,FALSE,586,0.9535,-0.14353,0.06332
+heat,MF,GO:0030297,transmembrane receptor protein tyrosine kinase activator activity,2.62281875865045e-10,9.5812,16,12,FALSE,GO:0005096,GTPase activator activity,FALSE,18,0.9572,-0.14059,0.06131
+heat,MF,GO:0030548,acetylcholine receptor regulator activity,2.62281875865045e-10,9.5812,16,12,FALSE,GO:0005096,GTPase activator activity,FALSE,16,0.9671,-0.13152,0.05491
+heat,MF,GO:0099602,neurotransmitter receptor regulator activity,2.62281875865045e-10,9.5812,16,12,FALSE,GO:0005096,GTPase activator activity,FALSE,16,0.9671,-0.13152,0.05491
+heat,MF,GO:0060589,nucleoside-triphosphatase regulator activity,5.16678348295929e-10,9.2868,16,12,FALSE,GO:0005096,GTPase activator activity,FALSE,486,0.9563,-0.14142,0.06185
+heat,MF,GO:0030695,GTPase regulator activity,1.38367641600002e-09,8.859,16,12,FALSE,GO:0005096,GTPase activator activity,FALSE,486,0.9563,-0.14142,0.06185
+heat,MF,GO:0030296,protein tyrosine kinase activator activity,1.47839049700603e-06,5.8302,16,12,FALSE,GO:0005096,GTPase activator activity,FALSE,33,0.9572,-0.13987,0.06085
+heat,MF,GO:0004704,NF-kappaB-inducing kinase activity,0.00011815721982876,3.9275,16,12,FALSE,GO:0005096,GTPase activator activity,FALSE,6,0.9704,-0.12979,0.05379
+heat,MF,GO:0042030,ATPase inhibitor activity,0.000153439153657151,3.8141,16,12,FALSE,GO:0005096,GTPase activator activity,FALSE,5,0.9728,-0.1269,0.05174
+heat,MF,GO:0030295,protein kinase activator activity,0.0062720983618807,2.2026,16,12,FALSE,GO:0005096,GTPase activator activity,FALSE,124,0.9543,-0.14208,0.06235
+heat,MF,GO:0019209,kinase activator activity,0.00971382687081083,2.0126,16,12,FALSE,GO:0005096,GTPase activator activity,FALSE,133,0.9542,-0.14217,0.06241
+heat,MF,GO:0032555,purine ribonucleotide binding,1.60591617937926e-09,8.7943,17,6,TRUE,GO:0032555,purine ribonucleotide binding,FALSE,1885,0.8979,-0.3494,-0.39887
+heat,MF,GO:0032553,ribonucleotide binding,3.43826887658328e-09,8.4637,17,6,FALSE,GO:0032555,purine ribonucleotide binding,FALSE,1902,0.8982,-0.3494,-0.39882
+heat,MF,GO:0043395,heparan sulfate proteoglycan binding,6.37899792932208e-08,7.1952,17,6,FALSE,GO:0032555,purine ribonucleotide binding,FALSE,18,0.9344,-0.2633,-0.21985
+heat,MF,GO:0097367,carbohydrate derivative binding,0.000102091727280861,3.991,17,6,FALSE,GO:0032555,purine ribonucleotide binding,FALSE,2262,0.9428,-0.2455,-0.22893
+heat,MF,GO:0043394,proteoglycan binding,0.000166850728999927,3.7777,17,6,FALSE,GO:0032555,purine ribonucleotide binding,FALSE,36,0.9394,-0.25832,-0.21539
+heat,MF,GO:0035373,chondroitin sulfate proteoglycan binding,0.00406525439976132,2.3909,17,6,FALSE,GO:0032555,purine ribonucleotide binding,FALSE,2,0.9422,-0.24784,-0.20069
+heat,MF,GO:0017124,SH3 domain binding,2.55922050022415e-09,8.5919,18,2,TRUE,GO:0017124,SH3 domain binding,FALSE,122,0.9681,-0.16817,-0.05487
+heat,MF,GO:0097718,disordered domain specific binding,3.8486323455305e-07,6.4147,18,2,FALSE,GO:0017124,SH3 domain binding,FALSE,32,0.9706,-0.16138,-0.04887
+heat,MF,GO:0043237,laminin-1 binding,1.29017557006826e-08,7.8894,19,2,TRUE,GO:0043237,laminin-1 binding,FALSE,7,0.9713,-0.15547,-0.04298
+heat,MF,GO:0043236,laminin binding,0.00199859480601904,2.6993,19,2,FALSE,GO:0043237,laminin-1 binding,FALSE,28,0.969,-0.16169,-0.0484
+heat,MF,GO:0042043,neurexin family protein binding,3.13926727807276e-08,7.5032,20,10,TRUE,GO:0042043,neurexin family protein binding,FALSE,15,0.9577,-0.19344,-0.06682
+heat,MF,GO:0050750,low-density lipoprotein particle receptor binding,3.8486323455305e-07,6.4147,20,10,FALSE,GO:0042043,neurexin family protein binding,FALSE,24,0.9536,-0.19801,-0.06969
+heat,MF,GO:0070325,lipoprotein particle receptor binding,3.8486323455305e-07,6.4147,20,10,FALSE,GO:0042043,neurexin family protein binding,FALSE,29,0.9525,-0.20062,-0.07179
+heat,MF,GO:0005165,neurotrophin receptor binding,1.79811215106052e-05,4.7452,20,10,FALSE,GO:0042043,neurexin family protein binding,FALSE,12,0.9515,-0.19794,-0.06842
+heat,MF,GO:0005167,neurotrophin TRK receptor binding,1.79811215106052e-05,4.7452,20,10,FALSE,GO:0042043,neurexin family protein binding,FALSE,6,0.9527,-0.19475,-0.0659
+heat,MF,GO:0005168,neurotrophin TRKA receptor binding,1.79811215106052e-05,4.7452,20,10,FALSE,GO:0042043,neurexin family protein binding,FALSE,6,0.9534,-0.19331,-0.06466
+heat,MF,GO:0035254,glutamate receptor binding,0.00168824890625525,2.7726,20,10,FALSE,GO:0042043,neurexin family protein binding,FALSE,44,0.9557,-0.19805,-0.07054
+heat,MF,GO:0038191,neuropilin binding,0.00191091943961537,2.7188,20,10,FALSE,GO:0042043,neurexin family protein binding,FALSE,4,0.9614,-0.18463,-0.05972
+heat,MF,GO:0030215,semaphorin receptor binding,0.00406525439976132,2.3909,20,10,FALSE,GO:0042043,neurexin family protein binding,FALSE,23,0.9575,-0.19387,-0.06708
+heat,MF,GO:0030971,receptor tyrosine kinase binding,0.00742258596144647,2.1294,20,10,FALSE,GO:0042043,neurexin family protein binding,FALSE,81,0.9519,-0.20555,-0.07537
+heat,MF,GO:0019894,kinesin binding,5.23208438456062e-08,7.2813,21,7,TRUE,GO:0019894,kinesin binding,FALSE,44,0.9577,-0.18955,-0.06574
+heat,MF,GO:0032029,myosin tail binding,2.11095020039363e-07,6.6755,21,7,FALSE,GO:0019894,kinesin binding,FALSE,1,0.9632,-0.17381,-0.05197
+heat,MF,GO:0008017,microtubule binding,3.21036173075354e-07,6.4934,21,7,FALSE,GO:0019894,kinesin binding,FALSE,273,0.9494,-0.20402,-0.07755
+heat,MF,GO:0032036,myosin heavy chain binding,1.86448827121431e-05,4.7294,21,7,FALSE,GO:0019894,kinesin binding,FALSE,12,0.9577,-0.18597,-0.06179
+heat,MF,GO:0015631,tubulin binding,4.49120125057975e-05,4.3476,21,7,FALSE,GO:0019894,kinesin binding,FALSE,379,0.9479,-0.20728,-0.08035
+heat,MF,GO:0034452,dynactin binding,0.000196577445052542,3.7065,21,7,FALSE,GO:0019894,kinesin binding,FALSE,12,0.9603,-0.18385,-0.06108
+heat,MF,GO:0043015,gamma-tubulin binding,0.00177448248150612,2.7509,21,7,FALSE,GO:0019894,kinesin binding,FALSE,35,0.9563,-0.19012,-0.06577
+heat,MF,GO:0005521,lamin binding,8.46925327357629e-08,7.0722,22,1,TRUE,GO:0005521,lamin binding,FALSE,15,0.9751,-0.15277,-0.04322
+heat,MF,GO:0016409,palmitoyltransferase activity,5.81113341503818e-07,6.2357,23,6,TRUE,GO:0016409,palmitoyltransferase activity,FALSE,37,0.8982,0.3798,-0.0215
+heat,MF,GO:0019706,protein-cysteine S-palmitoyltransferase activity,4.76767205400873e-06,5.3217,23,6,FALSE,GO:0016409,palmitoyltransferase activity,FALSE,26,0.8962,0.37635,-0.02106
+heat,MF,GO:0019707,protein-cysteine S-acyltransferase activity,4.76767205400873e-06,5.3217,23,6,FALSE,GO:0016409,palmitoyltransferase activity,FALSE,26,0.8963,0.38002,-0.02136
+heat,MF,GO:0016417,S-acyltransferase activity,3.80869634827751e-05,4.4192,23,6,FALSE,GO:0016409,palmitoyltransferase activity,FALSE,30,0.898,0.37465,-0.02107
+heat,MF,GO:0004772,sterol O-acyltransferase activity,0.000153439153657151,3.8141,23,6,FALSE,GO:0016409,palmitoyltransferase activity,FALSE,3,0.91,0.33411,-0.01759
+heat,MF,GO:0034736,cholesterol O-acyltransferase activity,0.000153439153657151,3.8141,23,6,FALSE,GO:0016409,palmitoyltransferase activity,FALSE,3,0.9117,0.32803,-0.01707
+heat,MF,GO:0004088,carbamoyl-phosphate synthase (glutamine-hydrolyzing) activity,1.8983843002416e-06,5.7216,24,6,TRUE,GO:0004088,carbamoyl-phosphate synthase (glutamine-hydrolyzing) activity,FALSE,2,0.9335,0.20386,-0.0034
+heat,MF,GO:0004087,carbamoyl-phosphate synthase (ammonia) activity,1.70688211768465e-05,4.7678,24,6,FALSE,GO:0004088,carbamoyl-phosphate synthase (glutamine-hydrolyzing) activity,FALSE,1,0.9361,0.1976,-0.00293
+heat,MF,GO:0004775,succinate-CoA ligase (ADP-forming) activity,9.29210055598706e-05,4.0319,24,6,FALSE,GO:0004088,carbamoyl-phosphate synthase (glutamine-hydrolyzing) activity,FALSE,2,0.931,0.2054,-0.00343
+heat,MF,GO:0004776,succinate-CoA ligase (GDP-forming) activity,0.00029516821950591,3.5299,24,6,FALSE,GO:0004088,carbamoyl-phosphate synthase (glutamine-hydrolyzing) activity,FALSE,2,0.931,0.2054,-0.00343
+heat,MF,GO:0004774,succinate-CoA ligase activity,0.000714590189270634,3.1459,24,6,FALSE,GO:0004088,carbamoyl-phosphate synthase (glutamine-hydrolyzing) activity,FALSE,3,0.9284,0.2148,-0.00419
+heat,MF,GO:0016884,"carbon-nitrogen ligase activity, with glutamine as amido-N-donor",0.00791125192124312,2.1018,24,6,FALSE,GO:0004088,carbamoyl-phosphate synthase (glutamine-hydrolyzing) activity,FALSE,10,0.9261,0.23261,-0.00571
+heat,MF,GO:0070335,aspartate binding,1.8983843002416e-06,5.7216,25,4,TRUE,GO:0070335,aspartate binding,FALSE,1,0.9561,-0.22734,-0.22005
+heat,MF,GO:0016597,amino acid binding,0.00122076746575403,2.9134,25,4,FALSE,GO:0070335,aspartate binding,FALSE,51,0.9431,-0.25721,-0.26622
+heat,MF,GO:0033691,sialic acid binding,0.00247354579024201,2.6067,25,4,FALSE,GO:0070335,aspartate binding,FALSE,22,0.9312,-0.29387,-0.31652
+heat,MF,GO:0043168,anion binding,0.0046322353147925,2.3342,25,4,FALSE,GO:0070335,aspartate binding,FALSE,2421,0.9641,-0.18707,-0.13573
+heat,MF,GO:0004070,aspartate carbamoyltransferase activity,1.8983843002416e-06,5.7216,26,3,TRUE,GO:0004070,aspartate carbamoyltransferase activity,FALSE,1,0.9233,0.28307,-0.01296
+heat,MF,GO:0016743,carboxyl- or carbamoyltransferase activity,1.8983843002416e-06,5.7216,26,3,FALSE,GO:0004070,aspartate carbamoyltransferase activity,FALSE,2,0.9204,0.29487,-0.01396
+heat,MF,GO:0031151,histone H3K79 methyltransferase activity,0.000153439153657151,3.8141,26,3,FALSE,GO:0004070,aspartate carbamoyltransferase activity,FALSE,1,0.9241,0.28754,-0.01323
+heat,MF,GO:0051219,phosphoprotein binding,3.63583498958423e-06,5.4394,27,1,TRUE,GO:0051219,phosphoprotein binding,FALSE,93,0.9719,-0.16196,-0.05145
+heat,MF,GO:0001223,transcription coactivator binding,3.89742417675845e-06,5.4092,28,3,TRUE,GO:0001223,transcription coactivator binding,FALSE,44,0.9659,-0.16827,-0.05268
+heat,MF,GO:0001221,transcription coregulator binding,0.000324198747154074,3.4892,28,3,FALSE,GO:0001223,transcription coactivator binding,FALSE,112,0.9638,-0.17383,-0.05753
+heat,MF,GO:0001156,TFIIIC-class transcription factor complex binding,0.00505590972257175,2.2962,28,3,FALSE,GO:0001223,transcription coactivator binding,FALSE,3,0.9723,-0.15565,-0.04215
+heat,MF,GO:0035374,chondroitin sulfate binding,4.76767205400873e-06,5.3217,29,3,TRUE,GO:0035374,chondroitin sulfate binding,FALSE,10,0.9539,-0.22126,-0.19038
+heat,MF,GO:0008201,heparin binding,0.000788453333085759,3.1032,29,3,FALSE,GO:0035374,chondroitin sulfate binding,FALSE,174,0.9437,-0.24044,-0.218
+heat,MF,GO:1901681,sulfur compound binding,0.00710813492626251,2.1482,29,3,FALSE,GO:0035374,chondroitin sulfate binding,FALSE,275,0.9677,-0.16475,-0.08705
+heat,MF,GO:0015616,DNA translocase activity,1.70688211768465e-05,4.7678,30,3,TRUE,GO:0015616,DNA translocase activity,FALSE,5,0.9408,0.19644,-0.00383
+heat,MF,GO:0003917,"DNA topoisomerase type I (single strand cut, ATP-independent) activity",0.00505590972257175,2.2962,30,3,FALSE,GO:0015616,DNA translocase activity,FALSE,4,0.9387,0.19618,-0.00371
+heat,MF,GO:0003916,DNA topoisomerase activity,0.00741591861025201,2.1298,30,3,FALSE,GO:0015616,DNA translocase activity,FALSE,7,0.936,0.20759,-0.00464
+heat,MF,GO:0008526,phosphatidylinositol transfer activity,1.79811215106052e-05,4.7452,31,5,TRUE,GO:0008526,phosphatidylinositol transfer activity,FALSE,10,0.9584,-0.17384,0.43857
+heat,MF,GO:0120014,phospholipid transfer activity,0.000224935136433472,3.6479,31,5,FALSE,GO:0008526,phosphatidylinositol transfer activity,FALSE,25,0.956,-0.17767,0.45544
+heat,MF,GO:0120013,lipid transfer activity,0.000569698513816974,3.2444,31,5,FALSE,GO:0008526,phosphatidylinositol transfer activity,FALSE,54,0.9549,-0.18012,0.46624
+heat,MF,GO:0005247,voltage-gated chloride channel activity,0.00534303910855247,2.2722,31,5,FALSE,GO:0008526,phosphatidylinositol transfer activity,FALSE,11,0.9566,-0.17957,0.46578
+heat,MF,GO:0008308,voltage-gated monoatomic anion channel activity,0.00671184599486827,2.1732,31,5,FALSE,GO:0008526,phosphatidylinositol transfer activity,FALSE,17,0.9561,-0.18048,0.46963
+heat,MF,GO:0004386,helicase activity,9.4519658195135e-05,4.0245,32,1,TRUE,GO:0004386,helicase activity,FALSE,154,0.9304,0.25381,-0.00914
+heat,MF,GO:0004563,beta-N-acetylhexosaminidase activity,0.000673879803047518,3.1714,33,3,TRUE,GO:0004563,beta-N-acetylhexosaminidase activity,FALSE,5,0.925,0.24898,-0.00733
+heat,MF,GO:0015929,hexosaminidase activity,0.0062720983618807,2.2026,33,3,FALSE,GO:0004563,beta-N-acetylhexosaminidase activity,FALSE,14,0.9206,0.26564,-0.00866
+heat,MF,GO:0004572,"mannosyl-oligosaccharide 1,3-1,6-alpha-mannosidase activity",0.00688702970014033,2.162,33,3,FALSE,GO:0004563,beta-N-acetylhexosaminidase activity,FALSE,2,0.9329,0.22299,-0.00529
+heat,MF,GO:0032407,MutSalpha complex binding,0.00069892048357837,3.1556,34,3,TRUE,GO:0032407,MutSalpha complex binding,FALSE,7,0.9786,-0.12448,-0.02073
+heat,MF,GO:0032404,mismatch repair complex binding,0.00406525439976132,2.3909,34,3,FALSE,GO:0032407,MutSalpha complex binding,FALSE,11,0.9777,-0.12643,-0.02289
+heat,MF,GO:0032405,MutLalpha complex binding,0.00406525439976132,2.3909,34,3,FALSE,GO:0032407,MutSalpha complex binding,FALSE,6,0.9788,-0.12408,-0.02029
+heat,MF,GO:0071558,histone H3K27me2/H3K27me3 demethylase activity,0.00069892048357837,3.1556,35,3,TRUE,GO:0071558,histone H3K27me2/H3K27me3 demethylase activity,FALSE,5,0.9325,0.24115,-0.00823
+heat,MF,GO:0004128,"cytochrome-b5 reductase activity, acting on NAD(P)H",0.00220251864771808,2.6571,35,3,FALSE,GO:0071558,histone H3K27me2/H3K27me3 demethylase activity,FALSE,6,0.9394,0.20241,-0.00442
+heat,MF,GO:0016174,NAD(P)H oxidase H2O2-forming activity,0.00596323246882861,2.2245,35,3,FALSE,GO:0071558,histone H3K27me2/H3K27me3 demethylase activity,FALSE,9,0.9371,0.21216,-0.00522
+heat,MF,GO:0017134,fibroblast growth factor binding,0.00096511568155746,3.0154,36,1,TRUE,GO:0017134,fibroblast growth factor binding,FALSE,23,0.9741,-0.1556,-0.04571
+heat,MF,GO:0035035,histone acetyltransferase binding,0.000967963836561785,3.0141,37,1,TRUE,GO:0035035,histone acetyltransferase binding,FALSE,24,0.9725,-0.15915,-0.04743
+heat,MF,GO:0044183,protein folding chaperone,0.00315499705916038,2.501,38,1,TRUE,GO:0044183,protein folding chaperone,FALSE,66,1,-0.08002,0.01848
+heat,MF,GO:0003746,translation elongation factor activity,0.00596323246882861,2.2245,39,1,TRUE,GO:0003746,translation elongation factor activity,FALSE,20,0.9691,-0.19044,-0.15047
+heat,MF,GO:0000182,rDNA binding,0.00741591861025201,2.1298,40,1,TRUE,GO:0000182,rDNA binding,FALSE,11,0.9707,-0.18528,-0.14259
+heat,MF,GO:1990404,NAD+-protein ADP-ribosyltransferase activity,0.00741591861025201,2.1298,41,1,TRUE,GO:1990404,NAD+-protein ADP-ribosyltransferase activity,FALSE,23,0.9099,0.34857,-0.01857

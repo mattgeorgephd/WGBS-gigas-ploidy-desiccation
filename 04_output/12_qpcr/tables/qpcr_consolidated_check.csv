@@ -1,0 +1,13 @@
+gene,replicate_file,cells,consolidated_missing,cells_compared,missing_in_both,largest_absolute_difference,cells_that_differ,which_cells,result
+Actin,TRUE,32,0,32,0,0,0,"",consolidated values are the means of the detected wells
+HSC70,TRUE,32,0,32,0,0,0,"",consolidated values are the means of the detected wells
+DNMT1,TRUE,32,5,27,5,0,0,"",consolidated values are the means of the detected wells
+MBD2,TRUE,32,6,26,6,0,0,"",consolidated values are the means of the detected wells
+MeCP2,TRUE,32,18,14,18,0,0,"",consolidated values are the means of the detected wells
+HIF1A,TRUE,32,6,26,6,0,0,"",consolidated values are the means of the detected wells
+HATHaP2,TRUE,32,1,31,1,0,0,"",consolidated values are the means of the detected wells
+HAT,TRUE,32,4,28,4,0,0,"",consolidated values are the means of the detected wells
+HSP90,TRUE,32,1,31,1,0,0,"",consolidated values are the means of the detected wells
+SOD,FALSE,32,1,,,,,"",cannot be checked: no replicate-level file exists
+ATPsynthetase,FALSE,32,2,,,,,"",cannot be checked: no replicate-level file exists
+COX1,FALSE,32,0,,,,,"",cannot be checked: no replicate-level file exists

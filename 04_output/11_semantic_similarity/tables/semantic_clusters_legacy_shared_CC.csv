@@ -1,0 +1,37 @@
+set,ontology,go_id,term,p_value,score,cluster,cluster_size,is_representative,parent_go_id,parent_term,labelled,term_size,uniqueness,mds_1,mds_2
+shared,CC,GO:0034992,microtubule organizing center attachment site,6.05451371234328e-22,21.2179,1,8,TRUE,GO:0034992,microtubule organizing center attachment site,TRUE,11,0.7774,-0.36402,0.24342
+shared,CC,GO:0034993,meiotic nuclear membrane microtubule tethering complex,6.05451371234328e-22,21.2179,1,8,FALSE,GO:0034992,microtubule organizing center attachment site,TRUE,11,0.7172,-0.34209,0.20411
+shared,CC,GO:0106083,nuclear membrane protein complex,6.05451371234328e-22,21.2179,1,8,FALSE,GO:0034992,microtubule organizing center attachment site,TRUE,11,0.73,-0.33185,0.18965
+shared,CC,GO:0106094,nuclear membrane microtubule tethering complex,6.05451371234328e-22,21.2179,1,8,FALSE,GO:0034992,microtubule organizing center attachment site,TRUE,11,0.73,-0.33185,0.18965
+shared,CC,GO:0005635,nuclear envelope,4.13012460317154e-16,15.384,1,8,FALSE,GO:0034992,microtubule organizing center attachment site,TRUE,494,0.7219,-0.40422,0.25082
+shared,CC,GO:0031965,nuclear membrane,6.90430941227603e-10,9.1609,1,8,FALSE,GO:0034992,microtubule organizing center attachment site,TRUE,311,0.7187,-0.41616,0.16687
+shared,CC,GO:0031967,organelle envelope,2.10697414321241e-06,5.6763,1,8,FALSE,GO:0034992,microtubule organizing center attachment site,TRUE,1270,0.7827,-0.33166,0.41555
+shared,CC,GO:0031975,envelope,2.19990828953674e-06,5.6576,1,8,FALSE,GO:0034992,microtubule organizing center attachment site,TRUE,1270,0.8269,-0.38433,0.48048
+shared,CC,GO:0005640,nuclear outer membrane,2.73259595794761e-17,16.5634,2,3,TRUE,GO:0005640,nuclear outer membrane,TRUE,31,0.725,-0.42331,0.07369
+shared,CC,GO:0031968,organelle outer membrane,4.55669176160462e-05,4.3414,2,3,FALSE,GO:0005640,nuclear outer membrane,TRUE,246,0.7314,-0.40847,0.06997
+shared,CC,GO:0019867,outer membrane,5.05062989762039e-05,4.2967,2,3,FALSE,GO:0005640,nuclear outer membrane,TRUE,248,0.908,-0.15953,-0.22567
+shared,CC,GO:0045111,intermediate filament cytoskeleton,1.12983361354759e-09,8.947,3,4,TRUE,GO:0045111,intermediate filament cytoskeleton,TRUE,250,0.8668,0.32241,0.0416
+shared,CC,GO:0005868,cytoplasmic dynein complex,1.67468279496496e-08,7.7761,3,4,FALSE,GO:0045111,intermediate filament cytoskeleton,TRUE,23,0.8481,0.27807,0.01449
+shared,CC,GO:0005882,intermediate filament,1.27695170080596e-07,6.8938,3,4,FALSE,GO:0045111,intermediate filament cytoskeleton,TRUE,214,0.7906,0.53386,0.15884
+shared,CC,GO:0030286,dynein complex,0.000295261170597056,3.5298,3,4,FALSE,GO:0045111,intermediate filament cytoskeleton,TRUE,54,0.8404,0.28481,0.02068
+shared,CC,GO:0031258,lamellipodium membrane,8.72364192818146e-09,8.0593,4,2,TRUE,GO:0031258,lamellipodium membrane,TRUE,22,0.9384,-0.04427,-0.33703
+shared,CC,GO:0030175,filopodium,0.00198488824150506,2.7023,4,2,FALSE,GO:0031258,lamellipodium membrane,TRUE,108,0.9892,0.07024,-0.23838
+shared,CC,GO:0031209,SCAR complex,1.25962952089396e-06,5.8998,5,1,TRUE,GO:0031209,SCAR complex,TRUE,12,0.9296,0.08602,-0.15592
+shared,CC,GO:0043527,tRNA methyltransferase complex,2.89900394176738e-06,5.5378,6,1,TRUE,GO:0043527,tRNA methyltransferase complex,TRUE,7,0.9341,0.10495,-0.08925
+shared,CC,GO:0042589,zymogen granule membrane,3.78215288081845e-06,5.4223,7,5,TRUE,GO:0042589,zymogen granule membrane,TRUE,12,0.8313,-0.18934,-0.37689
+shared,CC,GO:0042588,zymogen granule,8.4956297214472e-06,5.0708,7,5,FALSE,GO:0042589,zymogen granule membrane,TRUE,14,0.8557,-0.13637,-0.34149
+shared,CC,GO:0055038,recycling endosome membrane,7.78607026885721e-05,4.1087,7,5,FALSE,GO:0042589,zymogen granule membrane,TRUE,107,0.8294,-0.20265,-0.31819
+shared,CC,GO:0030672,synaptic vesicle membrane,0.000994614446579786,3.0023,7,5,FALSE,GO:0042589,zymogen granule membrane,TRUE,126,0.8097,-0.21469,-0.3603
+shared,CC,GO:0099501,exocytic vesicle membrane,0.000994614446579786,3.0023,7,5,FALSE,GO:0042589,zymogen granule membrane,TRUE,126,0.8097,-0.21469,-0.3603
+shared,CC,GO:0016363,nuclear matrix,3.05302595117533e-05,4.5153,8,4,TRUE,GO:0016363,nuclear matrix,TRUE,128,0.8689,-0.03592,-0.06339
+shared,CC,GO:0034399,nuclear periphery,7.78840881186126e-05,4.1086,8,4,FALSE,GO:0016363,nuclear matrix,TRUE,150,0.8671,-0.03712,-0.06165
+shared,CC,GO:0005652,nuclear lamina,0.000493452583715465,3.3068,8,4,FALSE,GO:0016363,nuclear matrix,TRUE,12,0.8833,-0.02634,-0.07618
+shared,CC,GO:0005730,nucleolus,0.00767221691369367,2.1151,8,4,FALSE,GO:0016363,nuclear matrix,TRUE,1483,0.8188,0.15735,0.07737
+shared,CC,GO:0000932,P-body,0.000104798439204992,3.9796,9,6,TRUE,GO:0000932,P-body,TRUE,99,0.8081,0.49155,0.09603
+shared,CC,GO:0036464,cytoplasmic ribonucleoprotein granule,0.000487557805275265,3.312,9,6,FALSE,GO:0000932,P-body,TRUE,253,0.792,0.50214,0.10144
+shared,CC,GO:0035770,ribonucleoprotein granule,0.000777591574047276,3.1092,9,6,FALSE,GO:0000932,P-body,TRUE,270,0.8018,0.51041,0.15532
+shared,CC,GO:0099512,supramolecular fiber,0.00396610789299567,2.4016,9,6,FALSE,GO:0000932,P-body,TRUE,1036,0.8694,0.5144,0.14131
+shared,CC,GO:0099081,supramolecular polymer,0.00401306443846472,2.3965,9,6,FALSE,GO:0000932,P-body,TRUE,1044,0.8694,0.51437,0.14129
+shared,CC,GO:0031941,filamentous actin,0.00679948671679619,2.1675,9,6,FALSE,GO:0000932,P-body,TRUE,28,0.8051,0.47112,0.14441
+shared,CC,GO:0005832,chaperonin-containing T-complex,0.00769975342119457,2.1135,10,1,TRUE,GO:0005832,chaperonin-containing T-complex,TRUE,11,0.9272,0.08611,-0.15542
+shared,CC,GO:0031012,extracellular matrix,0.00945636912738753,2.0243,11,1,TRUE,GO:0031012,extracellular matrix,TRUE,562,0.9924,0.07109,-0.21697
