@@ -65,13 +65,17 @@ config <- list(
   go_fdr       = 0.05,     # Benjamini-Hochberg threshold for calling a term enriched
 
   # ---- Step 11: semantic similarity of GO terms ---------------------------------
-  # rrvgo does in R what the REVIGO web server does. The organism database
-  # supplies the information content of each term.
+  # rrvgo follows the approach of the REVIGO web server in R; it is not the same
+  # algorithm. The organism database supplies the information content of each term.
   semantic_similarity = list(
     measure     = "Rel",           # the SimRel measure named in the Methods
-    threshold   = 0.7,             # terms more similar than this are merged (REVIGO "medium")
+    threshold   = 0.7,             # height at which rrvgo cuts the complete-linkage tree of 1 - similarity:
+                                   # terms of one cluster are at least 1 - threshold = 0.3 similar. This is
+                                   # rrvgo's default. It is NOT REVIGO's "allowed similarity": REVIGO's 0.7
+                                   # corresponds to 0.3 here (issues.md, I-22).
     organism_db = "org.Hs.eg.db",
-    n_labels    = 15               # cluster representatives labelled per plot, chosen by score
+    n_labels    = 15               # cluster representatives labelled per plot, chosen by score; at most 15,
+                                   # the number of colours in the palette of step 11, which stops otherwise
   ),
 
   # ---- Step 12: qPCR ------------------------------------------------------------

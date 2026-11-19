@@ -4,11 +4,11 @@ DNA methylation in diploid and triploid Pacific oysters (*Crassostrea gigas*) af
 
 - **Manuscript (draft):** [*Epigenetic divergence in the thermal stress response of diploid and triploid Pacific oysters*](https://docs.google.com/document/d/17mcGDI-TWmU4vgBXmiXmeofe4qEuFH5inBKBHhG9tzg/edit), M. N. George, R. Jain, S. B. Roberts
 - **Lead:** Matt George
-- **Status:** The repository is being rebuilt as a reproducible, R-only pipeline on the branch `reproducibility-audit`. The audit, the folder reorganization, and pipeline steps 01 to 10 are done: every WGBS and ELISA number, figure, and table of the draft is regenerated in R from the raw inputs, and the legacy results are reproduced exactly. Steps 11 to 13 (semantic similarity, qPCR, the value-by-value traceability table) are still to come. The legacy code is kept in `08_archive/`.
+- **Status:** The repository is being rebuilt as a reproducible, R-only pipeline on the branch `reproducibility-audit`. The audit, the folder reorganization, and pipeline steps 01 to 12 are done: every WGBS, ELISA and qPCR number, figure, and table of the draft is regenerated in R from the raw inputs, and the legacy results are reproduced exactly. Step 13, the value-by-value traceability table, covers the Methods, Results 3.1 to 3.3 and the figure legends so far; Results 3.4 and 3.5 and the Discussion are being added. The legacy code is kept in `08_archive/`.
 
 > **Resuming the work.** [`07_documentation/session_handoff.md`](07_documentation/session_handoff.md) says what is done, what is in progress, and what comes next, and how to set up a fresh machine.
 >
-> **Where the work stands.** Read [`issues.md`](issues.md) first: it lists 47 problems, six of which bear on the main conclusions. (1) The heat treatment is confounded with experiment and sequencing batch in the WGBS data. (2) The "interaction" loci are the overlap of two lists, not a tested interaction. (3) The GO enrichment counts transcript isoforms as genes. (4) Its gene universe is missing 36% of the annotated transcripts. (5) Most of its input was skipped by a file-reading fault. (6) Where DML lie, and what the genes holding them do, is explained by where methylation and between-animal variation sit in the genome: against a matched or label-permuted background DML show no preference for gene bodies, and no specific GO category is established. The statements of the log were re-derived by independent agents instructed to refute them; what that changed is listed at the end of `issues.md`. The plan and the decisions needed from the authors are in [`07_documentation/reproducibility_plan.md`](07_documentation/reproducibility_plan.md).
+> **Where the work stands.** Read [`issues.md`](issues.md) first: it lists 48 problems, seven of which bear on the main conclusions. (1) The heat treatment is confounded with experiment and sequencing batch in the WGBS data. (2) The "interaction" loci are the overlap of two lists, not a tested interaction. (3) The GO enrichment counts transcript isoforms as genes. (4) Its gene universe is missing 36% of the annotated transcripts. (5) Most of its input was skipped by a file-reading fault. (6) Where DML lie, and what the genes holding them do, is explained by where methylation and between-animal variation sit in the genome: against a matched or label-permuted background DML show no preference for gene bodies, and no specific GO category is established. (7) Figures 6 to 8 were not drawn from enriched terms at all, but from every GO term attached to a gene with a DML. The statements of the log were re-derived by independent agents instructed to refute them; what that changed is listed at the end of `issues.md`. The plan and the decisions needed from the authors are in [`07_documentation/reproducibility_plan.md`](07_documentation/reproducibility_plan.md).
 
 ---
 
@@ -88,7 +88,7 @@ Other locations, for reference:
 
 ## Running the pipeline
 
-Steps 01 to 10 run end to end (see the status column in [`01_pipeline/README.md`](01_pipeline/README.md)).
+Steps 01 to 12 run end to end (see the status column in [`01_pipeline/README.md`](01_pipeline/README.md)).
 
 1. Install R (4.3 or later) and the packages. Until the `renv` lockfile is added, the package list is the one in `07_documentation/cloud_environment_setup.sh`, which sets up a clean Ubuntu 24.04 machine (R 4.3.3, Bioconductor 3.18).
 2. Open `WGBS-gigas-ploidy-desiccation.Rproj`, or start R in the repository root.

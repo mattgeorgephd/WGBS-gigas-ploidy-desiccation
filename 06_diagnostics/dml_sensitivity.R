@@ -41,12 +41,12 @@
 # Run       Rscript 06_diagnostics/dml_sensitivity.R
 #             Full run, after step 05. One model fit per analysis and mode on
 #             every tested CpG: 22 fits. With WGBS_CORES=3 on a 4-core machine
-#             that other jobs shared, a fit on all 22 libraries took 7 to 10
-#             minutes and the run about 3 hours; expect about 2 hours on 4 free
-#             cores. Fits are cached, so an interrupted run resumes where it
-#             stopped; a cache file that cannot be read is fitted again. A run
-#             that finds every fit in the cache takes about 10 minutes, most of
-#             it for the permutation reference.
+#             that other jobs shared, a fit took 5 to 13 minutes (7 to 10 on
+#             all 22 libraries); expect about 2 hours in all on 4 free cores and
+#             about 3 hours on a shared machine. Fits are cached, so an
+#             interrupted run resumes where it stopped; a cache file that cannot
+#             be read is fitted again. A run that finds every fit in the cache
+#             takes about 10 minutes, most of it for the permutation reference.
 #           WGBS_SENSITIVITY_SUBSET=20000 Rscript 06_diagnostics/dml_sensitivity.R
 #             Test mode: the same code on a seeded random sample of that many
 #             CpGs of each united table, sorted by row. About 10 minutes on 2
@@ -303,7 +303,7 @@ step05_file <- function(name) {
 # The sample of a test run must fit into the united table of every mode. This is
 # checked here, so that a sample that is too large stops the run before any fit.
 if (test_mode) {
-  united_rows <- vapply(config$modes, function(m) nrow(fread(step05_file(sprintf("united_cpg_%s.csv.gz", m)), select = "start")),
+  united_rows <- vapply(config$modes, function(m) nrow(fread(step05_file(sprintf("united_cpg_%s.csv.gz", m)), select = 1L)),
                         integer(1))
   if (any(united_rows < subset_n)) {
     stop("WGBS_SENSITIVITY_SUBSET (", subset_n, ") is larger than the number of tested CpGs: ",

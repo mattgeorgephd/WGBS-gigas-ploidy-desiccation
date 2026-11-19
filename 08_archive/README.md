@@ -1,6 +1,6 @@
 # 08_archive
 
-Everything that was in this repository before the reorganization of 2026-11-18, kept for provenance. The pipeline in `01_pipeline/` does not read from this folder, with one exception: the checks in `06_diagnostics/` compare regenerated outputs against the legacy outputs stored here.
+Everything that was in this repository before the reorganization of 2026-11-18, kept for provenance. The pipeline in `01_pipeline/` computes nothing from this folder. Three things read it: the checks in `06_diagnostics/`, which compare regenerated outputs against the legacy outputs stored here; step 11, which reads the three REVIGO exports and three Fisher tables of another analysis (`tables/ploidy-<ontology>-FisherTestResults.csv`) to identify and redraw the exports; and step 12, which compares its reproduction of the legacy qPCR tests with the knitted legacy output (`ELISA/dct_analysis_NA-to-45_COX1convert.md`).
 
 Do not edit files in this folder. If a legacy result needs correcting, the correction belongs in the pipeline.
 
@@ -61,7 +61,7 @@ File and folder names in this archive use three labels:
 | `4_WGBS_GOterm-Annotation-BOTH.ipynb` | blastx to UniProt to GO annotation; DML to gene to transcript joins; background transcript list (Python and bash) | Input to enrichment |
 | `5_WGBS_Functional-enrichement-analysis-BOTH.R` | topGO Fisher tests; "top ten" term tables; DML within those genes; simplifyEnrichment plots | Results 3.4, 3.5; Table 1; inputs to Figures 5 to 9 |
 | `gene-plots.Rmd` | Bar charts drawn from numbers typed into the script | Figures 5 and 9 |
-| `Revigo.R`, `../figures/revigo_figure/Revigo-PLOIDY-BP.R` | Plot scripts exported by the REVIGO web server | Figure 6 (Figures 7 and 8 have no script) |
+| `Revigo.R`, `../figures/revigo_figure/Revigo-PLOIDY-BP.R` | Plot scripts exported by the REVIGO web server. `figures/revigo_figure/Revigo-PLOIDY-BP.R` is the export behind Figure 6. `code/Revigo.R` (identical to `code/OLD/Revigo.R`) is an export from another analysis and is not in the manuscript (issue I-22) | Figure 6 (Figures 7 and 8 have no script) |
 | `2_WGBS_Methylkit.R`, `2_WGBS_Methylkit-heat-only.R`, `*-RONIT.*`, `*-YAAMINI.*`, `1_WGBS_PE_report_analysis.R`, `5_WGBS_Functional-enrichement-analysis.R`, `OLD/` | Earlier versions and single-dataset variants | Not in the manuscript |
 
 None of these scripts runs as committed (absolute paths, saved-workspace dependencies, manual steps); see issues I-31 and I-32. The issues each one carries are listed in `issues.md`.
