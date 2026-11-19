@@ -1,0 +1,10 @@
+{
+ "workflow": "check-literature-additions",
+ "run_id": "wf_22809f1c-38e",
+ "agents_finished": 0,
+ "agents_running_or_lost": [
+  "read:L1-statistics-and-methods",
+  "read:L2-mitochondria-and-library-preparation"
+ ],
+ "results": []
+}
