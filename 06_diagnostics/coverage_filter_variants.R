@@ -80,10 +80,11 @@
 #             percentile has one decimal, so three decimals hold it exactly.
 #             quantile() returns such a cutoff with floating-point error near
 #             the tenth decimal (66.3680000007 for 66.368). The script compares
-#             and filters with the unrounded values, as methylKit does; read
-#             counts are whole numbers, so the error moves no CpG. The script
+#             and filters with the unrounded values, as methylKit does. It
 #             stops if rounding would change a cutoff by more than such an
-#             error.
+#             error, or would turn a cutoff that is not a whole number into
+#             one. A written cutoff therefore removes the same CpGs as the
+#             unrounded one, because read counts are whole numbers.
 #           - Rules. "per library": each library has its own cutoff. "above the
 #             cutoff only": a CpG with exactly the cutoff number of reads stays.
 #             The last three rules remove a CpG only when at least 2 libraries,
@@ -169,12 +170,12 @@ percentile   <- config$upper_coverage_percentile
 # default mincov of methRead in the installed methylKit.
 base_import  <- as.integer(config$import_min_coverage)
 bases        <- sort(unique(c(1L, 2L, as.integer(formals(methylKit::methRead)$mincov), base_import)))
-cutoff_decimals <- 3L                  # decimals of the cutoffs in the written table; enough for a percentile with one decimal (see Notes)
 run_gap_bp   <- 1000L                  # removed CpGs no further apart than this form one run (the gap of step 07's DML regions)
 run_min_cpgs <- 10L                    # the run statistic counts removed CpGs in runs of at least this many
 n_draws      <- 1000L                  # random sets of tested CpGs that give the reference for the run statistic
 seed         <- 20261119L              # for those draws; nothing else in this script is random
 q_tolerance  <- 1e-9                   # largest relative difference accepted between a q-value estimated here and the one step 05 stored
+cutoff_decimals <- 3L                  # decimals of the cutoffs in the written table; enough for a percentile with one decimal (see Notes)
 contrast_names <- c(ploidy = "ploidy", heat = "heat")
 
 out_file <- function(name) here("06_diagnostics", paste0("coverage_filter_", name, ".csv"))
@@ -348,12 +349,18 @@ median_margin <- vapply(seq_len(n_lib), function(lib_i) {
   as.integer(n_holds)
 }, integer(1))
 # Cutoffs as they are written: rounding takes the floating-point error of an
-# interpolated quantile away and must take nothing else.
+# interpolated quantile away and must take nothing else. It must also leave the
+# filter as it is: a cutoff a hair away from a whole number of reads, which
+# rounding would put on that number, decides differently for the CpGs with
+# exactly that many reads.
 written_cutoff <- function(cutoffs) {
   rounded <- round(cutoffs, cutoff_decimals)
   must(all(abs(rounded - cutoffs) < 10^-(cutoff_decimals + 3L)),
        "A cutoff has more than ", cutoff_decimals, " decimals, as a percentile with more than one decimal gives. Raise cutoff_decimals, so that the written ",
        "cutoffs lose nothing.")
+  must(all((rounded == round(rounded)) == (cutoffs == round(cutoffs))),
+       "A cutoff lies within floating-point error of a whole number of reads without being that number. Whether the CpGs with exactly that many reads ",
+       "are removed then rests on rounding error, in methylKit as here, and the rounded cutoff of the written table would not say which.")
   rounded
 }
 cutoff_table <- data.table(library_id = lib$library_id, cohort = lib$cohort, ploidy = as.character(lib$ploidy), treatment = as.character(lib$treatment))
