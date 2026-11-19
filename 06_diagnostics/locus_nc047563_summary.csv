@@ -33,6 +33,7 @@ a. block of excess coverage,flank_relative_coverage,0.56 to 1.72,Lowest and high
 a. block of excess coverage,flank_tested_cpgs_legacy,0,Tested CpGs of legacy mode in the two flanks.
 a. block of excess coverage,block_over_flanks_with_excess,10.75 to 32.00,"Median coverage of the CpG sites of the block over the median coverage of the CpG sites of both flanks, per library; lowest and highest among the libraries with the excess."
 a. block of excess coverage,block_over_flanks_without_excess,1.31 to 4.83,Same; lowest and highest among the libraries without the excess.
+a. block of excess coverage,libraries_with_more_coverage_in_block_than_in_flanks,22 of 22,Libraries whose median coverage of the CpG sites of the block is above their median coverage of the CpG sites of both flanks.
 b. libraries that carry the excess,libraries_with_excess,13 of 22,Libraries with at least one tested CpG of the DML region at or above their upper cutoff (99.9th percentile of coverage of the library).
 b. libraries that carry the excess,libraries_classified_otherwise_by_median_rule,0,Libraries that change class under another rule: median coverage of the tested CpGs of the DML region at or above the upper cutoff.
 b. libraries that carry the excess,region_relative_coverage_with_excess,10.61 to 35.50,Median coverage of the tested CpGs of the DML region over the library median; lowest and highest among the libraries with the excess.
@@ -53,6 +54,18 @@ b. libraries that carry the excess,with_excess_triploid_control,5 of 6,Libraries
 b. libraries that carry the excess,with_excess_triploid_heat,3 of 5,Libraries with the excess among the group triploid heat.
 b. libraries that carry the excess,fisher_p_excess_by_ploidy,0.387,"Fisher exact test, two-sided, of carrying the excess against ploidy; 22 libraries."
 b. libraries that carry the excess,fisher_p_excess_by_cohort,0.192,"Fisher exact test, two-sided, of carrying the excess against cohort; 22 libraries."
+b. libraries that carry the excess,region_relative_coverage_median_diploid,5.92,Median among diploid libraries of the median coverage of the tested CpGs of the DML region over the library median.
+b. libraries that carry the excess,region_relative_coverage_median_triploid,12.38,Same among triploid libraries.
+b. libraries that carry the excess,region_relative_coverage_wilcoxon_p_by_ploidy,0.562,"Wilcoxon rank-sum test, two-sided, exact, of that quantity between diploid and triploid libraries."
+b. libraries that carry the excess,region_relative_coverage_median_control,19.86,Median among control libraries of the median coverage of the tested CpGs of the DML region over the library median.
+b. libraries that carry the excess,region_relative_coverage_median_heat,4.36,Same among heat libraries.
+b. libraries that carry the excess,region_relative_coverage_wilcoxon_p_by_cohort,0.00896,"Wilcoxon rank-sum test, two-sided, exact, of that quantity between control and heat libraries."
+b. libraries that carry the excess,block_over_flanks_median_diploid,4.83,Median among diploid libraries of the median coverage of the CpG sites of the block over the median coverage of the CpG sites of both flanks.
+b. libraries that carry the excess,block_over_flanks_median_triploid,11.06,Same among triploid libraries.
+b. libraries that carry the excess,block_over_flanks_wilcoxon_p_by_ploidy,0.699,"Wilcoxon rank-sum test, two-sided, exact, of that quantity between diploid and triploid libraries."
+b. libraries that carry the excess,block_over_flanks_median_control,20.71,Median among control libraries of the median coverage of the CpG sites of the block over the median coverage of the CpG sites of both flanks.
+b. libraries that carry the excess,block_over_flanks_median_heat,3.59,Same among heat libraries.
+b. libraries that carry the excess,block_over_flanks_wilcoxon_p_by_cohort,0.0138,"Wilcoxon rank-sum test, two-sided, exact, of that quantity between control and heat libraries."
 c. leave one library out,ploidy_region_cpgs_failing_qvalue_rule,0 of 54,"Tested CpGs of the DML region with q at or above 0.01 for the ploidy contrast, all 22 libraries (diffmeth_ploidy_legacy.csv.gz)."
 c. leave one library out,ploidy_region_largest_qvalue,5.88e-09,Largest q-value among those CpGs.
 c. leave one library out,ploidy_region_cpgs_over_difference_all_libraries,53 of 54,"Number of tested CpGs of the DML region whose read-pooled difference (normalized counts) exceeds 20 points in absolute value; ploidy contrast, all 22 libraries. Equal to the number of DML when no CpG fails the q-value rule."
@@ -151,7 +164,11 @@ f. reference sequence of the block,second_copies_inside_block,0 of 874,"Of the 3
 f. reference sequence of the block,second_copies_elsewhere_on_same_sequence,0 of 874,"Of the 30-mers with exactly two copies, those whose second copy lies outside the block on the sequence of the block."
 f. reference sequence of the block,second_copies_place_1,NC_047560.1:13874789-13881520,"A place that holds second copies: first and last base, 1-based. Second copies within 20000 bp of each other on one sequence are one place; places are ranked by the number of 30-mers."
 f. reference sequence of the block,second_copies_place_1_kmers,474 of 874,30-mers with exactly two copies whose second copy lies there.
+f. reference sequence of the block,second_copies_place_1_cutoff_reached,0 of 2618,"Pairs of CpG site and library at or above the upper cutoff inside that place, of its CG dinucleotides in the reference times 22 libraries. Compare block_cutoff_reached."
 f. reference sequence of the block,second_copies_place_2,NC_047559.1:4498648-4509003,"A place that holds second copies: first and last base, 1-based. Second copies within 20000 bp of each other on one sequence are one place; places are ranked by the number of 30-mers."
 f. reference sequence of the block,second_copies_place_2_kmers,294 of 874,30-mers with exactly two copies whose second copy lies there.
+f. reference sequence of the block,second_copies_place_2_cutoff_reached,0 of 4576,"Pairs of CpG site and library at or above the upper cutoff inside that place, of its CG dinucleotides in the reference times 22 libraries. Compare block_cutoff_reached."
 f. reference sequence of the block,second_copies_place_3,NC_047561.1:36696412-36696653,"A place that holds second copies: first and last base, 1-based. Second copies within 20000 bp of each other on one sequence are one place; places are ranked by the number of 30-mers."
 f. reference sequence of the block,second_copies_place_3_kmers,100 of 874,30-mers with exactly two copies whose second copy lies there.
+f. reference sequence of the block,second_copies_place_3_cutoff_reached,0 of 88,"Pairs of CpG site and library at or above the upper cutoff inside that place, of its CG dinucleotides in the reference times 22 libraries. Compare block_cutoff_reached."
+f. reference sequence of the block,block_cutoff_reached,918 of 1804,"Pairs of CpG site and library at or above the upper cutoff inside the block, of its CG dinucleotides in the reference times 22 libraries."

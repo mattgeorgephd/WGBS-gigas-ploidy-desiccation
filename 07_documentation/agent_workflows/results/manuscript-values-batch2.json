@@ -1,10 +1,2911 @@
 {
  "workflow": "manuscript-values-batch2",
  "run_id": "wf_8e998677-25d",
- "agents_finished": 0,
+ "agents_finished": 2,
  "agents_running_or_lost": [
-  "extract:results34_35",
-  "extract:discussion"
+  "map:results34_35",
+  "map:discussion"
  ],
- "results": []
+ "results": [
+  {
+   "agent": "extract:results34_35",
+   "phase": "Extract",
+   "result": {
+    "section_key": "results34_35",
+    "statements": [
+     {
+      "id": "R3.4-001",
+      "section": "Results 3.4",
+      "line": 48,
+      "quote": "Across all categories, heat-DML mapped to substantially more functional features than ploidy- or interaction-DML (Figure 5)",
+      "item": "Heat DML against ploidy DML in Figure 5: the heat value is the larger one in every one of the 12 cells, that is four panels each for BP, CC and MF. The draft gives no criterion for substantially (issues I-20, I-45)",
+      "manuscript_value": "substantially more",
+      "manuscript_numeric": null,
+      "kind": "inequality"
+     },
+     {
+      "id": "R3.4-002",
+      "section": "Results 3.4",
+      "line": 48,
+      "quote": "Across all categories, heat-DML mapped to substantially more functional features than ploidy- or interaction-DML (Figure 5)",
+      "item": "Heat DML against the shared loci (interaction-DML) in Figure 5: the heat value is the larger one in every one of the 12 cells, that is four panels each for BP, CC and MF (issue I-20)",
+      "manuscript_value": "substantially more",
+      "manuscript_numeric": null,
+      "kind": "inequality"
+     },
+     {
+      "id": "R3.4-003",
+      "section": "Results 3.4",
+      "line": 48,
+      "quote": "Heat-DML were linked to the greatest numbers of unique transcripts, GO terms, unique genes, and gene products",
+      "item": "Figure 5A, panel titled unique transcripts: in each of BP, CC and MF the heat DML have the largest value of the three DML sets (what the panel counts: issue I-20; see also I-45)",
+      "manuscript_value": "the greatest numbers",
+      "manuscript_numeric": null,
+      "kind": "ranking"
+     },
+     {
+      "id": "R3.4-004",
+      "section": "Results 3.4",
+      "line": 48,
+      "quote": "Heat-DML were linked to the greatest numbers of unique transcripts, GO terms, unique genes, and gene products",
+      "item": "Figure 5B, panel titled GO terms: in each of BP, CC and MF the heat DML have the largest value of the three DML sets (what the panel counts: issue I-20; see also I-45)",
+      "manuscript_value": "the greatest numbers",
+      "manuscript_numeric": null,
+      "kind": "ranking"
+     },
+     {
+      "id": "R3.4-005",
+      "section": "Results 3.4",
+      "line": 48,
+      "quote": "Heat-DML were linked to the greatest numbers of unique transcripts, GO terms, unique genes, and gene products",
+      "item": "Figure 5C, panel titled unique genes: in each of BP, CC and MF the heat DML have the largest value of the three DML sets (what the panel counts: issue I-20; see also I-45)",
+      "manuscript_value": "the greatest numbers",
+      "manuscript_numeric": null,
+      "kind": "ranking"
+     },
+     {
+      "id": "R3.4-006",
+      "section": "Results 3.4",
+      "line": 48,
+      "quote": "Heat-DML were linked to the greatest numbers of unique transcripts, GO terms, unique genes, and gene products",
+      "item": "Figure 5D, panel titled gene products: in each of BP, CC and MF the heat DML have the largest value of the three DML sets (what the panel counts: issue I-20; see also I-45)",
+      "manuscript_value": "the greatest numbers",
+      "manuscript_numeric": null,
+      "kind": "ranking"
+     },
+     {
+      "id": "R3.4-007",
+      "section": "Results 3.4",
+      "line": 49,
+      "quote": "Semantic clustering of enriched GO terms for ploidy-DML revealed a landscape dominated by core cellular mechanics and metabolism (Figure 6)",
+      "item": "Terms clustered and plotted for the ploidy DML (Figure 6): by this sentence the enriched GO terms, that is Fisher p below 0.01 (Methods 2.6). The statement holds if every BP term of the REVIGO export behind Figure 6 has p below 0.01 in the legacy enrichment of the ploidy DML (issue I-48)",
+      "manuscript_value": "enriched GO terms",
+      "manuscript_numeric": null,
+      "kind": "inequality"
+     },
+     {
+      "id": "R3.4-008",
+      "section": "Results 3.4",
+      "line": 49,
+      "quote": "Semantic clustering of enriched GO terms for ploidy-DML revealed a landscape dominated by core cellular mechanics and metabolism (Figure 6)",
+      "item": "Share of the Figure 6 plot taken by core cellular mechanics and metabolism: a majority by this sentence, which gives no number. One reading: more than half of the plotted BP terms lie in the clusters of the six terms the paragraph names, when step 11 clusters the plotted list again (issues I-22, I-48)",
+      "manuscript_value": "dominated by core cellular mechanics and metabolism",
+      "manuscript_numeric": null,
+      "kind": "other"
+     },
+     {
+      "id": "R3.4-009",
+      "section": "Results 3.4",
+      "line": 49,
+      "quote": "The most prominent functional clusters were associated with genomic maintenance and replication",
+      "item": "Clusters of the BP terms plotted for the ploidy DML (Figure 6): those that hold DNA replication, homologous chromosome pairing at meiosis and chromosome segregation are the most prominent. The draft states no criterion; one reading: they are the largest clusters by number of terms when step 11 clusters the plotted list again (issues I-22, I-48)",
+      "manuscript_value": "The most prominent functional clusters",
+      "manuscript_numeric": null,
+      "kind": "other"
+     },
+     {
+      "id": "R3.4-010",
+      "section": "Results 3.4",
+      "line": 49,
+      "quote": "including DNA replication",
+      "item": "GO term DNA replication (GO:0006260, BP), named among the enriched terms of Figure 6 for the ploidy DML. Enriched: Fisher p below 0.01 in the legacy test of that set; at gene level, q below the FDR of step 10 (issues I-48, I-41)",
+      "manuscript_value": "DNA replication",
+      "manuscript_numeric": null,
+      "kind": "inequality"
+     },
+     {
+      "id": "R3.4-011",
+      "section": "Results 3.4",
+      "line": 49,
+      "quote": "homologous chromosome pairing at meiosis",
+      "item": "GO term homologous chromosome pairing at meiosis (GO:0007129, BP), named among the enriched terms of Figure 6 for the ploidy DML. Enriched: Fisher p below 0.01 in the legacy test of that set; at gene level, q below the FDR of step 10 (issues I-48, I-41)",
+      "manuscript_value": "homologous chromosome pairing at meiosis",
+      "manuscript_numeric": null,
+      "kind": "inequality"
+     },
+     {
+      "id": "R3.4-012",
+      "section": "Results 3.4",
+      "line": 49,
+      "quote": "and chromosome segregation",
+      "item": "GO term chromosome segregation (GO:0007059, BP), named among the enriched terms of Figure 6 for the ploidy DML. Enriched: Fisher p below 0.01 in the legacy test of that set; at gene level, q below the FDR of step 10 (issues I-48, I-41)",
+      "manuscript_value": "chromosome segregation",
+      "manuscript_numeric": null,
+      "kind": "inequality"
+     },
+     {
+      "id": "R3.4-013",
+      "section": "Results 3.4",
+      "line": 49,
+      "quote": "a significant module focused on metabolic throughput and ion transport",
+      "item": "Figure 6: ATP generation from ADP, proton transmembrane transport and calcium ion transport form one module. Criterion set here, the draft states none: the three terms fall in one cluster when step 11 clusters the plotted list again (issues I-22, I-48). Whether each term is significant is tested in the three rows that follow",
+      "manuscript_value": "a significant module",
+      "manuscript_numeric": null,
+      "kind": "other"
+     },
+     {
+      "id": "R3.4-014",
+      "section": "Results 3.4",
+      "line": 49,
+      "quote": "characterized by terms such as ATP generation from ADP",
+      "item": "GO term ATP generation from ADP (GO:0006757, BP; in GO.db 3.13.0, the release of the legacy analysis, but not in GO.db 3.18.0), named as part of a significant module of Figure 6 for the ploidy DML. Enriched: Fisher p below 0.01 in the legacy test of that set; at gene level, q below the FDR of step 10 (issues I-48, I-41)",
+      "manuscript_value": "ATP generation from ADP",
+      "manuscript_numeric": null,
+      "kind": "inequality"
+     },
+     {
+      "id": "R3.4-015",
+      "section": "Results 3.4",
+      "line": 49,
+      "quote": "proton transmembrane transport",
+      "item": "GO term proton transmembrane transport (GO:1902600, BP), named as part of a significant module of Figure 6 for the ploidy DML. Enriched: Fisher p below 0.01 in the legacy test of that set; at gene level, q below the FDR of step 10 (issues I-48, I-41)",
+      "manuscript_value": "proton transmembrane transport",
+      "manuscript_numeric": null,
+      "kind": "inequality"
+     },
+     {
+      "id": "R3.4-016",
+      "section": "Results 3.4",
+      "line": 49,
+      "quote": "and calcium ion transport",
+      "item": "GO term calcium ion transport (GO:0006816, BP), named as part of a significant module of Figure 6 for the ploidy DML. Enriched: Fisher p below 0.01 in the legacy test of that set; at gene level, q below the FDR of step 10 (issues I-48, I-41)",
+      "manuscript_value": "calcium ion transport",
+      "manuscript_numeric": null,
+      "kind": "inequality"
+     },
+     {
+      "id": "R3.4-017",
+      "section": "Results 3.4",
+      "line": 49,
+      "quote": "These patterns suggest that baseline epigenetic differences between diploids and triploids may result from",
+      "item": "Libraries behind the ploidy DML of this paragraph: baseline differences between diploids and triploids, that is without heat exposure, in the 12 control libraries only. The statement holds if the ploidy contrast used no heat library (issue I-07)",
+      "manuscript_value": "baseline epigenetic differences between diploids and triploids",
+      "manuscript_numeric": null,
+      "kind": "design"
+     },
+     {
+      "id": "R3.4-018",
+      "section": "Results 3.4",
+      "line": 50,
+      "quote": "Enriched GO terms for heat-DML were consistent with the canonical thermal stress response in oysters (Figure 7)",
+      "item": "Terms clustered and plotted for the heat DML (Figure 7): by this sentence the enriched GO terms, that is Fisher p below 0.01 (Methods 2.6). No REVIGO export of Figure 7 survives; the statement holds if every term the paragraph names, or every term labelled on the archived figure, has p below 0.01 in the legacy enrichment of the heat DML (issue I-48)",
+      "manuscript_value": "Enriched GO terms",
+      "manuscript_numeric": null,
+      "kind": "inequality"
+     },
+     {
+      "id": "R3.4-019",
+      "section": "Results 3.4",
+      "line": 50,
+      "quote": "including the MAPK cascade",
+      "item": "GO term MAPK cascade (GO:0000165, BP; the archived figure labels stress-activated MAPK cascade, GO:0051403, a second reading that step 11 also traces), named among the enriched terms of Figure 7 for the heat DML. Enriched: Fisher p below 0.01 in the legacy test of that set; at gene level, q below the FDR of step 10 (issues I-48, I-41)",
+      "manuscript_value": "the MAPK cascade",
+      "manuscript_numeric": null,
+      "kind": "inequality"
+     },
+     {
+      "id": "R3.4-020",
+      "section": "Results 3.4",
+      "line": 50,
+      "quote": "ER overload response",
+      "item": "GO term ER overload response (GO:0006983, BP), named among the enriched terms of Figure 7 for the heat DML. Enriched: Fisher p below 0.01 in the legacy test of that set; at gene level, q below the FDR of step 10 (issues I-48, I-41)",
+      "manuscript_value": "ER overload response",
+      "manuscript_numeric": null,
+      "kind": "inequality"
+     },
+     {
+      "id": "R3.4-021",
+      "section": "Results 3.4",
+      "line": 50,
+      "quote": "and signal transduction",
+      "item": "GO term signal transduction (GO:0007165, BP), named among the enriched terms of Figure 7 for the heat DML. Enriched: Fisher p below 0.01 in the legacy test of that set; at gene level, q below the FDR of step 10 (issues I-48, I-41)",
+      "manuscript_value": "signal transduction",
+      "manuscript_numeric": null,
+      "kind": "inequality"
+     },
+     {
+      "id": "R3.4-022",
+      "section": "Results 3.4",
+      "line": 50,
+      "quote": "alongside physiological responses to osmotic and oxidative stress",
+      "item": "GO term response to osmotic stress (GO:0006970, BP; the first of the two terms behind the phrase), named among the enriched terms of Figure 7 for the heat DML. Enriched: Fisher p below 0.01 in the legacy test of that set; at gene level, q below the FDR of step 10 (issues I-48, I-41)",
+      "manuscript_value": "physiological responses to osmotic and oxidative stress",
+      "manuscript_numeric": null,
+      "kind": "inequality"
+     },
+     {
+      "id": "R3.4-023",
+      "section": "Results 3.4",
+      "line": 50,
+      "quote": "alongside physiological responses to osmotic and oxidative stress",
+      "item": "GO term response to oxidative stress (GO:0006979, BP; the second of the two terms behind the phrase), named among the enriched terms of Figure 7 for the heat DML. Enriched: Fisher p below 0.01 in the legacy test of that set; at gene level, q below the FDR of step 10 (issues I-48, I-41)",
+      "manuscript_value": "physiological responses to osmotic and oxidative stress",
+      "manuscript_numeric": null,
+      "kind": "inequality"
+     },
+     {
+      "id": "R3.4-024",
+      "section": "Results 3.4",
+      "line": 50,
+      "quote": "a large portion of the semantic space was dedicated to RNA and protein processing",
+      "item": "Share of the Figure 7 plot taken by RNA and protein processing terms. The draft gives no number and no list of these terms; one reading: the percent of the plotted BP terms in the clusters of the three terms named next (mRNA methylation, mRNA export from nucleus in response to heat stress, rRNA catabolic process), when step 11 clusters the plotted list again (issues I-22, I-48)",
+      "manuscript_value": "a large portion of the semantic space",
+      "manuscript_numeric": null,
+      "kind": "other"
+     },
+     {
+      "id": "R3.4-025",
+      "section": "Results 3.4",
+      "line": 50,
+      "quote": "with significant terms including mRNA methylation",
+      "item": "GO term mRNA methylation (GO:0080009, BP), named among the significant terms of Figure 7 for the heat DML. Enriched: Fisher p below 0.01 in the legacy test of that set; at gene level, q below the FDR of step 10 (issues I-48, I-41)",
+      "manuscript_value": "mRNA methylation",
+      "manuscript_numeric": null,
+      "kind": "inequality"
+     },
+     {
+      "id": "R3.4-026",
+      "section": "Results 3.4",
+      "line": 50,
+      "quote": "mRNA export from the nucleus in response to heat stress",
+      "item": "GO term mRNA export from nucleus in response to heat stress (GO:0031990, BP), named among the significant terms of Figure 7 for the heat DML. Enriched: Fisher p below 0.01 in the legacy test of that set; at gene level, q below the FDR of step 10 (issues I-48, I-41)",
+      "manuscript_value": "mRNA export from the nucleus in response to heat stress",
+      "manuscript_numeric": null,
+      "kind": "inequality"
+     },
+     {
+      "id": "R3.4-027",
+      "section": "Results 3.4",
+      "line": 50,
+      "quote": "and rRNA catabolic processes",
+      "item": "GO term rRNA catabolic process (GO:0016075, BP), named among the significant terms of Figure 7 for the heat DML. Enriched: Fisher p below 0.01 in the legacy test of that set; at gene level, q below the FDR of step 10 (issues I-48, I-41)",
+      "manuscript_value": "rRNA catabolic processes",
+      "manuscript_numeric": null,
+      "kind": "inequality"
+     },
+     {
+      "id": "R3.4-028",
+      "section": "Results 3.4",
+      "line": 50,
+      "quote": "Hypermethylation in an attempt to stabilize the transcriptome and manage protein folding under thermal pressure is in agreement with prior studies",
+      "item": "Direction the sentence gives to the heat DML behind the RNA and protein processing terms: hypermethylation, that is methylation higher in heat than in control libraries. One test: the heat DML in the genes that carry the three terms named in the sentence before are all hypermethylated; a broader one: hypermethylated heat DML outnumber hypomethylated ones (Results 3.2 gives 1,150 against 1,201)",
+      "manuscript_value": "Hypermethylation",
+      "manuscript_numeric": null,
+      "kind": "inequality"
+     },
+     {
+      "id": "R3.4-029",
+      "section": "Results 3.4",
+      "line": 51,
+      "quote": "Semantic clustering of interaction-DML identified specific functional pathways where diploids and triploids exhibit divergent epigenetic plasticity",
+      "item": "What the interaction-DML are: by this sentence loci at which the methylation response to heat differs between diploids and triploids. The statement holds if the set comes from a test of a ploidy by heat interaction; the legacy set is the loci in both the ploidy and the heat DML list (issue I-02)",
+      "manuscript_value": "where diploids and triploids exhibit divergent epigenetic plasticity",
+      "manuscript_numeric": null,
+      "kind": "design"
+     },
+     {
+      "id": "R3.4-030",
+      "section": "Results 3.4",
+      "line": 51,
+      "quote": "with enriched GO terms clustering within processes related to post-transcriptional refinement and stress signaling",
+      "item": "Terms clustered and plotted for the shared loci (interaction-DML; Figure 8): by this sentence the enriched GO terms, that is Fisher p below 0.01 (Methods 2.6). No REVIGO export of Figure 8 survives; the statement holds if every term the paragraph names, or every term labelled on the archived figure, has p below 0.01 in the legacy enrichment of the shared loci (issue I-48)",
+      "manuscript_value": "enriched GO terms",
+      "manuscript_numeric": null,
+      "kind": "inequality"
+     },
+     {
+      "id": "R3.4-031",
+      "section": "Results 3.4",
+      "line": 51,
+      "quote": "GO terms associated with interaction-DML frequently referenced tRNA modification, RNA 3'-end processing, and post-translational protein modification",
+      "item": "Frequency of tRNA modification, RNA 3'-end processing and post-translational protein modification among the GO terms of the shared loci (interaction-DML). The draft gives no count; one reading: each of the three is among the BP terms carried by the most genes, or transcripts, that hold a shared locus",
+      "manuscript_value": "frequently referenced",
+      "manuscript_numeric": null,
+      "kind": "other"
+     },
+     {
+      "id": "R3.4-032",
+      "section": "Results 3.4",
+      "line": 51,
+      "quote": "frequently referenced tRNA modification",
+      "item": "GO term tRNA modification (GO:0006400, BP), named among the enriched terms of Figure 8 for the shared loci (interaction-DML). Enriched: Fisher p below 0.01 in the legacy test of that set; at gene level, q below the FDR of step 10 (issues I-48, I-41)",
+      "manuscript_value": "tRNA modification",
+      "manuscript_numeric": null,
+      "kind": "inequality"
+     },
+     {
+      "id": "R3.4-033",
+      "section": "Results 3.4",
+      "line": 51,
+      "quote": "RNA 3'-end processing",
+      "item": "GO term RNA 3'-end processing (GO:0031123, BP), named among the enriched terms of Figure 8 for the shared loci (interaction-DML). Enriched: Fisher p below 0.01 in the legacy test of that set; at gene level, q below the FDR of step 10 (issues I-48, I-41)",
+      "manuscript_value": "RNA 3'-end processing",
+      "manuscript_numeric": null,
+      "kind": "inequality"
+     },
+     {
+      "id": "R3.4-034",
+      "section": "Results 3.4",
+      "line": 51,
+      "quote": "and post-translational protein modification",
+      "item": "GO term post-translational protein modification (GO:0043687, BP), named among the enriched terms of Figure 8 for the shared loci (interaction-DML). Enriched: Fisher p below 0.01 in the legacy test of that set; at gene level, q below the FDR of step 10 (issues I-48, I-41)",
+      "manuscript_value": "post-translational protein modification",
+      "manuscript_numeric": null,
+      "kind": "inequality"
+     },
+     {
+      "id": "R3.4-035",
+      "section": "Results 3.4",
+      "line": 51,
+      "quote": "a distinct cluster of signaling and homeostasis terms, including calcium-mediated signaling, ER overload response, and response to osmotic stress",
+      "item": "Figure 8: calcium-mediated signaling, ER overload response and response to osmotic stress form one distinct cluster. Criterion set here, the draft states none: the three terms fall in one cluster when step 11 clusters the plotted list again (issues I-22, I-48)",
+      "manuscript_value": "a distinct cluster",
+      "manuscript_numeric": null,
+      "kind": "other"
+     },
+     {
+      "id": "R3.4-036",
+      "section": "Results 3.4",
+      "line": 51,
+      "quote": "including calcium-mediated signaling",
+      "item": "GO term calcium-mediated signaling (GO:0019722, BP), named among the enriched terms of Figure 8 for the shared loci (interaction-DML). Enriched: Fisher p below 0.01 in the legacy test of that set; at gene level, q below the FDR of step 10 (issues I-48, I-41)",
+      "manuscript_value": "calcium-mediated signaling",
+      "manuscript_numeric": null,
+      "kind": "inequality"
+     },
+     {
+      "id": "R3.4-037",
+      "section": "Results 3.4",
+      "line": 51,
+      "quote": "ER overload response",
+      "item": "GO term ER overload response (GO:0006983, BP), named among the enriched terms of Figure 8 for the shared loci (interaction-DML). Enriched: Fisher p below 0.01 in the legacy test of that set; at gene level, q below the FDR of step 10 (issues I-48, I-41)",
+      "manuscript_value": "ER overload response",
+      "manuscript_numeric": null,
+      "kind": "inequality"
+     },
+     {
+      "id": "R3.4-038",
+      "section": "Results 3.4",
+      "line": 51,
+      "quote": "and response to osmotic stress",
+      "item": "GO term response to osmotic stress (GO:0006970, BP), named among the enriched terms of Figure 8 for the shared loci (interaction-DML). Enriched: Fisher p below 0.01 in the legacy test of that set; at gene level, q below the FDR of step 10 (issues I-48, I-41)",
+      "manuscript_value": "response to osmotic stress",
+      "manuscript_numeric": null,
+      "kind": "inequality"
+     },
+     {
+      "id": "R3.4-039",
+      "section": "Results 3.4",
+      "line": 51,
+      "quote": "the concentration of interaction-DML in lncRNA loci (15.5%) and exon/UTR regions (11.1%)",
+      "item": "lncRNA share of the shared loci (interaction-DML) is higher than that of the background CpGs analysed at 10x; restates Results 3.3 (issues I-09, I-41)",
+      "manuscript_value": "concentration",
+      "manuscript_numeric": null,
+      "kind": "inequality"
+     },
+     {
+      "id": "R3.4-040",
+      "section": "Results 3.4",
+      "line": 51,
+      "quote": "in lncRNA loci (15.5%)",
+      "item": "lncRNA share of the shared loci (interaction-DML): overlaps with the lncRNA track divided by the summed overlaps of the eight feature tracks of Figure 3A; repeats Results 3.3 (issues I-09, I-18)",
+      "manuscript_value": "15.5%",
+      "manuscript_numeric": 15.5,
+      "kind": "percent"
+     },
+     {
+      "id": "R3.4-041",
+      "section": "Results 3.4",
+      "line": 51,
+      "quote": "the concentration of interaction-DML in lncRNA loci (15.5%) and exon/UTR regions (11.1%)",
+      "item": "Exon/UTR share of the shared loci (interaction-DML) is higher than that of the background CpGs analysed at 10x; restates Results 3.3 (issue I-41)",
+      "manuscript_value": "concentration",
+      "manuscript_numeric": null,
+      "kind": "inequality"
+     },
+     {
+      "id": "R3.4-042",
+      "section": "Results 3.4",
+      "line": 51,
+      "quote": "and exon/UTR regions (11.1%)",
+      "item": "Exon/UTR share of the shared loci (interaction-DML): overlaps with the exon UTR (exon minus CDS) track divided by the summed overlaps of the eight feature tracks of Figure 3A; repeats Results 3.3 (issue I-18)",
+      "manuscript_value": "11.1%",
+      "manuscript_numeric": 11.1,
+      "kind": "percent"
+     },
+     {
+      "id": "R3.4-043",
+      "section": "Results 3.4",
+      "line": 51,
+      "quote": "the observed enrichment in positive regulation of gene expression",
+      "item": "GO term positive regulation of gene expression (GO:0010628, BP), named as an observed enrichment for the shared loci (interaction-DML). Enriched: Fisher p below 0.01 in the legacy test of that set; at gene level, q below the FDR of step 10 (issues I-48, I-41)",
+      "manuscript_value": "positive regulation of gene expression",
+      "manuscript_numeric": null,
+      "kind": "inequality"
+     },
+     {
+      "id": "R3.4-044",
+      "section": "Results 3.4",
+      "line": 51,
+      "quote": "and gene silencing by RNA (Figure 3A)",
+      "item": "GO term gene silencing by RNA (GO:0031047, BP; the name in GO.db 3.13.0, now regulatory ncRNA-mediated gene silencing), named as an observed enrichment for the shared loci (interaction-DML). Enriched: Fisher p below 0.01 in the legacy test of that set; at gene level, q below the FDR of step 10 (issues I-48, I-41)",
+      "manuscript_value": "gene silencing by RNA",
+      "manuscript_numeric": null,
+      "kind": "inequality"
+     },
+     {
+      "id": "R3.5-001",
+      "section": "Results 3.5",
+      "line": 53,
+      "quote": "The largest share of DML that mapped to genes with enriched GO terms were associated with heat stress, followed by ploidy and their interaction (Figure 9)",
+      "item": "Of the three DML sets, the heat DML have the most DML in genes with enriched GO terms: Figure 9 counts summed over BP, CC and MF (issue I-21)",
+      "manuscript_value": "The largest share",
+      "manuscript_numeric": null,
+      "kind": "ranking"
+     },
+     {
+      "id": "R3.5-002",
+      "section": "Results 3.5",
+      "line": 53,
+      "quote": "DML that mapped to genes with enriched GO terms",
+      "item": "GO terms that select the genes of this section and of Figure 9: by the text the enriched terms, that is Fisher p below 0.01 (Methods 2.6). The statement holds if, for every DML set and ontology, the terms used are exactly the terms below that cutoff; the legacy analysis used the ten top-ranked terms (issue I-21). At gene level, it holds if the terms used have q below the FDR of step 10 (issue I-41)",
+      "manuscript_value": "genes with enriched GO terms",
+      "manuscript_numeric": null,
+      "kind": "inequality"
+     },
+     {
+      "id": "R3.5-003",
+      "section": "Results 3.5",
+      "line": 53,
+      "quote": "were associated with heat stress, followed by ploidy and their interaction (Figure 9)",
+      "item": "After the heat DML, the ploidy DML have more DML in genes with enriched GO terms than the shared loci (interaction-DML): Figure 9 counts summed over BP, CC and MF",
+      "manuscript_value": "followed by ploidy and their interaction",
+      "manuscript_numeric": null,
+      "kind": "ranking"
+     },
+     {
+      "id": "R3.5-004",
+      "section": "Results 3.5",
+      "line": 53,
+      "quote": "Ploidy-DML were more broadly distributed, with the greatest representation in cellular components (CC;49%)",
+      "item": "The ploidy DML of Figure 9 are spread more evenly over the three ontologies than the heat DML. The draft states no criterion; one reading: the largest ontology share is smaller for the ploidy DML than for the heat DML",
+      "manuscript_value": "more broadly distributed",
+      "manuscript_numeric": null,
+      "kind": "inequality"
+     },
+     {
+      "id": "R3.5-005",
+      "section": "Results 3.5",
+      "line": 53,
+      "quote": "with the greatest representation in cellular components (CC;49%), modest representation in molecular functions (MF; 31%), and limited representation in biological processes (BP; 20%)",
+      "item": "Of the three ontologies, CC holds the largest share of the ploidy DML of Figure 9, MF the second and BP the smallest",
+      "manuscript_value": "the greatest representation",
+      "manuscript_numeric": null,
+      "kind": "ranking"
+     },
+     {
+      "id": "R3.5-006",
+      "section": "Results 3.5",
+      "line": 53,
+      "quote": "with the greatest representation in cellular components (CC;49%)",
+      "item": "CC share of the ploidy DML of Figure 9: the CC count divided by the sum of the BP, CC and MF counts of the set. Each count is the DML in genes with one of the ten top-ranked terms of the ontology, and the counts overlap (issues I-21, I-45)",
+      "manuscript_value": "49%",
+      "manuscript_numeric": 49,
+      "kind": "percent"
+     },
+     {
+      "id": "R3.5-007",
+      "section": "Results 3.5",
+      "line": 53,
+      "quote": "modest representation in molecular functions (MF; 31%)",
+      "item": "MF share of the ploidy DML of Figure 9: the MF count divided by the sum of the BP, CC and MF counts of the set. Each count is the DML in genes with one of the ten top-ranked terms of the ontology, and the counts overlap (issues I-21, I-45)",
+      "manuscript_value": "31%",
+      "manuscript_numeric": 31,
+      "kind": "percent"
+     },
+     {
+      "id": "R3.5-008",
+      "section": "Results 3.5",
+      "line": 53,
+      "quote": "and limited representation in biological processes (BP; 20%)",
+      "item": "BP share of the ploidy DML of Figure 9: the BP count divided by the sum of the BP, CC and MF counts of the set. Each count is the DML in genes with one of the ten top-ranked terms of the ontology, and the counts overlap (issues I-21, I-45)",
+      "manuscript_value": "20%",
+      "manuscript_numeric": 20,
+      "kind": "percent"
+     },
+     {
+      "id": "R3.5-009",
+      "section": "Results 3.5",
+      "line": 54,
+      "quote": "Heat-DML within enriched genes were primarily linked to MF (68%), followed by CC (28%), and relatively few BP (4%)",
+      "item": "Of the three ontologies, MF holds the largest share of the heat DML of Figure 9, CC the second and BP the smallest",
+      "manuscript_value": "primarily linked to MF",
+      "manuscript_numeric": null,
+      "kind": "ranking"
+     },
+     {
+      "id": "R3.5-010",
+      "section": "Results 3.5",
+      "line": 54,
+      "quote": "primarily linked to MF (68%)",
+      "item": "MF share of the heat DML of Figure 9: the MF count divided by the sum of the BP, CC and MF counts of the set. Each count is the DML in genes with one of the ten top-ranked terms of the ontology, and the counts overlap (issues I-21, I-45)",
+      "manuscript_value": "68%",
+      "manuscript_numeric": 68,
+      "kind": "percent"
+     },
+     {
+      "id": "R3.5-011",
+      "section": "Results 3.5",
+      "line": 54,
+      "quote": "followed by CC (28%)",
+      "item": "CC share of the heat DML of Figure 9: the CC count divided by the sum of the BP, CC and MF counts of the set. Each count is the DML in genes with one of the ten top-ranked terms of the ontology, and the counts overlap (issues I-21, I-45)",
+      "manuscript_value": "28%",
+      "manuscript_numeric": 28,
+      "kind": "percent"
+     },
+     {
+      "id": "R3.5-012",
+      "section": "Results 3.5",
+      "line": 54,
+      "quote": "and relatively few BP (4%)",
+      "item": "BP share of the heat DML of Figure 9: the BP count divided by the sum of the BP, CC and MF counts of the set. Each count is the DML in genes with one of the ten top-ranked terms of the ontology, and the counts overlap (issues I-21, I-45)",
+      "manuscript_value": "4%",
+      "manuscript_numeric": 4,
+      "kind": "percent"
+     },
+     {
+      "id": "R3.5-013",
+      "section": "Results 3.5",
+      "line": 54,
+      "quote": "Key changes identified included hypermethylation in kinesin-like protein unc-104 (+42%)",
+      "item": "Methylation difference at the heat DML in kinesin-like protein unc-104 (gene 105320544, NC_047564.1:40471809; Table 1), percentage points: heat minus control, reads pooled over all 22 libraries",
+      "manuscript_value": "+42%",
+      "manuscript_numeric": 42,
+      "kind": "statistic"
+     },
+     {
+      "id": "R3.5-014",
+      "section": "Results 3.5",
+      "line": 54,
+      "quote": "and multiple DML concentrated in phosphatidylinositol-binding clathrin assembly protein LAP",
+      "item": "Number of heat DML in the gene of phosphatidylinositol-binding clathrin assembly protein LAP (gene 105326303): the statement holds if there is more than one. Table 1 lists four",
+      "manuscript_value": "multiple DML",
+      "manuscript_numeric": null,
+      "kind": "inequality"
+     },
+     {
+      "id": "R3.5-015",
+      "section": "Results 3.5",
+      "line": 54,
+      "quote": "The inclusion of ataxin-2-like protein (-21%), a gene typically associated with the regulation of mRNA stability and stress granules",
+      "item": "Methylation difference at the heat DML in ataxin-2-like protein (gene 105344721, NC_047564.1:22005779; Table 1), percentage points: heat minus control, reads pooled over all 22 libraries",
+      "manuscript_value": "-21%",
+      "manuscript_numeric": -21,
+      "kind": "statistic"
+     },
+     {
+      "id": "R3.5-016",
+      "section": "Results 3.5",
+      "line": 55,
+      "quote": "Interaction-DML were rare across domains",
+      "item": "In each of the three ontologies the shared loci (interaction-DML) have the fewest DML in genes with enriched GO terms of the three DML sets (Figure 9). The draft states no criterion for rare",
+      "manuscript_value": "rare across domains",
+      "manuscript_numeric": null,
+      "kind": "ranking"
+     },
+     {
+      "id": "R3.5-017",
+      "section": "Results 3.5",
+      "line": 55,
+      "quote": "with only 2 hypermethylated and 1 hypomethylated loci mapping to enriched BP terms (Figure 9A)",
+      "item": "Hypermethylated shared loci (interaction-DML) in genes with one of the ten top-ranked BP terms; hypermethylated here means higher in heat than in control libraries (Figure 9A; issues I-02, I-21, I-45)",
+      "manuscript_value": "2",
+      "manuscript_numeric": 2,
+      "kind": "count"
+     },
+     {
+      "id": "R3.5-018",
+      "section": "Results 3.5",
+      "line": 55,
+      "quote": "with only 2 hypermethylated and 1 hypomethylated loci mapping to enriched BP terms (Figure 9A)",
+      "item": "Hypomethylated shared loci (interaction-DML) in genes with one of the ten top-ranked BP terms; hypomethylated here means lower in heat than in control libraries (Figure 9A; issues I-02, I-21, I-45)",
+      "manuscript_value": "1",
+      "manuscript_numeric": 1,
+      "kind": "count"
+     },
+     {
+      "id": "R3.5-019",
+      "section": "Results 3.5",
+      "line": 55,
+      "quote": "8 hypermethylated and 8 hypomethylated loci mapping to enriched CC terms (Figure 9B)",
+      "item": "Hypermethylated shared loci (interaction-DML) in genes with one of the ten top-ranked CC terms; hypermethylated here means higher in heat than in control libraries (Figure 9B; issues I-02, I-21, I-45)",
+      "manuscript_value": "8",
+      "manuscript_numeric": 8,
+      "kind": "count"
+     },
+     {
+      "id": "R3.5-020",
+      "section": "Results 3.5",
+      "line": 55,
+      "quote": "8 hypermethylated and 8 hypomethylated loci mapping to enriched CC terms (Figure 9B)",
+      "item": "Hypomethylated shared loci (interaction-DML) in genes with one of the ten top-ranked CC terms; hypomethylated here means lower in heat than in control libraries (Figure 9B; issues I-02, I-21, I-45)",
+      "manuscript_value": "8",
+      "manuscript_numeric": 8,
+      "kind": "count"
+     },
+     {
+      "id": "R3.5-021",
+      "section": "Results 3.5",
+      "line": 55,
+      "quote": "and 5 hypermethylated and 3 hypomethylated loci mapping to enriched MF terms (Figure 9C)",
+      "item": "Hypermethylated shared loci (interaction-DML) in genes with one of the ten top-ranked MF terms; hypermethylated here means higher in heat than in control libraries (Figure 9C; issues I-02, I-21, I-45)",
+      "manuscript_value": "5",
+      "manuscript_numeric": 5,
+      "kind": "count"
+     },
+     {
+      "id": "R3.5-022",
+      "section": "Results 3.5",
+      "line": 55,
+      "quote": "and 5 hypermethylated and 3 hypomethylated loci mapping to enriched MF terms (Figure 9C)",
+      "item": "Hypomethylated shared loci (interaction-DML) in genes with one of the ten top-ranked MF terms; hypomethylated here means lower in heat than in control libraries (Figure 9C; issues I-02, I-21, I-45)",
+      "manuscript_value": "3",
+      "manuscript_numeric": 3,
+      "kind": "count"
+     },
+     {
+      "id": "R3.5-023",
+      "section": "Results 3.5",
+      "line": 55,
+      "quote": "Together, these patterns indicate that heat stress drove the strongest enrichment-associated methylation signal",
+      "item": "Of the three DML sets, the heat DML have the most DML in genes with enriched GO terms: Figure 9 counts summed over BP, CC and MF. Restates the first sentence of the section",
+      "manuscript_value": "the strongest enrichment-associated methylation signal",
+      "manuscript_numeric": null,
+      "kind": "ranking"
+     },
+     {
+      "id": "R3.5-024",
+      "section": "Results 3.5",
+      "line": 55,
+      "quote": "particularly for loci linked to enriched molecular function terms",
+      "item": "Among the three ontologies, MF is the one in which the heat DML have the most DML in genes with enriched GO terms, and the one in which their excess over the ploidy DML and over the shared loci is largest (Figure 9)",
+      "manuscript_value": "particularly for loci linked to enriched molecular function terms",
+      "manuscript_numeric": null,
+      "kind": "ranking"
+     },
+     {
+      "id": "R3.5-025",
+      "section": "Results 3.5",
+      "line": 55,
+      "quote": "while ploidy- and interaction-associated loci contributed comparatively fewer enriched-gene–associated changes",
+      "item": "The ploidy DML and the shared loci (interaction-DML) each have fewer DML in genes with enriched GO terms than the heat DML: Figure 9 counts summed over BP, CC and MF",
+      "manuscript_value": "comparatively fewer",
+      "manuscript_numeric": null,
+      "kind": "inequality"
+     },
+     {
+      "id": "R3.5-026",
+      "section": "Results 3.5",
+      "line": 56,
+      "quote": "between diploid and triploid oysters under control conditions",
+      "item": "Libraries behind the ploidy DML of this paragraph: by the text control conditions, that is the 12 control libraries only. The statement holds if the ploidy contrast used no heat library (issue I-07)",
+      "manuscript_value": "under control conditions",
+      "manuscript_numeric": null,
+      "kind": "design"
+     },
+     {
+      "id": "R3.5-027",
+      "section": "Results 3.5",
+      "line": 56,
+      "quote": "such as nesprin-1 (showing both hyper- and hypomethylated sites)",
+      "item": "Nesprin-1 (gene 105329309) holds at least one hypermethylated and at least one hypomethylated ploidy DML, that is methylation higher and lower in triploid than in diploid libraries. Table 1 lists three and one",
+      "manuscript_value": "both hyper- and hypomethylated sites",
+      "manuscript_numeric": null,
+      "kind": "inequality"
+     },
+     {
+      "id": "R3.5-028",
+      "section": "Results 3.5",
+      "line": 56,
+      "quote": "and F-box DNA helicase 1 (-21%)",
+      "item": "Methylation difference at the ploidy DML in F-box DNA helicase 1 (gene 105347767, NC_047561.1:2676336; Table 1), percentage points: triploid minus diploid, reads pooled over all 22 libraries",
+      "manuscript_value": "-21%",
+      "manuscript_numeric": -21,
+      "kind": "statistic"
+     },
+     {
+      "id": "R3.5-029",
+      "section": "Results 3.5",
+      "line": 56,
+      "quote": "between diploid and triploid oysters under control conditions",
+      "item": "Meaning given to the -21 of F-box DNA helicase 1: a difference between diploids and triploids under control conditions. The statement holds if the triploid minus diploid difference among the 12 control libraries alone is negative and exceeds 20 percentage points, the threshold of a DML; the printed value is over all 22 libraries (issue I-07)",
+      "manuscript_value": "under control conditions",
+      "manuscript_numeric": null,
+      "kind": "inequality"
+     },
+     {
+      "id": "R3.5-030",
+      "section": "Results 3.5",
+      "line": 56,
+      "quote": "neurexin-1, a gene involved in calcium binding that exhibited substantial hypomethylation (-32%)",
+      "item": "Methylation difference at one of the two ploidy DML in neurexin-1 (gene 105328103, NC_047561.1:51346481; Table 1), percentage points: triploid minus diploid, reads pooled over all 22 libraries. Table 1 also lists -23 at position 51312262",
+      "manuscript_value": "-32%",
+      "manuscript_numeric": -32,
+      "kind": "statistic"
+     },
+     {
+      "id": "R3.5-031",
+      "section": "Results 3.5",
+      "line": 56,
+      "quote": "between diploid and triploid oysters under control conditions",
+      "item": "Meaning given to the -32 of neurexin-1: a difference between diploids and triploids under control conditions. The statement holds if the triploid minus diploid difference among the 12 control libraries alone is negative and exceeds 20 percentage points, the threshold of a DML; the printed value is over all 22 libraries (issue I-07)",
+      "manuscript_value": "under control conditions",
+      "manuscript_numeric": null,
+      "kind": "inequality"
+     },
+     {
+      "id": "R3.5-032",
+      "section": "Results 3.5",
+      "line": 56,
+      "quote": "and MAP kinase-activating death domain protein (+22%)",
+      "item": "Methylation difference at the ploidy DML in MAP kinase-activating death domain protein (gene 105318079, NC_047559.1:17423557; Table 1), percentage points: triploid minus diploid, reads pooled over all 22 libraries",
+      "manuscript_value": "+22%",
+      "manuscript_numeric": 22,
+      "kind": "statistic"
+     },
+     {
+      "id": "R3.5-033",
+      "section": "Results 3.5",
+      "line": 56,
+      "quote": "between diploid and triploid oysters under control conditions",
+      "item": "Meaning given to the +22 of MAP kinase-activating death domain protein: a difference between diploids and triploids under control conditions. The statement holds if the triploid minus diploid difference among the 12 control libraries alone is positive and exceeds 20 percentage points, the threshold of a DML; the printed value is over all 22 libraries (issue I-07)",
+      "manuscript_value": "under control conditions",
+      "manuscript_numeric": null,
+      "kind": "inequality"
+     },
+     {
+      "id": "R3.5-034",
+      "section": "Results 3.5",
+      "line": 57,
+      "quote": "in response to the 27∘C aerial emersion treatment",
+      "item": "Air temperature of the heat treatment, degrees Celsius; repeats the value of Methods 2",
+      "manuscript_value": "27∘C",
+      "manuscript_numeric": 27,
+      "kind": "design"
+     },
+     {
+      "id": "R3.5-035",
+      "section": "Results 3.5",
+      "line": 57,
+      "quote": "A dramatic methylation increase (+42%) was observed in kinesin-like protein unc-104",
+      "item": "Methylation difference at the heat DML in kinesin-like protein unc-104 (gene 105320544, NC_047564.1:40471809; Table 1), percentage points: heat minus control, reads pooled over all 22 libraries. Second mention in the section",
+      "manuscript_value": "+42%",
+      "manuscript_numeric": 42,
+      "kind": "statistic"
+     },
+     {
+      "id": "R3.5-036",
+      "section": "Results 3.5",
+      "line": 57,
+      "quote": "Furthermore, multiple DML were concentrated in phosphatidylinositol-binding clathrin assembly protein LAP",
+      "item": "Number of heat DML in the gene of phosphatidylinositol-binding clathrin assembly protein LAP (gene 105326303): the statement holds if there is more than one. Table 1 lists four. Second mention in the section",
+      "manuscript_value": "multiple DML",
+      "manuscript_numeric": null,
+      "kind": "inequality"
+     },
+     {
+      "id": "R3.5-037",
+      "section": "Results 3.5",
+      "line": 57,
+      "quote": "showing a complex pattern of both hyper- and hypomethylation",
+      "item": "The heat DML in the gene of phosphatidylinositol-binding clathrin assembly protein LAP (gene 105326303) include at least one hypermethylated and at least one hypomethylated locus, that is methylation higher and lower in heat than in control libraries. Table 1 lists one and three",
+      "manuscript_value": "both hyper- and hypomethylation",
+      "manuscript_numeric": null,
+      "kind": "inequality"
+     },
+     {
+      "id": "R3.5-038",
+      "section": "Results 3.5",
+      "line": 57,
+      "quote": "The inclusion of ataxin-2-like protein (-21%), which is typically associated with the regulation of mRNA stability and stress granules",
+      "item": "Methylation difference at the heat DML in ataxin-2-like protein (gene 105344721, NC_047564.1:22005779; Table 1), percentage points: heat minus control, reads pooled over all 22 libraries. Second mention in the section",
+      "manuscript_value": "-21%",
+      "manuscript_numeric": -21,
+      "kind": "statistic"
+     },
+     {
+      "id": "R3.5-039",
+      "section": "Results 3.5",
+      "line": 58,
+      "quote": "The interaction-DML highlight the specific loci where diploids and triploids diverge in their epigenetic plasticity",
+      "item": "What the interaction-DML are: by this sentence the loci at which the methylation response to heat differs between diploids and triploids. The statement holds if the set comes from a test of a ploidy by heat interaction; the legacy set is the loci in both the ploidy and the heat DML list (issue I-02)",
+      "manuscript_value": "where diploids and triploids diverge in their epigenetic plasticity",
+      "manuscript_numeric": null,
+      "kind": "design"
+     },
+     {
+      "id": "R3.5-040",
+      "section": "Results 3.5",
+      "line": 58,
+      "quote": "A notable interaction effect was found in the CAD protein, which showed a substantial methylation decrease (-31%)",
+      "item": "Methylation difference at the shared locus (interaction-DML) in the CAD protein gene (gene 105319299, NC_047564.1:8425110; Table 1), percentage points: heat minus control, reads pooled over all 22 libraries, the value the legacy table carries for a locus in both lists (issue I-02)",
+      "manuscript_value": "-31%",
+      "manuscript_numeric": -31,
+      "kind": "statistic"
+     },
+     {
+      "id": "R3.5-041",
+      "section": "Results 3.5",
+      "line": 58,
+      "quote": "A notable interaction effect was found in the CAD protein, which showed a substantial methylation decrease (-31%)",
+      "item": "Meaning given to the -31 of the CAD protein locus: an interaction effect, a decrease under heat that differs between diploids and triploids. The statement holds if the printed value is a difference between the ploidies in the response to heat (heat minus control among triploids minus heat minus control among diploids); it is heat minus control over all 22 libraries (issue I-02)",
+      "manuscript_value": "interaction effect",
+      "manuscript_numeric": null,
+      "kind": "inequality"
+     },
+     {
+      "id": "R3.5-042",
+      "section": "Results 3.5",
+      "line": 58,
+      "quote": "The appearance of nesprin-1 (+21%) in the interaction set",
+      "item": "Methylation difference at the shared locus (interaction-DML) in nesprin-1 (gene 105329309, NC_047561.1:28607016; Table 1), percentage points: heat minus control, reads pooled over all 22 libraries, the value the legacy table carries for a locus in both lists (issue I-02)",
+      "manuscript_value": "+21%",
+      "manuscript_numeric": 21,
+      "kind": "statistic"
+     },
+     {
+      "id": "R3.5-043",
+      "section": "Results 3.5",
+      "line": 58,
+      "quote": "The appearance of nesprin-1 (+21%) in the interaction set",
+      "item": "Meaning given to the +21 of the nesprin-1 locus: an interaction value, by the same sentence the mark of a response to heat that is specific to triploids. The statement holds if the printed value is a difference between the ploidies in the response to heat (heat minus control among triploids minus heat minus control among diploids); it is heat minus control over all 22 libraries (issue I-02)",
+      "manuscript_value": "in the interaction set",
+      "manuscript_numeric": null,
+      "kind": "inequality"
+     },
+     {
+      "id": "R3.5-044",
+      "section": "Results 3.5",
+      "line": 58,
+      "quote": "following its identification in the ploidy-DML",
+      "item": "Nesprin-1 (gene 105329309) holds a locus of the interaction set and also ploidy DML, as in Table 1. Every locus of the interaction set is a ploidy DML by construction (issue I-02)",
+      "manuscript_value": "following its identification in the ploidy-DML",
+      "manuscript_numeric": null,
+      "kind": "inequality"
+     },
+     {
+      "id": "R3.5-045",
+      "section": "Results 3.5",
+      "line": 58,
+      "quote": "Additionally, the hypermethylation of dihydropyrimidinase (+31%) points toward a divergent metabolic reorganization of the pyrimidine catabolic pathway",
+      "item": "Methylation difference at the shared locus (interaction-DML) in dihydropyrimidinase (gene 105340590, NW_022994979.1:42498; Table 1), percentage points: heat minus control, reads pooled over all 22 libraries, the value the legacy table carries for a locus in both lists (issue I-02)",
+      "manuscript_value": "+31%",
+      "manuscript_numeric": 31,
+      "kind": "statistic"
+     },
+     {
+      "id": "R3.5-046",
+      "section": "Results 3.5",
+      "line": 58,
+      "quote": "Additionally, the hypermethylation of dihydropyrimidinase (+31%) points toward a divergent metabolic reorganization of the pyrimidine catabolic pathway",
+      "item": "Meaning given to the +31 of the dihydropyrimidinase locus: a divergent change, a gain under heat that differs between diploids and triploids. The statement holds if the printed value is a difference between the ploidies in the response to heat (heat minus control among triploids minus heat minus control among diploids); it is heat minus control over all 22 libraries (issue I-02)",
+      "manuscript_value": "divergent",
+      "manuscript_numeric": null,
+      "kind": "inequality"
+     },
+     {
+      "id": "T1-001",
+      "section": "Table 1",
+      "line": 160,
+      "quote": "Table 1. Differentially methylated loci (DML) within genes with enriched GO terms.",
+      "item": "GO terms that select the genes of Table 1: by the caption enriched terms, that is Fisher p below 0.01 (Methods 2.6). The statement holds if the BP terms used for each DML set are exactly the BP terms below that cutoff; the legacy analysis used the ten top-ranked BP terms of each set (issue I-21). At gene level, it holds if the terms used have q below the FDR of step 10 (issue I-41)",
+      "manuscript_value": "genes with enriched GO terms",
+      "manuscript_numeric": null,
+      "kind": "inequality"
+     },
+     {
+      "id": "T1-002",
+      "section": "Table 1",
+      "line": 160,
+      "quote": "Only genes with GO terms associated with biological processes are presented.",
+      "item": "Ontology behind the rows of Table 1: biological process only. The statement holds if the 20 rows (10 ploidy, 7 heat, 3 interaction) are exactly the DML in genes that carry one of the ten top-ranked BP terms of each DML set, with no row taken from the CC or MF lists (issue I-21)",
+      "manuscript_value": "Only genes with GO terms associated with biological processes are presented",
+      "manuscript_numeric": null,
+      "kind": "design"
+     },
+     {
+      "id": "T1-003",
+      "section": "Table 1",
+      "line": 160,
+      "quote": "or triploids following heat exposure (interaction-DML)",
+      "item": "What the interaction-DML rows of Table 1 are: by the caption loci identified as relating to triploids following heat exposure. The statement holds if their values are differences shown by triploids after heat, for example heat minus control among triploid libraries; the legacy rows are loci in both the ploidy and the heat DML list, with heat minus control over all 22 libraries (issue I-02)",
+      "manuscript_value": "triploids following heat exposure (interaction-DML)",
+      "manuscript_numeric": null,
+      "kind": "design"
+     },
+     {
+      "id": "T1-004",
+      "section": "Table 1",
+      "line": 163,
+      "quote": "| **Chromosome** |",
+      "item": "Column heading for the sequence that holds each locus. The statement holds if all 20 loci of Table 1 lie on one of the ten chromosomes (NC_047559.1 to NC_047568.1); the last row names an unplaced scaffold, NW_022994979.1 (issue I-45)",
+      "manuscript_value": "Chromosome",
+      "manuscript_numeric": null,
+      "kind": "other"
+     },
+     {
+      "id": "T1-005",
+      "section": "Table 1",
+      "line": 164,
+      "quote": "| ploidy-DML | 105318079 |",
+      "item": "NCBI gene ID, Table 1 row 1 of 20: ploidy DML in MAP kinase-activating death domain protein at NC_047559.1:17423557",
+      "manuscript_value": "105318079",
+      "manuscript_numeric": 105318079,
+      "kind": "identifier"
+     },
+     {
+      "id": "T1-006",
+      "section": "Table 1",
+      "line": 164,
+      "quote": "| NC\\_047559.1 | 17423557 |",
+      "item": "Start coordinate on NC_047559.1, Table 1 row 1",
+      "manuscript_value": "17423557",
+      "manuscript_numeric": 17423557,
+      "kind": "coordinate"
+     },
+     {
+      "id": "T1-007",
+      "section": "Table 1",
+      "line": 164,
+      "quote": "| 17423557 | 17423559 |",
+      "item": "End coordinate, Table 1 row 1",
+      "manuscript_value": "17423559",
+      "manuscript_numeric": 17423559,
+      "kind": "coordinate"
+     },
+     {
+      "id": "T1-008",
+      "section": "Table 1",
+      "line": 164,
+      "quote": "| 17423559 | \\+22 |",
+      "item": "Methylation difference in percentage points, triploid minus diploid, Table 1 row 1",
+      "manuscript_value": "+22",
+      "manuscript_numeric": 22,
+      "kind": "statistic"
+     },
+     {
+      "id": "T1-009",
+      "section": "Table 1",
+      "line": 165,
+      "quote": "| ploidy-DML | 105328103 |",
+      "item": "NCBI gene ID, Table 1 row 2 of 20: ploidy DML in neurexin-1 at NC_047561.1:51312262",
+      "manuscript_value": "105328103",
+      "manuscript_numeric": 105328103,
+      "kind": "identifier"
+     },
+     {
+      "id": "T1-010",
+      "section": "Table 1",
+      "line": 165,
+      "quote": "| NC\\_047561.1 | 51312262 |",
+      "item": "Start coordinate on NC_047561.1, Table 1 row 2",
+      "manuscript_value": "51312262",
+      "manuscript_numeric": 51312262,
+      "kind": "coordinate"
+     },
+     {
+      "id": "T1-011",
+      "section": "Table 1",
+      "line": 165,
+      "quote": "| 51312262 | 51312264 |",
+      "item": "End coordinate, Table 1 row 2",
+      "manuscript_value": "51312264",
+      "manuscript_numeric": 51312264,
+      "kind": "coordinate"
+     },
+     {
+      "id": "T1-012",
+      "section": "Table 1",
+      "line": 165,
+      "quote": "| 51312264 | \\-23 |",
+      "item": "Methylation difference in percentage points, triploid minus diploid, Table 1 row 2",
+      "manuscript_value": "-23",
+      "manuscript_numeric": -23,
+      "kind": "statistic"
+     },
+     {
+      "id": "T1-013",
+      "section": "Table 1",
+      "line": 166,
+      "quote": "| ploidy-DML | 105328103 |",
+      "item": "NCBI gene ID, Table 1 row 3 of 20: ploidy DML in neurexin-1 at NC_047561.1:51346481",
+      "manuscript_value": "105328103",
+      "manuscript_numeric": 105328103,
+      "kind": "identifier"
+     },
+     {
+      "id": "T1-014",
+      "section": "Table 1",
+      "line": 166,
+      "quote": "| NC\\_047561.1 | 51346481 |",
+      "item": "Start coordinate on NC_047561.1, Table 1 row 3",
+      "manuscript_value": "51346481",
+      "manuscript_numeric": 51346481,
+      "kind": "coordinate"
+     },
+     {
+      "id": "T1-015",
+      "section": "Table 1",
+      "line": 166,
+      "quote": "| 51346481 | 51346483 |",
+      "item": "End coordinate, Table 1 row 3",
+      "manuscript_value": "51346483",
+      "manuscript_numeric": 51346483,
+      "kind": "coordinate"
+     },
+     {
+      "id": "T1-016",
+      "section": "Table 1",
+      "line": 166,
+      "quote": "| 51346483 | \\-32 |",
+      "item": "Methylation difference in percentage points, triploid minus diploid, Table 1 row 3",
+      "manuscript_value": "-32",
+      "manuscript_numeric": -32,
+      "kind": "statistic"
+     },
+     {
+      "id": "T1-017",
+      "section": "Table 1",
+      "line": 167,
+      "quote": "| ploidy-DML | 105329309 |",
+      "item": "NCBI gene ID, Table 1 row 4 of 20: ploidy DML in nesprin-1 at NC_047561.1:28607016",
+      "manuscript_value": "105329309",
+      "manuscript_numeric": 105329309,
+      "kind": "identifier"
+     },
+     {
+      "id": "T1-018",
+      "section": "Table 1",
+      "line": 167,
+      "quote": "| NC\\_047561.1 | 28607016 |",
+      "item": "Start coordinate on NC_047561.1, Table 1 row 4",
+      "manuscript_value": "28607016",
+      "manuscript_numeric": 28607016,
+      "kind": "coordinate"
+     },
+     {
+      "id": "T1-019",
+      "section": "Table 1",
+      "line": 167,
+      "quote": "| 28607016 | 28607018 |",
+      "item": "End coordinate, Table 1 row 4",
+      "manuscript_value": "28607018",
+      "manuscript_numeric": 28607018,
+      "kind": "coordinate"
+     },
+     {
+      "id": "T1-020",
+      "section": "Table 1",
+      "line": 167,
+      "quote": "| 28607018 | \\+23 |",
+      "item": "Methylation difference in percentage points, triploid minus diploid, Table 1 row 4",
+      "manuscript_value": "+23",
+      "manuscript_numeric": 23,
+      "kind": "statistic"
+     },
+     {
+      "id": "T1-021",
+      "section": "Table 1",
+      "line": 168,
+      "quote": "| ploidy-DML | 105329309 |",
+      "item": "NCBI gene ID, Table 1 row 5 of 20: ploidy DML in nesprin-1 at NC_047561.1:28607026",
+      "manuscript_value": "105329309",
+      "manuscript_numeric": 105329309,
+      "kind": "identifier"
+     },
+     {
+      "id": "T1-022",
+      "section": "Table 1",
+      "line": 168,
+      "quote": "| NC\\_047561.1 | 28607026 |",
+      "item": "Start coordinate on NC_047561.1, Table 1 row 5",
+      "manuscript_value": "28607026",
+      "manuscript_numeric": 28607026,
+      "kind": "coordinate"
+     },
+     {
+      "id": "T1-023",
+      "section": "Table 1",
+      "line": 168,
+      "quote": "| 28607026 | 28607028 |",
+      "item": "End coordinate, Table 1 row 5",
+      "manuscript_value": "28607028",
+      "manuscript_numeric": 28607028,
+      "kind": "coordinate"
+     },
+     {
+      "id": "T1-024",
+      "section": "Table 1",
+      "line": 168,
+      "quote": "| 28607028 | \\+21 |",
+      "item": "Methylation difference in percentage points, triploid minus diploid, Table 1 row 5",
+      "manuscript_value": "+21",
+      "manuscript_numeric": 21,
+      "kind": "statistic"
+     },
+     {
+      "id": "T1-025",
+      "section": "Table 1",
+      "line": 169,
+      "quote": "| ploidy-DML | 105329309 |",
+      "item": "NCBI gene ID, Table 1 row 6 of 20: ploidy DML in nesprin-1 at NC_047561.1:28607119",
+      "manuscript_value": "105329309",
+      "manuscript_numeric": 105329309,
+      "kind": "identifier"
+     },
+     {
+      "id": "T1-026",
+      "section": "Table 1",
+      "line": 169,
+      "quote": "| NC\\_047561.1 | 28607119 |",
+      "item": "Start coordinate on NC_047561.1, Table 1 row 6",
+      "manuscript_value": "28607119",
+      "manuscript_numeric": 28607119,
+      "kind": "coordinate"
+     },
+     {
+      "id": "T1-027",
+      "section": "Table 1",
+      "line": 169,
+      "quote": "| 28607119 | 28607121 |",
+      "item": "End coordinate, Table 1 row 6",
+      "manuscript_value": "28607121",
+      "manuscript_numeric": 28607121,
+      "kind": "coordinate"
+     },
+     {
+      "id": "T1-028",
+      "section": "Table 1",
+      "line": 169,
+      "quote": "| 28607121 | \\-24 |",
+      "item": "Methylation difference in percentage points, triploid minus diploid, Table 1 row 6",
+      "manuscript_value": "-24",
+      "manuscript_numeric": -24,
+      "kind": "statistic"
+     },
+     {
+      "id": "T1-029",
+      "section": "Table 1",
+      "line": 170,
+      "quote": "| ploidy-DML | 105329309 |",
+      "item": "NCBI gene ID, Table 1 row 7 of 20: ploidy DML in nesprin-1 at NC_047561.1:28608523",
+      "manuscript_value": "105329309",
+      "manuscript_numeric": 105329309,
+      "kind": "identifier"
+     },
+     {
+      "id": "T1-030",
+      "section": "Table 1",
+      "line": 170,
+      "quote": "| NC\\_047561.1 | 28608523 |",
+      "item": "Start coordinate on NC_047561.1, Table 1 row 7",
+      "manuscript_value": "28608523",
+      "manuscript_numeric": 28608523,
+      "kind": "coordinate"
+     },
+     {
+      "id": "T1-031",
+      "section": "Table 1",
+      "line": 170,
+      "quote": "| 28608523 | 28608525 |",
+      "item": "End coordinate, Table 1 row 7",
+      "manuscript_value": "28608525",
+      "manuscript_numeric": 28608525,
+      "kind": "coordinate"
+     },
+     {
+      "id": "T1-032",
+      "section": "Table 1",
+      "line": 170,
+      "quote": "| 28608525 | \\+26 |",
+      "item": "Methylation difference in percentage points, triploid minus diploid, Table 1 row 7",
+      "manuscript_value": "+26",
+      "manuscript_numeric": 26,
+      "kind": "statistic"
+     },
+     {
+      "id": "T1-033",
+      "section": "Table 1",
+      "line": 171,
+      "quote": "| ploidy-DML | 105329645 |",
+      "item": "NCBI gene ID, Table 1 row 8 of 20: ploidy DML in ubiquitin-like-specific protease 1 at NC_047561.1:27733219",
+      "manuscript_value": "105329645",
+      "manuscript_numeric": 105329645,
+      "kind": "identifier"
+     },
+     {
+      "id": "T1-034",
+      "section": "Table 1",
+      "line": 171,
+      "quote": "| NC\\_047561.1 | 27733219 |",
+      "item": "Start coordinate on NC_047561.1, Table 1 row 8",
+      "manuscript_value": "27733219",
+      "manuscript_numeric": 27733219,
+      "kind": "coordinate"
+     },
+     {
+      "id": "T1-035",
+      "section": "Table 1",
+      "line": 171,
+      "quote": "| 27733219 | 27733221 |",
+      "item": "End coordinate, Table 1 row 8",
+      "manuscript_value": "27733221",
+      "manuscript_numeric": 27733221,
+      "kind": "coordinate"
+     },
+     {
+      "id": "T1-036",
+      "section": "Table 1",
+      "line": 171,
+      "quote": "| 27733221 | \\-21 |",
+      "item": "Methylation difference in percentage points, triploid minus diploid, Table 1 row 8",
+      "manuscript_value": "-21",
+      "manuscript_numeric": -21,
+      "kind": "statistic"
+     },
+     {
+      "id": "T1-037",
+      "section": "Table 1",
+      "line": 172,
+      "quote": "| ploidy-DML | 105335651 |",
+      "item": "NCBI gene ID, Table 1 row 9 of 20: ploidy DML in 1-phosphatidylinositol 4,5-bisphosphate phosphodiesterase beta-1 at NC_047561.1:19405662",
+      "manuscript_value": "105335651",
+      "manuscript_numeric": 105335651,
+      "kind": "identifier"
+     },
+     {
+      "id": "T1-038",
+      "section": "Table 1",
+      "line": 172,
+      "quote": "| NC\\_047561.1 | 19405662 |",
+      "item": "Start coordinate on NC_047561.1, Table 1 row 9",
+      "manuscript_value": "19405662",
+      "manuscript_numeric": 19405662,
+      "kind": "coordinate"
+     },
+     {
+      "id": "T1-039",
+      "section": "Table 1",
+      "line": 172,
+      "quote": "| 19405662 | 19405664 |",
+      "item": "End coordinate, Table 1 row 9",
+      "manuscript_value": "19405664",
+      "manuscript_numeric": 19405664,
+      "kind": "coordinate"
+     },
+     {
+      "id": "T1-040",
+      "section": "Table 1",
+      "line": 172,
+      "quote": "| 19405664 | \\+22 |",
+      "item": "Methylation difference in percentage points, triploid minus diploid, Table 1 row 9",
+      "manuscript_value": "+22",
+      "manuscript_numeric": 22,
+      "kind": "statistic"
+     },
+     {
+      "id": "T1-041",
+      "section": "Table 1",
+      "line": 173,
+      "quote": "| ploidy-DML | 105347767 |",
+      "item": "NCBI gene ID, Table 1 row 10 of 20: ploidy DML in F-box DNA helicase 1 at NC_047561.1:2676336",
+      "manuscript_value": "105347767",
+      "manuscript_numeric": 105347767,
+      "kind": "identifier"
+     },
+     {
+      "id": "T1-042",
+      "section": "Table 1",
+      "line": 173,
+      "quote": "| NC\\_047561.1 | 2676336 |",
+      "item": "Start coordinate on NC_047561.1, Table 1 row 10",
+      "manuscript_value": "2676336",
+      "manuscript_numeric": 2676336,
+      "kind": "coordinate"
+     },
+     {
+      "id": "T1-043",
+      "section": "Table 1",
+      "line": 173,
+      "quote": "| 2676336 | 2676338 |",
+      "item": "End coordinate, Table 1 row 10",
+      "manuscript_value": "2676338",
+      "manuscript_numeric": 2676338,
+      "kind": "coordinate"
+     },
+     {
+      "id": "T1-044",
+      "section": "Table 1",
+      "line": 173,
+      "quote": "| 2676338 | \\-21 |",
+      "item": "Methylation difference in percentage points, triploid minus diploid, Table 1 row 10",
+      "manuscript_value": "-21",
+      "manuscript_numeric": -21,
+      "kind": "statistic"
+     },
+     {
+      "id": "T1-045",
+      "section": "Table 1",
+      "line": 174,
+      "quote": "| heat-DML | 105320544 |",
+      "item": "NCBI gene ID, Table 1 row 11 of 20: heat DML in kinesin-like protein unc-104 at NC_047564.1:40471809",
+      "manuscript_value": "105320544",
+      "manuscript_numeric": 105320544,
+      "kind": "identifier"
+     },
+     {
+      "id": "T1-046",
+      "section": "Table 1",
+      "line": 174,
+      "quote": "| NC\\_047564.1 | 40471809 |",
+      "item": "Start coordinate on NC_047564.1, Table 1 row 11",
+      "manuscript_value": "40471809",
+      "manuscript_numeric": 40471809,
+      "kind": "coordinate"
+     },
+     {
+      "id": "T1-047",
+      "section": "Table 1",
+      "line": 174,
+      "quote": "| 40471809 | 40471811 |",
+      "item": "End coordinate, Table 1 row 11",
+      "manuscript_value": "40471811",
+      "manuscript_numeric": 40471811,
+      "kind": "coordinate"
+     },
+     {
+      "id": "T1-048",
+      "section": "Table 1",
+      "line": 174,
+      "quote": "| 40471811 | \\+42 |",
+      "item": "Methylation difference in percentage points, heat minus control, Table 1 row 11",
+      "manuscript_value": "+42",
+      "manuscript_numeric": 42,
+      "kind": "statistic"
+     },
+     {
+      "id": "T1-049",
+      "section": "Table 1",
+      "line": 175,
+      "quote": "| heat-DML | 105326303 |",
+      "item": "NCBI gene ID, Table 1 row 12 of 20: heat DML in phosphatidylinositol-binding clathrin assembly protein LAP at NC_047563.1:1749458",
+      "manuscript_value": "105326303",
+      "manuscript_numeric": 105326303,
+      "kind": "identifier"
+     },
+     {
+      "id": "T1-050",
+      "section": "Table 1",
+      "line": 175,
+      "quote": "| NC\\_047563.1 | 1749458 |",
+      "item": "Start coordinate on NC_047563.1, Table 1 row 12",
+      "manuscript_value": "1749458",
+      "manuscript_numeric": 1749458,
+      "kind": "coordinate"
+     },
+     {
+      "id": "T1-051",
+      "section": "Table 1",
+      "line": 175,
+      "quote": "| 1749458 | 1749460 |",
+      "item": "End coordinate, Table 1 row 12",
+      "manuscript_value": "1749460",
+      "manuscript_numeric": 1749460,
+      "kind": "coordinate"
+     },
+     {
+      "id": "T1-052",
+      "section": "Table 1",
+      "line": 175,
+      "quote": "| 1749460 | \\-20 |",
+      "item": "Methylation difference in percentage points, heat minus control, Table 1 row 12",
+      "manuscript_value": "-20",
+      "manuscript_numeric": -20,
+      "kind": "statistic"
+     },
+     {
+      "id": "T1-053",
+      "section": "Table 1",
+      "line": 176,
+      "quote": "| heat-DML | 105326303 |",
+      "item": "NCBI gene ID, Table 1 row 13 of 20: heat DML in phosphatidylinositol-binding clathrin assembly protein LAP at NC_047563.1:1761560",
+      "manuscript_value": "105326303",
+      "manuscript_numeric": 105326303,
+      "kind": "identifier"
+     },
+     {
+      "id": "T1-054",
+      "section": "Table 1",
+      "line": 176,
+      "quote": "| NC\\_047563.1 | 1761560 |",
+      "item": "Start coordinate on NC_047563.1, Table 1 row 13",
+      "manuscript_value": "1761560",
+      "manuscript_numeric": 1761560,
+      "kind": "coordinate"
+     },
+     {
+      "id": "T1-055",
+      "section": "Table 1",
+      "line": 176,
+      "quote": "| 1761560 | 1761562 |",
+      "item": "End coordinate, Table 1 row 13",
+      "manuscript_value": "1761562",
+      "manuscript_numeric": 1761562,
+      "kind": "coordinate"
+     },
+     {
+      "id": "T1-056",
+      "section": "Table 1",
+      "line": 176,
+      "quote": "| 1761562 | \\+20 |",
+      "item": "Methylation difference in percentage points, heat minus control, Table 1 row 13",
+      "manuscript_value": "+20",
+      "manuscript_numeric": 20,
+      "kind": "statistic"
+     },
+     {
+      "id": "T1-057",
+      "section": "Table 1",
+      "line": 177,
+      "quote": "| heat-DML | 105326303 |",
+      "item": "NCBI gene ID, Table 1 row 14 of 20: heat DML in phosphatidylinositol-binding clathrin assembly protein LAP at NC_047563.1:1771931",
+      "manuscript_value": "105326303",
+      "manuscript_numeric": 105326303,
+      "kind": "identifier"
+     },
+     {
+      "id": "T1-058",
+      "section": "Table 1",
+      "line": 177,
+      "quote": "| NC\\_047563.1 | 1771931 |",
+      "item": "Start coordinate on NC_047563.1, Table 1 row 14",
+      "manuscript_value": "1771931",
+      "manuscript_numeric": 1771931,
+      "kind": "coordinate"
+     },
+     {
+      "id": "T1-059",
+      "section": "Table 1",
+      "line": 177,
+      "quote": "| 1771931 | 1771933 |",
+      "item": "End coordinate, Table 1 row 14",
+      "manuscript_value": "1771933",
+      "manuscript_numeric": 1771933,
+      "kind": "coordinate"
+     },
+     {
+      "id": "T1-060",
+      "section": "Table 1",
+      "line": 177,
+      "quote": "| 1771933 | \\-23 |",
+      "item": "Methylation difference in percentage points, heat minus control, Table 1 row 14",
+      "manuscript_value": "-23",
+      "manuscript_numeric": -23,
+      "kind": "statistic"
+     },
+     {
+      "id": "T1-061",
+      "section": "Table 1",
+      "line": 178,
+      "quote": "| heat-DML | 105326303 |",
+      "item": "NCBI gene ID, Table 1 row 15 of 20: heat DML in phosphatidylinositol-binding clathrin assembly protein LAP at NC_047563.1:1780314",
+      "manuscript_value": "105326303",
+      "manuscript_numeric": 105326303,
+      "kind": "identifier"
+     },
+     {
+      "id": "T1-062",
+      "section": "Table 1",
+      "line": 178,
+      "quote": "| NC\\_047563.1 | 1780314 |",
+      "item": "Start coordinate on NC_047563.1, Table 1 row 15",
+      "manuscript_value": "1780314",
+      "manuscript_numeric": 1780314,
+      "kind": "coordinate"
+     },
+     {
+      "id": "T1-063",
+      "section": "Table 1",
+      "line": 178,
+      "quote": "| 1780314 | 1780316 |",
+      "item": "End coordinate, Table 1 row 15",
+      "manuscript_value": "1780316",
+      "manuscript_numeric": 1780316,
+      "kind": "coordinate"
+     },
+     {
+      "id": "T1-064",
+      "section": "Table 1",
+      "line": 178,
+      "quote": "| 1780316 | \\-28 |",
+      "item": "Methylation difference in percentage points, heat minus control, Table 1 row 15",
+      "manuscript_value": "-28",
+      "manuscript_numeric": -28,
+      "kind": "statistic"
+     },
+     {
+      "id": "T1-065",
+      "section": "Table 1",
+      "line": 179,
+      "quote": "| heat-DML | 105344721 |",
+      "item": "NCBI gene ID, Table 1 row 16 of 20: heat DML in ataxin-2-like protein at NC_047564.1:22005779",
+      "manuscript_value": "105344721",
+      "manuscript_numeric": 105344721,
+      "kind": "identifier"
+     },
+     {
+      "id": "T1-066",
+      "section": "Table 1",
+      "line": 179,
+      "quote": "| NC\\_047564.1 | 22005779 |",
+      "item": "Start coordinate on NC_047564.1, Table 1 row 16",
+      "manuscript_value": "22005779",
+      "manuscript_numeric": 22005779,
+      "kind": "coordinate"
+     },
+     {
+      "id": "T1-067",
+      "section": "Table 1",
+      "line": 179,
+      "quote": "| 22005779 | 22005781 |",
+      "item": "End coordinate, Table 1 row 16",
+      "manuscript_value": "22005781",
+      "manuscript_numeric": 22005781,
+      "kind": "coordinate"
+     },
+     {
+      "id": "T1-068",
+      "section": "Table 1",
+      "line": 179,
+      "quote": "| 22005781 | \\-21 |",
+      "item": "Methylation difference in percentage points, heat minus control, Table 1 row 16",
+      "manuscript_value": "-21",
+      "manuscript_numeric": -21,
+      "kind": "statistic"
+     },
+     {
+      "id": "T1-069",
+      "section": "Table 1",
+      "line": 180,
+      "quote": "| heat-DML | 117680672 |",
+      "item": "NCBI gene ID, Table 1 row 17 of 20: heat DML in uncharacterized LOC117680672 at NC_047563.1:684534",
+      "manuscript_value": "117680672",
+      "manuscript_numeric": 117680672,
+      "kind": "identifier"
+     },
+     {
+      "id": "T1-070",
+      "section": "Table 1",
+      "line": 180,
+      "quote": "| NC\\_047563.1 | 684534 |",
+      "item": "Start coordinate on NC_047563.1, Table 1 row 17",
+      "manuscript_value": "684534",
+      "manuscript_numeric": 684534,
+      "kind": "coordinate"
+     },
+     {
+      "id": "T1-071",
+      "section": "Table 1",
+      "line": 180,
+      "quote": "| 684534 | 684536 |",
+      "item": "End coordinate, Table 1 row 17",
+      "manuscript_value": "684536",
+      "manuscript_numeric": 684536,
+      "kind": "coordinate"
+     },
+     {
+      "id": "T1-072",
+      "section": "Table 1",
+      "line": 180,
+      "quote": "| 684536 | \\-21 |",
+      "item": "Methylation difference in percentage points, heat minus control, Table 1 row 17",
+      "manuscript_value": "-21",
+      "manuscript_numeric": -21,
+      "kind": "statistic"
+     },
+     {
+      "id": "T1-073",
+      "section": "Table 1",
+      "line": 181,
+      "quote": "| interaction-DML | 105319299 |",
+      "item": "NCBI gene ID, Table 1 row 18 of 20: shared locus (interaction-DML) in CAD protein at NC_047564.1:8425110",
+      "manuscript_value": "105319299",
+      "manuscript_numeric": 105319299,
+      "kind": "identifier"
+     },
+     {
+      "id": "T1-074",
+      "section": "Table 1",
+      "line": 181,
+      "quote": "| NC\\_047564.1 | 8425110 |",
+      "item": "Start coordinate on NC_047564.1, Table 1 row 18",
+      "manuscript_value": "8425110",
+      "manuscript_numeric": 8425110,
+      "kind": "coordinate"
+     },
+     {
+      "id": "T1-075",
+      "section": "Table 1",
+      "line": 181,
+      "quote": "| 8425110 | 8425112 |",
+      "item": "End coordinate, Table 1 row 18",
+      "manuscript_value": "8425112",
+      "manuscript_numeric": 8425112,
+      "kind": "coordinate"
+     },
+     {
+      "id": "T1-076",
+      "section": "Table 1",
+      "line": 181,
+      "quote": "| 8425112 | \\-31 |",
+      "item": "Methylation difference in percentage points, heat minus control (the value carried for a locus in both lists, issue I-02), Table 1 row 18",
+      "manuscript_value": "-31",
+      "manuscript_numeric": -31,
+      "kind": "statistic"
+     },
+     {
+      "id": "T1-077",
+      "section": "Table 1",
+      "line": 182,
+      "quote": "| interaction-DML | 105329309 |",
+      "item": "NCBI gene ID, Table 1 row 19 of 20: shared locus (interaction-DML) in nesprin-1 at NC_047561.1:28607016",
+      "manuscript_value": "105329309",
+      "manuscript_numeric": 105329309,
+      "kind": "identifier"
+     },
+     {
+      "id": "T1-078",
+      "section": "Table 1",
+      "line": 182,
+      "quote": "| NC\\_047561.1 | 28607016 |",
+      "item": "Start coordinate on NC_047561.1, Table 1 row 19",
+      "manuscript_value": "28607016",
+      "manuscript_numeric": 28607016,
+      "kind": "coordinate"
+     },
+     {
+      "id": "T1-079",
+      "section": "Table 1",
+      "line": 182,
+      "quote": "| 28607016 | 28607018 |",
+      "item": "End coordinate, Table 1 row 19",
+      "manuscript_value": "28607018",
+      "manuscript_numeric": 28607018,
+      "kind": "coordinate"
+     },
+     {
+      "id": "T1-080",
+      "section": "Table 1",
+      "line": 182,
+      "quote": "| 28607018 | \\+21 |",
+      "item": "Methylation difference in percentage points, heat minus control (the value carried for a locus in both lists, issue I-02), Table 1 row 19",
+      "manuscript_value": "+21",
+      "manuscript_numeric": 21,
+      "kind": "statistic"
+     },
+     {
+      "id": "T1-081",
+      "section": "Table 1",
+      "line": 183,
+      "quote": "| interaction-DML | 105340590 |",
+      "item": "NCBI gene ID, Table 1 row 20 of 20: shared locus (interaction-DML) in dihydropyrimidinase at NW_022994979.1:42498",
+      "manuscript_value": "105340590",
+      "manuscript_numeric": 105340590,
+      "kind": "identifier"
+     },
+     {
+      "id": "T1-082",
+      "section": "Table 1",
+      "line": 183,
+      "quote": "| NW\\_022994979.1 | 42498 |",
+      "item": "Start coordinate on NW_022994979.1, Table 1 row 20",
+      "manuscript_value": "42498",
+      "manuscript_numeric": 42498,
+      "kind": "coordinate"
+     },
+     {
+      "id": "T1-083",
+      "section": "Table 1",
+      "line": 183,
+      "quote": "| 42498 | 42500 |",
+      "item": "End coordinate, Table 1 row 20",
+      "manuscript_value": "42500",
+      "manuscript_numeric": 42500,
+      "kind": "coordinate"
+     },
+     {
+      "id": "T1-084",
+      "section": "Table 1",
+      "line": 183,
+      "quote": "| 42500 | \\+31 |",
+      "item": "Methylation difference in percentage points, heat minus control (the value carried for a locus in both lists, issue I-02), Table 1 row 20",
+      "manuscript_value": "+31",
+      "manuscript_numeric": 31,
+      "kind": "statistic"
+     }
+    ],
+    "notes": "174 rows: 44 for Results 3.4 (lines 48 to 51), 46 for Results 3.5 (lines 53 to 58), 84 for Table 1 (caption line 160, heading line 163, cells lines 164 to 183). A script checked that every quote is an exact substring of its line and occurs there once. Table 1 quotes are cell fragments and keep the Markdown backslashes of the text file (before the underscore of an accession and before a plus or minus sign); manuscript_value drops them. No quote holds an em dash.\nResults 3.4: the GO terms named as enriched have 22 rows (the phrase on osmotic and oxidative stress has two; the MAPK cascade row names its second reading); manuscript_value equals the phrase column of named_terms_results_3_4.csv. R3.4-007, 018 and 030 are the statements that the clustered terms are the enriched ones. Six statements about clusters and frequency (R3.4-008, 009, 013, 024, 031, 035) are kind other because the draft gives no criterion.\nResults 3.5: numbers, rankings from Figure 9, and for six quoted methylation differences a second row of kind inequality that tests the meaning the text attaches: R3.5-029, 031 and 033 (ploidy values under control conditions; their quote is the opening clause of the paragraph, so they point back in the text) and R3.5-041, 043 and 046 (interaction values). Set-level statements of the same kind: R3.4-017, R3.4-029, R3.5-026, R3.5-039, T1-003.\nTable 1: T1-001 to T1-004 are the caption and the heading Chromosome (I-45). T1-005 to T1-084 are the cells, four per table row in the order gene ID, start, end, methylation difference; differences are read-pooled over all 22 libraries and end is start plus 2, as in the DML tables. The sequence accession has no row of its own: it is in the quote and item of each start row, and an expression that selects the pipeline row by set, sequence and start checks it (build_rows.py --with-accession adds one identifier row per table row if wanted).\nLeft out: section, figure and table numbers, citation years, digits inside gene names, the sentence on supplementary lists (I-27), statements about other studies or about gene function, the Gene Name and Category columns (Category is hand-assigned; I-24 for the CAD row), and sentences that only interpret.\nKind statistic is used for methylation differences, which are percentage points although the text prints a percent sign.\nPointers for the mapping step: a candidate expression for every row except R3.5-034 (a condition of the experiment) ran without error in eval_expressions.R, 229 expressions in all. Results and expressions are in /tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/mv-extract-results34_35/pointer_table.tsv; the rows are built by build_rows.py in the same directory. They reproduce all 80 cells and every number of the text within 0.5 except 68% (134 of 195 is 68.72). Two term rows are TRUE in the legacy test (R3.4-032, R3.4-037) and none at gene level.\nOutside this task: point 3 of the header of 01_pipeline/09_go_enrichment_legacy.R still says that terms with p < 0.01 went to the semantic similarity plots, which I-48 contradicts."
+   }
+  },
+  {
+   "agent": "extract:discussion",
+   "phase": "Extract",
+   "result": {
+    "section_key": "discussion",
+    "statements": [
+     {
+      "id": "D4.1-001",
+      "section": "Discussion 4.1",
+      "line": 62,
+      "quote": "Our analysis identified ploidy-specific differences in DNA methylation at 1,038 loci prior to environmental stress exposure",
+      "item": "Number of ploidy DML: CpGs with q below 0.01 and an absolute methylation difference above 20 percentage points between triploid and diploid libraries (the count of Results 3.2, repeated)",
+      "manuscript_value": "1,038",
+      "manuscript_numeric": 1038,
+      "kind": "count"
+     },
+     {
+      "id": "D4.1-002",
+      "section": "Discussion 4.1",
+      "line": 62,
+      "quote": "Our analysis identified ploidy-specific differences in DNA methylation at 1,038 loci prior to environmental stress exposure",
+      "item": "Libraries behind the 1,038 ploidy DML: by this sentence animals before any heat treatment, that is the 12 control libraries and none of the 10 heat libraries. The statement holds if the ploidy contrast used no heat library (issue I-07)",
+      "manuscript_value": "prior to environmental stress exposure",
+      "manuscript_numeric": null,
+      "kind": "design"
+     },
+     {
+      "id": "D4.1-003",
+      "section": "Discussion 4.1",
+      "line": 62,
+      "quote": "many of which were localized within genes involved in cell-cycle regulation, chromosome segregation, meiosis (including homolog pairing), and gametogenesis",
+      "item": "Whether the GO term regulation of cell cycle (GO:0051726; related terms: cell cycle, GO:0007049, and cell division, GO:0051301, a label of Figure 6) is enriched among genes with ploidy DML (legacy: Fisher p below 0.01 or among the ten top-ranked terms; gene level: q below the FDR). The sentence says that many of the 1,038 loci lie in genes of this function and gives no number",
+      "manuscript_value": "cell-cycle regulation",
+      "manuscript_numeric": null,
+      "kind": "inequality"
+     },
+     {
+      "id": "D4.1-004",
+      "section": "Discussion 4.1",
+      "line": 62,
+      "quote": "many of which were localized within genes involved in cell-cycle regulation, chromosome segregation, meiosis (including homolog pairing), and gametogenesis",
+      "item": "Whether the GO term chromosome segregation (GO:0007059), a label of Figure 6 that Results 3.4 names as enriched, is enriched among genes with ploidy DML (legacy: Fisher p below 0.01 or among the ten top-ranked terms; gene level: q below the FDR). The sentence says that many of the 1,038 loci lie in genes of this function and gives no number",
+      "manuscript_value": "chromosome segregation",
+      "manuscript_numeric": null,
+      "kind": "inequality"
+     },
+     {
+      "id": "D4.1-005",
+      "section": "Discussion 4.1",
+      "line": 62,
+      "quote": "many of which were localized within genes involved in cell-cycle regulation, chromosome segregation, meiosis (including homolog pairing), and gametogenesis",
+      "item": "Whether the GO term meiotic cell cycle (GO:0051321) is enriched among genes with ploidy DML (legacy: Fisher p below 0.01 or among the ten top-ranked terms; gene level: q below the FDR). The sentence says that many of the 1,038 loci lie in genes of this function and gives no number",
+      "manuscript_value": "meiosis",
+      "manuscript_numeric": null,
+      "kind": "inequality"
+     },
+     {
+      "id": "D4.1-006",
+      "section": "Discussion 4.1",
+      "line": 62,
+      "quote": "many of which were localized within genes involved in cell-cycle regulation, chromosome segregation, meiosis (including homolog pairing), and gametogenesis",
+      "item": "Whether the GO term homologous chromosome pairing at meiosis (GO:0007129), a label of Figure 6 that Results 3.4 names as enriched, is enriched among genes with ploidy DML (legacy: Fisher p below 0.01 or among the ten top-ranked terms; gene level: q below the FDR). The sentence says that many of the 1,038 loci lie in genes of this function and gives no number",
+      "manuscript_value": "homolog pairing",
+      "manuscript_numeric": null,
+      "kind": "inequality"
+     },
+     {
+      "id": "D4.1-007",
+      "section": "Discussion 4.1",
+      "line": 62,
+      "quote": "many of which were localized within genes involved in cell-cycle regulation, chromosome segregation, meiosis (including homolog pairing), and gametogenesis",
+      "item": "Whether the GO term gamete generation (GO:0007276; the nearest label of Figure 6 is DNA methylation involved in gamete generation, GO:0043046) is enriched among genes with ploidy DML (legacy: Fisher p below 0.01 or among the ten top-ranked terms; gene level: q below the FDR). The sentence says that many of the 1,038 loci lie in genes of this function and gives no number",
+      "manuscript_value": "gametogenesis",
+      "manuscript_numeric": null,
+      "kind": "inequality"
+     },
+     {
+      "id": "D4.1-008",
+      "section": "Discussion 4.1",
+      "line": 63,
+      "quote": "Our analysis also identified methylation differences in genes associated with metabolic and homeostatic pathways",
+      "item": "Whether the GO term metabolic process (GO:0008152) is enriched among genes with ploidy DML (legacy: Fisher p below 0.01 or among the ten top-ranked terms; gene level: q below the FDR). The sentence says that methylation differences were identified in genes of this group of pathways",
+      "manuscript_value": "metabolic",
+      "manuscript_numeric": null,
+      "kind": "inequality"
+     },
+     {
+      "id": "D4.1-009",
+      "section": "Discussion 4.1",
+      "line": 63,
+      "quote": "Our analysis also identified methylation differences in genes associated with metabolic and homeostatic pathways",
+      "item": "Whether the GO term homeostatic process (GO:0042592) is enriched among genes with ploidy DML (legacy: Fisher p below 0.01 or among the ten top-ranked terms; gene level: q below the FDR). The sentence says that methylation differences were identified in genes of this group of pathways",
+      "manuscript_value": "homeostatic",
+      "manuscript_numeric": null,
+      "kind": "inequality"
+     },
+     {
+      "id": "D4.1-010",
+      "section": "Discussion 4.1",
+      "line": 63,
+      "quote": "Genes with ploidy-DML include those involved in chemical homeostasis, the endoplasmic reticulum (ER) overload response, lipid metabolic processes, ATP metabolic processes, and the regulation of glucose metabolism (Figure 6)",
+      "item": "Whether the GO term chemical homeostasis (GO:0048878; the label of Figure 6 is chemical homeostasis within a tissue, GO:0048875) is enriched among genes with ploidy DML (legacy: Fisher p below 0.01 or among the ten top-ranked terms; gene level: q below the FDR). The sentence says that genes with ploidy DML include this function and cites Figure 6, whose legend calls its terms significantly enriched",
+      "manuscript_value": "chemical homeostasis",
+      "manuscript_numeric": null,
+      "kind": "inequality"
+     },
+     {
+      "id": "D4.1-011",
+      "section": "Discussion 4.1",
+      "line": 63,
+      "quote": "Genes with ploidy-DML include those involved in chemical homeostasis, the endoplasmic reticulum (ER) overload response, lipid metabolic processes, ATP metabolic processes, and the regulation of glucose metabolism (Figure 6)",
+      "item": "Whether the GO term ER overload response (GO:0006983), a label of Figure 6, is enriched among genes with ploidy DML (legacy: Fisher p below 0.01 or among the ten top-ranked terms; gene level: q below the FDR). The sentence says that genes with ploidy DML include this function and cites Figure 6, whose legend calls its terms significantly enriched",
+      "manuscript_value": "the endoplasmic reticulum (ER) overload response",
+      "manuscript_numeric": null,
+      "kind": "inequality"
+     },
+     {
+      "id": "D4.1-012",
+      "section": "Discussion 4.1",
+      "line": 63,
+      "quote": "Genes with ploidy-DML include those involved in chemical homeostasis, the endoplasmic reticulum (ER) overload response, lipid metabolic processes, ATP metabolic processes, and the regulation of glucose metabolism (Figure 6)",
+      "item": "Whether the GO term lipid metabolic process (GO:0006629), a label of Figure 6, is enriched among genes with ploidy DML (legacy: Fisher p below 0.01 or among the ten top-ranked terms; gene level: q below the FDR). The sentence says that genes with ploidy DML include this function and cites Figure 6, whose legend calls its terms significantly enriched",
+      "manuscript_value": "lipid metabolic processes",
+      "manuscript_numeric": null,
+      "kind": "inequality"
+     },
+     {
+      "id": "D4.1-013",
+      "section": "Discussion 4.1",
+      "line": 63,
+      "quote": "Genes with ploidy-DML include those involved in chemical homeostasis, the endoplasmic reticulum (ER) overload response, lipid metabolic processes, ATP metabolic processes, and the regulation of glucose metabolism (Figure 6)",
+      "item": "Whether the GO term ATP metabolic process (GO:0046034), a label of Figure 6, is enriched among genes with ploidy DML (legacy: Fisher p below 0.01 or among the ten top-ranked terms; gene level: q below the FDR). The sentence says that genes with ploidy DML include this function and cites Figure 6, whose legend calls its terms significantly enriched",
+      "manuscript_value": "ATP metabolic processes",
+      "manuscript_numeric": null,
+      "kind": "inequality"
+     },
+     {
+      "id": "D4.1-014",
+      "section": "Discussion 4.1",
+      "line": 63,
+      "quote": "Genes with ploidy-DML include those involved in chemical homeostasis, the endoplasmic reticulum (ER) overload response, lipid metabolic processes, ATP metabolic processes, and the regulation of glucose metabolism (Figure 6)",
+      "item": "Whether the GO term regulation of glucose metabolic process (GO:0010906), a label of Figure 6, is enriched among genes with ploidy DML (legacy: Fisher p below 0.01 or among the ten top-ranked terms; gene level: q below the FDR). The sentence says that genes with ploidy DML include this function and cites Figure 6, whose legend calls its terms significantly enriched",
+      "manuscript_value": "the regulation of glucose metabolism",
+      "manuscript_numeric": null,
+      "kind": "inequality"
+     },
+     {
+      "id": "D4.1-015",
+      "section": "Discussion 4.1",
+      "line": 63,
+      "quote": "Methylation differences within genes involved in the ER overload response are particularly noteworthy",
+      "item": "Number of genes that hold a ploidy DML among the genes that carry the GO term ER overload response (GO:0006983). The sentence speaks of genes in the plural: it holds if two or more such genes exist",
+      "manuscript_value": "genes involved in the ER overload response",
+      "manuscript_numeric": null,
+      "kind": "other"
+     },
+     {
+      "id": "D4.1-016",
+      "section": "Discussion 4.1",
+      "line": 64,
+      "quote": "Together, baseline methylation differences identified in this study suggest that triploids are more heavily invested in maintaining cellular stability and proteostasis",
+      "item": "The ploidy differences are called baseline, that is differences among animals not exposed to heat. The statement holds if the ploidy DML come from the 12 control libraries alone (issue I-07)",
+      "manuscript_value": "baseline",
+      "manuscript_numeric": null,
+      "kind": "design"
+     },
+     {
+      "id": "D4.2-001",
+      "section": "Discussion 4.2",
+      "line": 66,
+      "quote": "Aerial emersion at elevated temperature (27°C for 24 hours) within this study induced methylation changes",
+      "item": "Air temperature of the heat treatment (aerial emersion), degrees Celsius (Methods 2, repeated)",
+      "manuscript_value": "27°C",
+      "manuscript_numeric": 27,
+      "kind": "design"
+     },
+     {
+      "id": "D4.2-002",
+      "section": "Discussion 4.2",
+      "line": 66,
+      "quote": "Aerial emersion at elevated temperature (27°C for 24 hours) within this study induced methylation changes",
+      "item": "Duration of the heat treatment, hours (Methods 2, repeated)",
+      "manuscript_value": "24 hours",
+      "manuscript_numeric": 24,
+      "kind": "design"
+     },
+     {
+      "id": "D4.2-003",
+      "section": "Discussion 4.2",
+      "line": 66,
+      "quote": "within this study induced methylation changes across multiple stress-responsive pathways in both diploid and triploid oysters",
+      "item": "Whether GO terms of the response to stress are enriched among genes with heat DML: the term response to stress (GO:0006950) itself, or two or more of the terms under it (legacy: Fisher p below 0.01 or among the ten top-ranked terms; gene level: q below the FDR). The sentence says that heat changed methylation across several such pathways and names none",
+      "manuscript_value": "across multiple stress-responsive pathways",
+      "manuscript_numeric": null,
+      "kind": "inequality"
+     },
+     {
+      "id": "D4.2-004",
+      "section": "Discussion 4.2",
+      "line": 66,
+      "quote": "within this study induced methylation changes across multiple stress-responsive pathways in both diploid and triploid oysters",
+      "item": "The methylation differences between heat and control libraries are present in each ploidy: at the heat DML, heat minus control has the same sign, and exceeds 20 percentage points, among the diploid libraries alone and among the triploid libraries alone. The heat contrast pools the two ploidies with ploidy as covariate, so the draft's analysis has no test for either ploidy",
+      "manuscript_value": "in both diploid and triploid oysters",
+      "manuscript_numeric": null,
+      "kind": "other"
+     },
+     {
+      "id": "D4.2-005",
+      "section": "Discussion 4.2",
+      "line": 66,
+      "quote": "The identification of 2,351 heat-DML suggests that DNA methylation may play a role in the coordinated cellular response to thermal challenge",
+      "item": "Number of heat DML: CpGs with q below 0.01 and an absolute methylation difference above 20 percentage points between heat and control libraries (the count of Results 3.2, repeated)",
+      "manuscript_value": "2,351",
+      "manuscript_numeric": 2351,
+      "kind": "count"
+     },
+     {
+      "id": "D4.2-006",
+      "section": "Discussion 4.2",
+      "line": 67,
+      "quote": "The engagement of oxidative stress response pathways through methylation suggests that aerial heat exposure generates reactive oxygen species (ROS)",
+      "item": "Whether the GO term response to oxidative stress (GO:0006979), a label of Figure 7 that Results 3.4 names among the enriched terms, is enriched among genes with heat DML (legacy: Fisher p below 0.01 or among the ten top-ranked terms; gene level: q below the FDR). The sentence says that pathways of this response were engaged through methylation",
+      "manuscript_value": "engagement of oxidative stress response pathways",
+      "manuscript_numeric": null,
+      "kind": "inequality"
+     },
+     {
+      "id": "D4.2-007",
+      "section": "Discussion 4.2",
+      "line": 68,
+      "quote": "The enrichment of mitochondrial-associated functions among heat-DML supports the interpretation that thermal stress imposes energetic challenges",
+      "item": "Whether GO terms of mitochondrial function are enriched among genes with heat DML: at least one term whose name refers to mitochondria passes the criterion in any of the three ontologies (legacy: Fisher p below 0.01 or among the ten top-ranked terms; gene level: q below the FDR). The labels of Figure 7 that refer to mitochondria are mitochondrial DNA metabolic process (GO:0032042) and mitochondrion morphogenesis (GO:0070584)",
+      "manuscript_value": "enrichment of mitochondrial-associated functions",
+      "manuscript_numeric": null,
+      "kind": "inequality"
+     },
+     {
+      "id": "D4.2-008",
+      "section": "Discussion 4.2",
+      "line": 68,
+      "quote": "Our qPCR results complement this finding: relative mitochondrial abundance increased in diploids following stress exposure",
+      "item": "qPCR statement Q01: relative mitochondrial abundance is higher in heat than in control diploids. The data hold one mitochondrial target, COX1, as raw Cq of 8 animals per group, with no nuclear reference on the same template. The statement holds if the verdict of step 12 for Q01 starts with supported",
+      "manuscript_value": "increased",
+      "manuscript_numeric": null,
+      "kind": "inequality"
+     },
+     {
+      "id": "D4.2-009",
+      "section": "Discussion 4.2",
+      "line": 68,
+      "quote": "Conversely, relative mitochondrial abundance decreased in triploids following stress exposure",
+      "item": "qPCR statement Q02: relative mitochondrial abundance is lower in heat than in control triploids (COX1, raw Cq, 8 animals per group, no nuclear reference). The statement holds if the verdict of step 12 for Q02 starts with supported",
+      "manuscript_value": "decreased",
+      "manuscript_numeric": null,
+      "kind": "inequality"
+     },
+     {
+      "id": "D4.2-010",
+      "section": "Discussion 4.2",
+      "line": 69,
+      "quote": "The identification of heat-DML in DNA damage response pathways, including DNA damage-induced protein phosphorylation and DNA ligation involved in DNA repair",
+      "item": "Whether the GO term cellular response to DNA damage stimulus (GO:0006974; named DNA damage response in GO.db 3.18.0) is enriched among genes with heat DML (legacy: Fisher p below 0.01 or among the ten top-ranked terms; gene level: q below the FDR). The sentence says that heat DML were identified in this pathway",
+      "manuscript_value": "heat-DML in DNA damage response pathways",
+      "manuscript_numeric": null,
+      "kind": "inequality"
+     },
+     {
+      "id": "D4.2-011",
+      "section": "Discussion 4.2",
+      "line": 69,
+      "quote": "The identification of heat-DML in DNA damage response pathways, including DNA damage-induced protein phosphorylation and DNA ligation involved in DNA repair",
+      "item": "Whether the GO term DNA damage induced protein phosphorylation (GO:0006975), a label of Figure 7, is enriched among genes with heat DML (legacy: Fisher p below 0.01 or among the ten top-ranked terms; gene level: q below the FDR). The sentence says that heat DML were identified in this pathway",
+      "manuscript_value": "DNA damage-induced protein phosphorylation",
+      "manuscript_numeric": null,
+      "kind": "inequality"
+     },
+     {
+      "id": "D4.2-012",
+      "section": "Discussion 4.2",
+      "line": 69,
+      "quote": "The identification of heat-DML in DNA damage response pathways, including DNA damage-induced protein phosphorylation and DNA ligation involved in DNA repair",
+      "item": "Whether the GO term DNA ligation involved in DNA repair (GO:0051103), a label of Figure 6 (the figure of the ploidy DML) and not of Figure 7, is enriched among genes with heat DML (legacy: Fisher p below 0.01 or among the ten top-ranked terms; gene level: q below the FDR). The sentence says that heat DML were identified in this pathway",
+      "manuscript_value": "DNA ligation involved in DNA repair",
+      "manuscript_numeric": null,
+      "kind": "inequality"
+     },
+     {
+      "id": "D4.3-001",
+      "section": "Discussion 4.3",
+      "line": 71,
+      "quote": "Our analysis identified 200 interaction-DML wherein the methylation status at genomic loci were significantly different between diploid and triploid oysters following thermal stress",
+      "item": "Number of interaction-DML: loci present in both the ploidy DML list and the heat DML list (the shared set; the count of Results 3.2, repeated)",
+      "manuscript_value": "200",
+      "manuscript_numeric": 200,
+      "kind": "count"
+     },
+     {
+      "id": "D4.3-002",
+      "section": "Discussion 4.3",
+      "line": 71,
+      "quote": "Our analysis identified 200 interaction-DML wherein the methylation status at genomic loci were significantly different between diploid and triploid oysters following thermal stress",
+      "item": "What the 200 loci are: by this sentence loci found significantly different between diploid and triploid oysters after heat. The statement holds if the set comes from a test of ploidy among the heat libraries, or of a ploidy by heat term, and not from the overlap of the ploidy DML list and the heat DML list (issue I-02)",
+      "manuscript_value": "significantly different between diploid and triploid oysters following thermal stress",
+      "manuscript_numeric": null,
+      "kind": "design"
+     },
+     {
+      "id": "D4.3-003",
+      "section": "Discussion 4.3",
+      "line": 71,
+      "quote": "The predominance of contrasting methylation patterns, accounting for 61.5% of interaction-DML",
+      "item": "Of the three classes of shared loci (hypermethylated in both contrasts, hypomethylated in both, opposite signs), the opposite-sign class is the largest and holds more than half of the loci",
+      "manuscript_value": "predominance",
+      "manuscript_numeric": null,
+      "kind": "ranking"
+     },
+     {
+      "id": "D4.3-004",
+      "section": "Discussion 4.3",
+      "line": 71,
+      "quote": "The predominance of contrasting methylation patterns, accounting for 61.5% of interaction-DML",
+      "item": "Shared loci whose ploidy difference and heat difference have opposite signs, as a percent of all shared loci (Results 3.2, repeated)",
+      "manuscript_value": "61.5%",
+      "manuscript_numeric": 61.5,
+      "kind": "percent"
+     },
+     {
+      "id": "D4.3-005",
+      "section": "Discussion 4.3",
+      "line": 71,
+      "quote": "suggests that thermal exposure can actively reverse baseline ploidy-associated methylation differences",
+      "item": "Meaning given to the opposite-sign class: a ploidy difference present in control animals changes sign after heat. At a locus this is so if triploid minus diploid exceeds 20 percentage points among the control libraries and has the other sign among the heat libraries (threshold set here, the 20 points of the DML rule); the statement holds if loci of the opposite-sign class show it (issue I-02)",
+      "manuscript_value": "reverse baseline ploidy-associated methylation differences",
+      "manuscript_numeric": null,
+      "kind": "inequality"
+     },
+     {
+      "id": "D4.3-006",
+      "section": "Discussion 4.3",
+      "line": 71,
+      "quote": "these epigenetic modifications were found to target specific functional pathways that govern physiological resilience",
+      "item": "The shared loci (interaction-DML) are concentrated in specific functional categories: the statement holds if at least one GO term is enriched among the genes that hold them (legacy: Fisher p below 0.01; gene level: q below the FDR)",
+      "manuscript_value": "were found to target specific functional pathways",
+      "manuscript_numeric": null,
+      "kind": "inequality"
+     },
+     {
+      "id": "D4.3-007",
+      "section": "Discussion 4.3",
+      "line": 71,
+      "quote": "with DML placed within genes with established roles in metabolic homeostasis, apoptosis, nuclear mechanotransduction, and vesicular trafficking and membrane dynamics",
+      "item": "A shared locus (interaction-DML) lies in a gene with a role in metabolic homeostasis. The gene that the section names for it is adenylate kinase 9 (LOC105318231): the statement holds if that gene holds a shared locus",
+      "manuscript_value": "metabolic homeostasis",
+      "manuscript_numeric": null,
+      "kind": "other"
+     },
+     {
+      "id": "D4.3-008",
+      "section": "Discussion 4.3",
+      "line": 71,
+      "quote": "with DML placed within genes with established roles in metabolic homeostasis, apoptosis, nuclear mechanotransduction, and vesicular trafficking and membrane dynamics",
+      "item": "A shared locus lies in a gene with a role in apoptosis. The gene that the section names for it is the CAD protein gene (LOC105319299): the statement holds if that gene holds a shared locus and carries a GO term of apoptosis (apoptotic process, GO:0006915, or a child term; issue I-24)",
+      "manuscript_value": "apoptosis",
+      "manuscript_numeric": null,
+      "kind": "other"
+     },
+     {
+      "id": "D4.3-009",
+      "section": "Discussion 4.3",
+      "line": 71,
+      "quote": "with DML placed within genes with established roles in metabolic homeostasis, apoptosis, nuclear mechanotransduction, and vesicular trafficking and membrane dynamics",
+      "item": "A shared locus lies in a gene with a role in nuclear mechanotransduction. The gene that the section names for it is nesprin-1 (LOC105329309): the statement holds if that gene holds a shared locus",
+      "manuscript_value": "nuclear mechanotransduction",
+      "manuscript_numeric": null,
+      "kind": "other"
+     },
+     {
+      "id": "D4.3-010",
+      "section": "Discussion 4.3",
+      "line": 71,
+      "quote": "with DML placed within genes with established roles in metabolic homeostasis, apoptosis, nuclear mechanotransduction, and vesicular trafficking and membrane dynamics",
+      "item": "A shared locus lies in a gene with a role in vesicular trafficking and membrane dynamics. The gene that the section names for it is the LAP gene (LOC105326303): the statement holds if that gene holds a shared locus (issue I-45)",
+      "manuscript_value": "vesicular trafficking and membrane dynamics",
+      "manuscript_numeric": null,
+      "kind": "other"
+     },
+     {
+      "id": "D4.3-011",
+      "section": "Discussion 4.3",
+      "line": 72,
+      "quote": "The observation of ploidy-dependent methylation in energy-sensing genes, such as Adenylate kinase 9 (AK9)",
+      "item": "Adenylate kinase 9 (LOC105318231) holds interaction-DML, that is loci in both the ploidy DML list and the heat DML list; the text reads them as methylation after heat that depends on ploidy (issue I-02)",
+      "manuscript_value": "ploidy-dependent methylation",
+      "manuscript_numeric": null,
+      "kind": "other"
+     },
+     {
+      "id": "D4.3-012",
+      "section": "Discussion 4.3",
+      "line": 72,
+      "quote": "In this study, the contrasting methylation patterns of AK9 following heat exposure may contribute to the differential metabolic responses",
+      "item": "The shared loci in adenylate kinase 9 (LOC105318231) belong to the class that the draft calls contrasting: the ploidy difference and the heat difference have opposite signs",
+      "manuscript_value": "contrasting methylation patterns of AK9",
+      "manuscript_numeric": null,
+      "kind": "other"
+     },
+     {
+      "id": "D4.3-013",
+      "section": "Discussion 4.3",
+      "line": 72,
+      "quote": "Our data suggest that differential methylation of AK9 may alter the threshold for detecting energetic limitations",
+      "item": "Adenylate kinase 9 (LOC105318231) holds DML: the statement holds if the gene holds at least one ploidy DML or heat DML",
+      "manuscript_value": "differential methylation of AK9",
+      "manuscript_numeric": null,
+      "kind": "other"
+     },
+     {
+      "id": "D4.3-014",
+      "section": "Discussion 4.3",
+      "line": 73,
+      "quote": "our findings highlight distinct epigenetic regulation of cell fate decisions through the CAD (caspase-activated DNase) locus",
+      "item": "Identity of the gene that the draft calls CAD: by this sentence caspase-activated DNase. The gene with the DML is LOC105319299, product CAD protein, the enzyme of pyrimidine synthesis (issue I-24). The statement holds if that gene is the caspase-activated DNase, which in this genome is LOC105341521 (DNA fragmentation factor subunit beta), or carries a GO term of apoptosis",
+      "manuscript_value": "CAD (caspase-activated DNase)",
+      "manuscript_numeric": null,
+      "kind": "identifier"
+     },
+     {
+      "id": "D4.3-015",
+      "section": "Discussion 4.3",
+      "line": 73,
+      "quote": "The identification of ploidy-specific methylation at this locus following heat stress suggests that diploids and triploids may possess different physiological thresholds for initiating apoptosis",
+      "item": "The CAD protein gene (LOC105319299) holds an interaction-DML (NC_047564.1:8,425,110), a locus in both the ploidy DML list and the heat DML list",
+      "manuscript_value": "ploidy-specific methylation at this locus following heat stress",
+      "manuscript_numeric": null,
+      "kind": "other"
+     },
+     {
+      "id": "D4.3-016",
+      "section": "Discussion 4.3",
+      "line": 73,
+      "quote": "The identification of ploidy-specific methylation at this locus following heat stress suggests that diploids and triploids may possess different physiological thresholds for initiating apoptosis",
+      "item": "Meaning given to the CAD locus (NC_047564.1:8,425,110): a methylation difference between the ploidies that is present after heat. It holds if triploid minus diploid exceeds 20 percentage points among the heat libraries and not among the control libraries (threshold set here, the 20 points of the DML rule; group values of 06_diagnostics/table1_group_means.csv; descriptive, no test; issue I-02)",
+      "manuscript_value": "ploidy-specific methylation at this locus following heat stress",
+      "manuscript_numeric": null,
+      "kind": "inequality"
+     },
+     {
+      "id": "D4.3-017",
+      "section": "Discussion 4.3",
+      "line": 74,
+      "quote": "Beyond metabolic and apoptotic pathways, ploidy-specific methylation was evident in genes maintaining cellular and nuclear architecture",
+      "item": "Interaction-DML lie in the two genes that the paragraph names for nuclear and cellular architecture, nesprin-1 (LOC105329309) and the LAP gene (LOC105326303): the statement holds if each of the two holds a shared locus (issues I-02, I-45)",
+      "manuscript_value": "ploidy-specific methylation was evident in genes maintaining cellular and nuclear architecture",
+      "manuscript_numeric": null,
+      "kind": "other"
+     },
+     {
+      "id": "D4.3-018",
+      "section": "Discussion 4.3",
+      "line": 74,
+      "quote": "Differential methylation at this locus may reflect ploidy-specific strategies for coordinating DNA repair with nuclear mechanical integrity",
+      "item": "Nesprin-1 (LOC105329309) holds DML: the statement holds if the gene holds at least one ploidy DML, heat DML or shared locus",
+      "manuscript_value": "Differential methylation at this locus",
+      "manuscript_numeric": null,
+      "kind": "other"
+     },
+     {
+      "id": "D4.3-019",
+      "section": "Discussion 4.3",
+      "line": 74,
+      "quote": "the LAP gene (Phosphatidylinositol-binding clathrin assembly protein), which showed stress-accentuated ploidy differences",
+      "item": "The LAP gene (LOC105326303) holds interaction-DML of the classes with the same sign in both contrasts, which the draft describes as ploidy differences that heat accentuates. The statement holds if the gene holds a shared locus of such a class; a ploidy DML in the gene is the least it requires (issue I-45)",
+      "manuscript_value": "stress-accentuated ploidy differences",
+      "manuscript_numeric": null,
+      "kind": "other"
+     },
+     {
+      "id": "D4.3-020",
+      "section": "Discussion 4.3",
+      "line": 74,
+      "quote": "The amplification of methylation differences at the LAP locus following heat exposure suggests that diploids and triploids differ in their capacity for vesicle-mediated adaptation",
+      "item": "Meaning given to the LAP locus: the methylation difference between the ploidies is larger after heat. It holds if, at each of the four DML in the LAP gene (heat DML; rows 12 to 15 of 06_diagnostics/table1_group_means.csv), the absolute difference triploid minus diploid is larger among the heat libraries than among the control libraries (descriptive, no test; issue I-45)",
+      "manuscript_value": "amplification of methylation differences at the LAP locus following heat exposure",
+      "manuscript_numeric": null,
+      "kind": "inequality"
+     },
+     {
+      "id": "D4.3-021",
+      "section": "Discussion 4.3",
+      "line": 75,
+      "quote": "Finally, differences in nucleotide catabolism, specifically through Dihydropyrimidinase, suggest distinct strategies for resource recycling",
+      "item": "Dihydropyrimidinase (LOC105340590) holds an interaction-DML (NW_022994979.1:42,498), a locus in both the ploidy DML list and the heat DML list",
+      "manuscript_value": "differences in nucleotide catabolism, specifically through Dihydropyrimidinase",
+      "manuscript_numeric": null,
+      "kind": "other"
+     },
+     {
+      "id": "D4.3-022",
+      "section": "Discussion 4.3",
+      "line": 75,
+      "quote": "The contrasting methylation patterns at this locus suggest that ploidy influences how oysters leverage nucleotide breakdown",
+      "item": "The shared locus in dihydropyrimidinase (LOC105340590) belongs to the class that the draft calls contrasting: the ploidy difference and the heat difference have opposite signs (issue I-45)",
+      "manuscript_value": "contrasting methylation patterns at this locus",
+      "manuscript_numeric": null,
+      "kind": "other"
+     },
+     {
+      "id": "D4.5-001",
+      "section": "Discussion 4.5",
+      "line": 77,
+      "quote": "First, the lack of change in global 5-mC DNA methylation in triploids following stress exposure",
+      "item": "ELISA percent 5-mC, Tukey HSD on the four ploidy by treatment groups (arcsine square root scale, 8 animals per group): triploid heat does not differ from triploid control, adjusted p of 0.05 or more (Results 3.1, repeated)",
+      "manuscript_value": "lack of change",
+      "manuscript_numeric": null,
+      "kind": "inequality"
+     },
+     {
+      "id": "D4.5-002",
+      "section": "Discussion 4.5",
+      "line": 77,
+      "quote": "In contrast, diploids exhibited an increase in global 5-mC DNA methylation following stress exposure",
+      "item": "ELISA percent 5-mC, Tukey HSD on the four ploidy by treatment groups (arcsine square root scale, 8 animals per group): diploid heat is higher than diploid control, adjusted p below 0.05 (Results 3.1, repeated)",
+      "manuscript_value": "an increase",
+      "manuscript_numeric": null,
+      "kind": "inequality"
+     },
+     {
+      "id": "D4.5-003",
+      "section": "Discussion 4.5",
+      "line": 78,
+      "quote": "Second, our physiological measurements indicate that diploids induce a mitochondrial biogenesis response (increased relative mitochondrial abundance) following stress exposure",
+      "item": "qPCR statement Q03: relative mitochondrial abundance is higher in heat than in control diploids (COX1, raw Cq, 8 animals per group, no nuclear reference on the same template). The statement holds if the verdict of step 12 for Q03 starts with supported",
+      "manuscript_value": "increased relative mitochondrial abundance",
+      "manuscript_numeric": null,
+      "kind": "inequality"
+     },
+     {
+      "id": "D4.5-004",
+      "section": "Discussion 4.5",
+      "line": 78,
+      "quote": "Conversely, triploids showed decreased relative mitochondrial abundance following stress exposure",
+      "item": "qPCR statement Q04: relative mitochondrial abundance is lower in heat than in control triploids (COX1, raw Cq, 8 animals per group, no nuclear reference). The statement holds if the verdict of step 12 for Q04 starts with supported",
+      "manuscript_value": "decreased relative mitochondrial abundance",
+      "manuscript_numeric": null,
+      "kind": "inequality"
+     },
+     {
+      "id": "D4.5-005",
+      "section": "Discussion 4.5",
+      "line": 78,
+      "quote": "This finding is consistent with prior transcriptomic and metabolic evidence that triploids experience metabolic depression following heatwave exposure",
+      "item": "qPCR statement Q05: the finding referred to is the statement before it (Q04), lower relative mitochondrial abundance in heat than in control triploids; the sentence reports no result of its own. The statement holds if the verdict of step 12 for Q05 starts with supported",
+      "manuscript_value": "This finding",
+      "manuscript_numeric": null,
+      "kind": "inequality"
+     },
+     {
+      "id": "D4.5-006",
+      "section": "Discussion 4.5",
+      "line": 79,
+      "quote": "Third, qPCR results from companion experiments indicated that triploids expressed HSP90 at high levels even in control conditions",
+      "item": "qPCR statement Q06: HSP90 expression relative to actin is higher in triploid than in diploid control animals. The statement holds if the verdict of step 12 for Q06 starts with supported",
+      "manuscript_value": "at high levels even in control conditions",
+      "manuscript_numeric": null,
+      "kind": "inequality"
+     },
+     {
+      "id": "D4.5-007",
+      "section": "Discussion 4.5",
+      "line": 79,
+      "quote": "While upregulation of HSP90 in both diploids and triploids following heat exposure indicates a functional heat shock response in both ploidy types",
+      "item": "qPCR statement Q07: heat raises HSP90 expression relative to actin in diploids and in triploids. The statement holds if the verdict of step 12 for Q07 starts with supported",
+      "manuscript_value": "upregulation of HSP90 in both diploids and triploids",
+      "manuscript_numeric": null,
+      "kind": "inequality"
+     },
+     {
+      "id": "D4.5-008",
+      "section": "Discussion 4.5",
+      "line": 79,
+      "quote": "the constitutively elevated HSP90 in triploids may represent an energetic cost that limits their capacity to mount additional stress responses",
+      "item": "qPCR statement Q08: HSP90 expression relative to actin is higher in triploid than in diploid control animals (second claim of the sentence of Q07). The statement holds if the verdict of step 12 for Q08 starts with supported",
+      "manuscript_value": "constitutively elevated HSP90 in triploids",
+      "manuscript_numeric": null,
+      "kind": "inequality"
+     },
+     {
+      "id": "D4.5-009",
+      "section": "Discussion 4.5",
+      "line": 80,
+      "quote": "diploids are able to launch a quicker and potentially more effective stress response (i.e., 5-mC DNA methylation changes, increased mitochondrial abundance) than triploids",
+      "item": "Speed of the response to heat, diploids against triploids: the sentence says that the diploid response is the quicker one. A statement about speed needs measurements at two or more times after the start of the heat treatment; the data hold a single sampling time",
+      "manuscript_value": "quicker",
+      "manuscript_numeric": null,
+      "kind": "other"
+     },
+     {
+      "id": "D4.5-010",
+      "section": "Discussion 4.5",
+      "line": 80,
+      "quote": "diploids are able to launch a quicker and potentially more effective stress response (i.e., 5-mC DNA methylation changes, increased mitochondrial abundance) than triploids",
+      "item": "Global 5-mC changes after heat in diploids and not in triploids. ELISA percent 5-mC, Tukey HSD on the four ploidy by treatment groups (arcsine square root scale, 8 animals per group): adjusted p below 0.05 for diploid heat against diploid control, and 0.05 or more for triploid heat against triploid control. The comparison between the ploidies that the sentence draws is the ploidy by treatment term of the two-way ANOVA",
+      "manuscript_value": "5-mC DNA methylation changes",
+      "manuscript_numeric": null,
+      "kind": "inequality"
+     },
+     {
+      "id": "D4.5-011",
+      "section": "Discussion 4.5",
+      "line": 80,
+      "quote": "diploids are able to launch a quicker and potentially more effective stress response (i.e., 5-mC DNA methylation changes, increased mitochondrial abundance) than triploids",
+      "item": "qPCR statement Q09: relative mitochondrial abundance is higher in heat than in control diploids (COX1, raw Cq, no nuclear reference). The statement holds if the verdict of step 12 for Q09 starts with supported",
+      "manuscript_value": "increased mitochondrial abundance",
+      "manuscript_numeric": null,
+      "kind": "inequality"
+     },
+     {
+      "id": "D4.5-012",
+      "section": "Discussion 4.5",
+      "line": 80,
+      "quote": "This ploidy difference in epigenetic responsiveness may contribute to the elevated mortality consistently observed in triploid oysters",
+      "item": "The response of DNA methylation to heat differs between the ploidies, stated as a fact: a difference between the two responses is the ploidy by treatment term. For global 5-mC (ELISA, two-way ANOVA, arcsine square root scale, 32 animals) the statement holds if the p-value of that term is below 0.05; for the WGBS loci no such term was tested (issue I-02)",
+      "manuscript_value": "This ploidy difference in epigenetic responsiveness",
+      "manuscript_numeric": null,
+      "kind": "inequality"
+     },
+     {
+      "id": "D4.6-001",
+      "section": "Discussion 4.6",
+      "line": 82,
+      "quote": "Our findings contribute to this framework by demonstrating that thermal stress induces methylation changes at stress-responsive loci in Pacific oysters, and that these changes differ between ploidy types",
+      "item": "Heat changes methylation at loci: the statement holds if heat DML exist (CpGs with q below 0.01 and a difference above 20 percentage points between heat and control libraries). The heat and the control libraries are two cohorts that were sequenced separately, so the contrast cannot attribute the differences to heat (issue I-01)",
+      "manuscript_value": "thermal stress induces methylation changes at stress-responsive loci",
+      "manuscript_numeric": null,
+      "kind": "other"
+     },
+     {
+      "id": "D4.6-002",
+      "section": "Discussion 4.6",
+      "line": 82,
+      "quote": "Our findings contribute to this framework by demonstrating that thermal stress induces methylation changes at stress-responsive loci in Pacific oysters, and that these changes differ between ploidy types",
+      "item": "The methylation differences between heat and control libraries differ between diploids and triploids. The statement holds if a ploidy by heat term, or the heat difference within each ploidy, was tested and shows it; the draft's basis is the overlap of the ploidy DML list and the heat DML list (issue I-02)",
+      "manuscript_value": "these changes differ between ploidy types",
+      "manuscript_numeric": null,
+      "kind": "other"
+     },
+     {
+      "id": "D4.6-003",
+      "section": "Discussion 4.6",
+      "line": 84,
+      "quote": "The stress-induced methylation changes we identified at genes involved in energy metabolism (AK9), apoptosis (CAD), DNA damage response (Nesprin-1), and heat shock response pathways",
+      "item": "Adenylate kinase 9 (LOC105318231) holds heat DML (loci that differ between heat and control libraries)",
+      "manuscript_value": "energy metabolism (AK9)",
+      "manuscript_numeric": null,
+      "kind": "other"
+     },
+     {
+      "id": "D4.6-004",
+      "section": "Discussion 4.6",
+      "line": 84,
+      "quote": "The stress-induced methylation changes we identified at genes involved in energy metabolism (AK9), apoptosis (CAD), DNA damage response (Nesprin-1), and heat shock response pathways",
+      "item": "The CAD protein gene (LOC105319299) holds a heat DML; the text files the gene under apoptosis (issue I-24)",
+      "manuscript_value": "apoptosis (CAD)",
+      "manuscript_numeric": null,
+      "kind": "other"
+     },
+     {
+      "id": "D4.6-005",
+      "section": "Discussion 4.6",
+      "line": 84,
+      "quote": "The stress-induced methylation changes we identified at genes involved in energy metabolism (AK9), apoptosis (CAD), DNA damage response (Nesprin-1), and heat shock response pathways",
+      "item": "Nesprin-1 (LOC105329309) holds heat DML",
+      "manuscript_value": "DNA damage response (Nesprin-1)",
+      "manuscript_numeric": null,
+      "kind": "other"
+     },
+     {
+      "id": "D4.6-006",
+      "section": "Discussion 4.6",
+      "line": 84,
+      "quote": "The stress-induced methylation changes we identified at genes involved in energy metabolism (AK9), apoptosis (CAD), DNA damage response (Nesprin-1), and heat shock response pathways",
+      "item": "Heat DML lie in genes of the heat shock response: genes that hold a heat DML and carry the GO term response to heat (GO:0009408), or whose product is a heat shock protein. The statement holds if at least one such gene exists",
+      "manuscript_value": "heat shock response pathways",
+      "manuscript_numeric": null,
+      "kind": "other"
+     },
+     {
+      "id": "D4.6-007",
+      "section": "Discussion 4.6",
+      "line": 87,
+      "quote": "If stress-induced methylation changes at loci like AK9, CAD, and Nesprin-1 persist following recovery from the initial stress event",
+      "item": "Adenylate kinase 9 (LOC105318231) holds heat DML (second mention in section 4.6)",
+      "manuscript_value": "AK9",
+      "manuscript_numeric": null,
+      "kind": "other"
+     },
+     {
+      "id": "D4.6-008",
+      "section": "Discussion 4.6",
+      "line": 87,
+      "quote": "If stress-induced methylation changes at loci like AK9, CAD, and Nesprin-1 persist following recovery from the initial stress event",
+      "item": "The CAD protein gene (LOC105319299) holds a heat DML (second mention in section 4.6)",
+      "manuscript_value": "CAD",
+      "manuscript_numeric": null,
+      "kind": "other"
+     },
+     {
+      "id": "D4.6-009",
+      "section": "Discussion 4.6",
+      "line": 87,
+      "quote": "If stress-induced methylation changes at loci like AK9, CAD, and Nesprin-1 persist following recovery from the initial stress event",
+      "item": "Nesprin-1 (LOC105329309) holds heat DML (second mention in section 4.6)",
+      "manuscript_value": "Nesprin-1",
+      "manuscript_numeric": null,
+      "kind": "other"
+     },
+     {
+      "id": "D4.7-001",
+      "section": "Discussion 4.7",
+      "line": 96,
+      "quote": "The specific loci identified as differentially methylated between stress-resilient diploids and stress-susceptible triploids (e.g., AK9, CAD, Nesprin-1) represent candidate epigenetic markers for selection",
+      "item": "Adenylate kinase 9 (LOC105318231) holds ploidy DML (loci that differ between triploid and diploid libraries)",
+      "manuscript_value": "AK9",
+      "manuscript_numeric": null,
+      "kind": "other"
+     },
+     {
+      "id": "D4.7-002",
+      "section": "Discussion 4.7",
+      "line": 96,
+      "quote": "The specific loci identified as differentially methylated between stress-resilient diploids and stress-susceptible triploids (e.g., AK9, CAD, Nesprin-1) represent candidate epigenetic markers for selection",
+      "item": "The CAD protein gene (LOC105319299) holds a ploidy DML",
+      "manuscript_value": "CAD",
+      "manuscript_numeric": null,
+      "kind": "other"
+     },
+     {
+      "id": "D4.7-003",
+      "section": "Discussion 4.7",
+      "line": 96,
+      "quote": "The specific loci identified as differentially methylated between stress-resilient diploids and stress-susceptible triploids (e.g., AK9, CAD, Nesprin-1) represent candidate epigenetic markers for selection",
+      "item": "Nesprin-1 (LOC105329309) holds ploidy DML",
+      "manuscript_value": "Nesprin-1",
+      "manuscript_numeric": null,
+      "kind": "other"
+     },
+     {
+      "id": "D4.7-004",
+      "section": "Discussion 4.7",
+      "line": 97,
+      "quote": "The identification of stress-responsive methylation changes at genes involved in energy metabolism, apoptosis, and heat shock response",
+      "item": "Heat DML lie in a gene of energy metabolism. The gene that section 4.6 names for it is adenylate kinase 9 (LOC105318231): the statement holds if that gene holds a heat DML",
+      "manuscript_value": "energy metabolism",
+      "manuscript_numeric": null,
+      "kind": "other"
+     },
+     {
+      "id": "D4.7-005",
+      "section": "Discussion 4.7",
+      "line": 97,
+      "quote": "The identification of stress-responsive methylation changes at genes involved in energy metabolism, apoptosis, and heat shock response",
+      "item": "Heat DML lie in a gene of apoptosis. The gene that section 4.6 names for it is the CAD protein gene (LOC105319299): the statement holds if that gene holds a heat DML and carries a GO term of apoptosis (apoptotic process, GO:0006915, or a child term; issue I-24)",
+      "manuscript_value": "apoptosis",
+      "manuscript_numeric": null,
+      "kind": "other"
+     },
+     {
+      "id": "D4.7-006",
+      "section": "Discussion 4.7",
+      "line": 97,
+      "quote": "The identification of stress-responsive methylation changes at genes involved in energy metabolism, apoptosis, and heat shock response",
+      "item": "Heat DML lie in genes of the heat shock response: genes that hold a heat DML and carry the GO term response to heat (GO:0009408), or whose product is a heat shock protein. The statement holds if at least one such gene exists",
+      "manuscript_value": "heat shock response",
+      "manuscript_numeric": null,
+      "kind": "other"
+     },
+     {
+      "id": "D4.7-007",
+      "section": "Discussion 4.7",
+      "line": 99,
+      "quote": "Our finding that triploids exhibit reduced epigenetic responsiveness to stress compared to diploids suggests that triploid and diploid stocks may require different management approaches",
+      "item": "The response of DNA methylation to heat is smaller in triploids than in diploids, stated as a finding. A difference between the two responses is the ploidy by treatment term: for global 5-mC (ELISA, two-way ANOVA, arcsine square root scale, 32 animals) the statement holds if the p-value of that term is below 0.05 and the difference heat minus control is the smaller one in triploids; for the WGBS loci no such term was tested (issue I-02)",
+      "manuscript_value": "reduced epigenetic responsiveness to stress compared to diploids",
+      "manuscript_numeric": null,
+      "kind": "inequality"
+     },
+     {
+      "id": "D4.7-008",
+      "section": "Discussion 4.7",
+      "line": 102,
+      "quote": "The methylation differences we identified between diploids and triploids at genes involved in apoptosis (CAD), energy sensing (AK9), and stress response",
+      "item": "The CAD protein gene (LOC105319299) holds a ploidy DML; the text files the gene under apoptosis (issue I-24)",
+      "manuscript_value": "apoptosis (CAD)",
+      "manuscript_numeric": null,
+      "kind": "other"
+     },
+     {
+      "id": "D4.7-009",
+      "section": "Discussion 4.7",
+      "line": 102,
+      "quote": "The methylation differences we identified between diploids and triploids at genes involved in apoptosis (CAD), energy sensing (AK9), and stress response",
+      "item": "Adenylate kinase 9 (LOC105318231) holds ploidy DML",
+      "manuscript_value": "energy sensing (AK9)",
+      "manuscript_numeric": null,
+      "kind": "other"
+     },
+     {
+      "id": "D4.7-010",
+      "section": "Discussion 4.7",
+      "line": 102,
+      "quote": "The methylation differences we identified between diploids and triploids at genes involved in apoptosis (CAD), energy sensing (AK9), and stress response",
+      "item": "Ploidy DML lie in genes of the response to stress: genes that hold a ploidy DML and carry the GO term response to stress (GO:0006950). The statement holds if at least one such gene exists. The list item that the draft gives for this category (line 105) is about HSP90 expression measured by qPCR, not about methylation",
+      "manuscript_value": "stress response",
+      "manuscript_numeric": null,
+      "kind": "other"
+     },
+     {
+      "id": "D4.7-011",
+      "section": "Discussion 4.7",
+      "line": 103,
+      "quote": "The contrasting methylation at the CAD locus suggests that triploids may have altered apoptosis thresholds under stress",
+      "item": "The shared locus in the CAD protein gene (LOC105319299) belongs to the class that the draft calls contrasting: the ploidy difference and the heat difference have opposite signs",
+      "manuscript_value": "contrasting methylation at the CAD locus",
+      "manuscript_numeric": null,
+      "kind": "other"
+     },
+     {
+      "id": "D4.7-012",
+      "section": "Discussion 4.7",
+      "line": 104,
+      "quote": "The differential methylation at AK9 between ploidy types indicates different energy-sensing capacity",
+      "item": "Adenylate kinase 9 (LOC105318231) holds ploidy DML (loci that differ between triploid and diploid libraries)",
+      "manuscript_value": "differential methylation at AK9 between ploidy types",
+      "manuscript_numeric": null,
+      "kind": "other"
+     },
+     {
+      "id": "D4.7-013",
+      "section": "Discussion 4.7",
+      "line": 105,
+      "quote": "The constitutively elevated HSP90 expression in triploids suggests potential for pre-emptive stress response pathway activation",
+      "item": "qPCR statement Q10: HSP90 expression relative to actin is higher in triploid than in diploid control animals. The statement holds if the verdict of step 12 for Q10 starts with supported",
+      "manuscript_value": "constitutively elevated HSP90 expression in triploids",
+      "manuscript_numeric": null,
+      "kind": "inequality"
+     },
+     {
+      "id": "D4.8-001",
+      "section": "Discussion 4.8",
+      "line": 109,
+      "quote": "First, our experimental design examined a single acute heat exposure",
+      "item": "Number of heat exposures given to each heat-treated animal: one. The statement holds if no heat library comes from an animal that had a second exposure (issue I-04: 1 h at 45 C after the 24 h at 27 C)",
+      "manuscript_value": "a single acute heat exposure",
+      "manuscript_numeric": 1,
+      "kind": "design"
+     },
+     {
+      "id": "D4.8-002",
+      "section": "Discussion 4.8",
+      "line": 109,
+      "quote": "Second, ctenidium (gill) tissue was analyzed",
+      "item": "Tissue from which the DNA of every WGBS library and ELISA sample came: ctenidium (gill)",
+      "manuscript_value": "ctenidium (gill) tissue",
+      "manuscript_numeric": null,
+      "kind": "design"
+     },
+     {
+      "id": "D4.8-003",
+      "section": "Discussion 4.8",
+      "line": 109,
+      "quote": "Third, while we identified associations between methylation and functional categories through gene ontology enrichment",
+      "item": "The GO enrichment found functional categories associated with the DML: the statement holds if at least one GO term is enriched for a DML set (legacy: Fisher p below 0.01; gene level: q below the FDR, eligible universe)",
+      "manuscript_value": "identified associations between methylation and functional categories",
+      "manuscript_numeric": null,
+      "kind": "inequality"
+     },
+     {
+      "id": "D4.9-001",
+      "section": "Conclusions 4.9",
+      "line": 111,
+      "quote": "This study demonstrates that ploidy status in Pacific oysters is associated with distinct baseline and stress-induced DNA methylation patterns",
+      "item": "Ploidy is associated with methylation differences at baseline, that is among animals not exposed to heat. The statement holds if the ploidy DML come from the 12 control libraries alone (issue I-07)",
+      "manuscript_value": "baseline",
+      "manuscript_numeric": null,
+      "kind": "design"
+     },
+     {
+      "id": "D4.9-002",
+      "section": "Conclusions 4.9",
+      "line": 111,
+      "quote": "This study demonstrates that ploidy status in Pacific oysters is associated with distinct baseline and stress-induced DNA methylation patterns",
+      "item": "Ploidy is associated with different methylation patterns after heat: the differences between heat and control libraries depend on ploidy. The statement holds if a ploidy by heat term, or a ploidy contrast among the heat libraries, was tested and shows it; the draft's basis is the overlap of the ploidy DML list and the heat DML list (issue I-02)",
+      "manuscript_value": "stress-induced",
+      "manuscript_numeric": null,
+      "kind": "other"
+     },
+     {
+      "id": "D4.9-003",
+      "section": "Conclusions 4.9",
+      "line": 111,
+      "quote": "Triploid oysters exhibit methylation differences in cell cycle, homeostatic, and metabolic pathways relative to diploids under control conditions",
+      "item": "Whether the GO term cell cycle (GO:0007049) is enriched among genes with ploidy DML (legacy: Fisher p below 0.01 or among the ten top-ranked terms; gene level: q below the FDR). The sentence says that triploids differ from diploids in the methylation of this group of pathways",
+      "manuscript_value": "cell cycle",
+      "manuscript_numeric": null,
+      "kind": "inequality"
+     },
+     {
+      "id": "D4.9-004",
+      "section": "Conclusions 4.9",
+      "line": 111,
+      "quote": "Triploid oysters exhibit methylation differences in cell cycle, homeostatic, and metabolic pathways relative to diploids under control conditions",
+      "item": "Whether the GO term homeostatic process (GO:0042592) is enriched among genes with ploidy DML (legacy: Fisher p below 0.01 or among the ten top-ranked terms; gene level: q below the FDR). The sentence says that triploids differ from diploids in the methylation of this group of pathways",
+      "manuscript_value": "homeostatic",
+      "manuscript_numeric": null,
+      "kind": "inequality"
+     },
+     {
+      "id": "D4.9-005",
+      "section": "Conclusions 4.9",
+      "line": 111,
+      "quote": "Triploid oysters exhibit methylation differences in cell cycle, homeostatic, and metabolic pathways relative to diploids under control conditions",
+      "item": "Whether the GO term metabolic process (GO:0008152) is enriched among genes with ploidy DML (legacy: Fisher p below 0.01 or among the ten top-ranked terms; gene level: q below the FDR). The sentence says that triploids differ from diploids in the methylation of this group of pathways",
+      "manuscript_value": "metabolic",
+      "manuscript_numeric": null,
+      "kind": "inequality"
+     },
+     {
+      "id": "D4.9-006",
+      "section": "Conclusions 4.9",
+      "line": 111,
+      "quote": "Triploid oysters exhibit methylation differences in cell cycle, homeostatic, and metabolic pathways relative to diploids under control conditions",
+      "item": "Libraries behind the ploidy differences: by this sentence triploids against diploids under control conditions, that is the 12 control libraries alone. The statement holds if the ploidy contrast used no heat library (issue I-07)",
+      "manuscript_value": "under control conditions",
+      "manuscript_numeric": null,
+      "kind": "design"
+     },
+     {
+      "id": "D4.9-007",
+      "section": "Conclusions 4.9",
+      "line": 111,
+      "quote": "display ploidy-specific epigenetic responses to thermal stress at loci involved in apoptosis (CAD protein), DNA damage response (Nesprin-1), stress response metabolism (dihydropyrimidinase), and energy homeostasis (adenylate kinase 9)",
+      "item": "The CAD protein gene (LOC105319299) holds an interaction-DML (a locus in both DML lists), which the text reads as a response to heat that differs between the ploidies (issue I-02); the text files the gene under apoptosis (issue I-24)",
+      "manuscript_value": "apoptosis (CAD protein)",
+      "manuscript_numeric": null,
+      "kind": "other"
+     },
+     {
+      "id": "D4.9-008",
+      "section": "Conclusions 4.9",
+      "line": 111,
+      "quote": "display ploidy-specific epigenetic responses to thermal stress at loci involved in apoptosis (CAD protein), DNA damage response (Nesprin-1), stress response metabolism (dihydropyrimidinase), and energy homeostasis (adenylate kinase 9)",
+      "item": "Meaning given to the CAD protein locus (NC_047564.1:8,425,110): the response to heat differs between the ploidies. It holds if heat minus control among the diploid libraries and heat minus control among the triploid libraries differ by more than 20 percentage points (threshold set here, the draft states none; group values of 06_diagnostics/table1_group_means.csv; descriptive, no test; issue I-02)",
+      "manuscript_value": "apoptosis (CAD protein)",
+      "manuscript_numeric": null,
+      "kind": "inequality"
+     },
+     {
+      "id": "D4.9-009",
+      "section": "Conclusions 4.9",
+      "line": 111,
+      "quote": "display ploidy-specific epigenetic responses to thermal stress at loci involved in apoptosis (CAD protein), DNA damage response (Nesprin-1), stress response metabolism (dihydropyrimidinase), and energy homeostasis (adenylate kinase 9)",
+      "item": "Nesprin-1 (LOC105329309) holds an interaction-DML (a locus in both DML lists), which the text reads as a response to heat that differs between the ploidies (issue I-02)",
+      "manuscript_value": "DNA damage response (Nesprin-1)",
+      "manuscript_numeric": null,
+      "kind": "other"
+     },
+     {
+      "id": "D4.9-010",
+      "section": "Conclusions 4.9",
+      "line": 111,
+      "quote": "display ploidy-specific epigenetic responses to thermal stress at loci involved in apoptosis (CAD protein), DNA damage response (Nesprin-1), stress response metabolism (dihydropyrimidinase), and energy homeostasis (adenylate kinase 9)",
+      "item": "Meaning given to the nesprin-1 locus (NC_047561.1:28,607,016): the response to heat differs between the ploidies. It holds if heat minus control among the diploid libraries and heat minus control among the triploid libraries differ by more than 20 percentage points (threshold set here, the draft states none; group values of 06_diagnostics/table1_group_means.csv; descriptive, no test; issue I-02)",
+      "manuscript_value": "DNA damage response (Nesprin-1)",
+      "manuscript_numeric": null,
+      "kind": "inequality"
+     },
+     {
+      "id": "D4.9-011",
+      "section": "Conclusions 4.9",
+      "line": 111,
+      "quote": "display ploidy-specific epigenetic responses to thermal stress at loci involved in apoptosis (CAD protein), DNA damage response (Nesprin-1), stress response metabolism (dihydropyrimidinase), and energy homeostasis (adenylate kinase 9)",
+      "item": "Dihydropyrimidinase (LOC105340590) holds an interaction-DML (a locus in both DML lists), which the text reads as a response to heat that differs between the ploidies (issue I-02)",
+      "manuscript_value": "stress response metabolism (dihydropyrimidinase)",
+      "manuscript_numeric": null,
+      "kind": "other"
+     },
+     {
+      "id": "D4.9-012",
+      "section": "Conclusions 4.9",
+      "line": 111,
+      "quote": "display ploidy-specific epigenetic responses to thermal stress at loci involved in apoptosis (CAD protein), DNA damage response (Nesprin-1), stress response metabolism (dihydropyrimidinase), and energy homeostasis (adenylate kinase 9)",
+      "item": "Meaning given to the dihydropyrimidinase locus (NW_022994979.1:42,498): the response to heat differs between the ploidies. It holds if heat minus control among the diploid libraries and heat minus control among the triploid libraries differ by more than 20 percentage points (threshold set here, the draft states none; group values of 06_diagnostics/table1_group_means.csv; descriptive, no test; issue I-02)",
+      "manuscript_value": "stress response metabolism (dihydropyrimidinase)",
+      "manuscript_numeric": null,
+      "kind": "inequality"
+     },
+     {
+      "id": "D4.9-013",
+      "section": "Conclusions 4.9",
+      "line": 111,
+      "quote": "display ploidy-specific epigenetic responses to thermal stress at loci involved in apoptosis (CAD protein), DNA damage response (Nesprin-1), stress response metabolism (dihydropyrimidinase), and energy homeostasis (adenylate kinase 9)",
+      "item": "Adenylate kinase 9 (LOC105318231) holds interaction-DML (loci in both DML lists), which the text reads as a response to heat that differs between the ploidies (issue I-02)",
+      "manuscript_value": "energy homeostasis (adenylate kinase 9)",
+      "manuscript_numeric": null,
+      "kind": "other"
+     },
+     {
+      "id": "D4.9-014",
+      "section": "Conclusions 4.9",
+      "line": 111,
+      "quote": "display ploidy-specific epigenetic responses to thermal stress at loci involved in apoptosis (CAD protein), DNA damage response (Nesprin-1), stress response metabolism (dihydropyrimidinase), and energy homeostasis (adenylate kinase 9)",
+      "item": "Meaning given to the adenylate kinase 9 loci (NC_047563.1:5,569,229 and NC_047563.1:5,569,232): the response to heat differs between the ploidies. It holds if heat minus control among the diploid libraries and heat minus control among the triploid libraries differ by more than 20 percentage points (threshold set here, the draft states none; the two loci are not in 06_diagnostics/table1_group_means.csv, so the group values come from the read counts of step 05; descriptive, no test; issue I-02)",
+      "manuscript_value": "energy homeostasis (adenylate kinase 9)",
+      "manuscript_numeric": null,
+      "kind": "inequality"
+     },
+     {
+      "id": "D4.9-015",
+      "section": "Conclusions 4.9",
+      "line": 112,
+      "quote": "The lack of global 5-mC methylation change in triploids following stress exposure, combined with their decreased mitochondrial abundance",
+      "item": "ELISA percent 5-mC, Tukey HSD on the four ploidy by treatment groups (arcsine square root scale, 8 animals per group): triploid heat does not differ from triploid control, adjusted p of 0.05 or more (Results 3.1, repeated)",
+      "manuscript_value": "lack of global 5-mC methylation change in triploids",
+      "manuscript_numeric": null,
+      "kind": "inequality"
+     },
+     {
+      "id": "D4.9-016",
+      "section": "Conclusions 4.9",
+      "line": 112,
+      "quote": "The lack of global 5-mC methylation change in triploids following stress exposure, combined with their decreased mitochondrial abundance",
+      "item": "qPCR statement Q11: relative mitochondrial abundance is lower in heat than in control triploids (COX1, raw Cq, 8 animals per group, no nuclear reference). The statement holds if the verdict of step 12 for Q11 starts with supported",
+      "manuscript_value": "decreased mitochondrial abundance",
+      "manuscript_numeric": null,
+      "kind": "inequality"
+     },
+     {
+      "id": "D4.9-017",
+      "section": "Conclusions 4.9",
+      "line": 112,
+      "quote": "This ploidy difference in epigenetic responsiveness provides molecular evidence supporting the hypothesis",
+      "item": "The response of DNA methylation to heat differs between the ploidies, stated as a fact: a difference between the two responses is the ploidy by treatment term. For global 5-mC (ELISA, two-way ANOVA, arcsine square root scale, 32 animals) the statement holds if the p-value of that term is below 0.05; for the WGBS loci no such term was tested (issue I-02)",
+      "manuscript_value": "This ploidy difference in epigenetic responsiveness",
+      "manuscript_numeric": null,
+      "kind": "inequality"
+     },
+     {
+      "id": "D3.5x-001",
+      "section": "Section 3.5 after the Conclusions",
+      "line": 115,
+      "quote": "Comparisons between diploids and triploids following heat exposure revealed 200 interaction-DML",
+      "item": "How the 200 loci were found: by this sentence a comparison of diploids with triploids after heat. The statement holds if the set comes from a ploidy contrast among the heat libraries, or from a ploidy by heat term, and not from the overlap of the ploidy DML list and the heat DML list (issue I-02)",
+      "manuscript_value": "Comparisons between diploids and triploids following heat exposure",
+      "manuscript_numeric": null,
+      "kind": "design"
+     },
+     {
+      "id": "D3.5x-002",
+      "section": "Section 3.5 after the Conclusions",
+      "line": 115,
+      "quote": "Comparisons between diploids and triploids following heat exposure revealed 200 interaction-DML",
+      "item": "Number of interaction-DML: loci present in both the ploidy DML list and the heat DML list (the shared set; third mention after Results 3.2 and Discussion 4.3)",
+      "manuscript_value": "200",
+      "manuscript_numeric": 200,
+      "kind": "count"
+     },
+     {
+      "id": "D3.5x-003",
+      "section": "Section 3.5 after the Conclusions",
+      "line": 115,
+      "quote": "Loci exhibiting stress-accentuated ploidy differences included the phosphatidylinositol-binding clathrin assembly protein (LAP) gene",
+      "item": "The LAP gene (LOC105326303) holds interaction-DML of the classes with the same sign in both contrasts, which this section sets against the contrasting class. The statement holds if the gene holds a shared locus of such a class (issue I-45)",
+      "manuscript_value": "stress-accentuated ploidy differences",
+      "manuscript_numeric": null,
+      "kind": "other"
+     },
+     {
+      "id": "D3.5x-004",
+      "section": "Section 3.5 after the Conclusions",
+      "line": 115,
+      "quote": "In contrast, 61.5% of interaction-DML (123 loci) exhibited contrasting methylation patterns",
+      "item": "Shared loci whose ploidy difference and heat difference have opposite signs, as a percent of all shared loci (third mention after Results 3.2 and Discussion 4.3)",
+      "manuscript_value": "61.5%",
+      "manuscript_numeric": 61.5,
+      "kind": "percent"
+     },
+     {
+      "id": "D3.5x-005",
+      "section": "Section 3.5 after the Conclusions",
+      "line": 115,
+      "quote": "In contrast, 61.5% of interaction-DML (123 loci) exhibited contrasting methylation patterns",
+      "item": "Shared loci (interaction-DML) whose ploidy difference and heat difference have opposite signs (the count of Results 3.2, repeated)",
+      "manuscript_value": "123",
+      "manuscript_numeric": 123,
+      "kind": "count"
+     },
+     {
+      "id": "D3.5x-006",
+      "section": "Section 3.5 after the Conclusions",
+      "line": 115,
+      "quote": "where stress exposure reversed the relative methylation state within triploids when compared with diploids",
+      "item": "Meaning given to the 123 opposite-sign loci: heat reversed the methylation state of triploids relative to diploids. At a locus this is so if triploid minus diploid has one sign among the control libraries and the other sign among the heat libraries; the statement holds if the loci of the class show it. The class is defined by the signs of two pooled contrasts, ploidy and heat, which is not this comparison (issue I-02)",
+      "manuscript_value": "reversed the relative methylation state within triploids when compared with diploids",
+      "manuscript_numeric": null,
+      "kind": "inequality"
+     },
+     {
+      "id": "D3.5x-007",
+      "section": "Section 3.5 after the Conclusions",
+      "line": 115,
+      "quote": "Notable examples included significant methylation differences within genes associated with apoptosis (CAD protein), DNA damage response (Nesprin-1), stress response metabolism (dihydropyrimidinase), and ATP-to-AMP homeostasis (adenylate kinase 9)",
+      "item": "The CAD protein gene (LOC105319299) holds a shared locus of the opposite-sign class, the class of which this sentence gives examples; the sentence calls the difference significant, which for a shared locus means q below 0.01 in both contrasts. The text files the gene under apoptosis (issue I-24)",
+      "manuscript_value": "apoptosis (CAD protein)",
+      "manuscript_numeric": null,
+      "kind": "other"
+     },
+     {
+      "id": "D3.5x-008",
+      "section": "Section 3.5 after the Conclusions",
+      "line": 115,
+      "quote": "Notable examples included significant methylation differences within genes associated with apoptosis (CAD protein), DNA damage response (Nesprin-1), stress response metabolism (dihydropyrimidinase), and ATP-to-AMP homeostasis (adenylate kinase 9)",
+      "item": "Nesprin-1 (LOC105329309) holds a shared locus of the opposite-sign class, the class of which this sentence gives examples; the sentence calls the difference significant, which for a shared locus means q below 0.01 in both contrasts (issue I-45)",
+      "manuscript_value": "DNA damage response (Nesprin-1)",
+      "manuscript_numeric": null,
+      "kind": "other"
+     },
+     {
+      "id": "D3.5x-009",
+      "section": "Section 3.5 after the Conclusions",
+      "line": 115,
+      "quote": "Notable examples included significant methylation differences within genes associated with apoptosis (CAD protein), DNA damage response (Nesprin-1), stress response metabolism (dihydropyrimidinase), and ATP-to-AMP homeostasis (adenylate kinase 9)",
+      "item": "Dihydropyrimidinase (LOC105340590) holds a shared locus of the opposite-sign class, the class of which this sentence gives examples; the sentence calls the difference significant, which for a shared locus means q below 0.01 in both contrasts (issue I-45)",
+      "manuscript_value": "stress response metabolism (dihydropyrimidinase)",
+      "manuscript_numeric": null,
+      "kind": "other"
+     },
+     {
+      "id": "D3.5x-010",
+      "section": "Section 3.5 after the Conclusions",
+      "line": 115,
+      "quote": "Notable examples included significant methylation differences within genes associated with apoptosis (CAD protein), DNA damage response (Nesprin-1), stress response metabolism (dihydropyrimidinase), and ATP-to-AMP homeostasis (adenylate kinase 9)",
+      "item": "Adenylate kinase 9 (LOC105318231) holds a shared locus of the opposite-sign class, the class of which this sentence gives examples; the sentence calls the difference significant, which for a shared locus means q below 0.01 in both contrasts",
+      "manuscript_value": "ATP-to-AMP homeostasis (adenylate kinase 9)",
+      "manuscript_numeric": null,
+      "kind": "other"
+     }
+    ],
+    "notes": "114 rows from lines 62 to 115 of the manuscript text: D4.1 16 rows (lines 62 to 64), D4.2 12 (66 to 69), D4.3 22 (71 to 75), D4.5 12 (77 to 80; the draft has no section 4.4), D4.6 9 (82 to 87), D4.7 13 (96 to 105), D4.8 3 (109), D4.9 17 (111 and 112), D3.5x 10 (115). Every quote passed an exact string test against its line, and every manuscript_value is a substring of its quote.\n\nIDS. The orphan section has IDs D3.5x-001 to D3.5x-010, as point 6 of the update for this run asks. The ID rule printed in the task text (D-orphan-001) predates that update; the two map number for number. There is no D4.0 row: of the five sentences of the opening paragraph (line 60), four report earlier studies and the fifth states the aim of the study and a claim to be the first of its kind, which no output can test.\n\nNUMBERS. Nine printed numbers describe this study: 1,038 (line 62); 27, 24 and 2,351 (line 66); 200 and 61.5 (line 71); 200, 61.5 and 123 (line 115). The word single on line 109 is entered as 1. Every other row states a direction, a presence, a class or a design, has manuscript_numeric null, and needs an expression that returns TRUE or FALSE.\n\nRULES APPLIED.\n(1) One row per claim per sentence. A claim made again in a later sentence has its own row (the same genes on lines 84, 87, 96 and 102).\n(2) Functional categories. Where a sentence presents a GO category as a result (lines 62, 63, 66, 67, 68, 69 and 111) the row is of kind inequality and asks whether the term is enriched. Reason: the literal reading (at least one gene with a DML carries the term) is true of every term named and separates nothing, and these sentences draw on Figures 6 and 7, whose legends call their terms significantly enriched (issue I-48). If the mapper prefers the literal reading, the expression is genes_significant > 0 on the same table and each of these rows returns TRUE. D4.3-006 and D4.8-003 ask whether any term at all is enriched. Where a sentence lists loci at which differences were found (D4.6-006, D4.7-006, D4.7-010) the row is of kind other and tests presence. The GO IDs in the items are my reading of the draft's phrases. The labels of Figures 6 and 7 are those of the archived images 08_archive/figures/revigo_figure/PLOIDY-BP.png and HEAT-BP.png, which I read: 27 and 29 labels, the same as in rows F6-002 and F7-002.\n(3) Named genes. Membership of a DML list is a row of kind other, tested by gene: adenylate kinase 9 is gene_id 105318231, CAD protein 105319299, nesprin-1 105329309, LAP 105326303, dihydropyrimidinase 105340590; the caspase-activated DNase of this genome is 105341521 (issue I-24).\n(4) Meaning rows. The mapper returns one row per statement, so the second rows that point 4 of the update asks for are already in the inventory, with kind inequality: D4.3-016 (CAD), D4.3-020 (LAP), D4.9-008, D4.9-010, D4.9-012 and D4.9-014 (the four loci of the Conclusions), and D4.3-005 and D3.5x-006 for the opposite-sign class as a whole. D4.2-004 is a row of the same sort for the heat DML. The 20-point thresholds in these rows are set here; the draft states none.\n(5) qPCR. One row for each of the 11 statements of qpcr_manuscript_statements.csv: Q01 is D4.2-008, Q02 D4.2-009, Q03 D4.5-003, Q04 D4.5-004, Q05 D4.5-005, Q06 D4.5-006, Q07 D4.5-007, Q08 D4.5-008, Q09 D4.5-011, Q10 D4.7-013, Q11 D4.9-016.\n(6) Design. Rows of kind design test what a sentence says about the animals or the contrast behind a result: control animals only (D4.1-002, D4.1-016, D4.9-001, D4.9-006), a comparison of the ploidies after heat (D4.3-002, D3.5x-001), one heat exposure (D4.8-001), the tissue (D4.8-002), and the heat conditions (D4.2-001, D4.2-002).\n\nNOT GIVEN ROWS. Section headings (those on lines 61, 70, 76 and 114 repeat claims that have rows). Interpretation with no claim of its own about the data: the last sentences of lines 73 and 75, the first sentence of line 77, the words potentially more effective on line 80, the capacity clause of line 112. General references to the results: the first sentences of lines 87, 91 and 93. The labels resilient and susceptible that line 96 gives to the two ploidies, which come from other studies. General facts: three chromosome sets (line 62), 1.5 billion dollars (line 93), 60 to 100% losses (line 101). Citation years, list numbers, figure numbers, and the digits in AK9, Nesprin-1, HSP90 and 5-mC.\n\nWHERE THE VALUES LIVE. 251 expressions, keyed by row ID, with what each returned, are in /tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/mv-extract-discussion/pointer_results.tsv (columns id, slot, result, expression; slot is legacy, corrected, meaning or fact). Eight more that use the read counts of united_cpg_legacy.csv.gz are in /tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/mv-extract-discussion/expr_discussion_4.txt, with their results in /tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/mv-extract-discussion/expr_discussion_4.out. They are needed for D4.2-004, D4.3-005, D4.9-014 and D3.5x-006, because the diagnostic holds only the loci of Table 1 (06_diagnostics/table1_group_means.R could also write the two adenylate kinase 9 loci and the cohort-wise counts for the shared loci). All ran with eval_expressions.R without error; the script has to be started from the repository root. Rows without a pointer: D4.2-001 and D4.2-002 (no output holds the heat conditions; see rows M2.0-010 and M2.0-011), D4.5-009 (nothing in the data concerns speed), D4.8-002 (03_input_files/metadata/wgbs_libraries.csv has tissue ctenidia for all 22 libraries, but tab() cannot reach it; bismark_by_library.csv could carry the column).\n\nWHAT THE POINTERS RETURN.\nCounts: dml_counts_by_mode.csv gives 1038, 2351, 200, 123 and 61.5% in legacy mode, and 952, 2273, 159, 83 and 52.2% in corrected mode; the opposite-sign class is the largest and above half in both modes.\nDesign: the control-only test of row R3.2-017 returns FALSE (12 control and 10 heat libraries). The shared list is the overlap of the two DML lists in both modes, and no table holds a ploidy contrast among the heat libraries or a ploidy by heat term. Four of the 10 heat libraries have acute_heat_shock yes in bismark_by_library.csv.\nGO terms: none of the 18 distinct GO terms named in rows D4.1-003 to D4.1-014, D4.2-003, D4.2-006, D4.2-010 to D4.2-012 and D4.9-003 to D4.9-005 is in the p < 0.01 list or among the ten top-ranked terms of its set, and none has q below the FDR at gene level in corrected mode. Legacy p-values run from 0.041 (DNA ligation involved in DNA repair, heat set, one gene) and 0.086 (ATP metabolic process) to 1; transcript and gene counts are in the fact slots. GO:0006975 is not in the step 10 tables. ER overload response is carried by 2 eligible genes, so it is not tested there; one gene with a ploidy DML carries it (D4.1-015 FALSE). No heat term named for mitochondria passes (217 terms over the three ontologies, smallest p 0.0115), and none named for oxidative stress (40 BP terms, smallest p 0.12). Thirteen heat BP terms with stress in the name have p below 0.01, each resting on 1 to 7 genes; four of them concern stress fibers or stress granules, and the term response to stress itself has p = 1 (D4.2-003). The legacy tables hold 451 terms with p < 0.01 for the shared loci and 2,118 over all sets, so D4.3-006 and D4.8-003 are TRUE for the legacy analysis and FALSE at gene level.\nGenes: gene_table_<mode>.csv.gz, columns n_dml_ploidy, n_dml_heat, n_dml_shared: adenylate kinase 9 2, 2, 2; CAD protein 1, 1, 1; nesprin-1 4, 2, 1; dihydropyrimidinase 1, 1, 1; LAP 0, 4, 0 (0, 3, 0 in corrected mode). Classes in dml_gene_overlap_shared_<mode>.csv: opposite for the two loci of adenylate kinase 9 and for CAD; both_hyper for nesprin-1 and dihydropyrimidinase, so D4.3-022, D3.5x-008 and D3.5x-009 return FALSE. LAP has no shared locus and no ploidy DML, so D4.3-010, D4.3-017, D4.3-019 and D3.5x-003 return FALSE. The CAD protein gene carries no GO term of apoptosis in gene_go_map.csv.gz (it carries GO:0006207, pyrimidine synthesis), so D4.3-008, D4.3-014 and D4.7-005 return FALSE; seven other genes with a shared locus carry apoptotic process (7 of 600 eligible genes, q = 1). Heat DML lie in three heat shock protein genes.\nGroup values, read-pooled and without a test (06_diagnostics/table1_group_means.csv, rows 18 to 20 and 12 to 15): CAD, triploid minus diploid is -0.4 among control and +45.7 among heat libraries, and heat minus control is -54.5 in diploids and -8.4 in triploids; nesprin-1, heat minus control -0.8 and +40.2; dihydropyrimidinase +24.1 and +35.0. So D4.3-016, D4.9-008 and D4.9-010 return TRUE and D4.9-012 FALSE. At the four LAP loci the ploidy difference is larger among heat libraries (D4.3-020 TRUE) and exceeds 20 points at two of them, with opposite signs. From the read counts: adenylate kinase 9, heat minus control -51.0 and -44.9 in diploids against -1.4 and -3.4 in triploids (D4.9-014 TRUE). Of the 123 opposite-sign loci, 30 have a ploidy difference above 20 points among the control libraries and 111 among the heat libraries; the sign differs between the cohorts at 18, none of which exceeds 20 points among the control libraries (D4.3-005 and D3.5x-006 FALSE). Of the 2,351 heat DML, heat minus control has the same sign in both ploidies at 2,211 and exceeds 20 points in both at 711. Of the 1,038 ploidy DML, the ploidy difference exceeds 20 points at 335 among the control libraries alone and at 880 among the heat libraries alone. The remark of I-02 on the few libraries behind the CAD and nesprin-1 patterns applies to every TRUE in this paragraph.\nELISA: tukey_by_scale.csv, scale arcsine: adjusted p = 0.0021 for diploid heat against control and 0.61 for triploids (D4.5-001, D4.5-002, D4.5-010 and D4.9-015 TRUE). The ploidy by treatment term of anova_by_scale.csv has p = 0.058 (0.036 on the raw scale, 0.11 on the log scale; issue I-10), so D4.5-012, D4.7-007 and D4.9-017 return FALSE.\nqPCR: no verdict starts with supported. Q01 to Q05, Q09 and Q11 are not supported; Q06, Q07, Q08 and Q10 are partly supported.\n\nISSUES BY GROUP. Ploidy as baseline: I-07. Heat as cause: I-01, I-04. Interaction set: I-02, I-09. Named loci: I-45, I-24, I-08. GO categories: I-48, I-41, I-03, I-21, I-39, I-40, I-43. qPCR: I-29, I-46, I-47. ELISA: I-10, I-12. Tissue and control animals: I-36. Corrected mode: I-05.\n\nFILES. The inventory as JSON is /tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/mv-extract-discussion/rows.json; build_rows.py and build_pointers.py in the same directory produce it and the pointer files."
+   }
+  }
+ ]
 }

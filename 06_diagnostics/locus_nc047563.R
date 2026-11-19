@@ -9,8 +9,9 @@
 #             a. the block of excess coverage around the region: where it begins
 #                and ends, how many CpG sites and tested CpGs it holds, and the
 #                coverage of the sequence on either side;
-#             b. which libraries carry the excess, and how they are spread over
-#                ploidy and cohort (Fisher exact tests);
+#             b. which libraries carry the excess, how they are spread over
+#                ploidy and cohort (Fisher exact tests), and whether the size of
+#                the excess differs by ploidy or cohort (Wilcoxon rank-sum tests);
 #             c. how many CpGs of the region still differ by more than
 #                config$dml_difference points when one library at a time is left
 #                out of the read-pooled group means;
@@ -84,6 +85,8 @@
 #           - Cohort and heat treatment are the same split of the libraries
 #             (issue I-01). With 22 libraries the Fisher tests can detect only a
 #             strong association; a large p-value does not show independence.
+#             The size of the excess is therefore compared between groups as
+#             well, as a continuous quantity.
 #           - Part f counts every 30-mer of the block on both strands of every
 #             sequence of the reference. For the 30-mers with exactly two copies
 #             it reports the places that hold the second copies, and whether any
@@ -339,6 +342,8 @@ fact(sec, "block_over_flanks_with_excess", a_to_b(block_over_flanks[carries_exce
            "lowest and highest among the libraries with the excess."))
 fact(sec, "block_over_flanks_without_excess", a_to_b(block_over_flanks[!carries_excess], 2),
      "Same; lowest and highest among the libraries without the excess.")
+fact(sec, "libraries_with_more_coverage_in_block_than_in_flanks", x_of_y(sum(block_over_flanks > 1), n_lib),
+     "Libraries whose median coverage of the CpG sites of the block is above their median coverage of the CpG sites of both flanks.")
 
 sec <- "b. libraries that carry the excess"
 fisher_p <- function(in_group) fisher.test(table(factor(in_group, c(FALSE, TRUE)), factor(carries_excess, c(FALSE, TRUE))))$p.value
@@ -375,6 +380,26 @@ fact(sec, "fisher_p_excess_by_ploidy", p_value(fisher_p(is_triploid)),
      paste("Fisher exact test, two-sided, of carrying the excess against ploidy;", n_lib, "libraries."))
 fact(sec, "fisher_p_excess_by_cohort", p_value(fisher_p(is_heat)),
      paste("Fisher exact test, two-sided, of carrying the excess against cohort;", n_lib, "libraries."))
+# The size of the excess as a continuous quantity, by ploidy and by cohort. Two
+# measures; the second does not depend on the library median.
+size_of_excess <- list(
+  region_relative_coverage = list(value = region_median / library_median,
+                                  text = "median coverage of the tested CpGs of the DML region over the library median"),
+  block_over_flanks = list(value = block_over_flanks,
+                           text = "median coverage of the CpG sites of the block over the median coverage of the CpG sites of both flanks"))
+two_groups <- list(ploidy = list(in_second = is_triploid, names = c("diploid", "triploid")),
+                   cohort = list(in_second = is_heat, names = c("control", "heat")))
+for (measure in names(size_of_excess)) for (grouping in names(two_groups)) {
+  x <- size_of_excess[[measure]]$value; grp <- two_groups[[grouping]]
+  tied <- anyDuplicated(x) > 0                                   # the exact test needs untied values
+  fact(sec, paste0(measure, "_median_", grp$names[1]), decimal(median(x[!grp$in_second]), 2),
+       paste0("Median among ", grp$names[1], " libraries of the ", size_of_excess[[measure]]$text, "."))
+  fact(sec, paste0(measure, "_median_", grp$names[2]), decimal(median(x[grp$in_second]), 2), paste0("Same among ", grp$names[2], " libraries."))
+  fact(sec, paste0(measure, "_wilcoxon_p_by_", grouping),
+       p_value(wilcox.test(x[!grp$in_second], x[grp$in_second], exact = !tied, correct = TRUE)$p.value),
+       paste0("Wilcoxon rank-sum test, two-sided, ", if (tied) "by the normal approximation with continuity correction because values are tied" else "exact",
+              ", of that quantity between ", grp$names[1], " and ", grp$names[2], " libraries."))
+}
 
 # ---- 5. (c) Leave one library out ------------------------------------------------------------
 # Read-pooled difference, group 1 minus group 0, at each tested CpG of the DML
@@ -450,7 +475,8 @@ fact(sec, "most_influential_library_pct_of_ploidy_normalized_reads", decimal(sha
 if (anyDuplicated(region_pct_meth)) stop("Two libraries have the same percent methylation; the exact Wilcoxon test needs untied values.")
 sec <- "d. methylation per library"
 pct_text <- "read-pooled percent methylation of the tested CpGs of the DML region, raw counts, one value per library"
-compare_groups <- function(label, members, in_second, group_names, described) {
+compare_groups <- function(label, members, grouping, described) {
+  in_second <- two_groups[[grouping]]$in_second; group_names <- two_groups[[grouping]]$names
   a <- region_pct_meth[members & !in_second]; b <- region_pct_meth[members & in_second]
   fact(sec, paste0(label, "_group_sizes"), paste(length(a), group_names[1], "and", length(b), group_names[2]),
        paste0("Libraries compared: ", described, "."))
@@ -464,13 +490,11 @@ compare_groups <- function(label, members, in_second, group_names, described) {
   fact(sec, paste0(label, "_wilcoxon_p_normal_approximation"), p_value(wilcox.test(a, b, exact = FALSE, correct = TRUE)$p.value),
        "Same test by the normal approximation with continuity correction.")
 }
-ploidy_names <- c("diploid", "triploid")
-compare_groups("ploidy_all_libraries", every_library, is_triploid, ploidy_names, paste("all", n_lib, "libraries"))
-compare_groups("ploidy_heat_cohort", is_heat, is_triploid, ploidy_names, "heat cohort")
-compare_groups("ploidy_control_cohort", !is_heat, is_triploid, ploidy_names, "control cohort")
-compare_groups("ploidy_without_most_influential_library", seq_len(n_lib) != extreme, is_triploid, ploidy_names,
-               "all libraries but the most influential one of part c")
-compare_groups("cohort_all_libraries", every_library, is_heat, c("control", "heat"), paste("all", n_lib, "libraries"))
+compare_groups("ploidy_all_libraries", every_library, "ploidy", paste("all", n_lib, "libraries"))
+compare_groups("ploidy_heat_cohort", is_heat, "ploidy", "heat cohort")
+compare_groups("ploidy_control_cohort", !is_heat, "ploidy", "control cohort")
+compare_groups("ploidy_without_most_influential_library", seq_len(n_lib) != extreme, "ploidy", "all libraries but the most influential one of part c")
+compare_groups("cohort_all_libraries", every_library, "cohort", paste("all", n_lib, "libraries"))
 fact(sec, "library_with_highest_pct_methylation", lib$library_id[which.max(region_pct_meth)],
      paste0("Library with the highest ", pct_text, "."))
 

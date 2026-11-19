@@ -21,7 +21,7 @@
 #                methylation (Mantel-Haenszel odds ratio).
 #             3. against eligible CpGs in the same methylation bin and the same
 #                decile of within-group standard deviation (SD).
-#             4. against CpGs with a mean of 5% to 95% and of 15% to 85%, to
+#             4. against CpGs with a mean of 5% to 95%, and of 15% to 85%, to
 #                show how much comparison 1 depends on the range.
 #             5. transposable elements only: against eligible CpGs in the top
 #                quartile of mean coverage, and in the lower three quartiles.
@@ -29,31 +29,31 @@
 #             7. comparisons 1 (eligible), 2 and 3 again with an interval from a
 #                bootstrap over 100 kb blocks, because neighbouring CpGs are
 #                not independent observations.
-#             8. ploidy only: the same odds ratio as in 1 (eligible) for CpG
-#                lists made with shuffled ploidy labels. This is the reference
-#                that needs no model: what a list of this kind shows when the
-#                labels carry no ploidy information.
-#           It also writes the median within-group SD of DML and of the other
-#           eligible CpGs, overall and inside each SD decile.
+#             8. ploidy only: the odds ratio of comparison 1 (eligible) for CpG
+#                lists made with shuffled ploidy labels. This reference needs
+#                no model: it is what a list of this kind shows when the labels
+#                carry no information about ploidy.
+#           It also writes the within-group SD of DML and of the other eligible
+#           CpGs (medians, overall and inside each SD decile).
 #
-# Run       Rscript 06_diagnostics/feature_odds_matched.R     (about 6 minutes, under 1 GB)
+# Run       Rscript 06_diagnostics/feature_odds_matched.R     (about 3 minutes; about 1.5 GB of memory)
 #
 # Reads     04_output/05_differential_methylation/tables/united_cpg_<mode>.csv.gz
 #           04_output/05_differential_methylation/tables/dml_{ploidy,heat}_<mode>.csv
 #           04_output/05_differential_methylation/tables/diffmeth_{ploidy,heat}_<mode>.csv.gz
 #           04_output/07_genome_features/tables/feature_association_tests_<mode>.csv
-#           03_input_files/genome_features/ (seven tracks)
+#           03_input_files/genome_features/      seven feature tracks
 #           03_input_files/metadata/wgbs_libraries.csv
 # Writes    06_diagnostics/feature_odds_matched.csv
 #               one row per mode, DML list, track, comparison and kind of interval
 #           06_diagnostics/feature_odds_matched_within_group_sd.csv
 #               within-group SD of DML and of other eligible CpGs, overall and by decile
 #           06_diagnostics/feature_odds_label_permutation.csv
-#               per track: odds ratio of the real list, and its distribution over the
-#               label permutations
+#               per track: the odds ratio of the real list and its distribution over the
+#               label permutations; share of eligible CpGs called inside and outside the track
 #           06_diagnostics/feature_odds_label_permutation_counts.csv
 #               difference rule and q-value rule in the real data; CpGs called per
-#               permutation; share of eligible CpGs called, by mean methylation
+#               permutation; share of eligible CpGs called, by bin of mean methylation
 #
 # Notes     - Convention of step 07, kept throughout: every DML of a list is
 #             compared with the CpGs of the background that are not in that
@@ -72,18 +72,18 @@
 #           - Unstratified odds ratios are the conditional estimates of
 #             fisher.test(), as in step 07; stratified ones are the common odds
 #             ratio of mantelhaen.test() with its interval. Both intervals
-#             treat CpGs as independent. Matching on deciles is coarse: inside
-#             the top SD decile DML still vary more than the other CpGs (see
-#             the SD table), so a small remainder of the unmatched odds ratio
-#             can survive comparison 3.
-#           - Block interval (comparison 7): the tested CpGs are cut into 100 kb
-#             windows per sequence, 2,000 resamples draw as many windows as
-#             there are, with replacement, and the interval runs from the 2.5th
-#             to the 97.5th percentile of the recomputed odds ratio. A bootstrap
-#             is used and not a delete-one-block jackknife, because a jackknife
-#             interval assumes a normal distribution of the log odds ratio, and
-#             that fails where one block holds most of the DML of a track (the
-#             locus of issue I-09 holds 53 of the ploidy DML in lncRNA).
+#             treat CpGs as independent. Deciles are a coarse match; the SD
+#             table shows what difference in SD is left inside each decile, and
+#             n_sd_groups below sets a finer grouping.
+#           - Block interval (comparison 7): the sequences are cut into 100 kb
+#             windows; each of 2,000 resamples draws, with replacement, as many
+#             windows as hold a compared CpG; the interval runs from the 2.5th
+#             to the 97.5th percentile of the odds ratio recomputed on each
+#             resample. A bootstrap is used and not a delete-one-block
+#             jackknife, because a jackknife interval rests on a normal
+#             distribution of the log odds ratio, and that fails where one
+#             window holds most of the DML of a track (in legacy mode 53 of
+#             the 65 ploidy DML in lncRNA lie in the locus of issue I-09).
 #           - Label permutation (comparison 8): the ploidy labels are shuffled
 #             within cohort (5 and 5 in the heat cohort, 6 and 6 in the control
 #             cohort), the read-pooled difference triploid minus diploid is
@@ -91,31 +91,40 @@
 #             (methylKit's meth.diff: pooled methylated reads over pooled reads
 #             of each group), and the CpGs whose absolute difference exceeds
 #             config$dml_difference are called. 1,000 permutations. A second
-#             scheme shuffles within cohort and within acute heat shock (3 and 3
-#             and 2 and 2 in the heat cohort; issue I-04), the grouping the real
-#             labels are balanced over; it is reported beside the first.
+#             scheme, reported beside the first, also keeps the acute heat
+#             shock balanced (3 and 3, and 2 and 2, in the heat cohort; issue
+#             I-04), as the real labels do. With 1,000 permutations a share near
+#             0.13 has a standard error of 0.01.
 #           - THE PERMUTATION APPLIES THE DIFFERENCE RULE ONLY, NOT THE Q-VALUE
-#             RULE. Refitting the logistic regression at every CpG for every
+#             RULE: refitting the logistic regression at every CpG for every
 #             permutation is not feasible here. Evidence that the q-value rule
 #             does not bind in the real data, counted from
 #             diffmeth_<contrast>_<mode>.csv.gz and written to the counts
 #             table: every CpG above the difference threshold for ploidy also
-#             has q below config$dml_qvalue, in both modes (legacy 1,038 of
-#             1,038; the largest q among them is half the cutoff), and the
-#             script stops if that is not so. For heat one CpG of 2,352 fails
-#             the q-value rule in legacy mode and none in corrected mode. What
-#             the q-values would be under shuffled labels is not known, so a
-#             count per permutation is an upper bound on what the full rule
-#             would call.
+#             has q below config$dml_qvalue (1,038 of 1,038 in legacy mode, 952
+#             of 952 in corrected mode; the largest q among them is about half
+#             the cutoff), and the script stops if that is not so. For heat one
+#             CpG of 2,352 fails the q-value rule in legacy mode and none in
+#             corrected mode. What the q-values would be under shuffled labels
+#             is not computed, so a count per permutation is an upper bound on
+#             what the full rule would call.
 #           - For heat no label permutation exists: heat coincides with cohort
-#             (issue I-01), so there is no shuffle of the heat labels that
-#             keeps the cohorts apart. The output says so; nothing is put in
-#             its place.
+#             (issue I-01), so no shuffle of the heat labels keeps the cohorts
+#             apart. The output says so; nothing is put in its place.
+#           - A difference of exactly the threshold is not called. The rule is
+#             evaluated on whole numbers (see difference_above_threshold()), so
+#             that rounding cannot call such a tie.
 #           - A CpG whose per-library percentages span no more than the
 #             threshold cannot be called under any labelling, because a pooled
 #             percentage is a weighted mean of per-library percentages. Such
 #             CpGs are skipped in the permutation loop; the result is the same
 #             as evaluating every tested CpG.
+#           - The counts table also gives the number of CpGs called when the
+#             ploidy labels are exchanged in one cohort only. That labelling is
+#             the ploidy by cohort contrast and is one of the possible
+#             permutations. It calls more than three times as many CpGs as the
+#             real labels, about as many as the largest counts among the
+#             permutations (see also issues I-02 and I-07).
 #           - Random numbers: set.seed(20261119) before the label permutations
 #             (1,000 per scheme, the same labellings for both modes) and
 #             set.seed(20261120) before the block resamples of each mode
