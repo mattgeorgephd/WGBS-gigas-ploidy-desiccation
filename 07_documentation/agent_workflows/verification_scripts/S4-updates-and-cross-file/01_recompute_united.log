@@ -1,0 +1,113 @@
+rows where coverage != numCs + numTs in at least one library: 17175 ; cells: 19811 ; largest absolute difference: 1 
+== (a) mitochondrial CpGs
+tested mitochondrial CpGs: 363 
+ zr3534_1  zr3534_2  zr3534_3  zr3534_4  zr3534_5  zr3534_6  zr3534_7  zr3534_8 
+    0.500     0.350     0.321     0.341     0.416     0.358     0.319     0.333 
+ zr3534_9 zr3534_10  zr3644_1  zr3644_2  zr3644_3  zr3644_4  zr3644_5  zr3644_6 
+    0.310     0.583     2.400     3.208     3.405     2.629     3.241     3.231 
+zr3644_13 zr3644_14 zr3644_15 zr3644_16 zr3644_17 zr3644_18 
+    1.980     2.920     2.366     2.209     3.638     2.579 
+heat libraries: 0.31 to 0.58 ; control libraries: 1.98 to 3.64 ; ratio of means 7.35 ; ratio of medians 8.02
+mean of per-CpG percentages (unweighted), by library:
+ numCs1  numCs2  numCs3  numCs4  numCs5  numCs6  numCs7  numCs8  numCs9 numCs10 
+  0.500   0.336   0.306   0.340   0.426   0.368   0.322   0.327   0.306   0.584 
+numCs11 numCs12 numCs13 numCs14 numCs15 numCs16 numCs17 numCs18 numCs19 numCs20 
+  2.466   3.315   3.399   2.612   3.346   3.314   2.039   2.934   2.391   2.212 
+numCs21 numCs22 
+  3.700   2.699 
+
+== (b) eligible CpGs and contrasts
+eligible (10 <= mean <= 90): 65480  strict: 65480 
+               above_tol above_strict  pos   neg at
+ploidy_all          1038         1038  442   596  0
+cohort              2352         2352 1150  1202  1
+ploidy_heat        13028        13028 1915 11113 20
+ploidy_control      3349         3349 2688   661  8
+interaction        23503        23503 2876 20627  1
+interaction: share negative 0.8776 ; median over eligible -8.91
+pearson d_h vs d_c, all tested -0.3003 ; eligible -0.2138 ; spearman all -0.1012
+above 20 in both cohorts: 969  same sign: 181 
+    control
+heat  -1   1
+  -1  79 702
+  1   86 102
+  expected same-sign share from the margins of these CpGs: 0.298 ; observed 0.187
+
+== (c) the draft's 1,038 against the within-cohort differences (20-point rule only)
+pooled above 20: 1038 ; of these above 20 in heat cohort: 880 ; in control cohort: 335 ; in both: 179 ; in neither: 2 
+  same sign as pooled and above 20: heat 880 ; control 335 
+
+== (d) without the five high libraries
+                  above_tol above_strict  pos   neg at
+ploidy_17              1425         1425  663   762  1
+ploidy_heat_7         10732        10733 4433  6299 31
+ploidy_control_10      3190         3191 1943  1247  6
+interaction_17        15927        15927 5927 10000  6
+interaction without the five: share negative 0.6279 ; median over eligible -2.73
+pearson d_h2 vs d_c2 all -0.0359 ; eligible -0.0295
+above 20 in both cohorts (17 libraries): 923  same sign: 407 
+    control
+heat  -1   1
+  -1 186 319
+  1  197 221
+  margins: heat positive 0.453, control positive 0.585 ; expected same-sign share if signs unrelated 0.492 ; observed 0.441
+  the CpGs above 20 in both (17 libraries) form 803 clusters at 1 kb
+  per cluster: share of clusters with majority same sign 0.446 (n clusters 803)
+
+== (e) cached fits
+heat DML (A0): 2351 ; with corrected p < 0.05: 1928 (82.0%) 
+ploidy DML (A0): 1038 ; with corrected p < 0.05: 782 (75.3%) 
+corrected heat: q < 0.01 at 287 ; mitochondrial among them: 138 ; DML: 16 
+  eligible CpGs: corrected heat p < 0.05 share 0.1101 ; ploidy 0.0574 
+  mitochondrial CpGs with corrected heat q < 0.01: 138 of 363 ; max |diff| among them 5.46 
+  share of eligible CpGs that are mitochondrial: 0 
+corrected ploidy DML rows: NC_047562.1 40685928 NC_047565.1 35030701 
+corrected heat DML: 16 ; in both corrected lists: NC_047565.1 35030701 
+  smallest corrected p, ploidy list: NC_047565.1 35030701 ; heat list: NC_047565.1 35030701 
+NC_047565.1:35030701 library percentages:
+ zr3534_1  zr3534_2  zr3534_3  zr3534_4  zr3534_5  zr3534_6  zr3534_7  zr3534_8 
+     0.00      6.90      0.00      0.00      0.00     62.50     45.83     37.50 
+ zr3534_9 zr3534_10  zr3644_1  zr3644_2  zr3644_3  zr3644_4  zr3644_5  zr3644_6 
+    41.67     35.48      0.00      0.00      0.00      0.00      0.00      0.00 
+zr3644_13 zr3644_14 zr3644_15 zr3644_16 zr3644_17 zr3644_18 
+     0.00      0.00      0.00      0.00      0.00      0.00 
+35030701 : 0 6.9 0 0 0 62.5 45.8 37.5 41.7 35.5 0 0 0 0 0 0 0 0 0 0 0 0 
+35030717 : 0 3.2 0 0 0 80 54.2 42.4 46.4 34.4 0 0 0 0 5.9 0 0 0 0 0 0 0 
+mode legacy : corrected interaction list
+           chr    start       pvalue       qvalue effect_size direction
+1: NC_047559.1 26237308 2.595473e-12 1.072801e-06   -63.61649      hypo
+2: NC_047561.1 19005422 7.144976e-11 1.476636e-05    26.02764     hyper
+   pct_diploid_control pct_diploid_heat pct_triploid_control pct_triploid_heat
+1:           41.441441         70.83333             70.58824          36.36364
+2:            7.352941          0.00000              0.00000          18.67470
+         run_scope
+1: all tested CpGs
+2: all tested CpGs
+           chr    start p_uncorrected  p_corrected equal
+1: NC_047559.1 26237308  2.595473e-12 2.595473e-12  TRUE
+2: NC_047561.1 19005422  7.144976e-11 7.144976e-11  TRUE
+  q < 0.01 without the difference rule (uncorrected): 21701 ; corrected: 4 
+mode corrected : corrected interaction list
+           chr    start       pvalue       qvalue effect_size direction
+1: NC_047559.1 26237308 2.595473e-12 1.006067e-06   -63.61649      hypo
+2: NC_047561.1 19005422 7.144976e-11 1.384781e-05    26.02764     hyper
+   pct_diploid_control pct_diploid_heat pct_triploid_control pct_triploid_heat
+1:           41.441441         70.83333             70.58824          36.36364
+2:            7.352941          0.00000              0.00000          18.67470
+         run_scope
+1: all tested CpGs
+2: all tested CpGs
+           chr    start p_uncorrected  p_corrected equal
+1: NC_047559.1 26237308  2.595473e-12 2.595473e-12  TRUE
+2: NC_047561.1 19005422  7.144976e-11 7.144976e-11  TRUE
+  q < 0.01 without the difference rule (uncorrected): 19475 ; corrected: 4 
+A4 heat-only DML 12405 ; control-only 2768 ; of the 1,038 in heat-only 860 ; in control-only 300 ; in both 139 ; neither 17 
+  control-only DML that are draft DML: 300 of 2768 ; heat-only DML that are draft DML: 860 of 12405 
+  A4 corrected: heat 125 ; control 2 
+A3: ploidy 1202 of which draft DML 591 (56.9% of 1,038) ; heat 3545 of which draft DML 1790 (76.1% of 2,351) 
+  A3 ploidy: same direction among the 591: 591 ; hyper 672 hypo 530 
+done
+
+real	0m8.170s
+user	0m5.614s
+sys	0m1.813s

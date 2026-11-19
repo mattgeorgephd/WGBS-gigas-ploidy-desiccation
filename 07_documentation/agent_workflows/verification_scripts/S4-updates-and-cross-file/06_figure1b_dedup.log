@@ -1,0 +1,4 @@
+pct_mCpG         n = 22 : heat D - T +0.850 ; control D - T -0.651 ; interaction contrast -1.501 ; F(1,18) = 16.16, p = 0.0008 (raw scale) ; F = 16.42, p = 0.0007 (arcsine)
+pct_mCpG         n = 17 : heat D - T +0.252 ; control D - T -0.317 ; interaction contrast -0.569 ; F(1,13) = 6.79, p = 0.0218 (raw scale) ; F = 6.69, p = 0.0226 (arcsine)
+pct_mCpG_predup  n = 22 : heat D - T +0.865 ; control D - T -0.650 ; interaction contrast -1.515 ; F(1,18) = 14.25, p = 0.0014 (raw scale) ; F = 14.43, p = 0.0013 (arcsine)
+pct_mCpG_predup  n = 17 : heat D - T +0.263 ; control D - T -0.278 ; interaction contrast -0.541 ; F(1,13) = 4.77, p = 0.0480 (raw scale) ; F = 4.69, p = 0.0495 (arcsine)

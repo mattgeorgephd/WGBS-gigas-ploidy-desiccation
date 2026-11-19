@@ -1,0 +1,54 @@
+CpGs with a library range above 10 points: 142447 ; above 20: 101727 
+
+== 1. interaction contrast without the five high libraries, against every within-cohort regrouping of the 17
+observed (17 libraries): 15927 CpGs above 20 points, 62.8% negative
+all 4410 regroupings: median 12667.0 ; 5th to 95th 11523 to 15122 ; min 10584 max 17572 ; at or above the observed: 51
+share in the majority direction: observed 0.628 ; regroupings median 0.564 ; 95th 0.637 ; at or above the observed: 395
+by heat-cohort grouping (the 21 rows), number of control regroupings (of 210) with a count at or above the observed:
+ zr3534_1+zr3534_2  zr3534_1+zr3534_6  zr3534_1+zr3534_7  zr3534_1+zr3534_8 
+                51                  0                  0                  0 
+ zr3534_1+zr3534_9 zr3534_1+zr3534_10  zr3534_2+zr3534_6  zr3534_2+zr3534_7 
+                 0                  0                  0                  0 
+ zr3534_2+zr3534_8  zr3534_2+zr3534_9 zr3534_2+zr3534_10  zr3534_6+zr3534_7 
+                 0                  0                  0                  0 
+ zr3534_6+zr3534_8  zr3534_6+zr3534_9 zr3534_6+zr3534_10  zr3534_7+zr3534_8 
+                 0                  0                  0                  0 
+ zr3534_7+zr3534_9 zr3534_7+zr3534_10  zr3534_8+zr3534_9 zr3534_8+zr3534_10 
+                 0                  0                  0                  0 
+zr3534_9+zr3534_10 
+                 0 
+with the heat cohort at its real grouping: control regroupings at or above: 51 of 210 ; median 15618.5 
+with the controls at their real grouping: heat regroupings at or above: 1 of 21 ; median 12339 
+
+== 2. acute heat shock inside the heat cohort
+main contrast (4 with minus 6 without): observed 3994 ; median of the 100 groupings 4120.5 ; at or above: 55
+acute by ploidy contrast ((D with - D without) - (T with - T without)): observed 23568 ; median 21257.5 ; 5th to 95th 18325 to 28007 ; max 29392 ; at or above: 34 of 100
+within the diploids, two against three, CpGs above 20 points by pair set apart:
+D11+D12 D13+D20 D13+D19 D19+D20 D12+D13 D11+D19 D11+D20 D12+D19 D12+D20 D11+D13 
+  22039   19340   18238   16739   14135   14070   13717   11437   11163   10920 
+within the triploids:
+T12+T19 T11+T20 T13+T20 T11+T13 T11+T12 T11+T19 T13+T19 T12+T20 T12+T13 T19+T20 
+   8549    8189    8124    7672    7495    7322    6894    6737    6596    6496 
+diploids, D19+D20 minus D11..D13: above 20: 16739 (10573 positive) ; triploids, T19+T20 minus T11..T13: 6496 (3049 positive)
+heat cohort without the four acute libraries, three against three (20 labellings, 10 distinct):
+D11+D12+D13 T11+T12+T13 D11+T12+T13 D12+D13+T11 D11+T11+T12 D12+D13+T13 
+      13800       13800       12664       12664       10982       10982 
+D11+T11+T13 D12+D13+T12 D11+D13+T11 D12+T12+T13 D11+D12+T12 D13+T11+T13 
+      10796       10796       10297       10297        8703        8703 
+D11+D13+T13 D12+T11+T12 D11+D12+T13 D13+T11+T12 D11+D13+T12 D12+T11+T13 
+       8674        8674        8669        8669        8444        8444 
+D11+D12+T11 D13+T12+T13 
+       8232        8232 
+  observed D11-D13 against T11-T13: 13800 above 20, 10179 with diploids higher
+
+== 3. how much of a pooled list lies above 20 points inside each cohort, real labels against relabelled
+      n in_heat in_ctrl  n_heat  n_ctrl 
+   1038     880     335   13028    3349 
+observed: 84.8% of the pooled list above 20 in the heat cohort, 32.3% in the control cohort
+300 random relabellings within cohort: pooled list median 744 ; share above 20 in the heat cohort: median 0.709 (5th to 95th 0.605 to 0.827) ; in the control cohort: median 0.545 (0.403 to 0.668)
+relabellings with a heat-cohort share at least the observed 0.848: 6 of 300 ; with a control-cohort share at most the observed 0.323: 1
+done
+
+real	0m55.629s
+user	0m43.809s
+sys	0m2.024s

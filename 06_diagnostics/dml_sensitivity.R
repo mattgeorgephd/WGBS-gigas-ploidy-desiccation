@@ -115,7 +115,10 @@
 #             and relaxed methods. Their simulation had three samples per group.
 #             The help page of stats::anova.glm (R 4.3.3) states that the F test
 #             is the most appropriate one when the dispersion is estimated by
-#             moments. Both tests are run here; the authors choose.
+#             moments. Both tests are run here. Under relabelled ploidy labels
+#             the chi-squared form does not hold its level on these libraries
+#             (issues.md, I-06, item 4), and neither form is calibrated where
+#             the dispersion estimate is not above 1 (item 7).
 #           - q-values are SLIM q-values (Wang, Tuominen and Tsai 2011,
 #             Bioinformatics 27:225-231, doi:10.1093/bioinformatics/btq650),
 #             computed within each analysis. SLIM estimates the share of true

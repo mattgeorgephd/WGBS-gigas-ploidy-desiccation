@@ -1,0 +1,72 @@
+mitochondrial CpGs: mean of the ten heat library values 0.383% ; of the twelve control values 2.817% ; ratio 7.35 ; medians 0.346 and 2.774, ratio 8.02
+reads pooled over the libraries of a cohort: heat 0.391% ; control 2.769% ; ratio 7.09
+ratio of the range ends: 6.40 (lower ends) and 6.23 (upper ends)
+      library   pct mean_cov_mito median_cov_all rel_cov
+ 1:  zr3534_1 0.500         152.7             28    5.45
+ 2:  zr3534_2 0.350         136.0             27    5.04
+ 3:  zr3534_3 0.321          92.7             28    3.31
+ 4:  zr3534_4 0.341         162.3             27    6.01
+ 5:  zr3534_5 0.416         125.9             28    4.50
+ 6:  zr3534_6 0.358         166.2             27    6.15
+ 7:  zr3534_7 0.319         188.1             25    7.52
+ 8:  zr3534_8 0.333         168.7             28    6.02
+ 9:  zr3534_9 0.310         184.2             29    6.35
+10: zr3534_10 0.583         225.7             30    7.52
+11:  zr3644_1 2.400         410.4             24   17.10
+12:  zr3644_2 3.208         407.3             24   16.97
+13:  zr3644_3 3.405         402.3             20   20.12
+14:  zr3644_4 2.629         508.4             24   21.19
+15:  zr3644_5 3.241         450.1             22   20.46
+16:  zr3644_6 3.231         379.4             24   15.81
+17: zr3644_13 1.980         647.2             24   26.97
+18: zr3644_14 2.920         329.8             20   16.49
+19: zr3644_15 2.366         699.3             27   25.90
+20: zr3644_16 2.209         584.7             23   25.42
+21: zr3644_17 3.638         701.2             26   26.97
+22: zr3644_18 2.579         727.6             25   29.10
+      library   pct mean_cov_mito median_cov_all rel_cov
+    methylated_reads_per_cpg
+ 1:                     0.76
+ 2:                     0.48
+ 3:                     0.30
+ 4:                     0.55
+ 5:                     0.52
+ 6:                     0.60
+ 7:                     0.60
+ 8:                     0.56
+ 9:                     0.57
+10:                     1.32
+11:                     9.85
+12:                    13.07
+13:                    13.70
+14:                    13.37
+15:                    14.59
+16:                    12.26
+17:                    12.82
+18:                     9.63
+19:                    16.54
+20:                    12.92
+21:                    25.51
+22:                    18.76
+    methylated_reads_per_cpg
+relative coverage of the mitochondrial CpGs (mean coverage over library median): heat 3.3 to 7.5 ; control 15.8 to 29.1
+methylated reads per mitochondrial CpG (normalized counts): heat 0.30 to 1.32 ; control 9.63 to 25.51
+Spearman, across the 22 libraries, of mitochondrial percent methylation with relative mitochondrial coverage: 0.683 ; within heat -0.164 ; within control -0.294 
+per CpG, control minus heat (pooled): quartiles 1.64 2.35 3.14 ; CpGs with control > heat: 363 of 363 ; largest 5.5
+
+== spike-in: a ploidy difference common to both cohorts, added to K eligible CpGs, 17 libraries (five high ones set aside)
+        both         same            r 
+923.00000000 407.00000000  -0.03588135 
+shift +25 points in all triploid libraries at K =  50 CpGs: CpGs above 20 in both 942, same sign 426 (45.2%; without spike 44.1%) ; spiked CpGs above 20 in both with the same sign: 20 of 50 ; Pearson -0.0333
+shift +25 points in all triploid libraries at K = 100 CpGs: CpGs above 20 in both 961, same sign 446 (46.4%; without spike 44.1%) ; spiked CpGs above 20 in both with the same sign: 40 of 100 ; Pearson -0.0305
+shift +25 points in all triploid libraries at K = 200 CpGs: CpGs above 20 in both 1001, same sign 486 (48.5%; without spike 44.1%) ; spiked CpGs above 20 in both with the same sign: 82 of 200 ; Pearson -0.0250
+shift +25 points in all triploid libraries at K = 500 CpGs: CpGs above 20 in both 1117, same sign 603 (53.9%; without spike 44.1%) ; spiked CpGs above 20 in both with the same sign: 202 of 500 ; Pearson -0.0096
+shift +40 points in all triploid libraries at K =  50 CpGs: CpGs above 20 in both 963, same sign 447 (46.4%; without spike 44.1%) ; spiked CpGs above 20 in both with the same sign: 41 of 50 ; Pearson -0.0292
+shift +40 points in all triploid libraries at K = 100 CpGs: CpGs above 20 in both 1000, same sign 486 (48.6%; without spike 44.1%) ; spiked CpGs above 20 in both with the same sign: 80 of 100 ; Pearson -0.0230
+shift +40 points in all triploid libraries at K = 200 CpGs: CpGs above 20 in both 1080, same sign 567 (52.4%; without spike 44.1%) ; spiked CpGs above 20 in both with the same sign: 162 of 200 ; Pearson -0.0102
+shift +40 points in all triploid libraries at K = 500 CpGs: CpGs above 20 in both 1320, same sign 810 (61.3%; without spike 44.1%) ; spiked CpGs above 20 in both with the same sign: 409 of 500 ; Pearson 0.0261
+done
+
+real	0m57.527s
+user	0m45.631s
+sys	0m11.425s

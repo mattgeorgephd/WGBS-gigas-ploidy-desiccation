@@ -1,15 +1,13 @@
 {
  "workflow": "build-diagnostics",
  "run_id": "wf_1f1a6a86-611",
- "agents_finished": 5,
+ "agents_finished": 7,
  "agents_running_or_lost": [
-  "build:check_methylkit_equivalence",
-  "review:feature_odds_matched",
   "review:legacy_reader_mechanism",
   "review:coverage_filter_variants",
   "fix:locus_nc047563",
-  "build:check_methylkit_equivalence",
-  "review:feature_odds_matched"
+  "review:legacy_reader_mechanism",
+  "review:coverage_filter_variants"
  ],
  "results": [
   {
@@ -967,6 +965,276 @@
      "CONFIRMED WITHOUT CHANGE: the block (39,633,065-39,636,662, 3.6 kb, 82 CpG sites, 56 tested, all removed); 13 of 22 libraries at 10.6 to 35.5 times and 9 at 2.0 to 5.9 times, no CpG of the block at the cutoff in the 9; 9.6 to 32.0 and 1.7 to 4.8 over the 82 sites; 4 of 10, 9 of 12, 5 of 11, 8 of 11; Fisher p 0.39 and 0.19; 19.9 against 4.4 with p = 0.009; 5.9 against 12.4 with p = 0.56; zr3534_4 at 34 times, 84% methylated, 39% of the heat group's reads (normalized reads: 39.2%); 34.1% against 3.2% with exact p = 0.005 and 0.010 without zr3534_4; heat cohort 34% to 84% against 0.4% to 19%, p = 0.008; control cohort p = 0.09; each of the 54 CpGs at or above the cutoff in 9 to 13 libraries; 20 of the 54 CpGs with fewer than 12 libraries at the cutoff."
     ],
     "verdict": "The script is sound and can be accepted after small changes. No reported number is wrong and no check is vacuous.\n\n- **Runs:** three runs in the repository and one in a clean copy of HEAD (made with `git archive`) all exit 0 without a warning. They take 88 to 108 seconds on one thread with a peak of 1.53 GB. The four CSV files are byte-identical across all runs and with the committed copies.\n- **Numbers:** every value of the four tables was reproduced with code that shares nothing with the script (mawk on the raw files, base R without data.table or the helpers, hand-written quantile, Fisher and exact Wilcoxon, mawk on the GFF and BED tracks, Python with numpy on the reference).\n- **Checks:** I evaluated the script's own check lines on altered objects. Exchanged library columns, one count off by one, exchanged ploidy labels, another difference threshold and positions shifted by one base each stop the script.\n- **Code rules:** library order, strata, coordinates (0-based starts, BED, GFF, 1-based sequence), data.table scoping, paths and the style rules hold. No random numbers are used.\n\nOne finding is medium. The header and two summary definitions call the leave-one-out counts the largest possible number of DML. That is false for four libraries (zr3534_1, zr3534_5, zr3534_10, zr3644_17), because 1 to 4 further CpGs of the region become testable without them. The result for zr3534_4 is not affected. The four low findings concern how values are written (a padded \"   1\", a p-value whose three digits have already been re-rounded to 0.012 in the handoff, a tie created by rounding in the per-library table, two coordinate conventions in one notation).\n\nFor issues.md, one sentence of I-09 is not what the script gives: block over flanks is 1.3 to 4.8 and 10.8 to 32.0, not 1.3 to 5.3 and 10.8 to 33.9, which come from another definition. \"Mostly single-copy\" should carry the full count (69% of the 30-mers once, 874 twice in three places on other linkage groups). \"1 ploidy DML\" is \"at most 1\" from the script. The soft-masked shares are not computed by any script.\n\n`R.utils`, needed to read the .gz tables, is not in the `load_packages()` call; this is the known pipeline-wide finding and here it would fail only after the 22 coverage files are read.\n\nI changed nothing in the repository. My code and logs are in /tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/review-locus_nc047563/ (mine/recompute_a.R to recompute_g.R, mine/kmers.py, mine/pass.awk, mutation/mutate.R, run1 to run3). The script reviewed is /home/user/WGBS-gigas-ploidy-desiccation/06_diagnostics/locus_nc047563.R (md5 c11e3c99f8dcd8a3a4f45447a324f9b5)."
+   }
+  },
+  {
+   "agent": "build:check_methylkit_equivalence",
+   "phase": "Build",
+   "result": {
+    "script": "/home/user/WGBS-gigas-ploidy-desiccation/06_diagnostics/check_methylkit_equivalence.R",
+    "outputs": [
+     "/home/user/WGBS-gigas-ploidy-desiccation/06_diagnostics/check_methylkit_equivalence.csv",
+     "/home/user/WGBS-gigas-ploidy-desiccation/06_diagnostics/check_methylkit_equivalence_libraries.csv",
+     "/home/user/WGBS-gigas-ploidy-desiccation/06_diagnostics/check_methylkit_equivalence_extract.csv"
+    ],
+    "run_time_minutes": 9,
+    "peak_memory_gb": 1.9,
+    "summary": "The script is finished and every target is met: the helper route of step 05 gives exactly what methylKit's own route gives, in both modes. The final script ran twice (549 s and 553 s, peak 1.90 and 1.91 GB, exit status 0) and the three CSV files are byte-identical between the two runs.\n\nState found on resuming: the earlier build agent had written the script and run it once in its last version before the usage limit. I reran that version after the machine restart (outputs byte-identical to the run before the restart), reviewed it against the task and against the methylKit 1.28.0 source, then made one addition and four header corrections.\n\nWhat the script shows (112 rows; 86 must agree and do, 26 are recorded and not judged):\n- Extract of all 22 libraries (2.006% of the CpGs tested in legacy mode, 1.560% in corrected mode): same rows imported and kept, same cutoffs, medians and scaling factors in every library; identical united tables (9,642 and 9,201 CpGs, every count); identical meth.diff, p-values and q-values for both contrasts; same DML at all ten thresholds.\n- Six whole libraries: methylKit's methRead and filterByCoverage keep the same rows as read_filtered_counts (22.9 and 22.8 million rows, none differs) and reproduce the records of step 05.\n- I-38 and I-05 in methylKit's own objects: the default header loses line 1 and no other row; the misspelled filter arguments are ignored in all 22 libraries.\n- Tables of step 05 inside the regions hold the raw counts scaled by scale_counts_like_methylkit (0 of 636,372 and 0 of 467,874 values differ).\n- Synthetic counts: 0 of 7,200,240 values differ between normalizeCoverage and scale_counts_like_methylkit, with 792,545 values exactly halfway before rounding.\n\nWhat I added: both verifying agents had run methylKit's route with the covariate data frames of the legacy script (character vectors), which is why their target says \"identical meth.diff\" and not \"identical p-values\". The script now also fits methylKit's route with that coding and sets it against the helper route with the coding of step 05: meth.diff identical, DML lists identical, p-values differ by at most 1.9e-8 (relative), q-values by at most 2.2e-12. Header corrections: the memory statement (the peak is in the whole-library part), the explanation of the glm.fit warnings (the earlier one was wrong), a pointer to coverage_filter_variants.R for the CpG sets on the whole files, and the run time.\n\nChecks made outside the script, with awk only: the 22 extract files are byte-identical to an awk extraction of the same regions; an awk recount of the extract gives the same cutoffs, removed and kept rows per library and the same 9,642 and 9,201 united CpGs; the shares 9,642 of 480,579 and 7,089 of 454,555 were recounted from the tables of step 05.\n\nReported, not fixed (01_pipeline/04_cpg_coverage.R, lines 176 to 177): step 04 rounds new_cov * nc / cv where methylKit rounds new_cov * (nc / cv). On the extract this changes 25 of 3,283,412 scaled counts at 1 read (legacy; 23 in corrected mode) and 16 of 424,248 at 10 reads (15 in corrected mode); one percent-methylation value moves by up to 1.56 points; 41 of 231 correlations change at 1 read (at most 1.5e-6) and 126 of 231 at 10 reads (at most 8.3e-6). Fix when step 04 is next touched: call scale_counts_like_methylkit(cv, nc, cv - nc, sc[j]) in percent_methylation().\n\nProposed text, comment at the top of 02_R_functions/methylkit_helpers.R (replaces \"The result was compared ... is still to be written.\"): \"06_diagnostics/check_methylkit_equivalence.R compares the result with methylKit's own methRead, filterByCoverage, normalizeCoverage and unite: on a regional extract of all 22 libraries the two routes keep the same rows in every library and give identical united tables, test results and DML lists in both modes; on six whole libraries they import and keep the same rows.\"\n\nProposed text, issues.md I-05 Verification (replaces the sentence on four real libraries): \"methylKit's own `methRead` and `filterByCoverage`, run on six of the real libraries with the argument spelled correctly, give the pipeline's cutoffs and kept rows (22.8 million rows, none differs); on a regional extract of all 22 libraries methylKit's route and the pipeline's give identical united tables, tests and DML lists in both modes, and the call as the legacy scripts spelled it keeps the rows of a call with no upper filter in all 22 (`06_diagnostics/check_methylkit_equivalence.R`).\"\n\nProposed text, issues.md I-38 Verification (replaces its first sentence): \"Confirmed with methylKit's own `methRead`: on a regional extract of all 22 files the import with `header = FALSE` holds the rows of the default import plus line 1 of the file where that line has at least 2 reads (8 files), and no other row; on six whole files the default import is one row shorter exactly where line 1 has at least 2 reads (`06_diagnostics/check_methylkit_equivalence.R`).\"\n\n06_diagnostics/README.md also needs the entry under \"Still to be written\" removed and a line in the run list. Logs and memory traces of the runs: /tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/continue-check_methylkit_equivalence/ (run4.log, run5.log, run6.log). I ran no git command that changes state; the parent session's snapshot commit 092ba14 already holds the final script, and check_methylkit_equivalence.csv is modified in the working tree.",
+    "targets": [
+     {
+      "quantity": "United table, legacy mode: methylKit's route against the helper route on the extract",
+      "target": "identical; 6,744 CpGs on the verifier's extract, zero count differences",
+      "obtained": "identical: 9,642 CpGs by both routes, same row order, end coordinate, strand, sample names and treatment vector; 0 of 636,372 counts differ, for the ploidy and for the heat treatment vector",
+      "agrees": true,
+      "comment": "My extract is larger by design. An awk recount of the extract files gives 9,642 as well."
+     },
+     {
+      "quantity": "United table, corrected mode: methylKit's route against the helper route on the extract",
+      "target": "identical; 6,419 CpGs on the verifier's extract, zero count differences",
+      "obtained": "identical: 9,201 CpGs by both routes; 0 of 607,266 counts differ, for both treatment vectors",
+      "agrees": true,
+      "comment": "An awk recount with a type 7 quantile gives 9,201 as well."
+     },
+     {
+      "quantity": "Rows kept per library",
+      "target": "same rows kept per library",
+      "obtained": "same in all 22 libraries and both modes on the extract: 1,187,098 (legacy) and 1,184,471 (corrected) kept rows compared row by row (position, coverage, both counts), 0 differ. On six whole libraries: 22,885,370 and 22,830,029 rows, 0 differ",
+      "agrees": true,
+      "comment": "Rows imported and rows with at least 10 reads also agree in every library."
+     },
+     {
+      "quantity": "Per-library upper cutoffs, corrected mode",
+      "target": "same cutoffs (task item d)",
+      "obtained": "22 of 22 identical on the extract (14 whole numbers, 8 not; 39 rows with exactly the cutoff number of reads, removed by both routes; 2,628 rows removed in all). 6 of 6 identical on whole libraries (96, 92, 83, 66.368, 74, 71) and equal to the record of step 05",
+      "agrees": true,
+      "comment": "Against library_filtering_corrected.csv one cutoff differs by 4.3e-14 because the table holds 15 digits; that row is within tolerance. filterByCoverage does not return its cutoff, so the value of methylKit is its source expression applied to its imported rows; the rows it kept are its own."
+     },
+     {
+      "quantity": "Scaling factors and normalized counts",
+      "target": "same scaling factors",
+      "obtained": "22 of 22 identical in both modes (five distinct values, 1 to 1.3077). Normalized coverage, numCs and numTs of every kept row: 0 of 3,561,294 (legacy) and 0 of 3,553,413 (corrected) values differ; 14,719 and 16,807 of them are exactly halfway between two whole numbers before rounding",
+      "agrees": true,
+      "comment": "normalizeCoverage does not return its factors; the normalized counts show they were applied."
+     },
+     {
+      "quantity": "meth.diff of both contrasts",
+      "target": "identical",
+      "obtained": "identical: 0 of 9,642 (legacy) and 0 of 9,201 (corrected) CpGs differ for ploidy and for heat; largest absolute and relative difference 0. Also identical with the covariate coded as in the legacy script",
+      "agrees": true
+     },
+     {
+      "quantity": "p-values and q-values of both contrasts",
+      "target": "not a target of the verifier, whose methylKit route used the covariate data frames of the legacy script; a second agent reported p-values within 1e-9 relative",
+      "obtained": "With the covariates of step 05 in both routes: identical, 0 of 9,642 and 0 of 9,201 differ, p and q. With the legacy coding on methylKit's route: 83% to 87% of p-values are not bit-identical; largest relative difference 6.3e-10 (legacy, ploidy), 6.4e-9 (legacy, heat), 1.9e-8 (corrected, ploidy), 3.9e-9 (corrected, heat); q-values within 2.2e-12",
+      "agrees": true,
+      "comment": "The two numbers answer different questions and both are right. The routes are identical; the coding of the covariate (factor in step 05, character in the legacy script) changes the arithmetic of glm.fit and not the model. On my extract the largest difference is 1.9e-8, above the second agent's 1e-9, which came from another extract; the largest differences sit at p-values near 1."
+     },
+     {
+      "quantity": "DML at thresholds 5, 10 and 20",
+      "target": "same DML at 5, 10 and 20",
+      "obtained": "same sets at all ten thresholds from 5 to 50, both modes, both contrasts. At 5 / 10 / 20: legacy ploidy 285 / 185 / 59, legacy heat 852 / 508 / 75, corrected ploidy 214 / 130 / 16, corrected heat 746 / 450 / 41. Loci in both lists at 20: 41 and 7. The same sets with the legacy coding of the covariate",
+      "agrees": true,
+      "comment": "methylKit's getMethylDiff on its route; the rule as step 05 writes it on the helper route, checked against dml_table()."
+     },
+     {
+      "quantity": "scale_counts_like_methylkit against normalizeCoverage on synthetic counts",
+      "target": "bit-identical over 80 synthetic libraries with 20,129 ties",
+      "obtained": "0 of 7,200,240 values differ over 80 synthetic libraries of 30,001 CpGs; 485,811 coverage values and 306,734 counts are exactly halfway between two whole numbers before rounding. On the same counts the order of operations of step 04 changes 3,459 of 4,800,160 counts",
+      "agrees": true,
+      "comment": "Far more ties than the verifier had, by construction: one library of each set has the factor 1.5, so every odd coverage is a tie. The last number shows the test can detect a different order."
+     },
+     {
+      "quantity": "Order of operations of step 04 against methylKit's, on the extract",
+      "target": "size of the effect to be put on record (issues.md, I-16: 193 of 6.6 million values at 1x on one linkage group)",
+      "obtained": "At 1 read, legacy: 18 numCs and 7 numTs of 1,641,706 each differ (corrected: 17 and 6 of 1,631,234); percent methylation changes in 25 (23) cells, by at most 1.56 points; 41 of 231 correlations change, by at most 1.5e-6. At 10 reads, legacy: 10 and 6 of 212,124 (corrected: 10 and 5 of 202,422); 16 (15) cells, at most 0.68 points; 126 of 231 correlations change, by at most 7.9e-6 (8.3e-6)",
+      "agrees": true,
+      "comment": "Same order of magnitude as the figures in issues.md. Recorded rows; nothing in step 04 was changed."
+     },
+     {
+      "quantity": "I-05 verification: methylKit's methRead and filterByCoverage on real libraries",
+      "target": "pipeline's cutoffs, kept rows and removed positions on four real libraries",
+      "obtained": "six whole libraries (zr3534_1, zr3534_6, zr3644_1, zr3644_4, zr3644_13, zr3644_16), both modes: rows imported, rows kept row by row, cutoffs, rows removed (55,342 in all; 1,334 exactly at a whole-number cutoff) and medians equal those of the helper and the records of step 05",
+      "agrees": true,
+      "comment": "Chosen by rule: first library of each group, every library whose first line has at least 10 reads, every library with a cutoff that is not a whole number. Identical kept rows imply identical removed positions."
+     },
+     {
+      "quantity": "I-05: the misspelled filter arguments are ignored",
+      "target": "no upper filter ran",
+      "obtained": "filterByCoverage called as the legacy scripts called it (high.count, high.perc) keeps the rows of the call with no upper filter in 22 of 22 libraries of the extract",
+      "agrees": true
+     },
+     {
+      "quantity": "I-38 verification: what methRead loses with header = TRUE",
+      "target": "exactly line 1 is lost",
+      "obtained": "Extract, 22 of 22 libraries: the rows returned with header = FALSE and not with the default are the first line and no other (the first line has at least 2 reads in 8 libraries, at least 10 in 1). Six whole files: the default import is one row shorter in the 2 files whose first line has at least 2 reads and equal in the other 4",
+      "agrees": true
+     },
+     {
+      "quantity": "Tables of step 05 against the raw counts",
+      "target": "not in the task; a second agent reported 0 of 31,718,214 and 0 of 30,000,630 values on the whole tables",
+      "obtained": "inside the regions of the extract: 0 of 636,372 (legacy) and 0 of 467,874 (corrected) values differ from the raw lines scaled by scale_counts_like_methylkit. Legacy: the 9,642 CpGs of step 05 inside the regions are the united CpGs of the extract. Corrected: 7,089 CpGs, all among the 9,201 of the extract",
+      "agrees": true,
+      "comment": "Regions only, about 2% of the tables; see left_out."
+     },
+     {
+      "quantity": "Share of the tested CpGs that the extract covers",
+      "target": "to be stated",
+      "obtained": "9,642 of 480,579 (2.006%) in legacy mode; 7,089 of 454,555 (1.560%) in corrected mode. 125,181 to 138,700 lines per library, 2,920,636 lines in all",
+      "agrees": true,
+      "comment": "Recounted with awk from the tables of step 05."
+     },
+     {
+      "quantity": "Two runs of the finished script",
+      "target": "CSV files byte-identical between runs",
+      "obtained": "byte-identical, all three files, script md5 3cdf51d972c33fa7fdd7ffd6b8ae5c89 in both runs (md5 of the CSVs: 87e96847..., 6d9d5c2d..., 676c45f3...)",
+      "agrees": true,
+      "comment": "The earlier version of the script was also byte-identical before and after the machine restart; its rows are unchanged in the final table."
+     },
+     {
+      "quantity": "Machine limits",
+      "target": "under 3 GB, under about 15 minutes, one single-threaded R process",
+      "obtained": "9.0 minutes (549 s and 553 s), peak resident memory 1.90 and 1.91 GB, WGBS_CORES=1",
+      "agrees": true,
+      "comment": "Measured while two R processes of other agents were running."
+     }
+    ],
+    "design_decisions": [
+     "Extract: first 6 Mb of NC_047559.1, 300 kb around NC_047563.1:39,633,323, the mitochondrial sequence, five unplaced scaffolds (one with coverage 6 to 11 times the median, two with many tested CpGs, one on which a file begins, one that 12 libraries lack), and the position of the first line of every file taken from every library. Lines stay in file order and percentages are carried as text, so the files are lines of the originals; written to tempdir() and deleted at the end.",
+     "methylKit's route follows the task: legacy mode leaves methRead at header = TRUE with mincov = config$import_min_coverage and filters with lo.count only; corrected mode passes header = FALSE and hi.perc. It is run twice per mode, once per treatment vector, as the legacy script did; the helper route uses reorganize() as step 05 does.",
+     "The helper route calls read_filtered_counts, key_to_position, scale_counts_like_methylkit, make_methylraw, unite and reorganize in the order of fit_mode() in step 05. Step 05 does not offer that chain as a function, so the chain is repeated, not reimplemented.",
+     "Both routes are tested with the covariates as step 05 passes them, so they differ only in how the counts are built. The legacy coding (character vectors, built from the sample sheet and checked against the vectors typed in the legacy script) is fitted once more on methylKit's route in both modes: legacy mode is then the legacy call end to end, and corrected mode is that call with its two defects fixed.",
+     "Three rules, in a column of the table. identical: counts, positions and sets; any difference fails. tolerance: floating-point values; fails above a relative difference of 1e-12, and n_different still counts values that are not bit-identical. recorded: an expected difference, not judged (step 04's order, p and q under the legacy coding, the corrected CpG set of step 05 against the extract). The script stops at the end if any judged row differs, after writing the tables.",
+     "Under the legacy coding meth.diff and the DML lists are judged and p-values and q-values are recorded. The DML lists of legacy mode must be those of the legacy call, so a difference there should stop the script.",
+     "A whole-library part beyond the task: import and filter of six libraries through methylKit and through the helper, and against the records of step 05. This is the statement of I-05 and of the helper comment, and it covers the real cutoffs (59 to 112 reads), which the extract cannot.",
+     "A part beyond the task that ties the tables step 05 wrote to the raw counts inside the regions, so the equivalence is tied to the files the pipeline uses.",
+     "Synthetic counts: 20 sets of four libraries of 30,001 CpGs after set.seed(20261119), three draws per CpG and two per set; medians chosen so that the factors are 1, 1.5, 1.25 and one arbitrary ratio, which forces exact ties.",
+     "Step 04's order is checked on rows selected by step 04's own rule, at 1 read and at config$min_coverage reads, with the effect on percent methylation and on the correlations; at config$min_coverage the selection must reproduce the united CpGs and factors of the helper route or the script stops.",
+     "Three small CSV files (25 KB, 10 KB, 2 KB); nothing per CpG. The main table carries the methylKit version."
+    ],
+    "left_out": [
+     "methylKit's own route on the 22 whole libraries at once: not run, because it needs about 9 GB against a limit of 3 GB. In its place: both routes on the extract, import and filter on six whole libraries, the counts of step 05 against raw counts, and the synthetic ties.",
+     "Whole-library comparison for the other 16 libraries: left out for run time (about 13 s per library and mode; all 22 in both modes would add about 7 minutes).",
+     "The tie of the tables of step 05 to the raw counts outside the regions of the extract (a second agent's 31.7 and 30.0 million values): not done; only the lines of the regions are kept. It could be added to the extraction pass for about half a minute if wanted.",
+     "Nothing of task items (a) to (e) or of the step 04 check is left out. Legacy mode has no upper cutoff to compare, because no upper filter runs there."
+    ],
+    "caveats": [
+     "On the extract the corrected-mode cutoffs are 182 to 701 reads, against 59 to 112 on the whole files, because the extract is rich in deeply covered sequence. The same rule runs at other values: the upper filter removes 2,628 rows there, and 200 of the 363 mitochondrial CpGs stay in the united table. Cutoffs of the whole files are exercised only in the six whole libraries.",
+     "No first-line CpG has 10 reads in all 22 libraries, so the first-line rule changes rows per library (8 libraries at import, 1 among the kept rows) and never the united table. That is a property of the data.",
+     "The sentence in 06_diagnostics/README.md that no comparison on the complete 22 libraries in corrected mode is on record stays true in the strict sense: for whole libraries the script compares import and filter of six. Which CpGs each mode keeps on the whole files is checked by the sibling script coverage_filter_variants.R.",
+     "The helper chain is copied from fit_mode(). If step 05 changes its chain this script must follow; a stale table of step 05 would be caught only inside the regions.",
+     "The header sentence on the glm.fit warnings rests on a scratch test, not on the script: 1,433 of the 1,435 CpGs with a warning in legacy mode have methylated reads only in libraries of one ploidy and one cohort. The header says it was looked at once.",
+     "The header statements on what methylKit does were checked against the installed 1.28.0 source only.",
+     "The script is long (933 lines) and does more than the task lists: whole libraries, the two legacy defects, the legacy coding, the tie to the tables of step 05. A reviewer should read those parts as additions.",
+     "Run time depends on the machine: the earlier version took 7.3 minutes when quiet and 10.8 minutes under load; the final version took 9.0 minutes twice with two other R processes running.",
+     "My scratch directory still holds two copies of the extract (232 MB) and the awk recount; nothing there is needed by the script."
+    ],
+    "readme_row": "| `check_methylkit_equivalence.R` | Shows that the low-memory import of step 05 (`02_R_functions/methylkit_helpers.R`) gives what methylKit's own `methRead`, `filterByCoverage`, `normalizeCoverage` and `unite` give, in both modes (issues I-05, I-38). Both routes run on a regional extract of all 22 coverage files that keeps the first line of every file (2.0% of the CpGs tested in legacy mode, 1.6% in corrected mode): the same rows kept, cutoffs, medians and scaling factors in every library, identical united tables (9,642 and 9,201 CpGs), and identical differences, p-values, q-values and DML lists for both contrasts. Also compared: import and filter on six whole libraries, with methylKit and with the records of step 05; the counts of step 05 inside the regions with the raw counts; rounding on synthetic counts with exact ties. Recorded, not judged: p-values under the covariate coding of the legacy script (within 2e-8, relative; same DML lists), and the order of operations of step 04 (at most 25 of 3.3 million scaled counts of the extract differ; correlations change by less than 1e-5). Stops if a comparison that must agree does not. About 9 minutes, 2 GB, one core; needs the coverage files and the tables of step 05. Written by an agent; review pending | `check_methylkit_equivalence.csv` (one row per comparison), `check_methylkit_equivalence_libraries.csv` (one row per library, mode and scope), `check_methylkit_equivalence_extract.csv` (one row per region of the extract) |"
+   }
+  },
+  {
+   "agent": "review:feature_odds_matched",
+   "phase": "Review",
+   "result": {
+    "runs_clean": true,
+    "outputs_reproduced_on_rerun": true,
+    "findings": [
+     {
+      "severity": "medium",
+      "line": 607,
+      "summary": "The tail statistics of the label permutation (95th percentile of CpGs called, share of permutations reaching the real number, share of eligible CpGs called by methylation bin, 2.5th and 97.5th percentiles) carry a large Monte Carlo error at 1,000 draws, and nothing in the output says so. The two schemes differ on these cells by sampling error only, yet the tables read as a scheme effect.",
+      "failure_scenario": "A reader of feature_odds_label_permutation_counts.csv concludes that balancing the acute heat shock raises the 95th percentile of the count from 1,376 to 1,748, the share reaching 1,038 from 13.5% to 15.3%, and the share called at a mean of 10% to 20% from 0.37% to 0.46%. None of this is real. issues.md then has three values for one quantity (95th percentile 1,235 from dml_sensitivity.R, 1,376 and 1,748 from this script), and the 0.455% contradicts its \"0.3% to 0.4%\".",
+      "evidence": "Script, legacy, within cohort and with acute heat shock balanced: 95th percentile 1,376.3 and 1,748.1; share reaching 1,038: 0.135 and 0.153; called at mean 10-20%: 0.374% and 0.455%; gene-body 97.5th percentile 4.47 and 4.26. My complete enumeration of all 232,848 labellings (110,880 balanced on the heat shock): 95th percentile 1,386.8 and 1,461.0; share 0.1283 (29,878 labellings) and 0.1379 (15,288); 10-20% bin 0.386% and 0.403%; median 752 and 749; 5th percentile 520 and 521; gene-body odds ratio median 2.65 (1.46 to 4.52) and 2.65 (1.47 to 4.46), real value reached in 56.2% and 56.4%. Corrected mode: script 1,304 and 1,683, 0.147 and 0.175; exact 1,327 and 1,395, 0.149 and 0.158. The 95th percentile of 1,000 random labellings has a central 95% range of 1,238 to 1,675 (within cohort) and 1,281 to 1,853 (balanced); a value of 1,748 or more occurs in 4.6% of such samples. The enumeration reproduces numbers that I-06 reports from another computation (903 of 924, median 1,530; 40 of 252, median 753.5). Scratch: /tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/review2-feature_odds_matched/work/check_G_enumeration.R, out/G_legacy.log, out/G_corrected.log, out/E_legacy.log.",
+      "suggested_fix": "For the count summaries (median, percentiles, share reaching the real number, share called by bin and by track) replace the draws by the complete enumeration: pooled counts of the 126 heat-cohort subsets (one of each mirror pair) and the 924 control-cohort subsets on the candidate CpGs, added pairwise; the balanced scheme is a subset. In plain R this took 8 to 9 minutes and 2.3 GB per mode. If that is too long, keep the draws and write beside every percentile its order-statistic 95% interval (here 1,266 to 1,666 and 1,448 to 2,113 for the two 95th percentiles) and beside every share its standard error, and say in the notes column that the schemes differ by sampling error only. The 1,000 draws can stay for the matched odds ratios, with the same intervals."
+     },
+     {
+      "severity": "low",
+      "line": 160,
+      "summary": "The ends of the block-bootstrap intervals carry 2% to 4% resampling error at 2,000 resamples and are written to 4 decimals. The header says so; the CSV rows do not.",
+      "failure_scenario": "The matched gene-body interval for ploidy is quoted as 0.77 to 1.82 from this script, 0.76 to 1.70 in issues.md, and would be 0.75 to 1.76 with another seed; a reader takes the second decimal as determined.",
+      "evidence": "Same seed and call sequence, own code (resampling by row index, own estimators): 26 of 26 intervals equal in legacy mode, so the script computes what it says. Other seed, 2,000 resamples: 0.7486 to 1.7559 against the script's 0.7725 to 1.8228. 20,000 resamples: 0.7476 to 1.7806; ten batches of 2,000 gave lower ends 0.733 to 0.765 and upper ends 1.729 to 1.816, so the script's seed lies outside the range of ten others at both ends. Heat: 0.7658 to 1.3578 against 0.7646 to 1.3644. Scratch: work/out/H_legacy.log, work/out/B_legacy.log.",
+      "suggested_fix": "Raise n_boot to 10,000 (the Mantel-Haenszel rows are matrix products; the fisher.test rows would add about 2.5 minutes per mode), or write block intervals to 2 decimals and put the resampling error in the notes column."
+     },
+     {
+      "severity": "low",
+      "line": 316,
+      "summary": "In corrected mode four of the nine SD decile cuts coincide with the SD of one eligible CpG, and which decile that CpG gets depends on the last bit of a floating-point number. The script treats them inconsistently: three go to the upper decile, one to the lower.",
+      "failure_scenario": "On another R build or BLAS, or after an equivalent rewrite of the SD formula, the fourth decimal of some matched odds ratios and two rows of the SD table change; byte-identical output holds per machine only. The script's own check of its two code paths allows 1e-3, so it would not notice.",
+      "evidence": "61,056 eligible CpGs give quantile indices 1 + (n - 1)p = 12212, 24423, 36634, 48845 for p = 0.2, 0.4, 0.6, 0.8. seq(0, 1, length.out = 11)[7] is 0.6000000000000001, so the third index is 36634.000000000007 and that cut is interpolated a hair above the CpG; the other three equal the CpG exactly. With p = 6/10 and the SD from residuals, one CpG changes decile: n_other_eligible of deciles 6 and 7 becomes 6,052 and 6,046 (script 6,053 and 6,045), the matched heat lncRNA odds ratio 0.8505 (script 0.8506), and two matched shares 0.618 and 0.504 (script 0.617 and 0.503). Legacy mode (65,480 eligible) has no whole index and no difference. On this machine (reference BLAS, one thread) the script's two code paths give bit-identical SDs, so the 1e-3 tolerance at line 546 is not needed here. Scratch: work/out/D_corrected.log, work/check_K_sd_table.R.",
+      "suggested_fix": "Assign SD groups by rank with ties broken by row order, for example ceiling(n_sd_groups * rank(sd, ties.method = \"first\") / n) among eligible CpGs, in both code paths; then tighten the tolerance at line 546 to 1e-9."
+     },
+     {
+      "severity": "low",
+      "line": 339,
+      "summary": "The identity check between methylKit's floating-point rule and the script's exact rule stops the run if a CpG lies at exactly the threshold and its stored difference rounds above it. Such ties exist in the real data.",
+      "failure_scenario": "After any rerun of step 05 that changes the set of tested CpGs (another coverage filter, another minimum coverage), a tie whose meth.diff is stored as 20.000000000000004 makes stopifnot(identical(...)) fail although nothing is wrong, and the whole script stops.",
+      "evidence": "The heat contrast has one CpG at exactly -20 points in both modes (NW_022994958.1:20934, q 0.00039 and 0.00045); it happens to be stored as -20, so the check passes. Under shuffled labels a floating-point evaluation of the same rule misjudged 125 of 578 exact ties (within cohort) and 101 of 596 (balanced), in 120 and 99 of 1,000 permutations. This confirms that the exact rule is needed in the permutation, and shows the size of the risk for the check. Scratch: work/out/C_legacy.log.",
+      "suggested_fix": "Compare the two rules only where abs(abs(meth.diff) - threshold) exceeds 1e-9, write the number of exact ties per contrast to the counts table, and say in the header how step 05 treated them."
+     },
+     {
+      "severity": "low",
+      "line": 659,
+      "summary": "count_tab[, value := signif(value, 6)] rounds every value of the counts table to six significant digits, counts included.",
+      "failure_scenario": "With a united table of 1,000,000 CpGs or more, \"tested CpGs\" and other counts are written rounded (signif(1234567, 6) is 1,234,570) with no warning.",
+      "evidence": "Largest value now is 480,579, so the present output is not affected. Line 659 applies signif to the whole column.",
+      "suggested_fix": "Round only values that are not whole numbers."
+     },
+     {
+      "severity": "low",
+      "line": 653,
+      "summary": "Odds ratios and Fisher limits are written to 4 decimals, but fisher.test finds its estimate and limits with a root tolerance of about 1e-4 relative, so the last digits are not determined.",
+      "failure_scenario": "A comparison with other software, or with a higher-precision recomputation, differs in the fourth significant digit and is taken for an error. Step 07 holds the same values, so the script's equality check passes.",
+      "evidence": "Heat, gene body, all tested CpGs (2,203/148/338,503/139,725): fisher.test gives 6.144345 (5.199368 to 7.308605). At 7.308605 the tail probability is 0.02491, not 0.025; solving to 1e-13 gives 6.144172 (5.199569 to 7.307619). Ploidy: upper limit 9.4219 against 9.4226; corrected mode 12.4117 against 12.4140. Scratch: work/check_I_fisher_precision.R.",
+      "suggested_fix": "No change of method (equality with step 07 is the purpose). Write 3 significant digits, or say in the header that fisher.test's values are accurate to about 4 significant digits."
+     },
+     {
+      "severity": "low",
+      "line": 461,
+      "summary": "Comparison 4 keeps DML whose mean lies outside the range in the DML row. For 15% to 85% that is 39 ploidy and 73 heat DML compared with a background that holds no CpG at their methylation level. The notes column gives the count; the comparison label does not.",
+      "failure_scenario": "The row \"CpGs with mean methylation 15% to 85%\" is read as a comparison inside that range. Restricted to it, the gene-body odds ratios are 2.23 and 1.89, not 2.10 and 1.84.",
+      "evidence": "Script: 2.1050 and 1.8406 (39 and 73 DML outside). DML inside the range only: 2.2274 and 1.8884; CDS 1.6926 and 1.5890 against 1.7079 and 1.6081; intron 0.7486 and 0.8097 against 0.7357 and 0.8001. The range 5% to 95% has no DML outside, the range 10% to 90% one. Scratch: work/out/F_legacy.log.",
+      "suggested_fix": "Add the rows with the DML restricted to the range, or name the convention in the comparison label."
+     }
+    ],
+    "numbers_recomputed": [
+     "Tested CpGs inside each track, own file reader and own interval rule (legacy): gene 340,706; CDS 130,459; intron 166,610; exon UTR 44,251; lncRNA 14,835; TE 109,966; intergenic 111,306. Step 07 (feature_overlap_by_track_legacy.csv): the same seven numbers. Corrected mode also equal (325,335; 126,899; 157,174; 41,862; 13,481; 98,671; 102,776).",
+     "Gene body against eligible CpGs, ploidy (legacy): script 2.5204 (1.9268 to 3.3562); mine 2.52043 (1.92673 to 3.35603), own conditional estimate, counts 981/57/56,211/8,232. Heat: script 2.2034 (1.8617 to 2.6246); mine 2.20338 (1.86161 to 2.62457).",
+     "All rows of feature_odds_matched.csv that are not bootstrap rows (comparisons 1 to 6, seven tracks, both lists): 90 of 90 reproduced in legacy mode and 90 of 90 in corrected mode; largest difference 0.0001 in an odds ratio and 0.0023 in an interval end.",
+     "Within 5-point methylation bins, gene body: script 2.0418 (1.5547 to 2.6815) and 1.6829 (1.4185 to 1.9965); mine the same to 4 decimals (own Mantel-Haenszel estimate and Robins-Breslow-Greenland interval).",
+     "Within bin and SD decile, gene body: script 1.1294 (0.8568 to 1.4889) and 1.0078 (0.8453 to 1.2016); mine 1.1294 (0.8568 to 1.4889) and 1.0078 (0.8453 to 1.2016), SD from residuals around the four group means. CDS 1.2500 and 1.1670, TE 1.0529 and 1.0240 in both.",
+     "Ranges, gene body: script 3.5928 and 3.1413 (5% to 95%), 2.1050 and 1.8406 (15% to 85%); mine 3.5928 and 3.1412, 2.1050 and 1.8406.",
+     "Transposable elements by coverage (cut 32.59 reads): script 0.2112 and 0.8121 (ploidy), 0.2901 and 0.8314 (heat); mine the same; top quartile counts 26/108/8,636/7,575. With the one ploidy DML outside the eligible range left out: 0.2031, the verification's 0.20.",
+     "CDS against intron within genes: script 1.6025 and 1.4749; mine 1.6025 and 1.4748.",
+     "Block intervals with the script's seed and call sequence, resampled by row index with my own estimators: 26 of 26 rows equal at 4 decimals in legacy mode (gene body eligible 1.7583 to 3.9944 and 1.6793 to 3.0117; matched 0.7725 to 1.8228 and 0.7646 to 1.3644); 24 of 26 in corrected mode, the other two differ by 0.0001.",
+     "Label permutation within cohort (legacy), same label draws, every tested CpG evaluated without pruning: gene body median 2.6062 (1.4080 to 4.4667), share at least real 0.547 in the script; mine 2.60615 (1.40797 to 4.46667), 0.547. CpGs called: median 742.5, 5th percentile 531.95, 95th percentile 1376.3, smallest 436, largest 3667, share reaching 1,038 0.135 in both.",
+     "Label permutation with acute heat shock balanced (legacy): script median 750, 5th percentile 516, 95th percentile 1748.1, smallest 432, largest 4107, share 0.153; mine the same. Gene body 2.6059 (1.4846 to 4.2609), share 0.546 in both.",
+     "Matched odds ratios under shuffled labels (legacy, within cohort), SD and deciles recomputed per labelling: script gene body 1.0635 (0.5458 to 2.1419), share 0.441, CDS 1.1675 (0.8500 to 1.4522), share 0.294; mine 1.06349 (0.54576 to 2.14190), 0.441, and 1.16751 (0.85003 to 1.45220), 0.294.",
+     "Ploidy rows of feature_odds_label_permutation.csv, 182 cells per mode: legacy 181 equal within 0.00015 (one 97.5th percentile 2.5895 against 2.5893); corrected 180 equal, two matched shares 0.617 and 0.503 against my 0.618 and 0.504.",
+     "Share of eligible CpGs called by 10-point bin (legacy, within cohort): script 0.373653% (10 to 20) and 2.69791% (50 to 60); mine 0.3736527% and 2.6979094%. Inside against outside gene bodies: 2.5361 against 2.53614. The 5-point rows rebuild the 10-point rows to 5e-6.",
+     "q-value rule from the diffmeth tables: ploidy 1,038 of 1,038 above 20 points pass (largest q 0.004641); heat 2,351 of 2,352 (the other is NC_047567.1:31,559,118, q 0.01786); corrected 952 of 952 (0.005191) and 2,273 of 2,273 (0.004589). Script and mine equal.",
+     "Median within-group SD, DML against other eligible CpGs: script 22.23 and 15.11 (ploidy), 20.98 and 15.00 (heat); mine 22.2297 and 15.1055, 20.9823 and 15.0037. SD table: 352 cells recomputed, 348 equal, 4 differ by one CpG (corrected mode, deciles 6 and 7).",
+     "Ploidy labels exchanged in one cohort only: script 3,480 (legacy) and 3,427 (corrected); mine the same. Over all labellings 99.87% call fewer than 3,480; the largest count is 4,293.",
+     "Library order and coordinates: at 60 DML positions, united column j matches raw coverage file j of the sample sheet for all 22 libraries (mean absolute difference at most 1.07 points; at least 15.8 points for any other file); start is the 0-based start of the raw files.",
+     "Reference not in the script, complete enumeration (legacy): within cohort median 752, 5th to 95th percentile 520 to 1,387, 12.83% reach 1,038; balanced on acute heat shock 749, 521 to 1,461, 13.79%. Script: 742.5, 532 to 1,376, 13.5%; and 750, 516 to 1,748, 15.3%.",
+     "Mutated scratch copies of the script stop as they should: eligible range 11% to 89%, and CpG shifted by one base, both stop at the comparison with step 07; libraries 1 and 6 exchanged stops at the meth.diff check."
+    ],
+    "statements_in_issues_md_affected": [
+     "I-41: \"With ploidy labels shuffled within cohort and acute-heat-shock stratum, 0.3% to 0.4% of CpGs with a mean of 10% to 20% pass (0.30% in the verification run of 300 permutations, 0.38% to 0.41% in repeats with 1,000 to 3,000) and 2.7% of CpGs with a mean of 50% to 60%, about seven times as many; the chance is 2.55 times higher inside gene bodies than outside (2.58 to 2.61 in the repeats).\" Script, that scheme: 0.455% and 2.726% (6.0 times), 2.57 times. The 0.455% is outside the stated range. Script, within cohort only: 0.374% and 2.698% (7.2 times), 2.54. Reviewer's enumeration of all labellings: 0.403% and 2.721% (6.8 times), 2.58 for the stratified scheme; 0.386% and 2.693% (7.0 times), 2.57 within cohort.",
+     "I-41, table: \"| DML against eligible CpGs in the same methylation bin and the same decile of within-group standard deviation | 1.13 (0.76 to 1.70) | 1.01 (0.76 to 1.34) | 1.25, 1.17 | 0.81, 0.87 | 1.05, 1.02 |\" Script: 1.13 (0.77 to 1.82) and 1.01 (0.76 to 1.36); the other cells are confirmed (1.2500, 1.1670; 0.8059, 0.8708; 1.0529, 1.0240). Reviewer, 20,000 resamples: 0.75 to 1.78 and 0.77 to 1.36.",
+     "I-41, table: \"| CpGs that pass the 20-point rule under shuffled ploidy labels, against eligible CpGs (median of the permutations) | 2.68 (2.5th to 97.5th percentile 1.44 to 4.53) | no permutation possible, see below | 1.58 | | 0.44 |\" Script, within cohort: 2.61 (1.41 to 4.47), CDS 1.56, transposable element 0.44. With acute heat shock balanced: 2.61 (1.48 to 4.26), 1.56, 0.44. Reviewer's enumeration: 2.65 (1.46 to 4.52) and 2.65 (1.47 to 4.46).",
+     "I-41, table: \"| The same shuffled-label lists, against eligible CpGs in the same methylation bin and the same class of within-group standard deviation, recomputed for each shuffle (median of 1,000 permutations; integration check, one run) | 1.10 (0.58 to 2.33) | no permutation possible | 1.18 (0.87 to 1.46) | | |\" Script, acute heat shock balanced: 1.08 (0.58 to 2.33), CDS 1.17 (0.83 to 1.44). Within cohort: 1.06 (0.55 to 2.14), CDS 1.17 (0.85 to 1.45).",
+     "I-41: \"The label-permutation row was computed by one agent (250 permutations) and repeated in the integration check (3,000 permutations: gene body 2.65, 2.5th to 97.5th percentile 1.47 to 4.52; CDS 1.59)\" Script: 2.61 (1.41 to 4.47), CDS 1.56. The enumeration agrees with the integration check (2.65, 1.46 to 4.52).",
+     "I-41: \"The gene-body odds ratio of the real ploidy DML (2.52) is reached or exceeded in 58% of the label permutations.\" Script: 54.7% within cohort, 54.6% with acute heat shock balanced. Reviewer's enumeration: 56.2% and 56.4%.",
+     "I-41: \"The intervals in the table (0.76 to 1.70 and 0.76 to 1.34) come from a bootstrap over 100 kb blocks and are about 1.5 times as wide on the log scale\" Script: 0.77 to 1.82 and 0.76 to 1.36, which are 1.55 and 1.65 times as wide as the intervals with CpGs independent (0.86 to 1.49 and 0.85 to 1.20).",
+     "I-41: \"against eligible CpGs the coding-sequence odds ratio of the real ploidy DML (1.68) is reached in 30% of the label permutations (median 1.58), and after the same matching the shuffled-label lists give a median of 1.18 (2.5th to 97.5th percentile 0.87 to 1.46; the real 1.25 is reached in 29% of 1,000 permutations)\" Script, within cohort: 31.3% (median 1.56); after matching 1.17 (0.85 to 1.45), 29.4%. With acute heat shock balanced: 30.3% (1.56); 1.17 (0.83 to 1.44), 26.2%. The same 1.18 appears under \"Why it matters\": \"is also shown by CpG lists made with shuffled ploidy labels (median 1.18 after the same matching)\"; script 1.17.",
+     "I-41: \"with ploidy labels shuffled within cohort and acute-heat-shock stratum (300 permutations), a median of 762 CpGs pass the DML rule (5th to 95th percentile 510 to 1,226), against 1,038 observed, and 13% of the permutations reach 1,038. Repeats with 1,000 to 3,000 permutations give medians of 739 to 753, a 95th percentile of 1,388 to 1,491, and 13% to 16% at or above 1,038; with labels shuffled within cohort only, the sensitivity script gives a median of 749 and 11% (113 of 1,000).\" Script, that scheme: median 750, 516 to 1,748, 15.3%; the 95th percentile is outside the stated range. Script, within cohort: 742.5, 532 to 1,376, 13.5%. Reviewer's enumeration: 749, 521 to 1,461, 13.8% of 110,880 labellings; within cohort 752, 520 to 1,387, 12.8% of 232,848.",
+     "I-06, item 5: \"the number of CpGs above 20 points has a median of 749 (5th to 95th percentile 523 to 1,235), and 113 of the 1,000 labellings reach the observed 1,038 (the 113 include the observed labelling itself). In corrected mode: observed 952, median 706.5 (483 to 1,191), 137 of 1,000.\" Same quantity from this script: legacy 742.5 (532 to 1,376), 135 of 1,000; corrected 701 (491 to 1,304), 147 of 1,000. Reviewer's enumeration: legacy 752 (520 to 1,387), 29,878 of 232,848 (12.8%); corrected 708 (484 to 1,327), 34,656 of 232,848 (14.9%). Both 95th percentiles of the sensitivity script are low draws.",
+     "I-06, item 5: \"The agents who verified I-41 obtained similar values from their own permutations, in which the labels were shuffled within cohort and acute heat shock stratum (medians 739 to 762; 13% to 16% of the permutations at or above 1,038).\" Script, that scheme: 750 and 15.3%. Reviewer's enumeration: 749 and 13.8%.",
+     "I-41, limit 10: \"For ploidy the shuffled-label row of the table gives the matched odds ratios that arise without any ploidy signal (2.5th to 97.5th percentile 0.58 to 2.33);\" Script: 0.58 to 2.33 holds for the scheme with acute heat shock balanced; within cohort it is 0.55 to 2.14.",
+     "I-41: \"with 100 kb blocks as units the standard errors are 1.3 to 1.9 times larger and all 20 cells of the table still exclude 1 (heat intron, 0.77 to 0.99, is at the edge)\" The script writes block intervals for the 10 cells against eligible CpGs only. All 10 exclude 1; they are 1.26 to 1.90 times as wide as the Fisher intervals; heat intron is 0.7678 to 0.9902 (0.770 to 0.993 with 20,000 resamples). The 10 cells against all tested CpGs have no block interval in any script.",
+     "I-41: \"Ploidy DML also stay nominally enriched against eligible CpGs in lncRNA (1.6) and exon UTR (1.3); both come from the 53 DML of the locus in I-09 and disappear without it (0.29 and 0.88).\" Script: 1.587 and 1.291 confirmed, and 53 of the 65 ploidy DML in lncRNA lie in one 100 kb window. With block intervals neither excludes 1 even with the locus (0.16 to 4.77 and 0.71 to 2.27). After matching, lncRNA is 2.96 (block interval 0.31 to 8.89). The values without the locus are not computed by the script.",
+     "I-41, status: \"the matched and permuted location comparisons as a diagnostic that writes the second table above. Until those exist, the numbers of that table\" (the sentence goes on to name the verification record as their source). The diagnostic now exists and writes all five rows of that table. Still without a script: the estimates with coverage added (1.23, 1.48), without the locus (1.02, 0.97, 0.99, 0.89), the DML share by coverage quartile with 53.6% and 20.8%, and 18 against 9.8 points."
+    ],
+    "verdict": "Accept the script. It computes what the task asked, and every number I recomputed with independent code agrees with it; the one change needed before its permutation counts are quoted is a Monte Carlo interval or a complete enumeration.\n\n- **Runs:** two runs from the repository root finished with exit 0 in 238 s each, 1.30 GB peak, one thread, empty stderr. The four CSV files were byte-identical between the runs and to the copies taken beforehand; the script and repository were left unchanged.\n- **Reading:** I found no error in strata, group assignment, library order, coordinates, seeds, data.table scoping or paths. The header is accurate, there is no em dash and no \"desiccation\", and every file read is tracked in git.\n- **Recomputation:** base R with my own track reader, overlap rule, conditional odds ratio, Mantel-Haenszel estimate and SD by residuals reproduced all 180 non-bootstrap odds rows, 50 of the 52 block intervals I recomputed (the other two differ by 0.0001), and 361 of 364 permutation cells. All permutation counts are identical. The differences trace to fisher.test's root tolerance and to one CpG on a decile cut.\n- **Checks can fail:** three mutated scratch copies (shifted eligible range, CpG shifted by one base, two libraries exchanged) all stopped at the intended check.\n- **The medium finding:** the 95th percentile of the count, the share reaching the real number and the share called by bin are unstable at 1,000 draws. The scheme with acute heat shock balanced drew a heavy tail (95th percentile 1,748 against an exact 1,461). The within-cohort scheme the task specified is close to exact (1,376 against 1,387; 13.5% against 12.8%).\n- **Low findings:** six, none of which changes a reading.\n- **issues.md:** fifteen sentences of I-41 and I-06 need the script's values. No conclusion of I-41 changes: the gene-body excess is gone after matching (1.13 and 1.01) and is reached by shuffled labels in more than half of the labellings. Confirmed without change: the first table, both range sentences, CDS against intron, transposable elements by coverage in both modes, the SD medians and the corrected-mode sentence.\n- **Corrected mode adds:** matched gene body 1.24 (block interval 0.85 to 1.96) and 0.94 (0.73 to 1.27). The matched intergenic odds ratio for ploidy stays below 1 (0.59, 0.28 to 0.96), but shuffled labels give the same median (0.59).\n\nThe builder's two additions (matched odds under shuffled labels, the second permutation scheme) are correct. Reviewer scripts and logs are in /tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/review2-feature_odds_matched/work (logs in out/; the two 300 MB intermediate files were deleted and recompute_A.R rebuilds them in 30 s)."
    }
   }
  ]

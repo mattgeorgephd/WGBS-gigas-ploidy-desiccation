@@ -37,6 +37,13 @@
 #           - The heat contrast compares two cohorts that were sequenced
 #             separately (issue I-01). The shared set is an overlap of two
 #             lists, not a test of interaction (issue I-02).
+#           - The model has no overdispersion term. Its DML lists reproduce the
+#             draft; they are not established differences (issue I-06;
+#             06_diagnostics/dml_sensitivity.R).
+#           - In united_cpg_<mode>.csv.gz the three columns of a library are
+#             rounded separately after scaling, as methylKit does, so coverage
+#             can differ by 1 from numCs + numTs (19,811 cells of the legacy
+#             table). methylKit's tests and the diagnostics use numCs + numTs.
 #           - Fitting takes about 20 minutes per contrast on one core. Results
 #             are cached; delete the cache file to refit.
 

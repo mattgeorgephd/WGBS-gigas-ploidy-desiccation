@@ -38,6 +38,10 @@
 #             p-values on PC3 and PC4 at 1x (0.03 and 0.04 against 0.21 and
 #             0.08); none of the 16 ploidy tests survives a correction for
 #             their number (issue I-44).
+#           - A threshold on a component can only pick up a ploidy difference
+#             that has the same direction in both cohorts; the difference in
+#             overall methylation level has opposite directions in the two
+#             cohorts (issues I-44, I-49).
 #           - 10,000 permutations; with a fixed seed the output is reproducible.
 
 suppressPackageStartupMessages(library(here))

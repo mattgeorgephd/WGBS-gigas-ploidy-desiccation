@@ -3,10 +3,10 @@
 # Purpose   How much of the difference between groups of libraries is a
 #           difference in the overall methylation level of single libraries?
 #           The sensitivity analyses (06_diagnostics/dml_sensitivity.R) find a
-#           ploidy difference inside the heat cohort, none inside the control
-#           cohort, and a tested ploidy by cohort interaction. This script
-#           describes what those contrasts consist of. It tests nothing at
-#           single CpGs.
+#           ploidy difference inside the heat cohort, no more CpGs above the
+#           threshold inside the control cohort than regroupings give, and a
+#           tested ploidy by cohort interaction. This script describes what
+#           those contrasts consist of. It tests nothing at single CpGs.
 #             1. Level of each library: genome-wide percent CpG methylation
 #                (Bismark, step 02), and the mean percent methylation over the
 #                tested CpGs and over the eligible ones (mean of the 22
@@ -103,11 +103,13 @@
 #             labels, but leaving them out in part 6 is a choice made after
 #             seeing the data. Those rows are exploratory.
 #           - Part 7: a group whose libraries resemble each other more than
-#             other libraries of the cohort do is what related animals (one
-#             cross), a shared processing batch, or a real group property
-#             would each produce. The correlation between two libraries also
-#             falls with sequencing noise and with a difference in level, so
-#             a low value does not by itself mean a biological difference.
+#             other libraries of the cohort do is not by itself evidence of
+#             one cross or one processing batch. The correlation between two
+#             libraries falls with sequencing noise and with a difference in
+#             level, so the values of the two cohorts cannot be set side by
+#             side; at equal read depth the heat-cohort triploids are as
+#             similar to each other as ordinary control libraries are
+#             (issues.md, I-49, item 6).
 #           - The smallest p-value a complete enumeration can give is
 #             (groupings as extreme as the observed one) / (all groupings).
 #             With two groups of equal size every split occurs twice (labels
