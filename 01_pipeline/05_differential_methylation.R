@@ -17,7 +17,7 @@
 # Run       Rscript 01_pipeline/05_differential_methylation.R     (after step 01)
 #           WGBS_CORES sets the number of forked workers of the model fits
 #           (default 1; leave it at 1 on Windows). Time and memory are in the
-#           last note.
+#           Notes.
 #
 # Inputs    03_input_files/metadata/wgbs_libraries.csv
 #           22 coverage files listed in 03_input_files/gannet_manifest.csv (cache)
@@ -38,7 +38,7 @@
 # Manuscript items: Results 3.2 (CpG and DML counts); data for Figures 2, 3, 4.
 # Notes     - Steps 1 and 2 follow methylKit's rules (methRead, filterByCoverage,
 #             normalizeCoverage, unite) but are applied one library at a time
-#             with data.table, so the import needs about 3 GB instead of 9 GB; see
+#             with data.table, so the import needs about 4 GB instead of 9 GB; see
 #             02_R_functions/methylkit_helpers.R. The tests are methylKit's own.
 #           - Differences are group 1 minus group 0: triploid minus diploid for
 #             ploidy, heat minus control for heat. "hyper" means higher in
@@ -81,16 +81,19 @@
 #             under "at least 20" (2,352 instead of 2,351; 2,274 instead of
 #             2,273). With ">" at the configured threshold of 20 points the
 #             written tables give exactly the DML lists of this step.
-#           - Fitting both modes takes about 18 minutes at WGBS_CORES=4 and about
-#             an hour on one core. The import needs about 3 GB; with the forked
-#             workers of the tests the step needs about 10 GB at WGBS_CORES=4.
-#             A fit is kept in the cache folder and reused only while what it
+#           - Fitting both modes takes about 18 minutes at WGBS_CORES=4, 37
+#             minutes at WGBS_CORES=2 and about an hour on one core. The import
+#             needs about 4 GB. The tests fork their workers: at WGBS_CORES=2 the
+#             step needs about 6.5 GB (the R process and its two workers, shared
+#             pages counted once), at WGBS_CORES=4 about 10 GB.
+#           - A fit is kept in the cache folder and reused only while what it
 #             was made from is unchanged: the mode and the coverage settings,
 #             the sample sheet, the coverage files, the methylKit version and
 #             the fitting code (fit_fingerprint() below). Otherwise, and when a
 #             cache file cannot be read, the mode is fitted again; nothing has
 #             to be deleted by hand. The thresholds of step 4 are applied after
-#             the fit, so changing them does not refit.
+#             the fit, so changing them does not refit. With both fits in the
+#             cache the step takes about half a minute.
 
 suppressPackageStartupMessages(library(here))
 source(here("run_config.R"))

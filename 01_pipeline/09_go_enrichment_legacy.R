@@ -28,34 +28,94 @@
 #                Expected column and the p-values mix two units (issue I-43).
 #                This step keeps the repeats in order to match the archive.
 #
+# Run       Rscript 01_pipeline/09_go_enrichment_legacy.R
+#           (after step 08, run with "legacy" in config$modes; about 3 minutes,
+#           about 1 GB of memory)
+#
 # Inputs    04_output/08_gene_annotation/tables/
 #             dml_go_annotation_{ploidy,heat,shared}_legacy.tsv.gz, transcript_table.csv.gz,
 #             gene_table_legacy.csv.gz, annotation_summary.csv
 #           03_input_files/annotation/geneid2go-union1x-BOTH.tab.gz
 #           GO.db 3.13.0 (Bioconductor archive; installed into the cache on first use)
 # Outputs   04_output/09_go_enrichment_legacy/tables/
-#             legacy_fisher_<set>_<ontology>.csv          every term: counts, p, rank, genes behind it
+#             legacy_fisher_<set>_<ontology>.csv   every term: counts, p, rank, genes behind it
 #             legacy_top10_term_transcripts_<set>_<ontology>.csv
+#                                                  the ten top-ranked terms, each with the universe
+#                                                  transcripts that carry it and, where the annotation
+#                                                  table as read names the term for a transcript, its lines
 #             legacy_dml_in_top10_genes_<set>_<ontology>.csv
-#             legacy_reader_loss.csv, legacy_universe_by_chromosome.csv, legacy_funnel.csv
-#             figure_5_values_legacy.csv, figure_9_values_legacy.csv, table_1_legacy.csv
-#             legacy_run_info.csv
+#                                                  the DML of those transcripts: the lists behind
+#                                                  Figure 9 and, for BP, Table 1
+#             legacy_reader_loss.csv               each annotation table as written and as the legacy
+#                                                  reader returned it
+#             legacy_universe_by_chromosome.csv    mRNAs with GO terms and those of them in the legacy
+#                                                  universe, per linkage group
+#             legacy_funnel.csv                    genes and transcripts, from holding a DML to being tested
+#             figure_5_values_legacy.csv           the 36 values of Figure 5 and what each of them counts
+#             figure_9_values_legacy.csv           the counts of Figure 9
+#             table_1_legacy.csv                   the rows of Table 1
+#             legacy_run_info.csv                  GO.db release and topGO version; transcripts and lines
+#                                                  of the universe map; the largest missing block
 #           04_output/09_go_enrichment_legacy/figures/figure_5_legacy.(png|pdf), figure_9_legacy.(png|pdf)
+#           04_output/09_go_enrichment_legacy/session_info.txt
 #
 # Manuscript items: Results 3.4 and 3.5; Figure 5; Figure 9; Table 1.
-# Notes     - Runs on the legacy-mode DML only.
+# Notes     - Runs on the legacy-mode DML only. When "legacy" is not in
+#             config$modes the step says so and ends before it reads or writes
+#             anything; under Rscript the exit status is 0, so that
+#             run_pipeline.R goes on to the next step. When "legacy" is
+#             configured and the summary of step 08 holds no legacy row for a
+#             DML set, step 08 last ran without the legacy mode, and the step
+#             stops with an error.
 #           - "shared" is the set the draft calls interaction-DML: loci in both
 #             the ploidy and the heat list (issue I-02). Its methylation
 #             difference is the heat one, as in the legacy table.
+#           - None of the four numbers of a Figure 5 panel is the quantity the
+#             panel title names; column what_it_counts of
+#             figure_5_values_legacy.csv says what each one is (issue I-20).
+#           - The largest missing block of legacy_run_info.csv is the longest run
+#             of mRNAs absent from the universe when the mRNAs with GO terms are
+#             sorted by accession (item 1 above). It is one fact about the whole
+#             universe and is written once, not on every row of
+#             legacy_universe_by_chromosome.csv.
+#           - The log line of each test gives the transcripts of interest in both
+#             units of item 5: as distinct transcripts, and as the map lines that
+#             topGO counted in the totals of the test.
 
 suppressPackageStartupMessages(library(here))
 source(here("run_config.R"))
 invisible(lapply(list.files(here("02_R_functions"), pattern = "\\.R$", full.names = TRUE), source))
-go_db_version <- use_legacy_go_db(config)            # must come before topGO is loaded
-load_packages(c("data.table", "topGO", "ggplot2", "patchwork"))
 
 step <- "09_go_enrichment_legacy"
 t0 <- start_step(step, "GO enrichment as run for the manuscript draft")
+
+# The step exists for the legacy mode only. Without that mode it ends here, before
+# the ontology release is fetched and before any table is read or written: legacy
+# tables that an earlier run left in the folder of step 08 do not belong to this
+# configuration. Under Rscript the exit status is 0, so that run_pipeline.R goes on
+# to the next step. A script sourced in an interactive session cannot end early
+# without an error (quit() would close the session), so there it stops with one.
+if (!"legacy" %in% config$modes) {
+  not_run <- sprintf(paste("step 09 repeats the GO enrichment of the draft on the legacy-mode DML, and \"legacy\" is not in",
+                           "config$modes (%s): nothing is run and no file is written"), paste(config$modes, collapse = ", "))
+  if (interactive()) stop(not_run, call. = FALSE)
+  log_msg("%s", not_run)
+  quit(save = "no", status = 0)
+}
+
+# A missing package is named before the ontology release is downloaded and
+# installed. The packages are looked up without being loaded: loading topGO here
+# would bring in the GO.db of the R installation, not the release of the draft.
+# R.utils is not attached; fread() needs it to read the .gz tables.
+step_packages <- c("data.table", "topGO", "ggplot2")
+installed <- vapply(c(step_packages, "R.utils"), function(p) nzchar(system.file(package = p)), logical(1))
+if (!all(installed)) {
+  stop("Missing R package(s): ", paste(names(installed)[!installed], collapse = ", "),
+       ". Install them (see README, 'Running the pipeline') and rerun.", call. = FALSE)
+}
+go_db_version <- use_legacy_go_db(config)            # must come before topGO is loaded
+load_packages(step_packages)
+
 tab <- function(name) output_path(step, "tables", name)
 ann_in <- function(name) output_path("08_gene_annotation", "tables", name)
 sets <- c(ploidy = "ploidy-DML", heat = "heat-DML", shared = "interaction-DML")
@@ -65,6 +125,16 @@ log_msg("GO.db %s (ontology of %s), topGO %s", go_db_version, go_source_date(), 
 tx_table <- fread(ann_in("transcript_table.csv.gz"), colClasses = c(gene_id = "character"))
 gene_table <- fread(ann_in("gene_table_legacy.csv.gz"), colClasses = c(gene_id = "character"))
 tx_gene <- setNames(tx_table$gene_id, tx_table$transcript_id)
+# Step 08 writes a legacy row per DML set into its summary only when it runs in
+# legacy mode. Without those rows the legacy tables in its folder are left from
+# another configuration, and the funnel table below would be filled by recycling.
+ann_summary <- fread(ann_in("annotation_summary.csv"))[mode == "legacy"]
+if (!identical(sort(ann_summary$set), sort(names(sets)))) {
+  stop("annotation_summary.csv of step 08 must hold one legacy-mode row for each DML set (",
+       paste(names(sets), collapse = ", "), ") and holds ",
+       if (nrow(ann_summary) == 0) "none" else paste("rows for", paste(ann_summary$set, collapse = ", ")),
+       ". Step 08 last ran without the legacy mode: rerun it with \"legacy\" in config$modes.", call. = FALSE)
+}
 
 # =============================================================================
 # 1. The DML annotation tables, as written and as the legacy script read them
@@ -101,22 +171,21 @@ by_chr <- annotated[, .(mRNAs_with_GO_terms = .N, in_legacy_universe = sum(in_le
 by_chr <- rbind(by_chr, data.table(sequence = "all", mRNAs_with_GO_terms = nrow(annotated),
                                    in_legacy_universe = sum(annotated$in_legacy_universe)))
 by_chr[, percent_in_universe := round(100 * in_legacy_universe / mRNAs_with_GO_terms, 1)]
-# Nearly all missing transcripts are adjacent when the annotated mRNAs are sorted by accession.
+write_table(by_chr, tab("legacy_universe_by_chromosome.csv"))
+# Nearly all missing transcripts are adjacent when the annotated mRNAs are sorted by
+# accession. That block is one fact about the whole universe: it goes into
+# legacy_run_info.csv once, not onto every row of the table by sequence.
 setorder(annotated, transcript_id)
 runs <- rle(annotated$in_legacy_universe)
 longest <- which.max(ifelse(runs$values, 0L, runs$lengths))
 block_end <- sum(runs$lengths[seq_len(longest)]); block_start <- block_end - runs$lengths[longest] + 1L
-by_chr[, `:=`(largest_missing_block_n = runs$lengths[longest],
-              largest_missing_block_first = annotated$transcript_id[block_start],
-              largest_missing_block_last = annotated$transcript_id[block_end])]
-write_table(by_chr, tab("legacy_universe_by_chromosome.csv"))
+missing_block <- list(n = runs$lengths[longest], first = annotated$transcript_id[block_start],
+                      last = annotated$transcript_id[block_end])
 log_msg("legacy universe: %d transcripts; %d of the %d mRNAs with GO terms (%.0f%%); largest missing block %d transcripts, %s to %s",
         length(universe), sum(annotated$in_legacy_universe), nrow(annotated),
-        100 * mean(annotated$in_legacy_universe), runs$lengths[longest],
-        annotated$transcript_id[block_start], annotated$transcript_id[block_end])
+        100 * mean(annotated$in_legacy_universe), missing_block$n, missing_block$first, missing_block$last)
 
 # From genes with a DML to transcripts that entered the test.
-ann_summary <- fread(ann_in("annotation_summary.csv"))[mode == "legacy"]
 funnel <- rbindlist(lapply(names(sets), function(s) {
   e <- unique(ann_exact[[s]][, .(transcript, geneID)]); l <- unique(ann_legacy[[s]][, .(transcript, geneID)])
   tested <- l[transcript %chin% universe]
@@ -179,16 +248,23 @@ for (ont in names(onts)) {
       published_label = c("Unique transcripts", "GO terms", "Unique genes", "Gene products"),
       value = c(uniqueN(annot$transcript), nrow(ann_ont), uniqueN(na.omit(annot$geneID)), nrow(annot)),
       what_it_counts = c("transcripts of the universe that carry one of the ten top-ranked terms, with or without a DML",
-                         "rows of the DML x transcript x GO term table for this ontology, as the legacy reader returned it",
-                         "genes that hold a DML and are annotated directly with one of the ten top-ranked terms",
+                         paste("rows of the DML x transcript x GO term x GOslim bin table for this ontology, as the legacy reader",
+                               "returned it; a term filed under several GOslim bins gives several rows"),
+                         paste("genes that hold a DML and have, in the DML annotation table as the legacy reader returned it, a line",
+                               "that names one of the ten top-ranked terms for a transcript of the universe; the table names a term",
+                               "only for a transcript that carries it directly, and lacks many GO IDs of the complete map (issue I-42),",
+                               "so this is not the number of genes annotated with one of the ten terms"),
                          paste("rows of the table that pairs each of the ten top-ranked terms with the universe transcripts that",
                                "carry it, a transcript being repeated for each of its DML and each GOslim bin of the term")))
     fig9[[length(fig9) + 1]] <- data.table(set = s, ontology = ont, total = nrow(in_genes),
                                            hyper = sum(in_genes$meth.diff >= 0), hypo = sum(in_genes$meth.diff <= 0),
                                            genes = uniqueN(in_genes$geneID))
     if (ont == "BP") table1[[s]] <- cbind(dml_set = sets[[s]], in_genes)
-    log_msg("%-6s %s: %5d terms; %4d with p < %g; transcripts of interest %d; genes behind the ten top-ranked terms: %s",
-            s, ont, nrow(res), sum(res$below_p_cutoff), config$go_pvalue, uniqueN(sig_tx),
+    # Both units of the test (issue I-43): distinct transcripts of interest, and the
+    # map lines that topGO counted for them and for the universe in its totals.
+    log_msg(paste("%-6s %s: %5d terms; %4d with p < %g; transcripts of interest %d, counted in the totals of the test as",
+                  "%d of %d map lines; genes behind the ten top-ranked terms: %s"),
+            s, ont, nrow(res), sum(res$below_p_cutoff), config$go_pvalue, uniqueN(sig_tx), numSigGenes(td), numGenes(td),
             paste(top$genes_significant, collapse = " "))
   }
 }
@@ -198,9 +274,12 @@ write_table(fig9, tab("figure_9_values_legacy.csv"))
 table1[, meth.diff := round(meth.diff, 2)]
 setnames(table1, c("geneID", "product", "chr", "meth.diff"), c("gene_id", "gene_name", "chromosome", "methylation_difference"))
 write_table(table1[, .(dml_set, gene_id, gene_name, chromosome, start, end, methylation_difference)], tab("table_1_legacy.csv"))
-write_table(data.table(item = c("GO.db", "GO source date", "topGO", "universe transcripts", "universe map lines"),
+write_table(data.table(item = c("GO.db", "GO source date", "topGO", "universe transcripts", "universe map lines",
+                                "largest missing block: mRNAs with GO terms", "largest missing block: first transcript",
+                                "largest missing block: last transcript"),
                        value = c(go_db_version, go_source_date(), as.character(packageVersion("topGO")),
-                                 length(universe), length(geneNames))), tab("legacy_run_info.csv"))
+                                 length(universe), length(geneNames),
+                                 missing_block$n, missing_block$first, missing_block$last)), tab("legacy_run_info.csv"))
 
 # =============================================================================
 # 4. Figures 5 and 9 with the values of the draft

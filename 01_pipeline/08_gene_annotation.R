@@ -6,13 +6,16 @@
 #             1. Annotation tables that do not depend on the DML: transcripts and
 #                their genes, the transcript-to-GO map with repaired transcript
 #                names, and a gene-to-GO map.
-#             2. For each mode and DML set: every (DML, gene) overlap, a per-gene
-#                summary, and a gene table with the number of tested CpGs and of
-#                DML per gene (the input of the gene-level enrichment in step 10).
+#             2. For each mode of config$modes and each DML set: every (DML, gene)
+#                overlap, a per-gene summary, and a gene table with the number of
+#                tested CpGs and of DML per gene (the input of the gene-level
+#                enrichment in step 10).
 #             3. For the legacy mode: the ten-column annotation tables of the
-#                legacy notebook (one line per DML, transcript, and GO term), in
-#                the legacy line order (the input of the legacy enrichment in
-#                step 09).
+#                legacy notebook (one line per DML, transcript, GO term, and
+#                GOslim bin of the term), in the legacy line order (the input of
+#                the legacy enrichment in step 09).
+#
+# Run       Rscript 01_pipeline/08_gene_annotation.R     (after step 05; under a minute, about 1 GB of memory)
 #
 # Inputs    04_output/05_differential_methylation/tables/
 #             united_cpg_<mode>.csv.gz, dml_{ploidy,heat,shared}_<mode>.csv
@@ -27,18 +30,34 @@
 #             dml_gene_overlap_<set>_<mode>.csv one row per (DML, gene)
 #             genes_with_dml_<set>_<mode>.csv   one row per gene that holds a DML
 #             dml_go_annotation_<set>_legacy.tsv.gz   legacy ten-column table, no header
-#             annotation_summary.csv            counts per mode and set
+#             annotation_summary.csv            counts per mode and set; the eight legacy_ columns
+#                                               describe the ten-column tables
+#           04_output/08_gene_annotation/session_info.txt
 #
 # Manuscript items: Results 3.4 and 3.5 (inputs); supplementary lists of genes with DML.
 # Notes     - A DML is assigned to every gene whose body it lies in, as in the
 #             legacy analysis. Genes overlap, so a DML can be assigned twice.
 #           - Legacy transcript route: gene -> all of its mRNAs -> GO terms of
 #             each mRNA. Three things were lost on the way and are reproduced in
-#             the legacy tables only: mRNAs of the 9 genes whose name holds a
-#             hyphen, the 123 curated (NM_) mRNAs with GO terms, and every GO ID
-#             missing from the 2017 GOslim table. Issue I-03.
+#             the legacy tables only: the 24 mRNAs of the 5 protein-coding genes
+#             whose name holds a hyphen (none of the five holds a DML, so this
+#             loss removes no line from the three tables), the 123 curated (NM_)
+#             mRNAs with GO terms, and every GO ID that is not in
+#             legacy_go_goslim_terms.tsv.gz, the part of the 2017 GOslim table
+#             recovered from the legacy tables (that the lost table lacked these
+#             IDs is an inference). Issues I-03 and I-42.
 #           - Gene route (both modes): gene -> union of the GO terms of its mRNAs,
 #             with the NM_ names repaired.
+#           - Modes. The three tables of part 1 are the same whatever the mode.
+#             The tables of part 2 are written for the modes of config$modes, and
+#             those of part 3 only when "legacy" is one of them.
+#             annotation_summary.csv holds one row for each configured mode and
+#             DML set, with the same columns whichever modes are configured; its
+#             legacy_ columns are empty outside legacy mode. Tables of a mode
+#             that is not configured are neither written nor removed: after a
+#             run without the legacy mode the summary has no legacy row, by which
+#             step 09 knows that the legacy tables left in the folder do not
+#             belong to that run, and stops.
 
 suppressPackageStartupMessages(library(here))
 source(here("run_config.R"))
@@ -94,6 +113,10 @@ log_msg("%d genes (%d protein coding); %d with GO terms; %d of those have a tran
 # 2. DML to genes, per mode and set
 # =============================================================================
 legacy_terms <- read_legacy_go_terms()
+log_msg("writing the tables of %d mode(s): %s", length(config$modes), paste(config$modes, collapse = ", "))
+if (!"legacy" %in% config$modes) {
+  log_msg("\"legacy\" is not in config$modes: the ten-column tables that step 09 reads are not written, and annotation_summary.csv gets no legacy row")
+}
 summary_rows <- list()
 for (mode in config$modes) {
   united <- fread(dml_file(sprintf("united_cpg_%s.csv.gz", mode)))
@@ -142,6 +165,14 @@ for (mode in config$modes) {
       n_genes_with_dml_and_go_in_legacy_universe = with_dml[n_go_terms > 0 & in_legacy_universe == TRUE, .N])
 
     # ---- legacy ten-column annotation table (legacy mode only) ---------------
+    # Its counts go into the summary under eight legacy_ columns. The columns are
+    # written for every mode, empty outside legacy mode, so that the summary has
+    # the same columns whichever modes are configured.
+    legacy_counts <- data.table(
+      legacy_dml_transcript_rows = NA_integer_, legacy_transcripts = NA_integer_,
+      legacy_annotation_rows = NA_integer_, legacy_transcripts_with_go = NA_integer_,
+      legacy_genes_with_go = NA_integer_,
+      legacy_go_ids_BP = NA_integer_, legacy_go_ids_CC = NA_integer_, legacy_go_ids_MF = NA_integer_)
     if (mode == "legacy") {
       via_tx <- unique(merge(pairs[, .(gene_id, chr, start, end, meth.diff)],
                              tx[legacy_gene_id_lost == FALSE, .(gene_id, transcript_id)],
@@ -152,14 +183,14 @@ for (mode in config$modes) {
                            go_id, GOterm, GOSlim, GOcat, sep = "\t")]
       lines <- sort(unique(lines), method = "radix")          # byte order, as the legacy `sort`
       con <- gzfile(tab(sprintf("dml_go_annotation_%s_legacy.tsv.gz", set)), "w"); writeLines(lines, con); close(con)
-      row <- cbind(row, data.table(
+      legacy_counts[, `:=`(
         legacy_dml_transcript_rows = nrow(via_tx), legacy_transcripts = uniqueN(via_tx$transcript_id),
         legacy_annotation_rows = length(lines), legacy_transcripts_with_go = uniqueN(ann$transcript_id),
         legacy_genes_with_go = uniqueN(ann$gene_id),
         legacy_go_ids_BP = ann[GOcat == "P", uniqueN(go_id)], legacy_go_ids_CC = ann[GOcat == "C", uniqueN(go_id)],
-        legacy_go_ids_MF = ann[GOcat == "F", uniqueN(go_id)]))
+        legacy_go_ids_MF = ann[GOcat == "F", uniqueN(go_id)])]
     }
-    summary_rows[[length(summary_rows) + 1]] <- row
+    summary_rows[[length(summary_rows) + 1]] <- cbind(row, legacy_counts)
     log_msg("[%s] %-6s %4d DML; %4d in a gene; %4d genes, %4d with GO terms", mode, set, nrow(dml),
             row$n_dml_in_gene, row$n_genes_with_dml, row$n_genes_with_dml_and_go)
   }
@@ -169,6 +200,6 @@ for (mode in config$modes) {
           sum(gene_tab$n_cpg_tested > 0), nrow(gene_tab), sum(gene_tab$n_cpg_tested > 0 & gene_tab$n_go_terms > 0),
           sum(gene_tab$n_cpg_eligible > 0), sum(gene_tab$n_cpg_eligible > 0 & gene_tab$n_go_terms > 0))
 }
-write_table(rbindlist(summary_rows, fill = TRUE), tab("annotation_summary.csv"))
+write_table(rbindlist(summary_rows), tab("annotation_summary.csv"))
 
 finish_step(step, t0)

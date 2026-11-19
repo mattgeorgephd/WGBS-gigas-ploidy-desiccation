@@ -76,7 +76,9 @@ true_transcript_ids <- function() {
 }
 
 # Legacy GO term table recovered from the legacy annotation tables: GOID, GOterm,
-# GOSlim, GOcat (see 03_input_files/annotation/build_legacy_go_terms.R).
+# GOSlim, GOcat (see 03_input_files/annotation/build_legacy_go_terms.R). One row
+# per GO ID and GOslim bin: a GO ID filed under several bins has several rows, and
+# so has every line of a legacy annotation table that names it.
 read_legacy_go_terms <- function() {
   data.table::fread(input_path("annotation", "legacy_go_goslim_terms.tsv.gz"), header = TRUE, sep = "\t",
                     quote = "", na.strings = NULL, showProgress = FALSE)

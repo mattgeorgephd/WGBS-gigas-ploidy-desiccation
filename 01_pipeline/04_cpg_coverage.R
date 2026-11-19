@@ -11,7 +11,7 @@
 #               analysis of all libraries
 #           and draw Figure S1.
 #
-# Run       Rscript 01_pipeline/04_cpg_coverage.R     (after step 01; about 12 minutes, about 9 GB of memory)
+# Run       Rscript 01_pipeline/04_cpg_coverage.R     (after step 01; about 12 minutes, about 9.5 GB of memory)
 #
 # Inputs    03_input_files/metadata/wgbs_libraries.csv
 #           22 coverage files and the reference genome listed in
