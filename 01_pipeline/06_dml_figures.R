@@ -92,8 +92,9 @@ for (mode in config$modes) {
   # log and into the panel, so that the figure is complete and nothing is hidden.
   note_panel <- function(title, why) {
     log_msg("[%s] %s: %s; the panel is left empty", mode, title, why)
-    ggplot() + annotate("text", x = 0, y = 0, label = why, size = 3.6) + labs(title = title) + theme_void() +
-      theme(plot.title = element_text(size = 11, face = "italic", hjust = 0.5))
+    ggplot() + annotate("text", x = 0, y = 0, label = paste(strwrap(why, width = 30), collapse = "\n"), size = 3.6) +
+      labs(title = title) + theme_void() +
+      theme(plot.title = element_text(size = 11, face = "italic", hjust = 0.5), plot.tag = element_text(face = "bold"))
   }
 
   # ---- A, B: threshold curves --------------------------------------------------
@@ -148,9 +149,12 @@ for (mode in config$modes) {
       theme_wgbs() + theme(plot.title = element_text(size = 11, face = "italic"))
   }
   pC <- pca_panel(pcs$ploidy, "Ploidy DML"); pD <- pca_panel(pcs$heat, "Heat DML")
-  log_msg("[%s] PCA on ploidy DML: PC1 %.1f%%, PC2 %.1f%%; on heat DML: PC1 %.1f%%, PC2 %.1f%%", mode,
-          pcs$ploidy$variance$percent_variance[1], pcs$ploidy$variance$percent_variance[2],
-          pcs$heat$variance$percent_variance[1], pcs$heat$variance$percent_variance[2])
+  for (p in pcs) {
+    if (!anyNA(p$scores$PC1)) {
+      log_msg("[%s] PCA on %s: PC1 %.1f%%, PC2 %.1f%%", mode, p$variance$loci[1],
+              p$variance$percent_variance[1], p$variance$percent_variance[2])
+    }
+  }
 
   # ---- E, F, G: heat maps --------------------------------------------------------
   ann <- data.frame(ploidy = lib$ploidy, treatment = lib$treatment, row.names = lib$library_id)

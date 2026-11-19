@@ -288,16 +288,13 @@ for (mode in config$modes) {
                    make_regions(shared, "meth.diff_heat", "shared"))
   regions[, mode := mode]; setorder(regions, set, -n_dml)
   write_table(regions, tab(sprintf("dml_regions_%s.csv", mode)))
-  region_summary <- regions[, .(n_dml = sum(n_dml), n_regions = .N, n_single_locus_regions = sum(n_dml == 1),
-                                largest_region_n_dml = max(n_dml), dml_in_regions_of_5_or_more = sum(n_dml[n_dml >= 5])),
-                            by = .(mode, set)]
-  no_region <- setdiff(dml_sets, region_summary$set)      # sets without loci: a row of zeros each, in the usual place
-  if (length(no_region) > 0) {
-    region_summary <- rbind(region_summary, data.table(mode = mode, set = no_region, n_dml = 0L, n_regions = 0L,
-                                                       n_single_locus_regions = 0L, largest_region_n_dml = 0L,
-                                                       dml_in_regions_of_5_or_more = 0L))
-    setorder(region_summary, set)
-  }
+  # One row per set, also for a set without loci, which gets zeros.
+  region_summary <- rbindlist(lapply(c("heat DML", "ploidy DML", "shared"), function(s) {
+    r <- regions[set == s]
+    data.table(mode = mode, set = s, n_dml = sum(r$n_dml), n_regions = nrow(r), n_single_locus_regions = sum(r$n_dml == 1),
+               largest_region_n_dml = if (nrow(r) > 0) max(r$n_dml) else 0L,
+               dml_in_regions_of_5_or_more = sum(r$n_dml[r$n_dml >= 5]))
+  }))
   write_table(region_summary, tab(sprintf("dml_region_summary_%s.csv", mode)))
   print(region_summary)
 
