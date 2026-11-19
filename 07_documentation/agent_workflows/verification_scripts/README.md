@@ -15,7 +15,7 @@ One folder per verification task of the workflow `audit-verification` (claims C1
 | `C4b-eligible-reimplementation` | The gene-level enrichment, rebuilt without topGO or goseq | I-41 |
 | `C5-feature-odds` | The odds ratios of DML by genome feature | I-41, I-14 |
 | `C6-coverage-filter-locus` | The coverage filter, the first-line loss, and the locus on NC_047563.1 | I-05, I-09, I-38 |
-| `C7-legacy-go-semantics` | What Figure 5, Figure 9 and Table 1 count | I-02, I-07, I-20, I-21, I-45 |
+| `C7-legacy-go-semantics` | What Figure 5, Figure 9 and Table 1 count | I-02, I-07, I-20, I-21, I-42, I-45 |
 | `C8-counts-and-correlations` | CpG counts, the genome total, the correlation range | I-16, I-44 |
 | `R1` to `R6` | Code reviews of the pipeline steps (in progress) | to be added |
 

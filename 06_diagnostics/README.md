@@ -157,5 +157,5 @@ Three points for reading these tables.
 
 | File | Purpose |
 |---|---|
-| `check_methylkit_equivalence.R` | Shows that the low-memory import of step 05 gives the same united table as methylKit's own `methRead`, `filterByCoverage`, `normalizeCoverage`, `unite`. Confirmed once outside the repository (identical DML lists in both modes); the script will make the check repeatable. |
+| `check_methylkit_equivalence.R` | Shows that the low-memory import of step 05 gives the same united table as methylKit's own `methRead`, `filterByCoverage`, `normalizeCoverage`, `unite`. Checked once outside the repository: identical united tables on a small end-to-end example in both modes, and identical cutoffs, kept rows and removed positions on four real libraries; in legacy mode the DML lists also equal the archived lists of the legacy analysis (`check_legacy_outputs.R`). No comparison on the complete 22 libraries in corrected mode is on record; the script will make the check repeatable. |
 | `check_modes.R` | Side-by-side table of legacy and corrected results for every reported quantity. |
