@@ -36,13 +36,15 @@
 #
 # Run       Rscript 06_diagnostics/dml_sensitivity.R
 #             Full run, after step 05. One model fit per analysis and mode on
-#             every tested CpG; see 06_diagnostics/README.md for the run time.
-#             Set WGBS_CORES to use more than one core. Fits are cached, so an
-#             interrupted run resumes where it stopped.
+#             every tested CpG: about 4 hours with WGBS_CORES=2 and about half
+#             of that with 4 cores (estimated from timed fits on a sample of
+#             CpGs). Fits are cached, so an interrupted run resumes where it
+#             stopped.
 #           WGBS_SENSITIVITY_SUBSET=20000 Rscript 06_diagnostics/dml_sensitivity.R
 #             Test mode: the same code on a seeded random sample of that many
-#             CpGs of each united table. A few minutes. Its outputs test the
-#             code and are not results; they go to a separate folder (below).
+#             CpGs of each united table, sorted by row. About 10 minutes on 2
+#             cores. Its outputs test the code and are not results; they go to
+#             a separate folder (below).
 #
 # Reads     03_input_files/metadata/wgbs_libraries.csv
 #           04_output/05_differential_methylation/tables/
@@ -91,13 +93,15 @@
 #           - Which of the two tests. In the benchmark of Wreczycka et al. 2017
 #             (Journal of Biotechnology 261:105-115,
 #             doi:10.1016/j.jbiotec.2017.08.007; read in the preprint version of
-#             August 2017, doi:10.1101/109512), the default test had the lowest
-#             specificity, the F test with the correction behaved like the
-#             stringent methods (DSS, limma), and the chi-squared test with the
-#             correction is named as a compromise between the two. Their
-#             simulation had three samples per group. The help page of
-#             stats::anova.glm (R 4.3.3) states that the F test is the
-#             appropriate one when the dispersion is estimated by moments.
+#             August 2017, doi:10.1101/109512), the default test without the
+#             correction had the lowest specificity and the best overall
+#             accuracy, the F test with the correction gave results similar to
+#             DSS, one of the stringent methods, and the chi-squared test with
+#             the correction is named as a good compromise between stringent
+#             and relaxed methods. Their simulation had three samples per group.
+#             The help page of stats::anova.glm (R 4.3.3) states that the F test
+#             is the most appropriate one when the dispersion is estimated by
+#             moments. Both tests are run here; the authors choose.
 #           - q-values are SLIM q-values (Wang, Tuominen and Tsai 2011,
 #             Bioinformatics 27:225-231, doi:10.1093/bioinformatics/btq650),
 #             computed within each analysis. SLIM estimates the share of true
@@ -120,8 +124,10 @@
 #             other libraries, which is not the interaction. The effect size of
 #             A2 is computed here as (triploid heat minus triploid control)
 #             minus (diploid heat minus diploid control), from the same pooled
-#             percentages. The test is on the log-odds scale and the effect
-#             size on the percentage scale, as for the main effects.
+#             percentages; a positive value ("hyper" in the list) means that
+#             heat minus control is higher in triploids than in diploids. The
+#             test is on the log-odds scale and the effect size on the
+#             percentage scale, as for the main effects.
 #           - Reading the list sizes. The difference between two small groups
 #             is noisier than the difference between two large ones, so it
 #             passes the difference cutoff by chance more often. This applies to
@@ -131,16 +137,19 @@
 #             correction such an analysis can return more DML than the primary
 #             one; a longer list is then not by itself evidence of more
 #             differences.
-#           - The primary lists and the loci in both are read from step 05. In a
-#             full run A0 must reproduce them exactly, and the script stops if
-#             it does not. In test mode the p-values and differences of A0 must
-#             equal those of step 05, but q-values are computed on the sample,
-#             so the A0 lists can differ slightly from the primary lists.
-#           - methylKit raises a warning for each CpG where a group has no
+#           - The primary lists and the loci in both are read from step 05. A0
+#             is fitted first. In a full run it must reproduce the p-values,
+#             q-values and lists of step 05 exactly, and the script stops before
+#             any other analysis is fitted if it does not. In test mode the
+#             p-values and differences of A0 must equal those of step 05, but
+#             q-values are computed on the sample, so the A0 lists can differ
+#             slightly from the primary lists.
+#           - A model fit raises a warning for each CpG where a group has no
 #             methylated read, or only methylated reads (fitted probability of 0
-#             or 1). These are counted and logged, not printed one by one. With
-#             more than one core they are raised in the worker processes and do
-#             not reach the log. Any other warning stops the run.
+#             or 1). These warnings are counted and logged, not printed one by
+#             one. With more than one core they are raised in the worker
+#             processes and do not reach the log. Any other warning stops the
+#             run.
 
 suppressPackageStartupMessages(library(here))
 source(here("run_config.R"))
@@ -445,6 +454,7 @@ check_interaction_coding <- function(fit, counts, eligible, spec) {
   keep <- library_sets[[spec$libraries]]$keep
   set.seed(seed)
   picked <- if (length(eligible) > n_coding_check) sort(sample(eligible, n_coding_check)) else eligible
+  if (length(picked) == 0) stop("No eligible CpG to check the interaction coding of ", spec$analysis_id, " on.", call. = FALSE)
   frame <- data.frame(ploidy = lib$ploidy[keep], heat = lib$treatment[keep])
   additive  <- stats::model.matrix(~ ploidy + heat, frame)
   factorial <- stats::model.matrix(~ ploidy * heat, frame)
@@ -523,11 +533,26 @@ run_mode <- function(mode_i) {
   counts <- list(numCs = count_columns("numCs"), numTs = count_columns("numTs"))
   eligible <- which(dml_eligible(mean_percent_methylation(united), config))
 
-  # Fits, and the effect size of each analysis.
+  # The step 05 lists among the CpGs tested here: position in `united` and
+  # direction (class, for the loci in both lists).
+  read_primary <- function(name, value_column) {
+    d <- fread(step05_file(sprintf("dml_%s_%s.csv", name, mode_i)))
+    if (!all(c("chr", "start", "united_row", value_column) %in% names(d))) stop("Unexpected columns in dml_", name, "_", mode_i, ".csv.", call. = FALSE)
+    if (!test_mode && !all(d$united_row %in% cpg_rows)) stop("dml_", name, "_", mode_i, ".csv holds CpGs that are not in the united table.", call. = FALSE)
+    d <- d[united_row %in% cpg_rows]
+    d[, position := match(united_row, cpg_rows)]
+    if (nrow(d) > 0 && (!identical(d$chr, united$chr[d$position]) || !identical(d$start, united$start[d$position]))) {
+      stop("dml_", name, "_", mode_i, ".csv and the united table disagree on positions.", call. = FALSE)
+    }
+    data.table(position = d$position, value = as.character(d[[value_column]]))
+  }
+  primary <- list(ploidy = read_primary("ploidy", "direction"), heat = read_primary("heat", "direction"),
+                  shared = read_primary("shared", "class"))
+  if (!all(primary$shared$value %in% c("both_hyper", "both_hypo", "opposite"))) stop("Unexpected class in dml_shared_", mode_i, ".csv.", call. = FALSE)
+
+  # One analysis: the fit (or its cached copy), the effect size, and the calls.
   base_object <- make_methylbase(united)
-  results <- list()
-  for (k in seq_len(nrow(specs))) {
-    spec <- specs[k]
+  analyse <- function(spec) {
     res <- fit_analysis(spec, mode_i, base_object, united, input_id)
     if (spec$contrast == "interaction") {
       if (spec$overdispersion == "none") check_interaction_coding(res, counts, eligible, spec)
@@ -543,28 +568,15 @@ run_mode <- function(mode_i) {
     if (anyNA(res$effect_size)) stop(spec$analysis_id, ": missing effect sizes.", call. = FALSE)
     res[, significant := qvalue < config$dml_qvalue]
     res[, is_dml := significant & abs(effect_size) > config$dml_difference]
-    results[[spec$analysis_id]] <- res
+    res
   }
-  rm(base_object); gc(verbose = FALSE)
 
-  # The step 05 lists among the CpGs tested here: position in `united` and
-  # direction (class, for the loci in both lists).
-  read_primary <- function(name, value_column) {
-    d <- fread(step05_file(sprintf("dml_%s_%s.csv", name, mode_i)))
-    if (!all(c("chr", "start", "united_row", value_column) %in% names(d))) stop("Unexpected columns in dml_", name, "_", mode_i, ".csv.", call. = FALSE)
-    if (!test_mode && !all(d$united_row %in% cpg_rows)) stop("dml_", name, "_", mode_i, ".csv holds CpGs that are not in the united table.", call. = FALSE)
-    d <- d[united_row %in% cpg_rows]
-    d[, position := match(united_row, cpg_rows)]
-    if (!identical(d$chr, united$chr[d$position]) || !identical(d$start, united$start[d$position])) {
-      stop("dml_", name, "_", mode_i, ".csv and the united table disagree on positions.", call. = FALSE)
-    }
-    data.table(position = d$position, value = d[[value_column]])
-  }
-  primary <- list(ploidy = read_primary("ploidy", "direction"), heat = read_primary("heat", "direction"),
-                  shared = read_primary("shared", "class"))
-  if (!all(primary$shared$value %in% c("both_hyper", "both_hypo", "opposite"))) stop("Unexpected class in dml_shared_", mode_i, ".csv.", call. = FALSE)
-
-  # A0 against step 05. CSV written at the end of the script: equivalence_with_step05.csv.
+  # A0 first, checked against step 05 before any other analysis is fitted, so
+  # that a run that cannot reproduce step 05 stops early.
+  # CSV written at the end of the script: equivalence_with_step05.csv.
+  results <- list()
+  is_primary <- specs$analysis_id %in% primary_ids
+  for (k in which(is_primary)) results[[specs$analysis_id[k]]] <- analyse(specs[k])
   equivalence <- rbindlist(lapply(names(primary_ids), function(contrast_i) {
     res <- results[[primary_ids[[contrast_i]]]]
     ref <- fread(step05_file(sprintf("diffmeth_%s_%s.csv.gz", contrast_i, mode_i)),
@@ -610,6 +622,10 @@ run_mode <- function(mode_i) {
     }
     log_msg("[%s] A0 reproduces the q-values, both DML lists and the loci in both lists of step 05", mode_i)
   }
+
+  # The other analyses.
+  for (k in which(!is_primary)) results[[specs$analysis_id[k]]] <- analyse(specs[k])
+  rm(base_object); gc(verbose = FALSE)
 
   # DML list of each analysis (CSV: dml_<analysis id>_<mode>.csv in the output
   # folder of this run) and its overlap with the primary list of its contrast.
@@ -725,7 +741,7 @@ figure <- wrap_plots(panels, ncol = 1, heights = bars + 1) +
     title = "DML under each alternative analysis",
     subtitle = if (test_mode) run_scope else NULL,
     caption = paste("Vertical line: size of the step 05 list that the bars are compared with.",
-                    "An analysis without a bar in a mode was not run in that mode."),
+                    "A row without a number was not run in that mode."),
     theme = theme(plot.title = element_text(face = "bold", size = 13), plot.caption = element_text(hjust = 0, size = 9),
                   plot.subtitle = element_text(face = "bold", size = 11)))
 save_figure(figure, out_file("figure_dml_sensitivity"), width = 11, height = 2.6 + 0.36 * sum(bars + 1))
