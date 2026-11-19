@@ -156,4 +156,4 @@ These do not block phases 1 to 4. They decide what phase 5 builds and what the m
 | Date | Decision | By |
 |---|---|---|
 | 2026-11-19 | Keep `07_documentation/agent_workflows/` (workflow scripts, the agents' raw reports, the verifying agents' own scripts) in the repository for now. To be revisited before the branch is merged. | M. George |
-| 2026-11-19 | A plain-text copy of the manuscript draft may be committed, so that the line numbers in `03_input_files/manuscript/manuscript_values_map.csv` can be followed. Approved; not yet committed: the GitHub repository is public, so the commit would publish the unpublished draft, and the session asked for that to be confirmed first. | M. George (confirmation pending) |
+| 2026-11-19 | The text of the manuscript draft is not committed. The repository is public and the draft is unpublished. `03_input_files/manuscript/README.md` records which copy of the Google Doc the line numbers of the values map refer to (date, size, checksum, line ranges), and each row carries the verbatim clause it concerns. | M. George |

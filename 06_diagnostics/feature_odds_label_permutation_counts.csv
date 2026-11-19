@@ -1,0 +1,259 @@
+mode,dml_set,permutation_scheme,quantity,mean_methylation_bin,bin_width,value,notes
+legacy,ploidy,real labels,tested CpGs,all,,480579,""
+legacy,ploidy,real labels,CpGs with absolute difference above 20 points,all,,1038,""
+legacy,ploidy,real labels,"of these, CpGs with q-value below 0.01",all,,1038,""
+legacy,ploidy,real labels,"of these, CpGs with q-value at or above 0.01 (removed by the q-value rule)",all,,0,""
+legacy,ploidy,real labels,largest q-value among CpGs with absolute difference above the threshold,all,,0.004641,""
+legacy,ploidy,real labels,"CpGs with q-value below 0.01, any difference",all,,10275,""
+legacy,ploidy,real labels,DML in the list of step 05,all,,1038,""
+legacy,ploidy,real labels,DML outside the eligible range,all,,1,""
+legacy,heat,real labels,tested CpGs,all,,480579,""
+legacy,heat,real labels,CpGs with absolute difference above 20 points,all,,2352,""
+legacy,heat,real labels,"of these, CpGs with q-value below 0.01",all,,2351,""
+legacy,heat,real labels,"of these, CpGs with q-value at or above 0.01 (removed by the q-value rule)",all,,1,""
+legacy,heat,real labels,largest q-value among CpGs with absolute difference above the threshold,all,,0.01786,""
+legacy,heat,real labels,"CpGs with q-value below 0.01, any difference",all,,20062,""
+legacy,heat,real labels,DML in the list of step 05,all,,2351,""
+legacy,heat,real labels,DML outside the eligible range,all,,1,""
+legacy,ploidy,real labels,eligible CpGs in the bin,10 to 15,5,10294,""
+legacy,ploidy,real labels,"eligible CpGs that are ploidy DML, percent of the eligible CpGs in the bin",10 to 15,5,0.174859,""
+legacy,ploidy,real labels,eligible CpGs in the bin,15 to 20,5,6888,""
+legacy,ploidy,real labels,"eligible CpGs that are ploidy DML, percent of the eligible CpGs in the bin",15 to 20,5,0.638792,""
+legacy,ploidy,real labels,eligible CpGs in the bin,20 to 25,5,5238,""
+legacy,ploidy,real labels,"eligible CpGs that are ploidy DML, percent of the eligible CpGs in the bin",20 to 25,5,1.58457,""
+legacy,ploidy,real labels,eligible CpGs in the bin,25 to 30,5,4116,""
+legacy,ploidy,real labels,"eligible CpGs that are ploidy DML, percent of the eligible CpGs in the bin",25 to 30,5,1.33625,""
+legacy,ploidy,real labels,eligible CpGs in the bin,30 to 35,5,3315,""
+legacy,ploidy,real labels,"eligible CpGs that are ploidy DML, percent of the eligible CpGs in the bin",30 to 35,5,1.65913,""
+legacy,ploidy,real labels,eligible CpGs in the bin,35 to 40,5,2813,""
+legacy,ploidy,real labels,"eligible CpGs that are ploidy DML, percent of the eligible CpGs in the bin",35 to 40,5,2.524,""
+legacy,ploidy,real labels,eligible CpGs in the bin,40 to 45,5,2705,""
+legacy,ploidy,real labels,"eligible CpGs that are ploidy DML, percent of the eligible CpGs in the bin",40 to 45,5,2.47689,""
+legacy,ploidy,real labels,eligible CpGs in the bin,45 to 50,5,2771,""
+legacy,ploidy,real labels,"eligible CpGs that are ploidy DML, percent of the eligible CpGs in the bin",45 to 50,5,2.95922,""
+legacy,ploidy,real labels,eligible CpGs in the bin,50 to 55,5,2713,""
+legacy,ploidy,real labels,"eligible CpGs that are ploidy DML, percent of the eligible CpGs in the bin",50 to 55,5,3.0962,""
+legacy,ploidy,real labels,eligible CpGs in the bin,55 to 60,5,2740,""
+legacy,ploidy,real labels,"eligible CpGs that are ploidy DML, percent of the eligible CpGs in the bin",55 to 60,5,3.61314,""
+legacy,ploidy,real labels,eligible CpGs in the bin,60 to 65,5,2864,""
+legacy,ploidy,real labels,"eligible CpGs that are ploidy DML, percent of the eligible CpGs in the bin",60 to 65,5,2.89804,""
+legacy,ploidy,real labels,eligible CpGs in the bin,65 to 70,5,3065,""
+legacy,ploidy,real labels,"eligible CpGs that are ploidy DML, percent of the eligible CpGs in the bin",65 to 70,5,3.00163,""
+legacy,ploidy,real labels,eligible CpGs in the bin,70 to 75,5,3213,""
+legacy,ploidy,real labels,"eligible CpGs that are ploidy DML, percent of the eligible CpGs in the bin",70 to 75,5,2.52101,""
+legacy,ploidy,real labels,eligible CpGs in the bin,75 to 80,5,3542,""
+legacy,ploidy,real labels,"eligible CpGs that are ploidy DML, percent of the eligible CpGs in the bin",75 to 80,5,1.83512,""
+legacy,ploidy,real labels,eligible CpGs in the bin,80 to 85,5,4310,""
+legacy,ploidy,real labels,"eligible CpGs that are ploidy DML, percent of the eligible CpGs in the bin",80 to 85,5,0.881671,""
+legacy,ploidy,real labels,eligible CpGs in the bin,85 to 90,5,4893,""
+legacy,ploidy,real labels,"eligible CpGs that are ploidy DML, percent of the eligible CpGs in the bin",85 to 90,5,0.408747,""
+legacy,ploidy,real labels,eligible CpGs in the bin,10 to 20,10,17182,""
+legacy,ploidy,real labels,"eligible CpGs that are ploidy DML, percent of the eligible CpGs in the bin",10 to 20,10,0.360843,""
+legacy,ploidy,real labels,eligible CpGs in the bin,20 to 30,10,9354,""
+legacy,ploidy,real labels,"eligible CpGs that are ploidy DML, percent of the eligible CpGs in the bin",20 to 30,10,1.4753,""
+legacy,ploidy,real labels,eligible CpGs in the bin,30 to 40,10,6128,""
+legacy,ploidy,real labels,"eligible CpGs that are ploidy DML, percent of the eligible CpGs in the bin",30 to 40,10,2.05614,""
+legacy,ploidy,real labels,eligible CpGs in the bin,40 to 50,10,5476,""
+legacy,ploidy,real labels,"eligible CpGs that are ploidy DML, percent of the eligible CpGs in the bin",40 to 50,10,2.72096,""
+legacy,ploidy,real labels,eligible CpGs in the bin,50 to 60,10,5453,""
+legacy,ploidy,real labels,"eligible CpGs that are ploidy DML, percent of the eligible CpGs in the bin",50 to 60,10,3.35595,""
+legacy,ploidy,real labels,eligible CpGs in the bin,60 to 70,10,5929,""
+legacy,ploidy,real labels,"eligible CpGs that are ploidy DML, percent of the eligible CpGs in the bin",60 to 70,10,2.95159,""
+legacy,ploidy,real labels,eligible CpGs in the bin,70 to 80,10,6755,""
+legacy,ploidy,real labels,"eligible CpGs that are ploidy DML, percent of the eligible CpGs in the bin",70 to 80,10,2.16136,""
+legacy,ploidy,real labels,eligible CpGs in the bin,80 to 90,10,9203,""
+legacy,ploidy,real labels,"eligible CpGs that are ploidy DML, percent of the eligible CpGs in the bin",80 to 90,10,0.630229,""
+legacy,ploidy,within cohort,permutations,all,,1000,1000 permutations; 0 of them equal the real labels or their mirror image
+legacy,ploidy,within cohort,"CpGs called per permutation, median",all,,742.5,1000 permutations; 0 of them equal the real labels or their mirror image
+legacy,ploidy,within cohort,"CpGs called per permutation, 5th percentile",all,,531.95,1000 permutations; 0 of them equal the real labels or their mirror image
+legacy,ploidy,within cohort,"CpGs called per permutation, 95th percentile",all,,1376.3,1000 permutations; 0 of them equal the real labels or their mirror image
+legacy,ploidy,within cohort,"CpGs called per permutation, smallest",all,,436,1000 permutations; 0 of them equal the real labels or their mirror image
+legacy,ploidy,within cohort,"CpGs called per permutation, largest",all,,3667,1000 permutations; 0 of them equal the real labels or their mirror image
+legacy,ploidy,within cohort,share of permutations that call at least as many CpGs as the real labels,all,,0.135,1000 permutations; 0 of them equal the real labels or their mirror image
+legacy,ploidy,within cohort,"called CpGs outside the eligible range, percent of all called CpGs",all,,0.238899,1000 permutations; 0 of them equal the real labels or their mirror image
+legacy,ploidy,within cohort,"eligible CpGs called per permutation, percent of the eligible CpGs in the bin",10 to 15,5,0.229337,1000 permutations; 0 of them equal the real labels or their mirror image
+legacy,ploidy,within cohort,"eligible CpGs called per permutation, percent of the eligible CpGs in the bin",15 to 20,5,0.589329,1000 permutations; 0 of them equal the real labels or their mirror image
+legacy,ploidy,within cohort,"eligible CpGs called per permutation, percent of the eligible CpGs in the bin",20 to 25,5,1.02698,1000 permutations; 0 of them equal the real labels or their mirror image
+legacy,ploidy,within cohort,"eligible CpGs called per permutation, percent of the eligible CpGs in the bin",25 to 30,5,1.19371,1000 permutations; 0 of them equal the real labels or their mirror image
+legacy,ploidy,within cohort,"eligible CpGs called per permutation, percent of the eligible CpGs in the bin",30 to 35,5,1.52338,1000 permutations; 0 of them equal the real labels or their mirror image
+legacy,ploidy,within cohort,"eligible CpGs called per permutation, percent of the eligible CpGs in the bin",35 to 40,5,2.03249,1000 permutations; 0 of them equal the real labels or their mirror image
+legacy,ploidy,within cohort,"eligible CpGs called per permutation, percent of the eligible CpGs in the bin",40 to 45,5,2.3193,1000 permutations; 0 of them equal the real labels or their mirror image
+legacy,ploidy,within cohort,"eligible CpGs called per permutation, percent of the eligible CpGs in the bin",45 to 50,5,2.60621,1000 permutations; 0 of them equal the real labels or their mirror image
+legacy,ploidy,within cohort,"eligible CpGs called per permutation, percent of the eligible CpGs in the bin",50 to 55,5,2.64685,1000 permutations; 0 of them equal the real labels or their mirror image
+legacy,ploidy,within cohort,"eligible CpGs called per permutation, percent of the eligible CpGs in the bin",55 to 60,5,2.74847,1000 permutations; 0 of them equal the real labels or their mirror image
+legacy,ploidy,within cohort,"eligible CpGs called per permutation, percent of the eligible CpGs in the bin",60 to 65,5,2.53918,1000 permutations; 0 of them equal the real labels or their mirror image
+legacy,ploidy,within cohort,"eligible CpGs called per permutation, percent of the eligible CpGs in the bin",65 to 70,5,2.24604,1000 permutations; 0 of them equal the real labels or their mirror image
+legacy,ploidy,within cohort,"eligible CpGs called per permutation, percent of the eligible CpGs in the bin",70 to 75,5,1.7868,1000 permutations; 0 of them equal the real labels or their mirror image
+legacy,ploidy,within cohort,"eligible CpGs called per permutation, percent of the eligible CpGs in the bin",75 to 80,5,1.17668,1000 permutations; 0 of them equal the real labels or their mirror image
+legacy,ploidy,within cohort,"eligible CpGs called per permutation, percent of the eligible CpGs in the bin",80 to 85,5,0.580742,1000 permutations; 0 of them equal the real labels or their mirror image
+legacy,ploidy,within cohort,"eligible CpGs called per permutation, percent of the eligible CpGs in the bin",85 to 90,5,0.146945,1000 permutations; 0 of them equal the real labels or their mirror image
+legacy,ploidy,within cohort,"eligible CpGs called per permutation, percent of the eligible CpGs in the bin",10 to 20,10,0.373653,1000 permutations; 0 of them equal the real labels or their mirror image
+legacy,ploidy,within cohort,"eligible CpGs called per permutation, percent of the eligible CpGs in the bin",20 to 30,10,1.10034,1000 permutations; 0 of them equal the real labels or their mirror image
+legacy,ploidy,within cohort,"eligible CpGs called per permutation, percent of the eligible CpGs in the bin",30 to 40,10,1.75708,1000 permutations; 0 of them equal the real labels or their mirror image
+legacy,ploidy,within cohort,"eligible CpGs called per permutation, percent of the eligible CpGs in the bin",40 to 50,10,2.46448,1000 permutations; 0 of them equal the real labels or their mirror image
+legacy,ploidy,within cohort,"eligible CpGs called per permutation, percent of the eligible CpGs in the bin",50 to 60,10,2.69791,1000 permutations; 0 of them equal the real labels or their mirror image
+legacy,ploidy,within cohort,"eligible CpGs called per permutation, percent of the eligible CpGs in the bin",60 to 70,10,2.38764,1000 permutations; 0 of them equal the real labels or their mirror image
+legacy,ploidy,within cohort,"eligible CpGs called per permutation, percent of the eligible CpGs in the bin",70 to 80,10,1.46688,1000 permutations; 0 of them equal the real labels or their mirror image
+legacy,ploidy,within cohort,"eligible CpGs called per permutation, percent of the eligible CpGs in the bin",80 to 90,10,0.350103,1000 permutations; 0 of them equal the real labels or their mirror image
+legacy,ploidy,within cohort and acute heat shock,permutations,all,,1000,1000 permutations; 0 of them equal the real labels or their mirror image
+legacy,ploidy,within cohort and acute heat shock,"CpGs called per permutation, median",all,,750,1000 permutations; 0 of them equal the real labels or their mirror image
+legacy,ploidy,within cohort and acute heat shock,"CpGs called per permutation, 5th percentile",all,,516,1000 permutations; 0 of them equal the real labels or their mirror image
+legacy,ploidy,within cohort and acute heat shock,"CpGs called per permutation, 95th percentile",all,,1748.1,1000 permutations; 0 of them equal the real labels or their mirror image
+legacy,ploidy,within cohort and acute heat shock,"CpGs called per permutation, smallest",all,,432,1000 permutations; 0 of them equal the real labels or their mirror image
+legacy,ploidy,within cohort and acute heat shock,"CpGs called per permutation, largest",all,,4107,1000 permutations; 0 of them equal the real labels or their mirror image
+legacy,ploidy,within cohort and acute heat shock,share of permutations that call at least as many CpGs as the real labels,all,,0.153,1000 permutations; 0 of them equal the real labels or their mirror image
+legacy,ploidy,within cohort and acute heat shock,"called CpGs outside the eligible range, percent of all called CpGs",all,,0.263065,1000 permutations; 0 of them equal the real labels or their mirror image
+legacy,ploidy,within cohort and acute heat shock,"eligible CpGs called per permutation, percent of the eligible CpGs in the bin",10 to 15,5,0.297435,1000 permutations; 0 of them equal the real labels or their mirror image
+legacy,ploidy,within cohort and acute heat shock,"eligible CpGs called per permutation, percent of the eligible CpGs in the bin",15 to 20,5,0.69097,1000 permutations; 0 of them equal the real labels or their mirror image
+legacy,ploidy,within cohort and acute heat shock,"eligible CpGs called per permutation, percent of the eligible CpGs in the bin",20 to 25,5,1.14546,1000 permutations; 0 of them equal the real labels or their mirror image
+legacy,ploidy,within cohort and acute heat shock,"eligible CpGs called per permutation, percent of the eligible CpGs in the bin",25 to 30,5,1.31156,1000 permutations; 0 of them equal the real labels or their mirror image
+legacy,ploidy,within cohort and acute heat shock,"eligible CpGs called per permutation, percent of the eligible CpGs in the bin",30 to 35,5,1.61125,1000 permutations; 0 of them equal the real labels or their mirror image
+legacy,ploidy,within cohort and acute heat shock,"eligible CpGs called per permutation, percent of the eligible CpGs in the bin",35 to 40,5,2.13491,1000 permutations; 0 of them equal the real labels or their mirror image
+legacy,ploidy,within cohort and acute heat shock,"eligible CpGs called per permutation, percent of the eligible CpGs in the bin",40 to 45,5,2.39013,1000 permutations; 0 of them equal the real labels or their mirror image
+legacy,ploidy,within cohort and acute heat shock,"eligible CpGs called per permutation, percent of the eligible CpGs in the bin",45 to 50,5,2.65117,1000 permutations; 0 of them equal the real labels or their mirror image
+legacy,ploidy,within cohort and acute heat shock,"eligible CpGs called per permutation, percent of the eligible CpGs in the bin",50 to 55,5,2.66469,1000 permutations; 0 of them equal the real labels or their mirror image
+legacy,ploidy,within cohort and acute heat shock,"eligible CpGs called per permutation, percent of the eligible CpGs in the bin",55 to 60,5,2.78661,1000 permutations; 0 of them equal the real labels or their mirror image
+legacy,ploidy,within cohort and acute heat shock,"eligible CpGs called per permutation, percent of the eligible CpGs in the bin",60 to 65,5,2.52619,1000 permutations; 0 of them equal the real labels or their mirror image
+legacy,ploidy,within cohort and acute heat shock,"eligible CpGs called per permutation, percent of the eligible CpGs in the bin",65 to 70,5,2.27116,1000 permutations; 0 of them equal the real labels or their mirror image
+legacy,ploidy,within cohort and acute heat shock,"eligible CpGs called per permutation, percent of the eligible CpGs in the bin",70 to 75,5,1.77311,1000 permutations; 0 of them equal the real labels or their mirror image
+legacy,ploidy,within cohort and acute heat shock,"eligible CpGs called per permutation, percent of the eligible CpGs in the bin",75 to 80,5,1.17428,1000 permutations; 0 of them equal the real labels or their mirror image
+legacy,ploidy,within cohort and acute heat shock,"eligible CpGs called per permutation, percent of the eligible CpGs in the bin",80 to 85,5,0.572274,1000 permutations; 0 of them equal the real labels or their mirror image
+legacy,ploidy,within cohort and acute heat shock,"eligible CpGs called per permutation, percent of the eligible CpGs in the bin",85 to 90,5,0.146965,1000 permutations; 0 of them equal the real labels or their mirror image
+legacy,ploidy,within cohort and acute heat shock,"eligible CpGs called per permutation, percent of the eligible CpGs in the bin",10 to 20,10,0.455197,1000 permutations; 0 of them equal the real labels or their mirror image
+legacy,ploidy,within cohort and acute heat shock,"eligible CpGs called per permutation, percent of the eligible CpGs in the bin",20 to 30,10,1.21855,1000 permutations; 0 of them equal the real labels or their mirror image
+legacy,ploidy,within cohort and acute heat shock,"eligible CpGs called per permutation, percent of the eligible CpGs in the bin",30 to 40,10,1.85163,1000 permutations; 0 of them equal the real labels or their mirror image
+legacy,ploidy,within cohort and acute heat shock,"eligible CpGs called per permutation, percent of the eligible CpGs in the bin",40 to 50,10,2.52222,1000 permutations; 0 of them equal the real labels or their mirror image
+legacy,ploidy,within cohort and acute heat shock,"eligible CpGs called per permutation, percent of the eligible CpGs in the bin",50 to 60,10,2.72595,1000 permutations; 0 of them equal the real labels or their mirror image
+legacy,ploidy,within cohort and acute heat shock,"eligible CpGs called per permutation, percent of the eligible CpGs in the bin",60 to 70,10,2.39435,1000 permutations; 0 of them equal the real labels or their mirror image
+legacy,ploidy,within cohort and acute heat shock,"eligible CpGs called per permutation, percent of the eligible CpGs in the bin",70 to 80,10,1.45911,1000 permutations; 0 of them equal the real labels or their mirror image
+legacy,ploidy,within cohort and acute heat shock,"eligible CpGs called per permutation, percent of the eligible CpGs in the bin",80 to 90,10,0.346148,1000 permutations; 0 of them equal the real labels or their mirror image
+legacy,heat,none,CpGs called per permutation,all,,,"No label permutation exists for heat: heat coincides with cohort (issue I-01), so the heat labels cannot be shuffled within cohort."
+corrected,ploidy,real labels,tested CpGs,all,,454555,""
+corrected,ploidy,real labels,CpGs with absolute difference above 20 points,all,,952,""
+corrected,ploidy,real labels,"of these, CpGs with q-value below 0.01",all,,952,""
+corrected,ploidy,real labels,"of these, CpGs with q-value at or above 0.01 (removed by the q-value rule)",all,,0,""
+corrected,ploidy,real labels,largest q-value among CpGs with absolute difference above the threshold,all,,0.005191,""
+corrected,ploidy,real labels,"CpGs with q-value below 0.01, any difference",all,,8429,""
+corrected,ploidy,real labels,DML in the list of step 05,all,,952,""
+corrected,ploidy,real labels,DML outside the eligible range,all,,0,""
+corrected,heat,real labels,tested CpGs,all,,454555,""
+corrected,heat,real labels,CpGs with absolute difference above 20 points,all,,2273,""
+corrected,heat,real labels,"of these, CpGs with q-value below 0.01",all,,2273,""
+corrected,heat,real labels,"of these, CpGs with q-value at or above 0.01 (removed by the q-value rule)",all,,0,""
+corrected,heat,real labels,largest q-value among CpGs with absolute difference above the threshold,all,,0.004589,""
+corrected,heat,real labels,"CpGs with q-value below 0.01, any difference",all,,16494,""
+corrected,heat,real labels,DML in the list of step 05,all,,2273,""
+corrected,heat,real labels,DML outside the eligible range,all,,1,""
+corrected,ploidy,real labels,eligible CpGs in the bin,10 to 15,5,9431,""
+corrected,ploidy,real labels,"eligible CpGs that are ploidy DML, percent of the eligible CpGs in the bin",10 to 15,5,0.15905,""
+corrected,ploidy,real labels,eligible CpGs in the bin,15 to 20,5,6389,""
+corrected,ploidy,real labels,"eligible CpGs that are ploidy DML, percent of the eligible CpGs in the bin",15 to 20,5,0.391298,""
+corrected,ploidy,real labels,eligible CpGs in the bin,20 to 25,5,4789,""
+corrected,ploidy,real labels,"eligible CpGs that are ploidy DML, percent of the eligible CpGs in the bin",20 to 25,5,1.0023,""
+corrected,ploidy,real labels,eligible CpGs in the bin,25 to 30,5,3766,""
+corrected,ploidy,real labels,"eligible CpGs that are ploidy DML, percent of the eligible CpGs in the bin",25 to 30,5,1.27456,""
+corrected,ploidy,real labels,eligible CpGs in the bin,30 to 35,5,3042,""
+corrected,ploidy,real labels,"eligible CpGs that are ploidy DML, percent of the eligible CpGs in the bin",30 to 35,5,1.67653,""
+corrected,ploidy,real labels,eligible CpGs in the bin,35 to 40,5,2569,""
+corrected,ploidy,real labels,"eligible CpGs that are ploidy DML, percent of the eligible CpGs in the bin",35 to 40,5,2.56909,""
+corrected,ploidy,real labels,eligible CpGs in the bin,40 to 45,5,2479,""
+corrected,ploidy,real labels,"eligible CpGs that are ploidy DML, percent of the eligible CpGs in the bin",40 to 45,5,2.62203,""
+corrected,ploidy,real labels,eligible CpGs in the bin,45 to 50,5,2569,""
+corrected,ploidy,real labels,"eligible CpGs that are ploidy DML, percent of the eligible CpGs in the bin",45 to 50,5,3.11405,""
+corrected,ploidy,real labels,eligible CpGs in the bin,50 to 55,5,2501,""
+corrected,ploidy,real labels,"eligible CpGs that are ploidy DML, percent of the eligible CpGs in the bin",50 to 55,5,3.31867,""
+corrected,ploidy,real labels,eligible CpGs in the bin,55 to 60,5,2530,""
+corrected,ploidy,real labels,"eligible CpGs that are ploidy DML, percent of the eligible CpGs in the bin",55 to 60,5,3.91304,""
+corrected,ploidy,real labels,eligible CpGs in the bin,60 to 65,5,2655,""
+corrected,ploidy,real labels,"eligible CpGs that are ploidy DML, percent of the eligible CpGs in the bin",60 to 65,5,3.08851,""
+corrected,ploidy,real labels,eligible CpGs in the bin,65 to 70,5,2864,""
+corrected,ploidy,real labels,"eligible CpGs that are ploidy DML, percent of the eligible CpGs in the bin",65 to 70,5,3.17737,""
+corrected,ploidy,real labels,eligible CpGs in the bin,70 to 75,5,3071,""
+corrected,ploidy,real labels,"eligible CpGs that are ploidy DML, percent of the eligible CpGs in the bin",70 to 75,5,2.50733,""
+corrected,ploidy,real labels,eligible CpGs in the bin,75 to 80,5,3396,""
+corrected,ploidy,real labels,"eligible CpGs that are ploidy DML, percent of the eligible CpGs in the bin",75 to 80,5,1.88457,""
+corrected,ploidy,real labels,eligible CpGs in the bin,80 to 85,5,4174,""
+corrected,ploidy,real labels,"eligible CpGs that are ploidy DML, percent of the eligible CpGs in the bin",80 to 85,5,0.910398,""
+corrected,ploidy,real labels,eligible CpGs in the bin,85 to 90,5,4831,""
+corrected,ploidy,real labels,"eligible CpGs that are ploidy DML, percent of the eligible CpGs in the bin",85 to 90,5,0.413993,""
+corrected,ploidy,real labels,eligible CpGs in the bin,10 to 20,10,15820,""
+corrected,ploidy,real labels,"eligible CpGs that are ploidy DML, percent of the eligible CpGs in the bin",10 to 20,10,0.252845,""
+corrected,ploidy,real labels,eligible CpGs in the bin,20 to 30,10,8555,""
+corrected,ploidy,real labels,"eligible CpGs that are ploidy DML, percent of the eligible CpGs in the bin",20 to 30,10,1.12215,""
+corrected,ploidy,real labels,eligible CpGs in the bin,30 to 40,10,5611,""
+corrected,ploidy,real labels,"eligible CpGs that are ploidy DML, percent of the eligible CpGs in the bin",30 to 40,10,2.08519,""
+corrected,ploidy,real labels,eligible CpGs in the bin,40 to 50,10,5048,""
+corrected,ploidy,real labels,"eligible CpGs that are ploidy DML, percent of the eligible CpGs in the bin",40 to 50,10,2.87242,""
+corrected,ploidy,real labels,eligible CpGs in the bin,50 to 60,10,5031,""
+corrected,ploidy,real labels,"eligible CpGs that are ploidy DML, percent of the eligible CpGs in the bin",50 to 60,10,3.61757,""
+corrected,ploidy,real labels,eligible CpGs in the bin,60 to 70,10,5519,""
+corrected,ploidy,real labels,"eligible CpGs that are ploidy DML, percent of the eligible CpGs in the bin",60 to 70,10,3.13463,""
+corrected,ploidy,real labels,eligible CpGs in the bin,70 to 80,10,6467,""
+corrected,ploidy,real labels,"eligible CpGs that are ploidy DML, percent of the eligible CpGs in the bin",70 to 80,10,2.1803,""
+corrected,ploidy,real labels,eligible CpGs in the bin,80 to 90,10,9005,""
+corrected,ploidy,real labels,"eligible CpGs that are ploidy DML, percent of the eligible CpGs in the bin",80 to 90,10,0.644087,""
+corrected,ploidy,within cohort,permutations,all,,1000,1000 permutations; 0 of them equal the real labels or their mirror image
+corrected,ploidy,within cohort,"CpGs called per permutation, median",all,,701,1000 permutations; 0 of them equal the real labels or their mirror image
+corrected,ploidy,within cohort,"CpGs called per permutation, 5th percentile",all,,490.9,1000 permutations; 0 of them equal the real labels or their mirror image
+corrected,ploidy,within cohort,"CpGs called per permutation, 95th percentile",all,,1304.15,1000 permutations; 0 of them equal the real labels or their mirror image
+corrected,ploidy,within cohort,"CpGs called per permutation, smallest",all,,383,1000 permutations; 0 of them equal the real labels or their mirror image
+corrected,ploidy,within cohort,"CpGs called per permutation, largest",all,,3623,1000 permutations; 0 of them equal the real labels or their mirror image
+corrected,ploidy,within cohort,share of permutations that call at least as many CpGs as the real labels,all,,0.147,1000 permutations; 0 of them equal the real labels or their mirror image
+corrected,ploidy,within cohort,"called CpGs outside the eligible range, percent of all called CpGs",all,,0.189212,1000 permutations; 0 of them equal the real labels or their mirror image
+corrected,ploidy,within cohort,"eligible CpGs called per permutation, percent of the eligible CpGs in the bin",10 to 15,5,0.230569,1000 permutations; 0 of them equal the real labels or their mirror image
+corrected,ploidy,within cohort,"eligible CpGs called per permutation, percent of the eligible CpGs in the bin",15 to 20,5,0.523838,1000 permutations; 0 of them equal the real labels or their mirror image
+corrected,ploidy,within cohort,"eligible CpGs called per permutation, percent of the eligible CpGs in the bin",20 to 25,5,0.808144,1000 permutations; 0 of them equal the real labels or their mirror image
+corrected,ploidy,within cohort,"eligible CpGs called per permutation, percent of the eligible CpGs in the bin",25 to 30,5,1.17002,1000 permutations; 0 of them equal the real labels or their mirror image
+corrected,ploidy,within cohort,"eligible CpGs called per permutation, percent of the eligible CpGs in the bin",30 to 35,5,1.54007,1000 permutations; 0 of them equal the real labels or their mirror image
+corrected,ploidy,within cohort,"eligible CpGs called per permutation, percent of the eligible CpGs in the bin",35 to 40,5,2.1044,1000 permutations; 0 of them equal the real labels or their mirror image
+corrected,ploidy,within cohort,"eligible CpGs called per permutation, percent of the eligible CpGs in the bin",40 to 45,5,2.40101,1000 permutations; 0 of them equal the real labels or their mirror image
+corrected,ploidy,within cohort,"eligible CpGs called per permutation, percent of the eligible CpGs in the bin",45 to 50,5,2.73717,1000 permutations; 0 of them equal the real labels or their mirror image
+corrected,ploidy,within cohort,"eligible CpGs called per permutation, percent of the eligible CpGs in the bin",50 to 55,5,2.84142,1000 permutations; 0 of them equal the real labels or their mirror image
+corrected,ploidy,within cohort,"eligible CpGs called per permutation, percent of the eligible CpGs in the bin",55 to 60,5,2.93688,1000 permutations; 0 of them equal the real labels or their mirror image
+corrected,ploidy,within cohort,"eligible CpGs called per permutation, percent of the eligible CpGs in the bin",60 to 65,5,2.72121,1000 permutations; 0 of them equal the real labels or their mirror image
+corrected,ploidy,within cohort,"eligible CpGs called per permutation, percent of the eligible CpGs in the bin",65 to 70,5,2.3904,1000 permutations; 0 of them equal the real labels or their mirror image
+corrected,ploidy,within cohort,"eligible CpGs called per permutation, percent of the eligible CpGs in the bin",70 to 75,5,1.85148,1000 permutations; 0 of them equal the real labels or their mirror image
+corrected,ploidy,within cohort,"eligible CpGs called per permutation, percent of the eligible CpGs in the bin",75 to 80,5,1.22468,1000 permutations; 0 of them equal the real labels or their mirror image
+corrected,ploidy,within cohort,"eligible CpGs called per permutation, percent of the eligible CpGs in the bin",80 to 85,5,0.599425,1000 permutations; 0 of them equal the real labels or their mirror image
+corrected,ploidy,within cohort,"eligible CpGs called per permutation, percent of the eligible CpGs in the bin",85 to 90,5,0.148789,1000 permutations; 0 of them equal the real labels or their mirror image
+corrected,ploidy,within cohort,"eligible CpGs called per permutation, percent of the eligible CpGs in the bin",10 to 20,10,0.349008,1000 permutations; 0 of them equal the real labels or their mirror image
+corrected,ploidy,within cohort,"eligible CpGs called per permutation, percent of the eligible CpGs in the bin",20 to 30,10,0.967446,1000 permutations; 0 of them equal the real labels or their mirror image
+corrected,ploidy,within cohort,"eligible CpGs called per permutation, percent of the eligible CpGs in the bin",30 to 40,10,1.79845,1000 permutations; 0 of them equal the real labels or their mirror image
+corrected,ploidy,within cohort,"eligible CpGs called per permutation, percent of the eligible CpGs in the bin",40 to 50,10,2.57209,1000 permutations; 0 of them equal the real labels or their mirror image
+corrected,ploidy,within cohort,"eligible CpGs called per permutation, percent of the eligible CpGs in the bin",50 to 60,10,2.88943,1000 permutations; 0 of them equal the real labels or their mirror image
+corrected,ploidy,within cohort,"eligible CpGs called per permutation, percent of the eligible CpGs in the bin",60 to 70,10,2.54954,1000 permutations; 0 of them equal the real labels or their mirror image
+corrected,ploidy,within cohort,"eligible CpGs called per permutation, percent of the eligible CpGs in the bin",70 to 80,10,1.52233,1000 permutations; 0 of them equal the real labels or their mirror image
+corrected,ploidy,within cohort,"eligible CpGs called per permutation, percent of the eligible CpGs in the bin",80 to 90,10,0.357668,1000 permutations; 0 of them equal the real labels or their mirror image
+corrected,ploidy,within cohort and acute heat shock,permutations,all,,1000,1000 permutations; 0 of them equal the real labels or their mirror image
+corrected,ploidy,within cohort and acute heat shock,"CpGs called per permutation, median",all,,704,1000 permutations; 0 of them equal the real labels or their mirror image
+corrected,ploidy,within cohort and acute heat shock,"CpGs called per permutation, 5th percentile",all,,483.95,1000 permutations; 0 of them equal the real labels or their mirror image
+corrected,ploidy,within cohort and acute heat shock,"CpGs called per permutation, 95th percentile",all,,1683.1,1000 permutations; 0 of them equal the real labels or their mirror image
+corrected,ploidy,within cohort and acute heat shock,"CpGs called per permutation, smallest",all,,408,1000 permutations; 0 of them equal the real labels or their mirror image
+corrected,ploidy,within cohort and acute heat shock,"CpGs called per permutation, largest",all,,4026,1000 permutations; 0 of them equal the real labels or their mirror image
+corrected,ploidy,within cohort and acute heat shock,share of permutations that call at least as many CpGs as the real labels,all,,0.175,1000 permutations; 0 of them equal the real labels or their mirror image
+corrected,ploidy,within cohort and acute heat shock,"called CpGs outside the eligible range, percent of all called CpGs",all,,0.221827,1000 permutations; 0 of them equal the real labels or their mirror image
+corrected,ploidy,within cohort and acute heat shock,"eligible CpGs called per permutation, percent of the eligible CpGs in the bin",10 to 15,5,0.305153,1000 permutations; 0 of them equal the real labels or their mirror image
+corrected,ploidy,within cohort and acute heat shock,"eligible CpGs called per permutation, percent of the eligible CpGs in the bin",15 to 20,5,0.633432,1000 permutations; 0 of them equal the real labels or their mirror image
+corrected,ploidy,within cohort and acute heat shock,"eligible CpGs called per permutation, percent of the eligible CpGs in the bin",20 to 25,5,0.937816,1000 permutations; 0 of them equal the real labels or their mirror image
+corrected,ploidy,within cohort and acute heat shock,"eligible CpGs called per permutation, percent of the eligible CpGs in the bin",25 to 30,5,1.30518,1000 permutations; 0 of them equal the real labels or their mirror image
+corrected,ploidy,within cohort and acute heat shock,"eligible CpGs called per permutation, percent of the eligible CpGs in the bin",30 to 35,5,1.63889,1000 permutations; 0 of them equal the real labels or their mirror image
+corrected,ploidy,within cohort and acute heat shock,"eligible CpGs called per permutation, percent of the eligible CpGs in the bin",35 to 40,5,2.2146,1000 permutations; 0 of them equal the real labels or their mirror image
+corrected,ploidy,within cohort and acute heat shock,"eligible CpGs called per permutation, percent of the eligible CpGs in the bin",40 to 45,5,2.47588,1000 permutations; 0 of them equal the real labels or their mirror image
+corrected,ploidy,within cohort and acute heat shock,"eligible CpGs called per permutation, percent of the eligible CpGs in the bin",45 to 50,5,2.78852,1000 permutations; 0 of them equal the real labels or their mirror image
+corrected,ploidy,within cohort and acute heat shock,"eligible CpGs called per permutation, percent of the eligible CpGs in the bin",50 to 55,5,2.86421,1000 permutations; 0 of them equal the real labels or their mirror image
+corrected,ploidy,within cohort and acute heat shock,"eligible CpGs called per permutation, percent of the eligible CpGs in the bin",55 to 60,5,2.97538,1000 permutations; 0 of them equal the real labels or their mirror image
+corrected,ploidy,within cohort and acute heat shock,"eligible CpGs called per permutation, percent of the eligible CpGs in the bin",60 to 65,5,2.70723,1000 permutations; 0 of them equal the real labels or their mirror image
+corrected,ploidy,within cohort and acute heat shock,"eligible CpGs called per permutation, percent of the eligible CpGs in the bin",65 to 70,5,2.41837,1000 permutations; 0 of them equal the real labels or their mirror image
+corrected,ploidy,within cohort and acute heat shock,"eligible CpGs called per permutation, percent of the eligible CpGs in the bin",70 to 75,5,1.83641,1000 permutations; 0 of them equal the real labels or their mirror image
+corrected,ploidy,within cohort and acute heat shock,"eligible CpGs called per permutation, percent of the eligible CpGs in the bin",75 to 80,5,1.22244,1000 permutations; 0 of them equal the real labels or their mirror image
+corrected,ploidy,within cohort and acute heat shock,"eligible CpGs called per permutation, percent of the eligible CpGs in the bin",80 to 85,5,0.590848,1000 permutations; 0 of them equal the real labels or their mirror image
+corrected,ploidy,within cohort and acute heat shock,"eligible CpGs called per permutation, percent of the eligible CpGs in the bin",85 to 90,5,0.148851,1000 permutations; 0 of them equal the real labels or their mirror image
+corrected,ploidy,within cohort and acute heat shock,"eligible CpGs called per permutation, percent of the eligible CpGs in the bin",10 to 20,10,0.437731,1000 permutations; 0 of them equal the real labels or their mirror image
+corrected,ploidy,within cohort and acute heat shock,"eligible CpGs called per permutation, percent of the eligible CpGs in the bin",20 to 30,10,1.09953,1000 permutations; 0 of them equal the real labels or their mirror image
+corrected,ploidy,within cohort and acute heat shock,"eligible CpGs called per permutation, percent of the eligible CpGs in the bin",30 to 40,10,1.90248,1000 permutations; 0 of them equal the real labels or their mirror image
+corrected,ploidy,within cohort and acute heat shock,"eligible CpGs called per permutation, percent of the eligible CpGs in the bin",40 to 50,10,2.63498,1000 permutations; 0 of them equal the real labels or their mirror image
+corrected,ploidy,within cohort and acute heat shock,"eligible CpGs called per permutation, percent of the eligible CpGs in the bin",50 to 60,10,2.92012,1000 permutations; 0 of them equal the real labels or their mirror image
+corrected,ploidy,within cohort and acute heat shock,"eligible CpGs called per permutation, percent of the eligible CpGs in the bin",60 to 70,10,2.55733,1000 permutations; 0 of them equal the real labels or their mirror image
+corrected,ploidy,within cohort and acute heat shock,"eligible CpGs called per permutation, percent of the eligible CpGs in the bin",70 to 80,10,1.51399,1000 permutations; 0 of them equal the real labels or their mirror image
+corrected,ploidy,within cohort and acute heat shock,"eligible CpGs called per permutation, percent of the eligible CpGs in the bin",80 to 90,10,0.353726,1000 permutations; 0 of them equal the real labels or their mirror image
+corrected,heat,none,CpGs called per permutation,all,,,"No label permutation exists for heat: heat coincides with cohort (issue I-01), so the heat labels cannot be shuffled within cohort."

@@ -16,7 +16,8 @@ Only files above that ceiling stay on gannet. They are listed in `gannet_manifes
 |---|---|---|---|
 | `metadata/` | Library and animal sample sheets | lab records | all steps |
 | `elisa/` | Raw plate absorbance and plate map for the global 5-mC ELISA (N = 32) | plate reader exports, 2019-02-06 | step 03 |
-| `qpcr/` | Raw Cq values, nine per-gene replicate tables and one consolidated table | qPCR instrument exports | step 11 |
+| `qpcr/` | Raw Cq values, nine per-gene replicate tables and one consolidated table | qPCR instrument exports | step 12 |
+| `manuscript/` | The table that ties each quantitative statement of the draft to an R expression over the pipeline outputs, and the table of files to copy into `05_manuscript/`. The manuscript text itself is not in the repository | written during the audit, 2026-11-19 | step 13 |
 | `bismark_reports/` | Bismark alignment, deduplication, and summary reports for the 22 libraries, all from the June 2021 alignment | gannet `/panopea/061021-big/` | steps 02, 03 |
 | `genome_features/` | Thirteen feature tracks for the Roslin v1 assembly, gzipped | Venkataraman et al. 2022, OSF doi:10.17605/OSF.IO/YGCTB | steps 07, 08 |
 | `annotation/` | blastx hits against Swiss-Prot and the transcript-to-GO map | gannet project directory | steps 08, 09 |
