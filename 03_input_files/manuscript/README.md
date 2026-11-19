@@ -22,7 +22,7 @@ The two tables that tie the manuscript draft to the pipeline. Both are read by `
 | `kind` | count, percent, statistic, p_value, parameter, design, coordinate, identifier, inequality, ranking, software_version, other |
 | `tolerance` | Largest difference from the manuscript value that still counts as a match: 0 for counts, identifiers and statements answered by TRUE or FALSE; half a unit of the last printed digit for rounded values (0.05 for a percentage printed with one decimal, 0.5 for one printed as a whole number) |
 | `expression_legacy` | R expression that recomputes the quantity as the draft's analysis did. Empty when the pipeline cannot regenerate the statement (a laboratory detail, for example); the note says why |
-| `expression_corrected` | R expression for the same quantity under the analysis the audit recommends, where that differs |
+| `expression_corrected` | R expression for the same quantity in corrected mode (upper coverage filter of the Methods, I-05; gene-level GO analysis of step 10), where that differs |
 | `issue` | The entries of [`issues.md`](../../issues.md) that concern the statement |
 | `note` | Why a value differs, why it cannot be regenerated, or what must be known to read a match |
 
