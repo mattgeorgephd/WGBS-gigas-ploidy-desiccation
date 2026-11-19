@@ -40,7 +40,7 @@ Rscript 06_diagnostics/universe_file_cut.R
 | Figure 5 values | 36 | match |
 | Figure 9 values | 27 | match |
 
-Two conditions are needed for the GO tables to match, and both are part of step 09: the ontology release GO.db 3.13.0, and the legacy reader of the annotation tables (issue I-40).
+Three conditions are needed for the GO tables to match, and all three are part of step 09: the ontology release GO.db 3.13.0, the legacy reader of the annotation tables (issue I-40), and the universe names taken with their repeats, one per line of the map (issue I-43).
 
 ## Result of the random-CpG control
 

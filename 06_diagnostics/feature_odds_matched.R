@@ -233,6 +233,7 @@ interval_mh     <- "Mantel-Haenszel (mantelhaen.test); CpGs treated as independe
 interval_block  <- sprintf("percentile bootstrap over %g kb blocks, %d resamples", block_size / 1e3, n_boot)
 label_all      <- "all tested CpGs"
 label_eligible <- "eligible CpGs"
+step07_background <- setNames(c("all analysed CpGs", "eligible CpGs"), c(label_all, label_eligible))  # names in step 07
 label_bin      <- sprintf("eligible CpGs in the same %g-point bin of mean methylation", methylation_bin_width)
 label_bin_sd   <- sprintf("%s and the same %s of within-group SD", label_bin,
                           if (n_sd_groups == 10) "decile" else sprintf("quantile group (%d groups)", n_sd_groups))
@@ -268,7 +269,6 @@ analyse_mode <- function(mode_name) {
   ss <- numeric(n_cpg)
   for (cols in group_columns) ss <- ss + rowSums((pm[, cols] - rowMeans(pm[, cols]))^2)
   sd_within <- sqrt(ss / (n_lib - length(group_columns)))
-  pm_span <- pm[, 1] - pm[, 1]
   pm_high <- pm[, 1]; pm_low <- pm[, 1]
   for (j in seq_len(n_lib)[-1]) { pm_high <- pmax(pm_high, pm[, j]); pm_low <- pmin(pm_low, pm[, j]) }
   pm_span <- pm_high - pm_low
@@ -326,7 +326,8 @@ analyse_mode <- function(mode_name) {
   cpg_gr <- cpg_ranges(position$chr, position$start)
   in_track <- vapply(tracks, function(tr) overlaps_track(cpg_gr, track_gr[[tr]]), logical(n_cpg))
   rm(cpg_gr)
-  step07 <- fread(output_path("07_genome_features", "tables", sprintf("feature_association_tests_%s.csv", mode_name)))
+  step07 <- as.data.frame(fread(output_path("07_genome_features", "tables",
+                                           sprintf("feature_association_tests_%s.csv", mode_name))))
 
   # ---- Blocks and block resamples -----------------------------------------------------------
   # Blocks are numbered over the CpGs that enter a comparison with eligible CpGs.
@@ -363,7 +364,7 @@ analyse_mode <- function(mode_name) {
       for (bg in names(backgrounds)) {
         k <- table_counts(dml, backgrounds[[bg]], feature)
         est <- fisher_odds(k)
-        ref <- step07[step07$background == sub("tested", "analysed", bg) & step07$set == paste(set_name, "DML") &
+        ref <- step07[step07$background == step07_background[[bg]] & step07$set == paste(set_name, "DML") &
                         step07$track == track_name, ]
         if (nrow(ref) != 1 || ref$dml_in_track != k[1] || ref$dml_total != k[1] + k[2] ||
             !isTRUE(all.equal(c(ref$odds_ratio, ref$ci_low, ref$ci_high), est, tolerance = 1e-9))) {
@@ -443,7 +444,7 @@ analyse_mode <- function(mode_name) {
       data.table(mode = mode_name, dml_set = set_name, sd_group = label, sd_from = from, sd_to = to,
                  n_dml = sum(dml & keep), n_other_eligible = sum(other & keep),
                  median_sd_dml = median(sd_within[dml & keep]), median_sd_other_eligible = median(sd_within[other & keep]),
-                 pct_dml_in_gene_body = 100 * mean(in_track[dml & keep, "gene"]),
+                 pct_dml_in_gene_body = if (any(dml & keep)) 100 * mean(in_track[dml & keep, "gene"]) else NA_real_,
                  pct_other_eligible_in_gene_body = 100 * mean(in_track[other & keep, "gene"]))
     }
     sd_rows[[length(sd_rows) + 1]] <- rbind(
@@ -460,6 +461,7 @@ analyse_mode <- function(mode_name) {
   called_real <- candidate[drop(difference_above_threshold(cand_c, cand_w, matrix(real_labels$ploidy), config$dml_difference))]
   stopifnot(identical(called_real, which(is_dml$ploidy)))
   cand_eligible <- as.numeric(eligible[candidate])
+  n_eligible <- sum(eligible)
   cand_track <- in_track[candidate, ] + 0
   eligible_in_track <- colSums(in_track[eligible, ])
   real_odds <- vapply(tracks, function(tr) fisher_odds(table_counts(is_dml$ploidy, eligible, in_track[, tr]), interval = FALSE),
@@ -497,7 +499,7 @@ analyse_mode <- function(mode_name) {
     perm_odds <- vapply(seq_along(tracks), function(j) vapply(seq_len(n_perm), function(p) {
       other_in <- eligible_in_track[j] - called_eligible_in_track[p, j]
       fisher_odds(c(called_in_track[p, j], n_called[p] - called_in_track[p, j], other_in,
-                    sum(eligible) - n_called_eligible[p] - other_in), interval = FALSE)
+                    n_eligible - n_called_eligible[p] - other_in), interval = FALSE)
     }, numeric(1)), numeric(n_perm))
     times_all <- numeric(n_cpg); times_all[candidate] <- times_called
     same_as_real <- sum(colSums(draws == real_labels$ploidy) %in% c(0, n_lib))
@@ -566,7 +568,7 @@ perm_tab[, ratio_in_to_outside := pct_eligible_called_in_track / pct_eligible_ca
 setcolorder(perm_tab, c(setdiff(names(perm_tab), "notes"), "notes"))
 round_columns(perm_tab, c("odds_ratio_real", "perm_median", "perm_pct2.5", "perm_pct97.5", "share_perm_at_least_real",
                           "pct_eligible_called_in_track", "pct_eligible_called_outside_track", "ratio_in_to_outside"), 4)
-round_columns(count_tab, "value", 6)
+count_tab[, value := signif(value, 6)]
 fwrite(odds_tab, out_file("feature_odds_matched.csv"))
 fwrite(sd_tab, out_file("feature_odds_matched_within_group_sd.csv"))
 fwrite(perm_tab, out_file("feature_odds_label_permutation.csv"))

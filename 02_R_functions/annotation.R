@@ -86,10 +86,10 @@ read_legacy_go_terms <- function() {
 # meth.diff, GOID, GOterm, GOSlim, GOcat).
 #   reader = "exact"   every line becomes a row
 #   reader = "legacy"  as the legacy script read it: read.table() with its
-#                      default quote characters. An apostrophe in a term name
-#                      (RNA 3'-end processing) opens a quoted string that runs to
-#                      the next apostrophe, so every line in between disappears
-#                      into one field (issue I-40).
+#                      default quote characters. A line whose term name holds an
+#                      unpaired apostrophe (RNA 3'-end processing) opens or
+#                      closes a quoted string, so every line in between
+#                      disappears into one field (issue I-40).
 dml_annotation_columns <- function() {
   c("transcript", "geneID", "chr", "start", "end", "meth.diff", "GOID", "GOterm", "GOSlim", "GOcat")
 }
