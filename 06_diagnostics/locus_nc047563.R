@@ -42,7 +42,10 @@
 #
 # Notes     - Positions are the 0-based start of the C, as in the coverage files
 #             and in every pipeline table. A CpG occupies bases start + 1 and
-#             start + 2 of the sequence in 1-based coordinates.
+#             start + 2 of the sequence in 1-based coordinates. The summary
+#             table gives the DML region, the window and the block by 0-based
+#             starts, and genes, 30-mers and second copies by 1-based bases;
+#             each definition says which, and the block is given both ways.
 #           - "DML region" is the run of DML that step 07 reports. "Tested CpGs"
 #             are those of legacy mode (at least config$min_coverage reads in all
 #             22 libraries). The locus yields DML in legacy mode only, so every
@@ -70,18 +73,35 @@
 #             below the threshold included.
 #           - Leave-one-out applies the difference rule only: the model is not
 #             refitted and q-values are not recomputed. A CpG must pass the
-#             difference rule to be a DML, so each count is the largest number of
-#             DML that the region could give without that library. The differences
-#             are read-pooled, as methylKit computes meth.diff: methylated reads
-#             of all libraries of a group over all their reads, from the
-#             normalized counts that step 05 tested. Ploidy differences are
-#             triploid minus diploid; heat differences are heat minus control.
+#             difference rule to be a DML, so a count of CpGs over the threshold
+#             is an upper bound on the number of DML. Leaving a library out
+#             also changes which CpGs are tested, so two counts are given.
+#             Columns <contrast>_cpgs_over_difference: over the tested CpGs of
+#             the DML region (tested with all 22 libraries), from the normalized
+#             counts that step 05 tested. They bound the DML among those CpGs
+#             only. Columns <contrast>_testable_cpgs_over_difference: over the
+#             CpGs that step 05 would test with the libraries used, which are
+#             the CpG sites of the region with at least config$min_coverage
+#             reads in each of them (column region_cpgs_testable; without a
+#             library that has few reads there are more), from raw counts
+#             normalized with the largest median coverage among the libraries
+#             used. They are the largest number of DML that the region could
+#             give without the library. The differences are read-pooled, as
+#             methylKit computes meth.diff: methylated reads of all libraries
+#             of a group over all their reads. Ploidy differences are triploid
+#             minus diploid; heat differences are heat minus control.
 #           - Percent methylation of a library is read-pooled over the tested
 #             CpGs of the DML region, from raw counts. Each library is taken as
 #             one animal; the sample sheet names the animal for the heat cohort
 #             only (issue I-36). The Wilcoxon tests are exact; the normal
 #             approximation is written next to each, because the two differ at
-#             these group sizes (5, 6 or 11 libraries).
+#             these group sizes (5, 6 or 11 libraries). The per-library table
+#             gives percent methylation with pct_decimals decimals, which keeps
+#             the libraries apart, so the exact tests can be repeated from it.
+#           - p-values and q-values are written with four significant digits,
+#             and with more where the last digit written would be a 5: such a
+#             value sits on a rounding boundary and is easily rounded the
+#             wrong way when it is quoted with fewer digits.
 #           - Cohort and heat treatment are the same split of the libraries
 #             (issue I-01). With 22 libraries the Fisher tests can detect only a
 #             strong association; a large p-value does not show independence.
@@ -114,6 +134,7 @@ kmer_width       <- 30L             # part f: length of the words (k-mers) of th
 kmer_sample_step <- 60L             # part f: the sample takes one word every 60 bases
 copy_gap_bp      <- 20000L          # part f: second copies closer than this on one reference sequence are one place
 n_places         <- 3L              # part f: number of such places reported
+pct_decimals     <- 3L              # decimals of percent methylation in the per-library table; the script stops if two libraries then tie
 
 out_file <- function(suffix) here("06_diagnostics", paste0("locus_nc047563_", suffix, ".csv"))
 tab05 <- function(f) output_path("05_differential_methylation", "tables", f)
@@ -310,7 +331,8 @@ stopifnot(length(half_at_cutoff) > 0L)
 sec <- "a. block of excess coverage"
 cutoff_text <- paste0("its upper cutoff (", config$upper_coverage_percentile, "th percentile of coverage of the library)")
 fact(sec, "window", interval(window_from, window_to),
-     paste0("The DML region and ", window_margin_bp, " bp on either side; raw coverage was read for the CpGs whose 0-based start lies between these two positions."))
+     paste0("The DML region and ", window_margin_bp, " bp on either side; raw coverage was read for the CpGs whose 0-based start lies between ",
+            "these two positions."))
 fact(sec, "window_cpg_sites", whole(n_site), "CpG sites of the window with at least one read in at least one library.")
 fact(sec, "runs_of_excess_coverage_in_window", whole(max(run_of_site, na.rm = TRUE)),
      paste0("Runs of CpGs with excess coverage in the window. A CpG has excess coverage when at least one library is at or above ", cutoff_text,
@@ -431,13 +453,36 @@ for (measure in names(size_of_excess)) for (grouping in names(two_groups)) {
 }
 
 # ---- 5. (c) Leave one library out ------------------------------------------------------------
-# Read-pooled difference, group 1 minus group 0, at each tested CpG of the DML
-# region, from the libraries in `use`.
-pooled_difference <- function(use, in_group1) {
-  pooled <- function(members) rowSums(norm_meth[, members, drop = FALSE]) / rowSums(norm_reads[, members, drop = FALSE])
+# Read-pooled difference, group 1 minus group 0, from the libraries in `use`, at
+# each row of two matrices of normalized counts (methylated reads and all reads;
+# one column per library). The default matrices are those of the tested CpGs of
+# the DML region.
+pooled_difference <- function(use, in_group1, meth = norm_meth, reads = norm_reads) {
+  pooled <- function(members) rowSums(meth[, members, drop = FALSE]) / rowSums(reads[, members, drop = FALSE])
   100 * (pooled(use & in_group1) - pooled(use & !in_group1))
 }
+# What step 05 would test in the DML region with the libraries in `use` alone.
+# Leaving a library out changes the set of tested CpGs: a CpG site is testable
+# when every library used has at least config$min_coverage reads there (legacy
+# mode has no upper filter). The raw counts are normalized as step 05 does it,
+# with the largest median coverage among the libraries used. Returns the rows
+# of the testable CpG sites and their normalized counts; the columns of the
+# libraries that are not used stay NA.
+testable_counts <- function(use) {
+  rows <- which(in_region & rowSums(reads_raw[, use, drop = FALSE] >= config$min_coverage) == sum(use))
+  factor_used <- max(filtering$median_coverage[use]) / filtering$median_coverage
+  meth <- reads <- matrix(NA_real_, length(rows), n_lib)
+  for (lib_i in which(use)) {
+    raw_reads <- reads_raw[rows, lib_i]; raw_meth <- meth_raw[rows, lib_i]
+    scaled <- scale_counts_like_methylkit(raw_reads, raw_meth, raw_reads - raw_meth, factor_used[lib_i])
+    meth[, lib_i] <- scaled$numCs; reads[, lib_i] <- scaled$numCs + scaled$numTs
+  }
+  list(rows = rows, meth = meth, reads = reads)
+}
 every_library <- rep(TRUE, n_lib)
+# With all libraries the testable CpGs and their counts must be those of the united table of step 05.
+with_every_library <- testable_counts(every_library)
+stopifnot(identical(with_every_library$rows, region_rows), all(with_every_library$meth == norm_meth), all(with_every_library$reads == norm_reads))
 contrast_group1 <- list(ploidy = is_triploid, heat = is_heat)    # triploid minus diploid; heat minus control
 diffmeth_region <- lapply(diffmeth_window, function(d) d[start >= region_from & start <= region_to])
 for (s in names(contrast_group1)) {
@@ -450,13 +495,18 @@ over_difference <- function(use, s) sum(abs(pooled_difference(use, contrast_grou
 share_pct <- function(members) 100 * colSums(norm_reads) / sum(norm_reads[, members])
 loo_row <- function(label, left_out) {
   use <- !left_out
+  rerun <- testable_counts(use)
+  rerun_over_difference <- function(s) sum(abs(pooled_difference(use, contrast_group1[[s]], rerun$meth, rerun$reads)) > config$dml_difference)
   data.table(libraries_left_out = label, n_left_out = sum(left_out),
              diploid_used = sum(use & !is_triploid), triploid_used = sum(use & is_triploid),
              control_used = sum(use & !is_heat), heat_used = sum(use & is_heat), region_cpgs = n_region,
              ploidy_cpgs_over_difference = over_difference(use, "ploidy"),
              ploidy_difference_median = round(median(pooled_difference(use, is_triploid)), 2),
              heat_cpgs_over_difference = over_difference(use, "heat"),
-             heat_difference_median = round(median(pooled_difference(use, is_heat)), 2))
+             heat_difference_median = round(median(pooled_difference(use, is_heat)), 2),
+             region_cpgs_testable = length(rerun$rows),
+             ploidy_testable_cpgs_over_difference = rerun_over_difference("ploidy"),
+             heat_testable_cpgs_over_difference = rerun_over_difference("heat"))
 }
 loo <- rbindlist(c(list(loo_row("none", !every_library)),
                    lapply(seq_len(n_lib), function(lib_i) loo_row(lib$library_id[lib_i], seq_len(n_lib) == lib_i)),
@@ -470,6 +520,11 @@ without_excess_only <- loo[libraries_left_out == "all libraries with the excess"
 sec <- "c. leave one library out"
 difference_text <- paste0("tested CpGs of the DML region whose read-pooled difference (normalized counts) exceeds ", config$dml_difference,
                           " points in absolute value")
+same_cpgs_text <- paste("over the same", n_region, "CpGs")
+without_excess_text <- sprintf("the libraries without the excess alone (%d diploid and %d triploid; %d control and %d heat)",
+                               without_excess_only$diploid_used, without_excess_only$triploid_used,
+                               without_excess_only$control_used, without_excess_only$heat_used)
+# First count: over the CpGs tested with all libraries.
 for (s in names(contrast_group1)) {
   d <- diffmeth_region[[s]]; counts <- paste0(s, "_cpgs_over_difference")
   fact(sec, paste0(s, "_region_cpgs_failing_qvalue_rule"), x_of_y(sum(d$qvalue >= config$dml_qvalue), n_region),
@@ -480,16 +535,41 @@ for (s in names(contrast_group1)) {
        paste0("Number of ", difference_text, "; ", s, " contrast, all ", n_lib,
               " libraries. Equal to the number of DML when no CpG fails the q-value rule."))
   fact(sec, paste0(s, "_region_cpgs_over_difference_without_most_influential_library"), whole(one_out[[counts]][extreme]),
-       paste("Same count with the most influential library left out. The difference rule only: the model is not refitted,",
-             "so this is the largest possible number of DML."))
+       paste0("Same count, ", same_cpgs_text, ", with the most influential library left out. The difference rule only: the model is not refitted, ",
+              "so no more than this many of the ", n_region, " CpGs can be DML without that library. CpGs that become testable without it are not ",
+              "counted here; the quantities with testable in their name count them."))
   fact(sec, paste0(s, "_region_cpgs_over_difference_without_one_other_library"), a_to_b(one_out[[counts]][-extreme], 0),
-       paste("Same count with one of the other", n_lib - 1L, "libraries left out; lowest and highest among them."))
+       paste0("Same count, ", same_cpgs_text, ", with one of the other ", n_lib - 1L, " libraries left out; lowest and highest among them."))
   fact(sec, paste0(s, "_region_cpgs_over_difference_libraries_without_excess_only"), whole(without_excess_only[[counts]]),
-       sprintf("Same count from the libraries without the excess alone (%d diploid and %d triploid; %d control and %d heat).",
-               without_excess_only$diploid_used, without_excess_only$triploid_used, without_excess_only$control_used, without_excess_only$heat_used))
+       paste0("Same count, ", same_cpgs_text, ", from ", without_excess_text, "."))
+}
+# Second count: over the CpGs that step 05 would test with the libraries used.
+fact(sec, "region_cpgs_testable_without_most_influential_library", whole(one_out$region_cpgs_testable[extreme]),
+     paste0("CpG sites of the DML region with at least ", config$min_coverage, " reads in each of the other ", n_lib - 1L,
+            " libraries, the most influential library left out. These are the CpGs that step 05 would test without it; with all ", n_lib,
+            " libraries it tests ", n_region, "."))
+fact(sec, "region_cpgs_testable_without_one_other_library", a_to_b(one_out$region_cpgs_testable[-extreme], 0),
+     paste("Same number with one of the other", n_lib - 1L, "libraries left out; lowest and highest among them."))
+fact(sec, "libraries_whose_omission_adds_testable_cpgs", x_of_y(sum(one_out$region_cpgs_testable > n_region), n_lib),
+     paste("Libraries without which more than", n_region, "CpG sites of the DML region are testable; the leave-one-out table names them."))
+fact(sec, "region_cpgs_testable_libraries_without_excess_only", whole(without_excess_only$region_cpgs_testable),
+     paste0("Same number for ", without_excess_text, "."))
+for (s in names(contrast_group1)) {
+  counts <- paste0(s, "_testable_cpgs_over_difference")
+  fact(sec, paste0(s, "_testable_cpgs_over_difference_without_most_influential_library"),
+       x_of_y(one_out[[counts]][extreme], one_out$region_cpgs_testable[extreme]),
+       paste0("CpGs whose read-pooled difference exceeds ", config$dml_difference, " points in absolute value, of the CpGs that step 05 would test ",
+              "without the most influential library, raw counts normalized among the libraries used; ", s, " contrast. The difference rule only: ",
+              "a DML must also pass the q-value rule, which needs a refit, so this is the largest number of DML that the region could give ",
+              "without that library."))
+  fact(sec, paste0(s, "_testable_cpgs_over_difference_without_one_other_library"), a_to_b(one_out[[counts]][-extreme], 0),
+       paste("Same count with one of the other", n_lib - 1L, "libraries left out; lowest and highest among them. Where more CpGs are testable",
+             "it can be higher than the count over the", n_region, "CpGs tested with all", n_lib, "libraries."))
+  fact(sec, paste0(s, "_testable_cpgs_over_difference_libraries_without_excess_only"),
+       x_of_y(without_excess_only[[counts]], without_excess_only$region_cpgs_testable), paste0("Same count from ", without_excess_text, "."))
 }
 fact(sec, "most_influential_library", lib$library_id[extreme],
-     "The library whose omission leaves the fewest CpGs over the difference threshold, ploidy and heat contrasts added.")
+     paste("The library whose omission leaves the fewest of the", n_region, "tested CpGs over the difference threshold, ploidy and heat contrasts added."))
 fact(sec, "most_influential_library_group", as.character(lib$group[extreme]), "Ploidy and cohort of that library.")
 fact(sec, "most_influential_library_relative_coverage", decimal(region_median[extreme] / library_median[extreme], 2),
      "Median coverage of the tested CpGs of the DML region over the library median, that library.")
@@ -501,7 +581,10 @@ fact(sec, "most_influential_library_pct_of_ploidy_normalized_reads", decimal(sha
      "Its share of the normalized reads of its ploidy at the tested CpGs of the DML region.")
 
 # ---- 6. (d) Percent methylation per library ---------------------------------------------------
-if (anyDuplicated(region_pct_meth)) stop("Two libraries have the same percent methylation; the exact Wilcoxon test needs untied values.")
+# The exact tests need untied values, and they must be repeatable from the
+# per-library table, which gives percent methylation with pct_decimals decimals.
+if (anyDuplicated(round(region_pct_meth, pct_decimals)))
+  stop("Two libraries have the same percent methylation to ", pct_decimals, " decimals; the exact Wilcoxon test needs untied values.")
 sec <- "d. methylation per library"
 pct_text <- "read-pooled percent methylation of the tested CpGs of the DML region, raw counts, one value per library"
 compare_groups <- function(label, members, grouping, described) {
@@ -691,7 +774,7 @@ per_library <- data.table(
   region_coverage_over_library_median = round(region_median / library_median, 2),
   region_coverage_over_cutoff = round(region_median / upper_cutoff, 2),
   region_cpgs_at_or_above_cutoff = region_at_cutoff, carries_excess = carries_excess,
-  region_pct_methylation = round(region_pct_meth, 1),
+  region_pct_methylation = round(region_pct_meth, pct_decimals),
   region_normalized_reads = colSums(norm_reads),
   pct_of_ploidy_normalized_reads = round(ifelse(is_triploid, share_pct(is_triploid), share_pct(!is_triploid)), 1),
   pct_of_cohort_normalized_reads = round(ifelse(is_heat, share_pct(is_heat), share_pct(!is_heat)), 1),
@@ -735,8 +818,9 @@ cat("\nLibraries (coverage of the tested CpGs of the DML region):\n")
 print(per_library[, .(library_id, ploidy, treatment, region_median_coverage, over_median = region_coverage_over_library_median,
                       over_cutoff = region_coverage_over_cutoff, at_cutoff = region_cpgs_at_or_above_cutoff, carries_excess,
                       pct_meth = region_pct_methylation, block_over_flanks)])
-cat("\nLeave one library out (CpGs of the region over the difference threshold):\n")
-print(loo_table[, .(libraries_left_out, ploidy_cpgs_over_difference, ploidy_difference_median, heat_cpgs_over_difference, heat_difference_median)])
+cat("\nLeave one library out (CpGs of the region over the difference threshold: of the tested CpGs, and of the CpGs testable without the library):\n")
+print(loo_table[, .(libraries_left_out, ploidy_cpgs_over_difference, ploidy_difference_median, heat_cpgs_over_difference, heat_difference_median,
+                    region_cpgs_testable, ploidy_testable_cpgs_over_difference, heat_testable_cpgs_over_difference)])
 cat("\nFacts:\n")
 print(as.data.frame(summary_table[, .(section, quantity, value)]), right = FALSE, row.names = FALSE)
 log_msg("wrote %s", paste(basename(vapply(c("summary", "per_library", "leave_one_out", "coverage_profile"), out_file, "")), collapse = ", "))

@@ -1,5 +1,5 @@
 section,quantity,value,how_defined
-DML region,dml_region,NC_047563.1:39633323-39635520,"Run of legacy ploidy DML with the most DML, as step 07 groups them (dml_regions_legacy.csv). Start of its first and of its last DML CpG."
+DML region,dml_region,NC_047563.1:39633323-39635520,"Run of legacy ploidy DML with the most DML, as step 07 groups them (dml_regions_legacy.csv): its first and its last DML CpG. Both positions are the 0-based start of the C, as in the coverage files."
 DML region,dml_region_length_bp,2199,From the C of the first DML CpG to the G of the last.
 DML region,lists_whose_largest_run_is_this_region,heat DML; ploidy DML; shared,DML lists of step 07 whose run with the most DML has the same first and last CpG as this region.
 DML region,ploidy_dml_in_region,53 of 1038,"Legacy ploidy DML inside the DML region, of all legacy ploidy DML."
@@ -7,10 +7,11 @@ DML region,heat_dml_in_region,39 of 2351,"Legacy heat DML inside the DML region,
 DML region,loci_in_both_lists_in_region,39 of 200,"Loci in both legacy DML lists inside the DML region, of all such loci."
 DML region,tested_cpgs_in_region_legacy,54 of 480579,"Tested CpGs of legacy mode inside the DML region, of all tested CpGs of legacy mode."
 DML region,tested_cpgs_in_region_corrected,0,Tested CpGs of corrected mode inside the DML region: those that the upper coverage filter leaves.
-a. block of excess coverage,window,NC_047563.1:39623323-39645520,The DML region and 10000 bp on either side; raw coverage was read for this window.
+a. block of excess coverage,window,NC_047563.1:39623323-39645520,The DML region and 10000 bp on either side; raw coverage was read for the CpGs whose 0-based start lies between these two positions.
 a. block of excess coverage,window_cpg_sites,351,CpG sites of the window with at least one read in at least one library.
 a. block of excess coverage,runs_of_excess_coverage_in_window,1,Runs of CpGs with excess coverage in the window. A CpG has excess coverage when at least one library is at or above its upper cutoff (99.9th percentile of coverage of the library); such CpGs within 1000 bp of each other form a run.
-a. block of excess coverage,block,NC_047563.1:39633065-39636662,The run of CpGs with excess coverage that holds the DML region. Start of its first and of its last CpG.
+a. block of excess coverage,block,NC_047563.1:39633065-39636662,"The run of CpGs with excess coverage that holds the DML region: its first and its last CpG. Both positions are the 0-based start of the C, as in the coverage files."
+a. block of excess coverage,block_first_and_last_base,NC_047563.1:39633066-39636664,"The same block as bases of the reference sequence, 1-based: the C of its first CpG and the G of its last. The positions of genes, 30-mers and second copies in this table are 1-based bases as well."
 a. block of excess coverage,block_length_bp,3599,From the C of the first CpG of the block to the G of the last.
 a. block of excess coverage,block_cpg_sites,82,CpG sites inside the block with at least one read in at least one library.
 a. block of excess coverage,block_cpg_sites_with_excess,82 of 82,CpG sites of the block at which at least one library is at or above its upper cutoff.
@@ -18,7 +19,7 @@ a. block of excess coverage,block_cpg_sites_with_reads_in_every_library,82 of 82
 a. block of excess coverage,block_tested_cpgs_legacy,56,Tested CpGs of legacy mode inside the block.
 a. block of excess coverage,block_tested_cpgs_corrected,0,Tested CpGs of corrected mode inside the block.
 a. block of excess coverage,cutoff_reached_outside_block,0 of 5570,"Pairs of CpG site and library at or above the upper cutoff, of all pairs with reads, in the window outside the block."
-a. block of excess coverage,block_under_stricter_rule,NC_047563.1:39633065-39636622,For comparison: first and last CpG of the block at which at least half of the libraries with the excess are at or above their upper cutoff.
+a. block of excess coverage,block_under_stricter_rule,NC_047563.1:39633065-39636622,"For comparison: first and last CpG of the block at which at least half of the libraries with the excess are at or above their upper cutoff. Both positions are the 0-based start of the C, as in the coverage files."
 a. block of excess coverage,next_cpg_site_upstream_distance_bp,182,Bases between the first CpG of the block and the nearest CpG site with reads before it.
 a. block of excess coverage,next_cpg_site_upstream_relative_coverage,2.50,Coverage over the library median at that site; median of the libraries with the excess.
 a. block of excess coverage,next_cpg_site_downstream_distance_bp,183,Bases between the last CpG of the block and the nearest CpG site with reads after it.
@@ -58,33 +59,43 @@ b. libraries that carry the excess,every_region_cpg_at_cutoff_heat_cohort,1 of 1
 b. libraries that carry the excess,every_region_cpg_at_cutoff_control_cohort,8 of 12,Such libraries among the control cohort.
 b. libraries that carry the excess,every_region_cpg_at_cutoff_diploid,5 of 11,Such libraries among diploids.
 b. libraries that carry the excess,every_region_cpg_at_cutoff_triploid,4 of 11,Such libraries among triploids.
-b. libraries that carry the excess,fisher_p_every_region_cpg_at_cutoff_by_ploidy,   1,"Fisher exact test, two-sided, of that state against ploidy."
-b. libraries that carry the excess,fisher_p_every_region_cpg_at_cutoff_by_cohort,0.0115,"Fisher exact test, two-sided, of that state against cohort."
+b. libraries that carry the excess,fisher_p_every_region_cpg_at_cutoff_by_ploidy,1,"Fisher exact test, two-sided, of that state against ploidy."
+b. libraries that carry the excess,fisher_p_every_region_cpg_at_cutoff_by_cohort,0.011499,"Fisher exact test, two-sided, of that state against cohort."
 b. libraries that carry the excess,region_relative_coverage_median_diploid,5.92,Median among diploid libraries of the median coverage of the tested CpGs of the DML region over the library median.
 b. libraries that carry the excess,region_relative_coverage_median_triploid,12.38,Same among triploid libraries.
-b. libraries that carry the excess,region_relative_coverage_wilcoxon_p_by_ploidy,0.562,"Wilcoxon rank-sum test, two-sided, exact, of that quantity between diploid and triploid libraries."
+b. libraries that carry the excess,region_relative_coverage_wilcoxon_p_by_ploidy,0.5619,"Wilcoxon rank-sum test, two-sided, exact, of that quantity between diploid and triploid libraries."
 b. libraries that carry the excess,region_relative_coverage_median_control,19.86,Median among control libraries of the median coverage of the tested CpGs of the DML region over the library median.
 b. libraries that carry the excess,region_relative_coverage_median_heat,4.36,Same among heat libraries.
-b. libraries that carry the excess,region_relative_coverage_wilcoxon_p_by_cohort,0.00896,"Wilcoxon rank-sum test, two-sided, exact, of that quantity between control and heat libraries."
+b. libraries that carry the excess,region_relative_coverage_wilcoxon_p_by_cohort,0.008957,"Wilcoxon rank-sum test, two-sided, exact, of that quantity between control and heat libraries."
 b. libraries that carry the excess,block_over_flanks_median_diploid,4.83,Median among diploid libraries of the median coverage of the CpG sites of the block over the median coverage of the CpG sites of both flanks.
 b. libraries that carry the excess,block_over_flanks_median_triploid,11.06,Same among triploid libraries.
-b. libraries that carry the excess,block_over_flanks_wilcoxon_p_by_ploidy,0.699,"Wilcoxon rank-sum test, two-sided, exact, of that quantity between diploid and triploid libraries."
+b. libraries that carry the excess,block_over_flanks_wilcoxon_p_by_ploidy,0.6994,"Wilcoxon rank-sum test, two-sided, exact, of that quantity between diploid and triploid libraries."
 b. libraries that carry the excess,block_over_flanks_median_control,20.71,Median among control libraries of the median coverage of the CpG sites of the block over the median coverage of the CpG sites of both flanks.
 b. libraries that carry the excess,block_over_flanks_median_heat,3.59,Same among heat libraries.
-b. libraries that carry the excess,block_over_flanks_wilcoxon_p_by_cohort,0.0138,"Wilcoxon rank-sum test, two-sided, exact, of that quantity between control and heat libraries."
+b. libraries that carry the excess,block_over_flanks_wilcoxon_p_by_cohort,0.01377,"Wilcoxon rank-sum test, two-sided, exact, of that quantity between control and heat libraries."
 c. leave one library out,ploidy_region_cpgs_failing_qvalue_rule,0 of 54,"Tested CpGs of the DML region with q at or above 0.01 for the ploidy contrast, all 22 libraries (diffmeth_ploidy_legacy.csv.gz)."
-c. leave one library out,ploidy_region_largest_qvalue,5.88e-09,Largest q-value among those CpGs.
+c. leave one library out,ploidy_region_largest_qvalue,5.881e-09,Largest q-value among those CpGs.
 c. leave one library out,ploidy_region_cpgs_over_difference_all_libraries,53 of 54,"Number of tested CpGs of the DML region whose read-pooled difference (normalized counts) exceeds 20 points in absolute value; ploidy contrast, all 22 libraries. Equal to the number of DML when no CpG fails the q-value rule."
-c. leave one library out,ploidy_region_cpgs_over_difference_without_most_influential_library,1,"Same count with the most influential library left out. The difference rule only: the model is not refitted, so this is the largest possible number of DML."
-c. leave one library out,ploidy_region_cpgs_over_difference_without_one_other_library,50 to 53,Same count with one of the other 21 libraries left out; lowest and highest among them.
-c. leave one library out,ploidy_region_cpgs_over_difference_libraries_without_excess_only,37,Same count from the libraries without the excess alone (6 diploid and 3 triploid; 3 control and 6 heat).
+c. leave one library out,ploidy_region_cpgs_over_difference_without_most_influential_library,1,"Same count, over the same 54 CpGs, with the most influential library left out. The difference rule only: the model is not refitted, so no more than this many of the 54 CpGs can be DML without that library. CpGs that become testable without it are not counted here; the quantities with testable in their name count them."
+c. leave one library out,ploidy_region_cpgs_over_difference_without_one_other_library,50 to 53,"Same count, over the same 54 CpGs, with one of the other 21 libraries left out; lowest and highest among them."
+c. leave one library out,ploidy_region_cpgs_over_difference_libraries_without_excess_only,37,"Same count, over the same 54 CpGs, from the libraries without the excess alone (6 diploid and 3 triploid; 3 control and 6 heat)."
 c. leave one library out,heat_region_cpgs_failing_qvalue_rule,0 of 54,"Tested CpGs of the DML region with q at or above 0.01 for the heat contrast, all 22 libraries (diffmeth_heat_legacy.csv.gz)."
 c. leave one library out,heat_region_largest_qvalue,8.62e-05,Largest q-value among those CpGs.
 c. leave one library out,heat_region_cpgs_over_difference_all_libraries,39 of 54,"Number of tested CpGs of the DML region whose read-pooled difference (normalized counts) exceeds 20 points in absolute value; heat contrast, all 22 libraries. Equal to the number of DML when no CpG fails the q-value rule."
-c. leave one library out,heat_region_cpgs_over_difference_without_most_influential_library,0,"Same count with the most influential library left out. The difference rule only: the model is not refitted, so this is the largest possible number of DML."
-c. leave one library out,heat_region_cpgs_over_difference_without_one_other_library,29 to 53,Same count with one of the other 21 libraries left out; lowest and highest among them.
-c. leave one library out,heat_region_cpgs_over_difference_libraries_without_excess_only,24,Same count from the libraries without the excess alone (6 diploid and 3 triploid; 3 control and 6 heat).
-c. leave one library out,most_influential_library,zr3534_4,"The library whose omission leaves the fewest CpGs over the difference threshold, ploidy and heat contrasts added."
+c. leave one library out,heat_region_cpgs_over_difference_without_most_influential_library,0,"Same count, over the same 54 CpGs, with the most influential library left out. The difference rule only: the model is not refitted, so no more than this many of the 54 CpGs can be DML without that library. CpGs that become testable without it are not counted here; the quantities with testable in their name count them."
+c. leave one library out,heat_region_cpgs_over_difference_without_one_other_library,29 to 53,"Same count, over the same 54 CpGs, with one of the other 21 libraries left out; lowest and highest among them."
+c. leave one library out,heat_region_cpgs_over_difference_libraries_without_excess_only,24,"Same count, over the same 54 CpGs, from the libraries without the excess alone (6 diploid and 3 triploid; 3 control and 6 heat)."
+c. leave one library out,region_cpgs_testable_without_most_influential_library,54,"CpG sites of the DML region with at least 10 reads in each of the other 21 libraries, the most influential library left out. These are the CpGs that step 05 would test without it; with all 22 libraries it tests 54."
+c. leave one library out,region_cpgs_testable_without_one_other_library,54 to 58,Same number with one of the other 21 libraries left out; lowest and highest among them.
+c. leave one library out,libraries_whose_omission_adds_testable_cpgs,4 of 22,Libraries without which more than 54 CpG sites of the DML region are testable; the leave-one-out table names them.
+c. leave one library out,region_cpgs_testable_libraries_without_excess_only,54,Same number for the libraries without the excess alone (6 diploid and 3 triploid; 3 control and 6 heat).
+c. leave one library out,ploidy_testable_cpgs_over_difference_without_most_influential_library,1 of 54,"CpGs whose read-pooled difference exceeds 20 points in absolute value, of the CpGs that step 05 would test without the most influential library, raw counts normalized among the libraries used; ploidy contrast. The difference rule only: a DML must also pass the q-value rule, which needs a refit, so this is the largest number of DML that the region could give without that library."
+c. leave one library out,ploidy_testable_cpgs_over_difference_without_one_other_library,50 to 57,Same count with one of the other 21 libraries left out; lowest and highest among them. Where more CpGs are testable it can be higher than the count over the 54 CpGs tested with all 22 libraries.
+c. leave one library out,ploidy_testable_cpgs_over_difference_libraries_without_excess_only,37 of 54,Same count from the libraries without the excess alone (6 diploid and 3 triploid; 3 control and 6 heat).
+c. leave one library out,heat_testable_cpgs_over_difference_without_most_influential_library,0 of 54,"CpGs whose read-pooled difference exceeds 20 points in absolute value, of the CpGs that step 05 would test without the most influential library, raw counts normalized among the libraries used; heat contrast. The difference rule only: a DML must also pass the q-value rule, which needs a refit, so this is the largest number of DML that the region could give without that library."
+c. leave one library out,heat_testable_cpgs_over_difference_without_one_other_library,29 to 53,Same count with one of the other 21 libraries left out; lowest and highest among them. Where more CpGs are testable it can be higher than the count over the 54 CpGs tested with all 22 libraries.
+c. leave one library out,heat_testable_cpgs_over_difference_libraries_without_excess_only,24 of 54,Same count from the libraries without the excess alone (6 diploid and 3 triploid; 3 control and 6 heat).
+c. leave one library out,most_influential_library,zr3534_4,"The library whose omission leaves the fewest of the 54 tested CpGs over the difference threshold, ploidy and heat contrasts added."
 c. leave one library out,most_influential_library_group,diploid heat,Ploidy and cohort of that library.
 c. leave one library out,most_influential_library_relative_coverage,34.44,"Median coverage of the tested CpGs of the DML region over the library median, that library."
 c. leave one library out,most_influential_library_pct_methylation,84.4,"Read-pooled percent methylation of the tested CpGs of the DML region, raw counts, that library."
@@ -95,36 +106,36 @@ d. methylation per library,ploidy_all_libraries_median_diploid,34.1,"Median of t
 d. methylation per library,ploidy_all_libraries_median_triploid,3.2,Same; triploid.
 d. methylation per library,ploidy_all_libraries_range_diploid,3.8 to 84.4,"Lowest and highest value; diploid, all 22 libraries."
 d. methylation per library,ploidy_all_libraries_range_triploid,0.4 to 44.7,Same; triploid.
-d. methylation per library,ploidy_all_libraries_wilcoxon_p_exact,0.00524,"Wilcoxon rank-sum test, two-sided, exact; diploid against triploid, all 22 libraries."
-d. methylation per library,ploidy_all_libraries_wilcoxon_p_normal_approximation,0.0071,Same test by the normal approximation with continuity correction.
+d. methylation per library,ploidy_all_libraries_wilcoxon_p_exact,0.005237,"Wilcoxon rank-sum test, two-sided, exact; diploid against triploid, all 22 libraries."
+d. methylation per library,ploidy_all_libraries_wilcoxon_p_normal_approximation,0.007097,Same test by the normal approximation with continuity correction.
 d. methylation per library,ploidy_heat_cohort_group_sizes,5 diploid and 5 triploid,Libraries compared: heat cohort.
 d. methylation per library,ploidy_heat_cohort_median_diploid,42.1,"Median of the read-pooled percent methylation of the tested CpGs of the DML region, raw counts, one value per library; diploid, heat cohort."
 d. methylation per library,ploidy_heat_cohort_median_triploid,0.8,Same; triploid.
 d. methylation per library,ploidy_heat_cohort_range_diploid,33.8 to 84.4,"Lowest and highest value; diploid, heat cohort."
 d. methylation per library,ploidy_heat_cohort_range_triploid,0.4 to 18.7,Same; triploid.
-d. methylation per library,ploidy_heat_cohort_wilcoxon_p_exact,0.00794,"Wilcoxon rank-sum test, two-sided, exact; diploid against triploid, heat cohort."
-d. methylation per library,ploidy_heat_cohort_wilcoxon_p_normal_approximation,0.0122,Same test by the normal approximation with continuity correction.
+d. methylation per library,ploidy_heat_cohort_wilcoxon_p_exact,0.007937,"Wilcoxon rank-sum test, two-sided, exact; diploid against triploid, heat cohort."
+d. methylation per library,ploidy_heat_cohort_wilcoxon_p_normal_approximation,0.01219,Same test by the normal approximation with continuity correction.
 d. methylation per library,ploidy_control_cohort_group_sizes,6 diploid and 6 triploid,Libraries compared: control cohort.
 d. methylation per library,ploidy_control_cohort_median_diploid,10.4,"Median of the read-pooled percent methylation of the tested CpGs of the DML region, raw counts, one value per library; diploid, control cohort."
 d. methylation per library,ploidy_control_cohort_median_triploid,4.5,Same; triploid.
 d. methylation per library,ploidy_control_cohort_range_diploid,3.8 to 53.6,"Lowest and highest value; diploid, control cohort."
 d. methylation per library,ploidy_control_cohort_range_triploid,1.3 to 44.7,Same; triploid.
-d. methylation per library,ploidy_control_cohort_wilcoxon_p_exact,0.0931,"Wilcoxon rank-sum test, two-sided, exact; diploid against triploid, control cohort."
+d. methylation per library,ploidy_control_cohort_wilcoxon_p_exact,0.09307,"Wilcoxon rank-sum test, two-sided, exact; diploid against triploid, control cohort."
 d. methylation per library,ploidy_control_cohort_wilcoxon_p_normal_approximation,0.0927,Same test by the normal approximation with continuity correction.
 d. methylation per library,ploidy_without_most_influential_library_group_sizes,10 diploid and 11 triploid,Libraries compared: all libraries but the most influential one of part c.
 d. methylation per library,ploidy_without_most_influential_library_median_diploid,34.0,"Median of the read-pooled percent methylation of the tested CpGs of the DML region, raw counts, one value per library; diploid, all libraries but the most influential one of part c."
 d. methylation per library,ploidy_without_most_influential_library_median_triploid,3.2,Same; triploid.
 d. methylation per library,ploidy_without_most_influential_library_range_diploid,3.8 to 53.6,"Lowest and highest value; diploid, all libraries but the most influential one of part c."
 d. methylation per library,ploidy_without_most_influential_library_range_triploid,0.4 to 44.7,Same; triploid.
-d. methylation per library,ploidy_without_most_influential_library_wilcoxon_p_exact,0.0101,"Wilcoxon rank-sum test, two-sided, exact; diploid against triploid, all libraries but the most influential one of part c."
-d. methylation per library,ploidy_without_most_influential_library_wilcoxon_p_normal_approximation,0.0124,Same test by the normal approximation with continuity correction.
+d. methylation per library,ploidy_without_most_influential_library_wilcoxon_p_exact,0.01009,"Wilcoxon rank-sum test, two-sided, exact; diploid against triploid, all libraries but the most influential one of part c."
+d. methylation per library,ploidy_without_most_influential_library_wilcoxon_p_normal_approximation,0.01243,Same test by the normal approximation with continuity correction.
 d. methylation per library,cohort_all_libraries_group_sizes,12 control and 10 heat,Libraries compared: all 22 libraries.
 d. methylation per library,cohort_all_libraries_median_control,6.7,"Median of the read-pooled percent methylation of the tested CpGs of the DML region, raw counts, one value per library; control, all 22 libraries."
 d. methylation per library,cohort_all_libraries_median_heat,26.3,Same; heat.
 d. methylation per library,cohort_all_libraries_range_control,1.3 to 53.6,"Lowest and highest value; control, all 22 libraries."
 d. methylation per library,cohort_all_libraries_range_heat,0.4 to 84.4,Same; heat.
-d. methylation per library,cohort_all_libraries_wilcoxon_p_exact,0.628,"Wilcoxon rank-sum test, two-sided, exact; control against heat, all 22 libraries."
-d. methylation per library,cohort_all_libraries_wilcoxon_p_normal_approximation,0.621,Same test by the normal approximation with continuity correction.
+d. methylation per library,cohort_all_libraries_wilcoxon_p_exact,0.6277,"Wilcoxon rank-sum test, two-sided, exact; control against heat, all 22 libraries."
+d. methylation per library,cohort_all_libraries_wilcoxon_p_normal_approximation,0.6209,Same test by the normal approximation with continuity correction.
 d. methylation per library,library_with_highest_pct_methylation,zr3534_4,"Library with the highest read-pooled percent methylation of the tested CpGs of the DML region, raw counts, one value per library."
 e. annotation of the block,genes_overlapping_block,3,Records of the gene track that overlap the block by at least one base.
 e. annotation of the block,gene_LOC105317102_biotype,protein_coding,Biotype of a gene that overlaps the block (gene track).
