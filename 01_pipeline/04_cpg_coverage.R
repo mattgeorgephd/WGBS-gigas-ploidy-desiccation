@@ -17,10 +17,13 @@
 #           22 coverage files and the reference genome listed in
 #           03_input_files/gannet_manifest.csv (cache)
 #           03_input_files/genome_features/*.gz   the 13 tracks; what each holds is in the README there
-# Outputs   04_output/04_cpg_coverage/tables/
-#             library_coverage.csv               per-library CpG counts, coverage, upper cutoff
-#             genome_cpg_total.csv               CpG sites in the reference, by sequence class
-#             cpg_counts_by_coverage.csv         counts per mode, sample set, and threshold
+# Outputs   04_output/04_cpg_coverage/tables/ (the paper run; an optional analysis writes the
+#           same files, except the first two, to 04_output/not_adopted/<id>/04_cpg_coverage/,
+#           with <id> in place of "legacy" in the names, and rebuilds the six tables that list
+#           analyses side by side in 04_output/not_adopted/comparisons/04_cpg_coverage/)
+#             library_coverage.csv               per-library CpG counts, coverage, upper cutoff (paper run only)
+#             genome_cpg_total.csv               CpG sites in the reference, by sequence class (paper run only)
+#             cpg_counts_by_coverage.csv         counts per analysis (column mode), sample set, and threshold
 #             cpg_counts_by_feature_track.csv    the CpGs of each of those sets that overlap each
 #                                                feature track, and the two percentages the draft
 #                                                made of such counts
@@ -47,16 +50,27 @@
 #             manuscript. The manuscript's 1x count (12,794,074) is on an unknown
 #             definition and could not be traced (issue I-16): it is none of the
 #             three counts at 1x (5,852,939; 12,918,250; 12,918,252 in legacy mode).
-#           - Modes differ in the upper coverage filter (issue I-05) and in
-#             whether the first line of each coverage file is read (issue I-38).
-#             Each file is read once, in full. In legacy mode a library does not
-#             retain the CpG on the first line of its file, and there is no upper
-#             filter. In corrected mode a library does not retain a CpG whose
+#           - The analysis of the run (config$analysis; the paper's is "legacy",
+#             the column mode of the tables holds its id) sets the coverage
+#             standard of the correlation, PCA and distribution tables (10, or 5
+#             with cov5), the reading of the files, and the C-to-T exclusion.
+#             The two readings (option corrected) differ in the upper coverage
+#             filter (issue I-05) and in whether the first line of each coverage
+#             file is read (issue I-38). Each file is read once, in full. In the
+#             legacy reading a library does not retain the CpG on the first line
+#             of its file, and there is no upper filter. With option corrected
+#             (corrected mode) a library does not retain a CpG whose
 #             coverage is at or above the library's upper cutoff: the 99.9th
 #             percentile of coverage taken over the library's CpGs with at least
 #             config$import_min_coverage (2) reads, the CpGs that methylKit's
 #             import keeps in step 05. CpGs with a single read are left out of
 #             the percentile and are still counted at 1x.
+#           - With option ctexcl (not adopted) the CpGs that the C-to-T variant
+#             list of 01_pipeline/optional/ct_variant_loci.R lists are dropped
+#             from every library after its first line and its upper cutoff are
+#             taken, so every count, distribution, correlation and PCA of the
+#             step is over the other CpGs; cpg_in_any_library_unfiltered drops
+#             them too.
 #           - cpg_counts_by_feature_track.csv gives, for the CpG sets behind the
 #             first two counts (cpg_set "in all libraries" and "in any library"),
 #             the CpGs that overlap each of the 13 feature tracks: n_overlap,
@@ -125,7 +139,15 @@ step <- "04_cpg_coverage"
 t0 <- start_step(step, "CpG coverage, methylation distributions, library similarity")
 lib <- read_libraries(); sets <- sample_sets(lib); n_lib <- nrow(lib)
 levels_x <- config$coverage_levels
-tab <- function(name) output_path(step, "tables", name)
+an <- config$analysis                                     # the analysis of the run; an$id is written as `mode`
+if (an$paper && config$run_kind == "optional") {
+  log_msg("the analysis of this optional run is the paper's: its CpG tables are the paper's (04_output/04_cpg_coverage/); nothing to do")
+  quit(save = "no", status = 0)
+}
+tab <- function(name) analysis_path(an, step, "tables", name)
+standard <- c(1, an$min_coverage)                         # levels of the distributions, correlations and PCA
+variants <- if (an$ct_excluded) ct_variant_table() else NULL
+if (an$ct_excluded) log_msg("C-to-T variant list: %d CpGs listed; they are dropped from every library", nrow(variants))
 
 # =============================================================================
 # 1. Read each library once: positions, counts, per-library summaries
@@ -144,6 +166,13 @@ for (j in seq_len(n_lib)) {
   key <- cpg_key(d$chr, d$start, chr_levels)
   first_key[j] <- key[1]
   cutoff <- upper_coverage_cutoff(d$coverage, config$import_min_coverage, config$upper_coverage_percentile)
+  first_kept <- TRUE                                      # whether the first line's CpG is still row 1
+  if (an$ct_excluded) {
+    listed <- !is.na(variants[d[, .(chr, start)], on = c("chr", "start"), which = TRUE, mult = "first"])
+    first_kept <- !listed[1]
+    if (!first_kept) first_key[j] <- NA_real_
+    d <- d[!listed]; key <- key[!listed]
+  }
   lib_rows[[j]] <- data.table(
     library_id = lib$library_id[j], n_cpg_1x = nrow(d),
     first_line_position = sprintf("%s:%d", d$chr[1], d$start[1]), first_line_coverage = d$coverage[1],
@@ -151,9 +180,9 @@ for (j in seq_len(n_lib)) {
     mean_coverage = mean(d$coverage), median_coverage = median(d$coverage),
     upper_cutoff = cutoff, n_cpg_at_or_above_cutoff = sum(d$coverage >= cutoff))
   pm <- 100 * d$nC / d$coverage
-  for (lv in c(1, config$min_coverage)) for (mode in config$modes) {
-    keep <- d$coverage >= lv & (mode == "legacy" | d$coverage < cutoff)
-    if (first_line_lost(mode)) keep[1] <- FALSE
+  for (lv in standard) for (mode in an$id) {
+    keep <- d$coverage >= lv & (an$filter == "legacy" | d$coverage < cutoff)
+    if (first_line_lost(an$filter) && first_kept) keep[1] <- FALSE
     h <- tabulate(cut(pm[keep], breaks = bins, include.lowest = TRUE, labels = FALSE), nbins = 10)
     dist_rows[[length(dist_rows) + 1]] <- data.table(
       library_id = lib$library_id[j], mode = mode, min_coverage = lv, bin = bin_labels,
@@ -167,7 +196,7 @@ for (j in seq_len(n_lib)) {
 }
 library_coverage <- merge(as.data.table(lib[, c("library_id", "cohort", "ploidy", "treatment")]),
                           rbindlist(lib_rows), by = "library_id", sort = FALSE)
-write_table(library_coverage, tab("library_coverage.csv"))
+if (an$paper) write_table(library_coverage, tab("library_coverage.csv"))   # the same for every analysis: written by the paper run only
 cutoffs <- library_coverage$upper_cutoff
 
 # Coverage and methylated-count matrices: one row per CpG seen in any library,
@@ -195,7 +224,7 @@ genome_cpg <- data.table(sequence_class = seq_class, bp = width(genome), cpg = c
   , .(n_sequences = .N, bp = sum(as.numeric(bp)), cpg_sites = sum(cpg)), by = sequence_class]
 genome_cpg <- rbind(genome_cpg, data.table(sequence_class = "total", n_sequences = sum(genome_cpg$n_sequences),
                                            bp = sum(genome_cpg$bp), cpg_sites = sum(genome_cpg$cpg_sites)))
-write_table(genome_cpg, tab("genome_cpg_total.csv"))
+if (an$paper) write_table(genome_cpg, tab("genome_cpg_total.csv"))
 total_cpg <- genome_cpg[sequence_class == "total", cpg_sites]
 log_msg("reference: %d sequences, %.1f Mb, %d CpG sites", length(genome), sum(as.numeric(width(genome))) / 1e6, total_cpg)
 rm(genome); gc(verbose = FALSE)
@@ -209,8 +238,8 @@ rm(genome); gc(verbose = FALSE)
 # line of the library's file does not count for that library (issue I-38).
 covered <- function(j, x, mode) {
   cv <- cov_mat[, j]
-  ok <- if (mode == "legacy") cv >= x else cv >= x & cv < cutoffs[j]
-  if (first_line_lost(mode)) ok[first_row[j]] <- FALSE
+  ok <- if (an$filter == "legacy") cv >= x else cv >= x & cv < cutoffs[j]
+  if (first_line_lost(an$filter) && !is.na(first_row[j])) ok[first_row[j]] <- FALSE
   ok
 }
 
@@ -242,7 +271,7 @@ feature_counts <- function(in_set) {
 }
 
 count_rows <- list(); feature_rows <- list()
-for (mode in config$modes) for (s in names(sets)) for (x in levels_x) {
+for (mode in an$id) for (s in names(sets)) for (x in levels_x) {
   in_all <- rep(TRUE, n_cpg); in_any <- rep(FALSE, n_cpg)
   for (j in sets[[s]]) { ok <- covered(j, x, mode); in_all <- in_all & ok; in_any <- in_any | ok }
   set_id <- data.table(mode = mode, sample_set = s, n_libraries = length(sets[[s]]), min_coverage = x)
@@ -256,7 +285,7 @@ cpg_counts[, `:=`(pct_of_genome_cpg_all = 100 * cpg_in_all_libraries / total_cpg
 
 # CpGs with at least x reads in at least one library of the set, counted on every
 # line of every file and with no upper filter, so the count is the same in both
-# modes. cpg_in_any_library applies the rules of the mode first.
+# readings. cpg_in_any_library applies the rules of the analysis first.
 unfiltered <- unique(cpg_counts[, .(sample_set, min_coverage)])
 unfiltered[, cpg_in_any_library_unfiltered := mapply(function(s, x) {
   in_any <- rep(FALSE, n_cpg)
@@ -266,17 +295,20 @@ unfiltered[, cpg_in_any_library_unfiltered := mapply(function(s, x) {
 cpg_counts[unfiltered, on = c("sample_set", "min_coverage"), cpg_in_any_library_unfiltered := i.cpg_in_any_library_unfiltered]
 cpg_counts[, pct_of_genome_cpg_any_unfiltered := 100 * cpg_in_any_library_unfiltered / total_cpg]
 stopifnot(cpg_counts[sample_set == "all" & min_coverage == 1, all(cpg_in_any_library_unfiltered == n_cpg)])
+if (an$ct_excluded) {
+  base_counts <- data.table::fread(paper_path(step, "tables", "cpg_counts_by_coverage.csv"))
+  log_msg("C-to-T exclusion: CpGs in all 22 libraries at %gx: %d (the paper: %d)", an$min_coverage,
+          cpg_counts[sample_set == "all" & min_coverage == an$min_coverage, cpg_in_all_libraries],
+          base_counts[sample_set == "all" & min_coverage == an$min_coverage, cpg_in_all_libraries])
+}
 write_table(cpg_counts, tab("cpg_counts_by_coverage.csv"))
 print(dcast(cpg_counts[sample_set == "all"], mode ~ min_coverage, value.var = "cpg_in_all_libraries"))
 
 cpg_features <- rbindlist(feature_rows)
 write_table(cpg_features, tab("cpg_counts_by_feature_track.csv"))
-# The shares as Results 3.1 computed them, for the CpGs with config$min_coverage reads in every library of a set.
-# Printed only when legacy mode is configured: without it the selection is empty and dcast() stops the step.
-if ("legacy" %in% config$modes) {
-  print(dcast(cpg_features[mode == "legacy" & cpg_set == "in all libraries" & min_coverage == config$min_coverage & track %in% legacy_eight],
-              track ~ sample_set, value.var = "legacy_share_exon_twice_pct"), digits = 3)
-}
+# The shares as Results 3.1 computed them, for the CpGs with the standard number of reads in every library of a set.
+print(dcast(cpg_features[mode == an$id & cpg_set == "in all libraries" & min_coverage == an$min_coverage & track %in% legacy_eight],
+            track ~ sample_set, value.var = "legacy_share_exon_twice_pct"), digits = 3)
 rm(in_track, cpg_features); invisible(gc(verbose = FALSE))
 
 # =============================================================================
@@ -314,7 +346,7 @@ percent_methylation <- function(rows, x, mode) {
   pm
 }
 cor_summary <- list(); pca_var <- list(); pca_scores <- list()
-for (mode in config$modes) for (x in c(1, config$min_coverage)) {
+for (mode in an$id) for (x in standard) {
   in_all <- rep(TRUE, n_cpg)
   for (j in seq_len(n_lib)) in_all <- in_all & covered(j, x, mode)
   rows <- which(in_all)
@@ -348,13 +380,13 @@ write_table(rbindlist(pca_var), tab("pca_variance.csv"))
 pca_all <- rbindlist(pca_scores); pca_var_all <- rbindlist(pca_var)
 
 # =============================================================================
-# 6. Figure S1 (one per mode)
+# 6. Figure S1 (of the analysis)
 # =============================================================================
 set_cols <- c(all = "chartreuse4", diploid = config$colours$ploidy[["diploid"]],
               triploid = config$colours$ploidy[["triploid"]], control = config$colours$ploidy[["diploid"]],
               heat = config$colours$ploidy[["triploid"]])
 set_shapes <- c(all = 16, diploid = 16, triploid = 16, control = 15, heat = 15)
-for (mode_i in config$modes) {
+for (mode_i in an$id) {
   cc <- cpg_counts[mode == mode_i]
   cc[, sample_set := factor(sample_set, levels = names(set_cols))]
   pA <- ggplot(cc, aes(min_coverage, cpg_in_all_libraries / 1e6, colour = sample_set, shape = sample_set)) +
@@ -382,7 +414,24 @@ for (mode_i in config$modes) {
     labs(x = sprintf("PC 1 (%.1f%%)", pv$percent_variance[1]), y = sprintf("PC 2 (%.1f%%)", pv$percent_variance[2])) +
     theme_wgbs()
   fig <- (pA + pB) / (pC + pD) + plot_annotation(tag_levels = "A")
-  save_figure(fig, output_path(step, "figures", sprintf("figure_S1_%s", mode_i)), width = 11, height = 9)
+  save_figure(fig, analysis_path(an, step, "figures", sprintf("figure_S1_%s", mode_i)), width = 11, height = 9)
+}
+
+# Optional run: the stamp of the analysis folder, and the tables that list the
+# analyses side by side, rebuilt from every analysis folder on disk (the paper
+# first). Two tables interleave the analyses: by library (or group) and level.
+if (config$run_kind == "optional") {
+  write_stamp(an, step, ct_variant_list_md5 = if (an$ct_excluded) ct_variant_list_md5() else NULL)
+  ids <- analysis_order(c("legacy", analysis_folders()))
+  first_seen <- function(x) match(x, unique(x))
+  rebuild_comparison(step, "cpg_counts_by_coverage.csv")
+  rebuild_comparison(step, "cpg_counts_by_feature_track.csv")
+  rebuild_comparison(step, "methylation_distribution_by_library.csv", function(b)
+    order(first_seen(b$library_id), as.numeric(b$min_coverage), match(b$mode, ids), first_seen(b$bin)))
+  rebuild_comparison(step, "methylation_distribution_by_group.csv", function(b)
+    order(match(b$grouping, c("ploidy", "treatment", "all")), first_seen(b$group), as.numeric(b$min_coverage), match(b$mode, ids), first_seen(b$bin)))
+  rebuild_comparison(step, "library_correlation_summary.csv")
+  rebuild_comparison(step, "pca_variance.csv")
 }
 
 finish_step(step, t0)

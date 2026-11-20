@@ -26,7 +26,7 @@
 # Run       Rscript 01_pipeline/12_qpcr.R
 #           (needs no other step; under a minute, most of it the simulation
 #           that checks the test of the censored fit. The step does not depend
-#           on config$modes.)
+#           on the optional analyses: it is part of the paper run only.)
 #
 # Inputs    03_input_files/qpcr/raw/qpcr_data_<gene>.csv   two wells per animal, 40 animals
 #           03_input_files/qpcr/raw/qpcr_data_consolidated.csv   one row per animal, 32 animals
@@ -201,6 +201,7 @@ load_packages(c("data.table", "survival", "ggplot2", "patchwork", "ggrepel", "sc
 
 step <- "12_qpcr"
 t0 <- start_step(step, "qPCR: legacy analysis, censored regression, reference gene, COX1")
+require_run_kind("paper", "this step does not depend on the analysis and writes the paper's outputs")
 
 # ---- Settings ------------------------------------------------------------------------
 # All settings of this step are in run_config.R, list config$qpcr: the reference

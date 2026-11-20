@@ -29,6 +29,7 @@ load_packages(c("data.table", "ggplot2", "patchwork"))
 
 step <- "02_alignment_qc"
 t0 <- start_step(step, "alignment statistics per library")
+require_run_kind("paper", "this step does not depend on the analysis and writes the paper's outputs")
 lib <- read_libraries()
 
 # ---- Summary report (after deduplication) ------------------------------------

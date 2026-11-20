@@ -18,7 +18,10 @@
 #             united_cpg_<mode>.csv.gz, dml_{ploidy,heat,shared}_<mode>.csv,
 #             dml_counts_by_threshold_<mode>.csv
 #           03_input_files/metadata/wgbs_libraries.csv
-# Outputs   04_output/06_dml_figures/tables/
+# Outputs   (the paper run; an optional analysis writes the same files to
+#           04_output/not_adopted/<id>/<step>/, with <id> in place of <mode>, from its own
+#           step 05 tables in 04_output/not_adopted/<id>/05_differential_methylation/)
+#           04_output/06_dml_figures/tables/
 #             pca_dml_<mode>.csv            PC 1 and PC 2 of each library, on the ploidy DML
 #                                           and on the heat DML
 #             pca_dml_variance_<mode>.csv   loci in the set, loci used, percent of variance
@@ -72,11 +75,17 @@ load_packages(c("data.table", "ggplot2", "patchwork", "pheatmap", "RColorBrewer"
 step <- "06_dml_figures"
 t0 <- start_step(step, "Figure 2 and Figure 4")
 lib <- read_libraries()
-dml_dir <- function(f) output_path("05_differential_methylation", "tables", f)
+an <- config$analysis
+if (an$paper && config$run_kind == "optional") {
+  log_msg("the analysis of this optional run is the paper's: its outputs of this step are the paper's; nothing to do")
+  quit(save = "no", status = 0)
+}
+check_stamp(an, needs = c("04", "05"))
+dml_dir <- function(f) analysis_input(an, "05_differential_methylation", "tables", f)
 set_labels <- c(ploidy = "ploidy", heat = "heat", shared = "both lists")
 min_dml_for_percent <- 10            # panel B: a percentage of fewer loci is not drawn
 
-for (mode in config$modes) {
+for (mode in an$id) {
   united <- fread(dml_dir(sprintf("united_cpg_%s.csv.gz", mode)))
   n_lib <- nrow(lib)
   # Percent methylation per library from the normalized counts, as methylKit::percMethylation.
@@ -135,8 +144,8 @@ for (mode in config$modes) {
                                pc = 1:4, percent_variance = ve[1:4]))
   }
   pcs <- list(ploidy = pca_on(dml$ploidy$united_row, "ploidy DML"), heat = pca_on(dml$heat$united_row, "heat DML"))
-  write_table(rbindlist(lapply(pcs, `[[`, "scores")), output_path(step, "tables", sprintf("pca_dml_%s.csv", mode)))
-  write_table(rbindlist(lapply(pcs, `[[`, "variance")), output_path(step, "tables", sprintf("pca_dml_variance_%s.csv", mode)))
+  write_table(rbindlist(lapply(pcs, `[[`, "scores")), analysis_path(an, step, "tables", sprintf("pca_dml_%s.csv", mode)))
+  write_table(rbindlist(lapply(pcs, `[[`, "variance")), analysis_path(an, step, "tables", sprintf("pca_dml_variance_%s.csv", mode)))
   pca_panel <- function(p, title) {
     if (anyNA(p$scores$PC1)) {
       return(note_panel(title, sprintf("too few loci for a PCA (%d in the set, %d above the median SD)",
@@ -187,7 +196,7 @@ for (mode in config$modes) {
   fig2 <- ((pA + pB + pC + pD) + plot_layout(nrow = 1)) /
     ((pE + pF + pG) + plot_layout(nrow = 1, widths = ifelse(names(dml) %in% key_on, 1.25, 1))) +
     plot_layout(heights = c(1, 1.5)) + plot_annotation(tag_levels = "A")
-  save_figure(fig2, output_path(step, "figures", sprintf("figure_2_%s", mode)), width = 16, height = 10, dpi = 300)
+  save_figure(fig2, analysis_path(an, step, "figures", sprintf("figure_2_%s", mode)), width = 16, height = 10, dpi = 300)
 
   # ---- Figure 4: the two differences at each locus in both lists ------------------
   s <- copy(dml$shared)
@@ -210,8 +219,9 @@ for (mode in config$modes) {
       theme_wgbs() + theme(axis.text.y = element_blank(), axis.ticks.y = element_blank(), legend.position = "top",
                            strip.text.y = element_text(angle = 0, hjust = 0))
   }
-  save_figure(fig4, output_path(step, "figures", sprintf("figure_4_%s", mode)), width = 7.5, height = 8)
+  save_figure(fig4, analysis_path(an, step, "figures", sprintf("figure_4_%s", mode)), width = 7.5, height = 8)
   rm(pm); gc(verbose = FALSE)
 }
 
+if (config$run_kind == "optional") write_stamp(an, step)
 finish_step(step, t0)

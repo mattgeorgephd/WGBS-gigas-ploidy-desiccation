@@ -17,7 +17,10 @@
 # Inputs    04_output/05_differential_methylation/tables/united_cpg_<mode>.csv.gz
 #           04_output/05_differential_methylation/tables/dml_{ploidy,heat,shared}_<mode>.csv
 #           03_input_files/genome_features/*.gz   the 13 tracks; what each holds is in the README there
-# Outputs   04_output/07_genome_features/tables/
+# Outputs   (the paper run; an optional analysis writes the same files to
+#           04_output/not_adopted/<id>/<step>/, with <id> in place of <mode>, from its own
+#           step 05 tables in 04_output/not_adopted/<id>/05_differential_methylation/)
+#           04_output/07_genome_features/tables/
 #             feature_overlap_by_track_<mode>.csv   loci of each set that overlap each track: n_overlap,
 #                                                   pct_of_loci, legacy_share_pct; track_label says
 #                                                   what the track holds
@@ -143,8 +146,14 @@ load_packages(c("data.table", "GenomicRanges", "ggplot2", "patchwork", "RColorBr
 
 step <- "07_genome_features"
 t0 <- start_step(step, "genomic location of analysed CpGs and DML")
-dml_dir <- function(f) output_path("05_differential_methylation", "tables", f)
-tab <- function(name) output_path(step, "tables", name)
+an <- config$analysis
+if (an$paper && config$run_kind == "optional") {
+  log_msg("the analysis of this optional run is the paper's: its outputs of this step are the paper's; nothing to do")
+  quit(save = "no", status = 0)
+}
+check_stamp(an, needs = c("04", "05"))
+dml_dir <- function(f) analysis_input(an, "05_differential_methylation", "tables", f)
+tab <- function(name) analysis_path(an, step, "tables", name)
 pct <- function(n, of) if (of > 0) 100 * n / of else rep(NA_real_, length(n))    # no percentage of nothing
 
 tracks <- names(feature_track_files())
@@ -167,7 +176,7 @@ gene_gr <- read_feature_track("gene", keep_attributes = TRUE)
 genes_per_seq <- as.data.table(table(sequence = as.character(GenomicRanges::seqnames(gene_gr))))
 setnames(genes_per_seq, "N", "n_genes")
 
-for (mode in config$modes) {
+for (mode in an$id) {
   log_msg("[%s] reading analysed CpGs and DML", mode)
   united <- fread(dml_dir(sprintf("united_cpg_%s.csv.gz", mode)))
   # Eligible CpGs: mean methylation in the range that holds nearly all DML (see dml_eligible()).
@@ -355,8 +364,9 @@ for (mode in config$modes) {
       theme_wgbs() + theme(plot.caption = element_text(size = 9, hjust = 0))
   }
   fig <- pA / pB + plot_annotation(tag_levels = "A")
-  save_figure(fig, output_path(step, "figures", sprintf("figure_3_%s", mode)), width = 10, height = 10)
+  save_figure(fig, analysis_path(an, step, "figures", sprintf("figure_3_%s", mode)), width = 10, height = 10)
   rm(ov, gr, cls); gc(verbose = FALSE)
 }
 
+if (config$run_kind == "optional") write_stamp(an, step)
 finish_step(step, t0)

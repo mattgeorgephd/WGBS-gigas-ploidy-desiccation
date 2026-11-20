@@ -37,6 +37,7 @@ load_packages(c("data.table"))
 
 step <- "01_fetch_inputs"
 t0 <- start_step(step, "fetch and verify inputs")
+require_run_kind("paper", "this step does not depend on the analysis and writes the paper's outputs")
 
 # ---- Inputs hosted on gannet -------------------------------------------------
 manifest <- read_gannet_manifest()

@@ -29,15 +29,17 @@
 #                This step keeps the repeats in order to match the archive.
 #
 # Run       Rscript 01_pipeline/09_go_enrichment_legacy.R
-#           (after step 08, run with "legacy" in config$modes; about 3 minutes,
-#           about 1 GB of memory)
+#           (after step 08; about 3 minutes, about 1 GB of memory)
 #
 # Inputs    04_output/08_gene_annotation/tables/
 #             dml_go_annotation_{ploidy,heat,shared}_legacy.tsv.gz, transcript_table.csv.gz,
 #             gene_table_legacy.csv.gz, annotation_summary.csv
 #           03_input_files/annotation/geneid2go-union1x-BOTH.tab.gz
 #           GO.db 3.13.0 (Bioconductor archive; installed into the cache on first use)
-# Outputs   04_output/09_go_enrichment_legacy/tables/
+# Outputs   04_output/09_go_enrichment_legacy/tables/ (the paper run; an optional analysis runs
+#           the same procedure on its own DML and writes to
+#           04_output/not_adopted/<id>/09_go_enrichment_legacy/, with <id> in place of "legacy" in
+#           the names that end in it; the names that begin with legacy_ name the procedure)
 #             legacy_fisher_<set>_<ontology>.csv   every term: counts, p, rank, genes behind it
 #             legacy_top10_term_transcripts_<set>_<ontology>.csv
 #                                                  the ten top-ranked terms, each with the universe
@@ -60,13 +62,12 @@
 #           04_output/09_go_enrichment_legacy/session_info.txt
 #
 # Manuscript items: Results 3.4 and 3.5; Figure 5; Figure 9; Table 1.
-# Notes     - Runs on the legacy-mode DML only. When "legacy" is not in
-#             config$modes, run_pipeline.R does not start the step; started
-#             alone, it says so and ends before it reads or writes anything,
-#             with exit status 0 under Rscript. When "legacy" is
-#             configured and the summary of step 08 holds no legacy row for a
-#             DML set, step 08 last ran without the legacy mode, and the step
-#             stops with an error.
+# Notes     - Runs on the DML of the analysis of the run (the paper's in the
+#             paper run). In an optional run whose analysis is the paper's
+#             (only --gene-level-go or --diagnostics) it has nothing to do and
+#             ends with status 0. When the summary of step 08 holds no row of
+#             the analysis for a DML set, step 08 has not run for it, and the
+#             step stops with an error.
 #           - "shared" is the set the draft calls interaction-DML: loci in both
 #             the ploidy and the heat list (issue I-02). Its methylation
 #             difference is the heat one, as in the legacy table.
@@ -89,11 +90,12 @@ invisible(lapply(list.files(here("02_R_functions"), pattern = "\\.R$", full.name
 step <- "09_go_enrichment_legacy"
 t0 <- start_step(step, "GO enrichment as run for the manuscript draft")
 
-# The step exists for the legacy mode only. Without that mode it ends here, before
-# the ontology release is fetched and before any table is read or written: legacy
-# tables that an earlier run left in the folder of step 08 do not belong to this
-# configuration (see Notes).
-require_mode("legacy", "step 09 repeats the GO enrichment of the draft on the legacy-mode DML")
+an <- config$analysis
+if (an$paper && config$run_kind == "optional") {
+  log_msg("the analysis of this optional run is the paper's: its legacy GO tables are the paper's; nothing to do")
+  quit(save = "no", status = 0)
+}
+check_stamp(an, needs = c("04", "05", "08"))
 
 # A missing package is named before the ontology release is downloaded and
 # installed. The packages are looked up without being loaded: loading topGO here
@@ -108,14 +110,14 @@ if (!all(installed)) {
 go_db_version <- use_legacy_go_db(config)            # must come before topGO is loaded
 load_packages(step_packages)
 
-tab <- function(name) output_path(step, "tables", name)
-ann_in <- function(name) output_path("08_gene_annotation", "tables", name)
+tab <- function(name) analysis_path(an, step, "tables", name)
+ann_in <- function(name) analysis_input(an, "08_gene_annotation", "tables", name)
 sets <- c(ploidy = "ploidy-DML", heat = "heat-DML", shared = "interaction-DML")
 onts <- c(BP = "P", CC = "C", MF = "F")
 log_msg("GO.db %s (ontology of %s), topGO %s", go_db_version, go_source_date(), as.character(packageVersion("topGO")))
 
-tx_table <- fread(ann_in("transcript_table.csv.gz"), colClasses = c(gene_id = "character"))
-gene_table <- fread(ann_in("gene_table_legacy.csv.gz"), colClasses = c(gene_id = "character"))
+tx_table <- fread(paper_path("08_gene_annotation", "tables", "transcript_table.csv.gz"), colClasses = c(gene_id = "character"))
+gene_table <- fread(ann_in(sprintf("gene_table_%s.csv.gz", an$id)), colClasses = c(gene_id = "character"))
 tx_gene <- setNames(tx_table$gene_id, tx_table$transcript_id)
 # Without a legacy row per DML set in the summary of step 08, the legacy tables in
 # its folder are left from another configuration, and the funnel table below would
@@ -125,7 +127,7 @@ ann_summary <- legacy_annotation_summary(names(sets))
 # =============================================================================
 # 1. The DML annotation tables, as written and as the legacy script read them
 # =============================================================================
-ann_file <- function(s) ann_in(sprintf("dml_go_annotation_%s_legacy.tsv.gz", s))
+ann_file <- function(s) ann_in(sprintf("dml_go_annotation_%s_%s.tsv.gz", s, an$id))
 ann_exact  <- lapply(setNames(names(sets), names(sets)), function(s) read_dml_annotation(ann_file(s), "exact"))
 ann_legacy <- lapply(setNames(names(sets), names(sets)), function(s) suppressWarnings(read_dml_annotation(ann_file(s), "legacy")))
 count_side <- function(d) {
@@ -255,11 +257,11 @@ for (ont in names(onts)) {
   }
 }
 fig5 <- rbindlist(fig5); fig9 <- rbindlist(fig9); table1 <- rbindlist(table1)
-write_table(fig5, tab("figure_5_values_legacy.csv"))
-write_table(fig9, tab("figure_9_values_legacy.csv"))
+write_table(fig5, tab(sprintf("figure_5_values_%s.csv", an$id)))
+write_table(fig9, tab(sprintf("figure_9_values_%s.csv", an$id)))
 table1[, meth.diff := round(meth.diff, 2)]
 setnames(table1, c("geneID", "product", "chr", "meth.diff"), c("gene_id", "gene_name", "chromosome", "methylation_difference"))
-write_table(table1[, .(dml_set, gene_id, gene_name, chromosome, start, end, methylation_difference)], tab("table_1_legacy.csv"))
+write_table(table1[, .(dml_set, gene_id, gene_name, chromosome, start, end, methylation_difference)], tab(sprintf("table_1_%s.csv", an$id)))
 write_table(data.table(item = c("GO.db", "GO source date", "topGO", "universe transcripts", "universe map lines",
                                 "largest missing block: mRNAs with GO terms", "largest missing block: first transcript",
                                 "largest missing block: last transcript"),
@@ -280,9 +282,9 @@ p5 <- ggplot(fig5, aes(ontology, value, fill = set_label)) +
   scale_fill_manual(values = set_cols, name = NULL) +
   scale_y_continuous(labels = function(v) format(v, big.mark = ","), expand = expansion(mult = c(0, 0.15))) +
   labs(x = "Ontology", y = "Number", caption = paste(
-    "Values as in the draft. The panel titles are the draft's; figure_5_values_legacy.csv states what each number counts.")) +
+    "Values as in the draft. The panel titles are the draft's; ", sprintf("figure_5_values_%s.csv", an$id), " states what each number counts.", sep = "")) +
   theme_wgbs() + theme(legend.position = "top", plot.caption = element_text(size = 7, hjust = 0))
-save_figure(p5, output_path(step, "figures", "figure_5_legacy"), width = 9, height = 7.5)
+save_figure(p5, analysis_path(an, step, "figures", sprintf("figure_5_%s", an$id)), width = 9, height = 7.5)
 
 long9 <- melt(fig9, id.vars = c("set", "ontology"), measure.vars = c("hyper", "hypo"), variable.name = "direction", value.name = "n")
 long9[, set_label := factor(sets[set], levels = sets)]
@@ -293,7 +295,8 @@ p9 <- ggplot(long9, aes(direction, n, fill = set_label)) +
   scale_fill_manual(values = set_cols, name = NULL) + scale_y_continuous(expand = expansion(mult = c(0, 0.15))) +
   labs(x = NULL, y = "DML in genes that carry one of\nthe ten top-ranked GO terms") +
   theme_wgbs() + theme(legend.position = "top")
-save_figure(p9, output_path(step, "figures", "figure_9_legacy"), width = 9, height = 4)
+save_figure(p9, analysis_path(an, step, "figures", sprintf("figure_9_%s", an$id)), width = 9, height = 4)
 
 print(dcast(fig9, set ~ ontology, value.var = "total"))
+if (config$run_kind == "optional") write_stamp(an, step)
 finish_step(step, t0)

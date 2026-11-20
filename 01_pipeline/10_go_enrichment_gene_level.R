@@ -27,23 +27,34 @@
 #                variable, as recommended for methylation data (Geeleher et al.
 #                2013, Bioinformatics 29:1851).
 #
-# Run       Rscript 01_pipeline/10_go_enrichment_gene_level.R
-#           (after steps 08 and 09; about 3 to 4 minutes, about 1.6 GB of memory)
+# Run       NOT ADOPTED in the paper: an optional step, run by
+#             Rscript run_pipeline.R --gene-level-go [with the switches of an analysis]
+#           or alone with WGBS_GENE_LEVEL_GO=TRUE (and WGBS_ANALYSIS=<id>); in any other
+#           configuration it ends at once with status 0. Needs steps 08 and 09 of the
+#           paper (the draft's terms) and step 08 of the analysis. About 3 minutes per
+#           analysis, about 1.6 GB of memory.
 #
-# Inputs    04_output/08_gene_annotation/tables/gene_table_<mode>.csv.gz, gene_go_map.csv.gz
-#           04_output/09_go_enrichment_legacy/tables/legacy_fisher_<set>_<ontology>.csv
-# Outputs   04_output/10_go_enrichment_gene_level/tables/
-#             go_gene_level_<set>_<mode>.csv        every term, both universes, both tests
-#             go_gene_level_summary.csv             terms tested and enriched, per analysis
+# Inputs    04_output/08_gene_annotation/tables/gene_go_map.csv.gz (the paper run)
+#           gene_table_<id>.csv.gz of step 08 of the analysis (paper folder for the paper's
+#             analysis, 04_output/not_adopted/<id>/08_gene_annotation/ for another)
+#           04_output/09_go_enrichment_legacy/tables/legacy_fisher_<set>_<ontology>.csv (the paper run)
+# Outputs   04_output/not_adopted/<id>/10_go_enrichment_gene_level/tables/ (the paper's
+#           analysis: <id> = legacy)
+#             go_gene_level_<set>_<id>.csv          every term, both universes, both tests
+#             go_gene_level_summary.csv             terms tested and enriched (rows of the analysis)
 #             go_enriched_terms.csv                 terms with q < go_fdr (eligible universe, Wallenius)
 #             go_enriched_term_genes.csv            the DML genes behind those terms
-#             legacy_top10_at_gene_level.csv        each "enriched" term of the draft, retested
+#             legacy_top10_at_gene_level.csv        each "enriched" term of the draft, retested (for the paper's
+#                                                   analysis in both universes; for another, eligible universe,
+#                                                   columns ending in _eligible_<id>_dml)
 #             dml_probability_by_cpg_count.csv      the bias the Wallenius test adjusts for
-#             go_terms_by_analysis.csv              terms called enriched by each analysis (the data of
-#                                                   figure_go_terms_by_analysis)
-#           04_output/10_go_enrichment_gene_level/figures/
-#             figure_go_bias_<mode>, figure_go_terms_by_analysis, figure_go_enriched_<mode> (when any term is enriched)
-#           04_output/10_go_enrichment_gene_level/session_info.txt
+#             go_terms_by_analysis.csv              terms called enriched by the analysis (for the paper's
+#                                                   analysis also by the draft's procedure)
+#           .../figures/figure_go_bias_<id>, figure_go_enriched_<id> (when any term is enriched)
+#           04_output/not_adopted/comparisons/10_go_enrichment_gene_level/: the last six tables of
+#             every analysis on disk side by side, the paper's first (legacy_top10_at_gene_level.csv
+#             side by side in columns), and figures/figure_go_terms_by_analysis
+#           .../session_info.txt
 #
 # Manuscript items: replacement candidates for Results 3.4 and 3.5, Figures 5 to 9, Table 1.
 # Notes     - The GO annotation is the frozen one of the legacy analysis (blastx of
@@ -70,20 +81,23 @@ if (as.character(packageVersion("GO.db")) == config$legacy_go_db$version) {
 }
 
 step <- "10_go_enrichment_gene_level"
-t0 <- start_step(step, "gene-level GO enrichment against tested and eligible genes")
-tab <- function(name) output_path(step, "tables", name)
-ann_in <- function(name) output_path("08_gene_annotation", "tables", name)
+t0 <- start_step(step, "gene-level GO enrichment against tested and eligible genes (NOT ADOPTED)")
+require_run_kind("optional_gene_level", "step 10 (gene-level GO enrichment, not adopted in the paper) runs only when asked for")
+an <- config$analysis
+check_stamp(an, needs = c("04", "05", "08"))
+tab <- function(name) analysis_path(an, step, "tables", name)
+ann_in <- function(name) analysis_input(an, "08_gene_annotation", "tables", name)
 sets <- c(ploidy = "ploidy DML", heat = "heat DML", shared = "in both lists")
 onts <- c("BP", "CC", "MF")
 universes <- c(tested = "n_cpg_tested", eligible = "n_cpg_eligible")
 log_msg("GO.db %s (ontology of %s), topGO %s, goseq %s", as.character(packageVersion("GO.db")), go_source_date(),
         as.character(packageVersion("topGO")), as.character(packageVersion("goseq")))
 
-gene_go <- fread(ann_in("gene_go_map.csv.gz"), colClasses = c(gene_id = "character"))
+gene_go <- fread(paper_path("08_gene_annotation", "tables", "gene_go_map.csv.gz"), colClasses = c(gene_id = "character"))
 gene2go_all <- split(gene_go$go_id, gene_go$gene_id)
 
 results <- list(); summary_rows <- list(); bias_rows <- list(); term_genes <- list()
-for (mode in config$modes) {
+for (mode in an$id) {
   gene_tab <- fread(ann_in(sprintf("gene_table_%s.csv.gz", mode)), colClasses = c(gene_id = "character"))
   gene_tab <- gene_tab[biotype == "protein_coding"]
   any_dml <- gene_tab$n_dml_ploidy + gene_tab$n_dml_heat + gene_tab$n_dml_shared > 0
@@ -137,7 +151,7 @@ for (mode in config$modes) {
 }
 results <- rbindlist(results); go_summary <- rbindlist(summary_rows)
 go_summary[, `:=`(go_db = as.character(packageVersion("GO.db")), go_source_date = go_source_date())]
-for (mode_i in config$modes) for (s in names(sets)) {
+for (mode_i in an$id) for (s in names(sets)) {
   write_table(results[mode == mode_i & set == s], tab(sprintf("go_gene_level_%s_%s.csv", s, mode_i)))
 }
 write_table(go_summary, tab("go_gene_level_summary.csv"))
@@ -148,7 +162,7 @@ setorder(enriched, mode, set, ontology, q_wallenius)
 write_table(enriched, tab("go_enriched_terms.csv"))
 term_genes <- if (length(term_genes) > 0) rbindlist(term_genes) else
   data.table(mode = character(0), set = character(0), ontology = character(0), go_id = character(0), gene_id = character(0))
-gene_names <- unique(rbindlist(lapply(config$modes, function(m) fread(ann_in(sprintf("gene_table_%s.csv.gz", m)),
+gene_names <- unique(rbindlist(lapply(an$id, function(m) fread(ann_in(sprintf("gene_table_%s.csv.gz", m)),
                                                                        colClasses = c(gene_id = "character"))[, .(gene_id, gene, product)])))
 term_genes <- merge(term_genes, gene_names, by = "gene_id", all.x = TRUE, sort = FALSE)
 term_genes <- merge(term_genes, unique(results[, .(go_id, term)]), by = "go_id", all.x = TRUE, sort = FALSE)
@@ -159,7 +173,7 @@ write_table(term_genes, tab("go_enriched_term_genes.csv"))
 # =============================================================================
 # The "enriched" terms of the draft, retested at gene level
 # =============================================================================
-legacy_dir <- function(name) output_path("09_go_enrichment_legacy", "tables", name)
+legacy_dir <- function(name) paper_path("09_go_enrichment_legacy", "tables", name)     # the draft's terms
 legacy_top <- rbindlist(lapply(names(sets), function(s) rbindlist(lapply(onts, function(o) {
   fread(legacy_dir(sprintf("legacy_fisher_%s_%s.csv", s, o)))[top10 == TRUE]
 }))))
@@ -171,16 +185,17 @@ pick <- function(m, u, suffix) {
 top_check <- legacy_top[, .(set, ontology, legacy_rank = rank, go_id, term, legacy_transcripts_annotated = annotated,
                             legacy_transcripts_of_interest = significant, legacy_genes_behind_them = genes_significant,
                             legacy_p = p_fisher)]
-top_check <- merge(top_check, pick("legacy", "tested", "tested"), by = c("set", "ontology", "go_id"), all.x = TRUE, sort = FALSE)
-top_check <- merge(top_check, pick("legacy", "eligible", "eligible"), by = c("set", "ontology", "go_id"), all.x = TRUE, sort = FALSE)
-if ("corrected" %in% config$modes) {
-  top_check <- merge(top_check, pick("corrected", "eligible", "eligible_corrected_dml"), by = c("set", "ontology", "go_id"),
-                     all.x = TRUE, sort = FALSE)
-}
-top_check[, gene_level_status := fifelse(!go_id %in% known_go, "not in the current ontology",
-                                 fifelse(is.na(genes_annotated_eligible), "no eligible gene carries it",
-                                 fifelse(genes_annotated_eligible < config$go_min_genes, "fewer annotated genes than go_min_genes",
-                                 fifelse(q_wallenius_eligible < config$go_fdr, "enriched", "not enriched"))))]
+# The paper's analysis: both universes, suffixes _tested and _eligible. Another
+# analysis: the eligible universe, suffix _eligible_<id>_dml, so that the
+# comparison table can set the analyses side by side in columns.
+suffix <- if (an$paper) "eligible" else sprintf("eligible_%s_dml", an$id)
+if (an$paper) top_check <- merge(top_check, pick(an$id, "tested", "tested"), by = c("set", "ontology", "go_id"), all.x = TRUE, sort = FALSE)
+top_check <- merge(top_check, pick(an$id, "eligible", suffix), by = c("set", "ontology", "go_id"), all.x = TRUE, sort = FALSE)
+status_of <- function(annotated, q) fifelse(!top_check$go_id %in% known_go, "not in the current ontology",
+                                    fifelse(is.na(annotated), "no eligible gene carries it",
+                                    fifelse(annotated < config$go_min_genes, "fewer annotated genes than go_min_genes",
+                                    fifelse(q < config$go_fdr, "enriched", "not enriched"))))
+top_check[, gene_level_status := status_of(get(paste0("genes_annotated_", suffix)), get(paste0("q_wallenius_", suffix)))]
 setorder(top_check, set, ontology, legacy_rank)
 write_table(top_check, tab("legacy_top10_at_gene_level.csv"))
 print(top_check[, .N, by = .(set, gene_level_status)][order(set, gene_level_status)])
@@ -191,14 +206,14 @@ print(top_check[, .N, by = .(set, gene_level_status)][order(set, gene_level_stat
 bias <- rbindlist(bias_rows)
 bias[, `:=`(set_label = factor(sets[set], levels = sets), universe = factor(universe, levels = names(universes)))]
 set_cols <- setNames(unname(config$colours$dml_set), sets)
-for (mode_i in config$modes) {
+for (mode_i in an$id) {
   pb <- ggplot(bias[mode == mode_i], aes(cpg_bin, percent_with_dml, colour = set_label, group = set_label)) +
     geom_line(linewidth = 0.7) + geom_point(size = 2.2) +
     facet_wrap(~universe, labeller = as_labeller(c(tested = "CpGs tested in the gene", eligible = "Eligible CpGs in the gene (mean 10% to 90%)"))) +
     scale_colour_manual(values = set_cols, name = NULL) +
     labs(x = "Number of CpGs in the gene body", y = "Genes that hold a DML (%)") +
     theme_wgbs() + theme(legend.position = "top")
-  save_figure(pb, output_path(step, "figures", sprintf("figure_go_bias_%s", mode_i)), width = 9, height = 4.5)
+  save_figure(pb, analysis_path(an, step, "figures", sprintf("figure_go_bias_%s", mode_i)), width = 9, height = 4.5)
 }
 
 # How many terms each analysis calls enriched.
@@ -207,15 +222,40 @@ legacy_counts <- rbindlist(lapply(names(sets), function(s) rbindlist(lapply(onts
   data.table(set = s, ontology = o, analysis = "Draft: transcripts, p < 0.01, no correction", n_terms = sum(x$below_p_cutoff))
 }))))
 gl <- function(m, u, col, label) go_summary[mode == m & universe == u, .(set, ontology, analysis = label, n_terms = get(col))]
-by_analysis <- rbind(
+by_analysis <- if (an$paper) rbind(
   legacy_counts,
   gl("legacy", "tested", "fisher_q_below_fdr", "Genes, tested universe, Fisher, FDR"),
   gl("legacy", "eligible", "fisher_q_below_fdr", "Genes, eligible universe, Fisher, FDR"),
-  gl("legacy", "eligible", "wallenius_q_below_fdr", "Genes, eligible universe, Wallenius, FDR"),
-  if ("corrected" %in% config$modes) gl("corrected", "eligible", "wallenius_q_below_fdr",
-                                        "Same, DML called with the coverage filter"))
-by_analysis[, `:=`(analysis = factor(analysis, levels = rev(unique(analysis))), set_label = factor(sets[set], levels = sets))]
+  gl("legacy", "eligible", "wallenius_q_below_fdr", "Genes, eligible universe, Wallenius, FDR")) else
+  gl(an$id, "eligible", "wallenius_q_below_fdr",
+     if (an$id == "corrected") "Same, DML called with the coverage filter" else sprintf("Same, DML of the optional analysis %s", an$id))
+by_analysis[, set_label := factor(sets[set], levels = sets)]
 write_table(by_analysis, tab("go_terms_by_analysis.csv"))
+
+# The six tables of the analyses side by side (04_output/not_adopted/comparisons/),
+# rebuilt from every analysis folder that holds step 10, the paper's first.
+ids <- analysis_order(c("legacy", analysis_folders()))
+rebuild_comparison(step, "go_gene_level_summary.csv")
+rebuild_comparison(step, "dml_probability_by_cpg_count.csv")
+rebuild_comparison(step, "go_enriched_terms.csv", function(b) order(b$mode, b$set, b$ontology, as.numeric(b$q_wallenius), method = "radix"))
+rebuild_comparison(step, "go_enriched_term_genes.csv", function(b) order(b$mode, b$set, b$ontology, b$go_id, b$gene_id, method = "radix"))
+rebuild_comparison(step, "go_terms_by_analysis.csv")
+top_files <- vapply(ids, function(id) analysis_input(id, step, "tables", "legacy_top10_at_gene_level.csv"), "")
+top_files <- top_files[file.exists(top_files)]
+if (length(top_files) > 0) {
+  tops <- lapply(top_files, fread)
+  side <- tops[[1]]                                 # the paper's, when step 10 has run for it
+  status <- setNames(side$gene_level_status, paste(side$set, side$ontology, side$go_id)); side[, gene_level_status := NULL]
+  for (k in seq_along(tops)[-1]) {
+    cols <- grep("_eligible_.*_dml$", names(tops[[k]]), value = TRUE)
+    side <- merge(side, tops[[k]][, c("set", "ontology", "go_id", cols), with = FALSE], by = c("set", "ontology", "go_id"), all.x = TRUE, sort = FALSE)
+  }
+  side[, gene_level_status := unname(status[paste(set, ontology, go_id)])]
+  setorder(side, set, ontology, legacy_rank)
+  write_table(side, not_adopted_path("comparisons", step, "tables", "legacy_top10_at_gene_level.csv"))
+}
+by_analysis <- fread(not_adopted_path("comparisons", step, "tables", "go_terms_by_analysis.csv"))
+by_analysis[, `:=`(analysis = factor(analysis, levels = rev(unique(analysis))), set_label = factor(sets[set], levels = sets))]
 pa <- ggplot(by_analysis, aes(n_terms, analysis, fill = set_label)) +
   geom_col(position = position_dodge2(width = 0.85, reverse = TRUE), width = 0.8) +
   geom_text(aes(label = n_terms), position = position_dodge2(width = 0.85, reverse = TRUE), hjust = -0.2, size = 2.8) +
@@ -223,10 +263,11 @@ pa <- ggplot(by_analysis, aes(n_terms, analysis, fill = set_label)) +
   scale_fill_manual(values = set_cols, name = NULL) + scale_x_continuous(expand = expansion(mult = c(0, 0.2))) +
   labs(x = "GO terms called enriched", y = NULL) + theme_wgbs() +
   theme(legend.position = "top", panel.spacing.x = unit(1.4, "lines"))
-save_figure(pa, output_path(step, "figures", "figure_go_terms_by_analysis"), width = 11, height = 4.8)
+dir.create(not_adopted_path("comparisons", step, "figures"), recursive = TRUE, showWarnings = FALSE)
+save_figure(pa, not_adopted_path("comparisons", step, "figures", "figure_go_terms_by_analysis"), width = 11, height = 4.8)
 
 # The enriched terms themselves (eligible universe, Wallenius), strongest ten per set and ontology.
-for (mode_i in config$modes) {
+for (mode_i in an$id) {
   e <- enriched[mode == mode_i]
   if (nrow(e) == 0) { log_msg("[%s] no term is enriched at q < %g in the eligible universe", mode_i, config$go_fdr); next }
   e <- e[, head(.SD[order(q_wallenius)], 10), by = .(set, ontology)]
@@ -238,9 +279,11 @@ for (mode_i in config$modes) {
     scale_colour_viridis_c(name = expression(-log[10] ~ q)) + scale_size_area(max_size = 5, name = "Genes with a DML") +
     labs(x = "Observed / expected genes with a DML", y = NULL) + theme_wgbs() +
     theme(axis.text.y = element_text(size = 7), strip.text.y = element_text(angle = 0))
-  save_figure(pe, output_path(step, "figures", sprintf("figure_go_enriched_%s", mode_i)), width = 14,
+  save_figure(pe, analysis_path(an, step, "figures", sprintf("figure_go_enriched_%s", mode_i)), width = 14,
               height = max(4, 0.19 * nrow(e) + 2))
 }
 
 print(dcast(go_summary, mode + set + ontology ~ universe, value.var = c("terms_tested", "wallenius_q_below_fdr")))
+write_stamp(an, step)
+write_analyses_included()
 finish_step(step, t0)

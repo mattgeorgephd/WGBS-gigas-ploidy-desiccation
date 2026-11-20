@@ -1,0 +1,15 @@
+script,order,reads_analyses,needs_network,minutes,memory_gb,feeds_paper_values
+check_legacy_outputs,1,legacy,FALSE,1,1,FALSE
+cohort_separation,2,legacy;corrected,FALSE,0.5,0.5,FALSE
+table1_group_means,3,legacy,FALSE,1,1,TRUE
+fastq_read_names,4,none,TRUE,1,0.5,TRUE
+universe_file_cut,5,none,TRUE,0.1,0.5,FALSE
+go_random_cpg_control,6,legacy,FALSE,10,2,FALSE
+legacy_reader_mechanism,7,legacy,FALSE,4,1.3,FALSE
+locus_nc047563,8,legacy;corrected,FALSE,2,1.5,FALSE
+coverage_filter_variants,9,legacy;corrected,FALSE,7,1.6,FALSE
+check_methylkit_equivalence,10,legacy;corrected,FALSE,9,2.2,FALSE
+feature_odds_matched,11,legacy;corrected,FALSE,10,2.1,FALSE
+dml_sensitivity,12,legacy;corrected,FALSE,160,8,FALSE
+dml_corrected_test,13,legacy;corrected,FALSE,25,3,FALSE
+library_methylation_level,14,legacy;corrected,FALSE,2,1.5,FALSE

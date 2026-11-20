@@ -7,34 +7,29 @@ log_msg <- function(...) {
 }
 
 # Announce a step and return its start time. The line under the banner names the
-# analysis modes of run_config.R, so that every log says which modes the run was
-# configured for, also the log of a step whose results do not depend on the mode.
+# run kind and the analysis of the run (run_config.R and the switches of
+# run_pipeline.R), so that every log says what the run was configured for, also
+# the log of a step whose results do not depend on the analysis.
 start_step <- function(step, title) {
   cat(strrep("=", 78), "\n", step, ": ", title, "\n", strrep("=", 78), "\n", sep = "")
-  log_msg("analysis modes configured in run_config.R: %s", paste(config$modes, collapse = ", "))
+  log_msg("%s; analysis '%s'%s", if (identical(config$run_kind, "paper")) "paper run" else "OPTIONAL run (not adopted)",
+          config$analysis$id,
+          if (identical(config$run_kind, "paper")) " (the paper)" else paste0(", outputs under 04_output/not_adopted/",
+            if (isTRUE(config$addons$gene_level_go)) "; gene-level GO on" else "",
+            if (length(config$addons$diagnostics)) paste0("; diagnostics: ", paste(config$addons$diagnostics, collapse = ",")) else ""))
   Sys.time()
-}
-
-# End a step that exists for one analysis mode when that mode is not configured.
-# `step_does` says in a few words what the step does for that mode; it opens the
-# message. run_pipeline.R does not start such a step without its mode; this is for
-# a step started alone. Under Rscript the step ends here with exit status 0,
-# before it reads or writes anything, so that a job script that runs steps one by
-# one goes on. A script sourced in an interactive session cannot end early
-# without an error (quit() would close the session), so there it stops with one.
-require_mode <- function(mode, step_does) {
-  if (mode %in% config$modes) return(invisible(TRUE))
-  not_run <- sprintf("%s, and \"%s\" is not in config$modes (%s): nothing is run and no file is written",
-                     step_does, mode, paste(config$modes, collapse = ", "))
-  if (interactive()) stop(not_run, call. = FALSE)
-  log_msg("%s", not_run)
-  quit(save = "no", status = 0)
 }
 
 # Write R and package versions of the current session to the step's folder and
 # report the elapsed time.
 finish_step <- function(step, t0) {
-  f <- file.path(output_dir(step), "session_info.txt")
+  # The paper run writes to the paper folder; an optional run to the folder of its
+  # analysis (04_output/not_adopted/<id>/<step>/) or, for a step that is not an
+  # analysis step, to 04_output/not_adopted/<step>/.
+  folder <- if (!identical(config$run_kind, "optional") || startsWith(step, "not_adopted")) output_dir(step)
+            else if (step %in% c("13_manuscript_values")) output_dir(file.path("not_adopted", step))
+            else analysis_dir(config$analysis, step)
+  f <- file.path(folder, "session_info.txt")
   writeLines(c(paste("Step:", step), paste("Finished:", format(Sys.time(), "%Y-%m-%d %H:%M:%S %Z")), "",
                capture.output(print(utils::sessionInfo()))), f)
   log_msg("%s finished in %.1f min", step, as.numeric(difftime(Sys.time(), t0, units = "mins")))

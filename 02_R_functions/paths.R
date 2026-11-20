@@ -10,11 +10,26 @@
 # manuscript_values_map.csv in the same folder (rows D4.8-002 and R3.4-007 name
 # 03_input_files), and the patterns of .gitignore and .gitattributes. The root
 # README lists them under "How paths work".
+#
+# Write guard. In an optional run (config$run_kind "optional": an optional
+# analysis, the gene-level GO enrichment or the diagnostics turned on) nothing
+# may be written into a folder of the paper. output_dir() and output_path()
+# therefore stop in such a run, except for a step's cache folder and for folders
+# under 04_output/not_adopted/; an optional analysis writes through
+# analysis_dir() and analysis_path() (02_R_functions/analyses.R), and reads the
+# paper's outputs through paper_path(). manuscript_path() allows only
+# 05_manuscript/not_adopted/ in such a run.
 
 input_path <- function(...) here::here("03_input_files", ...)
 
+optional_run <- function() exists("config", inherits = TRUE) && identical(config$run_kind, "optional")
+
 # Folder for one step's outputs, created if absent: 04_output/<step>/<sub>/
 output_dir <- function(step, sub = NULL) {
+  if (optional_run() && !identical(sub, "cache") && !startsWith(step, "not_adopted")) {
+    stop("An optional run may not write into the paper folder 04_output/", step, if (!is.null(sub)) paste0("/", sub),
+         "; use analysis_path().", call. = FALSE)
+  }
   d <- if (is.null(sub)) here::here("04_output", step) else here::here("04_output", step, sub)
   dir.create(d, recursive = TRUE, showWarnings = FALSE)
   d
@@ -22,10 +37,19 @@ output_dir <- function(step, sub = NULL) {
 
 output_path <- function(step, sub, file) file.path(output_dir(step, sub), file)
 
+# A file of the paper's outputs, for reading (never creates a folder).
+paper_path <- function(step, sub, file) here::here("04_output", step, sub, file)
+
 # Folder for a step's large, regenerable intermediates (git-ignored).
 step_cache_dir <- function(step) output_dir(step, "cache")
 
-manuscript_path <- function(...) here::here("05_manuscript", ...)
+manuscript_path <- function(...) {
+  parts <- c(...)
+  if (optional_run() && (length(parts) == 0 || parts[1] != "not_adopted")) {
+    stop("An optional run may write into 05_manuscript/not_adopted/ only.", call. = FALSE)
+  }
+  here::here("05_manuscript", ...)
+}
 # No step of the pipeline reads the archive: the legacy files that steps 11 and 12
 # compare with are copies under 03_input_files/. archive_path() serves the checks
 # in 06_diagnostics/, which compare pipeline outputs with the legacy outputs.

@@ -42,12 +42,15 @@
 #                         so and draws nothing.
 #
 # Run       Rscript 01_pipeline/11_semantic_similarity.R
-#           (after steps 08, 09 and 10, run with "legacy" in config$modes; about
-#           5 minutes and 1.6 GB of memory)
+#           (after steps 08 and 09; about 5 minutes and 1.6 GB of memory. The
+#           gene-level part runs instead, in an optional run with --gene-level-go,
+#           after step 10; about a minute)
 #
 # Inputs    04_output/09_go_enrichment_legacy/tables/legacy_fisher_<set>_<ontology>.csv, legacy_reader_loss.csv
 #           04_output/08_gene_annotation/tables/dml_go_annotation_<set>_legacy.tsv.gz, annotation_summary.csv
-#           04_output/10_go_enrichment_gene_level/tables/go_enriched_terms.csv, go_gene_level_<set>_legacy.csv
+#           gene-level part: go_enriched_terms.csv and go_gene_level_<set>_<id>.csv of step 10 of the
+#             analysis (04_output/not_adopted/<id>/10_go_enrichment_gene_level/), and the paper's
+#             named_terms_results_3_4.csv
 #           03_input_files/annotation/legacy/revigo_exports/code_Revigo.R, code_OLD_Revigo.R, Revigo-PLOIDY-BP.R
 #             (plot scripts exported by REVIGO, data embedded; read as text, never run)
 #           03_input_files/annotation/legacy/fisher_other_analysis/ploidy-<ontology>-FisherTestResults.csv
@@ -56,7 +59,6 @@
 # Outputs   04_output/11_semantic_similarity/tables/
 #             semantic_clusters_legacy_<set>_<ontology>.csv    one row per term: p, score, cluster, representative, coordinates
 #             semantic_clusters_as_drawn_<set>_BP.csv          the same for the lists the draft's figures were drawn from
-#             semantic_clusters_gene_level.csv                 the same for the gene-level terms; one row with a note when there are none
 #             similarity_<list>_<set>_<ontology>.csv           the similarity matrices (.csv.gz when larger than gzip_above_mb)
 #             semantic_summary.csv                             per list: terms in, terms dropped and why, clusters, checks
 #             semantic_terms_dropped.csv                       the dropped terms, with the reason
@@ -66,20 +68,26 @@
 #           04_output/11_semantic_similarity/figures/
 #             figure_6_legacy, figure_7_legacy, figure_8_legacy   panel A: the list as drawn; panel B: the list the Methods describe
 #             figure_revigo_export_<name>                          each distinct REVIGO export redrawn from its embedded data
-#             figure_semantic_gene_level_<set>_<ontology>_<mode>   only when the gene-level analysis has enriched terms
 #           04_output/11_semantic_similarity/session_info.txt
+#           Gene-level part (NOT ADOPTED; only in an optional run with --gene-level-go, after
+#           step 10), in 04_output/not_adopted/<id>/11_semantic_similarity/ (<id> = legacy for
+#           the paper's analysis):
+#             tables/semantic_clusters_gene_level.csv          the clusters of the gene-level terms of step 10;
+#                                                              one row with a note when there are none
+#             tables/named_terms_results_3_4_gene_level.csv    the terms named in Results 3.4 (set, phrase, go_id)
+#                                                              at gene level: five gene_level_ columns
+#             tables/semantic_summary_gene_level.csv, semantic_terms_dropped_gene_level.csv
+#             figures/figure_semantic_gene_level_<set>_<ontology>_<id>   only when terms are enriched
 #
 # Manuscript items: Figures 6, 7 and 8; Results 3.4 (the three paragraphs on semantic
 #           clustering); Methods 2.6, last sentence.
-# Notes     - Modes. The step redraws figures of the draft from the legacy
-#             enrichment and reads legacy-mode tables only. When "legacy" is not
-#             in config$modes, run_pipeline.R does not start the step; started
-#             alone, it says so and ends before it reads or writes anything,
-#             with exit status 0 under Rscript. When "legacy" is configured and
-#             the summary of step 08 holds no legacy row for a DML set, step 08
-#             last ran without the legacy mode, and the step stops with an
-#             error, as step 09 does. The gene-level part takes the terms of
-#             every mode that step 10 wrote.
+# Notes     - Run kinds. In the paper run the step redraws figures of the draft
+#             from the legacy enrichment of the paper's DML (sections 1 to 5 and
+#             7). In an optional run with --gene-level-go it does the gene-level
+#             part only (sections 6 and 7) for the analysis of the run, writing
+#             under 04_output/not_adopted/; in any other optional run it ends at
+#             once with status 0. When the summary of step 08 holds no row of the
+#             paper for a DML set, the step stops with an error, as step 09 does.
 #           - Legacy files. The REVIGO exports and the three Fisher tables are
 #             copies of files in 08_archive/ (code/Revigo.R, code/OLD/Revigo.R,
 #             figures/revigo_figure/Revigo-PLOIDY-BP.R, tables/ploidy-<ontology>-
@@ -173,8 +181,12 @@ invisible(lapply(list.files(here("02_R_functions"), pattern = "\\.R$", full.name
 
 step <- "11_semantic_similarity"
 t0 <- start_step(step, "semantic similarity of GO terms (Figures 6 to 8)")
-# Without the legacy mode the step ends here, before a package is loaded or a file is read (see Notes).
-require_mode("legacy", "step 11 redraws Figures 6 to 8 of the draft from the legacy enrichment")
+# The paper run does the paper's sections; an optional run with --gene-level-go the gene-level part only (see Notes).
+paper_part <- identical(config$run_kind, "paper")
+gene_part  <- identical(config$run_kind, "optional") && isTRUE(config$addons$gene_level_go)
+if (!paper_part) require_run_kind("optional_gene_level", "step 11 in an optional run does the gene-level part of step 10's terms")
+an <- config$analysis
+if (gene_part) check_stamp(an, needs = c("04", "05", "08", "10"))
 
 # Rcpp is in the list because GOSemSim calls compiled code of Rcpp without loading it.
 load_packages(c("data.table", "GO.db", "Rcpp", "GOSemSim", "rrvgo", config$semantic_similarity$organism_db, "ggplot2", "ggrepel", "patchwork"))
@@ -189,8 +201,8 @@ if (as.character(packageVersion("GO.db")) == config$legacy_go_db$version) {
 cfg  <- config$semantic_similarity
 sets <- c(ploidy = "ploidy-DML", heat = "heat-DML", shared = "interaction-DML")   # names used in the draft
 onts <- c(BP = "P", CC = "C", MF = "F")                                           # ontology and its code in the annotation tables
-tab  <- function(name) output_path(step, "tables", name)
-fig  <- function(name) output_path(step, "figures", name)
+tab  <- function(name) if (paper_part) output_path(step, "tables", name) else analysis_path(an, step, "tables", name)
+fig  <- function(name) if (paper_part) output_path(step, "figures", name) else analysis_path(an, step, "figures", name)
 go_db_version <- as.character(packageVersion("GO.db"))
 log_msg("GO.db %s (ontology of %s), %s %s, rrvgo %s, GOSemSim %s; measure %s, threshold %g", go_db_version, go_source_date(),
         cfg$organism_db, as.character(packageVersion(cfg$organism_db)), as.character(packageVersion("rrvgo")),
@@ -198,29 +210,36 @@ log_msg("GO.db %s (ontology of %s), %s %s, rrvgo %s, GOSemSim %s; measure %s, th
 
 # Every input file, checked before any work starts.
 repo_relative      <- function(path) substring(path, nchar(here()) + 2L)          # a path as it reads from the repository root
-legacy_fisher_file <- function(s_i, o_i) output_path("09_go_enrichment_legacy", "tables", sprintf("legacy_fisher_%s_%s.csv", s_i, o_i))
-reader_loss_file   <- output_path("09_go_enrichment_legacy", "tables", "legacy_reader_loss.csv")
-annotation_file    <- function(s_i) output_path("08_gene_annotation", "tables", sprintf("dml_go_annotation_%s_legacy.tsv.gz", s_i))
-gene_level_file    <- function(s_i) output_path("10_go_enrichment_gene_level", "tables", sprintf("go_gene_level_%s_legacy.csv", s_i))
-enriched_file      <- output_path("10_go_enrichment_gene_level", "tables", "go_enriched_terms.csv")
+legacy_fisher_file <- function(s_i, o_i) paper_path("09_go_enrichment_legacy", "tables", sprintf("legacy_fisher_%s_%s.csv", s_i, o_i))
+reader_loss_file   <- paper_path("09_go_enrichment_legacy", "tables", "legacy_reader_loss.csv")
+annotation_file    <- function(s_i) paper_path("08_gene_annotation", "tables", sprintf("dml_go_annotation_%s_legacy.tsv.gz", s_i))
+gene_level_file    <- function(s_i) analysis_input(an, "10_go_enrichment_gene_level", "tables", sprintf("go_gene_level_%s_%s.csv", s_i, an$id))
+enriched_file      <- analysis_input(an, "10_go_enrichment_gene_level", "tables", "go_enriched_terms.csv")
+named_terms_file   <- paper_path(step, "tables", "named_terms_results_3_4.csv")
 export_file        <- function(e_i) input_path(cfg$revigo_exports[[e_i]])
 other_fisher_file  <- function(o_i) input_path(sprintf(cfg$other_fisher, o_i))
-input_files <- c(unlist(lapply(names(sets), function(s_i) vapply(names(onts), function(o_i) legacy_fisher_file(s_i, o_i), ""))), reader_loss_file,
-                 vapply(names(sets), annotation_file, ""), vapply(names(sets), gene_level_file, ""), enriched_file,
-                 vapply(names(cfg$revigo_exports), export_file, ""), vapply(names(onts), other_fisher_file, ""))
+input_files <- if (paper_part) {
+  c(unlist(lapply(names(sets), function(s_i) vapply(names(onts), function(o_i) legacy_fisher_file(s_i, o_i), ""))), reader_loss_file,
+    vapply(names(sets), annotation_file, ""), vapply(names(cfg$revigo_exports), export_file, ""), vapply(names(onts), other_fisher_file, ""))
+} else c(vapply(names(sets), gene_level_file, ""), enriched_file, named_terms_file)
 if (!all(file.exists(input_files))) {
   stop("Input file(s) not found:\n  ", paste(repo_relative(input_files[!file.exists(input_files)]), collapse = "\n  "),
-       "\nSteps 08, 09 and 10 write the files under 04_output; run them first, with \"legacy\" in config$modes.", call. = FALSE)
+       if (paper_part) "\nSteps 08 and 09 write the files under 04_output; run them first." else
+         "\nThe paper run (step 11) and step 10 of the analysis write them; run those first.", call. = FALSE)
 }
-# Legacy annotation tables that step 08 left from a run without the legacy mode stop the step here, as they stop step 09.
-invisible(legacy_annotation_summary(names(sets)))
-enriched <- fread(enriched_file)                 # the gene-level terms (section 6); read here so that a faulty table stops the step at once
-need <- c("mode", "set", "ontology", "go_id", "term", "p_wallenius", "q_wallenius")
-if (!all(need %in% names(enriched))) stop("go_enriched_terms.csv lacks column(s): ", paste(setdiff(need, names(enriched)), collapse = ", "))
-if (anyDuplicated(enriched[, .(mode, set, ontology, go_id)])) stop("A GO ID occurs twice for one mode, set and ontology in go_enriched_terms.csv")
-# The gene-level figures and matrices exist only when terms are enriched; remove those of an earlier run.
-unlink(list.files(output_dir(step, "figures"), pattern = "^figure_semantic_gene_level_", full.names = TRUE))
-unlink(list.files(output_dir(step, "tables"), pattern = "^similarity_gene_level_", full.names = TRUE))
+if (paper_part) {
+  # Annotation tables of step 08 without a row of the paper per DML set stop the step here, as they stop step 09.
+  invisible(legacy_annotation_summary(names(sets)))
+}
+if (gene_part) {
+  enriched <- fread(enriched_file)               # the gene-level terms (section 6); read here so that a faulty table stops the step at once
+  need <- c("mode", "set", "ontology", "go_id", "term", "p_wallenius", "q_wallenius")
+  if (!all(need %in% names(enriched))) stop("go_enriched_terms.csv lacks column(s): ", paste(setdiff(need, names(enriched)), collapse = ", "))
+  if (anyDuplicated(enriched[, .(mode, set, ontology, go_id)])) stop("A GO ID occurs twice for one mode, set and ontology in go_enriched_terms.csv")
+  # The gene-level figures and matrices exist only when terms are enriched; remove those of an earlier run.
+  unlink(list.files(analysis_dir(an, step, "figures"), pattern = "^figure_semantic_gene_level_", full.names = TRUE))
+  unlink(list.files(analysis_dir(an, step, "tables"), pattern = "^similarity_gene_level_", full.names = TRUE))
+}
 
 # =============================================================================
 # 1. Term lists
@@ -237,6 +256,7 @@ primary_id <- function(ids) {            # the current ID of a term given under 
   out
 }
 
+if (paper_part) {   # sections 1 to 5 (their work, not their functions) belong to the paper run
 # Legacy enrichment: every tested term of the nine Fisher tables.
 legacy <- rbindlist(lapply(names(sets), function(s_i) rbindlist(lapply(names(onts), function(o_i) {
   x <- fread(legacy_fisher_file(s_i, o_i))
@@ -281,6 +301,7 @@ lists_compared <- rbindlist(lapply(names(sets), function(s_i) rbindlist(lapply(n
 lists_compared[, `:=`(percent_of_annotated_with_p_below_cutoff = round(100 * terms_in_both / terms_annotated_legacy_reader, 1),
                       draft_figure = fifelse(ontology == cfg$figure_ontology, paste("Figure", cfg$figure_numbers[set]), ""))]
 write_table(lists_compared, tab("term_lists_compared.csv"))
+}   # end of the paper part of section 1
 
 # =============================================================================
 # 2. Similarity, clusters, layout
@@ -483,6 +504,7 @@ run_list <- function(list_name, list_label, s_i, o_i, ids, p_values, term_names)
 }
 label_legacy <- sprintf("legacy, p < %g", config$go_pvalue)
 label_drawn  <- "as drawn in the draft"
+if (paper_part) {
 for (s_i in names(sets)) for (o_i in names(onts)) {
   x <- legacy[set == s_i & ontology == o_i & below_p_cutoff == TRUE]
   run_list("legacy", label_legacy, s_i, o_i, x$go_id, setNames(x$p_fisher, x$go_id), setNames(x$term, x$go_id))
@@ -491,6 +513,7 @@ for (s_i in names(sets)) {
   x <- annotated_lists[set == s_i & ontology == cfg$figure_ontology]
   run_list("as_drawn", label_drawn, s_i, cfg$figure_ontology, x$go_id, NULL, setNames(x$term_annotation, x$go_id))
 }
+}   # end of the paper part of section 2
 
 # =============================================================================
 # 3. Figures 6, 7 and 8
@@ -665,6 +688,7 @@ figure_caption <- function(score_note, panel_note, closing_note, figure_width) {
 }
 caption_theme <- theme(plot.caption = element_text(size = 7.5, hjust = 0, lineheight = 1.1))
 reproduction_note <- " The legacy enrichment is unsound (issues I-03, I-39, I-40); this figure is a reproduction, not a result."
+if (paper_part) {   # sections 3 (figures), 4 and 5
 for (s_i in names(sets)) {
   drawn <- results[[paste("as_drawn", s_i, cfg$figure_ontology, sep = "_")]]; described <- results[[paste("legacy", s_i, cfg$figure_ontology, sep = "_")]]
   both <- lists_compared[set == s_i & ontology == cfg$figure_ontology]
@@ -871,30 +895,37 @@ drawn_clusters <- rbindlist(lapply(names(sets), function(s_i) {       # where th
   cbind(data.table(set = rep(s_i, nrow(x))), x[, .(go_id, as_drawn_cluster = cluster, as_drawn_cluster_named_after = parent_term)])
 }))
 named <- merge(named, drawn_clusters, by = c("set", "go_id"), all.x = TRUE, sort = FALSE)
-gene_level <- rbindlist(lapply(names(sets), function(s_i) fread(gene_level_file(s_i))[universe == "eligible"]))
-if (anyDuplicated(gene_level[, .(set, go_id)])) stop("A GO ID occurs twice for one set in the gene-level tables")
-named <- merge(named, gene_level[, .(set, go_id, gene_level_genes_annotated = genes_annotated, gene_level_genes_with_dml = genes_with_dml,
-                                     gene_level_p_wallenius = p_wallenius, gene_level_q_wallenius = q_wallenius, gene_level_tested = tested)],
-               by = c("set", "go_id"), all.x = TRUE, sort = FALSE)
 if (nrow(named) != n_named) stop("A join changed the number of named terms")
-named[, gene_level_result := fifelse(is.na(go_id), "no GO term matched",
-                             fifelse(!go_id %chin% go_terms$go_id, paste("not tested: the term is not in GO.db", go_db_version),
-                             fifelse(is.na(gene_level_genes_annotated), "not tested: no eligible gene carries the term",
-                             fifelse(!gene_level_tested, sprintf("not tested: fewer than %d eligible genes carry the term", config$go_min_genes),
-                             fifelse(gene_level_q_wallenius < config$go_fdr, "enriched", "not enriched")))))]
 named[, `:=`(manuscript_set = unname(sets[set]), draft_figure = paste("Figure", cfg$figure_numbers[set]))]
 named_out <- named[order(row_in_text),
                    .(set, manuscript_set, draft_figure, phrase, read_as, match_type, reading_note, name_matched_in, go_id, term_current,
                      term_legacy_release, ontology, in_legacy_p_list, legacy_rank, legacy_p, transcripts_annotated, transcripts_of_interest,
-                     genes_behind_transcripts_of_interest, in_list_as_drawn, as_drawn_cluster, as_drawn_cluster_named_after,
-                     gene_level_genes_annotated, gene_level_genes_with_dml, gene_level_p_wallenius, gene_level_q_wallenius, gene_level_result)]
+                     genes_behind_transcripts_of_interest, in_list_as_drawn, as_drawn_cluster, as_drawn_cluster_named_after)]
 write_table(named_out, tab("named_terms_results_3_4.csv"))
 print(named_out[, .(named_terms = .N, matched = sum(match_type != "not found"), in_legacy_p_list = sum(in_legacy_p_list),
-                    in_list_as_drawn = sum(in_list_as_drawn != "no"), enriched_at_gene_level = sum(gene_level_result == "enriched")), by = set])
+                    in_list_as_drawn = sum(in_list_as_drawn != "no")), by = set])
+}   # end of the paper part (sections 3 to 5)
 
 # =============================================================================
-# 6. The same procedure on the gene-level terms
+# 6. The same procedure on the gene-level terms (optional run, --gene-level-go)
 # =============================================================================
+if (gene_part) {
+# The terms named in Results 3.4 (the paper's table), tested at gene level in the analysis of the run.
+named <- fread(named_terms_file, select = c("set", "phrase", "go_id"))
+gene_level <- rbindlist(lapply(names(sets), function(s_i) fread(gene_level_file(s_i))[universe == "eligible"]))
+if (anyDuplicated(gene_level[, .(set, go_id)])) stop("A GO ID occurs twice for one set in the gene-level tables")
+hit <- match(paste(named$set, named$go_id), paste(gene_level$set, gene_level$go_id))
+named[, `:=`(gene_level_genes_annotated = gene_level$genes_annotated[hit], gene_level_genes_with_dml = gene_level$genes_with_dml[hit],
+             gene_level_p_wallenius = gene_level$p_wallenius[hit], gene_level_q_wallenius = gene_level$q_wallenius[hit])]
+tested_term <- gene_level$tested[hit]
+named[, gene_level_result := fifelse(is.na(go_id) | go_id == "", "no GO term matched",
+                             fifelse(!go_id %chin% go_terms$go_id, paste("not tested: the term is not in GO.db", go_db_version),
+                             fifelse(is.na(gene_level_genes_annotated), "not tested: no eligible gene carries the term",
+                             fifelse(!tested_term, sprintf("not tested: fewer than %d eligible genes carry the term", config$go_min_genes),
+                             fifelse(gene_level_q_wallenius < config$go_fdr, "enriched", "not enriched")))))]
+write_table(named, tab("named_terms_results_3_4_gene_level.csv"))
+print(named[, .(named_terms = .N, enriched_at_gene_level = sum(gene_level_result == "enriched")), by = set])
+
 gene_level_columns <- c("mode", "set", "ontology", cluster_columns, "q_wallenius", "note")
 label_gene <- sprintf("gene level, q < %g", config$go_fdr)
 if (nrow(enriched) == 0) {
@@ -938,6 +969,7 @@ if (nrow(enriched) == 0) {
   }
 }
 write_table(gene_table, tab("semantic_clusters_gene_level.csv"))
+}   # end of section 6
 
 # =============================================================================
 # 7. Summary
@@ -947,10 +979,14 @@ semantic_summary[, `:=`(measure = cfg$measure, rrvgo_threshold = cfg$threshold,
                         organism_db = paste(cfg$organism_db, as.character(packageVersion(cfg$organism_db))), go_db = go_db_version,
                         go_source_date = go_source_date(), rrvgo = as.character(packageVersion("rrvgo")),
                         gosemsim = as.character(packageVersion("GOSemSim")))]
-write_table(semantic_summary, tab("semantic_summary.csv"))
+write_table(semantic_summary, tab(if (paper_part) "semantic_summary.csv" else "semantic_summary_gene_level.csv"))
 dropped_terms <- rbindlist(dropped_rows)
+if (ncol(dropped_terms) == 0) {                    # no term dropped from any list (the gene-level part without terms)
+  dropped_terms <- data.table(term_list = character(0), mode = character(0), set = character(0), ontology = character(0),
+                              go_id = character(0), term = character(0), reason = character(0))
+}
 setorder(dropped_terms, term_list, mode, set, ontology, reason, go_id)
-write_table(dropped_terms, tab("semantic_terms_dropped.csv"))
+write_table(dropped_terms, tab(if (paper_part) "semantic_terms_dropped.csv" else "semantic_terms_dropped_gene_level.csv"))
 if (nrow(dropped_terms) != semantic_summary[, sum(terms_in - terms_placed)]) stop("The dropped terms do not add up to the summary")
 
 print(semantic_summary[, .(term_list, set, ontology, terms_in, obsolete = dropped_obsolete, merged = dropped_merged, unknown = dropped_unknown_id,
@@ -960,4 +996,5 @@ print(semantic_summary[, .(term_list, set, ontology, terms_in, obsolete = droppe
 print(semantic_summary[orders_tried > 0, .(term_list, set, ontology, orders_tried, another_partition = orders_with_another_partition,
                                            lowest_rand = lowest_adjusted_rand_index, clusters_from = fewest_clusters_in_another_order,
                                            clusters_to = most_clusters_in_another_order, labelled_kept = fewest_labelled_representatives_kept)])
+if (gene_part) write_stamp(an, step)
 finish_step(step, t0)

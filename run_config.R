@@ -3,20 +3,24 @@
 # Single control surface for the pipeline. Every script in 01_pipeline/ sources
 # this file first. Change analysis settings here, never inside a step.
 #
-# Where a setting has a "legacy" and a "corrected" value, legacy is what was run
-# for the manuscript draft of November 2026 and corrected is what the Methods
-# describe. The issue numbers refer to issues.md.
+# The settings of the paper are the defaults. Optional analyses, which the paper
+# did NOT adopt, are off by default and are set in the list `optional` below or
+# with the switches of run_pipeline.R; their outputs go to folders named
+# not_adopted (04_output/not_adopted/README.md). The issue numbers refer to
+# issues.md.
 #
 # The file has three parts: the settings, the checks of the settings, and the
 # number formatting of the R session. The second part checks the settings of the
-# analysis: the modes, the cores, the thresholds and other numbers of steps 03 to
-# 10, and the measure, threshold, counts, tolerances and seeds of steps 11 and
-# 12. Such a setting that cannot work stops every step there, before the step
-# reads or writes anything. Not checked: the cache folder, the facts about the
-# draft and the legacy files (figure numbers, paths of the REVIGO exports, the
-# qPCR design and gene names other than the reference gene), the sizes, colours
-# and label placement of the figures of step 11, the plot colours, and an upper
-# bound on WGBS_CORES.
+# analysis: the optional analyses and the environment variables that choose them,
+# the frozen settings of the paper, the cores, the thresholds and other numbers
+# of steps 03 to 10, and the measure, threshold, counts, tolerances and seeds of
+# steps 11 and 12. Such a setting that cannot work stops every step there,
+# before the step reads or writes anything. Not checked: the cache folder, the
+# facts about the draft and the legacy files (figure numbers, paths of the
+# REVIGO exports, the qPCR design and gene names other than the reference gene),
+# the sizes, colours and label placement of the figures of step 11, the plot
+# colours, the parameters of the C-to-T variant rule (checked by the variant
+# step), and an upper bound on WGBS_CORES.
 
 config <- list(
 
@@ -27,24 +31,49 @@ config <- list(
   cache_dir          = Sys.getenv("WGBS_CACHE_DIR", unset = ""),
   download_timeout_s = 7200,
 
-  # ---- Analysis modes --------------------------------------------------------
-  # One or both of "legacy" and "corrected". Steps 04 to 08 and step 10 write one
-  # set of outputs per mode listed here, with the mode in each file name.
-  #   legacy     what the legacy scripts did: no upper coverage filter (the call
-  #              misnamed the argument, so the filter never ran; issue I-05), and
-  #              the first line of every coverage file lost on import (methRead()
-  #              was left at header = TRUE; issue I-38)
-  #   corrected  CpGs at or above the 99.9th percentile of coverage in a library
-  #              are removed from that library, as the Methods describe, and
-  #              every line of every coverage file is read
-  # Legacy mode is the analysis of the draft. Steps 09, 11 and 13 repeat that
-  # analysis or compare the draft with it, and run only when "legacy" is listed:
-  # without it run_pipeline.R does not start them, nor step 10 (its retest of the
-  # terms of the draft reads the legacy-mode tables); started alone, each of
-  # steps 09, 11 and 13 says so and ends with status 0. annotation_summary.csv of
-  # step 08 then holds no legacy row. Without "corrected", step 13 leaves the corrected-mode columns of its
-  # tables empty. Steps 01 to 03 and 12 do not depend on the mode.
-  modes = c("legacy", "corrected"),
+  # ---- Optional analyses: NOT ADOPTED, all off by default ----------------------
+  # With every setting below at its default the run produces the results of the
+  # paper and nothing else. Settings (a) to (d) together define ONE optional
+  # analysis per run, named by its id (04_output/not_adopted/<id>/; the tokens
+  # are joined by "-" in the order corrected, cov5, mnchisq, ctexcl); (e) and (f)
+  # add steps. The switches of run_pipeline.R turn the same settings on for one
+  # run. A step started alone reads WGBS_ANALYSIS, WGBS_GENE_LEVEL_GO and
+  # WGBS_DIAGNOSTICS, which run_pipeline.R sets for its steps.
+  optional = list(
+    coverage_filter_of_methods = FALSE,         # (a) token "corrected": CpGs at or above the 99.9th percentile of
+                                                #     coverage in a library removed; every line of each file read (I-05, I-38)
+    coverage_standard          = 10L,           # (b) reads per CpG in each of the 22 libraries: 10 (the paper) or
+                                                #     5 (token "cov5"; Venkataraman et al. 2022)
+    overdispersion_chisq       = FALSE,         # (c) token "mnchisq": methylKit overdispersion = "MN", test = "Chisq" (I-06);
+                                                #     no other test is offered
+    exclude_ct_variants        = FALSE,         # (d) token "ctexcl": CpGs at C-to-T variants removed from the CpG sets of
+                                                #     step 04 and, after the test, from the tested CpGs and DML (I-08);
+                                                #     needs the list of 01_pipeline/optional/ct_variant_loci.R
+    gene_level_go              = FALSE,         # (e) step 10 and the gene-level part of step 11 (I-41)
+    diagnostics                = character(0)   # (f) "all", or names of scripts of 06_diagnostics/ without .R
+  ),
+
+  # ---- C-to-T variant rule (option (d)) ------------------------------------------
+  # The rule of BS-Snper as Venkataraman et al. 2022 applied it, computed in R by
+  # 01_pipeline/optional/ct_variant_loci.R (README there). Fixed values, not
+  # toggles (decision 10.8 of the settings specification): each other value
+  # would need its own analysis token.
+  ct_variants = list(
+    # BS-Snper rule, 2022 values (Venkataraman et al. 2022: defaults, mincover 5)
+    minhetfreq = 0.1, minhomfreq = 0.85, minquali = 15L, mincover = 5L, minread2 = 2L,
+    errorate = 0.02, mapvalue = 20L,
+    # how the rule is applied, as in 2022 (fixed, not toggles)
+    cigar = "full",            # author's decision of 2026-11-20 (the one difference from 2022)
+    site = "C",                # the C of the CpG on the plus strand only
+    filter = "any",            # PASS and Low records both list a CpG
+    union = "pooled_all_and_each_library",
+    # assessability: a CT call needs at least 3 Crick T reads (BS-Snper post-rule)
+    min_crick_assessable = 3L,
+    # computing
+    window_bp = 500000L, max_reads_per_batch = 120000L,
+    download_streams = 4L, download_range_mb = 256, download_retries = 10L,
+    download_range_timeout_s = 1800L, user_agent = "wgbs-pipeline/1.0 (R; curl)"
+  ),
 
   # ---- Step 03: global methylation ------------------------------------------
   elisa_input_ng          = 25,   # DNA mass per well assumed in the kit formula (issue I-12)
@@ -54,14 +83,18 @@ config <- list(
   global_methylation_scale = "arcsine",   # "raw", "arcsine", or "log"
 
   # ---- Steps 04 and 05: coverage and differential methylation ---------------
-  coverage_levels           = c(1, 3, 5, 10, 20),  # thresholds for the CpG count table; 1 and min_coverage
-                                                   # must be among them (step 13 reads the counts at both)
-  min_coverage              = 10,    # reads required per library for differential methylation
-  import_min_coverage       = 2,     # rows with fewer reads are dropped on import in step 05
+  # The five settings marked FROZEN are those of the paper and cannot be changed
+  # here (the checks below stop): the values of the manuscript map read them. An
+  # optional analysis is chosen with `optional` above or a switch of run_pipeline.R.
+  coverage_levels           = c(1, 3, 5, 10, 20),  # thresholds for the CpG count table; 1, 5 and 10 must be among
+                                                   # them (step 13 reads the counts at 1 and at the standard)
+  min_coverage              = 10,    # FROZEN. Reads required per library for differential methylation in the
+                                     # paper; option (b) sets 5 for an optional analysis
+  import_min_coverage       = 2,     # FROZEN. Rows with fewer reads are dropped on import in step 05
                                      # (legacy methRead(mincov = 2); sets the base of the percentile)
-  upper_coverage_percentile = 99.9,  # used in corrected mode only
-  dml_qvalue                = 0.01,  # SLIM-adjusted q-value cutoff
-  dml_difference            = 20,    # minimum absolute methylation difference, percentage points
+  upper_coverage_percentile = 99.9,  # FROZEN. Used by option (a) only
+  dml_qvalue                = 0.01,  # FROZEN. SLIM-adjusted q-value cutoff
+  dml_difference            = 20,    # FROZEN. Minimum absolute methylation difference, percentage points
   dml_difference_sweep      = seq(5, 50, by = 5),  # thresholds for the sensitivity curve (Figure 2A, 2B)
   # Cores for the per-CpG model fits. Results do not depend on it. The default is
   # 1; set the environment variable WGBS_CORES to a whole number of 1 or more to
@@ -195,9 +228,14 @@ config$mito_sequence  <- "NC_001276.1"
 # Every step sources this file, so every step passes through this block. A value
 # that cannot work stops the step here with a message that names the setting;
 # without the block such a value fails late (WGBS_CORES after step 05 has
-# imported the 22 libraries) or not at all (an unknown mode writes tables that
-# no later step reads). The checks do not change a value, with two exceptions:
-# the modes are put in the order legacy, corrected, and cores becomes a number.
+# imported the 22 libraries) or not at all. The checks do not change a value,
+# except that cores becomes a number. They add three derived values:
+#   config$analysis  the analysis of the run (analysis_spec() of
+#                    02_R_functions/analyses.R): id, filter, min_coverage,
+#                    overdispersion, test, ct_excluded, fit_id
+#   config$addons    gene_level_go (TRUE/FALSE) and diagnostics (names)
+#   config$run_kind  "paper" when the analysis is the paper's and no add-on is on,
+#                    else "optional"
 config <- local({
   cfg <- config
   bad <- function(...) stop("run_config.R: ", ..., call. = FALSE)
@@ -215,11 +253,57 @@ config <- local({
   seed    <- function(x) number(x) && x == round(x) && abs(x) <= .Machine$integer.max   # what set.seed() takes
   at_least_0 <- function(x) number(x) && x >= 0                       # a tolerance or a size limit
 
-  # Modes. Tables that span the modes list legacy first, whatever the order typed.
-  all_modes <- c("legacy", "corrected")
-  check("modes", 'one or both of "legacy" and "corrected", each named once',
-        function(x) is.character(x) && length(x) >= 1 && !anyNA(x) && all(x %in% all_modes) && !anyDuplicated(x))
-  cfg$modes <- intersect(all_modes, cfg$modes)
+  # Optional analyses (settings (a) to (f)) and the environment variables that
+  # choose them for a step started alone. The analysis id is defined by
+  # analysis_spec() of 02_R_functions/analyses.R.
+  source(here::here("02_R_functions", "analyses.R"), local = TRUE)
+  flag <- function(x) is.logical(x) && length(x) == 1 && !is.na(x)
+  check("optional$coverage_filter_of_methods", "TRUE or FALSE", flag)
+  check("optional$overdispersion_chisq", "TRUE or FALSE", flag)
+  check("optional$exclude_ct_variants", "TRUE or FALSE", flag)
+  check("optional$gene_level_go", "TRUE or FALSE", flag)
+  check("optional$coverage_standard", "10 (the paper) or 5", function(x) number(x) && x %in% c(5, 10))
+  diag_table <- here::here("06_diagnostics", "diagnostics.csv")
+  diag_names <- if (file.exists(diag_table)) utils::read.csv(diag_table, stringsAsFactors = FALSE)$script else character(0)
+  diag_ok <- function(x) is.character(x) && !anyNA(x) && (length(x) == 0 || identical(x, "all") || (all(x %in% diag_names) && !anyDuplicated(x)))
+  check("optional$diagnostics", paste0('character(0), "all", or names of scripts listed in 06_diagnostics/diagnostics.csv (',
+                                       paste(diag_names, collapse = ", "), ")"), diag_ok)
+  o <- cfg$optional
+  id <- analysis_id(c(if (o$coverage_filter_of_methods) "corrected", if (o$coverage_standard == 5) "cov5",
+                      if (o$overdispersion_chisq) "mnchisq", if (o$exclude_ct_variants) "ctexcl"))
+  gene_level <- o$gene_level_go
+  diagnostics <- o$diagnostics
+  # An empty variable is an error, not "not set": it is what a job script leaves
+  # behind when the value it was meant to pass is missing.
+  env <- function(name) { v <- Sys.getenv(name, unset = NA); if (!is.na(v) && !nzchar(trimws(v))) bad("the environment variable ", name, " is set but empty; unset it or give a value."); v }
+  v <- env("WGBS_ANALYSIS")
+  if (!is.na(v)) {
+    id <- tryCatch(analysis_spec(trimws(v))$id, error = function(e) bad("the environment variable WGBS_ANALYSIS: ", conditionMessage(e)))
+  }
+  v <- env("WGBS_GENE_LEVEL_GO")
+  if (!is.na(v)) {
+    if (!trimws(v) %in% c("TRUE", "FALSE")) bad("the environment variable WGBS_GENE_LEVEL_GO must be TRUE or FALSE; it is '", v, "'.")
+    gene_level <- trimws(v) == "TRUE"
+  }
+  v <- env("WGBS_DIAGNOSTICS")
+  if (!is.na(v)) {
+    d <- trimws(strsplit(v, ",", fixed = TRUE)[[1]])
+    diagnostics <- if (identical(d, "none")) character(0) else d
+    if (!diag_ok(diagnostics)) bad("the environment variable WGBS_DIAGNOSTICS must be none, all, or names of scripts listed in ",
+                                   "06_diagnostics/diagnostics.csv joined by commas; it is '", v, "'.")
+  }
+  cfg$analysis <- analysis_spec(id)
+  cfg$addons <- list(gene_level_go = gene_level, diagnostics = diagnostics)
+  cfg$run_kind <- if (cfg$analysis$paper && !gene_level && length(diagnostics) == 0) "paper" else "optional"
+
+  # The settings of the paper are frozen (see the settings above).
+  frozen <- c(min_coverage = 10, import_min_coverage = 2, upper_coverage_percentile = 99.9, dml_qvalue = 0.01, dml_difference = 20)
+  for (nm in names(frozen)) {
+    if (!isTRUE(all.equal(cfg[[nm]], frozen[[nm]])) || length(cfg[[nm]]) != 1) {
+      bad("config$", nm, " is a setting of the paper and must stay ", frozen[[nm]], " (it is ", shown(cfg[[nm]]),
+          "). An optional analysis is chosen with config$optional or a switch of run_pipeline.R.")
+    }
+  }
 
   # Cores: the text of WGBS_CORES, or "1" when the variable is not set. An empty
   # variable is an error, not the default: it is what a job script leaves behind
@@ -243,9 +327,9 @@ config <- local({
   check("global_methylation_scale", '"raw", "arcsine" or "log"', function(x) text(x) && x %in% c("raw", "arcsine", "log"))
   check("min_coverage", "a whole number of 1 or more", whole)
   check("import_min_coverage", "a whole number from 1 to config$min_coverage", function(x) whole(x) && x <= cfg$min_coverage)
-  check("coverage_levels", "whole numbers of 1 or more in rising order, with 1 and config$min_coverage among them",
-        function(x) numbers(x) && all(x == round(x) & x >= 1) && all(diff(x) > 0) && all(c(1, cfg$min_coverage) %in% x))
-  # A percentile typed as a share (0.999 for 99.9) would remove nearly every CpG of corrected mode without an error.
+  check("coverage_levels", "whole numbers of 1 or more in rising order, with 1, 5 and 10 among them",
+        function(x) numbers(x) && all(x == round(x) & x >= 1) && all(diff(x) > 0) && all(c(1, 5, 10) %in% x))
+  # A percentile typed as a share (0.999 for 99.9) would remove nearly every CpG of option (a) without an error.
   check("upper_coverage_percentile", "a percentile above 50 and at most 100 (99.9 for the 99.9th percentile, not 0.999)",
         function(x) number(x) && x > 50 && x <= 100)
   check("dml_qvalue", "a number above 0 and at most 1", share)

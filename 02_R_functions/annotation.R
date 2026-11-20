@@ -105,20 +105,19 @@ read_dml_annotation <- function(path, reader = c("exact", "legacy")) {
                     col.names = dml_annotation_columns(), showProgress = FALSE)
 }
 
-# The legacy-mode rows of annotation_summary.csv of step 08, one per DML set.
-# Step 08 writes a legacy row per set only when it runs in legacy mode, and it
-# leaves the legacy tables of an earlier run in its folder when it does not. A
-# step that reads those tables calls this first: without the rows the tables
-# belong to another configuration, and the step stops here. `sets` holds the
-# names of the DML sets (ploidy, heat, shared).
-legacy_annotation_summary <- function(sets) {
-  rows <- data.table::fread(output_path("08_gene_annotation", "tables", "annotation_summary.csv"))
-  rows <- rows[rows$mode == "legacy", ]
+# The rows of annotation_summary.csv of step 08 for the analysis `a` (its mode
+# column holds the analysis id), one per DML set. A step that reads the
+# ten-column tables of step 08 calls this first: without the rows, step 08 has
+# not run for the analysis, and the step stops here. `sets` holds the names of
+# the DML sets (ploidy, heat, shared).
+legacy_annotation_summary <- function(sets, a = config$analysis) {
+  rows <- data.table::fread(analysis_input(a, "08_gene_annotation", "tables", "annotation_summary.csv"))
+  rows <- rows[rows$mode == a$id, ]
   if (!identical(sort(rows$set), sort(sets))) {
-    stop("annotation_summary.csv of step 08 must hold one legacy-mode row for each DML set (",
+    stop("annotation_summary.csv of step 08 must hold one row of the analysis '", a$id, "' for each DML set (",
          paste(sets, collapse = ", "), ") and holds ",
          if (nrow(rows) == 0) "none" else paste("rows for", paste(rows$set, collapse = ", ")),
-         ". Step 08 last ran without the legacy mode: rerun it with \"legacy\" in config$modes.", call. = FALSE)
+         ". Run step 08 for this analysis first.", call. = FALSE)
   }
   rows
 }

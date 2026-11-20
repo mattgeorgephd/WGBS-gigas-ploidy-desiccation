@@ -34,6 +34,7 @@ load_packages(c("data.table", "readxl", "ggplot2", "patchwork", "agricolae", "ca
 
 step <- "03_global_methylation"
 t0 <- start_step(step, "ELISA 5-mC, percent CpG methylation, Figure 1")
+require_run_kind("paper", "this step does not depend on the analysis and writes the paper's outputs")
 
 # =============================================================================
 # (a) ELISA: absorbance to percent 5-mC
