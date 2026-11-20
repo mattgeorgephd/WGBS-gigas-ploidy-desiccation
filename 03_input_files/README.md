@@ -43,4 +43,4 @@ The 22 files named `<library>_R1.CpG_report.merged_CpG_evidence.cov` are the sta
 | 5 | Count of methylated reads |
 | 6 | Count of unmethylated reads |
 
-They are about 440 MB each, which is why they are not in GitHub. How they were produced is documented in [`07_documentation/upstream_processing/`](../07_documentation/upstream_processing/README.md).
+They are about 445 MB each (9.8 GB in total), which is why they are not in GitHub. How they were produced is documented in [`07_documentation/upstream_processing/`](../07_documentation/upstream_processing/README.md).

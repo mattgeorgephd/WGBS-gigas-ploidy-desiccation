@@ -9,6 +9,8 @@
 #           arcsine square root, log) with model diagnostics, so the dependence
 #           of the conclusions on the scale is on record (issue I-10).
 #
+# Run       Rscript 01_pipeline/03_global_methylation.R     (after step 02; under a minute)
+#
 # Inputs    03_input_files/elisa/raw/20190206_{First,2nd,3rd}ReadingSTRIGG.xls
 #           03_input_files/elisa/raw/20190131_RonitsSamplesforGlobalDNAMeth.xlsx
 #           04_output/02_alignment_qc/tables/bismark_by_library.csv
@@ -17,6 +19,7 @@
 #             pct_mCpG_by_library.csv, group_summary.csv,
 #             anova_by_scale.csv, tukey_by_scale.csv
 #           04_output/03_global_methylation/figures/figure_1.(png|pdf)
+#           04_output/03_global_methylation/session_info.txt
 #
 # Manuscript items: Results 3.1 (5-mC and percent CpG statistics); Figure 1.
 # Notes     Percent 5-mC uses the kit formula with a fixed DNA input

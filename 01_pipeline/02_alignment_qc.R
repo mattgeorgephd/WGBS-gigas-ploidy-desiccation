@@ -6,12 +6,15 @@
 #           Percent CpG methylation per library, used in Figure 1B, comes from
 #           this table.
 #
+# Run       Rscript 01_pipeline/02_alignment_qc.R     (needs no other step; under a minute)
+#
 # Inputs    03_input_files/metadata/wgbs_libraries.csv
 #           03_input_files/bismark_reports/061021-big_bismark_summary_report.txt
 #           03_input_files/bismark_reports/<library>_R1_bismark_bt2_PE_report.txt
 # Outputs   04_output/02_alignment_qc/tables/bismark_by_library.csv
 #           04_output/02_alignment_qc/tables/bismark_by_cohort.csv
 #           04_output/02_alignment_qc/figures/alignment_qc.(png|pdf)
+#           04_output/02_alignment_qc/session_info.txt
 #
 # Manuscript items: Methods 2.4 (alignment); input to Figure 1B (step 03).
 # Notes     Two kinds of methylation counts exist. The summary report counts

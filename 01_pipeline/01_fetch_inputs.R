@@ -7,6 +7,10 @@
 #           also installs, into a side library in the cache, the GO.db release
 #           that step 09 needs to reproduce the legacy enrichment.
 #
+# Run       Rscript 01_pipeline/01_fetch_inputs.R
+#           (first; under a minute with a full cache, otherwise the time of a
+#           10.5 GB download)
+#
 # Inputs    03_input_files/gannet_manifest.csv
 #           03_input_files/metadata/wgbs_libraries.csv
 #           every other file under 03_input_files/ (size and md5 only)
@@ -14,6 +18,7 @@
 #           Bioconductor archive (GO.db; address and md5 in run_config.R)
 # Outputs   04_output/01_fetch_inputs/tables/input_inventory.csv
 #           cache: 03_input_files/gannet_cache/ (or $WGBS_CACHE_DIR)
+#           04_output/01_fetch_inputs/session_info.txt
 #
 # Manuscript items: none.
 # Notes     - The first run downloads 10.5 GB from gannet and the 31 MB GO.db

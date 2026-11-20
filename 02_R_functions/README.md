@@ -21,6 +21,6 @@ Helper functions shared by the pipeline scripts. Every script in `01_pipeline/` 
 
 ## Conventions
 
-- A function does one thing, takes its inputs as arguments, and returns a value; it does not read global variables other than the configuration list created by `run_config.R`. That list is checked where it is made: `run_config.R` stops with a message when a setting cannot work, so the functions here do not check the settings again.
+- A function does one thing, takes its inputs as arguments, and returns a value; it does not read global variables other than the configuration list created by `run_config.R`. That list is checked where it is made: `run_config.R` stops with a message when a setting of the analysis cannot work, so the functions here do not check those settings again; its header names the settings it does not check (sizes, colours and label placement of figures, facts about the draft and the legacy files).
 - Functions do not change the working directory and do not write files except where writing is their stated purpose.
 - Coordinates inside R are 1-based closed intervals (`GenomicRanges`). BED and Bismark coverage inputs are converted on read, and converted back on write. One input is a BED file in name only: the repeat track, whose 1-based starts are converted like those of a true BED file because the legacy analysis read them so (`genomic_overlaps.R`).

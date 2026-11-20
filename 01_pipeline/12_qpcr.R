@@ -50,6 +50,7 @@
 #             qpcr_cox1.csv                     COX1 raw Cq by group and the tests that can be made
 #             qpcr_manuscript_statements.csv    each qPCR statement of the draft, the numbers, a verdict
 #           04_output/12_qpcr/figures/figure_qpcr_expression.(png|pdf), figure_qpcr_cox1_actin.(png|pdf)
+#           04_output/12_qpcr/session_info.txt
 #
 # Manuscript items: Discussion 4.2, 4.5, 4.7 and Conclusions 4.9 (HSP90 expression;
 #           "relative mitochondrial abundance"). No Methods, Results, figure or table.

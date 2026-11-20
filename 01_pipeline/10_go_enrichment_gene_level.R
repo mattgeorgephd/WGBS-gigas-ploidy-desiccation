@@ -27,6 +27,9 @@
 #                variable, as recommended for methylation data (Geeleher et al.
 #                2013, Bioinformatics 29:1851).
 #
+# Run       Rscript 01_pipeline/10_go_enrichment_gene_level.R
+#           (after steps 08 and 09; about 3 to 4 minutes, about 1.6 GB of memory)
+#
 # Inputs    04_output/08_gene_annotation/tables/gene_table_<mode>.csv.gz, gene_go_map.csv.gz
 #           04_output/09_go_enrichment_legacy/tables/legacy_fisher_<set>_<ontology>.csv
 # Outputs   04_output/10_go_enrichment_gene_level/tables/
@@ -36,8 +39,11 @@
 #             go_enriched_term_genes.csv            the DML genes behind those terms
 #             legacy_top10_at_gene_level.csv        each "enriched" term of the draft, retested
 #             dml_probability_by_cpg_count.csv      the bias the Wallenius test adjusts for
+#             go_terms_by_analysis.csv              terms called enriched by each analysis (the data of
+#                                                   figure_go_terms_by_analysis)
 #           04_output/10_go_enrichment_gene_level/figures/
 #             figure_go_bias_<mode>, figure_go_terms_by_analysis, figure_go_enriched_<mode> (when any term is enriched)
+#           04_output/10_go_enrichment_gene_level/session_info.txt
 #
 # Manuscript items: replacement candidates for Results 3.4 and 3.5, Figures 5 to 9, Table 1.
 # Notes     - The GO annotation is the frozen one of the legacy analysis (blastx of

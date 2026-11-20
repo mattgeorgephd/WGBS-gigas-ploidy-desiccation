@@ -8,8 +8,15 @@
 # describe. The issue numbers refer to issues.md.
 #
 # The file has three parts: the settings, the checks of the settings, and the
-# number formatting of the R session. A setting that cannot work stops every
-# step in the second part, before the step reads or writes anything.
+# number formatting of the R session. The second part checks the settings of the
+# analysis: the modes, the cores, the thresholds and other numbers of steps 03 to
+# 10, and the measure, threshold, counts, tolerances and seeds of steps 11 and
+# 12. Such a setting that cannot work stops every step there, before the step
+# reads or writes anything. Not checked: the cache folder, the facts about the
+# draft and the legacy files (figure numbers, paths of the REVIGO exports, the
+# qPCR design and gene names other than the reference gene), the sizes, colours
+# and label placement of the figures of step 11, the plot colours, and an upper
+# bound on WGBS_CORES.
 
 config <- list(
 
@@ -32,10 +39,10 @@ config <- list(
   #              every line of every coverage file is read
   # Legacy mode is the analysis of the draft. Steps 09, 11 and 13 repeat that
   # analysis or compare the draft with it, and run only when "legacy" is listed:
-  # without it each of them says so and ends with status 0, run_pipeline.R leaves
-  # out step 10 as well (its retest of the terms of the draft reads the
-  # legacy-mode tables), and annotation_summary.csv of step 08 holds no legacy
-  # row. Without "corrected", step 13 leaves the corrected-mode columns of its
+  # without it run_pipeline.R does not start them, nor step 10 (its retest of the
+  # terms of the draft reads the legacy-mode tables); started alone, each of
+  # steps 09, 11 and 13 says so and ends with status 0. annotation_summary.csv of
+  # step 08 then holds no legacy row. Without "corrected", step 13 leaves the corrected-mode columns of its
   # tables empty. Steps 01 to 03 and 12 do not depend on the mode.
   modes = c("legacy", "corrected"),
 
@@ -205,6 +212,8 @@ config <- local({
   whole   <- function(x) number(x) && x == round(x) && x >= 1
   share   <- function(x) number(x) && x > 0 && x <= 1                 # a cutoff on a p-value or q-value
   text    <- function(x) is.character(x) && length(x) == 1 && !is.na(x) && nzchar(x)
+  seed    <- function(x) number(x) && x == round(x) && abs(x) <= .Machine$integer.max   # what set.seed() takes
+  at_least_0 <- function(x) number(x) && x >= 0                       # a tolerance or a size limit
 
   # Modes. Tables that span the modes list legacy first, whatever the order typed.
   all_modes <- c("legacy", "corrected")
@@ -240,9 +249,12 @@ config <- local({
   check("upper_coverage_percentile", "a percentile above 50 and at most 100 (99.9 for the 99.9th percentile, not 0.999)",
         function(x) number(x) && x > 50 && x <= 100)
   check("dml_qvalue", "a number above 0 and at most 1", share)
-  check("dml_difference", "a number of percentage points from 0 to below 100", function(x) number(x) && x >= 0 && x < 100)
-  check("dml_difference_sweep", "numbers of percentage points from 0 to below 100, in rising order",
-        function(x) numbers(x) && all(x >= 0 & x < 100) && all(diff(x) > 0))
+  # A difference typed as a share (0.2 for 20 points) would give DML lists many times longer without an error.
+  points <- function(x) x == 0 | (x >= 1 & x < 100)
+  check("dml_difference", "0 or a number of percentage points from 1 to below 100 (20 for 20 points, not 0.2)",
+        function(x) number(x) && points(x))
+  check("dml_difference_sweep", "numbers of percentage points, each 0 or from 1 to below 100, in rising order",
+        function(x) numbers(x) && all(points(x)) && all(diff(x) > 0))
   check("go_pvalue", "a number above 0 and at most 1", share)
   check("go_fdr", "a number above 0 and at most 1", share)
   check("go_legacy_topn", "a whole number of 1 or more", whole)
@@ -259,6 +271,11 @@ config <- local({
         paste("a whole number from 1 to", length(cfg$semantic_similarity$cluster_palette), "(the number of colours in cluster_palette)"),
         function(x) whole(x) && x <= length(cfg$semantic_similarity$cluster_palette))
   check("semantic_similarity$order_check_n", "a whole number of 1 or more", whole)
+  check("semantic_similarity$order_check_seed", "a whole number", seed)
+  check("semantic_similarity$label_seed", "a whole number", seed)
+  check("semantic_similarity$value_tolerance", "a number of 0 or more", at_least_0)
+  check("semantic_similarity$tie_tolerance", "a number of 0 or more", at_least_0)
+  check("semantic_similarity$gzip_above_mb", "a number of megabytes, 0 or more", at_least_0)
   check("qpcr$reference_gene", "the name of the reference gene", text)
   check("qpcr$max_cycles", "a number of cycles above 0", function(x) number(x) && x > 0)
   check("qpcr$legacy_nondetect", "a number of cycles above 0", function(x) number(x) && x > 0)
@@ -268,6 +285,10 @@ config <- local({
   check("qpcr$alpha", "a number above 0 and below 1", function(x) number(x) && x > 0 && x < 1)
   check("qpcr$fdr", "a number above 0 and below 1", function(x) number(x) && x > 0 && x < 1)
   check("qpcr$size_check_runs", "a whole number of 1 or more", whole)
+  check("qpcr$size_check_seed", "a whole number", seed)
+  check("qpcr$failed_fence_iqr", "a number of interquartile ranges, 0 or more", at_least_0)
+  check("qpcr$cq_tolerance", "a number of cycles, 0 or more", at_least_0)
+  check("qpcr$same_p_tolerance", "a number of 0 or more", at_least_0)
   cfg
 })
 

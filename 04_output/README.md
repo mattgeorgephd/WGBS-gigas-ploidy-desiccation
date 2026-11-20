@@ -16,7 +16,7 @@ Results written by the pipeline. Nothing here is edited by hand; every file is r
 
 Files up to 50 MB are committed, so every later step, and every reader of the manuscript, can start from the repository alone. That includes the united 10x methylation table from step 05 (gzipped), which is the input to all downstream steps.
 
-Larger intermediates (the model fits of step 05) are written under `04_output/<step>/cache/`, which is git-ignored. Step 05 reuses a cached fit only while what it was made from is unchanged (the mode and the coverage settings, the sample sheet, the coverage files, the methylKit version and the fitting code) and fits again otherwise, or when a cache file cannot be read; nothing has to be deleted by hand.
+Larger intermediates (the model fits of step 05) are written under `04_output/<step>/cache/`, which is git-ignored. Step 05 reuses a cached fit only while what it was made from is unchanged (the mode and the coverage settings, the sample sheet, the coverage files, the methylKit version and the fitting code) and fits again otherwise, or when a cache file cannot be read; nothing has to be deleted by hand, except after an upgrade of R or of a package other than methylKit, whose versions are not compared.
 
 ## File naming
 

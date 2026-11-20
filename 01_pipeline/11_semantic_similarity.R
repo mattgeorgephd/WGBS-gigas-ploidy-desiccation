@@ -67,6 +67,7 @@
 #             figure_6_legacy, figure_7_legacy, figure_8_legacy   panel A: the list as drawn; panel B: the list the Methods describe
 #             figure_revigo_export_<name>                          each distinct REVIGO export redrawn from its embedded data
 #             figure_semantic_gene_level_<set>_<ontology>_<mode>   only when the gene-level analysis has enriched terms
+#           04_output/11_semantic_similarity/session_info.txt
 #
 # Manuscript items: Figures 6, 7 and 8; Results 3.4 (the three paragraphs on semantic
 #           clustering); Methods 2.6, last sentence.
