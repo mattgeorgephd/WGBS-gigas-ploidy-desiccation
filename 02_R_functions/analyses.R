@@ -218,8 +218,9 @@ ct_variant_table <- function() {
     stop("The option --exclude-ct-variants needs the C-to-T variant list, and ", paste(basename(f[!file.exists(f)]), collapse = ", "),
          " is absent from 04_output/not_adopted/ct_variants/tables/. Make it first with:\n  ", ct_variant_build_command, call. = FALSE)
   }
-  v <- data.table::fread(f[["cpgs"]], select = c("chr", "start", "listed"))
-  v <- v[as.logical(v$listed) %in% TRUE, c("chr", "start")]
+  v <- data.table::fread(f[["cpgs"]], select = c("chr", "start", "listed"),
+                         colClasses = list(character = "chr", integer = "start", character = "listed"))
+  v <- v[toupper(v$listed) == "TRUE", c("chr", "start")]
   data.table::setkeyv(v, c("chr", "start"))
   v
 }

@@ -1,0 +1,20 @@
+dml_set,gene_id,gene_name,chromosome,start,end,methylation_difference
+ploidy-DML,105318079,MAP kinase-activating death domain protein,NC_047559.1,17423557,17423559,22.24
+ploidy-DML,105328103,neurexin-1,NC_047561.1,51312262,51312264,-22.95
+ploidy-DML,105328103,neurexin-1,NC_047561.1,51346481,51346483,-32.15
+ploidy-DML,105329309,nesprin-1,NC_047561.1,28607016,28607018,23.04
+ploidy-DML,105329309,nesprin-1,NC_047561.1,28607026,28607028,20.69
+ploidy-DML,105329309,nesprin-1,NC_047561.1,28607119,28607121,-24.05
+ploidy-DML,105329309,nesprin-1,NC_047561.1,28608523,28608525,25.56
+ploidy-DML,105329645,ubiquitin-like-specific protease 1,NC_047561.1,27733219,27733221,-21.01
+ploidy-DML,105335651,"1-phosphatidylinositol 4,5-bisphosphate phosphodiesterase beta-1",NC_047561.1,19405662,19405664,21.61
+ploidy-DML,105347767,F-box DNA helicase 1,NC_047561.1,2676336,2676338,-21.47
+heat-DML,105320544,kinesin-like protein unc-104,NC_047564.1,40471809,40471811,41.68
+heat-DML,105326303,phosphatidylinositol-binding clathrin assembly protein LAP,NC_047563.1,1749458,1749460,-20.15
+heat-DML,105326303,phosphatidylinositol-binding clathrin assembly protein LAP,NC_047563.1,1761560,1761562,20.24
+heat-DML,105326303,phosphatidylinositol-binding clathrin assembly protein LAP,NC_047563.1,1771931,1771933,-23.09
+heat-DML,105344721,ataxin-2-like protein,NC_047564.1,22005779,22005781,-21.12
+heat-DML,117680672,uncharacterized LOC117680672,NC_047563.1,684534,684536,-21.16
+interaction-DML,105319299,CAD protein,NC_047564.1,8425110,8425112,-30.96
+interaction-DML,105329309,nesprin-1,NC_047561.1,28607016,28607018,21.14
+interaction-DML,105340590,dihydropyrimidinase,NW_022994979.1,42498,42500,31.37
