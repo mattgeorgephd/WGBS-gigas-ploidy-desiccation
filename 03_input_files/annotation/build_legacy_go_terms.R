@@ -36,6 +36,7 @@ setorder(terms, GOID, GOSlim)
 stopifnot(terms[, uniqueN(GOcat), by = GOID][, all(V1 == 1)])
 
 out <- here("03_input_files", "annotation", "legacy_go_goslim_terms.tsv.gz")
-fwrite(terms, out, sep = "\t", quote = FALSE, compress = "gzip")
+# The line ending is fixed to LF: fwrite() would otherwise write CRLF on Windows.
+fwrite(terms, out, sep = "\t", quote = FALSE, compress = "gzip", eol = "\n")
 cat(sprintf("%d rows for %d GO IDs written to %s\n", nrow(terms), uniqueN(terms$GOID), out))
 print(terms[, .(rows = .N, go_ids = uniqueN(GOID)), by = GOcat])

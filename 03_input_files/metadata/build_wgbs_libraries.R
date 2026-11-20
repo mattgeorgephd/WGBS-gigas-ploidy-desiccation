@@ -61,7 +61,11 @@ stopifnot(
 )
 
 out <- here("03_input_files", "metadata", "wgbs_libraries.csv")
-write.csv(lib, out, row.names = FALSE, na = "")
+# Written through a binary connection, so that the line ending is LF on every
+# platform: a file opened by name is in text mode, where Windows writes CRLF.
+con <- file(out, "wb")
+write.csv(lib, con, row.names = FALSE, na = "")
+close(con)
 cat("Wrote", out, "\n")
 print(table(treatment = lib$treatment, ploidy = lib$ploidy))
 print(table(treatment = lib$treatment, acute_heat_shock = lib$acute_heat_shock))

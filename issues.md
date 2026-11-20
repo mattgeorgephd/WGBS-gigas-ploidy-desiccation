@@ -366,6 +366,8 @@ A further agent then recomputed every number of the first version of this update
 
 **Answer of the author (2026-11-19).** The overdispersion correction was left out on purpose. The pipeline therefore keeps the draft's model, and legacy mode reproduces its lists. None of the options above is implemented; they stay as notes, and a change of the model would need the author's approval. The sensitivity analyses of this issue are the evidence behind the note and are not part of the pipeline. What the note amounts to for a reader of the manuscript: the Methods do not say that the correction was left out or why, the paper they follow applied it, and a reviewer who runs the relabelling comparison of item 5 would find what this issue reports.
 
+**Decision of the author on the optional analysis (2026-11-20).** The pipeline is to offer the model with the correction as an option that is off by default, with the chi-squared test only (`overdispersion = "MN"`, `test = "Chisq"`), the setting of Venkataraman et al. 2022; the F test is not offered as an option. What the option gives for the CpG set of the draft is known from `06_diagnostics/dml_sensitivity/dml_counts.csv`: 14 ploidy DML and 185 heat DML, every one of them in the draft's lists. The option changes the test alone; thresholds, coverage requirement and covariates stay those of the draft.
+
 ---
 
 ### I-07 (S2) Ploidy-DML are described as control-only differences but were computed across all 22 libraries

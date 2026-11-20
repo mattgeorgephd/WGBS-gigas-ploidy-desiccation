@@ -50,8 +50,9 @@
 #           - A row can match and still be wrong science: "matches" means the
 #             pipeline reproduces the number, not that the number means what the
 #             text says. The issue column points to the entry of issues.md that
-#             covers it, and corrected_differs marks rows whose value changes in
-#             corrected mode; the summary counts them in change_in_corrected_mode.
+#             covers it, and corrected_differs marks rows whose value in
+#             corrected mode does not agree with the manuscript value; the
+#             summary counts them in change_in_corrected_mode.
 #             Corrected mode is not an analysis that issues.md recommends for the
 #             DML themselves (I-06) or for their location (I-41).
 #           - Expressions are R code evaluated with these helpers in scope:

@@ -271,7 +271,9 @@ config <- local({
 # A personal R profile can change how R turns numbers into text, most often with
 # options(scipen = 999), and with that the bytes of every table a script writes
 # with fwrite() or builds with paste() and format(). Tables are compared byte for
-# byte after a rerun, so the three options that decide the text of a number are
-# set to the defaults of R here, for the session of every script that sources
-# this file. write_table() fixes its own arguments as well (02_R_functions/logging.R).
-options(scipen = 0, digits = 7, OutDec = ".")
+# byte after a rerun, so the options that decide the text of a number or of a
+# logical value are set to their defaults here, for the session of every script
+# that sources this file. write_table() fixes its own arguments as well
+# (02_R_functions/logging.R); the scripts in 06_diagnostics/ call fwrite()
+# directly and rely on this line.
+options(scipen = 0, digits = 7, OutDec = ".", datatable.logical01 = FALSE)
