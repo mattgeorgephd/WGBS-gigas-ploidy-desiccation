@@ -3,9 +3,9 @@
 # Sourced first by the two tests that delete or overwrite files of the
 # repository (tests/check_step13_not_run.R, tests/check_ct_exclusion.R). They
 # must run in a scratch copy WITHOUT .git, never in the original checkout:
-#   rsync -a --exclude .git --exclude 04_output/not_adopted/ct_variants <repository>/ <scratch>/
+#   mkdir <scratch> && tar --exclude=./.git --exclude=./04_output/not_adopted/ct_variants -cf - . | tar -xf - -C <scratch>
+#     (from the repository root; or cp -a, then delete <scratch>/.git and <scratch>/04_output/not_adopted/ct_variants/)
 #   cd <scratch> && CT_TEST_SCRATCH=1 Rscript tests/<test>.R
-# (or cp -a, then delete <scratch>/.git and <scratch>/04_output/not_adopted/ct_variants/).
 # The guard stops the test, before it touches a file, when any of these holds:
 #   - the working tree has a .git (folder or file), or git finds a remote for it
 #     (it lies inside a clone);

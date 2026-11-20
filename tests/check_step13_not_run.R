@@ -5,7 +5,8 @@
 # and never stops on them; a missing table of the paper still stops the paper part.
 # Run it in a SCRATCH COPY of the repository WITHOUT .git (it deletes files),
 # never in the original checkout; tests/scratch_guard.R refuses to run it there:
-#   rsync -a --exclude .git --exclude 04_output/not_adopted/ct_variants <repository>/ <scratch>/
+#   mkdir <scratch> && tar --exclude=./.git --exclude=./04_output/not_adopted/ct_variants -cf - . | tar -xf - -C <scratch>
+#     (from the repository root; or cp -a, then delete <scratch>/.git and <scratch>/04_output/not_adopted/ct_variants/)
 #   cd <scratch> && CT_TEST_SCRATCH=1 Rscript tests/check_step13_not_run.R
 # Needs the folders 04_output/not_adopted/corrected/ and legacy/ as committed (with corrected/10_go_enrichment_gene_level/).
 

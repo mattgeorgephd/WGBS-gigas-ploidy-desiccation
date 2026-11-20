@@ -7,7 +7,8 @@
 # synthetic list (and a synthetic run record, ct_variant_run.csv) into
 # 04_output/not_adopted/ct_variants/tables/, where the real list lives.
 # tests/scratch_guard.R refuses to run it in the original checkout.
-#   rsync -a --exclude .git --exclude 04_output/not_adopted/ct_variants <repository>/ <scratch>/
+#   mkdir <scratch> && tar --exclude=./.git --exclude=./04_output/not_adopted/ct_variants -cf - . | tar -xf - -C <scratch>
+#     (from the repository root; or cp -a, then delete <scratch>/.git and <scratch>/04_output/not_adopted/ct_variants/)
 #     (the copy needs 04_output/05_differential_methylation/cache/methylkit_legacy.rds)
 #   cd <scratch> && CT_TEST_SCRATCH=1 WGBS_CACHE_DIR=<download cache> Rscript tests/check_ct_exclusion.R
 # Three runs of step 05 with WGBS_ANALYSIS=ctexcl (fit from the paper's cache, no refit):
