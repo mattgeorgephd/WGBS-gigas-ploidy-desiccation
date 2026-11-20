@@ -26,10 +26,11 @@
 args <- commandArgs(trailingOnly = TRUE)
 
 # ---- The repository and its steps ------------------------------------------------
-# Under Rscript the path of this file is on the command line. When the file is
-# sourced from an R session instead, the repository is looked for upward from the
-# working directory, as the steps do.
+# Under Rscript the path of this file is on the command line, with each space
+# written as "~+~". When the file is sourced from an R session instead, the
+# repository is looked for upward from the working directory, as the steps do.
 this_file <- sub("^--file=", "", grep("^--file=", commandArgs(trailingOnly = FALSE), value = TRUE))
+this_file <- gsub("~+~", " ", this_file, fixed = TRUE)
 root <- if (length(this_file) == 1 && file.exists(this_file)) dirname(normalizePath(this_file)) else here::here()
 scripts <- sort(list.files(file.path(root, "01_pipeline"), pattern = "^[0-9]{2}_.*\\.R$", full.names = TRUE))
 if (length(scripts) == 0 || !file.exists(file.path(root, "run_config.R"))) {

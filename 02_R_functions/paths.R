@@ -5,9 +5,11 @@
 # must be edited with this file if one is renamed: the line of every script that
 # sources 02_R_functions/, run_pipeline.R (01_pipeline), the two build scripts
 # under 03_input_files/, step 13 and the scripts in 06_diagnostics/ (04_output
-# and 06_diagnostics), and the source column of
-# 03_input_files/manuscript/manuscript_items_map.csv. The root README lists them
-# under "How paths work".
+# and 06_diagnostics), the source column of
+# 03_input_files/manuscript/manuscript_items_map.csv, two expressions of
+# manuscript_values_map.csv in the same folder (rows D4.8-002 and R3.4-007 name
+# 03_input_files), and the patterns of .gitignore and .gitattributes. The root
+# README lists them under "How paths work".
 
 input_path <- function(...) here::here("03_input_files", ...)
 

@@ -3,13 +3,16 @@
 # Git must not convert line endings in the data of this repository. The tables
 # the pipeline writes are compared byte for byte after a rerun
 # (04_output/README.md), step 01 records the md5 of every file under
-# 03_input_files/, and one input (manuscript/manuscript_values_map.csv) is kept
-# with CRLF line endings on purpose. Without the lines below, a checkout on
-# Windows, or on any machine with core.autocrlf set, holds other bytes than the
-# commit. Counted on Linux with core.autocrlf=true when this file was added: 69
-# of the 100 inputs got another md5 without it, none with it.
+# 03_input_files/, and two inputs (manuscript_values_map.csv and
+# manuscript_items_map.csv in 03_input_files/manuscript/) have CRLF line
+# endings. Without the lines below, a checkout on Windows, or on any machine
+# with core.autocrlf set, holds other bytes than the commit. Counted on Linux
+# with core.autocrlf=true on 2026-11-20: without this file 75 of the 107 inputs,
+# 180 of the 238 files under 04_output/ and 85 of the 87 under 06_diagnostics/
+# were checked out with other bytes; with it none.
 #
-# "-text" means: store and check out the file exactly as it is.
+# "-text" means: store and check out the file exactly as it is. Code and
+# documentation outside the folders named below are left to git's defaults.
 
 # Tables and tracks, wherever they are (inputs, outputs, diagnostics, archive)
 *.csv -text
@@ -39,3 +42,7 @@
 04_output/**      -text
 05_manuscript/**  -text
 06_diagnostics/** -text
+
+# The archive, exactly as it was: README files quote the md5 of archived files
+# whose copies under 03_input_files/ the steps read
+08_archive/**     -text

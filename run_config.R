@@ -215,10 +215,11 @@ config <- local({
   # Cores: the text of WGBS_CORES, or "1" when the variable is not set. An empty
   # variable is an error, not the default: it is what a job script leaves behind
   # when the value it was meant to pass is missing.
-  cores <- trimws(cfg$cores)
+  cores_as_set <- paste(cfg$cores, collapse = " ")     # one text, whatever the setting holds
+  cores <- trimws(cores_as_set)
   if (!grepl("^[0-9]+$", cores) || as.numeric(cores) < 1 || as.numeric(cores) > .Machine$integer.max) {
     bad("the environment variable WGBS_CORES must be a whole number of 1 or more, or not be set at all (1 core); it is '",
-        cfg$cores, "'.")
+        cores_as_set, "'.")
   }
   cfg$cores <- as.integer(cores)
   if (.Platform$OS.type == "windows" && cfg$cores > 1L) {
@@ -235,7 +236,9 @@ config <- local({
   check("import_min_coverage", "a whole number from 1 to config$min_coverage", function(x) whole(x) && x <= cfg$min_coverage)
   check("coverage_levels", "whole numbers of 1 or more in rising order, with 1 and config$min_coverage among them",
         function(x) numbers(x) && all(x == round(x) & x >= 1) && all(diff(x) > 0) && all(c(1, cfg$min_coverage) %in% x))
-  check("upper_coverage_percentile", "a percentile above 0 and at most 100", function(x) number(x) && x > 0 && x <= 100)
+  # A percentile typed as a share (0.999 for 99.9) would remove nearly every CpG of corrected mode without an error.
+  check("upper_coverage_percentile", "a percentile above 50 and at most 100 (99.9 for the 99.9th percentile, not 0.999)",
+        function(x) number(x) && x > 50 && x <= 100)
   check("dml_qvalue", "a number above 0 and at most 1", share)
   check("dml_difference", "a number of percentage points from 0 to below 100", function(x) number(x) && x >= 0 && x < 100)
   check("dml_difference_sweep", "numbers of percentage points from 0 to below 100, in rising order",
@@ -245,7 +248,8 @@ config <- local({
   check("go_legacy_topn", "a whole number of 1 or more", whole)
   check("go_min_genes", "a whole number of 1 or more", whole)
   check("legacy_go_db$version", "the version of a GO.db release, for example \"3.13.0\"", function(x) text(x) && grepl("^[0-9]+([.][0-9]+)+$", x))
-  check("legacy_go_db$url", "the address of the source package of that release", function(x) text(x) && grepl("^https?://.+[.]tar[.]gz$", x))
+  check("legacy_go_db$url", paste0("the address of the source package of that release, ending in GO.db_", cfg$legacy_go_db$version, ".tar.gz"),
+        function(x) text(x) && grepl("^https?://", x) && endsWith(x, paste0("/GO.db_", cfg$legacy_go_db$version, ".tar.gz")))
   check("legacy_go_db$md5", "the md5 checksum of that package, 32 hexadecimal digits", function(x) text(x) && grepl("^[0-9a-f]{32}$", x))
   check("semantic_similarity$measure", "a measure of GOSemSim that rrvgo offers: \"Rel\", \"Resnik\", \"Lin\", \"Jiang\" or \"Wang\"",
         function(x) text(x) && x %in% c("Rel", "Resnik", "Lin", "Jiang", "Wang"))
