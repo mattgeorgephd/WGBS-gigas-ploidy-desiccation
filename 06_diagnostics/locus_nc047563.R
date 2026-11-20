@@ -141,7 +141,7 @@ n_places         <- 3L              # part f: number of such places reported
 pct_decimals     <- 3L              # decimals of percent methylation in the per-library table; the script stops if two libraries then tie
 
 out_file <- function(suffix) here("06_diagnostics", paste0("locus_nc047563_", suffix, ".csv"))
-tab05 <- function(f) output_path("05_differential_methylation", "tables", f)
+tab05 <- function(f) diagnostic_input("05_differential_methylation", "tables", f)
 
 # One row of the summary table. A value is written as text: a number, a label,
 # "x of y", or "a to b" for the lowest and highest of several values.
@@ -175,13 +175,13 @@ zero_based <- "Both positions are the 0-based start of the C, as in the coverage
 # ---- 1. Libraries, the DML region, the window ---------------------------------------------
 lib <- read_libraries(); n_lib <- nrow(lib)
 is_triploid <- lib$ploidy == "triploid"; is_heat <- lib$treatment == "heat"
-library_coverage <- fread(output_path("04_cpg_coverage", "tables", "library_coverage.csv"))
+library_coverage <- fread(diagnostic_input("04_cpg_coverage", "tables", "library_coverage.csv"))
 filtering <- fread(tab05("library_filtering_legacy.csv"))
 stopifnot(identical(library_coverage$library_id, lib$library_id), identical(filtering$library_id, lib$library_id))
 library_median <- library_coverage$median_coverage; upper_cutoff <- library_coverage$upper_cutoff
 
 # The DML region: the run of ploidy DML with the most DML (step 07).
-dml_runs <- fread(output_path("07_genome_features", "tables", "dml_regions_legacy.csv"))
+dml_runs <- fread(diagnostic_input("07_genome_features", "tables", "dml_regions_legacy.csv"))
 largest_runs <- dml_runs[, .SD[n_dml == max(n_dml)], by = set]   # the largest run of each DML list
 largest_run <- largest_runs[set == "ploidy DML"]
 if (nrow(largest_run) != 1L || largest_run$chr != locus_sequence)

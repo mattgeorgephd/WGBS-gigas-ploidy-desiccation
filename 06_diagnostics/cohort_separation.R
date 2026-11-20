@@ -52,7 +52,7 @@ load_packages(c("data.table"))
 n_perm <- 10000
 set.seed(20261119)
 lib <- read_libraries()
-tab <- function(f) output_path("04_cpg_coverage", "tables", f)
+tab <- function(f) diagnostic_input("04_cpg_coverage", "tables", f)
 labels <- list(cohort = as.character(lib$treatment), ploidy = as.character(lib$ploidy))
 cohort <- as.character(lib$treatment)
 
@@ -72,7 +72,7 @@ within_minus_between <- function(r, lab) {
   median(r[upper & same]) - median(r[upper & !same])
 }
 cor_rows <- list()
-for (mode in config$modes) for (cov in c(1, 10)) {
+for (mode in diagnostic_modes()) for (cov in c(1, 10)) {
   m <- fread(tab(sprintf("library_correlation_%dx_%s.csv", cov, mode)))
   stopifnot(identical(m$library_id, lib$library_id))
   r <- as.matrix(m[, -1]); upper <- upper.tri(r)
@@ -108,7 +108,7 @@ best_threshold <- function(x, lab) {
   max(correct, n - correct)
 }
 pca_rows <- list()
-for (mode in config$modes) for (cov in c(1, 10)) {
+for (mode in diagnostic_modes()) for (cov in c(1, 10)) {
   s <- fread(tab(sprintf("pca_scores_%dx_%s.csv", cov, mode)))
   stopifnot(identical(s$library_id, lib$library_id))
   for (pc in paste0("PC", 1:4)) for (what in names(labels)) {

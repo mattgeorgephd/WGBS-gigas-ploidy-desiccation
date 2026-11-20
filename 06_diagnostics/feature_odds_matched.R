@@ -430,7 +430,7 @@ invisible(gc(verbose = FALSE))
 
 # ---- One mode ----------------------------------------------------------------------------
 analyse_mode <- function(mode_name) {
-  tab05 <- function(f) output_path("05_differential_methylation", "tables", f)
+  tab05 <- function(f) diagnostic_input("05_differential_methylation", "tables", f)
   odds <- list(); counts <- list(); perm_rows <- list(); sd_rows <- list()
   matched_real <- list()                         # comparison 3 for the real lists, by DML list and track
   threshold <- config$dml_difference
@@ -526,7 +526,7 @@ analyse_mode <- function(mode_name) {
   cpg_gr <- cpg_ranges(position$chr, position$start)
   in_track <- vapply(tracks, function(tr) overlaps_track(cpg_gr, track_gr[[tr]]), logical(n_cpg))
   rm(cpg_gr)
-  step07 <- as.data.frame(fread(output_path("07_genome_features", "tables",
+  step07 <- as.data.frame(fread(diagnostic_input("07_genome_features", "tables",
                                            sprintf("feature_association_tests_%s.csv", mode_name))))
 
   # ---- Blocks and block resamples -----------------------------------------------------------
@@ -904,7 +904,7 @@ analyse_mode <- function(mode_name) {
        counts = rbindlist(counts))
 }
 
-results <- lapply(config$modes, analyse_mode)
+results <- lapply(diagnostic_modes(), analyse_mode)
 odds_tab  <- rbindlist(lapply(results, `[[`, "odds"))
 sd_tab    <- rbindlist(lapply(results, `[[`, "sd"))
 perm_tab  <- rbindlist(lapply(results, `[[`, "perm"), use.names = TRUE, fill = TRUE)

@@ -81,7 +81,7 @@ cut_offset <- offsets[bad] + nchar(kept_part, type = "bytes") + 1        # +1 fo
 before <- parts[1]; after <- parts[second]
 
 # ---- The gap in the universe, from the pipeline's table ------------------------------------
-tx <- fread(output_path("08_gene_annotation", "tables", "transcript_table.csv.gz"))
+tx <- fread(diagnostic_input("08_gene_annotation", "tables", "transcript_table.csv.gz"))
 annotated <- tx[in_legacy_go_map == TRUE][order(transcript_id)]
 absent <- annotated[in_legacy_universe == FALSE]
 runs <- rle(annotated$in_legacy_universe)

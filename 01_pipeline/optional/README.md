@@ -1,12 +1,24 @@
 # 01_pipeline/optional
 
-Steps that are not part of the paper run. `run_pipeline.R` does not start them; each is run by hand and writes under `04_output/not_adopted/`.
+Steps that are not part of the paper run. `run_pipeline.R` does not start them; each is run by hand and writes under `04_output/not_adopted/`. The optional analyses that use them are switches of `run_pipeline.R`:
+
+| Analysis | Adopted in the paper? | Switch of `run_pipeline.R` | Setting in `run_config.R` (list `optional`) | Id or token | Outputs | What it changes | Issue |
+|---|---|---|---|---|---|---|---|
+| The paper | yes | none: `Rscript run_pipeline.R` | every setting at its default | `legacy` | `04_output/<step>/`, `05_manuscript/` | at least 10 reads per CpG in each of the 22 libraries, no upper coverage filter, first line of each coverage file dropped, logistic regression without overdispersion correction, DML at q < 0.01 and a difference of more than 20 points; steps 01 to 09 and 11 to 13 | |
+| Coverage filter of the Methods | no | `--coverage-filter` | `coverage_filter_of_methods = TRUE` | `corrected` | `04_output/not_adopted/corrected/` | CpGs at or above the 99.9th percentile of coverage in a library removed; every line of each coverage file read | I-05, I-38 |
+| 5x standard | no | `--coverage 5` | `coverage_standard = 5L` | `cov5` | `04_output/not_adopted/cov5/` | 5 reads per CpG in each library (2,297,236 CpGs tested instead of 480,579) | Venkataraman et al. 2022 |
+| Overdispersion correction | no | `--overdispersion` | `overdispersion_chisq = TRUE` | `mnchisq` | `04_output/not_adopted/mnchisq/` | methylKit `overdispersion = "MN"`, `test = "Chisq"`; no other test is offered | I-06 |
+| C-to-T variant exclusion | no | `--exclude-ct-variants` | `exclude_ct_variants = TRUE` | `ctexcl` | `04_output/not_adopted/ctexcl/` | CpGs listed by `01_pipeline/optional/ct_variant_loci.R` removed from the CpG sets of step 04 and, after the test, from the tested CpGs and the DML (fits, p-values and q-values unchanged); the run refuses to start without the list | I-08 |
+| Any combination of the four | no | the switches together | the settings together | the tokens joined by `-` in the order above | `04_output/not_adopted/<id>/`, for example `corrected-cov5-ctexcl/` | each of its parts | |
+| Gene-level GO enrichment | no | `--gene-level-go`, alone (on the paper's DML) or with any of the above | `gene_level_go = TRUE` | | `04_output/not_adopted/<id>/10_go_enrichment_gene_level/` and `.../11_semantic_similarity/` (the paper's DML: `<id>` = `legacy`) | step 10 and the gene-level part of step 11 | I-41 |
+| Diagnostics | no | `--diagnostics` (all) or `--diagnostics name1,name2` | `diagnostics = "all"` or names | | `06_diagnostics/` | the checks and controls of the audit, listed in `06_diagnostics/diagnostics.csv` | |
+| Side by side | no | made by every optional run | | | `04_output/not_adopted/comparisons/`, `05_manuscript/not_adopted/` | the tables that list analyses, from every analysis folder on disk, the paper first; the manuscript values of every analysis ("not run" where absent) | |
 
 ## `ct_variant_loci.R`: CpG sites at C-to-T variants
 
 ### What it does
 
-It lists the CpG sites of the reference genome where the 22 libraries carry a C-to-T sequence variant at the C of the CpG. At such a site a T in the bisulfite reads is not evidence of an unmethylated C, so Venkataraman et al. 2022 (BMC Genomics 23:556), the study on which the draft's methods are modelled, removed these sites from the CpGs they characterised and from their candidate DML. This step reproduces their rule in R, so that the analyses can later exclude the same kind of sites behind an option (the option itself is not built yet).
+It lists the CpG sites of the reference genome where the 22 libraries carry a C-to-T sequence variant at the C of the CpG. At such a site a T in the bisulfite reads is not evidence of an unmethylated C, so Venkataraman et al. 2022 (BMC Genomics 23:556), the study on which the draft's methods are modelled, removed these sites from the CpGs they characterised and from their candidate DML. This step reproduces their rule in R, so that the analyses can exclude the same kind of sites behind the option `--exclude-ct-variants` of `run_pipeline.R` (token `ctexcl`; setting `exclude_ct_variants` in the list `optional` of `run_config.R`), off by default.
 
 The rule is that of BS-Snper (Gao et al. 2015, version 1.1) as the 2022 study used it, ported from BS-Snper's C and Perl source (`07_documentation/agent_workflows/scope_inputs/variant_rule_spec.md`):
 
@@ -56,7 +68,17 @@ Progress: `tail 04_output/not_adopted/ct_variants/cache/console.log` (one line p
 
 Testing options: `--libraries id1,id2` processes only these libraries and writes no final table; `--keep-bam` keeps the alignment after counting.
 
-The rule parameters are defined at the top of the script in the list `ct_variants_default`, with the names they will have in `run_config.R` (`config$ct_variants`); once `run_config.R` defines that list, the script uses it.
+The rule parameters are in `run_config.R` as the list `config$ct_variants`, with the values of the list `ct_variants_default` at the top of the script (the 2022 values; not toggles, decision 10.8 of the settings specification). The script uses `config$ct_variants` when it is defined, as it is since 2026-11-20, and its own list otherwise; the two hold the same values. (The run of the screen started on 2026-11-20 at 06:15 UTC read its settings before the list moved; the values are the same.)
+
+### The option that uses the list: `--exclude-ct-variants`
+
+With the option on (alone, `Rscript run_pipeline.R --exclude-ct-variants`, or with any other switch), the CpGs with `listed` TRUE in `ct_variant_cpgs.csv.gz` are removed:
+
+- in step 04, from every library before any count (after its first line and its upper cutoff are taken), so the CpG counts, distributions, correlations and PCA of the analysis are over the other CpGs;
+- in step 05, after the test: the fit is that of the same analysis without the option (`methylkit_<fit id>.rds`, no refit), and the listed CpGs leave the tested CpGs, the test tables and the DML lists; p-values, q-values and differences of the other CpGs are those of the fit on all CpGs, as in Venkataraman et al. 2022. `ct_exclusion_summary_<id>.csv` gives per contrast the tested CpGs and DML before and after and the numbers removed, and the kept CpGs and kept DML that the screen could not assess (fewer than `min_crick_assessable` = 3 Crick evidence reads at the C, summed over the 22 libraries, so that no call set could have listed them; from `ct_variant_assessability.csv.gz`, placed on the CpGs of the reference and checked against `ct_variant_cpg_index.csv`). `ct_excluded_cpgs_<id>.csv.gz` lists the removed tested CpGs with their p, q and difference per contrast and whether each was a DML;
+- the later steps (06 to 09, and 10 and 11 with `--gene-level-go`) read the reduced tables of the analysis.
+
+A run with the option refuses to start, with the command above, while the list is absent.
 
 ### Inputs
 

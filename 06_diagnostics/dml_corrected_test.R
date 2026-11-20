@@ -168,7 +168,7 @@ high <- level$high_level
 log_msg("libraries with a raised overall level (library_level.csv): %s", paste(lib$library_id[high], collapse = ", "))
 
 united_path <- function(mode) {
-  f <- output_path("05_differential_methylation", "tables", sprintf("united_cpg_%s.csv.gz", mode))
+  f <- diagnostic_input("05_differential_methylation", "tables", sprintf("united_cpg_%s.csv.gz", mode))
   if (!file.exists(f)) stop("Missing ", f, ". Run 01_pipeline/05_differential_methylation.R first.", call. = FALSE)
   f
 }

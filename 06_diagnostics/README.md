@@ -41,6 +41,24 @@ Rscript 06_diagnostics/check_methylkit_equivalence.R                     # about
 WGBS_SENSITIVITY_SUBSET=20000 Rscript 06_diagnostics/dml_sensitivity.R   # test of the code on a random sample of CpGs, 10 to 15 minutes
 ```
 
+Or through the pipeline, as option (f), which the paper did not adopt: `Rscript run_pipeline.R --diagnostics` runs every script, `--diagnostics cohort_separation,table1_group_means` the scripts named, in the order of [`diagnostics.csv`](diagnostics.csv) (one row per script: order, the analyses it reads, whether it needs the network, minutes and memory, and whether a value of the paper's manuscript map reads its table), after step 11 and before step 13. A script whose needs are not met (the network, or the outputs of the analysis `corrected`) is reported as "not run" and the run goes on. The diagnostics write only into this folder; `tests/snapshot_paper.R` checks that `fastq_read_names.csv` and `table1_group_means.csv`, which 15 values of the paper's manuscript map read, do not change.
+
+### Modes in the diagnostics, and the settings layout
+
+Several diagnostics compare the paper's analysis ("legacy mode", `mode` value `legacy`) with the coverage filter that the Methods describe ("corrected mode", the optional analysis `corrected`). Since the settings layout of 2026-11-20 the outputs of the analysis `corrected` are in `04_output/not_adopted/corrected/`; the scripts read them through `diagnostic_input()` and take the two modes from `diagnostic_modes()` (`02_R_functions/analyses.R`), which stops with the command that makes them (`Rscript run_pipeline.R --coverage-filter`) when they are absent. Nothing they compute changed: the same files are read from their new place. The analyses of the pipeline and their switches:
+
+| Analysis | Adopted in the paper? | Switch of `run_pipeline.R` | Setting in `run_config.R` (list `optional`) | Id or token | Outputs | What it changes | Issue |
+|---|---|---|---|---|---|---|---|
+| The paper | yes | none: `Rscript run_pipeline.R` | every setting at its default | `legacy` | `04_output/<step>/`, `05_manuscript/` | at least 10 reads per CpG in each of the 22 libraries, no upper coverage filter, first line of each coverage file dropped, logistic regression without overdispersion correction, DML at q < 0.01 and a difference of more than 20 points; steps 01 to 09 and 11 to 13 | |
+| Coverage filter of the Methods | no | `--coverage-filter` | `coverage_filter_of_methods = TRUE` | `corrected` | `04_output/not_adopted/corrected/` | CpGs at or above the 99.9th percentile of coverage in a library removed; every line of each coverage file read | I-05, I-38 |
+| 5x standard | no | `--coverage 5` | `coverage_standard = 5L` | `cov5` | `04_output/not_adopted/cov5/` | 5 reads per CpG in each library (2,297,236 CpGs tested instead of 480,579) | Venkataraman et al. 2022 |
+| Overdispersion correction | no | `--overdispersion` | `overdispersion_chisq = TRUE` | `mnchisq` | `04_output/not_adopted/mnchisq/` | methylKit `overdispersion = "MN"`, `test = "Chisq"`; no other test is offered | I-06 |
+| C-to-T variant exclusion | no | `--exclude-ct-variants` | `exclude_ct_variants = TRUE` | `ctexcl` | `04_output/not_adopted/ctexcl/` | CpGs listed by `01_pipeline/optional/ct_variant_loci.R` removed from the CpG sets of step 04 and, after the test, from the tested CpGs and the DML (fits, p-values and q-values unchanged); the run refuses to start without the list | I-08 |
+| Any combination of the four | no | the switches together | the settings together | the tokens joined by `-` in the order above | `04_output/not_adopted/<id>/`, for example `corrected-cov5-ctexcl/` | each of its parts | |
+| Gene-level GO enrichment | no | `--gene-level-go`, alone (on the paper's DML) or with any of the above | `gene_level_go = TRUE` | | `04_output/not_adopted/<id>/10_go_enrichment_gene_level/` and `.../11_semantic_similarity/` (the paper's DML: `<id>` = `legacy`) | step 10 and the gene-level part of step 11 | I-41 |
+| Diagnostics | no | `--diagnostics` (all) or `--diagnostics name1,name2` | `diagnostics = "all"` or names | | `06_diagnostics/` | the checks and controls of the audit, listed in `06_diagnostics/diagnostics.csv` | |
+| Side by side | no | made by every optional run | | | `04_output/not_adopted/comparisons/`, `05_manuscript/not_adopted/` | the tables that list analyses, from every analysis folder on disk, the paper first; the manuscript values of every analysis ("not run" where absent) | |
+
 ## Result of the legacy comparison
 
 `legacy_check_results.csv` holds 331 comparisons; 329 match. Checks whose pipeline outputs are absent are reported as "not run" instead of failing.

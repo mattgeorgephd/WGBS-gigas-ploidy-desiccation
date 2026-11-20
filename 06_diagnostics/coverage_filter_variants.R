@@ -180,7 +180,7 @@ cutoff_decimals <- 3L                  # decimals of the cutoffs in the written 
 contrast_names <- c(ploidy = "ploidy", heat = "heat")
 
 out_file <- function(name) here("06_diagnostics", paste0("coverage_filter_", name, ".csv"))
-tab05 <- function(file) output_path("05_differential_methylation", "tables", file)
+tab05 <- function(file) diagnostic_input("05_differential_methylation", "tables", file)
 # Stop with a message unless a statement about the inputs holds.
 must <- function(ok, ...) if (!isTRUE(ok)) stop(..., call. = FALSE)
 

@@ -297,18 +297,18 @@ if (test_mode) {
              out_file("TEST_RUN_NOT_RESULTS.txt"))
 }
 step05_file <- function(name) {
-  f <- output_path("05_differential_methylation", "tables", name)
+  f <- diagnostic_input("05_differential_methylation", "tables", name)
   if (!file.exists(f)) stop("Missing ", f, ". Run 01_pipeline/05_differential_methylation.R first.", call. = FALSE)
   f
 }
 # The sample of a test run must fit into the united table of every mode. This is
 # checked here, so that a sample that is too large stops the run before any fit.
 if (test_mode) {
-  united_rows <- vapply(config$modes, function(m) nrow(fread(step05_file(sprintf("united_cpg_%s.csv.gz", m)), select = 1L)),
+  united_rows <- vapply(diagnostic_modes(), function(m) nrow(fread(step05_file(sprintf("united_cpg_%s.csv.gz", m)), select = 1L)),
                         integer(1))
   if (any(united_rows < subset_n)) {
     stop("WGBS_SENSITIVITY_SUBSET (", subset_n, ") is larger than the number of tested CpGs: ",
-         paste(sprintf("%d in mode %s", united_rows, config$modes), collapse = ", "), ".", call. = FALSE)
+         paste(sprintf("%d in mode %s", united_rows, diagnostic_modes()), collapse = ", "), ".", call. = FALSE)
   }
 }
 
@@ -418,7 +418,7 @@ describe_analysis <- function(spec) {
   if (!spec$overdispersion %in% c("none", "MN")) bad("unknown overdispersion setting '", spec$overdispersion, "'.")
   if (spec$test != "Chisq") bad("only the chi-squared test is offered (decision of the author, 2026-11-20); write test 'Chisq'.")
   spec_modes <- strsplit(spec$modes, "; ", fixed = TRUE)[[1]]
-  if (!all(spec_modes %in% config$modes)) bad("mode '", paste(setdiff(spec_modes, config$modes), collapse = "', '"), "' is not in config$modes.")
+  if (!all(spec_modes %in% diagnostic_modes())) bad("mode '", paste(setdiff(spec_modes, diagnostic_modes()), collapse = "', '"), "' is not in diagnostic_modes().")
 
   keep <- library_sets[[spec$libraries]]$keep
   def  <- contrast_defs[[spec$contrast]]
@@ -1033,7 +1033,7 @@ run_mode <- function(mode_i) {
 # ---- Run every mode; tables that span the modes -------------------------------------------------
 # CSVs written here, into the output folder of this run (out_file):
 # dml_counts.csv, permutation_reference.csv, dispersion_summary.csv.
-by_mode <- lapply(stats::setNames(config$modes, config$modes), run_mode)
+by_mode <- lapply(stats::setNames(diagnostic_modes(), diagnostic_modes()), run_mode)
 dml_counts  <- rbindlist(lapply(by_mode, `[[`, "counts"))
 permutation <- rbindlist(lapply(by_mode, `[[`, "permutation"))
 dispersion  <- rbindlist(lapply(by_mode, `[[`, "dispersion"))
@@ -1045,7 +1045,7 @@ print(dml_counts[, .(analysis_id, mode, n_cpg_tested, n_effect_above_cutoff, n_s
 # Files of an earlier run that this run did not write (an analysis that was
 # renamed or removed) would be mistaken for current results.
 written <- c(sprintf("dml_%s_%s.csv", dml_counts$analysis_id, dml_counts$mode),
-             sprintf("interaction_vs_shared_%s.csv", config$modes))
+             sprintf("interaction_vs_shared_%s.csv", diagnostic_modes()))
 stale <- setdiff(list.files(out_dir, pattern = "^(dml_A|interaction_vs_shared_).*\\.csv$"), written)
 if (length(stale) > 0) log_msg("NOTE: not written by this run, delete if no longer wanted: %s", paste(stale, collapse = ", "))
 
@@ -1060,7 +1060,7 @@ thousands <- function(v) format(v, big.mark = ",", trim = TRUE, scientific = FAL
 plot_contrast <- function(contrast_i, x_title) {
   d <- dml_counts[contrast == contrast_i]
   d[, label := factor(label, levels = rev(unique(label)))]
-  d[, mode := factor(mode, levels = config$modes)]
+  d[, mode := factor(mode, levels = diagnostic_modes())]
   parts <- rbind(d[, .(label, mode, part = "in_primary", n = n_in_primary)],
                  d[, .(label, mode, part = "not_in_primary", n = n_dml - n_in_primary)])
   parts[, part := factor(part, levels = c("in_primary", "not_in_primary"))]

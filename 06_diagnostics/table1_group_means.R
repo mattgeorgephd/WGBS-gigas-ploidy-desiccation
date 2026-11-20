@@ -38,8 +38,8 @@ invisible(lapply(list.files(here("02_R_functions"), pattern = "\\.R$", full.name
 load_packages(c("data.table"))
 
 lib <- read_libraries()
-table1 <- fread(output_path("09_go_enrichment_legacy", "tables", "table_1_legacy.csv"), colClasses = c(gene_id = "character"))
-united <- fread(output_path("05_differential_methylation", "tables", "united_cpg_legacy.csv.gz"))
+table1 <- fread(diagnostic_input("09_go_enrichment_legacy", "tables", "table_1_legacy.csv"), colClasses = c(gene_id = "character"))
+united <- fread(diagnostic_input("05_differential_methylation", "tables", "united_cpg_legacy.csv.gz"))
 stopifnot(sum(grepl("^numCs", names(united))) == nrow(lib))
 
 # Percent methylation of a set of libraries at one CpG, reads pooled.

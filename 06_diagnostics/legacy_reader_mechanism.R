@@ -198,7 +198,7 @@ quote_settings <- list(                              # the four reads of part (a
   apostrophe_only    = "'")
 replacement <- "^"                                   # stands in for an apostrophe in the interventions
 out_file <- function(name) here("06_diagnostics", name)
-step09 <- function(name) output_path("09_go_enrichment_legacy", "tables", name)
+step09 <- function(name) diagnostic_input("09_go_enrichment_legacy", "tables", name)
 log_msg("%s; GO.db %s (ontology of %s); topGO %s", R.version.string, go_db_version, go_source_date(),
         as.character(packageVersion("topGO")))
 # The prediction below takes the default quote characters of read.table() to be these two.
@@ -445,7 +445,7 @@ stopifnot("Lines of one transcript in the universe map carry different GO IDs" =
             uniqueN(data.table(map_names, go_text)) == length(universe),
           "Two names of the universe map share an accession number" = !anyDuplicated(universe_accession))
 
-tx_table <- fread(output_path("08_gene_annotation", "tables", "transcript_table.csv.gz"), colClasses = c(gene_id = "character"))
+tx_table <- fread(diagnostic_input("08_gene_annotation", "tables", "transcript_table.csv.gz"), colClasses = c(gene_id = "character"))
 stopifnot("The transcript table of step 08 names a transcript twice or places an mRNA on the mitochondrial sequence" =
             !anyDuplicated(tx_table$transcript_id) && !any(tx_table$chr == config$mito_sequence),
           "The universe map and the column in_legacy_universe of the transcript table differ" =

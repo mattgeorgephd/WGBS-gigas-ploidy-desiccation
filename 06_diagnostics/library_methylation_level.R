@@ -155,9 +155,9 @@ above <- function(d) abs(d) > cutoff + tie_tolerance
 at_threshold <- function(d) abs(abs(d) - cutoff) <= tie_tolerance
 
 # ---- 1. Level of each library ------------------------------------------------------------
-bis <- fread(output_path("02_alignment_qc", "tables", "bismark_by_library.csv"))
+bis <- fread(diagnostic_input("02_alignment_qc", "tables", "bismark_by_library.csv"))
 stopifnot(identical(bis$library_id, lib$library_id))
-elisa <- fread(output_path("03_global_methylation", "tables", "elisa_percent_5mC.csv"))
+elisa <- fread(diagnostic_input("03_global_methylation", "tables", "elisa_percent_5mC.csv"))
 level <- data.table(
   library_id = lib$library_id, animal_id = lib$animal_id, cohort = lib$cohort,
   ploidy = as.character(lib$ploidy), treatment = as.character(lib$treatment), group = as.character(lib$group),
@@ -179,7 +179,7 @@ high <- which(level$high_level)
 # Methylation matrices of one mode: C (methylated reads) and N (all reads) per
 # CpG and library, in the library order of the sample sheet.
 read_counts <- function(mode) {
-  u <- fread(output_path("05_differential_methylation", "tables", sprintf("united_cpg_%s.csv.gz", mode)))
+  u <- fread(diagnostic_input("05_differential_methylation", "tables", sprintf("united_cpg_%s.csv.gz", mode)))
   stopifnot(sum(grepl("^numCs", names(u))) == n_lib)
   C <- as.matrix(u[, paste0("numCs", seq_len(n_lib)), with = FALSE])
   N <- C + as.matrix(u[, paste0("numTs", seq_len(n_lib)), with = FALSE])
@@ -249,7 +249,7 @@ corrected_lists <- c("A1_ploidy_mn_chisq", "A1_heat_mn_chisq", "A2_interaction_m
                      "A4_ploidy_in_heat_mn_chisq")
 sens_dir <- here("06_diagnostics", "dml_sensitivity")
 
-for (mode in config$modes) {
+for (mode in diagnostic_modes()) {
   m <- read_counts(mode)
   pm <- 100 * m$C / m$N
   mean_pm <- rowMeans(pm)
@@ -259,7 +259,7 @@ for (mode in config$modes) {
   gap_mode <- above_largest_gap(level[[paste0("mean_pct_eligible_", mode)]])
   if (!identical(gap_mode$high, level$high_level))
     stop("The largest gap in the mean over eligible CpGs (", mode, ") marks other libraries than the genome-wide level does.")
-  pcs <- fread(output_path("04_cpg_coverage", "tables", sprintf("pca_scores_10x_%s.csv", mode)))
+  pcs <- fread(diagnostic_input("04_cpg_coverage", "tables", sprintf("pca_scores_10x_%s.csv", mode)))
   stopifnot(identical(pcs$library_id, lib$library_id))
   for (pc in paste0("PC", 1:4)) level[, paste0(tolower(pc), "_10x_", mode) := pcs[[pc]]]
 
@@ -267,7 +267,7 @@ for (mode in config$modes) {
   d <- lapply(contrasts, function(f) f(m))
   # Check against step 05: the two contrasts of the draft must equal meth.diff.
   for (what in c("ploidy", "heat")) {
-    s5 <- fread(output_path("05_differential_methylation", "tables", sprintf("diffmeth_%s_%s.csv.gz", what, mode)))
+    s5 <- fread(diagnostic_input("05_differential_methylation", "tables", sprintf("diffmeth_%s_%s.csv.gz", what, mode)))
     mine <- d[[if (what == "ploidy") 1 else 2]]
     stopifnot(identical(paste(s5$chr, s5$start), m$key), max(abs(mine - s5$meth.diff)) < 1e-8)
   }
@@ -383,7 +383,7 @@ for (mode in config$modes) {
   }
 
   # ---- 7. Similarity of the libraries of one group ---------------------------------------
-  cm <- fread(output_path("04_cpg_coverage", "tables", sprintf("library_correlation_10x_%s.csv", mode)))
+  cm <- fread(diagnostic_input("04_cpg_coverage", "tables", sprintf("library_correlation_10x_%s.csv", mode)))
   stopifnot(identical(cm$library_id, lib$library_id))
   r <- as.matrix(cm[, -1]); dimnames(r) <- NULL
   mean_within <- function(idx) { s <- r[idx, idx]; mean(s[upper.tri(s)]) }
@@ -485,7 +485,7 @@ cor_row <- function(x_name, y_name, x, y, set) {
              spearman_p_exact = suppressWarnings(cor.test(x[ok], y[ok], method = "spearman", exact = TRUE)$p.value))
 }
 cor_rows <- list()
-for (mode in config$modes) {
+for (mode in diagnostic_modes()) {
   for (pc in paste0("pc", 1:4)) cor_rows[[length(cor_rows) + 1]] <-
     cor_row("pct_mCpG_genome", sprintf("%s_10x_%s", pc, mode), L, level[[sprintf("%s_10x_%s", pc, mode)]], "all 22")
   for (ms in c("mean_pct_tested_", "mean_pct_eligible_")) cor_rows[[length(cor_rows) + 1]] <-

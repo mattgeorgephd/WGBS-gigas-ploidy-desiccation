@@ -41,10 +41,10 @@ if (length(args) == 2 && args[1] == "base") {
   cat(nrow(m), "files in", args[2], "\n")
 } else if (length(args) == 2 && args[1] == "snapshot") {
   f <- paper_files()
-  m <- data.table(path = f, bytes = file.size(f), md5 = md5_of(f),
+  m <- data.table(path = f, bytes = file.size(f), md5 = md5_of(f), md5_content = vapply(f, md5_inner, ""),
                   mtime = format(file.mtime(f), "%Y-%m-%d %H:%M:%OS6"))
   dirs <- unique(dirname(f))
-  m <- rbind(m, data.table(path = paste0(dirs, "/"), bytes = NA_real_, md5 = "folder", mtime = ""))
+  m <- rbind(m, data.table(path = paste0(dirs, "/"), bytes = NA_real_, md5 = "folder", md5_content = NA_character_, mtime = ""))
   fwrite(m, args[2], eol = "\n")
   cat(nrow(m), "files and folders in", args[2], "\n")
 } else if (length(args) == 3 && args[1] == "compare") {

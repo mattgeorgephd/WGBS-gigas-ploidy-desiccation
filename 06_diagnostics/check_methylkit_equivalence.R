@@ -232,7 +232,7 @@ regions <- data.table(
 stopifnot(!anyDuplicated(regions$sequence), all(regions$from < regions$to), all(regions$sequence[1:2] %in% config$linkage_groups))
 
 out_file <- function(suffix = "") here("06_diagnostics", paste0("check_methylkit_equivalence", suffix, ".csv"))
-tab05 <- function(file) output_path("05_differential_methylation", "tables", file)
+tab05 <- function(file) diagnostic_input("05_differential_methylation", "tables", file)
 # Stop with a message unless a statement about the inputs holds.
 must <- function(ok, ...) if (!isTRUE(ok)) stop(..., call. = FALSE)
 is_half <- function(x) x %% 1 == 0.5                                   # exactly halfway between two whole numbers
@@ -290,7 +290,7 @@ manifest <- read_gannet_manifest()
 cov_file <- vapply(lib$cov_file, fetch_gannet_file, character(1), config = config, manifest = manifest, USE.NAMES = FALSE)
 
 # What step 05 recorded for each library.
-records05 <- lapply(setNames(config$modes, config$modes), function(mode_name) {
+records05 <- lapply(setNames(diagnostic_modes(), diagnostic_modes()), function(mode_name) {
   recorded <- fread(tab05(sprintf("library_filtering_%s.csv", mode_name)))
   must(identical(recorded$library_id, lib$library_id), "library_filtering_", mode_name, ".csv does not list the libraries of the sample sheet in its order.")
   recorded
@@ -302,7 +302,7 @@ factor05 <- lapply(records05, function(recorded) max(recorded$median_coverage) /
 # The tables of tested CpGs that step 05 wrote, for part 5. `keys05` numbers
 # their CpGs over the sequences of the tables; `all_keys05` holds every CpG of
 # the tables once, and `index05` the place of each CpG of a table in it.
-tables05 <- lapply(setNames(config$modes, config$modes), function(mode_name) {
+tables05 <- lapply(setNames(diagnostic_modes(), diagnostic_modes()), function(mode_name) {
   united05 <- fread(tab05(sprintf("united_cpg_%s.csv.gz", mode_name)))
   must(ncol(united05) == 4 + 3 * n_lib &&
          all(paste0(rep(c("coverage", "numCs", "numTs"), n_lib), rep(seq_len(n_lib), each = 3)) == names(united05)[-(1:4)]),
@@ -381,7 +381,7 @@ extract_file <- file.path(extract_dir, lib$cov_file)
 lines_by_group <- removed_by_group <- matrix(0L, n_lib, n_groups)
 relative_median <- matrix(NA_real_, n_lib, n_groups)
 file_facts <- vector("list", n_lib)
-whole05 <- setNames(rep(list(c(values = 0, different = 0, half = 0)), length(config$modes)), config$modes)   # part 5, whole tables: tally over the libraries
+whole05 <- setNames(rep(list(c(values = 0, different = 0, half = 0)), length(diagnostic_modes())), diagnostic_modes())   # part 5, whole tables: tally over the libraries
 for (lib_i in seq_len(n_lib)) {
   whole <- read_whole_lines(cov_file[lib_i])
   # Part 5, whole tables: the line of this file for every CpG of the tables of
@@ -391,7 +391,7 @@ for (lib_i in seq_len(n_lib)) {
   found <- which(!is.na(hit))
   must(!anyDuplicated(hit[found]), lib$cov_file[lib_i], " holds a CpG of the tables of step 05 on two lines.")
   line_of <- integer(length(all_keys05)); line_of[hit[found]] <- on_tested[found]
-  for (mode_name in config$modes) {
+  for (mode_name in diagnostic_modes()) {
     at <- line_of[index05[[mode_name]]]
     must(all(at > 0L), "united_cpg_", mode_name, ".csv.gz holds a CpG that has no line in ", lib$cov_file[lib_i], ".")
     whole05[[mode_name]] <- whole05[[mode_name]] +
@@ -516,7 +516,7 @@ full_set <- which(!duplicated(lib$group) | first_line$reads >= config$min_covera
 part_full <- sprintf("full libraries (%d of %d)", length(full_set), n_lib)
 log_msg("full libraries: %s", paste(lib$library_id[full_set], collapse = ", "))
 full_facts <- list()
-for (mode_name in config$modes) {
+for (mode_name in diagnostic_modes()) {
   rows <- list()
   for (lib_i in full_set) {
     # methylKit's own calls, written out for each mode; no helper decides them.
@@ -560,7 +560,7 @@ for (mode_name in config$modes) {
   }
   full_facts[[mode_name]] <- facts
 }
-if (all(c("legacy", "corrected") %in% config$modes)) {
+if (all(c("legacy", "corrected") %in% diagnostic_modes())) {
   # I-38 on full files: the import with header = FALSE holds one row more than
   # the default import where the first line has at least import_min_coverage
   # reads, and the same number of rows where it has fewer.
@@ -654,7 +654,7 @@ quiet_selection <- function(selected) {
 
 thresholds <- sort(unique(c(config$dml_difference, config$dml_difference_sweep)))
 extract_facts <- list(); united_keys <- list(); imported_keys <- list(); tested_by_region <- list(); misspelled <- NULL
-for (mode_name in config$modes) {
+for (mode_name in diagnostic_modes()) {
   log_msg("[%s] methylKit's route and the helper route on the extract", mode_name)
   native <- methylkit_route(mode_name, treat_ploidy)
   native_united <- list(ploidy = native$united, heat = methylkit_route(mode_name, treat_heat)$united)
@@ -812,7 +812,7 @@ for (mode_name in config$modes) {
   rm(native, native_united, helper, facts, scaled, united_now, dml, dml_legacy_coding); gc(verbose = FALSE)
 }
 
-if ("corrected" %in% config$modes) {
+if ("corrected" %in% diagnostic_modes()) {
   # The extract table gives, region by region, the lines that the upper filter
   # removes; part 1 counted them with upper_coverage_cutoff. Summed over the
   # regions they must be the rows that filterByCoverage removed in each library.
@@ -827,7 +827,7 @@ if ("corrected" %in% config$modes) {
 # I-38: with header = FALSE methRead returns the rows it returns with its default
 # header = TRUE, and the first line of the file where that line has at least
 # import_min_coverage reads. Nothing else differs.
-if (all(c("legacy", "corrected") %in% config$modes)) {
+if (all(c("legacy", "corrected") %in% diagnostic_modes())) {
   first_key <- cpg_key(first_line$chr, first_line$start, extract_levels)
   as_expected <- vapply(seq_len(n_lib), function(lib_i) {
     only_complete <- setdiff(imported_keys$corrected[[lib_i]], imported_keys$legacy[[lib_i]])
@@ -850,7 +850,7 @@ if (all(c("legacy", "corrected") %in% config$modes)) {
 # The whole tables were set against the whole coverage files during the pass of
 # part 1 (tally `whole05`). Here: the rows of the tables inside the regions,
 # against the lines of the extract files.
-for (mode_name in config$modes) {
+for (mode_name in diagnostic_modes()) {
   united05 <- tables05[[mode_name]]                                    # the rows inside the regions
   recorded <- records05[[mode_name]]
   key05 <- cpg_key(united05$chr, united05$start, extract_levels)
@@ -961,7 +961,7 @@ rows_of_step04 <- function(mode_name, level) {
                coverage = lines$coverage[counted], nC = lines$nC[counted])
   })
 }
-for (mode_name in config$modes) for (level in levels_step04) {
+for (mode_name in diagnostic_modes()) for (level in levels_step04) {
   counted <- rows_of_step04(mode_name, level)
   in_all <- Reduce(function(a, b) a[a %in% b], lapply(counted, function(x) x$pos_key))
   factors <- vapply(counted, function(x) stats::median(x$coverage), numeric(1))
@@ -1045,7 +1045,7 @@ extract_table <- data.table(
   median_reads_over_library_median_min = round(apply(relative_median, 2, min, na.rm = TRUE), 2),
   median_reads_over_library_median_max = round(apply(relative_median, 2, max, na.rm = TRUE), 2),
   lines_removed_by_upper_filter = colSums(removed_by_group))
-for (mode_name in config$modes) {
+for (mode_name in diagnostic_modes()) {
   set(extract_table, j = paste0("cpg_united_on_extract_", mode_name), value = by_group(tested_by_region[[mode_name]]))
   set(extract_table, j = paste0("cpg_tested_by_step05_", mode_name), value = by_group(tested05_by_region[[mode_name]]))
 }
@@ -1053,7 +1053,7 @@ total <- extract_table[, lapply(.SD, sum), .SDcols = patterns("^cpg_|^files_that
 total[, `:=`(region = "all regions", purpose = "the extract", libraries_with_lines = n_lib,
              lines_per_library_min = min(file_facts$lines_in_extract), lines_per_library_max = max(file_facts$lines_in_extract))]
 extract_table <- rbind(extract_table, total, fill = TRUE)
-for (mode_name in config$modes) {
+for (mode_name in diagnostic_modes()) {
   set(extract_table, j = paste0("percent_of_all_cpg_tested_by_step05_", mode_name),
       value = round(100 * extract_table[[paste0("cpg_tested_by_step05_", mode_name)]] / n_tested05[[mode_name]], 3))
 }
@@ -1063,7 +1063,7 @@ fwrite(extract_table, out_file("_extract"))
 options(width = 200)
 cat("\nComparisons by part, mode and result\n")
 print(comparisons[, .(comparisons = .N, items_compared = sum(n_compared), items_different = sum(n_different)), by = .(part, mode, result)])
-for (mode_name in config$modes) {
+for (mode_name in diagnostic_modes()) {
   row <- extract_table[region == "all regions"]
   cat(sprintf("\n[%s] united CpGs on the extract: %s. CpGs tested by step 05 inside the regions: %s of %s (%.2f%%).\n", mode_name,
               count_text(row[[paste0("cpg_united_on_extract_", mode_name)]]), count_text(row[[paste0("cpg_tested_by_step05_", mode_name)]]),

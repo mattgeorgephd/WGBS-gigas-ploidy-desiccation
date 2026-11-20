@@ -30,8 +30,8 @@ n_draws <- 10        # random draws per list size
 set.seed(20261119)
 mode <- "legacy"
 onts <- c("BP", "CC", "MF")
-dml_in <- function(f) output_path("05_differential_methylation", "tables", f)
-ann_in <- function(f) output_path("08_gene_annotation", "tables", f)
+dml_in <- function(f) diagnostic_input("05_differential_methylation", "tables", f)
+ann_in <- function(f) diagnostic_input("08_gene_annotation", "tables", f)
 
 # ---- Eligible CpGs and the protein-coding genes they lie in --------------------------
 united <- fread(dml_in(sprintf("united_cpg_%s.csv.gz", mode)))

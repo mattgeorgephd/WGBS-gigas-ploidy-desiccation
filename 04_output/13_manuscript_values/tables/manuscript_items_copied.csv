@@ -3,16 +3,10 @@ Figure 1,,04_output/03_global_methylation/figures/figure_1.png,figures/Figure_1.
 Figure 1,,04_output/03_global_methylation/figures/figure_1.pdf,figures/Figure_1.pdf,,TRUE
 Figure 2,legacy,04_output/06_dml_figures/figures/figure_2_legacy.png,figures/legacy/Figure_2.png,,TRUE
 Figure 2,legacy,04_output/06_dml_figures/figures/figure_2_legacy.pdf,figures/legacy/Figure_2.pdf,,TRUE
-Figure 2,corrected,04_output/06_dml_figures/figures/figure_2_corrected.png,figures/corrected/Figure_2.png,,TRUE
-Figure 2,corrected,04_output/06_dml_figures/figures/figure_2_corrected.pdf,figures/corrected/Figure_2.pdf,,TRUE
 Figure 3,legacy,04_output/07_genome_features/figures/figure_3_legacy.png,figures/legacy/Figure_3.png,,TRUE
 Figure 3,legacy,04_output/07_genome_features/figures/figure_3_legacy.pdf,figures/legacy/Figure_3.pdf,,TRUE
-Figure 3,corrected,04_output/07_genome_features/figures/figure_3_corrected.png,figures/corrected/Figure_3.png,,TRUE
-Figure 3,corrected,04_output/07_genome_features/figures/figure_3_corrected.pdf,figures/corrected/Figure_3.pdf,,TRUE
 Figure 4,legacy,04_output/06_dml_figures/figures/figure_4_legacy.png,figures/legacy/Figure_4.png,,TRUE
 Figure 4,legacy,04_output/06_dml_figures/figures/figure_4_legacy.pdf,figures/legacy/Figure_4.pdf,,TRUE
-Figure 4,corrected,04_output/06_dml_figures/figures/figure_4_corrected.png,figures/corrected/Figure_4.png,,TRUE
-Figure 4,corrected,04_output/06_dml_figures/figures/figure_4_corrected.pdf,figures/corrected/Figure_4.pdf,,TRUE
 Figure 5,legacy,04_output/09_go_enrichment_legacy/figures/figure_5_legacy.png,figures/legacy/Figure_5.png,,TRUE
 Figure 5,legacy,04_output/09_go_enrichment_legacy/figures/figure_5_legacy.pdf,figures/legacy/Figure_5.pdf,,TRUE
 Figure 6,legacy,04_output/11_semantic_similarity/figures/figure_6_legacy.png,figures/legacy/Figure_6.png,,TRUE
@@ -25,38 +19,22 @@ Figure 9,legacy,04_output/09_go_enrichment_legacy/figures/figure_9_legacy.png,fi
 Figure 9,legacy,04_output/09_go_enrichment_legacy/figures/figure_9_legacy.pdf,figures/legacy/Figure_9.pdf,,TRUE
 Figure S1,legacy,04_output/04_cpg_coverage/figures/figure_S1_legacy.png,figures/legacy/Figure_S1.png,,TRUE
 Figure S1,legacy,04_output/04_cpg_coverage/figures/figure_S1_legacy.pdf,figures/legacy/Figure_S1.pdf,,TRUE
-Figure S1,corrected,04_output/04_cpg_coverage/figures/figure_S1_corrected.png,figures/corrected/Figure_S1.png,,TRUE
-Figure S1,corrected,04_output/04_cpg_coverage/figures/figure_S1_corrected.pdf,figures/corrected/Figure_S1.pdf,,TRUE
-"GO terms called enriched, by analysis",both,04_output/10_go_enrichment_gene_level/figures/figure_go_terms_by_analysis.png,figures/corrected/GO_terms_by_analysis.png,,TRUE
-"GO terms called enriched, by analysis",both,04_output/10_go_enrichment_gene_level/figures/figure_go_terms_by_analysis.pdf,figures/corrected/GO_terms_by_analysis.pdf,,TRUE
-"Genes holding a DML, by number of CpGs",legacy,04_output/10_go_enrichment_gene_level/figures/figure_go_bias_legacy.png,figures/legacy/GO_bias_by_CpG_count.png,,TRUE
-"Genes holding a DML, by number of CpGs",legacy,04_output/10_go_enrichment_gene_level/figures/figure_go_bias_legacy.pdf,figures/legacy/GO_bias_by_CpG_count.pdf,,TRUE
-"Genes holding a DML, by number of CpGs",corrected,04_output/10_go_enrichment_gene_level/figures/figure_go_bias_corrected.png,figures/corrected/GO_bias_by_CpG_count.png,,TRUE
-"Genes holding a DML, by number of CpGs",corrected,04_output/10_go_enrichment_gene_level/figures/figure_go_bias_corrected.pdf,figures/corrected/GO_bias_by_CpG_count.pdf,,TRUE
 Table 1,legacy,04_output/09_go_enrichment_legacy/tables/table_1_legacy.csv,tables/legacy/Table_1.csv,,TRUE
 Supplement: ploidy DML,legacy,04_output/05_differential_methylation/tables/dml_ploidy_legacy.csv,supplement/legacy/DML_ploidy.csv,,TRUE
 Supplement: heat DML,legacy,04_output/05_differential_methylation/tables/dml_heat_legacy.csv,supplement/legacy/DML_heat.csv,,TRUE
 Supplement: loci in both lists,legacy,04_output/05_differential_methylation/tables/dml_shared_legacy.csv,supplement/legacy/DML_in_both_lists.csv,,TRUE
-Supplement: ploidy DML,corrected,04_output/05_differential_methylation/tables/dml_ploidy_corrected.csv,supplement/corrected/DML_ploidy.csv,,TRUE
-Supplement: heat DML,corrected,04_output/05_differential_methylation/tables/dml_heat_corrected.csv,supplement/corrected/DML_heat.csv,,TRUE
-Supplement: loci in both lists,corrected,04_output/05_differential_methylation/tables/dml_shared_corrected.csv,supplement/corrected/DML_in_both_lists.csv,,TRUE
 "Supplement: genes holding DML, ploidy",legacy,04_output/08_gene_annotation/tables/genes_with_dml_ploidy_legacy.csv,supplement/legacy/genes_with_DML_ploidy.csv,,TRUE
-"Supplement: genes holding DML, ploidy",corrected,04_output/08_gene_annotation/tables/genes_with_dml_ploidy_corrected.csv,supplement/corrected/genes_with_DML_ploidy.csv,,TRUE
 "Supplement: GO terms of the draft, ploidy BP (terms with p below the cutoff)",legacy,04_output/09_go_enrichment_legacy/tables/legacy_fisher_ploidy_BP.csv,supplement/legacy/GO_terms_as_in_draft_ploidy_BP.csv,below_p_cutoff == TRUE,TRUE
 "Supplement: GO terms of the draft, ploidy CC (terms with p below the cutoff)",legacy,04_output/09_go_enrichment_legacy/tables/legacy_fisher_ploidy_CC.csv,supplement/legacy/GO_terms_as_in_draft_ploidy_CC.csv,below_p_cutoff == TRUE,TRUE
 "Supplement: GO terms of the draft, ploidy MF (terms with p below the cutoff)",legacy,04_output/09_go_enrichment_legacy/tables/legacy_fisher_ploidy_MF.csv,supplement/legacy/GO_terms_as_in_draft_ploidy_MF.csv,below_p_cutoff == TRUE,TRUE
 "Supplement: genes holding DML, heat",legacy,04_output/08_gene_annotation/tables/genes_with_dml_heat_legacy.csv,supplement/legacy/genes_with_DML_heat.csv,,TRUE
-"Supplement: genes holding DML, heat",corrected,04_output/08_gene_annotation/tables/genes_with_dml_heat_corrected.csv,supplement/corrected/genes_with_DML_heat.csv,,TRUE
 "Supplement: GO terms of the draft, heat BP (terms with p below the cutoff)",legacy,04_output/09_go_enrichment_legacy/tables/legacy_fisher_heat_BP.csv,supplement/legacy/GO_terms_as_in_draft_heat_BP.csv,below_p_cutoff == TRUE,TRUE
 "Supplement: GO terms of the draft, heat CC (terms with p below the cutoff)",legacy,04_output/09_go_enrichment_legacy/tables/legacy_fisher_heat_CC.csv,supplement/legacy/GO_terms_as_in_draft_heat_CC.csv,below_p_cutoff == TRUE,TRUE
 "Supplement: GO terms of the draft, heat MF (terms with p below the cutoff)",legacy,04_output/09_go_enrichment_legacy/tables/legacy_fisher_heat_MF.csv,supplement/legacy/GO_terms_as_in_draft_heat_MF.csv,below_p_cutoff == TRUE,TRUE
 "Supplement: genes holding DML, in_both_lists",legacy,04_output/08_gene_annotation/tables/genes_with_dml_shared_legacy.csv,supplement/legacy/genes_with_DML_in_both_lists.csv,,TRUE
-"Supplement: genes holding DML, in_both_lists",corrected,04_output/08_gene_annotation/tables/genes_with_dml_shared_corrected.csv,supplement/corrected/genes_with_DML_in_both_lists.csv,,TRUE
 "Supplement: GO terms of the draft, in_both_lists BP (terms with p below the cutoff)",legacy,04_output/09_go_enrichment_legacy/tables/legacy_fisher_shared_BP.csv,supplement/legacy/GO_terms_as_in_draft_in_both_lists_BP.csv,below_p_cutoff == TRUE,TRUE
 "Supplement: GO terms of the draft, in_both_lists CC (terms with p below the cutoff)",legacy,04_output/09_go_enrichment_legacy/tables/legacy_fisher_shared_CC.csv,supplement/legacy/GO_terms_as_in_draft_in_both_lists_CC.csv,below_p_cutoff == TRUE,TRUE
 "Supplement: GO terms of the draft, in_both_lists MF (terms with p below the cutoff)",legacy,04_output/09_go_enrichment_legacy/tables/legacy_fisher_shared_MF.csv,supplement/legacy/GO_terms_as_in_draft_in_both_lists_MF.csv,below_p_cutoff == TRUE,TRUE
-"Supplement: gene-level GO enrichment, summary of every analysis",both,04_output/10_go_enrichment_gene_level/tables/go_gene_level_summary.csv,supplement/GO_gene_level_summary.csv,,TRUE
-Supplement: the draft's top-ten GO terms retested at gene level,legacy,04_output/10_go_enrichment_gene_level/tables/legacy_top10_at_gene_level.csv,supplement/GO_terms_of_draft_retested.csv,,TRUE
 "Supplement: DML in genes with one of the draft's ten top-ranked GO terms, ploidy BP",legacy,04_output/09_go_enrichment_legacy/tables/legacy_dml_in_top10_genes_ploidy_BP.csv,supplement/legacy/DML_in_genes_with_top10_GO_terms_ploidy_BP.csv,,TRUE
 "Supplement: DML in genes with one of the draft's ten top-ranked GO terms, ploidy CC",legacy,04_output/09_go_enrichment_legacy/tables/legacy_dml_in_top10_genes_ploidy_CC.csv,supplement/legacy/DML_in_genes_with_top10_GO_terms_ploidy_CC.csv,,TRUE
 "Supplement: DML in genes with one of the draft's ten top-ranked GO terms, ploidy MF",legacy,04_output/09_go_enrichment_legacy/tables/legacy_dml_in_top10_genes_ploidy_MF.csv,supplement/legacy/DML_in_genes_with_top10_GO_terms_ploidy_MF.csv,,TRUE

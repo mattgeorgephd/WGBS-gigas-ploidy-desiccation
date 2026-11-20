@@ -21,6 +21,7 @@ Only files above that ceiling stay on gannet. They are listed in `gannet_manifes
 | `bismark_reports/` | Bismark alignment, deduplication, and summary reports for the 22 libraries, all from the June 2021 alignment | gannet `/panopea/061021-big/` | steps 02, 03 |
 | `genome_features/` | Thirteen feature tracks for the Roslin v1 assembly, gzipped | Venkataraman et al. 2022, OSF doi:10.17605/OSF.IO/YGCTB | steps 04, 07, 08 |
 | `annotation/` | blastx hits against Swiss-Prot and the transcript-to-GO map; in `legacy/`, outputs of the legacy analysis that the checks and step 11 compare with (annotation tables, REVIGO exports, three Fisher tables of another analysis) | gannet project directory; the REVIGO exports and the Fisher tables are copies from `08_archive/` | steps 08, 09, 11 |
+| `gannet_manifest_alignments.csv` | The 22 sorted, deduplicated alignments and their indexes on gannet (URL and size), read only by the optional variant step `01_pipeline/optional/ct_variant_loci.R`; not downloaded by step 01 | gannet `/panopea/061021-big/` | `01_pipeline/optional/ct_variant_loci.R` |
 | `gannet_manifest.csv` | The inputs that stay on gannet, with URL, size and md5: the 22 coverage files (9.8 GB) and the reference genome (0.66 GB), 10.5 GB in total | gannet project directory, `cov_files/`, and `/panopea/Cg-roslin/` | steps 01, 04, 05 |
 | `gannet_cache/` | Download cache; created on first run; not tracked | | |
 
@@ -44,3 +45,19 @@ The 22 files named `<library>_R1.CpG_report.merged_CpG_evidence.cov` are the sta
 | 6 | Count of unmethylated reads |
 
 They are about 445 MB each (9.8 GB in total), which is why they are not in GitHub. How they were produced is documented in [`07_documentation/upstream_processing/`](../07_documentation/upstream_processing/README.md).
+
+## Inputs and the optional analyses
+
+The paper run and the optional analyses (which the paper did not adopt; off by default) read the same inputs; the switches of `run_pipeline.R` change only which rows and settings the steps use. The one input of an optional analysis alone is `gannet_manifest_alignments.csv`, for the C-to-T variant list. The table of the analyses, their switches and their output folders:
+
+| Analysis | Adopted in the paper? | Switch of `run_pipeline.R` | Setting in `run_config.R` (list `optional`) | Id or token | Outputs | What it changes | Issue |
+|---|---|---|---|---|---|---|---|
+| The paper | yes | none: `Rscript run_pipeline.R` | every setting at its default | `legacy` | `04_output/<step>/`, `05_manuscript/` | at least 10 reads per CpG in each of the 22 libraries, no upper coverage filter, first line of each coverage file dropped, logistic regression without overdispersion correction, DML at q < 0.01 and a difference of more than 20 points; steps 01 to 09 and 11 to 13 | |
+| Coverage filter of the Methods | no | `--coverage-filter` | `coverage_filter_of_methods = TRUE` | `corrected` | `04_output/not_adopted/corrected/` | CpGs at or above the 99.9th percentile of coverage in a library removed; every line of each coverage file read | I-05, I-38 |
+| 5x standard | no | `--coverage 5` | `coverage_standard = 5L` | `cov5` | `04_output/not_adopted/cov5/` | 5 reads per CpG in each library (2,297,236 CpGs tested instead of 480,579) | Venkataraman et al. 2022 |
+| Overdispersion correction | no | `--overdispersion` | `overdispersion_chisq = TRUE` | `mnchisq` | `04_output/not_adopted/mnchisq/` | methylKit `overdispersion = "MN"`, `test = "Chisq"`; no other test is offered | I-06 |
+| C-to-T variant exclusion | no | `--exclude-ct-variants` | `exclude_ct_variants = TRUE` | `ctexcl` | `04_output/not_adopted/ctexcl/` | CpGs listed by `01_pipeline/optional/ct_variant_loci.R` removed from the CpG sets of step 04 and, after the test, from the tested CpGs and the DML (fits, p-values and q-values unchanged); the run refuses to start without the list | I-08 |
+| Any combination of the four | no | the switches together | the settings together | the tokens joined by `-` in the order above | `04_output/not_adopted/<id>/`, for example `corrected-cov5-ctexcl/` | each of its parts | |
+| Gene-level GO enrichment | no | `--gene-level-go`, alone (on the paper's DML) or with any of the above | `gene_level_go = TRUE` | | `04_output/not_adopted/<id>/10_go_enrichment_gene_level/` and `.../11_semantic_similarity/` (the paper's DML: `<id>` = `legacy`) | step 10 and the gene-level part of step 11 | I-41 |
+| Diagnostics | no | `--diagnostics` (all) or `--diagnostics name1,name2` | `diagnostics = "all"` or names | | `06_diagnostics/` | the checks and controls of the audit, listed in `06_diagnostics/diagnostics.csv` | |
+| Side by side | no | made by every optional run | | | `04_output/not_adopted/comparisons/`, `05_manuscript/not_adopted/` | the tables that list analyses, from every analysis folder on disk, the paper first; the manuscript values of every analysis ("not run" where absent) | |
