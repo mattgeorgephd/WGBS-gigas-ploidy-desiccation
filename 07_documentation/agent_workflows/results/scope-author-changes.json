@@ -1,10 +1,10 @@
 {
  "workflow": "scope-author-changes",
  "run_id": "wf_3af3d3cc-0e8",
- "agents_finished": 6,
+ "agents_finished": 7,
  "agents_running_or_lost": [
   "variants:pilot-and-design",
-  "ftest:action-plan"
+  "design:judge"
  ],
  "results": [
   {
@@ -783,6 +783,128 @@
      "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/D2-design/design.md",
      "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/D2-design/code/compare_paper_rows.py",
      "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/D2-design/test/"
+    ]
+   }
+  },
+  {
+   "agent": "ftest:action-plan",
+   "phase": "F test",
+   "result": {
+    "summary": "I wrote the plan to plan.md in my scratch directory. It removes the F test of methylKit's DML model and keeps the correction with the chi-squared test only (overdispersion \"MN\", test \"Chisq\"). Nothing in the repository was changed.\n\n**Cross-check of the two inventories**\n- The dependency trace's 06_diagnostics/README.md line numbers (S40-S50) are all off by 35. Two of them, lines 48 and 49, are the ELISA and %mCpG two-way ANOVA rows (\"interaction F\"), so an edit made at those numbers would hit an F statistic of the draft. S09 (issues.md) belongs at 299-300 and S67 (library_methylation_level.R part 8) at 54-62.\n- 40 explicit or unnamed hits of the term sweep were missing from the trace. Each is now covered or explained in statements_checked.csv, which has 83 rows (67 from the trace plus 16 added).\n- Neither inventory has three values-map rows that also rest on the A2 F fit: R3.5-049, D4.9-002 and D3.5x-001. The sweep missed issues.md 170 and classed plan line 100 and the values-map interaction notes as unrelated.\n- I opened the files and confirmed well over 40 lines across issues.md, the READMEs, the plan, the handoff, the values map and both scripts. The relevant files have not changed since commit 435f971 (current HEAD is 671feca).\n\n**Code changes**\n- In 06_diagnostics/dml_sensitivity.R, each of the 5 F analyses is replaced by its chi-squared twin. This keeps 22 fits: 16 in legacy mode and 6 in corrected mode.\n- The F branches go: test validation (line 425), figure label (452), reference_distribution (457-459) and the qf statistic (997-999). Header lines 13-17, 31-32, 100-105, 107-122 and 176-179 are reworded.\n- The cache signature does not include `modes`, so the two existing chi-squared legacy fits stay valid. Only 6 fits are new.\n- library_methylation_level.R lines 54-57, 73, 247 and 415 are pointed at the `_mn_chisq` lists. No other script reads the F outputs.\n\n**Fits**\n- The 6 new fits take about 56 minutes at WGBS_CORES=3, plus about 10 minutes for the tables. library_methylation_level.R then takes about 2 minutes, and step 13 is rerun after the values-map edits.\n- The cache is reused only if the md5 of the two united_cpg tables is unchanged after the hardening rerun (now 8e7f5d67... and ebec40d3...). Otherwise all 22 fits are redone, about 3 hours.\n\n**Outputs**\n- Delete the 32 files named *_mn_f_*: 8 tracked DML lists, 8 cached fits, and 16 copies in test_subset.\n- Regenerate analyses.csv, dml_counts.csv, both interaction_vs_shared files, the analyses column of permutation_reference.csv, figure_dml_sensitivity.png/.pdf, and both corrected_dml_* tables.\n\n**Numbers I checked myself**\n- My own derivation from the cached fits reproduces the trace's chi-squared DML counts: 10 (controls), 1,093 (heat-treated) and 14 (ploidy).\n- From the stored relabelling tables: 86, 69 and 61 of 300 relabellings reach the chi-squared ploidy shares. The relabelled mean is 7.19%, 2.16% and 0.47%. The heat cohort's share is reached by 0 of 125 regroupings, the controls' by 39, 28 and 11 of 150.\n\n**Conclusions of issues.md that change**\n- Corrected lists: 14 ploidy and 185 heat (157 with the coverage filter), not 2 and 16 (6).\n- The heat list is largely stable, not \"not stable at its threshold\": 157 of 185 are kept.\n- The ploidy pair has q = 1.2e-8, not 0.0099 at the edge, and both CpGs are called inside the heat cohort.\n- The corrected interaction is a list of 242 CpGs, not 2, though still none of the draft's 200.\n- The heat-cohort list is 1,093 CpGs, not 125, and the controls list is 10, not 2.\n- CpGs where no correction was applied are a minority (1, 2, 5, 2 and 172 per list), not most. The argument against the corrected lists must now rest on item 4: the chi-squared form does not hold its level under relabelling.\n- In I-08 and I-49 the group-apart counts become 36 and 16 of 1,093, not 11 and 6 of 125. A looser threshold gives lists of 37 and 52 CpGs, not \"no list\".\n- The I-01 mitochondrial count becomes 275 of 1,124.\n\n**Conclusions that cannot be kept**\n- The F thresholds (above 84 and 474) and the claim that single CpGs can hardly be called from this many animals.\n- The F against chi-squared tail comparison and \"not a middle course\".\n- \"The corrected test holds its level on average\".\n- \"Most corrected calls are uncorrected\".\n- The relabelling tail counts (medians 0, 2 and 10), the splits by the high libraries, and the \"low power\" comparison. These can be withdrawn, or recomputed if the author asks.\n\n**Checks after the change**\n- code/check_no_f_mention.sh searches for any remaining mention. Today it finds 257 lines, 32 files and 5 PDF lines; the target is 0.\n- code/f_only_phrases.txt holds 55 phrases of F results, named or not. They hit 47 lines today.\n- code/check_numbers.py with claims.csv checks each number of the new text against its source table. All 35 proposed numbers pass today against the derivation.",
+    "facts": [
+     {
+      "claim": "The files read by both inventories are unchanged since commit 435f971, so their line numbers still hold",
+      "evidence": "git diff --stat 435f971 HEAD -- issues.md README.md 06_diagnostics 07_documentation/reproducibility_plan.md 07_documentation/session_handoff.md 03_input_files/manuscript 05_manuscript: no output (HEAD 471764a, then 671feca, which touched only 04_output/04_cpg_coverage and agent_workflows/results); md5sum issues.md = edc445fea497749b86f65c921c022dba, as F2 recorded",
+      "verified": true
+     },
+     {
+      "claim": "The trace's line numbers for 06_diagnostics/README.md (S40-S50) are off by 35; its lines 48-49 are ELISA and %mCpG two-way ANOVA rows",
+      "evidence": "grep -n of 06_diagnostics/README.md: A1 row at 83, modes sentence at 89, How-to items 3-4 at 111-112, result table at 126-136, bullets at 140-143, corrected_dml row at 161; sed -n 44,49p shows the 'ELISA %5-mC ... two-way ANOVA' and '%mCpG two-way ANOVA (interaction F)' rows",
+      "verified": true
+     },
+     {
+      "claim": "Statements missing from the trace: issues.md 122, 170, 299, 307, 311, 1213, 1225; values-map rows R3.5-049 (347), D4.9-002 (521), D3.5x-001 (537); handoff 40, 53, 71; plan 164; dml_sensitivity.R 388-391 and 1005",
+      "evidence": "code/crosscheck.py (sweep hits not in trace ranges); own git grep for 'with the correction|variation among animals ... modelled|...' (code in this pass); reading of each line; added as X01-X16 in statements_checked.csv",
+      "verified": true
+     },
+     {
+      "claim": "The sweep misclassified plan line 100 and the values-map interaction notes as unrelated, and missed issues.md 170",
+      "evidence": "reverse check in inline Python of statements_checked.csv against hits.csv: S06 has no sweep hit, S51 and S62 are in class 'unrelated'",
+      "verified": true
+     },
+     {
+      "claim": "The cache signature of dml_sensitivity.R holds no 'modes' and no question text, so widening A1_*_mn_chisq to both modes keeps their cached legacy fits valid",
+      "evidence": "06_diagnostics/dml_sensitivity.R:548-551 signature <- c(analysis_id, mode, input_id, libraries, tested, covariates, covariate_values, overdispersion, test)",
+      "verified": true
+     },
+     {
+      "claim": "The cached fits are valid for the current united tables; a changed md5 after the hardening rerun would force refitting all 22 fits",
+      "evidence": "md5sum united_cpg_legacy/corrected.csv.gz = 8e7f5d67bc3fb7306ddef29a3894110f / ebec40d3e333f787a091f0ae529da9b6, equal to signature['united_md5'] of fit_A4_ploidy_in_heat_mn_f_legacy.rds and fit_A2_interaction_mn_f_corrected.rds (Rscript readRDS); dml_sensitivity.R:835 input_id includes united_md5",
+      "verified": true
+     },
+     {
+      "claim": "An independent derivation from the cached fits reproduces the trace's chi-squared DML counts: A4 controls 10 (2 with dispersion not above 1), A4 heat-treated 1,093 (172), A1 ploidy 14 (1)",
+      "evidence": "code/spotcheck_derivation.R run with ulimit -v 1.5 GB on 06_diagnostics/dml_sensitivity/cache",
+      "verified": true
+     },
+     {
+      "claim": "Chi-squared relabelling references from the stored tables: pooled ploidy mean 7.19%, 2.16%, 0.47%; 86, 69, 61 of 300 reach the observed share; 5th to 95th percentile 4.6% to 11.7%; heat share 13.2% reached by 12 of 300; heat cohort 0 of 125; controls 39, 28, 11 of 150. The F values 78, 95, 119 match I-06",
+      "evidence": "inline Python on 07_documentation/agent_workflows/verification_scripts/S1-I06-numbers-and-reading/07_relabel_level_pooled_a.csv, _b.csv, 08_relabel_level_heat_experiment.csv, 08_relabel_level_control_experiment.csv (columns mn_chisq1-3, mn_f1-3)",
+      "verified": true
+     },
+     {
+      "claim": "No relabelling of the interaction with the chi-squared test exists in the records",
+      "evidence": "column header of 07_relabel_level_pooled_a.csv: int_none1-3 and int_mn_f1-3 only",
+      "verified": true
+     },
+     {
+      "claim": "With the chi-squared lists, 4 CpGs are in both A1 lists in each mode (all four among the draft's 200 shared loci), and NC_047565.1:35,030,701 has the smallest p in the two lists",
+      "evidence": "inline Python on F2 derived/chisq_dml_lists_derived.csv; awk on 04_output/05_differential_methylation/tables/dml_shared_legacy.csv",
+      "verified": true
+     },
+     {
+      "claim": "No script other than dml_sensitivity.R and library_methylation_level.R reads the F outputs; the values map reads only the uncorrected rows A4_ploidy_in_control and A2_interaction of the sensitivity tables",
+      "evidence": "git grep -l for '_mn_f|dml_counts|permutation_reference|interaction_vs_shared|corrected_dml_' in *.R/*.py/*.js/*.sh, excluding agent_workflows; grep -o of diagnostic(...) expressions in manuscript_values_map.csv",
+      "verified": true
+     },
+     {
+      "claim": "The relabelling tables that the rewritten I-06 must cite (07_relabel_level_pooled_a/b.csv, 08_relabel_level_*.csv) hold the chi-squared and F columns in one file, so deleting the records that mention the F test would delete the source of the chi-squared numbers",
+      "evidence": "head of the CSVs; grep -l 'mn_f[0-9]|int_mn_f' -r verification_scripts",
+      "verified": true
+     },
+     {
+      "claim": "Baseline of the mention check: 267 lines with a term, 10 of them ANOVA look-alikes, 257 left; 32 files named *_mn_f_*; 5 PDF lines",
+      "evidence": "code/check_no_f_mention.sh /home/user/WGBS-gigas-ploidy-desiccation > baseline_check.txt",
+      "verified": true
+     },
+     {
+      "claim": "All 35 numbers proposed in the plan's wording equal their source in the scratch derivation and the stored relabelling tables",
+      "evidence": "python3 -I code/check_numbers.py claims.csv --repo ... --scratch ../F2-dependencies/derived: 0 failures",
+      "verified": true
+     },
+     {
+      "claim": "New methylKit chi-squared fits run in the repository will reproduce the derived numbers exactly for A2, A4 and corrected mode",
+      "evidence": "inferred from F2's exact agreement on the two cached chi-squared pairs and from the deterministic fit; not verified for these fits",
+      "verified": false
+     },
+     {
+      "claim": "The 6 new fits take about 56 minutes at WGBS_CORES=3",
+      "evidence": "minutes field of the F fits they replace (F2: 10.2, 9.6, 8.7, 15.0, 6.4, 5.7); the chi-squared test uses the same glm and dispersion estimate; the time on this machine is not measured",
+      "verified": false
+     }
+    ],
+    "recommendation": "Wait for the hardening pass to finish. Then:\n1. Confirm the md5 of the two united_cpg tables is unchanged.\n2. Change the registry of dml_sensitivity.R one-for-one to *_mn_chisq: A1 in both modes, A2 in both modes, A4 in legacy mode. Remove the F branches and the header text on the F test.\n3. Run test mode once, then the full run: 6 new fits, about 66 minutes in all.\n4. Check the new lists against F2's derivation; they should match exactly.\n5. Delete the 32 *_mn_f_* files.\n6. Point part 8 of library_methylation_level.R at the chi-squared lists and rerun it.\n7. Rewrite the text from statements_checked.csv and plan.md section (d), which gives wording wherever the numbers exist.\n8. Change the 4 values-map notes and rerun step 13.\n9. Run the three checks of section (h).\n\nRewriting only the numbers is not enough. Several I-06, I-07 and I-08 readings reverse under the chi-squared test and must be reworded, not just renumbered (section 3 of the plan).\n\nLeave the ANOVA lines listed in (f) alone, and use the corrected line numbers for 06_diagnostics/README.md: the trace's numbers point at the ANOVA rows.",
+    "open_points": [
+     "Withdraw or recompute the F-only relabelling statements (I-06 item 7 tail counts, the high-library splits, the interaction share, the 'low power' comparison, I-01 82% against 7 of 150, I-07 'as many as regrouped controls give'). Recomputing needs new relabelling code outside the records, about 1 to 4 minutes per script. It conflicts with the scope rule of 2026-11-19 (handoff line 23) but is allowed by instruction (iii) of 2026-11-20 (handoff 95). Author's call.",
+     "Whether 'remove all mention' covers the description of the cited benchmark (Wreczycka et al. 2017; issues.md 299-300, 302, 1213, 1225; dml_sensitivity.R 107-122) and the quoted methylKit help text. Withdrawing them alters quotations. Author's call.",
+     "Whether decision records that quote the instruction are reworded (plan 164, 166, 169; issues.md 369; handoff 71, 95). Plan section (d) gives reworded forms that do not name the test. Author's call.",
+     "Corrections-table rows 1191, 1199, 1202 and 1211 of issues.md are dated records with F numbers: keep them with a 'superseded' note, update them, or withdraw them. Author's call.",
+     "Several numbers in the new text exist in no repository table yet: Benjamini-Hochberg lists, q < 0.01 by coverage-filter status, CpGs with no correction applied, counts at q < 0.05 and 0.1, p-values at the named loci for the values map. dml_sensitivity.R must write new columns or a small table for them, otherwise they are withdrawn. A new output of a diagnostic needs the author's approval under the scope rule.",
+     "The author should confirm the reading 'which CpGs differ cannot be named' for corrected lists of 185 (heat) and 1,093 (heat cohort). It now rests on the corrected test not holding its level, not on the lists being short.",
+     "Whether to keep the column statistic_needed_for_a_single_call: after the change it is 31.4 or 31.3 in every row.",
+     "Not checked: whether the hardening rerun leaves the united_cpg md5 unchanged (it was running during this pass); the xls/xlsx workbooks; the PNG figures (their generating code and the PDF text were checked instead)."
+    ],
+    "risks": [
+     "The hardening pass is rerunning step 05 now. If the united_cpg tables change by a single byte, all 22 cached fits are invalidated: about 3 hours of refitting instead of 56 minutes. The derivation from the F caches then no longer matches the new inputs.",
+     "Line numbers can still shift once the hardening pass integrates. Edit by the anchor texts in statements_checked.csv, not by line number alone.",
+     "Rewriting numbers without rewriting the reasoning would leave text that contradicts its own numbers: 'not stable at its threshold', 'neither is called inside either cohort', 'most corrected calls are uncorrected', 'a looser threshold gives no list'.",
+     "The longer chi-squared lists (185 heat, 242 interaction, 1,093 heat cohort) come from a test that gives 7.2% of p below 0.05 under relabelling. They must not be presented as established loci.",
+     "Deleting the cached F fits before the new fits are checked removes the only way to recheck them against the derivation.",
+     "The phrase list and the claims file are guards, not proofs. A reworded F-only sentence with new phrasing passes them, so statements_checked.csv must be closed row by row."
+    ],
+    "files_written": [
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/F3-plan/plan.md",
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/F3-plan/statements_checked.csv",
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/F3-plan/claims.csv",
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/F3-plan/baseline_check.txt",
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/F3-plan/my_grep.txt",
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/F3-plan/code/check_no_f_mention.sh",
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/F3-plan/code/f_only_phrases.txt",
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/F3-plan/code/check_numbers.py",
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/F3-plan/code/crosscheck.py",
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/F3-plan/code/locate.py",
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/F3-plan/code/build_statements_checked.py",
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/F3-plan/code/spotcheck_derivation.R"
     ]
    }
   }
