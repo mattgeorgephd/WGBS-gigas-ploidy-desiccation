@@ -1175,6 +1175,8 @@ The first three rows are statements that the draft's own tables contradict. The 
 
 **Still to do in the pipeline** (not done when this entry was written): the label of the track in step 07 and in `feature_track_labels()` of `02_R_functions/genomic_overlaps.R`, Figure 3A, the README files, and the quotes of the values-map rows listed under Where. The key `TE` stays, because the diagnostics and the values map select the track by it.
 
+**Update 2026-11-20 (pipeline relabelled).** The label is applied: column `track_label` of `04_output/07_genome_features/tables/feature_overlap_by_track_<mode>.csv` and `feature_association_tests_<mode>.csv` and of `04_output/04_cpg_coverage/tables/cpg_counts_by_feature_track.csv` now reads "repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)" (`feature_track_labels()` in `02_R_functions/genomic_overlaps.R`), and the READMEs and the notes of nine rows of the values map say the same. The track code `TE` and the column `pct_in_TE` are kept, so no expression changed; only label columns differ from the previous tables, step 13 still gives 352 matches, 146 differences and 47 values not regenerated, and the legacy check 329 of 331. The pipeline's Figure 3A draws exclusive classes and has no repeat category, so it has no label to change; the repeat bar of the draft's Figure 3A is in the authors' image. The `quote` and `item` columns of the values map keep the draft's wording until the authors accept the suggested edits. Three diagnostics (`feature_odds_matched.R`, `locus_nc047563.R`, `coverage_filter_variants.R`) still say "transposable elements" in comments and descriptions.
+
 ---
 
 ## Corrections after verification

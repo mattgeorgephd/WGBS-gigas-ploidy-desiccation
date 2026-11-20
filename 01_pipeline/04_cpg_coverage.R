@@ -78,9 +78,11 @@
 #             Results 3.1 gives eight percentages "across all samples at 1x"
 #             (exon UTR 27.3, introns 22.9, CDS 16, intergenic 14.3, transposable
 #             elements 13.1, upstream flanks 2.7, downstream flanks 2, lncRNA
-#             1.8); its "transposable elements" are the repeat track TE. What they match: one of the 100 CpG sets of the table, under
-#             the second rule only. It is the set of legacy mode with at least 10
-#             reads in every one of the ten heat libraries (1,921,856 CpGs;
+#             1.8); its "transposable elements" are the repeat track TE, labelled
+#             repetitive elements (I-50). What they match: one of the 100 CpG
+#             sets of the table, under the second rule only. It is the set of
+#             legacy mode with at least 10 reads in every one of the ten heat
+#             libraries (1,921,856 CpGs;
 #             27.30, 22.89, 16.02, 14.27, 13.05, 2.66, 2.01, 1.79), which
 #             reproduces all eight values and their order at the one decimal the
 #             draft prints. What they do not match: any 1x set, any set of all 22
