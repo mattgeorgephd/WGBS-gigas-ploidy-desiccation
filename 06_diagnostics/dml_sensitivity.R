@@ -40,9 +40,10 @@
 #
 # Run       Rscript 06_diagnostics/dml_sensitivity.R
 #             Full run, after step 05. One model fit per analysis and mode on
-#             every tested CpG: 22 fits. With WGBS_CORES=3 on a 4-core machine
-#             that other jobs shared, a fit took 5 to 13 minutes (8 on average),
-#             which makes about 3 hours for the 22 fits; expect about 2 hours
+#             every tested CpG: 20 fits (14 in legacy mode, 6 in corrected
+#             mode). With WGBS_CORES=3 on a 4-core machine that other jobs
+#             shared, a fit took 5 to 13 minutes (8 on average), which makes
+#             about 2 hours 40 minutes for the 20 fits; expect about 2 hours
 #             in all on 4 free cores. Fits are cached, so an interrupted run
 #             resumes where it stopped; a cache file that cannot be read is
 #             fitted again. A run that finds every fit in the cache takes about
