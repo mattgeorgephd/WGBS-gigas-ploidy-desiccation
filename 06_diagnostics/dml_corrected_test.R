@@ -50,7 +50,13 @@
 #             relabel_level_summary.csv         parts 1 and 2 summarised: per design, test,
 #                                               kind of relabelling and p level
 #             relabel_corrected_lists.csv       part 3, one row per design and labelling
-#             relabel_corrected_lists_summary.csv
+#             relabel_corrected_lists_summary.csv   observed_n_above_cutoff: CpGs above the
+#                                               difference cutoff with the observed labels;
+#                                               observed_n_in_shares: the CpGs over which the
+#                                               observed_share_* columns are computed (those
+#                                               above the cutoff, except in the row of the heat
+#                                               contrast: the draft's heat DML, q < 0.01 and
+#                                               above the cutoff, one CpG fewer)
 #             correction_not_applied.csv        part 4
 #             corrected_lists_stability.csv     part 5, one row per analysis, mode and measure
 #             corrected_ploidy_dml_by_cohort.csv  part 6, one row per corrected ploidy CpG
@@ -65,7 +71,12 @@
 #             estimate (corrected). The dispersion estimate is the Pearson
 #             chi-squared statistic of the full model over its residual degrees
 #             of freedom, set to 1 where it is not above 1; a p-value that
-#             cannot be computed is set to 1, as methylKit does. For the
+#             cannot be computed is set to 1, as methylKit does. Where the
+#             estimate itself cannot be computed (NaN), methylKit does not set
+#             it to 1: ifelse(phi > 1, phi, 1) returns NA, the p-value is NA and
+#             is replaced by 1. The script does the same, and such a CpG is not
+#             counted as one at which the correction is not applied (it has
+#             p = 1 and is never called). For the
 #             observed labels the script checks its p-values against the cached
 #             fits of dml_sensitivity.R and stops if they differ by more than
 #             `equal_tolerance` (relative).
@@ -101,6 +112,18 @@
 #             5:0). Part 2 splits the regroupings of the controls by whether the
 #             two such control libraries are in one group, and those of the heat
 #             cohort by whether its three such libraries are.
+#             The mirror rule of column exchanges_in_heat_cohort is that of a
+#             test inside one cohort, where a grouping and its mirror image give
+#             the same p-values. In the design of all 22 libraries (parts 1 and
+#             3) the mirror of the heat cohort's grouping, with the controls
+#             unchanged, is a different labelling and a different test. There
+#             the column is a measure of how close a grouping is to the real
+#             heat-cohort grouping, counting a grouping and its mirror as the
+#             same: "kept or changed by one exchange" (0 or 1) includes
+#             labellings that are 4 or 5 direct exchanges away, and "two
+#             exchanges" those 2 or 3 direct exchanges away. Column
+#             direct_exchanges_in_heat_cohort gives the number of direct
+#             exchanges (0 to 5) without the mirror rule.
 
 suppressPackageStartupMessages(library(here))
 source(here("run_config.R"))
@@ -204,7 +227,12 @@ run_tests <- function(cs, ns, rows, X_full, X_red) {
   if (length(rows) == 0) return(matrix(numeric(0), 0, 3, dimnames = list(NULL, c("p_uncorrected", "p_corrected", "dispersion"))))
   t(vapply(rows, function(i) one_test(cs[i, ], ns[i, ], X_full, X_red), numeric(3)))
 }
-not_corrected <- function(dispersion) is.na(dispersion) | dispersion <= 1
+# The correction is not applied where methylKit sets the dispersion estimate
+# to 1: where it is not above 1. A NaN estimate is not set to 1 by methylKit
+# (ifelse(NaN > 1, ...) is NA, so the p-value is NA and replaced by 1), and
+# one_test() does the same; such a CpG has p = 1, is never a call, and is not
+# counted here.
+not_corrected <- function(dispersion) !is.na(dispersion) & dispersion <= 1
 largest_relative_difference <- function(x, y) max(abs(x - y) / pmax(abs(y), .Machine$double.xmin))
 check_against <- function(mine, cached, what) {
   worst <- largest_relative_difference(mine, cached)
@@ -238,10 +266,15 @@ pooled_labellings <- function(n, seed) {
     z <- trip; for (b in cohort_rows) z[b] <- trip[b][sample.int(length(b))]; z
   }, integer(length(trip))))
 }
+# Exchanges of two libraries between the groups of the heat cohort, counting a
+# grouping and its mirror image as the same (the rule of a test inside the
+# cohort; in the pooled design the mirror is a different labelling, see the
+# header), and without that rule.
 exchanges_in_heat_cohort <- function(labels) {
   moved <- colSums(labels[heat_rows, , drop = FALSE] != trip[heat_rows])
   pmin(moved, length(heat_rows) - moved) / 2
 }
+direct_exchanges_in_heat_cohort <- function(labels) colSums(labels[heat_rows, , drop = FALSE] != trip[heat_rows]) / 2
 high_split <- function(labels) {
   ones <- colSums(labels[high, , drop = FALSE])
   ifelse(abs(2 * ones - sum(high)) == 1, "3:2", "4:1 or 5:0")
@@ -299,6 +332,7 @@ pooled_level <- rbindlist(lapply(seq_along(samples), function(k) {
   log_msg("  sample %d: %d labellings in %.1f min", k, ncol(labels), as.numeric(difftime(Sys.time(), started, units = "mins")))
   cbind(data.table(sample = k, sample_seed = sample_seeds[k], labelling_seed = labelling_seeds[k], labelling = seq_len(ncol(labels)) - 1L,
                    observed = seq_len(ncol(labels)) == 1L, exchanges_in_heat_cohort = exchanges_in_heat_cohort(labels),
+                   direct_exchanges_in_heat_cohort = direct_exchanges_in_heat_cohort(labels),
                    high_level_libraries_split = high_split(labels)), res)
 }))
 write_table(pooled_level, out_file("relabel_level_pooled.csv"))
@@ -417,6 +451,7 @@ list_rows <- rbindlist(lapply(names(list_designs), function(nm) {
     cbind(data.table(design = nm, analysis = d$analysis, labelling = j - 1L, observed = j == 1L,
                      exchanges_in_heat_cohort = if (nm == "pooled") exchanges_in_heat_cohort(matrix(z))
                                                 else if (nm == "heat_cohort") min(moved, length(z) - moved) / 2 else NA_real_,
+                     direct_exchanges_in_heat_cohort = if (nm == "pooled") direct_exchanges_in_heat_cohort(matrix(z)) else NA_real_,
                      p_threshold_of_observed_list = p_star, n_above_cutoff = length(above), n_called = sum(called),
                      n_called_correction_not_applied = sum(called & not_corrected(tests[, "dispersion"])),
                      n_called_on_their_own = sum(tests[, "p_corrected"] < p_single),
@@ -435,7 +470,7 @@ list_summary <- rbindlist(lapply(split(list_rows, list_rows$design), function(d)
   q <- function(x, p) unname(stats::quantile(x, p))
   share_cols <- grep("^n_above_cutoff_corrected_p_below_", names(d), value = TRUE)
   base <- data.table(design = o$design, analysis = o$analysis, n_relabellings = nrow(r), p_threshold_of_observed_list = o$p_threshold_of_observed_list,
-                     observed_n_above_cutoff = o$n_above_cutoff, observed_n_called = o$n_called,
+                     observed_n_above_cutoff = o$n_above_cutoff, observed_n_in_shares = o$n_above_cutoff, observed_n_called = o$n_called,
                      observed_n_called_correction_not_applied = o$n_called_correction_not_applied,
                      observed_n_called_on_their_own = o$n_called_on_their_own,
                      relabelled_n_called_median = stats::median(r$n_called), relabelled_n_called_q05 = q(r$n_called, 0.05),
@@ -459,10 +494,15 @@ list_summary <- rbindlist(lapply(split(list_rows, list_rows$design), function(d)
 }), fill = TRUE)
 # The heat contrast cannot be relabelled. Its DML (step 05, the draft's list) with
 # a corrected p-value below each level, set against the relabelled ploidy lists.
+# The shares of this row are over the DML (observed_n_in_shares), which are all
+# but one of the CpGs above the cutoff (observed_n_above_cutoff; the other one
+# has q >= 0.01, issues.md, I-05).
 heat_dml <- which(fits$A0_heat$qvalue < config$dml_qvalue & abs(fits$A0_heat$meth.diff) > config$dml_difference)
 pooled_rel <- list_rows[design == "pooled" & observed == FALSE]
 heat_row <- data.table(design = "heat contrast, the draft's heat DML, against the relabelled ploidy lists of the pooled design",
-                       analysis = "A1_heat_mn_chisq", n_relabellings = nrow(pooled_rel), observed_n_above_cutoff = length(heat_dml))
+                       analysis = "A1_heat_mn_chisq", n_relabellings = nrow(pooled_rel),
+                       observed_n_above_cutoff = sum(abs(fits$A0_heat$meth.diff) > config$dml_difference),
+                       observed_n_in_shares = length(heat_dml))
 for (l in seq_along(p_levels_lists)) {
   nm <- level_names(p_levels_lists)[l]
   obs_share <- mean(fits$A1_heat_mn_chisq$pvalue[heat_dml] < p_levels_lists[l])
