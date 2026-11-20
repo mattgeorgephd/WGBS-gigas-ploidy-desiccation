@@ -17,10 +17,11 @@ start_step <- function(step, title) {
 
 # End a step that exists for one analysis mode when that mode is not configured.
 # `step_does` says in a few words what the step does for that mode; it opens the
-# message. Under Rscript the step ends here with exit status 0, before it reads or
-# writes anything, so that run_pipeline.R goes on to the next step. A script
-# sourced in an interactive session cannot end early without an error (quit()
-# would close the session), so there it stops with one.
+# message. run_pipeline.R does not start such a step without its mode; this is for
+# a step started alone. Under Rscript the step ends here with exit status 0,
+# before it reads or writes anything, so that a job script that runs steps one by
+# one goes on. A script sourced in an interactive session cannot end early
+# without an error (quit() would close the session), so there it stops with one.
 require_mode <- function(mode, step_does) {
   if (mode %in% config$modes) return(invisible(TRUE))
   not_run <- sprintf("%s, and \"%s\" is not in config$modes (%s): nothing is run and no file is written",

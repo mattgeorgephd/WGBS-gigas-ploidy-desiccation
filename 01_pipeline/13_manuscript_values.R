@@ -30,12 +30,16 @@
 #           05_manuscript/<destination> for every row of the items map
 #           04_output/13_manuscript_values/tables/expression_errors.csv (empty when all expressions run)
 #           04_output/13_manuscript_values/tables/manuscript_items_copied.csv
+#           04_output/13_manuscript_values/session_info.txt
 #
 # Manuscript items: all.
 # Notes     - Modes. The step compares the draft with the outputs of legacy mode.
-#             When "legacy" is not in config$modes it says so and ends before it
-#             reads or writes anything; under Rscript the exit status is 0, so
-#             that run_pipeline.R ends normally. When "corrected" is not in
+#             When "legacy" is not in config$modes, run_pipeline.R does not
+#             start the step; started alone, it says so and ends before it reads
+#             or writes anything, with exit status 0 under Rscript. When
+#             "legacy" is configured the step does not check that the legacy
+#             tables it reads were written in a run with that mode (steps 09
+#             and 11 check the tables of step 08). When "corrected" is not in
 #             config$modes the corrected expressions are not evaluated: the
 #             columns regenerated_corrected and corrected_differs and the column
 #             change_in_corrected_mode of the summary are empty, and the items

@@ -86,11 +86,12 @@
 #             under "at least 20" (2,352 instead of 2,351; 2,274 instead of
 #             2,273). With ">" at the configured threshold of 20 points the
 #             written tables give exactly the DML lists of this step.
-#           - Fitting both modes takes about 18 minutes at WGBS_CORES=4, 37
-#             minutes at WGBS_CORES=2 and about an hour on one core. The import
-#             needs about 4 GB. The tests fork their workers: at WGBS_CORES=2 the
-#             step needs about 6.5 GB (the R process and its two workers, shared
-#             pages counted once), at WGBS_CORES=4 about 10 GB.
+#           - Fitting both modes takes about 18 minutes at WGBS_CORES=4, 37 to
+#             45 minutes at WGBS_CORES=2 and about an hour on one core. The
+#             import needs about 4 GB. The tests fork their workers: at
+#             WGBS_CORES=2 the step needs about 7.5 GB (the R process and its
+#             two workers, shared pages counted once), at WGBS_CORES=4 about
+#             10 GB.
 #           - A fit is kept in the cache folder and reused only while what it
 #             was made from is unchanged: the mode and the coverage settings,
 #             the sample sheet, the coverage files, the methylKit version and
@@ -98,7 +99,11 @@
 #             cache file cannot be read, the mode is fitted again; nothing has
 #             to be deleted by hand. The thresholds of step 4 are applied after
 #             the fit, so changing them does not refit. With both fits in the
-#             cache the step takes about half a minute.
+#             cache the step takes about half a minute. Not part of the
+#             fingerprint: the version of R and of every package other than
+#             methylKit (stats::glm.fit runs inside the tests, data.table reads
+#             the files). After an upgrade of R or of those packages, delete
+#             the cache folder to fit again.
 
 suppressPackageStartupMessages(library(here))
 source(here("run_config.R"))
@@ -169,12 +174,15 @@ fit_mode <- function(mode) {
 # the files against it), the methylKit version, and the code that builds the
 # table of counts and runs the tests. The code is compared as R parses it, so a
 # change of comments or layout does not count and any other change does, a
-# reworded log message included. The thresholds that define a DML are applied
+# reworded log message included. The version of R and of packages other than
+# methylKit is not compared (see Notes). The thresholds that define a DML are applied
 # after the fit (write_mode) and are not part of it; the number of cores is not
 # either, because the results do not depend on it.
 fit_fingerprint <- function(mode) {
   manifest <- read_gannet_manifest()
   files <- manifest[match(lib$cov_file, manifest$file), ]
+  # Every helper that fit_mode() calls, directly or through another helper, must be listed here: an edit of
+  # a helper that is not listed does not count as a change of the fitting code.
   fitting_code <- list(fit_mode = fit_mode, read_filtered_counts = read_filtered_counts, read_cov = read_cov,
                        first_line_lost = first_line_lost, upper_coverage_cutoff = upper_coverage_cutoff,
                        cpg_key = cpg_key, key_to_position = key_to_position,
