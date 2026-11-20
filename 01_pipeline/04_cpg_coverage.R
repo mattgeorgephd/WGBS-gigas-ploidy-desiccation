@@ -78,7 +78,7 @@
 #             Results 3.1 gives eight percentages "across all samples at 1x"
 #             (exon UTR 27.3, introns 22.9, CDS 16, intergenic 14.3, transposable
 #             elements 13.1, upstream flanks 2.7, downstream flanks 2, lncRNA
-#             1.8). What they match: one of the 100 CpG sets of the table, under
+#             1.8); its "transposable elements" are the repeat track TE. What they match: one of the 100 CpG sets of the table, under
 #             the second rule only. It is the set of legacy mode with at least 10
 #             reads in every one of the ten heat libraries (1,921,856 CpGs;
 #             27.30, 22.89, 16.02, 14.27, 13.05, 2.66, 2.01, 1.79), which
@@ -94,7 +94,10 @@
 #             are among the 1,921,856 of this step. That comparison was made
 #             once, outside the pipeline, which does not read the archive.
 #             The track named TE holds repeats of every class, read as the legacy
-#             analysis read the file; column track_label says what each track
+#             analysis read the file. By the author's decision of 2026-11-20
+#             (issues.md, I-50) it is labelled "repetitive elements
+#             (RepeatMasker, all classes)"; the track code TE stands for the
+#             repetitive elements track. Column track_label says what each track
 #             holds (02_R_functions/genomic_overlaps.R).
 #           - Percent methylation for the correlation and the PCA is computed
 #             from counts scaled between libraries as the legacy analysis scaled

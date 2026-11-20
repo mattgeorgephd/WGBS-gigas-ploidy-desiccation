@@ -11,7 +11,7 @@ legacy,all analysed CpGs,480579,upstream_flank,17130,3.56445038172704,2.82110443
 legacy,all analysed CpGs,480579,downstream_flank,12652,2.63265768999478,2.0836318302265,downstream flanks (up to 1 kb)
 legacy,all analysed CpGs,480579,flanks,28286,5.88581690003101,,upstream and downstream flanks together
 legacy,all analysed CpGs,480579,intergenic,111306,23.1608122701991,18.3307559670558,intergenic regions
-legacy,all analysed CpGs,480579,TE,109966,22.8819819426151,18.1100741260423,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+legacy,all analysed CpGs,480579,TE,109966,22.8819819426151,18.1100741260423,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 legacy,eligible CpGs,65480,gene,57192,87.3427000610874,,genes
 legacy,eligible CpGs,65480,mRNA,55646,84.9816737935247,,mRNA transcripts
 legacy,eligible CpGs,65480,exon,21230,32.4221136224802,,exons
@@ -24,7 +24,7 @@ legacy,eligible CpGs,65480,upstream_flank,702,1.07208307880269,0.799671929464835
 legacy,eligible CpGs,65480,downstream_flank,1201,1.8341478313989,1.36809969699041,downstream flanks (up to 1 kb)
 legacy,eligible CpGs,65480,flanks,1803,2.75351252290776,,upstream and downstream flanks together
 legacy,eligible CpGs,65480,intergenic,6487,9.90684178375076,7.38956097783246,intergenic regions
-legacy,eligible CpGs,65480,TE,19411,29.6441661576054,22.1117262433646,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+legacy,eligible CpGs,65480,TE,19411,29.6441661576054,22.1117262433646,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 legacy,ploidy DML,1038,gene,981,94.5086705202312,,genes
 legacy,ploidy DML,1038,mRNA,977,94.1233140655106,,mRNA transcripts
 legacy,ploidy DML,1038,exon,467,44.990366088632,,exons
@@ -37,7 +37,7 @@ legacy,ploidy DML,1038,upstream_flank,1,0.0963391136801541,0.0769822940723634,up
 legacy,ploidy DML,1038,downstream_flank,23,2.21579961464355,1.77059276366436,downstream flanks (up to 1 kb)
 legacy,ploidy DML,1038,flanks,23,2.21579961464355,,upstream and downstream flanks together
 legacy,ploidy DML,1038,intergenic,34,3.27552986512524,2.61739799846035,intergenic regions
-legacy,ploidy DML,1038,TE,194,18.6897880539499,14.9345650500385,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+legacy,ploidy DML,1038,TE,194,18.6897880539499,14.9345650500385,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 legacy,heat DML,2351,gene,2203,93.7048064653339,,genes
 legacy,heat DML,2351,mRNA,2178,92.6414291790727,,mRNA transcripts
 legacy,heat DML,2351,exon,987,41.9821352615908,,exons
@@ -50,7 +50,7 @@ legacy,heat DML,2351,upstream_flank,13,0.552956188855806,0.448121337469838,upstr
 legacy,heat DML,2351,downstream_flank,42,1.78647384091876,1.44777662874871,downstream flanks (up to 1 kb)
 legacy,heat DML,2351,flanks,54,2.29689493832412,,upstream and downstream flanks together
 legacy,heat DML,2351,intergenic,94,3.99829859634198,3.24026197862806,intergenic regions
-legacy,heat DML,2351,TE,463,19.6937473415568,15.9600137883488,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+legacy,heat DML,2351,TE,463,19.6937473415568,15.9600137883488,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 legacy,shared,200,gene,193,96.5,,genes
 legacy,shared,200,mRNA,192,96,,mRNA transcripts
 legacy,shared,200,exon,89,44.5,,exons
@@ -63,7 +63,7 @@ legacy,shared,200,upstream_flank,0,0,0,upstream flanks (up to 1 kb)
 legacy,shared,200,downstream_flank,3,1.5,1.1070110701107,downstream flanks (up to 1 kb)
 legacy,shared,200,flanks,3,1.5,,upstream and downstream flanks together
 legacy,shared,200,intergenic,4,2,1.4760147601476,intergenic regions
-legacy,shared,200,TE,28,14,10.3321033210332,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+legacy,shared,200,TE,28,14,10.3321033210332,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 legacy,"shared, both hyper",28,gene,27,96.4285714285714,,genes
 legacy,"shared, both hyper",28,mRNA,27,96.4285714285714,,mRNA transcripts
 legacy,"shared, both hyper",28,exon,11,39.2857142857143,,exons
@@ -76,7 +76,7 @@ legacy,"shared, both hyper",28,upstream_flank,0,0,0,upstream flanks (up to 1 kb)
 legacy,"shared, both hyper",28,downstream_flank,0,0,0,downstream flanks (up to 1 kb)
 legacy,"shared, both hyper",28,flanks,0,0,,upstream and downstream flanks together
 legacy,"shared, both hyper",28,intergenic,1,3.57142857142857,2.7027027027027,intergenic regions
-legacy,"shared, both hyper",28,TE,8,28.5714285714286,21.6216216216216,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+legacy,"shared, both hyper",28,TE,8,28.5714285714286,21.6216216216216,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 legacy,"shared, both hypo",49,gene,46,93.8775510204082,,genes
 legacy,"shared, both hypo",49,mRNA,46,93.8775510204082,,mRNA transcripts
 legacy,"shared, both hypo",49,exon,18,36.734693877551,,exons
@@ -89,7 +89,7 @@ legacy,"shared, both hypo",49,upstream_flank,0,0,0,upstream flanks (up to 1 kb)
 legacy,"shared, both hypo",49,downstream_flank,2,4.08163265306122,3.38983050847458,downstream flanks (up to 1 kb)
 legacy,"shared, both hypo",49,flanks,2,4.08163265306122,,upstream and downstream flanks together
 legacy,"shared, both hypo",49,intergenic,1,2.04081632653061,1.69491525423729,intergenic regions
-legacy,"shared, both hypo",49,TE,10,20.4081632653061,16.9491525423729,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+legacy,"shared, both hypo",49,TE,10,20.4081632653061,16.9491525423729,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 legacy,"shared, opposite",123,gene,120,97.5609756097561,,genes
 legacy,"shared, opposite",123,mRNA,119,96.7479674796748,,mRNA transcripts
 legacy,"shared, opposite",123,exon,60,48.7804878048781,,exons
@@ -102,4 +102,4 @@ legacy,"shared, opposite",123,upstream_flank,0,0,0,upstream flanks (up to 1 kb)
 legacy,"shared, opposite",123,downstream_flank,1,0.813008130081301,0.571428571428571,downstream flanks (up to 1 kb)
 legacy,"shared, opposite",123,flanks,1,0.813008130081301,,upstream and downstream flanks together
 legacy,"shared, opposite",123,intergenic,2,1.6260162601626,1.14285714285714,intergenic regions
-legacy,"shared, opposite",123,TE,10,8.13008130081301,5.71428571428571,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+legacy,"shared, opposite",123,TE,10,8.13008130081301,5.71428571428571,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"

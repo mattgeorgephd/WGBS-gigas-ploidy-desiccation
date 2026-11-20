@@ -11,11 +11,15 @@
 # for the assembly, GCF_902806645.1_cgigas_uk_roslin_v1_rm.out.gz. Its
 # coordinates are 1-based closed, and it holds repeats of every class (simple
 # repeats, low complexity, satellites and rRNA included), not transposable
-# elements alone. The legacy notebooks gave the file to bedtools, which took it
-# for a BED file, so that every one of its 781,312 intervals was read without
-# its first base. read_feature_track() reads it the same way, in both analysis
-# modes, because the numbers of the draft come from that reading; the reading is
-# documented, not corrected (scope decision of 2026-11-19). The effect is small:
+# elements alone. By the author's decision of 2026-11-20 (issues.md, I-50) it
+# is labelled "repetitive elements (RepeatMasker, all classes)"; the track code
+# TE stands for this repetitive elements track and is kept, because the tables,
+# the diagnostics and the values map select the track by it. The legacy
+# notebooks gave the file to bedtools, which took it for a BED file, so that
+# every one of its 781,312 intervals was read without its first base.
+# read_feature_track() reads it the same way, in both analysis modes, because
+# the numbers of the draft come from that reading; the reading is documented,
+# not corrected (scope decision of 2026-11-19). The effect is small:
 # of the 480,579 CpGs analysed in legacy mode, 101 touch a repeat with the lost
 # base alone and are counted outside the track. Details, and what a filter on
 # the repeat class would change: 03_input_files/genome_features/README.md.
@@ -30,7 +34,8 @@ feature_track_files <- function() {
 # What each track holds, in words, for the label column of the tables that are
 # written by track. Three track names say something else than their files hold:
 # nonCDS is the complement of the exon track, exon_UTR is exon minus coding
-# sequence, and TE is every repeat that RepeatMasker reports (see above and
+# sequence, and TE is every repeat that RepeatMasker reports, labelled
+# "repetitive elements (RepeatMasker, all classes)" (I-50; see above and
 # 03_input_files/genome_features/README.md).
 feature_track_labels <- function() {
   c(gene             = "genes",
@@ -45,7 +50,7 @@ feature_track_labels <- function() {
     downstream_flank = "downstream flanks (up to 1 kb)",
     flanks           = "upstream and downstream flanks together",
     intergenic       = "intergenic regions",
-    TE               = "repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)")
+    TE               = "repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)")
 }
 
 # Read one track as a GRanges object. `keep_attributes = TRUE` keeps the GFF

@@ -23,7 +23,8 @@
 #                                                   what the track holds
 #             feature_class_exclusive_<mode>.csv    one class per locus, per set: n, pct, and pct_in_TE,
 #                                                   the percent of the loci of the class that also
-#                                                   overlap the repeat track (TE)
+#                                                   overlap the repeat track (TE: repetitive elements,
+#                                                   RepeatMasker, all classes; I-50)
 #             feature_association_tests_<mode>.csv  Fisher test per track, DML set and background;
 #                                                   with track_label
 #             feature_class_chisq_<mode>.csv        chi-squared test of DML status by exclusive class,
@@ -82,9 +83,12 @@
 #             Overlap with the repeat track is reported alongside (pct_in_TE),
 #             not as a class, because repeats sit inside all the other classes.
 #           - The track called TE is not a track of transposable elements and
-#             not a true BED file. It is the RepeatMasker output of the assembly:
-#             repeats of every class, simple repeats, low complexity, satellites
-#             and rRNA included (24% of its 781,312 records, 4% of their bases),
+#             not a true BED file. By the author's decision of 2026-11-20
+#             (issues.md, I-50) it is labelled "repetitive elements
+#             (RepeatMasker, all classes)". It is the RepeatMasker output of
+#             the assembly: repeats of every class, simple repeats, low
+#             complexity, satellites and rRNA included (24% of its 781,312
+#             records, 4% of their bases),
 #             with 1-based coordinates. The legacy bedtools run read it as BED,
 #             which drops the first base of every interval, and this step reads
 #             it the same way in both modes, because the numbers of the draft
@@ -97,11 +101,14 @@
 #             they come from the code review and its check
 #             (07_documentation/agent_workflows/verification_scripts/
 #             R2-figures-features/). The column track_label of the two tables
-#             written by track says what TE holds. The track keeps the name TE,
+#             written by track says what TE holds: "repetitive elements
+#             (RepeatMasker, all classes; 1-based coordinates read as BED)". The
+#             track code TE stands for the repetitive elements track; it is kept,
 #             and the column pct_in_TE with it, because the scripts of
 #             06_diagnostics and the values map of step 13 select the track by
-#             that name. See 03_input_files/genome_features/README.md, "The
-#             repeat track".
+#             that name. Figure 3 has no repeat category: Figure 3A draws the
+#             exclusive classes, and repeats sit inside all of them. See
+#             03_input_files/genome_features/README.md, "The repeat track".
 #           - "hyper" and "hypo" are the sign of the difference of the list:
 #             triploid minus diploid for ploidy, heat minus control for heat. A
 #             locus in both lists has two differences. Its columns here,
