@@ -5,9 +5,11 @@
 #             1. Evaluate 03_input_files/manuscript/manuscript_values_map.csv.
 #                Each row is one quantitative statement of the draft, with an R
 #                expression that computes the same quantity from the pipeline
-#                outputs as the draft's analysis did (expression_legacy) and,
-#                where an optional analysis gives the quantity another way, a
-#                template for it (expression_optional; the analysis id is A).
+#                outputs as the draft's analysis did (expression_legacy), the same
+#                computation written as a template for any analysis
+#                (expression_paper_recipe; the analysis id is A) and, where the
+#                audit computes the quantity another way, a template for that
+#                (expression_optional, the corrected recipe).
 #             2. Compare the regenerated values with the manuscript and write the
 #                result, one row per statement, to 05_manuscript/manuscript_values.csv.
 #             3. Copy the figures and tables of the pipeline into 05_manuscript/
@@ -33,40 +35,55 @@
 #             04_output/13_manuscript_values/session_info.txt
 #           Optional run (optional part; NOT ADOPTED analyses):
 #             05_manuscript/not_adopted/manuscript_values_by_analysis.csv
-#             05_manuscript/not_adopted/manuscript_values_summary_by_analysis.csv
+#             05_manuscript/not_adopted/manuscript_values_summary_by_analysis.csv (one row per analysis and recipe)
 #             05_manuscript/not_adopted/<id>/... and not_adopted/comparisons/... (items)
-#             04_output/not_adopted/13_manuscript_values/tables/expression_errors_by_analysis.csv,
+#             04_output/not_adopted/13_manuscript_values/tables/expression_errors_by_analysis.csv (analysis, recipe, id,
+#               expression, expression_error),
 #               manuscript_items_copied.csv, and session_info.txt
 #
 # Manuscript items: all.
 # Notes     - Run kinds. The paper run evaluates expression_legacy on the paper's
 #             outputs and copies the items of the paper; it never reads
-#             04_output/not_adopted/. An optional run evaluates
-#             expression_optional for every analysis folder under
-#             04_output/not_adopted/ that holds a stamp (analysis.csv) and for
-#             the four analyses of a single option (corrected, cov5, mnchisq,
-#             ctexcl), whether run or not, and copies their items. It does not
-#             evaluate the paper's analysis ("legacy"): its values are those of
-#             05_manuscript/manuscript_values.csv.
-#           - What an optional value is. expression_optional holds the
-#             computation of the former column expression_corrected (the
-#             corrected mode of the audit) with the analysis id A in place of
-#             "corrected". For most rows that is the paper's own computation on
-#             the tables of analysis A; for some it is not (a corrected
-#             definition of the quantity, or another column), so an optional
-#             value is the corrected computation applied to analysis A, not the
-#             paper's computation applied to it. Evaluated on the paper's
-#             outputs the templates differ from the paper's values in 56 of 263
-#             rows (2026-11-20). R3.1-001 and R3.1-003 take the column of the
-#             analysis's coverage filter (cpg_in_any_library in the legacy
-#             reading, cpg_in_any_library_unfiltered with option corrected).
+#             04_output/not_adopted/. An optional run evaluates two recipes for
+#             every analysis folder under 04_output/not_adopted/ that holds a
+#             stamp (analysis.csv) and for the four analyses of a single option
+#             (corrected, cov5, mnchisq, ctexcl), whether run or not, and copies
+#             their items. It does not evaluate the paper's analysis ("legacy"):
+#             its values are those of 05_manuscript/manuscript_values.csv.
+#           - The two recipes of an optional value (decision of the author,
+#             2026-11-20, plan section 7, "Decided"):
+#               paper recipe      expression_paper_recipe: the paper's own computation
+#                                 (expression_legacy) on the tables of analysis A, so that a
+#                                 difference from the paper's value comes only from the
+#                                 option. Columns regenerated, differs_from_manuscript, status.
+#                                 Generated from expression_legacy by
+#                                 07_documentation/toggles_migration/paper_recipe_column.py;
+#                                 with A = "legacy" every template gives the paper's value
+#                                 (tests/check_paper_recipe_legacy.R). Rows that read a table
+#                                 only the paper run makes (the "as drawn" clusters and the
+#                                 REVIGO exports of step 11) are "not run" for every analysis.
+#               corrected recipe  expression_optional: the former column expression_corrected
+#                                 (the corrected mode of the audit) with A in place of
+#                                 "corrected"; for some rows a corrected definition of the
+#                                 quantity or another column. Columns
+#                                 regenerated_corrected_recipe,
+#                                 differs_from_manuscript_corrected_recipe,
+#                                 status_corrected_recipe. Evaluated on the paper's outputs
+#                                 these templates differ from the paper's values in 56 of 263
+#                                 rows (2026-11-20). R3.1-001 and R3.1-003 take the column of
+#                                 the analysis's coverage filter (cpg_in_any_library in the
+#                                 legacy reading, cpg_in_any_library_unfiltered with option
+#                                 corrected).
 #           - Status of a statement (paper part):
 #               matches          the regenerated value equals the manuscript value within the tolerance of the row
 #               differs          it does not
 #               not regenerated  the row has no expression; its note says why (for example a value
 #                                that depends on information only the authors have)
-#             In the optional part the status is matches, differs, not
-#             comparable, no expression, "not run: analysis not run" (no folder),
+#             In the optional part the status (of either recipe) is matches,
+#             differs, not comparable (the value is NA), "not comparable: no value
+#             in this analysis" (the expression gives no value: the locus, gene or
+#             Table 1 row it names is not among the analysis's results), no
+#             expression, "not run: analysis not run" (no folder),
 #             "not run: folder stale" (its stamp describes another analysis, or
 #             with ctexcl another variant list than the one on disk),
 #             "not run: <step> not done (stamp)" (the stamp does not list the
@@ -88,7 +105,8 @@
 #                                  the paper run writes; library_coverage.csv is the paper's also for an
 #                                  analysis with ctexcl, whose own would differ). A table of the analysis
 #                                  folder counts only while its stamp lists the step
-#               paper_tab(step, file)  a table of the paper's outputs (the same as tab() in the paper part)
+#               paper_tab(step, file)  a table of the paper's outputs (the same as tab() in the paper part;
+#                                  the paper recipe uses it only for the GO terms named in Results 3.4)
 #               diagnostic(file)   a table from 06_diagnostics/
 #               config             the settings list of run_config.R (in the optional part with the
 #                                  min_coverage of the analysis)
@@ -120,19 +138,23 @@ map <- as.data.table(utils::read.csv(
   input_path("manuscript", "manuscript_values_map.csv"), stringsAsFactors = FALSE, na.strings = "", encoding = "UTF-8",
   colClasses = c(id = "character", section = "character", quote = "character", item = "character",
                  manuscript_value = "character", manuscript_numeric = "numeric", kind = "character", tolerance = "numeric",
-                 expression_legacy = "character", expression_optional = "character", issue = "character", note = "character")))
+                 expression_legacy = "character", expression_paper_recipe = "character", expression_optional = "character",
+                 issue = "character", note = "character")))
 stopifnot(!anyDuplicated(map$id), !anyNA(map$id), !anyNA(map$section), !anyNA(map$manuscript_value))
 
 diagnostic <- function(file) fread(here("06_diagnostics", file))
 
-# Evaluate one expression in `scope`; returns a list(value, error, absent).
-evaluate <- function(expression_text, scope) {
+# Evaluate one expression in `scope`; returns a list(value, error, absent, empty).
+# With empty_is_na (optional part) a result of length 0 is NA with empty = TRUE:
+# the locus, gene or term the statement names is not in the analysis's tables.
+evaluate <- function(expression_text, scope, empty_is_na = FALSE) {
   if (is.na(expression_text)) return(list(value = NA, error = NA_character_, absent = NA_character_))
   out <- tryCatch(eval(parse(text = expression_text), envir = new.env(parent = scope)),
                   table_absent = function(e) structure(list(message = conditionMessage(e)), class = "absent"),
                   error = function(e) e)
   if (inherits(out, "absent")) return(list(value = NA, error = NA_character_, absent = out$message))
   if (inherits(out, "error")) return(list(value = NA, error = conditionMessage(out), absent = NA_character_))
+  if (empty_is_na && length(out) == 0) return(list(value = NA, error = NA_character_, absent = NA_character_, empty = TRUE))
   if (length(out) != 1) return(list(value = NA, error = sprintf("expression returned %d values, expected 1", length(out)), absent = NA_character_))
   list(value = out, error = NA_character_, absent = NA_character_)
 }
@@ -161,7 +183,7 @@ if (paper_run) {
   scope <- list2env(list(tab = tab, paper_tab = tab, diagnostic = diagnostic, config = config), parent = globalenv())
   legacy <- lapply(map$expression_legacy, evaluate, scope = scope)
 
-  values <- copy(map)[, !"expression_optional"]
+  values <- copy(map)[, !c("expression_optional", "expression_paper_recipe")]
   values[, regenerated_legacy := vapply(legacy, function(x) as_text(x$value), character(1))]
   legacy_ok <- mapply(agrees, values$manuscript_numeric, values$manuscript_value, lapply(legacy, `[[`, "value"), values$tolerance)
   values[, status := fifelse(is.na(expression_legacy), "not regenerated",
@@ -199,8 +221,9 @@ if (paper_run) {
       s$filter != a$filter || s$min_coverage != format(a$min_coverage) || s$overdispersion != a$overdispersion ||
       s$ct_excluded != as.character(a$ct_excluded) ||
       (a$ct_excluded && !is.na(ct_md5_now) && !identical(s$ct_variant_list_md5, ct_md5_now))) "not run: folder stale" else ""
+    recipes <- c(paper = "expression_paper_recipe", corrected = "expression_optional")
     if (nzchar(folder_state)) {
-      res <- rep(list(list(value = NA, error = NA_character_, absent = NA_character_)), nrow(map))
+      res <- lapply(recipes, function(r) rep(list(list(value = NA, error = NA_character_, absent = NA_character_)), nrow(map)))
     } else {
       table_cache <- new.env()
       tab <- function(step_name, file) {
@@ -225,36 +248,52 @@ if (paper_run) {
       }
       cfg_a <- modifyList(config, list(min_coverage = a$min_coverage))
       scope <- list2env(list(tab = tab, paper_tab = paper_tab, diagnostic = diagnostic, config = cfg_a, A = A), parent = globalenv())
-      res <- lapply(map$expression_optional, evaluate, scope = scope)
+      res <- lapply(recipes, function(r) lapply(map[[r]], evaluate, scope = scope, empty_is_na = TRUE))
     }
-    value <- lapply(res, `[[`, "value")
-    ok <- mapply(agrees, map$manuscript_numeric, map$manuscript_value, value, map$tolerance)
-    status <- if (nzchar(folder_state)) rep(folder_state, nrow(map)) else
-      fifelse(is.na(map$expression_optional), "no expression",
-      fifelse(!is.na(vapply(res, `[[`, character(1), "absent")), vapply(res, `[[`, character(1), "absent"),
-      fifelse(!is.na(vapply(res, `[[`, character(1), "error")), paste("error:", vapply(res, `[[`, character(1), "error")),
-      fifelse(is.na(ok), "not comparable", fifelse(ok, "matches", "differs")))))
+    # Value, whether it differs from the manuscript, and status of each row under one recipe.
+    judge <- function(r, expressions) {
+      value <- lapply(r, `[[`, "value")
+      field <- function(name) vapply(r, function(x) if (is.null(x[[name]])) NA_character_ else x[[name]], character(1))
+      empty <- vapply(r, function(x) isTRUE(x$empty), logical(1))
+      ok <- mapply(agrees, map$manuscript_numeric, map$manuscript_value, value, map$tolerance)
+      status <- if (nzchar(folder_state)) rep(folder_state, nrow(map)) else
+        fifelse(is.na(expressions), "no expression",
+        fifelse(!is.na(field("absent")), field("absent"),
+        fifelse(!is.na(field("error")), paste("error:", field("error")),
+        fifelse(empty, "not comparable: no value in this analysis",
+        fifelse(is.na(ok), "not comparable", fifelse(ok, "matches", "differs"))))))
+      list(regenerated = vapply(value, as_text, character(1)),
+           differs = fifelse(status %in% c("matches", "differs"), status == "differs", NA), status = status, error = field("error"))
+    }
+    p <- judge(res$paper, map$expression_paper_recipe)
+    k <- judge(res$corrected, map$expression_optional)
     rows[[A]] <- data.table(id = map$id, section = map$section, item = map$item, manuscript_value = map$manuscript_value, analysis = A,
-                            regenerated = vapply(value, as_text, character(1)),
-                            differs_from_manuscript = fifelse(status %in% c("matches", "differs"), status == "differs", NA),
-                            status = status)
-    err <- vapply(res, `[[`, character(1), "error")
-    if (any(!is.na(err))) error_rows[[A]] <- data.table(analysis = A, id = map$id, expression_optional = map$expression_optional,
-                                                         expression_error = err)[!is.na(expression_error)]
+                            regenerated = p$regenerated, differs_from_manuscript = p$differs, status = p$status,
+                            regenerated_corrected_recipe = k$regenerated, differs_from_manuscript_corrected_recipe = k$differs,
+                            status_corrected_recipe = k$status)
+    err <- rbind(data.table(analysis = A, recipe = "paper", id = map$id, expression = map$expression_paper_recipe, expression_error = p$error),
+                 data.table(analysis = A, recipe = "corrected", id = map$id, expression = map$expression_optional, expression_error = k$error))
+    if (any(!is.na(err$expression_error))) error_rows[[A]] <- err[!is.na(expression_error)]
   }
   by_analysis <- rbindlist(rows)
   dir.create(manuscript_path("not_adopted"), recursive = TRUE, showWarnings = FALSE)
   write_table(by_analysis, manuscript_path("not_adopted", "manuscript_values_by_analysis.csv"))
-  summary_tab <- by_analysis[!is.na(map$expression_optional[match(id, map$id)]),
-                             .(statements_with_expression = .N, matches = sum(status == "matches"), differs = sum(status == "differs"),
-                               not_comparable = sum(status == "not comparable"), not_run = sum(startsWith(status, "not run")),
-                               errors = sum(startsWith(status, "error")),
-                               state = if (all(startsWith(status, "not run: analysis"))) "analysis not run" else
-                                 if (all(status == "not run: folder stale")) "folder stale" else "evaluated"), by = analysis]
+  # One row per analysis and recipe, over the statements that have an expression of that recipe.
+  count_recipe <- function(recipe_name, status_column, expressions) {
+    x <- data.table(analysis = by_analysis$analysis, s = by_analysis[[status_column]], e = expressions[match(by_analysis$id, map$id)])
+    x[!is.na(e), .(recipe = recipe_name, statements_with_expression = .N, matches = sum(s == "matches"), differs = sum(s == "differs"),
+        not_comparable = sum(startsWith(s, "not comparable")), not_run = sum(startsWith(s, "not run")),
+        errors = sum(startsWith(s, "error")),
+        state = if (all(startsWith(s, "not run: analysis"))) "analysis not run" else
+          if (all(s == "not run: folder stale")) "folder stale" else "evaluated"), by = analysis]
+  }
+  summary_tab <- rbind(count_recipe("paper", "status", map$expression_paper_recipe),
+                       count_recipe("corrected", "status_corrected_recipe", map$expression_optional))
+  summary_tab <- summary_tab[order(match(analysis, unique(by_analysis$analysis)), match(recipe, c("paper", "corrected")))]
   write_table(summary_tab, manuscript_path("not_adopted", "manuscript_values_summary_by_analysis.csv"))
   print(summary_tab)
   errors <- if (length(error_rows)) rbindlist(error_rows) else
-    data.table(analysis = character(0), id = character(0), expression_optional = character(0), expression_error = character(0))
+    data.table(analysis = character(0), recipe = character(0), id = character(0), expression = character(0), expression_error = character(0))
   write_table(errors, output_path(file.path("not_adopted", step), "tables", "expression_errors_by_analysis.csv"))
   if (nrow(errors) > 0) {
     log_msg("WARNING: %d optional expression(s) failed to run (%s); see 04_output/not_adopted/13_manuscript_values/tables/expression_errors_by_analysis.csv",

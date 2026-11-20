@@ -1,6 +1,11 @@
-analysis,statements_with_expression,matches,differs,not_comparable,not_run,errors,state
-corrected,263,102,161,0,0,0,evaluated
-corrected-mnchisq,263,48,151,9,55,0,evaluated
-cov5,263,0,0,0,263,0,analysis not run
-ctexcl,263,0,0,0,263,0,analysis not run
-mnchisq,263,62,192,9,0,0,evaluated
+analysis,recipe,statements_with_expression,matches,differs,not_comparable,not_run,errors,state
+corrected,paper,498,272,210,10,6,0,evaluated
+corrected,corrected,263,102,161,0,0,0,evaluated
+corrected-mnchisq,paper,498,148,294,50,6,0,evaluated
+corrected-mnchisq,corrected,263,48,151,9,55,0,evaluated
+cov5,paper,498,0,0,0,498,0,analysis not run
+cov5,corrected,263,0,0,0,263,0,analysis not run
+ctexcl,paper,498,0,0,0,498,0,analysis not run
+ctexcl,corrected,263,0,0,0,263,0,analysis not run
+mnchisq,paper,498,156,254,82,6,0,evaluated
+mnchisq,corrected,263,62,192,9,0,0,evaluated

@@ -145,8 +145,12 @@ base_file <- tempfile(fileext = ".csv")
 system2("git", c("show", paste0(base, ":03_input_files/manuscript/manuscript_values_map.csv")), stdout = base_file)
 base_map <- read_csv_file(base_file)
 map <- read_csv_file("03_input_files/manuscript/manuscript_values_map.csv")
-same <- vapply(setdiff(names(map), "expression_optional"), function(n) identical(map[[n]], base_map[[n]]), logical(1))
-ok("values map: every column except expression_optional equals BASE", all(same) && identical(setdiff(names(base_map), names(map)), "expression_corrected"))
+# expression_paper_recipe (2026-11-20, after BASE) is derived from expression_legacy by
+# 07_documentation/toggles_migration/paper_recipe_column.py; tests/check_paper_recipe_legacy.R checks it.
+same <- vapply(setdiff(names(map), c("expression_optional", "expression_paper_recipe")), function(n) identical(map[[n]], base_map[[n]]), logical(1))
+ok("values map: every column except expression_optional and expression_paper_recipe equals BASE",
+   all(same) && identical(setdiff(names(base_map), names(map)), "expression_corrected") &&
+     identical(setdiff(names(map), names(base_map)), c("expression_paper_recipe", "expression_optional")))
 e <- map$expression_optional
 e_wo_diag <- gsub('diagnostic\\(\\s*"[^"]*"\\)', "", e)
 ok("values map: 263 expression_optional; no _corrected table name, no literal \"corrected\"",
