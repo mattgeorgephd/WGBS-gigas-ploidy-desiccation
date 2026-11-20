@@ -148,8 +148,9 @@
 #             config$min_coverage reads in all libraries, once with line 1 lost
 #             and once with every line read, and stops unless both recounts
 #             give exactly the CpGs of united_cpg_legacy.csv.gz.
-#           - The repeat track is the transposable element track of step 07
-#             (RepeatMasker annotation), with the overlap rule of step 07.
+#           - The repeat track is the repetitive elements track of step 07
+#             (RepeatMasker, all classes; issue I-50), with the overlap rule of
+#             step 07.
 #             Unplaced scaffolds are all sequences other than the ten linkage
 #             groups and the mitochondrial sequence (run_config.R).
 #           - Raw coverage of the tested CpGs is held in memory only; no table

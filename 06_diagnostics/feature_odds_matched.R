@@ -1,8 +1,8 @@
 # feature_odds_matched.R
 #
 # Purpose   Are DML more likely than comparable CpGs to lie in gene bodies,
-#           coding sequence, introns, transposable elements, or intergenic
-#           sequence? "Comparable" is the point. Step 07 compares DML with all
+#           coding sequence, introns, repetitive elements (RepeatMasker, all
+#           classes), or intergenic sequence? "Comparable" is the point. Step 07 compares DML with all
 #           tested CpGs and with "eligible" CpGs (mean methylation across the
 #           22 libraries between 10% and 90%; dml_eligible()). Inside the
 #           eligible range the chance that a CpG exceeds the 20-point
@@ -11,8 +11,8 @@
 #           differ between genome features. This script makes the comparison
 #           fairer step by step and shows what is left (issue I-41).
 #           For each mode, for the ploidy and the heat DML list, and for the
-#           tracks gene body, CDS, intron, exon UTR, lncRNA, transposable
-#           element and intergenic (tracks, coordinates and overlap rule of
+#           tracks gene body, CDS, intron, exon UTR, lncRNA, repetitive
+#           elements and intergenic (tracks, coordinates and overlap rule of
 #           step 07), it computes the odds ratio of a DML lying in the track:
 #             1. against all tested CpGs and against eligible CpGs, with Fisher
 #                95% intervals. These are the values of step 07; the script
@@ -25,7 +25,7 @@
 #                show how much comparison 1 depends on the range. Each range is
 #                given twice: with every DML of the list, as in comparison 1,
 #                and with the DML inside the range only.
-#             5. transposable elements only: against eligible CpGs in the top
+#             5. repetitive elements only: against eligible CpGs in the top
 #                quartile of mean coverage, and in the lower three quartiles.
 #             6. within gene bodies: CDS against intron.
 #             7. comparisons 1 (eligible), 2 and 3 again with an interval from a

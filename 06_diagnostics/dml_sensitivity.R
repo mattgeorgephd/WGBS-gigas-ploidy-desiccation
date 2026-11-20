@@ -11,11 +11,11 @@
 #                 with ploidy as covariate, methylKit defaults. This is the
 #                 equivalence check; it must reproduce step 05.
 #             A1  overdispersion (issue I-06): the same two contrasts with the
-#                 variation among animals estimated ("MN"), once with the F test
-#                 and once with the chi-squared test.
+#                 variation among animals estimated ("MN") and the chi-squared
+#                 test, the setting of Venkataraman et al. 2022.
 #             A2  a tested ploidy by heat interaction (issue I-02), without and
-#                 with "MN" and the F test, cross-tabulated with the loci that
-#                 are in both primary lists (the legacy "interaction-DML").
+#                 with "MN", cross-tabulated with the loci that are in both
+#                 primary lists (the legacy "interaction-DML").
 #                 Heat is confounded with cohort (issue I-01), so this is a
 #                 ploidy by cohort interaction, and must be described as one.
 #             A3  both contrasts without the heat libraries that also had the
@@ -29,7 +29,7 @@
 #                 triploids alone. Still a contrast between cohorts (issue I-01).
 #           Each analysis is one row of the registry below and one call of
 #           methylKit::calculateDiffMeth. Every analysis runs in mode "legacy";
-#           A0, A1 with the F test, and A2 also run in mode "corrected".
+#           A0, A1 and A2 also run in mode "corrected".
 #           The size of a list does not show by itself whether groups differ.
 #           The script therefore also writes what a list size must be read
 #           with: the CpGs above the difference cutoff whatever their q-value,
@@ -100,26 +100,17 @@
 #                 Chapman and Hall). Estimates below 1 are set to 1, so the
 #                 correction never makes a test less conservative. The deviance
 #                 difference is divided by the dispersion and referred to
-#                 chi-squared with 1 degree of freedom (test "Chisq"), or to F
-#                 with 1 and the residual degrees of freedom (test "F"). The F
-#                 distribution is used only where the dispersion is above 1.
+#                 chi-squared with 1 degree of freedom. The script passes
+#                 test = "Chisq" explicitly, because calculateDiffMeth defaults
+#                 to another test when the correction is on.
 #             Differences in percent methylation do not depend on these options.
-#           - Which of the two tests. In the benchmark of Wreczycka et al. 2017
-#             (Journal of Biotechnology 261:105-115,
-#             doi:10.1016/j.jbiotec.2017.08.007; read in the preprint version of
-#             August 2017, doi:10.1101/109512, and confirmed in the published
-#             article on 2026-11-19), the default test without the
-#             correction had the lowest specificity and the best overall
-#             accuracy, the F test with the correction gave results similar to
-#             DSS, one of the stringent methods, and the chi-squared test with
-#             the correction is named as a good compromise between stringent
-#             and relaxed methods. Their simulation had three samples per group.
-#             The help page of stats::anova.glm (R 4.3.3) states that the F test
-#             is the most appropriate one when the dispersion is estimated by
-#             moments. Both tests are run here. Under relabelled ploidy labels
-#             the chi-squared form does not hold its level on these libraries
-#             (issues.md, I-06, item 4), and neither form is calibrated where
-#             the dispersion estimate is not above 1 (item 7).
+#           - The test. The correction is fitted with the chi-squared test only
+#             (decision of the author, 2026-11-20), the setting of Venkataraman
+#             et al. 2022 (BMC Genomics 23:556). Under relabelled ploidy labels
+#             it does not hold its level on these libraries (issues.md, I-06,
+#             item 4; 06_diagnostics/dml_relabelling.R), and where the
+#             dispersion estimate is not above 1 the correction is not applied
+#             (item 7).
 #           - q-values are SLIM q-values (Wang, Tuominen and Tsai 2011,
 #             Bioinformatics 27:225-231, doi:10.1093/bioinformatics/btq650),
 #             computed within each analysis. SLIM estimates the share of true
@@ -173,10 +164,8 @@
 #             (Benjamini and Hochberg 1995, Journal of the Royal Statistical
 #             Society B 57:289-300; the share of true nulls that SLIM multiplies
 #             by is at most 1). Where k CpGs are called together, a p-value k
-#             times as large is enough. For the F test this statistic rises
-#             steeply as the residual degrees of freedom fall, so a single CpG
-#             can hardly be called from a few animals, and a short corrected
-#             list can mean little power and not the absence of differences.
+#             times as large is enough. With the correction it is the deviance
+#             difference divided by the dispersion estimate that must exceed it.
 #             (4) median_effect_size_eligible. A value away from 0 means that
 #             one group is shifted as a whole at CpGs with intermediate
 #             methylation. Many CpGs then pass the difference cutoff in one
@@ -370,7 +359,8 @@ covariate_frame <- function(covariate_spec, keep) {
 #   contrast        "ploidy", "heat", or "interaction" (a name of contrast_defs)
 #   libraries       a name of library_sets
 #   covariates      "none", "ploidy", "heat", or "ploidy + heat"
-#   overdispersion  "none" or "MN";  test  "Chisq" or "F" (F needs "MN")
+#   overdispersion  "none" or "MN";  test  "Chisq" (the only test offered; write it
+#                   explicitly, because methylKit's default with "MN" is another test)
 #   modes           "legacy" or both_modes
 both_modes <- "legacy; corrected"
 analysis <- function(analysis_id, question, contrast, libraries, covariates, overdispersion, test, modes = "legacy") {
@@ -381,30 +371,26 @@ registry <- rbindlist(list(
            "ploidy", "all", "heat", "none", "Chisq", both_modes),
   analysis("A0_heat", "Reference: the heat DML of step 05, as in the draft.",
            "heat", "all", "ploidy", "none", "Chisq", both_modes),
-  analysis("A1_ploidy_mn_f", "Which ploidy DML remain when the variation among animals is estimated and the F test is used? Issue I-06.",
-           "ploidy", "all", "heat", "MN", "F", both_modes),
-  analysis("A1_heat_mn_f", "Which heat DML remain when the variation among animals is estimated and the F test is used? Issue I-06.",
-           "heat", "all", "ploidy", "MN", "F", both_modes),
-  analysis("A1_ploidy_mn_chisq", "As A1_ploidy_mn_f with the chi-squared test, the less stringent form of the correction. Issue I-06.",
-           "ploidy", "all", "heat", "MN", "Chisq"),
-  analysis("A1_heat_mn_chisq", "As A1_heat_mn_f with the chi-squared test, the less stringent form of the correction. Issue I-06.",
-           "heat", "all", "ploidy", "MN", "Chisq"),
+  analysis("A1_ploidy_mn_chisq", "Which ploidy DML remain when the variation among animals is estimated (overdispersion \"MN\", chi-squared test, the setting of Venkataraman et al. 2022)? Issue I-06.",
+           "ploidy", "all", "heat", "MN", "Chisq", both_modes),
+  analysis("A1_heat_mn_chisq", "Which heat DML remain when the variation among animals is estimated (overdispersion \"MN\", chi-squared test, the setting of Venkataraman et al. 2022)? Issue I-06.",
+           "heat", "all", "ploidy", "MN", "Chisq", both_modes),
   analysis("A2_interaction", "Where does the difference between the heat cohort and the control cohort depend on ploidy? The tested interaction. Issues I-02 and I-01.",
            "interaction", "all", "ploidy + heat", "none", "Chisq", both_modes),
-  analysis("A2_interaction_mn_f", "The same interaction test with the variation among animals estimated and the F test. Issues I-02 and I-06.",
-           "interaction", "all", "ploidy + heat", "MN", "F", both_modes),
+  analysis("A2_interaction_mn_chisq", "The same interaction test with the variation among animals estimated. Issues I-02 and I-06.",
+           "interaction", "all", "ploidy + heat", "MN", "Chisq", both_modes),
   analysis("A3_ploidy_no_acute", "Do the ploidy DML depend on the heat libraries that also had the acute heat shock? Issue I-04.",
            "ploidy", "without_acute_heat_shock", "heat", "none", "Chisq"),
   analysis("A3_heat_no_acute", "Do the heat DML depend on the heat libraries that also had the acute heat shock? Issue I-04.",
            "heat", "without_acute_heat_shock", "ploidy", "none", "Chisq"),
   analysis("A4_ploidy_in_control", "Which CpGs differ between diploids and triploids among the controls alone ('under control conditions')? Issues I-07 and I-01.",
            "ploidy", "control_only", "none", "none", "Chisq"),
-  analysis("A4_ploidy_in_control_mn_f", "As A4_ploidy_in_control with the variation among animals estimated and the F test.",
-           "ploidy", "control_only", "none", "MN", "F"),
+  analysis("A4_ploidy_in_control_mn_chisq", "As A4_ploidy_in_control with the variation among animals estimated.",
+           "ploidy", "control_only", "none", "MN", "Chisq"),
   analysis("A4_ploidy_in_heat", "Which CpGs differ between diploids and triploids among the heat-treated animals alone? Issues I-07 and I-01.",
            "ploidy", "heat_only", "none", "none", "Chisq"),
-  analysis("A4_ploidy_in_heat_mn_f", "As A4_ploidy_in_heat with the variation among animals estimated and the F test.",
-           "ploidy", "heat_only", "none", "MN", "F"),
+  analysis("A4_ploidy_in_heat_mn_chisq", "As A4_ploidy_in_heat with the variation among animals estimated.",
+           "ploidy", "heat_only", "none", "MN", "Chisq"),
   analysis("A5_heat_in_diploid", "Which CpGs differ between the heat cohort and the control cohort among diploids alone? Still a cohort contrast. Issue I-01.",
            "heat", "diploid_only", "none", "none", "Chisq"),
   analysis("A5_heat_in_triploid", "Which CpGs differ between the heat cohort and the control cohort among triploids alone? Still a cohort contrast. Issue I-01.",
@@ -422,10 +408,8 @@ describe_analysis <- function(spec) {
   if (!grepl("^A[0-9]+_[a-z0-9_]+$", id)) bad("the id must look like 'A7_short_name'.")
   if (!spec$contrast %in% names(contrast_defs)) bad("unknown contrast '", spec$contrast, "'.")
   if (!spec$libraries %in% names(library_sets)) bad("unknown set of libraries '", spec$libraries, "'.")
-  if (!spec$overdispersion %in% c("none", "MN") || !spec$test %in% c("Chisq", "F")) bad("unknown overdispersion or test.")
-  if (spec$overdispersion == "none" && spec$test != "Chisq") {
-    bad("without an overdispersion correction methylKit always applies the chi-squared test; write test 'Chisq'.")
-  }
+  if (!spec$overdispersion %in% c("none", "MN")) bad("unknown overdispersion setting '", spec$overdispersion, "'.")
+  if (spec$test != "Chisq") bad("only the chi-squared test is offered (decision of the author, 2026-11-20); write test 'Chisq'.")
   spec_modes <- strsplit(spec$modes, "; ", fixed = TRUE)[[1]]
   if (!all(spec_modes %in% config$modes)) bad("mode '", paste(setdiff(spec_modes, config$modes), collapse = "', '"), "' is not in config$modes.")
 
@@ -449,13 +433,13 @@ describe_analysis <- function(spec) {
   residual_df <- nrow(design) - ncol(design)
   data.table(family = family,
              label = paste0(family, ": ", library_sets[[spec$libraries]]$label,
-                            if (spec$overdispersion == "MN") sprintf("; MN, %s test", if (spec$test == "F") "F" else "chi-squared") else ""),
+                            if (spec$overdispersion == "MN") "; MN, chi-squared test" else ""),
              tested_indicator = sprintf("%s (1) against %s (0)", def$one, def$zero),
              n_libraries = sum(keep), n_indicator_1 = sum(tested == 1), n_indicator_0 = sum(tested == 0),
              group_sizes = paste(sprintf("%s %d", names(cells), as.integer(cells)), collapse = "; "),
              residual_df = residual_df,
-             reference_distribution = if (spec$overdispersion == "MN" && spec$test == "F") {
-               sprintf("F with 1 and %d degrees of freedom (chi-squared with 1 where the dispersion estimate is not above 1)", residual_df)
+             reference_distribution = if (spec$overdispersion == "MN") {
+               "chi-squared with 1 degree of freedom, deviance divided by the dispersion estimate (estimates not above 1 set to 1)"
              } else "chi-squared with 1 degree of freedom",
              effect_size_definition = def$effect, primary_list = def$primary_label)
 }
@@ -994,15 +978,13 @@ run_mode <- function(mode_i) {
                      median_effect_size_eligible = if (length(eligible) > 0) stats::median(res$effect_size[eligible]) else NA_real_),
           as.data.table(p_shares),
           data.table(p_needed_for_a_single_call = p_single,
-                     statistic_needed_for_a_single_call = if (spec$overdispersion == "MN" && spec$test == "F") {
-                       stats::qf(p_single, 1, spec$residual_df, lower.tail = FALSE)
-                     } else stats::qchisq(p_single, 1, lower.tail = FALSE),
+                     statistic_needed_for_a_single_call = stats::qchisq(p_single, 1, lower.tail = FALSE),
                      run_scope = scope_text))
   }))
 
   # Permutation reference of each effect size: one row per contrast and set of
   # libraries (CSV: permutation_reference.csv, written with the tables that span
-  # the modes). Analyses that differ only in the test share their effect size.
+  # the modes). Analyses that differ only in the overdispersion setting share their effect size.
   effect_sets <- unique(specs[, .(contrast, libraries)])
   permutation_rows <- rbindlist(lapply(seq_len(nrow(effect_sets)), function(k) {
     same <- specs[specs$contrast == effect_sets$contrast[k] & specs$libraries == effect_sets$libraries[k]]

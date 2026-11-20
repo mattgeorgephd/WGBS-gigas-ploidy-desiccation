@@ -18,7 +18,8 @@
 #                all libraries and among those testable without that library;
 #             d. percent methylation of the region in each library, compared
 #                between ploidies (Wilcoxon rank-sum tests);
-#             e. the genes, exons and transposable elements annotated at the block;
+#             e. the genes, exons and repetitive elements (RepeatMasker, all
+#                classes) annotated at the block;
 #             f. base composition of the block, how much of its sequence occurs
 #                once in the reference, where the other copies lie, and whether
 #                coverage reaches the cutoff there as well.
@@ -29,7 +30,7 @@
 # Reads     03_input_files/metadata/wgbs_libraries.csv
 #           22 coverage files and the reference genome listed in
 #             03_input_files/gannet_manifest.csv (cache)
-#           03_input_files/genome_features/   gene, exon and transposable element tracks
+#           03_input_files/genome_features/   gene, exon and repetitive elements tracks
 #           04_output/04_cpg_coverage/tables/library_coverage.csv
 #           04_output/05_differential_methylation/tables/
 #             united_cpg_legacy.csv.gz, united_cpg_corrected.csv.gz,
@@ -614,7 +615,7 @@ compare_groups("cohort_all_libraries", every_library, "cohort", paste("all", n_l
 fact(sec, "library_with_highest_pct_methylation", lib$library_id[which.max(region_pct_meth)],
      paste0("Library with the highest ", pct_text, "."))
 
-# ---- 7. (e) Genes, exons and transposable elements at the block ----------------------------------
+# ---- 7. (e) Genes, exons and repetitive elements at the block -------------------------------------
 log_msg("annotation of the block %s", interval(block_from, block_to))
 block_gr <- GRanges(locus_sequence, IRanges(block_from + 1L, block_to + 2L))
 block_cpg <- cpg_ranges(locus_sequence, site_start[in_block])
@@ -653,13 +654,13 @@ te_here <- te_gr[as.character(seqnames(te_gr)) == locus_sequence]
 te_end_before <- end(te_here)[end(te_here) < start(block_gr)]; te_start_after <- start(te_here)[start(te_here) > end(block_gr)]
 stopifnot(length(te_end_before) > 0L, length(te_start_after) > 0L)
 fact(sec, "transposable_elements_overlapping_block", whole(sum(overlaps_track(te_gr, block_gr))),
-     "Records of the transposable element track (RepeatMasker) that overlap the block.")
+     "Records of the repetitive elements track (RepeatMasker, all classes) that overlap the block.")
 fact(sec, "block_cpg_sites_in_transposable_elements", x_of_y(sum(overlaps_track(block_cpg, te_gr)), sum(in_block)),
      "CpG sites of the block that overlap a record of that track.")
 fact(sec, "nearest_transposable_element_upstream_distance_bp", whole(start(block_gr) - max(te_end_before) - 1L),
-     "Bases between the block and the last transposable element that ends before it.")
+     "Bases between the block and the last record of the repetitive elements track that ends before it.")
 fact(sec, "nearest_transposable_element_downstream_distance_bp", whole(min(te_start_after) - end(block_gr) - 1L),
-     "Bases between the block and the first transposable element that begins after it.")
+     "Bases between the block and the first record of the repetitive elements track that begins after it.")
 rm(te_gr, te_here, exon_gr, genes); invisible(gc(verbose = FALSE))
 
 # ---- 8. (f) The block in the reference sequence --------------------------------------------------

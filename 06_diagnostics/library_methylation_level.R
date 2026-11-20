@@ -52,9 +52,8 @@
 #                With the median, 6 of the 252 subsets of the heat cohort
 #                reach the value of the triploids instead of 1.)
 #             8. The CpGs that the sensitivity analyses call with the
-#                overdispersion correction and the F test (the lists
-#                dml_<analysis>_mn_f_<mode>.csv; the two lists made with the
-#                chi-squared test are not read): percent methylation of every
+#                overdispersion correction (the lists
+#                dml_<analysis>_mn_chisq_<mode>.csv): percent methylation of every
 #                library, and whether one of the four groups lies entirely
 #                outside the range of the other libraries. A CpG at which one
 #                group of animals is uniformly different from all others is
@@ -70,7 +69,7 @@
 #           04_output/04_cpg_coverage/tables/library_correlation_10x_<mode>.csv
 #           04_output/05_differential_methylation/tables/united_cpg_<mode>.csv.gz
 #           04_output/05_differential_methylation/tables/diffmeth_{ploidy,heat}_<mode>.csv.gz
-#           06_diagnostics/dml_sensitivity/dml_<analysis>_mn_f_<mode>.csv   (part 8; skipped
+#           06_diagnostics/dml_sensitivity/dml_<analysis>_mn_chisq_<mode>.csv   (part 8; skipped
 #             with a message if 06_diagnostics/dml_sensitivity.R has not been run)
 # Writes    06_diagnostics/library_methylation_level/
 #             library_level.csv               one row per library
@@ -85,7 +84,9 @@
 #             relabelling_small_sets.csv      part 6, every grouping of the comparisons
 #                                             that have at most 252 groupings
 #             pair_similarity.csv             part 7
-#             corrected_dml_library_values.csv  part 8, one row per CpG and mode
+#             corrected_dml_library_values.csv  part 8, one row per CpG and mode; column
+#                                             margin_of_group_apart_points: points between the range
+#                                             of a group that is apart and the nearest other library
 #             corrected_dml_group_apart.csv     part 8, counts per list
 #
 # Notes     - "Difference" is the definition methylKit uses for meth.diff: the
@@ -244,7 +245,8 @@ relabel_reference <- function(m, strata, chunk = 100) {
 direction_rows <- list(); agreement_rows <- list(); slope_rows <- list(); decile_rows <- list()
 loo_rows <- list(); relabel_rows <- list(); small_rows <- list(); similarity_rows <- list()
 value_rows <- list(); apart_rows <- list()
-corrected_lists <- c("A1_ploidy_mn_f", "A1_heat_mn_f", "A2_interaction_mn_f", "A4_ploidy_in_control_mn_f", "A4_ploidy_in_heat_mn_f")
+corrected_lists <- c("A1_ploidy_mn_chisq", "A1_heat_mn_chisq", "A2_interaction_mn_chisq", "A4_ploidy_in_control_mn_chisq",
+                     "A4_ploidy_in_heat_mn_chisq")
 sens_dir <- here("06_diagnostics", "dml_sensitivity")
 
 for (mode in config$modes) {
@@ -412,7 +414,7 @@ for (mode in config$modes) {
   files <- file.path(sens_dir, sprintf("dml_%s_%s.csv", corrected_lists, mode))
   present <- file.exists(files)
   if (!any(present)) {
-    message("Part 8 skipped for ", mode, " mode: no dml_*_mn_f_", mode, ".csv under 06_diagnostics/dml_sensitivity/")
+    message("Part 8 skipped for ", mode, " mode: no dml_*_mn_chisq_", mode, ".csv under 06_diagnostics/dml_sensitivity/")
   } else {
     called <- rbindlist(lapply(which(present), function(i) {
       x <- fread(files[i], select = c("chr", "start")); x[, list_id := corrected_lists[i]]; x
@@ -424,14 +426,19 @@ for (mode in config$modes) {
     v <- pm[rows, , drop = FALSE]
     # A group is "apart" when the range of its libraries does not overlap the
     # range of all other libraries.
-    apart <- vapply(names(grp), function(g) {
+    # The margin of a group that is apart is the distance in percentage points
+    # between its range and the nearest library outside it (0 where no group
+    # is apart).
+    margin <- vapply(names(grp), function(g) {
       own <- grp[[g]]; rest <- setdiff(seq_len(n_lib), own)
       lo_own <- do.call(pmin, as.data.frame(v[, own, drop = FALSE])); hi_own <- do.call(pmax, as.data.frame(v[, own, drop = FALSE]))
       lo_rest <- do.call(pmin, as.data.frame(v[, rest, drop = FALSE])); hi_rest <- do.call(pmax, as.data.frame(v[, rest, drop = FALSE]))
-      lo_own > hi_rest | hi_own < lo_rest
-    }, logical(nrow(v)))
-    if (is.null(dim(apart))) apart <- matrix(apart, nrow = 1, dimnames = list(NULL, names(grp)))
+      pmax(lo_own - hi_rest, lo_rest - hi_own, 0)
+    }, numeric(nrow(v)))
+    if (is.null(dim(margin))) margin <- matrix(margin, nrow = 1, dimnames = list(NULL, names(grp)))
+    apart <- margin > 0
     per_cpg[, group_apart_from_all_other_libraries := apply(apart, 1, function(a) if (any(a)) paste(names(grp)[a], collapse = "; ") else "none")]
+    per_cpg[, margin_of_group_apart_points := round(apply(margin, 1, max), 2)]
     for (g in names(grp)) per_cpg[, paste0("range_", gsub(" ", "_", g)) :=
       sprintf("%.0f to %.0f", do.call(pmin, as.data.frame(v[, grp[[g]], drop = FALSE])), do.call(pmax, as.data.frame(v[, grp[[g]], drop = FALSE])))]
     vals <- as.data.table(round(v, 1)); setnames(vals, lib$library_id)
