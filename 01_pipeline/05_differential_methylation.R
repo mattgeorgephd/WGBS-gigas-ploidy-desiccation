@@ -101,17 +101,19 @@
 #             under "at least 20" (2,352 instead of 2,351; 2,274 instead of
 #             2,273). With ">" at the configured threshold of 20 points the
 #             written tables give exactly the DML lists of this step.
-#           - Fitting both modes takes about 18 minutes at WGBS_CORES=4, 37 to
-#             45 minutes at WGBS_CORES=2 and about an hour on one core. The
-#             import needs about 4 GB. The tests fork their workers: at
-#             WGBS_CORES=2 the step needs about 7.5 GB (the R process and its
-#             two workers, shared pages counted once), at WGBS_CORES=4 about
-#             10 GB.
+#           - One fit (the paper's, or one optional analysis) took 22 minutes at
+#             WGBS_CORES=2 on 2026-11-20 (two contrasts of about 10 minutes
+#             each), with a peak of about 9.9 GB summed over the R process and
+#             its two workers (shared pages counted in each); about 9 minutes
+#             at WGBS_CORES=4. The import needs about 4 GB. Each library's kept
+#             CpGs are dropped as soon as its object is built, and the heat
+#             object is built after the ploidy test; neither changes a number.
 #           - A fit is kept in the cache folder and reused only while what it
-#             was made from is unchanged: the mode and the coverage settings,
+#             was made from is unchanged: the fit id, the coverage settings and
+#             the model (overdispersion and test),
 #             the sample sheet, the coverage files, the methylKit version and
 #             the fitting code (fit_fingerprint() below). Otherwise, and when a
-#             cache file cannot be read, the mode is fitted again; nothing has
+#             cache file cannot be read, the analysis is fitted again; nothing has
 #             to be deleted by hand. The thresholds of step 4 are applied after
 #             the fit, so changing them does not refit. With both fits in the
 #             cache the step takes about half a minute. Not part of the
