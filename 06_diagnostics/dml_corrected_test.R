@@ -41,7 +41,6 @@
 #           04_output/05_differential_methylation/tables/united_cpg_<mode>.csv.gz
 #           06_diagnostics/dml_sensitivity/cache/fit_<analysis>_<mode>.rds   (git-ignored; the script
 #             checks that each fit was made from the united table it reads, with the stated settings)
-#           06_diagnostics/dml_sensitivity/dml_counts.csv   shares of the full data
 #           06_diagnostics/dml_sensitivity/dml_<analysis>_<mode>.csv   the lists
 #           06_diagnostics/library_methylation_level/library_level.csv   column high_level
 #
@@ -83,8 +82,8 @@
 #             uncorrected and corrected columns repeat that check. A share in a
 #             sample is compared with the share that the observed labels give
 #             at the same CpGs ("at or above observed"), and also with the
-#             share over all eligible CpGs of the full data (dml_counts.csv;
-#             "at or above reference").
+#             share over all eligible CpGs of the full data (the value of
+#             dml_counts.csv; "at or above reference").
 #           - Part 3 counts, among the CpGs above the difference cutoff, those
 #             with a corrected p-value at or below the largest p-value that has
 #             q < config$dml_qvalue in the observed fit (a fixed threshold, so
@@ -171,13 +170,9 @@ read_fit <- function(analysis_id, mode, counts, overdispersion) {
   }
   x$fit
 }
-dml_counts <- fread(file.path(sens_dir, "dml_counts.csv"))
-full_share <- function(id, level) {
-  col <- paste0("share_eligible_p_below_", gsub(".", "_", format(level, scientific = FALSE), fixed = TRUE))
-  v <- dml_counts[dml_counts$analysis_id == id & dml_counts$mode == "legacy"][[col]]
-  if (length(v) != 1) stop("dml_counts.csv has no legacy row ", id, " with ", col, ".", call. = FALSE)
-  v
-}
+# Share of the eligible CpGs of the full data with a p-value below `level` in a
+# legacy fit (the value of dml_counts.csv, columns share_eligible_p_below_*).
+full_share <- function(id, level) mean(fits[[id]]$pvalue[legacy$eligible] < level)
 
 # ---- The test --------------------------------------------------------------------------------
 # glm.fit warns at some CpGs (a fitted probability numerically 0 or 1, no
@@ -413,8 +408,8 @@ list_rows <- rbindlist(lapply(names(list_designs), function(nm) {
     called <- tests[, "p_corrected"] <= p_star
     if (j == 1) {
       check_against(tests[, "p_corrected"], fit$pvalue[above], paste("part 3,", d$analysis))
-      n_dml <- dml_counts[dml_counts$analysis_id == d$analysis & dml_counts$mode == "legacy"]$n_dml
-      if (sum(called) != n_dml) stop("Part 3, ", d$analysis, ": ", sum(called), " CpGs called, dml_counts.csv says ", n_dml, ".", call. = FALSE)
+      n_dml <- sum(fit$qvalue < config$dml_qvalue & abs(fit$meth.diff) > config$dml_difference)
+      if (sum(called) != n_dml) stop("Part 3, ", d$analysis, ": ", sum(called), " CpGs called at the p threshold, ", n_dml, " DML in the fit.", call. = FALSE)
     }
     ps <- vapply(p_levels_lists, function(l) sum(tests[, "p_corrected"] < l), numeric(1))
     names(ps) <- paste0("n_above_cutoff_corrected_p_below_", level_names(p_levels_lists))

@@ -1,3 +1,5 @@
 mode,contrast,analysis_id,n_cpg_compared,largest_relative_difference_pvalue,largest_absolute_difference_effect,largest_relative_difference_qvalue,n_dml_step05,n_dml_a0,n_dml_in_both,dml_list_identical,p_values_and_effects_equal,q_values_equal,shared_loci_identical,run_scope
 legacy,ploidy,A0_ploidy,480579,5.26856481861504e-15,5.6843418860808e-14,5.08736470929723e-15,1038,1038,1038,TRUE,TRUE,TRUE,TRUE,all tested CpGs
 legacy,heat,A0_heat,480579,5.11531395206194e-15,5.6843418860808e-14,4.95082224827128e-15,2351,2351,2351,TRUE,TRUE,TRUE,TRUE,all tested CpGs
+corrected,ploidy,A0_ploidy,454555,5.26856481861504e-15,5.6843418860808e-14,5.15596822187299e-15,952,952,952,TRUE,TRUE,TRUE,TRUE,all tested CpGs
+corrected,heat,A0_heat,454555,5.11531395206194e-15,5.6843418860808e-14,5.10028074134379e-15,2273,2273,2273,TRUE,TRUE,TRUE,TRUE,all tested CpGs

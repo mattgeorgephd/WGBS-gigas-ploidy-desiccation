@@ -239,8 +239,9 @@ ct_call <- function(cnt, qs, ctv) {
   rate <- function(v, d) d > 0 & (v / d) > ctv$minhetfreq
   cand <- rate(wA + cA, m) | rate(cT, cC + cT) | rate(wG + cG + cA, m)
   cand[is.na(cand)] <- FALSE
-  out <- data.table(candidate = cand, genotype = NA_character_, qual = NA_integer_, alt = NA_character_,
-                    gt = NA_character_, dp = NA_integer_, alt_reads = NA_integer_, filter = NA_character_)
+  na_c <- rep(NA_character_, n); na_i <- rep(NA_integer_, n)
+  out <- data.table(candidate = cand, genotype = na_c, qual = na_i, alt = na_c, gt = na_c, dp = na_i,
+                    alt_reads = na_i, filter = na_c)
   ix <- which(cand)
   if (length(ix) == 0L) return(out)
   s <- function(v) v[ix]
@@ -502,11 +503,30 @@ ct_count_library <- function(lib, bam, bai, fasta, seqs, ctv, lib_dir) {
                    lib, chr, x$stats[["records"]], in_index[[chr]]), call. = FALSE)
     }
     saveRDS(x, paste0(f, ".tmp")); file.rename(paste0(f, ".tmp"), f)
+    rm(res, cs); gc(verbose = FALSE)
     if (seqs$len[j] > 5e6) log_msg("%s %s: %d CpGs, %d with reads, %.0f s", lib, chr, x$n_cpg, length(x$idx), x$seconds)
   }
 }
 
 ct_read_chr <- function(lib_dir, chr) readRDS(file.path(lib_dir, "counts", paste0(chr, ".rds")))
+
+# md5 of the 0-based CpG starts of one sequence, written one per line: lets a reader
+# check the coordinates it rebuilds from the reference for ct_variant_assessability.
+ct_md5_text <- function(starts) {
+  f <- tempfile(); on.exit(unlink(f)); writeLines(format(starts, scientific = FALSE, trim = TRUE), f)
+  unname(tools::md5sum(f))
+}
+
+# Coordinates of the rows of ct_variant_assessability.csv.gz: every "CG" of the
+# reference, plus strand, sequences in the order of the FASTA index, positions
+# increasing; start = 0-based position of the C, as in the coverage files.
+ct_assessability_coordinates <- function(fasta) {
+  fa <- FaFile(fasta); si <- seqinfo(fa)
+  rbindlist(lapply(seq_along(seqnames(si)), function(j) {
+    ch <- seqnames(si)[j]
+    data.table(chr = ch, start = start(matchPattern("CG", getSeq(fa, GRanges(ch, IRanges(1L, seqlengths(si)[j])))[[1]])) - 1L)
+  }))
+}
 
 # =============================================================================
 # Final tables (all 22 libraries counted)
@@ -521,7 +541,7 @@ ct_finalize <- function(libs, seqs, ctv, cache, out_tables, fasta) {
     x1 <- ct_read_chr(file.path(cache, libs$library_id[1]), chr)
     n <- x1$n_cpg
     cs <- ct_chr_cpg(fa, chr, seqs$len[j]); stopifnot(length(cs$cpg) == n)
-    pool <- lapply(c(all = "all", experiments), function(z) list(cnt = matrix(0, n, 8), qs = matrix(0, n, 8)))
+    pool <- lapply(c(all = "all", experiments), function(z) list(cnt = matrix(0L, n, 8), qs = matrix(0L, n, 8)))
     n_ass <- lapply(experiments, function(z) integer(n))
     for (l in libs$library_id) {
       x <- ct_read_chr(file.path(cache, l), chr); stopifnot(x$n_cpg == n)
@@ -541,11 +561,12 @@ ct_finalize <- function(libs, seqs, ctv, cache, out_tables, fasta) {
                                                    if (pn == "all") "pooled_all" else paste0("pooled_", pn), ctv)
     }
     crick <- as.integer(pool$all$cnt[, 7] + pool$all$cnt[, 6])
-    a <- data.table(chr = chr, gap = c(cs$cpg[1] - 1L, diff(cs$cpg)), crick_pooled = crick)
+    a <- data.table(chr = rep(chr, n), gap = c(cs$cpg[1] - 1L, diff(cs$cpg))[seq_len(n)], crick_pooled = crick)
     for (e in names(n_ass)) set(a, j = paste0("n_assessable_", e), value = n_ass[[e]])
     assess[[j]] <- a
-    per_chr[[j]] <- data.table(chr = chr, n_cpg = n, first_start = cs$cpg[1] - 1L, last_start = cs$cpg[n] - 1L)
-    rm(pool, n_ass, cs)
+    per_chr[[j]] <- data.table(chr = chr, n_cpg = n, first_start = if (n) cs$cpg[1] - 1L else NA_integer_,
+                               last_start = if (n) cs$cpg[n] - 1L else NA_integer_)
+    rm(pool, n_ass, cs); gc(verbose = FALSE)
   }
   calls <- rbindlist(calls)
   assess <- rbindlist(assess)
@@ -568,11 +589,15 @@ ct_finalize <- function(libs, seqs, ctv, cache, out_tables, fasta) {
   setcolorder(cp, c("chr", "start", "pos1"))
   chr_order <- seqs$chr
   cp <- cp[order(match(chr, chr_order), start)]; calls <- calls[order(match(chr, chr_order), start, call_set)]
-  assess[, start := NULL]
+  per_chr <- rbindlist(per_chr)
+  per_chr[, first_row := cumsum(c(1L, head(n_cpg, -1L)))]
+  per_chr[, md5_starts := vapply(chr, function(ch) ct_md5_text(assess[chr == ch, start]), "")]
+  assess[, c("chr", "gap", "start") := NULL]
   write_table(cp, file.path(out_tables, "ct_variant_cpgs.csv.gz"))
   write_table(calls, file.path(out_tables, "ct_variant_calls.csv.gz"))
   write_table(assess, file.path(out_tables, "ct_variant_assessability.csv.gz"))
-  list(cpgs = cp, calls = calls, assess = assess, per_chr = rbindlist(per_chr))
+  write_table(per_chr[, .(chr, n_cpg, first_row, first_start, last_start, md5_starts)], file.path(out_tables, "ct_variant_cpg_index.csv"))
+  list(cpgs = cp, calls = calls, assess = assess, per_chr = per_chr)
 }
 
 # =============================================================================

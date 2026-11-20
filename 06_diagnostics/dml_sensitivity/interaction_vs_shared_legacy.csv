@@ -5,9 +5,9 @@ A2_interaction,legacy,"in both primary lists, opposite",123,69,68,0.560975609756
 A2_interaction,legacy,"in both primary lists, all classes",200,100,99,0.5,0.495,0.01,20,all tested CpGs
 A2_interaction,legacy,not in both primary lists,480379,21601,16872,0.0449665784724145,0.0351222680425248,0.01,20,all tested CpGs
 A2_interaction,legacy,all tested CpGs,480579,21701,16971,0.0451559473052297,0.0353136529061819,0.01,20,all tested CpGs
-A2_interaction_mn_f,legacy,"in both primary lists, both_hyper",28,0,0,0,0,0.01,20,all tested CpGs
-A2_interaction_mn_f,legacy,"in both primary lists, both_hypo",49,0,0,0,0,0.01,20,all tested CpGs
-A2_interaction_mn_f,legacy,"in both primary lists, opposite",123,0,0,0,0,0.01,20,all tested CpGs
-A2_interaction_mn_f,legacy,"in both primary lists, all classes",200,0,0,0,0,0.01,20,all tested CpGs
-A2_interaction_mn_f,legacy,not in both primary lists,480379,4,2,8.32675866347197e-06,4.16337933173598e-06,0.01,20,all tested CpGs
-A2_interaction_mn_f,legacy,all tested CpGs,480579,4,2,8.32329336071697e-06,4.16164668035848e-06,0.01,20,all tested CpGs
+A2_interaction_mn_chisq,legacy,"in both primary lists, both_hyper",28,0,0,0,0,0.01,20,all tested CpGs
+A2_interaction_mn_chisq,legacy,"in both primary lists, both_hypo",49,0,0,0,0,0.01,20,all tested CpGs
+A2_interaction_mn_chisq,legacy,"in both primary lists, opposite",123,0,0,0,0,0.01,20,all tested CpGs
+A2_interaction_mn_chisq,legacy,"in both primary lists, all classes",200,0,0,0,0,0.01,20,all tested CpGs
+A2_interaction_mn_chisq,legacy,not in both primary lists,480379,287,242,0.000597444934104114,0.000503768899140054,0.01,20,all tested CpGs
+A2_interaction_mn_chisq,legacy,all tested CpGs,480579,287,242,0.000597196298631443,0.000503559248323377,0.01,20,all tested CpGs

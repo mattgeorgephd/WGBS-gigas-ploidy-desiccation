@@ -157,10 +157,10 @@ e. annotation of the block,gene_LOC105341636_block_cpg_sites_in_exons,53,CpG sit
 e. annotation of the block,gene_LOC105341636_block_cpg_sites_in_introns,26,CpG sites of the block inside the gene and outside its exons.
 e. annotation of the block,gene_LOC105341636_relative_coverage_in_exons,18.86,"Coverage over the library median, median of the libraries with the excess at each CpG site; median of the CpG sites in exons."
 e. annotation of the block,gene_LOC105341636_relative_coverage_in_introns,20.54,Same; median of the CpG sites in introns.
-e. annotation of the block,transposable_elements_overlapping_block,0,Records of the transposable element track (RepeatMasker) that overlap the block.
+e. annotation of the block,transposable_elements_overlapping_block,0,"Records of the repetitive elements track (RepeatMasker, all classes) that overlap the block."
 e. annotation of the block,block_cpg_sites_in_transposable_elements,0 of 82,CpG sites of the block that overlap a record of that track.
-e. annotation of the block,nearest_transposable_element_upstream_distance_bp,799,Bases between the block and the last transposable element that ends before it.
-e. annotation of the block,nearest_transposable_element_downstream_distance_bp,585,Bases between the block and the first transposable element that begins after it.
+e. annotation of the block,nearest_transposable_element_upstream_distance_bp,799,Bases between the block and the last record of the repetitive elements track that ends before it.
+e. annotation of the block,nearest_transposable_element_downstream_distance_bp,585,Bases between the block and the first record of the repetitive elements track that begins after it.
 f. reference sequence of the block,block_bases,3599,Length of the block in the reference: from the C of its first CpG to the G of its last.
 f. reference sequence of the block,block_cpg_dinucleotides_in_reference,82,CG dinucleotides in the reference sequence of the block.
 f. reference sequence of the block,block_gc_pct,42.5,"G plus C, percent of the bases of the block."
