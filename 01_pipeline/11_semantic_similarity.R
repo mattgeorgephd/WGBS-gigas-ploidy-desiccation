@@ -704,10 +704,12 @@ read_revigo_export <- function(path) {
   list(data = d, label_below_dispensability = as.numeric(rule[[1]][2]), md5 = unname(tools::md5sum(path)))
 }
 # A Fisher table of the other analysis: no quoting, commas inside term names, p as printed. A record that is
-# cut short (the BP file holds runs of NUL bytes) does not fit the pattern and is not read.
+# cut short (the BP file holds runs of NUL bytes) does not fit the pattern and is not read. The lines are matched
+# as bytes: 19 lines of the BP file hold bytes that are not valid UTF-8, and under a UTF-8 locale a match on
+# characters skips them, so that 2,430 records were read there where the C locale reads 2,449.
 read_other_fisher <- function(path) {
-  txt <- grep("^GO:[0-9]{7},", readLines(path, warn = FALSE), value = TRUE)
-  hit <- regmatches(txt, regexec("^(GO:[0-9]{7}),.*,[0-9]+,[0-9]+,[0-9.]+,(< ?)?([0-9.eE+-]+),?$", txt))
+  txt <- grep("^GO:[0-9]{7},", readLines(path, warn = FALSE), value = TRUE, useBytes = TRUE)
+  hit <- regmatches(txt, regexec("^(GO:[0-9]{7}),.*,[0-9]+,[0-9]+,[0-9.]+,(< ?)?([0-9.eE+-]+),?$", txt, useBytes = TRUE))
   good <- lengths(hit) == 4
   d <- data.table(go_id = vapply(hit[good], `[`, "", 2), p = as.numeric(vapply(hit[good], `[`, "", 4)))
   if (nrow(d) == 0 || anyNA(d$p) || anyDuplicated(d$go_id)) stop("Unexpected format in ", path)

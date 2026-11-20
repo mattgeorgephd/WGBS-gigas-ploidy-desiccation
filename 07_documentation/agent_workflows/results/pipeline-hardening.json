@@ -1,11 +1,9 @@
 {
  "workflow": "pipeline-hardening",
  "run_id": "wf_0d998304-306",
- "agents_finished": 3,
+ "agents_finished": 4,
  "agents_running_or_lost": [
-  "fix:E-shared-code",
-  "fix:E-shared-code",
-  "fix:E-shared-code"
+  "rerun:whole-pipeline"
  ],
  "results": [
   {
@@ -980,6 +978,499 @@
      "Scratch directory with logs, md5 lists, the three recount scripts, my diff and an index (README.txt): /tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/code-pass/C/ . The copy t_modes there is the final tree with modes = c(\"corrected\"); the other copies were removed after the tests."
     ],
     "summary": "Steps 08 and 09 are fixed and rerun in place; no legacy number changed. Of the 55 tables of the two steps 52 are byte-identical to the base commit, as are both PNG; the three that changed are the ones the findings name, and none of their numbers changed. `06_diagnostics/check_legacy_outputs.R` gives 329 of 331 as before, with its result file byte-identical.\n\n- **Figure 5 definitions:** the 18 cells of `what_it_counts` for \"GO terms\" and \"Unique genes\" in `figure_5_values_legacy.csv` now carry the corrected wording. I recounted that the new \"Unique genes\" definition gives all nine values.\n- **Universe table:** the three repeated block columns are gone from `legacy_universe_by_chromosome.csv`; the block is written once, as three rows of `legacy_run_info.csv`. Nothing reads the removed columns.\n- **Modes:** with only the corrected mode, step 09 says it is legacy-only, writes nothing and exits 0, so `run_pipeline.R` goes on. Step 08 writes the corrected tables and a summary with the same columns as always. Step 09 stops with an error if legacy is configured but step 08 last ran without it. Legacy alone also works, with every step 09 table identical.\n- **Packages:** step 09 names a missing package before it fetches GO.db, and no longer loads the unused patchwork.\n- **Log line:** each test now prints both units of I-43 (for ploidy BP, 498 transcripts counted as 1,581 of 40,748 map lines).\n- **Documentation:** the hyphen-gene count in the step 08 header is corrected to 24 mRNAs of 5 genes, and the headers and my README rows now name every output.\n\nFour findings were already fixed in the tree. R4.8 and R6.17 are not mine to change.\n\nDecisions for you:\n- **Summary table after a single-mode run:** it holds that mode's rows only; I did not keep the other mode's rows from disk, because step 09 uses their absence to refuse stale legacy tables. Say if you want them kept.\n- **Optional Figure 9 table under p < 0.01:** not added, because the paper states no number made that way. A tested 12-line patch is in my scratch directory and reproduces 89, 680 and 45 for BP.\n\nReturned for others: five text corrections for `issues.md`, including that only 16 of the 38 absent top-ten terms are among the 1,333 lost GO IDs; a comment change for `run_config.R`; and a one-line guard for `check_legacy_outputs.R`, which still crashes after a corrected-only run of step 08."
+   }
+  },
+  {
+   "agent": "fix:E-shared-code",
+   "phase": "Shared code",
+   "result": {
+    "group": "E",
+    "findings_handled": [
+     {
+      "finding": "R5.1 (modes setting works only at its default)",
+      "action": "fixed",
+      "what_changed": "run_config.R now ends with one validation block that every script passes through: config$modes must be a non-empty subset of legacy and corrected, each named once, and is put in the order legacy, corrected. Steps 11 and 13 call require_mode() (new in 02_R_functions/logging.R): without the legacy mode they log why and quit with status 0 before reading or writing anything (an error only in an interactive session). run_pipeline.R does not start steps 09, 10, 11 and 13 without the legacy mode, says so in the log and in its closing table, and prints the modes at the start and the end; start_step() prints them under every banner. Step 09's guard is group C's. Step 10 itself is unchanged (frozen); see R4.3.",
+      "files": [
+       "run_config.R",
+       "run_pipeline.R",
+       "02_R_functions/logging.R",
+       "01_pipeline/11_semantic_similarity.R",
+       "01_pipeline/13_manuscript_values.R",
+       "01_pipeline/README.md",
+       "README.md"
+      ]
+     },
+     {
+      "finding": "R5.7 (WGBS_CORES values that cannot work fail late)",
+      "action": "fixed",
+      "what_changed": "The checks block of run_config.R reads the text of WGBS_CORES (default \"1\" when unset). An empty value, a non-integer, 0, a negative number or a number above the integer range stops every script at once with a message naming the variable. On Windows a value above 1 is replaced by 1 with a message. 01_pipeline/README.md says to leave it unset on Windows.",
+      "files": [
+       "run_config.R",
+       "01_pipeline/README.md",
+       "README.md"
+      ]
+     },
+     {
+      "finding": "Task 1a: thresholds and other settings validated",
+      "action": "fixed",
+      "what_changed": "The same block checks about 40 settings: coverage levels, min and import coverage, the percentile (it rejects 0.999 typed as a share), q and p cutoffs, the DML difference and sweep, the GO settings, the GO.db version/url/md5, and the semantic_similarity and qpcr lists. Each failure names the setting. The n_labels check moved there from step 11. options(scipen = 0, digits = 7, OutDec = \".\", datatable.logical01 = FALSE) is set at the end of the file.",
+      "files": [
+       "run_config.R"
+      ]
+     },
+     {
+      "finding": "R3.7 (write_table line ending; no .gitattributes)",
+      "action": "fixed",
+      "what_changed": "write_table() now calls fwrite(x, path, eol = \"\\n\", scipen = 0, logical01 = FALSE), with a comment on why. A new .gitattributes marks every table/track extension -text, compressed and binary types binary, and 03_input_files/**, 04_output/**, 05_manuscript/**, 06_diagnostics/** and 08_archive/** -text. The two build scripts under 03_input_files write LF: build_legacy_go_terms.R through eol, and build_wgbs_libraries.R through a binary connection. 04_output/README.md states the gzip-header limit. The direct fwrite of step 05 was fixed by group A. The fwrite calls in 06_diagnostics are frozen; their notation is fixed by the options line of run_config.R, but not their line ending.",
+      "files": [
+       "02_R_functions/logging.R",
+       ".gitattributes",
+       "03_input_files/annotation/build_legacy_go_terms.R",
+       "03_input_files/metadata/build_wgbs_libraries.R",
+       "04_output/README.md",
+       "README.md"
+      ]
+     },
+     {
+      "finding": "R5.4 (scipen from the user profile)",
+      "action": "fixed",
+      "what_changed": "write_table() fixes scipen and logical01, and run_config.R resets scipen, digits, OutDec and datatable.logical01 for every script. Tested: steps 01 to 03 and 06 to 13 with a profile setting scipen = 999, digits = 4 and datatable.logical01 = TRUE, under en_US.UTF-8, write every table and PNG byte for byte as committed. This holds after the step 11 fix below.",
+      "files": [
+       "02_R_functions/logging.R",
+       "run_config.R"
+      ]
+     },
+     {
+      "finding": "R5.5 (run_pipeline.R from outside the repository reports success)",
+      "action": "fixed",
+      "what_changed": "The repository is taken from the --file path of Rscript, with ~+~ decoded to a space, or from here::here() when the script is sourced. When no step scripts or no run_config.R are there, it stops with an error. Each step is started with the repository as working directory. The README 'How paths work' was reworded.",
+      "files": [
+       "run_pipeline.R",
+       "README.md",
+       "01_pipeline/README.md"
+      ]
+     },
+     {
+      "finding": "R5.6 (--steps accepts malformed selections)",
+      "action": "fixed",
+      "what_changed": "Accepted: no argument, --list, --help/-h, or exactly '--steps <sel>' where sel matches ^[0-9]{1,2}(:[0-9]{1,2})?(,...)*$. Anything else stops before any step runs and prints the usage text. A range running downward and an unknown step also stop. Tested on 44 command lines against mock repositories.",
+      "files": [
+       "run_pipeline.R",
+       "README.md",
+       "01_pipeline/README.md"
+      ]
+     },
+     {
+      "finding": "R5.8 (stale 00LOCK-GO.db blocks the GO.db install)",
+      "action": "fixed",
+      "what_changed": "install_legacy_go_db() removes a lock folder older than ten minutes, with a log line. When the install fails it names the side library and either the lock (another install is running, or one was interrupted less than ten minutes ago) or the R CMD INSTALL command that shows the installer's messages.",
+      "files": [
+       "02_R_functions/legacy_go_db.R",
+       "02_R_functions/README.md"
+      ]
+     },
+     {
+      "finding": "R5.9 / R6.14(c) (R.utils not checked)",
+      "action": "fixed",
+      "what_changed": "When a step names data.table, load_packages() also looks R.utils up (without loading it) and stops naming it when it is absent. Step 09 checks its packages before installing GO.db (group C). Tested with a library path that hides R.utils: steps 02, 09, 11, 12 and 13 stop in load_packages().",
+      "files": [
+       "02_R_functions/packages.R",
+       "02_R_functions/README.md",
+       "01_pipeline/README.md"
+      ]
+     },
+     {
+      "finding": "R5.3 (input_inventory.csv stale and locale-dependent)",
+      "action": "fixed",
+      "what_changed": "Step 01 sorts the file list with method = \"radix\" (byte order), divides sizes by 1e9 or 1e6 to match the texts, and its header Notes say the table must be rerun and committed after any edit under 03_input_files/. The committed table is current: a rerun in a scratch tree, in the C locale and under en_US.UTF-8, gave the committed bytes. 03_input_files/README.md and 04_output/README.md say the same. 03_input_files/** is -text in .gitattributes.",
+      "files": [
+       "01_pipeline/01_fetch_inputs.R",
+       "04_output/01_fetch_inputs/tables/input_inventory.csv",
+       "03_input_files/README.md",
+       "04_output/README.md"
+      ]
+     },
+     {
+      "finding": "R5.10 / R6.10 (folder names said to live only in paths.R)",
+      "action": "fixed",
+      "what_changed": "The header of paths.R now lists every other place that names a numbered folder: the source line, run_pipeline.R, the build scripts, step 13, the diagnostics, the items map, rows D4.8-002 and R3.4-007 of the values map, .gitignore and .gitattributes. The root README 'How paths work' and the paths.R row of 02_R_functions/README.md say the same; both rows were checked by grep.",
+      "files": [
+       "02_R_functions/paths.R",
+       "README.md",
+       "02_R_functions/README.md"
+      ]
+     },
+     {
+      "finding": "R6.6 (memory figures disagree)",
+      "action": "fixed",
+      "what_changed": "Applied group A's request for the run_pipeline.R header (step 04 about 9.5 GB, step 05 about 10 GB with WGBS_CORES=4) and its root README sentence. 01_pipeline/README.md carries the same figures. The step 05 header is group A's and already says this.",
+      "files": [
+       "run_pipeline.R",
+       "README.md",
+       "01_pipeline/README.md"
+      ]
+     },
+     {
+      "finding": "R6.11 (download sizes and units)",
+      "action": "fixed",
+      "what_changed": "Decimal GB everywhere: 10.5 GB plus the 31 MB GO.db archive in the step 01 header, the run_pipeline.R header and both READMEs. The 03_input_files/README.md manifest row names 22 coverage files (9.8 GB) and the reference genome (0.66 GB). The step 01 log divides by 1e9. The issues.md figure had already been corrected.",
+      "files": [
+       "01_pipeline/01_fetch_inputs.R",
+       "run_pipeline.R",
+       "README.md",
+       "01_pipeline/README.md",
+       "03_input_files/README.md"
+      ]
+     },
+     {
+      "finding": "R6.13 (modes comment says every step from 04)",
+      "action": "fixed",
+      "what_changed": "The comment above modes in run_config.R now says that steps 04 to 08 and step 10 write per-mode outputs, that steps 09, 11 and 13 run only with legacy, and what run_pipeline.R and step 08 do without it. The issues.md I-05 sentence was already corrected by the parent.",
+      "files": [
+       "run_config.R"
+      ]
+     },
+     {
+      "finding": "R6.14 (a, b) (writes only into its own folder; 'union')",
+      "action": "fixed",
+      "what_changed": "01_pipeline/README.md line 3 names the exceptions: the download cache, and 05_manuscript/ written by step 13. The step 05 row says 'restriction to the CpGs covered in all libraries'. Plan rule 5 names the same exceptions (the plan is owned by nobody; already in the tree).",
+      "files": [
+       "01_pipeline/README.md",
+       "07_documentation/reproducibility_plan.md"
+      ]
+     },
+     {
+      "finding": "R6.3 (step 13 listed as planned)",
+      "action": "already_fixed",
+      "what_changed": "The step 13 row is 'done', the run-times table has a row for step 13, 04_output/README.md has a row for 13_manuscript_values, and I-27 has an update. No change in this pass.",
+      "files": [
+       "01_pipeline/README.md",
+       "04_output/README.md"
+      ]
+     },
+     {
+      "finding": "R1.3 (thresholds on unrounded differences)",
+      "action": "already_fixed",
+      "what_changed": "This is group A's file. The step 05 header and 04_output/README.md already state that counts are taken as methylKit takes them, and how to recompute scaling_factor. Nothing changed here.",
+      "files": [
+       "01_pipeline/05_differential_methylation.R"
+      ]
+     },
+     {
+      "finding": "R5.2 (step 05 cache reused regardless of settings)",
+      "action": "already_fixed",
+      "what_changed": "This is group A's file. The cache now carries a fingerprint (04_output/README.md describes it). Nothing changed here.",
+      "files": [
+       "01_pipeline/05_differential_methylation.R"
+      ]
+     },
+     {
+      "finding": "R3.1 (legacy text comparison of p < 0.01)",
+      "action": "already_fixed",
+      "what_changed": "The issues.md I-21 and I-28 wording, the step 09 header and the README row are already correct (checked by grep: 'below 1e-4' and 'not recounted' are gone). The optional legacy_p_filter_as_run.csv belongs to step 09 (group C) and is not added.",
+      "files": []
+     },
+     {
+      "finding": "R4.1 (secondary GO IDs dropped in step 10)",
+      "action": "needs_decision",
+      "what_changed": "Not fixed, by the scope decision. Task 4 done: one sentence in the step 10 header Notes, in the step 10 row of 01_pipeline/README.md and in the step 10 row of 04_output/README.md says the defect is known and left as it is, and points to issues.md, I-41. Note for the author: with secondary GO IDs mapped to their primary IDs, step 10 calls one term (organelle, heat set, CC; q 0.018 in both modes) where it now calls none, and several universe and term counts of I-41 move.",
+      "files": [
+       "01_pipeline/10_go_enrichment_gene_level.R",
+       "01_pipeline/README.md",
+       "04_output/README.md"
+      ]
+     },
+     {
+      "finding": "R4.3 (step 10 without the legacy mode)",
+      "action": "needs_decision",
+      "what_changed": "Step 10 is frozen. run_pipeline.R does not start it without the legacy mode and says why; 01_pipeline/README.md says that step 10 started by hand without legacy gives wrong statuses. Note for the author: a guard inside step 10 (stop without legacy, or take the reference mode from config$modes) changes that step and waits for your approval.",
+      "files": [
+       "run_pipeline.R",
+       "01_pipeline/README.md"
+      ]
+     },
+     {
+      "finding": "R4.8 (header statements of step 10 and the random control)",
+      "action": "needs_decision",
+      "what_changed": "Not changed. Step 10 is frozen except for the I-41 sentence, and the control is in 06_diagnostics. Note for the author: the step 10 header omits go_terms_by_analysis.csv, it loads patchwork without using it, its log prints one gene count for all ontologies, and the control's header names a gene track it does not read.",
+      "files": []
+     },
+     {
+      "finding": "Extra: step 11 sentence on gene-level terms",
+      "action": "fixed",
+      "what_changed": "The note in semantic_clusters_gene_level.csv and the log now read 'Step 10 calls no GO term at gene level at its configured settings (...); issues.md, I-41, gives the settings and tests under which terms pass.' The sentence is written only when step 10's go_enriched_terms.csv is empty. When step 10 calls terms they are clustered and drawn per mode, so the sentence follows step 10.",
+      "files": [
+       "01_pipeline/11_semantic_similarity.R",
+       "04_output/11_semantic_similarity/tables/semantic_clusters_gene_level.csv"
+      ]
+     },
+     {
+      "finding": "Extra: legacy_go_db.R header too wide",
+      "action": "fixed",
+      "what_changed": "Replaced with the tested wording: none of the eight other releases tested, 3.7.0 to 3.18.0 (I-37); other archive tables match 3.12.1 and 3.16.0. The comment above legacy_go_db in run_config.R says the same.",
+      "files": [
+       "02_R_functions/legacy_go_db.R",
+       "run_config.R"
+      ]
+     },
+     {
+      "finding": "Extra: step 13 'recommended analysis' wording and column name",
+      "action": "fixed",
+      "what_changed": "Header reworded (corrected mode = the draft's model with the upper coverage filter, I-05, and for GO the gene-level analysis of step 10; not recommended for the DML or their location, I-06, I-41). The summary column is renamed change_under_recommended_analysis -> change_in_corrected_mode. grep finds readers only in 05_manuscript/README.md, which was updated; no script, diagnostic or map expression reads the column.",
+      "files": [
+       "01_pipeline/13_manuscript_values.R",
+       "05_manuscript/README.md",
+       "05_manuscript/manuscript_values_summary.csv"
+      ]
+     },
+     {
+      "finding": "Task 2: settings of steps 11 and 12 moved to run_config.R; legacy inputs copied out of 08_archive",
+      "action": "fixed",
+      "what_changed": "config$semantic_similarity holds every setting of step 11, read as cfg, with the original comments. config$qpcr holds every setting of step 12, design included. Seven files were copied byte for byte (md5 checked against the archive): three REVIGO exports to 03_input_files/annotation/legacy/revigo_exports/, three Fisher tables to annotation/legacy/fisher_other_analysis/, and the knitted qPCR output to qpcr/legacy/. Each has a row in its folder's README naming the original and its md5. Steps 11 and 12 read them through input_path(), and no step calls archive_path(). 08_archive is untouched (git diff empty). Row R3.4-007 of the values map was updated to the new export path. All step 12 tables, and every step 11 table except revigo_exports.csv (paths) and semantic_clusters_gene_level.csv (note text), are byte-identical to the base commit; the two REVIGO export figures differ only by the path in their title.",
+      "files": [
+       "run_config.R",
+       "01_pipeline/11_semantic_similarity.R",
+       "01_pipeline/12_qpcr.R",
+       "03_input_files/annotation/legacy/revigo_exports/",
+       "03_input_files/annotation/legacy/fisher_other_analysis/",
+       "03_input_files/qpcr/legacy/dct_analysis_NA-to-45_COX1convert.md",
+       "03_input_files/annotation/README.md",
+       "03_input_files/qpcr/README.md",
+       "03_input_files/README.md",
+       "03_input_files/manuscript/manuscript_values_map.csv"
+      ]
+     },
+     {
+      "finding": "New, found while testing: step 11 reads the other analysis's BP Fisher table differently under a UTF-8 locale",
+      "action": "fixed",
+      "what_changed": "read_other_fisher() matched lines as characters. In en_US.UTF-8 or C.UTF-8, 19 lines with bytes that are not valid UTF-8 were skipped, so revigo_exports.csv got 1705/215/217/210/96.4 in place of 1718/218/220/213/97.8 for the code_Revigo export. grep() and regexec() now use useBytes = TRUE, with a comment. Rerun in the C locale and under en_US.UTF-8 with a hostile profile: all 35 tables and PNGs of step 11 equal the committed files. No committed number changes, because they were made in the C locale.",
+      "files": [
+       "01_pipeline/11_semantic_similarity.R"
+      ]
+     },
+     {
+      "finding": "Task 3: single-mode runs",
+      "action": "fixed",
+      "what_changed": "Tested in scratch trees, with the outputs of steps 04 and 05 copied and filtered to the mode. Legacy alone: steps 02, 03 and 06 to 13 ran, started from / with the full path; every legacy file is identical to the committed one; the cross-mode tables hold legacy rows only; step 13's legacy columns are identical and its corrected columns empty; the legacy check gives 329 of 331. Corrected alone: steps 09, 10, 11 and 13 were not started and the log says so, every other step finished, exit 0; started alone, steps 09, 11 and 13 log the reason, exit 0 and write nothing. Both modes: every table and PNG identical to the working tree. The default stays both modes.",
+      "files": [
+       "run_pipeline.R",
+       "02_R_functions/logging.R",
+       "01_pipeline/11_semantic_similarity.R",
+       "01_pipeline/13_manuscript_values.R",
+       "01_pipeline/README.md",
+       "README.md"
+      ]
+     },
+     {
+      "finding": "Task 4: step 10 note",
+      "action": "fixed",
+      "what_changed": "One sentence added to the step 10 header Notes and to its rows in 01_pipeline/README.md and 04_output/README.md, pointing to issues.md, I-41. Nothing else in step 10 was changed.",
+      "files": [
+       "01_pipeline/10_go_enrichment_gene_level.R",
+       "01_pipeline/README.md",
+       "04_output/README.md"
+      ]
+     },
+     {
+      "finding": "Group A requests: 13 rows of the values map (R3.1-001, R3.1-003, R3.1-040 to R3.1-050)",
+      "action": "fixed",
+      "what_changed": "Applied as given, keeping CRLF line endings (546 of 546 lines CRLF). Step 13 then gives 352 matches, 146 differ and 47 not regenerated, as group A expected.",
+      "files": [
+       "03_input_files/manuscript/manuscript_values_map.csv"
+      ]
+     },
+     {
+      "finding": "Group A requests: run_pipeline.R memory, README.md memory, 03_input_files/README.md genome_features row, reproducibility_plan.md step 04 row, logging.R write_table",
+      "action": "fixed",
+      "what_changed": "All applied. The write_table request is met by the wider fix (eol, scipen, logical01) and its comment.",
+      "files": [
+       "run_pipeline.R",
+       "README.md",
+       "03_input_files/README.md",
+       "07_documentation/reproducibility_plan.md",
+       "02_R_functions/logging.R"
+      ]
+     },
+     {
+      "finding": "Group B request: step 05 header (shared loci sign convention)",
+      "action": "not_a_defect",
+      "what_changed": "Declined here because step 05 is group A's file. The text is already in the step 05 header (line 45).",
+      "files": []
+     },
+     {
+      "finding": "Group B requests: map notes of M2.3-005 and R3.3-045",
+      "action": "fixed",
+      "what_changed": "Both notes applied as given. Not applied: adding the repeat-track issue number (I-50) to the issue column of 13 rows, because issues.md has no I-50 yet. See open points.",
+      "files": [
+       "03_input_files/manuscript/manuscript_values_map.csv"
+      ]
+     },
+     {
+      "finding": "Group C request: run_config.R modes comment",
+      "action": "fixed",
+      "what_changed": "Adapted. The comment says steps 04 to 08 and 10 write per-mode outputs and that steps 09, 11 and 13 need legacy and end with status 0 without it. It also says run_pipeline.R leaves step 10 out without legacy, step 08 then writes no legacy row of annotation_summary.csv, and step 13 leaves its corrected columns empty without corrected. An empty or unknown mode vector is now rejected by the checks.",
+      "files": [
+       "run_config.R"
+      ]
+     },
+     {
+      "finding": "Group C request: 06_diagnostics/check_legacy_outputs.R guard",
+      "action": "deferred",
+      "what_changed": "Not applied: this workflow freezes every script under 06_diagnostics. The guard is forwarded in shared_file_requests for the parent to decide.",
+      "files": []
+     },
+     {
+      "finding": "Optional output additions (step 11 REVIGO terms with coordinates; tissue column in step 02)",
+      "action": "deferred",
+      "what_changed": "Not added: neither regenerates a number the paper states, and the task allows only additions that do.",
+      "files": []
+     }
+    ],
+    "outputs_changed": [
+     {
+      "file": "04_output/01_fetch_inputs/tables/input_inventory.csv",
+      "change": "Rows in byte order of the path. New rows for the 7 legacy files copied under 03_input_files and for 3 files of 03_input_files/manuscript. Sizes and md5 updated for edited README and build files (README.md, annotation/README.md, genome_features/README.md, metadata/README.md, qpcr/README.md, the two build scripts, the values map).",
+      "changes_a_number": true,
+      "old_value": "121 data rows at the base commit, stale for 6 rows",
+      "new_value": "131 data rows; a scratch rerun in the C locale and under en_US.UTF-8 gives the committed bytes",
+      "reason": "R5.3; the inputs added and edited in this pass"
+     },
+     {
+      "file": "04_output/11_semantic_similarity/tables/revigo_exports.csv",
+      "change": "Columns export, same_content_as and term_list_source name the copies under 03_input_files/annotation/legacy/ instead of 08_archive/. No count or percentage changes.",
+      "changes_a_number": false,
+      "old_value": "08_archive/code/Revigo.R, 08_archive/figures/revigo_figure/Revigo-PLOIDY-BP.R, 08_archive/tables/ploidy-BP-FisherTestResults.csv ...",
+      "new_value": "03_input_files/annotation/legacy/revigo_exports/code_Revigo.R, .../Revigo-PLOIDY-BP.R, 03_input_files/annotation/legacy/fisher_other_analysis/ploidy-BP-FisherTestResults.csv ...",
+      "reason": "Task 2: no step reads 08_archive"
+     },
+     {
+      "file": "04_output/11_semantic_similarity/figures/figure_revigo_export_code_revigo.{png,pdf}, figure_revigo_export_revigo_ploidy_bp.{png,pdf}",
+      "change": "The title names the export by its new path; nothing else differs.",
+      "changes_a_number": false,
+      "old_value": "REVIGO export 08_archive/...",
+      "new_value": "REVIGO export 03_input_files/annotation/legacy/revigo_exports/...",
+      "reason": "Task 2"
+     },
+     {
+      "file": "04_output/11_semantic_similarity/tables/semantic_clusters_gene_level.csv",
+      "change": "Note text only.",
+      "changes_a_number": false,
+      "old_value": "No GO term is enriched at gene level (q < 0.05, eligible universe, Wallenius test) in any DML set, ontology or mode.",
+      "new_value": "Step 10 calls no GO term at gene level at its configured settings (q < 0.05, eligible universe, Wallenius test) in any DML set, ontology or mode; issues.md, I-41, gives the settings and tests under which terms pass.",
+      "reason": "Extra item for group E (I-41)"
+     },
+     {
+      "file": "05_manuscript/manuscript_values.csv",
+      "change": "Rows R3.1-041 to R3.1-050 went from not regenerated to matches. Corrected values changed for R3.1-001 and R3.1-003. Notes changed for those rows and for M2.3-005, R3.1-040 and R3.3-045. R3.4-007 reads the new export path; its value is unchanged (FALSE).",
+      "changes_a_number": true,
+      "old_value": "R3.1-041..050 empty; R3.1-001 corrected 12916270; R3.1-003 corrected 97.51193",
+      "new_value": "R3.1-041 TRUE/TRUE; R3.1-042 27.30011/27.42165; R3.1-043 TRUE/TRUE; R3.1-044 22.89244/22.90198; R3.1-045 16.01848/16.13933; R3.1-046 14.27119/14.20492; R3.1-047 13.05197/12.88575; R3.1-048 2.658831/2.664403; R3.1-049 2.012856/2.007349; R3.1-050 1.794112/1.774623 (legacy/corrected); R3.1-001 corrected 12918252; R3.1-003 corrected 97.52689",
+      "reason": "Map requests of groups A and B applied; step 13 rerun. Legacy values of earlier rows unchanged."
+     },
+     {
+      "file": "05_manuscript/manuscript_values_summary.csv",
+      "change": "Column change_under_recommended_analysis renamed change_in_corrected_mode. Results 3.1 and total counts change.",
+      "changes_a_number": true,
+      "old_value": "Results 3.1: 32 matches, 10 not regenerated, 12 changed; all: 342 matches, 146 differ, 57 not regenerated, 158 changed",
+      "new_value": "Results 3.1: 42 matches, 0 not regenerated, 15 changed; all: 352 matches, 146 differ, 47 not regenerated, 161 changed",
+      "reason": "Extra item (column name) and the map requests of group A"
+     },
+     {
+      "file": "05_manuscript/figures/* (copies made by step 13)",
+      "change": "Figure 2 and Figure 3 PNG/PDF copies changed because steps 06 and 07 (group B) redrew them. The other PDFs differ by time stamp only.",
+      "changes_a_number": false,
+      "old_value": "earlier figures",
+      "new_value": "current outputs of steps 06 and 07",
+      "reason": "Copies of other groups' outputs; no edit of group E changes them"
+     }
+    ],
+    "tests_run": [
+     {
+      "what": "Scratch tree, both modes (default), Rscript run_pipeline.R --steps 1:3,6:13, outputs of 04 and 05 copied (logs/r3_both.log, r3_compare_both_vs_repo.log)",
+      "result": "exit 0. Every table and PNG of steps 01 to 03 and 06 to 13 and of 05_manuscript is byte-identical to the working tree (204 files); only PDFs and session_info.txt differ. This confirms on Linux that the committed tables are current and reproduced byte for byte."
+     },
+     {
+      "what": "Same, with a user profile (scipen = 999, digits = 4, datatable.logical01 = TRUE) and LC_ALL=en_US.UTF-8",
+      "result": "First run: everything identical except revigo_exports.csv and one REVIGO PNG of step 11 (a locale defect of the Fisher reader). After the useBytes fix, step 11 was rerun in this tree and in the C tree: all 35 tables and PNGs identical to the committed files in both."
+     },
+     {
+      "what": "Scratch tree, legacy mode alone, started from / with the full path of run_pipeline.R, --steps 2:3,6:13; then check_legacy_outputs.R",
+      "result": "exit 0. All legacy-mode files are identical to the committed ones. The cross-mode tables (annotation_summary.csv, step 10 summaries) hold legacy rows only. Step 13: legacy columns identical, corrected columns empty, 16 corrected items not copied. legacy_check_results.csv is identical to the committed file (329 of 331)."
+     },
+     {
+      "what": "Scratch tree, corrected mode alone, --steps 2:3,6:13; then steps 09, 11 and 13 started alone",
+      "result": "exit 0. Steps 09, 10, 11 and 13 are reported as not run (needs the legacy mode). Every other output is identical to the committed corrected outputs. Started alone, steps 09, 11 and 13 log the reason, exit 0 and add or remove no file."
+     },
+     {
+      "what": "check_legacy_outputs.R in the both-modes tree",
+      "result": "exit 0; legacy_check_results.csv identical to the committed file (329 of 331)"
+     },
+     {
+      "what": "run_config.R checks (tests/config_checks2.sh): 13 WGBS_CORES values, 10 mode settings, 23 thresholds, 8 more edits; every numbered step and run_pipeline.R with WGBS_CORES=four or empty",
+      "result": "Unset, '3', ' 2 ', '007' and cores = 3 accepted. Every value that cannot work stops with a message that names the setting; all 13 steps and check_legacy_outputs.R stop before their banner."
+     },
+     {
+      "what": "run_pipeline.R against mock repositories (tests/mock_cli2.sh): 44 command lines, started from elsewhere, from 08_archive/ELISA, from a path with spaces, sourced, corrected-only",
+      "result": "Well-formed selections run the right steps. Malformed ones (--steps 3, 12; --steps \"\"; --steps 5 --steps 6; 2:3:9; 7:5; 100; ...) stop with the usage text. With no pipeline beside the script: exit 1 with a message. Corrected-only skips 09, 10, 11 and 13 and names them."
+     },
+     {
+      "what": "R.utils hidden from the library path (logs/r2_no_rutils.log, run 00:42 UTC with the current packages.R)",
+      "result": "Steps 02, 09, 11, 12 and 13 stop in load_packages() naming R.utils."
+     },
+     {
+      "what": "GO.db lock (logs/r2_lock_test.log, 00:42 UTC)",
+      "result": "Clean install works. A fresh lock stops with a message naming it. A 30-minute-old lock is removed, then the install and the load succeed."
+     },
+     {
+      "what": "CRLF checkout simulation with core.autocrlf=true (logs/r2_crlf.log, 00:39 UTC, after the last edit of .gitattributes)",
+      "result": "With .gitattributes, 0 of 1205 files under 03_input_files, 04_output, 05_manuscript, 06_diagnostics and 08_archive are checked out with other bytes. Without it, 75, 180, 36, 85 and 247. Not run on Windows."
+     },
+     {
+      "what": "write_table old against new call on the 33 tables of steps 04 and 05, and gz output with 1 to 4 threads (logs/r2_write_table_equivalence.log, r2_gz_threads.log)",
+      "result": "The same bytes for all 33 tables. The gz bytes do not depend on the thread count."
+     },
+     {
+      "what": "Windows",
+      "result": "not run"
+     },
+     {
+      "what": "Steps 04 and 05",
+      "result": "not run (excluded by the task); their committed outputs were copied into the scratch trees"
+     }
+    ],
+    "config_requests": [],
+    "shared_file_requests": [
+     {
+      "file": "08_archive/README.md",
+      "old_text": "Three things read it: the checks in `06_diagnostics/`, which compare regenerated outputs against the legacy outputs stored here; step 11, which reads the three REVIGO exports and three Fisher tables of another analysis (`tables/ploidy-<ontology>-FisherTestResults.csv`) to identify and redraw the exports; and step 12, which compares its reproduction of the legacy qPCR tests with the knitted legacy output (`ELISA/dct_analysis_NA-to-45_COX1convert.md`).",
+      "new_text": "The checks in `06_diagnostics/` read it, to compare regenerated outputs with the legacy outputs stored here. No step of the pipeline reads it: the seven files that steps 11 and 12 compare with are byte-for-byte copies under `03_input_files/`, and the README files there name the originals. These are the three REVIGO exports and the three Fisher tables of another analysis (`tables/ploidy-<ontology>-FisherTestResults.csv`), in `annotation/legacy/`, and the knitted legacy qPCR output (`ELISA/dct_analysis_NA-to-45_COX1convert.md`), in `qpcr/legacy/`.",
+      "reason": "The sentence became false when steps 11 and 12 were pointed at the copies (task 2). The task says to leave 08_archive untouched, so the parent decides whether this README line may change."
+     },
+     {
+      "file": "01_pipeline/04_cpg_coverage.R",
+      "old_text": "print(dcast(cpg_features[mode == \"legacy\" & cpg_set == \"in all libraries\" & min_coverage == config$min_coverage & track %in% legacy_eight],\n            track ~ sample_set, value.var = \"legacy_share_exon_twice_pct\"), digits = 3)",
+      "new_text": "if (\"legacy\" %in% config$modes) {   # without the legacy mode there is nothing to print, and dcast() would stop on an empty table\n  print(dcast(cpg_features[mode == \"legacy\" & cpg_set == \"in all libraries\" & min_coverage == config$min_coverage & track %in% legacy_eight],\n              track ~ sample_set, value.var = \"legacy_share_exon_twice_pct\"), digits = 3)\n}",
+      "reason": "With modes = \"corrected\" this console print stops step 04 ('Can not cast an empty data.table'), so a full run with the corrected mode alone stops there. Tested on the committed table (tests/step04_print_guard.R): with both modes and with legacy alone the guarded version prints the same 9 lines; with corrected alone it prints nothing instead of failing. Group A owns the file. If applied, also replace in 01_pipeline/README.md (Modes) the sentence 'Until it is guarded, a full run with `\"corrected\"` alone stops in step 04.' with 'Step 04 prints that table only when the legacy mode is configured.'"
+     },
+     {
+      "file": "06_diagnostics/check_legacy_outputs.R",
+      "old_text": "    record(label, \"DML x transcript rows before the GO join\", nrow(old_tx), ann_sum$legacy_dml_transcript_rows)",
+      "new_text": "    # No legacy row: step 08 last ran without the legacy mode, and the comparison is \"not run\".\n    record(label, \"DML x transcript rows before the GO join\", nrow(old_tx),\n           if (nrow(ann_sum) == 1) ann_sum$legacy_dml_transcript_rows else NA)",
+      "reason": "Group C's request, forwarded unapplied because this workflow freezes 06_diagnostics. After a run of step 08 without the legacy mode the check stops with 'missing value where TRUE/FALSE needed'. With the default modes the line behaves as now (329 of 331 unchanged in this pass)."
+     }
+    ],
+    "issues_text": [],
+    "open_points": [
+     "For the author: the default of config$modes stays c(\"legacy\", \"corrected\"). Legacy alone was tested and reproduces every legacy output and number (329 of 331 in the legacy check); making it the default is your decision.",
+     "Steps 04 and 05 were not run with a single mode. A full run with modes = \"corrected\" would stop in step 04 at a console print, until group A applies the guard in shared_file_requests.",
+     "Group B asked for the number of the new repeat-track issue (I-50 if it gets that number) to be added to the issue column of rows M2.3-005, R3.1-043, R3.1-047, R3.3-004, R3.3-007, R3.3-026 to R3.3-029, R3.3-032, R3.3-033, R3.3-046 and R3.3-047 of the values map. Not done, because issues.md has no I-50 yet. When it exists, adding it changes no expression or value; rerun steps 01 (inventory) and 13.",
+     "Any later edit under 03_input_files/ (for example the I-50 numbers above) makes input_inventory.csv stale: rerun step 01 (about 20 s with a warm cache, 2 minutes cold) and commit the table with the edit.",
+     "Windows was not tested. The LF line endings, the .gitattributes rules and the one-core rule follow from the code and the documentation. The gzip header byte that names the operating system still makes .gz tables differ across operating systems (stated in 04_output/README.md).",
+     "The fwrite() calls in 06_diagnostics (frozen) do not fix eol. The options line of run_config.R fixes their notation of numbers, but on Windows they would write CRLF.",
+     "Step 10 (frozen) has three open notes for the author: I-41 secondary GO IDs (sentence added), no in-step guard without the legacy mode (run_pipeline.R does not start it), and header and log inaccuracies of R4.8.",
+     "Fixed outside the findings: step 11 read the BP Fisher table of the other analysis differently under a UTF-8 locale (2,430 lines in place of 2,449). It now matches bytes; committed outputs are unchanged."
+    ],
+    "summary": "Group E is done. Every confirmed finding in the shared code and in steps 01, 11, 12 and 13 is applied, and was checked against the current tree after the restart.\n\n- **Settings checks:** run_config.R ends with one validation block that every script passes through. It covers the modes, WGBS_CORES (empty or not a whole number of 1 or more stops at once) and about 40 thresholds, and it resets the number-formatting options of the R session.\n- **run_pipeline.R:** it finds the repository from its own path or stops with an error, and rejects malformed --steps selections. Without the legacy mode it does not start steps 09, 10, 11 and 13 and says so; the modes are printed at the start and end, and under every step banner.\n- **Byte-stable tables:** write_table() fixes the line ending, the number notation and logical01, and a new .gitattributes stops git from converting line endings.\n- **Other fixes:**\n  - load_packages() names R.utils.\n  - A stale GO.db lock is removed or explained.\n  - input_inventory.csv is in byte order and current.\n  - The statements about where folder names live are corrected.\n  - Step 13's wording is corrected and its summary column renamed.\n- **Steps 11 and 12 settings:** moved into run_config.R. The seven legacy files they read are now copies under 03_input_files/, each with a provenance row in its folder's README; 08_archive is untouched.\n- **Step 10:** only the I-41 sentence was added, in its header and its two README rows.\n- **New defect found in testing:** under a UTF-8 locale, step 11 skipped 19 lines of a legacy Fisher table. It now matches bytes; no committed number changes.\n\nTests, in scratch copies of the tree, steps 01 to 03 and 06 to 13:\n- **Both modes:** every table and PNG is byte-identical to the committed files.\n- **User profile (scipen = 999 and others) under en_US.UTF-8:** also identical, after the step 11 fix.\n- **Legacy alone:** all legacy outputs are identical, and the legacy check still gives 329 of 331.\n- **Corrected alone:** the legacy-only steps are skipped or end cleanly with status 0, and every other output equals the committed corrected one.\n\nSteps 04 and 05 were not run, and nothing was run on Windows.\n\nCommitted outputs that changed:\n- Text only: two step 11 tables and two figure titles (file paths and one note).\n- input_inventory.csv.\n- Numbers in step 13: 352 matches, 146 differ, 47 not regenerated, from the values-map rows of group A.\n\nOther groups' requests: all applied except two that touch frozen or other-owned files (group B's step 05 text was already in place). Three edits are left for the parent in shared_file_requests: the 08_archive README sentence (now false), a guard in step 04 (group A's file) without which a corrected-only run stops there, and group C's guard for check_legacy_outputs.R (06_diagnostics is frozen). The default modes are unchanged."
    }
   }
  ]

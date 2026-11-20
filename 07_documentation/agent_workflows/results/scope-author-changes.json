@@ -1,11 +1,10 @@
 {
  "workflow": "scope-author-changes",
  "run_id": "wf_3af3d3cc-0e8",
- "agents_finished": 1,
+ "agents_finished": 4,
  "agents_running_or_lost": [
-  "variants:data-on-gannet",
-  "variants:data-on-gannet",
-  "ftest:term-sweep"
+  "ftest:dependency-trace",
+  "design:clearest-separation"
  ],
  "results": [
   {
@@ -164,6 +163,352 @@
      "At this project's depth (6 to 12 reads per position over the genome), per-library detection is low. Many variant CpGs will stay unmasked, while the any-FILTER rule also masks sites on a single opposite-strand T read.",
      "Reading 22 BAMs of about 10 GB each in R is heavy in time and I/O. It needs per-chromosome chunking with yieldSize and must respect the memory limits of the other workflow.",
      "Rsamtools::pileup defaults (max_depth 250, min_base_quality 13, silent exclusion of some flags) would silently change the calls if used."
+    ]
+   }
+  },
+  {
+   "agent": "variants:data-on-gannet",
+   "phase": "Variant calls",
+   "result": {
+    "summary": "All 22 sorted, deduplicated Bismark alignments of the June to July 2021 run are on gannet, each with its index. Together they hold 109,107,652,888 bytes (109.1 GB). The smallest is 3.35 GB (zr3644_14) and the largest 6.76 GB (zr3534_8). The 22 indexes hold 34.2 MB.\n\nNo variant calls exist for these libraries. I sent 96 HEAD requests for the BS-Snper output names, built on the OSF notebook of Venkataraman et al. 2022, to /panopea/061021-big/ and to the project directory and its data/ and analyses/ folders. All came back 404. The project manifest has no line matching snp, vcf or bam.\n\nR can read regions of the remote BAMs directly. Rhtslib 2.4.1 and Rsamtools 2.18.0 link libcurl, and the proxy variables are already set. With a local copy of the .bai, a two-base query that opens a new BamFile per call runs at 38.7 queries per minute (200 queries in 309.9 s). Putting 200 ranges into one scanBam call is slower, at 14.4 per minute. A BamFile that is opened once and reused returns reads only for the first query and silently returns 0 for every later one. About 2.5% of opens fail with \"Software caused connection abort\" and need a retry.\n\nDownload speed from gannet varies between 2.0 and 21.5 MB/s per stream; two 300 MB ranges ran at 2.78 and 8.43 MB/s. Downloading all 22 BAMs would take about 3.6 to 10.9 hours, or 20 to 40 minutes per BAM at the slow rate. About 31 GB of disk is free, so one BAM at a time (at most 6.8 GB), deleted after use, fits.\n\nI profiled 3,656 alignments of the heat library zr3534_1 and 2,615 of the control zr3644_1. Only four FLAG values occur: 99, 147, 83 and 163. Every one is paired and proper; none is unmapped, secondary, duplicate, supplementary or QC-failed. The tags XR, XG, XM, NM and MD are on 100% of reads. The XR/XG pair is fixed by the FLAG: 99 is CT/CT, 147 is GA/CT, 83 is CT/GA and 163 is GA/GA. Both mates of a pair always carry the same XG (1,821 of 1,821 pairs and 1,300 of 1,300). The FLAG pairs 99/147 and 83/163 therefore give the DNA strand of origin, which is the rule BS-Snper uses.\n\nThe original top strand and its complement (OT and CTOT) cannot be told apart in these BAMs, and neither can OB and CTOB. Bismark 0.22.3 swaps the R1 and R2 FLAGs for CTOT and CTOB pairs. Only the genomic strand is needed for the variant rule, so this does not matter.\n\nMates overlap in 85% (heat) and 89% (control) of pairs, with a median overlap of 77 to 78 bp. Rsamtools::pileup counts both mates where they overlap; at one position it gave a depth of 13 from 8 fragments. Bismark's methylation extractor counts each fragment once, because --no_overlap is its default for paired-end data. Counts that match the coverage files therefore need counting per fragment, not pileup.",
+    "facts": [
+     {
+      "claim": "Item 1: The 22 libraries are those of wgbs_libraries.csv and samples.txt (zr3534_1 to 10; zr3644_1 to 6 and 13 to 18). For every library, both the sorted BAM and its .bai answered HTTP 200. The BAMs hold 109,107,652,888 bytes in total (109.11 GB, 101.61 GiB): zr3534 57.86 GB, zr3644 51.25 GB. The smallest is zr3644_14 (3,346,775,163 bytes) and the largest zr3534_8 (6,755,634,631 bytes). The 22 indexes hold 34,180,048 bytes. Last-modified dates of the BAMs run from 2021-07-07 21:41 to 2021-07-08 00:54 GMT, and of the indexes from 2021-07-08 16:08 to 2021-07-09 09:13 GMT. The table with URL, size and last-modified for all 44 files is in bam_files.csv.",
+      "evidence": "Script code/head_bams.sh (curl -I to https://gannet.fish.washington.edu/panopea/061021-big/<lib>_R1_bismark_bt2_pe.deduplicated.sorted.bam and .bam.bai), summed with awk over bam_files.csv. One HEAD (zr3644_16 .bai) first failed with curl exit 35 (TLS) and returned 200 with 1,500,888 bytes on retry; I entered the retried values into the table.",
+      "verified": true
+     },
+     {
+      "claim": "Item 2: No variant calls exist for these libraries on gannet. I sent 96 HEAD requests for the BS-Snper output names, in the patterns of Venkataraman et al. 2022 and of BS-Snper's README. They went to /panopea/061021-big/, /panopea/WGBS-gigas-ploidy-desiccation/ and its data/ and analyses/ folders, and all returned 404. The names tried were SNP-results.vcf, SNP-candidates.txt, SNP.vcf, snp.vcf, SNP.out, snp.candidate.out, ERR.log, merged.ERR.log, CT-SNPs.tab, unique-CT-SNPs.tab, all-CT-SNPs.tab, CpG-meth-info.tab, merged-sorted-deduplicated.bam, merged.bam, merged.sorted.bam, the folders BS-Snper/, BS-SNPer/ and bs-snper/, and per-library forms for zr3534_1. The project manifest has no line matching snp, vcf or bam (case-insensitive). In the OSF archive (node ygctb), the folder output/07-BS-Snper/ holds only BS-Snper.xml (16,439 bytes). Its notebook code/07-BS-SNPer.ipynb merges the 8 BAMs into merged-sorted-deduplicated.bam and runs BS-Snper with --mincover 5 and otherwise default settings: minhetfreq 0.1, minhomfreq 0.85, minquali 15, maxcover 1000, minread2 2, errorate 0.02, mapvalue 20. Its outputs are SNP-results.vcf, SNP-candidates.txt, CpG/CHG/CHH-meth-info.tab and merged.ERR.log. It then keeps C/T variants at CG motifs with bedtools intersect and grep \"C\\tT\", giving CT-SNPs.tab and unique-CT-SNPs.tab. Other alignment files of the same run also exist: for zr3534_1, the unsorted deduplicated BAM (8,349,432,814 bytes) and the BAM before deduplication (10,251,111,488 bytes).",
+      "evidence": "code/head_snp_names.sh produced snp_name_probes.csv (96 rows with 404; 3 rows with 200, which are the other BAMs and the PE report). Command: grep -inE 'snp|vcf|bam' 07_documentation/audit/gannet_manifest_2026-11-18.tsv, no output. OSF API: https://api.osf.io/v2/nodes/ygctb/files/osfstorage/6201922c370e6c0875f3d9fe/. Notebook: https://osf.io/download/f56eh/, printed with code/nb_src.py, cells 18 to 53.",
+      "verified": true
+     },
+     {
+      "claim": "Item 3: R reads regions of the remote BAM without downloading the file. Rhtslib 2.4.1 (libhts.so and Rhtslib.so) and Rsamtools 2.18.0 (Rsamtools.so) link libcurl.so.4, and https_proxy and CURL_CA_BUNDLE=/root/.ccr/ca-bundle.crt are already set in the environment. scanBamHeader on the URL took 2.1 s and returned 237 sequences (647,905,321 bp), SO:coordinate, and the @PG line of Bismark v0.22.3 with --non_directional -score_min L,0,-0.6. The timing run used 200 two-base regions, placed at random across the genome in proportion to sequence length (seed 20261120), on zr3534_1 with a local .bai. With a new BamFile per call it took 309.9 s, which is 38.7 queries per minute. The median query took 1.28 s, the 90th percentile 1.61 s and the slowest 10.26 s. 5 of the 200 opens failed with 'Software caused connection abort'. The other 195 regions gave 11.6 reads on average (median 8; 48 regions had none). A single scanBam call with all 200 ranges took 833.8 s (14.4 per minute); for the first 20 regions its counts were identical to those of the per-call method. A BamFile opened once with open() and reused is not usable remotely. On 20 regions it returned reads only for the first query and 0 for the other 19 without any error, where new handles found reads in 9 of them. The R process stayed at about 380 MB of memory. I did not try fetching byte ranges myself, because htslib works. The pieces for it exist in R (the curl and httr packages, readBin for the .bai, memDecompress for BGZF blocks), but it would mean writing a BAM record parser in R, which is not practical when Rsamtools does it.",
+      "evidence": "ldd and nm -D on /usr/lib/R/site-library/Rhtslib/usrlib/libhts.so and /usr/lib/R/site-library/Rsamtools/libs/Rsamtools.so; env. Scripts code/r_remote_test.R, code/r_remote_timing.R (part b, and part a, which showed the reused-handle failure), code/r_remote_timing2.R (fresh versus reused handle on 20 regions) and code/r_remote_timing3.R (200 fresh-handle queries; per-region results in timing_regions_zr3534_1.csv).",
+      "verified": true
+     },
+     {
+      "claim": "Item 4: Downloads from gannet run at 2.0 to 21.5 MB/s per stream. A 300 MB range of zr3644_1 (bytes 1,000,000,000 to 1,299,999,999, HTTP 206) took 107.8 s, or 2.78 MB/s. A second 300 MB range, of zr3644_14, took 35.6 s, or 8.43 MB/s. Two 100 MB ranges of zr3534_8 fetched in parallel took 4.7 s (21.5 MB/s) and 50.2 s (1.99 MB/s), so 200 MB in 50 s overall. At 2.78 to 8.43 MB/s, all 22 BAMs (109.1 GB) take about 10.9 to 3.6 hours. One BAM takes 20 to 40 minutes at 2.78 MB/s, or 7 to 13 minutes at 8.43 MB/s. The disk has 31 GB free (df). One BAM at a time (at most 6.76 GB plus a 1.7 MB index), processed and then deleted, fits; prefetching the next BAM while one is processed (at most about 13.5 GB) also fits. I deleted all the downloaded parts.",
+      "evidence": "curl -r ... -w '%{size_download} %{time_total} %{speed_download}' into downloads/range/. The files part.bin, p0.bin, p1.bin and q.bin were removed afterwards (ls shows the folder empty). df -h /tmp.",
+      "verified": true
+     },
+     {
+      "claim": "Item 5: I profiled alignments from three 10 kb windows (NC_047561.1:20,000,001 to 20,010,000; NC_047564.1:30,000,001 to 30,010,000; NC_047567.1:15,000,001 to 15,010,000), each read in about 3 s. Heat library zr3534_1: 3,656 alignments from 1,835 read names. FLAG 99 (849), 147 (848), 83 (977), 163 (982), with no other values. All are paired and proper pairs; none is unmapped, mate-unmapped, secondary, QC-failed, duplicate or supplementary. MAPQ: 197 at 0, 638 at 2 to 9, 76 at 10 to 19, 659 at 20 to 29, 56 at 30 to 39, 2,030 at 40 to 42; median 40; 75.1% at 20 or above. Read lengths run from 16 to 115 (median 115; 2,083 at 115). There is no soft clipping, and 31% of reads have an insertion or deletion. XR, XG, XM, NM and MD are present on 100% of reads. XR/XG by FLAG: 99 is CT/CT, 147 is GA/CT, 83 is CT/GA, 163 is GA/GA, with no exceptions. Both mates share XG in 1,821 of 1,821 complete pairs. The mates overlap in 84.8% of pairs (median overlap 77 bp, mean 72). The median |TLEN| of the first-flagged mate is 133. No mate maps to another sequence. Control library zr3644_1: 2,615 alignments from 1,315 names. FLAG 99 (596), 147 (593), 83 (714), 163 (712). All proper pairs. MAPQ 185 at 0, median 40, 75.5% at 20 or above. Same tags, and the same XR/XG to FLAG mapping. Both mates share XG in 1,300 of 1,300 pairs. The mates overlap in 88.9% of pairs (median 78 bp). The Bismark 0.22.3 source sets the FLAGs as OT R1/R2 99/147, OB 83/163, CTOT 147/99 and CTOB 163/83. The R1 and R2 flags are swapped for CTOT and CTOB 'so that we don't end up with discordant pairs'. OT and CTOT are therefore indistinguishable in these BAMs, and so are OB and CTOB. The genomic strand of origin is given exactly by the FLAG pair: 99/147 (XG CT) is the top strand, 83/163 (XG GA) the bottom strand. The June PE report of zr3534_1 confirms that all four strands are present (OT 11,745,478; CTOT 11,768,014; CTOB 11,776,680; OB 11,756,670).",
+      "evidence": "code/r_alignment_profile.R, output in alignment_profile_zr3534_1.txt and alignment_profile_zr3644_1.txt, data in alignment_sample_*.rds. Bismark source https://raw.githubusercontent.com/FelixKrueger/Bismark/0.22.3/bismark, lines 8302 to 8352 (downloads/src/bismark_0.22.3). Report https://gannet.fish.washington.edu/panopea/061021-big/zr3534_1_R1_bismark_bt2_PE_report.txt (downloads/src/june_zr3534_1_PE_report.txt). The March report in 08_archive/data/PE_reports/ adds the Bowtie 2 options --no-mixed --no-discordant --dovetail --maxins 500.",
+      "verified": true
+     },
+     {
+      "claim": "Item 6: An R script that counts bases by strand of origin at a list of CpGs needs the following. (a) Strand of origin by FLAG, as BS-Snper does. In sam_funcs.c, parseBuffer sets the strand from 0x10 and the read number from 0x80. snpProcess counts Watson for (+, read 1) and (-, read 2), which are FLAGs 99 and 147, and Crick for 83 and 163. In these BAMs that is identical to XG. scanBamFlag cannot express OR, so each strand takes two flag-filtered queries: top is isFirstMateRead=TRUE with isMinusStrand=FALSE, plus isSecondMateRead=TRUE with isMinusStrand=TRUE; bottom is the other two combinations. I checked this: four pileup() calls on 400 bp of a remote BAM took 5.1 s and returned the expected strands. Filtering on the XG tag (scanBam tag='XG', or a FilterRules function in filterBam) gives the same split but is not needed. (b) Counting each fragment once. pileup() counts both overlapping mates. At 7 positions its depth equalled the number of alignments, which exceeded the number of distinct fragments (for example 13 against 8, and 28 against 18). Bismark's methylation extractor sets --no_overlap by default for paired-end data, so the coverage files count fragments. To match them, use scanBam (qname, flag, pos, cigar, seq, qual; tag XG), take the base at each target position (for example with GenomicAlignments::pileLettersAt or sequenceLayer), then remove duplicates by qname within each strand. BS-Snper itself has no mate-overlap logic as far as I can see: grep for mate, overlap and isize in sam_funcs.c found nothing. (c) The rule's inputs. For a C on the top strand, the evidence is the bottom-strand reads (FLAG 83/163), with G for the reference allele and A for a C-to-T variant. For the G of the CpG, the evidence is the top-strand reads (99/147), with G against A. On the converted strand itself, BS-Snper counts a T at a reference C as C (Watson, read 1) and an A at a reference G as G (Crick, read 2 on +). Thresholds to carry over: base quality 15, MAPQ 20 (75% of the reads sampled here pass), minimum depth 5. (d) Reference genome: the cache has no .fai (ls of /home/user/gannet_cache/genome; file.exists returned FALSE). Rsamtools::indexFa would have to write one outside the repository, or the CpG positions can be taken from the coverage files without reading the genome. The mapping from the zero-based coordinates of the merged CpG rows to the C and G positions still has to be checked.",
+      "evidence": "code/r_pileup_check.R, output in this session (PileupParam arguments: max_depth, min_base_quality, min_mapq, min_nucleotide_depth, min_minor_allele_depth, distinguish_strands, distinguish_nucleotides, ignore_query_Ns, include_deletions, include_insertions, left_bins, query_bins, cycle_bins; there is no overlap option). BS-Snper source https://raw.githubusercontent.com/hellbelly/BS-Snper/master/sam_funcs.c, lines 159 to 185 and 1060 to 1130. Bismark extractor https://raw.githubusercontent.com/FelixKrueger/Bismark/0.22.3/bismark_methylation_extractor, lines 1173 to 1182.",
+      "verified": true
+     }
+    ],
+    "recommendation": "How the variant toggle (off by default) should get its data depends on how many CpGs it covers.\n\n- **Candidate DML only:** remote region queries in R are enough. Use Rsamtools with a local .bai, a new BamFile for every query, and a retry when an open fails. Never reuse an opened remote BamFile: after the first query it returns 0 reads without any error. The DML lists number about 3,189 distinct CpGs (1,038 + 2,351 - 200, from issues.md I-02). At the measured 38.7 queries per minute that is about 82 minutes per library, or about 30 hours for all 22 run one after another. Merging neighbouring CpGs into one window per query would cut this.\n- **All CpGs (480,579 at 10x, more at 5x),** as Venkataraman et al. did: download one BAM at a time with its index, count locally, write a small table of counts per library, and delete the BAM. This takes about 3.6 to 10.9 hours of downloading and fits in the 31 GB free.\n\nEither way:\n\n- Assign strand of origin by FLAG pair: 99/147 for the top strand, 83/163 for the bottom. This is identical to XG here and is the rule BS-Snper uses.\n- Count each fragment once by read name. Use scanBam and your own counting, not pileup, so the counts match the coverage files.\n- Apply base quality 15, MAPQ 20 and a minimum depth of 5.\n- Have the pilot agent check the coordinate convention of the merged CpG rows against the alignments first.",
+    "open_points": [
+     "Whether the toggle should screen only the candidate DML or all tested CpGs (Venkataraman et al. screened all characterised CpGs and the candidate DML). This decides between remote queries and full downloads. It is a design choice for the author or the design lane.",
+     "Whether to pool all 22 libraries, as the merged BAM of Venkataraman did, or to call per library and take the union, and how triploid allele dosage enters the thresholds (minhetfreq 0.1, minhomfreq 0.85). The rule lane should settle this.",
+     "The Venkataraman notebook keeps only VCF rows whose REF is C and ALT is T (grep \"C\\tT\"). It therefore drops the reverse-strand form (REF G, ALT A) of a variant at the G of a CpG. Whether the R rule should follow that literally or catch both forms is a fidelity question for the author.",
+     "Throughput from gannet varied between 2.0 and 21.5 MB/s, and remote queries between 1.3 and 10 s each. The estimates above rest on three range downloads and one 200-query run, on a single day.",
+     "I did not check whether running several fresh-handle query streams in parallel scales (the light-computing rule allowed one R process). The gannet server and the proxy (429 limits) would set the ceiling.",
+     "Files in the scratch folder that I did not write: code/t3_*.R, code/head_variants.sh, code/osf_dl.py, genome/, positions_200.csv, region_reads_zr3534_1.rds, bam_header_zr3534_1.rds, variant_file_probe.csv, downloads/bai/ and downloads/07-BS-SNPer.ipynb. They date from 00:33 to 00:44 UTC, before this run started, probably from an earlier attempt of this step. I did not use them. variant_file_probe.csv likewise finds no variant files (374 x 404; the only 6 x 200 are BAMs)."
+    ],
+    "risks": [
+     "A reused, explicitly opened remote BamFile silently returns no reads after its first query. A script written that way would find no variants and report no error.",
+     "About 2.5% of remote opens fail (5 of 200, 'Software caused connection abort'). Without retries some positions get NA or zero counts.",
+     "Rsamtools::pileup double counts the overlapping parts of mate pairs (85 to 89% of pairs overlap, by about 77 bp). Thresholds of depth and allele frequency would then differ from per-fragment counts and from the coverage files.",
+     "A full download of the 22 BAMs is 109 GB. While a 6.8 GB file is on disk, a second one prefetched (13.5 GB in all) still fits in the 31 GB free, but the hardening workflow also uses this disk.",
+     "The reference genome in the cache has no .fai. Building one must not write into the repository; the cache /home/user/gannet_cache is shared with the pipeline."
+    ],
+    "files_written": [
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/V1-data/bam_files.csv",
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/V1-data/snp_name_probes.csv",
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/V1-data/timing_regions_zr3534_1.csv",
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/V1-data/targets_zr3534_1.rds",
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/V1-data/alignment_profile_zr3534_1.txt",
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/V1-data/alignment_profile_zr3644_1.txt",
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/V1-data/alignment_sample_zr3534_1.rds",
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/V1-data/alignment_sample_zr3644_1.rds",
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/V1-data/code/head_bams.sh",
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/V1-data/code/head_snp_names.sh",
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/V1-data/code/osf_ls.py",
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/V1-data/code/nb_src.py",
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/V1-data/code/r_remote_test.R",
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/V1-data/code/r_remote_timing.R",
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/V1-data/code/r_remote_timing2.R",
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/V1-data/code/r_remote_timing3.R",
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/V1-data/code/r_alignment_profile.R",
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/V1-data/code/r_pileup_check.R",
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/V1-data/downloads/zr3534_1.bai",
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/V1-data/downloads/zr3644_1.bai",
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/V1-data/downloads/osf_07-BS-SNPer.ipynb",
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/V1-data/downloads/src/bismark_0.22.3",
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/V1-data/downloads/src/bismark_methylation_extractor_0.22.3",
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/V1-data/downloads/src/bssnper_sam_funcs.c",
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/V1-data/downloads/src/june_zr3534_1_PE_report.txt"
+    ]
+   }
+  },
+  {
+   "agent": "ftest:term-sweep",
+   "phase": "F test",
+   "result": {
+    "summary": "I searched all 1,200 tracked files, leaving out 08_archive. That came to 1,065 text files plus the text of 43 PDFs; .gz files were searched with zcat, and xls/xlsx files were not searched. The search used 26 term groups: every term in the task, plus \"corrected list/p/call\", \"the correction\", \"not above 1\", \"statistic_needed\", analysis ids A1/A2/A4, qf()/pf(), \"F value\"/\"Pr(>F)\" and \"F(1,18)\"-style statistics. Result: 2,305 matching lines in 226 files. Of these, 986 lines in 81 files are outside 07_documentation/agent_workflows and 1,319 lines in 145 files are inside it.\n\nCounts for the 986 lines outside agent_workflows, by class:\n- F test of the DML model, named explicitly: 269. Of these, 154 are rows of corrected_dml_library_values.csv, 8 are rows of corrected_dml_group_apart.csv and 8 are file names containing _mn_f.\n- Model with the correction, test not named but resting on F results: 84.\n- Chi-squared variant: 20.\n- ANOVA or another F statistic: 191 lines in 17 files.\n- Unrelated: 422. These include the \"F(1)\" of the GO term \"ATP synthase complex, catalytic core F(1)\", the GO ontology code \"F\" and the feature chi-squared test.\n\nLines about the DML F test (first two classes) are confined to 24 files:\n- 06_diagnostics/dml_sensitivity.R: 44 (29 explicit, 15 unnamed)\n- issues.md: 56 (11 explicit, 45 unnamed)\n- 06_diagnostics/README.md: 23 (7 explicit, 16 unnamed)\n- 06_diagnostics/library_methylation_level.R: 7\n- 07_documentation/reproducibility_plan.md: 6\n- 07_documentation/session_handoff.md: 5\n- README.md: 1\n- manuscript_values_map.csv and manuscript_values.csv: 4 each\n- 15 output tables in 06_diagnostics/dml_sensitivity/ and 06_diagnostics/library_methylation_level/\n\nThe pipeline itself never uses or mentions the F test: no hit in this class in 01_pipeline/, 02_R_functions/, run_config.R or run_pipeline.R. Step 05 calls calculateDiffMeth with its defaults (overdispersion \"none\").\n\nWhat uses the F test:\n- dml_sensitivity.R runs 8 fits with test \"F\": A1_ploidy_mn_f and A1_heat_mn_f, in both modes; A2_interaction_mn_f, in both modes; A4_ploidy_in_control_mn_f and A4_ploidy_in_heat_mn_f, legacy only.\n- The chi-squared form exists only for A1, in legacy mode (14 ploidy and 185 heat DML). No chi-squared fit exists for A2, for A4 or for corrected mode.\n\nRecords of earlier agent work: 301 lines in 55 of the 145 files with hits name the F test or an _mn_f id. By folder: results/ 6 files, 79 lines; scripts/ 3 files, 31 lines; verification_scripts/ 46 files, 191 lines. Most are in S1-I06-numbers-and-reading/.",
+    "facts": [
+     {
+      "claim": "No F-test use or mention in the pipeline proper (01_pipeline/, 02_R_functions/, run_config.R, run_pipeline.R); step 05 calls calculateDiffMeth with default overdispersion",
+      "evidence": "hits.csv: every 01_pipeline line is class ANOVA or unrelated; 01_pipeline/05_differential_methylation.R:156,159 calculateDiffMeth(meth_ploidy/meth_heat, covariates=...) without overdispersion/test; 02_R_functions, run_config.R, run_pipeline.R have no hit",
+      "verified": true
+     },
+     {
+      "claim": "dml_sensitivity.R registers five analyses with overdispersion MN and test F; A1 and A2 F variants run in both modes, A4 F variants in legacy only",
+      "evidence": "06_diagnostics/dml_sensitivity.R:384-387, 394-395 ('MN', 'F', both_modes), 402-403, 406-407 ('MN', 'F'); 375 both_modes <- 'legacy; corrected'",
+      "verified": true
+     },
+     {
+      "claim": "F-test-specific code lines in dml_sensitivity.R: 373 (registry comment), 425 (allowed tests c('Chisq','F')), 452 (figure label 'MN, F test'), 457-459 (reference_distribution 'F with 1 and %d degrees of freedom'), 997-999 (statistic_needed_for_a_single_call via stats::qf); header text 13-17, 32, 95-122, 170-179",
+      "evidence": "grep -n of 06_diagnostics/dml_sensitivity.R (lines quoted in hits.csv)",
+      "verified": true
+     },
+     {
+      "claim": "The chi-squared variant exists only for A1 in legacy mode (A1_ploidy_mn_chisq 14 DML, A1_heat_mn_chisq 185 DML); its registry text is defined by reference to the F id ('As A1_ploidy_mn_f with the chi-squared test')",
+      "evidence": "dml_sensitivity.R:388-391; analyses.csv rows 6-7; dml_counts.csv rows A1_*_mn_chisq,legacy",
+      "verified": true
+     },
+     {
+      "claim": "F-variant DML counts: legacy A1_ploidy_mn_f 2, A1_heat_mn_f 16, A2_interaction_mn_f 2, A4_ploidy_in_control_mn_f 2, A4_ploidy_in_heat_mn_f 125; corrected mode 2, 6, 2; statistic needed for a single call 84.11, 84.11, 89.51, 250.61, 474.47 (legacy)",
+      "evidence": "06_diagnostics/dml_sensitivity/dml_counts.csv (cat output), columns n_dml and statistic_needed_for_a_single_call",
+      "verified": true
+     },
+     {
+      "claim": "Tracked output files that exist only for the F variant: 8 DML lists dml_A1_ploidy_mn_f_{legacy,corrected}.csv, dml_A1_heat_mn_f_{legacy,corrected}.csv, dml_A2_interaction_mn_f_{legacy,corrected}.csv, dml_A4_ploidy_in_control_mn_f_legacy.csv, dml_A4_ploidy_in_heat_mn_f_legacy.csv (3, 17, 3, 7, 3, 3, 3, 126 lines incl. header), plus 06_diagnostics/library_methylation_level/corrected_dml_library_values.csv (154 rows, all from _mn_f lists) and corrected_dml_group_apart.csv (8 rows, all _mn_f)",
+      "evidence": "git ls-files 06_diagnostics; grep -c . on each file; library_methylation_level.R:247 corrected_lists <- c(five _mn_f ids)",
+      "verified": true
+     },
+     {
+      "claim": "Git-ignored files of the F variant: 8 cached fits 06_diagnostics/dml_sensitivity/cache/fit_*_mn_f_*.rds (49 MB) and in test_subset/ 8 cached fits plus 8 dml_*_mn_f_*.csv",
+      "evidence": "find . -iname '*mn_f*'; du -ch cache/*mn_f*; .gitignore:13 06_diagnostics/*/cache/",
+      "verified": true
+     },
+     {
+      "claim": "Output tables with F rows or columns: analyses.csv (rows 4,5,9,13,15; columns test, reference_distribution, figure_label; rows 6-7 text), dml_counts.csv (8 rows), interaction_vs_shared_legacy.csv and _corrected.csv (6 rows each, A2_interaction_mn_f), permutation_reference.csv (column 'analyses' lists _mn_f ids in 8 rows; counts need no model)",
+      "evidence": "cat of these files; hits.csv class 'DML model F test, named explicitly'",
+      "verified": true
+     },
+     {
+      "claim": "Only one figure shows the F variant: 06_diagnostics/dml_sensitivity/figure_dml_sensitivity.png/.pdf (bars labelled 'A1: all libraries; MN, F test', 'A2: ...; MN, F test', 'A4: controls only; MN, F test', 'A4: heat-treated only; MN, F test'); drawn by dml_sensitivity.R:1068-1110 from dml_counts with labels built at line 451-452",
+      "evidence": "pdftotext of all 43 tracked PDFs; only this one has an F-test label",
+      "verified": true
+     },
+     {
+      "claim": "library_methylation_level.R part 8 reads only the F lists: lines 55-57, 73 (header), 247 (corrected_lists), 411-415, 536",
+      "evidence": "06_diagnostics/library_methylation_level.R lines as listed",
+      "verified": true
+     },
+     {
+      "claim": "manuscript_values_map.csv rows D4.3-016 (line 476), D4.9-008 (527), D4.9-010 (529), D4.9-014 (533) cite scratch-test p-values 'once the variation among libraries is allowed for (F test; I-06)'; copied by step 13 into 05_manuscript/manuscript_values.csv same lines; no repository script computes these values",
+      "evidence": "csv scan of the note column; git grep 'scratch test|quasibinomial' finds no script",
+      "verified": true
+     },
+     {
+      "claim": "session_handoff.md:97 states that the F test results of the diagnostic (2 and 16) 'stay where they are', which contradicts the later instruction to remove every mention",
+      "evidence": "07_documentation/session_handoff.md line 97",
+      "verified": true
+     },
+     {
+      "claim": "ANOVA and other F statistics, the paper's results that must not be removed: 191 lines in 17 files, among them 01_pipeline/03_global_methylation.R (8), 01_pipeline/12_qpcr.R (27), 05_manuscript/manuscript_values.csv and its map (22 each, rows R3.1-016 to R3.1-035 etc.), 03_input_files/qpcr/legacy/dct_analysis_NA-to-45_COX1convert.md (45), 04_output/03_global_methylation/tables/anova_by_scale.csv (F_sequential, F_type2), 04_output/12_qpcr/tables/qpcr_anova_legacy.csv and qpcr_cox1.csv (F_value), 06_diagnostics/check_legacy_outputs.R:45,52-53, legacy_check_results.csv rows 6-7, 07_documentation/audit/elisa_qpcr_audit.md (34), issues.md lines 106, 682, 1051, 1078, 1187, 1204",
+      "evidence": "hits.csv class 'analysis of variance of the draft or another F statistic'",
+      "verified": true
+     },
+     {
+      "claim": "Agent records: 301 lines naming the F test or an _mn_f id in 55 files; the largest are results/check-sensitivity-text.json (47), scripts/scope-author-changes.js (22), results/build-dml-sensitivity.json (15), verification_scripts/S4-updates-and-cross-file/03_group_apart.log (11), S1-I06-numbers-and-reading/06_sample_and_parity.R and 10_combine_relabel.R (10 each)",
+      "evidence": "agent_records_F_mentions.csv in the scratch directory",
+      "verified": true
+     },
+     {
+      "claim": "Agent-record classes come from rules only, not from a line-by-line reading, apart from a check of 25 lines in low-count files that moved 2 ANOVA lines (06_figure1b_dedup.R, 10_followups.R) to the ANOVA class",
+      "evidence": "hits.csv column class_reviewed",
+      "verified": true
+     },
+     {
+      "claim": "The repository changed once while I read: commit 435f971 touched only 07_documentation/agent_workflows/results/scope-author-changes.json, and the search was re-run on the current tree",
+      "evidence": "git log, git show --stat 435f971",
+      "verified": true
+     }
+    ],
+    "recommendation": "Code to change:\n- 06_diagnostics/dml_sensitivity.R:\n  - Remove the five _mn_f registry entries (lines 384-387, 394-395, 402-403, 406-407).\n  - Restrict the allowed test to \"Chisq\" (line 425).\n  - Simplify the label at line 452, reference_distribution at 457-459 and the qf branch at 997-999.\n  - Reword the header (lines 13-17, 32, 95-122, 170-179) and the chi-squared question texts (lines 388, 390).\n- 06_diagnostics/library_methylation_level.R part 8 (lines 55-57, 73, 247, 411-415, 536): retarget it to dml_A1_*_mn_chisq_legacy.csv or drop it.\n\nOutputs:\n- Delete the 8 tracked dml_*_mn_f_*.csv files, the 8 cached fits under cache/ and the test_subset copies.\n- Delete or regenerate corrected_dml_library_values.csv and corrected_dml_group_apart.csv.\n- Regenerate (or filter rows of) analyses.csv, dml_counts.csv, interaction_vs_shared_{legacy,corrected}.csv and the analyses column of permutation_reference.csv, then redraw figure_dml_sensitivity.png/.pdf.\n\nText to edit:\n- issues.md:\n  - I-06 lines 289-369: the benchmark paragraphs 299-302, and items 2, 3, 4, 6 and 7, with their tables at 313-319 and 327-337.\n  - \"What follows\" lines 356-358, Option 1 line 361 and the decision at 369.\n  - I-01 lines 122-123, I-02 lines 167-168, I-07 line 395, I-08 line 418, I-49 item 7 line 1111.\n  - Corrections-table rows 1191, 1197, 1199, 1202, 1211, 1213, 1225; summary row 39; log line 24.\n- README.md:13.\n- 06_diagnostics/README.md lines 11, 15, 83-89, 111-112, 124-143 and 161.\n- reproducibility_plan.md 114, 141, 153 (and the decision records 164, 166, 169).\n- session_handoff.md 40, 53, 71, 95, 97.\n- manuscript_values_map.csv rows D4.3-016, D4.9-008, D4.9-010, D4.9-014. Then rerun step 13 so that 05_manuscript/manuscript_values.csv follows.\n\nLeave alone the 191 ANOVA and F-statistic lines and all of 07_documentation/agent_workflows/.\n\nWhere a statement rests on an F result that has no chi-squared counterpart, withdraw it or recompute it with test = \"Chisq\". This covers A2, A4, corrected mode, and the relabelling numbers taken from the S1 logs.",
+    "open_points": [
+     "No chi-squared fit exists for A2_interaction, A4_ploidy_in_control, A4_ploidy_in_heat, or for A1 in corrected mode. Removing the F variant removes these corrected-model results unless up to 6 new chi-squared fits are run; the script header estimates 5 to 13 minutes per fit. Whether to run them is the author's call.",
+     "Many issues.md I-06 numbers obtained under the F test come from relabelling runs in 07_documentation/agent_workflows/verification_scripts/S1-I06-numbers-and-reading/: 5.6%, 1.2% and 0.14% of p-values below 0.05, 0.01 and 0.001; 3.5% to 9.3% below 0.05; medians of 0, 2 and 10 corrected calls; 782 (75%) of the 1,038 with corrected p below 0.05. Those records stay as they are, so these statements must be withdrawn or recomputed by new code outside the records. To decide: withdraw or recompute.",
+     "The literature passages describe the F test as part of the cited benchmark (Wreczycka et al. 2017): issues.md 299-302, 1213 and 1225, and dml_sensitivity.R 106-122. The methylKit help text quoted at issues.md line 302 says the function switches to the F test. A literal 'remove all mention' covers these; whether the description of a cited paper stays is the author's decision.",
+     "The decision records quote the instruction itself (reproducibility_plan.md 164, 166, 169; session_handoff.md 71, 95, 97; issues.md 369). Removing the words 'F test' from them would erase the record of the instruction. The author's call.",
+     "The four manuscript_values_map.csv rows cite scratch quasi-binomial F-test p-values that no repository script produces. To decide: recompute with the chi-squared reference or drop the sentence.",
+     "session_handoff.md:97 says the F results (2 and 16) stay where they are, which conflicts with 'remove all mention'. It needs updating once the author's reading is settled.",
+     "Not checked: the xls and xlsx workbooks (all ELISA, qPCR or metadata inputs), the rendered PNG figures (their generating code was checked instead), and the git-ignored logs of earlier runs.",
+     "The 1,319 agent-record lines and the data-table rows (331 lines outside the records) were classified by rule only (column class_reviewed). Text and code files were reviewed line by line."
+    ],
+    "risks": [
+     "Removing the F rows of dml_counts.csv also removes the only corrected-model counts for the interaction and the within-cohort contrasts. I-02, I-07 and I-49 then lose their supporting numbers (2 interaction CpGs, 2 control CpGs, 125 heat-cohort CpGs) unless chi-squared fits are added.",
+     "The search patterns can miss a prose sentence that rests on an F result without any keyword. I read the I-06 section and the sensitivity sections of 06_diagnostics/README.md in full and added 18 such lines by hand (issues.md 315-319, 329-337, 347; README 124, 130-134). Other sections were read only around the hits.",
+     "Another workflow is editing the repository. Line numbers in hits.csv are those of commit 435f971 plus the clean working tree at 01:16 UTC and may shift after the hardening pass.",
+     "An over-broad cleanup could remove ANOVA F statistics, which are results of the paper. These are listed separately (191 lines). The 'F(1)' in a GO term name and the ontology code 'F' are unrelated."
+    ],
+    "files_written": [
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/F1-terms/hits.csv",
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/F1-terms/summary_by_file_class.csv",
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/F1-terms/agent_records_F_mentions.csv",
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/F1-terms/raw_hits.json",
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/F1-terms/auto.json",
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/F1-terms/code/search.py",
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/F1-terms/code/autoclass.py",
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/F1-terms/code/finalize.py",
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/F1-terms/code/agent_summary.py"
+    ]
+   }
+  },
+  {
+   "agent": "design:smallest-change",
+   "phase": "Settings design",
+   "result": {
+    "summary": "Design D1 is written to /tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/D1-design/design.md. It turns on optional analyses by extending the present mode vector and the mode tag in file names.\n\nHow it works:\n- run_config.R gets six toggles, all FALSE: optional$corrected, coverage_5x, overdispersion, exclude_ct_variants, go_gene_level, diagnostics. It also gets optional_min_coverage = 5.\n- config$modes is no longer typed by hand. It is derived and always starts with \"legacy\". Optional tags take the form <reading>[_5x][_mn_chisq][_ctexcl].\n- The 37 config$modes loops in 01_pipeline keep working without edits. Only about 33 code places in 13 files change, plus a new helper file (02_R_functions/analyses.R), a new variant step (04b) and the docs.\n- One rule protects the paper's files: no toggle changes them, and every table that holds rows of several analyses is split per analysis (the untagged name keeps the legacy rows; optional ones get a _<tag> twin). The cost is a one-time byte change: today's tables of that kind lose their corrected rows. The legacy rows keep their bytes.\n\nNumbers checked in the repository:\n- CpGs at 5x: 2,297,236 (legacy) and 2,265,759 (corrected), against 480,579 and 454,555 at 10x. That is 4.78 times as many.\n- Rows held per library during the import grow 1.49 times (7,520,025 against 5,054,063 in zr3534_1).\n- A 5x analysis in step 05 is estimated at 85 to 90 minutes at 2 cores and about 45 minutes at 4 cores.\n- Memory is estimated at 6 to 8 GB for the import and 9 to 14 GB for the fits at 2 cores. This is not measured and must not run alongside the other workflow.\n- The MN fit with the chi-squared test was not slower than the default model: 6.5 against 9.96 minutes for the heat contrast at 10x in the sensitivity cache.\n- At 5x the per-CpG tables would be about 107 MB (united) and 71 MB (each diffmeth file), too large to commit.\n\nTwo hazards found in the code:\n- 22 legacy expressions of the manuscript values map read config$min_coverage. Setting 5x by changing min_coverage would change the paper's values in step 13.\n- Step 08 writes the paper's dml_go_annotation_<set>_legacy.tsv.gz whenever mode == \"legacy\". If the code tested the reading instead of the exact tag, a legacy_5x run would overwrite those files.",
+    "facts": [
+     {
+      "claim": "run_config.R sets modes = c(\"legacy\", \"corrected\") as the default; the checks put legacy first and allow only these two values",
+      "evidence": "run_config.R line 40; checks block line 210 'all_modes <- c(\"legacy\", \"corrected\")' (read 01:21 UTC)",
+      "verified": true
+     },
+     {
+      "claim": "run_pipeline.R accepts only --list, --help or exactly '--steps <selection>', finds steps with pattern ^[0-9]{2}_.*\\.R$, refuses duplicate step numbers, and skips steps 9, 10, 11, 13 when legacy is absent",
+      "evidence": "run_pipeline.R lines 34-44 (pattern, duplicates), 57-61 (argument rule), 79-84 (needs_legacy <- c(9L, 10L, 11L, 13L))",
+      "verified": true
+     },
+     {
+      "claim": "Code that reads the value of a mode (rather than only putting it in a file name) is limited to: step 04 lines 150-151 and 207-208, coverage_io.R first_line_lost(), methylkit_helpers.R read_filtered_counts(), step 08 line 177 (mode == \"legacy\"), step 10 lines 170 and 209, step 13 lines 79 and 166",
+      "evidence": "grep '== \"legacy\"|== \"corrected\"|%in% config$modes|first_line_lost(' over 01_pipeline, 02_R_functions, run_config.R, run_pipeline.R",
+      "verified": true
+     },
+     {
+      "claim": "config$modes appears in 37 lines of 01_pipeline, 4 of logging.R, 4 of run_pipeline.R and 31 lines in 6 diagnostics scripts",
+      "evidence": "grep -rn 'config$modes' --include=*.R, counted by file",
+      "verified": true
+     },
+     {
+      "claim": "22 legacy expressions of manuscript_values_map.csv read config$min_coverage, and 5 read config$coverage_levels; the map has 545 rows, 263 of them with a corrected expression",
+      "evidence": "python -I regex count over 03_input_files/manuscript/manuscript_values_map.csv (for example R3.1-042 to R3.1-050, R3.2-003)",
+      "verified": true
+     },
+     {
+      "claim": "15 legacy expressions read committed diagnostic tables: fastq_read_names.csv (2) and table1_group_means.csv (13); 14 corrected expressions read dml_sensitivity tables",
+      "evidence": "same regex count of diagnostic(\"...\") calls in the values map",
+      "verified": true
+     },
+     {
+      "claim": "CpGs with at least 5 reads in all 22 libraries: 2,297,236 (legacy) and 2,265,759 (corrected); at 10x: 480,579 and 454,555",
+      "evidence": "04_output/04_cpg_coverage/tables/cpg_counts_by_coverage.csv lines 4, 5, 29, 30",
+      "verified": true
+     },
+     {
+      "claim": "In library zr3534_1, 7,520,025 rows have at least 5 reads and 5,054,063 at least 10 (the latter equals n_cpg_min_coverage in library_filtering_legacy.csv)",
+      "evidence": "awk over /home/user/gannet_cache/cov_files/zr3534_1_R1.CpG_report.merged_CpG_evidence.cov (single file, read only); library_filtering_legacy.csv row zr3534_1",
+      "verified": true
+     },
+     {
+      "claim": "MN with the chi-squared test was not slower than the default model at 10x: heat contrast 6.5 min with MN against 9.96 min without; ploidy without MN 8.18 min",
+      "evidence": "minutes field of 06_diagnostics/dml_sensitivity/cache/fit_A1_heat_mn_chisq_legacy.rds, fit_A0_heat_legacy.rds, fit_A0_ploidy_legacy.rds, read with Rscript --vanilla readRDS",
+      "verified": true
+     },
+     {
+      "claim": "Under MN with the chi-squared test at 10x in legacy mode there are 14 ploidy DML and 185 heat DML",
+      "evidence": "06_diagnostics/dml_sensitivity/dml_counts.csv rows A1_ploidy_mn_chisq and A1_heat_mn_chisq (legacy)",
+      "verified": true
+     },
+     {
+      "claim": "Step 05 caches each fit as cache/methylkit_<mode>.rds. The fingerprint has six parts (mode, coverage_settings, sample_sheet, coverage_files, methylKit_version, fitting_code); the fitting code is compared as R parses it, so any edit to fit_mode or read_filtered_counts forces a refit",
+      "evidence": "01_pipeline/05_differential_methylation.R fit_fingerprint() and cached_fit()",
+      "verified": true
+     },
+     {
+      "claim": "Without overdispersion the methylKit test argument has no effect, yet the A0 refit in the sensitivity analysis differs from step 05 by up to 5.27e-15 relative in p-values",
+      "evidence": "06_diagnostics/dml_sensitivity.R header lines 89-94; equivalence_with_step05.csv largest_relative_difference_pvalue 5.26856481861504e-15",
+      "verified": true
+     },
+     {
+      "claim": "Tables that hold rows of several modes: step 04 cpg_counts_by_coverage, cpg_counts_by_feature_track, methylation_distribution_by_library, methylation_distribution_by_group, library_correlation_summary, pca_variance; step 05 dml_counts_by_mode.csv; step 08 annotation_summary.csv; step 10 summary tables; step 11 semantic_summary.csv (gene-level row 14), semantic_terms_dropped.csv, named_terms_results_3_4.csv (gene_level_* columns); step 13 manuscript_values.csv (corrected columns)",
+      "evidence": "write_table calls in each step; dml_counts_by_mode.csv and annotation_summary.csv contents; semantic_summary.csv line 14 '\"gene level, q < 0.05\",all,all'",
+      "verified": true
+     },
+     {
+      "claim": "Step 11 requires step 10's go_enriched_terms.csv and go_gene_level_<set>_legacy.csv before it starts and stops if they are missing",
+      "evidence": "01_pipeline/11_semantic_similarity.R lines 197-210 (read 01:26 UTC; the file showed as modified by the hardening pass at 01:29)",
+      "verified": true
+     },
+     {
+      "claim": "Step 08 writes the paper's ten-column tables dml_go_annotation_<set>_legacy.tsv.gz only if mode == \"legacy\"",
+      "evidence": "01_pipeline/08_gene_annotation.R line 177 and the gzfile(sprintf(\"dml_go_annotation_%s_legacy.tsv.gz\", set)) call",
+      "verified": true
+     },
+     {
+      "claim": "44 committed files under 04_output carry 'corrected' in their name",
+      "evidence": "git ls-files 04_output | grep -c corrected",
+      "verified": true
+     },
+     {
+      "claim": "The items map has 16 corrected, 46 legacy, 3 'both' and 2 empty-analysis rows; step-10 items are copied to 05_manuscript/figures/legacy/GO_bias_by_CpG_count.* and supplement/GO_*.csv",
+      "evidence": "python -I over 03_input_files/manuscript/manuscript_items_map.csv; git ls-files 05_manuscript",
+      "verified": true
+     },
+     {
+      "claim": "Step 01 downloads every row of gannet_manifest.csv and takes the md5 of every file under 03_input_files into input_inventory.csv, so adding BAM rows there would make the default run download them",
+      "evidence": "01_pipeline/01_fetch_inputs.R lines 46-58",
+      "verified": true
+     },
+     {
+      "claim": "dml_sensitivity.R stops when an analysis in its registry lists a mode that is not in config$modes, and logs (does not delete) files it did not write",
+      "evidence": "06_diagnostics/dml_sensitivity.R line 430 (bad() call) and lines 1057-1061",
+      "verified": true
+     },
+     {
+      "claim": "united_cpg_legacy.csv.gz is 22,333,493 bytes, each legacy diffmeth file about 14.5 to 14.8 MB, and the legacy fit cache 50,906,012 bytes",
+      "evidence": "ls -la of 04_output/05_differential_methylation/tables and cache",
+      "verified": true
+     },
+     {
+      "claim": "Renumbering steps 05 to 13 would touch about 1,290 lines (242 for 05_differential_methylation alone)",
+      "evidence": "git grep -c per folder name, excluding 07_documentation/agent_workflows and 08_archive",
+      "verified": true
+     },
+     {
+      "claim": "Run time and memory figures for a 5x analysis in design.md section 6 are estimates scaled from the 10x numbers, not measurements",
+      "evidence": "scaling by 4.78 (CpGs) and 1.49 (rows held during the import); no pilot was run",
+      "verified": false
+     }
+    ],
+    "recommendation": "Keep config$modes as the loop variable, but derive it in run_config.R from six toggles that are all FALSE by default: optional = list(corrected, coverage_5x, overdispersion, exclude_ct_variants, go_gene_level, diagnostics), plus optional_min_coverage = 5. Leave min_coverage = 10 untouched.\n\nThe run's analyses are \"legacy\" (always, first) plus one analysis per reading (legacy, and corrected when that toggle is on). The 5x, MN-with-chi-squared and variant-exclusion toggles together set the suffix of those analyses: <reading>[_5x][_mn_chisq][_ctexcl].\n\nrun_pipeline.R gets the flags --corrected, --coverage-5x, --overdispersion, --exclude-ct-variants, --go-gene-level and --diagnostics. It passes them to every step in WGBS_OPTIONAL and gates the optional steps: 04b only with the exclusion, 10 only with gene-level GO, diagnostics after 13 only with --diagnostics, which also turns on corrected and gene-level GO.\n\nRules for the outputs:\n- No toggle changes the bytes of a paper output.\n- A table that today holds rows of several modes keeps its name for the legacy rows. Each optional analysis writes a `_<tag>` twin.\n- Step 11's gene-level parts go to their own files, written only with gene-level GO on.\n- Step 13 writes its corrected values to manuscript_values_corrected.csv, with \"not run\" when the analysis is off or its tables are absent.\n\nStep 05:\n- Each fit is cached in methylkit_<fit_tag>.rds, and the fingerprint gains a model part.\n- The paper's calculateDiffMeth() call stays literally unchanged; overdispersion = \"MN\", test = \"Chisq\" is added only for MN analyses.\n- The variant exclusion is applied after the fit, as Venkataraman et al. did, so it needs no new fit.\n- The variant loci come from a lettered step, 01_pipeline/04b_ct_variant_loci.R.\n\nExisting corrected and step-10 outputs keep their names. Run once with --corrected --go-gene-level, then the default run, and commit both. Check the result with tests T1 to T5 in design.md: expected bytes of the default run, the one-time refit, toggle invariance, reproduction of the committed corrected files, and a unit test over all 64 toggle combinations.",
+    "open_points": [
+     "With corrected and any of 5x, MN or the exclusion on, should the plain 10x corrected analysis also run? In this design it does not, so step 13's corrected values are 'not run' in such a run.",
+     "Venkataraman et al. also removed variant CpGs from the 5x CpG sets of their global description. Applying the exclusion in step 04 would need the variant step before 04 (number it 03b instead of 04b).",
+     "Variant step: a lettered step 04b (about 15 more lines in run_pipeline.R) or a helper called inside step 05. Renumbering would touch about 1,290 lines.",
+     "Step 13's legacy values read two committed diagnostic tables (fastq_read_names.csv, table1_group_means.csv; 15 expressions) that the default run does not regenerate. Should these move into a pipeline step?",
+     "The 5x per-CpG tables (about 71 to 107 MB) cannot be committed under the 50 MB rule; the proposal is a .gitignore pattern.",
+     "Memory of a 5x step 05 is estimated only (6 to 8 GB import, 9 to 14 GB fits at 2 cores). A pilot with /usr/bin/time -v at WGBS_CORES=1 is needed, on a machine not shared with the hardening pass.",
+     "Step 10's two comparison tables (go_terms_by_analysis.csv, legacy_top10_at_gene_level.csv) cover only the analyses of the run that wrote them. Build them from all per-analysis files on disk instead?",
+     "The one-time byte changes of paper files (corrected rows and columns removed from tables that hold several modes and from step 13, the gene-level parts of step 11, input_inventory.csv) follow from the standing rule. The author may want to see them listed before the commit.",
+     "01_pipeline/11_semantic_similarity.R was being edited by the hardening pass while I read it (modified at 01:29 UTC). Its line numbers in the design may have moved."
+    ],
+    "files_written": [
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/D1-design/design.md"
+    ],
+    "risks": [
+     "R1: making 5x the standard by changing config$min_coverage would change 22 legacy values of step 13, plus step 04 and step 05 outputs.",
+     "R2: a cache reused across models or coverages. Prevented by cache file names per fit tag and a model part in the fingerprint.",
+     "R3: passing test = 'Chisq' in the paper's call could move p-values at the 1e-15 level, which shows at 15 significant digits. Keep the call unchanged.",
+     "R4: 5x rows mixed into a paper table would change its row order. They go to tagged files instead.",
+     "R5: if a test on the reading replaced the exact tag test in step 08, a legacy_5x run would overwrite dml_go_annotation_<set>_legacy.tsv.gz.",
+     "R7: step 13 could read stale committed corrected files when corrected is off. It must evaluate only analyses of the current run.",
+     "R8: editing fit_mode forces a one-time refit of the paper model (about 18 minutes per mode at 2 cores), whose bytes must be confirmed.",
+     "R10: a WGBS_OPTIONAL left exported in a shell would turn on options silently. Print the toggles in every banner and at the start and end of the run.",
+     "R11: under the new default, dml_sensitivity.R stops (line 430) and five other diagnostics write fewer rows, unless they use a fixed pair of readings.",
+     "A 5x step 05 may exceed the memory left by the other workflow (15 GB machine).",
+     "The step 06 heat maps cluster every DML, so a much larger 5x DML set raises their memory use quadratically."
     ]
    }
   }
