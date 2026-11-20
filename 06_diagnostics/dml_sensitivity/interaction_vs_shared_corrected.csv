@@ -5,9 +5,9 @@ A2_interaction,corrected,"in both primary lists, opposite",83,29,28,0.3493975903
 A2_interaction,corrected,"in both primary lists, all classes",159,59,58,0.371069182389937,0.364779874213836,0.01,20,all tested CpGs
 A2_interaction,corrected,not in both primary lists,454396,19416,16199,0.0427292493771952,0.0356495215626898,0.01,20,all tested CpGs
 A2_interaction,corrected,all tested CpGs,454555,19475,16257,0.0428441002738943,0.0357646489423722,0.01,20,all tested CpGs
-A2_interaction_mn_f,corrected,"in both primary lists, both_hyper",27,0,0,0,0,0.01,20,all tested CpGs
-A2_interaction_mn_f,corrected,"in both primary lists, both_hypo",49,0,0,0,0,0.01,20,all tested CpGs
-A2_interaction_mn_f,corrected,"in both primary lists, opposite",83,0,0,0,0,0.01,20,all tested CpGs
-A2_interaction_mn_f,corrected,"in both primary lists, all classes",159,0,0,0,0,0.01,20,all tested CpGs
-A2_interaction_mn_f,corrected,not in both primary lists,454396,4,2,8.80289439167598e-06,4.40144719583799e-06,0.01,20,all tested CpGs
-A2_interaction_mn_f,corrected,all tested CpGs,454555,4,2,8.79981520388072e-06,4.39990760194036e-06,0.01,20,all tested CpGs
+A2_interaction_mn_chisq,corrected,"in both primary lists, both_hyper",27,0,0,0,0,0.01,20,all tested CpGs
+A2_interaction_mn_chisq,corrected,"in both primary lists, both_hypo",49,0,0,0,0,0.01,20,all tested CpGs
+A2_interaction_mn_chisq,corrected,"in both primary lists, opposite",83,0,0,0,0,0.01,20,all tested CpGs
+A2_interaction_mn_chisq,corrected,"in both primary lists, all classes",159,0,0,0,0,0.01,20,all tested CpGs
+A2_interaction_mn_chisq,corrected,not in both primary lists,454396,259,231,0.00056998741186102,0.000508367151119288,0.01,20,all tested CpGs
+A2_interaction_mn_chisq,corrected,all tested CpGs,454555,259,231,0.000569788034451277,0.000508189328024112,0.01,20,all tested CpGs

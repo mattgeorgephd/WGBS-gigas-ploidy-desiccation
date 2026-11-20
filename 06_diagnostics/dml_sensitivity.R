@@ -106,11 +106,17 @@
 #             Differences in percent methylation do not depend on these options.
 #           - The test. The correction is fitted with the chi-squared test only
 #             (decision of the author, 2026-11-20), the setting of Venkataraman
-#             et al. 2022 (BMC Genomics 23:556). Under relabelled ploidy labels
-#             it does not hold its level on these libraries (issues.md, I-06,
-#             item 4; 06_diagnostics/dml_relabelling.R), and where the
-#             dispersion estimate is not above 1 the correction is not applied
-#             (item 7).
+#             et al. 2022 (BMC Genomics 23:556). In the benchmark of Wreczycka
+#             et al. 2017 (Journal of Biotechnology 261:105-115,
+#             doi:10.1016/j.jbiotec.2017.08.007), the default test without the
+#             correction had the lowest specificity and the best overall
+#             accuracy, and the chi-squared test with the correction is named
+#             as a good compromise between stringent and relaxed methods; their
+#             simulation had three samples per group. Under relabelled ploidy
+#             labels the chi-squared test with the correction does not hold its
+#             level on these libraries (issues.md, I-06, items 2 and 4;
+#             06_diagnostics/dml_corrected_test.R), and where the dispersion
+#             estimate is not above 1 the correction is not applied (item 7).
 #           - q-values are SLIM q-values (Wang, Tuominen and Tsai 2011,
 #             Bioinformatics 27:225-231, doi:10.1093/bioinformatics/btq650),
 #             computed within each analysis. SLIM estimates the share of true

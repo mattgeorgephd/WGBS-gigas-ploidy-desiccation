@@ -657,7 +657,11 @@ ct_main <- function(args = commandArgs(trailingOnly = TRUE)) {
       log_msg("%s: cached counts were made with other settings; counting again", l)
       unlink(file.path(lib_dir, c("counts", "done.rds")), recursive = TRUE)
     }
-    if (file.exists(done)) { log_msg("%s: finished earlier (cache)", l); next }
+    if (file.exists(done)) {
+      left <- file.path(aln_dir, c(bam_rows[library_id == l, file], bai_rows[library_id == l, file]))
+      if (!keep_bam && any(file.exists(left))) unlink(c(left, paste0(left[1], ".verified.rds")))
+      log_msg("%s: finished earlier (cache)", l); next
+    }
     saveRDS(settings, sf)
     t0 <- Sys.time()
     fi <- ct_fetch_alignment(bam_rows[library_id == l], bai_rows[library_id == l], aln_dir, ctv)

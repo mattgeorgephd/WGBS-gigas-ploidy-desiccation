@@ -80,13 +80,13 @@ Random CpGs are "enriched" for dozens to hundreds of terms against the tested un
 | Analysis | What it changes | Issues |
 |---|---|---|
 | A0 | Nothing: ploidy with heat as covariate and heat with ploidy as covariate, as in step 05. It is fitted first, and the script stops unless it reproduces the p-values, q-values, both DML lists, and the loci in both lists of step 05 | |
-| A1 | Overdispersion correction (`overdispersion = "MN"`), once with the F test and once with the chi-squared test | I-06 |
+| A1 | Overdispersion correction (`overdispersion = "MN"`, `test = "Chisq"`, the setting of Venkataraman et al. 2022) | I-06 |
 | A2 | A tested ploidy by heat interaction, without and with the correction, set against the loci in both primary lists. Because heat is confounded with cohort, it is a ploidy by cohort interaction | I-02, I-01 |
 | A3 | Both contrasts without the heat libraries that also had the acute heat shock | I-04 |
 | A4 | Ploidy among the controls alone and among the heat-treated libraries alone, without and with the correction | I-07, I-01 |
 | A5 | Heat against control among diploids alone and among triploids alone. Still a contrast between cohorts | I-01 |
 
-All analyses run in `legacy` mode. A0, A1 with the F test, and A2 also run in `corrected` mode (I-05).
+All analyses run in `legacy` mode. A0, A1 and A2 also run in `corrected` mode (I-05).
 
 Files in `dml_sensitivity/`. Every CSV has a column `run_scope` that says whether it comes from a full run or a test run.
 
@@ -121,17 +121,17 @@ The analyses of this script are tests of single CpGs with the variation among an
 
 ## Result of the sensitivity analyses
 
-Full run of 2026-11-19 (22 fits; 16 in legacy mode, 6 in corrected mode; A0 reproduces step 05 exactly in both). The reading is in `issues.md`, I-06, with the consequences for the interaction (I-02), the acute heat shock libraries (I-04), the control-only contrast (I-07) and the confound (I-01). In short, legacy mode, with corrected mode in parentheses where it was run:
+Full run of 2026-11-19 (22 fits; 16 in legacy mode, 6 in corrected mode; A0 reproduces step 05 exactly in both). Run again on 2026-11-20, when the correction became the chi-squared test only (decision of the author): six fits with the correction were made new, the other 16 came from the cache. The reading is in `issues.md`, I-06, with the consequences for the interaction (I-02), the acute heat shock libraries (I-04), the control-only contrast (I-07) and the confound (I-01). In short, legacy mode, with corrected mode in parentheses where it was run:
 
-| Analysis | Libraries | DML, uncorrected | DML with the correction, F test | Share of eligible CpGs with p < 0.05, uncorrected and corrected |
+| Analysis | Libraries | DML, uncorrected | DML with the correction (chi-squared test) | Share of eligible CpGs with p < 0.05, uncorrected and corrected |
 |---|---|---|---|---|
-| Ploidy, heat as covariate (the draft) | 22 | 1,038 (952) | 2 (2); 14 with the chi-squared test | 33% and 5.7% |
-| Heat, ploidy as covariate (the draft) | 22 | 2,351 (2,273) | 16 (6); 185 with the chi-squared test | 43% and 11% |
-| Ploidy by heat interaction | 22 | 16,971 (16,257) | 2 (2) | 50% and 20% |
+| Ploidy, heat as covariate (the draft) | 22 | 1,038 (952) | 14 (14) | 33% and 7.3% |
+| Heat, ploidy as covariate (the draft) | 22 | 2,351 (2,273) | 185 (157) | 43% and 13% |
+| Ploidy by heat interaction | 22 | 16,971 (16,257) | 242 (231) | 50% and 23% |
 | Ploidy without the acute heat shock libraries | 18 | 1,202 | not run | 30% |
 | Heat without the acute heat shock libraries | 18 | 3,545 | not run | 39% |
-| Ploidy among the controls | 12 | 2,768 | 2 | 37% and 6.7% |
-| Ploidy among the heat-treated | 10 | 12,405 | 125 | 50% and 18% |
+| Ploidy among the controls | 12 | 2,768 | 10 | 37% and 10% |
+| Ploidy among the heat-treated | 10 | 12,405 | 1,093 | 50% and 25% |
 | Heat among the diploids | 11 | 12,487 | not run | 49% |
 | Heat among the triploids | 11 | 6,632 | not run | 46% |
 
