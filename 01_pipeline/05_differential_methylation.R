@@ -104,8 +104,8 @@
 #           - One fit (the paper's, or one optional analysis) took 22 minutes at
 #             WGBS_CORES=2 on 2026-11-20 (two contrasts of about 10 minutes
 #             each), with a peak of about 9.9 GB summed over the R process and
-#             its two workers (shared pages counted in each); about 9 minutes
-#             at WGBS_CORES=4. The import needs about 4 GB. Each library's kept
+#             its two workers (shared pages counted in each); an estimated 11
+#             minutes at WGBS_CORES=4. The import needs about 4 GB. Each library's kept
 #             CpGs are dropped as soon as its object is built, and the heat
 #             object is built after the ploidy test; neither changes a number.
 #           - A fit is kept in the cache folder and reused only while what it
@@ -115,7 +115,7 @@
 #             the fitting code (fit_fingerprint() below). Otherwise, and when a
 #             cache file cannot be read, the analysis is fitted again; nothing has
 #             to be deleted by hand. The thresholds of step 4 are applied after
-#             the fit, so changing them does not refit. With both fits in the
+#             the fit, so changing them does not refit. With the fit in the
 #             cache the step takes about half a minute. Not part of the
 #             fingerprint: the version of R and of every package other than
 #             methylKit (stats::glm.fit runs inside the tests, data.table reads
