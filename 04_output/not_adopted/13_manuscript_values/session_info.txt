@@ -1,5 +1,5 @@
 Step: 13_manuscript_values
-Finished: 2026-11-20 19:22:01 UTC
+Finished: 2026-11-20 19:51:06 UTC
 
 R version 4.3.3 (2024-02-29)
 Platform: x86_64-pc-linux-gnu (64-bit)
@@ -22,5 +22,5 @@ other attached packages:
 [1] data.table_1.14.10 here_1.0.1        
 
 loaded via a namespace (and not attached):
-[1] compiler_4.3.3    rprojroot_2.0.4   R.methodsS3_1.8.2 R.utils_2.12.3   
-[5] R.oo_1.26.0      
+[1] compiler_4.3.3    rprojroot_2.0.4   tools_4.3.3       R.methodsS3_1.8.2
+[5] R.utils_2.12.3    R.oo_1.26.0      
