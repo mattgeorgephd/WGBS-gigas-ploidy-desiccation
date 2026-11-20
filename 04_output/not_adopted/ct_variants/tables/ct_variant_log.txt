@@ -1,0 +1,38 @@
+ct_variant_loci: 2026-11-20 19:37:11 UTC
+Rule: BS-Snper as used by Venkataraman et al. 2022 (C of the CpG, plus strand; REF C, ALT T or T,G; any FILTER; pooled call of all 22 libraries plus each library). CIGAR: full.
+CpG sites screened: 13245836
+CpGs listed (pooled_all or any library): 407217 (3.07%)
+  with at least one PASS record: 311137; only Low records: 96080
+  from the pooled call: 139121; only from library calls: 268096; only from the pooled call: 3155
+CpGs called only by an experiment pool (not listed under the 2022 rule): 3797
+Assessability (evidence = Crick C + T reads at the C after the BS-Snper read filters; a library can give a CT call with at least 3):
+  CpGs with fewer than 3 pooled evidence reads: 3590424 (27.11%)
+  CpGs where no library has 3 evidence reads: 4620250 (34.88%); all 22 libraries have them: 834131 (6.30%)
+Calls by call set (C-to-T records at CpG Cs; PASS; genotypes CT/TT/GT):
+  pooled_all       139121  PASS   134722  CT   136550  TT     2518  GT     53
+  pooled_zr3534    133063  PASS   127074  CT   129542  TT     3475  GT     46
+  pooled_zr3644    132539  PASS   125710  CT   128648  TT     3838  GT     53
+  zr3534_1          62116  PASS    44476  CT    52468  TT     9619  GT     29
+  zr3534_2          61531  PASS    43897  CT    52130  TT     9358  GT     43
+  zr3534_3          63170  PASS    45496  CT    54067  TT     9065  GT     38
+  zr3534_4          61575  PASS    43685  CT    52010  TT     9518  GT     47
+  zr3534_5          65134  PASS    47688  CT    55860  TT     9224  GT     50
+  zr3534_6          63160  PASS    46383  CT    54303  TT     8823  GT     34
+  zr3534_7          58437  PASS    41231  CT    49096  TT     9304  GT     37
+  zr3534_8          69086  PASS    52640  CT    60487  TT     8553  GT     46
+  zr3534_9          62369  PASS    45724  CT    53045  TT     9293  GT     31
+  zr3534_10         63192  PASS    46947  CT    54025  TT     9127  GT     40
+  zr3644_1          50468  PASS    31652  CT    39307  TT    11137  GT     24
+  zr3644_2          52475  PASS    33799  CT    42129  TT    10325  GT     21
+  zr3644_3          40267  PASS    22590  CT    29541  TT    10692  GT     34
+  zr3644_4          48774  PASS    30725  CT    38255  TT    10482  GT     37
+  zr3644_5          45512  PASS    27504  CT    34913  TT    10570  GT     29
+  zr3644_6          52024  PASS    34538  CT    41944  TT    10047  GT     33
+  zr3644_13         52032  PASS    34601  CT    42125  TT     9877  GT     30
+  zr3644_14         40656  PASS    21273  CT    28510  TT    12122  GT     24
+  zr3644_15         55092  PASS    37765  CT    45618  TT     9437  GT     37
+  zr3644_16         49300  PASS    31626  CT    38709  TT    10559  GT     32
+  zr3644_17         53552  PASS    35250  CT    42853  TT    10664  GT     35
+  zr3644_18         51413  PASS    34131  CT    41067  TT    10304  GT     42
+Per library: see ct_variant_run.csv (bytes, md5, records, reads used, times).
+Output sizes (MB): cpgs 6.3, calls 20.1, assessability 22.8
