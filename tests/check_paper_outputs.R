@@ -47,8 +47,8 @@ if (inventory %in% expected$path) {
   old_file <- tempfile(fileext = ".csv")
   system2("git", c("show", paste0(Sys.getenv("T1_INVENTORY_BASE", "HEAD"), ":", inventory)), stdout = old_file)
   old <- fread(old_file, colClasses = "character"); new <- fread(inventory, colClasses = "character")
-  key <- names(old)[1]
-  row_text <- function(d) setNames(do.call(paste, c(d[, setdiff(names(d), key), with = FALSE], sep = "\t")), d[[key]])
+  key <- c("location", "file")
+  row_text <- function(d) setNames(do.call(paste, c(d[, setdiff(names(d), key), with = FALSE], sep = "\t")), paste(d$location, d$file))
   o <- row_text(old); n <- row_text(new)
   paths <- union(names(o), names(n))
   differs <- paths[is.na(o[paths]) | is.na(n[paths]) | o[paths] != n[paths]]

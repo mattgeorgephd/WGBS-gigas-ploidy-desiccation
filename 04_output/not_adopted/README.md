@@ -55,9 +55,11 @@ Column `mode` of every table holds the analysis id (the paper's tables keep the 
 
 | Folder | Made by | Steps |
 |---|---|---|
-| `corrected/` | the corrected mode of the pipeline before the settings layout (committed outputs moved here on 2026-11-20 with `git mv`); rebuilt by `--coverage-filter` | 04 to 08 and 10 (and 09 after a run with the switch) |
+| `corrected/` | the corrected mode of the pipeline before the settings layout (committed outputs moved here on 2026-11-20 with `git mv`); rebuilt on 2026-11-20 by `--coverage-filter` and `--coverage-filter --gene-level-go`, which gave every moved table, figure and step 10 file back byte for byte (454,555 CpGs, 952 ploidy and 2,273 heat DML, 159 in both lists), except that the eight `legacy_` columns of `annotation_summary.csv`, empty before, are now filled | 04 to 11 |
 | `legacy/` | step 10 and the gene-level part of step 11 of the paper's DML, before the settings layout (moved); rebuilt by `--gene-level-go` | 10, 11 (gene level) |
-| `comparisons/` | the tables that listed the legacy and the corrected mode side by side before the settings layout | |
+| `mnchisq/` | `--overdispersion` (and `--gene-level-go`), 2026-11-20: 480,579 CpGs tested, 14 ploidy and 185 heat DML, 4 in both lists; the two lists are exactly those of `06_diagnostics/dml_sensitivity/dml_A1_*_mn_chisq_legacy.csv`, and every locus is in the paper's lists | 04 to 11 |
+| `corrected-mnchisq/` | `--coverage-filter --overdispersion`, 2026-11-20: 454,555 CpGs tested, 14 ploidy and 157 heat DML, 4 in both lists | 04 to 09 |
+| `comparisons/` | the tables that listed the legacy and the corrected mode side by side before the settings layout, now rebuilt by every optional run from every analysis folder | |
 | `ct_variants/` | `01_pipeline/optional/ct_variant_loci.R` (see `01_pipeline/optional/README.md`) | |
 
 Other analysis folders appear when their run has been made. The first optional analysis whose fit is not cached refits in step 05 (about 18 minutes at `WGBS_CORES=4`, 37 to 45 at 2); an analysis that adds `ctexcl` to another reuses that one's fit (`methylkit_<fit id>.rds` in `04_output/05_differential_methylation/cache/`). The per-CpG tables of an analysis at 5x (`*cov5*`) are larger than the 50 MB limit of the repository and are not tracked (`.gitignore`).
