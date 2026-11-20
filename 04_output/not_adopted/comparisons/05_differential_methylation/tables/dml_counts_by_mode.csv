@@ -1,4 +1,5 @@
 mode,cpg_analysed,ploidy_dml,ploidy_hyper,ploidy_hypo,heat_dml,heat_hyper,heat_hypo,shared,shared_both_hyper,shared_both_hypo,shared_opposite
 legacy,480579,1038,442,596,2351,1150,1201,200,28,49,123
 corrected,454555,952,430,522,2273,1089,1184,159,27,49,83
+corrected-mnchisq,454555,14,9,5,157,84,73,4,1,2,1
 mnchisq,480579,14,9,5,185,95,90,4,1,2,1

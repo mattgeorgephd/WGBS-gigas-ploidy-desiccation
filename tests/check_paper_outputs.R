@@ -10,7 +10,8 @@
 # except PDFs and session_info.txt, whose time stamps change on every run.
 # 04_output/01_fetch_inputs/tables/input_inventory.csv lists the md5 of every
 # input; its rows of the two manuscript maps (rewritten by the settings layout)
-# may change, every other row must not. Also: no paper file added or removed,
+# and of README files may change, every other row must not. It is compared with
+# the commit T1_INVENTORY_BASE (default HEAD). Also: no paper file added or removed,
 # and no file of the paper run under a not_adopted/ folder changed by the run
 # (git status). Exit status 1 when anything differs.
 
@@ -40,14 +41,22 @@ if (any(!check$same)) print(check[same == FALSE, .(path)])
 if (length(added)) cat("added:", added, sep = "\n  ")
 if (length(removed)) cat("removed:", removed, sep = "\n  ")
 
-# input_inventory.csv: every row except those of the two maps
+# input_inventory.csv: every row except those of the two maps and of README files edited with the layout
 inv_ok <- TRUE
 if (inventory %in% expected$path) {
-  old <- fread(text = system2("git", c("show", paste0("HEAD:", inventory)), stdout = TRUE), colClasses = "character")
-  new <- fread(inventory, colClasses = "character")
-  maps <- function(d) d[!grepl("manuscript_(values|items)_map\\.csv$", d[[1]])]
-  inv_ok <- isTRUE(all.equal(maps(old), maps(new), check.attributes = FALSE))
-  cat(sprintf("input_inventory.csv: %d rows; rows other than the two maps %s\n", nrow(new), if (inv_ok) "unchanged" else "DIFFER"))
+  old_file <- tempfile(fileext = ".csv")
+  system2("git", c("show", paste0(Sys.getenv("T1_INVENTORY_BASE", "HEAD"), ":", inventory)), stdout = old_file)
+  old <- fread(old_file, colClasses = "character"); new <- fread(inventory, colClasses = "character")
+  key <- names(old)[1]
+  row_text <- function(d) setNames(do.call(paste, c(d[, setdiff(names(d), key), with = FALSE], sep = "\t")), d[[key]])
+  o <- row_text(old); n <- row_text(new)
+  paths <- union(names(o), names(n))
+  differs <- paths[is.na(o[paths]) | is.na(n[paths]) | o[paths] != n[paths]]
+  allowed <- grepl("manuscript_(values|items)_map\\.csv$|README\\.md$", differs)
+  inv_ok <- all(allowed)
+  cat(sprintf("input_inventory.csv: %d rows; %d rows differ from %s: %s\n", nrow(new), length(differs),
+              Sys.getenv("T1_INVENTORY_BASE", "HEAD"), paste(differs, collapse = ", ")))
+  if (!inv_ok) cat("rows that may not change:", differs[!allowed], "\n")
 }
 st <- system2("git", c("status", "--porcelain", "--", "04_output", "05_manuscript"), stdout = TRUE)
 st <- st[!grepl("session_info\\.txt$|\\.pdf$", st)]

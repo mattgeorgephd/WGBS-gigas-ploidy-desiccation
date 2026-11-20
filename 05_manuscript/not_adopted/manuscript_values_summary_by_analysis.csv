@@ -1,6 +1,7 @@
 analysis,statements_with_expression,matches,differs,not_comparable,not_run,errors,state
 legacy,263,138,125,0,0,0,evaluated
 corrected,263,102,161,0,0,0,evaluated
+corrected-mnchisq,263,48,151,8,55,1,evaluated
 cov5,263,0,0,0,263,0,analysis not run
 ctexcl,263,0,0,0,263,0,analysis not run
 mnchisq,263,62,192,8,0,1,evaluated
