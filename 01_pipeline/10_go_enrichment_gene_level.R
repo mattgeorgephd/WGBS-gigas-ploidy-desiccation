@@ -233,7 +233,9 @@ by_analysis[, set_label := factor(sets[set], levels = sets)]
 write_table(by_analysis, tab("go_terms_by_analysis.csv"))
 
 # The six tables of the analyses side by side (04_output/not_adopted/comparisons/),
-# rebuilt from every analysis folder that holds step 10, the paper's first.
+# rebuilt from every analysis folder whose stamp lists step 10, the paper's first.
+# The stamp of this analysis therefore lists step 10 from here on.
+write_stamp(an, step)
 ids <- analysis_order(c("legacy", analysis_folders()))
 rebuild_comparison(step, "go_gene_level_summary.csv")
 rebuild_comparison(step, "dml_probability_by_cpg_count.csv")
@@ -241,7 +243,7 @@ rebuild_comparison(step, "go_enriched_terms.csv", function(b) order(b$mode, b$se
 rebuild_comparison(step, "go_enriched_term_genes.csv", function(b) order(b$mode, b$set, b$ontology, b$go_id, b$gene_id, method = "radix"))
 rebuild_comparison(step, "go_terms_by_analysis.csv")
 top_files <- vapply(ids, function(id) analysis_input(id, step, "tables", "legacy_top10_at_gene_level.csv"), "")
-top_files <- top_files[file.exists(top_files)]
+top_files <- top_files[file.exists(top_files) & vapply(ids, stamp_lists_step, logical(1), step = step)]
 if (length(top_files) > 0) {
   tops <- lapply(top_files, fread)
   side <- tops[[1]]                                 # the paper's, when step 10 has run for it
@@ -284,6 +286,5 @@ for (mode_i in an$id) {
 }
 
 print(dcast(go_summary, mode + set + ontology ~ universe, value.var = c("terms_tested", "wallenius_q_below_fdr")))
-write_stamp(an, step)
 write_analyses_included()
 finish_step(step, t0)

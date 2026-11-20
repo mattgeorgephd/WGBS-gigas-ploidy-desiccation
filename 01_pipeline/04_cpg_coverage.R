@@ -17,11 +17,14 @@
 #           22 coverage files and the reference genome listed in
 #           03_input_files/gannet_manifest.csv (cache)
 #           03_input_files/genome_features/*.gz   the 13 tracks; what each holds is in the README there
-# Outputs   04_output/04_cpg_coverage/tables/ (the paper run; an optional analysis writes the
+# Outputs   04_output/04_cpg_coverage/tables/ (the paper run; an optional analysis first removes
+#           its stamp and its folders of steps 05 and later, then writes the
 #           same files, except the first two, to 04_output/not_adopted/<id>/04_cpg_coverage/,
 #           with <id> in place of "legacy" in the names, and rebuilds the six tables that list
 #           analyses side by side in 04_output/not_adopted/comparisons/04_cpg_coverage/)
-#             library_coverage.csv               per-library CpG counts, coverage, upper cutoff (paper run only)
+#             library_coverage.csv               per-library CpG counts, coverage, upper cutoff (paper run only;
+#                                                the same in every analysis except one with ctexcl, whose
+#                                                own version is not written)
 #             genome_cpg_total.csv               CpG sites in the reference, by sequence class (paper run only)
 #             cpg_counts_by_coverage.csv         counts per analysis (column mode), sample set, and threshold
 #             cpg_counts_by_feature_track.csv    the CpGs of each of those sets that overlap each
@@ -144,6 +147,12 @@ if (an$paper && config$run_kind == "optional") {
   log_msg("the analysis of this optional run is the paper's: its CpG tables are the paper's (04_output/04_cpg_coverage/); nothing to do")
   quit(save = "no", status = 0)
 }
+# An optional analysis starts its folder afresh: the stamp and the folders of
+# steps 05 and later are removed before anything is written (clear_analysis_folder(),
+# 02_R_functions/analyses.R), so no table of an earlier run outlives this one.
+removed <- clear_analysis_folder(an)
+if (length(removed)) log_msg("removed the outputs of steps %s of the analysis '%s' (they are made again from this step's outputs)",
+                             paste(substr(removed, 1, 2), collapse = ", "), an$id)
 tab <- function(name) analysis_path(an, step, "tables", name)
 standard <- c(1, an$min_coverage)                         # levels of the distributions, correlations and PCA
 variants <- if (an$ct_excluded) ct_variant_table() else NULL
@@ -196,7 +205,11 @@ for (j in seq_len(n_lib)) {
 }
 library_coverage <- merge(as.data.table(lib[, c("library_id", "cohort", "ploidy", "treatment")]),
                           rbindlist(lib_rows), by = "library_id", sort = FALSE)
-if (an$paper) write_table(library_coverage, tab("library_coverage.csv"))   # the same for every analysis: written by the paper run only
+# Written by the paper run only. It is the same for every analysis except one
+# with ctexcl, whose libraries lose the listed CpGs (n_cpg_1x, the first line,
+# the medians and cutoffs change); that version is not written, and step 13
+# reads the paper's table for every analysis.
+if (an$paper) write_table(library_coverage, tab("library_coverage.csv"))
 cutoffs <- library_coverage$upper_cutoff
 
 # Coverage and methylated-count matrices: one row per CpG seen in any library,

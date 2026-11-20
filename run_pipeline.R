@@ -20,7 +20,8 @@
 #   --exclude-ct-variants    (d) token ctexcl: CpGs at C-to-T variants removed (needs the list of
 #                                01_pipeline/optional/ct_variant_loci.R; the run refuses without it)
 #   --gene-level-go          (e) step 10 and the gene-level part of step 11, for the analysis of the run
-#   --diagnostics [all|name,...]  (f) scripts of 06_diagnostics/ (listed in 06_diagnostics/diagnostics.csv)
+#   --diagnostics [all|name,...]  (f) scripts of 06_diagnostics/ (listed in 06_diagnostics/diagnostics.csv); they
+#                                run after step 11 and before step 13 whatever --steps selects
 # Examples: --coverage-filter -> not_adopted/corrected/; --coverage 5 --overdispersion ->
 # not_adopted/cov5-mnchisq/; --gene-level-go alone -> step 10 on the paper's DML, in not_adopted/legacy/.
 #
@@ -38,7 +39,7 @@
 # command line stops the run before a step starts. The run refuses to start when
 # WGBS_ANALYSIS, WGBS_GENE_LEVEL_GO or WGBS_DIAGNOSTICS is set in its
 # environment: they choose the analysis of a step started alone, and this script
-# sets them for its steps (and unsets them at the end).
+# sets them for its steps (and unsets them when it ends, also after a failure).
 #
 # Settings are in run_config.R. They are read and checked here before the first
 # step starts, and the plan of the run is printed at the start and the run kind
@@ -160,6 +161,12 @@ diagnostics <- unique(c(o$diagnostics, opt$diagnostics))
 if ("all" %in% diagnostics) diagnostics <- "all"
 Sys.setenv(WGBS_ANALYSIS = analysis_id(tokens), WGBS_GENE_LEVEL_GO = as.character(gene_level),
            WGBS_DIAGNOSTICS = if (length(diagnostics)) paste(diagnostics, collapse = ",") else "none")
+# The three variables are unset however the rest of this script ends (a failed
+# step, a refused setting), so that a run sourced in an R session leaves none set.
+# tryCatch(finally) and not on.exit(): at the top level of a sourced file
+# on.exit() runs at once, and under Rscript it never runs. The block is
+# evaluated in this environment, so its assignments stay visible.
+tryCatch({
 source(file.path(root, "run_config.R"))          # checks the combination; sets config$analysis, $addons, $run_kind
 setwd(old_wd)
 a <- config$analysis; kind <- config$run_kind
@@ -190,7 +197,7 @@ plan_lines <- c(
             if (a$overdispersion == "MN") " with the chi-squared test" else "", if (a$ct_excluded) "excluded" else "kept")),
   sprintf("Outputs: %s", folder),
   sprintf("Steps to run: %s", paste(sprintf("%02d", intersect(selected, steps_of_kind)), collapse = " ")),
-  if (length(diag_list)) sprintf("Diagnostics, after step 11 and before step 13: %s", paste(diag_list, collapse = ", ")),
+  if (length(diag_list)) sprintf("Diagnostics, after step 11 and before step 13, whatever --steps selects: %s", paste(diag_list, collapse = ", ")),
   if (length(setdiff(numbers, intersect(selected, steps_of_kind))))
     paste0("Not run: ", paste(sprintf("%02d (%s)", setdiff(numbers, intersect(selected, steps_of_kind)),
                                       vapply(setdiff(numbers, intersect(selected, steps_of_kind)), reason_not, "")), collapse = "; ")),
@@ -215,8 +222,16 @@ diagnostic_ready <- function(script) {
     ok <- tryCatch({ curlGetHeaders("https://gannet.fish.washington.edu/"); TRUE }, error = function(e) FALSE)
     if (!ok) return("needs the network (gannet.fish.washington.edu)")
   }
-  if (grepl("corrected", d$reads_analyses[d$script == script]) && !file.exists(file.path(root, "04_output", "not_adopted", "corrected", "analysis.csv"))) {
-    return("needs the outputs of the analysis 'corrected' (--coverage-filter)")
+  # The outputs of the analysis 'corrected' that the diagnostic reads (column
+  # reads_corrected_files), not only the stamp of its folder.
+  if (grepl("corrected", d$reads_analyses[d$script == script])) {
+    folder <- file.path(root, "04_output", "not_adopted", "corrected")
+    needed <- c("analysis.csv", strsplit(d$reads_corrected_files[d$script == script], ";", fixed = TRUE)[[1]])
+    absent <- needed[!file.exists(file.path(folder, needed))]
+    if (length(absent) > 0) {
+      return(sprintf("needs the outputs of the analysis 'corrected' (--coverage-filter); absent from 04_output/not_adopted/corrected/: %s",
+                     paste(absent, collapse = ", ")))
+    }
   }
   ""
 }
@@ -257,10 +272,10 @@ run_steps <- function() {
   timing
 }
 timing <- run_steps()
-Sys.unsetenv(env_vars)
 not_run <- timing$step[timing$result != "finished"]
 cat("\n", if (length(not_run) == 0) "All requested steps finished." else
       paste0("The requested steps finished; not run: ", paste(not_run, collapse = ", "), "."),
     sprintf(" Run kind: %s; analysis: %s%s.\n", kind, a$id,
             if (kind == "optional") sprintf(" (outputs under 04_output/not_adopted/%s/)", a$id) else " (the paper)"), sep = "")
 print(timing)
+}, finally = Sys.unsetenv(env_vars))

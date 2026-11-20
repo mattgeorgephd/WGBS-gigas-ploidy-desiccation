@@ -37,6 +37,15 @@ ok("config$modes and require_mode() appear in no code file", length(hits) == 0, 
 
 # ---- 16 ids x gene-level GO x diagnostics ----------------------------------------------------
 source(here("02_R_functions", "analyses.R"))
+source(here("02_R_functions", "paths.R"))
+# The write paths are resolved with dir.create() masked: the functions above are
+# defined in this (global) environment and find this version first, so the test
+# creates no folder. Removed after the loop.
+dir.create <- function(...) invisible(TRUE)
+paper_dirs <- here(c("04_output", "05_manuscript"))
+steps_written <- c("04_cpg_coverage", "05_differential_methylation", "06_dml_figures", "07_genome_features", "08_gene_annotation",
+                   "09_go_enrichment_legacy", "10_go_enrichment_gene_level", "11_semantic_similarity")
+under <- function(p, d) startsWith(p, paste0(d, "/"))
 tokens <- c("corrected", "cov5", "mnchisq", "ctexcl")
 ids <- unique(vapply(0:15, function(k) analysis_id(tokens[bitwAnd(k, 2^(0:3)) > 0]), ""))
 ok("16 analysis ids", length(ids) == 16, paste(ids, collapse = " "))
@@ -51,11 +60,29 @@ for (id in ids) for (g in c("TRUE", "FALSE")) for (d in c("none", "all")) {
         identical(length(cfg$addons$diagnostics) > 0, d == "all"))) bad <- c(bad, paste(id, g, d))
   # paths of the analysis: never in a paper folder for an optional analysis, never under not_adopted/ for the paper in a paper run
   config <- cfg
-  p <- tryCatch(analysis_input(a, "05_differential_methylation", "tables", "x.csv"), error = function(e) "error")
-  if (!a$paper && !grepl("not_adopted", p)) bad <- c(bad, paste("path", id))
-  if (a$paper && cfg$run_kind == "paper" && grepl("not_adopted", p)) bad <- c(bad, paste("paper path", id))
+  # (read path of a table the paper has: for the paper the paper folder, for another analysis its own folder)
+  p <- tryCatch(analysis_input(a, "05_differential_methylation", "tables", "dml_counts_by_mode.csv"), error = function(e) "error")
+  if (!a$paper && !under(p, not_adopted_path(a$id))) bad <- c(bad, paste("path", id))
+  if (a$paper && p != here("04_output", "05_differential_methylation", "tables", "dml_counts_by_mode.csv")) bad <- c(bad, paste("paper path", id))
+  # write paths: in an optional run every analysis (the paper's included) writes under 04_output/not_adopted/<id>/
+  # and 05_manuscript/not_adopted/ only; in the paper run the paper writes its paper folders
+  own <- not_adopted_path(a$id)
+  for (st in steps_written) for (sub in c("tables", "figures")) {
+    w <- c(tryCatch(analysis_dir(a, st, sub), error = function(e) "error"), tryCatch(analysis_path(a, st, sub, "x.csv"), error = function(e) "error"))
+    if (cfg$run_kind == "optional" && !all(under(w, own))) bad <- c(bad, paste("write path", id, g, d, st))
+    if (cfg$run_kind == "paper" && !all(w == c(here("04_output", st, sub), here("04_output", st, sub, "x.csv")))) bad <- c(bad, paste("paper write path", id, st))
+  }
+  m <- tryCatch(manuscript_path("not_adopted", a$id, "figures", "x.png"), error = function(e) "error")
+  if (cfg$run_kind == "optional" && (!under(m, here("05_manuscript", "not_adopted")) || !stops(manuscript_path("figures", "x.png")))) {
+    bad <- c(bad, paste("manuscript path", id, g, d))
+  }
+  if (cfg$run_kind == "optional" && !a$paper && stops(output_dir("05_differential_methylation", "tables")) == FALSE) bad <- c(bad, paste("output_dir", id, g, d))
 }
-ok("64 combinations: min_coverage 10, analysis min_coverage, fit_id, run kind, add-ons, paths", length(bad) == 0, paste(bad, collapse = "; "))
+rm(dir.create)
+ok("64 combinations: min_coverage 10, analysis min_coverage, fit_id, run kind, add-ons, read and write paths", length(bad) == 0, paste(bad, collapse = "; "))
+config <- settings()                                    # the paper run
+ok("paper run: manuscript_path() without arguments is 05_manuscript/", identical(manuscript_path(), here("05_manuscript")))
+ok("manuscript_path() rejects a '..' component", stops(manuscript_path("not_adopted", "..", "x.csv")) && stops(manuscript_path("figures/../../x.png")))
 ok("fit_id of ctexcl is legacy; of cov5-mnchisq-ctexcl is cov5-mnchisq",
    analysis_spec("ctexcl")$fit_id == "legacy" && analysis_spec("cov5-mnchisq-ctexcl")$fit_id == "cov5-mnchisq")
 
@@ -78,7 +105,6 @@ ok("run_pipeline.R refuses to start with WGBS_ANALYSIS set", !is.null(attr(out, 
 
 # ---- Write guards ---------------------------------------------------------------------------
 config <- settings(c(WGBS_ANALYSIS = "cov5"))
-source(here("02_R_functions", "paths.R"))
 ok("optional run: output_dir(05, tables) stops", stops(output_dir("05_differential_methylation", "tables")))
 ok("optional run: manuscript_path(figures) stops", stops(manuscript_path("figures")))
 ok("optional run: output_dir(05, cache) allowed", !stops(output_dir("05_differential_methylation", "cache")))

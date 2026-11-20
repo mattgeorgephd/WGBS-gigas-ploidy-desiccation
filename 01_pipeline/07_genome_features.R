@@ -151,7 +151,7 @@ if (an$paper && config$run_kind == "optional") {
   log_msg("the analysis of this optional run is the paper's: its outputs of this step are the paper's; nothing to do")
   quit(save = "no", status = 0)
 }
-check_stamp(an, needs = c("04", "05"))
+check_stamp(an, needs = c("04", "05"), per_cpg = TRUE)   # reads united_cpg_<id>.csv.gz (not tracked for most optional analyses)
 dml_dir <- function(f) analysis_input(an, "05_differential_methylation", "tables", f)
 tab <- function(name) analysis_path(an, step, "tables", name)
 pct <- function(n, of) if (of > 0) 100 * n / of else rep(NA_real_, length(n))    # no percentage of nothing

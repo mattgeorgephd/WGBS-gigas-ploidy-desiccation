@@ -8,13 +8,17 @@ log_msg <- function(...) {
 
 # Announce a step and return its start time. The line under the banner names the
 # run kind and the analysis of the run (run_config.R and the switches of
-# run_pipeline.R), so that every log says what the run was configured for, also
-# the log of a step whose results do not depend on the analysis.
+# run_pipeline.R) and, in an optional run, the folder of the analysis
+# (04_output/not_adopted/<id>/), so that every log says what the run was
+# configured for, also the log of a step whose results do not depend on the analysis.
 start_step <- function(step, title) {
   cat(strrep("=", 78), "\n", step, ": ", title, "\n", strrep("=", 78), "\n", sep = "")
   log_msg("%s; analysis '%s'%s", if (identical(config$run_kind, "paper")) "paper run" else "OPTIONAL run (not adopted)",
           config$analysis$id,
-          if (identical(config$run_kind, "paper")) " (the paper)" else paste0(", outputs under 04_output/not_adopted/",
+          if (identical(config$run_kind, "paper")) " (the paper)" else paste0(", outputs under ",
+            if (step == "13_manuscript_values") "04_output/not_adopted/ and 05_manuscript/not_adopted/"
+            else if (grepl("^[0-9]{2}_", step)) paste0("04_output/not_adopted/", config$analysis$id, "/")
+            else "06_diagnostics/",
             if (isTRUE(config$addons$gene_level_go)) "; gene-level GO on" else "",
             if (length(config$addons$diagnostics)) paste0("; diagnostics: ", paste(config$addons$diagnostics, collapse = ",")) else ""))
   Sys.time()

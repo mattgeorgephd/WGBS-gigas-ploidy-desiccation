@@ -3,15 +3,14 @@
 # T4 of the settings layout (settings_build_spec.md, section 8): step 13 reports
 # the values of optional analyses as "not run" when their outputs are absent,
 # and never stops on them; a missing table of the paper still stops the paper part.
-# Run in a SCRATCH COPY of the repository (it deletes files), never in the
-# working repository:
-#   cp -a <repository> <scratch> && cd <scratch> && CT_TEST_SCRATCH=1 Rscript tests/check_step13_not_run.R
+# Run it in a SCRATCH COPY of the repository WITHOUT .git (it deletes files),
+# never in the original checkout; tests/scratch_guard.R refuses to run it there:
+#   rsync -a --exclude .git --exclude 04_output/not_adopted/ct_variants <repository>/ <scratch>/
+#   cd <scratch> && CT_TEST_SCRATCH=1 Rscript tests/check_step13_not_run.R
 # Needs the folders 04_output/not_adopted/corrected/ and legacy/ as committed (with corrected/10_go_enrichment_gene_level/).
 
 suppressPackageStartupMessages({ library(here); library(data.table) })
-if (file.exists(file.path(here(), ".git")) && !nzchar(Sys.getenv("CT_TEST_SCRATCH"))) {
-  stop("Run this test in a scratch copy of the repository (cp -a), and set CT_TEST_SCRATCH=1 to confirm.", call. = FALSE)
-}
+source(here("tests", "scratch_guard.R")); scratch_guard("tests/check_step13_not_run.R")
 rscript <- file.path(R.home("bin"), "Rscript")
 results <- list()
 ok <- function(name, pass) { results[[length(results) + 1]] <<- isTRUE(pass); cat(sprintf("%-4s %s\n", if (isTRUE(pass)) "ok" else "FAIL", name)) }
@@ -42,12 +41,31 @@ a0 <- v0[analysis == "corrected" & id %in% with_expr]; a1 <- v1[analysis == "cor
 changed <- a1$id[a1$status != a0$status | a1$regenerated %in% NA != a0$regenerated %in% NA]
 # Of the rows whose expression names step 10, those that read it become not run; two rows ("a || b") do not
 # reach their step 10 part when the first part is TRUE, and keep their value.
-ok(sprintf("of the %d rows whose expression names step 10, the %d changed ones are 'not run: 10_go_enrichment_gene_level/<file> absent'",
-           length(reads_10), length(changed)),
-   all(changed %in% reads_10) && a1[id %in% changed, all(startsWith(status, "not run: 10_go_enrichment_gene_level/") & endsWith(status, " absent"))])
+n_reads_10 <- 53     # rows of 'corrected' that read a table of step 10 (2026-11-20; two more name step 10 and do not reach it)
+ok(sprintf("of the %d rows whose expression names step 10, %d (expected %d) changed, all 'not run: 10_go_enrichment_gene_level/<file> absent'",
+           length(reads_10), length(changed), n_reads_10),
+   length(changed) == n_reads_10 && all(changed %in% reads_10) &&
+     a1[id %in% changed, all(startsWith(status, "not run: 10_go_enrichment_gene_level/") & endsWith(status, " absent"))])
 cat(sprintf("     rows naming step 10 that keep their value: %s\n", paste(setdiff(reads_10, changed), collapse = ", ")))
 ok(sprintf("the other %d rows are unchanged", length(with_expr) - length(changed)),
    isTRUE(all.equal(a0[!id %in% changed], a1[!id %in% changed], check.attributes = FALSE)))
+
+# 1b. A step that the stamp does not list: the rows that read its tables become 'not run: <step> not done (stamp)',
+#     although the tables are on disk (a table left by an earlier run counts only while the stamp lists its step).
+stamp_path <- here("04_output", "not_adopted", "corrected", "analysis.csv")
+s <- fread(stamp_path, colClasses = "character")
+s1 <- copy(s); s1$steps_done <- paste(setdiff(strsplit(s$steps_done, ";")[[1]], "08"), collapse = ";"); fwrite(s1, stamp_path)
+reads_08 <- map[!is.na(expression_optional) & grepl('(^|[^_])tab\\("08_gene_annotation"', expression_optional), id]
+ok("without step 08 in the stamp, step 13 exits with status 0", run13("WGBS_ANALYSIS=corrected") == 0)
+v2 <- values()[analysis == "corrected" & id %in% with_expr]
+changed_08 <- v2$id[v2$status != a1$status]
+ok(sprintf("of the %d rows that read a table of step 08 with tab(), %d changed, all to 'not run: 08_gene_annotation not done (stamp)'",
+           length(reads_08), length(changed_08)),
+   length(changed_08) > 0 && all(changed_08 %in% reads_08) &&
+     v2[id %in% changed_08, all(status == "not run: 08_gene_annotation not done (stamp)")])
+cat(sprintf("     rows reading step 08 that keep their status (a table of the paper folder, or step 10 absent first): %s\n",
+            paste(setdiff(reads_08, changed_08), collapse = ", ")))
+fwrite(s, stamp_path)
 
 # 2. A stamp that describes another analysis: every row of that id is 'not run: folder stale'.
 s <- fread(here("04_output", "not_adopted", "corrected", "analysis.csv"), colClasses = "character")

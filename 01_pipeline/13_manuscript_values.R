@@ -45,7 +45,21 @@
 #             expression_optional for every analysis folder under
 #             04_output/not_adopted/ that holds a stamp (analysis.csv) and for
 #             the four analyses of a single option (corrected, cov5, mnchisq,
-#             ctexcl), whether run or not, and copies their items.
+#             ctexcl), whether run or not, and copies their items. It does not
+#             evaluate the paper's analysis ("legacy"): its values are those of
+#             05_manuscript/manuscript_values.csv.
+#           - What an optional value is. expression_optional holds the
+#             computation of the former column expression_corrected (the
+#             corrected mode of the audit) with the analysis id A in place of
+#             "corrected". For most rows that is the paper's own computation on
+#             the tables of analysis A; for some it is not (a corrected
+#             definition of the quantity, or another column), so an optional
+#             value is the corrected computation applied to analysis A, not the
+#             paper's computation applied to it. Evaluated on the paper's
+#             outputs the templates differ from the paper's values in 56 of 263
+#             rows (2026-11-20). R3.1-001 and R3.1-003 take the column of the
+#             analysis's coverage filter (cpg_in_any_library in the legacy
+#             reading, cpg_in_any_library_unfiltered with option corrected).
 #           - Status of a statement (paper part):
 #               matches          the regenerated value equals the manuscript value within the tolerance of the row
 #               differs          it does not
@@ -53,11 +67,14 @@
 #                                that depends on information only the authors have)
 #             In the optional part the status is matches, differs, not
 #             comparable, no expression, "not run: analysis not run" (no folder),
-#             "not run: folder stale" (its stamp describes another analysis),
-#             "not run: <step>/<file> absent" (a table the expression reads has
-#             not been made for the analysis), or "error: <message>". The
-#             optional part never stops the step: its errors are listed in
-#             expression_errors_by_analysis.csv.
+#             "not run: folder stale" (its stamp describes another analysis, or
+#             with ctexcl another variant list than the one on disk),
+#             "not run: <step> not done (stamp)" (the stamp does not list the
+#             step whose table the expression reads), "not run: <step>/<file>
+#             absent" (a table the expression reads has not been made for the
+#             analysis), or "error: <message>". The optional part never stops
+#             the step: its errors are listed in expression_errors_by_analysis.csv,
+#             and a warning line says how many there are.
 #           - A row can match and still be wrong science: "matches" means the
 #             pipeline reproduces the number, not that the number means what the
 #             text says. The issue column points to the entry of issues.md that
@@ -68,7 +85,9 @@
 #                                  optional part from 04_output/not_adopted/<A>/<step>/tables/, or from
 #                                  the paper folder for a table that does not depend on the analysis
 #                                  (steps 01 to 03 and 12, and the tables of steps 04 and 08 that only
-#                                  the paper run writes) and, for A = legacy, for every table
+#                                  the paper run writes; library_coverage.csv is the paper's also for an
+#                                  analysis with ctexcl, whose own would differ). A table of the analysis
+#                                  folder counts only while its stamp lists the step
 #               paper_tab(step, file)  a table of the paper's outputs (the same as tab() in the paper part)
 #               diagnostic(file)   a table from 06_diagnostics/
 #               config             the settings list of run_config.R (in the optional part with the
@@ -167,14 +186,19 @@ if (paper_run) {
   # A table that does not depend on the analysis is read from the paper folder.
   shared_steps <- c("01_fetch_inputs", "02_alignment_qc", "03_global_methylation", "12_qpcr")
   shared_files <- c("library_coverage.csv", "genome_cpg_total.csv", "gene_go_map.csv.gz", "transcript_table.csv.gz", "go_map_id_repair.csv")
-  ids <- analysis_order(c(analysis_folders(), "corrected", "cov5", "mnchisq", "ctexcl", config$analysis$id))
+  # The paper's analysis is left out: its values are in 05_manuscript/manuscript_values.csv,
+  # and the templates, applied to it, are not the paper's computations (see Notes).
+  ids <- setdiff(analysis_order(c(analysis_folders(), "corrected", "cov5", "mnchisq", "ctexcl", config$analysis$id)), "legacy")
+  ct_md5_now <- if (ct_variant_list_present()) ct_variant_list_md5() else NA_character_
   rows <- list(); error_rows <- list()
   for (A in ids) {
     a <- analysis_spec(A)
     s <- read_stamp(A)
-    folder_state <- if (is.null(s) && !(A == "legacy" && A == config$analysis$id)) "not run: analysis not run" else if (!is.null(s) && (
+    done <- if (is.null(s)) character(0) else strsplit(s$steps_done, ";", fixed = TRUE)[[1]]
+    folder_state <- if (is.null(s)) "not run: analysis not run" else if (
       s$filter != a$filter || s$min_coverage != format(a$min_coverage) || s$overdispersion != a$overdispersion ||
-      s$ct_excluded != as.character(a$ct_excluded))) "not run: folder stale" else ""
+      s$ct_excluded != as.character(a$ct_excluded) ||
+      (a$ct_excluded && !is.na(ct_md5_now) && !identical(s$ct_variant_list_md5, ct_md5_now))) "not run: folder stale" else ""
     if (nzchar(folder_state)) {
       res <- rep(list(list(value = NA, error = NA_character_, absent = NA_character_)), nrow(map))
     } else {
@@ -182,12 +206,14 @@ if (paper_run) {
       tab <- function(step_name, file) {
         key <- file.path(step_name, file)
         if (is.null(table_cache[[key]])) {
+          absent <- function(message) stop(structure(class = c("table_absent", "error", "condition"), list(message = message, call = NULL)))
           path <- not_adopted_path(A, step_name, "tables", file)
-          if (!file.exists(path) && (A == "legacy" || step_name %in% shared_steps || file %in% shared_files)) {
+          if (!file.exists(path) && (step_name %in% shared_steps || file %in% shared_files)) {
             path <- paper_path(step_name, "tables", file)
+          } else if (!substr(step_name, 1, 2) %in% done) {
+            absent(paste0("not run: ", step_name, " not done (stamp)"))
           }
-          if (!file.exists(path)) stop(structure(class = c("table_absent", "error", "condition"),
-                                                 list(message = paste0("not run: ", step_name, "/", file, " absent"), call = NULL)))
+          if (!file.exists(path)) absent(paste0("not run: ", step_name, "/", file, " absent"))
           table_cache[[key]] <- fread(path)
         }
         copy(table_cache[[key]])
@@ -230,6 +256,10 @@ if (paper_run) {
   errors <- if (length(error_rows)) rbindlist(error_rows) else
     data.table(analysis = character(0), id = character(0), expression_optional = character(0), expression_error = character(0))
   write_table(errors, output_path(file.path("not_adopted", step), "tables", "expression_errors_by_analysis.csv"))
+  if (nrow(errors) > 0) {
+    log_msg("WARNING: %d optional expression(s) failed to run (%s); see 04_output/not_adopted/13_manuscript_values/tables/expression_errors_by_analysis.csv",
+            nrow(errors), paste(sprintf("%s %s", errors$analysis, errors$id), collapse = ", "))
+  }
 }
 
 # =============================================================================
@@ -250,9 +280,23 @@ if (paper_run) {
   templ <- items[analysis == "optional"]
   items <- rbind(rbindlist(lapply(analysis_folders(), function(A) {
     x <- copy(templ); x[, `:=`(analysis = A, source = gsub("{A}", A, source, fixed = TRUE), destination = gsub("{A}", A, destination, fixed = TRUE))]
+    # The folder not_adopted/legacy/ holds only what an optional run makes for the
+    # paper's analysis (steps 10 and 11, gene level); its other items are the paper's.
+    if (A == "legacy") x <- x[file.exists(here(source))]
+    x
   })), items[analysis == "comparisons"])
 }
+# A source in an analysis folder counts only while the stamp of the folder lists its step
+# (the comparison folder has no stamp; rebuild_comparison() reads only folders that list the step).
+in_folder <- !is.na(items$analysis) & items$analysis != "comparisons" & grepl("^04_output/not_adopted/[^/]+/[0-9]{2}_", items$source)
 items[, source_exists := file.exists(here(source))]
+for (i in which(in_folder)) {
+  set(items, i, "source_exists", items$source_exists[i] && stamp_lists_step(sub("^04_output/not_adopted/([^/]+)/.*", "\\1", items$source[i]),
+                                                                              sub("^04_output/not_adopted/[^/]+/([0-9]{2})_.*", "\\1", items$source[i])))
+}
+# No destination may leave 05_manuscript/ (or, in an optional run, 05_manuscript/not_adopted/).
+dotdot <- vapply(strsplit(items$destination, "[/\\\\]"), function(p) any(p == ".."), logical(1))
+if (any(dotdot)) stop("manuscript_items_map.csv: a destination may not contain '..': ", paste(items$destination[dotdot], collapse = ", "))
 for (i in which(items$source_exists)) {
   dest <- here("05_manuscript", items$destination[i])
   if (!paper_run) stopifnot(startsWith(items$destination[i], "not_adopted/"))

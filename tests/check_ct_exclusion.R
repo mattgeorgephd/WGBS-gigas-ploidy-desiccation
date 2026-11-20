@@ -2,12 +2,15 @@
 #
 # T3-d0 of the settings layout (settings_build_spec.md, section 8): unit test of
 # the C-to-T exclusion of step 05 (option ctexcl) with synthetic variant lists,
-# run in a SCRATCH COPY of the repository, never in the working repository: it
-# writes a synthetic list into 04_output/not_adopted/ct_variants/tables/.
-#   cp -a <repository> <scratch>   (or rsync without the caches; then copy
-#                                   04_output/05_differential_methylation/cache/methylkit_legacy.rds)
-#   cd <scratch> && WGBS_CACHE_DIR=<download cache> Rscript tests/check_ct_exclusion.R
-# Two runs of step 05 with WGBS_ANALYSIS=ctexcl (fit from the paper's cache, no refit):
+# run in a SCRATCH COPY of the repository WITHOUT .git and without
+# 04_output/not_adopted/ct_variants/, never in the original checkout: it writes a
+# synthetic list (and a synthetic run record, ct_variant_run.csv) into
+# 04_output/not_adopted/ct_variants/tables/, where the real list lives.
+# tests/scratch_guard.R refuses to run it in the original checkout.
+#   rsync -a --exclude .git --exclude 04_output/not_adopted/ct_variants <repository>/ <scratch>/
+#     (the copy needs 04_output/05_differential_methylation/cache/methylkit_legacy.rds)
+#   cd <scratch> && CT_TEST_SCRATCH=1 WGBS_CACHE_DIR=<download cache> Rscript tests/check_ct_exclusion.R
+# Three runs of step 05 with WGBS_ANALYSIS=ctexcl (fit from the paper's cache, no refit):
 #   1. an empty list: every table equals the paper's, except the value of the
 #      column mode and the file names;
 #   2. a list of 23 CpGs (10 ploidy DML, 5 heat DML of which 2 are shared, 5
@@ -15,18 +18,19 @@
 #      assessable: the DML lists equal the paper's minus the listed loci, the
 #      p-values, q-values and differences of every kept row equal the paper's,
 #      the united table loses exactly the listed tested CpGs, united_row is
-#      renumbered, and ct_exclusion_summary_ctexcl.csv adds up.
+#      renumbered, ct_exclusion_summary_ctexcl.csv adds up, and
+#      united_at_dml_ctexcl.csv holds the united rows at the DML;
+#   3. the list changed after the stamp was written: step 05 stops.
 # The assessability table is synthetic as well: its coordinates are rebuilt from
 # the reference genome as the variant step does, every CpG with 10 evidence reads
 # except the three.
 
 suppressPackageStartupMessages({ library(here); library(data.table) })
-if (file.exists(file.path(here(), ".git")) && !nzchar(Sys.getenv("CT_TEST_SCRATCH"))) {
-  stop("Run this test in a scratch copy of the repository (cp -a), and set CT_TEST_SCRATCH=1 to confirm.", call. = FALSE)
-}
+source(here("tests", "scratch_guard.R")); scratch_guard("tests/check_ct_exclusion.R")
 rscript <- file.path(R.home("bin"), "Rscript")
 ct_dir <- here("04_output", "not_adopted", "ct_variants", "tables")
 dir.create(ct_dir, recursive = TRUE, showWarnings = FALSE)
+fwrite(synthetic_run_marker, file.path(ct_dir, "ct_variant_run.csv"))     # marks the folder as this test's
 p05 <- function(f) here("04_output", "05_differential_methylation", "tables", f)
 c05 <- function(f) here("04_output", "not_adopted", "ctexcl", "05_differential_methylation", "tables", f)
 results <- list()
@@ -54,10 +58,10 @@ write_assess <- function(not_assessable) {
   write_table(a, file.path(ct_dir, "ct_variant_assessability.csv.gz"))
 }
 write_list <- function(v) write_table(cbind(v, pos1 = v$start + 1L, listed = rep(TRUE, nrow(v))), file.path(ct_dir, "ct_variant_cpgs.csv.gz"))
-stamp <- function() {        # the stamp that step 04 would write for the analysis ctexcl
+stamp <- function() {        # the stamp that step 04 would write for the analysis ctexcl, with the md5 of the list
   dir.create(here("04_output", "not_adopted", "ctexcl"), recursive = TRUE, showWarnings = FALSE)
   write_table(data.table(id = "ctexcl", filter = "legacy", min_coverage = "10", overdispersion = "none", test = "not passed",
-                         ct_excluded = "TRUE", fit_id = "legacy", fit_fingerprint_md5 = "", ct_variant_list_md5 = "",
+                         ct_excluded = "TRUE", fit_id = "legacy", fit_fingerprint_md5 = "", ct_variant_list_md5 = ct_variant_list_md5(),
                          git_commit = "", written_utc = "", steps_done = "04"), here("04_output", "not_adopted", "ctexcl", "analysis.csv"))
 }
 run05 <- function() {
@@ -129,5 +133,14 @@ ok("dml_counts_by_mode: cpg_analysed and DML counts after the removal",
 sw <- fread(c05("dml_counts_by_threshold_ctexcl.csv"))
 ok("counts by threshold at 20 points equal the DML lists after the removal",
    sw[difference == 20 & set == "ploidy", n] == counts$ploidy_dml && sw[difference == 20 & set == "heat", n] == counts$heat_dml)
+uad <- fread(c05("united_at_dml_ctexcl.csv"))
+at <- sort(unique(c(fread(c05("dml_ploidy_ctexcl.csv"))$united_row, fread(c05("dml_heat_ctexcl.csv"))$united_row)))
+ok("united_at_dml_ctexcl.csv: the rows of the united table at the DML of either list, with united_row",
+   identical(uad$united_row, at) && isTRUE(all.equal(uad[, !"united_row"], u[at], check.attributes = FALSE)))
+
+# ---- 3. a list changed after step 04 ----------------------------------------------------------------
+write_list(listed[-1])                     # the stamp keeps the md5 of the list of 23
+r <- run05()
+ok("a list changed since step 04 (md5 in the stamp differs): step 05 stops", r$status != 0 && any(grepl("is not the list that step 04 used", r$log)))
 cat(sprintf("\nT3-d0: %d of %d checks pass\n", sum(unlist(results)), length(results)))
 quit(status = if (all(unlist(results))) 0 else 1)

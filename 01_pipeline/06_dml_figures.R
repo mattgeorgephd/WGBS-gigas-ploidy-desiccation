@@ -80,7 +80,7 @@ if (an$paper && config$run_kind == "optional") {
   log_msg("the analysis of this optional run is the paper's: its outputs of this step are the paper's; nothing to do")
   quit(save = "no", status = 0)
 }
-check_stamp(an, needs = c("04", "05"))
+check_stamp(an, needs = c("04", "05"), per_cpg = TRUE)   # reads united_cpg_<id>.csv.gz (not tracked for most optional analyses)
 dml_dir <- function(f) analysis_input(an, "05_differential_methylation", "tables", f)
 set_labels <- c(ploidy = "ploidy", heat = "heat", shared = "both lists")
 min_dml_for_percent <- 10            # panel B: a percentage of fewer loci is not drawn

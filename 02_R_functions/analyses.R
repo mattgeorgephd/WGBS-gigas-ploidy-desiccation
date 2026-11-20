@@ -121,9 +121,13 @@ write_stamp <- function(a, step, fit_fingerprint_md5 = NULL, ct_variant_list_md5
   invisible(new)
 }
 # Stops unless the folder of `a` holds a stamp of the same analysis that lists
-# every step of `needs` (step folder names or two-digit numbers) as done. Not
-# used for the paper's analysis: its inputs are the paper's outputs.
-check_stamp <- function(a, needs = character(0)) {
+# every step of `needs` (step folder names or two-digit numbers) as done. With
+# per_cpg = TRUE (steps 06 to 08, which read united_cpg_<id>.csv.gz) it also
+# stops when the united table of step 05 is absent: the per-CpG tables of an
+# optional analysis other than 'corrected' are not tracked by git (.gitignore),
+# so a clone holds the stamp and the small tables but not those. Not used for
+# the paper's analysis: its inputs are the paper's outputs.
+check_stamp <- function(a, needs = character(0), per_cpg = FALSE) {
   if (a$paper) return(invisible(TRUE))
   s <- read_stamp(a$id)
   if (is.null(s)) {
@@ -143,7 +147,38 @@ check_stamp <- function(a, needs = character(0)) {
     stop("Step(s) ", paste(missing, collapse = ", "), " have not run for the analysis '", a$id, "' (stamp: steps ",
          s$steps_done, "). Run them first.", call. = FALSE)
   }
+  if (per_cpg) require_united_table(a)
   invisible(TRUE)
+}
+# The table of every tested CpG of an analysis (step 05), which steps 06 to 08
+# read. Stops with the command that writes it again when it is absent.
+united_table_file <- function(a) not_adopted_path(a$id, "05_differential_methylation", "tables", sprintf("united_cpg_%s.csv.gz", a$id))
+require_united_table <- function(a) {
+  if (a$paper || file.exists(united_table_file(a))) return(invisible(TRUE))
+  stop("04_output/not_adopted/", a$id, "/05_differential_methylation/tables/united_cpg_", a$id, ".csv.gz is absent: ",
+       "rerun step 05 for ", a$id, " (per-CpG tables are not tracked): WGBS_ANALYSIS=", a$id,
+       " Rscript 01_pipeline/05_differential_methylation.R (half a minute with the fit in the cache, else a new fit).", call. = FALSE)
+}
+# Whether the stamp of the analysis folder `id` lists `step` (a step folder name
+# or a two-digit number) as done.
+stamp_lists_step <- function(id, step) {
+  s <- read_stamp(id)
+  !is.null(s) && substr(step, 1, 2) %in% strsplit(s$steps_done, ";", fixed = TRUE)[[1]]
+}
+# Step 04 of an optional analysis starts its folder afresh: it removes the
+# stamp and the folders of steps 05 and later of the analysis (and the copies
+# of its items under 05_manuscript/not_adopted/<id>/) before it writes, so that
+# no table of an earlier run of a later step survives a rerun that stops
+# halfway. The fits of step 05 are in the cache folder of the paper's step 05
+# and are kept. Returns the folders removed.
+clear_analysis_folder <- function(a) {
+  if (!identical(config$run_kind, "optional") || a$paper) return(invisible(character(0)))
+  d <- list.dirs(not_adopted_path(a$id), recursive = FALSE, full.names = FALSE)
+  later <- d[grepl("^[0-9]{2}_", d) & as.integer(substr(d, 1, 2)) >= 5]
+  unlink(not_adopted_path(a$id, later), recursive = TRUE)
+  unlink(stamp_file(a$id))
+  unlink(manuscript_path("not_adopted", a$id), recursive = TRUE)
+  invisible(later)
 }
 # Ids of the analysis folders under 04_output/not_adopted/ that hold a stamp.
 analysis_folders <- function() {
@@ -155,7 +190,7 @@ analysis_folders <- function() {
 # ---- Comparison tables (04_output/not_adopted/comparisons/) -------------------------
 # The table `file` of `step` of every analysis on disk, side by side, the paper
 # first: the paper's copy (paper folder, or not_adopted/legacy/), then each
-# analysis folder in analysis order. Lines are copied as they are, so every row
+# analysis folder in analysis order whose stamp lists `step` as done. Lines are copied as they are, so every row
 # keeps its bytes; `arrange` (a function of the bound table, read with fread)
 # returns the order of the rows where the paper's table interleaves analyses.
 # Writes comparisons/<step>/tables/<file> and comparisons/analyses_included.csv.
@@ -163,7 +198,10 @@ rebuild_comparison <- function(step, file, arrange = NULL) {
   if (!identical(config$run_kind, "optional")) stop("rebuild_comparison() runs in optional runs only.", call. = FALSE)
   ids <- analysis_order(c("legacy", analysis_folders()))
   paths <- vapply(ids, function(id) analysis_input(id, step, "tables", file), "")
-  ids <- ids[file.exists(paths)]; paths <- paths[file.exists(paths)]
+  # A table in an analysis folder counts only while the stamp lists its step:
+  # a table left by a run that stopped, or by an earlier run, is not copied.
+  usable <- file.exists(paths) & (paths == paper_path(step, "tables", file) | vapply(ids, stamp_lists_step, logical(1), step = step))
+  ids <- ids[usable]; paths <- paths[usable]
   if (length(paths) == 0) return(invisible(NULL))
   header <- NULL; body <- character(0); tables <- list()
   for (i in seq_along(paths)) {
@@ -241,13 +279,26 @@ ct_variant_assessability <- function() {
   coords <- data.table::rbindlist(lapply(seq_along(genome), function(j) {
     data.table::data.table(chr = names(genome)[j], start = BiocGenerics::start(Biostrings::matchPattern("CG", genome[[j]])) - 1L)
   }))
-  rm(genome); invisible(gc(verbose = FALSE))
   md5_text <- function(starts) { tmp <- tempfile(); on.exit(unlink(tmp)); writeLines(format(starts, scientific = FALSE, trim = TRUE), tmp); unname(tools::md5sum(tmp)) }
+  no_cg <- setdiff(names(genome), unique(coords$chr))
+  rm(genome); invisible(gc(verbose = FALSE))
+  # A sequence without a "CG" has no row in the assessability table; the index
+  # of the variant step would list it with n_cpg 0 and no position. The reference
+  # of the study has none (237 sequences, each with CpGs); stop clearly if one appears.
+  if (length(no_cg) > 0 || any(index$n_cpg == 0)) {
+    stop("The reference holds sequence(s) without a CpG (", paste(head(union(no_cg, index$chr[index$n_cpg == 0]), 5), collapse = ", "),
+         "); ct_variant_assessability() places rows only on sequences with CpGs and cannot read this index.", call. = FALSE)
+  }
   per_chr <- coords[, .(n_cpg = .N, first_start = start[1], last_start = start[.N], md5_starts = md5_text(start)), by = chr]
-  check <- merge(index[, .(chr, n_cpg, first_start, last_start, md5_starts)], per_chr, by = "chr", suffixes = c("_index", "_genome"))
+  per_chr[, first_row := cumsum(c(1L, head(n_cpg, -1L)))]          # the rows are the sequences in FASTA order
+  check <- merge(index[, .(chr, n_cpg, first_row, first_start, last_start, md5_starts)], per_chr, by = "chr", suffixes = c("_index", "_genome"))
   if (nrow(check) != nrow(index) || nrow(index) != nrow(per_chr) ||
       check[, any(n_cpg_index != n_cpg_genome | md5_starts_index != md5_starts_genome)]) {
     stop("The rows of ct_variant_assessability.csv.gz cannot be placed: the CpGs of the reference differ from ct_variant_cpg_index.csv.", call. = FALSE)
+  }
+  if (!identical(index$chr, per_chr$chr) || check[, any(first_row_index != first_row_genome)]) {
+    stop("The rows of ct_variant_assessability.csv.gz cannot be placed: the order of the sequences in ct_variant_cpg_index.csv ",
+         "(column first_row) is not the order of the reference.", call. = FALSE)
   }
   a <- data.table::fread(f[["assessability"]], select = "crick_pooled")
   if (nrow(a) != nrow(coords)) stop("ct_variant_assessability.csv.gz has ", nrow(a), " rows; the reference has ", nrow(coords), " CpGs.", call. = FALSE)

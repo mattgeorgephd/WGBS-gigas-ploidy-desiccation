@@ -18,7 +18,7 @@
 # under 04_output/not_adopted/; an optional analysis writes through
 # analysis_dir() and analysis_path() (02_R_functions/analyses.R), and reads the
 # paper's outputs through paper_path(). manuscript_path() allows only
-# 05_manuscript/not_adopted/ in such a run.
+# 05_manuscript/not_adopted/ in such a run, and never a ".." component.
 
 input_path <- function(...) here::here("03_input_files", ...)
 
@@ -44,7 +44,8 @@ paper_path <- function(step, sub, file) here::here("04_output", step, sub, file)
 step_cache_dir <- function(step) output_dir(step, "cache")
 
 manuscript_path <- function(...) {
-  parts <- c(...)
+  parts <- as.character(c(...))
+  if (any(unlist(strsplit(parts, "[/\\\\]")) == "..")) stop("A path under 05_manuscript/ may not contain '..': ", paste(parts, collapse = "/"), call. = FALSE)
   if (optional_run() && (length(parts) == 0 || parts[1] != "not_adopted")) {
     stop("An optional run may write into 05_manuscript/not_adopted/ only.", call. = FALSE)
   }

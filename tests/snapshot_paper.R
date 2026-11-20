@@ -8,9 +8,12 @@
 #       path, bytes, md5, and for .gz files the md5 of the decompressed content
 #       (the gzip header names the operating system). Written once, at BASE.
 #   Rscript tests/snapshot_paper.R snapshot <out.csv>
-#       T2: every file of the paper (under 04_output/ and 05_manuscript/ outside
+#       T1 and T2: every file of the paper (under 04_output/ and 05_manuscript/ outside
 #       not_adopted/ and outside the cache folders), plus the two diagnostic tables
-#       that paper values read: path, bytes, md5, modification time.
+#       that paper values read: path, bytes, md5, modification time. Also writes
+#       <out.csv>.not_adopted_status.csv: the lines of git status under the
+#       not_adopted/ folders before the run, with the md5 of each file, which
+#       tests/check_paper_outputs.R allows after the run.
 #   Rscript tests/snapshot_paper.R compare <before.csv> <after.csv>
 #       T2: lists every file added, removed or changed (md5 or modification time);
 #       exit status 1 when anything differs.
@@ -47,6 +50,12 @@ if (length(args) == 2 && args[1] == "base") {
   m <- rbind(m, data.table(path = paste0(dirs, "/"), bytes = NA_real_, md5 = "folder", md5_content = NA_character_, mtime = ""))
   fwrite(m, args[2], eol = "\n")
   cat(nrow(m), "files and folders in", args[2], "\n")
+  st <- system2("git", c("status", "--porcelain", "--untracked-files=all", "--", "04_output", "05_manuscript"), stdout = TRUE)
+  p <- sub(".* -> ", "", substring(st, 4))
+  na <- data.table(line = st, path = p)[grepl("(^|/)not_adopted/", p)]
+  na[, md5 := ifelse(file.exists(path), unname(tools::md5sum(path)), "absent")]
+  fwrite(na[, .(line, md5)], paste0(args[2], ".not_adopted_status.csv"), eol = "\n")
+  cat(nrow(na), "lines of git status under not_adopted/ in", paste0(args[2], ".not_adopted_status.csv"), "\n")
 } else if (length(args) == 3 && args[1] == "compare") {
   a <- fread(args[2], colClasses = "character"); b <- fread(args[3], colClasses = "character")
   added <- setdiff(b$path, a$path); removed <- setdiff(a$path, b$path)

@@ -38,6 +38,9 @@
 #             diffmeth_<contrast>_<mode>.csv.gz  p, q, difference at every analysed CpG
 #             dml_<contrast>_<mode>.csv          DML at the configured thresholds
 #             dml_shared_<mode>.csv              loci in both DML lists, with both differences
+#             united_at_dml_<id>.csv             (optional analysis) the rows of united_cpg_<id>.csv.gz at the
+#                                                DML of either list, with united_row; tracked, and read by
+#                                                step 13, where the per-CpG tables are not tracked
 #             dml_counts_by_threshold_<mode>.csv DML counts at difference thresholds of 5 to 50 points
 #             dml_counts_by_mode.csv             headline counts of the analysis (column mode: its id)
 #             ct_exclusion_summary_<id>.csv      (ctexcl) per contrast: CpGs and DML before and after the
@@ -45,6 +48,11 @@
 #                                                screen could not assess
 #             ct_excluded_cpgs_<id>.csv.gz       (ctexcl) the tested CpGs removed, with p, q and difference
 #                                                per contrast and whether each was a DML
+#           Of an optional analysis other than 'corrected', united_cpg_<id>.csv.gz and
+#           diffmeth_<contrast>_<id>.csv.gz are not tracked by git (.gitignore); rerun this
+#           step for the analysis to make them (half a minute with the fit in the cache).
+#           With option ctexcl the step stops when the variant list is not the one
+#           step 04 used (md5 in the stamp of the analysis folder).
 #           04_output/05_differential_methylation/bed/dml_<set>_<mode>.bed
 #           04_output/05_differential_methylation/cache/methylkit_<fit id>.rds   (not tracked; the fit
 #             id is the analysis id without ctexcl, "legacy" for the paper)
@@ -335,6 +343,15 @@ write_mode <- function(fit, a) {
   setorder(shared, united_row)
   write_table(shared, tab(sprintf("dml_shared_%s.csv", mode)))
 
+  # Optional analysis: the rows of the united table at the DML of either list
+  # (the loci in both lists are among them), with their united_row. The per-CpG
+  # tables of an optional analysis other than 'corrected' are not tracked by
+  # git; this small table is, and step 13 reads it.
+  if (!a$paper) {
+    at_dml <- sort(unique(c(dml$ploidy$united_row, dml$heat$united_row)))
+    write_table(cbind(united_row = at_dml, united[at_dml]), tab(sprintf("united_at_dml_%s.csv", mode)))
+  }
+
   # BED files (0-based start, as in the coverage files): chr, start, end, difference.
   bed_dir <- analysis_dir(a, step, "bed")
   write_bed <- function(d, diff_col, name) {
@@ -373,6 +390,16 @@ if (an$paper && config$run_kind == "optional") {
   quit(save = "no", status = 0)
 }
 check_stamp(an, needs = "04")
+# Option ctexcl: the variant list must be the one step 04 used (its md5 is in the stamp).
+if (an$ct_excluded) {
+  if (!ct_variant_list_present()) invisible(ct_variant_table())          # stops with the command that makes the list
+  stamped <- read_stamp(an$id)$ct_variant_list_md5
+  if (!identical(stamped, ct_variant_list_md5())) {
+    stop("The C-to-T variant list (04_output/not_adopted/ct_variants/tables/ct_variant_cpgs.csv.gz, md5 ", ct_variant_list_md5(),
+         ") is not the list that step 04 used for the analysis '", an$id, "' (md5 in its stamp: '", stamped, "'). Run step 04 for it again.",
+         call. = FALSE)
+  }
+}
 fit <- cached_fit(an)
 headline <- write_mode(fit, an)
 fingerprint_md5 <- digest_md5(fit$fingerprint)

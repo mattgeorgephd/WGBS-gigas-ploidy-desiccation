@@ -22,7 +22,9 @@ The folders `01_fetch_inputs/` to `13_manuscript_values/` hold the paper's resul
 
 ## What is tracked
 
-Files up to 50 MB are committed, so every later step, and every reader of the manuscript, can start from the repository alone. That includes the united 10x methylation table from step 05 (gzipped), which is the input to all downstream steps.
+Files up to 50 MB are committed, so every later step, and every reader of the manuscript, can start from the repository alone. That includes the paper's united 10x methylation table from step 05 (gzipped), which is the input to all downstream steps.
+
+The optional analyses under `not_adopted/` commit their results, not their tables of every tested CpG: for every analysis folder except `not_adopted/corrected/`, `united_cpg_<id>.csv.gz` and `diffmeth_<contrast>_<id>.csv.gz` of step 05 are git-ignored, and rerunning step 05 for the analysis makes them again (half a minute with the fit in the cache). Step 05 writes the rows that step 13 reads (`united_at_dml_<id>.csv`, tracked); steps 06 to 08 stop with the command to run when the united table is absent. The per-CpG tables of `corrected/` stay tracked, because seven diagnostics read them. See `not_adopted/README.md`.
 
 Larger intermediates (the model fits of step 05) are written under `04_output/<step>/cache/`, which is git-ignored. Step 05 keeps one fit per fit id (`methylkit_legacy.rds` for the paper, `methylkit_<fit id>.rds` for an optional analysis) and reuses a cached fit only while what it was made from is unchanged (the analysis, the model and the coverage settings, the sample sheet, the coverage files, the methylKit version and the fitting code) and fits again otherwise, or when a cache file cannot be read; nothing has to be deleted by hand, except after an upgrade of R or of a package other than methylKit, whose versions are not compared.
 
