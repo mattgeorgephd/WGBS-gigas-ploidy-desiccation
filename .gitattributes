@@ -6,7 +6,8 @@
 # 03_input_files/, and one input (manuscript/manuscript_values_map.csv) is kept
 # with CRLF line endings on purpose. Without the lines below, a checkout on
 # Windows, or on any machine with core.autocrlf set, holds other bytes than the
-# commit: 69 of the 100 inputs get another md5.
+# commit. Counted on Linux with core.autocrlf=true when this file was added: 69
+# of the 100 inputs got another md5 without it, none with it.
 #
 # "-text" means: store and check out the file exactly as it is.
 
