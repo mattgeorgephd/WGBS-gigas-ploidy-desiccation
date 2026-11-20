@@ -1,0 +1,4 @@
+id,filter,min_coverage,overdispersion,test,ct_excluded,fit_id,fit_fingerprint_md5,ct_variant_list_md5,git_commit,written_utc,steps_done
+legacy,legacy,10,none,not passed,FALSE,legacy,"","",66c7121,2026-11-20 07:51:31,the paper's outputs (04_output/<step>/); in not_adopted/legacy/: steps 10;11
+corrected,corrected,10,none,not passed,FALSE,corrected,"","",66c7121,2026-11-20 07:51:31,04;05;06;07;08;10
+mnchisq,legacy,10,MN,Chisq,FALSE,mnchisq,"","",66c13ae,2026-11-20 08:41:09,04
