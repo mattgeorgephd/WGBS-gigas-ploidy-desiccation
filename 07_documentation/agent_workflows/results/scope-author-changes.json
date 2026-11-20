@@ -1,10 +1,8 @@
 {
  "workflow": "scope-author-changes",
  "run_id": "wf_3af3d3cc-0e8",
- "agents_finished": 9,
- "agents_running_or_lost": [
-  "variants:adversarial-review"
- ],
+ "agents_finished": 10,
+ "agents_running_or_lost": [],
  "results": [
   {
    "agent": "variants:method-2022-and-bs-snper",
@@ -1218,6 +1216,169 @@
      "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/V3-pilot/logs/fetch_zr3644_3.log",
      "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/V3-pilot/logs/fetch2_zr3644_14.log",
      "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/V3-pilot/genome/genome.fa.fai"
+    ]
+   }
+  },
+  {
+   "agent": "variants:adversarial-review",
+   "phase": "Variant calls",
+   "result": {
+    "summary": "Verdict: sound with changes. Five changes are needed before the step is built.\n\nWhat held up:\n- Strand classes, coordinates and counting are right. The R port of BS-Snper's genotype rule is now checked against real BS-Snper output, not only \"by construction\".\n- On the window NC_047566.1:24,250,001-24,500,000 (4,510 CpGs) of the eight 2022 BAMs, read remotely, I emulated BS-Snper's last-CIGAR-operation layout and fed it to the pilot's bssnper_call. It reproduced every BS-Snper C/T record at CpGs exactly: 1,036 per-animal records and all 160 merged-BAM records, with all 8 BSD counts equal at every position, and a union of 394 against 394. FILTER agreed everywhere except one GT call, which the pilot labels not_ported.\n- This also confirms that summing per-library counts equals running BS-Snper on a merged BAM.\n\nWhat broke:\n1. The pilot's counting code, and the proposed default cigar = \"full\", do not reproduce 2022. On the same window the full-CIGAR code gives a union of 421 calls against 394: 389 shared, 32 extra and 5 missed. Its 8 counts equal BS-Snper's at only 15 to 33 of 98 to 130 positions per animal, and at 0 of 160 merged positions. 31% of alignments carry an indel, so this is not a small effect. The pilot's headline shares (17.9%, 16.1%, 2.4%) are full-CIGAR numbers and are likely a few percent too high.\n2. Loci that cannot be assessed are silently treated as clean. Of the 6,170 test loci, 2,223 have fewer than 3 bottom-strand (Crick) reads at the C in at least one pilot library. Three is the minimum for a CT call. 403 loci are below 3 in all four libraries, and 282 are below 3 even when the four are pooled.\n3. Step 00 runs before step 01, which downloads the genome, and before step 05, which defines the tested CpGs and the DML. Scopes \"tested\" and \"dml\" therefore cannot be computed in step 00 on a fresh run.\n4. The committed table cannot re-apply pool_by = \"experiment\", other BS-Snper parameters or another cigar setting, contrary to the pilot's claim.\n5. fetch_bam.sh can accept a corrupted BAM. The range requests run without -f and without a check of the HTTP status, and gannet publishes no md5 (3 probes returned 404).\n\nFaithful to BS-Snper, but they affect what the exclusion means:\n- Both mates of a pair are counted. On the evidence strand there are 1.42 to 1.43 reads per fragment. 37 to 101 calls per library rest on fewer than 3 alt fragments, and 2 to 6 per library on a single fragment.\n- The mismatch filter favours the reference allele. At called C positions, bottom-strand reads carrying T pass MAPQ and the mismatch filter at 60.8 to 63.7%; reads carrying C pass at 79.8 to 82.0%.\n- The excluded set grows with every library added. With 1 to 4 libraries, the C-site union of per-library calls grows from 0.91% to 2.28% of random CpGs and from 6.8% to 16.2% of DML. A rough extrapolation to 22 libraries (an assumption) is 4 to 7% of tested CpGs and 28 to 47% of DML, against 19.7% in 2022.\n\nBiological checks passed:\n- Calls at the C and at the G are about equally frequent: 73 against 66 random CpGs, 186 against 178 ploidy DML.\n- In libraries that carry a call, methylation tracks the expected allele dosage: correlation 0.675 between observed methylation and (1 - alt fraction) x the methylation of the other libraries, over 731 library-locus pairs.\n- At ten called loci of zr3644_14, read remotely, every bottom-strand read is FLAG 83 or 163 with XG GA and every top-strand read is FLAG 99 or 147 with XG CT. The raw reads equal the pilot's observation table at all ten loci.\n- An independent recount from the pilot's observation files matched counts_bssnper in every cell (0 differences in about 93,600 cells).",
+    "facts": [
+     {
+      "claim": "The pilot's strand assignment is correct for all four Bismark strands of these non-directional paired-end BAMs. Bismark 0.22.3 swaps the read-1/read-2 FLAGs of CTOT and CTOB, so FLAG 99/147 (XG CT) carry top-strand information (OT and CTOT) and FLAG 83/163 (XG GA) carry bottom-strand information (OB and CTOB). XR is CT on every 0x40 record and GA on every 0x80 record, so OT cannot be told from CTOT, nor OB from CTOB, but neither split is needed. At a reference C, only bottom-strand reads are informative: they show C, or T for a C-to-T allele, and bisulfite does not change them. Top-strand reads show C or T according to methylation.",
+      "evidence": "Recomputed the class from FLAG independently over all observations of the 4 libraries: 0 mismatches with the pilot's class and 0 with XG (V4-review/check1_out.txt). V1-data/alignment_profile_zr3534_1.txt 'FLAG x XR x XG': 99 CT CT, 147 GA CT, 83 CT GA, 163 GA GA. Remote raw reads at 10 called loci of zr3644_14 (V4-review/ten_loci_zr3644_14.txt) show only 83/163 with XG GA and 99/147 with XG CT.",
+      "verified": true
+     },
+     {
+      "claim": "Recounting from the pilot's observation files with independent code gives exactly the pilot's BS-Snper-mode counts in every cell.",
+      "evidence": "V4-review/code/check1.R: 23,433 / 23,903 / 23,420 / 22,849 cells compared for zr3534_1 / zr3534_7 / zr3644_3 / zr3644_14, 0 differing (check1_out.txt)",
+      "verified": true
+     },
+     {
+      "claim": "At ten randomly chosen C-site calls of zr3644_14, the raw reads fetched remotely (FLAG, XR, XG, base at the C) are identical to the pilot's unfiltered observations at each locus.",
+      "evidence": "V4-review/code/ten_loci.R (seed 7), output V4-review/ten_loci_zr3644_14.txt: 'identical = TRUE' for all 10 loci, e.g. NC_047561.1:27381828, NC_047564.1:39080121",
+      "verified": true
+     },
+     {
+      "claim": "The pilot's decision code bssnper_call is a faithful port of BS-Snper. Fed with counts from an emulation of BS-Snper's last-CIGAR-operation layout, it reproduces every BS-Snper C/T record at CpGs of the 2022 study exactly in a 250 kb window: per animal 103, 130, 117, 107, 99, 113, 98 and 109 calls (zr3616_1 to _8), with 0 extra and 0 missed. All 8 BSD counts are equal at every position. The merged call made by summing the 8 animals' counts matches the merged-BAM table (160 of 160, all counts equal). The union of the 9 runs is 394 = 394.",
+      "evidence": "V4-review/code/validate8.R on NC_047566.1:24,250,001-24,500,000 (4,510 CpGs), remote region reads of https://gannet.fish.washington.edu/spartina/project-gigas-oa-meth/output/bismark-roslin/zr3616_*_R1_val_1_val_1_val_1_bismark_bt2_pe.deduplicated.sorted.bam with local .bai files; compared with V2-method/downloads/gannet_bssnper/*_CT-SNPs.tab; outputs validate8_out.txt and validate8_window.csv",
+      "verified": true
+     },
+     {
+      "claim": "The pilot's counting code (full CIGAR, the proposed default) does not reproduce BS-Snper. In the same window: per animal 100 to 132 calls against 98 to 130, with 6 to 12 extra and 1 to 4 missed. The 8 counts are equal at only 15 to 33 positions per animal and at 0 of 160 merged positions. Merged call 163 against 160 (11 extra, 8 missed). Union 421 against 394 (389 shared, 32 extra, 5 missed), i.e. 6.9% more. Count totals at zr3616_1's 103 positions: 4,107 (R) against 3,853 (BS-Snper).",
+      "evidence": "validate8_out.txt rows '... full'; validate_out.txt (zr3616_1, code/validate2022.R)",
+      "verified": true
+     },
+     {
+      "claim": "BS-Snper keeps only the last CIGAR operation: sprintf(record->cigar, ...) runs inside the loop over CIGAR operations and overwrites the buffer each time; the read is then laid out from POS with that one operation. 31% of alignments carry an I or a D, and 23% of those with MAPQ >= 20 do. Under last-operation layout, 83% of the M bases are laid out and 75% sit at the right position.",
+      "evidence": "V2-method/downloads/bssnper/sam_funcs.c lines 186-188 and 211-259; V4-review/code/check2.R on V1-data/alignment_sample_zr3534_1.rds (3,656 alignments) and alignment_sample_zr3644_1.rds (2,615) (check2_out.txt)",
+      "verified": true
+     },
+     {
+      "claim": "The pilot applies the BS-Snper defaults with minimum coverage 5: minhetfreq 0.1, minhomfreq 0.85, minquali 15, mincover 5, minread2 2 in bssnper_call; errorate 0.02 and mapvalue 20 in the counting. mincover only sets PASS/Low, so it has no effect under the 2022 any-FILTER rule. Synthetic tests reproduce the method agent's table of the smallest number of bottom-strand T reads that gives a call, cell for cell. A CT call needs at least 3 bottom-strand T reads; a single bottom-strand T with no top-strand reads is called TT (Low) and excludes the locus under the 2022 rule.",
+      "evidence": "V3-pilot/code/variant_counts.R lines 22-23, 111-112, 115; V4-review/code/check2.R synthetic section (check2_out.txt) against V2-method/spec.md section 2.4 table",
+      "verified": true
+     },
+     {
+      "claim": "The Bayes step of the port matches BS-Snper.pl lines 1329-1621 line by line: base numbers for reference C and G, the conditions on mean qualities versus counts, the zero-score deletion before the priors, the priors and the post-rules. The candidate filter matches sam_funcs.c lines 58-139.",
+      "evidence": "Read BS-Snper.pl Bayes and sam_funcs.c printSnp against variant_counts.R bssnper_call (lines 107-170)",
+      "verified": true
+     },
+     {
+      "claim": "The FILTER label is not ported for GT. In the 2022 window, one GT call (zr3616_7, NC_047566.1:24377810, ALT T,G) is PASS in BS-Snper and not_ported in R. QUAL differs at 5 of 98 records; QUAL is not used for exclusion.",
+      "evidence": "V4-review/code/filter_diff.R output",
+      "verified": true
+     },
+     {
+      "claim": "Many test loci cannot be assessed. Bottom-strand reads at the C after BS-Snper filters are below 3 (the minimum for a CT call) at 965 / 960 / 1,290 / 1,419 of 6,170 loci in zr3534_1 / zr3534_7 / zr3644_3 / zr3644_14, and below 5 at 1,383 / 1,502 / 2,101 / 2,195. 2,223 loci are below 3 in at least one library, 403 in all four, and 282 even pooled over the four (413 below 5 pooled). Among the random tested 10x CpGs, 278 of 2,981 are below 3 in all four libraries.",
+      "evidence": "V4-review/code/check2.R 'assessability' section (check2_out.txt)",
+      "verified": true
+     },
+     {
+      "claim": "Overlapping mates are counted twice, as in BS-Snper. On the evidence strand there are 1.417 to 1.433 reads per fragment. Calls with at least 3 alt reads but fewer than 3 alt fragments: 37 / 75 / 101 / 64 of 488 / 571 / 433 / 406 calls (C and G) in zr3534_1 / zr3534_7 / zr3644_3 / zr3644_14. Calls resting on a single fragment: 5 / 2 / 6 / 5.",
+      "evidence": "V4-review/code/check1.R (check1_out.txt)",
+      "verified": true
+     },
+     {
+      "claim": "The read filters favour the reference allele. At C positions called anywhere, bottom-strand reads with T pass MAPQ >= 20 and the mismatch filter at 60.8 / 61.9 / 63.7 / 62.5%; reads with C pass at 82.0 / 79.8 / 81.2 / 80.8%. The gap comes from the mismatch filter (63.9 to 67.0% against 84.5 to 86.0%), since the variant itself counts as a mismatch on bottom-strand reads.",
+      "evidence": "V4-review/code/check1.R (check1_out.txt), libraries in the order zr3534_1, zr3534_7, zr3644_3, zr3644_14",
+      "verified": true
+     },
+     {
+      "claim": "Union growth with the number of libraries (C site, per-library calls only, mean over combinations of k libraries): random CpGs 0.91%, 1.49%, 1.94%, 2.28% for k = 1 to 4; DML 6.80%, 10.92%, 13.91%, 16.24%.",
+      "evidence": "V4-review/code/check2.R 'union growth' (check2_out.txt)",
+      "verified": true
+     },
+     {
+      "claim": "Extrapolated to 22 libraries, the per-library union would remove about 4 to 7% of tested CpGs and about 28 to 47% of DML, before the pooled call is added. This is well above 2022's 19.7% from 8 animals.",
+      "evidence": "My log and power-law fits to the four points above; not measured",
+      "verified": false
+     },
+     {
+      "claim": "Biological sanity. Calls at the C and at the G are about equally frequent (random 73 against 66; ploidy DML 186 against 178; heat DML 378 against 384), as expected for no strand artefact. In libraries carrying a call, observed methylation correlates with (1 - bottom-strand T fraction) x the mean methylation of the non-carrying libraries (r = 0.675, 731 library-locus pairs; median observed 27.8% against 18.8% expected). 321 of 867 carrier rows are at 0 to 10% methylation. The alt fraction is broad, with 300 rows at 0.9 or more, rather than clustered at genotype levels, as expected at the median bottom-strand depth of 7 to 11 reads.",
+      "evidence": "V3-pilot/analysis_log.txt 'loci called' table; V4-review/code/check2.R 'methylation at called DML' (check2_out.txt) on V3-pilot/pilot_called_dml_C_with_methylation.csv",
+      "verified": true
+     },
+     {
+      "claim": "fetch_bam.sh appends each range response without -f and without checking the HTTP status or Content-Range: `curl -sS -A \"$UA\" -r $((a+have))-$b \"$base\" >> \"$part\" || sleep 5`. The only checks are the total size and the 28-byte BGZF end-of-file block.",
+      "evidence": "V3-pilot/code/fetch_bam.sh lines 22-28 and 33-35",
+      "verified": true
+     },
+     {
+      "claim": "gannet publishes no md5 for the 2021 BAMs under the names probed.",
+      "evidence": "curl -I returned 404 for .../061021-big/zr3644_14_R1_bismark_bt2_pe.deduplicated.sorted.bam.md5, .../checksums.md5 and .../md5sums.txt",
+      "verified": true
+     },
+     {
+      "claim": "The existing fetch_gannet_file() needs an md5 in gannet_manifest.csv and stops on a mismatch. It downloads in one request without resume (download_timeout_s = 7200), so it cannot serve a BAM manifest whose md5 is 'filled at first fetch'.",
+      "evidence": "/home/user/WGBS-gigas-ploidy-desiccation/02_R_functions/fetch_gannet.R lines 11-36; run_config.R line 21",
+      "verified": true
+     },
+     {
+      "claim": "run_pipeline.R runs every numbered script in order, so a 00 step runs before 01_fetch_inputs.R, which downloads the reference genome and coverage files, and before step 05, which writes the united table (the tested CpGs) and the DML lists.",
+      "evidence": "run_pipeline.R lines 35-42 and 95-110; 01_pipeline/01_fetch_inputs.R lines 37-50; 01_pipeline/05_differential_methylation.R lines 225-257 (now read at about lines 220-260; the file is being edited by the hardening pass)",
+      "verified": true
+     },
+     {
+      "claim": "Step 05 checks the DML subset against dml_table() (stopifnot) before writing it, so an after-the-test exclusion must come after that check and before the write of dml_<contrast>_<mode>.csv.",
+      "evidence": "01_pipeline/05_differential_methylation.R, write_mode(): the d <- all_cpg[...] and stopifnot(nrow(d) == nrow(dml_table(...))) lines",
+      "verified": true
+     },
+     {
+      "claim": "Today's gannet speed for remote region reads: one 250 kb window of a 9.6 GB 2022 BAM, read twice (both layouts) and counted, took 14 to 28 s per library.",
+      "evidence": "validate8_out.txt 'seconds' lines",
+      "verified": true
+     }
+    ],
+    "recommendation": "Adopt the design with these changes:\n\n1. Make the toggle reproduce BS-Snper. Set cigar = \"bs_snper_last_op\" as the default of variant_exclusion, keep \"full\" as a labelled alternative, and build the step on the last-operation emulation (lastop() in V4-review/code/validate8.R). Add the 2022 window NC_047566.1:24,250,001-24,500,000 of zr3616_1 to _8 against the published CT-SNPs.tab files as a regression test (expected: 1,036 per-animal and 160 merged records, all equal). Recompute the pilot shares under that layout before quoting them.\n\n2. Record assessability.\n   - In variant_cpgs (better: one row per screened CpG, or a per-CpG depth table), write the pooled bottom-strand depth at the C, the top-strand depth at the G, and the number of libraries with at least 3 evidence reads.\n   - Report per contrast how many DML were not assessable.\n   - Offer, labelled as not 2022, a switch that also excludes unassessable loci.\n\n3. Fix the order of work.\n   - Step 00 must fetch the reference itself through fetch_gannet_file. Recompute only at all CpG sites of the reference (or CpGs covered in any library, taken from coverage files it fetches), never \"tested\" or \"dml\".\n   - Apply scope only as a filter in steps 04 and 05.\n   - Refuse a committed table whose scope does not cover the CpGs of the run's coverage standard (5x or 10x).\n\n4. Make the committed table complete for its switches.\n   - Store the pooled calls for all 22, for zr3534 and for zr3644, plus the FILTER, the site (C or G) and the alt-fragment count.\n   - Write cigar and the BS-Snper parameters into its README and header.\n   - Stop with a message when a switch needs a recompute.\n\n5. Harden the download.\n   - Use curl -f with retries. Check HTTP 206 and Content-Range for each range. Write each request to its own file and append it only when its size is right. Lock per library.\n   - After joining, decode the whole BAM once (countBam) and compare the read total with idxstats of the .bai.\n   - Write a separate fetcher for the BAM manifest, since fetch_gannet_file needs an md5.\n\n6. Smaller fixes:\n   - Port the FILTER label for GT, AC and AT, which matters only with use_filter = \"PASS\".\n   - With apply = FALSE, step 00 must write nothing.\n   - Keep step 05's stopifnot before the exclusion.\n   - Guard step 13 so that it never compares excluded lists with the draft's 1,038 and 2,351.\n   - Document in the toggle's label that C-only leaves CpGs whose G is a variant, and that both mates, the mismatch filter and union over 22 libraries make the excluded set depend on depth, ploidy and experiment.\n\nThe default run is unaffected as long as apply = FALSE and step 00 writes nothing.",
+    "open_points": [
+     "Whether 'as in Venkataraman' should reproduce BS-Snper's CIGAR behaviour exactly (last operation, matching 2022) or use the full CIGAR (more correct, about 7% more calls in the tested window). This is the author's decision; I recommend last-operation for the toggle that claims 2022 fidelity.",
+     "Extrapolating to 22 libraries (4 to 7% of tested CpGs, 28 to 47% of DML) rests on fits to four points from four libraries. A real number needs the 22-library run.",
+     "The validation used a single 250 kb window of one chromosome of the 2022 BAMs. Other windows (repeats, scaffolds, the mitochondrion with very deep coverage) were not checked. BS-Snper's C code has an overflow guard (WARNING_THR) that could matter in the mitochondrion.",
+     "Whether htslib verifies the CRC32 of each BGZF block (and so would stop on a corrupted block rather than return wrong bases) was not checked here.",
+     "The cost estimates (about 31 h single worker for all CpG sites) are the pilot's extrapolation. I did not re-measure them, except that the last-operation emulation ran as fast as the full-CIGAR code in the 2022 window.",
+     "Whether to pool all 22 libraries or each experiment separately, C only or C and G, and any FILTER or PASS only remain author decisions, as the pilot listed.",
+     "Whether single-fragment calls (2 to 6 per library over 6,170 loci, mostly TT Low) should stay excluded under a fidelity toggle is a judgement call. They are faithful to 2022."
+    ],
+    "risks": [
+     "The toggle labelled 'as in Venkataraman' does not reproduce 2022 with cigar = 'full'. Failure: on NC_047566.1:24.25-24.50 Mb of the 2022 BAMs the pilot code calls 421 union positions against BS-Snper's 394 (32 extra, 5 missed), and its counts equal BS-Snper's at only 15 to 33 positions per animal and 0 of 160 merged. Every exclusion count reported as '2022 rule' would be off by several percent. Fix: default cigar = 'bs_snper_last_op' (validated exact: 1,036 plus 160 of 1,036 plus 160) and keep this window as a regression test.",
+     "Loci that cannot be assessed are treated as clean. Failure: a DML with fewer than 3 bottom-strand reads in every library (403 of 6,170 test loci, and 282 even pooled over four) can never be called, stays in the 'variant-excluded' list and looks screened. Fix: carry pooled evidence depth and the number of assessable libraries per CpG, report not-assessable counts per contrast, and offer an optional stricter exclusion labelled not 2022.",
+     "Step 00 runs before step 01 (reference download) and before step 05 (tested CpGs, DML). Failure: on a fresh clone with apply = TRUE, source = 'recompute', scope 'tested' or 'dml' has no input, and even all_cpg finds no reference in the cache. Fix: step 00 fetches the genome itself and recomputes at all CpG sites only; scope becomes a filter applied in steps 04 and 05; refuse a committed table whose scope does not cover the run's 5x or 10x CpG set.",
+     "The committed table cannot serve all its switches. Failure: setting pool_by = 'experiment', another minhetfreq or another cigar silently reuses the all-library pooled calls, which are not the same calls. Fix: store pooled calls per experiment as well as for all libraries, record the parameters and cigar mode, and stop with a message when a switch needs a recompute.",
+     "Silent BAM corruption in fetch_bam.sh. Failure: a 502/503 page from the slow server or the proxy is appended to a part file (no -f); the next range resumes at a shifted offset; total size and the BGZF end-of-file block still pass, and the corrupt BAM is accepted. The pilot read only a few blocks, so it could not notice. A genome-wide scan would fail hours in, or return wrong bases if block CRCs are not checked. gannet has no md5 to compare with. Fix: curl -f, check 206 and Content-Range, write each range to its own file, one downloader per library under a lock, and a full decode pass checked against idxstats before counting.",
+     "Mate double counting (faithful to BS-Snper) lets one or two fragments carry a call. Failure: 37 to 101 calls per library need at least 3 alt reads but come from fewer than 3 fragments, and 2 to 6 rest on one fragment (TT Low). A single PCR or damage event in one fragment can exclude a DML, and with 22 libraries plus any FILTER these accumulate. Fix: keep for fidelity, but store alt-fragment counts and offer a minimum-fragment sensitivity switch labelled not 2022.",
+     "Reference bias from the mismatch and MAPQ filters (faithful to BS-Snper). Failure: alt-carrying bottom-strand reads pass at 61 to 64% against 80 to 82% for reference reads. Single-copy triploid alleles, already detected less often (spec section 5), are missed more often, so the exclusion is incomplete in a ploidy-dependent way and the ploidy contrast is screened unevenly. Fix: document; report removed DML by ploidy group and direction; consider the C-and-G option, which roughly doubles the DML affected (17.9% to 33.9% for ploidy DML in the pilot).",
+     "The excluded set grows with library number. Failure: by the 1 to 4 library growth (DML 6.8% to 16.2%), 22 libraries could remove roughly 28 to 47% of DML (extrapolation), far above 2022's 19.7%. Read as 'the same rule as 2022', that would mislead. Fix: report the removal per contrast, per library origin and per experiment, and state the library count in the toggle label.",
+     "FILTER for GT, AC and AT is not ported. Failure: with use_filter = 'PASS', GT calls such as NC_047566.1:24377810 (PASS in BS-Snper) are labelled not_ported and handled inconsistently. Fix: port that branch of BS-Snper.pl genotype().",
+     "Downstream steps and the default run. Failure: with apply = TRUE, step 13 would compare excluded DML counts with the draft's 1,038 and 2,351 and flag false discrepancies. Moving the exclusion before step 05's stopifnot(nrow(d) == nrow(dml_table(...))) would break that check. A step 00 that writes a log even when off changes the default output tree. Fix: guard step 13; place the exclusion after the stopifnot; with apply = FALSE, step 00 writes nothing."
+    ],
+    "files_written": [
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/V4-review/code/check1.R",
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/V4-review/code/check2.R",
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/V4-review/code/validate2022.R",
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/V4-review/code/validate8.R",
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/V4-review/code/filter_diff.R",
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/V4-review/code/ten_loci.R",
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/V4-review/check1_out.txt",
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/V4-review/check2_out.txt",
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/V4-review/validate_out.txt",
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/V4-review/validate_full.csv",
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/V4-review/validate_lastop.csv",
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/V4-review/validate8_out.txt",
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/V4-review/validate8_window.csv",
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/V4-review/ten_loci_zr3644_14.txt",
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/V4-review/downloads/bam2022/zr3616_1.bai",
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/V4-review/downloads/bam2022/zr3616_2.bai",
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/V4-review/downloads/bam2022/zr3616_3.bai",
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/V4-review/downloads/bam2022/zr3616_4.bai",
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/V4-review/downloads/bam2022/zr3616_5.bai",
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/V4-review/downloads/bam2022/zr3616_6.bai",
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/V4-review/downloads/bam2022/zr3616_7.bai",
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/V4-review/downloads/bam2022/zr3616_8.bai",
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/V4-review/downloads/bam2024/zr3644_14.bai",
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/V4-review/genome/genome.fa",
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/V4-review/genome/genome.fa.fai"
     ]
    }
   }
