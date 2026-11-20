@@ -25,6 +25,13 @@
 #           WGBS_CORES sets the number of forked workers of the model fits
 #           (default 1; leave it at 1 on Windows). Time and memory are in the
 #           Notes.
+#           The paper's analysis is fitted in one piece, as it always was. An
+#           optional analysis is fitted by sequence: the import and each part of
+#           the genome (a linkage group, or a group of small sequences) are saved
+#           in the cache as they are done, so a run that is stopped loses only
+#           the part it was fitting; the same command run again goes on from the
+#           saved parts. Results are identical to a fit in one piece (section
+#           "Fit by sequence" below; tests/check_fit_by_sequence.R).
 #
 # Inputs    03_input_files/metadata/wgbs_libraries.csv
 #           22 coverage files listed in 03_input_files/gannet_manifest.csv (cache)
@@ -56,6 +63,9 @@
 #           04_output/05_differential_methylation/bed/dml_<set>_<mode>.bed
 #           04_output/05_differential_methylation/cache/methylkit_<fit id>.rds   (not tracked; the fit
 #             id is the analysis id without ctexcl, "legacy" for the paper)
+#           04_output/05_differential_methylation/cache/parts_<fit id>/   (not tracked; the saved
+#             import and parts of a fit by sequence while it is under way; deleted when the fit is
+#             written)
 #           04_output/05_differential_methylation/session_info.txt
 #
 # Manuscript items: Results 3.2 (CpG and DML counts); data for Figures 2, 3, 4.
@@ -129,6 +139,15 @@
 #             methylKit (stats::glm.fit runs inside the tests, data.table reads
 #             the files). After an upgrade of R or of those packages, delete
 #             the cache folder to fit again.
+#           - A fit by sequence (optional analyses) has the same fingerprint
+#             plus its method and the code of the fit by sequence, so a change
+#             of that code refits the optional analyses and not the paper's. Its
+#             saved parts carry the first 12 characters of the md5 of that
+#             fingerprint in their names and are reused only under it. An
+#             optional analysis also uses a cached fit made in one piece by
+#             fit_mode() from the same inputs and code (the two are identical).
+#             To resume a stopped fit, run the same command again; to start it
+#             afresh, delete cache/parts_<fit id>/.
 
 suppressPackageStartupMessages(library(here))
 source(here("run_config.R"))
@@ -210,6 +229,238 @@ fit_mode <- function(a) {
        diffmeth = list(ploidy = dm_ploidy, heat = dm_heat))
 }
 
+# ---- Fit by sequence (every optional analysis) ------------------------------------
+# The paper's fit is made in one piece by fit_mode() above, which is left exactly
+# as it was. An optional analysis is fitted one part of the genome at a time, and
+# each part is saved in the cache as soon as it is done, so that a run stopped
+# partway loses only the part it was fitting (the fit at 5x needs more than the 2
+# hours of a tracked task on one core). The results are those of a fit in one
+# piece, to the last bit:
+#   - methylKit's test is made CpG by CpG. For more than two libraries
+#     calculateDiffMeth() calls logReg() on each row of the united table: the
+#     logistic regression of that CpG's 22 libraries, and with overdispersion =
+#     "MN" the overdispersion factor of that CpG, from its own residuals. Nothing
+#     is shared between CpGs (only overdispersion = "shrinkMN", not used here,
+#     pools them). A p-value that comes out NaN is set to 1 inside logReg(), CpG
+#     by CpG. A part is the same call of calculateDiffMeth() on a subset of the
+#     rows, so every CpG gets the same p-value and difference.
+#   - What methylKit computes over all CpGs is computed over all CpGs. The import,
+#     the coverage filters, the median scaling of each library (normalizeCoverage:
+#     the medians of each library's filtered CpGs) and the united table are made
+#     once, genome-wide, before the table is split (import_united(), a copy of the
+#     first half of fit_mode()). The SLIM q-values are computed once, after all
+#     parts are in, from the p-values of all CpGs in the order of the united
+#     table, with methylKit's own function and arguments (p.adjusted(method =
+#     "SLIM"), as calculateDiffMeth() calls it); the q-values that
+#     calculateDiffMeth() returns for a part are not used.
+#   - The parts are assembled into the methylDiff objects that calculateDiffMeth()
+#     builds, row names and slots included. tests/check_fit_by_sequence.R checks
+#     with identical() that the result equals the fit in one piece (the paper's
+#     analysis and mnchisq at 10x).
+# Parts: each of the ten linkage groups (config$linkage_groups) is a part; the
+# other sequences (the mitochondrial genome and the unplaced scaffolds) are taken
+# in the order of the united table and grouped into parts of at most 50,000 CpGs
+# (a sequence is never split). Parts are fitted in the order of their first row
+# in the united table, all parts of the ploidy test, then all parts of the heat
+# test. Saved in <cache folder of the step>/parts_<fit id>/ (git-ignored), under
+# names that begin with the first 12 characters of the md5 of the fit's
+# fingerprint (fit_fingerprint() below):
+#   <fp>_united.rds                filtering record and united table (the import)
+#   <fp>_<contrast>_<part>.rds     p-values and differences of one part
+# Each file is written under a temporary name and then renamed. A rerun reuses
+# every file of the same fingerprint that can be read and fits the rest; files of
+# another fingerprint are deleted first. When all parts are in, cached_fit()
+# writes the assembled fit to methylkit_<fit id>.rds and deletes the folder.
+
+# The filtering record and the united table, as fit_mode() makes them. This is a
+# copy of the first half of fit_mode(), kept separate so that the paper's
+# fit_mode() and its cached fit stay as they were; tests/check_fit_by_sequence.R
+# checks that the two give identical tables.
+import_united <- function(a) {
+  mode <- a$fit_id
+  cfg_a <- modifyList(config, list(min_coverage = a$min_coverage))   # 10, or 5 with option cov5
+  treat_ploidy <- as.integer(lib$ploidy == "triploid")     # 0 diploid, 1 triploid
+  kept <- vector("list", nrow(lib)); records <- vector("list", nrow(lib))
+  chr_levels <- character(0); common <- NULL
+  for (i in seq_len(nrow(lib))) {
+    r <- read_filtered_counts(fetch_gannet_file(lib$cov_file[i], config, verify_md5 = TRUE), a$filter, cfg_a, chr_levels)
+    chr_levels <- r$chr_levels
+    common <- if (is.null(common)) r$counts$pos_key else common[common %in% r$counts$pos_key]
+    kept[[i]] <- r$counts
+    records[[i]] <- cbind(library_id = lib$library_id[i], r$record)
+    log_msg("[%s] %-10s kept %d CpGs (median coverage %g); in all libraries so far: %d", mode,
+            lib$library_id[i], r$record$n_cpg_kept, r$record$median_coverage, length(common))
+  }
+  filtering <- rbindlist(records)
+  filtering[, scaling_factor := max(median_coverage) / median_coverage]
+  pos <- key_to_position(common, chr_levels)
+  objects <- vector("list", nrow(lib))
+  for (i in seq_len(nrow(lib))) {
+    k <- kept[[i]][match(common, pos_key)]
+    objects[[i]] <- make_methylraw(pos$chr, pos$start, scale_counts_like_methylkit(k$coverage, k$nC, k$nT, filtering$scaling_factor[i]),
+                                   as.character(lib$legacy_sample_index[i]))
+    kept[i] <- list(NULL)
+  }
+  rm(kept, records, k); gc(verbose = FALSE)
+  raw_list <- new("methylRawList", objects, treatment = treat_ploidy)
+  meth_ploidy <- unite(raw_list, destrand = FALSE)
+  rm(objects, raw_list); gc(verbose = FALSE)
+  log_msg("[%s] %d CpGs with at least %dx in all %d libraries", mode, nrow(meth_ploidy),
+          cfg_a$min_coverage, nrow(lib))
+  list(filtering = filtering, united = meth_ploidy)
+}
+
+# The parts of the united table: a list of row numbers per part, named by part,
+# in the order of each part's first row.
+sequence_parts <- function(chr, max_other = 50000L) {
+  seqs <- unique(chr)
+  n <- tabulate(match(chr, seqs), nbins = length(seqs))
+  part <- seqs
+  own <- seqs %in% config$linkage_groups
+  group <- integer(length(seqs)); g <- 0L; size <- Inf
+  for (i in which(!own)) {
+    if (size + n[i] > max_other) { g <- g + 1L; size <- 0 }
+    group[i] <- g; size <- size + n[i]
+  }
+  for (j in seq_len(g)) {
+    s <- seqs[!own & group == j]
+    part[!own & group == j] <- if (length(s) == 1) sprintf("other%02d_%s", j, s)
+                               else sprintf("other%02d_%s_to_%s", j, s[1], s[length(s)])
+  }
+  part <- gsub("[^A-Za-z0-9._-]", "_", part)
+  row_part <- part[match(chr, seqs)]
+  rows <- split(seq_along(chr), factor(row_part, levels = unique(row_part)))
+  stopifnot(sum(lengths(rows)) == length(chr), !anyDuplicated(names(rows)))
+  rows
+}
+
+# The test of one contrast on the rows of one part: the calls of fit_mode(), on a
+# methylBase of those rows. Returns the p-values and differences.
+test_part <- function(obj, contrast, a) {
+  covariates <- if (contrast == "ploidy") data.frame(heat = lib$treatment) else data.frame(ploidy = lib$ploidy)
+  dm <- if (a$overdispersion == "none") {
+    calculateDiffMeth(obj, covariates = covariates, mc.cores = config$cores)
+  } else {
+    calculateDiffMeth(obj, covariates = covariates, overdispersion = "MN", test = "Chisq", mc.cores = config$cores)
+  }
+  d <- getData(dm)
+  list(pvalue = d$pvalue, meth.diff = d$meth.diff)
+}
+
+# The methylDiff object that calculateDiffMeth() returns for `obj` (the whole
+# united table, with the treatment of the contrast), from the p-values and
+# differences of all its rows: the same data frame (row names, columns and their
+# names), the q-values of methylKit's p.adjusted() with its default method SLIM
+# over all p-values, and the same slots.
+diffmeth_from_parts <- function(obj, pvalue, meth.diff) {
+  stopifnot(length(pvalue) == nrow(obj), length(meth.diff) == nrow(obj), is.double(pvalue), !anyNA(pvalue))
+  p_adjusted <- utils::getFromNamespace("p.adjusted", "methylKit")
+  subst <- S3Part(obj, strictS3 = TRUE)
+  x <- data.frame(subst[, 1:4], pvalue, p_adjusted(pvalue, method = "SLIM"), meth.diff = meth.diff,
+                  stringsAsFactors = FALSE)
+  colnames(x)[5:7] <- c("pvalue", "qvalue", "meth.diff")
+  new("methylDiff", x, sample.ids = obj@sample.ids, assembly = obj@assembly, context = obj@context,
+      destranded = obj@destranded, treatment = obj@treatment, resolution = obj@resolution)
+}
+
+# saveRDS() under a temporary name, then rename: a file with the final name is complete.
+save_rds_atomic <- function(x, file) {
+  tmp <- paste0(file, ".part")
+  saveRDS(x, tmp)
+  if (!file.rename(tmp, file)) stop("Could not move ", tmp, " to ", file, ".", call. = FALSE)
+  invisible(file)
+}
+
+parts_dir <- function(a) file.path(step_cache_dir(step), paste0("parts_", a$fit_id))
+
+# The fit of an optional analysis, part by part, reusing the parts saved by an
+# earlier run with the same fingerprint. Returns what fit_mode() returns.
+fit_by_sequence <- function(a, fingerprint) {
+  mode <- a$fit_id
+  fp <- digest_md5(fingerprint)
+  prefix <- paste0(substr(fp, 1, 12), "_")
+  dir <- parts_dir(a)
+  dir.create(dir, recursive = TRUE, showWarnings = FALSE)
+  stale <- list.files(dir, full.names = TRUE)
+  stale <- stale[!startsWith(basename(stale), prefix)]
+  if (length(stale) > 0) {
+    log_msg("[%s] deleting %d saved part(s) of another fingerprint in %s", mode, length(stale), basename(dir))
+    unlink(stale)
+  }
+  part_file <- function(name) file.path(dir, paste0(prefix, name, ".rds"))
+  saved <- function(file, ok) {
+    if (!file.exists(file)) return(NULL)
+    x <- tryCatch(suppressWarnings(readRDS(file)), error = function(e) NULL)
+    if (is.list(x) && identical(x$fingerprint_md5, fp) && isTRUE(ok(x))) x else NULL
+  }
+  gb <- function(x) if (is.na(x)) "not measured" else sprintf("%.2f GB", x)
+
+  # The import and the united table, genome-wide.
+  file <- part_file("united")
+  imp <- saved(file, function(x) is(x$united, "methylBase") && is.data.frame(x$filtering))
+  if (is.null(imp)) {
+    t1 <- Sys.time(); watch <- memory_watch_start()
+    imp <- c(import_united(a), list(fingerprint_md5 = fp))
+    peak <- memory_watch_stop(watch)
+    save_rds_atomic(imp, file)
+    log_msg("[%s] import saved as %s/%s: %.1f min, peak memory %s", mode, basename(dir), basename(file),
+            as.numeric(difftime(Sys.time(), t1, units = "mins")), gb(peak))
+  } else {
+    log_msg("[%s] reusing the saved import %s/%s: %d CpGs", mode, basename(dir), basename(file), nrow(imp$united))
+  }
+  united <- imp$united
+  rows <- sequence_parts(united$chr)
+  log_msg("[%s] fit by sequence: %d parts per contrast (%s), %d CpGs, %d core(s)%s", mode, length(rows),
+          paste(sprintf("%s %d", names(rows), lengths(rows)), collapse = ", "), nrow(united), config$cores,
+          if (a$overdispersion == "MN") "; overdispersion MN, chi-squared test" else "")
+
+  treat_heat <- as.integer(lib$treatment == "heat")        # 0 control, 1 heat
+  results <- list()
+  for (contrast in c("ploidy", "heat")) {
+    pvalue <- rep(NA_real_, nrow(united)); meth.diff <- pvalue
+    for (k in seq_along(rows)) {
+      name <- names(rows)[k]; r <- rows[[k]]
+      file <- part_file(paste(contrast, name, sep = "_"))
+      x <- saved(file, function(x) identical(x$contrast, contrast) && identical(x$part, name) && identical(x$rows, r) &&
+                   is.double(x$pvalue) && length(x$pvalue) == length(r) && length(x$meth.diff) == length(r))
+      if (is.null(x)) {
+        t1 <- Sys.time(); watch <- memory_watch_start()
+        obj <- methylKit::select(united, r)
+        if (contrast == "heat") obj <- methylKit::reorganize(obj, sample.ids = obj@sample.ids, treatment = treat_heat)
+        x <- suppressMessages(test_part(obj, contrast, a))
+        rm(obj)
+        peak <- memory_watch_stop(watch)
+        # A worker that failed (killed for lack of memory, for example) leaves no p-value; such a part is not saved.
+        if (!is.double(x$pvalue) || length(x$pvalue) != length(r) || anyNA(x$pvalue) || length(x$meth.diff) != length(r)) {
+          stop("The ", contrast, " test of part ", name, " did not return a p-value for every CpG (a worker may have failed); ",
+               "run the step again (the saved parts are kept), with fewer cores if memory is short.", call. = FALSE)
+        }
+        minutes <- as.numeric(difftime(Sys.time(), t1, units = "mins"))
+        x <- c(x, list(fingerprint_md5 = fp, contrast = contrast, part = name, rows = r,
+                       minutes = minutes, peak_gb = peak, cores = config$cores))
+        save_rds_atomic(x, file)
+        log_msg("[%s] %s part %d of %d, %s: %d CpGs fitted in %.1f min on %d core(s), peak memory %s; saved",
+                mode, contrast, k, length(rows), name, length(r), minutes, config$cores, gb(peak))
+      } else {
+        log_msg("[%s] %s part %d of %d, %s: %d CpGs, saved part reused (fitted in %.1f min on %d core(s), peak memory %s)",
+                mode, contrast, k, length(rows), name, length(r), x$minutes, x$cores, gb(x$peak_gb))
+      }
+      pvalue[r] <- x$pvalue; meth.diff[r] <- x$meth.diff
+    }
+    results[[contrast]] <- list(pvalue = pvalue, meth.diff = meth.diff)
+  }
+  rm(x); invisible(gc(verbose = FALSE))
+
+  # q-values over all CpGs, once, and the methylDiff objects of a fit in one piece.
+  log_msg("[%s] all parts in; SLIM q-values over all %d CpGs", mode, nrow(united))
+  dm_ploidy <- diffmeth_from_parts(united, results$ploidy$pvalue, results$ploidy$meth.diff)
+  meth_heat <- reorganize(united, sample.ids = united@sample.ids, treatment = treat_heat)
+  dm_heat <- diffmeth_from_parts(meth_heat, results$heat$pvalue, results$heat$meth.diff)
+  rm(meth_heat)
+  list(mode = mode, filtering = imp$filtering, united = united,
+       diffmeth = list(ploidy = dm_ploidy, heat = dm_heat))
+}
+
 # md5 of a fingerprint, for the stamp of the analysis folder.
 digest_md5 <- function(x) { f <- tempfile(); on.exit(unlink(f)); saveRDS(x, f, version = 3, compress = FALSE); unname(tools::md5sum(f)) }
 
@@ -224,7 +475,13 @@ digest_md5 <- function(x) { f <- tempfile(); on.exit(unlink(f)); saveRDS(x, f, v
 # methylKit is not compared (see Notes). The thresholds that define a DML are applied
 # after the fit (write_mode) and are not part of it; the number of cores is not
 # either, because the results do not depend on it.
-fit_fingerprint <- function(a) {
+# A fit by sequence (by_sequence = TRUE, every optional analysis) adds two parts:
+# the method and the code of the fit by sequence, so that a change of that code
+# refits the optional analyses and leaves the paper's fingerprint, and its cached
+# fit, as they were. Left out because they touch no result: the memory watch, the
+# writing of files and the size of the groups of parts (the parts' names follow
+# from the code, and a fit does not depend on how its CpGs are grouped).
+fit_fingerprint <- function(a, by_sequence = FALSE) {
   cfg_a <- modifyList(config, list(min_coverage = a$min_coverage))
   manifest <- read_gannet_manifest()
   files <- manifest[match(lib$cov_file, manifest$file), ]
@@ -234,13 +491,21 @@ fit_fingerprint <- function(a) {
                        first_line_lost = first_line_lost, upper_coverage_cutoff = upper_coverage_cutoff,
                        cpg_key = cpg_key, key_to_position = key_to_position,
                        scale_counts_like_methylkit = scale_counts_like_methylkit, make_methylraw = make_methylraw)
-  list(mode = a$fit_id,
-       coverage_settings = unlist(cfg_a[c("min_coverage", "import_min_coverage", "upper_coverage_percentile")]),
-       sample_sheet = paste(lib$library_id, lib$legacy_sample_index, lib$ploidy, lib$treatment, lib$cov_file),
-       coverage_files = paste(files$file, files$bytes, files$md5),
-       methylKit_version = as.character(utils::packageVersion("methylKit")),
-       fitting_code = lapply(fitting_code, function(f) deparse(utils::removeSource(f))),
-       model = c(overdispersion = a$overdispersion, test = a$test))
+  fp <- list(mode = a$fit_id,
+             coverage_settings = unlist(cfg_a[c("min_coverage", "import_min_coverage", "upper_coverage_percentile")]),
+             sample_sheet = paste(lib$library_id, lib$legacy_sample_index, lib$ploidy, lib$treatment, lib$cov_file),
+             coverage_files = paste(files$file, files$bytes, files$md5),
+             methylKit_version = as.character(utils::packageVersion("methylKit")),
+             fitting_code = lapply(fitting_code, function(f) deparse(utils::removeSource(f))),
+             model = c(overdispersion = a$overdispersion, test = a$test))
+  if (by_sequence) {
+    # Every function of the fit by sequence that can change a result (its helpers of the import are listed above).
+    by_sequence_code <- list(fit_by_sequence = fit_by_sequence, import_united = import_united, sequence_parts = sequence_parts,
+                             test_part = test_part, diffmeth_from_parts = diffmeth_from_parts)
+    fp$fit_method <- "by sequence: parts of the united table tested separately, q-values over all CpGs"
+    fp$by_sequence_code <- lapply(by_sequence_code, function(f) deparse(utils::removeSource(f)))
+  }
+  fp
 }
 
 # ---- The fit of one mode, from the cache where that is safe ------------------------
@@ -248,18 +513,30 @@ fit_fingerprint <- function(a) {
 # the file is not a fit of this step) is fitted again, as is a fit made from
 # anything other than what fit_fingerprint() returns now. A new fit is written
 # under a temporary name and renamed, so a file with the final name is complete.
+# The paper's analysis is fitted in one piece (fit_mode()), every optional
+# analysis by sequence (fit_by_sequence(); its saved parts are deleted once the
+# assembled fit is written). An optional analysis also takes a cached fit made in
+# one piece from the same inputs and code (the fingerprint of fit_mode()), since
+# the two give identical results; the fits in one piece made before the fit by
+# sequence existed (mnchisq, corrected, corrected-mnchisq) stay valid that way.
 cached_fit <- function(a) {
   mode <- a$fit_id
   cache_file <- file.path(step_cache_dir(step), sprintf("methylkit_%s.rds", mode))
-  fingerprint <- fit_fingerprint(a)
+  by_sequence <- !a$paper
+  fingerprint <- fit_fingerprint(a, by_sequence)
   if (file.exists(cache_file)) {
     cached <- tryCatch(suppressWarnings(readRDS(cache_file)), error = function(e) NULL)
     readable <- is.list(cached) && all(c("mode", "filtering", "united", "diffmeth") %in% names(cached))
-    changed <- if (readable) names(fingerprint)[!vapply(names(fingerprint), function(part) {
-      identical(cached$fingerprint[[part]], fingerprint[[part]])
-    }, logical(1))]
+    differs <- function(fp) c(names(fp)[!vapply(names(fp), function(part) identical(cached$fingerprint[[part]], fp[[part]]), logical(1))],
+                              setdiff(names(cached$fingerprint), names(fp)))
+    changed <- if (readable) differs(fingerprint)
     if (readable && length(changed) == 0) {
       log_msg("[%s] using the cached fit %s: settings, sample sheet, coverage files, methylKit version and fitting code are unchanged",
+              mode, basename(cache_file))
+      return(cached)
+    }
+    if (readable && by_sequence && length(differs(fit_fingerprint(a, FALSE))) == 0) {
+      log_msg("[%s] using the cached fit %s, made in one piece: settings, sample sheet, coverage files, methylKit version and fitting code are unchanged, and a fit by sequence gives identical results",
               mode, basename(cache_file))
       return(cached)
     }
@@ -268,10 +545,12 @@ cached_fit <- function(a) {
             else if (is.null(cached$fingerprint)) "does not say what it was made from (written before this step recorded it)"
             else paste("differs from this run in:", paste(gsub("_", " ", changed), collapse = ", ")))
   }
-  fit <- c(fit_mode(a), list(fingerprint = fingerprint))
-  part_file <- paste0(cache_file, ".part")
-  saveRDS(fit, part_file)
-  if (!file.rename(part_file, cache_file)) stop("Could not move ", part_file, " to ", cache_file, ".", call. = FALSE)
+  fit <- c(if (by_sequence) fit_by_sequence(a, fingerprint) else fit_mode(a), list(fingerprint = fingerprint))
+  save_rds_atomic(fit, cache_file)
+  if (by_sequence) {
+    unlink(parts_dir(a), recursive = TRUE)
+    log_msg("[%s] fit written to %s; its saved parts deleted", mode, basename(cache_file))
+  }
   fit
 }
 

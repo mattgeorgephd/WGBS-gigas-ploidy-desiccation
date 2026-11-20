@@ -64,7 +64,9 @@ Column `mode` of every table holds the analysis id (the paper's tables keep the 
 | `comparisons/` | the tables that listed the legacy and the corrected mode side by side before the settings layout, now rebuilt by every optional run from every analysis folder | |
 | `ct_variants/` | `01_pipeline/optional/ct_variant_loci.R` (see `01_pipeline/optional/README.md`) | |
 
-Other analysis folders appear when their run has been made. The first optional analysis whose fit is not cached refits in step 05 (22 to 24 minutes per fit at `WGBS_CORES=2`, as measured on 2026-11-20); an analysis that adds `ctexcl` to another reuses that one's fit (`methylkit_<fit id>.rds` in `04_output/05_differential_methylation/cache/`).
+Other analysis folders appear when their run has been made. The first optional analysis whose fit is not cached refits in step 05 (22 to 24 minutes per fit at 10x and `WGBS_CORES=2`, as measured on 2026-11-20); an analysis that adds `ctexcl` to another reuses that one's fit (`methylkit_<fit id>.rds` in `04_output/05_differential_methylation/cache/`).
+
+Step 05 fits every optional analysis by sequence (decision of the author, 2026-11-20): the import, the coverage normalisation and the united table are made genome-wide and saved, the tests are then run one part of the genome at a time (each of the ten linkage groups; the mitochondrial genome and the unplaced scaffolds in groups of at most 50,000 CpGs), each part is saved as soon as it is done in `04_output/05_differential_methylation/cache/parts_<fit id>/` (git-ignored), and the SLIM q-values are computed once over all CpGs when every part is in. A stopped run loses only the part it was fitting; the same command started again reuses the saved import and parts and fits the rest. The results are identical to those of a fit in one piece (`tests/check_fit_by_sequence.R`; the paper's own fit is still made in one piece). The fits of `mnchisq`, `corrected` and `corrected-mnchisq`, made in one piece before, are still used.
 
 ## What is tracked
 
