@@ -11,7 +11,7 @@ legacy,all,22,1,in all libraries,5852939,upstream_flank,274971,4.69799873191913,
 legacy,all,22,1,in all libraries,5852939,downstream_flank,247804,4.23383876032195,3.16366991020582,2.6537640272136,downstream flanks (up to 1 kb)
 legacy,all,22,1,in all libraries,5852939,flanks,498393,8.51526045291092,,,upstream and downstream flanks together
 legacy,all,22,1,in all libraries,5852939,intergenic,1616877,27.6250444434839,20.6423831471803,17.3153380051534,intergenic regions
-legacy,all,22,1,in all libraries,5852939,TE,1776792,30.3572615398862,22.6839897140257,19.0278877396689,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+legacy,all,22,1,in all libraries,5852939,TE,1776792,30.3572615398862,22.6839897140257,19.0278877396689,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 legacy,all,22,1,in any library,12918250,gene,7279182,56.348050239003,,,genes
 legacy,all,22,1,in any library,12918250,mRNA,6904928,53.4509550442204,,,mRNA transcripts
 legacy,all,22,1,in any library,12918250,exon,2177529,16.856222785594,,,exons
@@ -24,7 +24,7 @@ legacy,all,22,1,in any library,12918250,upstream_flank,580904,4.49677007334585,3
 legacy,all,22,1,in any library,12918250,downstream_flank,539124,4.17335165366826,2.87980821363155,2.5797432229009,downstream flanks (up to 1 kb)
 legacy,all,22,1,in any library,12918250,flanks,1070732,8.28852205213554,,,upstream and downstream flanks together
 legacy,all,22,1,in any library,12918250,intergenic,4570246,35.378212993246,24.412624867594,21.868922818294,intergenic regions
-legacy,all,22,1,in any library,12918250,TE,5295420,40.9917752017495,28.2862458555523,25.3389273291745,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+legacy,all,22,1,in any library,12918250,TE,5295420,40.9917752017495,28.2862458555523,25.3389273291745,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 legacy,all,22,3,in all libraries,3714898,gene,2529257,68.0841573577525,,,genes
 legacy,all,22,3,in all libraries,3714898,mRNA,2444055,65.7906354360201,,,mRNA transcripts
 legacy,all,22,3,in all libraries,3714898,exon,1161875,31.2760942561545,,,exons
@@ -37,7 +37,7 @@ legacy,all,22,3,in all libraries,3714898,upstream_flank,166409,4.47950387870676,
 legacy,all,22,3,in all libraries,3714898,downstream_flank,137813,3.70973846388245,2.91644023004268,2.34086864532374,downstream flanks (up to 1 kb)
 legacy,all,22,3,in all libraries,3714898,flanks,290074,7.8083974311004,,,upstream and downstream flanks together
 legacy,all,22,3,in all libraries,3714898,intergenic,895965,24.1181588296637,18.9606812906634,15.2187121375159,intergenic regions
-legacy,all,22,3,in all libraries,3714898,TE,886417,23.8611396598238,18.7586236377827,15.0565314011155,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+legacy,all,22,3,in all libraries,3714898,TE,886417,23.8611396598238,18.7586236377827,15.0565314011155,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 legacy,all,22,3,in any library,12042382,gene,6871189,57.0583876179978,,,genes
 legacy,all,22,3,in any library,12042382,mRNA,6527620,54.2053889338505,,,mRNA transcripts
 legacy,all,22,3,in any library,12042382,exon,2094208,17.3903136439286,,,exons
@@ -50,7 +50,7 @@ legacy,all,22,3,in any library,12042382,upstream_flank,548531,4.55500415117209,3
 legacy,all,22,3,in any library,12042382,downstream_flank,509647,4.23211122184963,2.93952264962685,2.62272632887427,downstream flanks (up to 1 kb)
 legacy,all,22,3,in any library,12042382,flanks,1012162,8.40499828024057,,,upstream and downstream flanks together
 legacy,all,22,3,in any library,12042382,intergenic,4160823,34.551494878671,23.9986371931716,21.4122716937128,intergenic regions
-legacy,all,22,3,in any library,12042382,TE,4831291,40.1190644840863,27.865737111056,24.8626090375364,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+legacy,all,22,3,in any library,12042382,TE,4831291,40.1190644840863,27.865737111056,24.8626090375364,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 legacy,all,22,5,in all libraries,2297236,gene,1621141,70.5691970698701,,,genes
 legacy,all,22,5,in all libraries,2297236,mRNA,1570177,68.3507049341034,,,mRNA transcripts
 legacy,all,22,5,in all libraries,2297236,exon,799217,34.7903741713955,,,exons
@@ -63,7 +63,7 @@ legacy,all,22,5,in all libraries,2297236,upstream_flank,96158,4.18581286380677,3
 legacy,all,22,5,in all libraries,2297236,downstream_flank,74454,3.2410253017104,2.61058356819726,2.03915236072954,downstream flanks (up to 1 kb)
 legacy,all,22,5,in all libraries,2297236,flanks,162732,7.08381724820611,,,upstream and downstream flanks together
 legacy,all,22,5,in all libraries,2297236,intergenic,513452,22.3508599029442,18.0031879315822,14.0624661928346,intergenic regions
-legacy,all,22,5,in all libraries,2297236,TE,479345,20.866162640669,16.8072928317823,13.128340832647,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+legacy,all,22,5,in all libraries,2297236,TE,479345,20.866162640669,16.8072928317823,13.128340832647,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 legacy,all,22,5,in any library,11183702,gene,6457434,57.7396822626354,,,genes
 legacy,all,22,5,in any library,11183702,mRNA,6143131,54.9293158920007,,,mRNA transcripts
 legacy,all,22,5,in any library,11183702,exon,2027312,18.1273785728554,,,exons
@@ -76,7 +76,7 @@ legacy,all,22,5,in any library,11183702,upstream_flank,514509,4.60052494245644,3
 legacy,all,22,5,in any library,11183702,downstream_flank,477516,4.26974896147984,2.99125711464675,2.65418860004441,downstream flanks (up to 1 kb)
 legacy,all,22,5,in any library,11183702,flanks,949001,8.48557123571426,,,upstream and downstream flanks together
 legacy,all,22,5,in any library,11183702,intergenic,3778946,33.7897594195554,23.6720845131177,21.0046059051077,intergenic regions
-legacy,all,22,5,in any library,11183702,TE,4355131,38.9417654368831,27.2814242642521,24.2072287669942,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+legacy,all,22,5,in any library,11183702,TE,4355131,38.9417654368831,27.2814242642521,24.2072287669942,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 legacy,all,22,10,in all libraries,480579,gene,340706,70.8948996939109,,,genes
 legacy,all,22,10,in all libraries,480579,mRNA,328804,68.4183037544296,,,mRNA transcripts
 legacy,all,22,10,in all libraries,480579,exon,174705,36.3530241646015,,,exons
@@ -89,7 +89,7 @@ legacy,all,22,10,in all libraries,480579,upstream_flank,17130,3.56445038172704,2
 legacy,all,22,10,in all libraries,480579,downstream_flank,12652,2.63265768999478,2.0836318302265,1.61808076079978,downstream flanks (up to 1 kb)
 legacy,all,22,10,in all libraries,480579,flanks,28286,5.88581690003101,,,upstream and downstream flanks together
 legacy,all,22,10,in all libraries,480579,intergenic,111306,23.1608122701991,18.3307559670558,14.2350693298752,intergenic regions
-legacy,all,22,10,in all libraries,480579,TE,109966,22.8819819426151,18.1100741260423,14.0636949843589,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+legacy,all,22,10,in all libraries,480579,TE,109966,22.8819819426151,18.1100741260423,14.0636949843589,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 legacy,all,22,10,in any library,8879998,gene,5304034,59.7301260653437,,,genes
 legacy,all,22,10,in any library,8879998,mRNA,5062137,57.0060601365,,,mRNA transcripts
 legacy,all,22,10,in any library,8879998,exon,1833839,20.6513447412939,,,exons
@@ -102,7 +102,7 @@ legacy,all,22,10,in any library,8879998,upstream_flank,414467,4.66742222239239,3
 legacy,all,22,10,in any library,8879998,downstream_flank,378455,4.26188159051387,3.0625114706108,2.66677104834603,downstream flanks (up to 1 kb)
 legacy,all,22,10,in any library,8879998,flanks,757915,8.53508075114431,,,upstream and downstream flanks together
 legacy,all,22,10,in any library,8879998,intergenic,2819375,31.7497256193076,22.8147818827954,19.8666357279745,intergenic regions
-legacy,all,22,10,in any library,8879998,TE,3147671,35.4467534789985,25.4713996200578,22.1799629877222,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+legacy,all,22,10,in any library,8879998,TE,3147671,35.4467534789985,25.4713996200578,22.1799629877222,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 legacy,all,22,20,in all libraries,29884,gene,16447,55.0361397403293,,,genes
 legacy,all,22,20,in all libraries,29884,mRNA,14614,48.902422701111,,,mRNA transcripts
 legacy,all,22,20,in all libraries,29884,exon,6198,20.7401954222996,,,exons
@@ -115,7 +115,7 @@ legacy,all,22,20,in all libraries,29884,upstream_flank,1055,3.53031722660956,2.2
 legacy,all,22,20,in all libraries,29884,downstream_flank,1240,4.149377593361,2.63964577656676,2.33196675066762,downstream flanks (up to 1 kb)
 legacy,all,22,20,in all libraries,29884,flanks,2052,6.86655066256191,,,upstream and downstream flanks together
 legacy,all,22,20,in all libraries,29884,intergenic,11035,36.9261143086602,23.4907186648501,20.7526234625945,intergenic regions
-legacy,all,22,20,in all libraries,29884,TE,15522,51.9408379065721,33.0424046321526,29.1909579869861,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+legacy,all,22,20,in all libraries,29884,TE,15522,51.9408379065721,33.0424046321526,29.1909579869861,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 legacy,all,22,20,in any library,4462005,gene,2833852,63.5107311623362,,,genes
 legacy,all,22,20,in any library,4462005,mRNA,2716346,60.87725137018,,,mRNA transcripts
 legacy,all,22,20,in any library,4462005,exon,1137229,25.4869503732067,,,exons
@@ -128,7 +128,7 @@ legacy,all,22,20,in any library,4462005,upstream_flank,197953,4.43641367501829,3
 legacy,all,22,20,in any library,4462005,downstream_flank,166716,3.73634722507034,2.78661476851003,2.34152606218114,downstream flanks (up to 1 kb)
 legacy,all,22,20,in any library,4462005,flanks,348549,7.81148833315965,,,upstream and downstream flanks together
 legacy,all,22,20,in any library,4462005,intergenic,1280077,28.6883811201467,21.3961555761295,17.978680253237,intergenic regions
-legacy,all,22,20,in any library,4462005,TE,1356842,30.4087960457238,22.679262672657,19.0568446055687,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+legacy,all,22,20,in any library,4462005,TE,1356842,30.4087960457238,22.679262672657,19.0568446055687,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 legacy,diploid,11,1,in all libraries,6583553,gene,4117757,62.5461206129882,,,genes
 legacy,diploid,11,1,in all libraries,6583553,mRNA,3951678,60.0234857986258,,,mRNA transcripts
 legacy,diploid,11,1,in all libraries,6583553,exon,1585582,24.0839862609141,,,exons
@@ -141,7 +141,7 @@ legacy,diploid,11,1,in all libraries,6583553,upstream_flank,310145,4.71090610191
 legacy,diploid,11,1,in all libraries,6583553,downstream_flank,283009,4.29872745005622,3.16119198391887,2.68555707785002,downstream flanks (up to 1 kb)
 legacy,diploid,11,1,in all libraries,6583553,flanks,565799,8.59412842882863,,,upstream and downstream flanks together
 legacy,diploid,11,1,in all libraries,6583553,intergenic,1900922,28.8738011222815,21.2331741692138,18.0384176176052,intergenic regions
-legacy,diploid,11,1,in all libraries,6583553,TE,2136255,32.4483603306604,23.8618283574254,20.2715628667021,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+legacy,diploid,11,1,in all libraries,6583553,TE,2136255,32.4483603306604,23.8618283574254,20.2715628667021,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 legacy,diploid,11,1,in any library,12718350,gene,7186018,56.5011813639348,,,genes
 legacy,diploid,11,1,in any library,12718350,mRNA,6818662,53.6127878223197,,,mRNA transcripts
 legacy,diploid,11,1,in any library,12718350,exon,2158367,16.9704953865871,,,exons
@@ -154,7 +154,7 @@ legacy,diploid,11,1,in any library,12718350,upstream_flank,573346,4.508021873906
 legacy,diploid,11,1,in any library,12718350,downstream_flank,532783,4.1890889934622,2.89253943694554,2.58914313539299,downstream flanks (up to 1 kb)
 legacy,diploid,11,1,in any library,12718350,flanks,1057560,8.31522956987345,,,upstream and downstream flanks together
 legacy,diploid,11,1,in any library,12718350,intergenic,4476658,35.1984180337858,24.3042848790554,21.7550265871886,intergenic regions
-legacy,diploid,11,1,in any library,12718350,TE,5203389,40.9124532663435,28.2497900426039,25.2866906604178,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+legacy,diploid,11,1,in any library,12718350,TE,5203389,40.9124532663435,28.2497900426039,25.2866906604178,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 legacy,diploid,11,3,in all libraries,4410404,gene,2930820,66.4524156970654,,,genes
 legacy,diploid,11,3,in all libraries,4410404,mRNA,2826445,64.0858524525191,,,mRNA transcripts
 legacy,diploid,11,3,in all libraries,4410404,exon,1284754,29.1300751586476,,,exons
@@ -167,7 +167,7 @@ legacy,diploid,11,3,in all libraries,4410404,upstream_flank,201526,4.56933197049
 legacy,diploid,11,3,in all libraries,4410404,downstream_flank,172242,3.9053565160924,3.01748188594633,2.46310145546384,downstream flanks (up to 1 kb)
 legacy,diploid,11,3,in all libraries,4410404,flanks,356499,8.08313705501809,,,upstream and downstream flanks together
 legacy,diploid,11,3,in all libraries,4410404,intergenic,1123612,25.4763962666459,19.6843908967146,16.0679181185578,intergenic regions
-legacy,diploid,11,3,in all libraries,4410404,TE,1147665,26.0217658064885,20.1057718131152,16.4118817238822,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+legacy,diploid,11,3,in all libraries,4410404,TE,1147665,26.0217658064885,20.1057718131152,16.4118817238822,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 legacy,diploid,11,3,in any library,11629068,gene,6672992,57.3820017218921,,,genes
 legacy,diploid,11,3,in any library,11629068,mRNA,6343274,54.5467100200979,,,mRNA transcripts
 legacy,diploid,11,3,in any library,11629068,exon,2062198,17.7331321822179,,,exons
@@ -180,7 +180,7 @@ legacy,diploid,11,3,in any library,11629068,upstream_flank,532297,4.577297166032
 legacy,diploid,11,3,in any library,11629068,downstream_flank,495015,4.25670397662134,2.96638042262629,2.64012125629483,downstream flanks (up to 1 kb)
 legacy,diploid,11,3,in any library,11629068,flanks,982696,8.45034185026693,,,upstream and downstream flanks together
 legacy,diploid,11,3,in any library,11629068,intergenic,3975121,34.1826275330061,23.8209369654872,21.2009766339282,intergenic regions
-legacy,diploid,11,3,in any library,11629068,TE,4613071,39.6684497846259,27.6438562520026,24.6034298029297,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+legacy,diploid,11,3,in any library,11629068,TE,4613071,39.6684497846259,27.6438562520026,24.6034298029297,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 legacy,diploid,11,5,in all libraries,2928292,gene,2019991,68.9818843202795,,,genes
 legacy,diploid,11,5,in all libraries,2928292,mRNA,1952862,66.6894558329566,,,mRNA transcripts
 legacy,diploid,11,5,in all libraries,2928292,exon,952292,32.5203907260615,,,exons
@@ -193,7 +193,7 @@ legacy,diploid,11,5,in all libraries,2928292,upstream_flank,126068,4.30517175199
 legacy,diploid,11,5,in all libraries,2928292,downstream_flank,101462,3.46488669845767,2.74686138153088,2.18384062969823,downstream flanks (up to 1 kb)
 legacy,diploid,11,5,in all libraries,2928292,flanks,217111,7.41425376977433,,,upstream and downstream flanks together
 legacy,diploid,11,5,in all libraries,2928292,intergenic,691386,23.6105552315138,18.7177613602246,14.8812051566551,intergenic regions
-legacy,diploid,11,5,in all libraries,2928292,TE,667504,22.7949944882546,18.0712085275018,14.3671754517562,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+legacy,diploid,11,5,in all libraries,2928292,TE,667504,22.7949944882546,18.0712085275018,14.3671754517562,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 legacy,diploid,11,5,in any library,10641288,gene,6192060,58.189008698947,,,genes
 legacy,diploid,11,5,in any library,10641288,mRNA,5895646,55.4035000274403,,,mRNA transcripts
 legacy,diploid,11,5,in any library,10641288,exon,1985476,18.658230093951,,,exons
@@ -206,7 +206,7 @@ legacy,diploid,11,5,in any library,10641288,upstream_flank,492226,4.625624266536
 legacy,diploid,11,5,in any library,10641288,downstream_flank,457075,4.29529771208147,3.02524513536677,2.67386498869878,downstream flanks (up to 1 kb)
 legacy,diploid,11,5,in any library,10641288,flanks,908141,8.53412669594132,,,upstream and downstream flanks together
 legacy,diploid,11,5,in any library,10641288,intergenic,3542698,33.292003749922,23.4480772095905,20.7245991308498,intergenic regions
-legacy,diploid,11,5,in any library,10641288,TE,4065750,38.2073109946841,26.9100047237706,23.7844261396971,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+legacy,diploid,11,5,in any library,10641288,TE,4065750,38.2073109946841,26.9100047237706,23.7844261396971,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 legacy,diploid,11,10,in all libraries,766054,gene,539962,70.486153717623,,,genes
 legacy,diploid,11,10,in all libraries,766054,mRNA,521411,68.0645228665342,,,mRNA transcripts
 legacy,diploid,11,10,in all libraries,766054,exon,269856,35.2267594712644,,,exons
@@ -219,7 +219,7 @@ legacy,diploid,11,10,in all libraries,766054,upstream_flank,28664,3.741772773198
 legacy,diploid,11,10,in all libraries,766054,downstream_flank,21431,2.79758346017383,2.2201181176183,1.73507183250821,downstream flanks (up to 1 kb)
 legacy,diploid,11,10,in all libraries,766054,flanks,47700,6.2267150879703,,,upstream and downstream flanks together
 legacy,diploid,11,10,in all libraries,766054,intergenic,178160,23.2568461231193,18.4562663354428,14.4239838402157,intergenic regions
-legacy,diploid,11,10,in all libraries,766054,TE,172700,22.5441026350623,17.8906443428995,13.9819376358624,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+legacy,diploid,11,10,in all libraries,766054,TE,172700,22.5441026350623,17.8906443428995,13.9819376358624,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 legacy,diploid,11,10,in any library,8189663,gene,4947822,60.4154529923881,,,genes
 legacy,diploid,11,10,in any library,8189663,mRNA,4727654,57.7270884040039,,,mRNA transcripts
 legacy,diploid,11,10,in any library,8189663,exon,1759938,21.4897487234823,,,exons
@@ -232,7 +232,7 @@ legacy,diploid,11,10,in any library,8189663,upstream_flank,382576,4.671449850866
 legacy,diploid,11,10,in any library,8189663,downstream_flank,347464,4.24271426064784,3.07276667413935,2.65893406790267,downstream flanks (up to 1 kb)
 legacy,diploid,11,10,in any library,8189663,flanks,697731,8.51965459384592,,,upstream and downstream flanks together
 legacy,diploid,11,10,in any library,8189663,intergenic,2545318,31.0796427154573,22.5092911078184,19.4777955236971,intergenic regions
-legacy,diploid,11,10,in any library,8189663,TE,2815722,34.3814147175531,24.9005845936298,21.5470355246674,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+legacy,diploid,11,10,in any library,8189663,TE,2815722,34.3814147175531,24.9005845936298,21.5470355246674,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 legacy,diploid,11,20,in all libraries,47820,gene,27153,56.7816813048934,,,genes
 legacy,diploid,11,20,in all libraries,47820,mRNA,24732,51.7189460476788,,,mRNA transcripts
 legacy,diploid,11,20,in all libraries,47820,exon,10404,21.7565872020075,,,exons
@@ -245,7 +245,7 @@ legacy,diploid,11,20,in all libraries,47820,upstream_flank,1614,3.37515683814304
 legacy,diploid,11,20,in all libraries,47820,downstream_flank,1777,3.71601840234212,2.4066524912984,2.10942415213495,downstream flanks (up to 1 kb)
 legacy,diploid,11,20,in all libraries,47820,flanks,3099,6.48055207026349,,,upstream and downstream flanks together
 legacy,diploid,11,20,in all libraries,47820,intergenic,17215,35.9995817649519,23.3148692389994,20.4354174333163,intergenic regions
-legacy,diploid,11,20,in all libraries,47820,TE,23614,49.3810121288164,31.9812560098596,28.0314811077741,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+legacy,diploid,11,20,in all libraries,47820,TE,23614,49.3810121288164,31.9812560098596,28.0314811077741,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 legacy,diploid,11,20,in any library,3744986,gene,2394266,63.9325754488802,,,genes
 legacy,diploid,11,20,in any library,3744986,mRNA,2295801,61.3033266345989,,,mRNA transcripts
 legacy,diploid,11,20,in any library,3744986,exon,971257,25.9348633079002,,,exons
@@ -258,7 +258,7 @@ legacy,diploid,11,20,in any library,3744986,upstream_flank,165096,4.408454397426
 legacy,diploid,11,20,in any library,3744986,downstream_flank,136952,3.65694290979993,2.73525495419439,2.2908659765119,downstream flanks (up to 1 kb)
 legacy,diploid,11,20,in any library,3744986,flanks,288865,7.71337996991177,,,upstream and downstream flanks together
 legacy,diploid,11,20,in any library,3744986,intergenic,1062196,28.3631500892126,21.214563287323,17.7678944213084,intergenic regions
-legacy,diploid,11,20,in any library,3744986,TE,1123901,30.0108198001274,22.4469578996585,18.8000654380199,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+legacy,diploid,11,20,in any library,3744986,TE,1123901,30.0108198001274,22.4469578996585,18.8000654380199,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 legacy,triploid,11,1,in all libraries,6787343,gene,4230880,62.3348488502791,,,genes
 legacy,triploid,11,1,in all libraries,6787343,mRNA,4057528,59.7808008229435,,,mRNA transcripts
 legacy,triploid,11,1,in all libraries,6787343,exon,1614079,23.7807194950955,,,exons
@@ -271,7 +271,7 @@ legacy,triploid,11,1,in all libraries,6787343,upstream_flank,319740,4.7108271970
 legacy,triploid,11,1,in all libraries,6787343,downstream_flank,292393,4.30791548327527,3.15972068005647,2.69044262705377,downstream flanks (up to 1 kb)
 legacy,triploid,11,1,in all libraries,6787343,flanks,583791,8.60117132727785,,,upstream and downstream flanks together
 legacy,triploid,11,1,in all libraries,6787343,intergenic,1973647,29.0783447955997,21.3280524534835,18.1604348242153,intergenic regions
-legacy,triploid,11,1,in all libraries,6787343,TE,2224137,32.7688905658665,24.0349518428237,20.4653086537895,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+legacy,triploid,11,1,in all libraries,6787343,TE,2224137,32.7688905658665,24.0349518428237,20.4653086537895,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 legacy,triploid,11,1,in any library,12711350,gene,7182708,56.506256219835,,,genes
 legacy,triploid,11,1,in any library,12711350,mRNA,6815322,53.6160360622593,,,mRNA transcripts
 legacy,triploid,11,1,in any library,12711350,exon,2157720,16.9747509115869,,,exons
@@ -284,7 +284,7 @@ legacy,triploid,11,1,in any library,12711350,upstream_flank,573537,4.51200698588
 legacy,triploid,11,1,in any library,12711350,downstream_flank,532286,4.18748598693294,2.89136304383417,2.58802859187996,downstream flanks (up to 1 kb)
 legacy,triploid,11,1,in any library,12711350,flanks,1057105,8.31622919674149,,,upstream and downstream flanks together
 legacy,triploid,11,1,in any library,12711350,intergenic,4473423,35.1923517171662,24.2995118068816,21.7502369545196,intergenic regions
-legacy,triploid,11,1,in any library,12711350,TE,5199865,40.9072600471232,28.2455249507347,25.2822717372163,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+legacy,triploid,11,1,in any library,12711350,TE,5199865,40.9072600471232,28.2455249507347,25.2822717372163,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 legacy,triploid,11,3,in all libraries,4527090,gene,2997878,66.2208615247322,,,genes
 legacy,triploid,11,3,in all libraries,4527090,mRNA,2889531,63.8275581002366,,,mRNA transcripts
 legacy,triploid,11,3,in all libraries,4527090,exon,1307498,28.8816436165395,,,exons
@@ -297,7 +297,7 @@ legacy,triploid,11,3,in all libraries,4527090,upstream_flank,208329,4.6018303148
 legacy,triploid,11,3,in all libraries,4527090,downstream_flank,177806,3.92760029069446,3.02522867098601,2.47470472257381,downstream flanks (up to 1 kb)
 legacy,triploid,11,3,in all libraries,4527090,flanks,368029,8.1294827361506,,,upstream and downstream flanks together
 legacy,triploid,11,3,in all libraries,4527090,intergenic,1161758,25.6623570549735,19.7663948930146,16.1693531663043,intergenic regions
-legacy,triploid,11,3,in all libraries,4527090,TE,1194871,26.3937982235829,20.3297864376327,16.6302200520032,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+legacy,triploid,11,3,in all libraries,4527090,TE,1194871,26.3937982235829,20.3297864376327,16.6302200520032,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 legacy,triploid,11,3,in any library,11563702,gene,6640146,57.4223202915468,,,genes
 legacy,triploid,11,3,in any library,11563702,mRNA,6311937,54.5840510244903,,,mRNA transcripts
 legacy,triploid,11,3,in any library,11563702,exon,2058227,17.7990318325394,,,exons
@@ -310,7 +310,7 @@ legacy,triploid,11,3,in any library,11563702,upstream_flank,530166,4.58474284446
 legacy,triploid,11,3,in any library,11563702,downstream_flank,492498,4.25899941039643,2.96946855401428,2.64164377098674,downstream flanks (up to 1 kb)
 legacy,triploid,11,3,in any library,11563702,flanks,978042,8.45786236968058,,,upstream and downstream flanks together
 legacy,triploid,11,3,in any library,11563702,intergenic,3947240,34.13474335468,23.7994977749094,21.1720696502112,intergenic regions
-legacy,triploid,11,3,in any library,11563702,TE,4577724,39.5870111491977,27.6009394291073,24.5538379646141,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+legacy,triploid,11,3,in any library,11563702,TE,4577724,39.5870111491977,27.6009394291073,24.5538379646141,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 legacy,triploid,11,5,in all libraries,3023664,gene,2083158,68.8951550172241,,,genes
 legacy,triploid,11,5,in all libraries,3023664,mRNA,2013744,66.5994634324449,,,mRNA transcripts
 legacy,triploid,11,5,in all libraries,3023664,exon,984545,32.5613229512274,,,exons
@@ -323,7 +323,7 @@ legacy,triploid,11,5,in all libraries,3023664,upstream_flank,132158,4.3707898761
 legacy,triploid,11,5,in all libraries,3023664,downstream_flank,105971,3.50472142407357,2.77474261801578,2.20604062640387,downstream flanks (up to 1 kb)
 legacy,triploid,11,5,in all libraries,3023664,flanks,227006,7.5076463522402,,,upstream and downstream flanks together
 legacy,triploid,11,5,in all libraries,3023664,intergenic,713756,23.605665179729,18.6889733234986,14.8585436896842,intergenic regions
-legacy,triploid,11,5,in all libraries,3023664,TE,693978,22.9515581096312,18.1711065533529,14.4468171653613,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+legacy,triploid,11,5,in all libraries,3023664,TE,693978,22.9515581096312,18.1711065533529,14.4468171653613,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 legacy,triploid,11,5,in any library,10482099,gene,6111447,58.303656548178,,,genes
 legacy,triploid,11,5,in any library,10482099,mRNA,5819115,55.5147876393841,,,mRNA transcripts
 legacy,triploid,11,5,in any library,10482099,exon,1975220,18.8437449407795,,,exons
@@ -336,7 +336,7 @@ legacy,triploid,11,5,in any library,10482099,upstream_flank,486251,4.63887051629
 legacy,triploid,11,5,in any library,10482099,downstream_flank,449998,4.29301421404244,3.02757208697998,2.67242741640031,downstream flanks (up to 1 kb)
 legacy,triploid,11,5,in any library,10482099,flanks,895261,8.540856177756,,,upstream and downstream flanks together
 legacy,triploid,11,5,in any library,10482099,intergenic,3476975,33.1705987512616,23.392976095732,20.6488991420817,intergenic regions
-legacy,triploid,11,5,in any library,10482099,TE,3985139,38.0185209088371,26.8118871620214,23.6667601228586,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+legacy,triploid,11,5,in any library,10482099,TE,3985139,38.0185209088371,26.8118871620214,23.6667601228586,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 legacy,triploid,11,10,in all libraries,861750,gene,613916,71.2406150275602,,,genes
 legacy,triploid,11,10,in all libraries,861750,mRNA,593724,68.8974760661445,,,mRNA transcripts
 legacy,triploid,11,10,in all libraries,861750,exon,314990,36.5523643748187,,,exons
@@ -349,7 +349,7 @@ legacy,triploid,11,10,in all libraries,861750,upstream_flank,32573,3.77986655062
 legacy,triploid,11,10,in all libraries,861750,downstream_flank,23974,2.78201334493763,2.22863650096447,1.72386146694326,downstream flanks (up to 1 kb)
 legacy,triploid,11,10,in all libraries,861750,flanks,53852,6.24914418334784,,,upstream and downstream flanks together
 legacy,triploid,11,10,in all libraries,861750,intergenic,193784,22.4872642877865,18.0142694461875,13.9341274092823,intergenic regions
-legacy,triploid,11,10,in all libraries,861750,TE,184895,21.4557586306934,17.1879430151758,13.2949597868722,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+legacy,triploid,11,10,in all libraries,861750,TE,184895,21.4557586306934,17.1879430151758,13.2949597868722,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 legacy,triploid,11,10,in any library,7856219,gene,4775177,60.7821268729907,,,genes
 legacy,triploid,11,10,in any library,7856219,mRNA,4564144,58.0959364803858,,,mRNA transcripts
 legacy,triploid,11,10,in any library,7856219,exon,1732123,22.0477942379152,,,exons
@@ -362,7 +362,7 @@ legacy,triploid,11,10,in any library,7856219,upstream_flank,366800,4.66891261559
 legacy,triploid,11,10,in any library,7856219,downstream_flank,331462,4.21910336257174,3.06827864645166,2.64429451388386,downstream flanks (up to 1 kb)
 legacy,triploid,11,10,in any library,7856219,flanks,666978,8.48980915628752,,,upstream and downstream flanks together
 legacy,triploid,11,10,in any library,7856219,intergenic,2415212,30.742676597992,22.357143220803,19.2677647557381,intergenic regions
-legacy,triploid,11,10,in any library,7856219,TE,2657630,33.8283594181883,24.6011590443831,21.2016956059312,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+legacy,triploid,11,10,in any library,7856219,TE,2657630,33.8283594181883,24.6011590443831,21.2016956059312,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 legacy,triploid,11,20,in all libraries,54998,gene,32092,58.3512127713735,,,genes
 legacy,triploid,11,20,in all libraries,54998,mRNA,29315,53.3019382523001,,,mRNA transcripts
 legacy,triploid,11,20,in all libraries,54998,exon,12734,23.1535692206989,,,exons
@@ -375,7 +375,7 @@ legacy,triploid,11,20,in all libraries,54998,upstream_flank,1907,3.4673988145023
 legacy,triploid,11,20,in all libraries,54998,downstream_flank,1911,3.4746718062475,2.29588158969677,1.99124726477024,downstream flanks (up to 1 kb)
 legacy,triploid,11,20,in all libraries,54998,flanks,3487,6.34023055383832,,,upstream and downstream flanks together
 legacy,triploid,11,20,in all libraries,54998,intergenic,19071,34.6758063929597,22.9119611706473,19.8718349484214,intergenic regions
-legacy,triploid,11,20,in all libraries,54998,TE,25457,46.2871377140987,30.5841222547936,26.525997707617,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+legacy,triploid,11,20,in all libraries,54998,TE,25457,46.2871377140987,30.5841222547936,26.525997707617,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 legacy,triploid,11,20,in any library,3493362,gene,2262706,64.7715867980473,,,genes
 legacy,triploid,11,20,in any library,3493362,mRNA,2172104,62.1780393786845,,,mRNA transcripts
 legacy,triploid,11,20,in any library,3493362,exon,952026,27.2524290354106,,,exons
@@ -388,7 +388,7 @@ legacy,triploid,11,20,in any library,3493362,upstream_flank,150756,4.31549893769
 legacy,triploid,11,20,in any library,3493362,downstream_flank,124509,3.56415968342245,2.69222793759759,2.23263124995181,downstream flanks (up to 1 kb)
 legacy,triploid,11,20,in any library,3493362,flanks,262971,7.52773402813679,,,upstream and downstream flanks together
 legacy,triploid,11,20,in any library,3493362,intergenic,967971,27.7088661295337,20.9302023868497,17.357157343221,intergenic regions
-legacy,triploid,11,20,in any library,3493362,TE,1004337,28.7498690373342,21.7165355931133,18.0092537220831,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+legacy,triploid,11,20,in any library,3493362,TE,1004337,28.7498690373342,21.7165355931133,18.0092537220831,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 legacy,control,12,1,in all libraries,6337867,gene,3991058,62.9716275207416,,,genes
 legacy,control,12,1,in all libraries,6337867,mRNA,3831638,60.4562702246671,,,mRNA transcripts
 legacy,control,12,1,in all libraries,6337867,exon,1563625,24.6711551378405,,,exons
@@ -401,7 +401,7 @@ legacy,control,12,1,in all libraries,6337867,upstream_flank,298289,4.70645723553
 legacy,control,12,1,in all libraries,6337867,downstream_flank,270262,4.2642422127192,3.15741684884046,2.66972445616843,downstream flanks (up to 1 kb)
 legacy,control,12,1,in all libraries,6337867,flanks,542238,8.55552822424327,,,upstream and downstream flanks together
 legacy,control,12,1,in all libraries,6337867,intergenic,1805460,28.4868710561456,21.0928277889881,17.8348443977838,intergenic regions
-legacy,control,12,1,in all libraries,6337867,TE,1997991,31.5246596370672,23.342128923902,19.7367200564801,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+legacy,control,12,1,in all libraries,6337867,TE,1997991,31.5246596370672,23.342128923902,19.7367200564801,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 legacy,control,12,1,in any library,12640866,gene,7147844,56.5455246499726,,,genes
 legacy,control,12,1,in any library,12640866,mRNA,6783069,53.6598441910546,,,mRNA transcripts
 legacy,control,12,1,in any library,12640866,exon,2152231,17.0259774923648,,,exons
@@ -414,7 +414,7 @@ legacy,control,12,1,in any library,12640866,upstream_flank,570682,4.514579934634
 legacy,control,12,1,in any library,12640866,downstream_flank,529754,4.19080464898528,2.8942629776051,2.58974707442674,downstream flanks (up to 1 kb)
 legacy,control,12,1,in any library,12640866,flanks,1051942,8.32175580375585,,,upstream and downstream flanks together
 legacy,control,12,1,in any library,12640866,intergenic,4442953,35.1475365690927,24.2736711363001,21.7197501737892,intergenic regions
-legacy,control,12,1,in any library,12640866,TE,5168369,40.8861940313267,28.2369157218292,25.2660074247818,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+legacy,control,12,1,in any library,12640866,TE,5168369,40.8861940313267,28.2369157218292,25.2660074247818,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 legacy,control,12,3,in all libraries,3993030,gene,2681908,67.1647345499533,,,genes
 legacy,control,12,3,in all libraries,3993030,mRNA,2588257,64.8193727570291,,,mRNA transcripts
 legacy,control,12,3,in all libraries,3993030,exon,1204385,30.1621826031861,,,exons
@@ -427,7 +427,7 @@ legacy,control,12,3,in all libraries,3993030,upstream_flank,180340,4.51636977433
 legacy,control,12,3,in all libraries,3993030,downstream_flank,150730,3.77482763715775,2.93865344048413,2.3798452855838,downstream flanks (up to 1 kb)
 legacy,control,12,3,in all libraries,3993030,flanks,315770,7.90802974182513,,,upstream and downstream flanks together
 legacy,control,12,3,in all libraries,3993030,intergenic,995816,24.9388559565042,19.4145698566254,15.7227361036882,intergenic regions
-legacy,control,12,3,in all libraries,3993030,TE,1001008,25.0688825278047,19.5157938244022,15.8047115347421,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+legacy,control,12,3,in all libraries,3993030,TE,1001008,25.0688825278047,19.5157938244022,15.8047115347421,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 legacy,control,12,3,in any library,11300142,gene,6512704,57.6338244245072,,,genes
 legacy,control,12,3,in any library,11300142,mRNA,6193609,54.8100103520823,,,mRNA transcripts
 legacy,control,12,3,in any library,11300142,exon,2039823,18.0513041340542,,,exons
@@ -440,7 +440,7 @@ legacy,control,12,3,in any library,11300142,upstream_flank,519416,4.596544008031
 legacy,control,12,3,in any library,11300142,downstream_flank,482388,4.26886670981657,2.98324166831427,2.64906437485413,downstream flanks (up to 1 kb)
 legacy,control,12,3,in any library,11300142,flanks,958095,8.47861026879131,,,upstream and downstream flanks together
 legacy,control,12,3,in any library,11300142,intergenic,3831044,33.9026182148861,23.6924013324241,21.0384217246255,intergenic regions
-legacy,control,12,3,in any library,11300142,TE,4438126,39.2749577837163,27.4467905761108,24.3722511292028,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+legacy,control,12,3,in any library,11300142,TE,4438126,39.2749577837163,27.4467905761108,24.3722511292028,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 legacy,control,12,5,in all libraries,2465533,gene,1719308,69.7337249187093,,,genes
 legacy,control,12,5,in all libraries,2465533,mRNA,1663255,67.4602611281212,,,mRNA transcripts
 legacy,control,12,5,in all libraries,2465533,exon,831519,33.7257298928873,,,exons
@@ -453,7 +453,7 @@ legacy,control,12,5,in all libraries,2465533,upstream_flank,104214,4.22683452219
 legacy,control,12,5,in all libraries,2465533,downstream_flank,81555,3.30780403263716,2.63901463843348,2.07948897938411,downstream flanks (up to 1 kb)
 legacy,control,12,5,in all libraries,2465533,flanks,177188,7.18660021991188,,,upstream and downstream flanks together
 legacy,control,12,5,in all libraries,2465533,intergenic,569156,23.0845014039561,18.4171542585034,14.512336822394,intergenic regions
-legacy,control,12,5,in all libraries,2465533,TE,542691,22.0111026702948,17.5607809839507,13.8375323856409,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+legacy,control,12,5,in all libraries,2465533,TE,542691,22.0111026702948,17.5607809839507,13.8375323856409,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 legacy,control,12,5,in any library,10019983,gene,5881395,58.6966564713733,,,genes
 legacy,control,12,5,in any library,10019983,mRNA,5604328,55.9315120594516,,,mRNA transcripts
 legacy,control,12,5,in any library,10019983,exon,1939989,19.3612005130148,,,exons
@@ -466,7 +466,7 @@ legacy,control,12,5,in any library,10019983,upstream_flank,465840,4.649109684118
 legacy,control,12,5,in any library,10019983,downstream_flank,429779,4.28921885396412,3.03984155271773,2.67305536138296,downstream flanks (up to 1 kb)
 legacy,control,12,5,in any library,10019983,flanks,856400,8.54692068838839,,,upstream and downstream flanks together
 legacy,control,12,5,in any library,10019983,intergenic,3283705,32.7715625864834,23.2257576704934,20.4233460812418,intergenic regions
-legacy,control,12,5,in any library,10019983,TE,3742083,37.3462010863691,26.4678809274502,23.2742759089905,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+legacy,control,12,5,in any library,10019983,TE,3742083,37.3462010863691,26.4678809274502,23.2742759089905,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 legacy,control,12,10,in all libraries,529068,gene,371401,70.1991048409656,,,genes
 legacy,control,12,10,in all libraries,529068,mRNA,358184,67.7009382536838,,,mRNA transcripts
 legacy,control,12,10,in all libraries,529068,exon,187688,35.4752130160962,,,exons
@@ -479,7 +479,7 @@ legacy,control,12,10,in all libraries,529068,upstream_flank,19031,3.597080148487
 legacy,control,12,10,in all libraries,529068,downstream_flank,14232,2.69001338202273,2.11400349066063,1.65312871335431,downstream flanks (up to 1 kb)
 legacy,control,12,10,in all libraries,529068,flanks,31575,5.96804191521695,,,upstream and downstream flanks together
 legacy,control,12,10,in all libraries,529068,intergenic,125816,23.7806860365775,18.6885513758402,14.6142525435207,intergenic regions
-legacy,control,12,10,in all libraries,529068,TE,125557,23.731732026885,18.6500798395782,14.5841682028265,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+legacy,control,12,10,in all libraries,529068,TE,125557,23.731732026885,18.6500798395782,14.5841682028265,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 legacy,control,12,10,in any library,6898320,gene,4263191,61.8004238713194,,,genes
 legacy,control,12,10,in any library,6898320,mRNA,4080505,59.1521558872305,,,mRNA transcripts
 legacy,control,12,10,in any library,6898320,exon,1611219,23.3566868454928,,,exons
@@ -492,7 +492,7 @@ legacy,control,12,10,in any library,6898320,upstream_flank,318581,4.618240383165
 legacy,control,12,10,in any library,6898320,downstream_flank,281855,4.08584988808869,3.0008699547072,2.56146544668493,downstream flanks (up to 1 kb)
 legacy,control,12,10,in any library,6898320,flanks,573657,8.31589430470027,,,upstream and downstream flanks together
 legacy,control,12,10,in any library,6898320,intergenic,2062429,29.8975547669578,21.9583871842501,18.7431147921483,intergenic regions
-legacy,control,12,10,in any library,6898320,TE,2241948,32.4999130223011,23.8697003537844,20.3745625774401,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+legacy,control,12,10,in any library,6898320,TE,2241948,32.4999130223011,23.8697003537844,20.3745625774401,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 legacy,control,12,20,in all libraries,35027,gene,19495,55.6570645502041,,,genes
 legacy,control,12,20,in all libraries,35027,mRNA,17461,49.8501156250892,,,mRNA transcripts
 legacy,control,12,20,in all libraries,35027,exon,7327,20.9181488565963,,,exons
@@ -505,7 +505,7 @@ legacy,control,12,20,in all libraries,35027,upstream_flank,1243,3.54869100979245
 legacy,control,12,20,in all libraries,35027,downstream_flank,1418,4.04830559282839,2.6004034476435,2.29238404707632,downstream flanks (up to 1 kb)
 legacy,control,12,20,in all libraries,35027,flanks,2395,6.8375824364062,,,upstream and downstream flanks together
 legacy,control,12,20,in all libraries,35027,intergenic,12783,36.4947040854198,23.4421419402164,20.6654056937776,intergenic regions
-legacy,control,12,20,in all libraries,35027,TE,17645,50.3754246723956,32.3583348615441,28.5254700357276,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+legacy,control,12,20,in all libraries,35027,TE,17645,50.3754246723956,32.3583348615441,28.5254700357276,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 legacy,control,12,20,in any library,2247469,gene,1471880,65.4905584904619,,,genes
 legacy,control,12,20,in any library,2247469,mRNA,1412826,62.8629805349929,,,mRNA transcripts
 legacy,control,12,20,in any library,2247469,exon,644100,28.6589047501879,,,exons
@@ -518,7 +518,7 @@ legacy,control,12,20,in any library,2247469,upstream_flank,89689,3.9906668345592
 legacy,control,12,20,in any library,2247469,downstream_flank,72995,3.24787572153387,2.44778565854807,2.01299824084995,downstream flanks (up to 1 kb)
 legacy,control,12,20,in any library,2247469,flanks,155441,6.91626892295289,,,upstream and downstream flanks together
 legacy,control,12,20,in any library,2247469,intergenic,620184,27.5947743884343,20.7970066560857,17.1029426810506,intergenic regions
-legacy,control,12,20,in any library,2247469,TE,651573,28.991412117364,21.8495930529097,17.9685636384044,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+legacy,control,12,20,in any library,2247469,TE,651573,28.991412117364,21.8495930529097,17.9685636384044,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 legacy,heat,10,1,in all libraries,7261925,gene,4471713,61.577515603645,,,genes
 legacy,heat,10,1,in all libraries,7261925,mRNA,4284934,59.0054840830771,,,mRNA transcripts
 legacy,heat,10,1,in all libraries,7261925,exon,1654402,22.7818656898825,,,exons
@@ -531,7 +531,7 @@ legacy,heat,10,1,in all libraries,7261925,upstream_flank,342092,4.71076195361423
 legacy,heat,10,1,in all libraries,7261925,downstream_flank,316177,4.35390065306375,3.1582349875784,2.71033753529074,downstream flanks (up to 1 kb)
 legacy,heat,10,1,in all libraries,7261925,flanks,627928,8.64685327926135,,,upstream and downstream flanks together
 legacy,heat,10,1,in all libraries,7261925,intergenic,2163333,29.7900763227381,21.6091428863673,18.5445577358034,intergenic regions
-legacy,heat,10,1,in all libraries,7261925,TE,2488611,34.2693018724374,24.8582861203455,21.3329110088255,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+legacy,heat,10,1,in all libraries,7261925,TE,2488611,34.2693018724374,24.8582861203455,21.3329110088255,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 legacy,heat,10,1,in any library,12741108,gene,7195886,56.4777097878772,,,genes
 legacy,heat,10,1,in any library,12741108,mRNA,6827227,53.5842487168306,,,mRNA transcripts
 legacy,heat,10,1,in any library,12741108,exon,2159871,16.9519872212056,,,exons
@@ -544,7 +544,7 @@ legacy,heat,10,1,in any library,12741108,upstream_flank,574461,4.50872090559157,
 legacy,heat,10,1,in any library,12741108,downstream_flank,533106,4.18414159898809,2.88854972486752,2.58592150150368,downstream flanks (up to 1 kb)
 legacy,heat,10,1,in any library,12741108,flanks,1058920,8.31105112679368,,,upstream and downstream flanks together
 legacy,heat,10,1,in any library,12741108,intergenic,4488188,35.2260415656158,24.3185299219174,21.7707207421991,intergenic regions
-legacy,heat,10,1,in any library,12741108,TE,5215120,40.9314480341898,28.2572948740984,25.296828287286,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+legacy,heat,10,1,in any library,12741108,TE,5215120,40.9314480341898,28.2572948740984,25.296828287286,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 legacy,heat,10,3,in all libraries,5416388,gene,3506063,64.7306470659044,,,genes
 legacy,heat,10,3,in all libraries,5416388,mRNA,3374102,62.2943186492548,,,mRNA transcripts
 legacy,heat,10,3,in all libraries,5416388,exon,1454400,26.8518429625056,,,exons
@@ -557,7 +557,7 @@ legacy,heat,10,3,in all libraries,5416388,upstream_flank,254685,4.7021188290056,
 legacy,heat,10,3,in all libraries,5416388,downstream_flank,225631,4.1657096943572,3.15915383273403,2.62467408376446,downstream flanks (up to 1 kb)
 legacy,heat,10,3,in all libraries,5416388,flanks,458058,8.456890459103,,,upstream and downstream flanks together
 legacy,heat,10,3,in all libraries,5416388,intergenic,1453001,26.8260139413942,20.3440736340147,16.9021724336808,intergenic regions
-legacy,heat,10,3,in all libraries,5416388,TE,1538430,28.4032458531405,21.5402007299219,17.8959334075803,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+legacy,heat,10,3,in all libraries,5416388,TE,1538430,28.4032458531405,21.5402007299219,17.8959334075803,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 legacy,heat,10,3,in any library,11751221,gene,6729633,57.2675213920324,,,genes
 legacy,heat,10,3,in any library,11751221,mRNA,6395136,54.4210342057221,,,mRNA transcripts
 legacy,heat,10,3,in any library,11751221,exon,2070749,17.6215646016699,,,exons
@@ -570,7 +570,7 @@ legacy,heat,10,3,in any library,11751221,upstream_flank,537470,4.5737374865131,3
 legacy,heat,10,3,in any library,11751221,downstream_flank,499606,4.25152416076593,2.95905892632109,2.63578981843973,downstream flanks (up to 1 kb)
 legacy,heat,10,3,in any library,11751221,flanks,991914,8.44094413678374,,,upstream and downstream flanks together
 legacy,heat,10,3,in any library,11751221,intergenic,4031415,34.3063499529113,23.8772043199135,21.2686849455475,intergenic regions
-legacy,heat,10,3,in any library,11751221,TE,4680504,39.8299376720087,27.7216189174701,24.6931077456365,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+legacy,heat,10,3,in any library,11751221,TE,4680504,39.8299376720087,27.7216189174701,24.6931077456365,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 legacy,heat,10,5,in all libraries,4194066,gene,2810994,67.0231226690281,,,genes
 legacy,heat,10,5,in all libraries,4194066,mRNA,2712963,64.6857488651824,,,mRNA transcripts
 legacy,heat,10,5,in all libraries,4194066,exon,1252192,29.8562778935763,,,exons
@@ -583,7 +583,7 @@ legacy,heat,10,5,in all libraries,4194066,upstream_flank,191937,4.57639436289272
 legacy,heat,10,5,in all libraries,4194066,downstream_flank,162728,3.87995801687432,3.02474867027827,2.45365064368221,downstream flanks (up to 1 kb)
 legacy,heat,10,5,in all libraries,4194066,flanks,338144,8.06243869314408,,,upstream and downstream flanks together
 legacy,heat,10,5,in all libraries,4194066,intergenic,1045429,24.9263840864688,19.4321811711589,15.7632216875648,intergenic regions
-legacy,heat,10,5,in all libraries,4194066,TE,1044048,24.8934566122708,19.4065114774758,15.7423986482666,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+legacy,heat,10,5,in all libraries,4194066,TE,1044048,24.8934566122708,19.4065114774758,15.7423986482666,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 legacy,heat,10,5,in any library,10861570,gene,6299312,57.9963301806277,,,genes
 legacy,heat,10,5,in any library,10861570,mRNA,5994764,55.1924261409723,,,mRNA transcripts
 legacy,heat,10,5,in any library,10861570,exon,2001694,18.4291405386146,,,exons
@@ -596,7 +596,7 @@ legacy,heat,10,5,in any library,10861570,upstream_flank,501599,4.61810769529635,
 legacy,heat,10,5,in any library,10861570,downstream_flank,465914,4.28956403171917,3.01373267357922,2.66825218354572,downstream flanks (up to 1 kb)
 legacy,heat,10,5,in any library,10861570,flanks,925451,8.52041647754422,,,upstream and downstream flanks together
 legacy,heat,10,5,in any library,10861570,intergenic,3638441,33.4982972074939,23.5350054357462,20.8370603651152,intergenic regions
-legacy,heat,10,5,in any library,10861570,TE,4185995,38.5395021161766,27.0768208359037,23.9728582937226,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+legacy,heat,10,5,in any library,10861570,TE,4185995,38.5395021161766,27.0768208359037,23.9728582937226,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 legacy,heat,10,10,in all libraries,1921856,gene,1352193,70.358705334843,,,genes
 legacy,heat,10,10,in all libraries,1921856,mRNA,1308994,68.1109302674082,,,mRNA transcripts
 legacy,heat,10,10,in all libraries,1921856,exon,658750,34.2767616304239,,,exons
@@ -609,7 +609,7 @@ legacy,heat,10,10,in all libraries,1921856,upstream_flank,80867,4.2077554197609,
 legacy,heat,10,10,in all libraries,1921856,downstream_flank,61220,3.18546238635985,2.56935517243261,2.01285637207791,downstream flanks (up to 1 kb)
 legacy,heat,10,10,in all libraries,1921856,flanks,135636,7.05755269905758,,,upstream and downstream flanks together
 legacy,heat,10,10,in all libraries,1921856,intergenic,434051,22.584990758933,18.2167785356019,14.2711911329107,intergenic regions
-legacy,heat,10,10,in all libraries,1921856,TE,396969,20.6555017649605,16.6604762078634,13.0519696368409,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+legacy,heat,10,10,in all libraries,1921856,TE,396969,20.6555017649605,16.6604762078634,13.0519696368409,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 legacy,heat,10,10,in any library,8596197,gene,5158917,60.0139457018028,,,genes
 legacy,heat,10,10,in any library,8596197,mRNA,4925632,57.3001293478965,,,mRNA transcripts
 legacy,heat,10,10,in any library,8596197,exon,1804546,20.9923760472218,,,exons
@@ -622,7 +622,7 @@ legacy,heat,10,10,in any library,8596197,upstream_flank,402155,4.67828971346283,
 legacy,heat,10,10,in any library,8596197,downstream_flank,366975,4.2690389715359,3.07794439696278,2.67332717722001,downstream flanks (up to 1 kb)
 legacy,heat,10,10,in any library,8596197,flanks,735031,8.55065327144085,,,upstream and downstream flanks together
 legacy,heat,10,10,in any library,8596197,intergenic,2703533,31.4503378645231,22.6754526857523,19.6946065628753,intergenic regions
-legacy,heat,10,10,in any library,8596197,TE,3007852,34.9904963788057,25.2278798563752,21.911499411828,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+legacy,heat,10,10,in any library,8596197,TE,3007852,34.9904963788057,25.2278798563752,21.911499411828,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 legacy,heat,10,20,in all libraries,193521,gene,126484,65.3593150097406,,,genes
 legacy,heat,10,20,in all libraries,193521,mRNA,120267,62.1467437642427,,,mRNA transcripts
 legacy,heat,10,20,in all libraries,193521,exon,55579,28.7198805297616,,,exons
@@ -635,7 +635,7 @@ legacy,heat,10,20,in all libraries,193521,upstream_flank,7160,3.69985686307946,2
 legacy,heat,10,20,in all libraries,193521,downstream_flank,5586,2.88650844094439,2.11120685745385,1.74471447713225,downstream flanks (up to 1 kb)
 legacy,heat,10,20,in all libraries,193521,flanks,11995,6.19829372522879,,,upstream and downstream flanks together
 legacy,heat,10,20,in all libraries,193521,intergenic,54718,28.2749675745785,20.6804541400215,17.0904559183176,intergenic regions
-legacy,heat,10,20,in all libraries,193521,TE,63228,32.6724231478754,23.8967753639621,19.7484437809018,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+legacy,heat,10,20,in all libraries,193521,TE,63228,32.6724231478754,23.8967753639621,19.7484437809018,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 legacy,heat,10,20,in any library,4300631,gene,2740790,63.729950325894,,,genes
 legacy,heat,10,20,in any library,4300631,mRNA,2627620,61.0984760143337,,,mRNA transcripts
 legacy,heat,10,20,in any library,4300631,exon,1105170,25.6978568958834,,,exons
@@ -648,7 +648,7 @@ legacy,heat,10,20,in any library,4300631,upstream_flank,191148,4.44465009902035,
 legacy,heat,10,20,in any library,4300631,downstream_flank,160628,3.73498679612364,2.79217659333179,2.34221323606823,downstream flanks (up to 1 kb)
 legacy,heat,10,20,in any library,4300631,flanks,336224,7.81801554237041,,,upstream and downstream flanks together
 legacy,heat,10,20,in any library,4300631,intergenic,1224064,28.4624279553396,21.2777526305506,17.8488115558596,intergenic regions
-legacy,heat,10,20,in any library,4300631,TE,1294211,30.0935141843139,22.4971092277345,18.8716670472464,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+legacy,heat,10,20,in any library,4300631,TE,1294211,30.0935141843139,22.4971092277345,18.8716670472464,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 corrected,all,22,1,in all libraries,5816819,gene,3717384,63.9075068349213,,,genes
 corrected,all,22,1,in all libraries,5816819,mRNA,3575756,61.4727052706986,,,mRNA transcripts
 corrected,all,22,1,in all libraries,5816819,exon,1497540,25.7449991137768,,,exons
@@ -661,7 +661,7 @@ corrected,all,22,1,in all libraries,5816819,upstream_flank,273599,4.703584553688
 corrected,all,22,1,in all libraries,5816819,downstream_flank,246452,4.236886174385,3.16785959059941,2.65650451898526,downstream flanks (up to 1 kb)
 corrected,all,22,1,in all libraries,5816819,flanks,496038,8.52765059390708,,,upstream and downstream flanks together
 corrected,all,22,1,in all libraries,5816819,intergenic,1604560,27.5848363168942,20.6247901607298,17.2955418944987,intergenic regions
-corrected,all,22,1,in all libraries,5816819,TE,1761747,30.2871208473222,22.6452499073237,18.9898595540256,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+corrected,all,22,1,in all libraries,5816819,TE,1761747,30.2871208473222,22.6452499073237,18.9898595540256,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 corrected,all,22,1,in any library,12916270,gene,7278197,56.3490620744224,,,genes
 corrected,all,22,1,in any library,12916270,mRNA,6904464,53.4555564416043,,,mRNA transcripts
 corrected,all,22,1,in any library,12916270,exon,2176685,16.8522723665578,,,exons
@@ -674,7 +674,7 @@ corrected,all,22,1,in any library,12916270,upstream_flank,580663,4.4955935420984
 corrected,all,22,1,in any library,12916270,downstream_flank,538736,4.17098744451765,2.87816505544892,2.57833533272182,downstream flanks (up to 1 kb)
 corrected,all,22,1,in any library,12916270,flanks,1070227,8.28588284388605,,,upstream and downstream flanks together
 corrected,all,22,1,in any library,12916270,intergenic,4569869,35.3807174981632,24.4142534818154,21.870925107307,intergenic regions
-corrected,all,22,1,in any library,12916270,TE,5294785,40.9931427571582,28.2870741200052,25.3402988563332,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+corrected,all,22,1,in any library,12916270,TE,5294785,40.9931427571582,28.2870741200052,25.3402988563332,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 corrected,all,22,3,in all libraries,3681309,gene,2509388,68.1656443400975,,,genes
 corrected,all,22,3,in all libraries,3681309,mRNA,2426014,65.9008521153753,,,mRNA transcripts
 corrected,all,22,3,in all libraries,3681309,exon,1154667,31.3656636810439,,,exons
@@ -687,7 +687,7 @@ corrected,all,22,3,in all libraries,3681309,upstream_flank,165167,4.486637769336
 corrected,all,22,3,in all libraries,3681309,downstream_flank,136540,3.70900676905959,2.92001273736331,2.34175328615525,downstream flanks (up to 1 kb)
 corrected,all,22,3,in all libraries,3681309,flanks,287892,7.82037041715325,,,upstream and downstream flanks together
 corrected,all,22,3,in all libraries,3681309,intergenic,884795,24.0347930586647,18.9220204332457,15.1748322749651,intergenic regions
-corrected,all,22,3,in all libraries,3681309,TE,872335,23.6963264969064,18.6555537662797,14.9611348533634,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+corrected,all,22,3,in all libraries,3681309,TE,872335,23.6963264969064,18.6555537662797,14.9611348533634,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 corrected,all,22,3,in any library,12040383,gene,6870197,57.0596217744901,,,genes
 corrected,all,22,3,in any library,12040383,mRNA,6527149,54.2104765272002,,,mRNA transcripts
 corrected,all,22,3,in any library,12040383,exon,2093363,17.3861828149487,,,exons
@@ -700,7 +700,7 @@ corrected,all,22,3,in any library,12040383,upstream_flank,548290,4.5537587965432
 corrected,all,22,3,in any library,12040383,downstream_flank,509259,4.22959136765002,2.93776140134136,2.62122305418741,downstream flanks (up to 1 kb)
 corrected,all,22,3,in any library,12040383,flanks,1011657,8.40219949813889,,,upstream and downstream flanks together
 corrected,all,22,3,in any library,12040383,intergenic,4160434,34.5540004832072,24.0002875119109,21.4143010064135,intergenic regions
-corrected,all,22,3,in any library,12040383,TE,4830655,40.1204430124856,27.8665900891229,24.8640166454116,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+corrected,all,22,3,in any library,12040383,TE,4830655,40.1204430124856,27.8665900891229,24.8640166454116,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 corrected,all,22,5,in all libraries,2265759,gene,1602439,70.7241591007693,,,genes
 corrected,all,22,5,in all libraries,2265759,mRNA,1553213,68.5515538060315,,,mRNA transcripts
 corrected,all,22,5,in all libraries,2265759,exon,792291,34.9680173398848,,,exons
@@ -713,7 +713,7 @@ corrected,all,22,5,in all libraries,2265759,upstream_flank,94997,4.1927230566004
 corrected,all,22,5,in all libraries,2265759,downstream_flank,73245,3.23269156163564,2.61056078673595,2.03570862782483,downstream flanks (up to 1 kb)
 corrected,all,22,5,in all libraries,2265759,flanks,160670,7.09122197020954,,,upstream and downstream flanks together
 corrected,all,22,5,in all libraries,2265759,intergenic,503104,22.2046563646001,17.931375166223,13.9828405146178,intergenic regions
-corrected,all,22,5,in all libraries,2265759,TE,466105,20.5716936355544,16.6126757526324,12.9545220830403,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+corrected,all,22,5,in all libraries,2265759,TE,466105,20.5716936355544,16.6126757526324,12.9545220830403,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 corrected,all,22,5,in any library,11181660,gene,6456429,57.7412387784998,,,genes
 corrected,all,22,5,in any library,11181660,mRNA,6142649,54.9350364793778,,,mRNA transcripts
 corrected,all,22,5,in any library,11181660,exon,2026466,18.1231230425536,,,exons
@@ -726,7 +726,7 @@ corrected,all,22,5,in any library,11181660,upstream_flank,514257,4.5991114020637
 corrected,all,22,5,in any library,11181660,downstream_flank,477127,4.26704979403774,2.98935871076524,2.65257503149164,downstream flanks (up to 1 kb)
 corrected,all,22,5,in any library,11181660,flanks,948485,8.48250617529061,,,upstream and downstream flanks together
 corrected,all,22,5,in any library,11181660,intergenic,3778538,33.7922812891825,23.6737922696839,21.0066828210149,intergenic regions
-corrected,all,22,5,in any library,11181660,TE,4354479,38.9430460235779,27.2822534241288,24.2086116915511,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+corrected,all,22,5,in any library,11181660,TE,4354479,38.9430460235779,27.2822534241288,24.2086116915511,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 corrected,all,22,10,in all libraries,454555,gene,325335,71.5721969838633,,,genes
 corrected,all,22,10,in all libraries,454555,mRNA,314989,69.2961247813796,,,mRNA transcripts
 corrected,all,22,10,in all libraries,454555,exon,168756,37.1255403636524,,,exons
@@ -739,7 +739,7 @@ corrected,all,22,10,in all libraries,454555,upstream_flank,16144,3.5516054162862
 corrected,all,22,10,in all libraries,454555,downstream_flank,11605,2.55304638602589,2.04093476746885,1.57384101289994,downstream flanks (up to 1 kb)
 corrected,all,22,10,in all libraries,454555,flanks,26522,5.83471747093311,,,upstream and downstream flanks together
 corrected,all,22,10,in all libraries,454555,intergenic,102776,22.6102451848511,18.0748911384213,13.9382235193282,intergenic regions
-corrected,all,22,10,in all libraries,454555,TE,98671,21.7071641495529,17.3529577286445,13.3815137082163,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+corrected,all,22,10,in all libraries,454555,TE,98671,21.7071641495529,17.3529577286445,13.3815137082163,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 corrected,all,22,10,in any library,8877805,gene,5302980,59.7330083280721,,,genes
 corrected,all,22,10,in any library,8877805,mRNA,5061627,57.0143971398336,,,mRNA transcripts
 corrected,all,22,10,in any library,8877805,exon,1832983,20.6468040241929,,,exons
@@ -752,7 +752,7 @@ corrected,all,22,10,in any library,8877805,upstream_flank,414198,4.665545143197,
 corrected,all,22,10,in any library,8877805,downstream_flank,378060,4.25848506472039,3.0600918804607,2.66473745858506,downstream flanks (up to 1 kb)
 corrected,all,22,10,in any library,8877805,flanks,757381,8.53117409089296,,,upstream and downstream flanks together
 corrected,all,22,10,in any library,8877805,intergenic,2818883,31.752026542597,22.8165925521576,19.868759248449,intergenic regions
-corrected,all,22,10,in any library,8877805,TE,3146930,35.4471628966845,25.4718693894572,22.1809825174446,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+corrected,all,22,10,in any library,8877805,TE,3146930,35.4471628966845,25.4718693894572,22.1809825174446,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 corrected,all,22,20,in all libraries,14138,gene,7713,54.5550997312208,,,genes
 corrected,all,22,20,in all libraries,14138,mRNA,7081,50.0848776347432,,,mRNA transcripts
 corrected,all,22,20,in all libraries,14138,exon,2486,17.583816664309,,,exons
@@ -765,7 +765,7 @@ corrected,all,22,20,in all libraries,14138,upstream_flank,412,2.91413212618475,1
 corrected,all,22,20,in all libraries,14138,downstream_flank,441,3.11925307681426,1.90801713321507,1.72272354388843,downstream flanks (up to 1 kb)
 corrected,all,22,20,in all libraries,14138,flanks,831,5.87777620596973,,,upstream and downstream flanks together
 corrected,all,22,20,in all libraries,14138,intergenic,5597,39.5883434714953,24.2158092848181,21.8641353177859,intergenic regions
-corrected,all,22,20,in all libraries,14138,TE,8201,58.0067902107795,35.4821961666595,32.0364076721747,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+corrected,all,22,20,in all libraries,14138,TE,8201,58.0067902107795,35.4821961666595,32.0364076721747,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 corrected,all,22,20,in any library,4459426,gene,2832671,63.5209778119426,,,genes
 corrected,all,22,20,in any library,4459426,mRNA,2715725,60.8985326811119,,,mRNA transcripts
 corrected,all,22,20,in any library,4459426,exon,1136350,25.481979070849,,,exons
@@ -778,7 +778,7 @@ corrected,all,22,20,in any library,4459426,upstream_flank,197644,4.4320502235041
 corrected,all,22,20,in any library,4459426,downstream_flank,166297,3.72911222206625,2.78136302627123,2.33716660869321,downstream flanks (up to 1 kb)
 corrected,all,22,20,in any library,4459426,flanks,347966,7.80293248503283,,,upstream and downstream flanks together
 corrected,all,22,20,in any library,4459426,intergenic,1279375,28.6892304076803,21.3978984692192,17.9805560533075,intergenic regions
-corrected,all,22,20,in any library,4459426,TE,1355888,30.4049893416776,22.6775994213055,19.0558829006405,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+corrected,all,22,20,in any library,4459426,TE,1355888,30.4049893416776,22.6775994213055,19.0558829006405,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 corrected,diploid,11,1,in all libraries,6554339,gene,4100640,62.5637459399033,,,genes
 corrected,diploid,11,1,in all libraries,6554339,mRNA,3936271,60.0559568249369,,,mRNA transcripts
 corrected,diploid,11,1,in all libraries,6554339,exon,1579480,24.0982347724157,,,exons
@@ -791,7 +791,7 @@ corrected,diploid,11,1,in all libraries,6554339,upstream_flank,309057,4.71530386
 corrected,diploid,11,1,in all libraries,6554339,downstream_flank,281883,4.30070827889738,3.16376803591222,2.68736312116725,downstream flanks (up to 1 kb)
 corrected,diploid,11,1,in all libraries,6554339,flanks,563914,8.6036746039532,,,upstream and downstream flanks together
 corrected,diploid,11,1,in all libraries,6554339,intergenic,1891077,28.8522915888238,21.2248662248124,18.0287941773275,intergenic regions
-corrected,diploid,11,1,in all libraries,6554339,TE,2124158,32.4084244040475,23.8408956326818,20.2508979709042,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+corrected,diploid,11,1,in all libraries,6554339,TE,2124158,32.4084244040475,23.8408956326818,20.2508979709042,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 corrected,diploid,11,1,in any library,12716126,gene,7184898,56.5022554825267,,,genes
 corrected,diploid,11,1,in any library,12716126,mRNA,6818114,53.617854997662,,,mRNA transcripts
 corrected,diploid,11,1,in any library,12716126,exon,2157456,16.9662993273266,,,exons
@@ -804,7 +804,7 @@ corrected,diploid,11,1,in any library,12716126,upstream_flank,573095,4.506836437
 corrected,diploid,11,1,in any library,12716126,downstream_flank,532373,4.18659739609375,2.89081337191712,2.58766575461891,downstream flanks (up to 1 kb)
 corrected,diploid,11,1,in any library,12716126,flanks,1057033,8.31253952658223,,,upstream and downstream flanks together
 corrected,diploid,11,1,in any library,12716126,intergenic,4476194,35.2009251874352,24.3059686920546,21.7571024917316,intergenic regions
-corrected,diploid,11,1,in any library,12716126,TE,5202666,40.9139229982465,28.2507498359581,25.2882107862723,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+corrected,diploid,11,1,in any library,12716126,TE,5202666,40.9139229982465,28.2507498359581,25.2882107862723,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 corrected,diploid,11,3,in all libraries,4382777,gene,2914393,66.4964929769413,,,genes
 corrected,diploid,11,3,in all libraries,4382777,mRNA,2811646,64.152157410701,,,mRNA transcripts
 corrected,diploid,11,3,in all libraries,4382777,exon,1278788,29.1775739445562,,,exons
@@ -817,7 +817,7 @@ corrected,diploid,11,3,in all libraries,4382777,upstream_flank,200488,4.57445131
 corrected,diploid,11,3,in all libraries,4382777,downstream_flank,171154,3.905149634581,3.01982628861878,2.46390070345132,downstream flanks (up to 1 kb)
 corrected,diploid,11,3,in all libraries,4382777,flanks,354688,8.09276858028597,,,upstream and downstream flanks together
 corrected,diploid,11,3,in all libraries,4382777,intergenic,1114591,25.4311592855397,19.6657466542289,16.0454418182486,intergenic regions
-corrected,diploid,11,3,in all libraries,4382777,TE,1136295,25.9263704267865,20.0486901423634,16.3578885087595,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+corrected,diploid,11,3,in all libraries,4382777,TE,1136295,25.9263704267865,20.0486901423634,16.3578885087595,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 corrected,diploid,11,3,in any library,11626797,gene,6671857,57.3834479091705,,,genes
 corrected,diploid,11,3,in any library,11626797,mRNA,6342711,54.5525220746522,,,mRNA transcripts
 corrected,diploid,11,3,in any library,11626797,exon,2061285,17.7287433503827,,,exons
@@ -830,7 +830,7 @@ corrected,diploid,11,3,in any library,11626797,upstream_flank,532038,4.575963612
 corrected,diploid,11,3,in any library,11626797,downstream_flank,494605,4.25400907919868,2.96450031772457,2.63851996423471,downstream flanks (up to 1 kb)
 corrected,diploid,11,3,in any library,11626797,flanks,982161,8.44739097104731,,,upstream and downstream flanks together
 corrected,diploid,11,3,in any library,11626797,intergenic,3974632,34.185098441127,23.8226419604295,21.2030729217984,intergenic regions
-corrected,diploid,11,3,in any library,11626797,TE,4612334,39.66985920542,27.6448188118839,24.6049581802014,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+corrected,diploid,11,3,in any library,11626797,TE,4612334,39.66985920542,27.6448188118839,24.6049581802014,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 corrected,diploid,11,5,in all libraries,2901806,gene,2004134,69.0650581051938,,,genes
 corrected,diploid,11,5,in all libraries,2901806,mRNA,1938569,66.8056031312913,,,mRNA transcripts
 corrected,diploid,11,5,in all libraries,2901806,exon,946459,32.6162052184054,,,exons
@@ -843,7 +843,7 @@ corrected,diploid,11,5,in all libraries,2901806,upstream_flank,125077,4.31031571
 corrected,diploid,11,5,in all libraries,2901806,downstream_flank,100405,3.46008658056397,2.74706258148096,2.18202768081567,downstream flanks (up to 1 kb)
 corrected,diploid,11,5,in all libraries,2901806,flanks,215363,7.42168842438123,,,upstream and downstream flanks together
 corrected,diploid,11,5,in all libraries,2901806,intergenic,682873,23.5326896422435,18.6832813724779,14.8403743686235,intergenic regions
-corrected,diploid,11,5,in all libraries,2901806,TE,656616,22.6278393524584,17.9648946168189,14.2697503875949,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+corrected,diploid,11,5,in all libraries,2901806,TE,656616,22.6278393524584,17.9648946168189,14.2697503875949,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 corrected,diploid,11,5,in any library,10638945,gene,6190904,58.1909578440344,,,genes
 corrected,diploid,11,5,in any library,10638945,mRNA,5895064,55.4102309956485,,,mRNA transcripts
 corrected,diploid,11,5,in any library,10638945,exon,1984561,18.6537386930753,,,exons
@@ -856,7 +856,7 @@ corrected,diploid,11,5,in any library,10638945,upstream_flank,491953,4.624076917
 corrected,diploid,11,5,in any library,10638945,downstream_flank,456665,4.29238989392275,3.0232005894071,2.67213226985982,downstream flanks (up to 1 kb)
 corrected,diploid,11,5,in any library,10638945,flanks,907592,8.53084586864581,,,upstream and downstream flanks together
 corrected,diploid,11,5,in any library,10638945,intergenic,3542172,33.2943915021649,23.4497859003456,20.7266860972352,intergenic regions
-corrected,diploid,11,5,in any library,10638945,TE,4064990,38.2085817719708,26.9109306908434,23.7859064208062,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+corrected,diploid,11,5,in any library,10638945,TE,4064990,38.2085817719708,26.9109306908434,23.7859064208062,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 corrected,diploid,11,10,in all libraries,742666,gene,525931,70.8166255086405,,,genes
 corrected,diploid,11,10,in all libraries,742666,mRNA,508832,68.5142446267905,,,mRNA transcripts
 corrected,diploid,11,10,in all libraries,742666,exon,264558,35.6227429288536,,,exons
@@ -869,7 +869,7 @@ corrected,diploid,11,10,in all libraries,742666,upstream_flank,27770,3.739231363
 corrected,diploid,11,10,in all libraries,742666,downstream_flank,20452,2.75386243614222,2.19675878187943,1.71065420060457,downstream flanks (up to 1 kb)
 corrected,diploid,11,10,in all libraries,742666,flanks,46104,6.20790503402606,,,upstream and downstream flanks together
 corrected,diploid,11,10,in all libraries,742666,intergenic,170761,22.992973961377,18.3415180105864,14.2828584954741,intergenic regions
-corrected,diploid,11,10,in all libraries,742666,TE,162979,21.9451274193244,17.5056497903348,13.6319534011506,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+corrected,diploid,11,10,in all libraries,742666,TE,162979,21.9451274193244,17.5056497903348,13.6319534011506,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 corrected,diploid,11,10,in any library,8187084,gene,4946558,60.419045413483,,,genes
 corrected,diploid,11,10,in any library,8187084,mRNA,4726984,57.7370892982166,,,mRNA transcripts
 corrected,diploid,11,10,in any library,8187084,exon,1759012,21.4852076758954,,,exons
@@ -882,7 +882,7 @@ corrected,diploid,11,10,in any library,8187084,upstream_flank,382292,4.669452518
 corrected,diploid,11,10,in any library,8187084,downstream_flank,347051,4.23900622004123,3.07012162352836,2.65671613684196,downstream flanks (up to 1 kb)
 corrected,diploid,11,10,in any library,8187084,flanks,697168,8.51546167109071,,,upstream and downstream flanks together
 corrected,diploid,11,10,in any library,8187084,intergenic,2544677,31.0816036576637,22.5110081302036,19.4798010924924,intergenic regions
-corrected,diploid,11,10,in any library,8187084,TE,2814852,34.3816186568991,24.9010606286455,21.548022426738,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+corrected,diploid,11,10,in any library,8187084,TE,2814852,34.3816186568991,24.9010606286455,21.548022426738,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 corrected,diploid,11,20,in all libraries,31413,gene,17735,56.4575175882596,,,genes
 corrected,diploid,11,20,in all libraries,31413,mRNA,16533,52.631076305988,,,mRNA transcripts
 corrected,diploid,11,20,in all libraries,31413,exon,6501,20.6952535574444,,,exons
@@ -895,7 +895,7 @@ corrected,diploid,11,20,in all libraries,31413,upstream_flank,969,3.084710151847
 corrected,diploid,11,20,in all libraries,31413,downstream_flank,950,3.02422563906663,1.92214308837812,1.69870362092088,downstream flanks (up to 1 kb)
 corrected,diploid,11,20,in all libraries,31413,flanks,1863,5.93066564798014,,,upstream and downstream flanks together
 corrected,diploid,11,20,in all libraries,31413,intergenic,11820,37.627733740808,23.9155066364519,21.135449262405,intergenic regions
-corrected,diploid,11,20,in all libraries,31413,TE,16448,52.3604876961768,33.2793784396245,29.4108180599017,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+corrected,diploid,11,20,in all libraries,31413,TE,16448,52.3604876961768,33.2793784396245,29.4108180599017,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 corrected,diploid,11,20,in any library,3741883,gene,2392751,63.9451046438384,,,genes
 corrected,diploid,11,20,in any library,3741883,mRNA,2294911,61.3303783148752,,,mRNA transcripts
 corrected,diploid,11,20,in any library,3741883,exon,970277,25.9301800724395,,,exons
@@ -908,7 +908,7 @@ corrected,diploid,11,20,in any library,3741883,upstream_flank,164782,4.403718662
 corrected,diploid,11,20,in any library,3741883,downstream_flank,136520,3.64843048272755,2.72910476687764,2.28575255539836,downstream flanks (up to 1 kb)
 corrected,diploid,11,20,in any library,3741883,flanks,288263,7.70368822328224,,,upstream and downstream flanks together
 corrected,diploid,11,20,in any library,3741883,intergenic,1061322,28.3633133371621,21.2163707104608,17.7697002168217,intergenic regions
-corrected,diploid,11,20,in any library,3741883,TE,1122760,30.0052139524405,22.4445478176058,18.7983558386981,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+corrected,diploid,11,20,in any library,3741883,TE,1122760,30.0052139524405,22.4445478176058,18.7983558386981,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 corrected,triploid,11,1,in all libraries,6759461,gene,4215219,62.360282868708,,,genes
 corrected,triploid,11,1,in all libraries,6759461,mRNA,4043505,59.8199323881002,,,mRNA transcripts
 corrected,triploid,11,1,in all libraries,6759461,exon,1608211,23.7920005751938,,,exons
@@ -921,7 +921,7 @@ corrected,triploid,11,1,in all libraries,6759461,upstream_flank,318562,4.7128313
 corrected,triploid,11,1,in all libraries,6759461,downstream_flank,291132,4.30702980607477,3.16003223291057,2.69039672752123,downstream flanks (up to 1 kb)
 corrected,triploid,11,1,in all libraries,6759461,flanks,581721,8.60602642725507,,,upstream and downstream flanks together
 corrected,triploid,11,1,in all libraries,6759461,intergenic,1963868,29.0536183284436,21.3164000562687,18.1484139169987,intergenic regions
-corrected,triploid,11,1,in all libraries,6759461,TE,2212701,32.734873387094,24.017306520044,20.4479189143858,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+corrected,triploid,11,1,in all libraries,6759461,TE,2212701,32.734873387094,24.017306520044,20.4479189143858,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 corrected,triploid,11,1,in any library,12708808,gene,7181511,56.5081398664611,,,genes
 corrected,triploid,11,1,in any library,12708808,mRNA,6814713,53.6219683230717,,,mRNA transcripts
 corrected,triploid,11,1,in any library,12708808,exon,2156731,16.9703641757748,,,exons
@@ -934,7 +934,7 @@ corrected,triploid,11,1,in any library,12708808,upstream_flank,573269,4.51080069
 corrected,triploid,11,1,in any library,12708808,downstream_flank,531877,4.18510532223006,2.88967175571151,2.58658932337753,downstream flanks (up to 1 kb)
 corrected,triploid,11,1,in any library,12708808,flanks,1056558,8.31358849704866,,,upstream and downstream flanks together
 corrected,triploid,11,1,in any library,12708808,intergenic,4472940,35.195590333885,24.3013485880988,21.7525082831336,intergenic regions
-corrected,triploid,11,1,in any library,12708808,TE,5199073,40.9092103681164,28.2464073535466,25.2837906381745,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+corrected,triploid,11,1,in any library,12708808,TE,5199073,40.9092103681164,28.2464073535466,25.2837906381745,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 corrected,triploid,11,3,in all libraries,4500557,gene,2982829,66.2768852833105,,,genes
 corrected,triploid,11,3,in all libraries,4500557,mRNA,2876061,63.9045567026481,,,mRNA transcripts
 corrected,triploid,11,3,in all libraries,4500557,exon,1301770,28.9246419943132,,,exons
@@ -947,7 +947,7 @@ corrected,triploid,11,3,in all libraries,4500557,upstream_flank,207242,4.6048078
 corrected,triploid,11,3,in all libraries,4500557,downstream_flank,176616,3.92431425710195,3.0250023079396,2.47350570584391,downstream flanks (up to 1 kb)
 corrected,triploid,11,3,in all libraries,4500557,flanks,366083,8.13417094817375,,,upstream and downstream flanks together
 corrected,triploid,11,3,in all libraries,4500557,intergenic,1152589,25.6099189500322,19.7410448946064,16.1419999773119,intergenic regions
-corrected,triploid,11,3,in all libraries,4500557,TE,1183897,26.3055661776976,20.2772747506612,16.5804682737209,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+corrected,triploid,11,3,in all libraries,4500557,TE,1183897,26.3055661776976,20.2772747506612,16.5804682737209,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 corrected,triploid,11,3,in any library,11561137,gene,6638941,57.4246373864439,,,genes
 corrected,triploid,11,3,in any library,11561137,mRNA,6311320,54.5908244145883,,,mRNA transcripts
 corrected,triploid,11,3,in any library,11561137,exon,2057238,17.7944262748551,,,exons
@@ -960,7 +960,7 @@ corrected,triploid,11,3,in any library,11561137,upstream_flank,529896,4.58342462
 corrected,triploid,11,3,in any library,11561137,downstream_flank,492089,4.25640661467812,2.967612677423,2.64007292150637,downstream flanks (up to 1 kb)
 corrected,triploid,11,3,in any library,11561137,flanks,977493,8.45499019689845,,,upstream and downstream flanks together
 corrected,triploid,11,3,in any library,11561137,intergenic,3946744,34.1380263896189,23.8014008216871,21.1744053667482,intergenic regions
-corrected,triploid,11,3,in any library,11561137,TE,4576924,39.5888743468744,27.6017909077455,24.5553408350779,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+corrected,triploid,11,3,in any library,11561137,TE,4576924,39.5888743468744,27.6017909077455,24.5553408350779,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 corrected,triploid,11,5,in all libraries,2998299,gene,2068715,68.9962875617142,,,genes
 corrected,triploid,11,5,in all libraries,2998299,mRNA,2000843,66.7326040531648,,,mRNA transcripts
 corrected,triploid,11,5,in all libraries,2998299,exon,978964,32.650646249757,,,exons
@@ -973,7 +973,7 @@ corrected,triploid,11,5,in all libraries,2998299,upstream_flank,131129,4.3734464
 corrected,triploid,11,5,in all libraries,2998299,downstream_flank,104812,3.49571540396738,2.77142658450998,2.20154287801551,downstream flanks (up to 1 kb)
 corrected,triploid,11,5,in all libraries,2998299,flanks,225140,7.50892422670321,,,upstream and downstream flanks together
 corrected,triploid,11,5,in all libraries,2998299,intergenic,705065,23.5154999551412,18.6432458574164,14.8096671114758,intergenic regions
-corrected,triploid,11,5,in all libraries,2998299,TE,683425,22.7937573937756,18.0710435209588,14.3551257623912,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+corrected,triploid,11,5,in all libraries,2998299,TE,683425,22.7937573937756,18.0710435209588,14.3551257623912,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 corrected,triploid,11,5,in any library,10479480,gene,6110228,58.3065953654189,,,genes
 corrected,triploid,11,5,in any library,10479480,mRNA,5818488,55.5226786061904,,,mRNA transcripts
 corrected,triploid,11,5,in any library,10479480,exon,1974226,18.8389691091543,,,exons
@@ -986,7 +986,7 @@ corrected,triploid,11,5,in any library,10479480,upstream_flank,485967,4.63731979
 corrected,triploid,11,5,in any library,10479480,downstream_flank,449583,4.29012699103391,3.02548977304066,2.67067354129733,downstream flanks (up to 1 kb)
 corrected,triploid,11,5,in any library,10479480,flanks,894698,8.53761827876956,,,upstream and downstream flanks together
 corrected,triploid,11,5,in any library,10479480,intergenic,3476453,33.1739074839591,23.3949526515827,20.6512947434928,intergenic regions
-corrected,triploid,11,5,in any library,10479480,TE,3984322,38.0202261944295,26.8126807808589,23.6682066390607,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+corrected,triploid,11,5,in any library,10479480,TE,3984322,38.0202261944295,26.8126807808589,23.6682066390607,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 corrected,triploid,11,10,in all libraries,839217,gene,600989,71.6130631290834,,,genes
 corrected,triploid,11,10,in all libraries,839217,mRNA,582248,69.379910082851,,,mRNA transcripts
 corrected,triploid,11,10,in all libraries,839217,exon,309801,36.9154819313717,,,exons
@@ -999,7 +999,7 @@ corrected,triploid,11,10,in all libraries,839217,upstream_flank,31646,3.77089596
 corrected,triploid,11,10,in all libraries,839217,downstream_flank,22934,2.73278544166765,2.20010034468303,1.69604084578704,downstream flanks (up to 1 kb)
 corrected,triploid,11,10,in all libraries,839217,flanks,52180,6.21770054705756,,,upstream and downstream flanks together
 corrected,triploid,11,10,in all libraries,839217,intergenic,186209,22.1884208732664,17.8633681469906,13.7707364547466,intergenic regions
-corrected,triploid,11,10,in all libraries,839217,TE,175289,20.8872079569408,16.8157926798266,12.9631683882953,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+corrected,triploid,11,10,in all libraries,839217,TE,175289,20.8872079569408,16.8157926798266,12.9631683882953,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 corrected,triploid,11,10,in any library,7853414,gene,4773902,60.7876014176765,,,genes
 corrected,triploid,11,10,in any library,7853414,mRNA,4563468,58.1080788558963,,,mRNA transcripts
 corrected,triploid,11,10,in any library,7853414,exon,1731113,22.0428083888103,,,exons
@@ -1012,7 +1012,7 @@ corrected,triploid,11,10,in any library,7853414,upstream_flank,366500,4.66676021
 corrected,triploid,11,10,in any library,7853414,downstream_flank,331037,4.21519863845202,3.06540916832707,2.64190765593534,downstream flanks (up to 1 kb)
 corrected,triploid,11,10,in any library,7853414,flanks,666396,8.48543066747786,,,upstream and downstream flanks together
 corrected,triploid,11,10,in any library,7853414,intergenic,2414581,30.7456222223863,22.3590678234407,19.2700514739319,intergenic regions
-corrected,triploid,11,10,in any library,7853414,TE,2656742,33.8291346922498,24.601483473689,21.2026662567778,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+corrected,triploid,11,10,in any library,7853414,TE,2656742,33.8291346922498,24.601483473689,21.2026662567778,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 corrected,triploid,11,20,in all libraries,38309,gene,22702,59.2602260565402,,,genes
 corrected,triploid,11,20,in all libraries,38309,mRNA,21167,55.2533347255214,,,mRNA transcripts
 corrected,triploid,11,20,in all libraries,38309,exon,8793,22.9528309274583,,,exons
@@ -1025,7 +1025,7 @@ corrected,triploid,11,20,in all libraries,38309,upstream_flank,1178,3.0749954318
 corrected,triploid,11,20,in all libraries,38309,downstream_flank,1058,2.76175311284555,1.81818181818182,1.57950524760014,downstream flanks (up to 1 kb)
 corrected,triploid,11,20,in all libraries,38309,flanks,2160,5.63836174267144,,,upstream and downstream flanks together
 corrected,triploid,11,20,in all libraries,38309,intergenic,13452,35.1144639640815,23.1173741192645,20.0827075526626,intergenic regions
-corrected,triploid,11,20,in all libraries,38309,TE,17979,46.9315304497638,30.8970613507476,26.841138796411,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+corrected,triploid,11,20,in all libraries,38309,TE,17979,46.9315304497638,30.8970613507476,26.841138796411,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 corrected,triploid,11,20,in any library,3490074,gene,2261262,64.7912336529254,,,genes
 corrected,triploid,11,20,in any library,3490074,mRNA,2171277,62.2129215598294,,,mRNA transcripts
 corrected,triploid,11,20,in any library,3490074,exon,950992,27.2484766798641,,,exons
@@ -1038,7 +1038,7 @@ corrected,triploid,11,20,in any library,3490074,upstream_flank,150430,4.31022379
 corrected,triploid,11,20,in any library,3490074,downstream_flank,124063,3.55473838090539,2.68517893256871,2.22683117703652,downstream flanks (up to 1 kb)
 corrected,triploid,11,20,in any library,3490074,flanks,262353,7.5171185482027,,,upstream and downstream flanks together
 corrected,triploid,11,20,in any library,3490074,intergenic,967066,27.7090399802411,20.9308597212988,17.358057753335,intergenic regions
-corrected,triploid,11,20,in any library,3490074,TE,1003237,28.7454363431836,21.7137329967309,18.0072981433351,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+corrected,triploid,11,20,in any library,3490074,TE,1003237,28.7454363431836,21.7137329967309,18.0072981433351,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 corrected,control,12,1,in all libraries,6312264,gene,3976763,63.0005810910317,,,genes
 corrected,control,12,1,in all libraries,6312264,mRNA,3818919,60.499988593633,,,mRNA transcripts
 corrected,control,12,1,in all libraries,6312264,exon,1558011,24.6822851515716,,,exons
@@ -1051,7 +1051,7 @@ corrected,control,12,1,in all libraries,6312264,upstream_flank,297244,4.70899189
 corrected,control,12,1,in all libraries,6312264,downstream_flank,269106,4.26322473204543,3.15775614921456,2.66968251724318,downstream flanks (up to 1 kb)
 corrected,control,12,1,in all libraries,6312264,flanks,540375,8.5607160917224,,,upstream and downstream flanks together
 corrected,control,12,1,in all libraries,6312264,intergenic,1796387,28.458679801732,21.0792479380582,17.8211670052058,intergenic regions
-corrected,control,12,1,in all libraries,6312264,TE,1987484,31.4860721921643,23.3216272489857,19.716956471058,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+corrected,control,12,1,in all libraries,6312264,TE,1987484,31.4860721921643,23.3216272489857,19.716956471058,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 corrected,control,12,1,in any library,12638298,gene,7146662,56.5476617183738,,,genes
 corrected,control,12,1,in any library,12638298,mRNA,6782488,53.6661502996685,,,mRNA transcripts
 corrected,control,12,1,in any library,12638298,exon,2151254,17.0217065620703,,,exons
@@ -1064,7 +1064,7 @@ corrected,control,12,1,in any library,12638298,upstream_flank,570398,4.513250122
 corrected,control,12,1,in any library,12638298,downstream_flank,529318,4.18820635500128,2.89241094444962,2.58816362955284,downstream flanks (up to 1 kb)
 corrected,control,12,1,in any library,12638298,flanks,1051364,8.31887331664438,,,upstream and downstream flanks together
 corrected,control,12,1,in any library,12638298,intergenic,4442491,35.1510227089122,24.2755953680376,21.7220907485025,intergenic regions
-corrected,control,12,1,in any library,12638298,TE,5167622,40.8885911694755,28.2380089654586,25.267705446777,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+corrected,control,12,1,in any library,12638298,TE,5167622,40.8885911694755,28.2380089654586,25.267705446777,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 corrected,control,12,3,in all libraries,3968792,gene,2668251,67.2308097778871,,,genes
 corrected,control,12,3,in all libraries,3968792,mRNA,2576094,64.9087682095711,,,mRNA transcripts
 corrected,control,12,3,in all libraries,3968792,exon,1198908,30.2083858262161,,,exons
@@ -1077,7 +1077,7 @@ corrected,control,12,3,in all libraries,3968792,upstream_flank,179372,4.51956161
 corrected,control,12,3,in all libraries,3968792,downstream_flank,149618,3.76986246696728,2.93732913858854,2.37768814491601,downstream flanks (up to 1 kb)
 corrected,control,12,3,in all libraries,3968792,flanks,314006,7.91187847586873,,,upstream and downstream flanks together
 corrected,control,12,3,in all libraries,3968792,intergenic,987366,24.8782501073375,19.3841578035505,15.6909491698401,intergenic regions
-corrected,control,12,3,in all libraries,3968792,TE,991025,24.9704444072655,19.4559919900661,15.7490969924433,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+corrected,control,12,3,in all libraries,3968792,TE,991025,24.9704444072655,19.4559919900661,15.7490969924433,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 corrected,control,12,3,in any library,11297545,gene,6511516,57.636557322852,,,genes
 corrected,control,12,3,in any library,11297545,mRNA,6193023,54.8174227232554,,,mRNA transcripts
 corrected,control,12,3,in any library,11297545,exon,2038846,18.0468057440798,,,exons
@@ -1090,7 +1090,7 @@ corrected,control,12,3,in any library,11297545,upstream_flank,519123,4.595007145
 corrected,control,12,3,in any library,11297545,downstream_flank,481952,4.26598876127513,2.9811704869862,2.6473050661612,downstream flanks (up to 1 kb)
 corrected,control,12,3,in any library,11297545,flanks,957508,8.47536345285635,,,upstream and downstream flanks together
 corrected,control,12,3,in any library,11297545,intergenic,3830568,33.9061982050083,23.6944265611384,21.0408548417166,intergenic regions
-corrected,control,12,3,in any library,11297545,TE,4437372,39.2773120177879,27.4478837024827,24.3739571078487,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+corrected,control,12,3,in any library,11297545,TE,4437372,39.2773120177879,27.4478837024827,24.3739571078487,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 corrected,control,12,5,in all libraries,2442448,gene,1706210,69.8565537526285,,,genes
 corrected,control,12,5,in all libraries,2442448,mRNA,1651600,67.6206822008084,,,mRNA transcripts
 corrected,control,12,5,in all libraries,2442448,exon,826212,33.8272094226776,,,exons
@@ -1103,7 +1103,7 @@ corrected,control,12,5,in all libraries,2442448,upstream_flank,103282,4.22862636
 corrected,control,12,5,in all libraries,2442448,downstream_flank,80477,3.2949319698925,2.63300646366983,2.07271781346905,downstream flanks (up to 1 kb)
 corrected,control,12,5,in all libraries,2442448,flanks,175482,7.184677012571,,,upstream and downstream flanks together
 corrected,control,12,5,in all libraries,2442448,intergenic,561240,22.9785854192188,18.3623712075507,14.454964096964,intergenic regions
-corrected,control,12,5,in all libraries,2442448,TE,533133,21.8278137344173,17.4427803595523,13.7310568988431,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+corrected,control,12,5,in all libraries,2442448,TE,533133,21.8278137344173,17.4427803595523,13.7310568988431,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 corrected,control,12,5,in any library,10017299,gene,5880181,58.7002644125927,,,genes
 corrected,control,12,5,in any library,10017299,mRNA,5603719,55.9404186697432,,,mRNA transcripts
 corrected,control,12,5,in any library,10017299,exon,1939011,19.3566249744567,,,exons
@@ -1116,7 +1116,7 @@ corrected,control,12,5,in any library,10017299,upstream_flank,465541,4.647370513
 corrected,control,12,5,in any library,10017299,downstream_flank,429340,4.28598567338361,3.03749080365594,2.67107071276166,downstream flanks (up to 1 kb)
 corrected,control,12,5,in any library,10017299,flanks,855807,8.54329096096662,,,upstream and downstream flanks together
 corrected,control,12,5,in any library,10017299,intergenic,3283174,32.7750424540587,23.2277701397547,20.4257462996706,intergenic regions
-corrected,control,12,5,in any library,10017299,TE,3741302,37.3484109838391,26.4689300291135,23.275916988393,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+corrected,control,12,5,in any library,10017299,TE,3741302,37.3484109838391,26.4689300291135,23.275916988393,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 corrected,control,12,10,in all libraries,508815,gene,359845,70.7221681750735,,,genes
 corrected,control,12,10,in all libraries,508815,mRNA,347971,68.3885105588475,,,mRNA transcripts
 corrected,control,12,10,in all libraries,508815,exon,182863,35.9389955091733,,,exons
@@ -1129,7 +1129,7 @@ corrected,control,12,10,in all libraries,508815,upstream_flank,18184,3.573794011
 corrected,control,12,10,in all libraries,508815,downstream_flank,13253,2.60467950040781,2.05993440788349,1.60402695123531,downstream flanks (up to 1 kb)
 corrected,control,12,10,in all libraries,508815,flanks,30031,5.90214518046834,,,upstream and downstream flanks together
 corrected,control,12,10,in all libraries,508815,intergenic,119022,23.3919990566316,18.4997746242442,14.4053795963124,intergenic regions
-corrected,control,12,10,in all libraries,508815,TE,117034,23.0012873048161,18.1907766914839,14.1647695020654,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+corrected,control,12,10,in all libraries,508815,TE,117034,23.0012873048161,18.1907766914839,14.1647695020654,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 corrected,control,12,10,in any library,6895408,gene,4261880,61.8075101574845,,,genes
 corrected,control,12,10,in any library,6895408,mRNA,4079809,59.1670427623717,,,mRNA transcripts
 corrected,control,12,10,in any library,6895408,exon,1610217,23.3520191988639,,,exons
@@ -1142,7 +1142,7 @@ corrected,control,12,10,in any library,6895408,upstream_flank,318261,4.615549942
 corrected,control,12,10,in any library,6895408,downstream_flank,281403,4.08102029640596,2.99727947064391,2.55848098766133,downstream flanks (up to 1 kb)
 corrected,control,12,10,in any library,6895408,flanks,573040,8.31045820638895,,,upstream and downstream flanks together
 corrected,control,12,10,in any library,6895408,intergenic,2061795,29.9009862795646,21.9605897100467,18.7455830533263,intergenic regions
-corrected,control,12,10,in any library,6895408,TE,2241087,32.5011514909633,23.8702645566215,20.3756835612803,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+corrected,control,12,10,in any library,6895408,TE,2241087,32.5011514909633,23.8702645566215,20.3756835612803,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 corrected,control,12,20,in all libraries,20435,gene,11414,55.8551504771226,,,genes
 corrected,control,12,20,in all libraries,20435,mRNA,10547,51.6124296550037,,,mRNA transcripts
 corrected,control,12,20,in all libraries,20435,exon,3808,18.6346953755811,,,exons
@@ -1155,7 +1155,7 @@ corrected,control,12,20,in all libraries,20435,upstream_flank,600,2.936138977244
 corrected,control,12,20,in all libraries,20435,downstream_flank,606,2.96550036701737,1.85236130215497,1.65922843139939,downstream flanks (up to 1 kb)
 corrected,control,12,20,in all libraries,20435,flanks,1175,5.74993883043797,,,upstream and downstream flanks together
 corrected,control,12,20,in all libraries,20435,intergenic,7846,38.3949106924394,23.9828824698151,21.4823535854119,intergenic regions
-corrected,control,12,20,in all libraries,20435,TE,11207,54.8421825299731,34.2564572825921,30.6847739780412,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+corrected,control,12,20,in all libraries,20435,TE,11207,54.8421825299731,34.2564572825921,30.6847739780412,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 corrected,control,12,20,in any library,2243937,gene,1470334,65.5247451243061,,,genes
 corrected,control,12,20,in any library,2243937,mRNA,1411913,62.9212406587173,,,mRNA transcripts
 corrected,control,12,20,in any library,2243937,exon,643019,28.6558401595054,,,exons
@@ -1168,7 +1168,7 @@ corrected,control,12,20,in any library,2243937,upstream_flank,89346,3.9816625867
 corrected,control,12,20,in any library,2243937,downstream_flank,72519,3.23177522363596,2.43567800242093,2.0030753652307,downstream flanks (up to 1 kb)
 corrected,control,12,20,in any library,2243937,flanks,154783,6.89783180187323,,,upstream and downstream flanks together
 corrected,control,12,20,in any library,2243937,intergenic,619213,27.594936934504,20.7973563192139,17.1035219201946,intergenic regions
-corrected,control,12,20,in any library,2243937,TE,650470,28.9878904799912,21.8471775704952,17.9668836142474,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+corrected,control,12,20,in any library,2243937,TE,650470,28.9878904799912,21.8471775704952,17.9668836142474,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 corrected,heat,10,1,in all libraries,7231619,gene,4453996,61.5905788178277,,,genes
 corrected,heat,10,1,in all libraries,7231619,mRNA,4268950,59.0317327281761,,,mRNA transcripts
 corrected,heat,10,1,in all libraries,7231619,exon,1648160,22.7910236974597,,,exons
@@ -1181,7 +1181,7 @@ corrected,heat,10,1,in all libraries,7231619,upstream_flank,340911,4.71417258016
 corrected,heat,10,1,in all libraries,7231619,downstream_flank,314995,4.35580193038378,3.16041730210457,2.71195794418271,downstream flanks (up to 1 kb)
 corrected,heat,10,1,in all libraries,7231619,flanks,625914,8.65524027192251,,,upstream and downstream flanks together
 corrected,heat,10,1,in all libraries,7231619,intergenic,2153095,29.7733467429631,21.602497471626,18.5371294459597,intergenic regions
-corrected,heat,10,1,in all libraries,7231619,TE,2476239,34.2418343665506,24.8446755654729,21.3192464253244,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+corrected,heat,10,1,in all libraries,7231619,TE,2476239,34.2418343665506,24.8446755654729,21.3192464253244,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 corrected,heat,10,1,in any library,12738791,gene,7194759,56.4791352648772,,,genes
 corrected,heat,10,1,in any library,12738791,mRNA,6826656,53.5895125369433,,,mRNA transcripts
 corrected,heat,10,1,in any library,12738791,exon,2158963,16.9479427050809,,,exons
@@ -1194,7 +1194,7 @@ corrected,heat,10,1,in any library,12738791,upstream_flank,574210,4.507570616395
 corrected,heat,10,1,in any library,12738791,downstream_flank,532708,4.18177831789532,2.88691161023951,2.58452023228797,downstream flanks (up to 1 kb)
 corrected,heat,10,1,in any library,12738791,flanks,1058397,8.30845721544533,,,upstream and downstream flanks together
 corrected,heat,10,1,in any library,12738791,intergenic,4487635,35.2281075967099,24.3199005534311,21.7724972266676,intergenic regions
-corrected,heat,10,1,in any library,12738791,TE,5214336,40.9327384364811,28.2581210308271,25.2982063155566,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+corrected,heat,10,1,in any library,12738791,TE,5214336,40.9327384364811,28.2581210308271,25.2982063155566,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 corrected,heat,10,3,in all libraries,5387383,gene,3488901,64.7605896963331,,,genes
 corrected,heat,10,3,in all libraries,5387383,mRNA,3358620,62.3423283623979,,,mRNA transcripts
 corrected,heat,10,3,in all libraries,5387383,exon,1448270,26.8826255716365,,,exons
@@ -1207,7 +1207,7 @@ corrected,heat,10,3,in all libraries,5387383,upstream_flank,253577,4.70686788000
 corrected,heat,10,3,in all libraries,5387383,downstream_flank,224502,4.16718098564739,3.16214830920943,2.62638809808729,downstream flanks (up to 1 kb)
 corrected,heat,10,3,in all libraries,5387383,flanks,456138,8.46678248047336,,,upstream and downstream flanks together
 corrected,heat,10,3,in all libraries,5387383,intergenic,1443415,26.7925076052696,20.3307422728418,16.8861211775426,intergenic regions
-corrected,heat,10,3,in all libraries,5387383,TE,1526515,28.3350005002429,21.5012197050932,17.8582855722966,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+corrected,heat,10,3,in all libraries,5387383,TE,1526515,28.3350005002429,21.5012197050932,17.8582855722966,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 corrected,heat,10,3,in any library,11748867,gene,6728486,57.2692328545382,,,genes
 corrected,heat,10,3,in any library,11748867,mRNA,6394546,54.4269162294543,,,mRNA transcripts
 corrected,heat,10,3,in any library,11748867,exon,2069835,17.6173157803216,,,exons
@@ -1220,7 +1220,7 @@ corrected,heat,10,3,in any library,11748867,upstream_flank,537213,4.572466434423
 corrected,heat,10,3,in any library,11748867,downstream_flank,499208,4.24898843437414,2.95728947436858,2.63428351064155,downstream flanks (up to 1 kb)
 corrected,heat,10,3,in any library,11748867,flanks,991385,8.43813280037982,,,upstream and downstream flanks together
 corrected,heat,10,3,in any library,11748867,intergenic,4030851,34.3084231015638,23.878610188635,21.2705011200802,intergenic regions
-corrected,heat,10,3,in any library,11748867,TE,4679716,39.8312109584694,27.7224621196661,24.6945134959485,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+corrected,heat,10,3,in any library,11748867,TE,4679716,39.8312109584694,27.7224621196661,24.6945134959485,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 corrected,heat,10,5,in all libraries,4166066,gene,2794338,67.0737813563203,,,genes
 corrected,heat,10,5,in all libraries,4166066,mRNA,2697927,64.7595837415922,,,mRNA transcripts
 corrected,heat,10,5,in all libraries,4166066,exon,1246143,29.9117440770261,,,exons
@@ -1233,7 +1233,7 @@ corrected,heat,10,5,in all libraries,4166066,upstream_flank,190863,4.58137245065
 corrected,heat,10,5,in all libraries,4166066,downstream_flank,161623,3.87951127034473,3.02727777258527,2.45439961415525,downstream flanks (up to 1 kb)
 corrected,heat,10,5,in all libraries,4166066,flanks,336276,8.07178762890458,,,upstream and downstream flanks together
 corrected,heat,10,5,in all libraries,4166066,intergenic,1036290,24.874545914539,19.4102181184138,15.7370533658758,intergenic regions
-corrected,heat,10,5,in all libraries,4166066,TE,1032522,24.7841008759823,19.3396416370522,15.6798326872216,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+corrected,heat,10,5,in all libraries,4166066,TE,1032522,24.7841008759823,19.3396416370522,15.6798326872216,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 corrected,heat,10,5,in any library,10859159,gene,6298149,57.9984969370096,,,genes
 corrected,heat,10,5,in any library,10859159,mRNA,5994161,55.1991272989004,,,mRNA transcripts
 corrected,heat,10,5,in any library,10859159,exon,2000772,18.4247417318413,,,exons
@@ -1246,7 +1246,7 @@ corrected,heat,10,5,in any library,10859159,upstream_flank,501330,4.616655857051
 corrected,heat,10,5,in any library,10859159,downstream_flank,465515,4.28684210259745,3.01182174730498,2.66663313672106,downstream flanks (up to 1 kb)
 corrected,heat,10,5,in any library,10859159,flanks,924910,8.5173262496663,,,upstream and downstream flanks together
 corrected,heat,10,5,in any library,10859159,intergenic,3637848,33.5002738241516,23.5364053140928,20.838868829478,intergenic regions
-corrected,heat,10,5,in any library,10859159,TE,4185184,38.5405904821911,27.0775983323262,23.9742013419005,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+corrected,heat,10,5,in any library,10859159,TE,4185184,38.5405904821911,27.0775983323262,23.9742013419005,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 corrected,heat,10,10,in all libraries,1896409,gene,1336941,70.4985580642151,,,genes
 corrected,heat,10,10,in all libraries,1896409,mRNA,1295287,68.3020909518991,,,mRNA transcripts
 corrected,heat,10,10,in all libraries,1896409,exon,653056,34.4364533178233,,,exons
@@ -1259,7 +1259,7 @@ corrected,heat,10,10,in all libraries,1896409,upstream_flank,79889,4.21264611167
 corrected,heat,10,10,in all libraries,1896409,downstream_flank,60188,3.17378793287735,2.56629459346181,2.00734862757693,downstream flanks (up to 1 kb)
 corrected,heat,10,10,in all libraries,1896409,flanks,133911,7.06129321259285,,,upstream and downstream flanks together
 corrected,heat,10,10,in all libraries,1896409,intergenic,425918,22.4591847011905,18.1602821269699,14.2049231202285,intergenic regions
-corrected,heat,10,10,in all libraries,1896409,TE,386364,20.3734531949595,16.4737795625088,12.8857454167796,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+corrected,heat,10,10,in all libraries,1896409,TE,386364,20.3734531949595,16.4737795625088,12.8857454167796,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 corrected,heat,10,10,in any library,8593616,gene,5157703,60.0178434782285,,,genes
 corrected,heat,10,10,in any library,8593616,mRNA,4924992,57.309891435689,,,mRNA transcripts
 corrected,heat,10,10,in any library,8593616,exon,1803616,20.9878588943234,,,exons
@@ -1272,7 +1272,7 @@ corrected,heat,10,10,in any library,8593616,upstream_flank,401870,4.676378372038
 corrected,heat,10,10,in any library,8593616,downstream_flank,366566,4.26556178446884,3.07547458236031,2.67125335085379,downstream flanks (up to 1 kb)
 corrected,heat,10,10,in any library,8593616,flanks,734470,8.54669326625719,,,upstream and downstream flanks together
 corrected,heat,10,10,in any library,8593616,intergenic,2702841,31.4517311455387,22.6767315999338,19.6962431815144,intergenic regions
-corrected,heat,10,10,in any library,8593616,TE,3006951,34.9905208703763,25.2282027544914,21.9123648527228,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+corrected,heat,10,10,in any library,8593616,TE,3006951,34.9905208703763,25.2282027544914,21.9123648527228,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 corrected,heat,10,20,in all libraries,173695,gene,114838,66.1147413569763,,,genes
 corrected,heat,10,20,in all libraries,173695,mRNA,109968,63.3109761363309,,,mRNA transcripts
 corrected,heat,10,20,in all libraries,173695,exon,50922,29.3169060709865,,,exons
@@ -1285,7 +1285,7 @@ corrected,heat,10,20,in all libraries,173695,upstream_flank,6363,3.6633178847980
 corrected,heat,10,20,in all libraries,173695,downstream_flank,4707,2.70992256541639,2.00122445855973,1.64506794162053,downstream flanks (up to 1 kb)
 corrected,heat,10,20,in all libraries,173695,flanks,10575,6.08825815366015,,,upstream and downstream flanks together
 corrected,heat,10,20,in all libraries,173695,intergenic,48294,27.8039091510982,20.5326394734828,16.8784599899346,intergenic regions
-corrected,heat,10,20,in all libraries,173695,TE,54684,31.4827715247992,23.2494069028851,19.1117262204328,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+corrected,heat,10,20,in all libraries,173695,TE,54684,31.4827715247992,23.2494069028851,19.1117262204328,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 corrected,heat,10,20,in any library,4297713,gene,2739450,63.7420414066737,,,genes
 corrected,heat,10,20,in any library,4297713,mRNA,2626874,61.122601718635,,,mRNA transcripts
 corrected,heat,10,20,in any library,4297713,exon,1104229,25.6934094947708,,,exons
@@ -1298,4 +1298,4 @@ corrected,heat,10,20,in any library,4297713,upstream_flank,190850,4.440733943844
 corrected,heat,10,20,in any library,4297713,downstream_flank,160208,3.72775008475438,2.78694875488583,2.33786845491539,downstream flanks (up to 1 kb)
 corrected,heat,10,20,in any library,4297713,flanks,335643,7.80980488925156,,,upstream and downstream flanks together
 corrected,heat,10,20,in any library,4297713,intergenic,1223181,28.4612071583189,21.278230581182,17.8495223369112,intergenic regions
-corrected,heat,10,20,in any library,4297713,TE,1293118,30.0885145192338,22.4948417059102,18.8700925090088,repeats of every RepeatMasker class; 1-based coordinates read as BED (the transposable elements of the draft)
+corrected,heat,10,20,in any library,4297713,TE,1293118,30.0885145192338,22.4948417059102,18.8700925090088,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
