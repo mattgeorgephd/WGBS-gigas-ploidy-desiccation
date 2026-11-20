@@ -1,10 +1,10 @@
 {
  "workflow": "scope-author-changes",
  "run_id": "wf_3af3d3cc-0e8",
- "agents_finished": 4,
+ "agents_finished": 6,
  "agents_running_or_lost": [
-  "ftest:dependency-trace",
-  "design:clearest-separation"
+  "variants:pilot-and-design",
+  "ftest:action-plan"
  ],
  "results": [
   {
@@ -509,6 +509,280 @@
      "R11: under the new default, dml_sensitivity.R stops (line 430) and five other diagnostics write fewer rows, unless they use a fixed pair of readings.",
      "A 5x step 05 may exceed the memory left by the other workflow (15 GB machine).",
      "The step 06 heat maps cluster every DML, so a much larger 5x DML set raises their memory use quadratically."
+    ]
+   }
+  },
+  {
+   "agent": "ftest:dependency-trace",
+   "phase": "F test",
+   "result": {
+    "summary": "I traced every place where the F test of methylKit's DML model (overdispersion \"MN\", test \"F\") is used, from the code through the outputs to the text. I wrote nothing to the repository. It is read only by the five F-test analyses of 06_diagnostics/dml_sensitivity.R: A1_ploidy_mn_f and A1_heat_mn_f (both modes), A2_interaction_mn_f (both modes), A4_ploidy_in_control_mn_f and A4_ploidy_in_heat_mn_f (legacy only). That is 8 of the 22 fits. Part 8 of library_methylation_level.R reads their lists. No step of 01_pipeline fits a model with the correction.\n\nWhat comes from these fits:\n- 8 DML list files.\n- 8 rows of dml_counts.csv, and the F values of its column statistic_needed_for_a_single_call (84.1, 83.5, 89.5, 88.9, 250.6, 474.5).\n- 5 rows of analyses.csv, with their reference_distribution text.\n- 6 rows in each interaction_vs_shared_<mode>.csv.\n- The analysis ids in the analyses column of permutation_reference.csv.\n- 8 bars in figure_dml_sensitivity.\n- All of corrected_dml_library_values.csv (145 legacy and 9 corrected CpGs) and corrected_dml_group_apart.csv (8 rows).\n- 8 test_subset lists and 16 git-ignored cache files.\n- 4 scratch p-values in the note column of manuscript_values_map.csv. They carry into 05_manuscript/manuscript_values.csv.\n\nThe main result is that every chi-squared counterpart can be computed from the cache without refitting. methylKit:::logReg uses the same statistic, D/phi, for both tests. Each F fit has a cached fit without the correction on the same design. From the two, I derived the chi-squared p-values for all 8 F fits in about 5 minutes, at under 3 GB of virtual memory. For the two pairs that also have a cached chi-squared fit, the derivation gives the same DML lists exactly (14 and 185), with p within 2e-8 relative and q within 2e-14.\n\nChi-squared numbers, legacy mode with corrected mode in parentheses:\n- Ploidy: 14 DML (14). 168 CpGs significant.\n- Heat: 185 DML (157). 1,124 CpGs significant.\n- Interaction: 242 DML (231). None of them among the 200 (159) overlap loci.\n- Ploidy among the controls: 10 DML, 3 of them among the draft's 1,038.\n- Ploidy among the heat-treated: 1,093 DML, 179 of them among the 1,038.\n- Share of eligible CpGs with p below 0.05: 7.3%, 13.2%, 23.3%, 10.4%, 24.6% (same order).\n\nI found 67 statements that rest on the F fits; 30 of them name the test. They are in issues.md (I-01, I-02, I-06 items 2 to 7 with its rating, What follows and Options, I-07, I-08, I-49 item 7, the corrections table), README.md, 06_diagnostics/README.md, the plan, the handoff, the values map, and the two scripts.\n\nSeveral readings of the audit log change in substance with the chi-squared fit:\n1. The lists are 14 and 185, not 2 and 16.\n2. The heat list holds up under the coverage filter (157 of 185 kept). The text says it is \"not stable at its threshold\".\n3. The ploidy pair is no longer at the edge: q is 1.2e-8 where the text gives 0.0099. Both CpGs of the pair are also called inside the heat cohort, where the text says neither is.\n4. CpGs whose dispersion estimate is not above 1 are a minority of the chi-squared lists, not \"most\":\n   - ploidy: 1 of 14\n   - heat: 2 of 185\n   - interaction: 5 of 242\n   - controls: 2 of 10\n   - heat cohort: 172 of 1,093\n5. Looser q thresholds give 37 ploidy CpGs at q < 0.05 and 52 at q < 0.1. The text says \"a looser threshold gives no list\".\n6. The corrected interaction becomes a list of 242 CpGs, not 2.\n\nThe argument that the corrected test is not calibrated can then rest only on the relabelling shares, which are already computed (7.19%, 2.16% and 0.47% below 0.05, 0.01 and 0.001).\n\nComputing needed:\n- 6 new methylKit fits:\n  - A1_ploidy_mn_chisq and A1_heat_mn_chisq in corrected mode\n  - A2_interaction_mn_chisq in both modes\n  - A4_ploidy_in_control_mn_chisq and A4_ploidy_in_heat_mn_chisq in legacy mode\n  \n  The matching F fits took 10.2, 9.6, 8.7, 15.0, 6.4 and 5.7 minutes with WGBS_CORES=3, about 56 minutes in all. A full cached rerun of the script then takes about 10 minutes, and library_methylation_level.R about 2 minutes.\n- New relabelling runs with the chi-squared test for the calls under relabelling (I-06 item 7, I-07), the interaction share, and the splits by high libraries. The earlier scratch scripts for these took 1 to 4 minutes each.",
+    "facts": [
+     {
+      "claim": "In methylKit 1.28.0, test = \"F\" is used only where the dispersion estimate is above 1; everywhere else the chi-squared test is used. phi is set to 1 when the estimate is not above 1, for MN with either test, so the correction is not applied there.",
+      "evidence": "Rscript -e 'print(methylKit:::logReg)', methylKit 1.28.0: `ifelse(phi > 1, phi, 1)`; `test = ifelse(test == \"F\" & phi > 1, \"F\", \"Chisq\")`; F: pf(deviance/phi, ddf, length(w)-nprm), Chisq: pchisq(deviance/phi, 1)",
+      "verified": true
+     },
+     {
+      "claim": "In calculateDiffMeth the argument test defaults to \"F\", so the toggle must pass test = \"Chisq\" explicitly.",
+      "evidence": "formals(methylKit::calculateDiffMeth)$test = c(\"F\",\"Chisq\",\"fast.fisher\",\"midPval\")",
+      "verified": true
+     },
+     {
+      "claim": "Only dml_sensitivity.R fits a model with the correction. Its registry has 5 F analyses, which make 8 of the 22 fits. No step of 01_pipeline uses MN.",
+      "evidence": "06_diagnostics/dml_sensitivity.R:384-387, 394-395, 402-403, 406-407; grep of 'overdispersion|calculateDiffMeth' over 01_pipeline, 02_R_functions and 06_diagnostics/*.R",
+      "verified": true
+     },
+     {
+      "claim": "Part 8 of library_methylation_level.R reads only the F lists and does not read the chi-squared lists.",
+      "evidence": "06_diagnostics/library_methylation_level.R:247 `corrected_lists <- c(\"A1_ploidy_mn_f\", \"A1_heat_mn_f\", \"A2_interaction_mn_f\", \"A4_ploidy_in_control_mn_f\", \"A4_ploidy_in_heat_mn_f\")`; header lines 54-57",
+      "verified": true
+     },
+     {
+      "claim": "The cache stores only the per-CpG pvalue, qvalue and meth.diff, plus signature, minutes and warnings. It has no deviance and no dispersion, so an F fit alone cannot be re-tested.",
+      "evidence": "dml_sensitivity.R:579 saveRDS(list(signature, fit = fit[, .(pvalue, qvalue, meth.diff)], minutes, warnings)); readRDS of all 22 cache files",
+      "verified": true
+     },
+     {
+      "claim": "The cached F fit together with the cached fit without the correction on the same design gives the chi-squared fit exactly. Where pF equals p0, phi is 1 and pC equals p0. Otherwise pC = pchisq(qf(pF, 1, rdf, upper), 1, upper). Validated on both cached chi-squared fits: identical DML sets (14 and 185) and identical significant counts (168 and 1,124), largest relative difference 2.0e-8 in p and 2.2e-14 in q.",
+      "evidence": "scratch code/derive_chisq_from_cache.R; derived/validation_against_cached_chisq.csv",
+      "verified": true
+     },
+     {
+      "claim": "Derived chi-squared counts. A2 interaction: 242 DML legacy and 231 corrected, 0 of the 200 and 0 of the 159 overlap loci. A4 controls: 10 DML, 3 in the 1,038. A4 heat-treated: 1,093 DML, 179 in the 1,038. A1 corrected mode: 14 ploidy and 157 heat. Shares of eligible CpGs below 0.05: 23.3%, 10.4%, 24.6%.",
+      "evidence": "scratch derived/chisq_counts_derived.csv and chisq_named_loci_and_item6.csv (from the 06_diagnostics/dml_sensitivity/cache/*.rds files)",
+      "verified": true
+     },
+     {
+      "claim": "The F-test numbers quoted in the text are reproduced from the cache. Significant CpGs: 24 and 287. BH lists: ploidy 1, heat 15 legacy and 4 corrected. Ploidy pair q = 0.0099. The scratch p-values of the values map match the cached F fits: 0.043 for A4 heat at CAD, and 0.23, 0.18, 0.019 and 0.15 for A2.",
+      "evidence": "derived/chisq_counts_derived.csv (n_significant_F, n_dml_F_BH); derived/chisq_named_loci_and_item6.csv (p_F)",
+      "verified": true
+     },
+     {
+      "claim": "Chi-squared counterparts of the values-map notes: 0.016 (D4.3-016), 0.22 (D4.9-008), 0.16 (D4.9-010), 0.010 and 0.13 (D4.9-014).",
+      "evidence": "derived/chisq_named_loci_and_item6.csv rows A4_ploidy_in_heat CAD and A2_interaction CAD, nesprin-1, AK9",
+      "verified": true
+     },
+     {
+      "claim": "Analogue of I-06 item 6 for the chi-squared heat list: 391 of the 1,124 CpGs with q < 0.01 in legacy mode are removed by the coverage filter, 275 of them mitochondrial. 157 of the 185 DML stay in corrected mode. Of the 28 that drop, 2 sit at removed CpGs and 26 lose q < 0.01 (legacy q 0.0067 to 0.0098). BH lists: 175 and 150 heat, 14 and 13 ploidy.",
+      "evidence": "derived/chisq_named_loci_and_item6.csv, derived/chisq_extra_numbers.csv, derived/chisq_counts_derived.csv",
+      "verified": true
+     },
+     {
+      "claim": "The ploidy pair under the chi-squared test. NC_047562.1:40,685,928 has q = 1.2e-8. Inside the heat cohort both CpGs are called (q 1.9e-6 and 1.0e-9; differences 51.8 and 40.9); inside the controls neither is (q 0.44 and 0.79). 10 of the 14 chi-squared ploidy DML are also called in the heat cohort and none in the controls.",
+      "evidence": "derived/chisq_named_loci_and_item6.csv; inline python on derived/chisq_dml_lists_derived.csv",
+      "verified": true
+     },
+     {
+      "claim": "Chi-squared DML at CpGs with a dispersion estimate not above 1: 1 of 14, 2 of 185, 5 of 242, 2 of 10, 172 of 1,093. The F lists had 1 of 2, 2 of 16, 2 of 2, 2 of 2 and 124 of 125.",
+      "evidence": "derived/chisq_counts_derived.csv column n_dml_with_phi_not_above_1; F values from 07_documentation/agent_workflows/verification_scripts/S1-I06-numbers-and-reading/14_correction_not_applied.log",
+      "verified": true
+     },
+     {
+      "claim": "Of the 1,038 draft ploidy DML, 862 (83.0%) have a chi-squared corrected p below 0.05, 116 (11.2%) below 0.001 and 48 (4.6%) below 1e-4. With chi-squared q < 0.05, 37 ploidy CpGs are above 20 points; with q < 0.1, 52.",
+      "evidence": "scratch code/extra_numbers.R -> derived/chisq_extra_numbers.csv (reads cache/fit_A1_ploidy_mn_chisq_legacy.rds)",
+      "verified": true
+     },
+     {
+      "claim": "In the stored relabelling tables, the chi-squared share of the ploidy contrast is reached or exceeded by 86, 69 and 61 of 300 relabellings (at 0.05, 0.01, 0.001). The F test gives 78, 95 and 119, matching I-06. For the heat contrast, 12 of 300 reach 13.2%. For the heat cohort, none of 125 regroupings reach it; for the controls, 39, 28 and 11 of 150 do.",
+      "evidence": "python on 07_documentation/agent_workflows/verification_scripts/S1-I06-numbers-and-reading/07_relabel_level_pooled_a.csv and _b.csv, 08_relabel_level_heat_experiment.csv and 08_relabel_level_control_experiment.csv (columns mn_chisq1-3, mn_f1-3), comparing each file with its own observed row",
+      "verified": true
+     },
+     {
+      "claim": "Group apart in the chi-squared heat-cohort list (1,093): triploids apart at 36 CpGs, diploids at 16, none at 1,041. Separation is under 3.5 points at 24 of the 52 and 11 to 19 points at 10. In the F list it was 11 and 6 of 125, with 12 of 17 under 3.5 points.",
+      "evidence": "derived/chisq_group_apart_derived.csv and chisq_extra_numbers.csv",
+      "verified": true
+     },
+     {
+      "claim": "Part 8 of library_methylation_level.R would cover 1,418 distinct CpGs in legacy mode and 398 in corrected mode with the chi-squared lists, against 145 and 9 now.",
+      "evidence": "python union over derived/chisq_dml_lists_derived.csv; corrected_dml_library_values.csv has 145 legacy and 9 corrected rows",
+      "verified": true
+     },
+     {
+      "claim": "Fit times of the F fits that the new chi-squared fits would replace: A1 ploidy corrected 10.2 min, A1 heat corrected 9.6, A2 legacy 8.7, A2 corrected 15.0, A4 controls 6.4, A4 heat 5.7. Together about 56 minutes with WGBS_CORES=3 on a shared machine.",
+      "evidence": "field minutes of each 06_diagnostics/dml_sensitivity/cache/fit_*.rds; dml_sensitivity.R:43-49",
+      "verified": true
+     },
+     {
+      "claim": "The handoff contradicts the author's instruction. Line 97 says the F test results \"2 and 16 stay where they are\", while the plan (line 166) and the handoff (line 95, 2b(iii)) say to remove every mention.",
+      "evidence": "07_documentation/session_handoff.md:97; 07_documentation/reproducibility_plan.md:166",
+      "verified": true
+     },
+     {
+      "claim": "The line numbers refer to the files as read at commit 435f971. issues.md had md5 edc445fe; it was unchanged at the start and the end of this pass.",
+      "evidence": "md5sum issues.md 06_diagnostics/README.md README.md plan handoff values map, run twice",
+      "verified": true
+     },
+     {
+      "claim": "The new chi-squared fits run by methylKit in the repository will give the derived numbers exactly.",
+      "evidence": "Inferred from the exact agreement in the two validated pairs and the deterministic glm.fit; not verified for A2, A4 or corrected mode",
+      "verified": false
+     }
+    ],
+    "recommendation": "1. Replace each F row of the registry of dml_sensitivity.R with its chi-squared twin: A1_ploidy_mn_chisq and A1_heat_mn_chisq in both modes, A2_interaction_mn_chisq in both modes, A4_ploidy_in_control_mn_chisq and A4_ploidy_in_heat_mn_chisq in legacy mode. That keeps 22 fits, 16 legacy and 6 corrected.\n2. Remove the F branches (test validation, label, reference_distribution, qf statistic) and the F notes in the header. Keep test = \"Chisq\" explicit, because methylKit defaults to \"F\".\n3. Run the 6 new fits, about 1 hour with WGBS_CORES=3. As a check, compare them with the scratch derivation (code/derive_chisq_from_cache.R), which predicts every count exactly. If time is short, the derivation itself gives the numbers in minutes, but the repository should hold real fits.\n4. Point part 8 of library_methylation_level.R at the *_mn_chisq lists and rerun it.\n5. Rerun the relabelling counts with the chi-squared test before rewriting I-06 item 7, I-07 and the README tail bullet. These are the scratch scripts 15_, 15b_, 18_ and 19_, and the interaction share. Item 7's reading (\"about ten calls from an arbitrary grouping\", \"median 2 among controls\") cannot be carried over.\n6. Rewrite the text from statements.csv:\n   - replace numbers where the counterpart exists or is derived\n   - withdraw the F-only arguments (the F statistic above 84 and 474, the F against chi-squared tail comparison, \"middle course\", \"most corrected calls uncorrected\")\n   - re-reason I-06's conclusions on the relabelling shares of the chi-squared form (7.19%, 2.16%, 0.47%)\n   \n   Flag to the author that the corrected heat list (185, 157 with the filter) and the corrected interaction (242) are now lists of some length, which changes several \"cannot be named\" readings.",
+    "open_points": [
+     "The literature account in I-06 (issues.md lines 300 and 302) and in the header of dml_sensitivity.R (lines 107-122) quotes the F-test results of Wreczycka et al. 2017 and the methylKit help page. Whether \"remove all mention of f-test\" covers quotations of sources is the author's decision.",
+     "The decision records that name the F test in order to exclude it are the author's to reword or keep: the plan, line 166 ('Remove every mention of the F test') and line 169; issues.md I-06, line 369; the handoff, lines 95 and 97.",
+     "The corrections table rows in issues.md (lines 1191, 1197, 1199, 1202, 1211) are dated records inside issues.md, not under agent_workflows. Their F statements need a decision: withdraw them, or update them to the chi-squared numbers.",
+     "The relabelling references for the chi-squared test are not computed for: calls under relabelling at each list's p threshold, the interaction share (int_mn_chisq was never run), the 7.6% against 4.5% split by the five high libraries, and the 70/80 control regroupings. Until they are, the chi-squared statements of I-06 item 7, I-07 and I-01 (82% of the heat DML with corrected p below 0.05, against 7 of 150 relabellings) cannot be rewritten in full.",
+     "Whether the derivation from the cache may stand in for repository fits (fast) or the 6 fits are run (about 56 minutes at 3 cores) is a choice for the code pass.",
+     "dml_sensitivity.R would need its registry, the figure rows and the stale-file note changed. The old dml_*_mn_f_*.csv files and the cache and test_subset files would have to be deleted; the deletion is the author's to approve.",
+     "The values map rows D4.3-016, D4.9-008, D4.9-010 and D4.9-014 cite scratch p-values that equal the cached methylKit F fits. The chi-squared values (0.016, 0.22, 0.16, 0.010 and 0.13) are derived and not yet written by any repository script."
+    ],
+    "risks": [
+     "The hardening workflow is editing files now. The line numbers in statements.csv match the versions read at commit 435f971 (md5 recorded in the facts) and may shift.",
+     "Several conclusions of I-06, I-07, I-08 and I-49 change in substance under the chi-squared fit. Replacing numbers alone, without rewriting the reasoning, would leave text that contradicts its own numbers. Examples: 'not stable at its threshold', 'neither called inside either cohort', 'most corrected calls are at CpGs with no correction', 'a looser threshold gives no list'.",
+     "The chi-squared form does not hold its level under relabelling (mean 7.19% below 0.05). Its longer lists (185 heat, 242 interaction, 1,093 heat cohort) should not be presented as established loci without the new relabelling counts.",
+     "The derivation divides by the statistic implied by qf. The validated pairs showed no p-value below 1e-280, so precision at extreme p-values is untested beyond that range. Repository fits would remove this concern."
+    ],
+    "files_written": [
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/F2-dependencies/statements.csv",
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/F2-dependencies/analyses.csv",
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/F2-dependencies/derived/validation_against_cached_chisq.csv",
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/F2-dependencies/derived/chisq_counts_derived.csv",
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/F2-dependencies/derived/chisq_dml_lists_derived.csv",
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/F2-dependencies/derived/chisq_group_apart_derived.csv",
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/F2-dependencies/derived/chisq_named_loci_and_item6.csv",
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/F2-dependencies/derived/chisq_extra_numbers.csv",
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/F2-dependencies/derived_run.log",
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/F2-dependencies/code/derive_chisq_from_cache.R",
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/F2-dependencies/code/extra_numbers.R",
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/F2-dependencies/code/build_analyses_csv.py",
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/F2-dependencies/code/build_statements_csv.py"
+    ]
+   }
+  },
+  {
+   "agent": "design:clearest-separation",
+   "phase": "Settings design",
+   "result": {
+    "summary": "I wrote design D2 to /tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/D2-design/design.md. Nothing in the repository was changed. I read the code between 01:35 and 01:44 UTC on 2026-11-20, at HEAD 435f971 and then 471764a. The 01:38 commit changed only the Fisher-table reader of step 11 and the workflow result files.\n\nThe design has two kinds of run:\n- **Paper run** (no switches). It writes the present paper folders only.\n- **Optional run** (one or more switches). It writes only 04_output/not_adopted/<id>/, 04_output/not_adopted/comparisons/ and 05_manuscript/not_adopted/. It never starts the paper-only steps (01-03, 11, 12) and never writes into a paper folder.\n\nThe switches for (a) to (d) together make one analysis, named by tokens in a fixed order: corrected, cov5, mnchisq, ctexcl. Examples: corrected, cov5-mnchisq-ctexcl. The paper's id stays \"legacy\", so every paper file keeps its name. Switches (e) gene-level GO and (f) diagnostics add steps to a run.\n\nNumbers that matter:\n- **5x CpG counts:** 2,297,236 CpGs at 5x against 480,579 at 10x in legacy reading (4.78 times), and 2,265,759 against 454,555 with the Methods filter.\n- **Step 05 at 5x:** about 88 min per fit at 2 cores and about 2.4 h at 1 core.\n- **Memory at 5x:** estimated at 8-12 GB on one core and 15 GB or more on two. This is not measured and must be measured before a full run.\n- **Table sizes at 5x:** united_cpg would be about 107 MB and each diffmeth table about 71 MB. Both are above the 50 MB repository rule, so they must be git-ignored.\n- **Files to move:** 44 corrected-mode files, 19 step 10 files and 22 05_manuscript files. The 8 tables that span modes are split.\n- **Scale of the change:** about 300 edit sites in about 30 files, plus a scripted rewrite of 263 values-map expressions (201 file names in 190 rows, and 56 \"corrected\" literals).\n- **Paper files that change bytes once:** 10 (8 spanning tables, manuscript_values.csv and its summary). The paper rows themselves stay byte-identical. I checked this on all 8 committed spanning tables with a comparer script, with positive and negative tests.",
+    "facts": [
+     {
+      "claim": "The legacy CpG count at 5x in all 22 libraries is 2,297,236 (corrected reading: 2,265,759); at 10x it is 480,579 (454,555).",
+      "evidence": "04_output/04_cpg_coverage/tables/cpg_counts_by_coverage.csv, rows mode=legacy/corrected, sample_set=all, min_coverage 5 and 10, column cpg_in_all_libraries",
+      "verified": true
+     },
+     {
+      "claim": "Paper DML counts: 1,038 ploidy, 2,351 heat, 200 shared (corrected: 952, 2,273, 159).",
+      "evidence": "04_output/05_differential_methylation/tables/dml_counts_by_mode.csv",
+      "verified": true
+     },
+     {
+      "claim": "config$modes is used in run_pipeline.R (4), steps 04 (4), 05 (2), 06 (1), 07 (1), 08 (6), 09 (5), 10 (7), 11 (3), 12 (1), 13 (7), logging.R (4), and in 5 diagnostics scripts (25 uses).",
+      "evidence": "grep -c 'config\\$modes' on run_pipeline.R, 01_pipeline/*.R, 02_R_functions/*.R, 06_diagnostics/*.R",
+      "verified": true
+     },
+     {
+      "claim": "Paper expressions of the values map read config$min_coverage in 22 rows and config$dml_difference in 21 rows; optional (corrected) expressions read config$min_coverage in 11 rows. A 5x run made by editing config$min_coverage would therefore change the paper values that step 13 reports.",
+      "evidence": "Python csv parse of 03_input_files/manuscript/manuscript_values_map.csv, regex config\\$([a-z_]+) over expression_legacy and expression_corrected",
+      "verified": true
+     },
+     {
+      "claim": "No paper expression (expression_legacy) names corrected mode or step 10. 15 paper rows read diagnostic tables: fastq_read_names.csv (2 rows) and table1_group_means.csv (13 rows).",
+      "evidence": "same parse; row ids M2.2-020, M2.2-022, R3.5-029/031/033/041/043/046/047, T1-003, D4.3-016, D4.3-020, D4.9-008/010/012",
+      "verified": true
+     },
+     {
+      "claim": "263 rows have expression_corrected. Of these, 190 rows name files ending in _corrected. (201 sites), 56 hold the literal \"corrected\", and 9 read paper or legacy-specific sources: 2 rows read step 09 tables (D4.3-008, D4.7-005) and 7 read dml_sensitivity/dml_counts.csv with mode == \"legacy\".",
+      "evidence": "Python regex counts over manuscript_values_map.csv",
+      "verified": true
+     },
+     {
+      "claim": "Eight committed tables without a mode in their file name hold rows of both modes: in step 04 cpg_counts_by_coverage, cpg_counts_by_feature_track, library_correlation_summary, methylation_distribution_by_group and methylation_distribution_by_library, plus pca_variance; dml_counts_by_mode (step 05); annotation_summary (step 08). In the two methylation_distribution tables the modes are interleaved row by row.",
+      "evidence": "grep -c corrected over git ls-files of 04_output; uniq of the mode column of each file",
+      "verified": true
+     },
+     {
+      "claim": "For each of the 8 spanning tables, the header plus the legacy rows written alone is a byte-exact, order-preserving subsequence of the committed file. The comparer accepts these filtered copies and rejects the unfiltered ones.",
+      "evidence": "scratch code/compare_paper_rows.py run on git show HEAD copies in scratch test/: 8 'ok' results and 8 'differs' results for the negative tests",
+      "verified": true
+     },
+     {
+      "claim": "44 committed files carry _corrected in their names: 6 in step 04, 11 in step 05, 6 in step 06, 9 in step 07, 7 in step 08 and 5 in step 10. Step 10 has 19 tracked files.",
+      "evidence": "git ls-files 04_output | grep '_corrected\\.' | cut -d/ -f2 | uniq -c; git ls-files 04_output/10_go_enrichment_gene_level",
+      "verified": true
+     },
+     {
+      "claim": "The items map has 67 rows: 46 legacy, 16 corrected, 3 both, 2 without analysis. Three rows labelled legacy come from step 10: figure_go_bias_legacy.png and .pdf, and legacy_top10_at_gene_level.csv.",
+      "evidence": "03_input_files/manuscript/manuscript_items_map.csv parse; grep 10_go",
+      "verified": true
+     },
+     {
+      "claim": "Step 11 (a paper step) reads step 10 outputs: go_enriched_terms.csv and go_gene_level_<set>_legacy.csv. They feed the gene_level_* columns of named_terms_results_3_4.csv, semantic_clusters_gene_level.csv and the 'gene level' row of semantic_summary.csv.",
+      "evidence": "01_pipeline/11_semantic_similarity.R lines 200-211, 868-934; head of 04_output/11_semantic_similarity/tables/named_terms_results_3_4.csv",
+      "verified": true
+     },
+     {
+      "claim": "The step 05 cache is one file per mode (methylkit_<mode>.rds). The fingerprint holds the mode, min_coverage, import_min_coverage, upper_coverage_percentile, the sample sheet, the coverage file md5s, the methylKit version and the deparsed fitting code (including fit_mode). Any change to fit_mode therefore causes a refit.",
+      "evidence": "01_pipeline/05_differential_methylation.R fit_fingerprint() and cached_fit()",
+      "verified": true
+     },
+     {
+      "claim": "read_filtered_counts(path, mode, config, chr_levels) takes the config as an argument, so passing a copy with min_coverage = 5 changes the threshold without changing the helper's code.",
+      "evidence": "02_R_functions/methylkit_helpers.R lines 29-38",
+      "verified": true
+     },
+     {
+      "claim": "Coverage counts in two of the 22 files: zr3644_14 has 1,977,558 CpGs at >=10 reads and 5,142,104 at >=5; zr3534_10 has 4,985,151 and 7,584,301.",
+      "evidence": "awk over /home/user/gannet_cache/cov_files/zr3644_14_R1... and zr3534_10_R1... .cov (columns 5+6)",
+      "verified": true
+     },
+     {
+      "claim": "At 10x, united_cpg_legacy.csv.gz is 22.3 MB and diffmeth_heat_legacy.csv.gz is 14.8 MB. The repository commits files up to 50 MB.",
+      "evidence": "ls -la 04_output/05_differential_methylation/tables/*.gz; 04_output/README.md 'What is tracked'",
+      "verified": true
+     },
+     {
+      "claim": "Step 05 at 10x takes 37 min for both modes at 2 cores (about 6.5 GB), 18 min at 4 cores (about 10 GB) and about an hour at 1 core.",
+      "evidence": "01_pipeline/README.md Run times; header of 05_differential_methylation.R",
+      "verified": true
+     },
+     {
+      "claim": "The earlier sensitivity analysis with MN and Chisq on legacy 10x gives 14 ploidy and 185 heat DML. Its lists are in dml_A1_{ploidy,heat}_mn_chisq_legacy.csv, and there is no corrected-mode MN/Chisq row.",
+      "evidence": "06_diagnostics/dml_sensitivity/dml_counts.csv rows A1_ploidy_mn_chisq and A1_heat_mn_chisq; ls 06_diagnostics/dml_sensitivity",
+      "verified": true
+     },
+     {
+      "claim": "In the 2022 study, variant CpGs were removed after the test; fits and q-values were not changed. This is why the design applies the exclusion after the fit and shares the fit between an analysis and its ctexcl variant.",
+      "evidence": "summary of agent variants:method-2022-and-bs-snper in 07_documentation/agent_workflows/results/scope-author-changes.json (not re-verified by me)",
+      "verified": false
+     },
+     {
+      "claim": "The scaled 5x run times (about 88 min per fit at 2 cores, about 2.4 h at 1 core) assume fit time is linear in the number of tested CpGs. The 8-12 GB (1 core) and 15 GB or more (2 cores) memory figures are estimates from object sizes and the measured 10x figures.",
+      "evidence": "arithmetic in design.md section 9; not measured",
+      "verified": false
+     },
+     {
+      "claim": "run_pipeline.R lists steps with list.files(pattern='^[0-9]{2}_.*\\\\.R$') non-recursively, so a script in 01_pipeline/optional/ is never picked up by --steps.",
+      "evidence": "run_pipeline.R line defining `scripts`",
+      "verified": true
+     }
+    ],
+    "recommendation": "Build design D2. The default run produces the paper only. Any switch makes an optional run that writes only under not_adopted/.\n\n**Settings in run_config.R.** Remove config$modes and add config$optional with these defaults:\n- coverage_filter_of_methods = FALSE (a), token corrected\n- coverage_standard = 10L (b), set to 5L for token cov5\n- overdispersion_chisq = FALSE (c), token mnchisq; MN with Chisq only\n- exclude_ct_variants = FALSE (d), token ctexcl\n- gene_level_go = FALSE (e)\n- diagnostics = character(0) (f)\n\nrun_config.R resolves these into one config$analysis. Freeze the paper's settings (min_coverage 10, import_min_coverage 2, q 0.01, difference 20, percentile 99.9): editing any of them stops every step.\n\n**Switches of run_pipeline.R:** --coverage-filter, --coverage 5|10, --overdispersion, --exclude-ct-variants, --gene-level-go, --diagnostics [all|names], --plan. They reach the steps as WGBS_* environment variables.\n\n**Outputs.**\n- The paper keeps 04_output/<step>/ and 05_manuscript/ with present names. Spanning tables hold the paper's rows only.\n- Each optional analysis gets 04_output/not_adopted/<id>/<step>/, with _legacy replaced by _<id> in file names, and an analysis.csv stamp.\n- not_adopted/comparisons/ rebuilds the spanning tables from every analysis folder present, paper first. With legacy and corrected present they equal today's tables byte for byte.\n- Step 10 moves wholly to not_adopted/legacy/, not_adopted/corrected/ and comparisons/.\n\n**Steps.** Steps 04-09 run once for the analysis of the run, and step 09 also runs for optional analyses. Step 10 runs only with (e). Steps 11 and 12 run in paper runs only; the step 10 dependent part of step 11 moves out of the paper.\n\n**Step 05 cache.** One cache file per fit id, methylkit_<fit_id>.rds, where the fit id is the analysis id without ctexcl. The fingerprint gains the model. The variant exclusion is applied after the test, so it never refits.\n\n**Step 13.** A paper part writes the paper tables without corrected columns. An optional part evaluates a templated expression_optional (A = analysis id; tab() reads the analysis folder, paper_tab() reads the paper) for every analysis folder present. Rows whose input files are absent read \"not run\".\n\n**Variant step.** The new R step is 01_pipeline/optional/ct_variant_loci.R, unnumbered. It writes not_adopted/ct_variants/tables/ct_variant_cpgs.csv.gz, committed once.\n\n**Order of work.**\n1. Move the existing files with git mv in a separate commit.\n2. Build the change.\n3. Run the 13 tests of section 12. The core ones: paper folders unchanged by every optional run (checksums); paper spanning tables equal the committed legacy rows (code/compare_paper_rows.py); the corrected run reproduces the moved files; --overdispersion gives 14 and 185 DML matching the sensitivity lists; the templated expressions with A = corrected reproduce the 263 present corrected values.\n4. Measure 5x memory at WGBS_CORES=1 before any full 5x run.",
+    "open_points": [
+     "Byte identity cannot hold for 10 paper files: the 8 spanning tables, manuscript_values.csv and manuscript_values_summary.csv. Today they include corrected-mode rows or columns, and the paper-only default must drop them. The paper rows stay byte-identical, which the comparer checks. The alternative is to keep the mixed tables in the paper folders; that keeps the bytes but puts optional rows among the paper's outputs. The author should choose.",
+     "Step 11, a paper step, reads step 10, which is optional. Proposed: move its gene-level parts out of the paper. This changes named_terms_results_3_4.csv (5 columns) and semantic_summary.csv (1 row). The alternative is that the paper keeps reading the committed step 10 tables.",
+     "15 paper values rest on two diagnostic tables (fastq_read_names.csv, table1_group_means.csv) that the default run does not regenerate. One option is to promote table1_group_means.R into the paper steps.",
+     "Each optional run makes one analysis (the switches compose). A list of analyses per run could be added later.",
+     "Should step 09 (the paper's GO procedure) run for optional analyses? Proposed yes, following handoff item 3. Steps 08 and 09 have never been run on DML sets as small as 14.",
+     "Freezing the paper thresholds stops threshold exploration. If the author wants that, it would be another toggle.",
+     "The memory of step 05 at 5x is unmeasured. It may exceed what the machine can give while the other 10 GB workflow runs.",
+     "If the variant design adds sub-settings (PASS records only; check the G of each CpG), each needs its own id token so that two different variant lists never share a folder.",
+     "This design does not cover the variant step itself (rule, run time, disk). That belongs to the variant scoping agents."
+    ],
+    "risks": [
+     "Changing fit_mode() invalidates the cached paper fit, so the first run refits for about 18 minutes at 2 cores. The output must then be compared byte for byte (diffmeth and united gz files on the same OS).",
+     "If a step reads config$min_coverage where it should read the analysis's coverage, an optional run gives wrong optional results. The reverse mistake, where the paper reads the analysis value, is prevented: the paper settings are frozen and optional runs never write paper folders.",
+     "The scripted rewrite of 263 expressions could alter a paper expression. Test: md5 of the expression_legacy column before and after, and equality of the templated values with today's regenerated_corrected values.",
+     "About 70 sites in 11 diagnostics scripts must point at not_adopted/corrected/. A missed site fails loudly with a missing file, not silently.",
+     "The 5x step 05 may run out of memory at 2 cores. The 5x united and diffmeth tables (about 107 MB and 71 MB) exceed the 50 MB commit rule and GitHub's 100 MB limit, so they must be git-ignored. A clone must then refit to get them.",
+     "The hardening pass is still editing files: step 11 changed at 01:38. Line numbers and counts in design.md may shift before the toggles pass starts."
+    ],
+    "files_written": [
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/D2-design/design.md",
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/D2-design/code/compare_paper_rows.py",
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/D2-design/test/"
     ]
    }
   }
