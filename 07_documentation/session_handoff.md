@@ -2,7 +2,7 @@
 
 How to continue this work from the repository alone, for a new session or a person. The working session rewrites the "State" and "In flight" sections whenever it pushes.
 
-Last updated: 2026-11-20 12:58 UTC.
+Last updated: 2026-11-20 19:06 UTC.
 
 **Note of 2026-11-19, 16:00 UTC.** Work stopped from 09:43 to 15:54 UTC because the account's usage limit was reached; eight agents failed in mid-task. Nothing was lost: every commit had been pushed, and when the session was continued the machine had restarted but kept its disk (scratch directory, download cache, workflow journals), so the two unfinished workflows could be resumed from their journals.
 
