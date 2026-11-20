@@ -267,8 +267,11 @@ print(dcast(cpg_counts[sample_set == "all"], mode ~ min_coverage, value.var = "c
 cpg_features <- rbindlist(feature_rows)
 write_table(cpg_features, tab("cpg_counts_by_feature_track.csv"))
 # The shares as Results 3.1 computed them, for the CpGs with config$min_coverage reads in every library of a set.
-print(dcast(cpg_features[mode == "legacy" & cpg_set == "in all libraries" & min_coverage == config$min_coverage & track %in% legacy_eight],
-            track ~ sample_set, value.var = "legacy_share_exon_twice_pct"), digits = 3)
+# Printed only when legacy mode is configured: without it the selection is empty and dcast() stops the step.
+if ("legacy" %in% config$modes) {
+  print(dcast(cpg_features[mode == "legacy" & cpg_set == "in all libraries" & min_coverage == config$min_coverage & track %in% legacy_eight],
+              track ~ sample_set, value.var = "legacy_share_exon_twice_pct"), digits = 3)
+}
 rm(in_track, cpg_features); invisible(gc(verbose = FALSE))
 
 # =============================================================================

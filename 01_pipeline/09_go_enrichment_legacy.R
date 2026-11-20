@@ -61,9 +61,9 @@
 #
 # Manuscript items: Results 3.4 and 3.5; Figure 5; Figure 9; Table 1.
 # Notes     - Runs on the legacy-mode DML only. When "legacy" is not in
-#             config$modes the step says so and ends before it reads or writes
-#             anything; under Rscript the exit status is 0, so that
-#             run_pipeline.R goes on to the next step. When "legacy" is
+#             config$modes, run_pipeline.R does not start the step; started
+#             alone, it says so and ends before it reads or writes anything,
+#             with exit status 0 under Rscript. When "legacy" is
 #             configured and the summary of step 08 holds no legacy row for a
 #             DML set, step 08 last ran without the legacy mode, and the step
 #             stops with an error.
@@ -92,16 +92,8 @@ t0 <- start_step(step, "GO enrichment as run for the manuscript draft")
 # The step exists for the legacy mode only. Without that mode it ends here, before
 # the ontology release is fetched and before any table is read or written: legacy
 # tables that an earlier run left in the folder of step 08 do not belong to this
-# configuration. Under Rscript the exit status is 0, so that run_pipeline.R goes on
-# to the next step. A script sourced in an interactive session cannot end early
-# without an error (quit() would close the session), so there it stops with one.
-if (!"legacy" %in% config$modes) {
-  not_run <- sprintf(paste("step 09 repeats the GO enrichment of the draft on the legacy-mode DML, and \"legacy\" is not in",
-                           "config$modes (%s): nothing is run and no file is written"), paste(config$modes, collapse = ", "))
-  if (interactive()) stop(not_run, call. = FALSE)
-  log_msg("%s", not_run)
-  quit(save = "no", status = 0)
-}
+# configuration (see Notes).
+require_mode("legacy", "step 09 repeats the GO enrichment of the draft on the legacy-mode DML")
 
 # A missing package is named before the ontology release is downloaded and
 # installed. The packages are looked up without being loaded: loading topGO here
@@ -125,16 +117,10 @@ log_msg("GO.db %s (ontology of %s), topGO %s", go_db_version, go_source_date(), 
 tx_table <- fread(ann_in("transcript_table.csv.gz"), colClasses = c(gene_id = "character"))
 gene_table <- fread(ann_in("gene_table_legacy.csv.gz"), colClasses = c(gene_id = "character"))
 tx_gene <- setNames(tx_table$gene_id, tx_table$transcript_id)
-# Step 08 writes a legacy row per DML set into its summary only when it runs in
-# legacy mode. Without those rows the legacy tables in its folder are left from
-# another configuration, and the funnel table below would be filled by recycling.
-ann_summary <- fread(ann_in("annotation_summary.csv"))[mode == "legacy"]
-if (!identical(sort(ann_summary$set), sort(names(sets)))) {
-  stop("annotation_summary.csv of step 08 must hold one legacy-mode row for each DML set (",
-       paste(names(sets), collapse = ", "), ") and holds ",
-       if (nrow(ann_summary) == 0) "none" else paste("rows for", paste(ann_summary$set, collapse = ", ")),
-       ". Step 08 last ran without the legacy mode: rerun it with \"legacy\" in config$modes.", call. = FALSE)
-}
+# Without a legacy row per DML set in the summary of step 08, the legacy tables in
+# its folder are left from another configuration, and the funnel table below would
+# be filled by recycling; legacy_annotation_summary() then stops the step.
+ann_summary <- legacy_annotation_summary(names(sets))
 
 # =============================================================================
 # 1. The DML annotation tables, as written and as the legacy script read them

@@ -1,9 +1,9 @@
 {
  "workflow": "pipeline-hardening",
  "run_id": "wf_0d998304-306",
- "agents_finished": 6,
+ "agents_finished": 7,
  "agents_running_or_lost": [
-  "review:code-diff"
+  "repair"
  ],
  "results": [
   {
@@ -2253,6 +2253,100 @@
      }
     ],
     "verdict": "The outputs agree with the documentation in every number I checked: about 75 numbers of issues.md, all numbers in the README tables, and every recomputed note of the changed rows of the values map. All 545 expressions of the map run. What is wrong is text the code pass or the scope decision left stale. issues.md still describes the step 04 counts and two step 09 columns as missing (I-15, I-16, I-20, I-39). README, plan and handoff text still treats the frozen diagnostics as code-pass work, and the handoff still gives the old step 13 counts. The step 05 time and memory at WGBS_CORES=2 and the step 11 memory are lower than the rerun measured. Two descriptions of a corrected-only run are wrong: the root README leaves out the stop in step 04, and the Modes table of 01_pipeline/README.md says steps 09, 11 and 13 are started when run_pipeline.R skips them. Each item has a proposed text above; none needs a change to an analysis or to a number in an output."
+   }
+  },
+  {
+   "agent": "review:code-diff",
+   "phase": "Review",
+   "result": {
+    "review": "code",
+    "verdict": "No blocking defect, and I found no scope violation. Legacy mode still reproduces the legacy results: a legacy-only run of steps 02, 03 and 06 to 13 in a scratch copy, followed by 06_diagnostics/check_legacy_outputs.R against the archive, gives legacy_check_results.csv identical to the committed file (329 match, 2 differ). No threshold, list or sweep count has changed. The step 05 tables are byte-identical to the base commit; the cache was refitted at 02:10 and 02:31 and carries a fingerprint equal to the one the current code computes. There is one medium regression: this pass added a statement to step 04 that stops the step when \"corrected\" is the only mode, and the README records the crash instead of guarding it. The other findings are low or nits (documentation overclaims, missing guards, one stale paragraph of issues.md). Tests I did not run: steps 04 and 05 (excluded by the task), step 01 and fastq_read_names.R itself (both need the network; I tested its reader on local gz files instead), and nothing on Windows.",
+    "findings": [
+     {
+      "file": "01_pipeline/04_cpg_coverage.R",
+      "line": 270,
+      "severity": "medium",
+      "problem": "This code pass added `print(dcast(cpg_features[mode == \"legacy\" & ...], track ~ sample_set, ...))`. With modes = \"corrected\" the selection is empty, and dcast() stops with \"Can not cast an empty data.table\". The base commit had no statement that named the legacy mode, so the regression is new. 01_pipeline/README.md (Modes) records it as \"Until it is guarded, a full run with \"corrected\" alone stops in step 04\" instead of guarding it. The root README still says that with \"corrected\" alone only steps 09, 10, 11 and 13 are not run.",
+      "failure_scenario": "Set modes = \"corrected\" in run_config.R and run `Rscript run_pipeline.R`. Step 04 writes cpg_counts_by_coverage.csv and cpg_counts_by_feature_track.csv, then stops before section 4. The methylation distributions, correlations, PCA and Figure S1 are not written, and run_pipeline.R stops with 'Step failed: 04_cpg_coverage.R'. I reproduced the dcast error on a data.table holding corrected rows only; step 04 itself was not run (heavy).",
+      "evidence": "git diff 24ff5d10 -- 01_pipeline/04_cpg_coverage.R: the line is added; the base print was `dcast(cpg_counts[sample_set == \"all\"], mode ~ min_coverage, ...)`, which works with any mode. Running `dcast(x[mode == \"legacy\" & ...], track ~ sample_set, value.var = \"legacy_share_exon_twice_pct\")` with x holding corrected rows only gives \"Can not cast an empty data.table\". The 01_pipeline/README.md sentence is quoted above. Root README.md line 103: 'With \"corrected\" alone the steps ... (09, 10, 11 and 13) are not run'.",
+      "proposed_fix": "Guard the console print, which writes nothing: `if (\"legacy\" %in% config$modes) print(dcast(...))`. Or print for config$modes[1] and name the mode in the heading. Then delete the 'Until it is guarded ...' sentences from 01_pipeline/README.md. No output changes.",
+      "changes_a_committed_number": false
+     },
+     {
+      "file": "06_diagnostics/README.md",
+      "line": 16,
+      "severity": "low",
+      "problem": "The fastq_read_names.R row says that only the first 10,000 reads of read 1 are read. It then states as fact that 'the ten heat libraries are run 163, flowcell HLTJMDSXY, lane 1, and the twelve control libraries run 173, flowcell HMGVGDSXY, lane 2'. The limit that the script header itself states (lanes later in a file are not seen, so it is not shown that each project used one lane) is missing. issues.md I-28 (line 662) has the same gap; see issues_text. The values map is fine: M2.2-020 states the limit and M2.2-022 says 'at least two flowcells'. I-01 does not quote the result.",
+      "failure_scenario": "A reader takes 'lane 1 for the ten heat libraries' as the complete lane assignment. In my test, a gz FASTQ whose first 11,000 reads are lane 1 and whose last 1,000 are lane 2 is reported by first_read_names() as lane 1 only, with no warning.",
+      "evidence": "Test file /tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/code-pass/review/fqtest.R on local file:// gz files. Truncated downloads are not a silent risk: a file cut before read 10,000 fails the stopifnot (after an 'incomplete final line' warning), and a cut after it does not affect what is read. Separately, 07_documentation/upstream_processing/061021-big_job.sh aligned ${reads_dir}*_R1.fq.gz (cg-big/zr3534_10_R1.fq.gz and so on). The script reads the fastp-trimmed copies under Atumefaciens/. That the two share read names (the same sequencing) is assumed and is not stated in the header.",
+      "proposed_fix": "Parent session, README row: change '...; the ten heat libraries are run 163 ... lane 2' to '...; in the reads examined, the ten heat libraries are run 163, flowcell HLTJMDSXY, lane 1, and the twelve control libraries run 173, flowcell HMGVGDSXY, lane 2. Reads later in a file are not examined, so further lanes cannot be excluded; two flowcells are shown.' Optionally add a header note that the files read are the trimmed copies, not the files 061021-big_job.sh aligned. Script edits are not mine to make.",
+      "changes_a_committed_number": false
+     },
+     {
+      "file": "01_pipeline/05_differential_methylation.R",
+      "line": 175,
+      "severity": "low",
+      "problem": "fit_fingerprint() covers the settings, sample sheet, manifest md5, methylKit version and the deparsed code of nine helpers. It does not cover the R version or the base and recommended code the fit runs through: stats::glm.fit inside calculateDiffMeth, stats::quantile and stats::median in the helpers, and data.table::fread. The list of helpers is also kept by hand: a helper added later to fit_mode() or read_filtered_counts() is outside the fingerprint unless someone adds it to the list. Every other change I tried to construct is caught: settings, sheet columns, file md5, code edits and a truncated cache. The current cache matches the current code (checked).",
+      "failure_scenario": "The machine's R is upgraded (4.3.3 to 4.4.x), or methylKit is reinstalled from a patched source with the same version number. Step 05 logs 'using the cached fit ... unchanged' and writes the tables of the old fit. Or a new helper, say a filter called inside read_filtered_counts(), is edited, and the cache is reused. This follows from the code and was not run.",
+      "evidence": "Lines 175-188: the fingerprint parts are mode, coverage_settings, sample_sheet, coverage_files, methylKit_version and fitting_code; R.version and other package versions are absent. Script /tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/code-pass/review/fp.R: both cached fingerprints equal the current ones (all six parts identical).",
+      "proposed_fix": "Add `R = R.version.string` and `data.table = as.character(packageVersion(\"data.table\"))` to the list. This forces one refit of both modes (about 20 min at WGBS_CORES=4), and the outputs should be byte-identical. Otherwise, say in the Notes (lines 94-101) that the R version and packages other than methylKit are not part of it. Either way, add one comment line that every helper called inside fit_mode() must be listed in fitting_code.",
+      "changes_a_committed_number": false
+     },
+     {
+      "file": "run_config.R",
+      "line": 10,
+      "severity": "low",
+      "problem": "The header ('A setting that cannot work stops every step in the second part') and root README.md line 64 overstate the checks. About 40 settings are not checked: all the layout and tolerance settings of semantic_similarity, qpcr$cq_tolerance, same_p_tolerance, failed_fence_iqr, size_check_seed and design, the colours, and the seeds. Some bad values pass silently and change outputs. Also, dml_difference = 0.2 (a share typed for 20 points) is accepted, although the percentile setting has exactly that share guard.",
+      "failure_scenario": "semantic_similarity$value_tolerance = -1 is accepted, and step 11 counts no REVIGO value as equal to its log10 p, without an error. qpcr$cq_tolerance = -1 is accepted. dml_difference = 0.2 is accepted, and steps 05 to 13 run on DML lists tens of times longer. WGBS_CORES=999 is accepted (no upper bound), and step 05 asks methylKit for 999 forked workers on a 15 GB machine.",
+      "evidence": "Scratch test /tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/code-pass/review/cfgtest.R: 50 edited copies of run_config.R. Rejected, with a message naming the setting: an empty, 0, 2.0, 1e3 or 20-digit WGBS_CORES; unknown, empty, NULL and factor modes; a percentile of 0.999; a q-value of 0; coverage_levels without 1 or without min_coverage; n_labels 16; and the other checked ones. Accepted: value_tolerance -1, cq_tolerance -1, same_p_tolerance -1, failed_fence_iqr -1, tie_tolerance -1, gzip_above_mb NA, seeds NA or text, design wells 'two', a colours list without 'heat', dml_difference 0.2, a sweep without 20, WGBS_CORES 999. 'modes = c(\"corrected\",\"legacy\")' is reordered as documented.",
+      "proposed_fix": "Narrow the claim: header line 10-12 'The second part checks the settings that most often go wrong (modes, cores, thresholds and the settings of steps 03 to 10); the layout and tolerance settings of steps 11 and 12 are not checked.' Make the same change in root README line 64. Optionally add checks: tolerances >= 0, seeds whole numbers, and a guard 'dml_difference must be in percentage points (20, not 0.2)' rejecting values below 1. No output changes.",
+      "changes_a_committed_number": false
+     },
+     {
+      "file": "01_pipeline/11_semantic_similarity.R",
+      "line": 173,
+      "severity": "low",
+      "problem": "Step 09 now refuses legacy tables of step 08 that are left over from an earlier run (annotation_summary.csv without legacy rows). Step 11 reads the same tables (dml_go_annotation_<set>_legacy.tsv.gz) and has no such check. Step 13 reads the legacy outputs of steps 08 to 10 without one either.",
+      "failure_scenario": "I ran step 08 with modes = \"corrected\", then set modes back to both and ran steps alone. Step 09 stops as designed, while `Rscript 01_pipeline/11_semantic_similarity.R` runs 4.3 min, exits 0, and rewrites Figures 6 to 8 and its tables from the legacy tables of the earlier run. Inside run_pipeline.R step 09 stops the run first, so only a step started alone is affected.",
+      "evidence": "Scratch tree treeC: the corrected-only run, then step 09 alone gave 'Error: annotation_summary.csv of step 08 must hold one legacy-mode row ...' (exit 1), and step 11 alone gave '11_semantic_similarity finished in 4.3 min' (exit 0).",
+      "proposed_fix": "Copy the annotation_summary.csv check of step 09 (lines 131-137) into step 11 after require_mode(), or into a shared helper in 02_R_functions called by steps 09 and 11. At least say in the step 11 Notes that it does not check this.",
+      "changes_a_committed_number": false
+     },
+     {
+      "file": "03_input_files/manuscript/manuscript_values_map.csv",
+      "line": 1,
+      "severity": "low",
+      "problem": "Rows R3.1-001 and R3.1-003 now take their corrected expression from cpg_in_any_library_unfiltered and pct_of_genome_cpg_any_unfiltered. These columns do not depend on the mode, so the 'corrected' column of these rows no longer shows a corrected-mode quantity. The committed regenerated_corrected values changed: 12,916,270 to 12,918,252 and 97.51193 to 97.52689. The note says so, and this is the second agent's tested fix for R1.7. No analysis is changed. Unlike the ten new R3.1-041 to R3.1-050 values, which fill rows that were empty, these two replace earlier values, so they must be in outputs_changed.",
+      "failure_scenario": "A reader of 05_manuscript/manuscript_values.csv takes 12,918,252 as what corrected mode retains. Corrected mode retains 12,916,270, because 1,982 CpGs are at or above the cutoff of every library that covers them.",
+      "evidence": "Field diff of manuscript_values.csv against the base: R3.1-001 regenerated_corrected 12916270 -> 12918252, R3.1-003 97.51193 -> 97.52689. The other changed values fill rows that were empty: R3.1-041 to R3.1-050, ten legacy values ('not regenerated' -> 'matches') and their corrected values.",
+      "proposed_fix": "Nothing in code. Make sure the parent's outputs_changed lists both values with the reason, and the ten newly filled R3.1-041 to R3.1-050 rows (summary: matches 342 -> 352, not_regenerated 57 -> 47).",
+      "changes_a_committed_number": true
+     },
+     {
+      "file": "01_pipeline/09_go_enrichment_legacy.R",
+      "line": 97,
+      "severity": "low",
+      "problem": "Nit. Step 09 repeats require_mode() as an inline block (the message, interactive() then stop(), quit(status = 0)) instead of calling the helper, as steps 11 and 13 do. The README describes this correctly, but there are now two copies of the exit rule to keep in step.",
+      "failure_scenario": "A later change to require_mode() (for example to its message or exit status) does not reach step 09.",
+      "evidence": "Lines 97-103 against 02_R_functions/logging.R lines 24-31; a direct run of step 09 with corrected alone logs its own message and exits 0.",
+      "proposed_fix": "Replace the block with `require_mode(\"legacy\", \"step 09 repeats the GO enrichment of the draft on the legacy-mode DML\")`. It already sits before use_legacy_go_db(), so the order is kept.",
+      "changes_a_committed_number": false
+     }
+    ],
+    "issues_text": [
+     {
+      "issue": "I-28",
+      "current_text": "| Libraries pooled into one lane of a single NovaSeq flowcell | Two runs and two flowcells: run 163, flowcell HLTJMDSXY, lane 1 for the ten heat libraries and run 173, flowcell HMGVGDSXY, lane 2 for the twelve control libraries, so treatment is aligned with flowcell as well as with experiment (I-01) | read names at the start of each FASTQ file on gannet; `06_diagnostics/fastq_read_names.csv` |",
+      "proposed_text": "| Libraries pooled into one lane of a single NovaSeq flowcell | At least two runs and two flowcells: in the first 10,000 reads of each read 1 file, run 163, flowcell HLTJMDSXY, lane 1 for the ten heat libraries and run 173, flowcell HMGVGDSXY, lane 2 for the twelve control libraries, so treatment is aligned with flowcell as well as with experiment (I-01). Reads later in a file were not examined, so further lanes cannot be excluded | read names of the first 10,000 reads of each trimmed read 1 FASTQ file on gannet; `06_diagnostics/fastq_read_names.csv` |",
+      "reason": "fastq_read_names.R reads only the first 10,000 reads of each file, and its header says the table does not show that each project used one lane. The row states the lanes as complete. Values map row M2.2-020 already states the limit."
+     },
+     {
+      "issue": "I-39 (loose end, issues.md line 802)",
+      "current_text": "- Loose end for the code: in `legacy_universe_by_chromosome.csv` the columns `largest_missing_block_n`, `largest_missing_block_first` and `largest_missing_block_last` describe the genome-wide run and are repeated on all 12 rows, so the row of NC_047560.1 (2,770 annotated mRNAs) shows a missing block of 15,666. They belong in a one-row table and will be moved in the next code pass.",
+      "proposed_text": "- Fixed in the code pass of 2026-11-20: the genome-wide missing block (15,666 mRNAs with GO terms, XM_011455141.3 to XM_034461018.1) is no longer repeated on every row of `legacy_universe_by_chromosome.csv`; step 09 writes it once, as three rows of `legacy_run_info.csv`.",
+      "reason": "Step 09 now drops the three columns and writes the block to legacy_run_info.csv (rows 'largest missing block: ...'). The loose-end text describes the old table."
+     }
+    ]
    }
   }
  ]

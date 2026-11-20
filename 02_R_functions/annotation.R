@@ -104,3 +104,21 @@ read_dml_annotation <- function(path, reader = c("exact", "legacy")) {
   data.table::fread(path, header = FALSE, sep = "\t", quote = "", na.strings = NULL,
                     col.names = dml_annotation_columns(), showProgress = FALSE)
 }
+
+# The legacy-mode rows of annotation_summary.csv of step 08, one per DML set.
+# Step 08 writes a legacy row per set only when it runs in legacy mode, and it
+# leaves the legacy tables of an earlier run in its folder when it does not. A
+# step that reads those tables calls this first: without the rows the tables
+# belong to another configuration, and the step stops here. `sets` holds the
+# names of the DML sets (ploidy, heat, shared).
+legacy_annotation_summary <- function(sets) {
+  rows <- data.table::fread(output_path("08_gene_annotation", "tables", "annotation_summary.csv"))
+  rows <- rows[rows$mode == "legacy", ]
+  if (!identical(sort(rows$set), sort(sets))) {
+    stop("annotation_summary.csv of step 08 must hold one legacy-mode row for each DML set (",
+         paste(sets, collapse = ", "), ") and holds ",
+         if (nrow(rows) == 0) "none" else paste("rows for", paste(rows$set, collapse = ", ")),
+         ". Step 08 last ran without the legacy mode: rerun it with \"legacy\" in config$modes.", call. = FALSE)
+  }
+  rows
+}

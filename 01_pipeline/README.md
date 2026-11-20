@@ -33,7 +33,7 @@ The status column is updated as each script is added and validated. "Done" means
 | `legacy` | No upper filter: the legacy call misnamed the argument, so the filter never ran (issue I-05) | First line of each file lost, as in the legacy import (issue I-38) |
 | `corrected` | CpGs at or above the 99.9th percentile of coverage in a library are removed from that library, as the Methods describe | Every line read |
 
-Legacy mode reproduces the numbers of the draft. Step 09 exists only for the legacy mode; it repeats the legacy GO procedure, defects included, so that the GO numbers of the draft can be traced. When `legacy` is not among the modes of `run_config.R`, step 08 writes no legacy annotation table and no legacy row in `annotation_summary.csv` (tables of an earlier legacy run stay in the folder as they were), and step 09 says so, reads and writes nothing, and ends with exit status 0, so that `run_pipeline.R` goes on to the next step. Step 09 stops with an error when `legacy` is configured and the summary of step 08 has no legacy rows, that is when step 08 last ran without the legacy mode. Step 10 applies one procedure to the DML of both modes.
+Legacy mode reproduces the numbers of the draft. Step 09 exists only for the legacy mode; it repeats the legacy GO procedure, defects included, so that the GO numbers of the draft can be traced. When `legacy` is not among the modes of `run_config.R`, step 08 writes no legacy annotation table and no legacy row in `annotation_summary.csv` (tables of an earlier legacy run stay in the folder as they were), and `run_pipeline.R` does not start step 09; started alone, step 09 says so, reads and writes nothing, and ends with exit status 0. Step 09 stops with an error when `legacy` is configured and the summary of step 08 has no legacy rows, that is when step 08 last ran without the legacy mode. Step 10 applies one procedure to the DML of both modes.
 
 What a run does with each setting:
 
@@ -41,9 +41,9 @@ What a run does with each setting:
 |---|---|---|---|---|
 | `c("legacy", "corrected")` | both sets of outputs | run | both modes | both columns of `manuscript_values.csv`; all items copied |
 | `"legacy"` | the legacy outputs | run | legacy mode alone; the tables that span the modes hold legacy rows only | the legacy values; the corrected columns are empty, and the items of corrected mode are not copied |
-| `"corrected"` | the corrected outputs (step 04: see below) | say so and end with status 0 | not started by `run_pipeline.R` | says so and ends with status 0 |
+| `"corrected"` | the corrected outputs | not started by `run_pipeline.R`; started alone, they say so and end with status 0 | not started by `run_pipeline.R` | not started by `run_pipeline.R`; started alone, it says so and ends with status 0 |
 
-Steps 01 to 03 and 12 do not depend on the mode. The single-mode runs were tested on steps 02, 03 and 06 to 13, with the outputs of steps 04 and 05 taken from a run with both modes; steps 04 and 05 themselves were not run with one mode. Reading the code, step 05 loops over the configured modes without naming one, and step 04 has one statement that does: after its two count tables it prints a table of legacy mode, and with `"corrected"` alone that statement stops the step (`dcast()` on an empty selection). Until it is guarded, a full run with `"corrected"` alone stops in step 04. Steps 11 and 13 end as step 09 does; they call one helper for it (`require_mode()` in `02_R_functions/logging.R`). Step 10 has no check of its own: started alone without the legacy mode it finishes and gives every term of the draft the status "no eligible gene carries it", which is wrong, so `run_pipeline.R` leaves it out; a check inside the step is one of the changes that wait for the author's decision. Outputs of a mode that is not configured are neither written nor removed: files of an earlier run stay in `04_output/` and `05_manuscript/` as they were.
+Steps 01 to 03 and 12 do not depend on the mode. The single-mode runs were tested on steps 02, 03 and 06 to 13, with the outputs of steps 04 and 05 taken from a run with both modes; steps 04 and 05 themselves were not run with one mode. Reading the code, step 05 loops over the configured modes without naming one, and step 04 names legacy mode in one statement only, a console print of the legacy shares after its two count tables, which runs only when legacy mode is configured. Steps 09, 11 and 13, started alone, end in the same way; they call one helper for it (`require_mode()` in `02_R_functions/logging.R`). Step 10 has no check of its own: started alone without the legacy mode it finishes and gives every term of the draft the status "no eligible gene carries it", which is wrong, so `run_pipeline.R` leaves it out; a check inside the step is one of the changes that wait for the author's decision. Outputs of a mode that is not configured are neither written nor removed: files of an earlier run stay in `04_output/` and `05_manuscript/` as they were.
 
 ## Run times
 
@@ -54,11 +54,11 @@ Measured on 4 cores and 15 GB of memory, with the downloads already in the cache
 | 01 | 1 to 2 | First run downloads 10.5 GB (plus the 31 MB GO.db archive) |
 | 02, 03 | under 1 | |
 | 04 | 12 | About 9.5 GB of memory (peak resident size) |
-| 05 | 18 | `WGBS_CORES=4`; about 10 GB of memory. `WGBS_CORES=2`: 37 minutes and about 6.5 GB (the R process and its two workers, shared pages counted once). Single core: about an hour. About half a minute when both fits come from the cache |
+| 05 | 18 | `WGBS_CORES=4`; about 10 GB of memory. `WGBS_CORES=2`: 37 to 45 minutes and about 7.5 GB (the R process and its two workers, shared pages counted once). Single core: about an hour. About half a minute when both fits come from the cache |
 | 06, 07, 08 | under 1 each | |
 | 09 | 3 | |
 | 10 | 3 | |
-| 11 | 5 | About 1.4 GB of memory |
+| 11 | 5 | About 1.6 GB of memory |
 | 12 | under 1 | About 35 seconds, 24 of them the simulation |
 | 13 | under 1 | About 10 seconds for 545 statements and 67 copied files |
 

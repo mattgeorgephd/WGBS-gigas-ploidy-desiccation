@@ -43,10 +43,10 @@
 #
 # Run       Rscript 01_pipeline/11_semantic_similarity.R
 #           (after steps 08, 09 and 10, run with "legacy" in config$modes; about
-#           5 minutes and 1.4 GB of memory)
+#           5 minutes and 1.6 GB of memory)
 #
 # Inputs    04_output/09_go_enrichment_legacy/tables/legacy_fisher_<set>_<ontology>.csv, legacy_reader_loss.csv
-#           04_output/08_gene_annotation/tables/dml_go_annotation_<set>_legacy.tsv.gz
+#           04_output/08_gene_annotation/tables/dml_go_annotation_<set>_legacy.tsv.gz, annotation_summary.csv
 #           04_output/10_go_enrichment_gene_level/tables/go_enriched_terms.csv, go_gene_level_<set>_legacy.csv
 #           03_input_files/annotation/legacy/revigo_exports/code_Revigo.R, code_OLD_Revigo.R, Revigo-PLOIDY-BP.R
 #             (plot scripts exported by REVIGO, data embedded; read as text, never run)
@@ -72,10 +72,13 @@
 #           clustering); Methods 2.6, last sentence.
 # Notes     - Modes. The step redraws figures of the draft from the legacy
 #             enrichment and reads legacy-mode tables only. When "legacy" is not
-#             in config$modes the step says so and ends before it reads or
-#             writes anything; under Rscript the exit status is 0, so that
-#             run_pipeline.R goes on to the next step. The gene-level part
-#             takes the terms of every mode that step 10 wrote.
+#             in config$modes, run_pipeline.R does not start the step; started
+#             alone, it says so and ends before it reads or writes anything,
+#             with exit status 0 under Rscript. When "legacy" is configured and
+#             the summary of step 08 holds no legacy row for a DML set, step 08
+#             last ran without the legacy mode, and the step stops with an
+#             error, as step 09 does. The gene-level part takes the terms of
+#             every mode that step 10 wrote.
 #           - Legacy files. The REVIGO exports and the three Fisher tables are
 #             copies of files in 08_archive/ (code/Revigo.R, code/OLD/Revigo.R,
 #             figures/revigo_figure/Revigo-PLOIDY-BP.R, tables/ploidy-<ontology>-
@@ -208,6 +211,8 @@ if (!all(file.exists(input_files))) {
   stop("Input file(s) not found:\n  ", paste(repo_relative(input_files[!file.exists(input_files)]), collapse = "\n  "),
        "\nSteps 08, 09 and 10 write the files under 04_output; run them first, with \"legacy\" in config$modes.", call. = FALSE)
 }
+# Legacy annotation tables that step 08 left from a run without the legacy mode stop the step here, as they stop step 09.
+invisible(legacy_annotation_summary(names(sets)))
 enriched <- fread(enriched_file)                 # the gene-level terms (section 6); read here so that a faulty table stops the step at once
 need <- c("mode", "set", "ontology", "go_id", "term", "p_wallenius", "q_wallenius")
 if (!all(need %in% names(enriched))) stop("go_enriched_terms.csv lacks column(s): ", paste(setdiff(need, names(enriched)), collapse = ", "))
