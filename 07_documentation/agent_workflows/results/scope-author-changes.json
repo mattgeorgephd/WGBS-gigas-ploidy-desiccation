@@ -1,12 +1,171 @@
 {
  "workflow": "scope-author-changes",
  "run_id": "wf_3af3d3cc-0e8",
- "agents_finished": 0,
+ "agents_finished": 1,
  "agents_running_or_lost": [
   "variants:data-on-gannet",
-  "variants:method-2022-and-bs-snper",
   "variants:data-on-gannet",
-  "variants:method-2022-and-bs-snper"
+  "ftest:term-sweep"
  ],
- "results": []
+ "results": [
+  {
+   "agent": "variants:method-2022-and-bs-snper",
+   "phase": "Variant calls",
+   "result": {
+    "summary": "Venkataraman et al. 2022 ran BS-Snper nine times: once on a samtools-merged BAM of the 8 animals and once on each animal's BAM, with defaults except --mincover 5. They kept every VCF record that overlaps a CG motif and matches grep \"C<TAB>T\" (REF C with ALT T, or ALT \"T,G\"), whatever its FILTER (PASS or Low), QUAL or depth, and took the union. They then removed CpGs at those positions in two places: from the 5x CpG sets of the global characterisation (subtractBed) and from the DML list after the test (intersectBed -u / subtractBed). The methylKit input, the united table, the model fits and the q-values were not changed.\n\nI reproduced their numbers from their own tables on gannet:\n- The 300,278 \"C->T SNPs\" are 300,032 distinct positions. 246 positions appear twice, once with ALT T and once with ALT T,G.\n- Every one of the 300,032 is the C of a CpG on the plus strand (checked against the genome). G>A at the CpG's G, which is the same change on the minus strand, was not excluded.\n- 48,405 positions (16.1%) rest only on FILTER=Low records. 48,466 never had 5 or more opposite-strand reads in any of the nine runs, and 21,119 never had more than one opposite-strand T read. So the 5x setting only changed the PASS/Low label and had no effect on what was excluded.\n- 315 of their 1,599 DML have their C in the list, which matches the article. The count falls to 266 if only PASS records are used and to 192 if only the merged-file run is used.\n- The article's 11,238,223 CpGs is a line count that includes the header line; the file holds 11,238,222 CpGs.\n\nBS-Snper rule (read from source):\n- Reads with MAPQ under 20 and unmapped reads are dropped. Bases with quality under 15 become N.\n- A read is dropped if it has more than round(0.02 x length) mismatches that bisulfite conversion cannot explain.\n- Reads are split into Watson (FLAG 99/147) and Crick (FLAG 83/163). Bismark 0.22.3 swaps the flags of the CTOT and CTOB strands, so this directional assumption groups the non-directional reads correctly.\n- At a reference C, Watson T is counted as C. The C>T candidate rate is Crick T / (Crick C + Crick T), and the site is a candidate if this is above 0.1.\n- A diploid Bayes model with priors (cc 0.985, ct 0.000667, tt 0.00033) picks the genotype. A CT call then needs at least 3 Crick T reads.\n- Every non-reference genotype is written to the VCF as PASS or Low.\n- --maxcover is never used. Only the last CIGAR operation of each read is kept (a bug, confirmed with a compiled test: \"66M7I7M\" becomes \"7M\").\n\nspec.md gives an R specification (Rsamtools/GenomicAlignments). The \"merged\" call can be done by summing per-library counts; this is exact because every filter acts on single reads.\n\nTriploids: a single variant copy (expected T share 1/3) and a double copy (2/3) are both above the 0.1 threshold and below the 0.85 homozygous threshold, so both are labelled heterozygous. Detection is lower for a single copy. At 5 opposite-strand reads the call probability is 0.21 for 1/3, 0.50 for a diploid heterozygote and 0.79 for 2/3; at 10 reads it is 0.70, 0.95 and 1.00. Pooled over 22 libraries, a call needs about 15% T among the pooled opposite-strand reads. That is about 7 of 22 diploid heterozygous carriers, or about 11 single-copy triploids.",
+    "facts": [
+     {
+      "claim": "Article Methods: BS-Snper on a merged BAM (samtools merge) and on individual BAMs, default settings except minimum coverage 5x; 'The C- > T SNPs were used to exclude loci of interest'.",
+      "evidence": "Europe PMC fullTextXML PMC9351233, section 'SNP identification' (downloads/article/pmc.txt line 213)",
+      "verified": true
+     },
+     {
+      "claim": "Merged-file command used --mincover 5 with all other parameters at default; the VCF header records '--minhetfreq 0.1 --minhomfreq 0.85 --minquali 15 --mincover 5 --maxcover 1000 --minread2 2 --errorate 0.02 --mapvalue 20', bssnperVersion=1.1 and '##Bisulfite=directional>'",
+      "evidence": "OSF ygctb code/07-BS-SNPer.ipynb cell 24 (command) and cell 25 (VCF head); per-animal loop cell 33",
+      "verified": true
+     },
+     {
+      "claim": "C/T records were selected with 'intersectBed -u -a <vcf> -b cgigas_uk_roslin_v1_fuzznuc_CGmotif.gff | grep \"C<TAB>T\"' with no filter on FILTER, QUAL, GT or DP; the union was made with cat + awk columns 1-5 | sort | uniq (300,278 rows)",
+      "evidence": "07-BS-SNPer.ipynb cells 28, 37, 52, 53; outputs show FILTER=Low records with DP=1, e.g. 'NC_047559.1 22443 . C T 4 Low DP=1 ... 1/1'",
+      "verified": true
+     },
+     {
+      "claim": "SNP BED written as chr, POS, POS; CpGs removed with subtractBed from each 5x bedgraph and from the union-average bedgraph (bedtools v2.30.0); DML removed after the test with intersectBed -u (315) and subtractBed (1,284)",
+      "evidence": "10-Genomic-Location-of-DML.ipynb cells 18, 21, 22; 09-General-Methylation-Landscape.ipynb cells 15, 32 and output 'wc -l *NO-SNPs' (10,939,918)",
+      "verified": true
+     },
+     {
+      "claim": "DML were called on all united CpGs (calculateDiffMeth overdispersion='MN', test='Chisq'; getMethylDiff difference=50, qvalue=0.01); variants appear in 06-methylKit.Rmd only in heatmaps",
+      "evidence": "06-methylKit.Rmd lines 211, 222, 593-698",
+      "verified": true
+     },
+     {
+      "claim": "unique-CT-SNPs.tab has 300,278 rows but 300,032 distinct positions (246 positions with both ALT T and ALT T,G); all 300,032 are the C of a CpG on the plus strand",
+      "evidence": "code/analyse_ct.py on gannet files spartina/project-gigas-oa-meth/output/BS-Snper/*CT-SNPs.tab (output ct_analysis.txt); 'cut -f1,2 unique-CT-SNPs.tab | sort | uniq -d | wc -l' = 246; ALT counts 299,847 T and 431 T,G",
+      "verified": true
+     },
+     {
+      "claim": "48,405 of 300,032 excluded positions (16.1%) are supported only by FILTER=Low records; 48,466 never reached 5 opposite-strand reads; 21,119 never had more than 1 opposite-strand T read; 177,726 come only from individual-animal calls",
+      "evidence": "ct_analysis.txt (union section)",
+      "verified": true
+     },
+     {
+      "claim": "315 of 1,599 DML have their C in the variant list, reproducing the article. The count is 266 if only positions with a PASS record are used, 192 if only the merged call is used, and 49 DML rest only on Low records",
+      "evidence": "ct_analysis.txt; OSF output/06-methylKit/DML/DML-pH-50-Cov5-All.csv (1,599 rows)",
+      "verified": true
+     },
+     {
+      "claim": "The article's '11,238,223 CpG loci' is the line count of union_5x.bedgraph including its header; the file holds 11,238,222 CpGs and 298,304 were removed",
+      "evidence": "09-General-Methylation-Landscape.ipynb cell 20 (header line 'chrom start end 1..8'; wc -l 11238223) and cell 31 (11238222 after header removal)",
+      "verified": true
+     },
+     {
+      "claim": "Coverage rows (both studies) are 0-based half-open [C0, C0+2) covering the C and the G; bedtools 2.30.0 widens zero-length BED records (start==end) to [start-1, end+1), so the study's overlap reduces to 'CpG C (start0+1) equals SNP POS'",
+      "evidence": "code/check_coords.py against cgigas_uk_roslin_v1_genomic-mito.fa (rows 649 651, 1547 1549, DML 7867 7869 all 'CG'); bedtools2 v2.30.0 src/utils/FileRecordTools/Records/Record.cpp lines 241-248 'if (_startPos == _endPos) { _zeroLength = true; _startPos--; _endPos++; }'; both overlap rules give 315",
+      "verified": true
+     },
+     {
+      "claim": "BS-Snper defaults: minhetfreq 0.1, minhomfreq 0.85, minquali 15, mincover 10, minread2 2, maxcover 1000, errorate 0.02, mapvalue 20",
+      "evidence": "BS-Snper.pl (master, md5 5f49736fafb588706d1fee700a7ac987) lines 55-62",
+      "verified": true
+     },
+     {
+      "claim": "--maxcover has no effect: nLayerMax is passed to snpProcess but never used in its body",
+      "evidence": "grep -c nLayerMax sam_funcs.c = 3 (lines 13, 16, 801, all signatures/calls)",
+      "verified": true
+     },
+     {
+      "claim": "--mincover affects only the methylation output and the PASS/Low label, not which records are written",
+      "evidence": "sam_funcs.c printMeth lines 26-48 (nLayerMin); BS-Snper.pl genotype branches print a Low record in the else branches, e.g. C>CT lines 999-1023",
+      "verified": true
+     },
+     {
+      "claim": "Strand classes: strand '+' if FLAG 0x10 unset, r12=2 if 0x80 set; Watson = (+,r1) or (-,r2), Crick = (-,r1) or (+,r2); a Watson T at reference C is counted as w_C and a Crick A at reference G as c_G",
+      "evidence": "sam_funcs.c parseBuffer lines 165-176; snpProcess lines 1100 ('if(record->r12 == 1 && chrSeqArray[idx][off] == 'C') { w_C[off]++') and 1206",
+      "verified": true
+     },
+     {
+      "claim": "Candidate filter for reference C: C>T = c_T/(c_C+c_T) (opposite strand only); written if any of three rates > minhetfreq (strict)",
+      "evidence": "sam_funcs.c lines 99-111 ('// C>T=CrT/(CrC+CrT)') and line 129 'if(vRate[0] > vSnpRate || vRate[1] > vSnpRate || vRate[2] > vSnpRate)'",
+      "verified": true
+     },
+     {
+      "claim": "Reads with MAPQ < mapvalue are dropped; bases with Phred < minquali become N; a read with more than (int)(len*errorate+0.5) (min 1) non-bisulfite mismatches is dropped",
+      "evidence": "sam_funcs.c lines 183-185, 1003, 1014-1016, 1063",
+      "verified": true
+     },
+     {
+      "claim": "Only the last CIGAR operation of each read is used (sprintf overwrites the buffer in the loop)",
+      "evidence": "sam_funcs.c line 188 'sprintf(record->cigar, \"%d%c\", ...)' inside 'for (i = 0; i < c->n_cigar; ++i)'; code/cigar_loop_test.c prints '7M' for 66M7I7M",
+      "verified": true
+     },
+     {
+      "claim": "Bayes for reference C uses T = crick T and C = watson C + crick C; priors cc 0.985, ct 0.000667, tt 0.00033; post-rules: CT with crick T == 0 -> CC, crick T < 3 -> NN; TT with crick C > 1 and crick C share > 0.02 -> NN",
+      "evidence": "BS-Snper.pl lines 1361-1375, 1487-1498, 1580-1600 ('#school CT GA', '}elsif($crick[1]<3){', 'if($cfrq>0.02){')",
+      "verified": true
+     },
+     {
+      "claim": "Bismark 0.22.3 (default flags) gives CTOT pairs FLAG 147/99 and CTOB 163/83, the same as OT 99/147 and OB 83/163, so BS-Snper's flag rule puts OT+CTOT in Watson and OB+CTOB in Crick; neither job script of this project uses --old_flag",
+      "evidence": "bismark 0.22.3 (raw.githubusercontent.com FelixKrueger/Bismark/0.22.3/bismark) lines 8305-8350; grep -c old_flag 07_documentation/upstream_processing/061021-big_job*.sh = 0",
+      "verified": true
+     },
+     {
+      "claim": "Call probability (port of the rule, Q37, same-strand depth = opposite-strand depth n): T share 1/3 -> 0.21 (n=5), 0.70 (n=10), 0.94 (n=20); 1/2 -> 0.50, 0.95, 1.00; 2/3 -> 0.79, 1.00, 1.00; pooled depth 90+90 needs 14 T reads (15.6%)",
+      "evidence": "code/bayes_refC.py, output bayes_refC_out.txt",
+      "verified": true
+     },
+     {
+      "claim": "The 2022 study's BAMs are still on gannet (9.6 GB each, index 1.8 MB, byte ranges accepted), which makes a check of an R port against their BS-Snper output possible without running BS-Snper",
+      "evidence": "curl -I https://gannet.fish.washington.edu/spartina/project-gigas-oa-meth/output/bismark-roslin/zr3616_1_R1_val_1_val_1_val_1_bismark_bt2_pe.deduplicated.sorted.bam -> 200, content-length 9631381426, accept-ranges bytes",
+      "verified": true
+     },
+     {
+      "claim": "The GitHub master of BS-Snper is the same code the 2022 study downloaded in April 2021",
+      "evidence": "Perl header says Version 1.1 (2018-07-27) and the study's VCF says bssnperVersion=1.1; commit history could not be read (GitHub API not enabled for this session)",
+      "verified": false
+     },
+     {
+      "claim": "The 22 BAM files of this project are still available under /panopea/061021-big/",
+      "evidence": "not checked (directory listing times out per instructions)",
+      "verified": false
+     }
+    ],
+    "recommendation": "Build the toggle so that its default setting reproduces the 2022 rule exactly:\n- **Which calls:** the union of a pooled call (per-library counts summed over the 22 libraries, which equals a merged BAM) and 22 per-library calls.\n- **Which records:** any record with REF C and ALT T or T,G at the C of a CpG, whatever its FILTER.\n- **Where:** remove those CpGs from the global-characterisation CpG sets and from the DML lists after the test, leaving fits and q-values unchanged.\n\nPort BS-Snper's read filters, counting, candidate rule, Bayes genotype and post-rules exactly, as written in spec.md. Use scanBam rather than Rsamtools::pileup defaults (pileup caps depth at 250, has its own base-quality default and drops flags silently). Offer two separately labelled settings, each off: PASS only, and checking the G of each CpG as well. Before using the port, check it against real BS-Snper output, once with BS-Snper's last-CIGAR-operation behaviour switched on. Do this on one small sequence of the 2022 study's BAMs, fetched from gannet by range requests, against their CT-SNPs tables.",
+    "open_points": [
+     "Plus-strand C only (exactly as in 2022) or both C and G of each CpG. The coverage files merge both strands, so the 2022 rule keeps CpGs whose minus-strand C carries the variant. This is the author's decision.",
+     "Any FILTER (as in 2022; 16.1% of their excluded positions rest on Low records only) or PASS only. This is the author's decision; the default should reproduce 2022.",
+     "Pooled call over all 22 libraries (as in 2022, where the 8 animals came from one experiment) or one pool per experiment. This project has two experiments sequenced separately (I-01).",
+     "Whether the 22 BAM files of this project are still on gannet under /panopea/061021-big/ was not checked. The R implementation needs them, with their indexes.",
+     "The master branch of BS-Snper was assumed to equal the April 2021 download, because the commit history could not be read. A validation run against the 2022 study's outputs would settle this.",
+     "I did not read the supplementary text of Gao et al. 2015 (Table S1 with the rate formulae); the source code was used instead.",
+     "How many reads in these BAMs have indels, and so how much BS-Snper's CIGAR bug matters, is unmeasured without the BAMs.",
+     "Rsamtools::pileup's min_base_quality scale (Phred or ASCII) was not tested. The spec avoids pileup for that reason.",
+     "My scratch directory already held files from an earlier attempt at this step, dated 00:32 to 00:44, before my first command at 00:46: code/bssnper_rule_check.py, ct_union_stats.py, dml_snp_overlap.py, nbdump.py, osf_ls.py and downloads/gannet_2022, osf_code, osf_dml, PMC9351233.*. I did not use them, and spec.md is mine."
+    ],
+    "files_written": [
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/V2-method/spec.md",
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/V2-method/ct_analysis.txt",
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/V2-method/bayes_refC_out.txt",
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/V2-method/cov_rows_sample.txt",
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/V2-method/code/analyse_ct.py",
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/V2-method/code/bayes_refC.py",
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/V2-method/code/check_coords.py",
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/V2-method/code/cigar_loop_test.c",
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/V2-method/code/nb2txt.py",
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/V2-method/code/xml2txt.py",
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/V2-method/code/osfls.py",
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/V2-method/downloads/osf/07.txt",
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/V2-method/downloads/osf/09-General-Methylation-Landscape.txt",
+     "/tmp/claude-0/-home-user-WGBS-gigas-ploidy-desiccation/ed665b6a-3457-5aca-a521-7838dbc31cfa/scratchpad/wf/scope/V2-method/downloads/osf/10-Genomic-Location-of-DML.txt"
+    ],
+    "risks": [
+     "Without a validation run against the 2022 study's BS-Snper output, an R port can carry an undetected difference. The Bayes step and the post-rules are easy to get subtly wrong.",
+     "Exclusion sensitivity depends on ploidy. At 5 opposite-strand reads a single-copy triploid allele is detected with probability 0.21, against 0.50 for a diploid heterozygote. Masking can therefore treat the two groups of a ploidy contrast unequally.",
+     "At this project's depth (6 to 12 reads per position over the genome), per-library detection is low. Many variant CpGs will stay unmasked, while the any-FILTER rule also masks sites on a single opposite-strand T read.",
+     "Reading 22 BAMs of about 10 GB each in R is heavy in time and I/O. It needs per-chromosome chunking with yieldSize and must respect the memory limits of the other workflow.",
+     "Rsamtools::pileup defaults (max_depth 250, min_base_quality 13, silent exclusion of some flags) would silently change the calls if used."
+    ]
+   }
+  }
+ ]
 }
