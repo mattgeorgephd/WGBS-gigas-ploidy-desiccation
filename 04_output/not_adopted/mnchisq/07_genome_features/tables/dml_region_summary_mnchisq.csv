@@ -1,0 +1,4 @@
+mode,set,n_dml,n_regions,n_single_locus_regions,largest_region_n_dml,dml_in_regions_of_5_or_more
+mnchisq,heat DML,185,161,143,4,0
+mnchisq,ploidy DML,14,12,11,3,0
+mnchisq,shared,4,4,4,1,0

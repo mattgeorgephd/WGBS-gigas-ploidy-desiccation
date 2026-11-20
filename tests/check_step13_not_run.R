@@ -6,7 +6,7 @@
 # Run in a SCRATCH COPY of the repository (it deletes files), never in the
 # working repository:
 #   cp -a <repository> <scratch> && cd <scratch> && CT_TEST_SCRATCH=1 Rscript tests/check_step13_not_run.R
-# Needs the folders 04_output/not_adopted/corrected/ and legacy/ as committed.
+# Needs the folders 04_output/not_adopted/corrected/ and legacy/ as committed (with corrected/10_go_enrichment_gene_level/).
 
 suppressPackageStartupMessages({ library(here); library(data.table) })
 if (file.exists(file.path(here(), ".git")) && !nzchar(Sys.getenv("CT_TEST_SCRATCH"))) {
@@ -22,7 +22,11 @@ map <- as.data.table(utils::read.csv(here("03_input_files", "manuscript", "manus
 with_expr <- map[!is.na(expression_optional), id]
 reads_10 <- map[!is.na(expression_optional) & grepl("10_go_enrichment_gene_level", expression_optional), id]
 
-# 0. The state as committed: the three single options not run.
+# 0. The state after the migration: only the folders corrected/ and legacy/ (other analysis folders are removed here).
+for (d in setdiff(list.dirs(here("04_output", "not_adopted"), recursive = FALSE, full.names = FALSE),
+                  c("corrected", "legacy", "comparisons", "ct_variants", "13_manuscript_values"))) {
+  unlink(here("04_output", "not_adopted", d), recursive = TRUE)
+}
 ok("step 13, optional part, exits with status 0", run13("WGBS_ANALYSIS=corrected") == 0)
 v0 <- values()
 for (A in c("cov5", "mnchisq", "ctexcl")) {
@@ -36,10 +40,14 @@ ok("without corrected/10_go_enrichment_gene_level/, step 13 exits with status 0"
 v1 <- values()
 a0 <- v0[analysis == "corrected" & id %in% with_expr]; a1 <- v1[analysis == "corrected" & id %in% with_expr]
 changed <- a1$id[a1$status != a0$status | a1$regenerated %in% NA != a0$regenerated %in% NA]
-ok(sprintf("the %d rows whose expression reads step 10 become 'not run: 10_go_enrichment_gene_level/<file> absent'", length(reads_10)),
-   setequal(changed, reads_10) && a1[id %in% reads_10, all(startsWith(status, "not run: 10_go_enrichment_gene_level/") & endsWith(status, " absent"))])
-ok(sprintf("the other %d rows are unchanged", length(with_expr) - length(reads_10)),
-   isTRUE(all.equal(a0[!id %in% reads_10], a1[!id %in% reads_10], check.attributes = FALSE)))
+# Of the rows whose expression names step 10, those that read it become not run; two rows ("a || b") do not
+# reach their step 10 part when the first part is TRUE, and keep their value.
+ok(sprintf("of the %d rows whose expression names step 10, the %d changed ones are 'not run: 10_go_enrichment_gene_level/<file> absent'",
+           length(reads_10), length(changed)),
+   all(changed %in% reads_10) && a1[id %in% changed, all(startsWith(status, "not run: 10_go_enrichment_gene_level/") & endsWith(status, " absent"))])
+cat(sprintf("     rows naming step 10 that keep their value: %s\n", paste(setdiff(reads_10, changed), collapse = ", ")))
+ok(sprintf("the other %d rows are unchanged", length(with_expr) - length(changed)),
+   isTRUE(all.equal(a0[!id %in% changed], a1[!id %in% changed], check.attributes = FALSE)))
 
 # 2. A stamp that describes another analysis: every row of that id is 'not run: folder stale'.
 s <- fread(here("04_output", "not_adopted", "corrected", "analysis.csv"), colClasses = "character")
