@@ -1,6 +1,6 @@
 # 08_archive
 
-Everything that was in this repository before the reorganization of 2026-11-18, kept for provenance. The pipeline in `01_pipeline/` computes nothing from this folder. Three things read it: the checks in `06_diagnostics/`, which compare regenerated outputs against the legacy outputs stored here; step 11, which reads the three REVIGO exports and three Fisher tables of another analysis (`tables/ploidy-<ontology>-FisherTestResults.csv`) to identify and redraw the exports; and step 12, which compares its reproduction of the legacy qPCR tests with the knitted legacy output (`ELISA/dct_analysis_NA-to-45_COX1convert.md`).
+Everything that was in this repository before the reorganization of 2026-11-18, kept for provenance. The pipeline in `01_pipeline/` computes nothing from this folder. The checks in `06_diagnostics/` read it, to compare regenerated outputs with the legacy outputs stored here. No step of the pipeline reads it: the seven files that steps 11 and 12 compare with are byte-for-byte copies under `03_input_files/`, and the README files there name the originals. These are the three REVIGO exports and the three Fisher tables of another analysis (`tables/ploidy-<ontology>-FisherTestResults.csv`), in `annotation/legacy/`, and the knitted legacy qPCR output (`ELISA/dct_analysis_NA-to-45_COX1convert.md`), in `qpcr/legacy/`.
 
 Do not edit files in this folder. If a legacy result needs correcting, the correction belongs in the pipeline.
 

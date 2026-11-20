@@ -152,7 +152,9 @@ if (have("08_gene_annotation", "transcript_table.csv.gz")) {
     old_tx <- fread(input_path("annotation", "legacy", sprintf("DML-Cov10-20-BOTH-%s.geneOverlap.transcriptIDs.gz", legacy_set[[s]])),
                     header = FALSE, col.names = c("transcript", "geneID", "chr", "start", "end", "meth.diff"))
     ann_sum <- fread(out("08_gene_annotation", "annotation_summary.csv"))[mode == "legacy" & set == s]
-    record(label, "DML x transcript rows before the GO join", nrow(old_tx), ann_sum$legacy_dml_transcript_rows)
+    # No legacy row: step 08 last ran without the legacy mode, and the comparison is "not run".
+    record(label, "DML x transcript rows before the GO join", nrow(old_tx),
+           if (nrow(ann_sum) == 1) ann_sum$legacy_dml_transcript_rows else NA)
     # What the legacy script's reader returned; the legacy value is the row count noted in that script.
     noted <- c(ploidy = 10979, heat = 81109, shared = 6941)
     record(label, "rows returned by the legacy reader", noted[[s]],
