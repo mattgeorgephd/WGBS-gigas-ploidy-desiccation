@@ -1,0 +1,49 @@
+analysis_id,mode,measure,value
+A1_ploidy_mn_chisq,legacy,CpGs tested,480579
+A1_ploidy_mn_chisq,legacy,CpGs with q < 0.01,168
+A1_ploidy_mn_chisq,legacy,"DML (q < 0.01, above the difference cutoff)",14
+A1_ploidy_mn_chisq,legacy,DML with q < 0.05 in place of 0.01,37
+A1_ploidy_mn_chisq,legacy,DML with q < 0.1 in place of 0.01,52
+A1_ploidy_mn_chisq,legacy,CpGs with Benjamini-Hochberg adjusted p < 0.01,162
+A1_ploidy_mn_chisq,legacy,DML with the Benjamini-Hochberg adjustment in place of SLIM (adjusted p < 0.01),14
+A1_ploidy_mn_chisq,corrected,CpGs tested,454555
+A1_ploidy_mn_chisq,corrected,CpGs with q < 0.01,137
+A1_ploidy_mn_chisq,corrected,"DML (q < 0.01, above the difference cutoff)",14
+A1_ploidy_mn_chisq,corrected,DML with q < 0.05 in place of 0.01,34
+A1_ploidy_mn_chisq,corrected,DML with q < 0.1 in place of 0.01,48
+A1_ploidy_mn_chisq,corrected,CpGs with Benjamini-Hochberg adjusted p < 0.01,126
+A1_ploidy_mn_chisq,corrected,DML with the Benjamini-Hochberg adjustment in place of SLIM (adjusted p < 0.01),13
+A1_ploidy_mn_chisq,both,legacy DML not in the corrected-mode list,0
+A1_ploidy_mn_chisq,both,"of these, not tested in corrected mode (removed by the coverage filter)",0
+A1_ploidy_mn_chisq,both,"of these, tested in corrected mode with q >= 0.01",0
+A1_ploidy_mn_chisq,both,q-values of the latter in legacy mode,none
+A1_ploidy_mn_chisq,both,q-values of the latter in corrected mode,none
+A1_ploidy_mn_chisq,both,corrected-mode DML not in the legacy list,0
+A1_ploidy_mn_chisq,legacy,CpGs with q < 0.01 on the mitochondrial genome (NC_001276.1),0
+A1_ploidy_mn_chisq,both,legacy CpGs with q < 0.01 that the coverage filter removes,24
+A1_ploidy_mn_chisq,both,"of these, on the mitochondrial genome (NC_001276.1)",0
+A1_ploidy_mn_chisq,both,"of these, above the difference cutoff",0
+A1_heat_mn_chisq,legacy,CpGs tested,480579
+A1_heat_mn_chisq,legacy,CpGs with q < 0.01,1124
+A1_heat_mn_chisq,legacy,"DML (q < 0.01, above the difference cutoff)",185
+A1_heat_mn_chisq,legacy,DML with q < 0.05 in place of 0.01,410
+A1_heat_mn_chisq,legacy,DML with q < 0.1 in place of 0.01,595
+A1_heat_mn_chisq,legacy,CpGs with Benjamini-Hochberg adjusted p < 0.01,1082
+A1_heat_mn_chisq,legacy,DML with the Benjamini-Hochberg adjustment in place of SLIM (adjusted p < 0.01),175
+A1_heat_mn_chisq,corrected,CpGs tested,454555
+A1_heat_mn_chisq,corrected,CpGs with q < 0.01,596
+A1_heat_mn_chisq,corrected,"DML (q < 0.01, above the difference cutoff)",157
+A1_heat_mn_chisq,corrected,DML with q < 0.05 in place of 0.01,355
+A1_heat_mn_chisq,corrected,DML with q < 0.1 in place of 0.01,543
+A1_heat_mn_chisq,corrected,CpGs with Benjamini-Hochberg adjusted p < 0.01,548
+A1_heat_mn_chisq,corrected,DML with the Benjamini-Hochberg adjustment in place of SLIM (adjusted p < 0.01),150
+A1_heat_mn_chisq,both,legacy DML not in the corrected-mode list,28
+A1_heat_mn_chisq,both,"of these, not tested in corrected mode (removed by the coverage filter)",2
+A1_heat_mn_chisq,both,"of these, tested in corrected mode with q >= 0.01",26
+A1_heat_mn_chisq,both,q-values of the latter in legacy mode,0.0067 to 0.0098
+A1_heat_mn_chisq,both,q-values of the latter in corrected mode,0.01 to 0.014
+A1_heat_mn_chisq,both,corrected-mode DML not in the legacy list,0
+A1_heat_mn_chisq,legacy,CpGs with q < 0.01 on the mitochondrial genome (NC_001276.1),275
+A1_heat_mn_chisq,both,legacy CpGs with q < 0.01 that the coverage filter removes,391
+A1_heat_mn_chisq,both,"of these, on the mitochondrial genome (NC_001276.1)",275
+A1_heat_mn_chisq,both,"of these, above the difference cutoff",2

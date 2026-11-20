@@ -1,0 +1,9 @@
+analysis_id,mode,n_libraries,residual_df,n_cpg_eligible,n_eligible_dispersion_not_above_1,share_eligible_dispersion_not_above_1,n_dml,n_dml_dispersion_not_above_1,median_dispersion_dml
+A1_ploidy_mn_chisq,legacy,22,19,65480,627,0.00957544288332315,14,1,2.82231778093809
+A1_ploidy_mn_chisq,corrected,22,19,61056,621,0.0101709905660377,14,1,2.82231778093809
+A1_heat_mn_chisq,legacy,22,19,65480,627,0.00957544288332315,185,2,2.95417174489306
+A1_heat_mn_chisq,corrected,22,19,61056,621,0.0101709905660377,157,2,2.90824759877712
+A2_interaction_mn_chisq,legacy,22,18,65480,783,0.0119578497251069,242,5,2.15826556814527
+A2_interaction_mn_chisq,corrected,22,18,61056,776,0.01270964360587,231,5,2.156881181555
+A4_ploidy_in_control_mn_chisq,legacy,12,10,65480,2140,0.0326817348808797,10,2,1.10008400268317
+A4_ploidy_in_heat_mn_chisq,legacy,10,8,65480,3990,0.0609346365302382,1093,172,1.78346263148621
