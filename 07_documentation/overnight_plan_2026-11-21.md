@@ -15,8 +15,8 @@ Long jobs run as tracked background tasks, one 5x fit at a time; the machine has
 | # | Work | State |
 |---|---|---|
 | 1 | `corrected-cov5-ctexcl` steps 4:5 (5x fit `corrected-cov5`) | done 08:42 UTC (878d4b6): ploidy 6,902, heat 15,376 DML; 88 min |
-| 2 | 50-point switch (`--difference 50`, token `d50`), built by an agent, then an independent review | built f93496c, review fixes 797bfda, re-review found 2 more (step 13 hides messages; steps 10/11 skipped-set status), being fixed. At 10x: 1 ploidy and 4 heat DML. A d50 run reruns step 04 (9.2 GB), so not beside a 5x fit |
-| 3 | `corrected-cov5-mnchisq-ctexcl` steps 4:5 (5x fit `corrected-cov5-mnchisq`) | running since 08:45 UTC (log scratchpad/v2022_steps04_05_run1.log) |
+| 2 | 50-point switch (`--difference 50`, token `d50`), built by an agent, then an independent review | built f93496c, review fixes 797bfda, re-review fixes 033411b (done). At 10x: 1 ploidy and 4 heat DML. A d50 run reruns step 04 (9.2 GB), so not beside a 5x fit |
+| 3 | `corrected-cov5-mnchisq-ctexcl` steps 4:5 (5x fit `corrected-cov5-mnchisq`) | running since 08:45 UTC (log scratchpad/v2022_steps04_05_run1.log); step 04 committed 355a432; at 10:10, heat part 10 of 12, peak 9.04 GB |
 | 4 | Steps 6:9,13 of 1 and 3 | after 2 and 3 |
 | 5 | d50 version of every analysis: legacy, corrected, mnchisq, corrected-mnchisq, ctexcl, cov5, cov5-ctexcl, corrected-cov5-ctexcl, corrected-cov5-mnchisq-ctexcl | after 2 (5x ones after 3) |
 | 6 | Comparison table of all analyses at 20 and 50 points (script, CSV, README table) | script committed (658b730); run after 5 |
