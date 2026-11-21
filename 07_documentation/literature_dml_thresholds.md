@@ -1,0 +1,66 @@
+# Difference cutoffs for differentially methylated loci in comparable studies
+
+Literature review of 2026-11-21, asked for by the author ("What cut-off do they use?"). Two agents read the methods sections in full text: one covered bivalves, the other other invertebrates and the methods literature. The main session then checked 16 of the quotes word for word against the full texts the agents downloaded. Those texts are in the session's scratch directory only and are not committed. Rows marked "not checked" were read by an agent but not re-checked by the main session.
+
+Context. The draft calls a DML at SLIM q < 0.01 and an absolute difference of **more than 20 percentage points**. It uses methylKit logistic regression without an overdispersion correction and 10x coverage in every library. The study whose Methods it follows, Venkataraman et al. 2022, used **at least 50%** with the MN correction (I-52).
+
+## 1. Bivalves (bisulfite sequencing or similar; methods read in full)
+
+| Study | Species; assay | Tool; overdispersion | Coverage | Multiple testing | Difference cutoff | Unit | Quote checked |
+|---|---|---|---|---|---|---|---|
+| Venkataraman et al. 2022, BMC Genomics 23:556, doi:10.1186/s12864-022-08781-5 | *C. gigas* gonad; WGBS | methylKit LR, chi-squared; MN | 5x; 99.9th pct | SLIM q < 0.01 | **at least 50%** | CpG | yes |
+| Venkataraman et al. 2020, Front Mar Sci 7:225, doi:10.3389/fmars.2020.00225 | *C. virginica* gonad; MBD-BS | methylKit; not stated | 5x | SLIM q < 0.01 | **at least 50%** | CpG | yes |
+| Downey-Wall et al. 2020, Front Mar Sci 7:566419, doi:10.3389/fmars.2020.566419 | *C. virginica* mantle; MBD-BS | methylKit LR; not stated | 5x | q < 0.01 | **at least 50%** | CpG | no |
+| Venkataraman et al. 2024, Environ Epigenet 10:dvae018, doi:10.1093/eep/dvae018 | *C. virginica* gonad, sperm; WGBS | methylKit; not stated | 10x; 98th pct | q 0.01 | **50%** | CpG | no |
+| Rondon et al. 2017, Environ Epigenet 3:dvx004, doi:10.1093/eep/dvx004 | *C. gigas* spat; WGBS | methylKit, 500 bp windows | 10x | FDR 0.01 | **at least 25%** ("we tentatively used the 25% default value") | region | yes |
+| Silliman et al. 2023, Genome Biol Evol 15:evad013, doi:10.1093/gbe/evad013 | *Ostrea lurida*; MBD-BS | methylKit LR; not stated | 5x | SLIM q < 0.01 | **> 25%** | CpG | yes |
+| Stenger et al. 2021, Front Genet 12:630290, doi:10.3389/fgene.2021.630290 | *Pinctada margaritifera*; WGBS | methylKit `getMethylDiff` | 10x | q < 0.05 | **> 25%** | CpG | yes |
+| Wang Z et al. 2022, Front Genet 13:888771, doi:10.3389/fgene.2022.888771 | *P. fucata martensii*; WGBS | tool not named | windows of at least 5 CG | q ≤ 0.05 | **≥ 0.25** | 200 bp region | no |
+| Olson & Roberts 2014, bioRxiv doi:10.1101/012831 (read in the thesis chapter) | *C. gigas* sperm, larvae; WGBS | methylKit Fisher | 3 reads | p < 0.01, unadjusted | **> 25%** | CpG | no |
+| Johnson, Sirovy & Kelly 2022, J Anim Ecol 91:1135, doi:10.1111/1365-2656.13645 | *C. virginica* gill; epiGBS | methylKit, 1 kb tiles | > 10x | q < 0.05 | **at least 20%** (stated in Results) | 1 kb region | yes |
+| Valk et al. 2025, BMC Genomics 26:567, doi:10.1186/s12864-025-11736-1 | *Ostrea edulis*; **Nanopore**, not bisulfite | methylKit LR | 3x | BH q < 0.01 | **at least 20%** | CpG, 200 bp | yes |
+| Johnson & Kelly 2020, Evol Appl 13:945, doi:10.1111/eva.12912 | *C. virginica* gill; epiGBS | methylKit, 100 bp tiles | 10 reads | BH q ≤ 0.05 | **15%** | region | no |
+| Yuan et al. 2021, BMC Genomics 22:740, doi:10.1186/s12864-021-08055-6 | *Patinopecten yessoensis*; WGBS | methylKit | 10 reads | p 0.05, unadjusted | **10%** | region | no |
+| Wang X et al. 2021, Heredity 126:10, doi:10.1038/s41437-020-0351-7 | *C. gigas* gill, heat; WGBS | DSS | | p 1e-5 | **none** (delta = 0) | region | no |
+| Fallet et al. 2022, Microbiome 10:85, doi:10.1186/s40168-022-01280-5 | *C. gigas*; WGBS | dmrseq (deltamax 0.25 is a model parameter) | | p < 0.05 | **none** as a filter | region | no |
+
+Unreviewed and not counted: Gallardo-Escárate, Valenzuela & Roberts 2025 (*Mytilus chilensis*, web manuscript): ≥ 25%, q ≤ 0.05, MN. Not readable (paywall or bioRxiv blocked): Sun, Yu & Li 2022 (Mar Biotechnol, doi:10.1007/s10126-021-10083-y) and Li et al. 2022 (bioRxiv, doi:10.1101/2022.02.22.481396). Both compare triploid and diploid oysters, so their methods would be the closest precedent. They should be read before the threshold is decided.
+
+## 2. Other invertebrates (methods read in full by an agent)
+
+Most of these rows were not re-checked by the main session; the six checked are listed below the table.
+
+| Cutoff | Studies |
+|---|---|
+| **25** | Strader et al. 2020, Front Mar Sci 7:205 (sea urchin, RRBS, > 25%, q < 0.01, 10x, 99.9th pct); Guerrero & Bay 2024, Evol Appl 17:e13757 (*Acropora*, gene level, q 0.05); Harrison et al. 2022, Open Biol 12:220047 (termite, ≥ 25 points, adj. p < 0.05); Peterson et al. 2024, Mol Biol Evol 41:msae008 (*Acropora*, DSS, > 0.25); Zhu et al. 2023, Int J Mol Sci (shrimp, windows) |
+| **15** | Yagound et al. 2020, PNAS (honeybee, single samples); Luviano et al. 2021, Epigenetics Chromatin (snail, following Johnson & Kelly 2020) |
+| **10** | Marshall et al. 2019, Evol Lett; Pozo et al. 2021, BMC Genomics (MN correction); Rahman & Lozier 2023, Sci Rep (correction); Marshall et al. 2023, Heredity 130:188 (all bumblebees); Brennan et al. 2025, PNAS (copepod, edgeR; quote not checked); Hearn et al. 2019, BMC Genomics (*Daphnia*, BSmooth regions) |
+| **4** | Renard et al. 2023, Proc R Soc B (from the data's distribution); Luviano-Aparicio et al. 2025 |
+| **none** | Feiner et al. 2022, iScience ("No minimum methylation difference was imposed"); Kvist et al. 2020; Bebane et al. 2019; Bogan et al. 2023; Liew et al. 2018; Li et al. 2018; Huang et al. 2021; Fang et al. 2025; Liu et al. 2025 |
+| **50** | none found |
+
+The checked quotes are Strader 2020, Harrison 2022, Pozo 2021, Rahman & Lozier 2023, Feiner 2022 and Renard 2023. The DOIs and verbatim quotes of every row are in the agent's notes (session scratch directory, `litreview/other/notes.md`).
+
+## 3. Methods literature
+
+- **methylKit.** `getMethylDiff(difference = 25, qvalue = 0.01)` is the default. The code keeps `abs(meth.diff) > difference`, so the rule is strict; checked in the source. Akalin et al. 2012 (Genome Biol 13:R87) and the vignette give 25% and q < 0.01 as defaults, with no rationale.
+- **Wreczycka et al. 2017** (J Biotechnol 261:105; bioRxiv v2 read). They call DMCs at q < 0.01 for every method. Without overdispersion correction, methylKit has "the lowest specificity". They write that "Researchers should also consider a cutoff for the effect size or methylation difference in their analyses" but name no number.
+- **Region callers and their guidance.** DSS says "The choices of 'delta' and 'p.threshold' are somewhat arbitrary", and its examples use 0.1. dmrseq (Korthauer et al. 2019) defaults to 0.10 and notes that "arbitrary cutoffs of effect size do not directly correspond to significance level". metilene (Jühling et al. 2016) filters at 0.1.
+- **Lea et al. 2017** (Nat Ecol Evol). Binomial models are "extremely false positive-prone"; "Binomial regression is never recommended". No fixed cutoff is recommended.
+
+## 4. What this means for the draft
+
+1. **The draft's 20 points has little precedent in the closest literature.** Among bisulfite studies of oysters (pearl oysters included) at single CpGs with methylKit, the cutoffs are 50% (the four Roberts and Lotterhos papers, including the study the draft's Methods follow) or 25% (the methylKit default; Silliman 2023 from the same lab, and others). The 20% precedents are a 1 kb tile analysis at q < 0.05 (Johnson et al. 2022) and a Nanopore study (Valk et al. 2025). Elsewhere, 10% and 25% are the common values, and no invertebrate study outside the Roberts and Lotterhos group used 50%.
+2. **No source justifies any particular number.** The 50% papers give no reason. Rondon 2017 calls 25% a tentative default, and the methods papers call the choice arbitrary. Whatever the paper uses needs a stated reason. The draft's Methods should also say that the threshold differs from that of Venkataraman et al. 2022.
+3. **The cutoff is not the main source of false calls.** Studies that use low cutoffs (10%) mostly pair them with an overdispersion correction or a dispersion model (Pozo 2021, Rahman & Lozier 2023, Brennan 2025). Studies with no cutoff mostly use dispersion models. The draft combines a low-to-middle cutoff with an uncorrected binomial test, which Wreczycka 2017 and Lea 2017 identify as the least specific choice (I-06).
+4. **The counts at the common cutoffs** (paper's fit, 10x; `dml_counts_by_threshold_legacy.csv`; strict > for every cutoff):
+
+   | Cutoff (points) | 10 | 15 | 20 (draft) | 25 (methylKit default) | 50 (Venkataraman 2022) |
+   |---|---|---|---|---|---|
+   | Ploidy DML | 5,352 | 2,872 | 1,038 | 372 | 1 |
+   | Heat DML | 10,747 | 5,910 | 2,351 | 928 | 4 |
+   | Ploidy DML, MN correction | 68 | 26 | 14 | 7 | 1 |
+   | Heat DML, MN correction | 398 | 259 | 185 | 123 | 4 |
+
+   At 25 points the paper's lists keep 36% (ploidy) and 39% (heat) of their DML.
+5. **Inclusive or strict.** Many papers write "at least" while using methylKit, whose rule is strict. For "at least 20%", the draft's text (values map M2.5-017) should say "more than 20 percentage points".
