@@ -75,7 +75,10 @@
 #             tables/semantic_clusters_gene_level.csv          the clusters of the gene-level terms of step 10;
 #                                                              one row with a note when there are none
 #             tables/named_terms_results_3_4_gene_level.csv    the terms named in Results 3.4 (set, phrase, go_id)
-#                                                              at gene level: five gene_level_ columns
+#                                                              at gene level: five gene_level_ columns; a term of
+#                                                              a set that step 10 did not test in its ontology (no
+#                                                              DML gene carries a term of it, as at 50 points with
+#                                                              option d50) has the result "set not tested: ..."
 #             tables/semantic_summary_gene_level.csv, semantic_terms_dropped_gene_level.csv
 #             figures/figure_semantic_gene_level_<set>_<ontology>_<id>   only when terms are enriched
 #
@@ -918,11 +921,18 @@ hit <- match(paste(named$set, named$go_id), paste(gene_level$set, gene_level$go_
 named[, `:=`(gene_level_genes_annotated = gene_level$genes_annotated[hit], gene_level_genes_with_dml = gene_level$genes_with_dml[hit],
              gene_level_p_wallenius = gene_level$p_wallenius[hit], gene_level_q_wallenius = gene_level$q_wallenius[hit])]
 tested_term <- gene_level$tested[hit]
+# Sets that step 10 did not test in an ontology (no DML gene carries a term of it): in its summary,
+# eligible universe, no DML gene and no term tested.
+summary_10 <- analysis_input(an, "10_go_enrichment_gene_level", "tables", "go_gene_level_summary.csv")
+untested_sets <- if (file.exists(summary_10)) fread(summary_10)[mode == an$id & universe == "eligible" & dml_genes == 0 & terms_tested == 0,
+                                                                 paste(set, ontology)] else character(0)
+set_untested <- paste(named$set, go_terms$ontology[match(named$go_id, go_terms$go_id)]) %in% untested_sets
 named[, gene_level_result := fifelse(is.na(go_id) | go_id == "", "no GO term matched",
                              fifelse(!go_id %chin% go_terms$go_id, paste("not tested: the term is not in GO.db", go_db_version),
+                             fifelse(set_untested, "set not tested: no DML gene carries a term of the ontology",
                              fifelse(is.na(gene_level_genes_annotated), "not tested: no eligible gene carries the term",
                              fifelse(!tested_term, sprintf("not tested: fewer than %d eligible genes carry the term", config$go_min_genes),
-                             fifelse(gene_level_q_wallenius < config$go_fdr, "enriched", "not enriched")))))]
+                             fifelse(gene_level_q_wallenius < config$go_fdr, "enriched", "not enriched"))))))]
 write_table(named, tab("named_terms_results_3_4_gene_level.csv"))
 print(named[, .(named_terms = .N, enriched_at_gene_level = sum(gene_level_result == "enriched")), by = set])
 

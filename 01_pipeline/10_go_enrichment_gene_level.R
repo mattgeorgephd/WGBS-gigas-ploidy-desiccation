@@ -79,7 +79,9 @@
 #             points, option d50, the ploidy set and the loci in both lists) is
 #             not tested in that ontology and universe: the log says so, its
 #             table go_gene_level_<set>_<id>.csv has no row for them, and its
-#             summary row has dml_genes 0, no term tested and no top term.
+#             summary row has dml_genes 0, no term tested and no top term; in
+#             legacy_top10_at_gene_level.csv every term of it has the status
+#             "set not tested: no DML gene carries a term of the ontology".
 
 suppressPackageStartupMessages(library(here))
 source(here("run_config.R"))
@@ -105,7 +107,7 @@ log_msg("GO.db %s (ontology of %s), topGO %s, goseq %s", as.character(packageVer
 gene_go <- fread(paper_path("08_gene_annotation", "tables", "gene_go_map.csv.gz"), colClasses = c(gene_id = "character"))
 gene2go_all <- split(gene_go$go_id, gene_go$gene_id)
 
-results <- list(); summary_rows <- list(); bias_rows <- list(); term_genes <- list()
+results <- list(); summary_rows <- list(); bias_rows <- list(); term_genes <- list(); not_tested <- list()
 for (mode in an$id) {
   gene_tab <- fread(ann_in(sprintf("gene_table_%s.csv.gz", mode)), colClasses = c(gene_id = "character"))
   gene_tab <- gene_tab[biotype == "protein_coding"]
@@ -135,6 +137,7 @@ for (mode in an$id) {
         dml_genes <- uni[get(paste0("n_dml_", s)) > 0, gene_id]
         if (!any(topGO::genes(td) %in% dml_genes)) {
           log_msg("[%s] %-8s %s %-6s: no gene that holds a DML of the set carries a term of the ontology; not tested", mode, u, ont, s)
+          not_tested[[length(not_tested) + 1]] <- data.table(mode = mode, set = s, ontology = ont, universe = u)
           summary_rows[[length(summary_rows) + 1]] <- data.table(
             mode = mode, set = s, ontology = ont, universe = u, universe_genes = numGenes(td), dml_genes = 0L, terms_tested = 0L,
             fisher_p_below_cutoff = 0L, fisher_q_below_fdr = 0L, wallenius_p_below_cutoff = 0L, wallenius_q_below_fdr = 0L,
@@ -214,10 +217,14 @@ top_check <- legacy_top[, .(set, ontology, legacy_rank = rank, go_id, term, lega
 suffix <- if (an$paper) "eligible" else sprintf("eligible_%s_dml", an$id)
 if (an$paper) top_check <- merge(top_check, pick(an$id, "tested", "tested"), by = c("set", "ontology", "go_id"), all.x = TRUE, sort = FALSE)
 top_check <- merge(top_check, pick(an$id, "eligible", suffix), by = c("set", "ontology", "go_id"), all.x = TRUE, sort = FALSE)
+# A set that was not tested in an ontology (see the Notes) has its own status, for every term.
+not_tested <- if (length(not_tested)) rbindlist(not_tested) else data.table(mode = character(), set = character(), ontology = character(), universe = character())
+set_untested <- paste(top_check$set, top_check$ontology) %in% not_tested[mode == an$id & universe == "eligible", paste(set, ontology)]
 status_of <- function(annotated, q) fifelse(!top_check$go_id %in% known_go, "not in the current ontology",
+                                    fifelse(set_untested, "set not tested: no DML gene carries a term of the ontology",
                                     fifelse(is.na(annotated), "no eligible gene carries it",
                                     fifelse(annotated < config$go_min_genes, "fewer annotated genes than go_min_genes",
-                                    fifelse(q < config$go_fdr, "enriched", "not enriched"))))
+                                    fifelse(q < config$go_fdr, "enriched", "not enriched")))))
 top_check[, gene_level_status := status_of(get(paste0("genes_annotated_", suffix)), get(paste0("q_wallenius_", suffix)))]
 setorder(top_check, set, ontology, legacy_rank)
 write_table(top_check, tab("legacy_top10_at_gene_level.csv"))

@@ -38,7 +38,7 @@
 #             05_manuscript/not_adopted/manuscript_values_summary_by_analysis.csv (one row per analysis and recipe)
 #             05_manuscript/not_adopted/<id>/... and not_adopted/comparisons/... (items)
 #             04_output/not_adopted/13_manuscript_values/tables/expression_errors_by_analysis.csv (analysis, recipe, id,
-#               expression, expression_error),
+#               state "error" or "not evaluable: too few DML", expression, expression_error: the message),
 #               manuscript_items_copied.csv, and session_info.txt
 #
 # Manuscript items: all.
@@ -89,16 +89,22 @@
 #             "not run: <step> not done (stamp)" (the stamp does not list the
 #             step whose table the expression reads), "not run: <step>/<file>
 #             absent" (a table the expression reads has not been made for the
-#             analysis), "not evaluable: too few DML in the analysis" (the
+#             analysis), "not evaluable: too few DML (<message>)" (the
 #             expression failed and read a table of a DML set with fewer than 2
 #             DML, by dml_counts_by_mode.csv of the analysis, or of a set that
 #             step 09 could not test, whose Fisher table has no row, or, when
-#             every set has fewer than 2 DML, any table of steps 05 to 10; for example
-#             a clustering of the loci in both lists at 50 points, option d50;
-#             counted in column not_evaluable of the summary, and not listed as
-#             an error), or "error: <message>". The optional part never stops
-#             the step: its errors are listed in expression_errors_by_analysis.csv,
-#             and a warning line says how many there are.
+#             every set has fewer than 2 DML, any table of steps 05 to 10; or,
+#             failed or not, it read the table go_gene_level_<set>_<A>.csv of a
+#             set that step 10 did not test, which has no row; for example a
+#             clustering of the loci in both lists at 50 points, option d50;
+#             counted in column not_evaluable of the summary), or
+#             "error: <message>". The optional part never stops the step: its
+#             errors and its not evaluable statements, each with its message and
+#             a column state, are listed in expression_errors_by_analysis.csv; a
+#             warning line counts the errors and a second line the statements
+#             that are not evaluable. A failing expression that reads a table of
+#             a small set is not evaluable whatever made it fail, so the message
+#             should be read.
 #           - A row can match and still be wrong science: "matches" means the
 #             pipeline reproduces the number, not that the number means what the
 #             text says. The issue column points to the entry of issues.md that
@@ -263,7 +269,7 @@ if (paper_run) {
       # legacy universe with a term of the ontology). An expression that fails and read a table
       # of such a set (named by the set: dml_ploidy_<A>.csv, legacy_fisher_shared_BP.csv, ...),
       # or, when every set has fewer than 2 DML, any table of steps 05 to 10 of the analysis, is
-      # "not evaluable: too few DML in the analysis", not an error.
+      # "not evaluable: too few DML (<message>)", not an error; the message is kept.
       counts_file <- not_adopted_path(A, "05_differential_methylation", "tables", "dml_counts_by_mode.csv")
       set_n <- if (file.exists(counts_file) && "05" %in% done) {
         k <- fread(counts_file)[mode == A]
@@ -281,12 +287,30 @@ if (paper_run) {
           x <- table_cache[[k]]; !is.null(x) && nrow(x) == 0 }, logical(1))
         any(small | untested | all_small)
       }
+      # Sets that step 10 did not test (no DML gene carries a term of the ontology): their table
+      # go_gene_level_<set>_<A>.csv has no row. Any value computed from such a table, failed or
+      # not, says nothing about the set, and is "not evaluable" as well.
+      sets_not_tested_by_step10 <- function(keys) {
+        k <- keys[grepl("^10_go_enrichment_gene_level/go_gene_level_(ploidy|heat|shared)_", keys)]
+        empty <- vapply(k, function(x) { t <- table_cache[[x]]; !is.null(t) && nrow(t) == 0 }, logical(1))
+        unique(sub("^10_go_enrichment_gene_level/go_gene_level_(ploidy|heat|shared)_.*", "\\1", k[empty]))
+      }
       cfg_a <- modifyList(config, list(min_coverage = a$min_coverage, dml_difference = a$dml_difference))
       scope <- list2env(list(tab = tab, paper_tab = paper_tab, diagnostic = diagnostic, config = cfg_a, A = A), parent = globalenv())
       res <- lapply(recipes, function(r) lapply(map[[r]], function(e) {
         read_log$files <- character(0)
         x <- evaluate(e, scope, empty_is_na = TRUE)
-        x$too_few <- !is.na(x$error) && reads_small_set(read_log$files)
+        # The reason a statement is not evaluable, or NA. The message of a failed expression is kept.
+        x$not_evaluable <- NA_character_
+        if (!is.na(x$error) && reads_small_set(read_log$files)) {
+          x$not_evaluable <- x$error
+        } else if (is.na(x$absent)) {
+          untested <- sets_not_tested_by_step10(read_log$files)
+          if (length(untested) > 0) {
+            x$not_evaluable <- sprintf("step 10 did not test the %s set: no DML gene carries a term of the ontology%s",
+                                       paste(untested, collapse = " and "), if (is.na(x$error)) "" else paste0("; ", x$error))
+          }
+        }
         x
       }))
     }
@@ -295,18 +319,20 @@ if (paper_run) {
       value <- lapply(r, `[[`, "value")
       field <- function(name) vapply(r, function(x) if (is.null(x[[name]])) NA_character_ else x[[name]], character(1))
       empty <- vapply(r, function(x) isTRUE(x$empty), logical(1))
-      too_few <- vapply(r, function(x) isTRUE(x$too_few), logical(1))
+      not_evaluable <- vapply(r, function(x) if (is.null(x$not_evaluable)) NA_character_ else x$not_evaluable, character(1))
+      too_few <- !is.na(not_evaluable)
       ok <- mapply(agrees, map$manuscript_numeric, map$manuscript_value, value, map$tolerance)
       status <- if (nzchar(folder_state)) rep(folder_state, nrow(map)) else
         fifelse(is.na(expressions), "no expression",
         fifelse(!is.na(field("absent")), field("absent"),
-        fifelse(too_few, "not evaluable: too few DML in the analysis",
+        fifelse(too_few, paste0("not evaluable: too few DML (", not_evaluable, ")"),
         fifelse(!is.na(field("error")), paste("error:", field("error")),
         fifelse(empty, "not comparable: no value in this analysis",
         fifelse(is.na(ok), "not comparable", fifelse(ok, "matches", "differs")))))))
       list(regenerated = vapply(value, as_text, character(1)),
            differs = fifelse(status %in% c("matches", "differs"), status == "differs", NA), status = status,
-           error = fifelse(too_few, NA_character_, field("error")))
+           error = fifelse(too_few, not_evaluable, field("error")),
+           state = fifelse(too_few, "not evaluable: too few DML", fifelse(is.na(field("error")), NA_character_, "error")))
     }
     p <- judge(res$paper, map$expression_paper_recipe)
     k <- judge(res$corrected, map$expression_optional)
@@ -314,9 +340,12 @@ if (paper_run) {
                             regenerated = p$regenerated, differs_from_manuscript = p$differs, status = p$status,
                             regenerated_corrected_recipe = k$regenerated, differs_from_manuscript_corrected_recipe = k$differs,
                             status_corrected_recipe = k$status)
-    err <- rbind(data.table(analysis = A, recipe = "paper", id = map$id, expression = map$expression_paper_recipe, expression_error = p$error),
-                 data.table(analysis = A, recipe = "corrected", id = map$id, expression = map$expression_optional, expression_error = k$error))
-    if (any(!is.na(err$expression_error))) error_rows[[A]] <- err[!is.na(expression_error)]
+    # Every failed expression and every statement that is not evaluable, with its message.
+    err <- rbind(data.table(analysis = A, recipe = "paper", id = map$id, state = p$state, expression = map$expression_paper_recipe,
+                            expression_error = p$error),
+                 data.table(analysis = A, recipe = "corrected", id = map$id, state = k$state, expression = map$expression_optional,
+                            expression_error = k$error))
+    if (any(!is.na(err$state))) error_rows[[A]] <- err[!is.na(state)]
   }
   by_analysis <- rbindlist(rows)
   dir.create(manuscript_path("not_adopted"), recursive = TRUE, showWarnings = FALSE)
@@ -336,11 +365,17 @@ if (paper_run) {
   write_table(summary_tab, manuscript_path("not_adopted", "manuscript_values_summary_by_analysis.csv"))
   print(summary_tab)
   errors <- if (length(error_rows)) rbindlist(error_rows) else
-    data.table(analysis = character(0), recipe = character(0), id = character(0), expression = character(0), expression_error = character(0))
+    data.table(analysis = character(0), recipe = character(0), id = character(0), state = character(0), expression = character(0),
+               expression_error = character(0))
   write_table(errors, output_path(file.path("not_adopted", step), "tables", "expression_errors_by_analysis.csv"))
-  if (nrow(errors) > 0) {
+  real <- errors[state == "error"]
+  if (nrow(real) > 0) {
     log_msg("WARNING: %d optional expression(s) failed to run (%s); see 04_output/not_adopted/13_manuscript_values/tables/expression_errors_by_analysis.csv",
-            nrow(errors), paste(sprintf("%s %s", errors$analysis, errors$id), collapse = ", "))
+            nrow(real), paste(sprintf("%s %s", real$analysis, real$id), collapse = ", "))
+  }
+  if (nrow(errors) > nrow(real)) {
+    log_msg("%d optional statement(s) not evaluable because a DML set has too few DML (%s); their messages are in 04_output/not_adopted/13_manuscript_values/tables/expression_errors_by_analysis.csv (state 'not evaluable: too few DML')",
+            nrow(errors) - nrow(real), paste(unique(errors[state != "error", analysis]), collapse = ", "))
   }
 }
 
