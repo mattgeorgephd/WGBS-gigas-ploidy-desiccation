@@ -1,6 +1,8 @@
 analysis,recipe,statements_with_expression,matches,differs,not_comparable,not_run,not_evaluable,errors,state
 corrected,paper,498,272,210,10,6,0,0,evaluated
 corrected,corrected,263,102,161,0,0,0,0,evaluated
+corrected-cov5,paper,498,184,268,38,6,0,2,evaluated
+corrected-cov5,corrected,263,91,119,0,53,0,0,evaluated
 corrected-cov5-ctexcl,paper,498,181,267,44,6,0,0,evaluated
 corrected-cov5-ctexcl,corrected,263,83,122,5,53,0,0,evaluated
 corrected-cov5-ctexcl-d50,paper,498,113,243,129,6,7,0,evaluated
