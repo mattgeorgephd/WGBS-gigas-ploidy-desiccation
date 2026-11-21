@@ -34,7 +34,7 @@ The six combinations of the four settings not run before, each at 20 and 50 poin
 | # | Work | State |
 |---|---|---|
 | 11 | Batch 1 (10x, cached fits): `corrected-ctexcl`, `corrected-ctexcl-d50`, `corrected-mnchisq-ctexcl`, `corrected-mnchisq-ctexcl-d50` | done 20:12 UTC (193b307, ff4c3b8, 4552c84, a2411bb): corrected-ctexcl 635 ploidy, 1,596 heat DML; corrected-mnchisq-ctexcl 12, 118; both d50 versions 1, 2; paper unchanged each time |
-| 12 | Batch 2 (5x, cached fits): `corrected-cov5`, `corrected-cov5-d50`, `corrected-cov5-mnchisq`, `corrected-cov5-mnchisq-d50` | running since 20:12 UTC (scratchpad/rest_batch2.log) |
-| 13 | New 5x fit `cov5-mnchisq` by sequence: `--coverage 5 --overdispersion --steps 4:5` (about 1.7 h; resumes from saved parts if stopped) | after 12 |
+| 12 | Batch 2 (5x, cached fits): `corrected-cov5`, `corrected-cov5-d50`, `corrected-cov5-mnchisq`, `corrected-cov5-mnchisq-d50` | done 21:03 UTC (53266aa, c2101c8, 689bca5, 0fd6514): corrected-cov5 9,791 ploidy, 21,200 heat DML; corrected-cov5-mnchisq 126, 1,133; d50: 6, 92 and 1, 62; paper unchanged each time |
+| 13 | New 5x fit `cov5-mnchisq` by sequence: `--coverage 5 --overdispersion --steps 4:5` (about 1.7 h; resumes from saved parts if stopped) | running since 21:03 UTC (scratchpad/cov5mn_steps04_05.log) |
 | 14 | Batch 4: `cov5-mnchisq`, `cov5-mnchisq-d50`, `cov5-mnchisq-ctexcl`, `cov5-mnchisq-ctexcl-d50` | after 13 |
 | 15 | Comparison table (32 analyses), issues.md (I-51, I-52), READMEs, report; independent check | after 14 |
