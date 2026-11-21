@@ -1,0 +1,105 @@
+mode,set,n_loci,track,n_overlap,pct_of_loci,legacy_share_pct,track_label
+cov5-mnchisq-ctexcl,all analysed CpGs,2153017,gene,1505999,69.9483097439547,,genes
+cov5-mnchisq-ctexcl,all analysed CpGs,2153017,mRNA,1457328,67.6877144955196,,mRNA transcripts
+cov5-mnchisq-ctexcl,all analysed CpGs,2153017,exon,747499,34.7186761646564,,exons
+cov5-mnchisq-ctexcl,all analysed CpGs,2153017,CDS,561418,26.0758739944924,20.9289876197115,coding sequence
+cov5-mnchisq-ctexcl,all analysed CpGs,2153017,exon_UTR,186096,8.64349886693881,6.93743499509784,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+cov5-mnchisq-ctexcl,all analysed CpGs,2153017,intron,761758,35.3809561187859,28.3974217984037,introns
+cov5-mnchisq-ctexcl,all analysed CpGs,2153017,nonCDS,1408516,65.4205702974013,,complement of the exon track (not of coding sequence)
+cov5-mnchisq-ctexcl,all analysed CpGs,2153017,lncRNA,60762,2.82217929537946,2.26513425958717,long non-coding RNA
+cov5-mnchisq-ctexcl,all analysed CpGs,2153017,upstream_flank,91819,4.26466674438706,3.4229018561113,upstream flanks (up to 1 kb)
+cov5-mnchisq-ctexcl,all analysed CpGs,2153017,downstream_flank,70455,3.27238475125835,2.62647763831366,downstream flanks (up to 1 kb)
+cov5-mnchisq-ctexcl,all analysed CpGs,2153017,flanks,154818,7.19074675211575,,upstream and downstream flanks together
+cov5-mnchisq-ctexcl,all analysed CpGs,2153017,intergenic,492271,22.864241201997,18.3512706477937,intergenic regions
+cov5-mnchisq-ctexcl,all analysed CpGs,2153017,TE,457911,21.2683411231774,17.0703711849811,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+cov5-mnchisq-ctexcl,eligible CpGs,318330,gene,288870,90.7454528319668,,genes
+cov5-mnchisq-ctexcl,eligible CpGs,318330,mRNA,283986,89.2111959287532,,mRNA transcripts
+cov5-mnchisq-ctexcl,eligible CpGs,318330,exon,118463,37.2138975277228,,exons
+cov5-mnchisq-ctexcl,eligible CpGs,318330,CDS,96200,30.2202117299658,23.5385082164564,coding sequence
+cov5-mnchisq-ctexcl,eligible CpGs,318330,exon_UTR,22267,6.99494235541733,5.4483571980856,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+cov5-mnchisq-ctexcl,eligible CpGs,318330,intron,171145,53.7633901925675,41.8762784688714,introns
+cov5-mnchisq-ctexcl,eligible CpGs,318330,nonCDS,200581,63.0103980146389,,complement of the exon track (not of coding sequence)
+cov5-mnchisq-ctexcl,eligible CpGs,318330,lncRNA,8922,2.80275186127603,2.18306206140566,long non-coding RNA
+cov5-mnchisq-ctexcl,eligible CpGs,318330,upstream_flank,2471,0.776238494643923,0.604611785892555,upstream flanks (up to 1 kb)
+cov5-mnchisq-ctexcl,eligible CpGs,318330,downstream_flank,6599,2.07300600006283,1.61466336507688,downstream flanks (up to 1 kb)
+cov5-mnchisq-ctexcl,eligible CpGs,318330,flanks,8581,2.69563032073634,,upstream and downstream flanks together
+cov5-mnchisq-ctexcl,eligible CpGs,318330,intergenic,20891,6.5626865202777,5.11167333835749,intergenic regions
+cov5-mnchisq-ctexcl,eligible CpGs,318330,TE,80197,25.193038670562,19.622845565854,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+cov5-mnchisq-ctexcl,ploidy DML,96,gene,89,92.7083333333333,,genes
+cov5-mnchisq-ctexcl,ploidy DML,96,mRNA,89,92.7083333333333,,mRNA transcripts
+cov5-mnchisq-ctexcl,ploidy DML,96,exon,44,45.8333333333333,,exons
+cov5-mnchisq-ctexcl,ploidy DML,96,CDS,39,40.625,33.9130434782609,coding sequence
+cov5-mnchisq-ctexcl,ploidy DML,96,exon_UTR,5,5.20833333333333,4.34782608695652,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+cov5-mnchisq-ctexcl,ploidy DML,96,intron,45,46.875,39.1304347826087,introns
+cov5-mnchisq-ctexcl,ploidy DML,96,nonCDS,52,54.1666666666667,,complement of the exon track (not of coding sequence)
+cov5-mnchisq-ctexcl,ploidy DML,96,lncRNA,1,1.04166666666667,0.869565217391304,long non-coding RNA
+cov5-mnchisq-ctexcl,ploidy DML,96,upstream_flank,0,0,0,upstream flanks (up to 1 kb)
+cov5-mnchisq-ctexcl,ploidy DML,96,downstream_flank,0,0,0,downstream flanks (up to 1 kb)
+cov5-mnchisq-ctexcl,ploidy DML,96,flanks,0,0,,upstream and downstream flanks together
+cov5-mnchisq-ctexcl,ploidy DML,96,intergenic,7,7.29166666666667,6.08695652173913,intergenic regions
+cov5-mnchisq-ctexcl,ploidy DML,96,TE,18,18.75,15.6521739130435,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+cov5-mnchisq-ctexcl,heat DML,923,gene,835,90.465872156013,,genes
+cov5-mnchisq-ctexcl,heat DML,923,mRNA,827,89.5991332611051,,mRNA transcripts
+cov5-mnchisq-ctexcl,heat DML,923,exon,386,41.8201516793066,,exons
+cov5-mnchisq-ctexcl,heat DML,923,CDS,317,34.3445287107259,26.3070539419087,coding sequence
+cov5-mnchisq-ctexcl,heat DML,923,exon_UTR,69,7.47562296858072,5.72614107883817,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+cov5-mnchisq-ctexcl,heat DML,923,intron,451,48.8624052004334,37.4273858921162,introns
+cov5-mnchisq-ctexcl,heat DML,923,nonCDS,539,58.3965330444204,,complement of the exon track (not of coding sequence)
+cov5-mnchisq-ctexcl,heat DML,923,lncRNA,13,1.40845070422535,1.07883817427386,long non-coding RNA
+cov5-mnchisq-ctexcl,heat DML,923,upstream_flank,14,1.51679306608884,1.16182572614108,upstream flanks (up to 1 kb)
+cov5-mnchisq-ctexcl,heat DML,923,downstream_flank,24,2.60021668472373,1.99170124481328,downstream flanks (up to 1 kb)
+cov5-mnchisq-ctexcl,heat DML,923,flanks,35,3.7919826652221,,upstream and downstream flanks together
+cov5-mnchisq-ctexcl,heat DML,923,intergenic,53,5.7421451787649,4.39834024896266,intergenic regions
+cov5-mnchisq-ctexcl,heat DML,923,TE,264,28.602383531961,21.9087136929461,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+cov5-mnchisq-ctexcl,shared,19,gene,18,94.7368421052632,,genes
+cov5-mnchisq-ctexcl,shared,19,mRNA,18,94.7368421052632,,mRNA transcripts
+cov5-mnchisq-ctexcl,shared,19,exon,6,31.5789473684211,,exons
+cov5-mnchisq-ctexcl,shared,19,CDS,5,26.3157894736842,18.5185185185185,coding sequence
+cov5-mnchisq-ctexcl,shared,19,exon_UTR,1,5.26315789473684,3.7037037037037,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+cov5-mnchisq-ctexcl,shared,19,intron,12,63.1578947368421,44.4444444444444,introns
+cov5-mnchisq-ctexcl,shared,19,nonCDS,13,68.421052631579,,complement of the exon track (not of coding sequence)
+cov5-mnchisq-ctexcl,shared,19,lncRNA,0,0,0,long non-coding RNA
+cov5-mnchisq-ctexcl,shared,19,upstream_flank,0,0,0,upstream flanks (up to 1 kb)
+cov5-mnchisq-ctexcl,shared,19,downstream_flank,0,0,0,downstream flanks (up to 1 kb)
+cov5-mnchisq-ctexcl,shared,19,flanks,0,0,,upstream and downstream flanks together
+cov5-mnchisq-ctexcl,shared,19,intergenic,1,5.26315789473684,3.7037037037037,intergenic regions
+cov5-mnchisq-ctexcl,shared,19,TE,8,42.1052631578947,29.6296296296296,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+cov5-mnchisq-ctexcl,"shared, both hyper",8,gene,7,87.5,,genes
+cov5-mnchisq-ctexcl,"shared, both hyper",8,mRNA,7,87.5,,mRNA transcripts
+cov5-mnchisq-ctexcl,"shared, both hyper",8,exon,1,12.5,,exons
+cov5-mnchisq-ctexcl,"shared, both hyper",8,CDS,1,12.5,7.69230769230769,coding sequence
+cov5-mnchisq-ctexcl,"shared, both hyper",8,exon_UTR,0,0,0,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+cov5-mnchisq-ctexcl,"shared, both hyper",8,intron,6,75,46.1538461538462,introns
+cov5-mnchisq-ctexcl,"shared, both hyper",8,nonCDS,7,87.5,,complement of the exon track (not of coding sequence)
+cov5-mnchisq-ctexcl,"shared, both hyper",8,lncRNA,0,0,0,long non-coding RNA
+cov5-mnchisq-ctexcl,"shared, both hyper",8,upstream_flank,0,0,0,upstream flanks (up to 1 kb)
+cov5-mnchisq-ctexcl,"shared, both hyper",8,downstream_flank,0,0,0,downstream flanks (up to 1 kb)
+cov5-mnchisq-ctexcl,"shared, both hyper",8,flanks,0,0,,upstream and downstream flanks together
+cov5-mnchisq-ctexcl,"shared, both hyper",8,intergenic,1,12.5,7.69230769230769,intergenic regions
+cov5-mnchisq-ctexcl,"shared, both hyper",8,TE,5,62.5,38.4615384615385,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+cov5-mnchisq-ctexcl,"shared, both hypo",8,gene,8,100,,genes
+cov5-mnchisq-ctexcl,"shared, both hypo",8,mRNA,8,100,,mRNA transcripts
+cov5-mnchisq-ctexcl,"shared, both hypo",8,exon,4,50,,exons
+cov5-mnchisq-ctexcl,"shared, both hypo",8,CDS,3,37.5,27.2727272727273,coding sequence
+cov5-mnchisq-ctexcl,"shared, both hypo",8,exon_UTR,1,12.5,9.09090909090909,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+cov5-mnchisq-ctexcl,"shared, both hypo",8,intron,4,50,36.3636363636364,introns
+cov5-mnchisq-ctexcl,"shared, both hypo",8,nonCDS,4,50,,complement of the exon track (not of coding sequence)
+cov5-mnchisq-ctexcl,"shared, both hypo",8,lncRNA,0,0,0,long non-coding RNA
+cov5-mnchisq-ctexcl,"shared, both hypo",8,upstream_flank,0,0,0,upstream flanks (up to 1 kb)
+cov5-mnchisq-ctexcl,"shared, both hypo",8,downstream_flank,0,0,0,downstream flanks (up to 1 kb)
+cov5-mnchisq-ctexcl,"shared, both hypo",8,flanks,0,0,,upstream and downstream flanks together
+cov5-mnchisq-ctexcl,"shared, both hypo",8,intergenic,0,0,0,intergenic regions
+cov5-mnchisq-ctexcl,"shared, both hypo",8,TE,3,37.5,27.2727272727273,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+cov5-mnchisq-ctexcl,"shared, opposite",3,gene,3,100,,genes
+cov5-mnchisq-ctexcl,"shared, opposite",3,mRNA,3,100,,mRNA transcripts
+cov5-mnchisq-ctexcl,"shared, opposite",3,exon,1,33.3333333333333,,exons
+cov5-mnchisq-ctexcl,"shared, opposite",3,CDS,1,33.3333333333333,33.3333333333333,coding sequence
+cov5-mnchisq-ctexcl,"shared, opposite",3,exon_UTR,0,0,0,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+cov5-mnchisq-ctexcl,"shared, opposite",3,intron,2,66.6666666666667,66.6666666666667,introns
+cov5-mnchisq-ctexcl,"shared, opposite",3,nonCDS,2,66.6666666666667,,complement of the exon track (not of coding sequence)
+cov5-mnchisq-ctexcl,"shared, opposite",3,lncRNA,0,0,0,long non-coding RNA
+cov5-mnchisq-ctexcl,"shared, opposite",3,upstream_flank,0,0,0,upstream flanks (up to 1 kb)
+cov5-mnchisq-ctexcl,"shared, opposite",3,downstream_flank,0,0,0,downstream flanks (up to 1 kb)
+cov5-mnchisq-ctexcl,"shared, opposite",3,flanks,0,0,,upstream and downstream flanks together
+cov5-mnchisq-ctexcl,"shared, opposite",3,intergenic,0,0,0,intergenic regions
+cov5-mnchisq-ctexcl,"shared, opposite",3,TE,0,0,0,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
