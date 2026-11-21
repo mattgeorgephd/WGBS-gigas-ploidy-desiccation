@@ -1,0 +1,13 @@
+sequence,n_cpg_analysed,ploidy_dml,ploidy_dml_hyper,ploidy_dml_hypo,heat_dml,heat_dml_hyper,heat_dml_hypo,shared,shared_hyper,shared_hypo,n_genes,mode,pct_of_ploidy_dml,pct_of_heat_dml,ploidy_dml_per_1000_cpg,heat_dml_per_1000_cpg
+LG1,251428,0,0,0,4,3,1,0,0,0,3422,corrected-cov5-mnchisq-ctexcl-d50,0,8.51063829787234,0,0.0159091270661979
+LG2,99558,0,0,0,1,0,1,0,0,0,3521,corrected-cov5-mnchisq-ctexcl-d50,0,2.12765957446809,0,0.0100443962313425
+LG3,266407,1,0,1,10,5,5,0,0,0,3790,corrected-cov5-mnchisq-ctexcl-d50,100,21.2765957446809,0.00375365512167473,0.0375365512167473
+LG4,176733,0,0,0,2,0,2,0,0,0,3115,corrected-cov5-mnchisq-ctexcl-d50,0,4.25531914893617,0,0.0113165056893732
+LG5,157639,0,0,0,3,2,1,0,0,0,3909,corrected-cov5-mnchisq-ctexcl-d50,0,6.38297872340426,0,0.0190308235906089
+LG6,277182,0,0,0,10,4,6,0,0,0,4117,corrected-cov5-mnchisq-ctexcl-d50,0,21.2765957446809,0,0.0360773787619687
+LG7,285610,0,0,0,8,3,5,0,0,0,4087,corrected-cov5-mnchisq-ctexcl-d50,0,17.0212765957447,0,0.0280102237316621
+LG8,161407,0,0,0,2,1,1,0,0,0,3603,corrected-cov5-mnchisq-ctexcl-d50,0,4.25531914893617,0,0.012391036324323
+LG9,88714,0,0,0,0,0,0,0,0,0,1826,corrected-cov5-mnchisq-ctexcl-d50,0,0,0,0
+LG10,268675,0,0,0,5,3,2,0,0,0,3701,corrected-cov5-mnchisq-ctexcl-d50,0,10.6382978723404,0,0.0186098446077975
+unplaced,89614,0,0,0,2,0,2,0,0,0,3117,corrected-cov5-mnchisq-ctexcl-d50,0,4.25531914893617,0,0.0223179413930859
+mitochondrial,2,0,0,0,0,0,0,0,0,0,0,corrected-cov5-mnchisq-ctexcl-d50,0,0,0,0
