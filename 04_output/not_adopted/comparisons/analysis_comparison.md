@@ -7,6 +7,7 @@ Written by `01_pipeline/optional/compare_analyses.R` from `analyses_included.csv
 | legacy (paper) | 10x | no | none | kept | 20 | 480,579 | 1,038 (442/596) | 2,351 (1,150/1,201) | 200 (28/49/123) | 61.5 |
 | ctexcl | 10x | no | none | excluded | 20 | 452,159 | 717 (302/415) | 1,667 (826/841) | 139 (16/26/97) | 69.8 |
 | mnchisq | 10x | no | MN, chi-squared | kept | 20 | 480,579 | 14 (9/5) | 185 (95/90) | 4 (1/2/1) | 25.0 |
+| mnchisq-ctexcl | 10x | no | MN, chi-squared | excluded | 20 | 452,159 | 12 (7/5) | 142 (75/67) | 4 (1/2/1) | 25.0 |
 | corrected | 10x | yes | none | kept | 20 | 454,555 | 952 (430/522) | 2,273 (1,089/1,184) | 159 (27/49/83) | 52.2 |
 | corrected-mnchisq | 10x | yes | MN, chi-squared | kept | 20 | 454,555 | 14 (9/5) | 157 (84/73) | 4 (1/2/1) | 25.0 |
 | cov5 | 5x | no | none | kept | 20 | 2,297,236 | 9,942 (4,408/5,534) | 21,361 (10,090/11,271) | 1,784 (318/485/981) | 55.0 |
@@ -16,6 +17,7 @@ Written by `01_pipeline/optional/compare_analyses.R` from `analyses_included.csv
 | d50 | 10x | no | none | kept | 50 | 480,579 | 1 (0/1) | 4 (3/1) | 0 (0/0/0) |  |
 | ctexcl-d50 | 10x | no | none | excluded | 50 | 452,159 | 1 (0/1) | 2 (1/1) | 0 (0/0/0) |  |
 | mnchisq-d50 | 10x | no | MN, chi-squared | kept | 50 | 480,579 | 1 (0/1) | 4 (3/1) | 0 (0/0/0) |  |
+| mnchisq-ctexcl-d50 | 10x | no | MN, chi-squared | excluded | 50 | 452,159 | 1 (0/1) | 2 (1/1) | 0 (0/0/0) |  |
 | corrected-d50 | 10x | yes | none | kept | 50 | 454,555 | 1 (0/1) | 4 (3/1) | 0 (0/0/0) |  |
 | corrected-mnchisq-d50 | 10x | yes | MN, chi-squared | kept | 50 | 454,555 | 1 (0/1) | 4 (3/1) | 0 (0/0/0) |  |
 | cov5-d50 | 5x | no | none | kept | 50 | 2,297,236 | 6 (2/4) | 92 (41/51) | 0 (0/0/0) |  |
