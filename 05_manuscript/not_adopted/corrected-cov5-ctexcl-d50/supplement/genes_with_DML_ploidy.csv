@@ -1,0 +1,4 @@
+gene_id,gene,biotype,product,chr,gene_start,gene_end,strand,n_transcripts,n_go_terms,in_legacy_universe,n_cpg_tested,n_cpg_eligible,n_dml,n_hyper,n_hypo,min_meth_diff,max_meth_diff,dml_positions
+105334154,LOC105334154,protein_coding,uncharacterized LOC105334154,NC_047561.1,57102807,57118830,-,2,0,FALSE,18,8,2,0,2,-51.1886924383179,-50.1879178700004,57107606;57107660
+105337663,LOC105337663,protein_coding,myosin-9,NC_047561.1,6738639,6743417,+,1,0,FALSE,30,9,1,0,1,-50.5867215645908,-50.5867215645908,6740817
+105347080,LOC105347080,protein_coding,calcyphosin-2-like,NC_047563.1,40244470,40257738,-,1,3,FALSE,43,13,1,1,0,51.2778904665314,51.2778904665314,40252760
