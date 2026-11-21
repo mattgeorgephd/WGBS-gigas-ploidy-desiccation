@@ -18,10 +18,10 @@ Long jobs run as tracked background tasks, one 5x fit at a time; the machine has
 | 2 | 50-point switch (`--difference 50`, token `d50`), built by an agent, then an independent review | built f93496c, review fixes 797bfda, re-review fixes 033411b (done). At 10x: 1 ploidy and 4 heat DML. A d50 run reruns step 04 (9.2 GB), so not beside a 5x fit |
 | 3 | `corrected-cov5-mnchisq-ctexcl` steps 4:5 (5x fit `corrected-cov5-mnchisq`) | done 10:19 UTC (5a0ea9f): ploidy 96, heat 875 DML (before C-to-T exclusion 126 and 1,133); 89 min, peak 9.04 GB |
 | 4 | Steps 6:9,13 of 1 and 3 | done 10:31 UTC (cdf9742, c73b4a5, fc6349b); paper files unchanged both times; step 13: only the 2 known cov5 errors |
-| 5 | d50 version of every analysis: legacy, corrected, mnchisq, corrected-mnchisq, ctexcl, cov5, cov5-ctexcl, corrected-cov5-ctexcl, corrected-cov5-mnchisq-ctexcl | batch 1 (the five at 10x) done 11:28 UTC: d50 c302b2a, corrected-d50 a5ae0f1, mnchisq-d50 6573719, corrected-mnchisq-d50 a7415ae, ctexcl-d50 a1b6b6f; about 11 min each, paper files unchanged each time; step 13: 10 statements not evaluable per d50 analysis (as documented), only the 2 known cov5 errors. Batch 2 (cov5-d50, cov5-ctexcl-d50) running since 11:29; batch 3 (corrected-cov5-ctexcl-d50, corrected-cov5-mnchisq-ctexcl-d50) after it |
-| 6 | Comparison table of all analyses at 20 and 50 points (script, CSV, README table) | script committed (658b730); run after 5 |
-| 7 | Results into issues.md, then an independent review | after 6 |
-| 8 | Final default run with tests/check_paper_outputs.R | after 7 |
+| 5 | d50 version of every analysis: legacy, corrected, mnchisq, corrected-mnchisq, ctexcl, cov5, cov5-ctexcl, corrected-cov5-ctexcl, corrected-cov5-mnchisq-ctexcl | done 12:21 UTC: all nine committed (c302b2a, a5ae0f1, 6573719, a7415ae, a1b6b6f, a6517c5, d84d8ff, b6d827b, 81d98e5); 11 to 14 min each; paper files unchanged each time; step 13: 3 to 10 statements not evaluable per d50 analysis (documented state), only the 2 known cov5 errors |
+| 6 | Comparison table of all analyses at 20 and 50 points (script, CSV, README table) | done 12:25 UTC (6b98683): 18 analyses; table in 04_output/not_adopted/README.md |
+| 7 | Results into issues.md, then an independent review | written (c0dfb9b: I-51 update, I-52 new); independent review running since 12:40 UTC |
+| 8 | Final default run with tests/check_paper_outputs.R | `Rscript run_pipeline.R` running since 12:41 UTC (log scratchpad/final_default_run.log; expected snapshot scratchpad/expected_final_default.csv) |
 | 9 | `renv.lock`, run from a clean clone, final README pass (task 17) | after 8 |
 | 10 | Final error checks: every test in tests/, the outputs of every analysis, documentation consistency; a report for the author | last |
 
