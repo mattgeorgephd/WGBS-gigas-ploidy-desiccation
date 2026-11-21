@@ -1,0 +1,13 @@
+sequence,n_cpg_analysed,ploidy_dml,ploidy_dml_hyper,ploidy_dml_hypo,heat_dml,heat_dml_hyper,heat_dml_hypo,shared,shared_hyper,shared_hypo,n_genes,mode,pct_of_ploidy_dml,pct_of_heat_dml,ploidy_dml_per_1000_cpg,heat_dml_per_1000_cpg
+LG1,51461,0,0,0,0,0,0,0,0,0,3422,mnchisq-ctexcl-d50,0,0,0,0
+LG2,25013,0,0,0,0,0,0,0,0,0,3521,mnchisq-ctexcl-d50,0,0,0,0
+LG3,55253,1,0,1,1,0,1,0,0,0,3790,mnchisq-ctexcl-d50,100,50,0.0180985647838126,0.0180985647838126
+LG4,35470,0,0,0,0,0,0,0,0,0,3115,mnchisq-ctexcl-d50,0,0,0,0
+LG5,34641,0,0,0,0,0,0,0,0,0,3909,mnchisq-ctexcl-d50,0,0,0,0
+LG6,57933,0,0,0,0,0,0,0,0,0,4117,mnchisq-ctexcl-d50,0,0,0,0
+LG7,58275,0,0,0,0,0,0,0,0,0,4087,mnchisq-ctexcl-d50,0,0,0,0
+LG8,35622,0,0,0,1,1,0,0,0,0,3603,mnchisq-ctexcl-d50,0,50,0,0.0280725394419179
+LG9,18372,0,0,0,0,0,0,0,0,0,1826,mnchisq-ctexcl-d50,0,0,0,0
+LG10,56516,0,0,0,0,0,0,0,0,0,3701,mnchisq-ctexcl-d50,0,0,0,0
+unplaced,23243,0,0,0,0,0,0,0,0,0,3117,mnchisq-ctexcl-d50,0,0,0,0
+mitochondrial,360,0,0,0,0,0,0,0,0,0,0,mnchisq-ctexcl-d50,0,0,0,0
