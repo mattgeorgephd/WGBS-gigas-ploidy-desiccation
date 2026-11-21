@@ -60,7 +60,7 @@ Measured on 4 cores and 15 GB of memory, with the downloads already in the cache
 | 01 | 1 to 2 | First run downloads 10.5 GB (plus the 31 MB GO.db archive) |
 | 02, 03 | under 1 | |
 | 04 | 12 | About 9.5 GB of memory (peak resident size) |
-| 05 | 18 | Both modes of the former layout at `WGBS_CORES=4`; about 10 GB of memory. One fit (the paper's, or one optional analysis) about half of that: at `WGBS_CORES=2` measured on 2026-11-20 in the table below. About half a minute when the fit comes from the cache |
+| 05 | 18 | Both modes of the former layout at `WGBS_CORES=4`; about 10 GB of memory. One fit (the paper's, or one optional analysis) about half of that: at `WGBS_CORES=2` measured on 2026-11-20 in the table below. About half a minute when the fit comes from the cache. An optional analysis at 5x (`--coverage 5`, fitted by sequence): about 3.2 hours at `WGBS_CORES=1` and 1.6 hours at `WGBS_CORES=2`, from one linkage group measured on 2026-11-20 (peak 8.3 GB during the import, 6.6 GB during a test on 2 cores); a stopped run goes on from its saved parts |
 | 06, 07, 08 | under 1 each | |
 | 09 | 3 | |
 | 10 | 3 | Optional (`--gene-level-go`), per analysis |

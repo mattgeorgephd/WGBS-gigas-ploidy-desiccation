@@ -203,9 +203,10 @@ plan_lines <- c(
                                       vapply(setdiff(numbers, intersect(selected, steps_of_kind)), reason_not, "")), collapse = "; ")),
   sprintf("C-to-T variant list (04_output/not_adopted/ct_variants/tables/): %s", if (variant_list) "present" else "absent"),
   if (!a$paper) "Time and memory (measured 2026-11-20): step 04 7 to 9 minutes, 9.2 GB; step 05 22 to 24 minutes per new fit at WGBS_CORES=2 (about 10 GB with its workers; under a minute from the cache); steps 06 to 09 about 4 minutes",
-  if ("cov5" %in% a$tokens) paste("WARNING: an analysis at 5x tests about 2.3 million CpGs instead of 0.48 million. Step 05 is estimated at",
-                                  "1.7 to 2 hours per fit at WGBS_CORES=2 and 9 to 14 GB of memory (not measured): run the pilot of",
-                                  "settings_build_spec.md section 9 first, with WGBS_CORES=1 and nothing else running."),
+  if ("cov5" %in% a$tokens) paste("NOTE: an analysis at 5x tests about 2.3 million CpGs instead of 0.48 million. Step 05 fits it by sequence",
+                                  "and saves each part: about 3.2 hours at WGBS_CORES=1 and 1.6 hours at WGBS_CORES=2 (measured on one",
+                                  "linkage group on 2026-11-20; peak 8.3 GB in the import, 6.6 GB in a test on 2 cores). A run that is",
+                                  "stopped goes on from the saved parts when the same command is run again."),
   if (gene_level) "Step 10 about 3 minutes; step 11 (gene-level part) about 2 minutes")
 cat("Plan of this run\n", paste0("  ", plan_lines, collapse = "\n"), "\n", sep = "")
 if (opt$plan) quit(status = 0)

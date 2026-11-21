@@ -126,6 +126,19 @@
 #             minutes at WGBS_CORES=4. The import needs about 4 GB. Each library's kept
 #             CpGs are dropped as soon as its object is built, and the heat
 #             object is built after the ploidy test; neither changes a number.
+#           - Fit by sequence, measured on 2026-11-20 (4 cores, 15 GB, nothing
+#             else running; memory is the proportional set size summed over the
+#             R process and its workers, sampled every second). At 10x on 4
+#             cores: 11 parts per contrast, 15 minutes for the paper's analysis
+#             and 16 for mnchisq, the import 2 minutes. At 5x (2,297,236 CpGs; 13
+#             parts per contrast: the ten linkage groups, 96,732 to 307,802 CpGs,
+#             and three groups of other sequences): the import 3.1 to 3.4
+#             minutes with a peak of 8.3 GB, in a forked process that gives its
+#             memory back when it ends; the ploidy test of NC_047559.1 (270,178
+#             CpGs) 11.1 minutes on 1 core (peak 5.0 GB) and 5.7 minutes on 2
+#             cores (peak 6.6 GB). The whole fit at 5x is thus about 3.2 hours on
+#             1 core and 1.6 hours on 2 cores, plus a few minutes to assemble
+#             and write it.
 #           - A fit is kept in the cache folder and reused only while what it
 #             was made from is unchanged: the fit id, the coverage settings and
 #             the model (overdispersion and test),
@@ -399,10 +412,23 @@ fit_by_sequence <- function(a, fingerprint) {
   file <- part_file("united")
   imp <- saved(file, function(x) is(x$united, "methylBase") && is.data.frame(x$filtering))
   if (is.null(imp)) {
+    # Where R can fork, the import runs in a forked process that saves it and
+    # exits, and this process reads the saved file: the memory of the import
+    # (about 8 GB at 5x) is then given back before the tests start, instead of
+    # staying in this process, where every worker of the tests would inherit it.
     t1 <- Sys.time(); watch <- memory_watch_start()
-    imp <- c(import_united(a), list(fingerprint_md5 = fp))
+    make_import <- function() { save_rds_atomic(c(import_united(a), list(fingerprint_md5 = fp)), file); TRUE }
+    if (.Platform$OS.type == "unix") {
+      done <- parallel::mccollect(parallel::mcparallel(make_import()))[[1]]
+      if (!isTRUE(done)) stop("The import of the analysis '", mode, "' failed: ",
+                              if (inherits(done, "try-error")) conditionMessage(attr(done, "condition")) else "no result (out of memory?)",
+                              call. = FALSE)
+    } else {
+      make_import()
+    }
     peak <- memory_watch_stop(watch)
-    save_rds_atomic(imp, file)
+    imp <- readRDS(file)
+    stopifnot(identical(imp$fingerprint_md5, fp), is(imp$united, "methylBase"))
     log_msg("[%s] import saved as %s/%s: %.1f min, peak memory %s", mode, basename(dir), basename(file),
             as.numeric(difftime(Sys.time(), t1, units = "mins")), gb(peak))
   } else {
