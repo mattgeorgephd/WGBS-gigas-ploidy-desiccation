@@ -69,7 +69,7 @@ WGBS-gigas-ploidy-desiccation/
 | `08_archive/` | Legacy code, outputs, figures, slides, with a guide to which legacy script produced which manuscript item | [08_archive/README.md](08_archive/README.md) |
 | `tests/` | Tests of the settings layout (settings, paper bytes, optional runs, step 13); not run by the pipeline | headers of the scripts |
 
-At the root: `run_config.R` is the single control surface (thresholds, the optional analyses, cache location, and the settings of each step) and `run_pipeline.R` runs the numbered steps in order, each in a fresh R process. Every script reads `run_config.R` first, and the file checks the settings of the analysis: a value that cannot work (an unknown optional analysis, a change of one of the five frozen settings of the paper, a `WGBS_CORES` that is empty or not a whole number, a threshold, tolerance or seed out of range) stops the script at once with a message that names the setting. The sizes, colours and label placement of the figures, and the facts it records about the draft and the legacy files, are not checked; the header of `run_config.R` lists what is not. `.gitattributes` tells git to store and check out the tables and every input exactly as they are, so that a checkout on Windows holds the same bytes. Still to be added: the `renv` lockfile.
+At the root: `run_config.R` is the single control surface (thresholds, the optional analyses, cache location, and the settings of each step) and `run_pipeline.R` runs the numbered steps in order, each in a fresh R process. Every script reads `run_config.R` first, and the file checks the settings of the analysis: a value that cannot work (an unknown optional analysis, a change of one of the five frozen settings of the paper, a `WGBS_CORES` that is empty or not a whole number, a threshold, tolerance or seed out of range) stops the script at once with a message that names the setting. The sizes, colours and label placement of the figures, and the facts it records about the draft and the legacy files, are not checked; the header of `run_config.R` lists what is not. `.gitattributes` tells git to store and check out the tables and every input exactly as they are, so that a checkout on Windows holds the same bytes. `renv.lock` records the package versions (step 1 of Running the pipeline).
 
 ### How paths work
 
@@ -97,7 +97,12 @@ Other locations, for reference:
 
 Steps 01 to 13 run end to end (see the status column in [`01_pipeline/README.md`](01_pipeline/README.md)).
 
-1. Install R (4.3 or later) and the packages. Until the `renv` lockfile is added, the package list is the one in `07_documentation/cloud_environment_setup.sh`, which sets up a clean Ubuntu 24.04 machine (R 4.3.3, Bioconductor 3.18).
+1. Install R 4.3.3 and the packages. `renv.lock` at the root records the 201 packages the pipeline ran with (R 4.3.3, Bioconductor 3.18, methylKit 1.28.0, among them the optional analyses' Rsamtools and GenomicAlignments). The project does not activate `renv` (there is no `.Rprofile`), so a library is restored explicitly, from the repository root:
+   ```r
+   install.packages("renv")
+   renv::restore(lockfile = "renv.lock", library = .libPaths()[1], prompt = FALSE)
+   ```
+   On Linux several packages need system libraries first (libcurl, libxml2, libssl, zlib, libbz2, liblzma, libglpk; the `apt-get` line of `07_documentation/cloud_environment_setup.sh` lists them). That script is how the machine of the recorded runs was set up (Ubuntu 24.04: Ubuntu's R packages and Bioconductor 3.18, not pinned), and `renv.lock` is a snapshot of the library it produced. A restore from the lockfile on a clean machine has not yet been tested.
 2. Run `Rscript run_pipeline.R` for everything or `Rscript run_pipeline.R --steps 6:10` for a subset (the selection is one word without spaces, such as `5:7`, `3,12` or `2:3,6:10`; anything else on the command line stops the run before a step starts). Or open `WGBS-gigas-ploidy-desiccation.Rproj` and source the numbered scripts in `01_pipeline/` one at a time, each in a fresh R session.
 
 The first run downloads 10.5 GB (plus the 31 MB GO.db archive). Step 04 needs about 9.5 GB of memory and step 05 about 10 GB with `WGBS_CORES=4`; together they take about half an hour on four cores; every other step takes a few minutes or less and runs from files in the repository. To use the outputs already in the repository and skip the heavy steps, start at step 06.
