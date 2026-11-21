@@ -53,3 +53,21 @@ mnchisq,shared,CC,eligible,5738,3,642,4,0,4,0,0.670729124118804,CD95 death-induc
 mnchisq,ploidy,MF,eligible,5277,7,913,5,0,6,0,1,death receptor binding,3.18.0,2023-07-27
 mnchisq,heat,MF,eligible,5277,98,913,8,0,4,0,1,microtubule binding,3.18.0,2023-07-27
 mnchisq,shared,MF,eligible,5277,3,913,6,0,6,0,1,death receptor binding,3.18.0,2023-07-27
+mnchisq-ctexcl,ploidy,BP,tested,11281,7,6801,56,0,55,0,1,positive regulation of leukocyte differentiation,3.18.0,2023-07-27
+mnchisq-ctexcl,heat,BP,tested,11281,81,6801,114,0,110,0,0.0794701135449142,membrane organization,3.18.0,2023-07-27
+mnchisq-ctexcl,shared,BP,tested,11281,3,6801,91,0,91,0,0.151321191007913,positive regulation of leukocyte differentiation,3.18.0,2023-07-27
+mnchisq-ctexcl,ploidy,CC,tested,11931,8,794,6,0,8,0,0.837277081578181,ripoptosome,3.18.0,2023-07-27
+mnchisq-ctexcl,heat,CC,tested,11931,83,794,30,8,32,11,0.00334905577421981,organelle,3.18.0,2023-07-27
+mnchisq-ctexcl,shared,CC,tested,11931,3,794,4,0,4,0,0.532111987442231,CD95 death-inducing signaling complex,3.18.0,2023-07-27
+mnchisq-ctexcl,ploidy,MF,tested,11603,6,1408,10,0,7,0,1,death effector domain binding,3.18.0,2023-07-27
+mnchisq-ctexcl,heat,MF,tested,11603,72,1408,10,0,10,0,0.9167222309228,microtubule motor activity,3.18.0,2023-07-27
+mnchisq-ctexcl,shared,MF,tested,11603,3,1408,8,0,8,0,0.876292210531853,death effector domain binding,3.18.0,2023-07-27
+mnchisq-ctexcl,ploidy,BP,eligible,5247,7,4709,31,0,52,0,0.581336877087584,positive regulation of leukocyte differentiation,3.18.0,2023-07-27
+mnchisq-ctexcl,heat,BP,eligible,5247,81,4709,95,0,52,0,0.480627651041415,membrane organization,3.18.0,2023-07-27
+mnchisq-ctexcl,shared,BP,eligible,5247,3,4709,81,0,81,0,0.12950014495084,positive regulation of leukocyte differentiation,3.18.0,2023-07-27
+mnchisq-ctexcl,ploidy,CC,eligible,5453,8,619,3,0,7,0,0.718342510045447,CD95 death-inducing signaling complex,3.18.0,2023-07-27
+mnchisq-ctexcl,heat,CC,eligible,5453,83,619,10,0,5,0,0.612237262016572,organelle membrane,3.18.0,2023-07-27
+mnchisq-ctexcl,shared,CC,eligible,5453,3,619,4,0,4,0,0.680468563623066,CD95 death-inducing signaling complex,3.18.0,2023-07-27
+mnchisq-ctexcl,ploidy,MF,eligible,5018,6,893,7,0,7,0,0.997084506040248,tumor necrosis factor receptor binding,3.18.0,2023-07-27
+mnchisq-ctexcl,heat,MF,eligible,5018,72,893,3,0,1,0,1,alcohol binding,3.18.0,2023-07-27
+mnchisq-ctexcl,shared,MF,eligible,5018,3,893,6,0,6,0,1,death receptor binding,3.18.0,2023-07-27
