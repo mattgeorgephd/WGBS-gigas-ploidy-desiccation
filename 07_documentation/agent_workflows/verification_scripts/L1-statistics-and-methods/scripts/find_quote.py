@@ -3,7 +3,7 @@ import sys, re, unicodedata
 def norm(s):
     s = s.replace("ﬁ", "fi").replace("ﬂ", "fl").replace("ﬀ", "ff").replace("ﬃ", "ffi").replace("ﬄ", "ffl")
     s = s.replace("“", '"').replace("”", '"').replace("‘", "'").replace("’", "'")
-    s = s.replace("−", "-").replace("–", "-").replace("—", "-")
+    s = s.replace("−", "-").replace("–", "-").replace("\u2014", "-")
     s = re.sub(r"\s+", " ", s)
     return s.strip()
 txt = norm(open(sys.argv[1], encoding="utf-8", errors="replace").read())

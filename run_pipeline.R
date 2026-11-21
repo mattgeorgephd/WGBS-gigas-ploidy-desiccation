@@ -221,7 +221,7 @@ plan_lines <- c(
                         if (fit_cached) "in the cache (reused if its fingerprint is unchanged)" else "not in the cache (fitted by step 05)"),
   if (!a$paper) paste("Time and memory: at 10x (measured 2026-11-20) step 04 7 to 9 minutes, 9.2 GB; step 05 22 to 24 minutes per new fit at",
                        "WGBS_CORES=2 (about 10 GB with its workers; under a minute from the cache); steps 06 to 09 about 4 minutes. At 5x",
-                       "(measured 2026-11-21) step 04 8 to 15 minutes; step 05 107 minutes per new fit at WGBS_CORES=2, fitted by sequence",
+                       "(measured 2026-11-21) step 04 8 to 15 minutes; step 05 88 to 107 minutes per new fit at WGBS_CORES=2, fitted by sequence",
                        "(peak 9.3 GB; about a minute from the cache); steps 06 to 09 about 5 minutes"),
   if ("cov5" %in% a$tokens && !fit_cached) paste("NOTE: an analysis at 5x tests about 2.3 million CpGs instead of 0.48 million. Step 05 fits it by sequence",
                                   "and saves each part: about 3.2 hours at WGBS_CORES=1 and 1.6 hours at WGBS_CORES=2 (measured on one",
@@ -229,7 +229,7 @@ plan_lines <- c(
                                   "stopped goes on from the saved parts when the same command is run again."),
   if ("cov5" %in% a$tokens && fit_cached) paste("NOTE: an analysis at 5x tests about 2.3 million CpGs instead of 0.48 million. Its fit is in the cache",
                                  "and is reused (no refit), but steps 04 and 06 to 09 still handle about 2.3 million CpGs, and step 05",
-                                 "reads the fit of all of them and writes their per-CpG tables (up to 107 MB each)."),
+                                 "reads the fit of all of them and writes their per-CpG tables (up to 98 MB each)."),
   if (gene_level) "Step 10 about 3 minutes; step 11 (gene-level part) about 2 minutes")
 cat("Plan of this run\n", paste0("  ", plan_lines, collapse = "\n"), "\n", sep = "")
 if (opt$plan) quit(status = 0)

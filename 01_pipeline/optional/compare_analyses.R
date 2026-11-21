@@ -10,13 +10,21 @@
 # Writes:  04_output/not_adopted/comparisons/analysis_comparison.csv
 #          04_output/not_adopted/comparisons/analysis_comparison.md
 #
-# Reads only tables the pipeline wrote; computes nothing new from the data. The DML rule is
+# Reads only tables the pipeline wrote (and rewrites analyses_included.csv from the
+# analysis.csv stamps, as the steps do); computes nothing new from the data. The DML rule is
 # SLIM q < 0.01 and an absolute difference strictly above the threshold (methylKit
 # getMethylDiff). Venkataraman et al. 2022 (BMC Genomics 23:556,
 # doi:10.1186/s12864-022-08781-5) used 5x in each sample, the 99.9th percentile filter,
 # MN overdispersion with the chi-squared test, C-to-T variant loci removed, and 50 points.
 
 suppressPackageStartupMessages({ library(data.table); library(here) })
+source(here("run_config.R"))
+invisible(lapply(list.files(here("02_R_functions"), pattern = "\\.R$", full.names = TRUE), source))
+
+# Rebuild analyses_included.csv from the stamps on disk first: steps 04, 05, 08 and 10
+# write it, step 09 does not, so after a run that ended with step 09 the file can lag
+# its last stamp (found by the final error check of 2026-11-21).
+write_analyses_included()
 
 cmp_dir <- here("04_output", "not_adopted", "comparisons")
 inc <- fread(file.path(cmp_dir, "analyses_included.csv"), colClasses = "character")
