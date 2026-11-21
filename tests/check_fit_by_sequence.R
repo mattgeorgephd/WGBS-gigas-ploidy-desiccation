@@ -19,9 +19,11 @@
 #     when they are on disk); .gz files are compared decompressed;
 #  4. resume: a second call fits nothing (every saved part is reused) and gives
 #     the identical object; after one part is deleted, one is cut short and a
-#     file of another fingerprint is added, a third call fits those two parts
-#     again and nothing else, deletes the third file, and gives the identical
-#     object;
+#     file of another fingerprint is added (with an older stale file in
+#     stale/), a third call fits those two parts again and nothing else, moves
+#     the third file to stale/ (deleting the older one), and gives the identical
+#     object; after the saved import is cut short, a fourth call imports again,
+#     reuses every part, and gives the identical object;
 #  5. an edit of a function of the fit by sequence changes fit_fingerprint(a, TRUE)
 #     and leaves fit_fingerprint(a) (the fit in one piece) as it was.
 # Exit status 1 when a check fails. The parts are left in the copy's cache.
@@ -115,7 +117,7 @@ for (id in ids) {
                 if (!setequal(after_files, files)) paste0("; new: ", paste(basename(setdiff(after_files, files)), collapse = ", ")) else ""))
 
   # 4. Resume.
-  part_files <- function() list.files(parts_dir(a), full.names = TRUE)
+  part_files <- function() list.files(parts_dir(a), pattern = "\\.rds$", full.names = TRUE)
   mtimes <- function() setNames(file.mtime(part_files()), basename(part_files()))
   m0 <- mtimes()
   Sys.sleep(1.1)
@@ -128,14 +130,28 @@ for (id in ids) {
   writeBin(readBin(file.path(parts_dir(a), cut), "raw", 100), file.path(parts_dir(a), cut))
   stranger <- file.path(parts_dir(a), paste0("000000000000_ploidy_", sub("^[0-9a-f]{12}_ploidy_", "", parts[1])))
   file.copy(file.path(parts_dir(a), parts[1]), stranger)
+  older <- file.path(parts_dir(a), "stale", "ffffffffffff_ploidy_older.rds")
+  dir.create(dirname(older), showWarnings = FALSE); writeLines("x", older)
   Sys.sleep(1.1)
   m1 <- mtimes()
   fit3 <- fit_by_sequence(a, fp)
   m2 <- mtimes()
   refitted <- names(m2)[is.na(m1[names(m2)]) | m2 != m1[names(m2)]]
-  check(setequal(refitted, c(deleted, cut)) && !file.exists(stranger) && setequal(names(m2), names(m0)) && all(same_fit(fit3, fit)),
-        sprintf("4. third call: refitted %s (expected %s and %s), file of another fingerprint deleted: %s, identical result",
-                paste(refitted, collapse = " and "), deleted, cut, !file.exists(stranger)))
+  moved <- !file.exists(stranger) && file.exists(file.path(parts_dir(a), "stale", basename(stranger))) && !file.exists(older)
+  check(setequal(refitted, c(deleted, cut)) && moved && setequal(names(m2), names(m0)) && all(same_fit(fit3, fit)),
+        sprintf("4. third call: refitted %s (expected %s and %s), file of another fingerprint moved to stale/ and the older stale file deleted: %s, identical result",
+                paste(refitted, collapse = " and "), deleted, cut, moved))
+  united_file <- grep("_united\\.rds$", names(m2), value = TRUE)
+  writeBin(readBin(file.path(parts_dir(a), united_file), "raw", 1000), file.path(parts_dir(a), united_file))
+  Sys.sleep(1.1)
+  m3 <- mtimes()
+  fit4 <- fit_by_sequence(a, fp)
+  m4 <- mtimes()
+  renewed <- names(m4)[m4 != m3[names(m4)]]
+  check(identical(renewed, united_file) && all(same_fit(fit4, fit)),
+        sprintf("4. fourth call, after the saved import was cut short: imported again (%s), every part reused, identical result",
+                paste(renewed, collapse = ", ")))
+  rm(fit4)
   whole_fp <- whole$fingerprint
   rm(whole, fit, fit2, fit3); invisible(gc(verbose = FALSE))
 

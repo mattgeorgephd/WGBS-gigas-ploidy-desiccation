@@ -25,8 +25,9 @@
 #           WGBS_CORES sets the number of forked workers of the model fits
 #           (default 1; leave it at 1 on Windows). Time and memory are in the
 #           Notes.
-#           The paper's analysis is fitted in one piece, as it always was. An
-#           optional analysis is fitted by sequence: the import and each part of
+#           The paper's analysis is fitted in one piece, as it always was (and so
+#           is ctexcl, which reuses the paper's fit). Every other optional
+#           analysis is fitted by sequence: the import and each part of
 #           the genome (a linkage group, or a group of small sequences) are saved
 #           in the cache as they are done, so a run that is stopped loses only
 #           the part it was fitting; the same command run again goes on from the
@@ -152,15 +153,29 @@
 #             methylKit (stats::glm.fit runs inside the tests, data.table reads
 #             the files). After an upgrade of R or of those packages, delete
 #             the cache folder to fit again.
-#           - A fit by sequence (optional analyses) has the same fingerprint
-#             plus its method and the code of the fit by sequence, so a change
-#             of that code refits the optional analyses and not the paper's. Its
-#             saved parts carry the first 12 characters of the md5 of that
-#             fingerprint in their names and are reused only under it. An
-#             optional analysis also uses a cached fit made in one piece by
+#           - A fit by sequence (every fit id other than "legacy") has the same
+#             fingerprint plus its method and the code of the fit by sequence,
+#             so a change of that code refits the optional analyses and not the
+#             paper's. Its saved parts carry the first 12 characters of
+#             fingerprint_key() of that fingerprint (not of the locale) in their
+#             names and are reused only under it; saved files of another key are
+#             moved to parts_<fit id>/stale/ (only the latest such set is kept).
+#             A fit by sequence also uses a cached fit made in one piece by
 #             fit_mode() from the same inputs and code (the two are identical).
 #             To resume a stopped fit, run the same command again; to start it
-#             afresh, delete cache/parts_<fit id>/.
+#             afresh, delete cache/parts_<fit id>/. One run at a time per fit id:
+#             parts_<fit id>/lock names the process that fits it; a second run
+#             stops while that process lives, and takes the lock over after it
+#             ended. A process forked by a run that was killed (the import, or a
+#             worker of a test) can outlive it and keep its memory: before a
+#             rerun, list such processes with pgrep -af 05_differential and stop
+#             them.
+#           - Known limits, not fixed: when a fork fails (the import or the
+#             memory watch), there is no fallback to running in the process; the
+#             step stops. On Windows the import runs in the R process, which then
+#             keeps its memory during the tests. Memory is logged on Linux only
+#             (it is read from /proc); on macOS and Windows the log says "not
+#             measured". The memory watch, a forked R process, adds about 0.1 GB.
 
 suppressPackageStartupMessages(library(here))
 source(here("run_config.R"))
@@ -242,9 +257,9 @@ fit_mode <- function(a) {
        diffmeth = list(ploidy = dm_ploidy, heat = dm_heat))
 }
 
-# ---- Fit by sequence (every optional analysis) ------------------------------------
+# ---- Fit by sequence (every fit id other than "legacy") ---------------------------
 # The paper's fit is made in one piece by fit_mode() above, which is left exactly
-# as it was. An optional analysis is fitted one part of the genome at a time, and
+# as it was; ctexcl reuses it. Every other optional analysis is fitted one part of the genome at a time, and
 # each part is saved in the cache as soon as it is done, so that a run stopped
 # partway loses only the part it was fitting (the fit at 5x needs more than the 2
 # hours of a tracked task on one core). The results are those of a fit in one
@@ -276,14 +291,17 @@ fit_mode <- function(a) {
 # (a sequence is never split). Parts are fitted in the order of their first row
 # in the united table, all parts of the ploidy test, then all parts of the heat
 # test. Saved in <cache folder of the step>/parts_<fit id>/ (git-ignored), under
-# names that begin with the first 12 characters of the md5 of the fit's
+# names that begin with the first 12 characters of fingerprint_key() of the fit's
 # fingerprint (fit_fingerprint() below):
 #   <fp>_united.rds                filtering record and united table (the import)
 #   <fp>_<contrast>_<part>.rds     p-values and differences of one part
-# Each file is written under a temporary name and then renamed. A rerun reuses
-# every file of the same fingerprint that can be read and fits the rest; files of
-# another fingerprint are deleted first. When all parts are in, cached_fit()
-# writes the assembled fit to methylkit_<fit id>.rds and deletes the folder.
+#   lock                           the process that is fitting (see the Notes)
+#   stale/                         the latest set of saved files of another key
+# Each file is written under a temporary name (<file>.<pid>.part) and then
+# renamed. A rerun reuses every file of the same key that can be read (a broken
+# import file is imported again) and fits the rest. When all parts are in,
+# cached_fit() writes the assembled fit to methylkit_<fit id>.rds and deletes the
+# folder.
 
 # The filtering record and the united table, as fit_mode() makes them. This is a
 # copy of the first half of fit_mode(), kept separate so that the paper's
@@ -376,9 +394,11 @@ diffmeth_from_parts <- function(obj, pvalue, meth.diff) {
       destranded = obj@destranded, treatment = obj@treatment, resolution = obj@resolution)
 }
 
-# saveRDS() under a temporary name, then rename: a file with the final name is complete.
+# saveRDS() under a temporary name that carries the process id (<file>.<pid>.part),
+# then rename: a file with the final name is complete, and two processes never
+# write the same temporary file.
 save_rds_atomic <- function(x, file) {
-  tmp <- paste0(file, ".part")
+  tmp <- sprintf("%s.%d.part", file, Sys.getpid())
   saveRDS(x, tmp)
   if (!file.rename(tmp, file)) stop("Could not move ", tmp, " to ", file, ".", call. = FALSE)
   invisible(file)
@@ -386,19 +406,114 @@ save_rds_atomic <- function(x, file) {
 
 parts_dir <- function(a) file.path(step_cache_dir(step), paste0("parts_", a$fit_id))
 
+# The key of the saved parts: md5 of the fingerprint serialized in format 2
+# without its 14-byte header (the header names the version of R that wrote it).
+# Format 3, which digest_md5() below uses for the stamp, records the native
+# encoding of the session, so its md5 changes with the locale (LC_ALL=C and
+# C.UTF-8 differ); this key does not. The fingerprint holds ASCII text only.
+fingerprint_key <- function(x) {
+  f <- tempfile(); on.exit(unlink(f))
+  writeBin(serialize(x, NULL, version = 2)[-(1:14)], f)
+  unname(tools::md5sum(f))
+}
+
+# ---- The lock of a fit by sequence ------------------------------------------------
+# parts_<fit id>/lock holds one line: the process id, its start time in clock
+# ticks since boot (field 22 of /proc/<pid>/stat; "-" where there is no /proc),
+# and the time the lock was taken (UTC). A run that finds the lock of a live
+# process stops; the lock of a process that has ended is taken over. A process
+# id that was given to a new process is told apart by its start time (Linux).
+process_start <- function(pid) {
+  s <- tryCatch(suppressWarnings(readLines(sprintf("/proc/%d/stat", as.integer(pid)), warn = FALSE)), error = function(e) character(0))
+  if (length(s) == 0) return(NA_character_)
+  strsplit(sub("^.*\\) ", "", s[1]), " ", fixed = TRUE)[[1]][20]   # field 22 (fields from the state on, which is field 3)
+}
+read_lock <- function(lock) {
+  l <- tryCatch(suppressWarnings(strsplit(readLines(lock, n = 1, warn = FALSE), " ", fixed = TRUE)[[1]]), error = function(e) character(0))
+  list(pid = suppressWarnings(as.integer(l[1])), start = if (length(l) >= 2) l[2] else NA_character_,
+       taken = if (length(l) >= 3) paste(l[-(1:2)], collapse = " ") else "unknown")
+}
+lock_is_live <- function(lock) {
+  if (!file.exists(lock)) return(FALSE)
+  l <- read_lock(lock)
+  if (is.na(l$pid) || l$pid == Sys.getpid()) return(FALSE)
+  if (file.exists("/proc/self/stat")) return(identical(process_start(l$pid), l$start))
+  isTRUE(tools::pskill(l$pid, 0L))                               # signal 0: does the process exist
+}
+take_parts_lock <- function(a) {
+  dir <- parts_dir(a)
+  dir.create(dir, recursive = TRUE, showWarnings = FALSE)
+  lock <- file.path(dir, "lock")
+  if (lock_is_live(lock)) {
+    l <- read_lock(lock)
+    stop("Another run of step 05 is fitting the analysis '", a$fit_id, "' (process ", l$pid, ", lock taken ", l$taken,
+         ", in ", lock, "). Let it finish, or stop it and its forked workers (list them with: pgrep -af 05_differential) ",
+         "and run the step again; the saved parts are kept.", call. = FALSE)
+  }
+  if (file.exists(lock)) {
+    l <- read_lock(lock)
+    log_msg("[%s] taking over the lock of process %s (lock taken %s), which is no longer running", a$fit_id, l$pid, l$taken)
+  }
+  start <- process_start(Sys.getpid())
+  tmp <- sprintf("%s.%d.part", lock, Sys.getpid())
+  writeLines(paste(Sys.getpid(), if (is.na(start)) "-" else start, format(Sys.time(), "%Y-%m-%d %H:%M:%S UTC", tz = "UTC")), tmp)
+  if (!file.rename(tmp, lock)) stop("Could not write the lock ", lock, ".", call. = FALSE)
+  if (!identical(read_lock(lock)$pid, Sys.getpid())) {
+    stop("Another run of step 05 took the lock ", lock, " at the same moment; run the step again later.", call. = FALSE)
+  }
+  lock
+}
+drop_parts_lock <- function(lock) {
+  if (file.exists(lock) && identical(read_lock(lock)$pid, Sys.getpid())) unlink(lock)
+  invisible(NULL)
+}
+
+# What a run leaves behind when it is stopped, removed once a valid fit of the
+# analysis is in the cache: the folder parts_<fit id>/ (unless a live run holds
+# its lock) and temporary files <cache file>.<pid>.part of processes that have ended.
+remove_leftovers <- function(a, cache_file) {
+  dir <- parts_dir(a)
+  if (dir.exists(dir)) {
+    if (lock_is_live(file.path(dir, "lock"))) {
+      log_msg("[%s] %s is locked by a running process and is left as it is", a$fit_id, basename(dir))
+    } else {
+      unlink(dir, recursive = TRUE)
+      log_msg("[%s] the fit is in the cache; leftover %s/ removed", a$fit_id, basename(dir))
+    }
+  }
+  tmp <- list.files(dirname(cache_file), full.names = TRUE)
+  tmp <- tmp[startsWith(basename(tmp), paste0(basename(cache_file), ".")) & endsWith(tmp, ".part")]
+  pid <- suppressWarnings(as.integer(sub("^.*\\.([0-9]+)\\.part$", "\\1", basename(tmp))))
+  dead <- is.na(pid) | !vapply(pid, function(p) !is.na(p) && isTRUE(tools::pskill(p, 0L)), logical(1))
+  if (any(dead)) {
+    unlink(tmp[dead])
+    log_msg("[%s] %d leftover temporary file(s) of %s removed", a$fit_id, sum(dead), basename(cache_file))
+  }
+  invisible(NULL)
+}
+
 # The fit of an optional analysis, part by part, reusing the parts saved by an
 # earlier run with the same fingerprint. Returns what fit_mode() returns.
 fit_by_sequence <- function(a, fingerprint) {
   mode <- a$fit_id
-  fp <- digest_md5(fingerprint)
+  fp <- fingerprint_key(fingerprint)
   prefix <- paste0(substr(fp, 1, 12), "_")
   dir <- parts_dir(a)
   dir.create(dir, recursive = TRUE, showWarnings = FALSE)
-  stale <- list.files(dir, full.names = TRUE)
-  stale <- stale[!startsWith(basename(stale), prefix)]
+  # The caller holds the lock, so a temporary file here is left by a run that
+  # was stopped. Saved files of another fingerprint are moved to stale/, which
+  # keeps only the latest such set (they can be inspected, or moved back by hand).
+  entries <- setdiff(list.files(dir), c("lock", "stale"))
+  leftover <- entries[endsWith(entries, ".part")]
+  if (length(leftover) > 0) unlink(file.path(dir, leftover))
+  stale <- setdiff(entries, leftover)
+  stale <- stale[!startsWith(stale, prefix)]
   if (length(stale) > 0) {
-    log_msg("[%s] deleting %d saved part(s) of another fingerprint in %s", mode, length(stale), basename(dir))
-    unlink(stale)
+    unlink(file.path(dir, "stale"), recursive = TRUE)
+    dir.create(file.path(dir, "stale"))
+    file.rename(file.path(dir, stale), file.path(dir, "stale", stale))
+    log_msg("[%s] %d saved file(s) of another fingerprint moved to %s/stale/ (an older stale set there deleted)",
+            mode, length(stale), basename(dir))
   }
   part_file <- function(name) file.path(dir, paste0(prefix, name, ".rds"))
   saved <- function(file, ok) {
@@ -427,8 +542,11 @@ fit_by_sequence <- function(a, fingerprint) {
       make_import()
     }
     peak <- memory_watch_stop(watch)
-    imp <- readRDS(file)
-    stopifnot(identical(imp$fingerprint_md5, fp), is(imp$united, "methylBase"))
+    imp <- tryCatch(readRDS(file), error = function(e) NULL)
+    if (!(is.list(imp) && identical(imp$fingerprint_md5, fp) && is(imp$united, "methylBase"))) {
+      unlink(file)
+      stop("The import just saved as ", file, " cannot be read back; it was deleted, and the next run imports again.", call. = FALSE)
+    }
     log_msg("[%s] import saved as %s/%s: %.1f min, peak memory %s", mode, basename(dir), basename(file),
             as.numeric(difftime(Sys.time(), t1, units = "mins")), gb(peak))
   } else {
@@ -487,7 +605,8 @@ fit_by_sequence <- function(a, fingerprint) {
        diffmeth = list(ploidy = dm_ploidy, heat = dm_heat))
 }
 
-# md5 of a fingerprint, for the stamp of the analysis folder.
+# md5 of a fingerprint, for the stamp of the analysis folder (a record only; it
+# depends on the locale, see fingerprint_key()).
 digest_md5 <- function(x) { f <- tempfile(); on.exit(unlink(f)); saveRDS(x, f, version = 3, compress = FALSE); unname(tools::md5sum(f)) }
 
 # ---- What a fit depends on -----------------------------------------------------------
@@ -501,12 +620,13 @@ digest_md5 <- function(x) { f <- tempfile(); on.exit(unlink(f)); saveRDS(x, f, v
 # methylKit is not compared (see Notes). The thresholds that define a DML are applied
 # after the fit (write_mode) and are not part of it; the number of cores is not
 # either, because the results do not depend on it.
-# A fit by sequence (by_sequence = TRUE, every optional analysis) adds two parts:
+# A fit by sequence (by_sequence = TRUE, every fit id other than "legacy") adds two parts:
 # the method and the code of the fit by sequence, so that a change of that code
 # refits the optional analyses and leaves the paper's fingerprint, and its cached
-# fit, as they were. Left out because they touch no result: the memory watch, the
-# writing of files and the size of the groups of parts (the parts' names follow
-# from the code, and a fit does not depend on how its CpGs are grouped).
+# fit, as they were. The size of the groups of small sequences is in it too (the
+# default max_other of sequence_parts()), so changing it refits the optional
+# analyses although a fit does not depend on how its CpGs are grouped. Left out
+# because they touch no result: the memory watch, the lock and the writing of files.
 fit_fingerprint <- function(a, by_sequence = FALSE) {
   cfg_a <- modifyList(config, list(min_coverage = a$min_coverage))
   manifest <- read_gannet_manifest()
@@ -539,16 +659,21 @@ fit_fingerprint <- function(a, by_sequence = FALSE) {
 # the file is not a fit of this step) is fitted again, as is a fit made from
 # anything other than what fit_fingerprint() returns now. A new fit is written
 # under a temporary name and renamed, so a file with the final name is complete.
-# The paper's analysis is fitted in one piece (fit_mode()), every optional
-# analysis by sequence (fit_by_sequence(); its saved parts are deleted once the
-# assembled fit is written). An optional analysis also takes a cached fit made in
-# one piece from the same inputs and code (the fingerprint of fit_mode()), since
-# the two give identical results; the fits in one piece made before the fit by
-# sequence existed (mnchisq, corrected, corrected-mnchisq) stay valid that way.
-cached_fit <- function(a) {
+# The fit id "legacy" (the paper's analysis, and ctexcl, which reuses it) is
+# fitted in one piece (fit_mode()), so methylkit_legacy.rds is always the
+# paper's fit; every other fit id by sequence (fit_by_sequence(), under the lock
+# of parts_<fit id>/; its saved parts are deleted once the assembled fit is
+# written). A fit by sequence also takes a cached fit made in one piece from the
+# same inputs and code (the fingerprint of fit_mode()), since the two give
+# identical results; the fits in one piece made before the fit by sequence
+# existed (mnchisq, corrected, corrected-mnchisq) stay valid that way. When a
+# valid fit is found, what a stopped run left (remove_leftovers()) is removed.
+# fit_whole and fit_parts are the fitting functions; tests/check_cached_fit.R
+# passes stand-ins, the step never does.
+cached_fit <- function(a, fit_whole = fit_mode, fit_parts = fit_by_sequence) {
   mode <- a$fit_id
   cache_file <- file.path(step_cache_dir(step), sprintf("methylkit_%s.rds", mode))
-  by_sequence <- !a$paper
+  by_sequence <- a$fit_id != "legacy"
   fingerprint <- fit_fingerprint(a, by_sequence)
   if (file.exists(cache_file)) {
     cached <- tryCatch(suppressWarnings(readRDS(cache_file)), error = function(e) NULL)
@@ -559,11 +684,13 @@ cached_fit <- function(a) {
     if (readable && length(changed) == 0) {
       log_msg("[%s] using the cached fit %s: settings, sample sheet, coverage files, methylKit version and fitting code are unchanged",
               mode, basename(cache_file))
+      remove_leftovers(a, cache_file)
       return(cached)
     }
     if (readable && by_sequence && length(differs(fit_fingerprint(a, FALSE))) == 0) {
       log_msg("[%s] using the cached fit %s, made in one piece: settings, sample sheet, coverage files, methylKit version and fitting code are unchanged, and a fit by sequence gives identical results",
               mode, basename(cache_file))
+      remove_leftovers(a, cache_file)
       return(cached)
     }
     log_msg("[%s] the cached fit %s %s; fitting again", mode, basename(cache_file),
@@ -571,7 +698,11 @@ cached_fit <- function(a) {
             else if (is.null(cached$fingerprint)) "does not say what it was made from (written before this step recorded it)"
             else paste("differs from this run in:", paste(gsub("_", " ", changed), collapse = ", ")))
   }
-  fit <- c(if (by_sequence) fit_by_sequence(a, fingerprint) else fit_mode(a), list(fingerprint = fingerprint))
+  if (by_sequence) {
+    lock <- take_parts_lock(a)
+    on.exit(drop_parts_lock(lock), add = TRUE)
+  }
+  fit <- c(if (by_sequence) fit_parts(a, fingerprint) else fit_whole(a), list(fingerprint = fingerprint))
   save_rds_atomic(fit, cache_file)
   if (by_sequence) {
     unlink(parts_dir(a), recursive = TRUE)
