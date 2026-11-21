@@ -14,8 +14,8 @@ Long jobs run as tracked background tasks, one 5x fit at a time; the machine has
 
 | # | Work | State |
 |---|---|---|
-| 1 | `corrected-cov5-ctexcl` steps 4:5 (5x fit `corrected-cov5`) | running since 06:58 UTC |
-| 2 | 50-point switch (`--difference 50`, token `d50`), built by an agent, then an independent review | building |
+| 1 | `corrected-cov5-ctexcl` steps 4:5 (5x fit `corrected-cov5`) | running since 06:58 UTC; step 04 done, step 05 at part 6 of 12 (ploidy) at 07:35 |
+| 2 | 50-point switch (`--difference 50`, token `d50`), built by an agent, then an independent review | built, committed f93496c (review pending); review running. At 10x: 1 ploidy and 4 heat DML, 0 shared. A d50 run also reruns step 04 (9.2 GB), so it cannot run beside a 5x fit |
 | 3 | `corrected-cov5-mnchisq-ctexcl` steps 4:5 (5x fit `corrected-cov5-mnchisq`) | after 1 |
 | 4 | Steps 6:9,13 of 1 and 3 | after 2 and 3 |
 | 5 | d50 version of every analysis: legacy, corrected, mnchisq, corrected-mnchisq, ctexcl, cov5, cov5-ctexcl, corrected-cov5-ctexcl, corrected-cov5-mnchisq-ctexcl | after 2 (5x ones after 3) |
