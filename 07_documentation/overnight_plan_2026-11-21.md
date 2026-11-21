@@ -20,9 +20,9 @@ Long jobs run as tracked background tasks, one 5x fit at a time; the machine has
 | 4 | Steps 6:9,13 of 1 and 3 | done 10:31 UTC (cdf9742, c73b4a5, fc6349b); paper files unchanged both times; step 13: only the 2 known cov5 errors |
 | 5 | d50 version of every analysis: legacy, corrected, mnchisq, corrected-mnchisq, ctexcl, cov5, cov5-ctexcl, corrected-cov5-ctexcl, corrected-cov5-mnchisq-ctexcl | done 12:21 UTC: all nine committed (c302b2a, a5ae0f1, 6573719, a7415ae, a1b6b6f, a6517c5, d84d8ff, b6d827b, 81d98e5); 11 to 14 min each; paper files unchanged each time; step 13: 3 to 10 statements not evaluable per d50 analysis (documented state), only the 2 known cov5 errors |
 | 6 | Comparison table of all analyses at 20 and 50 points (script, CSV, README table) | done 12:25 UTC (6b98683): 18 analyses; table in 04_output/not_adopted/README.md |
-| 7 | Results into issues.md, then an independent review | written (c0dfb9b: I-51 update, I-52 new); independent review running since 12:40 UTC |
-| 8 | Final default run with tests/check_paper_outputs.R | `Rscript run_pipeline.R` running since 12:41 UTC (log scratchpad/final_default_run.log; expected snapshot scratchpad/expected_final_default.csv) |
-| 9 | `renv.lock`, run from a clean clone, final README pass (task 17) | after 8 |
+| 7 | Results into issues.md, then an independent review | written (c0dfb9b: I-51 update, I-52 new); independent review running since about 12:23 UTC |
+| 8 | Final default run with tests/check_paper_outputs.R | `Rscript run_pipeline.R` running since 12:24 UTC (log scratchpad/final_default_run.log; expected snapshot scratchpad/expected_final_default.csv) |
+| 9 | `renv.lock`, run from a clean clone, final README pass (task 17) | renv.lock committed (8a8566e); README restore instructions (4a97807) and status paragraph (6dcbbe9) done; clean-clone run after 8 |
 | 10 | Final error checks: every test in tests/, the outputs of every analysis, documentation consistency; a report for the author | last |
 
 Each run has `tests/snapshot_paper.R` before and after it. Progress is logged in the "State" column and in commits.
