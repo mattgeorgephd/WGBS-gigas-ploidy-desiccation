@@ -1,0 +1,4 @@
+set,chr,start,end,span_bp,n_dml,n_hyper,n_hypo,mode
+heat DML,NC_047561.1,23953193,23953195,2,1,0,1,corrected-ctexcl-d50
+heat DML,NC_047566.1,54825892,54825894,2,1,1,0,corrected-ctexcl-d50
+ploidy DML,NC_047561.1,6740817,6740819,2,1,0,1,corrected-ctexcl-d50
