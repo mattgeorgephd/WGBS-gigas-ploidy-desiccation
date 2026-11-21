@@ -89,7 +89,14 @@
 #             "not run: <step> not done (stamp)" (the stamp does not list the
 #             step whose table the expression reads), "not run: <step>/<file>
 #             absent" (a table the expression reads has not been made for the
-#             analysis), or "error: <message>". The optional part never stops
+#             analysis), "not evaluable: too few DML in the analysis" (the
+#             expression failed and read a table of a DML set with fewer than 2
+#             DML, by dml_counts_by_mode.csv of the analysis, or of a set that
+#             step 09 could not test, whose Fisher table has no row, or, when
+#             every set has fewer than 2 DML, any table of steps 05 to 10; for example
+#             a clustering of the loci in both lists at 50 points, option d50;
+#             counted in column not_evaluable of the summary, and not listed as
+#             an error), or "error: <message>". The optional part never stops
 #             the step: its errors are listed in expression_errors_by_analysis.csv,
 #             and a warning line says how many there are.
 #           - A row can match and still be wrong science: "matches" means the
@@ -228,8 +235,10 @@ if (paper_run) {
       res <- lapply(recipes, function(r) rep(list(list(value = NA, error = NA_character_, absent = NA_character_)), nrow(map)))
     } else {
       table_cache <- new.env()
+      read_log <- new.env(); read_log$files <- character(0)      # tables of the analysis read by the expression being evaluated
       tab <- function(step_name, file) {
         key <- file.path(step_name, file)
+        read_log$files <- c(read_log$files, key)
         if (is.null(table_cache[[key]])) {
           absent <- function(message) stop(structure(class = c("table_absent", "error", "condition"), list(message = message, call = NULL)))
           path <- not_adopted_path(A, step_name, "tables", file)
@@ -248,24 +257,56 @@ if (paper_run) {
         if (!file.exists(path)) stop("No such table of the paper: ", file.path(step_name, file))
         fread(path)
       }
+      # DML sets too small for some statements: fewer than 2 DML (dml_counts_by_mode.csv of the
+      # analysis; 2 is the fewest that can be clustered or compared), or, for a table of step 09,
+      # a set that step 09 could not test (its Fisher table has no row: no DML in a gene of the
+      # legacy universe with a term of the ontology). An expression that fails and read a table
+      # of such a set (named by the set: dml_ploidy_<A>.csv, legacy_fisher_shared_BP.csv, ...),
+      # or, when every set has fewer than 2 DML, any table of steps 05 to 10 of the analysis, is
+      # "not evaluable: too few DML in the analysis", not an error.
+      counts_file <- not_adopted_path(A, "05_differential_methylation", "tables", "dml_counts_by_mode.csv")
+      set_n <- if (file.exists(counts_file) && "05" %in% done) {
+        k <- fread(counts_file)[mode == A]
+        if (nrow(k) == 1) c(ploidy = k$ploidy_dml, heat = k$heat_dml, shared = k$shared) else NULL
+      }
+      reads_small_set <- function(keys) {
+        if (is.null(set_n) || length(keys) == 0) return(FALSE)
+        file <- basename(keys)
+        # the DML set of a table: dml_ploidy_<A>.csv, legacy_fisher_shared_BP.csv, genes_with_dml_heat_<A>.csv, ...
+        set_of <- vapply(regmatches(file, regexec("_(ploidy|heat|shared)[_.]", file)), function(m) if (length(m)) m[2] else NA_character_, "")
+        of_set <- !is.na(set_of)
+        small <- of_set & unname(set_n[set_of]) %in% c(0, 1)
+        all_small <- !of_set & all(set_n < 2) & grepl("^(0[5-9]|10)_", keys)
+        untested <- of_set & startsWith(file, "legacy_fisher_") & vapply(keys, function(k) {
+          x <- table_cache[[k]]; !is.null(x) && nrow(x) == 0 }, logical(1))
+        any(small | untested | all_small)
+      }
       cfg_a <- modifyList(config, list(min_coverage = a$min_coverage, dml_difference = a$dml_difference))
       scope <- list2env(list(tab = tab, paper_tab = paper_tab, diagnostic = diagnostic, config = cfg_a, A = A), parent = globalenv())
-      res <- lapply(recipes, function(r) lapply(map[[r]], evaluate, scope = scope, empty_is_na = TRUE))
+      res <- lapply(recipes, function(r) lapply(map[[r]], function(e) {
+        read_log$files <- character(0)
+        x <- evaluate(e, scope, empty_is_na = TRUE)
+        x$too_few <- !is.na(x$error) && reads_small_set(read_log$files)
+        x
+      }))
     }
     # Value, whether it differs from the manuscript, and status of each row under one recipe.
     judge <- function(r, expressions) {
       value <- lapply(r, `[[`, "value")
       field <- function(name) vapply(r, function(x) if (is.null(x[[name]])) NA_character_ else x[[name]], character(1))
       empty <- vapply(r, function(x) isTRUE(x$empty), logical(1))
+      too_few <- vapply(r, function(x) isTRUE(x$too_few), logical(1))
       ok <- mapply(agrees, map$manuscript_numeric, map$manuscript_value, value, map$tolerance)
       status <- if (nzchar(folder_state)) rep(folder_state, nrow(map)) else
         fifelse(is.na(expressions), "no expression",
         fifelse(!is.na(field("absent")), field("absent"),
+        fifelse(too_few, "not evaluable: too few DML in the analysis",
         fifelse(!is.na(field("error")), paste("error:", field("error")),
         fifelse(empty, "not comparable: no value in this analysis",
-        fifelse(is.na(ok), "not comparable", fifelse(ok, "matches", "differs"))))))
+        fifelse(is.na(ok), "not comparable", fifelse(ok, "matches", "differs")))))))
       list(regenerated = vapply(value, as_text, character(1)),
-           differs = fifelse(status %in% c("matches", "differs"), status == "differs", NA), status = status, error = field("error"))
+           differs = fifelse(status %in% c("matches", "differs"), status == "differs", NA), status = status,
+           error = fifelse(too_few, NA_character_, field("error")))
     }
     p <- judge(res$paper, map$expression_paper_recipe)
     k <- judge(res$corrected, map$expression_optional)
@@ -285,7 +326,7 @@ if (paper_run) {
     x <- data.table(analysis = by_analysis$analysis, s = by_analysis[[status_column]], e = expressions[match(by_analysis$id, map$id)])
     x[!is.na(e), .(recipe = recipe_name, statements_with_expression = .N, matches = sum(s == "matches"), differs = sum(s == "differs"),
         not_comparable = sum(startsWith(s, "not comparable")), not_run = sum(startsWith(s, "not run")),
-        errors = sum(startsWith(s, "error")),
+        not_evaluable = sum(startsWith(s, "not evaluable")), errors = sum(startsWith(s, "error")),
         state = if (all(startsWith(s, "not run: analysis"))) "analysis not run" else
           if (all(s == "not run: folder stale")) "folder stale" else "evaluated"), by = analysis]
   }

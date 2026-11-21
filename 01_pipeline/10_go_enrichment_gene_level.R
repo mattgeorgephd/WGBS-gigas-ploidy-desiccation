@@ -9,8 +9,11 @@
 #                  tested    protein-coding genes with GO terms and at least one
 #                            CpG that was tested for differential methylation
 #                  eligible  those of them with at least one eligible CpG
-#                            (mean methylation 10% to 90%, a screen and not a
-#                            bound; see dml_eligible()). Gene-body methylation in this
+#                            (mean methylation from half the threshold of the
+#                            analysis to 100 minus that: 10% to 90% at the
+#                            paper's 20 points, 25% to 75% at the 50 points of
+#                            option d50; a screen and not a bound; see
+#                            dml_eligible() and step 08). Gene-body methylation in this
 #                            genome sits in a minority of genes, mostly broadly
 #                            expressed ones, so against the tested universe any
 #                            DML list looks enriched for housekeeping functions.
@@ -71,6 +74,12 @@
 #             (issue I-01). Enrichment of "heat" DML genes describes genes that
 #             differ between the two cohorts, whatever the cause.
 #           - A DML is assigned to a gene when it lies in the gene body.
+#           - A set none of whose DML genes carries a term of the ontology (a set
+#             without DML, or whose DML lie in genes without GO terms; at 50
+#             points, option d50, the ploidy set and the loci in both lists) is
+#             not tested in that ontology and universe: the log says so, its
+#             table go_gene_level_<set>_<id>.csv has no row for them, and its
+#             summary row has dml_genes 0, no term tested and no top term.
 
 suppressPackageStartupMessages(library(here))
 source(here("run_config.R"))
@@ -104,8 +113,9 @@ for (mode in an$id) {
 
   for (u in names(universes)) {
     # Genes of the universe. A gene that holds a DML belongs to the eligible
-    # universe by definition; one or two DML have a mean just outside the 10% to
-    # 90% range, and their genes are kept with a count of one.
+    # universe by definition; a few DML can have a mean just outside the eligible
+    # range (2 of the paper's DML lie outside 10% to 90%), and their genes are
+    # kept with a count of one.
     n_cpg <- gene_tab[[universes[[u]]]]
     if (u == "eligible") n_cpg <- pmax(n_cpg, as.integer(any_dml))
     uni <- cbind(gene_tab[n_cpg > 0], bias = n_cpg[n_cpg > 0])
@@ -123,6 +133,14 @@ for (mode in an$id) {
       td <- go_gene_level_object(ont, annotated_ids, gene2go_all)
       for (s in names(sets)) {
         dml_genes <- uni[get(paste0("n_dml_", s)) > 0, gene_id]
+        if (!any(topGO::genes(td) %in% dml_genes)) {
+          log_msg("[%s] %-8s %s %-6s: no gene that holds a DML of the set carries a term of the ontology; not tested", mode, u, ont, s)
+          summary_rows[[length(summary_rows) + 1]] <- data.table(
+            mode = mode, set = s, ontology = ont, universe = u, universe_genes = numGenes(td), dml_genes = 0L, terms_tested = 0L,
+            fisher_p_below_cutoff = 0L, fisher_q_below_fdr = 0L, wallenius_p_below_cutoff = 0L, wallenius_q_below_fdr = 0L,
+            smallest_q_wallenius = NA_real_, top_term = NA_character_)
+          next
+        }
         fit <- go_gene_level_test(td, uni, dml_genes, config)
         res <- cbind(data.table(mode = mode, set = s, ontology = ont, universe = u), fit$table)
         results[[length(results) + 1]] <- res
@@ -149,7 +167,12 @@ for (mode in an$id) {
     }
   }
 }
-results <- rbindlist(results); go_summary <- rbindlist(summary_rows)
+# With no set tested at all, the table of results keeps its columns.
+results <- if (length(results)) rbindlist(results) else
+  data.table(mode = character(), set = character(), ontology = character(), universe = character(), go_id = character(),
+             term = character(), genes_annotated = integer(), genes_with_dml = integer(), expected = numeric(), p_fisher = numeric(),
+             p_wallenius = numeric(), tested = logical(), q_fisher = numeric(), q_wallenius = numeric(), enrichment = numeric())
+go_summary <- rbindlist(summary_rows)
 go_summary[, `:=`(go_db = as.character(packageVersion("GO.db")), go_source_date = go_source_date())]
 for (mode_i in an$id) for (s in names(sets)) {
   write_table(results[mode == mode_i & set == s], tab(sprintf("go_gene_level_%s_%s.csv", s, mode_i)))
@@ -206,10 +229,12 @@ print(top_check[, .N, by = .(set, gene_level_status)][order(set, gene_level_stat
 bias <- rbindlist(bias_rows)
 bias[, `:=`(set_label = factor(sets[set], levels = sets), universe = factor(universe, levels = names(universes)))]
 set_cols <- setNames(unname(config$colours$dml_set), sets)
+# The eligible range of the analysis (dml_eligible(): half the threshold to 100 minus that).
+eligible_label <- sprintf("Eligible CpGs in the gene (mean %g%% to %g%%)", an$dml_difference / 2, 100 - an$dml_difference / 2)
 for (mode_i in an$id) {
   pb <- ggplot(bias[mode == mode_i], aes(cpg_bin, percent_with_dml, colour = set_label, group = set_label)) +
     geom_line(linewidth = 0.7) + geom_point(size = 2.2) +
-    facet_wrap(~universe, labeller = as_labeller(c(tested = "CpGs tested in the gene", eligible = "Eligible CpGs in the gene (mean 10% to 90%)"))) +
+    facet_wrap(~universe, labeller = as_labeller(c(tested = "CpGs tested in the gene", eligible = eligible_label))) +
     scale_colour_manual(values = set_cols, name = NULL) +
     labs(x = "Number of CpGs in the gene body", y = "Genes that hold a DML (%)") +
     theme_wgbs() + theme(legend.position = "top")

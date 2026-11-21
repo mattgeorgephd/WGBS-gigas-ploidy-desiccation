@@ -82,9 +82,11 @@ The extra code of D2 is mechanical (paths, loops) and every missed site either t
 ## 3. Principles and run kinds
 
 - **P1 Paper bytes.** Every paper output depends only on the paper's settings and inputs. No optional run opens a file in a paper folder for writing. Enforced in code (4.6) and tested (T2).
-- **P2 Labels.** Every optional output lies under a folder whose path contains `not_adopted`, or under `06_diagnostics/` (option (f), whose folder already says what it is). A path without either is a paper output.
+- **P2 Labels.** Every optional output lies under a folder whose path contains `not_adopted`, or under `06_diagnostics/` (option (f), whose folder already says what it is; renumbered (g) on 2026-11-21, see the note in section 3). A path without either is a paper output.
 - **P3 Spanning tables.** The paper's copy holds the paper's rows only. Each analysis folder holds its own copy. `04_output/not_adopted/comparisons/` holds the rebuilt side-by-side table of every analysis folder on disk, paper first.
 - **P4 One analysis per run.** Switches (a) to (d) compose one analysis id. (e) and (f) add steps.
+
+> Note of 2026-11-21 (after this specification was implemented): the option `d50` (`--difference 50`, author's decision of 2026-11-21) was added as option (e), so the letters of this specification are now: (a) to (e) compose one analysis id (tokens `corrected`, `cov5`, `mnchisq`, `ctexcl`, `d50`), (f) is the gene-level GO enrichment and (g) the diagnostics. The text below keeps its original letters; `run_config.R` and the READMEs use the new ones.
 
 Run kinds, decided in `run_config.R` from the settings and the switches:
 

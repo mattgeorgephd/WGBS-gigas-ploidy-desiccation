@@ -15,12 +15,14 @@
 # are on in the order corrected, cov5, mnchisq, ctexcl, d50:
 #   --coverage-filter        (a) token corrected: the coverage filter of the Methods
 #                                (99.9th percentile of coverage per library; every line read)
-#   --coverage 5             (b) token cov5: 5 reads per CpG in each library (--coverage 10 is the paper)
+#   --coverage 5             (b) token cov5: 5 reads per CpG in each library (--coverage 10 is the paper's value,
+#                                and does not turn off coverage_standard = 5L set in run_config.R)
 #   --overdispersion         (c) token mnchisq: methylKit overdispersion = "MN", test = "Chisq"
 #   --exclude-ct-variants    (d) token ctexcl: CpGs at C-to-T variants removed (needs the list of
 #                                01_pipeline/optional/ct_variant_loci.R; the run refuses without it)
 #   --difference 50          (e) token d50: DML at a difference of more than 50 points instead of 20, as in
-#                                Venkataraman et al. 2022 (--difference 20 is the paper); the fit of the analysis
+#                                Venkataraman et al. 2022 (--difference 20 is the paper's value, and does not turn
+#                                off dml_difference_standard = 50L set in run_config.R); the fit of the analysis
 #                                without d50 is reused
 #   --gene-level-go          (f) step 10 and the gene-level part of step 11, for the analysis of the run
 #   --diagnostics [all|name,...]  (g) scripts of 06_diagnostics/ (listed in 06_diagnostics/diagnostics.csv); they
@@ -89,7 +91,8 @@ usage <- paste0(
   "                              [--plan] [--list] [--help]\n",
   "  <selection> is one word without spaces: step numbers and ranges joined by commas, for example 5:7 or 3,12 or 2:3,6:10.\n",
   "  Without a switch the run is the paper's. Each switch turns on an optional analysis that the paper did not adopt;\n",
-  "  its outputs go to 04_output/not_adopted/ and 05_manuscript/not_adopted/. See the header of run_pipeline.R.")
+  "  its outputs go to 04_output/not_adopted/ and 05_manuscript/not_adopted/. --coverage 10 and --difference 20 name the\n",
+  "  paper's values and do not turn off a setting made in run_config.R. See the header of run_pipeline.R.")
 fail <- function(...) stop(..., "\n", usage, call. = FALSE)
 opt <- list(steps = NULL, coverage_filter = FALSE, coverage = NULL, overdispersion = FALSE, exclude_ct = FALSE, difference = NULL,
             gene_level = FALSE, diagnostics = NULL, plan = FALSE, list = FALSE, help = FALSE)
@@ -221,6 +224,9 @@ plan_lines <- c(
                                   "and saves each part: about 3.2 hours at WGBS_CORES=1 and 1.6 hours at WGBS_CORES=2 (measured on one",
                                   "linkage group on 2026-11-20; peak 8.3 GB in the import, 6.6 GB in a test on 2 cores). A run that is",
                                   "stopped goes on from the saved parts when the same command is run again."),
+  if ("cov5" %in% a$tokens && fit_cached) paste("NOTE: an analysis at 5x tests about 2.3 million CpGs instead of 0.48 million. Its fit is in the cache",
+                                 "and is reused (no refit), but steps 04 and 06 to 09 still handle about 2.3 million CpGs, and step 05",
+                                 "reads the fit of all of them and writes their per-CpG tables (up to 107 MB each)."),
   if (gene_level) "Step 10 about 3 minutes; step 11 (gene-level part) about 2 minutes")
 cat("Plan of this run\n", paste0("  ", plan_lines, collapse = "\n"), "\n", sep = "")
 if (opt$plan) quit(status = 0)

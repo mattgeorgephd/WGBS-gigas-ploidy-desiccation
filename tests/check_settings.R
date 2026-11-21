@@ -98,11 +98,33 @@ ok("d50: dml_difference 50, every other setting that of the analysis without d50
        identical(x[c("filter", "min_coverage", "overdispersion", "test", "ct_excluded", "fit_id")],
                  y[c("filter", "min_coverage", "overdispersion", "test", "ct_excluded", "fit_id")])
    }, logical(1))))
-if (file.exists(stamp_file("mnchisq"))) {
+# Stamps: fixtures in a temporary folder (not_adopted_path() is pointed there for these checks).
+local({
+  real_path <- not_adopted_path
+  tmp <- tempfile("stamps"); dir.create(tmp)
+  on.exit({ not_adopted_path <<- real_path; unlink(tmp, recursive = TRUE) })
+  not_adopted_path <<- function(...) file.path(tmp, ...)
+  stamp <- function(id, dml_difference = NULL) {
+    a <- analysis_spec(id)
+    row <- data.table(id = a$id, filter = a$filter, min_coverage = format(a$min_coverage), overdispersion = a$overdispersion,
+                      test = a$test, ct_excluded = as.character(a$ct_excluded))
+    if (!is.null(dml_difference)) row[, dml_difference := dml_difference]
+    row[, `:=`(fit_id = a$fit_id, fit_fingerprint_md5 = "", ct_variant_list_md5 = "", git_commit = "", written_utc = "", steps_done = "04")]
+    dir.create(file.path(tmp, id), showWarnings = FALSE)
+    fwrite(row, file.path(tmp, id, "analysis.csv"))
+  }
+  stamp("mnchisq")                                       # as written before the option d50 existed
   s_old <- read_stamp("mnchisq")
-  ok("a stamp written before d50 reads with dml_difference 20, after ct_excluded",
-     identical(s_old$dml_difference, "20") && identical(match("dml_difference", names(s_old)), match("ct_excluded", names(s_old)) + 1L))
-}
+  ok("a stamp written before d50 (no column dml_difference) reads with dml_difference 20, after ct_excluded, and passes check_stamp()",
+     identical(s_old$dml_difference, "20") && identical(match("dml_difference", names(s_old)), match("ct_excluded", names(s_old)) + 1L) &&
+       !stops(check_stamp(analysis_spec("mnchisq"), needs = "04")))
+  stamp("d50", "20")
+  ok("check_stamp() stops for the analysis d50 when its stamp says dml_difference 20", stops(check_stamp(analysis_spec("d50"), needs = "04")))
+  stamp("mnchisq", "50")
+  ok("check_stamp() stops for the analysis mnchisq when its stamp says dml_difference 50", stops(check_stamp(analysis_spec("mnchisq"), needs = "04")))
+  stamp("mnchisq-d50", "50")
+  ok("check_stamp() passes for mnchisq-d50 with a stamp that says dml_difference 50", !stops(check_stamp(analysis_spec("mnchisq-d50"), needs = "04")))
+})
 
 # ---- Invalid values stop -------------------------------------------------------------------
 for (v in c("cov5-corrected", "legacy-cov5", "Cov5", "5x", " ", "d50-ctexcl", "d50-mnchisq", "d20", "D50", "legacy-d50")) {

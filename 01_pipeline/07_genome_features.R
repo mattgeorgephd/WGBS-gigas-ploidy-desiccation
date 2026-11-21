@@ -54,10 +54,13 @@
 #             and "eligible" CpGs, those whose mean methylation across libraries
 #             lies between half of the threshold of the analysis and 100 minus
 #             that (10% and 90% at the paper's 20 points, 25% and 75% at the 50
-#             points of option d50; both ends included). A
-#             20-point difference between two groups almost always needs a mean
-#             in that range (all but 2 of the legacy DML have one), so the other
-#             CpGs, about 86% of those analysed, are almost never DML.
+#             points of option d50; both ends included). A difference of d
+#             points between two groups almost always needs a mean from d/2 to
+#             100 - d/2. At 20 points all but 2 of the legacy DML have one, and
+#             65,480 of the 480,579 analysed CpGs (13.6%) are eligible; the other
+#             CpGs, about 86% of those analysed, are almost never DML. At 50
+#             points (option d50, the paper's fit) 30,315 CpGs (6.3%) are
+#             eligible, and all 5 DML lie in the range.
 #             Methylation in this genome sits mostly in gene bodies, so
 #             enrichment of DML in genes relative to all CpGs is expected
 #             whatever the treatment. The eligible background removes most of
