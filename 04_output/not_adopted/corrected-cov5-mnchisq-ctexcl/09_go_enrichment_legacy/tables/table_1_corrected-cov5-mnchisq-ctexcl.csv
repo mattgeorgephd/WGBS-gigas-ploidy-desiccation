@@ -1,0 +1,22 @@
+dml_set,gene_id,gene_name,chromosome,start,end,methylation_difference
+ploidy-DML,105319445,"dynein heavy chain 6, axonemal",NC_047560.1,8395654,8395656,-22.01
+ploidy-DML,105321596,uncharacterized LOC105321596,NW_022994960.1,96977,96979,-37.27
+ploidy-DML,105331446,helicase domino,NC_047564.1,26730660,26730662,-22.93
+ploidy-DML,105331817,hydrocephalus-inducing protein,NC_047564.1,52575693,52575695,29.26
+ploidy-DML,105333084,spatacsin,NC_047561.1,9480481,9480483,-39.65
+ploidy-DML,105337895,myosin-I heavy chain,NC_047561.1,57946630,57946632,-24.71
+ploidy-DML,105343139,ephrin type-B receptor 1-B,NC_047564.1,37373593,37373595,-23.35
+ploidy-DML,105343585,beta-hexosaminidase subunit beta,NC_047564.1,6921579,6921581,40.77
+ploidy-DML,105345667,cytoplasmic dynein 1 heavy chain 1,NC_047561.1,23951450,23951452,-26.72
+ploidy-DML,105346586,ephexin-1,NC_047564.1,6723825,6723827,21.32
+ploidy-DML,117688791,uncharacterized LOC117688791,NC_047561.1,5300131,5300133,-33.64
+heat-DML,105318395,focal adhesion kinase 1,NC_047568.1,35027848,35027850,24.19
+heat-DML,105322410,amyloid-beta A4 precursor protein-binding family A member 1,NC_047561.1,23198924,23198926,-22.99
+heat-DML,105327305,exocyst complex component 4,NC_047562.1,38749956,38749958,34.66
+heat-DML,105327689,dynactin subunit 1,NC_047562.1,22422912,22422914,42.92
+heat-DML,105331400,dystrophin,NC_047568.1,33236441,33236443,-24.53
+heat-DML,105335272,MAGUK p55 subfamily member 5,NC_047561.1,42207672,42207674,-41.67
+heat-DML,105336782,sorting nexin-27,NC_047561.1,47467712,47467714,31.29
+heat-DML,105337450,myosin-3,NC_047559.1,24819741,24819743,-27.55
+interaction-DML,105330131,gamma-tubulin complex component 4,NC_047561.1,31092563,31092565,20.1
+interaction-DML,105345667,cytoplasmic dynein 1 heavy chain 1,NC_047561.1,23951450,23951452,-24.36
