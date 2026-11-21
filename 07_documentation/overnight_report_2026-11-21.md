@@ -1,6 +1,6 @@
 # Report on the overnight work of 2026-11-21 (for the author)
 
-This covers the author's instructions of about 07:00 UTC on 2026-11-21. The work ran from 06:58 to about 14:45 UTC, and every step was committed and pushed to `reproducibility-audit` as it finished. The table with commit ids is `07_documentation/overnight_plan_2026-11-21.md`. Nothing here is adopted: every analysis except `legacy` is optional, is off by default, and writes only under `not_adopted/`.
+This covers the author's instructions of about 07:00 UTC on 2026-11-21. The work ran from 06:58 to 14:45 UTC, and every step was committed and pushed to `reproducibility-audit` as it finished. The table with commit ids is `07_documentation/overnight_plan_2026-11-21.md`. Nothing here is adopted: every analysis except `legacy` is optional, is off by default, and writes only under `not_adopted/`.
 
 ## 1. What was asked and what was done
 
@@ -44,7 +44,7 @@ Whether any of these lists are real differences is not shown by the runs. The co
 | `tests/check_overdispersion.R` | pass (14 and 185 DML identical to the diagnostic lists) |
 | `tests/check_paper_recipe_legacy.R` | 6 of 6 |
 | `tests/check_paper_outputs.R` | pass, after the final default run and in the clean clone |
-| `tests/check_cached_fit.R`, `check_step13_not_run.R`, `check_ct_exclusion.R`, `check_fit_by_sequence.R` (each in a fresh scratch copy) | running at the time of writing (results to follow in this row) |
+| `tests/check_cached_fit.R`, `check_step13_not_run.R`, `check_ct_exclusion.R`, `check_fit_by_sequence.R` (each in a fresh scratch copy) | all pass: cached fit 11 of 11; step 13 not run 17 of 17; C-to-T exclusion 23 of 23; fit by sequence `identical()` to the fit in one piece for `legacy` and `mnchisq`, with resume, stale-part and fingerprint checks (9 of 9 each); 13:46 to 14:42 UTC |
 | Paper snapshots around every optional run | no paper output changed in any run |
 | Independent review of the new issues.md text (I-51 update, I-52) | 14 findings, all applied (bd0be97). Among them: two wrong loci named in I-52, item 1; "every setting of Venkataraman et al. 2022", which ignored the full-CIGAR difference; step 13 counts; run times. Venkataraman et al. 2022 settings confirmed against the article text. |
 | Final check of the outputs of every analysis and of the documentation (independent agent) | No wrong number in any output table (counts, lists, bed files, subsets, step 13 states, about 120 values quoted in the documentation). 11 documentation findings, applied (b0b6c35): stale statuses, out-of-date handoff, run times and file sizes quoted as estimates, inconsistent copies of the settings table, one em dash. One code finding: `analyses_included.csv` lagged after a run ending with step 09, fixed in `compare_analyses.R`, which now rebuilds it. |
