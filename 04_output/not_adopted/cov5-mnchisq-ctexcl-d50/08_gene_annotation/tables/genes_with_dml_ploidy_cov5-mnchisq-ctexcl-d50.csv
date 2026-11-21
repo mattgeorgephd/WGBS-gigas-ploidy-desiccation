@@ -1,0 +1,2 @@
+gene_id,gene,biotype,product,chr,gene_start,gene_end,strand,n_transcripts,n_go_terms,in_legacy_universe,n_cpg_tested,n_cpg_eligible,n_dml,n_hyper,n_hypo,min_meth_diff,max_meth_diff,dml_positions
+105337663,LOC105337663,protein_coding,myosin-9,NC_047561.1,6738639,6743417,+,1,0,FALSE,30,9,1,0,1,-50.5867215645908,-50.5867215645908,6740817
