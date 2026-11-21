@@ -26,3 +26,15 @@ Long jobs run as tracked background tasks, one 5x fit at a time; the machine has
 | 10 | Final error checks: every test in tests/, the outputs of every analysis, documentation consistency; a report for the author | check_settings 62/62, check_overdispersion, check_paper_recipe_legacy 6/6 pass; outputs and documentation check done (no wrong number; 11 documentation findings applied, b0b6c35); C2 (mnchisq-ctexcl, planned in the handoff and missed) done 13:33 (e34e7ac; 12 ploidy, 142 heat DML) and mnchisq-ctexcl-d50 done 13:44 (42fd560; 1, 2); comparison table now 20 analyses; scratch-copy tests all pass (check_cached_fit 11/11, check_step13_not_run 17/17, check_ct_exclusion 23/23, check_fit_by_sequence identical for legacy and mnchisq), 14:42 UTC. Report for the author: 07_documentation/overnight_report_2026-11-21.md. DONE |
 
 Each run has `tests/snapshot_paper.R` before and after it. Progress is logged in the "State" column and in commits.
+
+## Follow-up of 2026-11-21 (author's instruction: "Run the remaining six combinations at both thresholds")
+
+The six combinations of the four settings not run before, each at 20 and 50 points (12 runs), one at a time, each with a paper snapshot before and after and a commit:
+
+| # | Work | State |
+|---|---|---|
+| 11 | Batch 1 (10x, cached fits): `corrected-ctexcl`, `corrected-ctexcl-d50`, `corrected-mnchisq-ctexcl`, `corrected-mnchisq-ctexcl-d50` | running since 19:20 UTC (scratchpad/rest_batch1.log) |
+| 12 | Batch 2 (5x, cached fits): `corrected-cov5`, `corrected-cov5-d50`, `corrected-cov5-mnchisq`, `corrected-cov5-mnchisq-d50` | after 11 |
+| 13 | New 5x fit `cov5-mnchisq` by sequence: `--coverage 5 --overdispersion --steps 4:5` (about 1.7 h; resumes from saved parts if stopped) | after 12 |
+| 14 | Batch 4: `cov5-mnchisq`, `cov5-mnchisq-d50`, `cov5-mnchisq-ctexcl`, `cov5-mnchisq-ctexcl-d50` | after 13 |
+| 15 | Comparison table (32 analyses), issues.md (I-51, I-52), READMEs, report; independent check | after 14 |
