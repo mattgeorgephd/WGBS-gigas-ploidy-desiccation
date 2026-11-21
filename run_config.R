@@ -94,7 +94,7 @@ config <- list(
                                      # (legacy methRead(mincov = 2); sets the base of the percentile)
   upper_coverage_percentile = 99.9,  # FROZEN. Used by option (a) only
   dml_qvalue                = 0.01,  # FROZEN. SLIM-adjusted q-value cutoff
-  dml_difference            = 20,    # FROZEN. Minimum absolute methylation difference, percentage points
+  dml_difference            = 20,    # FROZEN. A DML needs an absolute methylation difference of more than this, percentage points (strict >, as in methylKit getMethylDiff)
   dml_difference_sweep      = seq(5, 50, by = 5),  # thresholds for the sensitivity curve (Figure 2A, 2B)
   # Cores for the per-CpG model fits. Results do not depend on it. The default is
   # 1; set the environment variable WGBS_CORES to a whole number of 1 or more to
