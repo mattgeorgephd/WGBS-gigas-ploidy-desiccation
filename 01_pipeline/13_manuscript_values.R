@@ -46,8 +46,8 @@
 #             outputs and copies the items of the paper; it never reads
 #             04_output/not_adopted/. An optional run evaluates two recipes for
 #             every analysis folder under 04_output/not_adopted/ that holds a
-#             stamp (analysis.csv) and for the four analyses of a single option
-#             (corrected, cov5, mnchisq, ctexcl), whether run or not, and copies
+#             stamp (analysis.csv) and for the five analyses of a single option
+#             (corrected, cov5, mnchisq, ctexcl, d50), whether run or not, and copies
 #             their items. It does not evaluate the paper's analysis ("legacy"):
 #             its values are those of 05_manuscript/manuscript_values.csv.
 #           - The two recipes of an optional value (decision of the author,
@@ -109,7 +109,9 @@
 #                                  the paper recipe uses it only for the GO terms named in Results 3.4)
 #               diagnostic(file)   a table from 06_diagnostics/
 #               config             the settings list of run_config.R (in the optional part with the
-#                                  min_coverage of the analysis)
+#                                  min_coverage and the dml_difference of the analysis: with
+#                                  option d50 config$dml_difference is 50, so the rows that name
+#                                  the threshold, or apply it to group means, use 50)
 #               A                  (optional part) the analysis id
 #             An expression must return one value. A number is compared with the
 #             manuscript value within the tolerance of the row; a character
@@ -204,13 +206,13 @@ if (paper_run) {
   errors <- values[!is.na(expression_error), .(id, section, item, expression_legacy, expression_error)]
   write_table(errors, output_path(step, "tables", "expression_errors.csv"))
 } else {
-  # ---- Optional part: every analysis folder, and the four single options --------------------
+  # ---- Optional part: every analysis folder, and the five single options --------------------
   # A table that does not depend on the analysis is read from the paper folder.
   shared_steps <- c("01_fetch_inputs", "02_alignment_qc", "03_global_methylation", "12_qpcr")
   shared_files <- c("library_coverage.csv", "genome_cpg_total.csv", "gene_go_map.csv.gz", "transcript_table.csv.gz", "go_map_id_repair.csv")
   # The paper's analysis is left out: its values are in 05_manuscript/manuscript_values.csv,
   # and the templates, applied to it, are not the paper's computations (see Notes).
-  ids <- setdiff(analysis_order(c(analysis_folders(), "corrected", "cov5", "mnchisq", "ctexcl", config$analysis$id)), "legacy")
+  ids <- setdiff(analysis_order(c(analysis_folders(), "corrected", "cov5", "mnchisq", "ctexcl", "d50", config$analysis$id)), "legacy")
   ct_md5_now <- if (ct_variant_list_present()) ct_variant_list_md5() else NA_character_
   rows <- list(); error_rows <- list()
   for (A in ids) {
@@ -219,7 +221,7 @@ if (paper_run) {
     done <- if (is.null(s)) character(0) else strsplit(s$steps_done, ";", fixed = TRUE)[[1]]
     folder_state <- if (is.null(s)) "not run: analysis not run" else if (
       s$filter != a$filter || s$min_coverage != format(a$min_coverage) || s$overdispersion != a$overdispersion ||
-      s$ct_excluded != as.character(a$ct_excluded) ||
+      s$ct_excluded != as.character(a$ct_excluded) || s$dml_difference != format(a$dml_difference) ||
       (a$ct_excluded && !is.na(ct_md5_now) && !identical(s$ct_variant_list_md5, ct_md5_now))) "not run: folder stale" else ""
     recipes <- c(paper = "expression_paper_recipe", corrected = "expression_optional")
     if (nzchar(folder_state)) {
@@ -246,7 +248,7 @@ if (paper_run) {
         if (!file.exists(path)) stop("No such table of the paper: ", file.path(step_name, file))
         fread(path)
       }
-      cfg_a <- modifyList(config, list(min_coverage = a$min_coverage))
+      cfg_a <- modifyList(config, list(min_coverage = a$min_coverage, dml_difference = a$dml_difference))
       scope <- list2env(list(tab = tab, paper_tab = paper_tab, diagnostic = diagnostic, config = cfg_a, A = A), parent = globalenv())
       res <- lapply(recipes, function(r) lapply(map[[r]], evaluate, scope = scope, empty_is_na = TRUE))
     }

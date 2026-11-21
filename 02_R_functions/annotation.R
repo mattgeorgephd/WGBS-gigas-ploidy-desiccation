@@ -97,6 +97,13 @@ dml_annotation_columns <- function() {
 }
 read_dml_annotation <- function(path, reader = c("exact", "legacy")) {
   reader <- match.arg(reader)
+  # A set without DML in an annotated gene has a table without lines, which
+  # neither reader takes: it is returned as a table with the ten columns and no row.
+  if (length(readLines(path, n = 1, warn = FALSE)) == 0) {
+    return(data.table::data.table(transcript = character(), geneID = integer(), chr = character(), start = integer(),
+                                  end = integer(), meth.diff = numeric(), GOID = character(), GOterm = character(),
+                                  GOSlim = character(), GOcat = character()))
+  }
   if (reader == "legacy") {
     return(data.table::as.data.table(utils::read.table(path, header = FALSE, sep = "\t",
                                                         col.names = dml_annotation_columns())))

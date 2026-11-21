@@ -33,11 +33,11 @@ config <- list(
 
   # ---- Optional analyses: NOT ADOPTED, all off by default ----------------------
   # With every setting below at its default the run produces the results of the
-  # paper and nothing else. Settings (a) to (d) together define ONE optional
+  # paper and nothing else. Settings (a) to (e) together define ONE optional
   # analysis per run, named by its id (04_output/not_adopted/<id>/; the tokens
-  # are joined by "-" in the order corrected, cov5, mnchisq, ctexcl); (e) and (f)
-  # add steps. The switches of run_pipeline.R turn the same settings on for one
-  # run. A step started alone reads WGBS_ANALYSIS, WGBS_GENE_LEVEL_GO and
+  # are joined by "-" in the order corrected, cov5, mnchisq, ctexcl, d50); (f)
+  # and (g) add steps. The switches of run_pipeline.R turn the same settings on
+  # for one run. A step started alone reads WGBS_ANALYSIS, WGBS_GENE_LEVEL_GO and
   # WGBS_DIAGNOSTICS, which run_pipeline.R sets for its steps.
   optional = list(
     coverage_filter_of_methods = FALSE,         # (a) token "corrected": CpGs at or above the 99.9th percentile of
@@ -49,8 +49,12 @@ config <- list(
     exclude_ct_variants        = FALSE,         # (d) token "ctexcl": CpGs at C-to-T variants removed from the CpG sets of
                                                 #     step 04 and, after the test, from the tested CpGs and DML (I-08);
                                                 #     needs the list of 01_pipeline/optional/ct_variant_loci.R
-    gene_level_go              = FALSE,         # (e) step 10 and the gene-level part of step 11 (I-41)
-    diagnostics                = character(0)   # (f) "all", or names of scripts of 06_diagnostics/ without .R
+    dml_difference_standard    = 20L,           # (e) absolute difference a DML must exceed, percentage points: 20 (the
+                                                #     paper) or 50 (token "d50"; Venkataraman et al. 2022, getMethylDiff
+                                                #     difference = 50). Applied after the test: the fit of the analysis
+                                                #     without d50 is reused (author's decision of 2026-11-21)
+    gene_level_go              = FALSE,         # (f) step 10 and the gene-level part of step 11 (I-41)
+    diagnostics                = character(0)   # (g) "all", or names of scripts of 06_diagnostics/ without .R
   ),
 
   # ---- C-to-T variant rule (option (d)) ------------------------------------------
@@ -94,7 +98,9 @@ config <- list(
                                      # (legacy methRead(mincov = 2); sets the base of the percentile)
   upper_coverage_percentile = 99.9,  # FROZEN. Used by option (a) only
   dml_qvalue                = 0.01,  # FROZEN. SLIM-adjusted q-value cutoff
-  dml_difference            = 20,    # FROZEN. A DML needs an absolute methylation difference of more than this, percentage points (strict >, as in methylKit getMethylDiff)
+  dml_difference            = 20,    # FROZEN. A DML needs an absolute methylation difference of more than this, percentage points
+                                     # (strict >, as in methylKit getMethylDiff), in the paper; option (e) sets 50 for an
+                                     # optional analysis (config$analysis$dml_difference)
   dml_difference_sweep      = seq(5, 50, by = 5),  # thresholds for the sensitivity curve (Figure 2A, 2B)
   # Cores for the per-CpG model fits. Results do not depend on it. The default is
   # 1; set the environment variable WGBS_CORES to a whole number of 1 or more to
@@ -232,7 +238,7 @@ config$mito_sequence  <- "NC_001276.1"
 # except that cores becomes a number. They add three derived values:
 #   config$analysis  the analysis of the run (analysis_spec() of
 #                    02_R_functions/analyses.R): id, filter, min_coverage,
-#                    overdispersion, test, ct_excluded, fit_id
+#                    overdispersion, test, ct_excluded, dml_difference, fit_id
 #   config$addons    gene_level_go (TRUE/FALSE) and diagnostics (names)
 #   config$run_kind  "paper" when the analysis is the paper's and no add-on is on,
 #                    else "optional"
@@ -253,7 +259,7 @@ config <- local({
   seed    <- function(x) number(x) && x == round(x) && abs(x) <= .Machine$integer.max   # what set.seed() takes
   at_least_0 <- function(x) number(x) && x >= 0                       # a tolerance or a size limit
 
-  # Optional analyses (settings (a) to (f)) and the environment variables that
+  # Optional analyses (settings (a) to (g)) and the environment variables that
   # choose them for a step started alone. The analysis id is defined by
   # analysis_spec() of 02_R_functions/analyses.R.
   source(here::here("02_R_functions", "analyses.R"), local = TRUE)
@@ -263,6 +269,7 @@ config <- local({
   check("optional$exclude_ct_variants", "TRUE or FALSE", flag)
   check("optional$gene_level_go", "TRUE or FALSE", flag)
   check("optional$coverage_standard", "10 (the paper) or 5", function(x) number(x) && x %in% c(5, 10))
+  check("optional$dml_difference_standard", "20 (the paper) or 50", function(x) number(x) && x %in% c(20, 50))
   diag_table <- here::here("06_diagnostics", "diagnostics.csv")
   diag_names <- if (file.exists(diag_table)) utils::read.csv(diag_table, stringsAsFactors = FALSE)$script else character(0)
   diag_ok <- function(x) is.character(x) && !anyNA(x) && (length(x) == 0 || identical(x, "all") || (all(x %in% diag_names) && !anyDuplicated(x)))
@@ -270,7 +277,8 @@ config <- local({
                                        paste(diag_names, collapse = ", "), ")"), diag_ok)
   o <- cfg$optional
   id <- analysis_id(c(if (o$coverage_filter_of_methods) "corrected", if (o$coverage_standard == 5) "cov5",
-                      if (o$overdispersion_chisq) "mnchisq", if (o$exclude_ct_variants) "ctexcl"))
+                      if (o$overdispersion_chisq) "mnchisq", if (o$exclude_ct_variants) "ctexcl",
+                      if (o$dml_difference_standard == 50) "d50"))
   gene_level <- o$gene_level_go
   diagnostics <- o$diagnostics
   # An empty variable is an error, not "not set": it is what a job script leaves

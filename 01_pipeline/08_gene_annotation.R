@@ -60,6 +60,12 @@
 #             legacy mode only, so the summary rows of the corrected mode
 #             committed then (now in 04_output/not_adopted/) have empty legacy_
 #             columns; a run of the analysis 'corrected' fills them.
+#           - Eligible CpGs (dml_eligible()) are taken at the threshold of the
+#             analysis: a mean methylation from 10% to 90% at the paper's 20
+#             points, from 25% to 75% at the 50 points of option d50.
+#           - A DML set can be empty (option d50, or a stricter model): its
+#             tables are written with their columns and no row, its summary row
+#             holds zeros, and its ten-column table has no line.
 
 suppressPackageStartupMessages(library(here))
 source(here("run_config.R"))
@@ -125,7 +131,7 @@ log_msg("writing the tables of the analysis '%s'", an$id)
 summary_rows <- list()
 for (mode in an$id) {
   united <- fread(dml_file(sprintf("united_cpg_%s.csv.gz", mode)))
-  eligible <- dml_eligible(mean_percent_methylation(united), config)
+  eligible <- dml_eligible(mean_percent_methylation(united), list(dml_difference = an$dml_difference))
   united <- united[, .(chr, start)]
   gene_tab <- copy(gene_base)
   # Tested CpGs in the gene body, and those of them that are eligible (see dml_eligible()).
@@ -147,7 +153,8 @@ for (mode in an$id) {
     write_table(pairs, tab(sprintf("dml_gene_overlap_%s_%s.csv", set, mode)))
 
     per_gene <- pairs[, .(n_dml = .N, n_hyper = sum(meth.diff > 0), n_hypo = sum(meth.diff < 0),
-                          min_meth_diff = min(meth.diff), max_meth_diff = max(meth.diff),
+                          min_meth_diff = if (.N > 0) min(meth.diff) else NA_real_,      # .N is 0 only for a set
+                          max_meth_diff = if (.N > 0) max(meth.diff) else NA_real_,      # without DML in a gene
                           dml_positions = paste(start, collapse = ";")), by = gene_id]
     gene_tab[, (paste0("n_dml_", set)) := per_gene[.SD, on = "gene_id", n_dml]]
     set(gene_tab, which(is.na(gene_tab[[paste0("n_dml_", set)]])), paste0("n_dml_", set), 0L)

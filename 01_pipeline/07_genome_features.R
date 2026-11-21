@@ -44,16 +44,17 @@
 # Manuscript items: Results 3.3; Figure 3.
 # Notes     - The step applies no threshold of its own. A DML is a row of
 #             dml_<set>_<mode>.csv as step 05 wrote it (q-value below
-#             config$dml_qvalue and an absolute difference above
-#             config$dml_difference, by methylKit's rule on the unrounded
-#             difference).
+#             config$dml_qvalue and an absolute difference above the threshold
+#             of the analysis, config$analysis$dml_difference: 20 points, or 50
+#             with option d50, by methylKit's rule on the unrounded difference).
 #           - The background is the set of CpGs that were tested for differential
 #             methylation, in the same mode. The legacy background was assembled
 #             from two other CpG sets (issue I-14).
 #           - Two backgrounds are used for the Fisher tests: all analysed CpGs,
 #             and "eligible" CpGs, those whose mean methylation across libraries
-#             lies between half of config$dml_difference and 100 minus that (10%
-#             and 90% at the default of 20 points, both ends included). A
+#             lies between half of the threshold of the analysis and 100 minus
+#             that (10% and 90% at the paper's 20 points, 25% and 75% at the 50
+#             points of option d50; both ends included). A
 #             20-point difference between two groups almost always needs a mean
 #             in that range (all but 2 of the legacy DML have one), so the other
 #             CpGs, about 86% of those analysed, are almost never DML.
@@ -129,7 +130,7 @@
 #             and the heat list, so a locus in both lists is counted twice. Its
 #             caption gives the number of such loci in the panel and what lies on
 #             the other sequences, which are in dml_by_linkage_group_<mode>.csv.
-#           - A set can be empty (a high config$dml_difference, or a stricter
+#           - A set can be empty (a high threshold, as with option d50, or a stricter
 #             model). For a set without loci the percentages and the Fisher and
 #             chi-squared rows hold NA, the region summary has a row of zeros,
 #             and Figure 3A keeps its label without a bar; the log names every
@@ -180,7 +181,7 @@ for (mode in an$id) {
   log_msg("[%s] reading analysed CpGs and DML", mode)
   united <- fread(dml_dir(sprintf("united_cpg_%s.csv.gz", mode)))
   # Eligible CpGs: mean methylation in the range that holds nearly all DML (see dml_eligible()).
-  eligible <- dml_eligible(mean_percent_methylation(united), config)
+  eligible <- dml_eligible(mean_percent_methylation(united), list(dml_difference = an$dml_difference))
   cpg <- united[, .(chr, start)]
   cpg[, united_row := .I]
   rm(united); gc(verbose = FALSE)

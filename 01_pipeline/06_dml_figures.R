@@ -32,8 +32,9 @@
 # Manuscript items: Figure 2; Figure 4.
 # Notes     - The step applies no threshold of its own. A DML is a row of
 #             dml_<set>_<mode>.csv as step 05 wrote it (q-value below
-#             config$dml_qvalue and an absolute difference above
-#             config$dml_difference, by methylKit's rule on the unrounded
+#             config$dml_qvalue and an absolute difference above the threshold
+#             of the analysis, config$analysis$dml_difference: 20 points, or 50
+#             with option d50, by methylKit's rule on the unrounded
 #             difference), and panels A and B draw the counts of
 #             dml_counts_by_threshold_<mode>.csv as they are.
 #           - Panels C and D use loci that were selected because they differ
@@ -61,7 +62,7 @@
 #             (beside the strips the names were cut by the next panel). The upper
 #             strip is treatment and the lower one ploidy, as the legend of the
 #             last heat map lists them.
-#           - A DML set can be too small to draw (a high config$dml_difference,
+#           - A DML set can be too small to draw (a high threshold, as with option d50,
 #             or a stricter model): the PCA needs two loci above the median SD,
 #             a clustered heat map two loci, Figure 4 one locus. Such a panel is
 #             replaced by one that says so, with a message in the log; the PCA

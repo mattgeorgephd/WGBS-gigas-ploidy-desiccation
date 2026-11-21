@@ -82,6 +82,16 @@
 #           - The log line of each test gives the transcripts of interest in both
 #             units of item 5: as distinct transcripts, and as the map lines that
 #             topGO counted in the totals of the test.
+#           - A DML set none of whose transcripts is in the legacy universe with
+#             a term of the ontology (a set without DML, or whose DML lie in no
+#             gene with GO terms; at 50 points, option d50, the ploidy set and
+#             the loci in both lists) has no transcript of interest, and topGO
+#             cannot test it. For such a set
+#             the step logs a line per ontology, writes its Fisher, top-ten and
+#             DML-in-top-ten tables with their columns and no row, counts 0 in
+#             Figures 5 and 9 where nothing is counted, and gives it no row in
+#             Table 1. The percentages of legacy_funnel.csv are NA where no gene
+#             has GO terms.
 
 suppressPackageStartupMessages(library(here))
 source(here("run_config.R"))
@@ -183,7 +193,7 @@ funnel <- rbindlist(lapply(names(sets), function(s) {
              genes = c(ann_summary[set == s, n_genes_with_dml], uniqueN(e$geneID), uniqueN(l$geneID), uniqueN(tested$geneID)),
              transcripts = c(NA, uniqueN(e$transcript), uniqueN(l$transcript), uniqueN(tested$transcript)))
 }))
-funnel[, percent_of_genes_with_GO_terms := round(100 * genes / genes[2], 1), by = set]
+funnel[, percent_of_genes_with_GO_terms := if (genes[2] > 0) round(100 * genes / genes[2], 1) else NA_real_, by = set]
 funnel[stage == "1 genes holding a DML", percent_of_genes_with_GO_terms := NA]
 write_table(funnel, tab("legacy_funnel.csv"))
 
@@ -192,30 +202,45 @@ write_table(funnel, tab("legacy_funnel.csv"))
 # =============================================================================
 fisher <- new("classicCount", testStatistic = GOFisherTest, name = "Fisher test")
 fig5 <- list(); fig9 <- list(); table1 <- list()
+# A set without a transcript of interest (see the Notes) is not tested: its
+# tables are written with their columns and no row, and the log says so.
+no_test <- data.table(set = character(), ontology = character(), rank = integer(), go_id = character(), term = character(),
+                      annotated = integer(), significant = integer(), expected = numeric(), p_fisher = numeric(),
+                      genes_annotated = integer(), genes_significant = integer(), top10 = logical(), below_p_cutoff = logical())
 for (ont in names(onts)) {
   td <- NULL
   for (s in names(sets)) {
     gene_list <- factor(as.integer(geneNames %in% ann_legacy[[s]]$transcript)); names(gene_list) <- geneNames
-    td <- if (is.null(td)) {
-      suppressMessages(new("topGOdata", ontology = ont, allGenes = gene_list, annot = annFUN.gene2GO, gene2GO = geneID2GO))
-    } else updateGenes(td, gene_list)
-    rf <- suppressMessages(getSigGroups(td, fisher)); p <- score(rf)
-    gt <- GenTable(td, classic = rf, ranksOf = "classic", orderBy = "classic", topNodes = length(p), numChar = 1000)
+    tested <- nlevels(gene_list) == 2
+    if (tested) {
+      td <- if (is.null(td)) {
+        suppressMessages(new("topGOdata", ontology = ont, allGenes = gene_list, annot = annFUN.gene2GO, gene2GO = geneID2GO))
+      } else updateGenes(td, gene_list)
+      tested <- numSigGenes(td) > 0                 # transcripts of interest with a term of this ontology
+    }
+    if (tested) {
+      rf <- suppressMessages(getSigGroups(td, fisher)); p <- score(rf)
+      gt <- GenTable(td, classic = rf, ranksOf = "classic", orderBy = "classic", topNodes = length(p), numChar = 1000)
 
-    # Distinct genes behind the transcript counts of each term.
-    in_term <- genesInTerm(td)[gt$GO.ID]; sig_tx <- sigGenes(td)
-    res <- data.table(
-      set = s, ontology = ont, rank = seq_len(nrow(gt)), go_id = gt$GO.ID, term = gt$Term,
-      annotated = gt$Annotated, significant = gt$Significant, expected = gt$Expected, p_fisher = unname(p[gt$GO.ID]),
-      genes_annotated = vapply(in_term, function(v) uniqueN(tx_gene[v]), integer(1)),
-      genes_significant = vapply(in_term, function(v) uniqueN(tx_gene[v[v %chin% sig_tx]]), integer(1)))
-    res[, `:=`(top10 = rank <= config$go_legacy_topn, below_p_cutoff = p_fisher < config$go_pvalue)]
+      # Distinct genes behind the transcript counts of each term.
+      in_term <- genesInTerm(td)[gt$GO.ID]; sig_tx <- sigGenes(td)
+      res <- data.table(
+        set = s, ontology = ont, rank = seq_len(nrow(gt)), go_id = gt$GO.ID, term = gt$Term,
+        annotated = gt$Annotated, significant = gt$Significant, expected = gt$Expected, p_fisher = unname(p[gt$GO.ID]),
+        genes_annotated = vapply(in_term, function(v) uniqueN(tx_gene[v]), integer(1)),
+        genes_significant = vapply(in_term, function(v) uniqueN(tx_gene[v[v %chin% sig_tx]]), integer(1)))
+      res[, `:=`(top10 = rank <= config$go_legacy_topn, below_p_cutoff = p_fisher < config$go_pvalue)]
+    } else {
+      log_msg("%-6s %s: no transcript of interest in the legacy universe with a term of this ontology (%d DML in the set); no Fisher test, its tables are written without rows",
+              s, ont, ann_summary[set == s, n_dml])
+      res <- copy(no_test)
+    }
     write_table(res, tab(sprintf("legacy_fisher_%s_%s.csv", s, ont)))
 
     # ---- the ten top-ranked terms, and what the legacy script derived from them ----
     top <- res[top10 == TRUE]
-    members <- genesInTerm(td, whichGO = top$go_id)                 # universe transcripts carrying each term
-    term_tx <- data.table(GOID = rep(names(members), lengths(members)), transcript = unlist(members, use.names = FALSE))
+    members <- if (tested) genesInTerm(td, whichGO = top$go_id) else list()   # universe transcripts carrying each term
+    term_tx <- data.table(GOID = rep(as.character(names(members)), lengths(members)), transcript = as.character(unlist(members, use.names = FALSE)))
     term_tx <- merge(top[, .(GOID = go_id, topGOterm = term, p.value = p_fisher)], term_tx, by = "GOID", sort = FALSE)
     ann_ont <- ann_legacy[[s]][GOcat == onts[[ont]]]
     annot <- merge(term_tx, ann_ont, by = c("GOID", "transcript"), all.x = TRUE, sort = FALSE, allow.cartesian = TRUE)
@@ -247,13 +272,15 @@ for (ont in names(onts)) {
     fig9[[length(fig9) + 1]] <- data.table(set = s, ontology = ont, total = nrow(in_genes),
                                            hyper = sum(in_genes$meth.diff >= 0), hypo = sum(in_genes$meth.diff <= 0),
                                            genes = uniqueN(in_genes$geneID))
-    if (ont == "BP") table1[[s]] <- cbind(dml_set = sets[[s]], in_genes)
+    if (ont == "BP") table1[[s]] <- cbind(dml_set = rep(sets[[s]], nrow(in_genes)), in_genes)   # no row for a set without one
     # Both units of the test (issue I-43): distinct transcripts of interest, and the
     # map lines that topGO counted for them and for the universe in its totals.
-    log_msg(paste("%-6s %s: %5d terms; %4d with p < %g; transcripts of interest %d, counted in the totals of the test as",
-                  "%d of %d map lines; genes behind the ten top-ranked terms: %s"),
-            s, ont, nrow(res), sum(res$below_p_cutoff), config$go_pvalue, uniqueN(sig_tx), numSigGenes(td), numGenes(td),
-            paste(top$genes_significant, collapse = " "))
+    if (tested) {
+      log_msg(paste("%-6s %s: %5d terms; %4d with p < %g; transcripts of interest %d, counted in the totals of the test as",
+                    "%d of %d map lines; genes behind the ten top-ranked terms: %s"),
+              s, ont, nrow(res), sum(res$below_p_cutoff), config$go_pvalue, uniqueN(sig_tx), numSigGenes(td), numGenes(td),
+              paste(top$genes_significant, collapse = " "))
+    }
   }
 }
 fig5 <- rbindlist(fig5); fig9 <- rbindlist(fig9); table1 <- rbindlist(table1)

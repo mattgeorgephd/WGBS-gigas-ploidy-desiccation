@@ -13,13 +13,22 @@
 #                as covariate, and on heat with ploidy as covariate; SLIM q-values
 #                (option mnchisq, not adopted: with methylKit's overdispersion
 #                correction, overdispersion = "MN", test = "Chisq")
-#             4. DML = q < config$dml_qvalue and |difference| > config$dml_difference
+#             4. DML = q < config$dml_qvalue and |difference| > the threshold of the
+#                analysis (config$analysis$dml_difference: config$dml_difference,
+#                20 points, in the paper; 50 with option d50)
 #             5. loci in both DML lists ("shared"; the legacy "interaction-DML")
 #             With option ctexcl (not adopted) the CpGs of the C-to-T variant list
 #             are removed after the test from the tested CpGs and the DML lists,
 #             as in Venkataraman et al. 2022: the fit, its p-values and q-values
 #             are those of all CpGs (the fit of the analysis without ctexcl is
 #             reused), and only rows are dropped.
+#             With option d50 (not adopted) the DML lists are taken at a
+#             difference of more than 50 points, as methylKit getMethylDiff with
+#             difference = 50 takes them (Venkataraman et al. 2022). The threshold
+#             is applied after the test, so the fit of the analysis without d50
+#             is reused (its fit id); nothing is fitted for it when that fit is in
+#             the cache. The counts at 5 to 50 points of
+#             dml_counts_by_threshold_<id>.csv are those of that analysis.
 #
 # Run       Rscript 01_pipeline/05_differential_methylation.R     (after step 01)
 #           WGBS_CORES sets the number of forked workers of the model fits
@@ -44,7 +53,7 @@
 #                                                (median-scaled and rounded as by methylKit; not raw
 #                                                read counts)
 #             diffmeth_<contrast>_<mode>.csv.gz  p, q, difference at every analysed CpG
-#             dml_<contrast>_<mode>.csv          DML at the configured thresholds
+#             dml_<contrast>_<mode>.csv          DML at the thresholds of the analysis (q, difference)
 #             dml_shared_<mode>.csv              loci in both DML lists, with both differences
 #             united_at_dml_<id>.csv             (optional analysis) the rows of united_cpg_<id>.csv.gz at the
 #                                                DML of either list, with united_row; tracked, and read by
@@ -63,7 +72,7 @@
 #           step 04 used (md5 in the stamp of the analysis folder).
 #           04_output/05_differential_methylation/bed/dml_<set>_<mode>.bed
 #           04_output/05_differential_methylation/cache/methylkit_<fit id>.rds   (not tracked; the fit
-#             id is the analysis id without ctexcl, "legacy" for the paper)
+#             id is the analysis id without ctexcl and d50, "legacy" for the paper)
 #           04_output/05_differential_methylation/cache/parts_<fit id>/   (not tracked; the saved
 #             import and parts of a fit by sequence while it is under way; deleted when the fit is
 #             written)
@@ -147,7 +156,8 @@
 #             the fitting code (fit_fingerprint() below). Otherwise, and when a
 #             cache file cannot be read, the analysis is fitted again; nothing has
 #             to be deleted by hand. The thresholds of step 4 are applied after
-#             the fit, so changing them does not refit. With the fit in the
+#             the fit, so changing them does not refit (option d50 reuses the fit
+#             of its analysis without d50). With the fit in the
 #             cache the step takes about half a minute. Not part of the
 #             fingerprint: the version of R and of every package other than
 #             methylKit (stats::glm.fit runs inside the tests, data.table reads
@@ -714,6 +724,7 @@ cached_fit <- function(a, fit_whole = fit_mode, fit_parts = fit_by_sequence) {
 # ---- Write the outputs of one mode -----------------------------------------------
 write_mode <- function(fit, a) {
   mode <- a$id                                  # names and the column mode carry the analysis id
+  min_diff <- a$dml_difference                  # 20 points (config$dml_difference), or 50 with option d50
   tab <- function(name) analysis_path(a, step, "tables", name)
 
   write_table(fit$filtering, tab(sprintf("library_filtering_%s.csv", mode)))
@@ -723,8 +734,8 @@ write_mode <- function(fit, a) {
   for (contrast in names(tests)) {
     stopifnot(identical(tests[[contrast]]$chr, united$chr), identical(tests[[contrast]]$start, united$start))
     # the DML of the fit on all CpGs, as methylKit's getMethylDiff gives them
-    stopifnot(tests[[contrast]][qvalue < config$dml_qvalue & abs(meth.diff) > config$dml_difference, .N] ==
-                nrow(dml_table(fit$diffmeth[[contrast]], config$dml_difference, config$dml_qvalue)))
+    stopifnot(tests[[contrast]][qvalue < config$dml_qvalue & abs(meth.diff) > min_diff, .N] ==
+                nrow(dml_table(fit$diffmeth[[contrast]], min_diff, config$dml_qvalue)))
   }
   # Option ctexcl: the listed CpGs leave the tested CpGs after the test; p-values,
   # q-values and differences of the other CpGs are those of the fit on all CpGs.
@@ -738,7 +749,7 @@ write_mode <- function(fit, a) {
     summary <- list()
     for (contrast in names(tests)) {
       x <- tests[[contrast]]
-      is_dml <- x$qvalue < config$dml_qvalue & abs(x$meth.diff) > config$dml_difference
+      is_dml <- x$qvalue < config$dml_qvalue & abs(x$meth.diff) > min_diff
       removed[, (paste0(c("pvalue_", "qvalue_", "meth.diff_", "dml_"), contrast)) :=
                 list(x$pvalue[listed], x$qvalue[listed], x$meth.diff[listed], is_dml[listed])]
       summary[[contrast]] <- data.table(mode = mode, contrast = contrast, cpg_tested_before = nrow(x), cpg_removed = sum(listed),
@@ -763,7 +774,7 @@ write_mode <- function(fit, a) {
     all_cpg <- copy(tests[[contrast]])
     all_cpg[, united_row := .I]                 # row in united_cpg_<mode>; the legacy row name (renumbered after an exclusion)
     write_table(all_cpg, tab(sprintf("diffmeth_%s_%s.csv.gz", contrast, mode)))
-    d <- all_cpg[qvalue < config$dml_qvalue & abs(meth.diff) > config$dml_difference]
+    d <- all_cpg[qvalue < config$dml_qvalue & abs(meth.diff) > min_diff]
     stopifnot(all(d$united_row <= nrow(united)))
     d[, direction := fifelse(meth.diff > 0, "hyper", "hypo")]
     write_table(d, tab(sprintf("dml_%s_%s.csv", contrast, mode)))
