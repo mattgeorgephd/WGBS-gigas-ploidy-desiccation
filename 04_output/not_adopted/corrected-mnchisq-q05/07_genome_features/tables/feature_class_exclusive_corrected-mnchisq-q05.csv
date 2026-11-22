@@ -1,0 +1,65 @@
+mode,set,n_loci,class,n,pct,pct_in_TE
+corrected-mnchisq-q05,all analysed CpGs,454555,CDS,126899,27.9171937389315,1.53429105036289
+corrected-mnchisq-q05,all analysed CpGs,454555,lncRNA,12576,2.7666619001001,25.6758905852417
+corrected-mnchisq-q05,all analysed CpGs,454555,exon_UTR,36575,8.04633102704843,4.80382775119617
+corrected-mnchisq-q05,all analysed CpGs,454555,intron,149330,32.8519101098877,28.7564454563718
+corrected-mnchisq-q05,all analysed CpGs,454555,upstream_flank,16088,3.53928567500083,22.5634012928891
+corrected-mnchisq-q05,all analysed CpGs,454555,downstream_flank,10365,2.28025211470559,35.89001447178
+corrected-mnchisq-q05,all analysed CpGs,454555,intergenic,102722,22.5983654343259,40.3477346624871
+corrected-mnchisq-q05,all analysed CpGs,454555,other,0,0,
+corrected-mnchisq-q05,eligible CpGs,61056,CDS,15755,25.804179769392,3.5353855918756
+corrected-mnchisq-q05,eligible CpGs,61056,lncRNA,1961,3.21180555555556,33.299337072922
+corrected-mnchisq-q05,eligible CpGs,61056,exon_UTR,3538,5.79468029350105,7.5183719615602
+corrected-mnchisq-q05,eligible CpGs,61056,intron,32936,53.9439203354298,35.4839689094001
+corrected-mnchisq-q05,eligible CpGs,61056,upstream_flank,623,1.02037473794549,54.8956661316212
+corrected-mnchisq-q05,eligible CpGs,61056,downstream_flank,1000,1.63784067085954,53.4
+corrected-mnchisq-q05,eligible CpGs,61056,intergenic,5243,8.58719863731656,63.5323288193782
+corrected-mnchisq-q05,eligible CpGs,61056,other,0,0,
+corrected-mnchisq-q05,ploidy DML,34,CDS,14,41.1764705882353,7.14285714285714
+corrected-mnchisq-q05,ploidy DML,34,lncRNA,1,2.94117647058824,0
+corrected-mnchisq-q05,ploidy DML,34,exon_UTR,2,5.88235294117647,0
+corrected-mnchisq-q05,ploidy DML,34,intron,16,47.0588235294118,31.25
+corrected-mnchisq-q05,ploidy DML,34,upstream_flank,0,0,
+corrected-mnchisq-q05,ploidy DML,34,downstream_flank,0,0,
+corrected-mnchisq-q05,ploidy DML,34,intergenic,1,2.94117647058824,100
+corrected-mnchisq-q05,ploidy DML,34,other,0,0,
+corrected-mnchisq-q05,heat DML,355,CDS,114,32.112676056338,0
+corrected-mnchisq-q05,heat DML,355,lncRNA,9,2.53521126760563,11.1111111111111
+corrected-mnchisq-q05,heat DML,355,exon_UTR,20,5.63380281690141,5
+corrected-mnchisq-q05,heat DML,355,intron,181,50.9859154929578,36.4640883977901
+corrected-mnchisq-q05,heat DML,355,upstream_flank,5,1.40845070422535,0
+corrected-mnchisq-q05,heat DML,355,downstream_flank,7,1.97183098591549,57.1428571428571
+corrected-mnchisq-q05,heat DML,355,intergenic,19,5.35211267605634,73.6842105263158
+corrected-mnchisq-q05,heat DML,355,other,0,0,
+corrected-mnchisq-q05,shared,6,CDS,3,50,0
+corrected-mnchisq-q05,shared,6,lncRNA,0,0,
+corrected-mnchisq-q05,shared,6,exon_UTR,0,0,
+corrected-mnchisq-q05,shared,6,intron,3,50,66.6666666666667
+corrected-mnchisq-q05,shared,6,upstream_flank,0,0,
+corrected-mnchisq-q05,shared,6,downstream_flank,0,0,
+corrected-mnchisq-q05,shared,6,intergenic,0,0,
+corrected-mnchisq-q05,shared,6,other,0,0,
+corrected-mnchisq-q05,"shared, both hyper",1,CDS,0,0,
+corrected-mnchisq-q05,"shared, both hyper",1,lncRNA,0,0,
+corrected-mnchisq-q05,"shared, both hyper",1,exon_UTR,0,0,
+corrected-mnchisq-q05,"shared, both hyper",1,intron,1,100,100
+corrected-mnchisq-q05,"shared, both hyper",1,upstream_flank,0,0,
+corrected-mnchisq-q05,"shared, both hyper",1,downstream_flank,0,0,
+corrected-mnchisq-q05,"shared, both hyper",1,intergenic,0,0,
+corrected-mnchisq-q05,"shared, both hyper",1,other,0,0,
+corrected-mnchisq-q05,"shared, both hypo",3,CDS,2,66.6666666666667,0
+corrected-mnchisq-q05,"shared, both hypo",3,lncRNA,0,0,
+corrected-mnchisq-q05,"shared, both hypo",3,exon_UTR,0,0,
+corrected-mnchisq-q05,"shared, both hypo",3,intron,1,33.3333333333333,100
+corrected-mnchisq-q05,"shared, both hypo",3,upstream_flank,0,0,
+corrected-mnchisq-q05,"shared, both hypo",3,downstream_flank,0,0,
+corrected-mnchisq-q05,"shared, both hypo",3,intergenic,0,0,
+corrected-mnchisq-q05,"shared, both hypo",3,other,0,0,
+corrected-mnchisq-q05,"shared, opposite",2,CDS,1,50,0
+corrected-mnchisq-q05,"shared, opposite",2,lncRNA,0,0,
+corrected-mnchisq-q05,"shared, opposite",2,exon_UTR,0,0,
+corrected-mnchisq-q05,"shared, opposite",2,intron,1,50,0
+corrected-mnchisq-q05,"shared, opposite",2,upstream_flank,0,0,
+corrected-mnchisq-q05,"shared, opposite",2,downstream_flank,0,0,
+corrected-mnchisq-q05,"shared, opposite",2,intergenic,0,0,
+corrected-mnchisq-q05,"shared, opposite",2,other,0,0,
