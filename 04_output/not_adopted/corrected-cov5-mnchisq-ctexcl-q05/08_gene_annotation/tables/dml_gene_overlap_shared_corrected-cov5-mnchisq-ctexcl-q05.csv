@@ -1,0 +1,29 @@
+chr,start,end,meth.diff,direction,gene_id,gene,biotype,product,n_go_terms,meth.diff_ploidy,direction_ploidy,class
+NC_047560.1,47371134,47371136,-24.8248402728479,hypo,105337984,LOC105337984,protein_coding,mothers against decapentaplegic homolog 3,114,-26.8736881096432,hypo,both_hypo
+NC_047560.1,53373368,53373370,-21.2819408555843,hypo,105334159,LOC105334159,protein_coding,tight junction protein ZO-1,9,-25.2141744548287,hypo,both_hypo
+NC_047561.1,5955882,5955884,26.2068965517241,hyper,105326269,LOC105326269,protein_coding,dolichol kinase-like,4,24.0506329113924,hyper,both_hyper
+NC_047561.1,9518649,9518651,-27.4157660521297,hypo,105335325,LOC105335325,protein_coding,DNA-directed RNA polymerase II subunit GRINL1A,2,-24.0347598281178,hypo,both_hypo
+NC_047561.1,14469635,14469637,-23.8458554248028,hypo,105324555,LOC105324555,protein_coding,WD repeat-containing protein 41,7,-20.5751447584478,hypo,both_hypo
+NC_047561.1,16644789,16644791,-27.3902935193258,hypo,105345327,LOC105345327,protein_coding,protein FAM161A,4,-30.1850025260423,hypo,both_hypo
+NC_047561.1,19368535,19368537,22.35801304875,hyper,105318635,LOC105318635,protein_coding,WD repeat-containing protein 25,0,33.3333333333333,hyper,both_hyper
+NC_047561.1,23951450,23951452,-24.3577075098814,hypo,105345667,LOC105345667,protein_coding,cytoplasmic dynein 1 heavy chain 1,35,-26.71826625387,hypo,both_hypo
+NC_047561.1,27428633,27428635,24.4496244496245,hyper,105332424,LOC105332424,protein_coding,putative ATP-dependent RNA helicase DHX57,6,-29.4857292029238,hypo,opposite
+NC_047561.1,31092563,31092565,20.0980392156863,hyper,105330131,LOC105330131,protein_coding,gamma-tubulin complex component 4,19,21.1340206185567,hyper,both_hyper
+NC_047562.1,40685928,40685930,-23.9823609226594,hypo,105325928,LOC105325928,protein_coding,uncharacterized LOC105325928,42,29.2552508876246,hyper,opposite
+NC_047563.1,5569232,5569234,-22.7316602316602,hypo,105318231,LOC105318231,protein_coding,adenylate kinase 9,22,23.2597486303577,hyper,opposite
+NC_047563.1,7709265,7709267,-34.2549923195084,hypo,105332317,LOC105332317,protein_coding,PAX3- and PAX7-binding protein 1,11,45.893240257453,hyper,opposite
+NC_047563.1,12234665,12234667,-23.7349778621126,hypo,105326926,LOC105326926,protein_coding,trafficking protein particle complex subunit 3,5,-24.4680571263249,hypo,both_hypo
+NC_047563.1,41390413,41390415,-28.5114084416004,hypo,105334530,LOC105334530,protein_coding,dystrophin,8,-30.9975559557499,hypo,both_hypo
+NC_047564.1,10665031,10665033,-24.8670440898954,hypo,105318257,LOC105318257,protein_coding,HMG box-containing protein C28F2.11,0,20.7333029923768,hyper,opposite
+NC_047564.1,30383385,30383387,-22.4412299758032,hypo,105329663,LOC105329663,protein_coding,AP-1 complex subunit gamma-1,20,20.0970250410216,hyper,opposite
+NC_047565.1,17821049,17821051,22.879848628193,hyper,105344015,LOC105344015,protein_coding,Regulator of G-protein signaling 3,6,-24.8520710059172,hypo,opposite
+NC_047565.1,19099346,19099348,-26.1169647962101,hypo,105338873,LOC105338873,protein_coding,serine/threonine kinase-like domain-containing protein STKLD1,2,-27.33691164327,hypo,both_hypo
+NC_047565.1,30447774,30447776,-30.3955968352253,hypo,117681502,LOC117681502,protein_coding,L-aminoadipate-semialdehyde dehydrogenase-phosphopantetheinyl transferase-like,4,-28.2559339525284,hypo,both_hypo
+NC_047565.1,34548930,34548932,30.1587301587302,hyper,105325135,LOC105325135,protein_coding,TLC domain-containing protein 5,1,25.0118454491938,hyper,both_hyper
+NC_047565.1,34548941,34548943,28.6605108526202,hyper,105325135,LOC105325135,protein_coding,TLC domain-containing protein 5,1,25.3862538625386,hyper,both_hyper
+NC_047565.1,35030684,35030686,21.5732910500352,hyper,105341203,LOC105341203,protein_coding,Golgi pH regulator,4,21.3992011278196,hyper,both_hyper
+NC_047565.1,35030701,35030703,23.2,hyper,105341203,LOC105341203,protein_coding,Golgi pH regulator,4,20.0015173355588,hyper,both_hyper
+NC_047565.1,35030769,35030771,22.5422660051635,hyper,105341203,LOC105341203,protein_coding,Golgi pH regulator,4,20.7751679451141,hyper,both_hyper
+NC_047565.1,36789675,36789677,-23.8822355289421,hypo,105332456,LOC105332456,protein_coding,protein ABHD14A,4,-24.4577375741659,hypo,both_hypo
+NC_047565.1,47326194,47326196,-21.2229763700352,hypo,105340890,LOC105340890,protein_coding,caspase-8,62,-22.2669220945083,hypo,both_hypo
+NC_047566.1,24151710,24151712,-39.2629873886382,hypo,105342534,LOC105342534,protein_coding,RNA-binding protein spenito,0,30.294968189705,hyper,opposite
