@@ -1,0 +1,4 @@
+mode,set,n_dml,n_regions,n_single_locus_regions,largest_region_n_dml,dml_in_regions_of_5_or_more
+cov5-mnchisq-inter,heat DML,1191,1019,915,11,57
+cov5-mnchisq-inter,ploidy DML,126,109,102,10,10
+cov5-mnchisq-inter,shared,27,24,22,3,0
