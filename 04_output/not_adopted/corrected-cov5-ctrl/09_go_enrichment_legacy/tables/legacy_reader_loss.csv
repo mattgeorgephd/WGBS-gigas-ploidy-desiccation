@@ -1,0 +1,7 @@
+set,reader,rows,transcripts,genes,dml,rows_BP,rows_CC,rows_MF,go_ids_BP,go_ids_CC,go_ids_MF
+ploidy,every line (correct),1038187,15764,4667,15556,478316,350773,207534,2854,557,936
+ploidy,read.table defaults (legacy),594840,9676,3255,10737,269662,201907,122060,2591,521,821
+heat,every line (correct),961778,17294,5405,17295,442010,332299,185789,2936,577,983
+heat,read.table defaults (legacy),640354,11264,3830,12397,298307,218663,122357,2750,550,926
+shared,every line (correct),77177,3972,1015,1302,35842,26422,14816,1819,421,571
+shared,read.table defaults (legacy),18998,1190,417,496,8350,7046,3545,1033,285,336
