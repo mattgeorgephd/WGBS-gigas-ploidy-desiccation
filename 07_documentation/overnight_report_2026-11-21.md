@@ -8,10 +8,10 @@ This covers the author's instructions of about 07:00 UTC on 2026-11-21. The work
 |---|---|---|
 | Run `--coverage-filter --coverage 5 --exclude-ct-variants` | Done (5x fit `corrected-cov5`, 88 min) | `04_output/not_adopted/corrected-cov5-ctexcl/`; issues.md, I-51 (update) |
 | Fix the `run_config.R` comment calling 20 points a "minimum" | Done ("more than this", strict as in `getMethylDiff`) | 8a7b64f |
-| Run every variation at 50 points as well as 20 | Done for the ten analyses run at 20 points (switch `--difference 50`, token `d50`, reviewed twice before use) | issues.md, I-52; `04_output/not_adopted/README.md`, "The option `d50`" |
+| Run every variation at 50 points as well as 20 | Done overnight for the ten analyses then run at 20 points (all 16 combinations in the evening, section 6) (switch `--difference 50`, token `d50`, reviewed twice before use) | issues.md, I-52; `04_output/not_adopted/README.md`, "The option `d50`" |
 | Run the analysis closest to Venkataraman et al. 2022 | Done at 20 and 50 points (5x fit `corrected-cov5-mnchisq`, 89 min) | `corrected-cov5-mnchisq-ctexcl/`, `corrected-cov5-mnchisq-ctexcl-d50/` |
-| A table comparing all the variations, committed | Done: 20 analyses | `04_output/not_adopted/comparisons/analysis_comparison.md` (and `.csv`), copied into `04_output/not_adopted/README.md`; written by `01_pipeline/optional/compare_analyses.R` |
-| Regular check-ins; save work so a restart loses nothing | Hourly scheduled check-ins; one commit per analysis; 5x fits saved part by part. The container did not restart. | |
+| A table comparing all the variations, committed | Done: 20 analyses overnight, 32 after the evening runs (section 6) | `04_output/not_adopted/comparisons/analysis_comparison.md` (and `.csv`), copied into `04_output/not_adopted/README.md`; written by `01_pipeline/optional/compare_analyses.R` |
+| Regular check-ins; save work so a restart loses nothing | Hourly scheduled check-ins; one commit per analysis; 5x fits saved part by part. The container did not restart overnight (it restarted twice in the evening; section 6). | |
 | Next steps: final default run, `renv.lock`, clean-clone run, README pass | Done (see section 3) | |
 | Checks for errors once everything had finished | Done (section 4) | |
 
@@ -57,14 +57,14 @@ Errors of the session found during the night, all corrected: I-52 named the wron
 2. **Eleven step 13 statements apply the threshold to group means** (R3.5-029, R3.5-031, R3.5-033, R3.5-047, D4.2-004, D4.3-005, D4.3-016, D4.9-008, D4.9-010, D4.9-012, D4.9-014). Under `d50` they are evaluated at 50 points. Should they keep 20, the threshold of the draft's text?
 3. **Done on 2026-11-21 (evening), at your request: the remaining six combinations at both thresholds** (section 6). All 16 combinations of the four settings now exist at 20 and 50 points.
 4. **Step 04 runs again for every `d50` id** (about 9 minutes and 9.2 GB each), although its outputs equal those of the analysis without `d50`. Reusing them would need a change of step 04.
-5. **The two step 13 errors of `cov5`** (R3.5-046, D4.9-012) remain. Selecting the start 42,498 in their two templates would let them be evaluated (I-51, item 6). Not changed, because the values map needs your approval.
+5. **The two step 13 errors of `cov5`, and since the evening runs the same two of `corrected-cov5`,** (R3.5-046, D4.9-012) remain. Selecting the start 42,498 in their two templates would let them be evaluated (I-51, item 6). Not changed, because the values map needs your approval.
 6. **Step 09 does not rewrite `comparisons/analyses_included.csv`**, so the file lags after a run that ends with step 09. `compare_analyses.R` now rebuilds it. The pipeline step itself was not changed.
 7. **One tracked legacy file is over 50 MB** (`08_archive/old_WGBS/WGBS/DML/ALL-CpG-Cov10.csv`, 85 MB; I-34, plan decision 10). The license is also still open (I-34).
 8. **The `GO_bias_by_CpG_count` figure** is listed as "not produced" in step 13's log for analyses run without `--gene-level-go`. This is expected: step 10 makes it.
 
 ## 6. Follow-up of 2026-11-21 evening: the remaining six combinations
 
-Asked: "Run the remaining six combinations at both thresholds". Twelve runs, 19:20 UTC to 00:00 UTC on 2026-11-22, one at a time, each with a paper snapshot before and after (no paper file changed) and a commit of its own. The fits of four were in the cache; `cov5-mnchisq` needed a new 5x fit by sequence. A container restart at about 21:32 UTC stopped that fit after 6 of its 13 ploidy parts; it resumed from the saved import and parts and finished at 22:55 UTC. The table of all 32 analyses is `04_output/not_adopted/comparisons/analysis_comparison.md`.
+Asked: "Run the remaining six combinations at both thresholds". Twelve runs, 19:20 to 23:59 UTC on 2026-11-21, one at a time, each with a paper snapshot before and after (no paper file changed) and a commit of its own. The fits of four were in the cache; `cov5-mnchisq` needed a new 5x fit by sequence. A container restart at about 21:32 UTC stopped that fit after 6 of its 13 ploidy parts; it resumed from the saved import and parts and finished at 22:55 UTC. An earlier restart, at about 19:19 UTC, came before the first run and cost nothing. The table of all 32 analyses is `04_output/not_adopted/comparisons/analysis_comparison.md`.
 
 | Analysis | CpGs tested | Ploidy DML | Heat DML | In both lists | At 50 points: ploidy, heat |
 |---|---|---|---|---|---|
@@ -77,7 +77,7 @@ Asked: "Run the remaining six combinations at both thresholds". Twelve runs, 19:
 
 What the full set adds:
 - Across all 16 combinations at 50 points, the ploidy list has 1 to 6 DML, always including NC_047561.1:6,740,817, and the heat list 2 to 92. No combination has a locus in both lists (I-52).
-- The upper filter changes nothing at 50 points: with and without it, the 5x lists are the same 6 and 92 DML (4 and 63 with the exclusion). At 20 points it removes few: 9,942 to 9,791 ploidy DML at 5x, 1,191 to 1,133 heat DML with the correction.
+- Without the overdispersion correction, the upper filter changes nothing at 50 points: with and without it the 5x lists are the same 6 and 92 DML (4 and 63 with the exclusion). With the correction it removes one heat DML at 5x (63 to 62; 48 to 47). At 20 points it removes few: 9,942 to 9,791 ploidy DML at 5x, 1,191 to 1,133 heat DML with the correction.
 - With the correction, the 5x ploidy list is 126 with or without the filter, and 96 after the exclusion.
 - Step 13 also reports its two known errors for `corrected-cov5` (R3.5-046, D4.9-012), with the same cause as for `cov5` (I-51, item 6).
 
