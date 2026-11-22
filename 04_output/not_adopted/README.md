@@ -69,6 +69,7 @@ Column `mode` of every table holds the analysis id (the paper's tables keep the 
 | `corrected-cov5-ctexcl/` | `--coverage-filter --coverage 5 --exclude-ct-variants`, 2026-11-21: 5x fit `corrected-cov5` by sequence (88 minutes); of the 2,265,759 tested CpGs 142,790 are listed and removed, leaving 2,122,969; 6,902 ploidy and 15,376 heat DML (9,791 and 21,200 before the exclusion), 1,148 in both lists | 04 to 09 |
 | `corrected-cov5-mnchisq-ctexcl/` | `--coverage-filter --coverage 5 --overdispersion --exclude-ct-variants`, 2026-11-21, the settings of Venkataraman et al. 2022 for coverage, the test and variant removal, except their 50-point threshold and the full CIGAR of the variant rule (I-08): 5x fit `corrected-cov5-mnchisq` by sequence (89 minutes, peak memory 9.04 GB); 142,790 CpGs removed, leaving 2,122,969; 96 ploidy and 875 heat DML (126 and 1,133 before the exclusion), 19 in both lists | 04 to 09 |
 | `mnchisq-ctexcl/` | `--overdispersion --exclude-ct-variants --gene-level-go` (combination C2), 2026-11-21, the fit of `mnchisq` from the cache: 452,159 CpGs tested, 12 ploidy and 142 heat DML (14 and 185 before the exclusion), 4 in both lists; step 10 calls no GO term against the eligible universe | 04 to 11 |
+| `corrected-ctexcl/`, `corrected-mnchisq-ctexcl/`, `corrected-cov5/`, `corrected-cov5-mnchisq/`, `cov5-mnchisq/`, `cov5-mnchisq-ctexcl/` and their `-d50` versions | the six combinations not run before, at 20 and 50 points, 2026-11-21 (author's request); all with cached fits except `cov5-mnchisq`, a new 5x fit by sequence (resumed from its saved parts after a container restart); counts in the comparison below | 04 to 09 |
 | `d50/`, `ctexcl-d50/`, `mnchisq-d50/`, `mnchisq-ctexcl-d50/`, `corrected-d50/`, `corrected-mnchisq-d50/`, `cov5-d50/`, `cov5-ctexcl-d50/`, `corrected-cov5-ctexcl-d50/`, `corrected-cov5-mnchisq-ctexcl-d50/` | `--difference 50` added to the switches of each analysis above, 2026-11-21, each with the fit of its analysis without `d50` from the cache (10 to 14 minutes per run); the last is the analysis closest to the settings of Venkataraman et al. 2022 (their stated settings, except the variant rule, which counts reads with their full CIGAR, I-08). DML counts in the comparison below | 04 to 09 |
 | `comparisons/` | the tables that listed the legacy and the corrected mode side by side before the settings layout, now rebuilt by every optional run from every analysis folder | |
 | `ct_variants/` | `01_pipeline/optional/ct_variant_loci.R` (see `01_pipeline/optional/README.md`), finished 2026-11-20: of the 13,245,836 CpG sites of the reference 407,217 listed (3.07%) (`tables/ct_variant_log.txt`) | |
@@ -86,7 +87,7 @@ Author's decision of 2026-11-21: "The 2022 paper also used a 50% cut off. All va
 
 #### Commands for the 50-point version of every analysis run so far
 
-The 10 analyses run at 20 points (2026-11-21) are `legacy` (the paper), `corrected`, `mnchisq`, `corrected-mnchisq`, `ctexcl`, `mnchisq-ctexcl`, `cov5`, `cov5-ctexcl`, `corrected-cov5-ctexcl` and `corrected-cov5-mnchisq-ctexcl`; their 50-point versions are `d50`, `corrected-d50`, `mnchisq-d50`, `corrected-mnchisq-d50`, `ctexcl-d50`, `mnchisq-ctexcl-d50`, `cov5-d50`, `cov5-ctexcl-d50`, `corrected-cov5-ctexcl-d50` and `corrected-cov5-mnchisq-ctexcl-d50`. Run them from the repository root, one at a time, never beside a 5x fit (step 04 needs about 9.2 GB). Before each, `--plan` with the same switches shows in its line "Fit of step 05" whether the fit is in the cache; if it is not, step 05 fits it (22 to 24 minutes at 10x, 88 to 107 minutes at 5x) or stops while another run holds the lock of that fit.
+Of the 16 combinations, these 10 were run first at 20 points (2026-11-21); the other six, and the 50-point version of each, follow the same pattern (add `--coverage-filter`, `--coverage 5`, `--overdispersion`, `--exclude-ct-variants` and `--difference 50` as needed). The 10 are `legacy` (the paper), `corrected`, `mnchisq`, `corrected-mnchisq`, `ctexcl`, `mnchisq-ctexcl`, `cov5`, `cov5-ctexcl`, `corrected-cov5-ctexcl` and `corrected-cov5-mnchisq-ctexcl`; their 50-point versions are `d50`, `corrected-d50`, `mnchisq-d50`, `corrected-mnchisq-d50`, `ctexcl-d50`, `mnchisq-ctexcl-d50`, `cov5-d50`, `cov5-ctexcl-d50`, `corrected-cov5-ctexcl-d50` and `corrected-cov5-mnchisq-ctexcl-d50`. Run them from the repository root, one at a time, never beside a 5x fit (step 04 needs about 9.2 GB). Before each, `--plan` with the same switches shows in its line "Fit of step 05" whether the fit is in the cache; if it is not, step 05 fits it (22 to 24 minutes at 10x, 88 to 107 minutes at 5x) or stops while another run holds the lock of that fit.
 
 ```sh
 WGBS_CACHE_DIR=/home/user/gannet_cache WGBS_CORES=2 Rscript run_pipeline.R --difference 50                                     # d50 (fit legacy)
@@ -114,7 +115,7 @@ Step 05 fits every optional analysis by sequence (decision of the author, 2026-1
 
 ## Comparison of all analyses
 
-`Rscript 01_pipeline/optional/compare_analyses.R` (from the repository root) writes `comparisons/analysis_comparison.csv` (every count, rates per 1,000 tested CpGs, ratios to the paper and a column `venkataraman_2022_settings`) and `comparisons/analysis_comparison.md` from the tables every run writes; it computes nothing new from the data. The table below is a copy of `comparisons/analysis_comparison.md` as of 2026-11-21 (20 analyses); after a new run, run the script again, and the file is authoritative. Only `legacy` is the paper's analysis. A DML has SLIM q < 0.01 and an absolute difference of more than the threshold (percentage points). Upper filter: the 99.9th percentile coverage filter that the draft describes but did not apply (I-05). Shared: loci in both lists; opposite: different directions in the two lists. V2022: the settings that the Methods of Venkataraman et al. 2022 (BMC Genomics 23:556) state for coverage, the test, variant removal and the threshold; the variant rule counts reads with their full CIGAR (I-08).
+`Rscript 01_pipeline/optional/compare_analyses.R` (from the repository root) writes `comparisons/analysis_comparison.csv` (every count, rates per 1,000 tested CpGs, ratios to the paper and a column `venkataraman_2022_settings`) and `comparisons/analysis_comparison.md` from the tables every run writes; it computes nothing new from the data. The table below is a copy of `comparisons/analysis_comparison.md` as of 2026-11-22 (32 analyses: the 16 combinations of the four optional settings at 20 and at 50 points); after a new run, run the script again, and the file is authoritative. Only `legacy` is the paper's analysis. A DML has SLIM q < 0.01 and an absolute difference of more than the threshold (percentage points). Upper filter: the 99.9th percentile coverage filter that the draft describes but did not apply (I-05). Shared: loci in both lists; opposite: different directions in the two lists. V2022: the settings that the Methods of Venkataraman et al. 2022 (BMC Genomics 23:556) state for coverage, the test, variant removal and the threshold; the variant rule counts reads with their full CIGAR (I-08).
 
 | Analysis | Coverage | Upper filter | Overdispersion | C-to-T loci | Threshold | CpGs tested | Ploidy DML (hyper/hypo) | Heat DML (hyper/hypo) | Shared (both hyper/both hypo/opposite) | Opposite % |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -123,20 +124,32 @@ Step 05 fits every optional analysis by sequence (decision of the author, 2026-1
 | mnchisq | 10x | no | MN, chi-squared | kept | 20 | 480,579 | 14 (9/5) | 185 (95/90) | 4 (1/2/1) | 25.0 |
 | mnchisq-ctexcl | 10x | no | MN, chi-squared | excluded | 20 | 452,159 | 12 (7/5) | 142 (75/67) | 4 (1/2/1) | 25.0 |
 | corrected | 10x | yes | none | kept | 20 | 454,555 | 952 (430/522) | 2,273 (1,089/1,184) | 159 (27/49/83) | 52.2 |
+| corrected-ctexcl | 10x | yes | none | excluded | 20 | 427,349 | 635 (292/343) | 1,596 (772/824) | 100 (15/26/59) | 59.0 |
 | corrected-mnchisq | 10x | yes | MN, chi-squared | kept | 20 | 454,555 | 14 (9/5) | 157 (84/73) | 4 (1/2/1) | 25.0 |
+| corrected-mnchisq-ctexcl | 10x | yes | MN, chi-squared | excluded | 20 | 427,349 | 12 (7/5) | 118 (65/53) | 4 (1/2/1) | 25.0 |
 | cov5 | 5x | no | none | kept | 20 | 2,297,236 | 9,942 (4,408/5,534) | 21,361 (10,090/11,271) | 1,784 (318/485/981) | 55.0 |
 | cov5-ctexcl | 5x | no | none | excluded | 20 | 2,153,017 | 7,046 (3,157/3,889) | 15,530 (7,265/8,265) | 1,219 (228/311/680) | 55.8 |
+| cov5-mnchisq | 5x | no | MN, chi-squared | kept | 20 | 2,297,236 | 126 (58/68) | 1,191 (511/680) | 27 (10/12/5) | 18.5 |
+| cov5-mnchisq-ctexcl | 5x | no | MN, chi-squared | excluded | 20 | 2,153,017 | 96 (48/48) | 923 (382/541) | 19 (8/8/3) | 15.8 |
+| corrected-cov5 | 5x | yes | none | kept | 20 | 2,265,759 | 9,791 (4,380/5,411) | 21,200 (9,987/11,213) | 1,711 (312/482/917) | 53.6 |
 | corrected-cov5-ctexcl | 5x | yes | none | excluded | 20 | 2,122,969 | 6,902 (3,133/3,769) | 15,376 (7,168/8,208) | 1,148 (222/308/618) | 53.8 |
+| corrected-cov5-mnchisq | 5x | yes | MN, chi-squared | kept | 20 | 2,265,759 | 126 (58/68) | 1,133 (494/639) | 27 (10/12/5) | 18.5 |
 | corrected-cov5-mnchisq-ctexcl | 5x | yes | MN, chi-squared | excluded | 20 | 2,122,969 | 96 (48/48) | 875 (368/507) | 19 (8/8/3) | 15.8 |
 | d50 | 10x | no | none | kept | 50 | 480,579 | 1 (0/1) | 4 (3/1) | 0 (0/0/0) |  |
 | ctexcl-d50 | 10x | no | none | excluded | 50 | 452,159 | 1 (0/1) | 2 (1/1) | 0 (0/0/0) |  |
 | mnchisq-d50 | 10x | no | MN, chi-squared | kept | 50 | 480,579 | 1 (0/1) | 4 (3/1) | 0 (0/0/0) |  |
 | mnchisq-ctexcl-d50 | 10x | no | MN, chi-squared | excluded | 50 | 452,159 | 1 (0/1) | 2 (1/1) | 0 (0/0/0) |  |
 | corrected-d50 | 10x | yes | none | kept | 50 | 454,555 | 1 (0/1) | 4 (3/1) | 0 (0/0/0) |  |
+| corrected-ctexcl-d50 | 10x | yes | none | excluded | 50 | 427,349 | 1 (0/1) | 2 (1/1) | 0 (0/0/0) |  |
 | corrected-mnchisq-d50 | 10x | yes | MN, chi-squared | kept | 50 | 454,555 | 1 (0/1) | 4 (3/1) | 0 (0/0/0) |  |
+| corrected-mnchisq-ctexcl-d50 | 10x | yes | MN, chi-squared | excluded | 50 | 427,349 | 1 (0/1) | 2 (1/1) | 0 (0/0/0) |  |
 | cov5-d50 | 5x | no | none | kept | 50 | 2,297,236 | 6 (2/4) | 92 (41/51) | 0 (0/0/0) |  |
 | cov5-ctexcl-d50 | 5x | no | none | excluded | 50 | 2,153,017 | 4 (1/3) | 63 (28/35) | 0 (0/0/0) |  |
+| cov5-mnchisq-d50 | 5x | no | MN, chi-squared | kept | 50 | 2,297,236 | 1 (0/1) | 63 (30/33) | 0 (0/0/0) |  |
+| cov5-mnchisq-ctexcl-d50 | 5x | no | MN, chi-squared | excluded | 50 | 2,153,017 | 1 (0/1) | 48 (21/27) | 0 (0/0/0) |  |
+| corrected-cov5-d50 | 5x | yes | none | kept | 50 | 2,265,759 | 6 (2/4) | 92 (41/51) | 0 (0/0/0) |  |
 | corrected-cov5-ctexcl-d50 | 5x | yes | none | excluded | 50 | 2,122,969 | 4 (1/3) | 63 (28/35) | 0 (0/0/0) |  |
+| corrected-cov5-mnchisq-d50 | 5x | yes | MN, chi-squared | kept | 50 | 2,265,759 | 1 (0/1) | 62 (30/32) | 0 (0/0/0) |  |
 | corrected-cov5-mnchisq-ctexcl-d50 (V2022) | 5x | yes | MN, chi-squared | excluded | 50 | 2,122,969 | 1 (0/1) | 47 (21/26) | 0 (0/0/0) |  |
 
 ## What is tracked

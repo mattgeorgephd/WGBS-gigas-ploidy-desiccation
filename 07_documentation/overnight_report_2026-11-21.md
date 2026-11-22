@@ -55,13 +55,30 @@ Errors of the session found during the night, all corrected: I-52 named the wron
 
 1. **I-51 and I-52 (plan, section 7, items 18 and 19).** Which coverage standard and which difference threshold the paper uses, and whether to report the other as a sensitivity analysis.
 2. **Eleven step 13 statements apply the threshold to group means** (R3.5-029, R3.5-031, R3.5-033, R3.5-047, D4.2-004, D4.3-005, D4.3-016, D4.9-008, D4.9-010, D4.9-012, D4.9-014). Under `d50` they are evaluated at 50 points. Should they keep 20, the threshold of the draft's text?
-3. **Not every combination was run.** Ten of the 16 combinations of the four settings were run at 20 points, each also at 50 points. Six were not:
-   - `corrected-ctexcl`, `corrected-mnchisq-ctexcl`, `corrected-cov5` and `corrected-cov5-mnchisq`: their fits are cached, so about 15 minutes each at 10x and 25 at 5x.
-   - `cov5-mnchisq` and `cov5-mnchisq-ctexcl`: one new 5x fit, about 1.5 hours.
-
-   With their 50-point versions that is 12 runs and about 4 to 5 hours. Say if you want the full set.
+3. **Done on 2026-11-21 (evening), at your request: the remaining six combinations at both thresholds** (section 6). All 16 combinations of the four settings now exist at 20 and 50 points.
 4. **Step 04 runs again for every `d50` id** (about 9 minutes and 9.2 GB each), although its outputs equal those of the analysis without `d50`. Reusing them would need a change of step 04.
 5. **The two step 13 errors of `cov5`** (R3.5-046, D4.9-012) remain. Selecting the start 42,498 in their two templates would let them be evaluated (I-51, item 6). Not changed, because the values map needs your approval.
 6. **Step 09 does not rewrite `comparisons/analyses_included.csv`**, so the file lags after a run that ends with step 09. `compare_analyses.R` now rebuilds it. The pipeline step itself was not changed.
 7. **One tracked legacy file is over 50 MB** (`08_archive/old_WGBS/WGBS/DML/ALL-CpG-Cov10.csv`, 85 MB; I-34, plan decision 10). The license is also still open (I-34).
 8. **The `GO_bias_by_CpG_count` figure** is listed as "not produced" in step 13's log for analyses run without `--gene-level-go`. This is expected: step 10 makes it.
+
+## 6. Follow-up of 2026-11-21 evening: the remaining six combinations
+
+Asked: "Run the remaining six combinations at both thresholds". Twelve runs, 19:20 UTC to 00:00 UTC on 2026-11-22, one at a time, each with a paper snapshot before and after (no paper file changed) and a commit of its own. The fits of four were in the cache; `cov5-mnchisq` needed a new 5x fit by sequence. A container restart at about 21:32 UTC stopped that fit after 6 of its 13 ploidy parts; it resumed from the saved import and parts and finished at 22:55 UTC. The table of all 32 analyses is `04_output/not_adopted/comparisons/analysis_comparison.md`.
+
+| Analysis | CpGs tested | Ploidy DML | Heat DML | In both lists | At 50 points: ploidy, heat |
+|---|---|---|---|---|---|
+| `corrected-ctexcl` | 427,349 | 635 | 1,596 | 100 | 1, 2 |
+| `corrected-mnchisq-ctexcl` | 427,349 | 12 | 118 | 4 | 1, 2 |
+| `corrected-cov5` | 2,265,759 | 9,791 | 21,200 | 1,711 | 6, 92 |
+| `corrected-cov5-mnchisq` | 2,265,759 | 126 | 1,133 | 27 | 1, 62 |
+| `cov5-mnchisq` | 2,297,236 | 126 | 1,191 | 27 | 1, 63 |
+| `cov5-mnchisq-ctexcl` | 2,153,017 | 96 | 923 | 19 | 1, 48 |
+
+What the full set adds:
+- Across all 16 combinations at 50 points, the ploidy list has 1 to 6 DML, always including NC_047561.1:6,740,817, and the heat list 2 to 92. No combination has a locus in both lists (I-52).
+- The upper filter changes nothing at 50 points: with and without it, the 5x lists are the same 6 and 92 DML (4 and 63 with the exclusion). At 20 points it removes few: 9,942 to 9,791 ploidy DML at 5x, 1,191 to 1,133 heat DML with the correction.
+- With the correction, the 5x ploidy list is 126 with or without the filter, and 96 after the exclusion.
+- Step 13 also reports its two known errors for `corrected-cov5` (R3.5-046, D4.9-012), with the same cause as for `cov5` (I-51, item 6).
+
+These results are recorded in issues.md (I-08, I-51 and I-52), in `04_output/not_adopted/README.md` and in the handoff.
