@@ -1,0 +1,55 @@
+mode,background,set,track,dml_in_track,dml_total,pct_dml,pct_other_cpg,odds_ratio,ci_low,ci_high,p_fisher,q_BH,track_label
+mnchisq-ctrl,all analysed CpGs,ploidy DML,exon_UTR,0,10,0,9.20804296573437,0,0,4.39901004240039,0.613990689502625,0.979103025583761,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+mnchisq-ctrl,all analysed CpGs,ploidy DML,CDS,4,10,40,27.1459457434833,1.78914621323727,0.371354975208838,7.54501932774837,0.475317205512146,0.900601020970381,coding sequence
+mnchisq-ctrl,all analysed CpGs,ploidy DML,intron,6,10,60,34.668070558026,2.82674635839853,0.67031922784353,13.617391805731,0.105233976664804,0.34924457585223,introns
+mnchisq-ctrl,all analysed CpGs,ploidy DML,upstream_flank,0,10,0,3.56452455318591,0,0,12.0685347589268,1,1,upstream flanks (up to 1 kb)
+mnchisq-ctrl,all analysed CpGs,ploidy DML,downstream_flank,0,10,0,2.63271247209038,0,0,16.5005429745472,1,1,downstream flanks (up to 1 kb)
+mnchisq-ctrl,all analysed CpGs,ploidy DML,lncRNA,0,10,0,3.08696565945785,0,0,14.0055959585278,1,1,long non-coding RNA
+mnchisq-ctrl,all analysed CpGs,ploidy DML,TE,0,10,0,22.8824580861437,0,0,1.50355602460874,0.130194078418048,0.360595158010786,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+mnchisq-ctrl,all analysed CpGs,ploidy DML,intergenic,0,10,0,23.161294215815,0,0,1.48007256761704,0.130214918170562,0.360595158010786,intergenic regions
+mnchisq-ctrl,all analysed CpGs,ploidy DML,gene,10,10,100,70.8942940555883,Inf,0.920243256110072,Inf,0.0409121716667212,0.256861491662514,genes
+mnchisq-ctrl,all analysed CpGs,heat DML,exon_UTR,10,185,5.40540540540541,9.20931568670716,0.563354568510298,0.265470431954718,1.06103869979969,0.0749789024133011,0.337405060859855,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+mnchisq-ctrl,all analysed CpGs,heat DML,CDS,56,185,30.2702702702703,27.1450101375121,1.16508607683647,0.835684714183503,1.60643358871268,0.362909922185898,0.791606261890147,coding sequence
+mnchisq-ctrl,all analysed CpGs,heat DML,intron,94,185,50.8108108108108,34.6623812953534,1.94717292212038,1.4437902230829,2.62699016701568,8.76886837988726e-06,0.000105226420558647,introns
+mnchisq-ctrl,all analysed CpGs,heat DML,upstream_flank,5,185,2.7027027027027,3.56478224124365,0.751448857002188,0.24103659260297,1.78657632015265,0.691273197259927,1,upstream flanks (up to 1 kb)
+mnchisq-ctrl,all analysed CpGs,heat DML,downstream_flank,4,185,2.16216216216216,2.63283887808757,0.817277573882996,0.22027120975345,2.1294053992328,1,1,downstream flanks (up to 1 kb)
+mnchisq-ctrl,all analysed CpGs,heat DML,lncRNA,3,185,1.62162162162162,3.08746570523362,0.51740005109259,0.10570578986111,1.53649442854473,0.389097332256589,0.791606261890147,long non-coding RNA
+mnchisq-ctrl,all analysed CpGs,heat DML,TE,54,185,29.1891891891892,22.8795530335516,1.38945328649243,0.992599900504749,1.92169890422944,0.0441352075784229,0.256861491662514,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+mnchisq-ctrl,all analysed CpGs,heat DML,intergenic,16,185,8.64864864864865,23.1664009125843,0.313990515431042,0.175437334066293,0.524972799075113,4.53447294572207e-07,1.57913519170019e-05,intergenic regions
+mnchisq-ctrl,all analysed CpGs,heat DML,gene,160,185,86.4864864864865,70.8888953650545,2.62810210041893,1.71709876530427,4.18356993597579,8.7729732872233e-07,1.57913519170019e-05,genes
+mnchisq-ctrl,all analysed CpGs,shared,exon_UTR,0,0,,9.20785136262716,,,,,,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+mnchisq-ctrl,all analysed CpGs,shared,CDS,0,0,,27.1462132136444,,,,,,coding sequence
+mnchisq-ctrl,all analysed CpGs,shared,intron,0,0,,34.6685976707264,,,,,,introns
+mnchisq-ctrl,all analysed CpGs,shared,upstream_flank,0,0,,3.56445038172704,,,,,,upstream flanks (up to 1 kb)
+mnchisq-ctrl,all analysed CpGs,shared,downstream_flank,0,0,,2.63265768999478,,,,,,downstream flanks (up to 1 kb)
+mnchisq-ctrl,all analysed CpGs,shared,lncRNA,0,0,,3.08690142515591,,,,,,long non-coding RNA
+mnchisq-ctrl,all analysed CpGs,shared,TE,0,0,,22.8819819426151,,,,,,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+mnchisq-ctrl,all analysed CpGs,shared,intergenic,0,0,,23.1608122701991,,,,,,intergenic regions
+mnchisq-ctrl,all analysed CpGs,shared,gene,0,0,,70.8948996939109,,,,,,genes
+mnchisq-ctrl,eligible CpGs,ploidy DML,exon_UTR,0,10,0,7.34829161002581,0,0,5.62710892352537,1,1,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+mnchisq-ctrl,eligible CpGs,ploidy DML,CDS,4,10,40,25.0752241450413,1.99206803458589,0.413397364042266,8.40100486425835,0.281646327227517,0.67595118534604,coding sequence
+mnchisq-ctrl,eligible CpGs,ploidy DML,intron,6,10,60,55.1083685906737,1.22190512726239,0.289728506521753,5.88729673637194,1,1,introns
+mnchisq-ctrl,eligible CpGs,ploidy DML,upstream_flank,0,10,0,1.07223045317774,0,0,41.2408785744133,1,1,upstream flanks (up to 1 kb)
+mnchisq-ctrl,eligible CpGs,ploidy DML,downstream_flank,0,10,0,1.83439996334255,0,0,23.8898153025571,1,1,downstream flanks (up to 1 kb)
+mnchisq-ctrl,eligible CpGs,ploidy DML,lncRNA,0,10,0,4.0750866795986,0,0,10.5053715750149,1,1,long non-coding RNA
+mnchisq-ctrl,eligible CpGs,ploidy DML,TE,0,10,0,29.6482412060302,0,0,1.05873353967277,0.0395694063133693,0.256861491662514,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+mnchisq-ctrl,eligible CpGs,ploidy DML,intergenic,0,10,0,9.90820363214248,0,0,4.05773042299316,0.612568525577813,0.979103025583761,intergenic regions
+mnchisq-ctrl,eligible CpGs,ploidy DML,gene,10,10,100,87.3409601197477,Inf,0.324830671535693,Inf,0.625538044122958,0.979103025583761,genes
+mnchisq-ctrl,eligible CpGs,heat DML,exon_UTR,10,185,5.40540540540541,7.35267091399167,0.720013266434231,0.33906241450121,1.35724775849024,0.395803130945074,0.791606261890147,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+mnchisq-ctrl,eligible CpGs,heat DML,CDS,56,185,30.2702702702703,25.0627909826023,1.29796952912776,0.930571086104773,1.79032607502221,0.106713620399293,0.34924457585223,coding sequence
+mnchisq-ctrl,eligible CpGs,heat DML,intron,94,185,50.8108108108108,55.1212938005391,0.841026639551049,0.62340818288798,1.13505761810616,0.266857699224787,0.67595118534604,introns
+mnchisq-ctrl,eligible CpGs,heat DML,upstream_flank,5,185,2.7027027027027,1.06744670423916,2.57440504150742,0.82331736528067,6.14848682249369,0.0499452900454889,0.256861491662514,upstream flanks (up to 1 kb)
+mnchisq-ctrl,eligible CpGs,heat DML,downstream_flank,4,185,2.16216216216216,1.83319039451115,1.18341377735319,0.318489240199559,3.09081419204195,0.585777842236972,0.979103025583761,downstream flanks (up to 1 kb)
+mnchisq-ctrl,eligible CpGs,heat DML,lncRNA,3,185,1.62162162162162,4.08141386914972,0.387388007483595,0.0790981875074254,1.15144177604332,0.0943529611645195,0.34924457585223,long non-coding RNA
+mnchisq-ctrl,eligible CpGs,heat DML,TE,54,185,29.1891891891892,29.6450012251899,0.97827446699375,0.698599497618977,1.35360183831074,0.935868014947798,1,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+mnchisq-ctrl,eligible CpGs,heat DML,intergenic,16,185,8.64864864864865,9.91025483950012,0.860631054914439,0.480595627000854,1.4400128363181,0.710862308266236,1,intergenic regions
+mnchisq-ctrl,eligible CpGs,heat DML,gene,160,185,86.4864864864865,87.3453197745651,0.92721835981964,0.605376891008913,1.47667830037543,0.739319625263888,1,genes
+mnchisq-ctrl,eligible CpGs,shared,exon_UTR,0,0,,7.34728161270617,,,,,,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+mnchisq-ctrl,eligible CpGs,shared,CDS,0,0,,25.0763591936469,,,,,,coding sequence
+mnchisq-ctrl,eligible CpGs,shared,intron,0,0,,55.1099572388516,,,,,,introns
+mnchisq-ctrl,eligible CpGs,shared,upstream_flank,0,0,,1.07208307880269,,,,,,upstream flanks (up to 1 kb)
+mnchisq-ctrl,eligible CpGs,shared,downstream_flank,0,0,,1.8341478313989,,,,,,downstream flanks (up to 1 kb)
+mnchisq-ctrl,eligible CpGs,shared,lncRNA,0,0,,4.07452657299939,,,,,,long non-coding RNA
+mnchisq-ctrl,eligible CpGs,shared,TE,0,0,,29.6441661576054,,,,,,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+mnchisq-ctrl,eligible CpGs,shared,intergenic,0,0,,9.90684178375076,,,,,,intergenic regions
+mnchisq-ctrl,eligible CpGs,shared,gene,0,0,,87.3427000610874,,,,,,genes
