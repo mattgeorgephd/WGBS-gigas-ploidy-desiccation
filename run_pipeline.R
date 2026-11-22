@@ -235,8 +235,8 @@ fit_line <- function() {
   }
   new_contrast <- if (a$contrast_variant == "ctrl") "the control-only ploidy contrast" else "the interaction contrast"
   reused <- if (a$contrast_variant == "ctrl") "the united table and the heat contrast" else "the united table and the ploidy and heat contrasts"
-  minutes <- if (a$min_coverage == 5) "about 45 minutes" else "about 12 minutes"
-  whole <- if (a$min_coverage == 5) "about 90 minutes, by sequence" else "about 25 minutes"
+  minutes <- if (a$min_coverage == 5) "about 45 minutes (an estimate)" else "about 12 minutes (an estimate)"
+  whole <- if (a$min_coverage == 5) "about 90 minutes, by sequence (measured for the base fits)" else "about 25 minutes (measured for the base fits)"
   status <- if (fit_cached) {
     sprintf("in the cache (reused if its fingerprint, which holds that of methylkit_%s.rds, is unchanged)", a$base_fit_id)
   } else if (in_cache(a$base_fit_id)) {

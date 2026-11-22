@@ -285,7 +285,12 @@ rebuild_comparison <- function(step, file, arrange = NULL) {
   for (i in seq_along(paths)) {
     l <- lines[[i]]
     n <- length(columns[[i]])
-    if (!identical(columns[[i]], widest[seq_len(n)])) {
+    # Only dml_counts_by_mode.csv may be shorter, and only by the four interaction
+    # columns that an analysis with the token inter appends; any other difference stops.
+    extra <- setdiff(widest, columns[[i]])
+    padding_ok <- file == "dml_counts_by_mode.csv" &&
+      all(extra %in% c("interaction_dml", "interaction_hyper", "interaction_hypo", "interaction_in_shared"))
+    if (!identical(columns[[i]], widest[seq_len(n)]) || (n < length(widest) && !padding_ok)) {
       stop("The columns of ", paths[i], " differ from those of ", paths[which.max(lengths(columns))], ".", call. = FALSE)
     }
     rows <- l[-1]
