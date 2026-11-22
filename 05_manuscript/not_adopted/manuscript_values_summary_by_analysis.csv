@@ -87,6 +87,8 @@ cov5-d50,paper,498,115,257,118,6,2,0,evaluated
 cov5-d50,corrected,263,36,127,44,55,1,0,evaluated
 cov5-d50-q05,paper,498,113,259,118,6,2,0,evaluated
 cov5-d50-q05,corrected,263,36,127,44,55,1,0,evaluated
+cov5-inter,paper,498,188,264,38,6,0,2,evaluated
+cov5-inter,corrected,263,100,110,0,53,0,0,evaluated
 cov5-mnchisq,paper,498,139,304,49,6,0,0,evaluated
 cov5-mnchisq,corrected,263,53,148,9,53,0,0,evaluated
 cov5-mnchisq-ctexcl,paper,498,137,313,42,6,0,0,evaluated
