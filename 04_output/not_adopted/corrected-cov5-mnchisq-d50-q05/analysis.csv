@@ -1,0 +1,2 @@
+id,filter,min_coverage,overdispersion,test,contrast_variant,ct_excluded,dml_difference,dml_qvalue,fit_id,fit_fingerprint_md5,ct_variant_list_md5,git_commit,written_utc,steps_done
+corrected-cov5-mnchisq-d50-q05,corrected,5,MN,Chisq,none,FALSE,50,0.05,corrected-cov5-mnchisq,4d2b451ed872ed0ef171db1e4695494f,"",271c297,2026-11-22 12:06:19,04;05;06;07;08;09
