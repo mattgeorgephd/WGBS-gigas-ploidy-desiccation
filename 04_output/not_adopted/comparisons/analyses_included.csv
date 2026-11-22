@@ -4,6 +4,7 @@ corrected,corrected,10,none,not passed,none,FALSE,20,0.01,corrected,df0c3e7805a7
 corrected-cov5,corrected,5,none,not passed,none,FALSE,20,0.01,corrected-cov5,fff70143d6491df78097be9cba2e5a59,"",6fabba8,2026-11-21 20:26:19,04;05;06;07;08;09
 corrected-cov5-ctexcl,corrected,5,none,not passed,none,TRUE,20,0.01,corrected-cov5,fff70143d6491df78097be9cba2e5a59,4be241cfd320d7315a31059278cfc7c6,cdf9742,2026-11-21 10:25:17,04;05;06;07;08;09
 corrected-cov5-ctexcl-d50,corrected,5,none,not passed,none,TRUE,50,0.01,corrected-cov5,fff70143d6491df78097be9cba2e5a59,4be241cfd320d7315a31059278cfc7c6,d84d8ff,2026-11-21 12:06:31,04;05;06;07;08;09
+corrected-cov5-ctexcl-q05,corrected,5,none,not passed,none,TRUE,20,0.05,corrected-cov5,fff70143d6491df78097be9cba2e5a59,4be241cfd320d7315a31059278cfc7c6,6b5847c,2026-11-22 12:53:47,04;05;06;07;08
 corrected-cov5-d50,corrected,5,none,not passed,none,FALSE,50,0.01,corrected-cov5,fff70143d6491df78097be9cba2e5a59,"",53266aa,2026-11-21 20:38:01,04;05;06;07;08;09
 corrected-cov5-d50-q05,corrected,5,none,not passed,none,FALSE,50,0.05,corrected-cov5,fff70143d6491df78097be9cba2e5a59,"",dd7abac,2026-11-22 11:02:09,04;05;06;07;08;09
 corrected-cov5-mnchisq,corrected,5,MN,Chisq,none,FALSE,20,0.01,corrected-cov5-mnchisq,4d2b451ed872ed0ef171db1e4695494f,"",c2101c8,2026-11-21 20:51:01,04;05;06;07;08;09
@@ -31,7 +32,7 @@ corrected-q05,corrected,10,none,not passed,none,FALSE,20,0.05,corrected,df0c3e78
 cov5,legacy,5,none,not passed,none,FALSE,20,0.01,cov5,10d66f1498ef61f043bbe3e5255a3a72,"",d98ff3c,2026-11-21 03:27:53,04;05;06;07;08;09
 cov5-ctexcl,legacy,5,none,not passed,none,TRUE,20,0.01,cov5,10d66f1498ef61f043bbe3e5255a3a72,4be241cfd320d7315a31059278cfc7c6,93b6961,2026-11-21 03:42:28,04;05;06;07;08;09
 cov5-ctexcl-d50,legacy,5,none,not passed,none,TRUE,50,0.01,cov5,10d66f1498ef61f043bbe3e5255a3a72,4be241cfd320d7315a31059278cfc7c6,a6517c5,2026-11-21 11:52:54,04;05;06;07;08;09
-cov5-ctexcl-d50-q05,legacy,5,none,not passed,none,TRUE,50,0.05,cov5,10d66f1498ef61f043bbe3e5255a3a72,4be241cfd320d7315a31059278cfc7c6,4572081,2026-11-22 12:37:58,04;05;06;07;08
+cov5-ctexcl-d50-q05,legacy,5,none,not passed,none,TRUE,50,0.05,cov5,10d66f1498ef61f043bbe3e5255a3a72,4be241cfd320d7315a31059278cfc7c6,4572081,2026-11-22 12:39:29,04;05;06;07;08;09
 cov5-ctexcl-q05,legacy,5,none,not passed,none,TRUE,20,0.05,cov5,10d66f1498ef61f043bbe3e5255a3a72,4be241cfd320d7315a31059278cfc7c6,26dabd3,2026-11-22 12:24:39,04;05;06;07;08;09
 cov5-d50,legacy,5,none,not passed,none,FALSE,50,0.01,cov5,10d66f1498ef61f043bbe3e5255a3a72,"",c61d4ae,2026-11-21 11:40:40,04;05;06;07;08;09
 cov5-d50-q05,legacy,5,none,not passed,none,FALSE,50,0.05,cov5,10d66f1498ef61f043bbe3e5255a3a72,"",083cc59,2026-11-22 10:27:58,04;05;06;07;08;09
