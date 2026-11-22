@@ -1,0 +1,2 @@
+id,filter,min_coverage,overdispersion,test,contrast_variant,ct_excluded,dml_difference,dml_qvalue,fit_id,fit_fingerprint_md5,ct_variant_list_md5,git_commit,written_utc,steps_done
+ctrl,legacy,10,none,not passed,ctrl,FALSE,20,0.01,ctrl,2ef3ed9e3cb8bbf3cf383aa4352885a9,"",eb70d91,2026-11-22 07:32:00,04;05;06;07;08;09

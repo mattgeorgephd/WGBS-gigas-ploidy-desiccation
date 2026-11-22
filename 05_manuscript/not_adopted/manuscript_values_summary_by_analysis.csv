@@ -59,10 +59,14 @@ ctexcl,paper,498,198,253,41,6,0,0,evaluated
 ctexcl,corrected,263,92,113,5,53,0,0,evaluated
 ctexcl-d50,paper,498,121,212,151,6,8,0,evaluated
 ctexcl-d50,corrected,263,34,126,46,55,2,0,evaluated
+ctrl,paper,498,189,263,40,6,0,0,evaluated
+ctrl,corrected,263,87,117,6,53,0,0,evaluated
 d50,paper,498,132,202,150,6,8,0,evaluated
 d50,corrected,263,44,117,45,55,2,0,evaluated
 d50-q05,paper,498,130,204,150,6,8,0,evaluated
 d50-q05,corrected,263,44,117,45,55,2,0,evaluated
+inter,paper,498,0,0,0,498,0,0,analysis not run
+inter,corrected,263,0,0,0,263,0,0,analysis not run
 mnchisq,paper,498,156,254,82,6,0,0,evaluated
 mnchisq,corrected,263,62,192,9,0,0,0,evaluated
 mnchisq-ctexcl,paper,498,149,264,79,6,0,0,evaluated
