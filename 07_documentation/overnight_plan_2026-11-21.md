@@ -38,3 +38,16 @@ The six combinations of the four settings not run before, each at 20 and 50 poin
 | 13 | New 5x fit `cov5-mnchisq` by sequence: `--coverage 5 --overdispersion --steps 4:5` (about 1.7 h; resumes from saved parts if stopped) | step 04 done (2756933); step 05 stopped by a container restart at about 21:32 UTC after 6 of 13 ploidy parts; resumed from the saved import and parts at 21:34 UTC; done 22:55 UTC (af65ec7): 126 ploidy, 1,191 heat DML; paper unchanged |
 | 14 | Batch 4: `cov5-mnchisq`, `cov5-mnchisq-d50`, `cov5-mnchisq-ctexcl`, `cov5-mnchisq-ctexcl-d50` | done 23:59 UTC (f549e30, c267aaf, ac3fcc1, 796cccf); paper unchanged each time |
 | 15 | Comparison table (32 analyses), issues.md (I-51, I-52), READMEs, report; independent check | table and documents done 2026-11-22 (761eb37); independent check: no wrong number, 7 wording findings applied |
+
+## Night of 2026-11-22: the q < 0.05 variations (author asleep; approved by the author)
+
+The author's instructions (2026-11-22, about 04:30 UTC): "add more run variations based on the q < 0.05"; scope chosen: all 32 (the 16 combinations of corrected, cov5, mnchisq, ctexcl, each at 20 and 50 points, with q < 0.05); "Conduct regular check-ins and save progress in case of a restart." The literature evidence was added to I-06 and I-52 first (1e4b6fc).
+
+| # | Work | State |
+|---|---|---|
+| 16 | Build the switch `--qvalue 0.05` (token `q05`, last in the token order; setting `dml_qvalue_standard`; stamp column `dml_qvalue`; fit reused, as for d50), by an agent in the working tree, not committed by it | running since 04:27 UTC |
+| 17 | Independent review of the build; apply findings; `tests/check_settings.R`; commit | after 16 |
+| 18 | The 32 q05 runs, one at a time with the batch driver (plan check, paper snapshot before and after, commit per analysis): 16 at 10x, 16 at 5x; all fits cached | after 17 |
+| 19 | Comparison table (64 analyses); issues.md (new issue or I-06/I-52 updates); READMEs; report for the author; independent check | after 18 |
+
+Restart rule: files survive a container restart, processes do not. If the build agent was lost, its edits are in the working tree (inspect `git diff`), and the session finishes or reverts them. A lost batch is rerun with the same driver command (it skips analyses already done).
