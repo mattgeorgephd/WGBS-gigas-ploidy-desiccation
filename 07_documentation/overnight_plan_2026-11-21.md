@@ -51,3 +51,16 @@ The author's instructions (2026-11-22, about 04:30 UTC): "add more run variation
 | 19 | Comparison table (64 analyses); issues.md (new issue or I-06/I-52 updates); READMEs; report for the author; independent check | after 18 |
 
 Restart rule: files survive a container restart, processes do not. If the build agent was lost, its edits are in the working tree (inspect `git diff`), and the session finishes or reverts them. A lost batch is rerun with the same driver command (it skips analyses already done).
+
+Added by the author before going to bed (2026-11-22, about 04:45 UTC), after an evaluation of further variations:
+- Counts at 10, 15 and 25 points (25 is the methylKit default) as columns of the comparison table, from `dml_counts_by_threshold_<id>.csv`; no new runs.
+- Two new contrasts, each in the full factorial: the ploidy contrast fitted on the 12 control libraries only (I-07; token `ctrl`), and a tested ploidy-by-heat interaction (I-02; token `inter`). Each over the 8 fit settings (filter, coverage, correction): 16 new fits (about 14 h), then on each fit the variants that act after the test (C-to-T exclusion, 50 points, q < 0.05): 128 analyses. The author chose to run everything (about 2 days).
+
+| # | Work | State |
+|---|---|---|
+| 20 | 25-point (and 10, 15) columns in `compare_analyses.R` | after 17 (the q05 build edits the same script) |
+| 21 | Build the switches `ctrl` and `inter` (not combined with each other) by an agent in a separate git worktree, from the commit of row 17; static tests there; fit tests after the q05 runs; independent review; merge | starts after 17 |
+| 22 | The 16 new fits (one at a time; 5x ones by sequence), each with its base analysis; commit per analysis | after 18 and 21 |
+| 23 | The 112 remaining variants on the new fits (ctexcl, d50, q05 and their combinations); batch driver; commit per analysis | after 22 |
+| 24 | Comparison table of all analyses; issues.md (I-02, I-07, I-06, I-52 updates or new issues); READMEs; report; independent check | after 23 |
+
