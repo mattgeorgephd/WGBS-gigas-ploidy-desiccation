@@ -10,9 +10,9 @@
 #   Rscript run_pipeline.R --plan [switches]      print what a run would do, and exit
 #
 # Optional analyses (NOT ADOPTED in the paper; each off by default). Switches
-# (a) to (f) together define ONE analysis, written under
+# (a) to (g) together define ONE analysis, written under
 # 04_output/not_adopted/<id>/, where <id> joins the tokens of the switches that
-# are on in the order corrected, cov5, mnchisq, ctexcl, d50, q05:
+# are on in the order corrected, cov5, mnchisq, ctrl or inter, ctexcl, d50, q05:
 #   --coverage-filter        (a) token corrected: the coverage filter of the Methods
 #                                (99.9th percentile of coverage per library; every line read)
 #   --coverage 5             (b) token cov5: 5 reads per CpG in each library (--coverage 10 is the paper's value,
@@ -27,20 +27,29 @@
 #   --qvalue 0.05            (f) token q05: DML at a q-value below 0.05 instead of 0.01 (--qvalue 0.01 is the
 #                                paper's value, and does not turn off dml_qvalue_standard = 0.05 set in
 #                                run_config.R); the fit of the analysis without q05 is reused
-#   --gene-level-go          (g) step 10 and the gene-level part of step 11, for the analysis of the run
-#   --diagnostics [all|name,...]  (h) scripts of 06_diagnostics/ (listed in 06_diagnostics/diagnostics.csv); they
+#   --controls-only-ploidy   (g) token ctrl: the ploidy contrast fitted on the 12 control libraries only (diploid
+#                                against triploid controls, no covariate; issue I-07); the CpGs, the normalisation
+#                                and the heat contrast are those of the analysis without ctrl (its fit is reused)
+#   --interaction            (g) token inter: a tested ploidy by heat interaction (indicator triploid and
+#                                heat-treated, covariates ploidy and heat; issue I-02) and its DML list, next to
+#                                the ploidy and heat contrasts of the analysis without inter (its fit is reused).
+#                                --controls-only-ploidy and --interaction cannot be given together (setting
+#                                contrast_variant of run_config.R)
+#   --gene-level-go          (h) step 10 and the gene-level part of step 11, for the analysis of the run
+#   --diagnostics [all|name,...]  (i) scripts of 06_diagnostics/ (listed in 06_diagnostics/diagnostics.csv); they
 #                                run after step 11 and before step 13 whatever --steps selects
 # Examples: --coverage-filter -> not_adopted/corrected/; --coverage 5 --overdispersion ->
 # not_adopted/cov5-mnchisq/; --overdispersion --difference 50 -> not_adopted/mnchisq-d50/;
-# --qvalue 0.05 --difference 50 -> not_adopted/d50-q05/;
+# --qvalue 0.05 --difference 50 -> not_adopted/d50-q05/; --controls-only-ploidy -> not_adopted/ctrl/;
+# --coverage-filter --coverage 5 --overdispersion --interaction -> not_adopted/corrected-cov5-mnchisq-inter/;
 # --gene-level-go alone -> step 10 on the paper's DML, in not_adopted/legacy/.
 #
 # Run kinds. A run with no optional setting on (in run_config.R or by a switch)
 # is the paper run: steps 01 to 09, 11 (paper part), 12 and 13 (paper part),
 # writing the paper's outputs (04_output/<step>/, 05_manuscript/). Any switch makes
 # an optional run, which never writes into a paper folder: steps 04 to 09 for an
-# optional analysis, 10 and 11 (gene-level part) with (g), the diagnostics with
-# (h), and step 13 (optional part, which reports values of analyses not run as
+# optional analysis, 10 and 11 (gene-level part) with (h), the diagnostics with
+# (i), and step 13 (optional part, which reports values of analyses not run as
 # "not run"). Steps 01 to 03 and 12 belong to the paper run only. The settings
 # of run_config.R (list `optional`) and the switches are combined: a switch can
 # only turn a setting on.
@@ -91,6 +100,7 @@ diag_table     <- file.path(root, "06_diagnostics", "diagnostics.csv")
 # ---- Command line ------------------------------------------------------------------
 usage <- paste0(
   "Usage: Rscript run_pipeline.R [--steps <selection>] [--coverage-filter] [--coverage 5|10] [--overdispersion]\n",
+  "                              [--controls-only-ploidy | --interaction]\n",
   "                              [--exclude-ct-variants] [--difference 20|50] [--qvalue 0.01|0.05]\n",
   "                              [--gene-level-go] [--diagnostics [all|name,...]] [--plan] [--list] [--help]\n",
   "  <selection> is one word without spaces: step numbers and ranges joined by commas, for example 5:7 or 3,12 or 2:3,6:10.\n",
@@ -98,8 +108,8 @@ usage <- paste0(
   "  its outputs go to 04_output/not_adopted/ and 05_manuscript/not_adopted/. --coverage 10, --difference 20 and\n",
   "  --qvalue 0.01 name the paper's values and do not turn off a setting made in run_config.R. See the header of run_pipeline.R.")
 fail <- function(...) stop(..., "\n", usage, call. = FALSE)
-opt <- list(steps = NULL, coverage_filter = FALSE, coverage = NULL, overdispersion = FALSE, exclude_ct = FALSE, difference = NULL,
-            qvalue = NULL, gene_level = FALSE, diagnostics = NULL, plan = FALSE, list = FALSE, help = FALSE)
+opt <- list(steps = NULL, coverage_filter = FALSE, coverage = NULL, overdispersion = FALSE, controls_only = FALSE, interaction = FALSE,
+            exclude_ct = FALSE, difference = NULL, qvalue = NULL, gene_level = FALSE, diagnostics = NULL, plan = FALSE, list = FALSE, help = FALSE)
 seen <- character(0)
 i <- 1
 while (i <= length(args)) {
@@ -112,6 +122,8 @@ while (i <= length(args)) {
   else if (a == "--plan") { opt$plan <- TRUE; i <- i + 1 }
   else if (a == "--coverage-filter") { opt$coverage_filter <- TRUE; i <- i + 1 }
   else if (a == "--overdispersion") { opt$overdispersion <- TRUE; i <- i + 1 }
+  else if (a == "--controls-only-ploidy") { opt$controls_only <- TRUE; i <- i + 1 }
+  else if (a == "--interaction") { opt$interaction <- TRUE; i <- i + 1 }
   else if (a == "--exclude-ct-variants") { opt$exclude_ct <- TRUE; i <- i + 1 }
   else if (a == "--gene-level-go") { opt$gene_level <- TRUE; i <- i + 1 }
   else if (a == "--coverage") {
@@ -144,6 +156,10 @@ while (i <= length(args)) {
   } else fail("Cannot read the argument(s): ", paste(shQuote(args), collapse = " "))
 }
 if (opt$help) { cat(usage, "\n", sep = ""); quit(status = 0) }
+if (opt$controls_only && opt$interaction) {
+  fail("--controls-only-ploidy and --interaction cannot be given together: an analysis has the control-only ploidy contrast ",
+       "(token ctrl) or the tested interaction (token inter), not both.")
+}
 if (opt$list) {
   kinds <- vapply(numbers, function(n) paste(c(if (n %in% paper_steps) "paper", if (n %in% analysis_steps) "optional analysis",
                                                   if (n %in% gene_steps) "--gene-level-go", if (n == 13) "optional (values not run)"),
@@ -174,6 +190,8 @@ o <- config$optional
 tokens <- c(if (o$coverage_filter_of_methods || opt$coverage_filter) "corrected",
             if (o$coverage_standard == 5 || identical(opt$coverage, 5L)) "cov5",
             if (o$overdispersion_chisq || opt$overdispersion) "mnchisq",
+            if (o$contrast_variant == "ctrl" || opt$controls_only) "ctrl",
+            if (o$contrast_variant == "inter" || opt$interaction) "inter",
             if (o$exclude_ct_variants || opt$exclude_ct) "ctexcl",
             if (o$dml_difference_standard == 50 || identical(opt$difference, 50L)) "d50",
             if (o$dml_qvalue_standard == 0.05 || identical(opt$qvalue, "0.05")) "q05")
@@ -203,7 +221,34 @@ if (length(diagnostics) > 0) {
 folder <- if (kind == "paper") "04_output/<step>/ and 05_manuscript/ (the paper)" else
   sprintf("04_output/not_adopted/%s/, 04_output/not_adopted/comparisons/ and 05_manuscript/not_adopted/", a$id)
 variant_list <- ct_variant_list_present()
-fit_cached <- file.exists(file.path(root, "04_output", "05_differential_methylation", "cache", sprintf("methylkit_%s.rds", a$fit_id)))
+in_cache <- function(fit_id) file.exists(file.path(root, "04_output", "05_differential_methylation", "cache", sprintf("methylkit_%s.rds", fit_id)))
+fit_cached <- in_cache(a$fit_id)
+# Options ctrl and inter: step 05 takes the united table and the contrasts it
+# does not change from the fit of the analysis without the token (base_fit_id),
+# and fits only the new contrast, by sequence.
+fit_line <- function() {
+  base_name <- if (a$base_fit_id == "legacy") "the paper's fit" else sprintf("the fit of the analysis %s", a$base_fit_id)
+  if (a$contrast_variant == "none") {
+    return(sprintf("Fit of step 05: methylkit_%s.rds%s, %s", a$fit_id,
+                   if (a$fit_id == "legacy") " (the paper's fit)" else if (a$fit_id != a$id) sprintf(" (the fit of the analysis %s)", a$fit_id) else "",
+                   if (fit_cached) "in the cache (reused if its fingerprint is unchanged)" else "not in the cache (fitted by step 05)"))
+  }
+  new_contrast <- if (a$contrast_variant == "ctrl") "the control-only ploidy contrast" else "the interaction contrast"
+  reused <- if (a$contrast_variant == "ctrl") "the united table and the heat contrast" else "the united table and the ploidy and heat contrasts"
+  minutes <- if (a$min_coverage == 5) "about 45 minutes (an estimate)" else "about 12 minutes (an estimate)"
+  whole <- if (a$min_coverage == 5) "about 90 minutes, by sequence (measured for the base fits)" else "about 25 minutes (measured for the base fits)"
+  status <- if (fit_cached) {
+    sprintf("in the cache (reused if its fingerprint, which holds that of methylkit_%s.rds, is unchanged)", a$base_fit_id)
+  } else if (in_cache(a$base_fit_id)) {
+    sprintf("not in the cache: fitted by step 05, %s by sequence, %s at WGBS_CORES=2 (methylkit_%s.rds is in the cache)",
+            new_contrast, minutes, a$base_fit_id)
+  } else {
+    sprintf("not in the cache, nor is methylkit_%s.rds: step 05 fits %s first (%s at WGBS_CORES=2), then %s by sequence (%s)",
+            a$base_fit_id, a$base_fit_id, whole, new_contrast, minutes)
+  }
+  sprintf("Fit of step 05: methylkit_%s.rds (%s; %s from methylkit_%s.rds, %s), %s", a$fit_id, new_contrast, reused,
+          a$base_fit_id, base_name, status)
+}
 reason_not <- function(n) {
   if (kind == "paper" && n == 10) return("step 10 is not part of the paper; use --gene-level-go")
   if (kind == "optional" && n %in% c(1:3, 12)) return("not part of an optional run (it does not depend on the analysis)")
@@ -215,10 +260,14 @@ reason_not <- function(n) {
 plan_lines <- c(
   sprintf("Run kind: %s", if (kind == "paper") "paper (the results of the paper and nothing else)" else "OPTIONAL (not adopted in the paper)"),
   sprintf("Analysis: %s%s", a$id, if (a$paper) " (the paper's)" else
-    sprintf(" (filter %s, %gx in every library, overdispersion %s%s, C-to-T variants %s, DML at a difference of more than %g points and a q-value below %g)",
+    sprintf(" (filter %s, %gx in every library, overdispersion %s%s, contrasts %s, C-to-T variants %s, DML at a difference of more than %g points and a q-value below %g)",
             a$filter, a$min_coverage, a$overdispersion,
-            if (a$overdispersion == "MN") " with the chi-squared test" else "", if (a$ct_excluded) "excluded" else "kept",
+            if (a$overdispersion == "MN") " with the chi-squared test" else "",
+            switch(a$contrast_variant, none = "of the paper", ctrl = "with the ploidy contrast on the controls only (ctrl)",
+                   inter = "of the paper and a tested interaction (inter)"),
+            if (a$ct_excluded) "excluded" else "kept",
             a$dml_difference, a$dml_qvalue)),
+  if (!a$paper) sprintf("Contrasts: %s", contrast_text(a)),
   sprintf("Outputs: %s", folder),
   sprintf("Steps to run: %s", paste(sprintf("%02d", intersect(selected, steps_of_kind)), collapse = " ")),
   if (length(diag_list)) sprintf("Diagnostics, after step 11 and before step 13, whatever --steps selects: %s", paste(diag_list, collapse = ", ")),
@@ -226,17 +275,19 @@ plan_lines <- c(
     paste0("Not run: ", paste(sprintf("%02d (%s)", setdiff(numbers, intersect(selected, steps_of_kind)),
                                       vapply(setdiff(numbers, intersect(selected, steps_of_kind)), reason_not, "")), collapse = "; ")),
   sprintf("C-to-T variant list (04_output/not_adopted/ct_variants/tables/): %s", if (variant_list) "present" else "absent"),
-  if (!a$paper) sprintf("Fit of step 05: methylkit_%s.rds%s, %s", a$fit_id,
-                        if (a$fit_id == "legacy") " (the paper's fit)" else if (a$fit_id != a$id) sprintf(" (the fit of the analysis %s)", a$fit_id) else "",
-                        if (fit_cached) "in the cache (reused if its fingerprint is unchanged)" else "not in the cache (fitted by step 05)"),
+  if (!a$paper) fit_line(),
   if (!a$paper) paste("Time and memory: at 10x (measured 2026-11-20) step 04 7 to 9 minutes, 9.2 GB; step 05 22 to 24 minutes per new fit at",
                        "WGBS_CORES=2 (about 10 GB with its workers; under a minute from the cache); steps 06 to 09 about 4 minutes. At 5x",
                        "(measured 2026-11-21) step 04 8 to 15 minutes; step 05 88 to 107 minutes per new fit at WGBS_CORES=2, fitted by sequence",
                        "(peak 9.3 GB; about a minute from the cache); steps 06 to 09 about 5 minutes"),
-  if ("cov5" %in% a$tokens && !fit_cached) paste("NOTE: an analysis at 5x tests about 2.3 million CpGs instead of 0.48 million. Step 05 fits it by sequence",
+  if ("cov5" %in% a$tokens && !fit_cached && (a$contrast_variant == "none" || !in_cache(a$base_fit_id))) paste("NOTE: an analysis at 5x tests about 2.3 million CpGs instead of 0.48 million. Step 05 fits it by sequence",
                                   "and saves each part: about 3.2 hours at WGBS_CORES=1 and 1.6 hours at WGBS_CORES=2 (measured on one",
                                   "linkage group on 2026-11-20; peak 8.3 GB in the import, 6.6 GB in a test on 2 cores). A run that is",
                                   "stopped goes on from the saved parts when the same command is run again."),
+  if ("cov5" %in% a$tokens && !fit_cached && a$contrast_variant != "none" && in_cache(a$base_fit_id))
+    paste("NOTE: an analysis at 5x tests about 2.3 million CpGs instead of 0.48 million. Step 05 fits the new contrast by sequence",
+          "on the united table of the cached fit and saves each part (about 45 minutes at WGBS_CORES=2, an estimate: one of the two",
+          "contrasts of a fit). A run that is stopped goes on from the saved parts when the same command is run again."),
   if ("cov5" %in% a$tokens && fit_cached) paste("NOTE: an analysis at 5x tests about 2.3 million CpGs instead of 0.48 million. Its fit is in the cache",
                                  "and is reused (no refit), but steps 04 and 06 to 09 still handle about 2.3 million CpGs, and step 05",
                                  "reads the fit of all of them and writes their per-CpG tables (up to 98 MB each)."),

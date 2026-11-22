@@ -6,6 +6,9 @@
 #   corrected  the coverage filter of the Methods (99.9th percentile; every line read)
 #   cov5       5 reads per CpG in each library instead of 10
 #   mnchisq    methylKit's overdispersion correction, overdispersion = "MN", test = "Chisq"
+#   ctrl       the ploidy contrast fitted on the 12 control libraries only (issue I-07)
+#   inter      a tested ploidy by heat interaction, with its own DML list (issue I-02)
+#              (ctrl and inter are mutually exclusive: an id holds at most one of them)
 #   ctexcl     CpGs at C-to-T variants removed (Venkataraman et al. 2022)
 #   d50        DML at a difference of more than 50 points instead of 20 (Venkataraman et al. 2022)
 #   q05        DML at a q-value below 0.05 instead of 0.01
@@ -19,7 +22,9 @@
 # 02_R_functions/ is sourced, so that analysis_spec() can check WGBS_ANALYSIS.
 # Every other function here is used by the steps, after config exists.
 
-analysis_tokens <- c("corrected", "cov5", "mnchisq", "ctexcl", "d50", "q05")
+analysis_tokens <- c("corrected", "cov5", "mnchisq", "ctrl", "inter", "ctexcl", "d50", "q05")
+# The variants of the contrasts (setting contrast_variant); an id holds at most one.
+contrast_variant_tokens <- c("ctrl", "inter")
 
 # The id of a set of tokens, in the fixed order; "legacy" when there is none.
 analysis_id <- function(tokens) {
@@ -27,7 +32,8 @@ analysis_id <- function(tokens) {
   if (length(t) == 0) "legacy" else paste(t, collapse = "-")
 }
 
-# What an analysis id means. Stops on an id that is not one of the 64 valid ids.
+# What an analysis id means. Stops on an id that is not one of the 192 valid ids
+# (64 with neither ctrl nor inter, 64 with ctrl, 64 with inter).
 # The tokens ctexcl, d50 and q05 act after the test: the fit of an analysis
 # (fit_id) is that of its id without them, so an analysis with any of them
 # reuses the fit of the analysis without them. dml_difference is the threshold
@@ -35,23 +41,49 @@ analysis_id <- function(tokens) {
 # with d50 (methylKit getMethylDiff with difference = 50, as in Venkataraman et
 # al. 2022). dml_qvalue is their q-value cutoff: below 0.01 (the paper), or
 # below 0.05 with q05 (getMethylDiff with qvalue = 0.05).
+# contrast_variant is "none" (the paper's two contrasts), "ctrl" (the ploidy
+# contrast on the 12 control libraries, without covariate; the heat contrast as
+# in the paper) or "inter" (the paper's two contrasts, and a tested ploidy by heat
+# interaction with its own DML list). Both act in the fit: fit_id keeps them.
+# base_fit_id is the fit id without them: the fit whose united table, heat
+# contrast (ctrl) or both contrasts (inter) step 05 reuses; for an id without
+# ctrl and inter it equals fit_id.
 analysis_spec <- function(id) {
-  valid <- "an analysis id: \"legacy\" (the paper) or the tokens corrected, cov5, mnchisq, ctexcl, d50, q05 (in this order, each at most once) joined by \"-\""
+  valid <- "an analysis id: \"legacy\" (the paper) or the tokens corrected, cov5, mnchisq, ctrl or inter (not both), ctexcl, d50, q05 (in this order, each at most once) joined by \"-\""
   if (!is.character(id) || length(id) != 1 || is.na(id) || !nzchar(id)) stop("Not ", valid, ".", call. = FALSE)
   tokens <- if (id == "legacy") character(0) else strsplit(id, "-", fixed = TRUE)[[1]]
   if (!all(tokens %in% analysis_tokens) || anyDuplicated(tokens) || !identical(analysis_id(tokens), id)) {
-    stop("'", id, "' is not ", valid, "; for example cov5, corrected-cov5, cov5-mnchisq-ctexcl, mnchisq-d50, mnchisq-q05.", call. = FALSE)
+    stop("'", id, "' is not ", valid, "; for example cov5, corrected-cov5, cov5-mnchisq-ctexcl, mnchisq-d50, mnchisq-q05, ctrl, ",
+         "mnchisq-inter-d50.", call. = FALSE)
+  }
+  if (all(contrast_variant_tokens %in% tokens)) {
+    stop("'", id, "' holds both ctrl and inter, which are mutually exclusive: an analysis has the control-only ploidy contrast ",
+         "or the tested interaction, not both.", call. = FALSE)
   }
   mn <- "mnchisq" %in% tokens
+  variant <- intersect(contrast_variant_tokens, tokens)
   list(id = id, paper = id == "legacy", tokens = tokens,
        filter = if ("corrected" %in% tokens) "corrected" else "legacy",
        min_coverage = if ("cov5" %in% tokens) 5 else 10,
        overdispersion = if (mn) "MN" else "none",
        test = if (mn) "Chisq" else "not passed",
+       contrast_variant = if (length(variant)) variant else "none",
        ct_excluded = "ctexcl" %in% tokens,
        dml_difference = if ("d50" %in% tokens) 50 else 20,
        dml_qvalue = if ("q05" %in% tokens) 0.05 else 0.01,
-       fit_id = analysis_id(setdiff(tokens, c("ctexcl", "d50", "q05"))))
+       fit_id = analysis_id(setdiff(tokens, c("ctexcl", "d50", "q05"))),
+       base_fit_id = analysis_id(setdiff(tokens, c(contrast_variant_tokens, "ctexcl", "d50", "q05"))))
+}
+
+# What the contrasts of an analysis are, in words (run_pipeline.R --plan, logs).
+contrast_text <- function(a) {
+  switch(a$contrast_variant,
+         none  = "ploidy (all 22 libraries, covariate heat) and heat (all 22, covariate ploidy); shared = loci in both lists",
+         ctrl  = paste("ploidy on the 12 control libraries only (diploid against triploid controls, no covariate; the CpGs and",
+                       "the normalisation of the analysis over all 22) and heat (all 22, covariate ploidy); shared = loci in both lists"),
+         inter = paste("ploidy (all 22, covariate heat), heat (all 22, covariate ploidy), shared = loci in both lists, and a",
+                       "tested ploidy by heat interaction (indicator triploid and heat-treated, covariates ploidy and heat, all 22",
+                       "libraries; effect (triploid heat - triploid control) - (diploid heat - diploid control))"))
 }
 
 # Analyses in the order of every table that lists several: the paper first, then
@@ -93,21 +125,24 @@ analysis_input <- function(a, step, sub, file) {
 
 # ---- Stamp of an analysis folder ---------------------------------------------------
 # 04_output/not_adopted/<id>/analysis.csv, one row: the settings of the analysis
-# (dml_difference: the threshold of its DML lists, in points; dml_qvalue: their
-# q-value cutoff),
+# (contrast_variant: none, ctrl or inter; dml_difference: the threshold of its
+# DML lists, in points; dml_qvalue: their q-value cutoff),
 # the md5 of the fingerprint of its fit (step 05), the md5 of the variant list
 # (ctexcl), the commit, the time and the steps done. Step 04 creates it (and the
 # first step of the paper's analysis in an optional run); each later step adds
 # itself to steps_done. A later step stops if the stamp's settings differ from
 # the analysis of the run or a step it reads from is not done.
-stamp_columns <- c("id", "filter", "min_coverage", "overdispersion", "test", "ct_excluded", "dml_difference", "dml_qvalue", "fit_id")
+stamp_columns <- c("id", "filter", "min_coverage", "overdispersion", "test", "contrast_variant", "ct_excluded", "dml_difference", "dml_qvalue", "fit_id")
 stamp_file <- function(id) not_adopted_path(id, "analysis.csv")
 # A stamp written before the option d50 existed (2026-11-21) has no column
 # dml_difference; its analysis has the paper's threshold of 20 points, and the
 # column is added with that value where the other stamps hold it. Likewise a
 # stamp written before the option q05 existed (2026-11-22) has no column
 # dml_qvalue; its analysis has the paper's cutoff of 0.01, and the column is
-# added with that value after dml_difference.
+# added with that value after dml_difference. A stamp written before the options
+# ctrl and inter existed (2026-11-22) has no column contrast_variant; its
+# analysis has the paper's contrasts, and the column is added with "none" after
+# test.
 read_stamp <- function(id) {
   f <- stamp_file(id)
   if (!file.exists(f)) return(NULL)
@@ -120,6 +155,7 @@ read_stamp <- function(id) {
   }
   add_after("dml_difference", "20", "ct_excluded")
   add_after("dml_qvalue", "0.01", "dml_difference")
+  add_after("contrast_variant", "none", "test")
   s[]
 }
 git_commit <- function() {
@@ -134,7 +170,8 @@ write_stamp <- function(a, step, fit_fingerprint_md5 = NULL, ct_variant_list_md5
   new <- old
   if (is.null(old) || number == "04") {
     new <- data.table::data.table(id = a$id, filter = a$filter, min_coverage = format(a$min_coverage),
-                                  overdispersion = a$overdispersion, test = a$test, ct_excluded = as.character(a$ct_excluded),
+                                  overdispersion = a$overdispersion, test = a$test, contrast_variant = a$contrast_variant,
+                                  ct_excluded = as.character(a$ct_excluded),
                                   dml_difference = format(a$dml_difference), dml_qvalue = format(a$dml_qvalue), fit_id = a$fit_id,
                                   fit_fingerprint_md5 = "", ct_variant_list_md5 = "",
                                   git_commit = "", written_utc = "", steps_done = "")
@@ -164,7 +201,8 @@ check_stamp <- function(a, needs = character(0), per_cpg = FALSE) {
          "'. Run Rscript run_pipeline.R with its switches (or WGBS_ANALYSIS=", a$id, " for the steps from 04).", call. = FALSE)
   }
   want <- c(id = a$id, filter = a$filter, min_coverage = format(a$min_coverage), overdispersion = a$overdispersion,
-            test = a$test, ct_excluded = as.character(a$ct_excluded), dml_difference = format(a$dml_difference),
+            test = a$test, contrast_variant = a$contrast_variant, ct_excluded = as.character(a$ct_excluded),
+            dml_difference = format(a$dml_difference),
             dml_qvalue = format(a$dml_qvalue), fit_id = a$fit_id)
   differs <- names(want)[unlist(s[, names(want), with = FALSE]) != want]
   if (length(differs) > 0) {
@@ -223,6 +261,12 @@ analysis_folders <- function() {
 # analysis folder in analysis order whose stamp lists `step` as done. Lines are copied as they are, so every row
 # keeps its bytes; `arrange` (a function of the bound table, read with fread)
 # returns the order of the rows where the paper's table interleaves analyses.
+# A table may have more columns than the others when its extra columns come
+# after all of theirs (dml_counts_by_mode.csv of an analysis with option inter
+# adds four interaction columns): the header is then the longest one, and each
+# row of a table without those columns gets an empty field for each of them
+# (its other bytes are kept). When no table has extra columns, the output is
+# what it was before this rule existed.
 # Writes comparisons/<step>/tables/<file> and comparisons/analyses_included.csv.
 rebuild_comparison <- function(step, file, arrange = NULL) {
   if (!identical(config$run_kind, "optional")) stop("rebuild_comparison() runs in optional runs only.", call. = FALSE)
@@ -233,16 +277,29 @@ rebuild_comparison <- function(step, file, arrange = NULL) {
   usable <- file.exists(paths) & (paths == paper_path(step, "tables", file) | vapply(ids, stamp_lists_step, logical(1), step = step))
   ids <- ids[usable]; paths <- paths[usable]
   if (length(paths) == 0) return(invisible(NULL))
-  header <- NULL; body <- character(0); tables <- list()
+  lines <- lapply(paths, readLines, warn = FALSE)
+  columns <- lapply(lines, function(l) strsplit(l[1], ",", fixed = TRUE)[[1]])
+  widest <- columns[[which.max(lengths(columns))]]
+  header <- paste(widest, collapse = ",")
+  body <- character(0); tables <- list()
   for (i in seq_along(paths)) {
-    l <- readLines(paths[i], warn = FALSE)
-    if (is.null(header)) header <- l[1]
-    if (!identical(l[1], header)) stop("The columns of ", paths[i], " differ from those of ", paths[1], ".", call. = FALSE)
-    body <- c(body, l[-1])
+    l <- lines[[i]]
+    n <- length(columns[[i]])
+    # Only dml_counts_by_mode.csv may be shorter, and only by the four interaction
+    # columns that an analysis with the token inter appends; any other difference stops.
+    extra <- setdiff(widest, columns[[i]])
+    padding_ok <- file == "dml_counts_by_mode.csv" &&
+      all(extra %in% c("interaction_dml", "interaction_hyper", "interaction_hypo", "interaction_in_shared"))
+    if (!identical(columns[[i]], widest[seq_len(n)]) || (n < length(widest) && !padding_ok)) {
+      stop("The columns of ", paths[i], " differ from those of ", paths[which.max(lengths(columns))], ".", call. = FALSE)
+    }
+    rows <- l[-1]
+    if (n < length(widest) && length(rows) > 0) rows <- paste0(rows, strrep(",", length(widest) - n))
+    body <- c(body, rows)
     if (!is.null(arrange)) tables[[i]] <- data.table::fread(paths[i], colClasses = "character")
   }
   if (!is.null(arrange) && length(body) > 0) {
-    bound <- data.table::rbindlist(tables)
+    bound <- data.table::rbindlist(tables, fill = TRUE)
     if (nrow(bound) != length(body)) stop("Cannot order ", file, ": a field spans lines.", call. = FALSE)
     body <- body[arrange(bound)]
   }
@@ -255,7 +312,7 @@ rebuild_comparison <- function(step, file, arrange = NULL) {
 write_analyses_included <- function() {
   ids <- analysis_folders()
   rows <- lapply(ids, read_stamp)
-  paper <- data.table::data.table(id = "legacy", filter = "legacy", min_coverage = "10", overdispersion = "none", test = "not passed",
+  paper <- data.table::data.table(id = "legacy", filter = "legacy", min_coverage = "10", overdispersion = "none", test = "not passed", contrast_variant = "none",
                                   ct_excluded = "FALSE", dml_difference = "20", dml_qvalue = "0.01", fit_id = "legacy", fit_fingerprint_md5 = "", ct_variant_list_md5 = "",
                                   git_commit = "", written_utc = "", steps_done = "the paper's outputs (04_output/<step>/)")
   if ("legacy" %in% ids) {

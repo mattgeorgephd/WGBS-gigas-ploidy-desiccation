@@ -46,8 +46,8 @@
 #             outputs and copies the items of the paper; it never reads
 #             04_output/not_adopted/. An optional run evaluates two recipes for
 #             every analysis folder under 04_output/not_adopted/ that holds a
-#             stamp (analysis.csv) and for the six analyses of a single option
-#             (corrected, cov5, mnchisq, ctexcl, d50, q05), whether run or not, and copies
+#             stamp (analysis.csv) and for the eight analyses of a single option
+#             (corrected, cov5, mnchisq, ctrl, inter, ctexcl, d50, q05), whether run or not, and copies
 #             their items. It does not evaluate the paper's analysis ("legacy"):
 #             its values are those of 05_manuscript/manuscript_values.csv.
 #           - The two recipes of an optional value (decision of the author,
@@ -221,13 +221,13 @@ if (paper_run) {
   errors <- values[!is.na(expression_error), .(id, section, item, expression_legacy, expression_error)]
   write_table(errors, output_path(step, "tables", "expression_errors.csv"))
 } else {
-  # ---- Optional part: every analysis folder, and the six single options ---------------------
+  # ---- Optional part: every analysis folder, and the eight single options -------------------
   # A table that does not depend on the analysis is read from the paper folder.
   shared_steps <- c("01_fetch_inputs", "02_alignment_qc", "03_global_methylation", "12_qpcr")
   shared_files <- c("library_coverage.csv", "genome_cpg_total.csv", "gene_go_map.csv.gz", "transcript_table.csv.gz", "go_map_id_repair.csv")
   # The paper's analysis is left out: its values are in 05_manuscript/manuscript_values.csv,
   # and the templates, applied to it, are not the paper's computations (see Notes).
-  ids <- setdiff(analysis_order(c(analysis_folders(), "corrected", "cov5", "mnchisq", "ctexcl", "d50", "q05", config$analysis$id)), "legacy")
+  ids <- setdiff(analysis_order(c(analysis_folders(), "corrected", "cov5", "mnchisq", "ctrl", "inter", "ctexcl", "d50", "q05", config$analysis$id)), "legacy")
   ct_md5_now <- if (ct_variant_list_present()) ct_variant_list_md5() else NA_character_
   rows <- list(); error_rows <- list()
   for (A in ids) {
@@ -237,7 +237,7 @@ if (paper_run) {
     folder_state <- if (is.null(s)) "not run: analysis not run" else if (
       s$filter != a$filter || s$min_coverage != format(a$min_coverage) || s$overdispersion != a$overdispersion ||
       s$ct_excluded != as.character(a$ct_excluded) || s$dml_difference != format(a$dml_difference) ||
-      s$dml_qvalue != format(a$dml_qvalue) ||
+      s$dml_qvalue != format(a$dml_qvalue) || s$contrast_variant != a$contrast_variant ||
       (a$ct_excluded && !is.na(ct_md5_now) && !identical(s$ct_variant_list_md5, ct_md5_now))) "not run: folder stale" else ""
     recipes <- c(paper = "expression_paper_recipe", corrected = "expression_optional")
     if (nzchar(folder_state)) {
