@@ -2,7 +2,7 @@
 
 **Nothing in this folder is a result of the paper.** It holds the outputs of the optional analyses that the paper did not adopt. The paper's outputs are in `04_output/<step>/` and `05_manuscript/` outside the folders named `not_adopted`: a path that contains `not_adopted` is not the paper's.
 
-Each optional analysis is off by default. It is turned on by a switch of `run_pipeline.R` or by a setting of `run_config.R` (list `optional`); the switches combine. One run computes one analysis, named by its id: the tokens of the switches that are on, in the order `corrected`, `cov5`, `mnchisq`, `ctexcl`, `d50`, joined by `-` (32 ids, `legacy` being the paper's). `Rscript run_pipeline.R --plan <switches>` prints what a run would do.
+Each optional analysis is off by default. It is turned on by a switch of `run_pipeline.R` or by a setting of `run_config.R` (list `optional`); the switches combine. One run computes one analysis, named by its id: the tokens of the switches that are on, in the order `corrected`, `cov5`, `mnchisq`, `ctexcl`, `d50`, `q05`, joined by `-` (64 ids, `legacy` being the paper's). `Rscript run_pipeline.R --plan <switches>` prints what a run would do.
 
 | Analysis | Adopted in the paper? | Switch of `run_pipeline.R` | Setting in `run_config.R` (list `optional`) | Id or token | Outputs | What it changes | Issue |
 |---|---|---|---|---|---|---|---|
@@ -12,7 +12,8 @@ Each optional analysis is off by default. It is turned on by a switch of `run_pi
 | Overdispersion correction | no | `--overdispersion` | `overdispersion_chisq = TRUE` | `mnchisq` | `04_output/not_adopted/mnchisq/` | methylKit `overdispersion = "MN"`, `test = "Chisq"`; no other test is offered | I-06 |
 | C-to-T variant exclusion | no | `--exclude-ct-variants` | `exclude_ct_variants = TRUE` | `ctexcl` | `04_output/not_adopted/ctexcl/` | CpGs listed by `01_pipeline/optional/ct_variant_loci.R` removed from the CpG sets of step 04 and, after the test, from the tested CpGs and the DML (fits, p-values and q-values unchanged); the run refuses to start without the list | I-08 |
 | Difference of 50 points | no | `--difference 50` | `dml_difference_standard = 50L` | `d50` | `04_output/not_adopted/d50/` | DML at q < 0.01 and an absolute difference of more than 50 points instead of 20 (methylKit `getMethylDiff`, `difference = 50`); applied after the test, so the fit of the analysis without `d50` is reused (author's decision of 2026-11-21) | Venkataraman et al. 2022 |
-| Any combination of the five | no | the switches together | the settings together | the tokens joined by `-` in the order above | `04_output/not_adopted/<id>/`, for example `corrected-cov5-ctexcl/`, `mnchisq-d50/` | each of its parts | |
+| q-value 0.05 | no | `--qvalue 0.05` | `dml_qvalue_standard = 0.05` | `q05` | `04_output/not_adopted/q05/` | DML at q < 0.05 instead of 0.01, with the difference threshold of the analysis (more than 20 points, or more than 50 with `d50`; methylKit `getMethylDiff`, `qvalue = 0.05`); applied after the test, so the fit of the analysis without `q05` is reused (author's request of 2026-11-22) | |
+| Any combination of the six | no | the switches together | the settings together | the tokens joined by `-` in the order above | `04_output/not_adopted/<id>/`, for example `corrected-cov5-ctexcl/`, `mnchisq-d50/`, `d50-q05/` | each of its parts | |
 | Gene-level GO enrichment | no | `--gene-level-go`, alone (on the paper's DML) or with any of the above | `gene_level_go = TRUE` | | `04_output/not_adopted/<id>/10_go_enrichment_gene_level/` and `.../11_semantic_similarity/` (the paper's DML: `<id>` = `legacy`) | step 10 and the gene-level part of step 11 | I-41 |
 | Diagnostics | no | `--diagnostics` (all) or `--diagnostics name1,name2` | `diagnostics = "all"` or names | | `06_diagnostics/` | the checks and controls of the audit, listed in `06_diagnostics/diagnostics.csv` | |
 | Side by side | no | made by every optional run; the table of all analyses by `Rscript 01_pipeline/optional/compare_analyses.R` | | | `04_output/not_adopted/comparisons/` (`analysis_comparison.md`), `05_manuscript/not_adopted/` | the tables that list analyses, from every analysis folder on disk, the paper first; the manuscript values of every analysis, computed as the paper computed them and with the corrected recipe of the audit ("not run" where absent) | |
@@ -24,6 +25,7 @@ Rscript run_pipeline.R                                                       # t
 Rscript run_pipeline.R --coverage-filter                                     # -> not_adopted/corrected/
 Rscript run_pipeline.R --overdispersion                                      # -> not_adopted/mnchisq/
 Rscript run_pipeline.R --overdispersion --difference 50                      # -> not_adopted/mnchisq-d50/ (reuses the fit of mnchisq)
+Rscript run_pipeline.R --qvalue 0.05 --difference 50                         # -> not_adopted/d50-q05/ (reuses the paper's fit)
 Rscript run_pipeline.R --coverage-filter --overdispersion --gene-level-go    # -> not_adopted/corrected-mnchisq/, with steps 10 and 11
 Rscript run_pipeline.R --gene-level-go                                       # step 10 on the paper's DML -> not_adopted/legacy/
 Rscript run_pipeline.R --diagnostics cohort_separation                       # one script of 06_diagnostics/
@@ -74,7 +76,7 @@ Column `mode` of every table holds the analysis id (the paper's tables keep the 
 | `comparisons/` | the tables that listed the legacy and the corrected mode side by side before the settings layout, now rebuilt by every optional run from every analysis folder | |
 | `ct_variants/` | `01_pipeline/optional/ct_variant_loci.R` (see `01_pipeline/optional/README.md`), finished 2026-11-20: of the 13,245,836 CpG sites of the reference 407,217 listed (3.07%) (`tables/ct_variant_log.txt`) | |
 
-Other analysis folders appear when their run has been made. The first optional analysis whose fit is not cached refits in step 05 (22 to 24 minutes per fit at 10x and `WGBS_CORES=2`, as measured on 2026-11-20; 107 minutes at 5x and `WGBS_CORES=2`, peak memory 9.3 GB, fitted by sequence, measured on 2026-11-21); an analysis that adds `ctexcl` or `d50` (or both) to another reuses that one's fit (`methylkit_<fit id>.rds` in `04_output/05_differential_methylation/cache/`; the fit id is the analysis id without `ctexcl` and `d50`).
+Other analysis folders appear when their run has been made. The first optional analysis whose fit is not cached refits in step 05 (22 to 24 minutes per fit at 10x and `WGBS_CORES=2`, as measured on 2026-11-20; 107 minutes at 5x and `WGBS_CORES=2`, peak memory 9.3 GB, fitted by sequence, measured on 2026-11-21); an analysis that adds `ctexcl`, `d50` or `q05` (or several of them) to another reuses that one's fit (`methylkit_<fit id>.rds` in `04_output/05_differential_methylation/cache/`; the fit id is the analysis id without `ctexcl`, `d50` and `q05`).
 
 ### The option `d50`
 
@@ -111,46 +113,96 @@ Add `--gene-level-go` to a command for steps 10 and 11 (gene level) of that anal
 - Step 04 runs again for every `d50` id, although its outputs are those of the analysis without `d50` under another id (about 9 minutes and 9.2 GB per run). Reusing the step 04 folder of that analysis would need a change of step 04.
 - Eleven step 13 rows apply `config$dml_difference` to differences of group means rather than to the DML lists (R3.5-029, R3.5-031, R3.5-033, R3.5-047, D4.2-004, D4.3-005, D4.3-016, D4.9-008, D4.9-010, D4.9-012 and D4.9-014) and so take 50 under `d50`, as every row that reads the threshold does (19 rows); whether these eleven should keep 20 (the threshold of the draft's text) is open (issues.md, I-52).
 
+### The option `q05`
+
+Author's request of 2026-11-22: run the variations at a DML q-value cutoff of 0.05 as well as at the paper's 0.01. With `--qvalue 0.05` step 05 keeps the CpGs with a SLIM q-value below 0.05 (strict, as methylKit `getMethylDiff` with `qvalue = 0.05` applies it) and an absolute difference of more than the threshold of the analysis (20 points, or 50 with `d50`); the paper's setting `dml_qvalue = 0.01` of `run_config.R` stays frozen, and the paper's run never changes. `--qvalue 0.01` names the paper's value and does not turn off `dml_qvalue_standard = 0.05` set in `run_config.R` (the same rule as `--coverage 10` and `--difference 20`). The token `q05` is the last of an id: `q05`, `mnchisq-q05`, `d50-q05`, `corrected-cov5-mnchisq-ctexcl-d50-q05`.
+
+- **Fit.** The q-values are those of the fit (SLIM over all tested CpGs of the analysis), and the cutoff is applied after the test, so a `q05` analysis reuses the fit of its analysis without `q05` (for `q05` and `d50-q05` the paper's fit, `methylkit_legacy.rds`); nothing of the cutoff enters the fingerprint of a fit, and the paper's fingerprint is unchanged.
+- **Step 04** of a `q05` analysis is that of its analysis without `q05` (same CpG sets), run again under its own id, as for `d50`.
+- **What changes besides the DML lists.** `dml_counts_by_threshold_<id>.csv` (5 to 50 points), and so panels A and B of Figure 2, are counted at q < 0.05. The eligible CpGs of steps 07, 08 and 10 depend on the difference threshold only and are those of the analysis without `q05`. In step 13 `config$dml_qvalue` is 0.05 in the paper recipe (the corrected recipe has no expression for these two rows), so the two statements that name the cutoff of 0.01 (M2.5-005 and R3.2-007) give 0.05 and differ from the manuscript. The stamp `analysis.csv` has a column `dml_qvalue` after `dml_difference` (a stamp written before the option existed reads as 0.01), and the comparison table below has a column Q.
+- **More DML.** A list at q < 0.05 holds every DML of the same analysis at q < 0.01. Tested on 2026-11-22 in a scratch copy, with the paper's fit from the cache: `q05` has 1,038 ploidy and 2,352 heat DML and 201 loci in both lists (the paper: 1,038, 2,351 and 200), and `d50-q05` the same 1 ploidy and 4 heat DML as `d50`, no locus in both lists. At 20 points and more the q-value of a CpG that passes the threshold is almost always far below 0.01, so the cutoff changes the lists little; below 20 points it matters (at 10 points 7,678 ploidy and 13,805 heat DML at q < 0.05 against 5,352 and 10,747 at q < 0.01, `dml_counts_by_threshold_q05.csv`). In step 13 `q05` has no error and no statement that is not evaluable, and `d50-q05` the same 10 not evaluable statements as `d50`.
+
+#### Commands for the q05 version of every analysis
+
+The 32 analyses with `q05` are the 16 combinations of `corrected`, `cov5`, `mnchisq` and `ctexcl`, each at 20 and at 50 points, with `--qvalue 0.05` added. All eight fits they need are in `04_output/05_differential_methylation/cache/` (`legacy`, `corrected`, `mnchisq`, `corrected-mnchisq`, `cov5`, `corrected-cov5`, `cov5-mnchisq`, `corrected-cov5-mnchisq`), so none of them fits anything: each takes about 12 minutes at 10x and somewhat more at 5x (steps 04 and 06 to 09 handle about 2.3 million CpGs). Run them one at a time; the analyses with `ctexcl` need the variant list in `ct_variants/`.
+
+```sh
+WGBS_CACHE_DIR=/home/user/gannet_cache WGBS_CORES=2 Rscript run_pipeline.R --qvalue 0.05                                                                                        # q05 (fit legacy)
+WGBS_CACHE_DIR=/home/user/gannet_cache WGBS_CORES=2 Rscript run_pipeline.R --exclude-ct-variants --qvalue 0.05                                                                  # ctexcl-q05 (fit legacy)
+WGBS_CACHE_DIR=/home/user/gannet_cache WGBS_CORES=2 Rscript run_pipeline.R --overdispersion --qvalue 0.05                                                                       # mnchisq-q05 (fit mnchisq)
+WGBS_CACHE_DIR=/home/user/gannet_cache WGBS_CORES=2 Rscript run_pipeline.R --overdispersion --exclude-ct-variants --qvalue 0.05                                                 # mnchisq-ctexcl-q05 (fit mnchisq)
+WGBS_CACHE_DIR=/home/user/gannet_cache WGBS_CORES=2 Rscript run_pipeline.R --coverage-filter --qvalue 0.05                                                                      # corrected-q05 (fit corrected)
+WGBS_CACHE_DIR=/home/user/gannet_cache WGBS_CORES=2 Rscript run_pipeline.R --coverage-filter --exclude-ct-variants --qvalue 0.05                                                # corrected-ctexcl-q05 (fit corrected)
+WGBS_CACHE_DIR=/home/user/gannet_cache WGBS_CORES=2 Rscript run_pipeline.R --coverage-filter --overdispersion --qvalue 0.05                                                     # corrected-mnchisq-q05 (fit corrected-mnchisq)
+WGBS_CACHE_DIR=/home/user/gannet_cache WGBS_CORES=2 Rscript run_pipeline.R --coverage-filter --overdispersion --exclude-ct-variants --qvalue 0.05                               # corrected-mnchisq-ctexcl-q05 (fit corrected-mnchisq)
+WGBS_CACHE_DIR=/home/user/gannet_cache WGBS_CORES=2 Rscript run_pipeline.R --coverage 5 --qvalue 0.05                                                                           # cov5-q05 (fit cov5)
+WGBS_CACHE_DIR=/home/user/gannet_cache WGBS_CORES=2 Rscript run_pipeline.R --coverage 5 --exclude-ct-variants --qvalue 0.05                                                     # cov5-ctexcl-q05 (fit cov5)
+WGBS_CACHE_DIR=/home/user/gannet_cache WGBS_CORES=2 Rscript run_pipeline.R --coverage 5 --overdispersion --qvalue 0.05                                                          # cov5-mnchisq-q05 (fit cov5-mnchisq)
+WGBS_CACHE_DIR=/home/user/gannet_cache WGBS_CORES=2 Rscript run_pipeline.R --coverage 5 --overdispersion --exclude-ct-variants --qvalue 0.05                                    # cov5-mnchisq-ctexcl-q05 (fit cov5-mnchisq)
+WGBS_CACHE_DIR=/home/user/gannet_cache WGBS_CORES=2 Rscript run_pipeline.R --coverage-filter --coverage 5 --qvalue 0.05                                                         # corrected-cov5-q05 (fit corrected-cov5)
+WGBS_CACHE_DIR=/home/user/gannet_cache WGBS_CORES=2 Rscript run_pipeline.R --coverage-filter --coverage 5 --exclude-ct-variants --qvalue 0.05                                   # corrected-cov5-ctexcl-q05 (fit corrected-cov5)
+WGBS_CACHE_DIR=/home/user/gannet_cache WGBS_CORES=2 Rscript run_pipeline.R --coverage-filter --coverage 5 --overdispersion --qvalue 0.05                                        # corrected-cov5-mnchisq-q05 (fit corrected-cov5-mnchisq)
+WGBS_CACHE_DIR=/home/user/gannet_cache WGBS_CORES=2 Rscript run_pipeline.R --coverage-filter --coverage 5 --overdispersion --exclude-ct-variants --qvalue 0.05                  # corrected-cov5-mnchisq-ctexcl-q05 (fit corrected-cov5-mnchisq)
+WGBS_CACHE_DIR=/home/user/gannet_cache WGBS_CORES=2 Rscript run_pipeline.R --difference 50 --qvalue 0.05                                                                        # d50-q05 (fit legacy)
+WGBS_CACHE_DIR=/home/user/gannet_cache WGBS_CORES=2 Rscript run_pipeline.R --exclude-ct-variants --difference 50 --qvalue 0.05                                                  # ctexcl-d50-q05 (fit legacy)
+WGBS_CACHE_DIR=/home/user/gannet_cache WGBS_CORES=2 Rscript run_pipeline.R --overdispersion --difference 50 --qvalue 0.05                                                       # mnchisq-d50-q05 (fit mnchisq)
+WGBS_CACHE_DIR=/home/user/gannet_cache WGBS_CORES=2 Rscript run_pipeline.R --overdispersion --exclude-ct-variants --difference 50 --qvalue 0.05                                 # mnchisq-ctexcl-d50-q05 (fit mnchisq)
+WGBS_CACHE_DIR=/home/user/gannet_cache WGBS_CORES=2 Rscript run_pipeline.R --coverage-filter --difference 50 --qvalue 0.05                                                      # corrected-d50-q05 (fit corrected)
+WGBS_CACHE_DIR=/home/user/gannet_cache WGBS_CORES=2 Rscript run_pipeline.R --coverage-filter --exclude-ct-variants --difference 50 --qvalue 0.05                                # corrected-ctexcl-d50-q05 (fit corrected)
+WGBS_CACHE_DIR=/home/user/gannet_cache WGBS_CORES=2 Rscript run_pipeline.R --coverage-filter --overdispersion --difference 50 --qvalue 0.05                                     # corrected-mnchisq-d50-q05 (fit corrected-mnchisq)
+WGBS_CACHE_DIR=/home/user/gannet_cache WGBS_CORES=2 Rscript run_pipeline.R --coverage-filter --overdispersion --exclude-ct-variants --difference 50 --qvalue 0.05               # corrected-mnchisq-ctexcl-d50-q05 (fit corrected-mnchisq)
+WGBS_CACHE_DIR=/home/user/gannet_cache WGBS_CORES=2 Rscript run_pipeline.R --coverage 5 --difference 50 --qvalue 0.05                                                           # cov5-d50-q05 (fit cov5)
+WGBS_CACHE_DIR=/home/user/gannet_cache WGBS_CORES=2 Rscript run_pipeline.R --coverage 5 --exclude-ct-variants --difference 50 --qvalue 0.05                                     # cov5-ctexcl-d50-q05 (fit cov5)
+WGBS_CACHE_DIR=/home/user/gannet_cache WGBS_CORES=2 Rscript run_pipeline.R --coverage 5 --overdispersion --difference 50 --qvalue 0.05                                          # cov5-mnchisq-d50-q05 (fit cov5-mnchisq)
+WGBS_CACHE_DIR=/home/user/gannet_cache WGBS_CORES=2 Rscript run_pipeline.R --coverage 5 --overdispersion --exclude-ct-variants --difference 50 --qvalue 0.05                    # cov5-mnchisq-ctexcl-d50-q05 (fit cov5-mnchisq)
+WGBS_CACHE_DIR=/home/user/gannet_cache WGBS_CORES=2 Rscript run_pipeline.R --coverage-filter --coverage 5 --difference 50 --qvalue 0.05                                         # corrected-cov5-d50-q05 (fit corrected-cov5)
+WGBS_CACHE_DIR=/home/user/gannet_cache WGBS_CORES=2 Rscript run_pipeline.R --coverage-filter --coverage 5 --exclude-ct-variants --difference 50 --qvalue 0.05                   # corrected-cov5-ctexcl-d50-q05 (fit corrected-cov5)
+WGBS_CACHE_DIR=/home/user/gannet_cache WGBS_CORES=2 Rscript run_pipeline.R --coverage-filter --coverage 5 --overdispersion --difference 50 --qvalue 0.05                        # corrected-cov5-mnchisq-d50-q05 (fit corrected-cov5-mnchisq)
+WGBS_CACHE_DIR=/home/user/gannet_cache WGBS_CORES=2 Rscript run_pipeline.R --coverage-filter --coverage 5 --overdispersion --exclude-ct-variants --difference 50 --qvalue 0.05  # corrected-cov5-mnchisq-ctexcl-d50-q05 (fit corrected-cov5-mnchisq)
+```
+
+Add `--gene-level-go` to a command for steps 10 and 11 (gene level) of that analysis.
+
 Step 05 fits every optional analysis by sequence (decision of the author, 2026-11-20), except `ctexcl` alone, which reuses the paper's fit in one piece: the import, the coverage normalisation and the united table are made genome-wide and saved, the tests are then run one part of the genome at a time (each of the ten linkage groups; the mitochondrial genome and the unplaced scaffolds in groups of at most 50,000 CpGs), each part is saved as soon as it is done in `04_output/05_differential_methylation/cache/parts_<fit id>/` (git-ignored), and the SLIM q-values are computed once over all CpGs when every part is in. A stopped run loses only the part it was fitting; the same command started again reuses the saved import and parts and fits the rest. The results are identical to those of a fit in one piece (`tests/check_fit_by_sequence.R`; the paper's own fit is still made in one piece). The fits of `mnchisq`, `corrected` and `corrected-mnchisq`, made in one piece before, are still used. One run at a time per fit: `parts_<fit id>/lock` names the running process, a second run stops while it lives, and takes the lock over after it ended. Before rerunning a fit that was killed, list leftover processes with `pgrep -af 05_differential` and stop them (a forked import or worker can outlive its parent and keep its memory). Saved files of another fingerprint are moved to `parts_<fit id>/stale/` (only the latest such set is kept).
 
 ## Comparison of all analyses
 
-`Rscript 01_pipeline/optional/compare_analyses.R` (from the repository root) writes `comparisons/analysis_comparison.csv` (every count, rates per 1,000 tested CpGs, ratios to the paper and a column `venkataraman_2022_settings`) and `comparisons/analysis_comparison.md` from the tables every run writes; it computes nothing new from the data. The table below is a copy of `comparisons/analysis_comparison.md` as of 2026-11-22 (32 analyses: the 16 combinations of the four optional settings at 20 and at 50 points); after a new run, run the script again, and the file is authoritative. Only `legacy` is the paper's analysis. A DML has SLIM q < 0.01 and an absolute difference of more than the threshold (percentage points). Upper filter: the 99.9th percentile coverage filter that the draft describes but did not apply (I-05). Shared: loci in both lists; opposite: different directions in the two lists. V2022: the settings that the Methods of Venkataraman et al. 2022 (BMC Genomics 23:556) state for coverage, the test, variant removal and the threshold; the variant rule counts reads with their full CIGAR (I-08).
+`Rscript 01_pipeline/optional/compare_analyses.R` (from the repository root) writes `comparisons/analysis_comparison.csv` (every count, rates per 1,000 tested CpGs, ratios to the paper and a column `venkataraman_2022_settings`) and `comparisons/analysis_comparison.md` from the tables every run writes; it computes nothing new from the data. The table below is a copy of `comparisons/analysis_comparison.md` as of 2026-11-22 (32 analyses, all at q < 0.01: the 16 combinations of the four optional settings at 20 and at 50 points); after a new run, run the script again, and the file is authoritative. Only `legacy` is the paper's analysis. A DML has a SLIM q-value below the cutoff of its row (column Q: 0.01 in the paper, 0.05 with option `q05`) and an absolute difference of more than the threshold of its row (percentage points). Upper filter: the 99.9th percentile coverage filter that the draft describes but did not apply (I-05). Shared: loci in both lists; opposite: different directions in the two lists. V2022: the settings that the Methods of Venkataraman et al. 2022 (BMC Genomics 23:556) state for coverage, the test, variant removal and the threshold, at q < 0.01; the variant rule counts reads with their full CIGAR (I-08).
 
-| Analysis | Coverage | Upper filter | Overdispersion | C-to-T loci | Threshold | CpGs tested | Ploidy DML (hyper/hypo) | Heat DML (hyper/hypo) | Shared (both hyper/both hypo/opposite) | Opposite % |
-|---|---|---|---|---|---|---|---|---|---|---|
-| legacy (paper) | 10x | no | none | kept | 20 | 480,579 | 1,038 (442/596) | 2,351 (1,150/1,201) | 200 (28/49/123) | 61.5 |
-| ctexcl | 10x | no | none | excluded | 20 | 452,159 | 717 (302/415) | 1,667 (826/841) | 139 (16/26/97) | 69.8 |
-| mnchisq | 10x | no | MN, chi-squared | kept | 20 | 480,579 | 14 (9/5) | 185 (95/90) | 4 (1/2/1) | 25.0 |
-| mnchisq-ctexcl | 10x | no | MN, chi-squared | excluded | 20 | 452,159 | 12 (7/5) | 142 (75/67) | 4 (1/2/1) | 25.0 |
-| corrected | 10x | yes | none | kept | 20 | 454,555 | 952 (430/522) | 2,273 (1,089/1,184) | 159 (27/49/83) | 52.2 |
-| corrected-ctexcl | 10x | yes | none | excluded | 20 | 427,349 | 635 (292/343) | 1,596 (772/824) | 100 (15/26/59) | 59.0 |
-| corrected-mnchisq | 10x | yes | MN, chi-squared | kept | 20 | 454,555 | 14 (9/5) | 157 (84/73) | 4 (1/2/1) | 25.0 |
-| corrected-mnchisq-ctexcl | 10x | yes | MN, chi-squared | excluded | 20 | 427,349 | 12 (7/5) | 118 (65/53) | 4 (1/2/1) | 25.0 |
-| cov5 | 5x | no | none | kept | 20 | 2,297,236 | 9,942 (4,408/5,534) | 21,361 (10,090/11,271) | 1,784 (318/485/981) | 55.0 |
-| cov5-ctexcl | 5x | no | none | excluded | 20 | 2,153,017 | 7,046 (3,157/3,889) | 15,530 (7,265/8,265) | 1,219 (228/311/680) | 55.8 |
-| cov5-mnchisq | 5x | no | MN, chi-squared | kept | 20 | 2,297,236 | 126 (58/68) | 1,191 (511/680) | 27 (10/12/5) | 18.5 |
-| cov5-mnchisq-ctexcl | 5x | no | MN, chi-squared | excluded | 20 | 2,153,017 | 96 (48/48) | 923 (382/541) | 19 (8/8/3) | 15.8 |
-| corrected-cov5 | 5x | yes | none | kept | 20 | 2,265,759 | 9,791 (4,380/5,411) | 21,200 (9,987/11,213) | 1,711 (312/482/917) | 53.6 |
-| corrected-cov5-ctexcl | 5x | yes | none | excluded | 20 | 2,122,969 | 6,902 (3,133/3,769) | 15,376 (7,168/8,208) | 1,148 (222/308/618) | 53.8 |
-| corrected-cov5-mnchisq | 5x | yes | MN, chi-squared | kept | 20 | 2,265,759 | 126 (58/68) | 1,133 (494/639) | 27 (10/12/5) | 18.5 |
-| corrected-cov5-mnchisq-ctexcl | 5x | yes | MN, chi-squared | excluded | 20 | 2,122,969 | 96 (48/48) | 875 (368/507) | 19 (8/8/3) | 15.8 |
-| d50 | 10x | no | none | kept | 50 | 480,579 | 1 (0/1) | 4 (3/1) | 0 (0/0/0) |  |
-| ctexcl-d50 | 10x | no | none | excluded | 50 | 452,159 | 1 (0/1) | 2 (1/1) | 0 (0/0/0) |  |
-| mnchisq-d50 | 10x | no | MN, chi-squared | kept | 50 | 480,579 | 1 (0/1) | 4 (3/1) | 0 (0/0/0) |  |
-| mnchisq-ctexcl-d50 | 10x | no | MN, chi-squared | excluded | 50 | 452,159 | 1 (0/1) | 2 (1/1) | 0 (0/0/0) |  |
-| corrected-d50 | 10x | yes | none | kept | 50 | 454,555 | 1 (0/1) | 4 (3/1) | 0 (0/0/0) |  |
-| corrected-ctexcl-d50 | 10x | yes | none | excluded | 50 | 427,349 | 1 (0/1) | 2 (1/1) | 0 (0/0/0) |  |
-| corrected-mnchisq-d50 | 10x | yes | MN, chi-squared | kept | 50 | 454,555 | 1 (0/1) | 4 (3/1) | 0 (0/0/0) |  |
-| corrected-mnchisq-ctexcl-d50 | 10x | yes | MN, chi-squared | excluded | 50 | 427,349 | 1 (0/1) | 2 (1/1) | 0 (0/0/0) |  |
-| cov5-d50 | 5x | no | none | kept | 50 | 2,297,236 | 6 (2/4) | 92 (41/51) | 0 (0/0/0) |  |
-| cov5-ctexcl-d50 | 5x | no | none | excluded | 50 | 2,153,017 | 4 (1/3) | 63 (28/35) | 0 (0/0/0) |  |
-| cov5-mnchisq-d50 | 5x | no | MN, chi-squared | kept | 50 | 2,297,236 | 1 (0/1) | 63 (30/33) | 0 (0/0/0) |  |
-| cov5-mnchisq-ctexcl-d50 | 5x | no | MN, chi-squared | excluded | 50 | 2,153,017 | 1 (0/1) | 48 (21/27) | 0 (0/0/0) |  |
-| corrected-cov5-d50 | 5x | yes | none | kept | 50 | 2,265,759 | 6 (2/4) | 92 (41/51) | 0 (0/0/0) |  |
-| corrected-cov5-ctexcl-d50 | 5x | yes | none | excluded | 50 | 2,122,969 | 4 (1/3) | 63 (28/35) | 0 (0/0/0) |  |
-| corrected-cov5-mnchisq-d50 | 5x | yes | MN, chi-squared | kept | 50 | 2,265,759 | 1 (0/1) | 62 (30/32) | 0 (0/0/0) |  |
-| corrected-cov5-mnchisq-ctexcl-d50 (V2022) | 5x | yes | MN, chi-squared | excluded | 50 | 2,122,969 | 1 (0/1) | 47 (21/26) | 0 (0/0/0) |  |
+| Analysis | Coverage | Upper filter | Overdispersion | C-to-T loci | Threshold | Q | CpGs tested | Ploidy DML (hyper/hypo) | Heat DML (hyper/hypo) | Shared (both hyper/both hypo/opposite) | Opposite % |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| legacy (paper) | 10x | no | none | kept | 20 | 0.01 | 480,579 | 1,038 (442/596) | 2,351 (1,150/1,201) | 200 (28/49/123) | 61.5 |
+| ctexcl | 10x | no | none | excluded | 20 | 0.01 | 452,159 | 717 (302/415) | 1,667 (826/841) | 139 (16/26/97) | 69.8 |
+| mnchisq | 10x | no | MN, chi-squared | kept | 20 | 0.01 | 480,579 | 14 (9/5) | 185 (95/90) | 4 (1/2/1) | 25.0 |
+| mnchisq-ctexcl | 10x | no | MN, chi-squared | excluded | 20 | 0.01 | 452,159 | 12 (7/5) | 142 (75/67) | 4 (1/2/1) | 25.0 |
+| corrected | 10x | yes | none | kept | 20 | 0.01 | 454,555 | 952 (430/522) | 2,273 (1,089/1,184) | 159 (27/49/83) | 52.2 |
+| corrected-ctexcl | 10x | yes | none | excluded | 20 | 0.01 | 427,349 | 635 (292/343) | 1,596 (772/824) | 100 (15/26/59) | 59.0 |
+| corrected-mnchisq | 10x | yes | MN, chi-squared | kept | 20 | 0.01 | 454,555 | 14 (9/5) | 157 (84/73) | 4 (1/2/1) | 25.0 |
+| corrected-mnchisq-ctexcl | 10x | yes | MN, chi-squared | excluded | 20 | 0.01 | 427,349 | 12 (7/5) | 118 (65/53) | 4 (1/2/1) | 25.0 |
+| cov5 | 5x | no | none | kept | 20 | 0.01 | 2,297,236 | 9,942 (4,408/5,534) | 21,361 (10,090/11,271) | 1,784 (318/485/981) | 55.0 |
+| cov5-ctexcl | 5x | no | none | excluded | 20 | 0.01 | 2,153,017 | 7,046 (3,157/3,889) | 15,530 (7,265/8,265) | 1,219 (228/311/680) | 55.8 |
+| cov5-mnchisq | 5x | no | MN, chi-squared | kept | 20 | 0.01 | 2,297,236 | 126 (58/68) | 1,191 (511/680) | 27 (10/12/5) | 18.5 |
+| cov5-mnchisq-ctexcl | 5x | no | MN, chi-squared | excluded | 20 | 0.01 | 2,153,017 | 96 (48/48) | 923 (382/541) | 19 (8/8/3) | 15.8 |
+| corrected-cov5 | 5x | yes | none | kept | 20 | 0.01 | 2,265,759 | 9,791 (4,380/5,411) | 21,200 (9,987/11,213) | 1,711 (312/482/917) | 53.6 |
+| corrected-cov5-ctexcl | 5x | yes | none | excluded | 20 | 0.01 | 2,122,969 | 6,902 (3,133/3,769) | 15,376 (7,168/8,208) | 1,148 (222/308/618) | 53.8 |
+| corrected-cov5-mnchisq | 5x | yes | MN, chi-squared | kept | 20 | 0.01 | 2,265,759 | 126 (58/68) | 1,133 (494/639) | 27 (10/12/5) | 18.5 |
+| corrected-cov5-mnchisq-ctexcl | 5x | yes | MN, chi-squared | excluded | 20 | 0.01 | 2,122,969 | 96 (48/48) | 875 (368/507) | 19 (8/8/3) | 15.8 |
+| d50 | 10x | no | none | kept | 50 | 0.01 | 480,579 | 1 (0/1) | 4 (3/1) | 0 (0/0/0) |  |
+| ctexcl-d50 | 10x | no | none | excluded | 50 | 0.01 | 452,159 | 1 (0/1) | 2 (1/1) | 0 (0/0/0) |  |
+| mnchisq-d50 | 10x | no | MN, chi-squared | kept | 50 | 0.01 | 480,579 | 1 (0/1) | 4 (3/1) | 0 (0/0/0) |  |
+| mnchisq-ctexcl-d50 | 10x | no | MN, chi-squared | excluded | 50 | 0.01 | 452,159 | 1 (0/1) | 2 (1/1) | 0 (0/0/0) |  |
+| corrected-d50 | 10x | yes | none | kept | 50 | 0.01 | 454,555 | 1 (0/1) | 4 (3/1) | 0 (0/0/0) |  |
+| corrected-ctexcl-d50 | 10x | yes | none | excluded | 50 | 0.01 | 427,349 | 1 (0/1) | 2 (1/1) | 0 (0/0/0) |  |
+| corrected-mnchisq-d50 | 10x | yes | MN, chi-squared | kept | 50 | 0.01 | 454,555 | 1 (0/1) | 4 (3/1) | 0 (0/0/0) |  |
+| corrected-mnchisq-ctexcl-d50 | 10x | yes | MN, chi-squared | excluded | 50 | 0.01 | 427,349 | 1 (0/1) | 2 (1/1) | 0 (0/0/0) |  |
+| cov5-d50 | 5x | no | none | kept | 50 | 0.01 | 2,297,236 | 6 (2/4) | 92 (41/51) | 0 (0/0/0) |  |
+| cov5-ctexcl-d50 | 5x | no | none | excluded | 50 | 0.01 | 2,153,017 | 4 (1/3) | 63 (28/35) | 0 (0/0/0) |  |
+| cov5-mnchisq-d50 | 5x | no | MN, chi-squared | kept | 50 | 0.01 | 2,297,236 | 1 (0/1) | 63 (30/33) | 0 (0/0/0) |  |
+| cov5-mnchisq-ctexcl-d50 | 5x | no | MN, chi-squared | excluded | 50 | 0.01 | 2,153,017 | 1 (0/1) | 48 (21/27) | 0 (0/0/0) |  |
+| corrected-cov5-d50 | 5x | yes | none | kept | 50 | 0.01 | 2,265,759 | 6 (2/4) | 92 (41/51) | 0 (0/0/0) |  |
+| corrected-cov5-ctexcl-d50 | 5x | yes | none | excluded | 50 | 0.01 | 2,122,969 | 4 (1/3) | 63 (28/35) | 0 (0/0/0) |  |
+| corrected-cov5-mnchisq-d50 | 5x | yes | MN, chi-squared | kept | 50 | 0.01 | 2,265,759 | 1 (0/1) | 62 (30/32) | 0 (0/0/0) |  |
+| corrected-cov5-mnchisq-ctexcl-d50 (V2022) | 5x | yes | MN, chi-squared | excluded | 50 | 0.01 | 2,122,969 | 1 (0/1) | 47 (21/26) | 0 (0/0/0) |  |
 
 ## What is tracked
 

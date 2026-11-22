@@ -33,10 +33,10 @@ config <- list(
 
   # ---- Optional analyses: NOT ADOPTED, all off by default ----------------------
   # With every setting below at its default the run produces the results of the
-  # paper and nothing else. Settings (a) to (e) together define ONE optional
+  # paper and nothing else. Settings (a) to (f) together define ONE optional
   # analysis per run, named by its id (04_output/not_adopted/<id>/; the tokens
-  # are joined by "-" in the order corrected, cov5, mnchisq, ctexcl, d50); (f)
-  # and (g) add steps. The switches of run_pipeline.R turn the same settings on
+  # are joined by "-" in the order corrected, cov5, mnchisq, ctexcl, d50, q05);
+  # (g) and (h) add steps. The switches of run_pipeline.R turn the same settings on
   # for one run. A step started alone reads WGBS_ANALYSIS, WGBS_GENE_LEVEL_GO and
   # WGBS_DIAGNOSTICS, which run_pipeline.R sets for its steps.
   optional = list(
@@ -53,8 +53,12 @@ config <- list(
                                                 #     paper) or 50 (token "d50"; Venkataraman et al. 2022, getMethylDiff
                                                 #     difference = 50). Applied after the test: the fit of the analysis
                                                 #     without d50 is reused (author's decision of 2026-11-21)
-    gene_level_go              = FALSE,         # (f) step 10 and the gene-level part of step 11 (I-41)
-    diagnostics                = character(0)   # (g) "all", or names of scripts of 06_diagnostics/ without .R
+    dml_qvalue_standard        = 0.01,          # (f) SLIM q-value a DML must be below: 0.01 (the paper) or 0.05
+                                                #     (token "q05"; getMethylDiff qvalue = 0.05). Applied after the
+                                                #     test: the fit of the analysis without q05 is reused (author's
+                                                #     request of 2026-11-22)
+    gene_level_go              = FALSE,         # (g) step 10 and the gene-level part of step 11 (I-41)
+    diagnostics                = character(0)   # (h) "all", or names of scripts of 06_diagnostics/ without .R
   ),
 
   # ---- C-to-T variant rule (option (d)) ------------------------------------------
@@ -97,7 +101,8 @@ config <- list(
   import_min_coverage       = 2,     # FROZEN. Rows with fewer reads are dropped on import in step 05
                                      # (legacy methRead(mincov = 2); sets the base of the percentile)
   upper_coverage_percentile = 99.9,  # FROZEN. Used by option (a) only
-  dml_qvalue                = 0.01,  # FROZEN. SLIM-adjusted q-value cutoff
+  dml_qvalue                = 0.01,  # FROZEN. SLIM-adjusted q-value cutoff (a DML has q below it), in the paper;
+                                     # option (f) sets 0.05 for an optional analysis (config$analysis$dml_qvalue)
   dml_difference            = 20,    # FROZEN. A DML needs an absolute methylation difference of more than this, percentage points
                                      # (strict >, as in methylKit getMethylDiff), in the paper; option (e) sets 50 for an
                                      # optional analysis (config$analysis$dml_difference)
@@ -238,7 +243,8 @@ config$mito_sequence  <- "NC_001276.1"
 # except that cores becomes a number. They add three derived values:
 #   config$analysis  the analysis of the run (analysis_spec() of
 #                    02_R_functions/analyses.R): id, filter, min_coverage,
-#                    overdispersion, test, ct_excluded, dml_difference, fit_id
+#                    overdispersion, test, ct_excluded, dml_difference,
+#                    dml_qvalue, fit_id
 #   config$addons    gene_level_go (TRUE/FALSE) and diagnostics (names)
 #   config$run_kind  "paper" when the analysis is the paper's and no add-on is on,
 #                    else "optional"
@@ -259,7 +265,7 @@ config <- local({
   seed    <- function(x) number(x) && x == round(x) && abs(x) <= .Machine$integer.max   # what set.seed() takes
   at_least_0 <- function(x) number(x) && x >= 0                       # a tolerance or a size limit
 
-  # Optional analyses (settings (a) to (g)) and the environment variables that
+  # Optional analyses (settings (a) to (h)) and the environment variables that
   # choose them for a step started alone. The analysis id is defined by
   # analysis_spec() of 02_R_functions/analyses.R.
   source(here::here("02_R_functions", "analyses.R"), local = TRUE)
@@ -270,6 +276,7 @@ config <- local({
   check("optional$gene_level_go", "TRUE or FALSE", flag)
   check("optional$coverage_standard", "10 (the paper) or 5", function(x) number(x) && x %in% c(5, 10))
   check("optional$dml_difference_standard", "20 (the paper) or 50", function(x) number(x) && x %in% c(20, 50))
+  check("optional$dml_qvalue_standard", "0.01 (the paper) or 0.05", function(x) number(x) && x %in% c(0.01, 0.05))
   diag_table <- here::here("06_diagnostics", "diagnostics.csv")
   diag_names <- if (file.exists(diag_table)) utils::read.csv(diag_table, stringsAsFactors = FALSE)$script else character(0)
   diag_ok <- function(x) is.character(x) && !anyNA(x) && (length(x) == 0 || identical(x, "all") || (all(x %in% diag_names) && !anyDuplicated(x)))
@@ -278,7 +285,7 @@ config <- local({
   o <- cfg$optional
   id <- analysis_id(c(if (o$coverage_filter_of_methods) "corrected", if (o$coverage_standard == 5) "cov5",
                       if (o$overdispersion_chisq) "mnchisq", if (o$exclude_ct_variants) "ctexcl",
-                      if (o$dml_difference_standard == 50) "d50"))
+                      if (o$dml_difference_standard == 50) "d50", if (o$dml_qvalue_standard == 0.05) "q05"))
   gene_level <- o$gene_level_go
   diagnostics <- o$diagnostics
   # An empty variable is an error, not "not set": it is what a job script leaves

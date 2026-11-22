@@ -31,12 +31,14 @@
 #
 # Manuscript items: Figure 2; Figure 4.
 # Notes     - The step applies no threshold of its own. A DML is a row of
-#             dml_<set>_<mode>.csv as step 05 wrote it (q-value below
-#             config$dml_qvalue and an absolute difference above the threshold
+#             dml_<set>_<mode>.csv as step 05 wrote it (q-value below the
+#             cutoff of the analysis, config$analysis$dml_qvalue: 0.01, or 0.05
+#             with option q05, and an absolute difference above the threshold
 #             of the analysis, config$analysis$dml_difference: 20 points, or 50
 #             with option d50, by methylKit's rule on the unrounded
 #             difference), and panels A and B draw the counts of
-#             dml_counts_by_threshold_<mode>.csv as they are.
+#             dml_counts_by_threshold_<mode>.csv as they are (taken at the
+#             q-value cutoff of the analysis).
 #           - Panels C and D use loci that were selected because they differ
 #             between the groups shown, so the separation of those groups is
 #             expected and is not evidence about the loci (issue I-23). Both

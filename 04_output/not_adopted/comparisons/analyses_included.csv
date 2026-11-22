@@ -1,33 +1,33 @@
-id,filter,min_coverage,overdispersion,test,ct_excluded,dml_difference,fit_id,fit_fingerprint_md5,ct_variant_list_md5,git_commit,written_utc,steps_done
-legacy,legacy,10,none,not passed,FALSE,20,legacy,"","",23eba2c,2026-11-20 09:50:25,the paper's outputs (04_output/<step>/); in not_adopted/legacy/: steps 10;11
-corrected,corrected,10,none,not passed,FALSE,20,corrected,df0c3e7805a7baead11759cd641f1df3,"",2ae1367,2026-11-20 11:55:55,04;05;06;07;08;09;10;11
-corrected-cov5,corrected,5,none,not passed,FALSE,20,corrected-cov5,fff70143d6491df78097be9cba2e5a59,"",6fabba8,2026-11-21 20:26:19,04;05;06;07;08;09
-corrected-cov5-ctexcl,corrected,5,none,not passed,TRUE,20,corrected-cov5,fff70143d6491df78097be9cba2e5a59,4be241cfd320d7315a31059278cfc7c6,cdf9742,2026-11-21 10:25:17,04;05;06;07;08;09
-corrected-cov5-ctexcl-d50,corrected,5,none,not passed,TRUE,50,corrected-cov5,fff70143d6491df78097be9cba2e5a59,4be241cfd320d7315a31059278cfc7c6,d84d8ff,2026-11-21 12:06:31,04;05;06;07;08;09
-corrected-cov5-d50,corrected,5,none,not passed,FALSE,50,corrected-cov5,fff70143d6491df78097be9cba2e5a59,"",53266aa,2026-11-21 20:38:01,04;05;06;07;08;09
-corrected-cov5-mnchisq,corrected,5,MN,Chisq,FALSE,20,corrected-cov5-mnchisq,4d2b451ed872ed0ef171db1e4695494f,"",c2101c8,2026-11-21 20:51:01,04;05;06;07;08;09
-corrected-cov5-mnchisq-ctexcl,corrected,5,MN,Chisq,TRUE,20,corrected-cov5-mnchisq,4d2b451ed872ed0ef171db1e4695494f,4be241cfd320d7315a31059278cfc7c6,c73b4a5,2026-11-21 10:30:20,04;05;06;07;08;09
-corrected-cov5-mnchisq-ctexcl-d50,corrected,5,MN,Chisq,TRUE,50,corrected-cov5-mnchisq,4d2b451ed872ed0ef171db1e4695494f,4be241cfd320d7315a31059278cfc7c6,b6d827b,2026-11-21 12:20:03,04;05;06;07;08;09
-corrected-cov5-mnchisq-d50,corrected,5,MN,Chisq,FALSE,50,corrected-cov5-mnchisq,4d2b451ed872ed0ef171db1e4695494f,"",689bca5,2026-11-21 21:02:18,04;05;06;07;08;09
-corrected-ctexcl,corrected,10,none,not passed,TRUE,20,corrected,df0c3e7805a7baead11759cd641f1df3,4be241cfd320d7315a31059278cfc7c6,33aaaea,2026-11-21 19:37:52,04;05;06;07;08;09
-corrected-ctexcl-d50,corrected,10,none,not passed,TRUE,50,corrected,df0c3e7805a7baead11759cd641f1df3,4be241cfd320d7315a31059278cfc7c6,193b307,2026-11-21 19:48:51,04;05;06;07;08;09
-corrected-d50,corrected,10,none,not passed,FALSE,50,corrected,df0c3e7805a7baead11759cd641f1df3,"",c302b2a,2026-11-21 10:52:49,04;05;06;07;08;09
-corrected-mnchisq,corrected,10,MN,Chisq,FALSE,20,corrected-mnchisq,ad1021bb99cb205a7e6603efb65e1d73,"",2ae1367,2026-11-20 11:55:25,04;05;06;07;08;09
-corrected-mnchisq-ctexcl,corrected,10,MN,Chisq,TRUE,20,corrected-mnchisq,ad1021bb99cb205a7e6603efb65e1d73,4be241cfd320d7315a31059278cfc7c6,ba14b56,2026-11-21 20:00:52,04;05;06;07;08;09
-corrected-mnchisq-ctexcl-d50,corrected,10,MN,Chisq,TRUE,50,corrected-mnchisq,ad1021bb99cb205a7e6603efb65e1d73,4be241cfd320d7315a31059278cfc7c6,4552c84,2026-11-21 20:11:55,04;05;06;07;08;09
-corrected-mnchisq-d50,corrected,10,MN,Chisq,FALSE,50,corrected-mnchisq,ad1021bb99cb205a7e6603efb65e1d73,"",f1ec208,2026-11-21 11:15:20,04;05;06;07;08;09
-cov5,legacy,5,none,not passed,FALSE,20,cov5,10d66f1498ef61f043bbe3e5255a3a72,"",d98ff3c,2026-11-21 03:27:53,04;05;06;07;08;09
-cov5-ctexcl,legacy,5,none,not passed,TRUE,20,cov5,10d66f1498ef61f043bbe3e5255a3a72,4be241cfd320d7315a31059278cfc7c6,93b6961,2026-11-21 03:42:28,04;05;06;07;08;09
-cov5-ctexcl-d50,legacy,5,none,not passed,TRUE,50,cov5,10d66f1498ef61f043bbe3e5255a3a72,4be241cfd320d7315a31059278cfc7c6,a6517c5,2026-11-21 11:52:54,04;05;06;07;08;09
-cov5-d50,legacy,5,none,not passed,FALSE,50,cov5,10d66f1498ef61f043bbe3e5255a3a72,"",c61d4ae,2026-11-21 11:40:40,04;05;06;07;08;09
-cov5-mnchisq,legacy,5,MN,Chisq,FALSE,20,cov5-mnchisq,08c997671963d74d86fc65e695e81bff,"",a4c8df2,2026-11-21 23:16:30,04;05;06;07;08;09
-cov5-mnchisq-ctexcl,legacy,5,MN,Chisq,TRUE,20,cov5-mnchisq,08c997671963d74d86fc65e695e81bff,4be241cfd320d7315a31059278cfc7c6,c267aaf,2026-11-21 23:45:37,04;05;06;07;08;09
-cov5-mnchisq-ctexcl-d50,legacy,5,MN,Chisq,TRUE,50,cov5-mnchisq,08c997671963d74d86fc65e695e81bff,4be241cfd320d7315a31059278cfc7c6,ac3fcc1,2026-11-21 23:58:40,04;05;06;07;08;09
-cov5-mnchisq-d50,legacy,5,MN,Chisq,FALSE,50,cov5-mnchisq,08c997671963d74d86fc65e695e81bff,"",f549e30,2026-11-21 23:30:53,04;05;06;07;08;09
-ctexcl,legacy,10,none,not passed,TRUE,20,legacy,6181094c68aab31c49284e2a4ae5f1c4,4be241cfd320d7315a31059278cfc7c6,18388b2,2026-11-20 19:50:57,04;05;06;07;08;09
-ctexcl-d50,legacy,10,none,not passed,TRUE,50,legacy,6181094c68aab31c49284e2a4ae5f1c4,4be241cfd320d7315a31059278cfc7c6,a7415ae,2026-11-21 11:27:13,04;05;06;07;08;09
-d50,legacy,10,none,not passed,FALSE,50,legacy,6181094c68aab31c49284e2a4ae5f1c4,"",7c9f79e,2026-11-21 10:41:40,04;05;06;07;08;09
-mnchisq,legacy,10,MN,Chisq,FALSE,20,mnchisq,e1470495d4529ffebc67ad73cfa3d2fc,"",2ae1367,2026-11-20 11:54:44,04;05;06;07;08;09;10;11
-mnchisq-ctexcl,legacy,10,MN,Chisq,TRUE,20,mnchisq,e1470495d4529ffebc67ad73cfa3d2fc,4be241cfd320d7315a31059278cfc7c6,a0580cf,2026-11-21 13:32:55,04;05;06;07;08;09;10;11
-mnchisq-ctexcl-d50,legacy,10,MN,Chisq,TRUE,50,mnchisq,e1470495d4529ffebc67ad73cfa3d2fc,4be241cfd320d7315a31059278cfc7c6,e34e7ac,2026-11-21 13:44:07,04;05;06;07;08;09
-mnchisq-d50,legacy,10,MN,Chisq,FALSE,50,mnchisq,e1470495d4529ffebc67ad73cfa3d2fc,"",a5ae0f1,2026-11-21 11:03:24,04;05;06;07;08;09
+id,filter,min_coverage,overdispersion,test,ct_excluded,dml_difference,dml_qvalue,fit_id,fit_fingerprint_md5,ct_variant_list_md5,git_commit,written_utc,steps_done
+legacy,legacy,10,none,not passed,FALSE,20,0.01,legacy,"","",23eba2c,2026-11-20 09:50:25,the paper's outputs (04_output/<step>/); in not_adopted/legacy/: steps 10;11
+corrected,corrected,10,none,not passed,FALSE,20,0.01,corrected,df0c3e7805a7baead11759cd641f1df3,"",2ae1367,2026-11-20 11:55:55,04;05;06;07;08;09;10;11
+corrected-cov5,corrected,5,none,not passed,FALSE,20,0.01,corrected-cov5,fff70143d6491df78097be9cba2e5a59,"",6fabba8,2026-11-21 20:26:19,04;05;06;07;08;09
+corrected-cov5-ctexcl,corrected,5,none,not passed,TRUE,20,0.01,corrected-cov5,fff70143d6491df78097be9cba2e5a59,4be241cfd320d7315a31059278cfc7c6,cdf9742,2026-11-21 10:25:17,04;05;06;07;08;09
+corrected-cov5-ctexcl-d50,corrected,5,none,not passed,TRUE,50,0.01,corrected-cov5,fff70143d6491df78097be9cba2e5a59,4be241cfd320d7315a31059278cfc7c6,d84d8ff,2026-11-21 12:06:31,04;05;06;07;08;09
+corrected-cov5-d50,corrected,5,none,not passed,FALSE,50,0.01,corrected-cov5,fff70143d6491df78097be9cba2e5a59,"",53266aa,2026-11-21 20:38:01,04;05;06;07;08;09
+corrected-cov5-mnchisq,corrected,5,MN,Chisq,FALSE,20,0.01,corrected-cov5-mnchisq,4d2b451ed872ed0ef171db1e4695494f,"",c2101c8,2026-11-21 20:51:01,04;05;06;07;08;09
+corrected-cov5-mnchisq-ctexcl,corrected,5,MN,Chisq,TRUE,20,0.01,corrected-cov5-mnchisq,4d2b451ed872ed0ef171db1e4695494f,4be241cfd320d7315a31059278cfc7c6,c73b4a5,2026-11-21 10:30:20,04;05;06;07;08;09
+corrected-cov5-mnchisq-ctexcl-d50,corrected,5,MN,Chisq,TRUE,50,0.01,corrected-cov5-mnchisq,4d2b451ed872ed0ef171db1e4695494f,4be241cfd320d7315a31059278cfc7c6,b6d827b,2026-11-21 12:20:03,04;05;06;07;08;09
+corrected-cov5-mnchisq-d50,corrected,5,MN,Chisq,FALSE,50,0.01,corrected-cov5-mnchisq,4d2b451ed872ed0ef171db1e4695494f,"",689bca5,2026-11-21 21:02:18,04;05;06;07;08;09
+corrected-ctexcl,corrected,10,none,not passed,TRUE,20,0.01,corrected,df0c3e7805a7baead11759cd641f1df3,4be241cfd320d7315a31059278cfc7c6,33aaaea,2026-11-21 19:37:52,04;05;06;07;08;09
+corrected-ctexcl-d50,corrected,10,none,not passed,TRUE,50,0.01,corrected,df0c3e7805a7baead11759cd641f1df3,4be241cfd320d7315a31059278cfc7c6,193b307,2026-11-21 19:48:51,04;05;06;07;08;09
+corrected-d50,corrected,10,none,not passed,FALSE,50,0.01,corrected,df0c3e7805a7baead11759cd641f1df3,"",c302b2a,2026-11-21 10:52:49,04;05;06;07;08;09
+corrected-mnchisq,corrected,10,MN,Chisq,FALSE,20,0.01,corrected-mnchisq,ad1021bb99cb205a7e6603efb65e1d73,"",2ae1367,2026-11-20 11:55:25,04;05;06;07;08;09
+corrected-mnchisq-ctexcl,corrected,10,MN,Chisq,TRUE,20,0.01,corrected-mnchisq,ad1021bb99cb205a7e6603efb65e1d73,4be241cfd320d7315a31059278cfc7c6,ba14b56,2026-11-21 20:00:52,04;05;06;07;08;09
+corrected-mnchisq-ctexcl-d50,corrected,10,MN,Chisq,TRUE,50,0.01,corrected-mnchisq,ad1021bb99cb205a7e6603efb65e1d73,4be241cfd320d7315a31059278cfc7c6,4552c84,2026-11-21 20:11:55,04;05;06;07;08;09
+corrected-mnchisq-d50,corrected,10,MN,Chisq,FALSE,50,0.01,corrected-mnchisq,ad1021bb99cb205a7e6603efb65e1d73,"",f1ec208,2026-11-21 11:15:20,04;05;06;07;08;09
+cov5,legacy,5,none,not passed,FALSE,20,0.01,cov5,10d66f1498ef61f043bbe3e5255a3a72,"",d98ff3c,2026-11-21 03:27:53,04;05;06;07;08;09
+cov5-ctexcl,legacy,5,none,not passed,TRUE,20,0.01,cov5,10d66f1498ef61f043bbe3e5255a3a72,4be241cfd320d7315a31059278cfc7c6,93b6961,2026-11-21 03:42:28,04;05;06;07;08;09
+cov5-ctexcl-d50,legacy,5,none,not passed,TRUE,50,0.01,cov5,10d66f1498ef61f043bbe3e5255a3a72,4be241cfd320d7315a31059278cfc7c6,a6517c5,2026-11-21 11:52:54,04;05;06;07;08;09
+cov5-d50,legacy,5,none,not passed,FALSE,50,0.01,cov5,10d66f1498ef61f043bbe3e5255a3a72,"",c61d4ae,2026-11-21 11:40:40,04;05;06;07;08;09
+cov5-mnchisq,legacy,5,MN,Chisq,FALSE,20,0.01,cov5-mnchisq,08c997671963d74d86fc65e695e81bff,"",a4c8df2,2026-11-21 23:16:30,04;05;06;07;08;09
+cov5-mnchisq-ctexcl,legacy,5,MN,Chisq,TRUE,20,0.01,cov5-mnchisq,08c997671963d74d86fc65e695e81bff,4be241cfd320d7315a31059278cfc7c6,c267aaf,2026-11-21 23:45:37,04;05;06;07;08;09
+cov5-mnchisq-ctexcl-d50,legacy,5,MN,Chisq,TRUE,50,0.01,cov5-mnchisq,08c997671963d74d86fc65e695e81bff,4be241cfd320d7315a31059278cfc7c6,ac3fcc1,2026-11-21 23:58:40,04;05;06;07;08;09
+cov5-mnchisq-d50,legacy,5,MN,Chisq,FALSE,50,0.01,cov5-mnchisq,08c997671963d74d86fc65e695e81bff,"",f549e30,2026-11-21 23:30:53,04;05;06;07;08;09
+ctexcl,legacy,10,none,not passed,TRUE,20,0.01,legacy,6181094c68aab31c49284e2a4ae5f1c4,4be241cfd320d7315a31059278cfc7c6,18388b2,2026-11-20 19:50:57,04;05;06;07;08;09
+ctexcl-d50,legacy,10,none,not passed,TRUE,50,0.01,legacy,6181094c68aab31c49284e2a4ae5f1c4,4be241cfd320d7315a31059278cfc7c6,a7415ae,2026-11-21 11:27:13,04;05;06;07;08;09
+d50,legacy,10,none,not passed,FALSE,50,0.01,legacy,6181094c68aab31c49284e2a4ae5f1c4,"",7c9f79e,2026-11-21 10:41:40,04;05;06;07;08;09
+mnchisq,legacy,10,MN,Chisq,FALSE,20,0.01,mnchisq,e1470495d4529ffebc67ad73cfa3d2fc,"",2ae1367,2026-11-20 11:54:44,04;05;06;07;08;09;10;11
+mnchisq-ctexcl,legacy,10,MN,Chisq,TRUE,20,0.01,mnchisq,e1470495d4529ffebc67ad73cfa3d2fc,4be241cfd320d7315a31059278cfc7c6,a0580cf,2026-11-21 13:32:55,04;05;06;07;08;09;10;11
+mnchisq-ctexcl-d50,legacy,10,MN,Chisq,TRUE,50,0.01,mnchisq,e1470495d4529ffebc67ad73cfa3d2fc,4be241cfd320d7315a31059278cfc7c6,e34e7ac,2026-11-21 13:44:07,04;05;06;07;08;09
+mnchisq-d50,legacy,10,MN,Chisq,FALSE,50,0.01,mnchisq,e1470495d4529ffebc67ad73cfa3d2fc,"",a5ae0f1,2026-11-21 11:03:24,04;05;06;07;08;09

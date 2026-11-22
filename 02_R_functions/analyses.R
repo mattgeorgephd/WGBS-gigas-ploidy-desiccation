@@ -8,6 +8,7 @@
 #   mnchisq    methylKit's overdispersion correction, overdispersion = "MN", test = "Chisq"
 #   ctexcl     CpGs at C-to-T variants removed (Venkataraman et al. 2022)
 #   d50        DML at a difference of more than 50 points instead of 20 (Venkataraman et al. 2022)
+#   q05        DML at a q-value below 0.05 instead of 0.01
 # With no token on, the id is "legacy": the analysis of the paper. The paper's
 # outputs are in 04_output/<step>/ and 05_manuscript/; the outputs of any other
 # analysis are in 04_output/not_adopted/<id>/ and 05_manuscript/not_adopted/.
@@ -18,7 +19,7 @@
 # 02_R_functions/ is sourced, so that analysis_spec() can check WGBS_ANALYSIS.
 # Every other function here is used by the steps, after config exists.
 
-analysis_tokens <- c("corrected", "cov5", "mnchisq", "ctexcl", "d50")
+analysis_tokens <- c("corrected", "cov5", "mnchisq", "ctexcl", "d50", "q05")
 
 # The id of a set of tokens, in the fixed order; "legacy" when there is none.
 analysis_id <- function(tokens) {
@@ -26,18 +27,20 @@ analysis_id <- function(tokens) {
   if (length(t) == 0) "legacy" else paste(t, collapse = "-")
 }
 
-# What an analysis id means. Stops on an id that is not one of the 32 valid ids.
-# The tokens ctexcl and d50 act after the test: the fit of an analysis (fit_id)
-# is that of its id without them, so an analysis with either reuses the fit of
-# the analysis without it. dml_difference is the threshold of the DML lists of
-# step 05: more than 20 points (the paper), or more than 50 with d50 (methylKit
-# getMethylDiff with difference = 50, as in Venkataraman et al. 2022).
+# What an analysis id means. Stops on an id that is not one of the 64 valid ids.
+# The tokens ctexcl, d50 and q05 act after the test: the fit of an analysis
+# (fit_id) is that of its id without them, so an analysis with any of them
+# reuses the fit of the analysis without them. dml_difference is the threshold
+# of the DML lists of step 05: more than 20 points (the paper), or more than 50
+# with d50 (methylKit getMethylDiff with difference = 50, as in Venkataraman et
+# al. 2022). dml_qvalue is their q-value cutoff: below 0.01 (the paper), or
+# below 0.05 with q05 (getMethylDiff with qvalue = 0.05).
 analysis_spec <- function(id) {
-  valid <- "an analysis id: \"legacy\" (the paper) or the tokens corrected, cov5, mnchisq, ctexcl, d50 (in this order, each at most once) joined by \"-\""
+  valid <- "an analysis id: \"legacy\" (the paper) or the tokens corrected, cov5, mnchisq, ctexcl, d50, q05 (in this order, each at most once) joined by \"-\""
   if (!is.character(id) || length(id) != 1 || is.na(id) || !nzchar(id)) stop("Not ", valid, ".", call. = FALSE)
   tokens <- if (id == "legacy") character(0) else strsplit(id, "-", fixed = TRUE)[[1]]
   if (!all(tokens %in% analysis_tokens) || anyDuplicated(tokens) || !identical(analysis_id(tokens), id)) {
-    stop("'", id, "' is not ", valid, "; for example cov5, corrected-cov5, cov5-mnchisq-ctexcl, mnchisq-d50.", call. = FALSE)
+    stop("'", id, "' is not ", valid, "; for example cov5, corrected-cov5, cov5-mnchisq-ctexcl, mnchisq-d50, mnchisq-q05.", call. = FALSE)
   }
   mn <- "mnchisq" %in% tokens
   list(id = id, paper = id == "legacy", tokens = tokens,
@@ -47,7 +50,8 @@ analysis_spec <- function(id) {
        test = if (mn) "Chisq" else "not passed",
        ct_excluded = "ctexcl" %in% tokens,
        dml_difference = if ("d50" %in% tokens) 50 else 20,
-       fit_id = analysis_id(setdiff(tokens, c("ctexcl", "d50"))))
+       dml_qvalue = if ("q05" %in% tokens) 0.05 else 0.01,
+       fit_id = analysis_id(setdiff(tokens, c("ctexcl", "d50", "q05"))))
 }
 
 # Analyses in the order of every table that lists several: the paper first, then
@@ -89,26 +93,33 @@ analysis_input <- function(a, step, sub, file) {
 
 # ---- Stamp of an analysis folder ---------------------------------------------------
 # 04_output/not_adopted/<id>/analysis.csv, one row: the settings of the analysis
-# (dml_difference: the threshold of its DML lists, in points),
+# (dml_difference: the threshold of its DML lists, in points; dml_qvalue: their
+# q-value cutoff),
 # the md5 of the fingerprint of its fit (step 05), the md5 of the variant list
 # (ctexcl), the commit, the time and the steps done. Step 04 creates it (and the
 # first step of the paper's analysis in an optional run); each later step adds
 # itself to steps_done. A later step stops if the stamp's settings differ from
 # the analysis of the run or a step it reads from is not done.
-stamp_columns <- c("id", "filter", "min_coverage", "overdispersion", "test", "ct_excluded", "dml_difference", "fit_id")
+stamp_columns <- c("id", "filter", "min_coverage", "overdispersion", "test", "ct_excluded", "dml_difference", "dml_qvalue", "fit_id")
 stamp_file <- function(id) not_adopted_path(id, "analysis.csv")
 # A stamp written before the option d50 existed (2026-11-21) has no column
 # dml_difference; its analysis has the paper's threshold of 20 points, and the
-# column is added with that value where the other stamps hold it.
+# column is added with that value where the other stamps hold it. Likewise a
+# stamp written before the option q05 existed (2026-11-22) has no column
+# dml_qvalue; its analysis has the paper's cutoff of 0.01, and the column is
+# added with that value after dml_difference.
 read_stamp <- function(id) {
   f <- stamp_file(id)
   if (!file.exists(f)) return(NULL)
   s <- data.table::fread(f, colClasses = "character")
-  if (!"dml_difference" %in% names(s)) {
-    s[, dml_difference := "20"]
-    n <- names(s)
-    data.table::setcolorder(s, append(setdiff(n, "dml_difference"), "dml_difference", after = match("ct_excluded", setdiff(n, "dml_difference"))))
+  add_after <- function(column, value, after) {
+    if (column %in% names(s)) return(invisible())
+    s[, (column) := value]
+    n <- setdiff(names(s), column)
+    data.table::setcolorder(s, append(n, column, after = match(after, n)))
   }
+  add_after("dml_difference", "20", "ct_excluded")
+  add_after("dml_qvalue", "0.01", "dml_difference")
   s[]
 }
 git_commit <- function() {
@@ -124,7 +135,8 @@ write_stamp <- function(a, step, fit_fingerprint_md5 = NULL, ct_variant_list_md5
   if (is.null(old) || number == "04") {
     new <- data.table::data.table(id = a$id, filter = a$filter, min_coverage = format(a$min_coverage),
                                   overdispersion = a$overdispersion, test = a$test, ct_excluded = as.character(a$ct_excluded),
-                                  dml_difference = format(a$dml_difference), fit_id = a$fit_id, fit_fingerprint_md5 = "", ct_variant_list_md5 = "",
+                                  dml_difference = format(a$dml_difference), dml_qvalue = format(a$dml_qvalue), fit_id = a$fit_id,
+                                  fit_fingerprint_md5 = "", ct_variant_list_md5 = "",
                                   git_commit = "", written_utc = "", steps_done = "")
   }
   done <- setdiff(strsplit(new$steps_done, ";", fixed = TRUE)[[1]], "")
@@ -152,7 +164,8 @@ check_stamp <- function(a, needs = character(0), per_cpg = FALSE) {
          "'. Run Rscript run_pipeline.R with its switches (or WGBS_ANALYSIS=", a$id, " for the steps from 04).", call. = FALSE)
   }
   want <- c(id = a$id, filter = a$filter, min_coverage = format(a$min_coverage), overdispersion = a$overdispersion,
-            test = a$test, ct_excluded = as.character(a$ct_excluded), dml_difference = format(a$dml_difference), fit_id = a$fit_id)
+            test = a$test, ct_excluded = as.character(a$ct_excluded), dml_difference = format(a$dml_difference),
+            dml_qvalue = format(a$dml_qvalue), fit_id = a$fit_id)
   differs <- names(want)[unlist(s[, names(want), with = FALSE]) != want]
   if (length(differs) > 0) {
     stop("The stamp 04_output/not_adopted/", a$id, "/analysis.csv does not describe the analysis '", a$id, "' (", paste(differs, collapse = ", "),
@@ -243,7 +256,7 @@ write_analyses_included <- function() {
   ids <- analysis_folders()
   rows <- lapply(ids, read_stamp)
   paper <- data.table::data.table(id = "legacy", filter = "legacy", min_coverage = "10", overdispersion = "none", test = "not passed",
-                                  ct_excluded = "FALSE", dml_difference = "20", fit_id = "legacy", fit_fingerprint_md5 = "", ct_variant_list_md5 = "",
+                                  ct_excluded = "FALSE", dml_difference = "20", dml_qvalue = "0.01", fit_id = "legacy", fit_fingerprint_md5 = "", ct_variant_list_md5 = "",
                                   git_commit = "", written_utc = "", steps_done = "the paper's outputs (04_output/<step>/)")
   if ("legacy" %in% ids) {
     paper <- rows[[match("legacy", ids)]]

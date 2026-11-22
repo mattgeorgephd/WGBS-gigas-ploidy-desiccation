@@ -34,8 +34,12 @@ code <- c(list.files(c("01_pipeline", "02_R_functions", "06_diagnostics"), patte
 code <- code[!grepl("01_pipeline/optional/", code)]    # the variant step: not edited while its screen runs
 hits <- unlist(lapply(code, function(f) { l <- readLines(f, warn = FALSE); f[grepl("config\\$modes|require_mode", l)] }))
 ok("config$modes and require_mode() appear in no code file", length(hits) == 0, paste(unique(hits), collapse = ", "))
+# Steps 05 to 11 apply the q cutoff of the analysis (a$dml_qvalue), never the frozen paper value.
+steps_q <- list.files("01_pipeline", pattern = "^(0[5-9]|1[01])_.*\\.R$", full.names = TRUE)
+hits_q <- unlist(lapply(steps_q, function(f) { l <- sub("#.*$", "", readLines(f, warn = FALSE)); f[grepl("config\\$dml_qvalue", l)] }))
+ok("steps 05 to 11 use no config$dml_qvalue outside comments", length(steps_q) == 7 && length(hits_q) == 0, paste(unique(hits_q), collapse = ", "))
 
-# ---- 32 ids x gene-level GO x diagnostics ----------------------------------------------------
+# ---- 64 ids x gene-level GO x diagnostics ----------------------------------------------------
 source(here("02_R_functions", "analyses.R"))
 source(here("02_R_functions", "paths.R"))
 # The write paths are resolved with dir.create() masked: the functions above are
@@ -46,17 +50,18 @@ paper_dirs <- here(c("04_output", "05_manuscript"))
 steps_written <- c("04_cpg_coverage", "05_differential_methylation", "06_dml_figures", "07_genome_features", "08_gene_annotation",
                    "09_go_enrichment_legacy", "10_go_enrichment_gene_level", "11_semantic_similarity")
 under <- function(p, d) startsWith(p, paste0(d, "/"))
-tokens <- c("corrected", "cov5", "mnchisq", "ctexcl", "d50")
-ids <- unique(vapply(0:31, function(k) analysis_id(tokens[bitwAnd(k, 2^(0:4)) > 0]), ""))
-ok("32 analysis ids", length(ids) == 32, paste(ids, collapse = " "))
+tokens <- c("corrected", "cov5", "mnchisq", "ctexcl", "d50", "q05")
+ids <- unique(vapply(0:63, function(k) analysis_id(tokens[bitwAnd(k, 2^(0:5)) > 0]), ""))
+ok("64 analysis ids", length(ids) == 64 && identical(analysis_tokens, tokens), paste(ids, collapse = " "))
 bad <- character(0)
 for (id in ids) for (g in c("TRUE", "FALSE")) for (d in c("none", "all")) {
   cfg <- settings(c(WGBS_ANALYSIS = id, WGBS_GENE_LEVEL_GO = g, WGBS_DIAGNOSTICS = d))
   a <- cfg$analysis
   want_kind <- if (id == "legacy" && g == "FALSE" && d == "none") "paper" else "optional"
-  fit_want <- analysis_id(setdiff(a$tokens, c("ctexcl", "d50")))
+  fit_want <- analysis_id(setdiff(a$tokens, c("ctexcl", "d50", "q05")))
   if (!(cfg$min_coverage == 10 && a$min_coverage == (if ("cov5" %in% a$tokens) 5 else 10) && a$fit_id == fit_want &&
         cfg$dml_difference == 20 && a$dml_difference == (if ("d50" %in% a$tokens) 50 else 20) &&
+        cfg$dml_qvalue == 0.01 && a$dml_qvalue == (if ("q05" %in% a$tokens) 0.05 else 0.01) &&
         cfg$run_kind == want_kind && identical(cfg$addons$gene_level_go, g == "TRUE") &&
         identical(length(cfg$addons$diagnostics) > 0, d == "all"))) bad <- c(bad, paste(id, g, d))
   # paths of the analysis: never in a paper folder for an optional analysis, never under not_adopted/ for the paper in a paper run
@@ -80,7 +85,7 @@ for (id in ids) for (g in c("TRUE", "FALSE")) for (d in c("none", "all")) {
   if (cfg$run_kind == "optional" && !a$paper && stops(output_dir("05_differential_methylation", "tables")) == FALSE) bad <- c(bad, paste("output_dir", id, g, d))
 }
 rm(dir.create)
-ok("128 combinations: min_coverage 10, dml_difference 20, analysis min_coverage and dml_difference, fit_id, run kind, add-ons, read and write paths",
+ok("256 combinations: min_coverage 10, dml_difference 20, dml_qvalue 0.01, analysis min_coverage, dml_difference and dml_qvalue, fit_id, run kind, add-ons, read and write paths",
    length(bad) == 0, paste(bad, collapse = "; "))
 config <- settings()                                    # the paper run
 ok("paper run: manuscript_path() without arguments is 05_manuscript/", identical(manuscript_path(), here("05_manuscript")))
@@ -95,20 +100,35 @@ ok("d50: dml_difference 50, every other setting that of the analysis without d50
    all(vapply(setdiff(ids, ids[grepl("d50", ids)]), function(id) {
      x <- analysis_spec(id); y <- analysis_spec(analysis_id(c(x$tokens, "d50")))
      x$dml_difference == 20 && y$dml_difference == 50 &&
-       identical(x[c("filter", "min_coverage", "overdispersion", "test", "ct_excluded", "fit_id")],
-                 y[c("filter", "min_coverage", "overdispersion", "test", "ct_excluded", "fit_id")])
+       identical(x[c("filter", "min_coverage", "overdispersion", "test", "ct_excluded", "dml_qvalue", "fit_id")],
+                 y[c("filter", "min_coverage", "overdispersion", "test", "ct_excluded", "dml_qvalue", "fit_id")])
    }, logical(1))))
+ok("fit_id of q05 is legacy; of mnchisq-q05 mnchisq; of d50-q05 legacy; of corrected-cov5-mnchisq-ctexcl-d50-q05 corrected-cov5-mnchisq",
+   analysis_spec("q05")$fit_id == "legacy" && analysis_spec("mnchisq-q05")$fit_id == "mnchisq" &&
+     analysis_spec("d50-q05")$fit_id == "legacy" &&
+     analysis_spec("corrected-cov5-mnchisq-ctexcl-d50-q05")$fit_id == "corrected-cov5-mnchisq")
+ok("q05: dml_qvalue 0.05, every other setting that of the analysis without q05",
+   all(vapply(setdiff(ids, ids[grepl("q05", ids)]), function(id) {
+     x <- analysis_spec(id); y <- analysis_spec(analysis_id(c(x$tokens, "q05")))
+     x$dml_qvalue == 0.01 && y$dml_qvalue == 0.05 &&
+       identical(x[c("filter", "min_coverage", "overdispersion", "test", "ct_excluded", "dml_difference", "fit_id")],
+                 y[c("filter", "min_coverage", "overdispersion", "test", "ct_excluded", "dml_difference", "fit_id")])
+   }, logical(1))))
+ok("q05 is the last token of an id: corrected-cov5-mnchisq-ctexcl-d50-q05, mnchisq-q05, d50-q05",
+   analysis_id(c("q05", "d50", "ctexcl", "mnchisq", "cov5", "corrected")) == "corrected-cov5-mnchisq-ctexcl-d50-q05" &&
+     analysis_id(c("q05", "mnchisq")) == "mnchisq-q05" && analysis_id(c("q05", "d50")) == "d50-q05")
 # Stamps: fixtures in a temporary folder (not_adopted_path() is pointed there for these checks).
 local({
   real_path <- not_adopted_path
   tmp <- tempfile("stamps"); dir.create(tmp)
   on.exit({ not_adopted_path <<- real_path; unlink(tmp, recursive = TRUE) })
   not_adopted_path <<- function(...) file.path(tmp, ...)
-  stamp <- function(id, dml_difference = NULL) {
+  stamp <- function(id, dml_difference = NULL, dml_qvalue = NULL) {
     a <- analysis_spec(id)
     row <- data.table(id = a$id, filter = a$filter, min_coverage = format(a$min_coverage), overdispersion = a$overdispersion,
                       test = a$test, ct_excluded = as.character(a$ct_excluded))
     if (!is.null(dml_difference)) row[, dml_difference := dml_difference]
+    if (!is.null(dml_qvalue)) row[, dml_qvalue := dml_qvalue]
     row[, `:=`(fit_id = a$fit_id, fit_fingerprint_md5 = "", ct_variant_list_md5 = "", git_commit = "", written_utc = "", steps_done = "04")]
     dir.create(file.path(tmp, id), showWarnings = FALSE)
     fwrite(row, file.path(tmp, id, "analysis.csv"))
@@ -124,10 +144,42 @@ local({
   ok("check_stamp() stops for the analysis mnchisq when its stamp says dml_difference 50", stops(check_stamp(analysis_spec("mnchisq"), needs = "04")))
   stamp("mnchisq-d50", "50")
   ok("check_stamp() passes for mnchisq-d50 with a stamp that says dml_difference 50", !stops(check_stamp(analysis_spec("mnchisq-d50"), needs = "04")))
+  ok("a stamp written before q05 (no column dml_qvalue) reads with dml_qvalue 0.01, after dml_difference, and passes check_stamp()",
+     with(list(s = read_stamp("mnchisq-d50")), identical(s$dml_qvalue, "0.01") &&
+            identical(match("dml_qvalue", names(s)), match("dml_difference", names(s)) + 1L) &&
+            identical(names(s)[seq_along(stamp_columns)], stamp_columns)) &&
+       !stops(check_stamp(analysis_spec("mnchisq-d50"), needs = "04")))
+  stamp("ctexcl")                                        # written before d50 and q05: neither column
+  ok("a stamp without dml_difference and dml_qvalue reads with 20 and 0.01 in the order of stamp_columns",
+     with(list(s = read_stamp("ctexcl")), identical(s$dml_difference, "20") && identical(s$dml_qvalue, "0.01") &&
+            identical(names(s)[seq_along(stamp_columns)], stamp_columns)))
+  stamp("q05", "20", "0.01")
+  ok("check_stamp() stops for the analysis q05 when its stamp says dml_qvalue 0.01", stops(check_stamp(analysis_spec("q05"), needs = "04")))
+  stamp("mnchisq", "20", "0.05")
+  ok("check_stamp() stops for the analysis mnchisq when its stamp says dml_qvalue 0.05", stops(check_stamp(analysis_spec("mnchisq"), needs = "04")))
+  stamp("mnchisq-d50-q05", "50", "0.05")
+  ok("check_stamp() passes for mnchisq-d50-q05 with a stamp that says dml_difference 50 and dml_qvalue 0.05",
+     !stops(check_stamp(analysis_spec("mnchisq-d50-q05"), needs = "04")))
+  # write_stamp() and write_analyses_included() write the column dml_qvalue after dml_difference
+  paper_config <- config
+  config <<- list(run_kind = "optional")
+  on.exit(config <<- paper_config, add = TRUE)
+  write_table <<- function(x, path) data.table::fwrite(x, path)
+  on.exit(rm(write_table, envir = globalenv()), add = TRUE)
+  write_stamp(analysis_spec("cov5-q05"), "04_cpg_coverage")
+  w <- fread(file.path(tmp, "cov5-q05", "analysis.csv"), colClasses = "character")
+  write_analyses_included()
+  inc <- fread(file.path(tmp, "comparisons", "analyses_included.csv"), colClasses = "character")
+  ok("write_stamp() writes dml_qvalue 0.05 for cov5-q05 after dml_difference; analyses_included.csv carries dml_qvalue (0.01 for the paper and old stamps)",
+     identical(w$dml_qvalue, "0.05") && identical(names(w)[seq_along(stamp_columns)], stamp_columns) &&
+       identical(names(inc)[seq_along(stamp_columns)], stamp_columns) &&
+       identical(inc[id == "legacy", dml_qvalue], "0.01") && identical(inc[id == "cov5-q05", dml_qvalue], "0.05") &&
+       identical(inc[id == "ctexcl", dml_qvalue], "0.01") && identical(inc[id == "mnchisq-d50-q05", dml_qvalue], "0.05"))
 })
 
 # ---- Invalid values stop -------------------------------------------------------------------
-for (v in c("cov5-corrected", "legacy-cov5", "Cov5", "5x", " ", "d50-ctexcl", "d50-mnchisq", "d20", "D50", "legacy-d50")) {
+for (v in c("cov5-corrected", "legacy-cov5", "Cov5", "5x", " ", "d50-ctexcl", "d50-mnchisq", "d20", "D50", "legacy-d50",
+            "q05-d50", "q05-mnchisq", "q01", "Q05", "q5", "legacy-q05", "q05-q05")) {
   ok(sprintf("WGBS_ANALYSIS='%s' stops", v), stops(settings(c(WGBS_ANALYSIS = v))))
 }
 edited <- function(from, to) {
@@ -139,6 +191,13 @@ ok("dml_difference_standard = 30 stops", stops(settings(file = edited("dml_diffe
 ok("dml_difference_standard = 50 gives the analysis d50 at 50 points, config$dml_difference still 20",
    with(settings(file = edited("dml_difference_standard    = 20L", "dml_difference_standard    = 50L")),
         analysis$id == "d50" && analysis$dml_difference == 50 && dml_difference == 20 && run_kind == "optional"))
+f_q1 <- edited("dml_qvalue_standard        = 0.01,", "dml_qvalue_standard        = 0.1,")
+ok("dml_qvalue_standard = 0.1 stops", stops(settings(file = f_q1)))
+ok("dml_qvalue_standard = 0.05 gives the analysis q05 at q 0.05, config$dml_qvalue still 0.01, fit legacy",
+   with(settings(file = edited("dml_qvalue_standard        = 0.01,", "dml_qvalue_standard        = 0.05,")),
+        analysis$id == "q05" && analysis$dml_qvalue == 0.05 && dml_qvalue == 0.01 && analysis$fit_id == "legacy" && run_kind == "optional"))
+f_q2 <- edited("dml_qvalue                = 0.01,", "dml_qvalue                = 0.05,")
+ok("dml_qvalue = 0.05 stops (frozen)", stops(settings(file = f_q2)))
 ok("min_coverage = 5 stops (frozen)", stops(settings(file = edited("min_coverage              = 10,", "min_coverage              = 5,"))))
 ok("dml_difference = 15 stops (frozen)", stops(settings(file = edited("dml_difference            = 20,", "dml_difference            = 15,"))))
 ok("WGBS_GENE_LEVEL_GO=yes stops", stops(settings(c(WGBS_GENE_LEVEL_GO = "yes"))))
@@ -178,7 +237,15 @@ plans <- list(
        steps = "04 05 06 07 08 09 13"),
   list(args = c("--coverage-filter", "--coverage", "5", "--overdispersion", "--exclude-ct-variants", "--difference", "50"),
        id = "corrected-cov5-mnchisq-ctexcl-d50", steps = "04 05 06 07 08 09 13"),
-  list(args = c("--difference", "50", "--gene-level-go"), id = "d50", steps = "04 05 06 07 08 09 10 11 13"))
+  list(args = c("--difference", "50", "--gene-level-go"), id = "d50", steps = "04 05 06 07 08 09 10 11 13"),
+  list(args = c("--qvalue", "0.01"), id = "legacy", steps = "01 02 03 04 05 06 07 08 09 11 12 13"),
+  list(args = c("--qvalue", "0.05"), id = "q05", steps = "04 05 06 07 08 09 13"),
+  list(args = c("--qvalue", "0.05", "--difference", "50"), id = "d50-q05", steps = "04 05 06 07 08 09 13"),
+  list(args = c("--overdispersion", "--qvalue", "0.05"), id = "mnchisq-q05", steps = "04 05 06 07 08 09 13"),
+  list(args = c("--qvalue", "0.05", "--coverage", "5", "--exclude-ct-variants"), id = "cov5-ctexcl-q05", steps = "04 05 06 07 08 09 13"),
+  list(args = c("--coverage-filter", "--coverage", "5", "--overdispersion", "--exclude-ct-variants", "--difference", "50", "--qvalue", "0.05"),
+       id = "corrected-cov5-mnchisq-ctexcl-d50-q05", steps = "04 05 06 07 08 09 13"),
+  list(args = c("--qvalue", "0.05", "--gene-level-go"), id = "q05", steps = "04 05 06 07 08 09 10 11 13"))
 for (p in plans) {
   out <- suppressWarnings(system2(rscript, c("run_pipeline.R", "--plan", p$args), stdout = TRUE, stderr = TRUE))
   got_id <- sub("^  Analysis: ([^ ]+).*", "\\1", grep("^  Analysis:", out, value = TRUE))
@@ -193,6 +260,22 @@ ok("--difference 30 stops before a step starts", !is.null(attr(out, "status")))
 out <- suppressWarnings(system2(rscript, c("run_pipeline.R", "--plan", "--overdispersion", "--difference", "50"), stdout = TRUE, stderr = TRUE))
 ok("--plan of mnchisq-d50 names 50 points and the fit of mnchisq",
    any(grepl("DML at a difference of more than 50 points", out, fixed = TRUE)) && any(grepl("Fit of step 05: methylkit_mnchisq.rds", out, fixed = TRUE)))
+out <- suppressWarnings(system2(rscript, c("run_pipeline.R", "--qvalue", "0.1", "--plan"), stdout = TRUE, stderr = TRUE))
+ok("--qvalue 0.1 stops before a step starts", !is.null(attr(out, "status")))
+out <- suppressWarnings(system2(rscript, c("run_pipeline.R", "--qvalue", ".05", "--plan"), stdout = TRUE, stderr = TRUE))
+ok("--qvalue .05 stops before a step starts", !is.null(attr(out, "status")))
+out <- suppressWarnings(system2(rscript, c("run_pipeline.R", "--plan", "--overdispersion", "--difference", "50", "--qvalue", "0.05"), stdout = TRUE, stderr = TRUE))
+ok("--plan of mnchisq-d50-q05 names 50 points, q 0.05 and the fit of mnchisq",
+   any(grepl("Analysis: mnchisq-d50-q05 (", out, fixed = TRUE)) &&
+     any(grepl("DML at a difference of more than 50 points and a q-value below 0.05", out, fixed = TRUE)) &&
+     any(grepl("Fit of step 05: methylkit_mnchisq.rds (the fit of the analysis mnchisq)", out, fixed = TRUE)))
+out <- suppressWarnings(system2(rscript, c("run_pipeline.R", "--plan", "--qvalue", "0.05"), stdout = TRUE, stderr = TRUE))
+ok("--plan of q05 names q 0.05 and the paper's fit",
+   any(grepl("DML at a difference of more than 20 points and a q-value below 0.05", out, fixed = TRUE)) &&
+     any(grepl("Fit of step 05: methylkit_legacy.rds (the paper's fit)", out, fixed = TRUE)))
+out <- suppressWarnings(system2(rscript, c("run_pipeline.R", "--plan", "--qvalue", "0.01", "--overdispersion"), stdout = TRUE, stderr = TRUE))
+ok("--plan --qvalue 0.01 --overdispersion is mnchisq at q 0.01",
+   any(grepl("Analysis: mnchisq (", out, fixed = TRUE)) && any(grepl("a q-value below 0.01", out, fixed = TRUE)))
 out <- suppressWarnings(system2(rscript, c("run_pipeline.R", "--overdispersion", "--overdispersion", "--plan"), stdout = TRUE, stderr = TRUE))
 ok("a switch given twice stops", !is.null(attr(out, "status")))
 

@@ -10,9 +10,9 @@
 #   Rscript run_pipeline.R --plan [switches]      print what a run would do, and exit
 #
 # Optional analyses (NOT ADOPTED in the paper; each off by default). Switches
-# (a) to (e) together define ONE analysis, written under
+# (a) to (f) together define ONE analysis, written under
 # 04_output/not_adopted/<id>/, where <id> joins the tokens of the switches that
-# are on in the order corrected, cov5, mnchisq, ctexcl, d50:
+# are on in the order corrected, cov5, mnchisq, ctexcl, d50, q05:
 #   --coverage-filter        (a) token corrected: the coverage filter of the Methods
 #                                (99.9th percentile of coverage per library; every line read)
 #   --coverage 5             (b) token cov5: 5 reads per CpG in each library (--coverage 10 is the paper's value,
@@ -24,19 +24,23 @@
 #                                Venkataraman et al. 2022 (--difference 20 is the paper's value, and does not turn
 #                                off dml_difference_standard = 50L set in run_config.R); the fit of the analysis
 #                                without d50 is reused
-#   --gene-level-go          (f) step 10 and the gene-level part of step 11, for the analysis of the run
-#   --diagnostics [all|name,...]  (g) scripts of 06_diagnostics/ (listed in 06_diagnostics/diagnostics.csv); they
+#   --qvalue 0.05            (f) token q05: DML at a q-value below 0.05 instead of 0.01 (--qvalue 0.01 is the
+#                                paper's value, and does not turn off dml_qvalue_standard = 0.05 set in
+#                                run_config.R); the fit of the analysis without q05 is reused
+#   --gene-level-go          (g) step 10 and the gene-level part of step 11, for the analysis of the run
+#   --diagnostics [all|name,...]  (h) scripts of 06_diagnostics/ (listed in 06_diagnostics/diagnostics.csv); they
 #                                run after step 11 and before step 13 whatever --steps selects
 # Examples: --coverage-filter -> not_adopted/corrected/; --coverage 5 --overdispersion ->
 # not_adopted/cov5-mnchisq/; --overdispersion --difference 50 -> not_adopted/mnchisq-d50/;
+# --qvalue 0.05 --difference 50 -> not_adopted/d50-q05/;
 # --gene-level-go alone -> step 10 on the paper's DML, in not_adopted/legacy/.
 #
 # Run kinds. A run with no optional setting on (in run_config.R or by a switch)
 # is the paper run: steps 01 to 09, 11 (paper part), 12 and 13 (paper part),
 # writing the paper's outputs (04_output/<step>/, 05_manuscript/). Any switch makes
 # an optional run, which never writes into a paper folder: steps 04 to 09 for an
-# optional analysis, 10 and 11 (gene-level part) with (f), the diagnostics with
-# (g), and step 13 (optional part, which reports values of analyses not run as
+# optional analysis, 10 and 11 (gene-level part) with (g), the diagnostics with
+# (h), and step 13 (optional part, which reports values of analyses not run as
 # "not run"). Steps 01 to 03 and 12 belong to the paper run only. The settings
 # of run_config.R (list `optional`) and the switches are combined: a switch can
 # only turn a setting on.
@@ -87,15 +91,15 @@ diag_table     <- file.path(root, "06_diagnostics", "diagnostics.csv")
 # ---- Command line ------------------------------------------------------------------
 usage <- paste0(
   "Usage: Rscript run_pipeline.R [--steps <selection>] [--coverage-filter] [--coverage 5|10] [--overdispersion]\n",
-  "                              [--exclude-ct-variants] [--difference 20|50] [--gene-level-go] [--diagnostics [all|name,...]]\n",
-  "                              [--plan] [--list] [--help]\n",
+  "                              [--exclude-ct-variants] [--difference 20|50] [--qvalue 0.01|0.05]\n",
+  "                              [--gene-level-go] [--diagnostics [all|name,...]] [--plan] [--list] [--help]\n",
   "  <selection> is one word without spaces: step numbers and ranges joined by commas, for example 5:7 or 3,12 or 2:3,6:10.\n",
   "  Without a switch the run is the paper's. Each switch turns on an optional analysis that the paper did not adopt;\n",
-  "  its outputs go to 04_output/not_adopted/ and 05_manuscript/not_adopted/. --coverage 10 and --difference 20 name the\n",
-  "  paper's values and do not turn off a setting made in run_config.R. See the header of run_pipeline.R.")
+  "  its outputs go to 04_output/not_adopted/ and 05_manuscript/not_adopted/. --coverage 10, --difference 20 and\n",
+  "  --qvalue 0.01 name the paper's values and do not turn off a setting made in run_config.R. See the header of run_pipeline.R.")
 fail <- function(...) stop(..., "\n", usage, call. = FALSE)
 opt <- list(steps = NULL, coverage_filter = FALSE, coverage = NULL, overdispersion = FALSE, exclude_ct = FALSE, difference = NULL,
-            gene_level = FALSE, diagnostics = NULL, plan = FALSE, list = FALSE, help = FALSE)
+            qvalue = NULL, gene_level = FALSE, diagnostics = NULL, plan = FALSE, list = FALSE, help = FALSE)
 seen <- character(0)
 i <- 1
 while (i <= length(args)) {
@@ -118,6 +122,10 @@ while (i <= length(args)) {
     v <- takes_value()
     if (!v %in% c("20", "50")) fail("--difference must be followed by 50 or 20 (the paper); it is followed by '", v, "'.")
     opt$difference <- as.integer(v); i <- i + 2
+  } else if (a == "--qvalue") {
+    v <- takes_value()
+    if (!v %in% c("0.01", "0.05")) fail("--qvalue must be followed by 0.05 or 0.01 (the paper); it is followed by '", v, "'.")
+    opt$qvalue <- v; i <- i + 2
   } else if (a == "--diagnostics") {
     if (i < length(args) && !startsWith(args[i + 1], "--")) { opt$diagnostics <- strsplit(args[i + 1], ",", fixed = TRUE)[[1]]; i <- i + 2 }
     else { opt$diagnostics <- "all"; i <- i + 1 }
@@ -167,7 +175,8 @@ tokens <- c(if (o$coverage_filter_of_methods || opt$coverage_filter) "corrected"
             if (o$coverage_standard == 5 || identical(opt$coverage, 5L)) "cov5",
             if (o$overdispersion_chisq || opt$overdispersion) "mnchisq",
             if (o$exclude_ct_variants || opt$exclude_ct) "ctexcl",
-            if (o$dml_difference_standard == 50 || identical(opt$difference, 50L)) "d50")
+            if (o$dml_difference_standard == 50 || identical(opt$difference, 50L)) "d50",
+            if (o$dml_qvalue_standard == 0.05 || identical(opt$qvalue, "0.05")) "q05")
 gene_level <- o$gene_level_go || opt$gene_level
 diagnostics <- unique(c(o$diagnostics, opt$diagnostics))
 if ("all" %in% diagnostics) diagnostics <- "all"
@@ -206,9 +215,10 @@ reason_not <- function(n) {
 plan_lines <- c(
   sprintf("Run kind: %s", if (kind == "paper") "paper (the results of the paper and nothing else)" else "OPTIONAL (not adopted in the paper)"),
   sprintf("Analysis: %s%s", a$id, if (a$paper) " (the paper's)" else
-    sprintf(" (filter %s, %gx in every library, overdispersion %s%s, C-to-T variants %s, DML at a difference of more than %g points)",
+    sprintf(" (filter %s, %gx in every library, overdispersion %s%s, C-to-T variants %s, DML at a difference of more than %g points and a q-value below %g)",
             a$filter, a$min_coverage, a$overdispersion,
-            if (a$overdispersion == "MN") " with the chi-squared test" else "", if (a$ct_excluded) "excluded" else "kept", a$dml_difference)),
+            if (a$overdispersion == "MN") " with the chi-squared test" else "", if (a$ct_excluded) "excluded" else "kept",
+            a$dml_difference, a$dml_qvalue)),
   sprintf("Outputs: %s", folder),
   sprintf("Steps to run: %s", paste(sprintf("%02d", intersect(selected, steps_of_kind)), collapse = " ")),
   if (length(diag_list)) sprintf("Diagnostics, after step 11 and before step 13, whatever --steps selects: %s", paste(diag_list, collapse = ", ")),

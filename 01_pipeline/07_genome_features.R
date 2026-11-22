@@ -43,10 +43,13 @@
 #
 # Manuscript items: Results 3.3; Figure 3.
 # Notes     - The step applies no threshold of its own. A DML is a row of
-#             dml_<set>_<mode>.csv as step 05 wrote it (q-value below
-#             config$dml_qvalue and an absolute difference above the threshold
+#             dml_<set>_<mode>.csv as step 05 wrote it (q-value below the
+#             cutoff of the analysis, config$analysis$dml_qvalue: 0.01, or 0.05
+#             with option q05, and an absolute difference above the threshold
 #             of the analysis, config$analysis$dml_difference: 20 points, or 50
 #             with option d50, by methylKit's rule on the unrounded difference).
+#             The eligible CpGs below depend on the threshold only, not on the
+#             q-value cutoff.
 #           - The background is the set of CpGs that were tested for differential
 #             methylation, in the same mode. The legacy background was assembled
 #             from two other CpG sets (issue I-14).

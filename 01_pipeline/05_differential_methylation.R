@@ -13,9 +13,11 @@
 #                as covariate, and on heat with ploidy as covariate; SLIM q-values
 #                (option mnchisq, not adopted: with methylKit's overdispersion
 #                correction, overdispersion = "MN", test = "Chisq")
-#             4. DML = q < config$dml_qvalue and |difference| > the threshold of the
-#                analysis (config$analysis$dml_difference: config$dml_difference,
-#                20 points, in the paper; 50 with option d50)
+#             4. DML = q < the cutoff of the analysis (config$analysis$dml_qvalue:
+#                config$dml_qvalue, 0.01, in the paper; 0.05 with option q05) and
+#                |difference| > the threshold of the analysis
+#                (config$analysis$dml_difference: config$dml_difference, 20
+#                points, in the paper; 50 with option d50)
 #             5. loci in both DML lists ("shared"; the legacy "interaction-DML")
 #             With option ctexcl (not adopted) the CpGs of the C-to-T variant list
 #             are removed after the test from the tested CpGs and the DML lists,
@@ -29,13 +31,19 @@
 #             is reused (its fit id); nothing is fitted for it when that fit is in
 #             the cache. The counts at 5 to 50 points of
 #             dml_counts_by_threshold_<id>.csv are those of that analysis.
+#             With option q05 (not adopted) the DML lists are taken at a q-value
+#             below 0.05, as getMethylDiff with qvalue = 0.05 takes them. The
+#             q-values are those of the fit (SLIM over all tested CpGs), and the
+#             cutoff is applied after the test, so the fit of the analysis without
+#             q05 is reused as with d50. The counts of
+#             dml_counts_by_threshold_<id>.csv are taken at q < 0.05.
 #
 # Run       Rscript 01_pipeline/05_differential_methylation.R     (after step 01)
 #           WGBS_CORES sets the number of forked workers of the model fits
 #           (default 1; leave it at 1 on Windows). Time and memory are in the
 #           Notes.
 #           The paper's analysis is fitted in one piece, as it always was (and so
-#           is ctexcl, which reuses the paper's fit). Every other optional
+#           are ctexcl, d50 and q05, which reuse the paper's fit). Every other optional
 #           analysis is fitted by sequence: the import and each part of
 #           the genome (a linkage group, or a group of small sequences) are saved
 #           in the cache as they are done, so a run that is stopped loses only
@@ -72,7 +80,7 @@
 #           step 04 used (md5 in the stamp of the analysis folder).
 #           04_output/05_differential_methylation/bed/dml_<set>_<mode>.bed
 #           04_output/05_differential_methylation/cache/methylkit_<fit id>.rds   (not tracked; the fit
-#             id is the analysis id without ctexcl and d50, "legacy" for the paper)
+#             id is the analysis id without ctexcl, d50 and q05, "legacy" for the paper)
 #           04_output/05_differential_methylation/cache/parts_<fit id>/   (not tracked; the saved
 #             import and parts of a fit by sequence while it is under way; deleted when the fit is
 #             written)
@@ -156,8 +164,8 @@
 #             the fitting code (fit_fingerprint() below). Otherwise, and when a
 #             cache file cannot be read, the analysis is fitted again; nothing has
 #             to be deleted by hand. The thresholds of step 4 are applied after
-#             the fit, so changing them does not refit (option d50 reuses the fit
-#             of its analysis without d50). With the fit in the
+#             the fit, so changing them does not refit (options d50 and q05 reuse
+#             the fit of their analysis without them). With the fit in the
 #             cache the step takes about half a minute. Not part of the
 #             fingerprint: the version of R and of every package other than
 #             methylKit (stats::glm.fit runs inside the tests, data.table reads
@@ -669,7 +677,7 @@ fit_fingerprint <- function(a, by_sequence = FALSE) {
 # the file is not a fit of this step) is fitted again, as is a fit made from
 # anything other than what fit_fingerprint() returns now. A new fit is written
 # under a temporary name and renamed, so a file with the final name is complete.
-# The fit id "legacy" (the paper's analysis, and ctexcl, which reuses it) is
+# The fit id "legacy" (the paper's analysis, and ctexcl, d50 and q05, which reuse it) is
 # fitted in one piece (fit_mode()), so methylkit_legacy.rds is always the
 # paper's fit; every other fit id by sequence (fit_by_sequence(), under the lock
 # of parts_<fit id>/; its saved parts are deleted once the assembled fit is
@@ -725,6 +733,7 @@ cached_fit <- function(a, fit_whole = fit_mode, fit_parts = fit_by_sequence) {
 write_mode <- function(fit, a) {
   mode <- a$id                                  # names and the column mode carry the analysis id
   min_diff <- a$dml_difference                  # 20 points (config$dml_difference), or 50 with option d50
+  max_q <- a$dml_qvalue                         # 0.01 (config$dml_qvalue), or 0.05 with option q05
   tab <- function(name) analysis_path(a, step, "tables", name)
 
   write_table(fit$filtering, tab(sprintf("library_filtering_%s.csv", mode)))
@@ -734,8 +743,8 @@ write_mode <- function(fit, a) {
   for (contrast in names(tests)) {
     stopifnot(identical(tests[[contrast]]$chr, united$chr), identical(tests[[contrast]]$start, united$start))
     # the DML of the fit on all CpGs, as methylKit's getMethylDiff gives them
-    stopifnot(tests[[contrast]][qvalue < config$dml_qvalue & abs(meth.diff) > min_diff, .N] ==
-                nrow(dml_table(fit$diffmeth[[contrast]], min_diff, config$dml_qvalue)))
+    stopifnot(tests[[contrast]][qvalue < max_q & abs(meth.diff) > min_diff, .N] ==
+                nrow(dml_table(fit$diffmeth[[contrast]], min_diff, max_q)))
   }
   # Option ctexcl: the listed CpGs leave the tested CpGs after the test; p-values,
   # q-values and differences of the other CpGs are those of the fit on all CpGs.
@@ -749,7 +758,7 @@ write_mode <- function(fit, a) {
     summary <- list()
     for (contrast in names(tests)) {
       x <- tests[[contrast]]
-      is_dml <- x$qvalue < config$dml_qvalue & abs(x$meth.diff) > min_diff
+      is_dml <- x$qvalue < max_q & abs(x$meth.diff) > min_diff
       removed[, (paste0(c("pvalue_", "qvalue_", "meth.diff_", "dml_"), contrast)) :=
                 list(x$pvalue[listed], x$qvalue[listed], x$meth.diff[listed], is_dml[listed])]
       summary[[contrast]] <- data.table(mode = mode, contrast = contrast, cpg_tested_before = nrow(x), cpg_removed = sum(listed),
@@ -774,7 +783,7 @@ write_mode <- function(fit, a) {
     all_cpg <- copy(tests[[contrast]])
     all_cpg[, united_row := .I]                 # row in united_cpg_<mode>; the legacy row name (renumbered after an exclusion)
     write_table(all_cpg, tab(sprintf("diffmeth_%s_%s.csv.gz", contrast, mode)))
-    d <- all_cpg[qvalue < config$dml_qvalue & abs(meth.diff) > min_diff]
+    d <- all_cpg[qvalue < max_q & abs(meth.diff) > min_diff]
     stopifnot(all(d$united_row <= nrow(united)))
     d[, direction := fifelse(meth.diff > 0, "hyper", "hypo")]
     write_table(d, tab(sprintf("dml_%s_%s.csv", contrast, mode)))
@@ -808,10 +817,10 @@ write_mode <- function(fit, a) {
   write_bed(dml$ploidy, "meth.diff", "ploidy"); write_bed(dml$heat, "meth.diff", "heat")
   write_bed(shared, "meth.diff_heat", "shared")
 
-  # DML counts across difference thresholds (Figure 2A, 2B).
+  # DML counts across difference thresholds (Figure 2A, 2B), at the q-value cutoff of the analysis.
   sweep <- rbindlist(lapply(config$dml_difference_sweep, function(th) {
-    p <- tests$ploidy[qvalue < config$dml_qvalue & abs(meth.diff) > th]
-    h <- tests$heat[qvalue < config$dml_qvalue & abs(meth.diff) > th]
+    p <- tests$ploidy[qvalue < max_q & abs(meth.diff) > th]
+    h <- tests$heat[qvalue < max_q & abs(meth.diff) > th]
     s <- merge(p, h, by = c("chr", "start"), suffixes = c("_ploidy", "_heat"))
     data.table(mode = mode, difference = th, set = c("ploidy", "heat", "shared"),
                n = c(nrow(p), nrow(h), nrow(s)),
