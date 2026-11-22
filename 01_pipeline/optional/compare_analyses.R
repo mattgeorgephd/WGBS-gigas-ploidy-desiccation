@@ -10,6 +10,8 @@
 # Run:     Rscript 01_pipeline/optional/compare_analyses.R   (from the repository root)
 # Needs:   04_output/not_adopted/comparisons/analyses_included.csv (written by every run)
 #          04_output/not_adopted/comparisons/05_differential_methylation/tables/dml_counts_by_mode.csv
+#          dml_counts_by_threshold_<id>.csv of each analysis (step 05; the counts at 10, 15
+#          and 25 points, 25 being the methylKit default of getMethylDiff)
 # Writes:  04_output/not_adopted/comparisons/analysis_comparison.csv
 #          04_output/not_adopted/comparisons/analysis_comparison.md
 #
@@ -67,6 +69,32 @@ x[, `:=`(
 x[, venkataraman_2022_settings := upper_filter == "yes" & min_coverage == "5" & overdispersion == "MN" &
                                    ct_variants == "excluded" & difference == 50L & qvalue == 0.01 & contrast_variant == "none"]
 
+# Counts at 10, 15 and 25 points from the threshold sweep of each analysis (step 05). The sweep
+# applies the q-value cutoff of the analysis and the same strict rule, so its 20-point row must
+# equal the DML counts of an analysis at 20 points; checked below. A d50 analysis has the sweep
+# of its fit and q-value, the same as its 20-point twin.
+other_thresholds <- c(10L, 15L, 25L)
+sweep_file <- function(id) {
+  if (id == "legacy") return(here("04_output", "05_differential_methylation", "tables", "dml_counts_by_threshold_legacy.csv"))
+  here("04_output", "not_adopted", id, "05_differential_methylation", "tables", sprintf("dml_counts_by_threshold_%s.csv", id))
+}
+sw <- rbindlist(lapply(x$id, function(i) {
+  f <- sweep_file(i)
+  if (!file.exists(f)) stop("threshold sweep missing for ", i, ": ", f)
+  s <- fread(f)
+  s[, id := i]
+  s[set %in% c("ploidy", "heat", "shared") & difference %in% c(other_thresholds, 20L, 50L), .(id, difference, set, n)]
+}))
+chk <- merge(x[, .(id, difference, ploidy_dml, heat_dml, shared)],
+             dcast(sw, id + difference ~ set, value.var = "n"), by = c("id", "difference"),
+             suffixes = c("", "_sweep"))
+bad <- chk[ploidy_dml != ploidy | heat_dml != heat | shared != shared_sweep]
+if (nrow(bad)) stop("threshold sweep disagrees with the DML counts for: ", paste(bad$id, collapse = ", "))
+if (nrow(chk) != nrow(x)) stop("threshold sweep lacks the threshold of some analysis")
+wide <- dcast(sw[difference %in% other_thresholds], id ~ set + difference, value.var = "n")
+setnames(wide, setdiff(names(wide), "id"), paste0(setdiff(names(wide), "id"), "pt"))
+x <- merge(x, wide, by = "id", all.x = TRUE)
+
 paper <- x[id == "legacy"]
 if (nrow(paper) != 1) stop("the paper's row (legacy) is missing")
 x[, `:=`(
@@ -92,6 +120,8 @@ out <- x[, .(analysis = id, adopted = ifelse(id == "legacy", "yes (the paper)", 
              shared, shared_both_hyper, shared_both_hypo, shared_opposite, shared_opposite_pct,
              interaction_dml, interaction_hyper, interaction_hypo, interaction_in_shared,
              ploidy_per_1000_cpg, heat_per_1000_cpg, ploidy_dml_vs_paper, heat_dml_vs_paper,
+             ploidy_10pt, heat_10pt, shared_10pt, ploidy_15pt, heat_15pt, shared_15pt,
+             ploidy_25pt, heat_25pt, shared_25pt,
              venkataraman_2022_settings)]
 fwrite(out, file.path(cmp_dir, "analysis_comparison.csv"))
 
@@ -111,6 +141,18 @@ md <- c(
                 fmt(shared), fmt(shared_both_hyper), fmt(shared_both_hypo), fmt(shared_opposite), fmt(shared_opposite_pct),
                 ifelse(is.na(interaction_dml), "",
                        sprintf("%s (%s/%s; %s)", fmt(interaction_dml), fmt(interaction_hyper), fmt(interaction_hypo), fmt(interaction_in_shared))))],
+  "",
+  "## Counts at other thresholds",
+  "",
+  "Ploidy, heat and shared DML at differences of more than 10, 15, 20 and 25 points (25 is the default of methylKit `getMethylDiff`), from `dml_counts_by_threshold_<id>.csv` of each analysis, at the q-value cutoff of its row. Only the 20-point rows are listed: the sweep does not depend on the threshold an analysis reports, so each `d50` analysis has the sweep of its 20-point twin. The 20-point counts equal the table above (checked by the script).",
+  "",
+  "| Analysis | Q | Ploidy at 10 / 15 / 20 / 25 | Heat at 10 / 15 / 20 / 25 | Shared at 10 / 15 / 20 / 25 |",
+  "|---|---|---|---|---|",
+  out[difference_threshold == 20L, sprintf("| %s | %g | %s / %s / %s / %s | %s / %s / %s / %s | %s / %s / %s / %s |",
+                analysis, qvalue_threshold,
+                fmt(ploidy_10pt), fmt(ploidy_15pt), fmt(ploidy_dml), fmt(ploidy_25pt),
+                fmt(heat_10pt), fmt(heat_15pt), fmt(heat_dml), fmt(heat_25pt),
+                fmt(shared_10pt), fmt(shared_15pt), fmt(shared), fmt(shared_25pt))],
   "",
   if (length(missing_counts)) paste0("Stamped but without DML counts (step 05 not run): ", paste(missing_counts, collapse = ", "), ".") else NULL
 )
