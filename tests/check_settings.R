@@ -64,6 +64,22 @@ now_f <- fit_functions(NULL); old_f <- fit_functions("76a900b")
 changed_f <- fit_code[!vapply(fit_code, function(n) exists(n, now_f) && exists(n, old_f) && identical(get(n, now_f), get(n, old_f)), logical(1))]
 ok("the fitting code of every existing fit (fit_mode, fit_by_sequence, their helpers, fit_fingerprint) is that of 76a900b",
    length(changed_f) == 0, paste(changed_f, collapse = ", "))
+# The settings table is the same, byte for byte, in the 10 READMEs that carry it, and has a row for ctrl and inter.
+table_files <- c("README.md", "07_documentation/toggles_migration/settings_table.md", "01_pipeline/README.md", "01_pipeline/optional/README.md",
+                 "02_R_functions/README.md", "03_input_files/README.md", "04_output/README.md", "04_output/not_adopted/README.md",
+                 "05_manuscript/README.md", "06_diagnostics/README.md")
+settings_rows <- lapply(table_files, function(f) {
+  l <- readLines(f, warn = FALSE)
+  from <- grep("^\\| Analysis \\| Adopted in the paper\\? \\|", l)
+  if (length(from) != 1) return(NULL)
+  end <- which(!startsWith(l[-(1:from)], "|"))[1]
+  l[from:(if (is.na(end)) length(l) else from + end - 1L)]
+})
+ok("the settings table is identical in the 10 READMEs and has the rows of ctrl and inter",
+   all(lengths(settings_rows) > 0) && length(unique(settings_rows)) == 1 &&
+     sum(grepl("`--controls-only-ploidy` \\| `contrast_variant = \"ctrl\"` \\| `ctrl`", settings_rows[[1]])) == 1 &&
+     sum(grepl("`--interaction` \\| `contrast_variant = \"inter\"` \\| `inter`", settings_rows[[1]])) == 1,
+   paste(table_files[lengths(settings_rows) == 0], collapse = ", "))
 
 # ---- 192 ids x gene-level GO x diagnostics ----------------------------------------------------
 source(here("02_R_functions", "analyses.R"))
