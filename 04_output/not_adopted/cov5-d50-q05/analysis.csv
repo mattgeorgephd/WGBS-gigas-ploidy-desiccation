@@ -1,0 +1,2 @@
+id,filter,min_coverage,overdispersion,test,contrast_variant,ct_excluded,dml_difference,dml_qvalue,fit_id,fit_fingerprint_md5,ct_variant_list_md5,git_commit,written_utc,steps_done
+cov5-d50-q05,legacy,5,none,not passed,none,FALSE,50,0.05,cov5,10d66f1498ef61f043bbe3e5255a3a72,"",083cc59,2026-11-22 10:27:58,04;05;06;07;08;09
