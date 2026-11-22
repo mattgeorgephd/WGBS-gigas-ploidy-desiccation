@@ -1,0 +1,4 @@
+mode,set,n_dml,n_dml_in_gene,n_dml_in_protein_coding_gene,n_dml_in_lncRNA_gene,n_dml_in_two_or_more_genes,n_dml_gene_pairs,n_genes_with_dml,n_protein_coding_genes_with_dml,n_genes_with_dml_and_go,n_genes_with_dml_and_go_in_legacy_universe,legacy_dml_transcript_rows,legacy_transcripts,legacy_annotation_rows,legacy_transcripts_with_go,legacy_genes_with_go,legacy_go_ids_BP,legacy_go_ids_CC,legacy_go_ids_MF
+mnchisq-q05,ploidy,37,35,34,2,1,36,34,32,29,23,137,133,2116,128,29,212,70,70
+mnchisq-q05,heat,410,374,365,12,16,391,298,290,255,189,1316,1069,18713,951,253,930,245,331
+mnchisq-q05,shared,6,6,6,0,0,6,6,6,5,4,24,24,362,21,5,55,24,19

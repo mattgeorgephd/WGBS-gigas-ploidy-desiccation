@@ -22749,6 +22749,656 @@ mnchisq-d50,heat,10,20,in any library,4300631,downstream_flank,160628,3.73498679
 mnchisq-d50,heat,10,20,in any library,4300631,flanks,336224,7.81801554237041,,,upstream and downstream flanks together
 mnchisq-d50,heat,10,20,in any library,4300631,intergenic,1224064,28.4624279553396,21.2777526305506,17.8488115558596,intergenic regions
 mnchisq-d50,heat,10,20,in any library,4300631,TE,1294211,30.0935141843139,22.4971092277345,18.8716670472464,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+mnchisq-q05,all,22,1,in all libraries,5852939,gene,3738458,63.8731755106281,,,genes
+mnchisq-q05,all,22,1,in all libraries,5852939,mRNA,3594866,61.4198439450676,,,mRNA transcripts
+mnchisq-q05,all,22,1,in all libraries,5852939,exon,1505029,25.7140728786,,,exons
+mnchisq-q05,all,22,1,in all libraries,5852939,CDS,1091251,18.6444963803655,13.9318088214154,11.6863434345728,coding sequence
+mnchisq-q05,all,22,1,in all libraries,5852939,exon_UTR,413805,7.07003780493868,5.28297536437152,20.549033281926,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+mnchisq-q05,all,22,1,in all libraries,5852939,intron,2241098,38.2901308214557,28.6117024278157,24.0001987613612,introns
+mnchisq-q05,all,22,1,in all libraries,5852939,nonCDS,4355285,74.4119321933818,,,complement of the exon track (not of coding sequence)
+mnchisq-q05,all,22,1,in all libraries,5852939,lncRNA,170204,2.90800912157123,2.1729644129904,1.82273592229288,long non-coding RNA
+mnchisq-q05,all,22,1,in all libraries,5852939,upstream_flank,274971,4.69799873191913,3.51050620199515,2.9446988278113,upstream flanks (up to 1 kb)
+mnchisq-q05,all,22,1,in all libraries,5852939,downstream_flank,247804,4.23383876032195,3.16366991020582,2.6537640272136,downstream flanks (up to 1 kb)
+mnchisq-q05,all,22,1,in all libraries,5852939,flanks,498393,8.51526045291092,,,upstream and downstream flanks together
+mnchisq-q05,all,22,1,in all libraries,5852939,intergenic,1616877,27.6250444434839,20.6423831471803,17.3153380051534,intergenic regions
+mnchisq-q05,all,22,1,in all libraries,5852939,TE,1776792,30.3572615398862,22.6839897140257,19.0278877396689,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+mnchisq-q05,all,22,1,in any library,12918250,gene,7279182,56.348050239003,,,genes
+mnchisq-q05,all,22,1,in any library,12918250,mRNA,6904928,53.4509550442204,,,mRNA transcripts
+mnchisq-q05,all,22,1,in any library,12918250,exon,2177529,16.856222785594,,,exons
+mnchisq-q05,all,22,1,in any library,12918250,CDS,1489305,11.5286900315445,7.95533638198734,7.12642078739292,coding sequence
+mnchisq-q05,all,22,1,in any library,12918250,exon_UTR,688265,5.32785013449964,3.67646626778834,13.7130097152604,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+mnchisq-q05,all,22,1,in any library,12918250,intron,5114911,39.5944574536025,27.3220311278934,24.4751800847138,introns
+mnchisq-q05,all,22,1,in any library,12918250,nonCDS,10752109,83.2319315696786,,,complement of the exon track (not of coding sequence)
+mnchisq-q05,all,22,1,in any library,12918250,lncRNA,442655,3.42658641843903,2.36450520623284,2.11813281607422,long non-coding RNA
+mnchisq-q05,all,22,1,in any library,12918250,upstream_flank,580904,4.49677007334585,3.1029820793202,2.7796632261892,upstream flanks (up to 1 kb)
+mnchisq-q05,all,22,1,in any library,12918250,downstream_flank,539124,4.17335165366826,2.87980821363155,2.5797432229009,downstream flanks (up to 1 kb)
+mnchisq-q05,all,22,1,in any library,12918250,flanks,1070732,8.28852205213554,,,upstream and downstream flanks together
+mnchisq-q05,all,22,1,in any library,12918250,intergenic,4570246,35.378212993246,24.412624867594,21.868922818294,intergenic regions
+mnchisq-q05,all,22,1,in any library,12918250,TE,5295420,40.9917752017495,28.2862458555523,25.3389273291745,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+mnchisq-q05,all,22,3,in all libraries,3714898,gene,2529257,68.0841573577525,,,genes
+mnchisq-q05,all,22,3,in all libraries,3714898,mRNA,2444055,65.7906354360201,,,mRNA transcripts
+mnchisq-q05,all,22,3,in all libraries,3714898,exon,1161875,31.2760942561545,,,exons
+mnchisq-q05,all,22,3,in all libraries,3714898,CDS,864710,23.2768167524384,18.2992535633083,14.6878199175542,coding sequence
+mnchisq-q05,all,22,3,in all libraries,3714898,exon_UTR,297188,7.99989663242436,6.28918200087019,24.7834009001473,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+mnchisq-q05,all,22,3,in all libraries,3714898,intron,1372736,36.9521854974215,29.050252847176,23.3170648683878,introns
+mnchisq-q05,all,22,3,in all libraries,3714898,nonCDS,2558155,68.8620522017024,,,complement of the exon track (not of coding sequence)
+mnchisq-q05,all,22,3,in all libraries,3714898,lncRNA,104146,2.80346862820998,2.20396903193476,1.76900659542921,long non-coding RNA
+mnchisq-q05,all,22,3,in all libraries,3714898,upstream_flank,166409,4.47950387870676,3.52159739822203,2.82659553452634,upstream flanks (up to 1 kb)
+mnchisq-q05,all,22,3,in all libraries,3714898,downstream_flank,137813,3.70973846388245,2.91644023004268,2.34086864532374,downstream flanks (up to 1 kb)
+mnchisq-q05,all,22,3,in all libraries,3714898,flanks,290074,7.8083974311004,,,upstream and downstream flanks together
+mnchisq-q05,all,22,3,in all libraries,3714898,intergenic,895965,24.1181588296637,18.9606812906634,15.2187121375159,intergenic regions
+mnchisq-q05,all,22,3,in all libraries,3714898,TE,886417,23.8611396598238,18.7586236377827,15.0565314011155,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+mnchisq-q05,all,22,3,in any library,12042382,gene,6871189,57.0583876179978,,,genes
+mnchisq-q05,all,22,3,in any library,12042382,mRNA,6527620,54.2053889338505,,,mRNA transcripts
+mnchisq-q05,all,22,3,in any library,12042382,exon,2094208,17.3903136439286,,,exons
+mnchisq-q05,all,22,3,in any library,12042382,CDS,1436348,11.9274409331974,8.28451355300086,7.39168035331494,coding sequence
+mnchisq-q05,all,22,3,in any library,12042382,exon_UTR,657899,5.46319656692505,3.79460491608281,14.1627901052673,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+mnchisq-q05,all,22,3,in any library,12042382,intron,4789581,39.7727044367136,27.6251637539757,24.6479625956318,introns
+mnchisq-q05,all,22,3,in any library,12042382,nonCDS,9959222,82.7014290029996,,,complement of the exon track (not of coding sequence)
+mnchisq-q05,all,22,3,in any library,12042382,lncRNA,403627,3.35172061474217,2.32802451206607,2.07713017038172,long non-coding RNA
+mnchisq-q05,all,22,3,in any library,12042382,upstream_flank,548531,4.55500415117209,3.16379631102011,2.82282971528084,upstream flanks (up to 1 kb)
+mnchisq-q05,all,22,3,in any library,12042382,downstream_flank,509647,4.23211122184963,2.93952264962685,2.62272632887427,downstream flanks (up to 1 kb)
+mnchisq-q05,all,22,3,in any library,12042382,flanks,1012162,8.40499828024057,,,upstream and downstream flanks together
+mnchisq-q05,all,22,3,in any library,12042382,intergenic,4160823,34.551494878671,23.9986371931716,21.4122716937128,intergenic regions
+mnchisq-q05,all,22,3,in any library,12042382,TE,4831291,40.1190644840863,27.865737111056,24.8626090375364,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+mnchisq-q05,all,22,5,in all libraries,2297236,gene,1621141,70.5691970698701,,,genes
+mnchisq-q05,all,22,5,in all libraries,2297236,mRNA,1570177,68.3507049341034,,,mRNA transcripts
+mnchisq-q05,all,22,5,in all libraries,2297236,exon,799217,34.7903741713955,,,exons
+mnchisq-q05,all,22,5,in all libraries,2297236,CDS,601432,26.1806797386076,21.0880341766462,16.4720697694992,coding sequence
+mnchisq-q05,all,22,5,in all libraries,2297236,exon_UTR,197801,8.61039092196013,6.93550434325875,27.3064121254714,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+mnchisq-q05,all,22,5,in all libraries,2297236,intron,825286,35.9251726857841,28.9370358968389,22.6030017887157,introns
+mnchisq-q05,all,22,5,in all libraries,2297236,nonCDS,1501128,65.3449623808786,,,complement of the exon track (not of coding sequence)
+mnchisq-q05,all,22,5,in all libraries,2297236,lncRNA,64078,2.78935207353533,2.2467694668244,1.75497360747344,long non-coding RNA
+mnchisq-q05,all,22,5,in all libraries,2297236,upstream_flank,96158,4.18581286380677,3.37159178487002,2.63358332262916,upstream flanks (up to 1 kb)
+mnchisq-q05,all,22,5,in all libraries,2297236,downstream_flank,74454,3.2410253017104,2.61058356819726,2.03915236072954,downstream flanks (up to 1 kb)
+mnchisq-q05,all,22,5,in all libraries,2297236,flanks,162732,7.08381724820611,,,upstream and downstream flanks together
+mnchisq-q05,all,22,5,in all libraries,2297236,intergenic,513452,22.3508599029442,18.0031879315822,14.0624661928346,intergenic regions
+mnchisq-q05,all,22,5,in all libraries,2297236,TE,479345,20.866162640669,16.8072928317823,13.128340832647,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+mnchisq-q05,all,22,5,in any library,11183702,gene,6457434,57.7396822626354,,,genes
+mnchisq-q05,all,22,5,in any library,11183702,mRNA,6143131,54.9293158920007,,,mRNA transcripts
+mnchisq-q05,all,22,5,in any library,11183702,exon,2027312,18.1273785728554,,,exons
+mnchisq-q05,all,22,5,in any library,11183702,CDS,1396531,12.4871978884988,8.74815354789105,7.76237164787907,coding sequence
+mnchisq-q05,all,22,5,in any library,11183702,exon_UTR,630819,5.64052046451166,3.95157821267633,14.774753092304,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+mnchisq-q05,all,22,5,in any library,11183702,intron,4442154,39.71988881678,27.8265539937019,24.6909307885844,introns
+mnchisq-q05,all,22,5,in any library,11183702,nonCDS,9167071,81.968126475473,,,complement of the exon track (not of coding sequence)
+mnchisq-q05,all,22,5,in any library,11183702,lncRNA,368117,3.2915487197352,2.30595958098246,2.0461135226517,long non-coding RNA
+mnchisq-q05,all,22,5,in any library,11183702,upstream_flank,514509,4.60052494245644,3.22298877273177,2.8598076764344,upstream flanks (up to 1 kb)
+mnchisq-q05,all,22,5,in any library,11183702,downstream_flank,477516,4.26974896147984,2.99125711464675,2.65418860004441,downstream flanks (up to 1 kb)
+mnchisq-q05,all,22,5,in any library,11183702,flanks,949001,8.48557123571426,,,upstream and downstream flanks together
+mnchisq-q05,all,22,5,in any library,11183702,intergenic,3778946,33.7897594195554,23.6720845131177,21.0046059051077,intergenic regions
+mnchisq-q05,all,22,5,in any library,11183702,TE,4355131,38.9417654368831,27.2814242642521,24.2072287669942,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+mnchisq-q05,all,22,10,in all libraries,480579,gene,340706,70.8948996939109,,,genes
+mnchisq-q05,all,22,10,in all libraries,480579,mRNA,328804,68.4183037544296,,,mRNA transcripts
+mnchisq-q05,all,22,10,in all libraries,480579,exon,174705,36.3530241646015,,,exons
+mnchisq-q05,all,22,10,in all libraries,480579,CDS,130459,27.1462132136444,21.4850241020802,16.684571449034,coding sequence
+mnchisq-q05,all,22,10,in all libraries,480579,exon_UTR,44251,9.20785136262716,7.28760607962003,28.0025680573567,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+mnchisq-q05,all,22,10,in all libraries,480579,intron,166610,34.6685976707264,27.4386578591556,21.3079699301969,introns
+mnchisq-q05,all,22,10,in all libraries,480579,nonCDS,306138,63.7019095715793,,,complement of the exon track (not of coding sequence)
+mnchisq-q05,all,22,10,in all libraries,480579,lncRNA,14835,3.08690142515591,2.44314560554933,1.89726747442813,long non-coding RNA
+mnchisq-q05,all,22,10,in all libraries,480579,upstream_flank,17130,3.56445038172704,2.8211044302703,2.19077801395038,upstream flanks (up to 1 kb)
+mnchisq-q05,all,22,10,in all libraries,480579,downstream_flank,12652,2.63265768999478,2.0836318302265,1.61808076079978,downstream flanks (up to 1 kb)
+mnchisq-q05,all,22,10,in all libraries,480579,flanks,28286,5.88581690003101,,,upstream and downstream flanks together
+mnchisq-q05,all,22,10,in all libraries,480579,intergenic,111306,23.1608122701991,18.3307559670558,14.2350693298752,intergenic regions
+mnchisq-q05,all,22,10,in all libraries,480579,TE,109966,22.8819819426151,18.1100741260423,14.0636949843589,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+mnchisq-q05,all,22,10,in any library,8879998,gene,5304034,59.7301260653437,,,genes
+mnchisq-q05,all,22,10,in any library,8879998,mRNA,5062137,57.0060601365,,,mRNA transcripts
+mnchisq-q05,all,22,10,in any library,8879998,exon,1833839,20.6513447412939,,,exons
+mnchisq-q05,all,22,10,in any library,8879998,CDS,1283014,14.4483591099908,10.382331035273,9.04071709931863,coding sequence
+mnchisq-q05,all,22,10,in any library,8879998,exon_UTR,550861,6.20339103679978,4.45764524504138,16.8037122484596,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+mnchisq-q05,all,22,10,in any library,8879998,intron,3480668,39.1967205398019,28.1660585152474,24.5264156935553,introns
+mnchisq-q05,all,22,10,in any library,8879998,nonCDS,7055628,79.4552881656054,,,complement of the exon track (not of coding sequence)
+mnchisq-q05,all,22,10,in any library,8879998,lncRNA,283157,3.18870567313191,2.29134655502964,1.99525674052798,long non-coding RNA
+mnchisq-q05,all,22,10,in any library,8879998,upstream_flank,414467,4.66742222239239,3.35392567594468,2.92052845409582,upstream flanks (up to 1 kb)
+mnchisq-q05,all,22,10,in any library,8879998,downstream_flank,378455,4.26188159051387,3.0625114706108,2.66677104834603,downstream flanks (up to 1 kb)
+mnchisq-q05,all,22,10,in any library,8879998,flanks,757915,8.53508075114431,,,upstream and downstream flanks together
+mnchisq-q05,all,22,10,in any library,8879998,intergenic,2819375,31.7497256193076,22.8147818827954,19.8666357279745,intergenic regions
+mnchisq-q05,all,22,10,in any library,8879998,TE,3147671,35.4467534789985,25.4713996200578,22.1799629877222,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+mnchisq-q05,all,22,20,in all libraries,29884,gene,16447,55.0361397403293,,,genes
+mnchisq-q05,all,22,20,in all libraries,29884,mRNA,14614,48.902422701111,,,mRNA transcripts
+mnchisq-q05,all,22,20,in all libraries,29884,exon,6198,20.7401954222996,,,exons
+mnchisq-q05,all,22,20,in all libraries,29884,CDS,3927,13.1408111363941,8.3595878746594,7.38518824989657,coding sequence
+mnchisq-q05,all,22,20,in all libraries,29884,exon_UTR,2271,7.5993842859055,4.83438351498638,15.9269567833904,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+mnchisq-q05,all,22,20,in all libraries,29884,intron,10260,34.3327533128095,21.8409400544959,19.2951442434272,introns
+mnchisq-q05,all,22,20,in all libraries,29884,nonCDS,23345,78.1187257395262,,,complement of the exon track (not of coding sequence)
+mnchisq-q05,all,22,20,in all libraries,29884,lncRNA,1666,5.57488957301566,3.54649182561308,3.13311016662279,long non-coding RNA
+mnchisq-q05,all,22,20,in all libraries,29884,upstream_flank,1055,3.53031722660956,2.24582765667575,1.98405235641479,upstream flanks (up to 1 kb)
+mnchisq-q05,all,22,20,in all libraries,29884,downstream_flank,1240,4.149377593361,2.63964577656676,2.33196675066762,downstream flanks (up to 1 kb)
+mnchisq-q05,all,22,20,in all libraries,29884,flanks,2052,6.86655066256191,,,upstream and downstream flanks together
+mnchisq-q05,all,22,20,in all libraries,29884,intergenic,11035,36.9261143086602,23.4907186648501,20.7526234625945,intergenic regions
+mnchisq-q05,all,22,20,in all libraries,29884,TE,15522,51.9408379065721,33.0424046321526,29.1909579869861,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+mnchisq-q05,all,22,20,in any library,4462005,gene,2833852,63.5107311623362,,,genes
+mnchisq-q05,all,22,20,in any library,4462005,mRNA,2716346,60.87725137018,,,mRNA transcripts
+mnchisq-q05,all,22,20,in any library,4462005,exon,1137229,25.4869503732067,,,exons
+mnchisq-q05,all,22,20,in any library,4462005,CDS,814171,18.2467523008154,13.6086574335551,11.4350309242789,coding sequence
+mnchisq-q05,all,22,20,in any library,4462005,exon_UTR,323081,7.24071353573114,5.40021525243521,20.5100525676225,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+mnchisq-q05,all,22,20,in any library,4462005,intron,1702432,38.1539688996314,28.4557100313351,23.9106558284218,introns
+mnchisq-q05,all,22,20,in any library,4462005,nonCDS,3329908,74.6280651859422,,,complement of the exon track (not of coding sequence)
+mnchisq-q05,all,22,20,in any library,4462005,lncRNA,141471,3.17057018089402,2.36465113076059,1.98696006107889,long non-coding RNA
+mnchisq-q05,all,22,20,in any library,4462005,upstream_flank,197953,4.43641367501829,3.30873313461735,2.78024969761117,upstream flanks (up to 1 kb)
+mnchisq-q05,all,22,20,in any library,4462005,downstream_flank,166716,3.73634722507034,2.78661476851003,2.34152606218114,downstream flanks (up to 1 kb)
+mnchisq-q05,all,22,20,in any library,4462005,flanks,348549,7.81148833315965,,,upstream and downstream flanks together
+mnchisq-q05,all,22,20,in any library,4462005,intergenic,1280077,28.6883811201467,21.3961555761295,17.978680253237,intergenic regions
+mnchisq-q05,all,22,20,in any library,4462005,TE,1356842,30.4087960457238,22.679262672657,19.0568446055687,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+mnchisq-q05,diploid,11,1,in all libraries,6583553,gene,4117757,62.5461206129882,,,genes
+mnchisq-q05,diploid,11,1,in all libraries,6583553,mRNA,3951678,60.0234857986258,,,mRNA transcripts
+mnchisq-q05,diploid,11,1,in all libraries,6583553,exon,1585582,24.0839862609141,,,exons
+mnchisq-q05,diploid,11,1,in all libraries,6583553,CDS,1138917,17.2994278317498,12.7216282547514,10.8075241792088,coding sequence
+mnchisq-q05,diploid,11,1,in all libraries,6583553,exon_UTR,446695,6.7850141101621,4.98955387728531,19.2848845142798,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+mnchisq-q05,diploid,11,1,in all libraries,6583553,intron,2540487,38.5883883671932,28.3770733073863,24.1074412617124,introns
+mnchisq-q05,diploid,11,1,in all libraries,6583553,nonCDS,5005849,76.0356755691038,,,complement of the exon track (not of coding sequence)
+mnchisq-q05,diploid,11,1,in all libraries,6583553,lncRNA,196174,2.97975880197213,2.19125072437025,1.86155378164705,long non-coding RNA
+mnchisq-q05,diploid,11,1,in all libraries,6583553,upstream_flank,310145,4.71090610191792,3.46429932564872,2.94305870099465,upstream flanks (up to 1 kb)
+mnchisq-q05,diploid,11,1,in all libraries,6583553,downstream_flank,283009,4.29872745005622,3.16119198391887,2.68555707785002,downstream flanks (up to 1 kb)
+mnchisq-q05,diploid,11,1,in all libraries,6583553,flanks,565799,8.59412842882863,,,upstream and downstream flanks together
+mnchisq-q05,diploid,11,1,in all libraries,6583553,intergenic,1900922,28.8738011222815,21.2331741692138,18.0384176176052,intergenic regions
+mnchisq-q05,diploid,11,1,in all libraries,6583553,TE,2136255,32.4483603306604,23.8618283574254,20.2715628667021,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+mnchisq-q05,diploid,11,1,in any library,12718350,gene,7186018,56.5011813639348,,,genes
+mnchisq-q05,diploid,11,1,in any library,12718350,mRNA,6818662,53.6127878223197,,,mRNA transcripts
+mnchisq-q05,diploid,11,1,in any library,12718350,exon,2158367,16.9704953865871,,,exons
+mnchisq-q05,diploid,11,1,in any library,12718350,CDS,1476930,11.6125912559412,8.01842076531717,7.17737459895673,coding sequence
+mnchisq-q05,diploid,11,1,in any library,12718350,exon_UTR,681478,5.35822649950662,3.69982148531536,13.8006752980671,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+mnchisq-q05,diploid,11,1,in any library,12718350,intron,5040792,39.6340091285426,27.3670324568156,24.4965248586083,introns
+mnchisq-q05,diploid,11,1,in any library,12718350,nonCDS,10571292,83.1184233803913,,,complement of the exon track (not of coding sequence)
+mnchisq-q05,diploid,11,1,in any library,12718350,lncRNA,433837,3.41111071797835,2.3553503616034,2.10829942102035,long non-coding RNA
+mnchisq-q05,diploid,11,1,in any library,12718350,upstream_flank,573346,4.5080218739066,3.11276057234367,2.78626544034819,upstream flanks (up to 1 kb)
+mnchisq-q05,diploid,11,1,in any library,12718350,downstream_flank,532783,4.1890889934622,2.89253943694554,2.58914313539299,downstream flanks (up to 1 kb)
+mnchisq-q05,diploid,11,1,in any library,12718350,flanks,1057560,8.31522956987345,,,upstream and downstream flanks together
+mnchisq-q05,diploid,11,1,in any library,12718350,intergenic,4476658,35.1984180337858,24.3042848790554,21.7550265871886,intergenic regions
+mnchisq-q05,diploid,11,1,in any library,12718350,TE,5203389,40.9124532663435,28.2497900426039,25.2866906604178,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+mnchisq-q05,diploid,11,3,in all libraries,4410404,gene,2930820,66.4524156970654,,,genes
+mnchisq-q05,diploid,11,3,in all libraries,4410404,mRNA,2826445,64.0858524525191,,,mRNA transcripts
+mnchisq-q05,diploid,11,3,in all libraries,4410404,exon,1284754,29.1300751586476,,,exons
+mnchisq-q05,diploid,11,3,in all libraries,4410404,CDS,946301,21.4561069688854,16.5781059564618,13.5323287607372,coding sequence
+mnchisq-q05,diploid,11,3,in all libraries,4410404,exon_UTR,338477,7.67451235759808,5.92972803560952,23.2125883272026,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+mnchisq-q05,diploid,11,3,in all libraries,4410404,intron,1652276,37.4631439659496,28.9459765944651,23.6279387166195,introns
+mnchisq-q05,diploid,11,3,in all libraries,4410404,nonCDS,3131546,71.0036087396982,,,complement of the exon track (not of coding sequence)
+mnchisq-q05,diploid,11,3,in all libraries,4410404,lncRNA,126038,2.85774273740002,2.20804090721719,1.80237329596586,long non-coding RNA
+mnchisq-q05,diploid,11,3,in all libraries,4410404,upstream_flank,201526,4.56933197049522,3.53050391047026,2.88186960157108,upstream flanks (up to 1 kb)
+mnchisq-q05,diploid,11,3,in all libraries,4410404,downstream_flank,172242,3.9053565160924,3.01748188594633,2.46310145546384,downstream flanks (up to 1 kb)
+mnchisq-q05,diploid,11,3,in all libraries,4410404,flanks,356499,8.08313705501809,,,upstream and downstream flanks together
+mnchisq-q05,diploid,11,3,in all libraries,4410404,intergenic,1123612,25.4763962666459,19.6843908967146,16.0679181185578,intergenic regions
+mnchisq-q05,diploid,11,3,in all libraries,4410404,TE,1147665,26.0217658064885,20.1057718131152,16.4118817238822,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+mnchisq-q05,diploid,11,3,in any library,11629068,gene,6672992,57.3820017218921,,,genes
+mnchisq-q05,diploid,11,3,in any library,11629068,mRNA,6343274,54.5467100200979,,,mRNA transcripts
+mnchisq-q05,diploid,11,3,in any library,11629068,exon,2062198,17.7331321822179,,,exons
+mnchisq-q05,diploid,11,3,in any library,11629068,CDS,1417295,12.187520100493,8.49314897747771,7.55902478902737,coding sequence
+mnchisq-q05,diploid,11,3,in any library,11629068,exon_UTR,644941,5.5459388490978,3.86481289687994,14.4383002891725,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+mnchisq-q05,diploid,11,3,in any library,11629068,intron,4623125,39.7549055521904,27.7041049086475,24.6570519741989,introns
+mnchisq-q05,diploid,11,3,in any library,11629068,nonCDS,9577733,82.3602802907335,,,complement of the exon track (not of coding sequence)
+mnchisq-q05,diploid,11,3,in any library,11629068,lncRNA,386644,3.3248064247281,2.31696654066224,2.06213355760706,long non-coding RNA
+mnchisq-q05,diploid,11,3,in any library,11629068,upstream_flank,532297,4.57729716603257,3.18979303621649,2.83896169684145,upstream flanks (up to 1 kb)
+mnchisq-q05,diploid,11,3,in any library,11629068,downstream_flank,495015,4.25670397662134,2.96638042262629,2.64012125629483,downstream flanks (up to 1 kb)
+mnchisq-q05,diploid,11,3,in any library,11629068,flanks,982696,8.45034185026693,,,upstream and downstream flanks together
+mnchisq-q05,diploid,11,3,in any library,11629068,intergenic,3975121,34.1826275330061,23.8209369654872,21.2009766339282,intergenic regions
+mnchisq-q05,diploid,11,3,in any library,11629068,TE,4613071,39.6684497846259,27.6438562520026,24.6034298029297,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+mnchisq-q05,diploid,11,5,in all libraries,2928292,gene,2019991,68.9818843202795,,,genes
+mnchisq-q05,diploid,11,5,in all libraries,2928292,mRNA,1952862,66.6894558329566,,,mRNA transcripts
+mnchisq-q05,diploid,11,5,in all libraries,2928292,exon,952292,32.5203907260615,,,exons
+mnchisq-q05,diploid,11,5,in all libraries,2928292,CDS,710254,24.2548898812004,19.228571126903,15.2873148824751,coding sequence
+mnchisq-q05,diploid,11,5,in all libraries,2928292,exon_UTR,242057,8.26614968725797,6.55316301107034,25.7068446535594,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+mnchisq-q05,diploid,11,5,in all libraries,2928292,intron,1071975,36.6075172831125,29.0213747951604,23.0728997952017,introns
+mnchisq-q05,diploid,11,5,in all libraries,2928292,nonCDS,1979979,67.615490531682,,,complement of the exon track (not of coding sequence)
+mnchisq-q05,diploid,11,5,in all libraries,2928292,lncRNA,83037,2.83568032149799,2.24804486939129,1.78726591599073,long non-coding RNA
+mnchisq-q05,diploid,11,5,in all libraries,2928292,upstream_flank,126068,4.30517175199741,3.4130149282178,2.71345351466358,upstream flanks (up to 1 kb)
+mnchisq-q05,diploid,11,5,in all libraries,2928292,downstream_flank,101462,3.46488669845767,2.74686138153088,2.18384062969823,downstream flanks (up to 1 kb)
+mnchisq-q05,diploid,11,5,in all libraries,2928292,flanks,217111,7.41425376977433,,,upstream and downstream flanks together
+mnchisq-q05,diploid,11,5,in all libraries,2928292,intergenic,691386,23.6105552315138,18.7177613602246,14.8812051566551,intergenic regions
+mnchisq-q05,diploid,11,5,in all libraries,2928292,TE,667504,22.7949944882546,18.0712085275018,14.3671754517562,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+mnchisq-q05,diploid,11,5,in any library,10641288,gene,6192060,58.189008698947,,,genes
+mnchisq-q05,diploid,11,5,in any library,10641288,mRNA,5895646,55.4035000274403,,,mRNA transcripts
+mnchisq-q05,diploid,11,5,in any library,10641288,exon,1985476,18.658230093951,,,exons
+mnchisq-q05,diploid,11,5,in any library,10641288,CDS,1371852,12.8917852801277,9.07988533488635,8.02526288350139,coding sequence
+mnchisq-q05,diploid,11,5,in any library,10641288,exon_UTR,613661,5.76679251609392,4.061641864058,15.2048163323997,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+mnchisq-q05,diploid,11,5,in any library,10641288,intron,4218283,39.6407183040249,27.9195758362421,24.6767362601832,introns
+mnchisq-q05,diploid,11,5,in any library,10641288,nonCDS,8666250,81.4398595358006,,,complement of the exon track (not of coding sequence)
+mnchisq-q05,diploid,11,5,in any library,10641288,lncRNA,347148,3.26227426604749,2.29767061915945,2.03079775331577,long non-coding RNA
+mnchisq-q05,diploid,11,5,in any library,10641288,upstream_flank,492226,4.62562426653616,3.2578992769262,2.87949651135425,upstream flanks (up to 1 kb)
+mnchisq-q05,diploid,11,5,in any library,10641288,downstream_flank,457075,4.29529771208147,3.02524513536677,2.67386498869878,downstream flanks (up to 1 kb)
+mnchisq-q05,diploid,11,5,in any library,10641288,flanks,908141,8.53412669594132,,,upstream and downstream flanks together
+mnchisq-q05,diploid,11,5,in any library,10641288,intergenic,3542698,33.292003749922,23.4480772095905,20.7245991308498,intergenic regions
+mnchisq-q05,diploid,11,5,in any library,10641288,TE,4065750,38.2073109946841,26.9100047237706,23.7844261396971,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+mnchisq-q05,diploid,11,10,in all libraries,766054,gene,539962,70.486153717623,,,genes
+mnchisq-q05,diploid,11,10,in all libraries,766054,mRNA,521411,68.0645228665342,,,mRNA transcripts
+mnchisq-q05,diploid,11,10,in all libraries,766054,exon,269856,35.2267594712644,,,exons
+mnchisq-q05,diploid,11,10,in all libraries,766054,CDS,200405,26.1606884109998,20.760709783085,16.2249577991604,coding sequence
+mnchisq-q05,diploid,11,10,in all libraries,766054,exon_UTR,69460,9.06724591216807,7.19562337034048,27.4713095011598,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+mnchisq-q05,diploid,11,10,in all libraries,766054,intron,271099,35.3890195730327,28.0841678674911,21.9484036545725,introns
+mnchisq-q05,diploid,11,10,in all libraries,766054,nonCDS,496840,64.8570466311774,,,complement of the exon track (not of coding sequence)
+mnchisq-q05,diploid,11,10,in all libraries,766054,lncRNA,23390,3.05330955781185,2.42305831604181,1.89367412450968,long non-coding RNA
+mnchisq-q05,diploid,11,10,in all libraries,766054,upstream_flank,28664,3.74177277319876,2.9694118670809,2.32066161201135,upstream flanks (up to 1 kb)
+mnchisq-q05,diploid,11,10,in all libraries,766054,downstream_flank,21431,2.79758346017383,2.2201181176183,1.73507183250821,downstream flanks (up to 1 kb)
+mnchisq-q05,diploid,11,10,in all libraries,766054,flanks,47700,6.2267150879703,,,upstream and downstream flanks together
+mnchisq-q05,diploid,11,10,in all libraries,766054,intergenic,178160,23.2568461231193,18.4562663354428,14.4239838402157,intergenic regions
+mnchisq-q05,diploid,11,10,in all libraries,766054,TE,172700,22.5441026350623,17.8906443428995,13.9819376358624,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+mnchisq-q05,diploid,11,10,in any library,8189663,gene,4947822,60.4154529923881,,,genes
+mnchisq-q05,diploid,11,10,in any library,8189663,mRNA,4727654,57.7270884040039,,,mRNA transcripts
+mnchisq-q05,diploid,11,10,in any library,8189663,exon,1759938,21.4897487234823,,,exons
+mnchisq-q05,diploid,11,10,in any library,8189663,CDS,1237691,15.1128440816185,10.9454091867998,9.47130858286476,coding sequence
+mnchisq-q05,diploid,11,10,in any library,8189663,exon_UTR,522280,6.37730758884706,4.61873626784213,17.4644486639787,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+mnchisq-q05,diploid,11,10,in any library,8189663,intron,3197786,39.0466127849217,28.279333259933,24.4707426877668,introns
+mnchisq-q05,diploid,11,10,in any library,8189663,nonCDS,6438737,78.6202924344995,,,complement of the exon track (not of coding sequence)
+mnchisq-q05,diploid,11,10,in any library,8189663,lncRNA,259018,3.16274308234661,2.29060241752304,1.98210975640646,long non-coding RNA
+mnchisq-q05,diploid,11,10,in any library,8189663,upstream_flank,382576,4.67144985086688,3.38327649231441,2.92762519271617,upstream flanks (up to 1 kb)
+mnchisq-q05,diploid,11,10,in any library,8189663,downstream_flank,347464,4.24271426064784,3.07276667413935,2.65893406790267,downstream flanks (up to 1 kb)
+mnchisq-q05,diploid,11,10,in any library,8189663,flanks,697731,8.51965459384592,,,upstream and downstream flanks together
+mnchisq-q05,diploid,11,10,in any library,8189663,intergenic,2545318,31.0796427154573,22.5092911078184,19.4777955236971,intergenic regions
+mnchisq-q05,diploid,11,10,in any library,8189663,TE,2815722,34.3814147175531,24.9005845936298,21.5470355246674,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+mnchisq-q05,diploid,11,20,in all libraries,47820,gene,27153,56.7816813048934,,,genes
+mnchisq-q05,diploid,11,20,in all libraries,47820,mRNA,24732,51.7189460476788,,,mRNA transcripts
+mnchisq-q05,diploid,11,20,in all libraries,47820,exon,10404,21.7565872020075,,,exons
+mnchisq-q05,diploid,11,20,in all libraries,47820,CDS,6836,14.2952739439565,9.25823096821377,8.1148134518821,coding sequence
+mnchisq-q05,diploid,11,20,in all libraries,47820,exon_UTR,3568,7.46131325805103,4.83226566626488,16.5857480324308,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+mnchisq-q05,diploid,11,20,in all libraries,47820,intron,16768,35.064826432455,22.7094816961686,19.9047969516031,introns
+mnchisq-q05,diploid,11,20,in all libraries,47820,nonCDS,37077,77.534504391468,,,complement of the exon track (not of coding sequence)
+mnchisq-q05,diploid,11,20,in all libraries,47820,lncRNA,2445,5.1129234629862,3.31134796917535,2.9023871986325,long non-coding RNA
+mnchisq-q05,diploid,11,20,in all libraries,47820,upstream_flank,1614,3.37515683814304,2.18589596002004,1.91593167222611,upstream flanks (up to 1 kb)
+mnchisq-q05,diploid,11,20,in all libraries,47820,downstream_flank,1777,3.71601840234212,2.4066524912984,2.10942415213495,downstream flanks (up to 1 kb)
+mnchisq-q05,diploid,11,20,in all libraries,47820,flanks,3099,6.48055207026349,,,upstream and downstream flanks together
+mnchisq-q05,diploid,11,20,in all libraries,47820,intergenic,17215,35.9995817649519,23.3148692389994,20.4354174333163,intergenic regions
+mnchisq-q05,diploid,11,20,in all libraries,47820,TE,23614,49.3810121288164,31.9812560098596,28.0314811077741,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+mnchisq-q05,diploid,11,20,in any library,3744986,gene,2394266,63.9325754488802,,,genes
+mnchisq-q05,diploid,11,20,in any library,3744986,mRNA,2295801,61.3033266345989,,,mRNA transcripts
+mnchisq-q05,diploid,11,20,in any library,3744986,exon,971257,25.9348633079002,,,exons
+mnchisq-q05,diploid,11,20,in any library,3744986,CDS,692782,18.4989209572479,13.8364930609023,11.5885179693606,coding sequence
+mnchisq-q05,diploid,11,20,in any library,3744986,exon_UTR,278493,7.43642299330358,5.56216307873165,20.9052058688135,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+mnchisq-q05,diploid,11,20,in any library,3744986,intron,1427854,38.1270851212795,28.517617321151,23.8844423449561,introns
+mnchisq-q05,diploid,11,20,in any library,3744986,nonCDS,2778003,74.1792626194063,,,complement of the exon track (not of coding sequence)
+mnchisq-q05,diploid,11,20,in any library,3744986,lncRNA,119645,3.19480500060614,2.389593280818,2.00136295753086,long non-coding RNA
+mnchisq-q05,diploid,11,20,in any library,3744986,upstream_flank,165096,4.40845439742632,3.29735711722119,2.76164502349881,upstream flanks (up to 1 kb)
+mnchisq-q05,diploid,11,20,in any library,3744986,downstream_flank,136952,3.65694290979993,2.73525495419439,2.2908659765119,downstream flanks (up to 1 kb)
+mnchisq-q05,diploid,11,20,in any library,3744986,flanks,288865,7.71337996991177,,,upstream and downstream flanks together
+mnchisq-q05,diploid,11,20,in any library,3744986,intergenic,1062196,28.3631500892126,21.214563287323,17.7678944213084,intergenic regions
+mnchisq-q05,diploid,11,20,in any library,3744986,TE,1123901,30.0108198001274,22.4469578996585,18.8000654380199,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+mnchisq-q05,triploid,11,1,in all libraries,6787343,gene,4230880,62.3348488502791,,,genes
+mnchisq-q05,triploid,11,1,in all libraries,6787343,mRNA,4057528,59.7808008229435,,,mRNA transcripts
+mnchisq-q05,triploid,11,1,in all libraries,6787343,exon,1614079,23.7807194950955,,,exons
+mnchisq-q05,triploid,11,1,in all libraries,6787343,CDS,1156345,17.036784497262,12.4959462428303,10.6400627907661,coding sequence
+mnchisq-q05,triploid,11,1,in all libraries,6787343,exon_UTR,457764,6.74437699700752,4.94678866246924,19.0639814351334,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+mnchisq-q05,triploid,11,1,in all libraries,6787343,intron,2625399,38.6808063184666,28.3711563330845,24.1575050792062,introns
+mnchisq-q05,triploid,11,1,in all libraries,6787343,nonCDS,5181340,76.338266682559,,,complement of the exon track (not of coding sequence)
+mnchisq-q05,triploid,11,1,in all libraries,6787343,lncRNA,204336,3.01054477429533,2.20814002004158,1.88018962369707,long non-coding RNA
+mnchisq-q05,triploid,11,1,in all libraries,6787343,upstream_flank,319740,4.71082719703424,3.45524376521071,2.94207496613863,upstream flanks (up to 1 kb)
+mnchisq-q05,triploid,11,1,in all libraries,6787343,downstream_flank,292393,4.30791548327527,3.15972068005647,2.69044262705377,downstream flanks (up to 1 kb)
+mnchisq-q05,triploid,11,1,in all libraries,6787343,flanks,583791,8.60117132727785,,,upstream and downstream flanks together
+mnchisq-q05,triploid,11,1,in all libraries,6787343,intergenic,1973647,29.0783447955997,21.3280524534835,18.1604348242153,intergenic regions
+mnchisq-q05,triploid,11,1,in all libraries,6787343,TE,2224137,32.7688905658665,24.0349518428237,20.4653086537895,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+mnchisq-q05,triploid,11,1,in any library,12711350,gene,7182708,56.506256219835,,,genes
+mnchisq-q05,triploid,11,1,in any library,12711350,mRNA,6815322,53.6160360622593,,,mRNA transcripts
+mnchisq-q05,triploid,11,1,in any library,12711350,exon,2157720,16.9747509115869,,,exons
+mnchisq-q05,triploid,11,1,in any library,12711350,CDS,1476912,11.6188445759105,8.02254572879094,7.1808961417182,coding sequence
+mnchisq-q05,triploid,11,1,in any library,12711350,exon_UTR,680849,5.35622888206209,3.69835321055119,13.8014107679407,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+mnchisq-q05,triploid,11,1,in any library,12711350,intron,5038118,39.6347988215256,27.3669196553652,24.4958413959133,introns
+mnchisq-q05,triploid,11,1,in any library,12711350,nonCDS,10564941,83.1142325559441,,,complement of the exon track (not of coding sequence)
+mnchisq-q05,triploid,11,1,in any library,12711350,lncRNA,434528,3.41842526560908,2.36034425235902,2.11271926740965,long non-coding RNA
+mnchisq-q05,triploid,11,1,in any library,12711350,upstream_flank,573537,4.5120069858827,3.11543735148308,2.78859514340234,upstream flanks (up to 1 kb)
+mnchisq-q05,triploid,11,1,in any library,12711350,downstream_flank,532286,4.18748598693294,2.89136304383417,2.58802859187996,downstream flanks (up to 1 kb)
+mnchisq-q05,triploid,11,1,in any library,12711350,flanks,1057105,8.31622919674149,,,upstream and downstream flanks together
+mnchisq-q05,triploid,11,1,in any library,12711350,intergenic,4473423,35.1923517171662,24.2995118068816,21.7502369545196,intergenic regions
+mnchisq-q05,triploid,11,1,in any library,12711350,TE,5199865,40.9072600471232,28.2455249507347,25.2822717372163,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+mnchisq-q05,triploid,11,3,in all libraries,4527090,gene,2997878,66.2208615247322,,,genes
+mnchisq-q05,triploid,11,3,in all libraries,4527090,mRNA,2889531,63.8275581002366,,,mRNA transcripts
+mnchisq-q05,triploid,11,3,in all libraries,4527090,exon,1307498,28.8816436165395,,,exons
+mnchisq-q05,triploid,11,3,in all libraries,4527090,CDS,961886,21.2473354848258,16.3657306582458,13.3875337546406,coding sequence
+mnchisq-q05,triploid,11,3,in all libraries,4527090,exon_UTR,345637,7.63486036283794,5.88074059454456,23.0083405034254,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+mnchisq-q05,triploid,11,3,in all libraries,4527090,intron,1696730,37.4794846137364,28.8685209887298,23.615095913145,introns
+mnchisq-q05,triploid,11,3,in all libraries,4527090,nonCDS,3225629,71.2517091553294,,,complement of the exon track (not of coding sequence)
+mnchisq-q05,triploid,11,3,in all libraries,4527090,lncRNA,130423,2.88094559639857,2.21904434583764,1.81522791150042,long non-coding RNA
+mnchisq-q05,triploid,11,3,in all libraries,4527090,upstream_flank,208329,4.60183031483801,3.54455341100887,2.89952397640731,upstream flanks (up to 1 kb)
+mnchisq-q05,triploid,11,3,in all libraries,4527090,downstream_flank,177806,3.92760029069446,3.02522867098601,2.47470472257381,downstream flanks (up to 1 kb)
+mnchisq-q05,triploid,11,3,in all libraries,4527090,flanks,368029,8.1294827361506,,,upstream and downstream flanks together
+mnchisq-q05,triploid,11,3,in all libraries,4527090,intergenic,1161758,25.6623570549735,19.7663948930146,16.1693531663043,intergenic regions
+mnchisq-q05,triploid,11,3,in all libraries,4527090,TE,1194871,26.3937982235829,20.3297864376327,16.6302200520032,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+mnchisq-q05,triploid,11,3,in any library,11563702,gene,6640146,57.4223202915468,,,genes
+mnchisq-q05,triploid,11,3,in any library,11563702,mRNA,6311937,54.5840510244903,,,mRNA transcripts
+mnchisq-q05,triploid,11,3,in any library,11563702,exon,2058227,17.7990318325394,,,exons
+mnchisq-q05,triploid,11,3,in any library,11563702,CDS,1415362,12.2396962495229,8.53378684085369,7.59166983620508,coding sequence
+mnchisq-q05,triploid,11,3,in any library,11563702,exon_UTR,642904,5.55967284525319,3.87632683026123,14.4882332126611,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+mnchisq-q05,triploid,11,3,in any library,11563702,intron,4594209,39.7295693022875,27.7003341253556,24.6422596385391,introns
+mnchisq-q05,triploid,11,3,in any library,11563702,nonCDS,9516325,82.2947962512351,,,complement of the exon track (not of coding sequence)
+mnchisq-q05,triploid,11,3,in any library,11563702,lncRNA,385289,3.33188281745759,2.32306236717227,2.06659983772464,long non-coding RNA
+mnchisq-q05,triploid,11,3,in any library,11563702,upstream_flank,530166,4.58474284446279,3.19658407832628,2.84368608905814,upstream flanks (up to 1 kb)
+mnchisq-q05,triploid,11,3,in any library,11563702,downstream_flank,492498,4.25899941039643,2.96946855401428,2.64164377098674,downstream flanks (up to 1 kb)
+mnchisq-q05,triploid,11,3,in any library,11563702,flanks,978042,8.45786236968058,,,upstream and downstream flanks together
+mnchisq-q05,triploid,11,3,in any library,11563702,intergenic,3947240,34.13474335468,23.7994977749094,21.1720696502112,intergenic regions
+mnchisq-q05,triploid,11,3,in any library,11563702,TE,4577724,39.5870111491977,27.6009394291073,24.5538379646141,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+mnchisq-q05,triploid,11,5,in all libraries,3023664,gene,2083158,68.8951550172241,,,genes
+mnchisq-q05,triploid,11,5,in all libraries,3023664,mRNA,2013744,66.5994634324449,,,mRNA transcripts
+mnchisq-q05,triploid,11,5,in all libraries,3023664,exon,984545,32.5613229512274,,,exons
+mnchisq-q05,triploid,11,5,in all libraries,3023664,CDS,736009,24.3416265828478,19.2716454458595,15.3217932773956,coding sequence
+mnchisq-q05,triploid,11,5,in all libraries,3023664,exon_UTR,248555,8.2203247450775,6.50815932114364,25.6699351371471,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+mnchisq-q05,triploid,11,5,in all libraries,3023664,intron,1102979,36.4782264166918,28.8803808407624,22.9611543164669,introns
+mnchisq-q05,triploid,11,5,in all libraries,3023664,nonCDS,2043234,67.5747702125633,,,complement of the exon track (not of coding sequence)
+mnchisq-q05,triploid,11,5,in all libraries,3023664,lncRNA,85723,2.83507029881627,2.24456937694432,1.78452992438704,long non-coding RNA
+mnchisq-q05,triploid,11,5,in all libraries,3023664,upstream_flank,132158,4.3707898761238,3.46042252042285,2.75118586315391,upstream flanks (up to 1 kb)
+mnchisq-q05,triploid,11,5,in all libraries,3023664,downstream_flank,105971,3.50472142407357,2.77474261801578,2.20604062640387,downstream flanks (up to 1 kb)
+mnchisq-q05,triploid,11,5,in all libraries,3023664,flanks,227006,7.5076463522402,,,upstream and downstream flanks together
+mnchisq-q05,triploid,11,5,in all libraries,3023664,intergenic,713756,23.605665179729,18.6889733234986,14.8585436896842,intergenic regions
+mnchisq-q05,triploid,11,5,in all libraries,3023664,TE,693978,22.9515581096312,18.1711065533529,14.4468171653613,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+mnchisq-q05,triploid,11,5,in any library,10482099,gene,6111447,58.303656548178,,,genes
+mnchisq-q05,triploid,11,5,in any library,10482099,mRNA,5819115,55.5147876393841,,,mRNA transcripts
+mnchisq-q05,triploid,11,5,in any library,10482099,exon,1975220,18.8437449407795,,,exons
+mnchisq-q05,triploid,11,5,in any library,10482099,CDS,1366808,13.0394494461462,9.195840312759,8.11713645872931,coding sequence
+mnchisq-q05,triploid,11,5,in any library,10482099,exon_UTR,608450,5.80465801744479,4.09363205241571,15.3437805122045,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+mnchisq-q05,triploid,11,5,in any library,10482099,intron,4147790,39.5702234829112,27.9061978645565,24.6327043975107,introns
+mnchisq-q05,triploid,11,5,in any library,10482099,nonCDS,8517232,81.2550234452088,,,complement of the exon track (not of coding sequence)
+mnchisq-q05,triploid,11,5,in any library,10482099,lncRNA,341918,3.26192301751777,2.30041331925035,2.0305668855434,long non-coding RNA
+mnchisq-q05,triploid,11,5,in any library,10482099,upstream_flank,486251,4.6388705162964,3.27148110628514,2.88772506467155,upstream flanks (up to 1 kb)
+mnchisq-q05,triploid,11,5,in any library,10482099,downstream_flank,449998,4.29301421404244,3.02757208697998,2.67242741640031,downstream flanks (up to 1 kb)
+mnchisq-q05,triploid,11,5,in any library,10482099,flanks,895261,8.540856177756,,,upstream and downstream flanks together
+mnchisq-q05,triploid,11,5,in any library,10482099,intergenic,3476975,33.1705987512616,23.392976095732,20.6488991420817,intergenic regions
+mnchisq-q05,triploid,11,5,in any library,10482099,TE,3985139,38.0185209088371,26.8118871620214,23.6667601228586,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+mnchisq-q05,triploid,11,10,in all libraries,861750,gene,613916,71.2406150275602,,,genes
+mnchisq-q05,triploid,11,10,in all libraries,861750,mRNA,593724,68.8974760661445,,,mRNA transcripts
+mnchisq-q05,triploid,11,10,in all libraries,861750,exon,314990,36.5523643748187,,,exons
+mnchisq-q05,triploid,11,10,in all libraries,861750,CDS,237214,27.5270089933275,22.0515466313417,17.0569814807491,coding sequence
+mnchisq-q05,triploid,11,10,in all libraries,861750,exon_UTR,77783,9.02616768204236,7.23075135373818,28.2425227311131,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+mnchisq-q05,triploid,11,10,in all libraries,861750,intron,300075,34.8215839860749,27.8951404866485,21.5770305202719,introns
+mnchisq-q05,triploid,11,10,in all libraries,861750,nonCDS,547574,63.5420945749928,,,complement of the exon track (not of coding sequence)
+mnchisq-q05,triploid,11,10,in all libraries,861750,lncRNA,25427,2.95062373078039,2.36370819679751,1.82834009843857,long non-coding RNA
+mnchisq-q05,triploid,11,10,in all libraries,861750,upstream_flank,32573,3.77986655062373,3.02800436914639,2.34217650632948,upstream flanks (up to 1 kb)
+mnchisq-q05,triploid,11,10,in all libraries,861750,downstream_flank,23974,2.78201334493763,2.22863650096447,1.72386146694326,downstream flanks (up to 1 kb)
+mnchisq-q05,triploid,11,10,in all libraries,861750,flanks,53852,6.24914418334784,,,upstream and downstream flanks together
+mnchisq-q05,triploid,11,10,in all libraries,861750,intergenic,193784,22.4872642877865,18.0142694461875,13.9341274092823,intergenic regions
+mnchisq-q05,triploid,11,10,in all libraries,861750,TE,184895,21.4557586306934,17.1879430151758,13.2949597868722,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+mnchisq-q05,triploid,11,10,in any library,7856219,gene,4775177,60.7821268729907,,,genes
+mnchisq-q05,triploid,11,10,in any library,7856219,mRNA,4564144,58.0959364803858,,,mRNA transcripts
+mnchisq-q05,triploid,11,10,in any library,7856219,exon,1732123,22.0477942379152,,,exons
+mnchisq-q05,triploid,11,10,in any library,7856219,CDS,1223701,15.5762078424749,11.3275598649062,9.7622829794492,coding sequence
+mnchisq-q05,triploid,11,10,in any library,7856219,exon_UTR,508458,6.47204463113872,4.70669586262533,17.8746162341759,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+mnchisq-q05,triploid,11,10,in any library,7856219,intron,3052634,38.8562742459191,28.2576335074075,24.3529072385231,introns
+mnchisq-q05,triploid,11,10,in any library,7856219,nonCDS,6132833,78.0634170203249,,,complement of the exon track (not of coding sequence)
+mnchisq-q05,triploid,11,10,in any library,7856219,lncRNA,246968,3.14359872096234,2.28613428011921,1.97022924952142,long non-coding RNA
+mnchisq-q05,triploid,11,10,in any library,7856219,upstream_flank,366800,4.66891261559791,3.39539557330393,2.92620942277727,upstream flanks (up to 1 kb)
+mnchisq-q05,triploid,11,10,in any library,7856219,downstream_flank,331462,4.21910336257174,3.06827864645166,2.64429451388386,downstream flanks (up to 1 kb)
+mnchisq-q05,triploid,11,10,in any library,7856219,flanks,666978,8.48980915628752,,,upstream and downstream flanks together
+mnchisq-q05,triploid,11,10,in any library,7856219,intergenic,2415212,30.742676597992,22.357143220803,19.2677647557381,intergenic regions
+mnchisq-q05,triploid,11,10,in any library,7856219,TE,2657630,33.8283594181883,24.6011590443831,21.2016956059312,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+mnchisq-q05,triploid,11,20,in all libraries,54998,gene,32092,58.3512127713735,,,genes
+mnchisq-q05,triploid,11,20,in all libraries,54998,mRNA,29315,53.3019382523001,,,mRNA transcripts
+mnchisq-q05,triploid,11,20,in all libraries,54998,exon,12734,23.1535692206989,,,exons
+mnchisq-q05,triploid,11,20,in all libraries,54998,CDS,8716,15.8478490126914,10.471430630977,9.08200479316453,coding sequence
+mnchisq-q05,triploid,11,20,in all libraries,54998,exon_UTR,4018,7.30572020800756,4.82723821423423,17.4554548296343,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+mnchisq-q05,triploid,11,20,in all libraries,54998,intron,19393,35.2612822284447,23.2988130135999,20.2073564655622,introns
+mnchisq-q05,triploid,11,20,in all libraries,54998,nonCDS,41944,76.2645914396887,,,complement of the exon track (not of coding sequence)
+mnchisq-q05,triploid,11,20,in all libraries,54998,lncRNA,2763,5.02381904796538,3.31947714931039,2.87902469521726,long non-coding RNA
+mnchisq-q05,triploid,11,20,in all libraries,54998,upstream_flank,1907,3.46739881450235,2.29107597674083,1.98707929561321,upstream flanks (up to 1 kb)
+mnchisq-q05,triploid,11,20,in all libraries,54998,downstream_flank,1911,3.4746718062475,2.29588158969677,1.99124726477024,downstream flanks (up to 1 kb)
+mnchisq-q05,triploid,11,20,in all libraries,54998,flanks,3487,6.34023055383832,,,upstream and downstream flanks together
+mnchisq-q05,triploid,11,20,in all libraries,54998,intergenic,19071,34.6758063929597,22.9119611706473,19.8718349484214,intergenic regions
+mnchisq-q05,triploid,11,20,in all libraries,54998,TE,25457,46.2871377140987,30.5841222547936,26.525997707617,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+mnchisq-q05,triploid,11,20,in any library,3493362,gene,2262706,64.7715867980473,,,genes
+mnchisq-q05,triploid,11,20,in any library,3493362,mRNA,2172104,62.1780393786845,,,mRNA transcripts
+mnchisq-q05,triploid,11,20,in any library,3493362,exon,952026,27.2524290354106,,,exons
+mnchisq-q05,triploid,11,20,in any library,3493362,CDS,687926,19.6923765701923,14.8748572087139,12.3355346621879,coding sequence
+mnchisq-q05,triploid,11,20,in any library,3493362,exon_UTR,264120,7.56062497960418,5.71100276187484,21.8073036013774,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+mnchisq-q05,triploid,11,20,in any library,3493362,intron,1315384,37.6538131461898,28.4422295052475,23.586788297124,introns
+mnchisq-q05,triploid,11,20,in any library,3493362,nonCDS,2545415,72.8643352735846,,,complement of the exon track (not of coding sequence)
+mnchisq-q05,triploid,11,20,in any library,3493362,lncRNA,109754,3.14178719525775,2.37318414783739,1.96805219066261,long non-coding RNA
+mnchisq-q05,triploid,11,20,in any library,3493362,upstream_flank,150756,4.31549893769956,3.25976045876573,2.70327893339224,upstream flanks (up to 1 kb)
+mnchisq-q05,triploid,11,20,in any library,3493362,downstream_flank,124509,3.56415968342245,2.69222793759759,2.23263124995181,downstream flanks (up to 1 kb)
+mnchisq-q05,triploid,11,20,in any library,3493362,flanks,262971,7.52773402813679,,,upstream and downstream flanks together
+mnchisq-q05,triploid,11,20,in any library,3493362,intergenic,967971,27.7088661295337,20.9302023868497,17.357157343221,intergenic regions
+mnchisq-q05,triploid,11,20,in any library,3493362,TE,1004337,28.7498690373342,21.7165355931133,18.0092537220831,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+mnchisq-q05,control,12,1,in all libraries,6337867,gene,3991058,62.9716275207416,,,genes
+mnchisq-q05,control,12,1,in all libraries,6337867,mRNA,3831638,60.4562702246671,,,mRNA transcripts
+mnchisq-q05,control,12,1,in all libraries,6337867,exon,1563625,24.6711551378405,,,exons
+mnchisq-q05,control,12,1,in all libraries,6337867,CDS,1125852,17.7638943827632,13.1531035591416,11.1214844055995,coding sequence
+mnchisq-q05,control,12,1,in all libraries,6337867,exon_UTR,437801,6.90770254408936,5.11474145029343,19.7706519577719,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+mnchisq-q05,control,12,1,in all libraries,6337867,intron,2435541,38.4284018582277,28.453937991437,24.0589626795514,introns
+mnchisq-q05,control,12,1,in all libraries,6337867,nonCDS,4781940,75.4503052840964,,,complement of the exon track (not of coding sequence)
+mnchisq-q05,control,12,1,in all libraries,6337867,lncRNA,188396,2.97254581075936,2.20099275759873,1.8610289594701,long non-coding RNA
+mnchisq-q05,control,12,1,in all libraries,6337867,upstream_flank,298289,4.70645723553366,3.48485067979876,2.94658308717476,upstream flanks (up to 1 kb)
+mnchisq-q05,control,12,1,in all libraries,6337867,downstream_flank,270262,4.2642422127192,3.15741684884046,2.66972445616843,downstream flanks (up to 1 kb)
+mnchisq-q05,control,12,1,in all libraries,6337867,flanks,542238,8.55552822424327,,,upstream and downstream flanks together
+mnchisq-q05,control,12,1,in all libraries,6337867,intergenic,1805460,28.4868710561456,21.0928277889881,17.8348443977838,intergenic regions
+mnchisq-q05,control,12,1,in all libraries,6337867,TE,1997991,31.5246596370672,23.342128923902,19.7367200564801,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+mnchisq-q05,control,12,1,in any library,12640866,gene,7147844,56.5455246499726,,,genes
+mnchisq-q05,control,12,1,in any library,12640866,mRNA,6783069,53.6598441910546,,,mRNA transcripts
+mnchisq-q05,control,12,1,in any library,12640866,exon,2152231,17.0259774923648,,,exons
+mnchisq-q05,control,12,1,in any library,12640866,CDS,1473550,11.6570336241204,8.05060690556371,7.20357335956222,coding sequence
+mnchisq-q05,control,12,1,in any library,12640866,exon_UTR,678721,5.36926030226094,3.70813068409698,13.8393474326622,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+mnchisq-q05,control,12,1,in any library,12640866,intron,5008679,39.6229103290866,27.3644638764561,24.4853494017839,introns
+mnchisq-q05,control,12,1,in any library,12640866,nonCDS,10499910,83.0632173460268,,,complement of the exon track (not of coding sequence)
+mnchisq-q05,control,12,1,in any library,12640866,lncRNA,430881,3.40863513623196,2.35407930105948,2.10639808132844,long non-coding RNA
+mnchisq-q05,control,12,1,in any library,12640866,upstream_flank,570682,4.51457993463423,3.11786939708928,2.78982705166549,upstream flanks (up to 1 kb)
+mnchisq-q05,control,12,1,in any library,12640866,downstream_flank,529754,4.19080464898528,2.8942629776051,2.58974707442674,downstream flanks (up to 1 kb)
+mnchisq-q05,control,12,1,in any library,12640866,flanks,1051942,8.32175580375585,,,upstream and downstream flanks together
+mnchisq-q05,control,12,1,in any library,12640866,intergenic,4442953,35.1475365690927,24.2736711363001,21.7197501737892,intergenic regions
+mnchisq-q05,control,12,1,in any library,12640866,TE,5168369,40.8861940313267,28.2369157218292,25.2660074247818,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+mnchisq-q05,control,12,3,in all libraries,3993030,gene,2681908,67.1647345499533,,,genes
+mnchisq-q05,control,12,3,in all libraries,3993030,mRNA,2588257,64.8193727570291,,,mRNA transcripts
+mnchisq-q05,control,12,3,in all libraries,3993030,exon,1204385,30.1621826031861,,,exons
+mnchisq-q05,control,12,3,in all libraries,3993030,CDS,891691,22.3311870935104,17.3845341007015,14.0787276756287,coding sequence
+mnchisq-q05,control,12,3,in all libraries,3993030,exon_UTR,312717,7.83157151336203,6.09677494823774,23.9532146384247,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+mnchisq-q05,control,12,3,in all libraries,3993030,intron,1483153,37.1435476317483,28.9157610708841,23.4172007884925,introns
+mnchisq-q05,control,12,3,in all libraries,3993030,nonCDS,2794006,69.9720763430277,,,complement of the exon track (not of coding sequence)
+mnchisq-q05,control,12,3,in all libraries,3993030,lncRNA,113765,2.84908953852087,2.21797856204257,1.7962124256249,long non-coding RNA
+mnchisq-q05,control,12,3,in all libraries,3993030,upstream_flank,180340,4.51636977433177,3.51593419662249,2.84735154781519,upstream flanks (up to 1 kb)
+mnchisq-q05,control,12,3,in all libraries,3993030,downstream_flank,150730,3.77482763715775,2.93865344048413,2.3798452855838,downstream flanks (up to 1 kb)
+mnchisq-q05,control,12,3,in all libraries,3993030,flanks,315770,7.90802974182513,,,upstream and downstream flanks together
+mnchisq-q05,control,12,3,in all libraries,3993030,intergenic,995816,24.9388559565042,19.4145698566254,15.7227361036882,intergenic regions
+mnchisq-q05,control,12,3,in all libraries,3993030,TE,1001008,25.0688825278047,19.5157938244022,15.8047115347421,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+mnchisq-q05,control,12,3,in any library,11300142,gene,6512704,57.6338244245072,,,genes
+mnchisq-q05,control,12,3,in any library,11300142,mRNA,6193609,54.8100103520823,,,mRNA transcripts
+mnchisq-q05,control,12,3,in any library,11300142,exon,2039823,18.0513041340542,,,exons
+mnchisq-q05,control,12,3,in any library,11300142,CDS,1405145,12.4347552446686,8.68986607051473,7.71644311426571,coding sequence
+mnchisq-q05,control,12,3,in any library,11300142,exon_UTR,634716,5.61688516834567,3.92528673753444,14.6874009802441,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+mnchisq-q05,control,12,3,in any library,11300142,intron,4484935,39.6891915163544,27.7362724024666,24.6293057290737,introns
+mnchisq-q05,control,12,3,in any library,11300142,nonCDS,9271022,82.0434114898733,,,complement of the exon track (not of coding sequence)
+mnchisq-q05,control,12,3,in any library,11300142,lncRNA,374157,3.31108228551464,2.31390655010378,2.05470695643817,long non-coding RNA
+mnchisq-q05,control,12,3,in any library,11300142,upstream_flank,519416,4.59654400803105,3.21223466253125,2.85240599129587,upstream flanks (up to 1 kb)
+mnchisq-q05,control,12,3,in any library,11300142,downstream_flank,482388,4.26886670981657,2.98324166831427,2.64906437485413,downstream flanks (up to 1 kb)
+mnchisq-q05,control,12,3,in any library,11300142,flanks,958095,8.47861026879131,,,upstream and downstream flanks together
+mnchisq-q05,control,12,3,in any library,11300142,intergenic,3831044,33.9026182148861,23.6924013324241,21.0384217246255,intergenic regions
+mnchisq-q05,control,12,3,in any library,11300142,TE,4438126,39.2749577837163,27.4467905761108,24.3722511292028,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+mnchisq-q05,control,12,5,in all libraries,2465533,gene,1719308,69.7337249187093,,,genes
+mnchisq-q05,control,12,5,in all libraries,2465533,mRNA,1663255,67.4602611281212,,,mRNA transcripts
+mnchisq-q05,control,12,5,in all libraries,2465533,exon,831519,33.7257298928873,,,exons
+mnchisq-q05,control,12,5,in all libraries,2465533,CDS,623629,25.2938816880569,20.1798302979784,15.9012891021315,coding sequence
+mnchisq-q05,control,12,5,in all libraries,2465533,exon_UTR,207906,8.43249715173149,6.72757007440562,26.5032534166676,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+mnchisq-q05,control,12,5,in all libraries,2465533,intron,891345,36.1522234745996,28.8427748500336,22.7275103222258,introns
+mnchisq-q05,control,12,5,in all libraries,2465533,nonCDS,1637288,66.4070608667578,,,complement of the exon track (not of coding sequence)
+mnchisq-q05,control,12,5,in all libraries,2465533,lncRNA,69862,2.83354552545028,2.26064423603997,1.78134092425642,long non-coding RNA
+mnchisq-q05,control,12,5,in all libraries,2465533,upstream_flank,104214,4.22683452219054,3.37223066065485,2.6572480472998,upstream flanks (up to 1 kb)
+mnchisq-q05,control,12,5,in all libraries,2465533,downstream_flank,81555,3.30780403263716,2.63901463843348,2.07948897938411,downstream flanks (up to 1 kb)
+mnchisq-q05,control,12,5,in all libraries,2465533,flanks,177188,7.18660021991188,,,upstream and downstream flanks together
+mnchisq-q05,control,12,5,in all libraries,2465533,intergenic,569156,23.0845014039561,18.4171542585034,14.512336822394,intergenic regions
+mnchisq-q05,control,12,5,in all libraries,2465533,TE,542691,22.0111026702948,17.5607809839507,13.8375323856409,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+mnchisq-q05,control,12,5,in any library,10019983,gene,5881395,58.6966564713733,,,genes
+mnchisq-q05,control,12,5,in any library,10019983,mRNA,5604328,55.9315120594516,,,mRNA transcripts
+mnchisq-q05,control,12,5,in any library,10019983,exon,1939989,19.3612005130148,,,exons
+mnchisq-q05,control,12,5,in any library,10019983,CDS,1347736,13.4504819020152,9.53258278067002,8.38238476177018,coding sequence
+mnchisq-q05,control,12,5,in any library,10019983,exon_UTR,592291,5.91109785316003,4.18929448181679,15.7497798415531,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+mnchisq-q05,control,12,5,in any library,10019983,intron,3952628,39.447452156356,27.9570729068558,24.5837825183464,introns
+mnchisq-q05,control,12,5,in any library,10019983,nonCDS,8090082,80.7394783005121,,,complement of the exon track (not of coding sequence)
+mnchisq-q05,control,12,5,in any library,10019983,lncRNA,324142,3.234955588248,2.29266744205983,2.01603501089955,long non-coding RNA
+mnchisq-q05,control,12,5,in any library,10019983,upstream_flank,465840,4.64910968411823,3.2949022379363,2.89734051581543,upstream flanks (up to 1 kb)
+mnchisq-q05,control,12,5,in any library,10019983,downstream_flank,429779,4.28921885396412,3.03984155271773,2.67305536138296,downstream flanks (up to 1 kb)
+mnchisq-q05,control,12,5,in any library,10019983,flanks,856400,8.54692068838839,,,upstream and downstream flanks together
+mnchisq-q05,control,12,5,in any library,10019983,intergenic,3283705,32.7715625864834,23.2257576704934,20.4233460812418,intergenic regions
+mnchisq-q05,control,12,5,in any library,10019983,TE,3742083,37.3462010863691,26.4678809274502,23.2742759089905,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+mnchisq-q05,control,12,10,in all libraries,529068,gene,371401,70.1991048409656,,,genes
+mnchisq-q05,control,12,10,in all libraries,529068,mRNA,358184,67.7009382536838,,,mRNA transcripts
+mnchisq-q05,control,12,10,in all libraries,529068,exon,187688,35.4752130160962,,,exons
+mnchisq-q05,control,12,10,in all libraries,529068,CDS,140106,26.4816620925855,20.8111701140035,16.2741182906984,coding sequence
+mnchisq-q05,control,12,10,in all libraries,529068,exon_UTR,47587,8.99449598161295,7.06851349845891,27.3285453930885,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+mnchisq-q05,control,12,10,in all libraries,529068,intron,184380,34.8499625756992,27.3875747335586,21.4167982130599,introns
+mnchisq-q05,control,12,10,in all libraries,529068,nonCDS,341699,64.5850816908224,,,complement of the exon track (not of coding sequence)
+mnchisq-q05,control,12,10,in all libraries,529068,lncRNA,16516,3.12171592309495,2.45326599576665,1.91842845908936,long non-coding RNA
+mnchisq-q05,control,12,10,in all libraries,529068,upstream_flank,19031,3.59708014848753,2.82684095213339,2.21056018436242,upstream flanks (up to 1 kb)
+mnchisq-q05,control,12,10,in all libraries,529068,downstream_flank,14232,2.69001338202273,2.11400349066063,1.65312871335431,downstream flanks (up to 1 kb)
+mnchisq-q05,control,12,10,in all libraries,529068,flanks,31575,5.96804191521695,,,upstream and downstream flanks together
+mnchisq-q05,control,12,10,in all libraries,529068,intergenic,125816,23.7806860365775,18.6885513758402,14.6142525435207,intergenic regions
+mnchisq-q05,control,12,10,in all libraries,529068,TE,125557,23.731732026885,18.6500798395782,14.5841682028265,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+mnchisq-q05,control,12,10,in any library,6898320,gene,4263191,61.8004238713194,,,genes
+mnchisq-q05,control,12,10,in any library,6898320,mRNA,4080505,59.1521558872305,,,mRNA transcripts
+mnchisq-q05,control,12,10,in any library,6898320,exon,1611219,23.3566868454928,,,exons
+mnchisq-q05,control,12,10,in any library,6898320,CDS,1151290,16.6894258312169,12.2576203017681,10.4627895695088,coding sequence
+mnchisq-q05,control,12,10,in any library,6898320,exon_UTR,459961,6.66772489533684,4.89713911492463,18.8226428619854,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+mnchisq-q05,control,12,10,in any library,6898320,intron,2660626,38.5691878602326,28.327305260197,24.1794595290186,introns
+mnchisq-q05,control,12,10,in any library,6898320,nonCDS,5294961,76.7572539400898,,,complement of the exon track (not of coding sequence)
+mnchisq-q05,control,12,10,in any library,6898320,lncRNA,215753,3.12761657910912,2.29709139571036,1.96073816153204,long non-coding RNA
+mnchisq-q05,control,12,10,in any library,6898320,upstream_flank,318581,4.61824038316576,3.39188643465816,2.89522706168183,upstream flanks (up to 1 kb)
+mnchisq-q05,control,12,10,in any library,6898320,downstream_flank,281855,4.08584988808869,3.0008699547072,2.56146544668493,downstream flanks (up to 1 kb)
+mnchisq-q05,control,12,10,in any library,6898320,flanks,573657,8.31589430470027,,,upstream and downstream flanks together
+mnchisq-q05,control,12,10,in any library,6898320,intergenic,2062429,29.8975547669578,21.9583871842501,18.7431147921483,intergenic regions
+mnchisq-q05,control,12,10,in any library,6898320,TE,2241948,32.4999130223011,23.8697003537844,20.3745625774401,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+mnchisq-q05,control,12,20,in all libraries,35027,gene,19495,55.6570645502041,,,genes
+mnchisq-q05,control,12,20,in all libraries,35027,mRNA,17461,49.8501156250892,,,mRNA transcripts
+mnchisq-q05,control,12,20,in all libraries,35027,exon,7327,20.9181488565963,,,exons
+mnchisq-q05,control,12,20,in all libraries,35027,CDS,4695,13.4039455277357,8.60993948285348,7.59008681313352,coding sequence
+mnchisq-q05,control,12,20,in all libraries,35027,exon_UTR,2632,7.51420332886059,4.82670089858793,16.1000371825339,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+mnchisq-q05,control,12,20,in all libraries,35027,intron,12183,34.7817398007252,22.3418301852191,19.6954265483292,introns
+mnchisq-q05,control,12,20,in all libraries,35027,nonCDS,27359,78.1083164416022,,,complement of the exon track (not of coding sequence)
+mnchisq-q05,control,12,20,in all libraries,35027,lncRNA,1931,5.51289005624233,3.54116999816615,3.12171621643468,long non-coding RNA
+mnchisq-q05,control,12,20,in all libraries,35027,upstream_flank,1243,3.54869100979245,2.2794791857693,2.00947346298721,upstream flanks (up to 1 kb)
+mnchisq-q05,control,12,20,in all libraries,35027,downstream_flank,1418,4.04830559282839,2.6004034476435,2.29238404707632,downstream flanks (up to 1 kb)
+mnchisq-q05,control,12,20,in all libraries,35027,flanks,2395,6.8375824364062,,,upstream and downstream flanks together
+mnchisq-q05,control,12,20,in all libraries,35027,intergenic,12783,36.4947040854198,23.4421419402164,20.6654056937776,intergenic regions
+mnchisq-q05,control,12,20,in all libraries,35027,TE,17645,50.3754246723956,32.3583348615441,28.5254700357276,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+mnchisq-q05,control,12,20,in any library,2247469,gene,1471880,65.4905584904619,,,genes
+mnchisq-q05,control,12,20,in any library,2247469,mRNA,1412826,62.8629805349929,,,mRNA transcripts
+mnchisq-q05,control,12,20,in any library,2247469,exon,644100,28.6589047501879,,,exons
+mnchisq-q05,control,12,20,in any library,2247469,CDS,471855,20.9949503196707,15.8230002317172,13.0124431116687,coding sequence
+mnchisq-q05,control,12,20,in any library,2247469,exon_UTR,172258,7.66453285896268,5.77643211137986,22.5128737297594,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+mnchisq-q05,control,12,20,in any library,2247469,intron,830700,36.9615776680346,27.8563675122389,22.9083860356744,introns
+mnchisq-q05,control,12,20,in any library,2247469,nonCDS,1605743,71.4467251828613,,,complement of the exon track (not of coding sequence)
+mnchisq-q05,control,12,20,in any library,2247469,lncRNA,72829,3.24048963522967,2.44221907975063,2.00842042445183,long non-coding RNA
+mnchisq-q05,control,12,20,in any library,2247469,upstream_flank,89689,3.99066683455923,3.00759569736993,2.47337213814085,upstream flanks (up to 1 kb)
+mnchisq-q05,control,12,20,in any library,2247469,downstream_flank,72995,3.24787572153387,2.44778565854807,2.01299824084995,downstream flanks (up to 1 kb)
+mnchisq-q05,control,12,20,in any library,2247469,flanks,155441,6.91626892295289,,,upstream and downstream flanks together
+mnchisq-q05,control,12,20,in any library,2247469,intergenic,620184,27.5947743884343,20.7970066560857,17.1029426810506,intergenic regions
+mnchisq-q05,control,12,20,in any library,2247469,TE,651573,28.991412117364,21.8495930529097,17.9685636384044,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+mnchisq-q05,heat,10,1,in all libraries,7261925,gene,4471713,61.577515603645,,,genes
+mnchisq-q05,heat,10,1,in all libraries,7261925,mRNA,4284934,59.0054840830771,,,mRNA transcripts
+mnchisq-q05,heat,10,1,in all libraries,7261925,exon,1654402,22.7818656898825,,,exons
+mnchisq-q05,heat,10,1,in all libraries,7261925,CDS,1179543,16.2428419461782,11.7822421363768,10.1112973663152,coding sequence
+mnchisq-q05,heat,10,1,in all libraries,7261925,exon_UTR,474892,6.5394781686674,4.74361047679333,18.2527680756961,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+mnchisq-q05,heat,10,1,in all libraries,7261925,intron,2826257,38.918840390117,28.2309710740768,24.2272854492206,introns
+mnchisq-q05,heat,10,1,in all libraries,7261925,nonCDS,5615958,77.3342880847709,,,complement of the exon track (not of coding sequence)
+mnchisq-q05,heat,10,1,in all libraries,7261925,lncRNA,220288,3.03346564444001,2.20041707317,1.88835631615876,long non-coding RNA
+mnchisq-q05,heat,10,1,in all libraries,7261925,upstream_flank,342092,4.71076195361423,3.41709524529194,2.93248651268967,upstream flanks (up to 1 kb)
+mnchisq-q05,heat,10,1,in all libraries,7261925,downstream_flank,316177,4.35390065306375,3.1582349875784,2.71033753529074,downstream flanks (up to 1 kb)
+mnchisq-q05,heat,10,1,in all libraries,7261925,flanks,627928,8.64685327926135,,,upstream and downstream flanks together
+mnchisq-q05,heat,10,1,in all libraries,7261925,intergenic,2163333,29.7900763227381,21.6091428863673,18.5445577358034,intergenic regions
+mnchisq-q05,heat,10,1,in all libraries,7261925,TE,2488611,34.2693018724374,24.8582861203455,21.3329110088255,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+mnchisq-q05,heat,10,1,in any library,12741108,gene,7195886,56.4777097878772,,,genes
+mnchisq-q05,heat,10,1,in any library,12741108,mRNA,6827227,53.5842487168306,,,mRNA transcripts
+mnchisq-q05,heat,10,1,in any library,12741108,exon,2159871,16.9519872212056,,,exons
+mnchisq-q05,heat,10,1,in any library,12741108,CDS,1477675,11.5976962129196,8.00654600528527,7.16771440339155,coding sequence
+mnchisq-q05,heat,10,1,in any library,12741108,exon_UTR,682237,5.35461280133565,3.69659223239738,13.7861291878081,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+mnchisq-q05,heat,10,1,in any library,12741108,intron,5049165,39.6289318009077,27.358094209333,24.4918352787998,introns
+mnchisq-q05,heat,10,1,in any library,12741108,nonCDS,10592547,83.1367805688485,,,complement of the exon track (not of coding sequence)
+mnchisq-q05,heat,10,1,in any library,12741108,lncRNA,435884,3.42108394340586,2.36176784405757,2.1143296225543,long non-coding RNA
+mnchisq-q05,heat,10,1,in any library,12741108,upstream_flank,574461,4.50872090559157,3.1126251880435,2.78652097645742,upstream flanks (up to 1 kb)
+mnchisq-q05,heat,10,1,in any library,12741108,downstream_flank,533106,4.18414159898809,2.88854972486752,2.58592150150368,downstream flanks (up to 1 kb)
+mnchisq-q05,heat,10,1,in any library,12741108,flanks,1058920,8.31105112679368,,,upstream and downstream flanks together
+mnchisq-q05,heat,10,1,in any library,12741108,intergenic,4488188,35.2260415656158,24.3185299219174,21.7707207421991,intergenic regions
+mnchisq-q05,heat,10,1,in any library,12741108,TE,5215120,40.9314480341898,28.2572948740984,25.296828287286,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+mnchisq-q05,heat,10,3,in all libraries,5416388,gene,3506063,64.7306470659044,,,genes
+mnchisq-q05,heat,10,3,in all libraries,5416388,mRNA,3374102,62.2943186492548,,,mRNA transcripts
+mnchisq-q05,heat,10,3,in all libraries,5416388,exon,1454400,26.8518429625056,,,exons
+mnchisq-q05,heat,10,3,in all libraries,5416388,CDS,1057116,19.5169917664687,14.8011224656384,12.297002489608,coding sequence
+mnchisq-q05,heat,10,3,in all libraries,5416388,exon_UTR,397311,7.33534968322063,5.56291718973629,21.540204459146,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+mnchisq-q05,heat,10,3,in all libraries,5416388,intron,2059060,38.015371129247,28.8297587247733,23.9522114377725,introns
+mnchisq-q05,heat,10,3,in all libraries,5416388,nonCDS,3969079,73.2790745419272,,,complement of the exon track (not of coding sequence)
+mnchisq-q05,heat,10,3,in all libraries,5416388,lncRNA,156900,2.89676441200298,2.19682240630041,1.82515418423285,long non-coding RNA
+mnchisq-q05,heat,10,3,in all libraries,5416388,upstream_flank,254685,4.7021188290056,3.56595101688095,2.96264750421507,upstream flanks (up to 1 kb)
+mnchisq-q05,heat,10,3,in all libraries,5416388,downstream_flank,225631,4.1657096943572,3.15915383273403,2.62467408376446,downstream flanks (up to 1 kb)
+mnchisq-q05,heat,10,3,in all libraries,5416388,flanks,458058,8.456890459103,,,upstream and downstream flanks together
+mnchisq-q05,heat,10,3,in all libraries,5416388,intergenic,1453001,26.8260139413942,20.3440736340147,16.9021724336808,intergenic regions
+mnchisq-q05,heat,10,3,in all libraries,5416388,TE,1538430,28.4032458531405,21.5402007299219,17.8959334075803,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+mnchisq-q05,heat,10,3,in any library,11751221,gene,6729633,57.2675213920324,,,genes
+mnchisq-q05,heat,10,3,in any library,11751221,mRNA,6395136,54.4210342057221,,,mRNA transcripts
+mnchisq-q05,heat,10,3,in any library,11751221,exon,2070749,17.6215646016699,,,exons
+mnchisq-q05,heat,10,3,in any library,11751221,CDS,1421927,12.1002489868925,8.4217679169725,7.50171276799029,coding sequence
+mnchisq-q05,heat,10,3,in any library,11751221,exon_UTR,648861,5.52164749518369,3.84306420257488,14.347946878394,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+mnchisq-q05,heat,10,3,in any library,11751221,intron,4671335,39.7519117375122,27.6673129017388,24.6447345138393,introns
+mnchisq-q05,heat,10,3,in any library,11751221,nonCDS,9691401,82.4714384998801,,,complement of the exon track (not of coding sequence)
+mnchisq-q05,heat,10,3,in any library,11751221,lncRNA,392831,3.34289517659484,2.32665355717433,2.07247300906614,long non-coding RNA
+mnchisq-q05,heat,10,3,in any library,11751221,upstream_flank,537470,4.5737374865131,3.18331925783476,2.83555032108662,upstream flanks (up to 1 kb)
+mnchisq-q05,heat,10,3,in any library,11751221,downstream_flank,499606,4.25152416076593,2.95905892632109,2.63578981843973,downstream flanks (up to 1 kb)
+mnchisq-q05,heat,10,3,in any library,11751221,flanks,991914,8.44094413678374,,,upstream and downstream flanks together
+mnchisq-q05,heat,10,3,in any library,11751221,intergenic,4031415,34.3063499529113,23.8772043199135,21.2686849455475,intergenic regions
+mnchisq-q05,heat,10,3,in any library,11751221,TE,4680504,39.8299376720087,27.7216189174701,24.6931077456365,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+mnchisq-q05,heat,10,5,in all libraries,4194066,gene,2810994,67.0231226690281,,,genes
+mnchisq-q05,heat,10,5,in all libraries,4194066,mRNA,2712963,64.6857488651824,,,mRNA transcripts
+mnchisq-q05,heat,10,5,in all libraries,4194066,exon,1252192,29.8562778935763,,,exons
+mnchisq-q05,heat,10,5,in all libraries,4194066,CDS,922626,21.9983662631919,17.1495487357072,13.9115694826824,coding sequence
+mnchisq-q05,heat,10,5,in all libraries,4194066,exon_UTR,329592,7.85853155386682,6.12637630730025,23.8505071638945,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+mnchisq-q05,heat,10,5,in all libraries,4194066,intron,1564783,37.3094510196072,29.085807596259,23.594162130506,introns
+mnchisq-q05,heat,10,5,in all libraries,4194066,nonCDS,2947638,70.2811543738225,,,complement of the exon track (not of coding sequence)
+mnchisq-q05,heat,10,5,in all libraries,4194066,lncRNA,118742,2.83119054397332,2.20714755055173,1.79041950206549,long non-coding RNA
+mnchisq-q05,heat,10,5,in all libraries,4194066,upstream_flank,191937,4.57639436289272,3.56767849126887,2.8940707413379,upstream flanks (up to 1 kb)
+mnchisq-q05,heat,10,5,in all libraries,4194066,downstream_flank,162728,3.87995801687432,3.02474867027827,2.45365064368221,downstream flanks (up to 1 kb)
+mnchisq-q05,heat,10,5,in all libraries,4194066,flanks,338144,8.06243869314408,,,upstream and downstream flanks together
+mnchisq-q05,heat,10,5,in all libraries,4194066,intergenic,1045429,24.9263840864688,19.4321811711589,15.7632216875648,intergenic regions
+mnchisq-q05,heat,10,5,in all libraries,4194066,TE,1044048,24.8934566122708,19.4065114774758,15.7423986482666,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+mnchisq-q05,heat,10,5,in any library,10861570,gene,6299312,57.9963301806277,,,genes
+mnchisq-q05,heat,10,5,in any library,10861570,mRNA,5994764,55.1924261409723,,,mRNA transcripts
+mnchisq-q05,heat,10,5,in any library,10861570,exon,2001694,18.4291405386146,,,exons
+mnchisq-q05,heat,10,5,in any library,10861570,CDS,1380752,12.7122690366126,8.93129937393995,7.90745618061514,coding sequence
+mnchisq-q05,heat,10,5,in any library,10861570,exon_UTR,620979,5.71721215257095,4.01675996408468,15.0198383370674,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+mnchisq-q05,heat,10,5,in any library,10861570,intron,4309458,39.6761978240715,27.8754327623067,24.6799210120292,introns
+mnchisq-q05,heat,10,5,in any library,10861570,nonCDS,8870412,81.667862012582,,,complement of the exon track (not of coding sequence)
+mnchisq-q05,heat,10,5,in any library,10861570,lncRNA,356561,3.28277587862528,2.30639031199767,2.04199630579301,long non-coding RNA
+mnchisq-q05,heat,10,5,in any library,10861570,upstream_flank,501599,4.61810769529635,3.24455864244187,2.8726173221117,upstream flanks (up to 1 kb)
+mnchisq-q05,heat,10,5,in any library,10861570,downstream_flank,465914,4.28956403171917,3.01373267357922,2.66825218354572,downstream flanks (up to 1 kb)
+mnchisq-q05,heat,10,5,in any library,10861570,flanks,925451,8.52041647754422,,,upstream and downstream flanks together
+mnchisq-q05,heat,10,5,in any library,10861570,intergenic,3638441,33.4982972074939,23.5350054357462,20.8370603651152,intergenic regions
+mnchisq-q05,heat,10,5,in any library,10861570,TE,4185995,38.5395021161766,27.0768208359037,23.9728582937226,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+mnchisq-q05,heat,10,10,in all libraries,1921856,gene,1352193,70.358705334843,,,genes
+mnchisq-q05,heat,10,10,in all libraries,1921856,mRNA,1308994,68.1109302674082,,,mRNA transcripts
+mnchisq-q05,heat,10,10,in all libraries,1921856,exon,658750,34.2767616304239,,,exons
+mnchisq-q05,heat,10,10,in all libraries,1921856,CDS,487194,25.3501823237537,20.4471483808907,16.0184832952977,coding sequence
+mnchisq-q05,heat,10,10,in all libraries,1921856,exon_UTR,171569,8.92725573612175,7.20061577228177,27.3001125450402,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+mnchisq-q05,heat,10,10,in all libraries,1921856,intron,696262,36.2286248293316,29.2215676424089,22.8924437003547,introns
+mnchisq-q05,heat,10,10,in all libraries,1921856,nonCDS,1265646,65.8554022777981,,,complement of the exon track (not of coding sequence)
+mnchisq-q05,heat,10,10,in all libraries,1921856,lncRNA,54567,2.8392866062806,2.29013400349771,1.79411195124429,long non-coding RNA
+mnchisq-q05,heat,10,10,in all libraries,1921856,upstream_flank,80867,4.2077554197609,3.39392428502299,2.65883136623366,upstream flanks (up to 1 kb)
+mnchisq-q05,heat,10,10,in all libraries,1921856,downstream_flank,61220,3.18546238635985,2.56935517243261,2.01285637207791,downstream flanks (up to 1 kb)
+mnchisq-q05,heat,10,10,in all libraries,1921856,flanks,135636,7.05755269905758,,,upstream and downstream flanks together
+mnchisq-q05,heat,10,10,in all libraries,1921856,intergenic,434051,22.584990758933,18.2167785356019,14.2711911329107,intergenic regions
+mnchisq-q05,heat,10,10,in all libraries,1921856,TE,396969,20.6555017649605,16.6604762078634,13.0519696368409,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+mnchisq-q05,heat,10,10,in any library,8596197,gene,5158917,60.0139457018028,,,genes
+mnchisq-q05,heat,10,10,in any library,8596197,mRNA,4925632,57.3001293478965,,,mRNA transcripts
+mnchisq-q05,heat,10,10,in any library,8596197,exon,1804546,20.9923760472218,,,exons
+mnchisq-q05,heat,10,10,in any library,8596197,CDS,1264191,14.7063986551262,10.6032007770033,9.20933621499269,coding sequence
+mnchisq-q05,heat,10,10,in any library,8596197,exon_UTR,540391,6.28639618193953,4.53244349238807,17.0823184439506,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+mnchisq-q05,heat,10,10,in any library,8596197,intron,3364622,39.1408200626393,28.2202314402826,24.510485547169,introns
+mnchisq-q05,heat,10,10,in any library,8596197,nonCDS,6800957,79.1158811274335,,,complement of the exon track (not of coding sequence)
+mnchisq-q05,heat,10,10,in any library,8596197,lncRNA,273011,3.17595094668026,2.28983630426924,1.98882138014855,long non-coding RNA
+mnchisq-q05,heat,10,10,in any library,8596197,upstream_flank,402155,4.67828971346283,3.37301104696659,2.92960526181596,upstream flanks (up to 1 kb)
+mnchisq-q05,heat,10,10,in any library,8596197,downstream_flank,366975,4.2690389715359,3.07794439696278,2.67332717722001,downstream flanks (up to 1 kb)
+mnchisq-q05,heat,10,10,in any library,8596197,flanks,735031,8.55065327144085,,,upstream and downstream flanks together
+mnchisq-q05,heat,10,10,in any library,8596197,intergenic,2703533,31.4503378645231,22.6754526857523,19.6946065628753,intergenic regions
+mnchisq-q05,heat,10,10,in any library,8596197,TE,3007852,34.9904963788057,25.2278798563752,21.911499411828,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+mnchisq-q05,heat,10,20,in all libraries,193521,gene,126484,65.3593150097406,,,genes
+mnchisq-q05,heat,10,20,in all libraries,193521,mRNA,120267,62.1467437642427,,,mRNA transcripts
+mnchisq-q05,heat,10,20,in all libraries,193521,exon,55579,28.7198805297616,,,exons
+mnchisq-q05,heat,10,20,in all libraries,193521,CDS,38475,19.8815632411986,14.5414758038913,12.0171660414721,coding sequence
+mnchisq-q05,heat,10,20,in all libraries,193521,exon_UTR,17105,8.83883402834834,6.46476786551166,22.7019024446617,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+mnchisq-q05,heat,10,20,in all libraries,193521,intron,71099,36.7396819983361,26.8715890365398,22.2068483010429,introns
+mnchisq-q05,heat,10,20,in all libraries,193521,nonCDS,137767,71.1896900078028,,,complement of the exon track (not of coding sequence)
+mnchisq-q05,heat,10,20,in all libraries,193521,lncRNA,7217,3.7293110308442,2.72763692986832,2.25413612271096,long non-coding RNA
+mnchisq-q05,heat,10,20,in all libraries,193521,upstream_flank,7160,3.69985686307946,2.70609400275145,2.23633291376063,upstream flanks (up to 1 kb)
+mnchisq-q05,heat,10,20,in all libraries,193521,downstream_flank,5586,2.88650844094439,2.11120685745385,1.74471447713225,downstream flanks (up to 1 kb)
+mnchisq-q05,heat,10,20,in all libraries,193521,flanks,11995,6.19829372522879,,,upstream and downstream flanks together
+mnchisq-q05,heat,10,20,in all libraries,193521,intergenic,54718,28.2749675745785,20.6804541400215,17.0904559183176,intergenic regions
+mnchisq-q05,heat,10,20,in all libraries,193521,TE,63228,32.6724231478754,23.8967753639621,19.7484437809018,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+mnchisq-q05,heat,10,20,in any library,4300631,gene,2740790,63.729950325894,,,genes
+mnchisq-q05,heat,10,20,in any library,4300631,mRNA,2627620,61.0984760143337,,,mRNA transcripts
+mnchisq-q05,heat,10,20,in any library,4300631,exon,1105170,25.6978568958834,,,exons
+mnchisq-q05,heat,10,20,in any library,4300631,CDS,790618,18.3837674052947,13.7432145943845,11.5284753858218,coding sequence
+mnchisq-q05,heat,10,20,in any library,4300631,exon_UTR,314575,7.31462429583008,5.46821819263981,20.7021536148224,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+mnchisq-q05,heat,10,20,in any library,4300631,intron,1641244,38.1628649377266,28.5295408069965,23.9319634211816,introns
+mnchisq-q05,heat,10,20,in any library,4300631,nonCDS,3200447,74.418079579485,,,complement of the exon track (not of coding sequence)
+mnchisq-q05,heat,10,20,in any library,4300631,lncRNA,136300,3.16930236516455,2.36928598794185,1.9874720725907,long non-coding RNA
+mnchisq-q05,heat,10,20,in any library,4300631,upstream_flank,191148,4.44465009902035,3.32270196642046,2.78724366640916,upstream flanks (up to 1 kb)
+mnchisq-q05,heat,10,20,in any library,4300631,downstream_flank,160628,3.73498679612364,2.79217659333179,2.34221323606823,downstream flanks (up to 1 kb)
+mnchisq-q05,heat,10,20,in any library,4300631,flanks,336224,7.81801554237041,,,upstream and downstream flanks together
+mnchisq-q05,heat,10,20,in any library,4300631,intergenic,1224064,28.4624279553396,21.2777526305506,17.8488115558596,intergenic regions
+mnchisq-q05,heat,10,20,in any library,4300631,TE,1294211,30.0935141843139,22.4971092277345,18.8716670472464,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
 q05,all,22,1,in all libraries,5852939,gene,3738458,63.8731755106281,,,genes
 q05,all,22,1,in all libraries,5852939,mRNA,3594866,61.4198439450676,,,mRNA transcripts
 q05,all,22,1,in all libraries,5852939,exon,1505029,25.7140728786,,,exons
