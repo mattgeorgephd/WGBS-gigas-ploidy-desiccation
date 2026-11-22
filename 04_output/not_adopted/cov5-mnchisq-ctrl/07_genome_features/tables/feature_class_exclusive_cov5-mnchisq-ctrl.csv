@@ -1,0 +1,65 @@
+mode,set,n_loci,class,n,pct,pct_in_TE
+cov5-mnchisq-ctrl,all analysed CpGs,2297236,CDS,601432,26.1806797386076,1.20080075553013
+cov5-mnchisq-ctrl,all analysed CpGs,2297236,lncRNA,60032,2.61322737411394,23.134328358209
+cov5-mnchisq-ctrl,all analysed CpGs,2297236,exon_UTR,172422,7.50562850312288,5.99691454686757
+cov5-mnchisq-ctrl,all analysed CpGs,2297236,intron,787486,34.2797170164493,27.6413802912052
+cov5-mnchisq-ctrl,all analysed CpGs,2297236,upstream_flank,95852,4.17249250838834,20.7382214246964
+cov5-mnchisq-ctrl,all analysed CpGs,2297236,downstream_flank,66500,2.89478312197789,33.0736842105263
+cov5-mnchisq-ctrl,all analysed CpGs,2297236,intergenic,513140,22.3372783640862,36.7055774252641
+cov5-mnchisq-ctrl,all analysed CpGs,2297236,other,372,0.0161933732537711,0
+cov5-mnchisq-ctrl,eligible CpGs,374309,CDS,114672,30.6356512934501,1.57318264266778
+cov5-mnchisq-ctrl,eligible CpGs,374309,lncRNA,9111,2.43408520767601,30.797936560202
+cov5-mnchisq-ctrl,eligible CpGs,374309,exon_UTR,23145,6.18339393388885,8.83560164182329
+cov5-mnchisq-ctrl,eligible CpGs,374309,intron,195714,52.2867470458899,32.6992448164158
+cov5-mnchisq-ctrl,eligible CpGs,374309,upstream_flank,2688,0.718123261797071,50.483630952381
+cov5-mnchisq-ctrl,eligible CpGs,374309,downstream_flank,6806,1.81828382432696,49.2212753452836
+cov5-mnchisq-ctrl,eligible CpGs,374309,intergenic,22173,5.92371543297116,57.5700175889596
+cov5-mnchisq-ctrl,eligible CpGs,374309,other,0,0,
+cov5-mnchisq-ctrl,ploidy DML,120,CDS,42,35,0
+cov5-mnchisq-ctrl,ploidy DML,120,lncRNA,5,4.16666666666667,20
+cov5-mnchisq-ctrl,ploidy DML,120,exon_UTR,6,5,0
+cov5-mnchisq-ctrl,ploidy DML,120,intron,55,45.8333333333333,29.0909090909091
+cov5-mnchisq-ctrl,ploidy DML,120,upstream_flank,2,1.66666666666667,50
+cov5-mnchisq-ctrl,ploidy DML,120,downstream_flank,4,3.33333333333333,50
+cov5-mnchisq-ctrl,ploidy DML,120,intergenic,6,5,66.6666666666667
+cov5-mnchisq-ctrl,ploidy DML,120,other,0,0,
+cov5-mnchisq-ctrl,heat DML,1191,CDS,437,36.6918555835432,0.22883295194508
+cov5-mnchisq-ctrl,heat DML,1191,lncRNA,13,1.09151973131822,46.1538461538462
+cov5-mnchisq-ctrl,heat DML,1191,exon_UTR,75,6.29722921914358,18.6666666666667
+cov5-mnchisq-ctrl,heat DML,1191,intron,572,48.0268681780017,40.9090909090909
+cov5-mnchisq-ctrl,heat DML,1191,upstream_flank,16,1.34340890008396,37.5
+cov5-mnchisq-ctrl,heat DML,1191,downstream_flank,22,1.84718723761545,31.8181818181818
+cov5-mnchisq-ctrl,heat DML,1191,intergenic,56,4.70193115029387,58.9285714285714
+cov5-mnchisq-ctrl,heat DML,1191,other,0,0,
+cov5-mnchisq-ctrl,shared,0,CDS,0,,
+cov5-mnchisq-ctrl,shared,0,lncRNA,0,,
+cov5-mnchisq-ctrl,shared,0,exon_UTR,0,,
+cov5-mnchisq-ctrl,shared,0,intron,0,,
+cov5-mnchisq-ctrl,shared,0,upstream_flank,0,,
+cov5-mnchisq-ctrl,shared,0,downstream_flank,0,,
+cov5-mnchisq-ctrl,shared,0,intergenic,0,,
+cov5-mnchisq-ctrl,shared,0,other,0,,
+cov5-mnchisq-ctrl,"shared, both hyper",0,CDS,0,,
+cov5-mnchisq-ctrl,"shared, both hyper",0,lncRNA,0,,
+cov5-mnchisq-ctrl,"shared, both hyper",0,exon_UTR,0,,
+cov5-mnchisq-ctrl,"shared, both hyper",0,intron,0,,
+cov5-mnchisq-ctrl,"shared, both hyper",0,upstream_flank,0,,
+cov5-mnchisq-ctrl,"shared, both hyper",0,downstream_flank,0,,
+cov5-mnchisq-ctrl,"shared, both hyper",0,intergenic,0,,
+cov5-mnchisq-ctrl,"shared, both hyper",0,other,0,,
+cov5-mnchisq-ctrl,"shared, both hypo",0,CDS,0,,
+cov5-mnchisq-ctrl,"shared, both hypo",0,lncRNA,0,,
+cov5-mnchisq-ctrl,"shared, both hypo",0,exon_UTR,0,,
+cov5-mnchisq-ctrl,"shared, both hypo",0,intron,0,,
+cov5-mnchisq-ctrl,"shared, both hypo",0,upstream_flank,0,,
+cov5-mnchisq-ctrl,"shared, both hypo",0,downstream_flank,0,,
+cov5-mnchisq-ctrl,"shared, both hypo",0,intergenic,0,,
+cov5-mnchisq-ctrl,"shared, both hypo",0,other,0,,
+cov5-mnchisq-ctrl,"shared, opposite",0,CDS,0,,
+cov5-mnchisq-ctrl,"shared, opposite",0,lncRNA,0,,
+cov5-mnchisq-ctrl,"shared, opposite",0,exon_UTR,0,,
+cov5-mnchisq-ctrl,"shared, opposite",0,intron,0,,
+cov5-mnchisq-ctrl,"shared, opposite",0,upstream_flank,0,,
+cov5-mnchisq-ctrl,"shared, opposite",0,downstream_flank,0,,
+cov5-mnchisq-ctrl,"shared, opposite",0,intergenic,0,,
+cov5-mnchisq-ctrl,"shared, opposite",0,other,0,,
