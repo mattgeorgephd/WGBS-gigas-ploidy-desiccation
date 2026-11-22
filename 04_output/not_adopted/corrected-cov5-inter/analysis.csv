@@ -1,0 +1,2 @@
+id,filter,min_coverage,overdispersion,test,contrast_variant,ct_excluded,dml_difference,dml_qvalue,fit_id,fit_fingerprint_md5,ct_variant_list_md5,git_commit,written_utc,steps_done
+corrected-cov5-inter,corrected,5,none,not passed,inter,FALSE,20,0.01,corrected-cov5-inter,c9feb0b4cd62b4cb462cbf2b5c9a4211,"",f9c2245,2026-11-22 21:31:29,04;05;06;07;08;09

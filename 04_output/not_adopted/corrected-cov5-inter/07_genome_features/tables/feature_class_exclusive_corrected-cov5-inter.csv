@@ -1,0 +1,65 @@
+mode,set,n_loci,class,n,pct,pct_in_TE
+corrected-cov5-inter,all analysed CpGs,2265759,CDS,597293,26.3617180821085,1.08137882077975
+corrected-cov5-inter,all analysed CpGs,2265759,lncRNA,58464,2.58032738698158,22.6908866995074
+corrected-cov5-inter,all analysed CpGs,2265759,exon_UTR,170387,7.52008488104869,5.59256281289066
+corrected-cov5-inter,all analysed CpGs,2265759,intron,776526,34.2722240097027,27.3167929985603
+corrected-cov5-inter,all analysed CpGs,2265759,upstream_flank,94694,4.17935005444092,20.7225378587873
+corrected-cov5-inter,all analysed CpGs,2265759,downstream_flank,65599,2.89523289988035,33.159042058568
+corrected-cov5-inter,all analysed CpGs,2265759,intergenic,502794,22.190974415196,36.4670222795021
+corrected-cov5-inter,all analysed CpGs,2265759,other,2,8.82706413171039e-05,0
+corrected-cov5-inter,eligible CpGs,369111,CDS,113883,30.8533205458521,1.39792594153649
+corrected-cov5-inter,eligible CpGs,369111,lncRNA,8514,2.30662321090404,30.3030303030303
+corrected-cov5-inter,eligible CpGs,369111,exon_UTR,22658,6.13853285326094,7.84711801571189
+corrected-cov5-inter,eligible CpGs,369111,intron,193983,52.5541097393467,32.4961465695448
+corrected-cov5-inter,eligible CpGs,369111,upstream_flank,2599,0.704124233631618,50.4040015390535
+corrected-cov5-inter,eligible CpGs,369111,downstream_flank,6683,1.8105664691651,48.9899745623223
+corrected-cov5-inter,eligible CpGs,369111,intergenic,20791,5.63272294783954,58.8331489586841
+corrected-cov5-inter,eligible CpGs,369111,other,0,0,
+corrected-cov5-inter,ploidy DML,9791,CDS,3667,37.452762741293,0.518134715025907
+corrected-cov5-inter,ploidy DML,9791,lncRNA,125,1.2766826677561,32
+corrected-cov5-inter,ploidy DML,9791,exon_UTR,665,6.79195179246247,9.47368421052632
+corrected-cov5-inter,ploidy DML,9791,intron,4814,49.167602900623,33.3818030743664
+corrected-cov5-inter,ploidy DML,9791,upstream_flank,46,0.469819221734246,47.8260869565218
+corrected-cov5-inter,ploidy DML,9791,downstream_flank,247,2.52272495148606,41.7004048582996
+corrected-cov5-inter,ploidy DML,9791,intergenic,227,2.31845572464508,43.6123348017621
+corrected-cov5-inter,ploidy DML,9791,other,0,0,
+corrected-cov5-inter,heat DML,21200,CDS,7627,35.9764150943396,0.52445260259604
+corrected-cov5-inter,heat DML,21200,lncRNA,287,1.35377358490566,35.191637630662
+corrected-cov5-inter,heat DML,21200,exon_UTR,1413,6.66509433962264,8.9171974522293
+corrected-cov5-inter,heat DML,21200,intron,10645,50.2122641509434,32.3813997181776
+corrected-cov5-inter,heat DML,21200,upstream_flank,104,0.490566037735849,29.8076923076923
+corrected-cov5-inter,heat DML,21200,downstream_flank,492,2.32075471698113,41.0569105691057
+corrected-cov5-inter,heat DML,21200,intergenic,632,2.9811320754717,52.373417721519
+corrected-cov5-inter,heat DML,21200,other,0,0,
+corrected-cov5-inter,shared,1711,CDS,676,39.5090590298071,0.591715976331361
+corrected-cov5-inter,shared,1711,lncRNA,17,0.993571011104617,35.2941176470588
+corrected-cov5-inter,shared,1711,exon_UTR,105,6.13676212741087,1.90476190476191
+corrected-cov5-inter,shared,1711,intron,823,48.1005260081824,32.5637910085055
+corrected-cov5-inter,shared,1711,upstream_flank,4,0.233781414377557,0
+corrected-cov5-inter,shared,1711,downstream_flank,37,2.1624780829924,37.8378378378378
+corrected-cov5-inter,shared,1711,intergenic,49,2.86382232612507,38.7755102040816
+corrected-cov5-inter,shared,1711,other,0,0,
+corrected-cov5-inter,"shared, both hyper",312,CDS,112,35.8974358974359,0
+corrected-cov5-inter,"shared, both hyper",312,lncRNA,2,0.641025641025641,0
+corrected-cov5-inter,"shared, both hyper",312,exon_UTR,23,7.37179487179487,0
+corrected-cov5-inter,"shared, both hyper",312,intron,154,49.3589743589744,37.6623376623377
+corrected-cov5-inter,"shared, both hyper",312,upstream_flank,2,0.641025641025641,0
+corrected-cov5-inter,"shared, both hyper",312,downstream_flank,7,2.24358974358974,14.2857142857143
+corrected-cov5-inter,"shared, both hyper",312,intergenic,12,3.84615384615385,16.6666666666667
+corrected-cov5-inter,"shared, both hyper",312,other,0,0,
+corrected-cov5-inter,"shared, both hypo",482,CDS,210,43.5684647302905,0
+corrected-cov5-inter,"shared, both hypo",482,lncRNA,6,1.2448132780083,33.3333333333333
+corrected-cov5-inter,"shared, both hypo",482,exon_UTR,24,4.9792531120332,4.16666666666667
+corrected-cov5-inter,"shared, both hypo",482,intron,217,45.0207468879668,33.6405529953917
+corrected-cov5-inter,"shared, both hypo",482,upstream_flank,1,0.20746887966805,0
+corrected-cov5-inter,"shared, both hypo",482,downstream_flank,12,2.4896265560166,50
+corrected-cov5-inter,"shared, both hypo",482,intergenic,12,2.4896265560166,50
+corrected-cov5-inter,"shared, both hypo",482,other,0,0,
+corrected-cov5-inter,"shared, opposite",917,CDS,354,38.6041439476554,1.12994350282486
+corrected-cov5-inter,"shared, opposite",917,lncRNA,9,0.981461286804798,44.4444444444444
+corrected-cov5-inter,"shared, opposite",917,exon_UTR,58,6.32497273718648,1.72413793103448
+corrected-cov5-inter,"shared, opposite",917,intron,452,49.2911668484188,30.3097345132743
+corrected-cov5-inter,"shared, opposite",917,upstream_flank,1,0.109051254089422,0
+corrected-cov5-inter,"shared, opposite",917,downstream_flank,18,1.9629225736096,38.8888888888889
+corrected-cov5-inter,"shared, opposite",917,intergenic,25,2.72628135223555,44
+corrected-cov5-inter,"shared, opposite",917,other,0,0,
