@@ -1,0 +1,4 @@
+gene_id,gene,biotype,product,chr,gene_start,gene_end,strand,n_transcripts,n_go_terms,in_legacy_universe,n_cpg_tested,n_cpg_eligible,n_dml,n_hyper,n_hypo,min_meth_diff,max_meth_diff,dml_positions
+105330131,LOC105330131,protein_coding,gamma-tubulin complex component 4,NC_047561.1,31089120,31099581,+,1,19,TRUE,52,26,1,1,0,53.9945799457995,53.9945799457995,31098854
+105334154,LOC105334154,protein_coding,uncharacterized LOC105334154,NC_047561.1,57102807,57118830,-,2,0,FALSE,23,8,1,0,1,-50.1879178700004,-50.1879178700004,57107606
+105337663,LOC105337663,protein_coding,myosin-9,NC_047561.1,6738639,6743417,+,1,0,FALSE,34,10,1,0,1,-50.5867215645908,-50.5867215645908,6740817
