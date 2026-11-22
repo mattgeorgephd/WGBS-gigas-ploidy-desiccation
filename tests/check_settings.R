@@ -38,8 +38,34 @@ ok("config$modes and require_mode() appear in no code file", length(hits) == 0, 
 steps_q <- list.files("01_pipeline", pattern = "^(0[5-9]|1[01])_.*\\.R$", full.names = TRUE)
 hits_q <- unlist(lapply(steps_q, function(f) { l <- sub("#.*$", "", readLines(f, warn = FALSE)); f[grepl("config\\$dml_qvalue", l)] }))
 ok("steps 05 to 11 use no config$dml_qvalue outside comments", length(steps_q) == 7 && length(hits_q) == 0, paste(unique(hits_q), collapse = ", "))
+# Options ctrl and inter: the code that every existing fit depends on (the functions in
+# the fingerprint of fit_fingerprint(), and fit_fingerprint() itself) is that of commit
+# 76a900b (before the options), as R parses it, so the paper's fit and every cached fit
+# keep their fingerprints.
+fit_functions <- function(rev) {
+  e <- new.env()
+  files <- c("01_pipeline/05_differential_methylation.R", list.files("02_R_functions", pattern = "\\.R$", full.names = TRUE))
+  for (f in files) {
+    text <- if (is.null(rev)) readLines(f, warn = FALSE) else
+      suppressWarnings(system2("git", c("show", paste0(rev, ":", f)), stdout = TRUE, stderr = FALSE))
+    if (length(text) == 0) next
+    for (x in parse(text = text, keep.source = FALSE)) {
+      if (is.call(x) && identical(x[[1]], as.name("<-")) && is.name(x[[2]]) && is.call(x[[3]]) && identical(x[[3]][[1]], as.name("function"))) {
+        assign(as.character(x[[2]]), paste(deparse(x[[3]]), collapse = "\n"), envir = e)
+      }
+    }
+  }
+  e
+}
+fit_code <- c("fit_mode", "read_filtered_counts", "read_cov", "first_line_lost", "upper_coverage_cutoff", "cpg_key", "key_to_position",
+              "scale_counts_like_methylkit", "make_methylraw", "fit_by_sequence", "import_united", "sequence_parts", "test_part",
+              "diffmeth_from_parts", "fit_fingerprint", "fingerprint_key")
+now_f <- fit_functions(NULL); old_f <- fit_functions("76a900b")
+changed_f <- fit_code[!vapply(fit_code, function(n) exists(n, now_f) && exists(n, old_f) && identical(get(n, now_f), get(n, old_f)), logical(1))]
+ok("the fitting code of every existing fit (fit_mode, fit_by_sequence, their helpers, fit_fingerprint) is that of 76a900b",
+   length(changed_f) == 0, paste(changed_f, collapse = ", "))
 
-# ---- 64 ids x gene-level GO x diagnostics ----------------------------------------------------
+# ---- 192 ids x gene-level GO x diagnostics ----------------------------------------------------
 source(here("02_R_functions", "analyses.R"))
 source(here("02_R_functions", "paths.R"))
 # The write paths are resolved with dir.create() masked: the functions above are
@@ -50,16 +76,23 @@ paper_dirs <- here(c("04_output", "05_manuscript"))
 steps_written <- c("04_cpg_coverage", "05_differential_methylation", "06_dml_figures", "07_genome_features", "08_gene_annotation",
                    "09_go_enrichment_legacy", "10_go_enrichment_gene_level", "11_semantic_similarity")
 under <- function(p, d) startsWith(p, paste0(d, "/"))
-tokens <- c("corrected", "cov5", "mnchisq", "ctexcl", "d50", "q05")
-ids <- unique(vapply(0:63, function(k) analysis_id(tokens[bitwAnd(k, 2^(0:5)) > 0]), ""))
-ok("64 analysis ids", length(ids) == 64 && identical(analysis_tokens, tokens), paste(ids, collapse = " "))
+tokens6 <- c("corrected", "cov5", "mnchisq", "ctexcl", "d50", "q05")
+ids6 <- unique(vapply(0:63, function(k) analysis_id(tokens6[bitwAnd(k, 2^(0:5)) > 0]), ""))
+ids <- unique(c(ids6, unlist(lapply(c("ctrl", "inter"), function(v) vapply(0:63, function(k) analysis_id(c(tokens6[bitwAnd(k, 2^(0:5)) > 0], v)), "")))))
+ok("192 analysis ids (64 without ctrl or inter, 64 with ctrl, 64 with inter), all valid",
+   length(ids6) == 64 && length(ids) == 192 && identical(analysis_tokens, c("corrected", "cov5", "mnchisq", "ctrl", "inter", "ctexcl", "d50", "q05")) &&
+     sum(grepl("(^|-)ctrl(-|$)", ids)) == 64 && sum(grepl("(^|-)inter(-|$)", ids)) == 64 &&
+     !any(grepl("ctrl", ids) & grepl("inter", ids)) && all(vapply(ids, function(id) !stops(analysis_spec(id)), logical(1))),
+   paste(length(ids), "ids"))
 bad <- character(0)
 for (id in ids) for (g in c("TRUE", "FALSE")) for (d in c("none", "all")) {
   cfg <- settings(c(WGBS_ANALYSIS = id, WGBS_GENE_LEVEL_GO = g, WGBS_DIAGNOSTICS = d))
   a <- cfg$analysis
   want_kind <- if (id == "legacy" && g == "FALSE" && d == "none") "paper" else "optional"
   fit_want <- analysis_id(setdiff(a$tokens, c("ctexcl", "d50", "q05")))
+  variant_want <- if ("ctrl" %in% a$tokens) "ctrl" else if ("inter" %in% a$tokens) "inter" else "none"
   if (!(cfg$min_coverage == 10 && a$min_coverage == (if ("cov5" %in% a$tokens) 5 else 10) && a$fit_id == fit_want &&
+        a$contrast_variant == variant_want && a$base_fit_id == analysis_id(setdiff(a$tokens, c("ctrl", "inter", "ctexcl", "d50", "q05"))) &&
         cfg$dml_difference == 20 && a$dml_difference == (if ("d50" %in% a$tokens) 50 else 20) &&
         cfg$dml_qvalue == 0.01 && a$dml_qvalue == (if ("q05" %in% a$tokens) 0.05 else 0.01) &&
         cfg$run_kind == want_kind && identical(cfg$addons$gene_level_go, g == "TRUE") &&
@@ -85,7 +118,7 @@ for (id in ids) for (g in c("TRUE", "FALSE")) for (d in c("none", "all")) {
   if (cfg$run_kind == "optional" && !a$paper && stops(output_dir("05_differential_methylation", "tables")) == FALSE) bad <- c(bad, paste("output_dir", id, g, d))
 }
 rm(dir.create)
-ok("256 combinations: min_coverage 10, dml_difference 20, dml_qvalue 0.01, analysis min_coverage, dml_difference and dml_qvalue, fit_id, run kind, add-ons, read and write paths",
+ok("768 combinations: min_coverage 10, dml_difference 20, dml_qvalue 0.01, analysis min_coverage, dml_difference, dml_qvalue, contrast_variant, fit_id, base_fit_id, run kind, add-ons, read and write paths",
    length(bad) == 0, paste(bad, collapse = "; "))
 config <- settings()                                    # the paper run
 ok("paper run: manuscript_path() without arguments is 05_manuscript/", identical(manuscript_path(), here("05_manuscript")))
@@ -117,16 +150,42 @@ ok("q05: dml_qvalue 0.05, every other setting that of the analysis without q05",
 ok("q05 is the last token of an id: corrected-cov5-mnchisq-ctexcl-d50-q05, mnchisq-q05, d50-q05",
    analysis_id(c("q05", "d50", "ctexcl", "mnchisq", "cov5", "corrected")) == "corrected-cov5-mnchisq-ctexcl-d50-q05" &&
      analysis_id(c("q05", "mnchisq")) == "mnchisq-q05" && analysis_id(c("q05", "d50")) == "d50-q05")
+ok("ctrl and inter come after mnchisq and before ctexcl: corrected-cov5-mnchisq-ctrl-ctexcl-d50-q05, mnchisq-inter-q05, inter-ctexcl",
+   analysis_id(c("q05", "d50", "ctexcl", "ctrl", "mnchisq", "cov5", "corrected")) == "corrected-cov5-mnchisq-ctrl-ctexcl-d50-q05" &&
+     analysis_id(c("q05", "inter", "mnchisq")) == "mnchisq-inter-q05" && analysis_id(c("ctexcl", "inter")) == "inter-ctexcl")
+ok("fit ids of ctrl and inter keep the token: ctrl -> ctrl, corrected-cov5-mnchisq-inter-ctexcl-d50-q05 -> corrected-cov5-mnchisq-inter, mnchisq-ctrl-q05 -> mnchisq-ctrl",
+   analysis_spec("ctrl")$fit_id == "ctrl" && analysis_spec("corrected-cov5-mnchisq-inter-ctexcl-d50-q05")$fit_id == "corrected-cov5-mnchisq-inter" &&
+     analysis_spec("mnchisq-ctrl-q05")$fit_id == "mnchisq-ctrl" && analysis_spec("inter-d50")$fit_id == "inter")
+ok("base_fit_id: ctrl -> legacy, inter-ctexcl -> legacy, cov5-mnchisq-inter -> cov5-mnchisq, corrected-ctrl-q05 -> corrected; without ctrl or inter base_fit_id = fit_id",
+   analysis_spec("ctrl")$base_fit_id == "legacy" && analysis_spec("inter-ctexcl")$base_fit_id == "legacy" &&
+     analysis_spec("cov5-mnchisq-inter")$base_fit_id == "cov5-mnchisq" && analysis_spec("corrected-ctrl-q05")$base_fit_id == "corrected" &&
+     all(vapply(ids6, function(id) { x <- analysis_spec(id); x$base_fit_id == x$fit_id && x$contrast_variant == "none" }, logical(1))))
+ok("ctrl and inter: every other setting that of the analysis without the token (filter, coverage, model, ctexcl, thresholds)",
+   all(vapply(ids6, function(id) {
+     x <- analysis_spec(id)
+     all(vapply(c("ctrl", "inter"), function(v) {
+       y <- analysis_spec(analysis_id(c(x$tokens, v)))
+       y$contrast_variant == v && y$base_fit_id == x$fit_id && !y$paper &&
+         identical(x[c("filter", "min_coverage", "overdispersion", "test", "ct_excluded", "dml_difference", "dml_qvalue")],
+                   y[c("filter", "min_coverage", "overdispersion", "test", "ct_excluded", "dml_difference", "dml_qvalue")])
+     }, logical(1)))
+   }, logical(1))))
+ok("an id with both ctrl and inter stops, saying they are mutually exclusive: ctrl-inter, corrected-cov5-mnchisq-ctrl-inter-q05",
+   stops(analysis_spec("ctrl-inter")) && stops(analysis_spec("corrected-cov5-mnchisq-ctrl-inter-q05")) &&
+     analysis_id(c("inter", "ctrl")) == "ctrl-inter" &&
+     grepl("mutually exclusive", tryCatch(analysis_spec("ctrl-inter"), error = conditionMessage)))
 # Stamps: fixtures in a temporary folder (not_adopted_path() is pointed there for these checks).
 local({
   real_path <- not_adopted_path
   tmp <- tempfile("stamps"); dir.create(tmp)
   on.exit({ not_adopted_path <<- real_path; unlink(tmp, recursive = TRUE) })
   not_adopted_path <<- function(...) file.path(tmp, ...)
-  stamp <- function(id, dml_difference = NULL, dml_qvalue = NULL) {
+  stamp <- function(id, dml_difference = NULL, dml_qvalue = NULL, contrast_variant = NULL) {
     a <- analysis_spec(id)
     row <- data.table(id = a$id, filter = a$filter, min_coverage = format(a$min_coverage), overdispersion = a$overdispersion,
-                      test = a$test, ct_excluded = as.character(a$ct_excluded))
+                      test = a$test)
+    if (!is.null(contrast_variant)) row[, contrast_variant := contrast_variant]
+    row[, ct_excluded := as.character(a$ct_excluded)]
     if (!is.null(dml_difference)) row[, dml_difference := dml_difference]
     if (!is.null(dml_qvalue)) row[, dml_qvalue := dml_qvalue]
     row[, `:=`(fit_id = a$fit_id, fit_fingerprint_md5 = "", ct_variant_list_md5 = "", git_commit = "", written_utc = "", steps_done = "04")]
@@ -166,6 +225,20 @@ local({
   on.exit(config <<- paper_config, add = TRUE)
   write_table <<- function(x, path) data.table::fwrite(x, path)
   on.exit(rm(write_table, envir = globalenv()), add = TRUE)
+  ok("a stamp written before ctrl and inter (no column contrast_variant) reads with contrast_variant none, after test, and passes check_stamp()",
+     with(list(s = read_stamp("mnchisq-d50-q05")), identical(s$contrast_variant, "none") &&
+            identical(match("contrast_variant", names(s)), match("test", names(s)) + 1L) &&
+            identical(names(s)[seq_along(stamp_columns)], stamp_columns)) &&
+       !stops(check_stamp(analysis_spec("mnchisq-d50-q05"), needs = "04")))
+  stamp("mnchisq-ctrl", "20", "0.01")                    # no column contrast_variant: reads as none
+  ok("check_stamp() stops for mnchisq-ctrl when its stamp has no contrast_variant (read as none)",
+     stops(check_stamp(analysis_spec("mnchisq-ctrl"), needs = "04")))
+  stamp("mnchisq-ctrl", "20", "0.01", "inter")
+  ok("check_stamp() stops for mnchisq-ctrl when its stamp says contrast_variant inter", stops(check_stamp(analysis_spec("mnchisq-ctrl"), needs = "04")))
+  stamp("mnchisq-ctrl", "20", "0.01", "ctrl")
+  ok("check_stamp() passes for mnchisq-ctrl with a stamp that says contrast_variant ctrl", !stops(check_stamp(analysis_spec("mnchisq-ctrl"), needs = "04")))
+  stamp("inter-q05", "20", "0.05", "none")
+  ok("check_stamp() stops for inter-q05 when its stamp says contrast_variant none", stops(check_stamp(analysis_spec("inter-q05"), needs = "04")))
   write_stamp(analysis_spec("cov5-q05"), "04_cpg_coverage")
   w <- fread(file.path(tmp, "cov5-q05", "analysis.csv"), colClasses = "character")
   write_analyses_included()
@@ -175,11 +248,22 @@ local({
        identical(names(inc)[seq_along(stamp_columns)], stamp_columns) &&
        identical(inc[id == "legacy", dml_qvalue], "0.01") && identical(inc[id == "cov5-q05", dml_qvalue], "0.05") &&
        identical(inc[id == "ctexcl", dml_qvalue], "0.01") && identical(inc[id == "mnchisq-d50-q05", dml_qvalue], "0.05"))
+  write_stamp(analysis_spec("cov5-inter-d50"), "04_cpg_coverage")
+  w <- fread(file.path(tmp, "cov5-inter-d50", "analysis.csv"), colClasses = "character")
+  write_analyses_included()
+  inc <- fread(file.path(tmp, "comparisons", "analyses_included.csv"), colClasses = "character")
+  ok("write_stamp() writes contrast_variant inter and fit_id cov5-inter for cov5-inter-d50; analyses_included.csv carries contrast_variant (none for the paper and old stamps)",
+     identical(w$contrast_variant, "inter") && identical(w$fit_id, "cov5-inter") && identical(names(w)[seq_along(stamp_columns)], stamp_columns) &&
+       identical(inc[id == "legacy", contrast_variant], "none") && identical(inc[id == "cov5-inter-d50", contrast_variant], "inter") &&
+       identical(inc[id == "ctexcl", contrast_variant], "none") && identical(inc[id == "mnchisq-ctrl", contrast_variant], "ctrl") &&
+       identical(names(inc)[seq_along(stamp_columns)], stamp_columns))
 })
 
 # ---- Invalid values stop -------------------------------------------------------------------
 for (v in c("cov5-corrected", "legacy-cov5", "Cov5", "5x", " ", "d50-ctexcl", "d50-mnchisq", "d20", "D50", "legacy-d50",
-            "q05-d50", "q05-mnchisq", "q01", "Q05", "q5", "legacy-q05", "q05-q05")) {
+            "q05-d50", "q05-mnchisq", "q01", "Q05", "q5", "legacy-q05", "q05-q05",
+            "ctrl-inter", "inter-ctrl", "mnchisq-ctrl-inter", "ctrl-mnchisq", "ctexcl-inter", "inter-cov5", "CTRL", "Inter", "ctrl-ctrl",
+            "legacy-ctrl", "interaction", "ctrl0")) {
   ok(sprintf("WGBS_ANALYSIS='%s' stops", v), stops(settings(c(WGBS_ANALYSIS = v))))
 }
 edited <- function(from, to) {
@@ -198,6 +282,17 @@ ok("dml_qvalue_standard = 0.05 gives the analysis q05 at q 0.05, config$dml_qval
         analysis$id == "q05" && analysis$dml_qvalue == 0.05 && dml_qvalue == 0.01 && analysis$fit_id == "legacy" && run_kind == "optional"))
 f_q2 <- edited("dml_qvalue                = 0.01,", "dml_qvalue                = 0.05,")
 ok("dml_qvalue = 0.05 stops (frozen)", stops(settings(file = f_q2)))
+cv <- 'contrast_variant           = "none",'
+ok("contrast_variant = \"both\" stops", stops(settings(file = edited(cv, 'contrast_variant           = "both",'))))
+ok("contrast_variant = NA stops", stops(settings(file = edited(cv, 'contrast_variant           = NA,'))))
+ok("contrast_variant = c(\"ctrl\", \"inter\") stops", stops(settings(file = edited(cv, 'contrast_variant           = c("ctrl", "inter"),'))))
+ok("contrast_variant = \"ctrl\" gives the analysis ctrl, fit ctrl on the base fit legacy",
+   with(settings(file = edited(cv, 'contrast_variant           = "ctrl",')),
+        analysis$id == "ctrl" && analysis$fit_id == "ctrl" && analysis$base_fit_id == "legacy" && run_kind == "optional"))
+f_inter <- edited(cv, 'contrast_variant           = "inter",')
+ok("contrast_variant = \"inter\" gives the analysis inter; with WGBS_ANALYSIS=ctrl the variable wins (ctrl)",
+   with(settings(file = f_inter), analysis$id == "inter" && analysis$contrast_variant == "inter") &&
+     settings(c(WGBS_ANALYSIS = "ctrl"), file = f_inter)$analysis$id == "ctrl")
 ok("min_coverage = 5 stops (frozen)", stops(settings(file = edited("min_coverage              = 10,", "min_coverage              = 5,"))))
 ok("dml_difference = 15 stops (frozen)", stops(settings(file = edited("dml_difference            = 20,", "dml_difference            = 15,"))))
 ok("WGBS_GENE_LEVEL_GO=yes stops", stops(settings(c(WGBS_GENE_LEVEL_GO = "yes"))))
@@ -245,7 +340,14 @@ plans <- list(
   list(args = c("--qvalue", "0.05", "--coverage", "5", "--exclude-ct-variants"), id = "cov5-ctexcl-q05", steps = "04 05 06 07 08 09 13"),
   list(args = c("--coverage-filter", "--coverage", "5", "--overdispersion", "--exclude-ct-variants", "--difference", "50", "--qvalue", "0.05"),
        id = "corrected-cov5-mnchisq-ctexcl-d50-q05", steps = "04 05 06 07 08 09 13"),
-  list(args = c("--qvalue", "0.05", "--gene-level-go"), id = "q05", steps = "04 05 06 07 08 09 10 11 13"))
+  list(args = c("--qvalue", "0.05", "--gene-level-go"), id = "q05", steps = "04 05 06 07 08 09 10 11 13"),
+  list(args = "--controls-only-ploidy", id = "ctrl", steps = "04 05 06 07 08 09 13"),
+  list(args = "--interaction", id = "inter", steps = "04 05 06 07 08 09 13"),
+  list(args = c("--interaction", "--overdispersion"), id = "mnchisq-inter", steps = "04 05 06 07 08 09 13"),
+  list(args = c("--qvalue", "0.05", "--controls-only-ploidy", "--coverage", "5"), id = "cov5-ctrl-q05", steps = "04 05 06 07 08 09 13"),
+  list(args = c("--coverage-filter", "--coverage", "5", "--overdispersion", "--interaction", "--exclude-ct-variants", "--difference", "50", "--qvalue", "0.05"),
+       id = "corrected-cov5-mnchisq-inter-ctexcl-d50-q05", steps = "04 05 06 07 08 09 13"),
+  list(args = c("--controls-only-ploidy", "--gene-level-go"), id = "ctrl", steps = "04 05 06 07 08 09 10 11 13"))
 for (p in plans) {
   out <- suppressWarnings(system2(rscript, c("run_pipeline.R", "--plan", p$args), stdout = TRUE, stderr = TRUE))
   got_id <- sub("^  Analysis: ([^ ]+).*", "\\1", grep("^  Analysis:", out, value = TRUE))
@@ -278,6 +380,23 @@ ok("--plan --qvalue 0.01 --overdispersion is mnchisq at q 0.01",
    any(grepl("Analysis: mnchisq (", out, fixed = TRUE)) && any(grepl("a q-value below 0.01", out, fixed = TRUE)))
 out <- suppressWarnings(system2(rscript, c("run_pipeline.R", "--overdispersion", "--overdispersion", "--plan"), stdout = TRUE, stderr = TRUE))
 ok("a switch given twice stops", !is.null(attr(out, "status")))
+out <- suppressWarnings(system2(rscript, c("run_pipeline.R", "--plan", "--controls-only-ploidy", "--interaction"), stdout = TRUE, stderr = TRUE))
+ok("--controls-only-ploidy with --interaction stops before a step starts, saying they cannot be given together",
+   !is.null(attr(out, "status")) && any(grepl("cannot be given together", out, fixed = TRUE)) && !any(grepl("Plan of this run", out, fixed = TRUE)))
+out <- suppressWarnings(system2(rscript, c("run_pipeline.R", "--plan", "--controls-only-ploidy"), stdout = TRUE, stderr = TRUE))
+ok("--plan of ctrl names the control-only contrast, the fit ctrl, the heat contrast of the paper's fit, and the state of the cache",
+   any(grepl("Analysis: ctrl (", out, fixed = TRUE)) && any(grepl("contrasts with the ploidy contrast on the controls only (ctrl)", out, fixed = TRUE)) &&
+     any(grepl("Contrasts: ploidy on the 12 control libraries only", out, fixed = TRUE)) &&
+     any(grepl("Fit of step 05: methylkit_ctrl.rds (the control-only ploidy contrast; the united table and the heat contrast from methylkit_legacy.rds, the paper's fit), ", out, fixed = TRUE)) &&
+     any(grepl("in the cache \\(reused|not in the cache: fitted by step 05, the control-only ploidy contrast by sequence, about 12 minutes|not in the cache, nor is methylkit_legacy.rds", out)))
+out <- suppressWarnings(system2(rscript, c("run_pipeline.R", "--plan", "--interaction", "--coverage", "5", "--overdispersion", "--qvalue", "0.05"), stdout = TRUE, stderr = TRUE))
+ok("--plan of cov5-mnchisq-inter-q05 names the interaction, the fit cov5-mnchisq-inter on cov5-mnchisq, and 45 minutes or the cache",
+   any(grepl("Analysis: cov5-mnchisq-inter-q05 (", out, fixed = TRUE)) && any(grepl("tested ploidy by heat interaction", out, fixed = TRUE)) &&
+     any(grepl("Fit of step 05: methylkit_cov5-mnchisq-inter.rds (the interaction contrast; the united table and the ploidy and heat contrasts from methylkit_cov5-mnchisq.rds, the fit of the analysis cov5-mnchisq), ", out, fixed = TRUE)) &&
+     any(grepl("about 45 minutes|in the cache \\(reused", out)))
+out <- suppressWarnings(system2(rscript, c("run_pipeline.R", "--plan", "--overdispersion"), stdout = TRUE, stderr = TRUE))
+ok("--plan of mnchisq says contrasts of the paper and keeps its fit line",
+   any(grepl("contrasts of the paper, C-to-T", out, fixed = TRUE)) && any(grepl("Fit of step 05: methylkit_mnchisq.rds, ", out, fixed = TRUE)))
 
 # ---- Maps -------------------------------------------------------------------------------------
 read_csv_file <- function(f) utils::read.csv(f, stringsAsFactors = FALSE, colClasses = "character", na.strings = NULL, check.names = FALSE,

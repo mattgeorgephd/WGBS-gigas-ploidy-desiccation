@@ -37,6 +37,24 @@
 #             cutoff is applied after the test, so the fit of the analysis without
 #             q05 is reused as with d50. The counts of
 #             dml_counts_by_threshold_<id>.csv are taken at q < 0.05.
+#             With option ctrl (not adopted; issue I-07) the ploidy contrast is
+#             tested on the 12 control libraries alone (diploid against triploid
+#             controls, no covariate), on the CpGs and with the normalisation of
+#             the analysis (all 22 libraries); its meth.diff is triploid minus
+#             diploid among the controls and its q-values are SLIM over all
+#             tested CpGs. The heat contrast is that of the fit of the analysis
+#             without ctrl, reused. The shared set is the overlap of this ploidy
+#             list with the heat list.
+#             With option inter (not adopted; issue I-02) a third contrast is
+#             tested, the ploidy by heat interaction (indicator "triploid and
+#             heat-treated", covariates ploidy and heat), with its own DML list
+#             by the rule of the analysis; its difference is (triploid heat -
+#             triploid control) - (diploid heat - diploid control) from pooled
+#             percentages. The ploidy and heat contrasts, and the shared set, are
+#             those of the analysis without inter (its fit is reused). Both
+#             options use the definitions of analyses A4_ploidy_in_control and
+#             A2_interaction of 06_diagnostics/dml_sensitivity.R (section
+#             "Options ctrl and inter" below).
 #
 # Run       Rscript 01_pipeline/05_differential_methylation.R     (after step 01)
 #           WGBS_CORES sets the number of forked workers of the model fits
@@ -50,6 +68,10 @@
 #           the part it was fitting; the same command run again goes on from the
 #           saved parts. Results are identical to a fit in one piece (section
 #           "Fit by sequence" below; tests/check_fit_by_sequence.R).
+#           An analysis with option ctrl or inter takes the fit of the analysis
+#           without the token as that analysis takes it (fitting it first when it
+#           is not in the cache) and fits only its new contrast, by sequence,
+#           resumable in the same way (tests/check_contrast_variants.R).
 #
 # Inputs    03_input_files/metadata/wgbs_libraries.csv
 #           22 coverage files listed in 03_input_files/gannet_manifest.csv (cache)
@@ -67,7 +89,14 @@
 #                                                DML of either list, with united_row; tracked, and read by
 #                                                step 13, where the per-CpG tables are not tracked
 #             dml_counts_by_threshold_<mode>.csv DML counts at difference thresholds of 5 to 50 points
-#             dml_counts_by_mode.csv             headline counts of the analysis (column mode: its id)
+#             dml_counts_by_mode.csv             headline counts of the analysis (column mode: its id); with
+#                                                option inter four columns more, at the end: interaction_dml,
+#                                                interaction_hyper, interaction_hypo, interaction_in_shared
+#                                                (interaction DML among the shared loci)
+#             diffmeth_interaction_<id>.csv.gz   (inter) p, q and the interaction difference (column meth.diff;
+#                                                not methylKit's) at every analysed CpG, with the pooled
+#                                                percentages of the four groups (pct_diploid_control, ...)
+#             dml_interaction_<id>.csv           (inter) the interaction DML, by the rule of the analysis
 #             ct_exclusion_summary_<id>.csv      (ctexcl) per contrast: CpGs and DML before and after the
 #                                                removal, removed, and kept CpGs and DML that the variant
 #                                                screen could not assess
@@ -78,9 +107,12 @@
 #           step for the analysis to make them (half a minute with the fit in the cache).
 #           With option ctexcl the step stops when the variant list is not the one
 #           step 04 used (md5 in the stamp of the analysis folder).
-#           04_output/05_differential_methylation/bed/dml_<set>_<mode>.bed
+#           04_output/05_differential_methylation/bed/dml_<set>_<mode>.bed   (inter: also dml_interaction_<id>.bed, 4th column
+#             the interaction difference)
 #           04_output/05_differential_methylation/cache/methylkit_<fit id>.rds   (not tracked; the fit
-#             id is the analysis id without ctexcl, d50 and q05, "legacy" for the paper)
+#             id is the analysis id without ctexcl, d50 and q05, "legacy" for the paper; for a fit id
+#             with ctrl or inter the file holds the new contrast only, p-values and methylKit's
+#             differences, and names the fit it was made on, methylkit_<base fit id>.rds)
 #           04_output/05_differential_methylation/cache/parts_<fit id>/   (not tracked; the saved
 #             import and parts of a fit by sequence while it is under way; deleted when the fit is
 #             written)
@@ -188,6 +220,15 @@
 #             worker of a test) can outlive it and keep its memory: before a
 #             rerun, list such processes with pgrep -af 05_differential and stop
 #             them.
+#           - Options ctrl and inter (section "Options ctrl and inter" below):
+#             the fit of the analysis without the token is taken by cached_fit()
+#             under its own, unchanged fingerprint; only the new contrast is
+#             fitted (about half the time of a fit: an estimated 12 minutes at
+#             10x and 45 at 5x on WGBS_CORES=2), and its fingerprint holds the
+#             key of that fit's fingerprint, so a base fit made again refits it.
+#             None of the code of the paper's fit or of the fit by sequence was
+#             changed for them, so every cached fit keeps its fingerprint
+#             (tests/check_settings.R compares that code with commit 76a900b).
 #           - Known limits, not fixed: when a fork fails (the import or the
 #             memory watch), there is no fallback to running in the process; the
 #             step stops. On Windows the import runs in the R process, which then
@@ -729,6 +770,234 @@ cached_fit <- function(a, fit_whole = fit_mode, fit_parts = fit_by_sequence) {
   fit
 }
 
+# ---- Options ctrl and inter: a variant of the contrasts -------------------------------
+# An analysis with token ctrl or inter (config$analysis$contrast_variant) has the
+# fit of the analysis without the token (its base_fit_id: the paper's fit for
+# ctrl and inter, the fit of mnchisq for mnchisq-ctrl, ...), taken with
+# cached_fit() above exactly as that analysis takes it, and one contrast more:
+#   ctrl   ploidy among the 12 control libraries alone: triploid (1) against
+#          diploid (0), no covariate (all are controls). It replaces the ploidy
+#          contrast of the base fit; the heat contrast is that of the base fit.
+#          meth.diff is methylKit's: triploid minus diploid among the controls.
+#   inter  the indicator "triploid and heat-treated" tested with ploidy and heat
+#          as covariates, all 22 libraries: with both main effects in the null
+#          model the full model has one parameter per group, so the test is that
+#          of the ploidy by heat interaction (checked in variant_design()). Its
+#          meth.diff is NOT methylKit's for this coding (triploid heat minus all
+#          other libraries) but (triploid heat - triploid control) - (diploid
+#          heat - diploid control) from the pooled, coverage-weighted percentages
+#          (methylated over methylated plus unmethylated reads of a group),
+#          computed in interaction_groups(); positive ("hyper") means that heat
+#          minus control is higher in triploids. It is added as a third contrast,
+#          "interaction"; the ploidy and heat contrasts are those of the base fit.
+# These are the definitions of analyses A4_ploidy_in_control and A2_interaction
+# of 06_diagnostics/dml_sensitivity.R (and, with mnchisq, of their _mn_chisq rows),
+# so that their results can be compared. The CpGs are those of the united table
+# of the base fit (coverage filter over all 22 libraries) with its normalisation;
+# the new contrast is tested on those rows (ctrl: the 12 control columns of
+# them), and its SLIM q-values are computed once over all of them.
+# The new contrast is fitted by sequence, as fit_by_sequence() fits a contrast
+# (sequence_parts(), the same call of calculateDiffMeth() on each part, q-values
+# over all CpGs by diffmeth_from_parts()), with the methylKit settings of the
+# analysis (overdispersion "MN" and the chi-squared test with mnchisq). Its parts
+# are saved in parts_<fit id>/ under the key of its fingerprint, and the result
+# (p-values and methylKit's differences of the new contrast only, not a copy of
+# the base fit) in methylkit_<fit id>.rds. Its fingerprint (variant_fingerprint())
+# holds the key of the fingerprint of the base fit as cached_fit() returned it,
+# so a base fit made again (other inputs or fitting code) refits the new contrast
+# too; it also holds the library sheet, the design, the model, the methylKit
+# version and the code below. Nothing of the paper's fit or of any other fit,
+# and none of their fingerprints, changes.
+
+# The libraries, tested indicator and covariates of the new contrast.
+variant_design <- function(a) {
+  if (a$contrast_variant == "ctrl") {
+    keep <- lib$treatment == "control"
+    d <- list(contrast = "ploidy", keep = keep, treatment = as.integer(lib$ploidy[keep] == "triploid"), covariates = NULL,
+              described = "ploidy among the control libraries: triploid (1) against diploid (0), no covariate")
+  } else if (a$contrast_variant == "inter") {
+    keep <- rep(TRUE, nrow(lib))
+    d <- list(contrast = "interaction", keep = keep, treatment = as.integer(lib$ploidy == "triploid" & lib$treatment == "heat"),
+              covariates = data.frame(ploidy = lib$ploidy, heat = lib$treatment),
+              described = "triploid and heat-treated (1) against the other libraries (0), covariates ploidy and heat")
+  } else {
+    stop("variant_design(): the analysis '", a$id, "' has no variant of the contrasts.", call. = FALSE)
+  }
+  if (sum(d$treatment == 1) < 2 || sum(d$treatment == 0) < 2) stop("Fewer than two libraries in a group of ", d$described, ".", call. = FALSE)
+  frame <- data.frame(tested = d$treatment)
+  if (!is.null(d$covariates)) frame <- cbind(frame, d$covariates)
+  design <- stats::model.matrix(~ ., frame)
+  if (qr(design)$rank < ncol(design) || nrow(design) <= ncol(design)) stop("The design of ", d$described, " is not of full rank.", call. = FALSE)
+  if (d$contrast == "interaction") {
+    # one parameter per group: the coded model spans the model ploidy * heat, so its test is the interaction test
+    factorial <- stats::model.matrix(~ ploidy * heat, d$covariates)
+    if (ncol(design) != ncol(factorial) || qr(cbind(design, factorial))$rank != ncol(factorial)) {
+      stop("The coding of the interaction does not span the model ploidy * heat.", call. = FALSE)
+    }
+  }
+  d
+}
+# The united table (or a part of it) with the libraries and the tested indicator of the new contrast.
+variant_object <- function(obj, d) {
+  methylKit::reorganize(obj, sample.ids = obj@sample.ids[d$keep], treatment = d$treatment)
+}
+# The test of the new contrast on the rows of one part, as test_part() tests the paper's contrasts.
+variant_test_part <- function(obj, d, a) {
+  dm <- if (is.null(d$covariates)) {
+    if (a$overdispersion == "none") calculateDiffMeth(obj, mc.cores = config$cores)
+    else calculateDiffMeth(obj, overdispersion = "MN", test = "Chisq", mc.cores = config$cores)
+  } else {
+    if (a$overdispersion == "none") calculateDiffMeth(obj, covariates = d$covariates, mc.cores = config$cores)
+    else calculateDiffMeth(obj, covariates = d$covariates, overdispersion = "MN", test = "Chisq", mc.cores = config$cores)
+  }
+  x <- getData(dm)
+  list(pvalue = x$pvalue, meth.diff = x$meth.diff)
+}
+# The pooled, coverage-weighted percent methylation of the four groups at every
+# CpG of a united table, and the interaction difference (as interaction_contrast()
+# of 06_diagnostics/dml_sensitivity.R computes it).
+interaction_groups <- function(united) {
+  x <- as.data.table(getData(united))
+  pct <- function(ploidy, treatment) {
+    j <- which(lib$ploidy == ploidy & lib$treatment == treatment)
+    m <- rowSums(as.matrix(x[, paste0("numCs", j), with = FALSE]))
+    100 * m / (m + rowSums(as.matrix(x[, paste0("numTs", j), with = FALSE])))
+  }
+  g <- data.table(pct_diploid_control = pct("diploid", "control"), pct_diploid_heat = pct("diploid", "heat"),
+                  pct_triploid_control = pct("triploid", "control"), pct_triploid_heat = pct("triploid", "heat"))
+  g[, interaction_diff := (pct_triploid_heat - pct_triploid_control) - (pct_diploid_heat - pct_diploid_control)]
+  if (anyNA(g$interaction_diff)) stop("A group without reads at a tested CpG: the interaction difference cannot be computed.", call. = FALSE)
+  g
+}
+
+# The new contrast, part by part, on the united table of the base fit, reusing the
+# parts saved by an earlier run with the same fingerprint. Returns its p-values and
+# methylKit's differences for every CpG, in the order of the united table.
+fit_variant_by_sequence <- function(a, base, fingerprint) {
+  mode <- a$fit_id
+  fp <- fingerprint_key(fingerprint)
+  prefix <- paste0(substr(fp, 1, 12), "_")
+  dir <- parts_dir(a)
+  dir.create(dir, recursive = TRUE, showWarnings = FALSE)
+  entries <- setdiff(list.files(dir), c("lock", "stale"))
+  leftover <- entries[endsWith(entries, ".part")]
+  if (length(leftover) > 0) unlink(file.path(dir, leftover))
+  stale <- setdiff(entries, leftover)
+  stale <- stale[!startsWith(stale, prefix)]
+  if (length(stale) > 0) {
+    unlink(file.path(dir, "stale"), recursive = TRUE)
+    dir.create(file.path(dir, "stale"))
+    file.rename(file.path(dir, stale), file.path(dir, "stale", stale))
+    log_msg("[%s] %d saved file(s) of another fingerprint moved to %s/stale/ (an older stale set there deleted)",
+            mode, length(stale), basename(dir))
+  }
+  gb <- function(x) if (is.na(x)) "not measured" else sprintf("%.2f GB", x)
+  d <- variant_design(a)
+  united <- base$united
+  rows <- sequence_parts(united$chr)
+  log_msg("[%s] %s: fit by sequence on the united table of the fit %s, %d parts (%s), %d CpGs, %d libraries, %d core(s)%s",
+          mode, d$described, a$base_fit_id, length(rows), paste(sprintf("%s %d", names(rows), lengths(rows)), collapse = ", "),
+          nrow(united), sum(d$keep), config$cores, if (a$overdispersion == "MN") "; overdispersion MN, chi-squared test" else "")
+  pvalue <- rep(NA_real_, nrow(united)); meth.diff <- pvalue
+  for (k in seq_along(rows)) {
+    name <- names(rows)[k]; r <- rows[[k]]
+    file <- file.path(dir, paste0(prefix, d$contrast, "_", name, ".rds"))
+    x <- if (file.exists(file)) tryCatch(suppressWarnings(readRDS(file)), error = function(e) NULL)
+    if (!(is.list(x) && identical(x$fingerprint_md5, fp) && identical(x$contrast, d$contrast) && identical(x$part, name) &&
+          identical(x$rows, r) && is.double(x$pvalue) && length(x$pvalue) == length(r) && length(x$meth.diff) == length(r))) {
+      t1 <- Sys.time(); watch <- memory_watch_start()
+      obj <- variant_object(methylKit::select(united, r), d)
+      x <- suppressMessages(variant_test_part(obj, d, a))
+      rm(obj)
+      peak <- memory_watch_stop(watch)
+      if (!is.double(x$pvalue) || length(x$pvalue) != length(r) || anyNA(x$pvalue) || length(x$meth.diff) != length(r)) {
+        stop("The ", d$contrast, " test of part ", name, " did not return a p-value for every CpG (a worker may have failed); ",
+             "run the step again (the saved parts are kept), with fewer cores if memory is short.", call. = FALSE)
+      }
+      minutes <- as.numeric(difftime(Sys.time(), t1, units = "mins"))
+      x <- c(x, list(fingerprint_md5 = fp, contrast = d$contrast, part = name, rows = r, minutes = minutes, peak_gb = peak, cores = config$cores))
+      save_rds_atomic(x, file)
+      log_msg("[%s] %s part %d of %d, %s: %d CpGs fitted in %.1f min on %d core(s), peak memory %s; saved",
+              mode, d$contrast, k, length(rows), name, length(r), minutes, config$cores, gb(peak))
+    } else {
+      log_msg("[%s] %s part %d of %d, %s: %d CpGs, saved part reused (fitted in %.1f min on %d core(s), peak memory %s)",
+              mode, d$contrast, k, length(rows), name, length(r), x$minutes, x$cores, gb(x$peak_gb))
+    }
+    pvalue[r] <- x$pvalue; meth.diff[r] <- x$meth.diff
+  }
+  list(mode = mode, contrast = d$contrast, base_fit_id = a$base_fit_id, pvalue = pvalue, meth.diff = meth.diff)
+}
+
+# What the new contrast depends on (see the section header): a change of any of it refits the new contrast only.
+variant_fingerprint <- function(a, base_fingerprint) {
+  d <- variant_design(a)
+  variant_code <- list(variant_design = variant_design, variant_object = variant_object, variant_test_part = variant_test_part,
+                       fit_variant_by_sequence = fit_variant_by_sequence, sequence_parts = sequence_parts,
+                       diffmeth_from_parts = diffmeth_from_parts)
+  list(mode = a$fit_id, contrast_variant = a$contrast_variant, base_fit_id = a$base_fit_id,
+       base_fingerprint_key = fingerprint_key(base_fingerprint),
+       sample_sheet = paste(lib$library_id, lib$legacy_sample_index, lib$ploidy, lib$treatment),
+       design = c(contrast = d$contrast, libraries = paste(lib$library_id[d$keep], collapse = ","),
+                  tested = paste(d$treatment, collapse = ""),
+                  covariates = if (is.null(d$covariates)) "none" else paste(names(d$covariates), collapse = " + ")),
+       model = c(overdispersion = a$overdispersion, test = a$test),
+       methylKit_version = as.character(utils::packageVersion("methylKit")),
+       fit_method = "by sequence: parts of the united table of the base fit tested separately, q-values over all CpGs",
+       variant_code = lapply(variant_code, function(f) deparse(utils::removeSource(f))))
+}
+
+# The fit of an analysis with ctrl or inter: the base fit from cached_fit(), and
+# the new contrast from methylkit_<fit id>.rds where its fingerprint is that of
+# this run, else fitted by sequence (under the lock of parts_<fit id>/). Returns
+# what cached_fit() returns, with the fingerprint of the new contrast, and for
+# inter the four group percentages (interaction_groups). fit_base and fit_parts
+# are for tests (tests/check_contrast_variants.R); the step never passes them.
+cached_variant_fit <- function(a, fit_base = cached_fit, fit_parts = fit_variant_by_sequence) {
+  mode <- a$fit_id
+  base <- fit_base(analysis_spec(a$base_fit_id))
+  fingerprint <- variant_fingerprint(a, base$fingerprint)
+  cache_file <- file.path(step_cache_dir(step), sprintf("methylkit_%s.rds", mode))
+  x <- NULL
+  if (file.exists(cache_file)) {
+    cached <- tryCatch(suppressWarnings(readRDS(cache_file)), error = function(e) NULL)
+    readable <- is.list(cached) && all(c("mode", "contrast", "pvalue", "meth.diff", "fingerprint") %in% names(cached)) &&
+      length(cached$pvalue) == nrow(base$united)
+    changed <- if (readable) c(names(fingerprint)[!vapply(names(fingerprint), function(p) identical(cached$fingerprint[[p]], fingerprint[[p]]), logical(1))],
+                               setdiff(names(cached$fingerprint), names(fingerprint)))
+    if (readable && length(changed) == 0) {
+      log_msg("[%s] using the cached %s contrast %s (on the fit %s): base fit, design, model, methylKit version and code are unchanged",
+              mode, cached$contrast, basename(cache_file), a$base_fit_id)
+      remove_leftovers(a, cache_file)
+      x <- cached
+    } else {
+      log_msg("[%s] the cached contrast %s %s; fitting again", mode, basename(cache_file),
+              if (!readable) "cannot be read (cut short, or not of this analysis)"
+              else paste("differs from this run in:", paste(gsub("_", " ", changed), collapse = ", ")))
+    }
+  }
+  if (is.null(x)) {
+    lock <- take_parts_lock(a)
+    on.exit(drop_parts_lock(lock), add = TRUE)
+    x <- c(fit_parts(a, base, fingerprint), list(fingerprint = fingerprint))
+    save_rds_atomic(x, cache_file)
+    unlink(parts_dir(a), recursive = TRUE)
+    log_msg("[%s] %s contrast written to %s; its saved parts deleted", mode, x$contrast, basename(cache_file))
+  }
+  d <- variant_design(a)
+  obj <- variant_object(base$united, d)
+  diffmeth <- base$diffmeth
+  groups <- NULL
+  if (d$contrast == "ploidy") {
+    diffmeth$ploidy <- diffmeth_from_parts(obj, x$pvalue, x$meth.diff)
+  } else {
+    groups <- interaction_groups(base$united)
+    diffmeth$interaction <- diffmeth_from_parts(obj, x$pvalue, groups$interaction_diff)
+  }
+  rm(obj)
+  list(mode = mode, filtering = base$filtering, united = base$united, diffmeth = diffmeth,
+       interaction_groups = groups, base_fit_id = a$base_fit_id, fingerprint = fingerprint)
+}
+
 # ---- Write the outputs of one mode -----------------------------------------------
 write_mode <- function(fit, a) {
   mode <- a$id                                  # names and the column mode carry the analysis id
@@ -740,6 +1009,10 @@ write_mode <- function(fit, a) {
 
   united <- as.data.table(getData(fit$united))
   tests <- lapply(fit$diffmeth, function(x) as.data.table(getData(x)))
+  # Option inter: the third contrast, "interaction", whose meth.diff is the
+  # interaction difference (cached_variant_fit()); its four group percentages are
+  # written next to it.
+  groups <- fit$interaction_groups
   for (contrast in names(tests)) {
     stopifnot(identical(tests[[contrast]]$chr, united$chr), identical(tests[[contrast]]$start, united$start))
     # the DML of the fit on all CpGs, as methylKit's getMethylDiff gives them
@@ -775,6 +1048,7 @@ write_mode <- function(fit, a) {
             summary$heat$dml_before, summary$heat$dml_after, summary$ploidy$cpg_kept_not_assessable)
     united <- united[!listed]
     tests <- lapply(tests, function(x) x[!listed])
+    if (!is.null(groups)) groups <- groups[!listed]
   }
   write_table(united, tab(sprintf("united_cpg_%s.csv.gz", mode)))
 
@@ -782,6 +1056,10 @@ write_mode <- function(fit, a) {
   for (contrast in names(tests)) {
     all_cpg <- copy(tests[[contrast]])
     all_cpg[, united_row := .I]                 # row in united_cpg_<mode>; the legacy row name (renumbered after an exclusion)
+    if (contrast == "interaction") {
+      stopifnot(!is.null(groups), nrow(groups) == nrow(all_cpg), identical(groups$interaction_diff, all_cpg$meth.diff))
+      all_cpg <- cbind(all_cpg, groups[, .(pct_diploid_control, pct_diploid_heat, pct_triploid_control, pct_triploid_heat)])
+    }
     write_table(all_cpg, tab(sprintf("diffmeth_%s_%s.csv.gz", contrast, mode)))
     d <- all_cpg[qvalue < max_q & abs(meth.diff) > min_diff]
     stopifnot(all(d$united_row <= nrow(united)))
@@ -816,6 +1094,7 @@ write_mode <- function(fit, a) {
   }
   write_bed(dml$ploidy, "meth.diff", "ploidy"); write_bed(dml$heat, "meth.diff", "heat")
   write_bed(shared, "meth.diff_heat", "shared")
+  if (!is.null(dml$interaction)) write_bed(dml$interaction, "meth.diff", "interaction")
 
   # DML counts across difference thresholds (Figure 2A, 2B), at the q-value cutoff of the analysis.
   sweep <- rbindlist(lapply(config$dml_difference_sweep, function(th) {
@@ -830,13 +1109,23 @@ write_mode <- function(fit, a) {
   sweep[, pct_hyper := fifelse(n > 0, 100 * n_hyper / n, NA_real_)]
   write_table(sweep, tab(sprintf("dml_counts_by_threshold_%s.csv", mode)))
 
-  data.table(mode = mode, cpg_analysed = nrow(united),
+  headline <- data.table(mode = mode, cpg_analysed = nrow(united),
              ploidy_dml = nrow(dml$ploidy), ploidy_hyper = sum(dml$ploidy$direction == "hyper"),
              ploidy_hypo = sum(dml$ploidy$direction == "hypo"),
              heat_dml = nrow(dml$heat), heat_hyper = sum(dml$heat$direction == "hyper"),
              heat_hypo = sum(dml$heat$direction == "hypo"),
              shared = nrow(shared), shared_both_hyper = sum(shared$class == "both_hyper"),
              shared_both_hypo = sum(shared$class == "both_hypo"), shared_opposite = sum(shared$class == "opposite"))
+  # Option inter only: four columns more, after the others (rebuild_comparison()
+  # leaves them empty for the analyses without inter); the table of every other
+  # analysis, the paper's included, keeps its columns.
+  if (!is.null(dml$interaction)) {
+    i <- dml$interaction
+    in_shared <- sum(i$united_row %in% shared$united_row)
+    headline[, `:=`(interaction_dml = nrow(i), interaction_hyper = sum(i$direction == "hyper"),
+                    interaction_hypo = sum(i$direction == "hypo"), interaction_in_shared = in_shared)]
+  }
+  headline
 }
 
 # ---- Run ----------------------------------------------------------------------------
@@ -856,7 +1145,7 @@ if (an$ct_excluded) {
          call. = FALSE)
   }
 }
-fit <- cached_fit(an)
+fit <- if (an$contrast_variant == "none") cached_fit(an) else cached_variant_fit(an)     # options ctrl and inter: the base fit and the new contrast
 headline <- write_mode(fit, an)
 fingerprint_md5 <- digest_md5(fit$fingerprint)
 rm(fit); invisible(gc(verbose = FALSE))
