@@ -1,0 +1,5 @@
+gene_id,gene,biotype,product,chr,gene_start,gene_end,strand,n_transcripts,n_go_terms,in_legacy_universe,n_cpg_tested,n_cpg_eligible,n_dml,n_hyper,n_hypo,min_meth_diff,max_meth_diff,dml_positions
+105325928,LOC105325928,protein_coding,uncharacterized LOC105325928,NC_047562.1,40674489,40688847,+,2,42,TRUE,9,7,1,0,1,-24.5325063890793,-24.5325063890793,40685928
+105340890,LOC105340890,protein_coding,caspase-8,NC_047565.1,47324220,47333255,+,2,62,TRUE,1,1,1,0,1,-21.6739160452914,-21.6739160452914,47326194
+105341203,LOC105341203,protein_coding,Golgi pH regulator,NC_047565.1,34935400,35147420,-,6,4,FALSE,153,138,1,1,0,22.4,22.4,35030701
+117680633,LOC117680633,protein_coding,protein FAM81A-like,NC_047561.1,11287677,11290875,+,3,0,FALSE,1,1,1,0,1,-25.5023360669128,-25.5023360669128,11288545

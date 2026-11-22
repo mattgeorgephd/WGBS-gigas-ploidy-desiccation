@@ -1,0 +1,5 @@
+chr,start,end,meth.diff,direction,gene_id,gene,biotype,product,n_go_terms,meth.diff_ploidy,direction_ploidy,class
+NC_047561.1,11288545,11288547,-25.5023360669128,hypo,117680633,LOC117680633,protein_coding,protein FAM81A-like,0,-20.2534125791914,hypo,both_hypo
+NC_047562.1,40685928,40685930,-24.5325063890793,hypo,105325928,LOC105325928,protein_coding,uncharacterized LOC105325928,42,30.2425308661368,hyper,opposite
+NC_047565.1,35030701,35030703,22.4,hyper,105341203,LOC105341203,protein_coding,Golgi pH regulator,4,20.1606093219637,hyper,both_hyper
+NC_047565.1,47326194,47326196,-21.6739160452914,hypo,105340890,LOC105340890,protein_coding,caspase-8,62,-22.7488891974452,hypo,both_hypo
