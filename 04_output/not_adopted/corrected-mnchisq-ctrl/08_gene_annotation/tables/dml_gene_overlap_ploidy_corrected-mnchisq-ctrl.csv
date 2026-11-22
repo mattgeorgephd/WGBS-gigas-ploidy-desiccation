@@ -1,0 +1,7 @@
+chr,start,end,meth.diff,direction,gene_id,gene,biotype,product,n_go_terms
+NC_047559.1,17911059,17911061,28.0551415797317,hyper,105338947,LOC105338947,protein_coding,cytosolic carboxypeptidase 2,6
+NC_047561.1,799855,799857,-22.4137931034483,hypo,105317066,LOC105317066,protein_coding,mitogen-activated protein kinase HOG1,15
+NC_047564.1,54217739,54217741,-28.1818181818182,hypo,105327915,LOC105327915,protein_coding,uncharacterized LOC105327915,0
+NC_047565.1,60954304,60954306,26.2962962962963,hyper,105330040,LOC105330040,protein_coding,"calcium/calmodulin-dependent 3',5'-cyclic nucleotide phosphodiesterase 1A",13
+NC_047568.1,17094385,17094387,29.688731284476,hyper,105334033,LOC105334033,protein_coding,coiled-coil domain-containing protein 57,0
+NC_047568.1,52333625,52333627,45.7627118644068,hyper,105325608,LOC105325608,protein_coding,mitochondrial Rho GTPase 1,8
