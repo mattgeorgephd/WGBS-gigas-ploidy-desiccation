@@ -45,9 +45,9 @@ The author's instructions (2026-11-22, about 04:30 UTC): "add more run variation
 
 | # | Work | State |
 |---|---|---|
-| 16 | Build the switch `--qvalue 0.05` (token `q05`, last in the token order; setting `dml_qvalue_standard`; stamp column `dml_qvalue`; fit reused, as for d50), by an agent in the working tree, not committed by it | running since 04:27 UTC |
-| 17 | Independent review of the build; apply findings; `tests/check_settings.R`; commit | after 16 |
-| 18 | The 32 q05 runs, one at a time with the batch driver (plan check, paper snapshot before and after, commit per analysis): 16 at 10x, 16 at 5x; all fits cached | after 17 |
+| 16 | Build the switch `--qvalue 0.05` (token `q05`, last in the token order; setting `dml_qvalue_standard`; stamp column `dml_qvalue`; fit reused, as for d50), by an agent in the working tree, not committed by it | done (93 checks; paper run T1 passes; q05 1,038 ploidy, 2,352 heat DML) |
+| 17 | Independent review of the build; apply findings; `tests/check_settings.R`; commit | done (76a900b): no blocking defect, 4 small findings applied, 94 of 94 checks |
+| 18 | The 32 q05 runs, one at a time with the batch driver (plan check, paper snapshot before and after, commit per analysis): 16 at 10x, 16 at 5x; all fits cached; driver scratchpad/run_batch.sh (switches from the id) | batch A (8 at 10x) running since 05:29 UTC (scratchpad/q05_batchA.log); then B (8 at 10x), C and D (8 at 5x each) |
 | 19 | Comparison table (64 analyses); issues.md (new issue or I-06/I-52 updates); READMEs; report for the author; independent check | after 18 |
 
 Restart rule: files survive a container restart, processes do not. If the build agent was lost, its edits are in the working tree (inspect `git diff`), and the session finishes or reverts them. A lost batch is rerun with the same driver command (it skips analyses already done).
@@ -58,8 +58,8 @@ Added by the author before going to bed (2026-11-22, about 04:45 UTC), after an 
 
 | # | Work | State |
 |---|---|---|
-| 20 | 25-point (and 10, 15) columns in `compare_analyses.R` | after 17 (the q05 build edits the same script) |
-| 21 | Build the switches `ctrl` and `inter` (not combined with each other) by an agent in a separate git worktree, from the commit of row 17; static tests there; fit tests after the q05 runs; independent review; merge | starts after 17 |
+| 20 | 25-point (and 10, 15) columns in `compare_analyses.R` | after 21 is merged (the ctrl/inter build edits the same script) |
+| 21 | Build the switches `ctrl` and `inter` (not combined with each other) by an agent in a separate git worktree, from the commit of row 17; static tests there; fit tests after the q05 runs; independent review; merge | build agent running in a worktree since 05:30 UTC (no fits while batches run) |
 | 22 | The 16 new fits (one at a time; 5x ones by sequence), each with its base analysis; commit per analysis | after 18 and 21 |
 | 23 | The 112 remaining variants on the new fits (ctexcl, d50, q05 and their combinations); batch driver; commit per analysis | after 22 |
 | 24 | Comparison table of all analyses; issues.md (I-02, I-07, I-06, I-52 updates or new issues); READMEs; report; independent check | after 23 |
