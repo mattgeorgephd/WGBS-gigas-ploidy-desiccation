@@ -59,7 +59,7 @@ Added by the author before going to bed (2026-11-22, about 04:45 UTC), after an 
 | # | Work | State |
 |---|---|---|
 | 20 | 25-point (and 10, 15) columns in `compare_analyses.R` | after 21 is merged (the ctrl/inter build edits the same script) |
-| 21 | Build the switches `ctrl` and `inter` (not combined with each other) by an agent in a separate git worktree, from the commit of row 17; static tests there; fit tests after the q05 runs; independent review; merge | build agent running in a worktree since 05:30 UTC (no fits while batches run) |
+| 21 | Build the switches `ctrl` and `inter` (not combined with each other) by an agent in a separate git worktree, from the commit of row 17; static tests there; fit tests after the q05 runs; independent review; merge | built on branch `worktree-agent-ac204932127819f20` (8c5d2c9, 6cc644b, b63a90f; 134 settings checks, 25 synthetic checks: ctrl gives A4's p and q exactly on simulated data); independent review: no correctness defect, existing fit fingerprints unchanged; 2 findings applied (6e0c5e4). Next: merge between q05 batches A and B, then real tests at the paper's settings (ctrl must give A4's 2,768 ploidy DML, inter A2's 16,971 interaction DML) with tests/check_contrast_variants_real.R; peak memory of the first 5x run to be measured |
 | 22 | The 16 new fits (one at a time; 5x ones by sequence), each with its base analysis; commit per analysis | after 18 and 21 |
 | 23 | The 112 remaining variants on the new fits (ctexcl, d50, q05 and their combinations); batch driver; commit per analysis | after 22 |
 | 24 | Comparison table of all analyses; issues.md (I-02, I-07, I-06, I-52 updates or new issues); READMEs; report; independent check | after 23 |
