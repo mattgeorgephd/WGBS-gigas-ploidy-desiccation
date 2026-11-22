@@ -4,7 +4,8 @@ corrected,corrected,10,none,not passed,none,FALSE,20,0.01,corrected,df0c3e7805a7
 corrected-cov5,corrected,5,none,not passed,none,FALSE,20,0.01,corrected-cov5,fff70143d6491df78097be9cba2e5a59,"",6fabba8,2026-11-21 20:26:19,04;05;06;07;08;09
 corrected-cov5-ctexcl,corrected,5,none,not passed,none,TRUE,20,0.01,corrected-cov5,fff70143d6491df78097be9cba2e5a59,4be241cfd320d7315a31059278cfc7c6,cdf9742,2026-11-21 10:25:17,04;05;06;07;08;09
 corrected-cov5-ctexcl-d50,corrected,5,none,not passed,none,TRUE,50,0.01,corrected-cov5,fff70143d6491df78097be9cba2e5a59,4be241cfd320d7315a31059278cfc7c6,d84d8ff,2026-11-21 12:06:31,04;05;06;07;08;09
-corrected-cov5-ctexcl-q05,corrected,5,none,not passed,none,TRUE,20,0.05,corrected-cov5,fff70143d6491df78097be9cba2e5a59,4be241cfd320d7315a31059278cfc7c6,6b5847c,2026-11-22 12:53:47,04;05;06;07;08
+corrected-cov5-ctexcl-d50-q05,corrected,5,none,not passed,none,TRUE,50,0.05,corrected-cov5,fff70143d6491df78097be9cba2e5a59,4be241cfd320d7315a31059278cfc7c6,3392cba,2026-11-22 13:11:54,04;05;06;07;08
+corrected-cov5-ctexcl-q05,corrected,5,none,not passed,none,TRUE,20,0.05,corrected-cov5,fff70143d6491df78097be9cba2e5a59,4be241cfd320d7315a31059278cfc7c6,6b5847c,2026-11-22 12:57:45,04;05;06;07;08;09
 corrected-cov5-d50,corrected,5,none,not passed,none,FALSE,50,0.01,corrected-cov5,fff70143d6491df78097be9cba2e5a59,"",53266aa,2026-11-21 20:38:01,04;05;06;07;08;09
 corrected-cov5-d50-q05,corrected,5,none,not passed,none,FALSE,50,0.05,corrected-cov5,fff70143d6491df78097be9cba2e5a59,"",dd7abac,2026-11-22 11:02:09,04;05;06;07;08;09
 corrected-cov5-mnchisq,corrected,5,MN,Chisq,none,FALSE,20,0.01,corrected-cov5-mnchisq,4d2b451ed872ed0ef171db1e4695494f,"",c2101c8,2026-11-21 20:51:01,04;05;06;07;08;09
