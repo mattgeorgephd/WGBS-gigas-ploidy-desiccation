@@ -51,8 +51,9 @@ corrected-mnchisq-ctexcl-q05,corrected,10,MN,Chisq,none,TRUE,20,0.05,corrected-m
 corrected-mnchisq-ctrl,corrected,10,MN,Chisq,ctrl,FALSE,20,0.01,corrected-mnchisq-ctrl,9789e807f29e5c4af6b61e9b3979d406,"",57569d6,2026-11-22 16:26:14,04;05;06;07;08;09
 corrected-mnchisq-ctrl-ctexcl,corrected,10,MN,Chisq,ctrl,TRUE,20,0.01,corrected-mnchisq-ctrl,9789e807f29e5c4af6b61e9b3979d406,4be241cfd320d7315a31059278cfc7c6,cef1166,2026-11-23 13:14:53,04;05;06;07;08;09
 corrected-mnchisq-ctrl-ctexcl-d50,corrected,10,MN,Chisq,ctrl,TRUE,50,0.01,corrected-mnchisq-ctrl,9789e807f29e5c4af6b61e9b3979d406,4be241cfd320d7315a31059278cfc7c6,efdf2d5,2026-11-23 14:09:37,04;05;06;07;08;09
-corrected-mnchisq-ctrl-ctexcl-q05,corrected,10,MN,Chisq,ctrl,TRUE,20,0.05,corrected-mnchisq-ctrl,9789e807f29e5c4af6b61e9b3979d406,4be241cfd320d7315a31059278cfc7c6,1ecef4e,2026-11-23 14:25:50,04;05;06;07;08
+corrected-mnchisq-ctrl-ctexcl-q05,corrected,10,MN,Chisq,ctrl,TRUE,20,0.05,corrected-mnchisq-ctrl,9789e807f29e5c4af6b61e9b3979d406,4be241cfd320d7315a31059278cfc7c6,1ecef4e,2026-11-23 14:28:23,04;05;06;07;08;09
 corrected-mnchisq-ctrl-d50,corrected,10,MN,Chisq,ctrl,FALSE,50,0.01,corrected-mnchisq-ctrl,9789e807f29e5c4af6b61e9b3979d406,"",6642d70,2026-11-23 13:32:17,04;05;06;07;08;09
+corrected-mnchisq-ctrl-d50-q05,corrected,10,MN,Chisq,ctrl,FALSE,50,0.05,corrected-mnchisq-ctrl,9789e807f29e5c4af6b61e9b3979d406,"",71d72dd,2026-11-23 14:44:07,04;05;06;07;08
 corrected-mnchisq-ctrl-q05,corrected,10,MN,Chisq,ctrl,FALSE,20,0.05,corrected-mnchisq-ctrl,9789e807f29e5c4af6b61e9b3979d406,"",f9a7910,2026-11-23 13:51:18,04;05;06;07;08;09
 corrected-mnchisq-d50,corrected,10,MN,Chisq,none,FALSE,50,0.01,corrected-mnchisq,ad1021bb99cb205a7e6603efb65e1d73,"",f1ec208,2026-11-21 11:15:20,04;05;06;07;08;09
 corrected-mnchisq-d50-q05,corrected,10,MN,Chisq,none,FALSE,50,0.05,corrected-mnchisq,ad1021bb99cb205a7e6603efb65e1d73,"",66f5ed1,2026-11-22 07:11:12,04;05;06;07;08;09
