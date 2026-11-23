@@ -1,0 +1,9 @@
+chr,start,end,meth.diff,direction,gene_id,gene,biotype,product,n_go_terms
+NC_047559.1,17911059,17911061,28.0551415797317,hyper,105338947,LOC105338947,protein_coding,cytosolic carboxypeptidase 2,6
+NC_047561.1,799855,799857,-22.4137931034483,hypo,105317066,LOC105317066,protein_coding,mitogen-activated protein kinase HOG1,15
+NC_047565.1,60954304,60954306,26.2962962962963,hyper,105330040,LOC105330040,protein_coding,"calcium/calmodulin-dependent 3',5'-cyclic nucleotide phosphodiesterase 1A",13
+NC_047566.1,20766707,20766709,25.8771929824561,hyper,105339998,LOC105339998,protein_coding,uncharacterized LOC105339998,0
+NC_047567.1,31559112,31559114,-54.3654219728038,hypo,105332451,LOC105332451,protein_coding,uncharacterized LOC105332451,0
+NC_047568.1,17094385,17094387,29.688731284476,hyper,105334033,LOC105334033,protein_coding,coiled-coil domain-containing protein 57,0
+NC_047568.1,33112543,33112545,20.5321059721599,hyper,105331426,LOC105331426,protein_coding,probable global transcription activator SNF2L2,96
+NC_047568.1,52333625,52333627,45.7627118644068,hyper,105325608,LOC105325608,protein_coding,mitochondrial Rho GTPase 1,8

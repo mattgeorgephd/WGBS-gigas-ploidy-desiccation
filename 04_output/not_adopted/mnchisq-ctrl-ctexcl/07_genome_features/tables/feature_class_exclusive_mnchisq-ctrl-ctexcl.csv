@@ -1,0 +1,65 @@
+mode,set,n_loci,class,n,pct,pct_in_TE
+mnchisq-ctrl-ctexcl,all analysed CpGs,452159,CDS,122461,27.0836143922824,2.01370232155543
+mnchisq-ctrl-ctexcl,all analysed CpGs,452159,lncRNA,13225,2.924856079388,27.531190926276
+mnchisq-ctrl-ctexcl,all analysed CpGs,452159,exon_UTR,36118,7.98789806240725,6.52583199512708
+mnchisq-ctrl-ctexcl,all analysed CpGs,452159,intron,146456,32.3903759518223,30.8420276397007
+mnchisq-ctrl-ctexcl,all analysed CpGs,452159,upstream_flank,16263,3.59674362337142,22.7018385291767
+mnchisq-ctrl-ctexcl,all analysed CpGs,452159,downstream_flank,10550,2.33325002930385,35.4502369668247
+mnchisq-ctrl-ctexcl,all analysed CpGs,452159,intergenic,106726,23.6036438509462,41.5409553435901
+mnchisq-ctrl-ctexcl,all analysed CpGs,452159,other,360,0.0796180104786148,0
+mnchisq-ctrl-ctexcl,eligible CpGs,56381,CDS,13917,24.6838473953992,5.00826327513114
+mnchisq-ctrl-ctexcl,eligible CpGs,56381,lncRNA,2258,4.00489526613575,35.9167404782994
+mnchisq-ctrl-ctexcl,eligible CpGs,56381,exon_UTR,3358,5.95590713183519,13.9666468135795
+mnchisq-ctrl-ctexcl,eligible CpGs,56381,intron,29078,51.5741118461893,38.9125799573561
+mnchisq-ctrl-ctexcl,eligible CpGs,56381,upstream_flank,650,1.1528706479133,56.6153846153846
+mnchisq-ctrl-ctexcl,eligible CpGs,56381,downstream_flank,995,1.76477891488267,55.0753768844221
+mnchisq-ctrl-ctexcl,eligible CpGs,56381,intergenic,6125,10.8635887976446,60.130612244898
+mnchisq-ctrl-ctexcl,eligible CpGs,56381,other,0,0,
+mnchisq-ctrl-ctexcl,ploidy DML,8,CDS,3,37.5,0
+mnchisq-ctrl-ctexcl,ploidy DML,8,lncRNA,0,0,
+mnchisq-ctrl-ctexcl,ploidy DML,8,exon_UTR,0,0,
+mnchisq-ctrl-ctexcl,ploidy DML,8,intron,5,62.5,0
+mnchisq-ctrl-ctexcl,ploidy DML,8,upstream_flank,0,0,
+mnchisq-ctrl-ctexcl,ploidy DML,8,downstream_flank,0,0,
+mnchisq-ctrl-ctexcl,ploidy DML,8,intergenic,0,0,
+mnchisq-ctrl-ctexcl,ploidy DML,8,other,0,0,
+mnchisq-ctrl-ctexcl,heat DML,142,CDS,43,30.2816901408451,0
+mnchisq-ctrl-ctexcl,heat DML,142,lncRNA,3,2.11267605633803,0
+mnchisq-ctrl-ctexcl,heat DML,142,exon_UTR,8,5.63380281690141,12.5
+mnchisq-ctrl-ctexcl,heat DML,142,intron,68,47.887323943662,47.0588235294118
+mnchisq-ctrl-ctexcl,heat DML,142,upstream_flank,4,2.8169014084507,0
+mnchisq-ctrl-ctexcl,heat DML,142,downstream_flank,3,2.11267605633803,66.6666666666667
+mnchisq-ctrl-ctexcl,heat DML,142,intergenic,13,9.15492957746479,84.6153846153846
+mnchisq-ctrl-ctexcl,heat DML,142,other,0,0,
+mnchisq-ctrl-ctexcl,shared,0,CDS,0,,
+mnchisq-ctrl-ctexcl,shared,0,lncRNA,0,,
+mnchisq-ctrl-ctexcl,shared,0,exon_UTR,0,,
+mnchisq-ctrl-ctexcl,shared,0,intron,0,,
+mnchisq-ctrl-ctexcl,shared,0,upstream_flank,0,,
+mnchisq-ctrl-ctexcl,shared,0,downstream_flank,0,,
+mnchisq-ctrl-ctexcl,shared,0,intergenic,0,,
+mnchisq-ctrl-ctexcl,shared,0,other,0,,
+mnchisq-ctrl-ctexcl,"shared, both hyper",0,CDS,0,,
+mnchisq-ctrl-ctexcl,"shared, both hyper",0,lncRNA,0,,
+mnchisq-ctrl-ctexcl,"shared, both hyper",0,exon_UTR,0,,
+mnchisq-ctrl-ctexcl,"shared, both hyper",0,intron,0,,
+mnchisq-ctrl-ctexcl,"shared, both hyper",0,upstream_flank,0,,
+mnchisq-ctrl-ctexcl,"shared, both hyper",0,downstream_flank,0,,
+mnchisq-ctrl-ctexcl,"shared, both hyper",0,intergenic,0,,
+mnchisq-ctrl-ctexcl,"shared, both hyper",0,other,0,,
+mnchisq-ctrl-ctexcl,"shared, both hypo",0,CDS,0,,
+mnchisq-ctrl-ctexcl,"shared, both hypo",0,lncRNA,0,,
+mnchisq-ctrl-ctexcl,"shared, both hypo",0,exon_UTR,0,,
+mnchisq-ctrl-ctexcl,"shared, both hypo",0,intron,0,,
+mnchisq-ctrl-ctexcl,"shared, both hypo",0,upstream_flank,0,,
+mnchisq-ctrl-ctexcl,"shared, both hypo",0,downstream_flank,0,,
+mnchisq-ctrl-ctexcl,"shared, both hypo",0,intergenic,0,,
+mnchisq-ctrl-ctexcl,"shared, both hypo",0,other,0,,
+mnchisq-ctrl-ctexcl,"shared, opposite",0,CDS,0,,
+mnchisq-ctrl-ctexcl,"shared, opposite",0,lncRNA,0,,
+mnchisq-ctrl-ctexcl,"shared, opposite",0,exon_UTR,0,,
+mnchisq-ctrl-ctexcl,"shared, opposite",0,intron,0,,
+mnchisq-ctrl-ctexcl,"shared, opposite",0,upstream_flank,0,,
+mnchisq-ctrl-ctexcl,"shared, opposite",0,downstream_flank,0,,
+mnchisq-ctrl-ctexcl,"shared, opposite",0,intergenic,0,,
+mnchisq-ctrl-ctexcl,"shared, opposite",0,other,0,,
