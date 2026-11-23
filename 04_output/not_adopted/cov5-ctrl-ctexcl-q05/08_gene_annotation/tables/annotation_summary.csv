@@ -1,0 +1,4 @@
+mode,set,n_dml,n_dml_in_gene,n_dml_in_protein_coding_gene,n_dml_in_lncRNA_gene,n_dml_in_two_or_more_genes,n_dml_gene_pairs,n_genes_with_dml,n_protein_coding_genes_with_dml,n_genes_with_dml_and_go,n_genes_with_dml_and_go_in_legacy_universe,legacy_dml_transcript_rows,legacy_transcripts,legacy_annotation_rows,legacy_transcripts_with_go,legacy_genes_with_go,legacy_go_ids_BP,legacy_go_ids_CC,legacy_go_ids_MF
+cov5-ctrl-ctexcl-q05,ploidy,21915,20654,20417,497,871,21541,6175,5994,5056,3754,100571,19856,1219042,16685,5004,2849,567,948
+cov5-ctrl-ctexcl-q05,heat,15717,14614,14461,353,624,15320,5696,5546,4731,3566,58324,18332,685894,15657,4690,2884,572,958
+cov5-ctrl-ctexcl-q05,shared,1716,1630,1618,20,43,1673,1280,1263,1103,814,6527,4975,80358,4295,1094,1861,423,580

@@ -1,0 +1,13 @@
+set,stage,genes,transcripts,percent_of_genes_with_GO_terms
+ploidy,1 genes holding a DML,6175,,
+ploidy,2 with GO terms by the legacy route,5004,16685,100
+ploidy,3 kept by the legacy reader,3060,9359,61.2
+ploidy,4 in the legacy universe: tested as genes of interest,2130,5901,42.6
+heat,1 genes holding a DML,5696,,
+heat,2 with GO terms by the legacy route,4690,15657,100
+heat,3 kept by the legacy reader,2671,8053,57
+heat,4 in the legacy universe: tested as genes of interest,1708,4552,36.4
+shared,1 genes holding a DML,1280,,
+shared,2 with GO terms by the legacy route,1094,4295,100
+shared,3 kept by the legacy reader,700,2272,64
+shared,4 in the legacy universe: tested as genes of interest,688,2234,62.9
