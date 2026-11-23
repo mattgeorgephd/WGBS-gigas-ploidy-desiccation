@@ -1,0 +1,651 @@
+mode,sample_set,n_libraries,min_coverage,cpg_set,n_loci,track,n_overlap,pct_of_loci,legacy_share_pct,legacy_share_exon_twice_pct,track_label
+corrected-inter-ctexcl-d50,all,22,1,in all libraries,5513799,gene,3487366,63.2479711356907,,,genes
+corrected-inter-ctexcl-d50,all,22,1,in all libraries,5513799,mRNA,3350972,60.7742864765292,,,mRNA transcripts
+corrected-inter-ctexcl-d50,all,22,1,in all libraries,5513799,exon,1405842,25.4967944968614,,,exons
+corrected-inter-ctexcl-d50,all,22,1,in all libraries,5513799,CDS,1018287,18.4679746214906,13.7449825718739,11.5527107239409,coding sequence
+corrected-inter-ctexcl-d50,all,22,1,in all libraries,5513799,exon_UTR,387581,7.02929141958203,5.23162339319804,20.3468149202163,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+corrected-inter-ctexcl-d50,all,22,1,in all libraries,5513799,intron,2088967,37.8861652374343,28.1971733000811,23.6998326236696,introns
+corrected-inter-ctexcl-d50,all,22,1,in all libraries,5513799,nonCDS,4115466,74.6393910985874,,,complement of the exon track (not of coding sequence)
+corrected-inter-ctexcl-d50,all,22,1,in all libraries,5513799,lncRNA,161356,2.92640337451547,2.17800620833545,1.8306225961563,long non-coding RNA
+corrected-inter-ctexcl-d50,all,22,1,in all libraries,5513799,upstream_flank,263209,4.77364154913881,3.55283247037462,2.98616935789003,upstream flanks (up to 1 kb)
+corrected-inter-ctexcl-d50,all,22,1,in all libraries,5513799,downstream_flank,234822,4.25880595212121,3.16966071205129,2.66411202108763,downstream flanks (up to 1 kb)
+corrected-inter-ctexcl-d50,all,22,1,in all libraries,5513799,flanks,475094,8.6164548254298,,,upstream and downstream flanks together
+corrected-inter-ctexcl-d50,all,22,1,in all libraries,5513799,intergenic,1552450,28.1557234857491,20.9551906227867,17.6129183259553,intergenic regions
+corrected-inter-ctexcl-d50,all,22,1,in all libraries,5513799,TE,1701755,30.8635661183877,22.9705307212989,19.3068194310839,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+corrected-inter-ctexcl-d50,all,22,1,in any library,12509097,gene,6987272,55.8575251275132,,,genes
+corrected-inter-ctexcl-d50,all,22,1,in any library,12509097,mRNA,6621786,52.935763468778,,,mRNA transcripts
+corrected-inter-ctexcl-d50,all,22,1,in any library,12509097,exon,2072943,16.5714839368501,,,exons
+corrected-inter-ctexcl-d50,all,22,1,in any library,12509097,CDS,1413899,11.3029661533522,7.76977341139784,6.97520006046263,coding sequence
+corrected-inter-ctexcl-d50,all,22,1,in any library,12509097,exon_UTR,659084,5.26883755078404,3.62185229572815,13.4779322254175,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+corrected-inter-ctexcl-d50,all,22,1,in any library,12509097,intron,4927337,39.3900295121223,27.0771052328326,24.3080738725466,introns
+corrected-inter-ctexcl-d50,all,22,1,in any library,12509097,nonCDS,10447390,83.5183386938322,,,complement of the exon track (not of coding sequence)
+corrected-inter-ctexcl-d50,all,22,1,in any library,12509097,lncRNA,432075,3.45408625418765,2.37437387446326,2.13155930241438,long non-coding RNA
+corrected-inter-ctexcl-d50,all,22,1,in any library,12509097,upstream_flank,565402,4.51992657823343,3.10704330815084,2.78930253475368,upstream flanks (up to 1 kb)
+corrected-inter-ctexcl-d50,all,22,1,in any library,12509097,downstream_flank,521770,4.17112442249029,2.86727317358952,2.57405241502228,downstream flanks (up to 1 kb)
+corrected-inter-ctexcl-d50,all,22,1,in any library,12509097,flanks,1039519,8.31010423853936,,,upstream and downstream flanks together
+corrected-inter-ctexcl-d50,all,22,1,in any library,12509097,intergenic,4484256,35.8479592891477,24.6422502871147,22.122218575959,intergenic regions
+corrected-inter-ctexcl-d50,all,22,1,in any library,12509097,TE,5193606,41.5186324000845,28.540328416723,25.6216610134239,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+corrected-inter-ctexcl-d50,all,22,3,in all libraries,3460795,gene,2336411,67.5108176011581,,,genes
+corrected-inter-ctexcl-d50,all,22,3,in all libraries,3460795,mRNA,2256615,65.2051046074674,,,mRNA transcripts
+corrected-inter-ctexcl-d50,all,22,3,in all libraries,3460795,exon,1080247,31.2138395946596,,,exons
+corrected-inter-ctexcl-d50,all,22,3,in all libraries,3460795,CDS,803321,23.212036540737,18.2031617337985,14.623565442613,coding sequence
+corrected-inter-ctexcl-d50,all,22,3,in all libraries,3460795,exon_UTR,276948,8.00243874601067,6.2756099191382,24.7062256568509,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+corrected-inter-ctexcl-d50,all,22,3,in all libraries,3460795,intron,1261352,36.446885758908,28.5820916660341,22.9615104275511,introns
+corrected-inter-ctexcl-d50,all,22,3,in all libraries,3460795,nonCDS,2385872,68.9399978906581,,,complement of the exon track (not of coding sequence)
+corrected-inter-ctexcl-d50,all,22,3,in all libraries,3460795,lncRNA,97416,2.81484456606069,2.2074353881695,1.77334994498785,long non-coding RNA
+corrected-inter-ctexcl-d50,all,22,3,in all libraries,3460795,upstream_flank,158159,4.57001931637095,3.58386480206024,2.87910870852153,upstream flanks (up to 1 kb)
+corrected-inter-ctexcl-d50,all,22,3,in all libraries,3460795,downstream_flank,129421,3.73963207875647,2.93266501778235,2.3559653776615,downstream flanks (up to 1 kb)
+corrected-inter-ctexcl-d50,all,22,3,in all libraries,3460795,flanks,274471,7.93086559591077,,,upstream and downstream flanks together
+corrected-inter-ctexcl-d50,all,22,3,in all libraries,3460795,intergenic,850649,24.5795835927872,19.2756087861439,15.4851190497862,intergenic regions
+corrected-inter-ctexcl-d50,all,22,3,in all libraries,3460795,TE,835819,24.151069335225,18.9395626868732,15.215155392028,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+corrected-inter-ctexcl-d50,all,22,3,in any library,11634473,gene,6579952,56.5556514678405,,,genes
+corrected-inter-ctexcl-d50,all,22,3,in any library,11634473,mRNA,6245113,53.6776612056257,,,mRNA transcripts
+corrected-inter-ctexcl-d50,all,22,3,in any library,11634473,exon,1989723,17.1019606990364,,,exons
+corrected-inter-ctexcl-d50,all,22,3,in any library,11634473,CDS,1361006,11.6980459707973,8.0934348142113,7.23712393177119,coding sequence
+corrected-inter-ctexcl-d50,all,22,3,in any library,11634473,exon_UTR,628755,5.40424134380646,3.73898984031622,13.9237077563334,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+corrected-inter-ctexcl-d50,all,22,3,in any library,11634473,intron,4602579,39.5598408282008,27.3699551021508,24.4741276884654,introns
+corrected-inter-ctexcl-d50,all,22,3,in any library,11634473,nonCDS,9655646,82.991692017335,,,complement of the exon track (not of coding sequence)
+corrected-inter-ctexcl-d50,all,22,3,in any library,11634473,lncRNA,393091,3.37867473670703,2.3375770456215,2.09025403522385,long non-coding RNA
+corrected-inter-ctexcl-d50,all,22,3,in any library,11634473,upstream_flank,533096,4.58203822381985,3.17013865164208,2.83472800232438,upstream flanks (up to 1 kb)
+corrected-inter-ctexcl-d50,all,22,3,in any library,11634473,downstream_flank,492358,4.23188914530121,2.92788376998738,2.61810444979596,downstream flanks (up to 1 kb)
+corrected-inter-ctexcl-d50,all,22,3,in any library,11634473,flanks,981074,8.43247476701351,,,upstream and downstream flanks together
+corrected-inter-ctexcl-d50,all,22,3,in any library,11634473,intergenic,4075279,35.0276200735521,24.2342832700401,21.6702198076603,intergenic regions
+corrected-inter-ctexcl-d50,all,22,3,in any library,11634473,TE,4730009,40.6551203479522,28.1277375060307,25.1517343284255,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+corrected-inter-ctexcl-d50,all,22,5,in all libraries,2122969,gene,1488222,70.1009765097842,,,genes
+corrected-inter-ctexcl-d50,all,22,5,in all libraries,2122969,mRNA,1441230,67.8874726856586,,,mRNA transcripts
+corrected-inter-ctexcl-d50,all,22,5,in all libraries,2122969,exon,740982,34.9031003278899,,,exons
+corrected-inter-ctexcl-d50,all,22,5,in all libraries,2122969,CDS,557553,26.2628893780361,21.1327999150978,16.4990092657914,coding sequence
+corrected-inter-ctexcl-d50,all,22,5,in all libraries,2122969,exon_UTR,183444,8.64091750750953,6.95303468481956,27.3554498667184,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+corrected-inter-ctexcl-d50,all,22,5,in all libraries,2122969,intron,750481,35.3505397393933,28.4453044160511,22.2081003470529,introns
+corrected-inter-ctexcl-d50,all,22,5,in all libraries,2122969,nonCDS,1385332,65.2544620293561,,,complement of the exon track (not of coding sequence)
+corrected-inter-ctexcl-d50,all,22,5,in all libraries,2122969,lncRNA,59225,2.78972514436151,2.24479121262314,1.75257567220783,long non-coding RNA
+corrected-inter-ctexcl-d50,all,22,5,in all libraries,2122969,upstream_flank,90709,4.27274256006564,3.43812184222595,2.6842446036353,upstream flanks (up to 1 kb)
+corrected-inter-ctexcl-d50,all,22,5,in all libraries,2122969,downstream_flank,69293,3.26396664294203,2.62639624307801,2.05050613852761,downstream flanks (up to 1 kb)
+corrected-inter-ctexcl-d50,all,22,5,in all libraries,2122969,flanks,152845,7.19958699349826,,,upstream and downstream flanks together
+corrected-inter-ctexcl-d50,all,22,5,in all libraries,2122969,intergenic,482335,22.7198324610487,18.2818297938469,14.2731715804874,intergenic regions
+corrected-inter-ctexcl-d50,all,22,5,in all libraries,2122969,TE,445290,20.9748705704134,16.8777218922576,13.1769425255792,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+corrected-inter-ctexcl-d50,all,22,5,in any library,10779677,gene,6168364,57.2221598105398,,,genes
+corrected-inter-ctexcl-d50,all,22,5,in any library,10779677,mRNA,5862686,54.386471876662,,,mRNA transcripts
+corrected-inter-ctexcl-d50,all,22,5,in any library,10779677,exon,1923132,17.8403490197341,,,exons
+corrected-inter-ctexcl-d50,all,22,5,in any library,10779677,CDS,1321366,12.2579368565496,8.55369504340947,7.60672266450076,coding sequence
+corrected-inter-ctexcl-d50,all,22,5,in any library,10779677,exon_UTR,601803,5.58275540166927,3.89569531697421,14.5353220007865,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+corrected-inter-ctexcl-d50,all,22,5,in any library,10779677,intron,4257014,39.4911090564216,27.5572396682862,24.506400858579,introns
+corrected-inter-ctexcl-d50,all,22,5,in any library,10779677,nonCDS,8867075,82.2573347976939,,,complement of the exon track (not of coding sequence)
+corrected-inter-ctexcl-d50,all,22,5,in any library,10779677,lncRNA,357708,3.31835545721825,2.31557732421442,2.05922170759142,long non-coding RNA
+corrected-inter-ctexcl-d50,all,22,5,in any library,10779677,upstream_flank,499291,4.6317807110547,3.23209689966214,2.87427417224391,upstream flanks (up to 1 kb)
+corrected-inter-ctexcl-d50,all,22,5,in any library,10779677,downstream_flank,460454,4.27150089933121,2.9806905108184,2.65070077310907,downstream flanks (up to 1 kb)
+corrected-inter-ctexcl-d50,all,22,5,in any library,10779677,flanks,918339,8.51916991575907,,,upstream and downstream flanks together
+corrected-inter-ctexcl-d50,all,22,5,in any library,10779677,intergenic,3694694,34.274626224886,23.9171325391411,21.2692869259501,intergenic regions
+corrected-inter-ctexcl-d50,all,22,5,in any library,10779677,TE,4255567,39.4776856486516,27.547872697494,24.4980708972393,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+corrected-inter-ctexcl-d50,all,22,10,in all libraries,427349,gene,303638,71.0515293121079,,,genes
+corrected-inter-ctexcl-d50,all,22,10,in all libraries,427349,mRNA,293739,68.7351555754196,,,mRNA transcripts
+corrected-inter-ctexcl-d50,all,22,10,in all libraries,427349,exon,158628,37.1190759777138,,,exons
+corrected-inter-ctexcl-d50,all,22,10,in all libraries,427349,CDS,119146,27.8802571200588,22.2030487123104,17.1371942098359,coding sequence
+corrected-inter-ctexcl-d50,all,22,10,in all libraries,427349,exon_UTR,39486,9.23975486078123,7.35827960195297,28.4954433525879,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+corrected-inter-ctexcl-d50,all,22,10,in all libraries,427349,intron,145591,34.068407788482,27.1311169915396,20.9408728971532,introns
+corrected-inter-ctexcl-d50,all,22,10,in all libraries,427349,nonCDS,269316,63.020154487316,,,complement of the exon track (not of coding sequence)
+corrected-inter-ctexcl-d50,all,22,10,in all libraries,427349,lncRNA,12820,2.99989001963267,2.38902761730834,1.84394633281937,long non-coding RNA
+corrected-inter-ctexcl-d50,all,22,10,in all libraries,427349,upstream_flank,15374,3.59752801574357,2.86496962468786,2.21129726371022,upstream flanks (up to 1 kb)
+corrected-inter-ctexcl-d50,all,22,10,in all libraries,427349,downstream_flank,10967,2.56628657139715,2.04371808728709,1.57742273260765,downstream flanks (up to 1 kb)
+corrected-inter-ctexcl-d50,all,22,10,in all libraries,427349,flanks,25192,5.89494768912528,,,upstream and downstream flanks together
+corrected-inter-ctexcl-d50,all,22,10,in all libraries,427349,intergenic,98592,23.0706050558209,18.372777757072,14.1808390674982,intergenic regions
+corrected-inter-ctexcl-d50,all,22,10,in all libraries,427349,TE,94644,22.1467699702117,17.6370616078417,13.6129841437875,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+corrected-inter-ctexcl-d50,all,22,10,in any library,8503686,gene,5031271,59.1657664687995,,,genes
+corrected-inter-ctexcl-d50,all,22,10,in any library,8503686,mRNA,4797295,56.4143008102604,,,mRNA transcripts
+corrected-inter-ctexcl-d50,all,22,10,in any library,8503686,exon,1732745,20.3763991285661,,,exons
+corrected-inter-ctexcl-d50,all,22,10,in any library,8503686,CDS,1209464,14.222820550994,10.1794198239729,8.88383665065203,coding sequence
+corrected-inter-ctexcl-d50,all,22,10,in any library,8503686,exon_UTR,523316,6.15399016379485,4.40447443214695,16.5713716141255,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+corrected-inter-ctexcl-d50,all,22,10,in any library,8503686,intron,3308765,38.9097739497907,27.8481277936901,24.3037641264185,introns
+corrected-inter-ctexcl-d50,all,22,10,in any library,8503686,nonCDS,6780284,79.7334708736894,,,complement of the exon track (not of coding sequence)
+corrected-inter-ctexcl-d50,all,22,10,in any library,8503686,lncRNA,273554,3.21688735919929,2.30235956632613,2.00932731452318,long non-coding RNA
+corrected-inter-ctexcl-d50,all,22,10,in any library,8503686,upstream_flank,400569,4.71053376147708,3.37137775036626,2.94228647013473,upstream flanks (up to 1 kb)
+corrected-inter-ctexcl-d50,all,22,10,in any library,8503686,downstream_flank,363094,4.26984251299966,3.05597046424333,2.66702256936283,downstream flanks (up to 1 kb)
+corrected-inter-ctexcl-d50,all,22,10,in any library,8503686,flanks,730139,8.58614723074206,,,upstream and downstream flanks together
+corrected-inter-ctexcl-d50,all,22,10,in any library,8503686,intergenic,2743655,32.2643027976339,23.0918953330916,20.1528799912562,intergenic regions
+corrected-inter-ctexcl-d50,all,22,10,in any library,8503686,TE,3059046,35.9731768082688,25.7463748361629,22.4695112635271,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+corrected-inter-ctexcl-d50,all,22,20,in all libraries,13577,gene,7382,54.3713633350519,,,genes
+corrected-inter-ctexcl-d50,all,22,20,in all libraries,13577,mRNA,6772,49.8784709435074,,,mRNA transcripts
+corrected-inter-ctexcl-d50,all,22,20,in all libraries,13577,exon,2376,17.5001841349341,,,exons
+corrected-inter-ctexcl-d50,all,22,20,in all libraries,13577,CDS,1739,12.8084260145835,7.81608162164592,7.06192893401015,coding sequence
+corrected-inter-ctexcl-d50,all,22,20,in all libraries,13577,exon_UTR,637,4.69175812035059,2.86305002472021,12.2355329949239,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+corrected-inter-ctexcl-d50,all,22,20,in all libraries,13577,intron,5013,36.9227369816602,22.5313497235831,20.3573604060914,introns
+corrected-inter-ctexcl-d50,all,22,20,in all libraries,13577,nonCDS,11209,82.5587390439714,,,complement of the exon track (not of coding sequence)
+corrected-inter-ctexcl-d50,all,22,20,in all libraries,13577,lncRNA,715,5.26625911467924,3.21362757876759,2.90355329949239,long non-coding RNA
+corrected-inter-ctexcl-d50,all,22,20,in all libraries,13577,upstream_flank,391,2.87987036900641,1.75738235426311,1.58781725888325,upstream flanks (up to 1 kb)
+corrected-inter-ctexcl-d50,all,22,20,in all libraries,13577,downstream_flank,423,3.11556308462842,1.90120904310306,1.71776649746193,downstream flanks (up to 1 kb)
+corrected-inter-ctexcl-d50,all,22,20,in all libraries,13577,flanks,792,5.83339471164469,,,upstream and downstream flanks together
+corrected-inter-ctexcl-d50,all,22,20,in all libraries,13577,intergenic,5406,39.817338145393,24.2977212458987,21.9532994923858,intergenic regions
+corrected-inter-ctexcl-d50,all,22,20,in all libraries,13577,TE,7925,58.3707741032629,35.6195784080183,32.1827411167513,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+corrected-inter-ctexcl-d50,all,22,20,in any library,4231433,gene,2662468,62.9211900554729,,,genes
+corrected-inter-ctexcl-d50,all,22,20,in any library,4231433,mRNA,2549962,60.2623744721942,,,mRNA transcripts
+corrected-inter-ctexcl-d50,all,22,20,in any library,4231433,exon,1069099,25.2656487766674,,,exons
+corrected-inter-ctexcl-d50,all,22,20,in any library,4231433,CDS,763842,18.0516151384177,13.4092623099318,11.290293733995,coding sequence
+corrected-inter-ctexcl-d50,all,22,20,in any library,4231433,exon_UTR,305279,7.21455355667926,5.35917923957267,20.3145824942077,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+corrected-inter-ctexcl-d50,all,22,20,in any library,4231433,intron,1599020,37.7890894172258,28.0708295941139,23.6349997598099,introns
+corrected-inter-ctexcl-d50,all,22,20,in any library,4231433,nonCDS,3167426,74.8546887071118,,,complement of the exon track (not of coding sequence)
+corrected-inter-ctexcl-d50,all,22,20,in any library,4231433,lncRNA,135367,3.19908172952284,2.37637052048531,2.00084990336968,long non-coding RNA
+corrected-inter-ctexcl-d50,all,22,20,in any library,4231433,upstream_flank,189871,4.48715600601498,3.33318938216157,2.8064696122593,upstream flanks (up to 1 kb)
+corrected-inter-ctexcl-d50,all,22,20,in any library,4231433,downstream_flank,158630,3.74884820343368,2.78475297276725,2.34469863535081,downstream flanks (up to 1 kb)
+corrected-inter-ctexcl-d50,all,22,20,in any library,4231433,flanks,333241,7.87536988060546,,,upstream and downstream flanks together
+corrected-inter-ctexcl-d50,all,22,20,in any library,4231433,intergenic,1236282,29.2166270859068,21.7029564059676,18.2733954378665,intergenic regions
+corrected-inter-ctexcl-d50,all,22,20,in any library,4231433,TE,1308085,30.9135226765968,22.963459575,19.334710423141,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+corrected-inter-ctexcl-d50,diploid,11,1,in all libraries,6232273,gene,3858954,61.9188857740988,,,genes
+corrected-inter-ctexcl-d50,diploid,11,1,in all libraries,6232273,mRNA,3700325,59.3736025363459,,,mRNA transcripts
+corrected-inter-ctexcl-d50,diploid,11,1,in all libraries,6232273,exon,1485217,23.8310645249334,,,exons
+corrected-inter-ctexcl-d50,diploid,11,1,in all libraries,6232273,CDS,1065455,17.0957690717335,12.5177096945914,10.65796267965,coding sequence
+corrected-inter-ctexcl-d50,diploid,11,1,in all libraries,6232273,exon_UTR,419791,6.73576077299566,4.93199794491764,19.056181789409,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+corrected-inter-ctexcl-d50,diploid,11,1,in all libraries,6232273,intron,2381816,38.2174529260833,27.9832383666442,23.8257890176435,introns
+corrected-inter-ctexcl-d50,diploid,11,1,in all libraries,6232273,nonCDS,4755051,76.2972193291276,,,complement of the exon track (not of coding sequence)
+corrected-inter-ctexcl-d50,diploid,11,1,in all libraries,6232273,lncRNA,187026,3.00092759094475,2.19731210923094,1.87085904906751,long non-coding RNA
+corrected-inter-ctexcl-d50,diploid,11,1,in all libraries,6232273,upstream_flank,297759,4.77769507208686,3.49828075418656,2.97854372970225,upstream flanks (up to 1 kb)
+corrected-inter-ctexcl-d50,diploid,11,1,in all libraries,6232273,downstream_flank,269173,4.31901811746693,3.16243245526301,2.6925921680122,downstream flanks (up to 1 kb)
+corrected-inter-ctexcl-d50,diploid,11,1,in all libraries,6232273,flanks,541063,8.68163188615133,,,upstream and downstream flanks together
+corrected-inter-ctexcl-d50,diploid,11,1,in all libraries,6232273,intergenic,1833490,29.4192824993385,21.5411214438305,18.3407727154235,intergenic regions
+corrected-inter-ctexcl-d50,diploid,11,1,in all libraries,6232273,TE,2057071,33.0067537156989,24.1679072313358,20.5772988510921,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+corrected-inter-ctexcl-d50,diploid,11,1,in any library,12309300,gene,6894164,56.0077664855028,,,genes
+corrected-inter-ctexcl-d50,diploid,11,1,in any library,12309300,mRNA,6535614,53.0949282250006,,,mRNA transcripts
+corrected-inter-ctexcl-d50,diploid,11,1,in any library,12309300,exon,2053750,16.6845393320498,,,exons
+corrected-inter-ctexcl-d50,diploid,11,1,in any library,12309300,CDS,1401529,11.3859358371313,7.83156039564347,7.02532774994662,coding sequence
+corrected-inter-ctexcl-d50,diploid,11,1,in any library,12309300,exon_UTR,652261,5.2989284524709,3.64474899572025,13.5641960815372,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+corrected-inter-ctexcl-d50,diploid,11,1,in any library,12309300,intron,4853305,39.4279528486591,27.1196323629254,24.3277579668024,introns
+corrected-inter-ctexcl-d50,diploid,11,1,in any library,12309300,nonCDS,10266707,83.4060994532589,,,complement of the exon track (not of coding sequence)
+corrected-inter-ctexcl-d50,diploid,11,1,in any library,12309300,lncRNA,423222,3.43822963125442,2.36490907699022,2.12144968886688,long non-coding RNA
+corrected-inter-ctexcl-d50,diploid,11,1,in any library,12309300,upstream_flank,557847,4.53191489361702,3.11717593573057,2.79627321969397,upstream flanks (up to 1 kb)
+corrected-inter-ctexcl-d50,diploid,11,1,in any library,12309300,downstream_flank,515421,4.18724866564305,2.8801050072335,2.58360794118797,downstream flanks (up to 1 kb)
+corrected-inter-ctexcl-d50,diploid,11,1,in any library,12309300,flanks,1026350,8.33800459814937,,,upstream and downstream flanks together
+corrected-inter-ctexcl-d50,diploid,11,1,in any library,12309300,intergenic,4390712,35.6698756224968,24.5347232971109,22.0089565436203,intergenic regions
+corrected-inter-ctexcl-d50,diploid,11,1,in any library,12309300,TE,5101613,41.445191846815,28.5071449286457,25.5724308083446,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+corrected-inter-ctexcl-d50,diploid,11,3,in all libraries,4131499,gene,2720094,65.8379440488791,,,genes
+corrected-inter-ctexcl-d50,diploid,11,3,in all libraries,4131499,mRNA,2621571,63.4532647835568,,,mRNA transcripts
+corrected-inter-ctexcl-d50,diploid,11,3,in all libraries,4131499,exon,1197767,28.9910998405179,,,exons
+corrected-inter-ctexcl-d50,diploid,11,3,in all libraries,4131499,CDS,881392,21.333467586462,16.4294864051943,13.4308109622866,coding sequence
+corrected-inter-ctexcl-d50,diploid,11,3,in all libraries,4131499,exon_UTR,316398,7.65818895272636,5.89778060117479,23.0731205646417,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+corrected-inter-ctexcl-d50,diploid,11,3,in all libraries,4131499,intron,1528356,36.9927718728723,28.4891445852663,23.2893655933755,introns
+corrected-inter-ctexcl-d50,diploid,11,3,in all libraries,4131499,nonCDS,2939804,71.1558686084639,,,complement of the exon track (not of coding sequence)
+corrected-inter-ctexcl-d50,diploid,11,3,in all libraries,4131499,lncRNA,118770,2.87474352529191,2.21391855195523,1.80983877547195,long non-coding RNA
+corrected-inter-ctexcl-d50,diploid,11,3,in all libraries,4131499,upstream_flank,192302,4.65453337880513,3.58458335756583,2.9303327119711,upstream flanks (up to 1 kb)
+corrected-inter-ctexcl-d50,diploid,11,3,in all libraries,4131499,downstream_flank,162499,3.9331729234353,3.0290439570108,2.47618919908577,downstream flanks (up to 1 kb)
+corrected-inter-ctexcl-d50,diploid,11,3,in all libraries,4131499,flanks,338680,8.19750894288005,,,upstream and downstream flanks together
+corrected-inter-ctexcl-d50,diploid,11,3,in all libraries,4131499,intergenic,1073581,25.9852658804952,20.0119633992308,16.3594217597874,intergenic regions
+corrected-inter-ctexcl-d50,diploid,11,3,in all libraries,4131499,TE,1091398,26.416513715724,20.3440791426019,16.63092043338,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+corrected-inter-ctexcl-d50,diploid,11,3,in any library,11222693,gene,6382613,56.872383482289,,,genes
+corrected-inter-ctexcl-d50,diploid,11,3,in any library,11222693,mRNA,6061610,54.0120807011294,,,mRNA transcripts
+corrected-inter-ctexcl-d50,diploid,11,3,in any library,11222693,exon,1957815,17.4451444051798,,,exons
+corrected-inter-ctexcl-d50,diploid,11,3,in any library,11222693,CDS,1342026,11.9581458746132,8.30043170686165,7.40388841155024,coding sequence
+corrected-inter-ctexcl-d50,diploid,11,3,in any library,11222693,exon_UTR,615826,5.48732821970627,3.80888422154994,14.1986450153653,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+corrected-inter-ctexcl-d50,diploid,11,3,in any library,11222693,intron,4436879,39.5348870364716,27.4420995801189,24.4780332210781,introns
+corrected-inter-ctexcl-d50,diploid,11,3,in any library,11222693,nonCDS,9275589,82.6502961454973,,,complement of the exon track (not of coding sequence)
+corrected-inter-ctexcl-d50,diploid,11,3,in any library,11222693,lncRNA,376133,3.35153959927443,2.32638285636567,2.07510641366235,long non-coding RNA
+corrected-inter-ctexcl-d50,diploid,11,3,in any library,11222693,upstream_flank,516933,4.60614043349488,3.1972309504608,2.85189277126367,upstream flanks (up to 1 kb)
+corrected-inter-ctexcl-d50,diploid,11,3,in any library,11222693,downstream_flank,477777,4.25724021854648,2.95505106429327,2.63587113335005,downstream flanks (up to 1 kb)
+corrected-inter-ctexcl-d50,diploid,11,3,in any library,11222693,flanks,951732,8.48042444001631,,,upstream and downstream flanks together
+corrected-inter-ctexcl-d50,diploid,11,3,in any library,11222693,intergenic,3890129,34.6630617089855,24.0604504647317,21.4616415945261,intergenic regions
+corrected-inter-ctexcl-d50,diploid,11,3,in any library,11222693,TE,4512444,40.2082102753769,27.9094691556181,24.8949214392042,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+corrected-inter-ctexcl-d50,diploid,11,5,in all libraries,2724625,gene,1864345,68.4257466623847,,,genes
+corrected-inter-ctexcl-d50,diploid,11,5,in all libraries,2724625,mRNA,1801684,66.1259439372391,,,mRNA transcripts
+corrected-inter-ctexcl-d50,diploid,11,5,in all libraries,2724625,exon,885657,32.5056475661788,,,exons
+corrected-inter-ctexcl-d50,diploid,11,5,in all libraries,2724625,CDS,660206,24.2310776712392,19.1652091621756,15.2455898571795,coding sequence
+corrected-inter-ctexcl-d50,diploid,11,5,in all libraries,2724625,exon_UTR,225469,8.27523053631234,6.54517005993065,25.6583116112978,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+corrected-inter-ctexcl-d50,diploid,11,5,in all libraries,2724625,intron,982827,36.0720099096206,28.5306177545093,22.6956091622345,introns
+corrected-inter-ctexcl-d50,diploid,11,5,in all libraries,2724625,nonCDS,1843166,67.6484286828463,,,complement of the exon track (not of coding sequence)
+corrected-inter-ctexcl-d50,diploid,11,5,in all libraries,2724625,lncRNA,77513,2.84490526219205,2.25013534834236,1.78994345189162,long non-coding RNA
+corrected-inter-ctexcl-d50,diploid,11,5,in all libraries,2724625,upstream_flank,119618,4.39025553975318,3.47240708136721,2.76223931248141,upstream flanks (up to 1 kb)
+corrected-inter-ctexcl-d50,diploid,11,5,in all libraries,2724625,downstream_flank,95116,3.49097582236088,2.76113521335689,2.19643493827001,downstream flanks (up to 1 kb)
+corrected-inter-ctexcl-d50,diploid,11,5,in all libraries,2724625,flanks,205145,7.5292930219755,,,upstream and downstream flanks together
+corrected-inter-ctexcl-d50,diploid,11,5,in all libraries,2724625,intergenic,655672,24.0646694499243,19.0335910636711,15.1408899537972,intergenic regions
+corrected-inter-ctexcl-d50,diploid,11,5,in all libraries,2724625,TE,628394,23.0635041519475,18.2417343166469,14.5109817128479,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+corrected-inter-ctexcl-d50,diploid,11,5,in any library,10241360,gene,5905231,57.6606134341533,,,genes
+corrected-inter-ctexcl-d50,diploid,11,5,in any library,10241360,mRNA,5617361,54.8497562823687,,,mRNA transcripts
+corrected-inter-ctexcl-d50,diploid,11,5,in any library,10241360,exon,1881626,18.3728137669216,,,exons
+corrected-inter-ctexcl-d50,diploid,11,5,in any library,10241360,CDS,1296884,12.6632009811197,8.88347475898251,7.86922066449225,coding sequence
+corrected-inter-ctexcl-d50,diploid,11,5,in any library,10241360,exon_UTR,584778,5.70996430161619,4.00564784715385,14.965623235221,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+corrected-inter-ctexcl-d50,diploid,11,5,in any library,10241360,intron,4035057,39.3996207534937,27.6395784129928,24.4838813084317,introns
+corrected-inter-ctexcl-d50,diploid,11,5,in any library,10241360,nonCDS,8370025,81.727670934329,,,complement of the exon track (not of coding sequence)
+corrected-inter-ctexcl-d50,diploid,11,5,in any library,10241360,lncRNA,336828,3.28889913058422,2.3072248837356,2.0438018033838,long non-coding RNA
+corrected-inter-ctexcl-d50,diploid,11,5,in any library,10241360,upstream_flank,477197,4.65950811220385,3.26873298194918,2.89553151510367,upstream flanks (up to 1 kb)
+corrected-inter-ctexcl-d50,diploid,11,5,in any library,10241360,downstream_flank,440233,4.29857948553708,3.01553473060902,2.67124169994496,downstream flanks (up to 1 kb)
+corrected-inter-ctexcl-d50,diploid,11,5,in any library,10241360,flanks,877867,8.5717814821469,,,upstream and downstream flanks together
+corrected-inter-ctexcl-d50,diploid,11,5,in any library,10241360,intergenic,3459916,33.7837552825016,23.6999426735157,20.9940461017388,intergenic regions
+corrected-inter-ctexcl-d50,diploid,11,5,in any library,10241360,TE,3967944,38.7443073966739,27.1798637110614,24.0766536716839,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+corrected-inter-ctexcl-d50,diploid,11,10,in all libraries,697315,gene,489906,70.2560535769344,,,genes
+corrected-inter-ctexcl-d50,diploid,11,10,in all libraries,697315,mRNA,473567,67.9129231409048,,,mRNA transcripts
+corrected-inter-ctexcl-d50,diploid,11,10,in all libraries,697315,exon,248287,35.6061464331041,,,exons
+corrected-inter-ctexcl-d50,diploid,11,10,in all libraries,697315,CDS,185050,26.5375045711049,21.0896890168364,16.4382223090794,coding sequence
+corrected-inter-ctexcl-d50,diploid,11,10,in all libraries,697315,exon_UTR,63245,9.06978911969483,7.20787561129327,27.6737761274906,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+corrected-inter-ctexcl-d50,diploid,11,10,in all libraries,697315,intron,242571,34.7864308096054,27.6452145609458,21.547884483846,introns
+corrected-inter-ctexcl-d50,diploid,11,10,in all libraries,697315,nonCDS,449990,64.5318113047905,,,complement of the exon track (not of coding sequence)
+corrected-inter-ctexcl-d50,diploid,11,10,in all libraries,697315,lncRNA,21014,3.01355915188975,2.39491340178222,1.86669983033232,long non-coding RNA
+corrected-inter-ctexcl-d50,diploid,11,10,in all libraries,697315,upstream_flank,26463,3.79498504979815,3.01592240179704,2.35074129675855,upstream flanks (up to 1 kb)
+corrected-inter-ctexcl-d50,diploid,11,10,in all libraries,697315,downstream_flank,19336,2.77292185023985,2.20367590829262,1.71764099739724,downstream flanks (up to 1 kb)
+corrected-inter-ctexcl-d50,diploid,11,10,in all libraries,697315,flanks,43811,6.28281336268401,,,upstream and downstream flanks together
+corrected-inter-ctexcl-d50,diploid,11,10,in all libraries,697315,intergenic,163722,23.4789155546632,18.658989814723,14.5436294671013,intergenic regions
+corrected-inter-ctexcl-d50,diploid,11,10,in all libraries,697315,TE,156042,22.3775481668973,17.7837192843296,13.8614054879945,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+corrected-inter-ctexcl-d50,diploid,11,10,in any library,7827047,gene,4683534,59.837816228777,,,genes
+corrected-inter-ctexcl-d50,diploid,11,10,in any library,7827047,mRNA,4470985,57.1222454649883,,,mRNA transcripts
+corrected-inter-ctexcl-d50,diploid,11,10,in any library,7827047,exon,1660808,21.2188325942083,,,exons
+corrected-inter-ctexcl-d50,diploid,11,10,in any library,7827047,CDS,1165320,14.888373610124,10.739602426797,9.31399931694781,coding sequence
+corrected-inter-ctexcl-d50,diploid,11,10,in any library,7827047,exon_UTR,495520,6.33086782282002,4.56671797834624,17.2347831660964,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+corrected-inter-ctexcl-d50,diploid,11,10,in any library,7827047,intron,3032396,38.7425295900229,27.9465961629505,24.2368913883871,introns
+corrected-inter-ctexcl-d50,diploid,11,10,in any library,7827047,nonCDS,6175128,78.894735140852,,,complement of the exon track (not of coding sequence)
+corrected-inter-ctexcl-d50,diploid,11,10,in any library,7827047,lncRNA,249738,3.19070525576249,2.30158825975992,1.99606937271815,long non-coding RNA
+corrected-inter-ctexcl-d50,diploid,11,10,in any library,7827047,upstream_flank,369321,4.71852283498489,3.40366655327901,2.95185489113246,upstream flanks (up to 1 kb)
+corrected-inter-ctexcl-d50,diploid,11,10,in any library,7827047,downstream_flank,332871,4.25282996256443,3.06774293705621,2.66052266041236,downstream flanks (up to 1 kb)
+corrected-inter-ctexcl-d50,diploid,11,10,in any library,7827047,flanks,671295,8.57660622198896,,,upstream and downstream flanks together
+corrected-inter-ctexcl-d50,diploid,11,10,in any library,7827047,intergenic,2473481,31.601713903085,22.7956291406963,19.7696772942054,intergenic regions
+corrected-inter-ctexcl-d50,diploid,11,10,in any library,7827047,TE,2732034,34.9050414543314,25.1784565411148,21.8362019101004,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+corrected-inter-ctexcl-d50,diploid,11,20,in all libraries,30129,gene,16921,56.1618374323741,,,genes
+corrected-inter-ctexcl-d50,diploid,11,20,in all libraries,30129,mRNA,15763,52.3183643665572,,,mRNA transcripts
+corrected-inter-ctexcl-d50,diploid,11,20,in all libraries,30129,exon,6190,20.5449898768628,,,exons
+corrected-inter-ctexcl-d50,diploid,11,20,in all libraries,30129,CDS,4454,14.7830993395068,9.3778292451837,8.29654465865698,coding sequence
+corrected-inter-ctexcl-d50,diploid,11,20,in all libraries,30129,exon_UTR,1736,5.76189053735604,3.6551215917465,14.7639005308745,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+corrected-inter-ctexcl-d50,diploid,11,20,in all libraries,30129,intron,10745,35.6633144146835,22.623434045689,20.0149017416411,introns
+corrected-inter-ctexcl-d50,diploid,11,20,in all libraries,30129,nonCDS,23953,79.5014769823094,,,complement of the exon track (not of coding sequence)
+corrected-inter-ctexcl-d50,diploid,11,20,in all libraries,30129,lncRNA,1424,4.72634339008928,2.99821033793031,2.65251001210767,long non-coding RNA
+corrected-inter-ctexcl-d50,diploid,11,20,in all libraries,30129,upstream_flank,929,3.08340801221415,1.95599536793347,1.73046474806743,upstream flanks (up to 1 kb)
+corrected-inter-ctexcl-d50,diploid,11,20,in all libraries,30129,downstream_flank,904,3.00043147797803,1.90335824823666,1.68389680543914,downstream flanks (up to 1 kb)
+corrected-inter-ctexcl-d50,diploid,11,20,in all libraries,30129,flanks,1779,5.90461017624216,,,upstream and downstream flanks together
+corrected-inter-ctexcl-d50,diploid,11,20,in all libraries,30129,intergenic,11433,37.9468286368615,24.0720075797452,21.2964515227717,intergenic regions
+corrected-inter-ctexcl-d50,diploid,11,20,in all libraries,30129,TE,15870,52.6735039330877,33.4140435835351,29.5613299804415,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+corrected-inter-ctexcl-d50,diploid,11,20,in any library,3547180,gene,2247069,63.3480398513749,,,genes
+corrected-inter-ctexcl-d50,diploid,11,20,in any library,3547180,mRNA,2153054,60.6976245919294,,,mRNA transcripts
+corrected-inter-ctexcl-d50,diploid,11,20,in any library,3547180,exon,912673,25.7295372662228,,,exons
+corrected-inter-ctexcl-d50,diploid,11,20,in any library,3547180,CDS,649821,18.3193691890459,13.6481548807589,11.452790051305,coding sequence
+corrected-inter-ctexcl-d50,diploid,11,20,in any library,3547180,exon_UTR,262869,7.41064733111937,5.52102321308517,20.7183758642629,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+corrected-inter-ctexcl-d50,diploid,11,20,in any library,3547180,intron,1339111,37.7514250756939,28.1252750073143,23.6012026979631,introns
+corrected-inter-ctexcl-d50,diploid,11,20,in any library,3547180,nonCDS,2638768,74.3905863249116,,,complement of the exon track (not of coding sequence)
+corrected-inter-ctexcl-d50,diploid,11,20,in any library,3547180,lncRNA,114276,3.22160138476198,2.40013257059037,2.0140608504541,long non-coding RNA
+corrected-inter-ctexcl-d50,diploid,11,20,in any library,3547180,upstream_flank,158173,4.45911963869891,3.32209885792285,2.78772486697886,upstream flanks (up to 1 kb)
+corrected-inter-ctexcl-d50,diploid,11,20,in any library,3547180,downstream_flank,130111,3.66801233656031,2.73271420851346,2.2931452913423,downstream flanks (up to 1 kb)
+corrected-inter-ctexcl-d50,diploid,11,20,in any library,3547180,flanks,275829,7.77600798380686,,,upstream and downstream flanks together
+corrected-inter-ctexcl-d50,diploid,11,20,in any library,3547180,intergenic,1024710,28.8880180876076,21.5219280199662,18.0600326758796,intergenic regions
+corrected-inter-ctexcl-d50,diploid,11,20,in any library,3547180,TE,1082166,30.5077836478555,22.7286732418487,19.0726677018141,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+corrected-inter-ctexcl-d50,triploid,11,1,in all libraries,6431368,gene,3969866,61.7266186602913,,,genes
+corrected-inter-ctexcl-d50,triploid,11,1,in all libraries,6431368,mRNA,3804104,59.1492198860336,,,mRNA transcripts
+corrected-inter-ctexcl-d50,triploid,11,1,in all libraries,6431368,exon,1513097,23.5268297506845,,,exons
+corrected-inter-ctexcl-d50,triploid,11,1,in all libraries,6431368,CDS,1082449,16.8307737949376,12.2920180560935,10.4896498859893,coding sequence
+corrected-inter-ctexcl-d50,triploid,11,1,in all libraries,6431368,exon_UTR,430677,6.69650687069998,4.8906594771155,18.8364613182598,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+corrected-inter-ctexcl-d50,triploid,11,1,in all libraries,6431368,intron,2465132,38.329823452802,27.993417754235,23.8887666788446,introns
+corrected-inter-ctexcl-d50,triploid,11,1,in all libraries,6431368,nonCDS,4926472,76.60068588829,,,complement of the exon track (not of coding sequence)
+corrected-inter-ctexcl-d50,triploid,11,1,in all libraries,6431368,lncRNA,195050,3.03279177929175,2.2149386454614,1.89016407263734,long non-coding RNA
+corrected-inter-ctexcl-d50,triploid,11,1,in all libraries,6431368,upstream_flank,307020,4.773789961949,3.48644174790853,2.97522775483782,upstream flanks (up to 1 kb)
+corrected-inter-ctexcl-d50,triploid,11,1,in all libraries,6431368,downstream_flank,278180,4.32536281550053,3.15894197587517,2.69574899628945,downstream flanks (up to 1 kb)
+corrected-inter-ctexcl-d50,triploid,11,1,in all libraries,6431368,flanks,558411,8.68261620233829,,,upstream and downstream flanks together
+corrected-inter-ctexcl-d50,triploid,11,1,in all libraries,6431368,intergenic,1904379,29.6107919808041,21.6256480015644,18.454697597975,intergenic regions
+corrected-inter-ctexcl-d50,triploid,11,1,in all libraries,6431368,TE,2143226,33.3245741807964,24.3379343417465,20.7692836951666,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+corrected-inter-ctexcl-d50,triploid,11,1,in any library,12301988,gene,6890765,56.0134264478229,,,genes
+corrected-inter-ctexcl-d50,triploid,11,1,in any library,12301988,mRNA,6532204,53.0987674512445,,,mRNA transcripts
+corrected-inter-ctexcl-d50,triploid,11,1,in any library,12301988,exon,2053024,16.6885547279025,,,exons
+corrected-inter-ctexcl-d50,triploid,11,1,in any library,12301988,CDS,1401449,11.3920530567905,7.83543390986111,7.02865921603349,coding sequence
+corrected-inter-ctexcl-d50,triploid,11,1,in any library,12301988,exon_UTR,651615,5.29682682181124,3.64314810397963,13.5645220292666,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+corrected-inter-ctexcl-d50,triploid,11,1,in any library,12301988,intron,4850621,39.4295702450693,27.1195885596154,24.3272227495511,introns
+corrected-inter-ctexcl-d50,triploid,11,1,in any library,12301988,nonCDS,10260322,83.4037718131411,,,complement of the exon track (not of coding sequence)
+corrected-inter-ctexcl-d50,triploid,11,1,in any library,12301988,lncRNA,423894,3.44573576238247,2.36997095276865,2.12594712309995,long non-coding RNA
+corrected-inter-ctexcl-d50,triploid,11,1,in any library,12301988,upstream_flank,558021,4.53602295824057,3.11986855448511,2.7986315908679,upstream flanks (up to 1 kb)
+corrected-inter-ctexcl-d50,triploid,11,1,in any library,12301988,downstream_flank,514920,4.18566495106319,2.87889293785623,2.58246800527166,downstream flanks (up to 1 kb)
+corrected-inter-ctexcl-d50,triploid,11,1,in any library,12301988,flanks,1025871,8.33906682399625,,,upstream and downstream flanks together
+corrected-inter-ctexcl-d50,triploid,11,1,in any library,12301988,intergenic,4387477,35.6647803590769,24.5301727458764,22.0044258843418,intergenic regions
+corrected-inter-ctexcl-d50,triploid,11,1,in any library,12301988,TE,5098045,41.4408224101666,28.5029242355575,25.5681234015676,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+corrected-inter-ctexcl-d50,triploid,11,3,in all libraries,4245327,gene,2785970,65.6243912424178,,,genes
+corrected-inter-ctexcl-d50,triploid,11,3,in all libraries,4245327,mRNA,2683579,63.2125393403147,,,mRNA transcripts
+corrected-inter-ctexcl-d50,triploid,11,3,in all libraries,4245327,exon,1219833,28.7335463204601,,,exons
+corrected-inter-ctexcl-d50,triploid,11,3,in all libraries,4245327,CDS,896277,21.112083945477,16.2078601549289,13.2787207299143,coding sequence
+corrected-inter-ctexcl-d50,triploid,11,3,in all libraries,4245327,exon_UTR,323580,7.62202770245967,5.85147157511785,22.8663127558994,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+corrected-inter-ctexcl-d50,triploid,11,3,in all libraries,4245327,intron,1572298,37.035969196248,28.4327123265178,23.2942561799564,introns
+corrected-inter-ctexcl-d50,triploid,11,3,in all libraries,4245327,nonCDS,3031697,71.4125672769141,,,complement of the exon track (not of coding sequence)
+corrected-inter-ctexcl-d50,triploid,11,3,in all libraries,4245327,lncRNA,123073,2.89902285501211,2.22559540504505,1.82337825961476,long non-coding RNA
+corrected-inter-ctexcl-d50,triploid,11,3,in all libraries,4245327,upstream_flank,198795,4.68267815412099,3.59491715116989,2.94523153835624,upstream flanks (up to 1 kb)
+corrected-inter-ctexcl-d50,triploid,11,3,in all libraries,4245327,downstream_flank,167812,3.9528639372185,3.03463485989145,2.4862053618785,downstream flanks (up to 1 kb)
+corrected-inter-ctexcl-d50,triploid,11,3,in all libraries,4245327,flanks,349673,8.236656446017,,,upstream and downstream flanks together
+corrected-inter-ctexcl-d50,triploid,11,3,in all libraries,4245327,intergenic,1110590,26.1602934238046,20.0833976655236,16.4538579651553,intergenic regions
+corrected-inter-ctexcl-d50,triploid,11,3,in all libraries,4245327,TE,1137466,26.793365976284,20.5694108618054,16.8520372092252,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+corrected-inter-ctexcl-d50,triploid,11,3,in any library,11157354,gene,6349857,56.9118538320107,,,genes
+corrected-inter-ctexcl-d50,triploid,11,3,in any library,11157354,mRNA,6030379,54.0484688394757,,,mRNA transcripts
+corrected-inter-ctexcl-d50,triploid,11,3,in any library,11157354,exon,1953745,17.5108273879273,,,exons
+corrected-inter-ctexcl-d50,triploid,11,3,in any library,11157354,CDS,1340026,12.0102490249928,8.34055804595222,7.43627348263009,coding sequence
+corrected-inter-ctexcl-d50,triploid,11,3,in any library,11157354,exon_UTR,613757,5.50091894547758,3.82013176207738,14.2479676060015,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+corrected-inter-ctexcl-d50,triploid,11,3,in any library,11157354,intron,4408152,39.5089373340668,27.4371151241695,24.4623789575746,introns
+corrected-inter-ctexcl-d50,triploid,11,3,in any library,11157354,nonCDS,9214506,82.5868391376665,,,complement of the exon track (not of coding sequence)
+corrected-inter-ctexcl-d50,triploid,11,3,in any library,11157354,lncRNA,374761,3.35886985390981,2.33257852747566,2.07968001115197,long non-coding RNA
+corrected-inter-ctexcl-d50,triploid,11,3,in any library,11157354,upstream_flank,514815,4.61413163013381,3.20429931242147,2.85688869690604,upstream flanks (up to 1 kb)
+corrected-inter-ctexcl-d50,triploid,11,3,in any library,11157354,downstream_flank,475304,4.26000644955784,2.95837588335844,2.63762832317284,downstream flanks (up to 1 kb)
+corrected-inter-ctexcl-d50,triploid,11,3,in any library,11157354,flanks,947127,8.48881374562463,,,upstream and downstream flanks together
+corrected-inter-ctexcl-d50,triploid,11,3,in any library,11157354,intergenic,3862335,34.6169441249242,24.0398538986653,21.4334493073523,intergenic regions
+corrected-inter-ctexcl-d50,triploid,11,3,in any library,11157354,TE,4477233,40.1280895093944,27.86708744588,24.8457336152107,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+corrected-inter-ctexcl-d50,triploid,11,5,in all libraries,2816020,gene,1925092,68.3621565187747,,,genes
+corrected-inter-ctexcl-d50,triploid,11,5,in all libraries,2816020,mRNA,1860162,66.0564200538348,,,mRNA transcripts
+corrected-inter-ctexcl-d50,triploid,11,5,in all libraries,2816020,exon,915916,32.5251951335573,,,exons
+corrected-inter-ctexcl-d50,triploid,11,5,in all libraries,2816020,CDS,684114,24.2936484826102,19.1876236890642,15.2659446750815,coding sequence
+corrected-inter-ctexcl-d50,triploid,11,5,in all libraries,2816020,exon_UTR,231820,8.23218585095276,6.50194985572414,25.6116294617554,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+corrected-inter-ctexcl-d50,triploid,11,5,in all libraries,2816020,intron,1013391,35.9866407198813,28.4229896740667,22.6137324191955,introns
+corrected-inter-ctexcl-d50,triploid,11,5,in all libraries,2816020,nonCDS,1904426,67.6282838900292,,,complement of the exon track (not of coding sequence)
+corrected-inter-ctexcl-d50,triploid,11,5,in all libraries,2816020,lncRNA,80212,2.84841726976371,2.24973859816817,1.78992383473754,long non-coding RNA
+corrected-inter-ctexcl-d50,triploid,11,5,in all libraries,2816020,upstream_flank,125403,4.45319990625067,3.51722896107917,2.79835708681483,upstream flanks (up to 1 kb)
+corrected-inter-ctexcl-d50,triploid,11,5,in all libraries,2816020,downstream_flank,99275,3.52536558689214,2.78440631492975,2.21531302914238,downstream flanks (up to 1 kb)
+corrected-inter-ctexcl-d50,triploid,11,5,in all libraries,2816020,flanks,214440,7.61500273435558,,,upstream and downstream flanks together
+corrected-inter-ctexcl-d50,triploid,11,5,in all libraries,2816020,intergenic,677083,24.0439698581686,18.9904223715092,15.1090485188699,intergenic regions
+corrected-inter-ctexcl-d50,triploid,11,5,in all libraries,2816020,TE,654094,23.2276049175787,18.3456405354587,14.596050974403,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+corrected-inter-ctexcl-d50,triploid,11,5,in any library,10083299,gene,5825427,57.7730264668339,,,genes
+corrected-inter-ctexcl-d50,triploid,11,5,in any library,10083299,mRNA,5541614,54.9583425027861,,,mRNA transcripts
+corrected-inter-ctexcl-d50,triploid,11,5,in any library,10083299,exon,1871407,18.5594714586962,,,exons
+corrected-inter-ctexcl-d50,triploid,11,5,in any library,10083299,CDS,1291814,12.8114221347597,8.99880685947134,7.96099095083387,coding sequence
+corrected-inter-ctexcl-d50,triploid,11,5,in any library,10083299,exon_UTR,579630,5.74841626733473,4.0377162811019,15.1048706525545,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+corrected-inter-ctexcl-d50,triploid,11,5,in any library,10083299,intron,3965335,39.3257702662591,27.622617341275,24.4369514899396,introns
+corrected-inter-ctexcl-d50,triploid,11,5,in any library,10083299,nonCDS,8222296,81.5437090579185,,,complement of the exon track (not of coding sequence)
+corrected-inter-ctexcl-d50,triploid,11,5,in any library,10083299,lncRNA,331644,3.28904260401283,2.310239943291,2.043804203158,long non-coding RNA
+corrected-inter-ctexcl-d50,triploid,11,5,in any library,10083299,upstream_flank,471264,4.6737084757677,3.2828361635823,2.90423268322976,upstream flanks (up to 1 kb)
+corrected-inter-ctexcl-d50,triploid,11,5,in any library,10083299,downstream_flank,433231,4.29652041459844,3.01789738657084,2.66984880998403,downstream flanks (up to 1 kb)
+corrected-inter-ctexcl-d50,triploid,11,5,in any library,10083299,flanks,865111,8.57964243646846,,,upstream and downstream flanks together
+corrected-inter-ctexcl-d50,triploid,11,5,in any library,10083299,intergenic,3394586,33.6654303318785,23.6467663160992,20.9196280794505,intergenic regions
+corrected-inter-ctexcl-d50,triploid,11,5,in any library,10083299,TE,3887888,38.5576982295179,27.0831197086084,23.9596731308498,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+corrected-inter-ctexcl-d50,triploid,11,10,in all libraries,787680,gene,559762,71.0646455413366,,,genes
+corrected-inter-ctexcl-d50,triploid,11,10,in all libraries,787680,mRNA,541880,68.7944342880358,,,mRNA transcripts
+corrected-inter-ctexcl-d50,triploid,11,10,in all libraries,787680,exon,290618,36.8954397724965,,,exons
+corrected-inter-ctexcl-d50,triploid,11,10,in all libraries,787680,CDS,219261,27.8363040828763,22.3294366135506,17.2299822011622,coding sequence
+corrected-inter-ctexcl-d50,triploid,11,10,in all libraries,787680,exon_UTR,71363,9.05989742027219,7.26757419264169,28.4452145486836,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+corrected-inter-ctexcl-d50,triploid,11,10,in all libraries,787680,intron,270245,34.3089833434897,27.5216230776516,21.2364102140968,introns
+corrected-inter-ctexcl-d50,triploid,11,10,in all libraries,787680,nonCDS,498188,63.24751167987,,,complement of the exon track (not of coding sequence)
+corrected-inter-ctexcl-d50,triploid,11,10,in all libraries,787680,lncRNA,22959,2.91476234003656,2.33813370918908,1.80416563527706,long non-coding RNA
+corrected-inter-ctexcl-d50,triploid,11,10,in all libraries,787680,upstream_flank,30163,3.82934694292098,3.07178566445709,2.37027083308776,upstream flanks (up to 1 kb)
+corrected-inter-ctexcl-d50,triploid,11,10,in all libraries,787680,downstream_flank,21681,2.75251371115174,2.20798279319345,1.70373775593196,downstream flanks (up to 1 kb)
+corrected-inter-ctexcl-d50,triploid,11,10,in all libraries,787680,flanks,49586,6.29519601868779,,,upstream and downstream flanks together
+corrected-inter-ctexcl-d50,triploid,11,10,in all libraries,787680,intergenic,178482,22.6592017062767,18.1765225263943,14.0254841637493,intergenic regions
+corrected-inter-ctexcl-d50,triploid,11,10,in all libraries,787680,TE,167783,21.3009089985781,17.0869414229222,13.1847346480113,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+corrected-inter-ctexcl-d50,triploid,11,10,in any library,7499448,gene,4514420,60.1966971435764,,,genes
+corrected-inter-ctexcl-d50,triploid,11,10,in any library,7499448,mRNA,4310861,57.4823773696411,,,mRNA transcripts
+corrected-inter-ctexcl-d50,triploid,11,10,in any library,7499448,exon,1633523,21.7819098152291,,,exons
+corrected-inter-ctexcl-d50,triploid,11,10,in any library,7499448,CDS,1151533,15.3549034542276,11.1210380445458,9.60565875955502,coding sequence
+corrected-inter-ctexcl-d50,triploid,11,10,in any library,7499448,exon_UTR,482025,6.42747306201737,4.65520168629315,17.647112308079,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+corrected-inter-ctexcl-d50,triploid,11,10,in any library,7499448,intron,2890255,38.539569845674,27.9129089773709,24.1094291332491,introns
+corrected-inter-ctexcl-d50,triploid,11,10,in any library,7499448,nonCDS,5874744,78.3356855064533,,,complement of the exon track (not of coding sequence)
+corrected-inter-ctexcl-d50,triploid,11,10,in any library,7499448,lncRNA,237908,3.17234015090177,2.29761884297003,1.9845397953582,long non-coding RNA
+corrected-inter-ctexcl-d50,triploid,11,10,in any library,7499448,upstream_flank,353834,4.71813392132328,3.41718507020974,2.95155124649349,upstream flanks (up to 1 kb)
+corrected-inter-ctexcl-d50,triploid,11,10,in any library,7499448,downstream_flank,317230,4.23004466462065,3.06367850410824,2.64621433193286,downstream flanks (up to 1 kb)
+corrected-inter-ctexcl-d50,triploid,11,10,in any library,7499448,flanks,641184,8.54974926154565,,,upstream and downstream flanks together
+corrected-inter-ctexcl-d50,triploid,11,10,in any library,7499448,intergenic,2345248,31.2722749727713,22.6494527138129,19.5631840290542,intergenic regions
+corrected-inter-ctexcl-d50,triploid,11,10,in any library,7499448,TE,2576513,34.3560352708626,24.8829161606892,21.4923103962782,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+corrected-inter-ctexcl-d50,triploid,11,20,in all libraries,36571,gene,21533,58.8799868748462,,,genes
+corrected-inter-ctexcl-d50,triploid,11,20,in all libraries,36571,mRNA,20062,54.8576741133685,,,mRNA transcripts
+corrected-inter-ctexcl-d50,triploid,11,20,in all libraries,36571,exon,8292,22.6737032074595,,,exons
+corrected-inter-ctexcl-d50,triploid,11,20,in all libraries,36571,CDS,6047,16.5349593940554,10.8470259022745,9.44253591505309,coding sequence
+corrected-inter-ctexcl-d50,triploid,11,20,in all libraries,36571,exon_UTR,2245,6.13874381340406,4.02705029776853,16.4537788881949,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+corrected-inter-ctexcl-d50,triploid,11,20,in all libraries,36571,intron,13267,36.2773782505264,23.7981631628041,20.7167395377889,introns
+corrected-inter-ctexcl-d50,triploid,11,20,in all libraries,36571,nonCDS,28305,77.3973913756802,,,complement of the exon track (not of coding sequence)
+corrected-inter-ctexcl-d50,triploid,11,20,in all libraries,36571,lncRNA,1718,4.69771130130431,3.08172490492932,2.68269831355403,long non-coding RNA
+corrected-inter-ctexcl-d50,triploid,11,20,in all libraries,36571,upstream_flank,1133,3.09808318066227,2.03235990528808,1.76920674578389,upstream flanks (up to 1 kb)
+corrected-inter-ctexcl-d50,triploid,11,20,in all libraries,36571,downstream_flank,1017,2.7808919635777,1.82428069168401,1.58806995627733,downstream flanks (up to 1 kb)
+corrected-inter-ctexcl-d50,triploid,11,20,in all libraries,36571,flanks,2074,5.6711602089087,,,upstream and downstream flanks together
+corrected-inter-ctexcl-d50,triploid,11,20,in all libraries,36571,intergenic,12969,35.4625249514643,23.2636148382005,20.2514053716427,intergenic regions
+corrected-inter-ctexcl-d50,triploid,11,20,in all libraries,36571,TE,17352,47.4474310245823,31.125780297051,27.0955652717052,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+corrected-inter-ctexcl-d50,triploid,11,20,in any library,3303259,gene,2120242,64.1863686740882,,,genes
+corrected-inter-ctexcl-d50,triploid,11,20,in any library,3303259,mRNA,2033854,61.5711332353897,,,mRNA transcripts
+corrected-inter-ctexcl-d50,triploid,11,20,in any library,3303259,exon,893828,27.0589741827692,,,exons
+corrected-inter-ctexcl-d50,triploid,11,20,in any library,3303259,CDS,644793,19.5199044337728,14.6858507989732,12.2018181436269,coding sequence
+corrected-inter-ctexcl-d50,triploid,11,20,in any library,3303259,exon_UTR,249054,7.53964493852889,5.67247145190389,21.6274654402647,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+corrected-inter-ctexcl-d50,triploid,11,20,in any library,3303259,intron,1230981,37.2656518910567,28.0369099887418,23.2946174978016,introns
+corrected-inter-ctexcl-d50,triploid,11,20,in any library,3303259,nonCDS,2413696,73.0701407307147,,,complement of the exon track (not of coding sequence)
+corrected-inter-ctexcl-d50,triploid,11,20,in any library,3303259,lncRNA,104684,3.16911268538132,2.3842901598493,1.98100030637342,long non-coding RNA
+corrected-inter-ctexcl-d50,triploid,11,20,in any library,3303259,upstream_flank,144281,4.36783794428472,3.28615422178381,2.73031891410209,upstream flanks (up to 1 kb)
+corrected-inter-ctexcl-d50,triploid,11,20,in any library,3303259,downstream_flank,118145,3.57661933260456,2.69087884428752,2.23573116423224,downstream flanks (up to 1 kb)
+corrected-inter-ctexcl-d50,triploid,11,20,in any library,3303259,flanks,250865,7.59446958291796,,,upstream and downstream flanks together
+corrected-inter-ctexcl-d50,triploid,11,20,in any library,3303259,intergenic,932734,28.2367807065689,21.2440153027862,17.6507044033941,intergenic regions
+corrected-inter-ctexcl-d50,triploid,11,20,in any library,3303259,TE,965901,29.2408497184145,21.9994292316743,18.2783441302051,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+corrected-inter-ctexcl-d50,control,12,1,in all libraries,5995486,gene,3738511,62.3554287342177,,,genes
+corrected-inter-ctexcl-d50,control,12,1,in all libraries,5995486,mRNA,3586324,59.817069041609,,,mRNA transcripts
+corrected-inter-ctexcl-d50,control,12,1,in all libraries,5995486,exon,1464480,24.4263767774623,,,exons
+corrected-inter-ctexcl-d50,control,12,1,in all libraries,5995486,CDS,1052985,17.5629632026495,12.9497886620956,10.9734277735473,coding sequence
+corrected-inter-ctexcl-d50,control,12,1,in all libraries,5995486,exon_UTR,411522,6.86386391361768,5.06096756345333,19.5502998143661,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+corrected-inter-ctexcl-d50,control,12,1,in all libraries,5995486,intron,2281910,38.0604674917096,28.0633173748179,23.7803715824398,introns
+corrected-inter-ctexcl-d50,control,12,1,in all libraries,5995486,nonCDS,4538834,75.7041881175271,,,complement of the exon track (not of coding sequence)
+corrected-inter-ctexcl-d50,control,12,1,in all libraries,5995486,lncRNA,179502,2.99395245022672,2.20754613258829,1.8706365543738,long non-coding RNA
+corrected-inter-ctexcl-d50,control,12,1,in all libraries,5995486,upstream_flank,286219,4.77390823696361,3.51996995311077,2.98276188541807,upstream flanks (up to 1 kb)
+corrected-inter-ctexcl-d50,control,12,1,in all libraries,5995486,downstream_flank,256783,4.28293886433894,3.15796101750632,2.6760017511881,downstream flanks (up to 1 kb)
+corrected-inter-ctexcl-d50,control,12,1,in all libraries,5995486,flanks,518149,8.64231857100492,,,upstream and downstream flanks together
+corrected-inter-ctexcl-d50,control,12,1,in all libraries,5995486,intergenic,1740029,29.0223177904177,21.3991726529035,18.1332901754325,intergenic regions
+corrected-inter-ctexcl-d50,control,12,1,in all libraries,5995486,TE,1922341,32.0631388347834,23.6412766435244,20.0332104632343,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+corrected-inter-ctexcl-d50,control,12,1,in any library,12231793,gene,6856098,56.0514554162256,,,genes
+corrected-inter-ctexcl-d50,control,12,1,in any library,12231793,mRNA,6500146,53.1413996296373,,,mRNA transcripts
+corrected-inter-ctexcl-d50,control,12,1,in any library,12231793,exon,2047567,16.7397126488324,,,exons
+corrected-inter-ctexcl-d50,control,12,1,in any library,12231793,CDS,1398116,11.4301803505014,7.8631674912559,7.05117177675341,coding sequence
+corrected-inter-ctexcl-d50,control,12,1,in any library,12231793,exon_UTR,649490,5.30985113956719,3.65280753091718,13.6021704913578,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+corrected-inter-ctexcl-d50,control,12,1,in any library,12231793,intron,4821347,39.4165189028297,27.1158179968359,24.3156833140703,introns
+corrected-inter-ctexcl-d50,control,12,1,in any library,12231793,nonCDS,10195579,83.3531028525417,,,complement of the exon track (not of coding sequence)
+corrected-inter-ctexcl-d50,control,12,1,in any library,12231793,lncRNA,420253,3.43574323077573,2.36355189962976,2.11947799230962,long non-coding RNA
+corrected-inter-ctexcl-d50,control,12,1,in any library,12231793,upstream_flank,555164,4.53869682065418,3.12230710264069,2.79987978699159,upstream flanks (up to 1 kb)
+corrected-inter-ctexcl-d50,control,12,1,in any library,12231793,downstream_flank,512371,4.18884623047496,2.88163427831616,2.58406021705418,downstream flanks (up to 1 kb)
+corrected-inter-ctexcl-d50,control,12,1,in any library,12231793,flanks,1020699,8.34463925280619,,,upstream and downstream flanks together
+corrected-inter-ctexcl-d50,control,12,1,in any library,12231793,intergenic,4357139,35.6214252481218,24.5050580493201,21.9745253928798,intergenic regions
+corrected-inter-ctexcl-d50,control,12,1,in any library,12231793,TE,5066690,41.4223000667196,28.4956556510843,25.5530310285833,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+corrected-inter-ctexcl-d50,control,12,3,in all libraries,3737193,gene,2488139,66.5777496639858,,,genes
+corrected-inter-ctexcl-d50,control,12,3,in all libraries,3737193,mRNA,2399858,64.2155221846985,,,mRNA transcripts
+corrected-inter-ctexcl-d50,control,12,3,in all libraries,3737193,exon,1122592,30.0383737205973,,,exons
+corrected-inter-ctexcl-d50,control,12,3,in all libraries,3737193,CDS,830170,22.2137310007805,17.2394351690126,13.9803483290421,coding sequence
+corrected-inter-ctexcl-d50,control,12,3,in all libraries,3737193,exon_UTR,292444,7.82523139693347,6.07293611979079,23.8296929281165,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+corrected-inter-ctexcl-d50,control,12,3,in all libraries,3737193,intron,1371014,36.6856622069023,28.470683075525,23.0883473071701,introns
+corrected-inter-ctexcl-d50,control,12,3,in all libraries,3737193,nonCDS,2620156,70.1102672513836,,,complement of the exon track (not of coding sequence)
+corrected-inter-ctexcl-d50,control,12,3,in all libraries,3737193,lncRNA,107041,2.8642085115754,2.22282951675714,1.80260725572955,long non-coding RNA
+corrected-inter-ctexcl-d50,control,12,3,in all libraries,3737193,upstream_flank,171904,4.59981595812686,3.56978433729711,2.89492248473886,upstream flanks (up to 1 kb)
+corrected-inter-ctexcl-d50,control,12,3,in all libraries,3737193,downstream_flank,141971,3.79886722467906,2.94819115407674,2.39084046956941,downstream flanks (up to 1 kb)
+corrected-inter-ctexcl-d50,control,12,3,in all libraries,3737193,flanks,299632,8.01756826580805,,,upstream and downstream flanks together
+corrected-inter-ctexcl-d50,control,12,3,in all libraries,3737193,intergenic,950221,25.4260617527647,19.7324323039068,16.0020484594369,intergenic regions
+corrected-inter-ctexcl-d50,control,12,3,in all libraries,3737193,TE,950764,25.4405913743283,19.7437083236338,16.0111927661966,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+corrected-inter-ctexcl-d50,control,12,3,in any library,10895483,gene,6223371,57.118817036381,,,genes
+corrected-inter-ctexcl-d50,control,12,3,in any library,10895483,mRNA,5912966,54.2698841345538,,,mRNA transcripts
+corrected-inter-ctexcl-d50,control,12,3,in any library,10895483,exon,1935492,17.7641688762215,,,exons
+corrected-inter-ctexcl-d50,control,12,3,in any library,10895483,CDS,1329903,12.2060031666334,8.49591147560023,7.56101888806369,coding sequence
+corrected-inter-ctexcl-d50,control,12,3,in any library,10895483,exon_UTR,605626,5.55850529985683,3.86896253585552,14.4472500586875,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+corrected-inter-ctexcl-d50,control,12,3,in any library,10895483,intron,4299684,39.4629958121177,27.4679691955389,24.4453858188945,introns
+corrected-inter-ctexcl-d50,control,12,3,in any library,10895483,nonCDS,8970773,82.3347895637119,,,complement of the exon track (not of coding sequence)
+corrected-inter-ctexcl-d50,control,12,3,in any library,10895483,lncRNA,363682,3.33791535446386,2.32333491786186,2.06767446291104,long non-coding RNA
+corrected-inter-ctexcl-d50,control,12,3,in any library,10895483,upstream_flank,504124,4.62690823343949,3.22053027681379,2.86614218174274,upstream flanks (up to 1 kb)
+corrected-inter-ctexcl-d50,control,12,3,in any library,10895483,downstream_flank,465219,4.2698336549192,2.97199076982852,2.6449520349124,downstream flanks (up to 1 kb)
+corrected-inter-ctexcl-d50,control,12,3,in any library,10895483,flanks,927276,8.51064610903436,,,upstream and downstream flanks together
+corrected-inter-ctexcl-d50,control,12,3,in any library,10895483,intergenic,3746807,34.3886269199814,23.9359867510332,21.3020637572283,intergenic regions
+corrected-inter-ctexcl-d50,control,12,3,in any library,10895483,TE,4338402,39.8183540830636,27.715314077468,24.6655127975599,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+corrected-inter-ctexcl-d50,control,12,5,in all libraries,2291470,gene,1586477,69.2340288111998,,,genes
+corrected-inter-ctexcl-d50,control,12,5,in all libraries,2291470,mRNA,1534306,66.9572806975435,,,mRNA transcripts
+corrected-inter-ctexcl-d50,control,12,5,in all libraries,2291470,exon,773171,33.7412665232362,,,exons
+corrected-inter-ctexcl-d50,control,12,5,in all libraries,2291470,CDS,579522,25.2904031036845,20.135393655455,15.8716751882961,coding sequence
+corrected-inter-ctexcl-d50,control,12,5,in all libraries,2291470,exon_UTR,193664,8.45151802118291,6.72882285209195,26.4792209453244,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+corrected-inter-ctexcl-d50,control,12,5,in all libraries,2291470,intron,816738,35.6425351411976,28.3774233650646,22.368435106758,introns
+corrected-inter-ctexcl-d50,control,12,5,in all libraries,2291470,nonCDS,1521805,66.4117356980454,,,complement of the exon track (not of coding sequence)
+corrected-inter-ctexcl-d50,control,12,5,in all libraries,2291470,lncRNA,65080,2.84009827752491,2.26119356831494,1.78238034320407,long non-coding RNA
+corrected-inter-ctexcl-d50,control,12,5,in all libraries,2291470,upstream_flank,98685,4.30662413210734,3.42879359694468,2.70273823246917,upstream flanks (up to 1 kb)
+corrected-inter-ctexcl-d50,control,12,5,in all libraries,2291470,downstream_flank,76189,3.32489624564144,2.64717389023274,2.08662839533459,downstream flanks (up to 1 kb)
+corrected-inter-ctexcl-d50,control,12,5,in all libraries,2291470,flanks,167046,7.28990560644477,,,upstream and downstream flanks together
+corrected-inter-ctexcl-d50,control,12,5,in all libraries,2291470,intergenic,538408,23.4961836724897,18.7068946946729,14.7456643488601,intergenic regions
+corrected-inter-ctexcl-d50,control,12,5,in all libraries,2291470,TE,509840,22.2494730456868,17.7143043772232,13.9632574397536,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+corrected-inter-ctexcl-d50,control,12,5,in any library,9626394,gene,5598261,58.1553279452306,,,genes
+corrected-inter-ctexcl-d50,control,12,5,in any library,9626394,mRNA,5329605,55.3645009751315,,,mRNA transcripts
+corrected-inter-ctexcl-d50,control,12,5,in any library,9626394,exon,1836677,19.0795951214962,,,exons
+corrected-inter-ctexcl-d50,control,12,5,in any library,9626394,CDS,1273008,13.2241418749326,9.33432321999131,8.22643451508478,coding sequence
+corrected-inter-ctexcl-d50,control,12,5,in any library,9626394,exon_UTR,563706,5.85583760648068,4.13337072905152,15.5117592038878,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+corrected-inter-ctexcl-d50,control,12,5,in any library,9626394,intron,3772562,39.1897734499544,27.6622873347668,24.379056727921,introns
+corrected-inter-ctexcl-d50,control,12,5,in any library,9626394,nonCDS,7799892,81.0261038557117,,,complement of the exon track (not of coding sequence)
+corrected-inter-ctexcl-d50,control,12,5,in any library,9626394,lncRNA,313996,3.26182369015854,2.30237371154336,2.02910549815756,long non-coding RNA
+corrected-inter-ctexcl-d50,control,12,5,in any library,9626394,upstream_flank,451139,4.68647969322677,3.3079739036547,2.91535123165042,upstream flanks (up to 1 kb)
+corrected-inter-ctexcl-d50,control,12,5,in any library,9626394,downstream_flank,413327,4.29368463414234,3.0307176494958,2.67100245938474,downstream flanks (up to 1 kb)
+corrected-inter-ctexcl-d50,control,12,5,in any library,9626394,flanks,826832,8.5892183511292,,,upstream and downstream flanks together
+corrected-inter-ctexcl-d50,control,12,5,in any library,9626394,intergenic,3203092,33.27405880125,23.4866521116666,20.6990267019468,intergenic regions
+corrected-inter-ctexcl-d50,control,12,5,in any library,9626394,TE,3647095,37.886408971002,26.7423013398299,23.5682636619669,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+corrected-inter-ctexcl-d50,control,12,10,in all libraries,478813,gene,336132,70.2011014738531,,,genes
+corrected-inter-ctexcl-d50,control,12,10,in all libraries,478813,mRNA,324780,67.8302385273583,,,mRNA transcripts
+corrected-inter-ctexcl-d50,control,12,10,in all libraries,478813,exon,171946,35.910887966701,,,exons
+corrected-inter-ctexcl-d50,control,12,10,in all libraries,478813,CDS,128887,26.9180243644178,21.2081122218109,16.5309470276565,coding sequence
+corrected-inter-ctexcl-d50,control,12,10,in all libraries,478813,exon_UTR,43063,8.9936990014891,7.08593525031881,27.5768882002794,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+corrected-inter-ctexcl-d50,control,12,10,in all libraries,478813,intron,164826,34.4238773801046,27.1218067382451,21.1404553972124,introns
+corrected-inter-ctexcl-d50,control,12,10,in all libraries,478813,nonCDS,307518,64.2250732540679,,,complement of the exon track (not of coding sequence)
+corrected-inter-ctexcl-d50,control,12,10,in all libraries,478813,lncRNA,14613,3.051922149148,2.4045415278292,1.87425208838087,long non-coding RNA
+corrected-inter-ctexcl-d50,control,12,10,in all libraries,478813,upstream_flank,17321,3.61748741157822,2.85013780904192,2.22157807588072,upstream flanks (up to 1 kb)
+corrected-inter-ctexcl-d50,control,12,10,in all libraries,478813,downstream_flank,12530,2.61688801264794,2.06178781521247,1.60708811793692,downstream flanks (up to 1 kb)
+corrected-inter-ctexcl-d50,control,12,10,in all libraries,478813,flanks,28534,5.95932023566612,,,upstream and downstream flanks together
+corrected-inter-ctexcl-d50,control,12,10,in all libraries,478813,intergenic,114225,23.8558685749969,18.7955078366037,14.6504102371385,intergenic regions
+corrected-inter-ctexcl-d50,control,12,10,in all libraries,478813,TE,112260,23.4454787150725,18.4721708009379,14.3983808555147,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+corrected-inter-ctexcl-d50,control,12,10,in any library,6569821,gene,4020884,61.2023371717433,,,genes
+corrected-inter-ctexcl-d50,control,12,10,in any library,6569821,mRNA,3845083,58.5264499595956,,,mRNA transcripts
+corrected-inter-ctexcl-d50,control,12,10,in any library,6569821,exon,1517578,23.0992290353116,,,exons
+corrected-inter-ctexcl-d50,control,12,10,in any library,6569821,CDS,1082083,16.4705096227127,12.0470055467641,10.305795794034,coding sequence
+corrected-inter-ctexcl-d50,control,12,10,in any library,6569821,exon_UTR,435526,6.62919126715933,4.84878159786261,18.6014298242473,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+corrected-inter-ctexcl-d50,control,12,10,in any library,6569821,intron,2511747,38.2315895668999,27.9636867422074,23.9219650140308,introns
+corrected-inter-ctexcl-d50,control,12,10,in any library,6569821,nonCDS,5060233,77.0223876723582,,,complement of the exon track (not of coding sequence)
+corrected-inter-ctexcl-d50,control,12,10,in any library,6569821,lncRNA,207346,3.15603728016334,2.30841664835262,1.97477045172115,long non-coding RNA
+corrected-inter-ctexcl-d50,control,12,10,in any library,6569821,upstream_flank,306853,4.67064475577036,3.4162442188272,2.92247854996956,upstream flanks (up to 1 kb)
+corrected-inter-ctexcl-d50,control,12,10,in any library,6569821,downstream_flank,269303,4.0990918930668,2.99819397842883,2.56485105552969,downstream flanks (up to 1 kb)
+corrected-inter-ctexcl-d50,control,12,10,in any library,6569821,flanks,550640,8.38135468226608,,,upstream and downstream flanks together
+corrected-inter-ctexcl-d50,control,12,10,in any library,6569821,intergenic,1999549,30.4353649817857,22.2613033325785,19.0437736053194,intergenic regions
+corrected-inter-ctexcl-d50,control,12,10,in any library,6569821,TE,2169767,33.0262727097131,24.1563679349788,20.6649357051481,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+corrected-inter-ctexcl-d50,control,12,20,in all libraries,19599,gene,10909,55.6610031124037,,,genes
+corrected-inter-ctexcl-d50,control,12,20,in all libraries,19599,mRNA,10081,51.4362977702944,,,mRNA transcripts
+corrected-inter-ctexcl-d50,control,12,20,in all libraries,19599,exon,3633,18.5366600336752,,,exons
+corrected-inter-ctexcl-d50,control,12,20,in all libraries,19599,CDS,2599,13.2608806571764,8.26312275458621,7.40751296813544,coding sequence
+corrected-inter-ctexcl-d50,control,12,20,in all libraries,19599,exon_UTR,1034,5.2757793764988,3.28744475884653,13.3016017784871,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+corrected-inter-ctexcl-d50,control,12,20,in all libraries,19599,intron,7284,37.165161487831,23.1583632721839,20.7604172604458,introns
+corrected-inter-ctexcl-d50,control,12,20,in all libraries,19599,nonCDS,15972,81.4939537731517,,,complement of the exon track (not of coding sequence)
+corrected-inter-ctexcl-d50,control,12,20,in all libraries,19599,lncRNA,987,5.03597122302158,3.13801545162624,2.81308784130422,long non-coding RNA
+corrected-inter-ctexcl-d50,control,12,20,in all libraries,19599,upstream_flank,573,2.92361855196694,1.82176580930277,1.63313002337115,upstream flanks (up to 1 kb)
+corrected-inter-ctexcl-d50,control,12,20,in all libraries,19599,downstream_flank,585,2.9848461656207,1.85991797284838,1.66733169925326,downstream flanks (up to 1 kb)
+corrected-inter-ctexcl-d50,control,12,20,in all libraries,19599,flanks,1127,5.75029338231542,,,upstream and downstream flanks together
+corrected-inter-ctexcl-d50,control,12,20,in all libraries,19599,intergenic,7563,38.5887035052809,24.0454010746193,21.555606224705,intergenic regions
+corrected-inter-ctexcl-d50,control,12,20,in all libraries,19599,TE,10828,55.2477167202408,34.4259689059867,30.861312204298,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+corrected-inter-ctexcl-d50,control,12,20,in any library,2125027,gene,1379968,64.9388454829045,,,genes
+corrected-inter-ctexcl-d50,control,12,20,in any library,2125027,mRNA,1323944,62.3024554511543,,,mRNA transcripts
+corrected-inter-ctexcl-d50,control,12,20,in any library,2125027,exon,605030,28.4716382427141,,,exons
+corrected-inter-ctexcl-d50,control,12,20,in any library,2125027,CDS,442838,20.8391705140688,15.642856335449,12.8883414756525,coding sequence
+corrected-inter-ctexcl-d50,control,12,20,in any library,2125027,exon_UTR,162204,7.63303242735269,5.72971124663008,22.3295511761203,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+corrected-inter-ctexcl-d50,control,12,20,in any library,2125027,intron,777777,36.6008055427061,27.4742769862038,22.6363942749009,introns
+corrected-inter-ctexcl-d50,control,12,20,in any library,2125027,nonCDS,1522649,71.653160171612,,,complement of the exon track (not of coding sequence)
+corrected-inter-ctexcl-d50,control,12,20,in any library,2125027,lncRNA,69337,3.26287618933783,2.44926751934348,2.01798159348863,long non-coding RNA
+corrected-inter-ctexcl-d50,control,12,20,in any library,2125027,upstream_flank,85635,4.02983115038068,3.02497979461152,2.49231800854376,upstream flanks (up to 1 kb)
+corrected-inter-ctexcl-d50,control,12,20,in any library,2125027,downstream_flank,69099,3.2516763316419,2.44086038217856,2.01105484991376,downstream flanks (up to 1 kb)
+corrected-inter-ctexcl-d50,control,12,20,in any library,2125027,flanks,147993,6.96428798316445,,,upstream and downstream flanks together
+corrected-inter-ctexcl-d50,control,12,20,in any library,2125027,intergenic,597440,28.1144663103104,21.1040337302821,17.3878726107828,intergenic regions
+corrected-inter-ctexcl-d50,control,12,20,in any library,2125027,TE,626598,29.4865900527382,22.1340140053014,18.2364860105973,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+corrected-inter-ctexcl-d50,heat,10,1,in all libraries,6894135,gene,4202758,60.961353382259,,,genes
+corrected-inter-ctexcl-d50,heat,10,1,in all libraries,6894135,mRNA,4023826,58.3659298809786,,,mRNA transcripts
+corrected-inter-ctexcl-d50,heat,10,1,in all libraries,6894135,exon,1551851,22.5097274712491,,,exons
+corrected-inter-ctexcl-d50,heat,10,1,in all libraries,6894135,CDS,1104851,16.0259553954194,11.5729813108331,9.9548098802874,coding sequence
+corrected-inter-ctexcl-d50,heat,10,1,in all libraries,6894135,exon_UTR,447032,6.48423623848387,4.6825255001302,18.0101210370797,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+corrected-inter-ctexcl-d50,heat,10,1,in all libraries,6894135,intron,2659615,38.5779361732835,27.8586657286923,23.9633775773933,introns
+corrected-inter-ctexcl-d50,heat,10,1,in all libraries,6894135,nonCDS,5350798,77.6137688049335,,,complement of the exon track (not of coding sequence)
+corrected-inter-ctexcl-d50,heat,10,1,in all libraries,6894135,lncRNA,210676,3.05587285424495,2.20676761901929,1.89821028024542,long non-coding RNA
+corrected-inter-ctexcl-d50,heat,10,1,in all libraries,6894135,upstream_flank,328923,4.77105539708752,3.44536931378364,2.96362670645524,upstream flanks (up to 1 kb)
+corrected-inter-ctexcl-d50,heat,10,1,in all libraries,6894135,downstream_flank,301382,4.37157090773534,3.15688563744931,2.71547974463595,downstream flanks (up to 1 kb)
+corrected-inter-ctexcl-d50,heat,10,1,in all libraries,6894135,flanks,601563,8.72572121085531,,,upstream and downstream flanks together
+corrected-inter-ctexcl-d50,heat,10,1,in all libraries,6894135,intergenic,2091139,30.3321446417861,21.9040509221192,18.8413561450859,intergenic regions
+corrected-inter-ctexcl-d50,heat,10,1,in all libraries,6894135,TE,2403196,34.8585573099453,25.172753967973,21.6530186288171,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+corrected-inter-ctexcl-d50,heat,10,1,in any library,12331962,gene,6904028,55.9848303132948,,,genes
+corrected-inter-ctexcl-d50,heat,10,1,in any library,12331962,mRNA,6544166,53.0667058494018,,,mRNA transcripts
+corrected-inter-ctexcl-d50,heat,10,1,in any library,12331962,exon,2055257,16.6660990359847,,,exons
+corrected-inter-ctexcl-d50,heat,10,1,in any library,12331962,CDS,1402269,11.3710129823624,7.8197469174387,7.01567156465392,coding sequence
+corrected-inter-ctexcl-d50,heat,10,1,in any library,12331962,exon_UTR,653028,5.29541041401198,3.64160777283186,13.5497811500352,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+corrected-inter-ctexcl-d50,heat,10,1,in any library,12331962,intron,4861671,39.4233375029861,27.1110869710812,24.32335521316,introns
+corrected-inter-ctexcl-d50,heat,10,1,in any library,12331962,nonCDS,10287864,83.4243894037299,,,complement of the exon track (not of coding sequence)
+corrected-inter-ctexcl-d50,heat,10,1,in any library,12331962,lncRNA,425274,3.44855100915815,2.37153859250032,2.12768214157671,long non-coding RNA
+corrected-inter-ctexcl-d50,heat,10,1,in any library,12331962,upstream_flank,558958,4.53259586755133,3.11702683114132,2.79651461056033,upstream flanks (up to 1 kb)
+corrected-inter-ctexcl-d50,heat,10,1,in any library,12331962,downstream_flank,515755,4.1822623196536,2.87610549145963,2.58036631190455,downstream flanks (up to 1 kb)
+corrected-inter-ctexcl-d50,heat,10,1,in any library,12331962,flanks,1027709,8.33370229327661,,,upstream and downstream flanks together
+corrected-inter-ctexcl-d50,heat,10,1,in any library,12331962,intergenic,4402152,35.697093455202,24.548581286541,22.0243424119655,intergenic regions
+corrected-inter-ctexcl-d50,heat,10,1,in any library,12331962,TE,5113302,41.4638157334575,28.5143061370059,25.5822865961438,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+corrected-inter-ctexcl-d50,heat,10,3,in all libraries,5095270,gene,3266337,64.1052780323712,,,genes
+corrected-inter-ctexcl-d50,heat,10,3,in all libraries,5095270,mRNA,3141120,61.6477635140042,,,mRNA transcripts
+corrected-inter-ctexcl-d50,heat,10,3,in all libraries,5095270,exon,1358477,26.6615311848047,,,exons
+corrected-inter-ctexcl-d50,heat,10,3,in all libraries,5095270,CDS,986278,19.3567367381905,14.6261737680996,12.1736910830136,coding sequence
+corrected-inter-ctexcl-d50,heat,10,3,in all libraries,5095270,exon_UTR,372225,7.30530472379285,5.5199725947764,21.3621631069068,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+corrected-inter-ctexcl-d50,heat,10,3,in all libraries,5095270,intron,1915047,37.5847992353693,28.3995082482605,23.637544979663,introns
+corrected-inter-ctexcl-d50,heat,10,3,in all libraries,5095270,nonCDS,3743995,73.4798155936781,,,complement of the exon track (not of coding sequence)
+corrected-inter-ctexcl-d50,heat,10,3,in all libraries,5095270,lncRNA,148585,2.91613594569081,2.20346598964296,1.83399395461481,long non-coding RNA
+corrected-inter-ctexcl-d50,heat,10,3,in all libraries,5095270,upstream_flank,243680,4.78247472656012,3.61369312081433,3.00775749140583,upstream flanks (up to 1 kb)
+corrected-inter-ctexcl-d50,heat,10,3,in all libraries,5095270,downstream_flank,213613,4.19237842155568,3.16780953962783,2.63663862857713,downstream flanks (up to 1 kb)
+corrected-inter-ctexcl-d50,heat,10,3,in all libraries,5095270,flanks,436367,8.56415852349336,,,upstream and downstream flanks together
+corrected-inter-ctexcl-d50,heat,10,3,in all libraries,5095270,intergenic,1393590,27.3506605145557,20.6664748696472,17.2011685917936,intergenic regions
+corrected-inter-ctexcl-d50,heat,10,3,in all libraries,5095270,TE,1470222,28.8546436204558,21.8029018691312,18.1470421640252,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+corrected-inter-ctexcl-d50,heat,10,3,in any library,11344261,gene,6438975,56.7597572023422,,,genes
+corrected-inter-ctexcl-d50,heat,10,3,in any library,11344261,mRNA,6113210,53.8881289843384,,,mRNA transcripts
+corrected-inter-ctexcl-d50,heat,10,3,in any library,11344261,exon,1966288,17.3328875278875,,,exons
+corrected-inter-ctexcl-d50,heat,10,3,in any library,11344261,CDS,1346617,11.8704691297212,8.22926644892936,7.34650213313739,coding sequence
+corrected-inter-ctexcl-d50,heat,10,3,in any library,11344261,exon_UTR,619709,5.46275336930277,3.78708309920309,14.1079701777023,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+corrected-inter-ctexcl-d50,heat,10,3,in any library,11344261,intron,4484888,39.5344218543632,27.4074501848751,24.4674166885479,introns
+corrected-inter-ctexcl-d50,heat,10,3,in any library,11344261,nonCDS,9388751,82.7621208644618,,,complement of the exon track (not of coding sequence)
+corrected-inter-ctexcl-d50,heat,10,3,in any library,11344261,lncRNA,382298,3.36996830379696,2.33624861775308,2.0856361329867,long non-coding RNA
+corrected-inter-ctexcl-d50,heat,10,3,in any library,11344261,upstream_flank,522078,4.60213318434758,3.19045353587853,2.84820935771946,upstream flanks (up to 1 kb)
+corrected-inter-ctexcl-d50,heat,10,3,in any library,11344261,downstream_flank,482360,4.25201782645868,2.94773418448272,2.63152683275211,downstream flanks (up to 1 kb)
+corrected-inter-ctexcl-d50,heat,10,3,in any library,11344261,flanks,960910,8.4704503889676,,,upstream and downstream flanks together
+corrected-inter-ctexcl-d50,heat,10,3,in any library,11344261,intergenic,3946158,34.7855007919864,24.1152351645451,21.5283619356485,intergenic regions
+corrected-inter-ctexcl-d50,heat,10,3,in any library,11344261,TE,4579647,40.3697252734224,27.9865287643331,24.9843767415057,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+corrected-inter-ctexcl-d50,heat,10,5,in all libraries,3921731,gene,2604750,66.4183749471853,,,genes
+corrected-inter-ctexcl-d50,heat,10,5,in all libraries,3921731,mRNA,2512442,64.064618404475,,,mRNA transcripts
+corrected-inter-ctexcl-d50,heat,10,5,in all libraries,3921731,exon,1166354,29.7407955823589,,,exons
+corrected-inter-ctexcl-d50,heat,10,5,in all libraries,3921731,CDS,858564,21.8924755420502,17.016477699076,13.8214120131877,coding sequence
+corrected-inter-ctexcl-d50,heat,10,5,in all libraries,3921731,exon_UTR,307815,7.84895751391414,6.10079980402284,23.7315996548527,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+corrected-inter-ctexcl-d50,heat,10,5,in all libraries,3921731,intron,1444195,36.8254477423362,28.6235062390422,23.2490695188543,introns
+corrected-inter-ctexcl-d50,heat,10,5,in all libraries,3921731,nonCDS,2761285,70.4098521800705,,,complement of the exon track (not of coding sequence)
+corrected-inter-ctexcl-d50,heat,10,5,in all libraries,3921731,lncRNA,111634,2.84654913863292,2.21255197219852,1.79711647434577,long non-coding RNA
+corrected-inter-ctexcl-d50,heat,10,5,in all libraries,3921731,upstream_flank,182901,4.66378239608989,3.62504226550227,2.94439328765712,upstream flanks (up to 1 kb)
+corrected-inter-ctexcl-d50,heat,10,5,in all libraries,3921731,downstream_flank,153279,3.90845267051718,3.03794322291252,2.4675297496394,downstream flanks (up to 1 kb)
+corrected-inter-ctexcl-d50,heat,10,5,in all libraries,3921731,flanks,320777,8.17947482884471,,,upstream and downstream flanks together
+corrected-inter-ctexcl-d50,heat,10,5,in all libraries,3921731,intergenic,997006,25.4226003772314,19.7603560885909,16.0500914382856,intergenic regions
+corrected-inter-ctexcl-d50,heat,10,5,in all libraries,3921731,TE,990092,25.2463006769205,19.6233227086548,15.9387878631774,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+corrected-inter-ctexcl-d50,heat,10,5,in any library,10459665,gene,6011458,57.4727584487649,,,genes
+corrected-inter-ctexcl-d50,heat,10,5,in any library,10459665,mRNA,5715517,54.6434039713509,,,mRNA transcripts
+corrected-inter-ctexcl-d50,heat,10,5,in any library,10459665,exon,1897642,18.1424739702467,,,exons
+corrected-inter-ctexcl-d50,heat,10,5,in any library,10459665,CDS,1305663,12.4828376434618,8.73530804926219,7.75122499184012,coding sequence
+corrected-inter-ctexcl-d50,heat,10,5,in any library,10459665,exon_UTR,592015,5.65998050606783,3.96077195630416,14.7801473730279,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+corrected-inter-ctexcl-d50,heat,10,5,in any library,10459665,intron,4125408,39.4411102076405,27.6003147128246,24.4909793653777,introns
+corrected-inter-ctexcl-d50,heat,10,5,in any library,10459665,nonCDS,8572411,81.9568408739668,,,complement of the exon track (not of coding sequence)
+corrected-inter-ctexcl-d50,heat,10,5,in any library,10459665,lncRNA,346182,3.30968534843133,2.31606962218404,2.05515096171462,long non-coding RNA
+corrected-inter-ctexcl-d50,heat,10,5,in any library,10459665,upstream_flank,486478,4.6509902563801,3.25469526913834,2.88803499186268,upstream flanks (up to 1 kb)
+corrected-inter-ctexcl-d50,heat,10,5,in any library,10459665,downstream_flank,448964,4.2923363224348,3.00371446769109,2.66532863168866,downstream flanks (up to 1 kb)
+corrected-inter-ctexcl-d50,heat,10,5,in any library,10459665,flanks,894984,8.55652642794965,,,upstream and downstream flanks together
+corrected-inter-ctexcl-d50,heat,10,5,in any library,10459665,intergenic,3554899,33.9867385810157,23.7834248569609,21.1040842639084,intergenic regions
+corrected-inter-ctexcl-d50,heat,10,5,in any library,10459665,TE,4087351,39.0772649028435,27.3457010656348,24.26504942058,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+corrected-inter-ctexcl-d50,heat,10,10,in all libraries,1776190,gene,1241286,69.8847533203092,,,genes
+corrected-inter-ctexcl-d50,heat,10,10,in all libraries,1776190,mRNA,1201563,67.648337171136,,,mRNA transcripts
+corrected-inter-ctexcl-d50,heat,10,10,in all libraries,1776190,exon,610947,34.3964891143403,,,exons
+corrected-inter-ctexcl-d50,heat,10,10,in all libraries,1776190,CDS,451916,25.4429987782839,20.5020115667356,16.0527195413184,coding sequence
+corrected-inter-ctexcl-d50,heat,10,10,in all libraries,1776190,exon_UTR,159043,8.95416593945468,7.21528210023173,27.3511748192579,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+corrected-inter-ctexcl-d50,heat,10,10,in all libraries,1776190,intron,633058,35.6413446759637,28.7198559874279,22.4871492210675,introns
+corrected-inter-ctexcl-d50,heat,10,10,in all libraries,1776190,nonCDS,1168016,65.7596315709468,,,complement of the exon track (not of coding sequence)
+corrected-inter-ctexcl-d50,heat,10,10,in all libraries,1776190,lncRNA,50401,2.83759057308058,2.28653529632728,1.79031748732505,long non-coding RNA
+corrected-inter-ctexcl-d50,heat,10,10,in all libraries,1776190,upstream_flank,76279,4.29452930148239,3.46053899463401,2.70954202527068,upstream flanks (up to 1 kb)
+corrected-inter-ctexcl-d50,heat,10,10,in all libraries,1776190,downstream_flank,56887,3.20275420985368,2.58078477415468,2.02070972602647,downstream flanks (up to 1 kb)
+corrected-inter-ctexcl-d50,heat,10,10,in all libraries,1776190,flanks,127351,7.16989736458374,,,upstream and downstream flanks together
+corrected-inter-ctexcl-d50,heat,10,10,in all libraries,1776190,intergenic,407894,22.964547711675,18.5048714938219,14.4889934956641,intergenic regions
+corrected-inter-ctexcl-d50,heat,10,10,in all libraries,1776190,TE,368774,20.7620806332656,16.7301197866669,13.0993936840699,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+corrected-inter-ctexcl-d50,heat,10,10,in any library,8224335,gene,4888916,59.4445143589117,,,genes
+corrected-inter-ctexcl-d50,heat,10,10,in any library,8224335,mRNA,4663458,56.7031620185705,,,mRNA transcripts
+corrected-inter-ctexcl-d50,heat,10,10,in any library,8224335,exon,1703977,20.7187207233168,,,exons
+corrected-inter-ctexcl-d50,heat,10,10,in any library,8224335,CDS,1190971,14.4810613867261,10.3989286834409,9.05213204942448,coding sequence
+corrected-inter-ctexcl-d50,heat,10,10,in any library,8224335,exon_UTR,513041,6.23808490291312,4.47960258535362,16.850737500704,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+corrected-inter-ctexcl-d50,heat,10,10,in any library,8224335,intron,3194958,38.8476150351366,27.8966829491137,24.2836993582255,introns
+corrected-inter-ctexcl-d50,heat,10,10,in any library,8224335,nonCDS,6529539,79.3929114025633,,,complement of the exon track (not of coding sequence)
+corrected-inter-ctexcl-d50,heat,10,10,in any library,8224335,lncRNA,263523,3.20418611352772,2.30094341797272,2.002941292492,long non-coding RNA
+corrected-inter-ctexcl-d50,heat,10,10,in any library,8224335,upstream_flank,388468,4.72339708924795,3.39189705525904,2.95260223210794,upstream flanks (up to 1 kb)
+corrected-inter-ctexcl-d50,heat,10,10,in any library,8224335,downstream_flank,351845,4.27809664854362,3.07212439482175,2.67424429388268,downstream flanks (up to 1 kb)
+corrected-inter-ctexcl-d50,heat,10,10,in any library,8224335,flanks,707678,8.6046835397634,,,upstream and downstream flanks together
+corrected-inter-ctexcl-d50,heat,10,10,in any library,8224335,intergenic,2629079,31.9670708938777,22.9557269019414,19.9826614387494,intergenic regions
+corrected-inter-ctexcl-d50,heat,10,10,in any library,8224335,TE,2920939,35.5158076610449,25.5040940120969,22.200981834414,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+corrected-inter-ctexcl-d50,heat,10,20,in all libraries,164298,gene,107788,65.6051808299553,,,genes
+corrected-inter-ctexcl-d50,heat,10,20,in all libraries,164298,mRNA,103116,62.7615673958295,,,mRNA transcripts
+corrected-inter-ctexcl-d50,heat,10,20,in all libraries,164298,exon,48052,29.246856322049,,,exons
+corrected-inter-ctexcl-d50,heat,10,20,in all libraries,164298,CDS,33737,20.5340296290886,15.1002596007519,12.4274326634054,coding sequence
+corrected-inter-ctexcl-d50,heat,10,20,in all libraries,164298,exon_UTR,14316,8.71343534309608,6.40766269805747,22.9740083691872,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+corrected-inter-ctexcl-d50,heat,10,20,in all libraries,164298,intron,59915,36.4672728822019,26.817205263629,22.0704161018448,introns
+corrected-inter-ctexcl-d50,heat,10,20,in all libraries,164298,nonCDS,116394,70.8432238980389,,,complement of the exon track (not of coding sequence)
+corrected-inter-ctexcl-d50,heat,10,20,in all libraries,164298,lncRNA,5865,3.56973304605047,2.62510070718826,2.16044380267578,long non-coding RNA
+corrected-inter-ctexcl-d50,heat,10,20,in all libraries,164298,upstream_flank,6069,3.69389767373918,2.71640855787306,2.2355896740732,upstream flanks (up to 1 kb)
+corrected-inter-ctexcl-d50,heat,10,20,in all libraries,164298,downstream_flank,4462,2.71579690562271,1.99713543997852,1.64363175576118,downstream flanks (up to 1 kb)
+corrected-inter-ctexcl-d50,heat,10,20,in all libraries,164298,flanks,10070,6.12910686679083,,,upstream and downstream flanks together
+corrected-inter-ctexcl-d50,heat,10,20,in all libraries,164298,intergenic,46449,28.2711901544754,20.7899919434249,17.1100518653858,intergenic regions
+corrected-inter-ctexcl-d50,heat,10,20,in all libraries,164298,TE,52607,32.0192576902945,23.5462357890968,19.3784257676667,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+corrected-inter-ctexcl-d50,heat,10,20,in any library,4075516,gene,2573348,63.1416488120768,,,genes
+corrected-inter-ctexcl-d50,heat,10,20,in any library,4075516,mRNA,2465068,60.4848073225574,,,mRNA transcripts
+corrected-inter-ctexcl-d50,heat,10,20,in any library,4075516,exon,1038595,25.4837669634962,,,exons
+corrected-inter-ctexcl-d50,heat,10,20,in any library,4075516,CDS,741491,18.1937943563465,13.5470473746819,11.3864521227276,coding sequence
+corrected-inter-ctexcl-d50,heat,10,20,in any library,4075516,exon_UTR,297126,7.29051241609651,5.42849474673291,20.5115412268279,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+corrected-inter-ctexcl-d50,heat,10,20,in any library,4075516,intron,1540222,37.7920734454239,28.1398700746567,23.6518906653915,introns
+corrected-inter-ctexcl-d50,heat,10,20,in any library,4075516,nonCDS,3041872,74.6377145863248,,,complement of the exon track (not of coding sequence)
+corrected-inter-ctexcl-d50,heat,10,20,in any library,4075516,lncRNA,130333,3.1979508852376,2.38118510606928,2.00141399492571,long non-coding RNA
+corrected-inter-ctexcl-d50,heat,10,20,in any library,4075516,upstream_flank,183284,4.49719741009482,3.34860036200196,2.81453785799425,upstream flanks (up to 1 kb)
+corrected-inter-ctexcl-d50,heat,10,20,in any library,4075516,downstream_flank,152743,3.74781990795767,2.79061601172642,2.34554547065546,downstream flanks (up to 1 kb)
+corrected-inter-ctexcl-d50,heat,10,20,in any library,4075516,flanks,321304,7.88376244873042,,,upstream and downstream flanks together
+corrected-inter-ctexcl-d50,heat,10,20,in any library,4075516,intergenic,1181400,28.9877404480807,21.5841888417381,18.1417637406124,intergenic regions
+corrected-inter-ctexcl-d50,heat,10,20,in any library,4075516,TE,1246852,30.5937211386239,22.7799974823927,19.1468549208651,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
