@@ -1,0 +1,1595 @@
+set,ontology,rank,go_id,term,annotated,significant,expected,p_fisher,genes_annotated,genes_significant,top10,below_p_cutoff
+shared,CC,1,GO:0005861,troponin complex,52,23,0.4,3.10399110408767e-35,2,1,TRUE,TRUE
+shared,CC,2,GO:0005865,striated muscle thin filament,77,23,0.59,1.80103447107229e-30,13,1,TRUE,TRUE
+shared,CC,3,GO:0036379,myofilament,79,23,0.61,3.55386847248899e-30,15,1,TRUE,TRUE
+shared,CC,4,GO:0005964,phosphorylase kinase complex,22,15,0.17,2.24378218869165e-27,3,1,TRUE,TRUE
+shared,CC,5,GO:0030017,sarcomere,438,37,3.36,4.27827158903293e-27,158,3,TRUE,TRUE
+shared,CC,6,GO:0030016,myofibril,453,37,3.47,1.41745729168485e-26,164,3,TRUE,TRUE
+shared,CC,7,GO:0043292,contractile fiber,458,37,3.51,2.09218707255325e-26,169,3,TRUE,TRUE
+shared,CC,8,GO:0034992,microtubule organizing center attachment site,12,12,0.09,3.4258774061596e-26,1,1,TRUE,TRUE
+shared,CC,9,GO:0034993,meiotic nuclear membrane microtubule tethering complex,12,12,0.09,3.4258774061596e-26,1,1,TRUE,TRUE
+shared,CC,10,GO:0106083,nuclear membrane protein complex,12,12,0.09,3.4258774061596e-26,1,1,TRUE,TRUE
+shared,CC,11,GO:0106094,nuclear membrane microtubule tethering complex,12,12,0.09,3.4258774061596e-26,1,1,FALSE,TRUE
+shared,CC,12,GO:0005640,nuclear outer membrane,19,12,0.15,1.64527653983372e-21,5,1,FALSE,TRUE
+shared,CC,13,GO:0031234,extrinsic component of cytoplasmic side of plasma membrane,162,22,1.24,4.61680479732572e-21,45,1,FALSE,TRUE
+shared,CC,14,GO:1902554,serine/threonine protein kinase complex,61,15,0.47,7.08910845276207e-19,29,1,FALSE,TRUE
+shared,CC,15,GO:0099512,supramolecular fiber,1349,46,10.35,3.30865112245402e-17,434,5,FALSE,TRUE
+shared,CC,16,GO:0099081,supramolecular polymer,1350,46,10.35,3.40247697089537e-17,435,5,FALSE,TRUE
+shared,CC,17,GO:0019897,extrinsic component of plasma membrane,262,22,2.01,1.63030263897817e-16,95,1,FALSE,TRUE
+shared,CC,18,GO:0009898,cytoplasmic side of plasma membrane,265,22,2.03,2.07313156119572e-16,81,1,FALSE,TRUE
+shared,CC,19,GO:0098562,cytoplasmic side of membrane,276,22,2.12,4.87668549471338e-16,90,1,FALSE,TRUE
+shared,CC,20,GO:0019898,extrinsic component of membrane,392,25,3.01,8.8079832092777e-16,167,2,FALSE,TRUE
+shared,CC,21,GO:1902911,protein kinase complex,102,15,0.78,2.64126272145031e-15,35,1,FALSE,TRUE
+shared,CC,22,GO:0015629,actin cytoskeleton,662,30,5.08,1.06152529564082e-14,214,2,FALSE,TRUE
+shared,CC,23,GO:0098552,side of membrane,506,26,3.88,3.77961245818353e-14,233,2,FALSE,TRUE
+shared,CC,24,GO:0035253,ciliary rootlet,9,7,0.07,5.2204535093251e-14,3,1,FALSE,TRUE
+shared,CC,25,GO:0099080,supramolecular complex,1724,47,13.22,6.17959759622502e-14,617,6,FALSE,TRUE
+shared,CC,26,GO:0061695,"transferase complex, transferring phosphorus-containing groups",267,18,2.05,4.00036876917745e-12,124,2,FALSE,TRUE
+shared,CC,27,GO:0031968,organelle outer membrane,199,16,1.53,4.45425617591767e-12,94,3,FALSE,TRUE
+shared,CC,28,GO:0019867,outer membrane,201,16,1.54,5.18813510425532e-12,95,3,FALSE,TRUE
+shared,CC,29,GO:0005868,cytoplasmic dynein complex,28,8,0.21,3.00365174289307e-11,10,1,FALSE,TRUE
+shared,CC,30,GO:0032991,protein-containing complex,5208,81,39.94,3.84234082344954e-10,2705,17,FALSE,TRUE
+shared,CC,31,GO:0031967,organelle envelope,1187,32,9.1,1.07368147822471e-09,654,11,FALSE,TRUE
+shared,CC,32,GO:0031975,envelope,1189,32,9.12,1.11840319337003e-09,655,11,FALSE,TRUE
+shared,CC,33,GO:0005635,nuclear envelope,533,21,4.09,1.43726224995146e-09,265,6,FALSE,TRUE
+shared,CC,34,GO:0000932,P-body,187,12,1.43,2.75122761455476e-08,85,1,FALSE,TRUE
+shared,CC,35,GO:0001917,photoreceptor inner segment,45,7,0.35,5.19120944128282e-08,20,1,FALSE,TRUE
+shared,CC,36,GO:0005856,cytoskeleton,3121,52,23.93,1.1807296122391e-07,1203,6,FALSE,TRUE
+shared,CC,37,GO:0031965,nuclear membrane,352,15,2.7,1.20483150992182e-07,187,2,FALSE,TRUE
+shared,CC,38,GO:0030286,dynein complex,98,8,0.75,9.54095477761216e-07,32,1,FALSE,TRUE
+shared,CC,39,GO:1902494,catalytic complex,1608,32,12.33,1.0855469715214e-06,837,8,FALSE,TRUE
+shared,CC,40,GO:1990234,transferase complex,890,22,6.83,1.94373980991459e-06,475,5,FALSE,TRUE
+shared,CC,41,GO:0036464,cytoplasmic ribonucleoprotein granule,286,12,2.19,2.60254894164903e-06,128,1,FALSE,TRUE
+shared,CC,42,GO:0035770,ribonucleoprotein granule,300,12,2.3,4.24478259096278e-06,134,1,FALSE,TRUE
+shared,CC,43,GO:0071782,endoplasmic reticulum tubular network,32,5,0.25,4.37880494783128e-06,15,1,FALSE,TRUE
+shared,CC,44,GO:0031931,TORC1 complex,5,3,0.04,4.42099129339418e-06,3,1,FALSE,TRUE
+shared,CC,45,GO:0030175,filopodium,131,8,1,8.42527605159953e-06,45,1,FALSE,TRUE
+shared,CC,46,GO:0031932,TORC2 complex,7,3,0.05,1.52976488527855e-05,5,1,FALSE,TRUE
+shared,CC,47,GO:0038201,TOR complex,7,3,0.05,1.52976488527855e-05,5,1,FALSE,TRUE
+shared,CC,48,GO:0042175,nuclear outer membrane-endoplasmic reticulum membrane network,1162,23,8.91,3.99656884494073e-05,592,6,FALSE,TRUE
+shared,CC,49,GO:0005813,centrosome,603,15,4.62,7.83577666189083e-05,255,2,FALSE,TRUE
+shared,CC,50,GO:0098796,membrane protein complex,1091,21,8.37,0.000126791774978313,565,5,FALSE,TRUE
+shared,CC,51,GO:0005942,phosphatidylinositol 3-kinase complex,16,3,0.12,0.000232517921809877,7,1,FALSE,TRUE
+shared,CC,52,GO:0043228,non-membrane-bounded organelle,5135,61,39.38,0.000364896212728895,2338,12,FALSE,TRUE
+shared,CC,53,GO:0043232,intracellular non-membrane-bounded organelle,5135,61,39.38,0.000364896212728895,2338,12,FALSE,TRUE
+shared,CC,54,GO:0098858,actin-based cell projection,293,9,2.25,0.000479036654693741,118,2,FALSE,TRUE
+shared,CC,55,GO:0016602,CCAAT-binding factor complex,6,2,0.05,0.000861923491636313,2,1,FALSE,TRUE
+shared,CC,56,GO:0016605,PML body,99,5,0.76,0.00102277352399145,55,2,FALSE,TRUE
+shared,CC,57,GO:0005730,nucleolus,855,16,6.56,0.00106289943523381,500,4,FALSE,TRUE
+shared,CC,58,GO:0005875,microtubule associated complex,266,8,2.04,0.00111845554860782,81,1,FALSE,TRUE
+shared,CC,59,GO:0005622,intracellular anatomical structure,19284,176,147.88,0.00144046713206299,9457,56,FALSE,TRUE
+shared,CC,60,GO:0048786,presynaptic active zone,64,4,0.49,0.00150364856116119,18,1,FALSE,TRUE
+shared,CC,61,GO:0071944,cell periphery,7963,83,61.07,0.00173022150305963,3788,17,FALSE,TRUE
+shared,CC,62,GO:0005758,mitochondrial intermembrane space,67,4,0.51,0.001781596037573,41,2,FALSE,TRUE
+shared,CC,63,GO:0016020,membrane,12408,120,95.15,0.00202211641934902,6117,35,FALSE,TRUE
+shared,CC,64,GO:0140513,nuclear protein-containing complex,1089,18,8.35,0.00210370545500884,623,5,FALSE,TRUE
+shared,CC,65,GO:0005814,centriole,234,7,1.79,0.00232485477743461,89,1,FALSE,TRUE
+shared,CC,66,GO:0031970,organelle envelope lumen,78,4,0.6,0.00310444674222724,48,2,FALSE,TRUE
+shared,CC,67,GO:0045211,postsynaptic membrane,642,12,4.92,0.00436959469140174,318,1,FALSE,TRUE
+shared,CC,68,GO:0005952,cAMP-dependent protein kinase complex,43,3,0.33,0.00439751283562854,9,1,FALSE,TRUE
+shared,CC,69,GO:0035098,ESC/E(Z) complex,16,2,0.12,0.00655454424980817,13,1,FALSE,TRUE
+shared,CC,70,GO:0005886,plasma membrane,7454,75,57.16,0.00731730400854852,3534,16,FALSE,TRUE
+shared,CC,71,GO:0034506,"chromosome, centromeric core domain",1,1,0.01,0.00766877867598848,1,1,FALSE,TRUE
+shared,CC,72,GO:0070062,extracellular exosome,2241,28,17.19,0.00819905460283664,1233,11,FALSE,TRUE
+shared,CC,73,GO:1903561,extracellular vesicle,2253,28,17.28,0.00877154229373118,1239,11,FALSE,TRUE
+shared,CC,74,GO:0043230,extracellular organelle,2254,28,17.29,0.00882069983538843,1240,11,FALSE,TRUE
+shared,CC,75,GO:0097060,synaptic membrane,724,12,5.55,0.0108095002642758,350,1,FALSE,FALSE
+shared,CC,76,GO:0005965,protein farnesyltransferase complex,2,1,0.02,0.0152789134546539,2,1,FALSE,FALSE
+shared,CC,77,GO:0005740,mitochondrial envelope,673,11,5.16,0.0157272373124822,393,5,FALSE,FALSE
+shared,CC,78,GO:0098827,endoplasmic reticulum subcompartment,1146,16,8.79,0.0165280201925285,588,6,FALSE,FALSE
+shared,CC,79,GO:0005815,microtubule organizing center,1076,15,8.25,0.0201367112182377,432,2,FALSE,FALSE
+shared,CC,80,GO:0031966,mitochondrial membrane,630,10,4.83,0.0247179748300506,365,4,FALSE,FALSE
+shared,CC,81,GO:0034703,cation channel complex,219,5,1.68,0.0274363667194635,85,2,FALSE,FALSE
+shared,CC,82,GO:0012505,endomembrane system,5333,53,40.9,0.0295738523307373,2504,22,FALSE,FALSE
+shared,CC,83,GO:0097487,"multivesicular body, internal vesicle",4,1,0.03,0.0303250366559956,4,1,FALSE,FALSE
+shared,CC,84,GO:0098794,postsynapse,944,13,7.24,0.0317812559982985,451,2,FALSE,FALSE
+shared,CC,85,GO:0005737,cytoplasm,15795,138,121.13,0.033411224829252,7606,43,FALSE,FALSE
+shared,CC,86,GO:0031080,nuclear pore outer ring,5,1,0.04,0.037761909271775,5,1,FALSE,FALSE
+shared,CC,87,GO:0043596,nuclear replication fork,41,2,0.31,0.0395139770312613,28,1,FALSE,FALSE
+shared,CC,88,GO:0031904,endosome lumen,6,1,0.05,0.0451419064278026,5,1,FALSE,FALSE
+shared,CC,89,GO:0032590,dendrite membrane,6,1,0.05,0.0451419064278026,4,1,FALSE,FALSE
+shared,CC,90,GO:0005783,endoplasmic reticulum,2060,23,15.8,0.0475108950503635,1026,9,FALSE,FALSE
+shared,CC,91,GO:0005741,mitochondrial outer membrane,177,4,1.36,0.0480167115499743,87,2,FALSE,FALSE
+shared,CC,92,GO:0005766,primary lysosome,107,3,0.82,0.0495455555864386,32,2,FALSE,FALSE
+shared,CC,93,GO:0042582,azurophil granule,107,3,0.82,0.0495455555864386,32,2,FALSE,FALSE
+shared,CC,94,GO:0031519,PcG protein complex,47,2,0.36,0.050563087714909,26,1,FALSE,FALSE
+shared,CC,95,GO:0008541,"proteasome regulatory particle, lid subcomplex",7,1,0.05,0.0524654618609779,7,1,FALSE,FALSE
+shared,CC,96,GO:0017146,NMDA selective glutamate receptor complex,7,1,0.05,0.0524654618609779,5,1,FALSE,FALSE
+shared,CC,97,GO:0031088,platelet dense granule membrane,8,1,0.06,0.0597330060098928,5,1,FALSE,FALSE
+shared,CC,98,GO:0035097,histone methyltransferase complex,53,2,0.41,0.0625720200667744,37,1,FALSE,FALSE
+shared,CC,99,GO:0031012,extracellular matrix,563,8,4.32,0.0703320724455799,302,1,FALSE,FALSE
+shared,CC,100,GO:0070013,intracellular organelle lumen,4029,39,30.9,0.0786410343333925,2146,16,FALSE,FALSE
+shared,CC,101,GO:0030176,integral component of endoplasmic reticulum membrane,130,3,1,0.078766523599496,71,1,FALSE,FALSE
+shared,CC,102,GO:0031227,intrinsic component of endoplasmic reticulum membrane,131,3,1,0.0801761141861561,72,1,FALSE,FALSE
+shared,CC,103,GO:0032809,neuronal cell body membrane,11,1,0.08,0.0812038261862722,8,1,FALSE,FALSE
+shared,CC,104,GO:0044298,cell body membrane,11,1,0.08,0.0812038261862722,8,1,FALSE,FALSE
+shared,CC,105,GO:0045202,synapse,1638,18,12.56,0.0824133172788619,718,4,FALSE,FALSE
+shared,CC,106,GO:0030312,external encapsulating structure,589,8,4.52,0.0858537691652988,318,1,FALSE,FALSE
+shared,CC,107,GO:0009897,external side of plasma membrane,220,4,1.69,0.0900534994923317,137,1,FALSE,FALSE
+shared,CC,108,GO:0005743,mitochondrial inner membrane,403,6,3.09,0.091627324331118,253,2,FALSE,FALSE
+shared,CC,109,GO:0035578,azurophil granule lumen,67,2,0.51,0.0937297965160046,19,1,FALSE,FALSE
+shared,CC,110,GO:0005682,U5 snRNP,13,1,0.1,0.0952453950951968,12,1,FALSE,FALSE
+shared,CC,111,GO:0046540,U4/U6 x U5 tri-snRNP complex,13,1,0.1,0.0952453950951968,12,1,FALSE,FALSE
+shared,CC,112,GO:0031974,membrane-enclosed lumen,4101,39,31.45,0.0956817981562106,2183,16,FALSE,FALSE
+shared,CC,113,GO:0043233,organelle lumen,4101,39,31.45,0.0956817981562106,2183,16,FALSE,FALSE
+shared,CC,114,GO:0034708,methyltransferase complex,69,2,0.53,0.0984866317177045,47,1,FALSE,FALSE
+shared,CC,115,GO:0032585,multivesicular body membrane,14,1,0.11,0.102185729171329,5,1,FALSE,FALSE
+shared,CC,116,GO:0005794,Golgi apparatus,2043,21,15.67,0.108081532185673,978,7,FALSE,FALSE
+shared,CC,117,GO:0097526,spliceosomal tri-snRNP complex,15,1,0.12,0.109072974757938,14,1,FALSE,FALSE
+shared,CC,118,GO:0005838,proteasome regulatory particle,17,1,0.13,0.122689817129839,17,1,FALSE,FALSE
+shared,CC,119,GO:0005874,microtubule,753,9,5.77,0.12779848635298,205,2,FALSE,FALSE
+shared,CC,120,GO:0005765,lysosomal membrane,444,6,3.4,0.12831222243611,180,4,FALSE,FALSE
+shared,CC,121,GO:1990023,mitotic spindle midzone,18,1,0.14,0.129420214572355,5,1,FALSE,FALSE
+shared,CC,122,GO:0031981,nuclear lumen,3393,32,26.02,0.132353735510994,1748,12,FALSE,FALSE
+shared,CC,123,GO:0098852,lytic vacuole membrane,449,6,3.44,0.133212087541369,184,4,FALSE,FALSE
+shared,CC,124,GO:0005615,extracellular space,2946,28,22.59,0.142572100904389,1707,11,FALSE,FALSE
+shared,CC,125,GO:0022624,proteasome accessory complex,23,1,0.18,0.162307705312049,22,1,FALSE,FALSE
+shared,CC,126,GO:0005777,peroxisome,181,3,1.39,0.162756450915483,111,1,FALSE,FALSE
+shared,CC,127,GO:0042579,microbody,181,3,1.39,0.162756450915483,111,1,FALSE,FALSE
+shared,CC,128,GO:0005797,Golgi medial cisterna,24,1,0.18,0.168735011920908,16,1,FALSE,FALSE
+shared,CC,129,GO:0017053,transcription repressor complex,97,2,0.74,0.170738648488906,31,1,FALSE,FALSE
+shared,CC,130,GO:0005657,replication fork,98,2,0.75,0.173464626831081,76,1,FALSE,FALSE
+shared,CC,131,GO:0005654,nucleoplasm,2797,26,21.45,0.180670868826808,1380,8,FALSE,FALSE
+shared,CC,132,GO:0019866,organelle inner membrane,494,6,3.79,0.181063271238398,310,2,FALSE,FALSE
+shared,CC,133,GO:0030426,growth cone,193,3,1.48,0.185387567208957,82,3,FALSE,FALSE
+shared,CC,134,GO:0042827,platelet dense granule,27,1,0.21,0.187723379858569,11,1,FALSE,FALSE
+shared,CC,135,GO:0034702,ion channel complex,399,5,3.06,0.193554082163348,191,2,FALSE,FALSE
+shared,CC,136,GO:0051233,spindle midzone,29,1,0.22,0.200141381375782,13,1,FALSE,FALSE
+shared,CC,137,GO:0015630,microtubule cytoskeleton,1770,17,13.57,0.20369796489145,669,4,FALSE,FALSE
+shared,CC,138,GO:0005774,vacuolar membrane,515,6,3.95,0.205460078663141,222,4,FALSE,FALSE
+shared,CC,139,GO:0012507,ER to Golgi transport vesicle membrane,30,1,0.23,0.206279209038866,19,1,FALSE,FALSE
+shared,CC,140,GO:0030427,site of polarized growth,206,3,1.58,0.210758834804477,88,3,FALSE,FALSE
+shared,CC,141,GO:0098588,bounding membrane of organelle,2499,23,19.16,0.211742302125286,1194,10,FALSE,FALSE
+shared,CC,142,GO:0090575,RNA polymerase II transcription regulator complex,115,2,0.88,0.220678689659231,62,1,FALSE,FALSE
+shared,CC,143,GO:1902495,transmembrane transporter complex,420,5,3.22,0.221924597418482,203,2,FALSE,FALSE
+shared,CC,144,GO:1990351,transporter complex,423,5,3.24,0.226078248679866,206,2,FALSE,FALSE
+shared,CC,145,GO:0031090,organelle membrane,4129,36,31.66,0.232783424705589,2045,15,FALSE,FALSE
+shared,CC,146,GO:0099513,polymeric cytoskeletal fiber,882,9,6.76,0.238550337018509,255,2,FALSE,FALSE
+shared,CC,147,GO:0030134,COPII-coated ER to Golgi transport vesicle,36,1,0.28,0.24213232997187,23,1,FALSE,FALSE
+shared,CC,148,GO:0005801,cis-Golgi network,37,1,0.28,0.24794882431262,16,1,FALSE,FALSE
+shared,CC,149,GO:0005771,multivesicular body,38,1,0.29,0.25372080434162,21,1,FALSE,FALSE
+shared,CC,150,GO:0008328,ionotropic glutamate receptor complex,38,1,0.29,0.25372080434162,21,1,FALSE,FALSE
+shared,CC,151,GO:0005789,endoplasmic reticulum membrane,1136,11,8.71,0.257978321499543,584,5,FALSE,FALSE
+shared,CC,152,GO:0098878,neurotransmitter receptor complex,39,1,0.3,0.259448609766182,22,1,FALSE,FALSE
+shared,CC,153,GO:0043229,intracellular organelle,14474,117,111,0.261711981605695,7142,42,FALSE,FALSE
+shared,CC,154,GO:0035577,azurophil granule membrane,40,1,0.31,0.265132577708542,13,1,FALSE,FALSE
+shared,CC,155,GO:0005775,vacuolar lumen,131,2,1,0.265939902443081,53,1,FALSE,FALSE
+shared,CC,156,GO:0097525,spliceosomal snRNP complex,41,1,0.31,0.270773042725474,35,1,FALSE,FALSE
+shared,CC,157,GO:0005764,lysosome,806,8,6.18,0.279800121329181,370,5,FALSE,FALSE
+shared,CC,158,GO:0031902,late endosome membrane,136,2,1.04,0.280116493704548,70,2,FALSE,FALSE
+shared,CC,159,GO:0005829,cytosol,4860,41,37.27,0.28195531239184,2159,18,FALSE,FALSE
+shared,CC,160,GO:0031984,organelle subcompartment,2008,18,15.4,0.281977203761793,1008,8,FALSE,FALSE
+shared,CC,161,GO:0000323,lytic vacuole,812,8,6.23,0.286395451007321,375,5,FALSE,FALSE
+shared,CC,162,GO:0030532,small nuclear ribonucleoprotein complex,44,1,0.34,0.287436727717309,37,1,FALSE,FALSE
+shared,CC,163,GO:0034774,secretory granule lumen,140,2,1.07,0.291443612491503,58,1,FALSE,FALSE
+shared,CC,164,GO:0060205,cytoplasmic vesicle lumen,144,2,1.1,0.302747718359581,60,1,FALSE,FALSE
+shared,CC,165,GO:0031983,vesicle lumen,145,2,1.11,0.305569081799613,61,1,FALSE,FALSE
+shared,CC,166,GO:0000502,proteasome complex,50,1,0.38,0.319633553001497,49,1,FALSE,FALSE
+shared,CC,167,GO:0031201,SNARE complex,53,1,0.41,0.335183755422375,34,1,FALSE,FALSE
+shared,CC,168,GO:0120114,Sm-like protein family complex,53,1,0.41,0.335183755422375,45,1,FALSE,FALSE
+shared,CC,169,GO:0005667,transcription regulator complex,395,4,3.03,0.359346287828212,166,2,FALSE,FALSE
+shared,CC,170,GO:0016604,nuclear body,640,6,4.91,0.367714261963204,311,3,FALSE,FALSE
+shared,CC,171,GO:0042588,zymogen granule,60,1,0.46,0.370103156827918,31,1,FALSE,FALSE
+shared,CC,172,GO:1905369,endopeptidase complex,61,1,0.47,0.374940036984413,57,1,FALSE,FALSE
+shared,CC,173,GO:0030425,dendrite,894,8,6.86,0.379510844641304,394,5,FALSE,FALSE
+shared,CC,174,GO:0097447,dendritic tree,894,8,6.86,0.379510844641304,394,5,FALSE,FALSE
+shared,CC,175,GO:0030141,secretory granule,537,5,4.12,0.39444309033734,239,4,FALSE,FALSE
+shared,CC,176,GO:0031301,integral component of organelle membrane,303,3,2.32,0.410827151862872,174,1,FALSE,FALSE
+shared,CC,177,GO:0000228,nuclear chromosome,184,2,1.41,0.412802775848443,121,1,FALSE,FALSE
+shared,CC,178,GO:0005773,vacuole,928,8,7.12,0.41888706023663,433,5,FALSE,FALSE
+shared,CC,179,GO:0001650,fibrillar center,74,1,0.57,0.43454995709732,45,1,FALSE,FALSE
+shared,CC,180,GO:0031300,intrinsic component of organelle membrane,317,3,2.43,0.439184412332821,185,1,FALSE,FALSE
+shared,CC,181,GO:0071013,catalytic step 2 spliceosome,78,1,0.6,0.451724699212242,60,1,FALSE,FALSE
+shared,CC,182,GO:0098793,presynapse,581,5,4.46,0.460322447617608,228,2,FALSE,FALSE
+shared,CC,183,GO:0005643,nuclear pore,86,1,0.66,0.484529245033572,40,1,FALSE,FALSE
+shared,CC,184,GO:0120025,plasma membrane bounded cell projection,3455,27,26.5,0.488320270111371,1422,10,FALSE,FALSE
+shared,CC,185,GO:0005739,mitochondrion,1644,13,12.61,0.494667781612776,1015,6,FALSE,FALSE
+shared,CC,186,GO:0030054,cell junction,2948,23,22.61,0.496842632771162,1304,6,FALSE,FALSE
+shared,CC,187,GO:0150034,distal axon,349,3,2.68,0.501852764543125,139,3,FALSE,FALSE
+shared,CC,188,GO:0140535,intracellular protein-containing complex,1001,8,7.68,0.502489441143441,521,4,FALSE,FALSE
+shared,CC,189,GO:0032420,stereocilium,91,1,0.7,0.504030486529044,26,1,FALSE,FALSE
+shared,CC,190,GO:0044291,cell-cell contact zone,92,1,0.71,0.507841544109733,49,1,FALSE,FALSE
+shared,CC,191,GO:0072686,mitotic spindle,92,1,0.71,0.507841544109733,38,1,FALSE,FALSE
+shared,CC,192,GO:0005795,Golgi stack,222,2,1.7,0.508886056982191,116,2,FALSE,FALSE
+shared,CC,193,GO:0042470,melanosome,95,1,0.73,0.519100398093142,53,1,FALSE,FALSE
+shared,CC,194,GO:1905368,peptidase complex,95,1,0.73,0.519100398093142,68,1,FALSE,FALSE
+shared,CC,195,GO:0000775,"chromosome, centromeric region",229,2,1.76,0.525444138697681,98,2,FALSE,FALSE
+shared,CC,196,GO:0048770,pigment granule,98,1,0.75,0.530102406136958,55,1,FALSE,FALSE
+shared,CC,197,GO:0030658,transport vesicle membrane,244,2,1.87,0.559639182524047,110,2,FALSE,FALSE
+shared,CC,198,GO:0030662,coated vesicle membrane,108,1,0.83,0.564994802462217,57,1,FALSE,FALSE
+shared,CC,199,GO:0016607,nuclear speck,390,3,2.99,0.576557379351025,173,2,FALSE,FALSE
+shared,CC,200,GO:0005903,brush border,112,1,0.86,0.578217192537624,64,1,FALSE,FALSE
+shared,CC,201,GO:0042995,cell projection,3735,28,28.64,0.578413207544285,1539,11,FALSE,FALSE
+shared,CC,202,GO:0030667,secretory granule membrane,255,2,1.96,0.583579207342108,111,2,FALSE,FALSE
+shared,CC,203,GO:0031982,vesicle,4674,35,35.84,0.585406283536414,2265,17,FALSE,FALSE
+shared,CC,204,GO:0000777,condensed chromosome kinetochore,116,1,0.89,0.591038785935692,59,1,FALSE,FALSE
+shared,CC,205,GO:0000779,"condensed chromosome, centromeric region",117,1,0.9,0.594182987673471,60,1,FALSE,FALSE
+shared,CC,206,GO:0048471,perinuclear region of cytoplasm,831,6,6.37,0.614863523754296,377,4,FALSE,FALSE
+shared,CC,207,GO:0032587,ruffle membrane,129,1,0.99,0.630084922768304,55,1,FALSE,FALSE
+shared,CC,208,GO:0000139,Golgi membrane,845,6,6.48,0.630907438745047,427,4,FALSE,FALSE
+shared,CC,209,GO:0032421,stereocilium bundle,135,1,1.04,0.646829888090809,31,1,FALSE,FALSE
+shared,CC,210,GO:0005929,cilium,1011,7,7.75,0.658965799684239,362,1,FALSE,FALSE
+shared,CC,211,GO:0098687,chromosomal region,300,2,2.3,0.671428479894148,140,2,FALSE,FALSE
+shared,CC,212,GO:0030018,Z disc,301,2,2.31,0.673198979335167,138,1,FALSE,FALSE
+shared,CC,213,GO:0005925,focal adhesion,597,4,4.58,0.673433199839691,271,1,FALSE,FALSE
+shared,CC,214,GO:0030672,synaptic vesicle membrane,146,1,1.12,0.675590263119194,54,1,FALSE,FALSE
+shared,CC,215,GO:0099501,exocytic vesicle membrane,146,1,1.12,0.675590263119194,54,1,FALSE,FALSE
+shared,CC,216,GO:0031674,I band,304,2,2.33,0.678464135083558,141,1,FALSE,FALSE
+shared,CC,217,GO:0030055,cell-substrate junction,602,4,4.62,0.679734851339437,275,1,FALSE,FALSE
+shared,CC,218,GO:0032589,neuron projection membrane,149,1,1.14,0.683020332838607,64,1,FALSE,FALSE
+shared,CC,219,GO:0099503,secretory vesicle,755,5,5.79,0.688957855880108,316,4,FALSE,FALSE
+shared,CC,220,GO:0043226,organelle,16566,123,127.04,0.69232620748769,8217,47,FALSE,FALSE
+shared,CC,221,GO:0070161,anchoring junction,1331,9,10.21,0.694447489663842,586,3,FALSE,FALSE
+shared,CC,222,GO:0031256,leading edge membrane,320,2,2.45,0.705386329400484,146,2,FALSE,FALSE
+shared,CC,223,GO:0031901,early endosome membrane,162,1,1.24,0.713305298537958,76,1,FALSE,FALSE
+shared,CC,224,GO:0005770,late endosome,326,2,2.5,0.71498813406582,136,2,FALSE,FALSE
+shared,CC,225,GO:0005769,early endosome,634,4,4.86,0.718049052862618,291,3,FALSE,FALSE
+shared,CC,226,GO:0031985,Golgi cisterna,176,1,1.35,0.742700334811224,95,1,FALSE,FALSE
+shared,CC,227,GO:0005575,cellular_component,25505,190,195.59,0.744811490240792,12973,62,FALSE,FALSE
+shared,CC,228,GO:0000793,condensed chromosome,179,1,1.37,0.748597206732504,109,1,FALSE,FALSE
+shared,CC,229,GO:0005681,spliceosomal complex,183,1,1.4,0.756250593176134,119,1,FALSE,FALSE
+shared,CC,230,GO:0000776,kinetochore,184,1,1.41,0.758127357205246,73,1,FALSE,FALSE
+shared,CC,231,GO:0009986,cell surface,836,5,6.41,0.76985400475834,490,2,FALSE,FALSE
+shared,CC,232,GO:0005576,extracellular region,4819,33,36.96,0.779057367004969,2835,13,FALSE,FALSE
+shared,CC,233,GO:0005634,nucleus,7952,56,60.98,0.779119989706671,3968,27,FALSE,FALSE
+shared,CC,234,GO:0010008,endosome membrane,540,3,4.14,0.78470653895824,233,3,FALSE,FALSE
+shared,CC,235,GO:0098791,Golgi apparatus subcompartment,1009,6,7.74,0.787677216425312,507,4,FALSE,FALSE
+shared,CC,236,GO:0110165,cellular anatomical entity,25309,187,194.09,0.793447003165967,12862,61,FALSE,FALSE
+shared,CC,237,GO:0005911,cell-cell junction,870,5,6.67,0.798658981945543,377,2,FALSE,FALSE
+shared,CC,238,GO:0030496,midbody,208,1,1.6,0.799090282263913,86,1,FALSE,FALSE
+shared,CC,239,GO:0036477,somatodendritic compartment,1348,8,10.34,0.813727719803481,576,5,FALSE,FALSE
+shared,CC,240,GO:0098590,plasma membrane region,2243,14,17.2,0.81966532039139,1019,3,FALSE,FALSE
+shared,CC,241,GO:0043025,neuronal cell body,756,4,5.8,0.833145555341079,321,2,FALSE,FALSE
+shared,CC,242,GO:0043005,neuron projection,1979,12,15.18,0.833490845028162,855,8,FALSE,FALSE
+shared,CC,243,GO:0005694,chromosome,925,5,7.09,0.839172901714056,516,4,FALSE,FALSE
+shared,CC,244,GO:0098802,plasma membrane signaling receptor complex,237,1,1.82,0.839465066001265,151,1,FALSE,FALSE
+shared,CC,245,GO:0098862,cluster of actin-based cell projections,238,1,1.83,0.840702580811041,89,1,FALSE,FALSE
+shared,CC,246,GO:0008021,synaptic vesicle,239,1,1.83,0.841930582966346,91,1,FALSE,FALSE
+shared,CC,247,GO:0030133,transport vesicle,433,2,3.32,0.846275539777051,177,2,FALSE,FALSE
+shared,CC,248,GO:0044297,cell body,785,4,6.02,0.853890414095305,334,2,FALSE,FALSE
+shared,CC,249,GO:0070382,exocytic vesicle,274,1,2.1,0.879449210630651,99,1,FALSE,FALSE
+shared,CC,250,GO:0030135,coated vesicle,297,1,2.28,0.89912363049116,97,1,FALSE,FALSE
+shared,CC,251,GO:0014069,postsynaptic density,313,1,2.4,0.910887982881196,110,1,FALSE,FALSE
+shared,CC,252,GO:0099572,postsynaptic specialization,314,1,2.41,0.911576068720752,111,1,FALSE,FALSE
+shared,CC,253,GO:0001726,ruffle,316,1,2.42,0.912936386803926,99,1,FALSE,FALSE
+shared,CC,254,GO:0032279,asymmetric synapse,320,1,2.45,0.915594736729525,112,1,FALSE,FALSE
+shared,CC,255,GO:0098984,neuron to neuron synapse,320,1,2.45,0.915594736729525,112,1,FALSE,FALSE
+shared,CC,256,GO:0043227,membrane-bounded organelle,14530,100,111.43,0.916145965221829,7452,46,FALSE,FALSE
+shared,CC,257,GO:0031253,cell projection membrane,537,2,4.12,0.918726205271187,247,2,FALSE,FALSE
+shared,CC,258,GO:0005819,spindle,385,1,2.95,0.949024523364244,172,1,FALSE,FALSE
+shared,CC,259,GO:0005768,endosome,1414,6,10.84,0.961547443206553,590,5,FALSE,FALSE
+shared,CC,260,GO:0043231,intracellular membrane-bounded organelle,12417,81,95.22,0.963736011981611,6380,40,FALSE,FALSE
+shared,CC,261,GO:1990904,ribonucleoprotein complex,431,1,3.31,0.964340068828532,319,1,FALSE,FALSE
+shared,CC,262,GO:0030659,cytoplasmic vesicle membrane,891,3,6.83,0.968034334638441,387,3,FALSE,FALSE
+shared,CC,263,GO:0000151,ubiquitin ligase complex,457,1,3.5,0.970866028766951,243,1,FALSE,FALSE
+shared,CC,264,GO:0016021,integral component of membrane,7178,43,55.05,0.970918504464502,3842,16,FALSE,FALSE
+shared,CC,265,GO:0012506,vesicle membrane,921,3,7.06,0.973225990215328,398,3,FALSE,FALSE
+shared,CC,266,GO:0030424,axon,935,3,7.17,0.975365900968473,411,3,FALSE,FALSE
+shared,CC,267,GO:0043235,receptor complex,499,1,3.83,0.978986758867351,264,1,FALSE,FALSE
+shared,CC,268,GO:0031224,intrinsic component of membrane,7339,43,56.28,0.980747982225539,3920,16,FALSE,FALSE
+shared,CC,269,GO:0031252,cell leading edge,778,2,5.97,0.983065983857749,276,2,FALSE,FALSE
+shared,CC,270,GO:0005938,cell cortex,578,1,4.43,0.988644272953724,251,1,FALSE,FALSE
+shared,CC,271,GO:0098797,plasma membrane protein complex,641,1,4.92,0.993054032766078,296,1,FALSE,FALSE
+shared,CC,272,GO:0045178,basal part of cell,642,1,4.92,0.99310805644263,303,1,FALSE,FALSE
+shared,CC,273,GO:0045177,apical part of cell,669,1,5.13,0.994418438759504,295,1,FALSE,FALSE
+shared,CC,274,GO:0031410,cytoplasmic vesicle,2944,11,22.58,0.998081699818859,1254,9,FALSE,FALSE
+shared,CC,275,GO:0097708,intracellular vesicle,2950,11,22.62,0.998136321129734,1256,9,FALSE,FALSE
+shared,CC,276,GO:0005887,integral component of plasma membrane,1994,3,15.29,0.999977649851949,1094,3,FALSE,FALSE
+shared,CC,277,GO:0031226,intrinsic component of plasma membrane,2057,3,15.77,0.999985697068359,1114,3,FALSE,FALSE
+shared,CC,278,GO:0000015,phosphopyruvate hydratase complex,5,0,0.04,1,1,0,FALSE,FALSE
+shared,CC,279,GO:0000109,nucleotide-excision repair complex,4,0,0.03,1,4,0,FALSE,FALSE
+shared,CC,280,GO:0000110,nucleotide-excision repair factor 1 complex,2,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,281,GO:0000118,histone deacetylase complex,79,0,0.61,1,32,0,FALSE,FALSE
+shared,CC,282,GO:0000120,RNA polymerase I transcription regulator complex,5,0,0.04,1,4,0,FALSE,FALSE
+shared,CC,283,GO:0000123,histone acetyltransferase complex,99,0,0.76,1,46,0,FALSE,FALSE
+shared,CC,284,GO:0000124,SAGA complex,25,0,0.19,1,5,0,FALSE,FALSE
+shared,CC,285,GO:0000125,PCAF complex,6,0,0.05,1,2,0,FALSE,FALSE
+shared,CC,286,GO:0000126,transcription factor TFIIIB complex,4,0,0.03,1,2,0,FALSE,FALSE
+shared,CC,287,GO:0000127,transcription factor TFIIIC complex,2,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,288,GO:0000131,incipient cellular bud site,8,0,0.06,1,2,0,FALSE,FALSE
+shared,CC,289,GO:0000136,mannan polymerase complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,290,GO:0000137,Golgi cis cisterna,17,0,0.13,1,10,0,FALSE,FALSE
+shared,CC,291,GO:0000138,Golgi trans cisterna,20,0,0.15,1,4,0,FALSE,FALSE
+shared,CC,292,GO:0000145,exocyst,41,0,0.31,1,9,0,FALSE,FALSE
+shared,CC,293,GO:0000152,nuclear ubiquitin ligase complex,42,0,0.32,1,28,0,FALSE,FALSE
+shared,CC,294,GO:0000153,cytoplasmic ubiquitin ligase complex,34,0,0.26,1,19,0,FALSE,FALSE
+shared,CC,295,GO:0000159,protein phosphatase type 2A complex,53,0,0.41,1,8,0,FALSE,FALSE
+shared,CC,296,GO:0000164,protein phosphatase type 1 complex,13,0,0.1,1,6,0,FALSE,FALSE
+shared,CC,297,GO:0000172,ribonuclease MRP complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,298,GO:0000176,nuclear exosome (RNase complex),9,0,0.07,1,9,0,FALSE,FALSE
+shared,CC,299,GO:0000177,cytoplasmic exosome (RNase complex),10,0,0.08,1,10,0,FALSE,FALSE
+shared,CC,300,GO:0000178,exosome (RNase complex),14,0,0.11,1,14,0,FALSE,FALSE
+shared,CC,301,GO:0000214,tRNA-intron endonuclease complex,4,0,0.03,1,3,0,FALSE,FALSE
+shared,CC,302,GO:0000220,"vacuolar proton-transporting V-type ATPase, V0 domain",1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,303,GO:0000221,"vacuolar proton-transporting V-type ATPase, V1 domain",6,0,0.05,1,3,0,FALSE,FALSE
+shared,CC,304,GO:0000235,astral microtubule,11,0,0.08,1,1,0,FALSE,FALSE
+shared,CC,305,GO:0000242,pericentriolar material,20,0,0.15,1,10,0,FALSE,FALSE
+shared,CC,306,GO:0000243,commitment complex,6,0,0.05,1,5,0,FALSE,FALSE
+shared,CC,307,GO:0000275,"mitochondrial proton-transporting ATP synthase complex, catalytic sector F(1)",2,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,308,GO:0000276,"mitochondrial proton-transporting ATP synthase complex, coupling factor F(o)",2,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,309,GO:0000306,extrinsic component of vacuolar membrane,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,310,GO:0000307,cyclin-dependent protein kinase holoenzyme complex,15,0,0.12,1,10,0,FALSE,FALSE
+shared,CC,311,GO:0000313,organellar ribosome,74,0,0.57,1,68,0,FALSE,FALSE
+shared,CC,312,GO:0000314,organellar small ribosomal subunit,26,0,0.2,1,24,0,FALSE,FALSE
+shared,CC,313,GO:0000315,organellar large ribosomal subunit,43,0,0.33,1,39,0,FALSE,FALSE
+shared,CC,314,GO:0000322,storage vacuole,17,0,0.13,1,9,0,FALSE,FALSE
+shared,CC,315,GO:0000324,fungal-type vacuole,6,0,0.05,1,5,0,FALSE,FALSE
+shared,CC,316,GO:0000325,plant-type vacuole,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,317,GO:0000326,protein storage vacuole,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,318,GO:0000329,fungal-type vacuole membrane,5,0,0.04,1,4,0,FALSE,FALSE
+shared,CC,319,GO:0000331,contractile vacuole,18,0,0.14,1,5,0,FALSE,FALSE
+shared,CC,320,GO:0000346,transcription export complex,21,0,0.16,1,9,0,FALSE,FALSE
+shared,CC,321,GO:0000347,THO complex,11,0,0.08,1,5,0,FALSE,FALSE
+shared,CC,322,GO:0000407,phagophore assembly site,25,0,0.19,1,14,0,FALSE,FALSE
+shared,CC,323,GO:0000408,EKC/KEOPS complex,4,0,0.03,1,4,0,FALSE,FALSE
+shared,CC,324,GO:0000421,autophagosome membrane,10,0,0.08,1,9,0,FALSE,FALSE
+shared,CC,325,GO:0000428,DNA-directed RNA polymerase complex,120,0,0.92,1,77,0,FALSE,FALSE
+shared,CC,326,GO:0000438,core TFIIH complex portion of holo TFIIH complex,4,0,0.03,1,3,0,FALSE,FALSE
+shared,CC,327,GO:0000439,transcription factor TFIIH core complex,8,0,0.06,1,5,0,FALSE,FALSE
+shared,CC,328,GO:0000444,MIS12/MIND type complex,2,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,329,GO:0000445,THO complex part of transcription export complex,11,0,0.08,1,5,0,FALSE,FALSE
+shared,CC,330,GO:0000500,RNA polymerase I upstream activating factor complex,2,0,0.02,1,1,0,FALSE,FALSE
+shared,CC,331,GO:0000506,glycosylphosphatidylinositol-N-acetylglucosaminyltransferase (GPI-GnT) complex,2,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,332,GO:0000778,condensed nuclear chromosome kinetochore,11,0,0.08,1,6,0,FALSE,FALSE
+shared,CC,333,GO:0000781,"chromosome, telomeric region",70,0,0.54,1,44,0,FALSE,FALSE
+shared,CC,334,GO:0000782,telomere cap complex,8,0,0.06,1,6,0,FALSE,FALSE
+shared,CC,335,GO:0000783,nuclear telomere cap complex,8,0,0.06,1,6,0,FALSE,FALSE
+shared,CC,336,GO:0000785,chromatin,301,0,2.31,1,166,0,FALSE,FALSE
+shared,CC,337,GO:0000786,nucleosome,30,0,0.23,1,29,0,FALSE,FALSE
+shared,CC,338,GO:0000791,euchromatin,8,0,0.06,1,3,0,FALSE,FALSE
+shared,CC,339,GO:0000792,heterochromatin,53,0,0.41,1,25,0,FALSE,FALSE
+shared,CC,340,GO:0000794,condensed nuclear chromosome,60,0,0.46,1,41,0,FALSE,FALSE
+shared,CC,341,GO:0000795,synaptonemal complex,19,0,0.15,1,13,0,FALSE,FALSE
+shared,CC,342,GO:0000796,condensin complex,2,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,343,GO:0000798,nuclear cohesin complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,344,GO:0000800,lateral element,6,0,0.05,1,5,0,FALSE,FALSE
+shared,CC,345,GO:0000801,central element,4,0,0.03,1,3,0,FALSE,FALSE
+shared,CC,346,GO:0000803,sex chromosome,21,0,0.16,1,9,0,FALSE,FALSE
+shared,CC,347,GO:0000808,origin recognition complex,9,0,0.07,1,6,0,FALSE,FALSE
+shared,CC,348,GO:0000811,GINS complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,349,GO:0000812,Swr1 complex,7,0,0.05,1,7,0,FALSE,FALSE
+shared,CC,350,GO:0000813,ESCRT I complex,13,0,0.1,1,9,0,FALSE,FALSE
+shared,CC,351,GO:0000814,ESCRT II complex,2,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,352,GO:0000815,ESCRT III complex,4,0,0.03,1,4,0,FALSE,FALSE
+shared,CC,353,GO:0000818,nuclear MIS12/MIND complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,354,GO:0000835,ER ubiquitin ligase complex,26,0,0.2,1,13,0,FALSE,FALSE
+shared,CC,355,GO:0000836,Hrd1p ubiquitin ligase complex,25,0,0.19,1,12,0,FALSE,FALSE
+shared,CC,356,GO:0000839,Hrd1p ubiquitin ligase ERAD-L complex,9,0,0.07,1,2,0,FALSE,FALSE
+shared,CC,357,GO:0000922,spindle pole,208,0,1.6,1,82,0,FALSE,FALSE
+shared,CC,358,GO:0000923,equatorial microtubule organizing center,6,0,0.05,1,4,0,FALSE,FALSE
+shared,CC,359,GO:0000924,"gamma-tubulin ring complex, centrosomal",1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,360,GO:0000930,gamma-tubulin complex,10,0,0.08,1,8,0,FALSE,FALSE
+shared,CC,361,GO:0000931,gamma-tubulin large complex,5,0,0.04,1,4,0,FALSE,FALSE
+shared,CC,362,GO:0000935,division septum,2,0,0.02,1,1,0,FALSE,FALSE
+shared,CC,363,GO:0000938,GARP complex,6,0,0.05,1,5,0,FALSE,FALSE
+shared,CC,364,GO:0000940,condensed chromosome outer kinetochore,13,0,0.1,1,8,0,FALSE,FALSE
+shared,CC,365,GO:0000943,retrotransposon nucleocapsid,26,0,0.2,1,26,0,FALSE,FALSE
+shared,CC,366,GO:0000974,Prp19 complex,8,0,0.06,1,8,0,FALSE,FALSE
+shared,CC,367,GO:0001405,"PAM complex, Tim23 associated import motor",2,0,0.02,1,1,0,FALSE,FALSE
+shared,CC,368,GO:0001518,voltage-gated sodium channel complex,27,0,0.21,1,2,0,FALSE,FALSE
+shared,CC,369,GO:0001520,outer dense fiber,7,0,0.05,1,3,0,FALSE,FALSE
+shared,CC,370,GO:0001527,microfibril,21,0,0.16,1,12,0,FALSE,FALSE
+shared,CC,371,GO:0001533,cornified envelope,4,0,0.03,1,4,0,FALSE,FALSE
+shared,CC,372,GO:0001534,radial spoke,3,0,0.02,1,3,0,FALSE,FALSE
+shared,CC,373,GO:0001651,dense fibrillar component,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,374,GO:0001652,granular component,3,0,0.02,1,3,0,FALSE,FALSE
+shared,CC,375,GO:0001669,acrosomal vesicle,89,0,0.68,1,42,0,FALSE,FALSE
+shared,CC,376,GO:0001673,male germ cell nucleus,17,0,0.13,1,6,0,FALSE,FALSE
+shared,CC,377,GO:0001674,female germ cell nucleus,13,0,0.1,1,6,0,FALSE,FALSE
+shared,CC,378,GO:0001725,stress fiber,82,0,0.63,1,24,0,FALSE,FALSE
+shared,CC,379,GO:0001741,XY body,20,0,0.15,1,8,0,FALSE,FALSE
+shared,CC,380,GO:0001750,photoreceptor outer segment,108,0,0.83,1,49,0,FALSE,FALSE
+shared,CC,381,GO:0001772,immunological synapse,11,0,0.08,1,9,0,FALSE,FALSE
+shared,CC,382,GO:0001891,phagocytic cup,225,0,1.73,1,122,0,FALSE,FALSE
+shared,CC,383,GO:0001931,uropod,5,0,0.04,1,1,0,FALSE,FALSE
+shared,CC,384,GO:0001939,female pronucleus,8,0,0.06,1,5,0,FALSE,FALSE
+shared,CC,385,GO:0001940,male pronucleus,6,0,0.05,1,3,0,FALSE,FALSE
+shared,CC,386,GO:0002079,inner acrosomal membrane,7,0,0.05,1,1,0,FALSE,FALSE
+shared,CC,387,GO:0002080,acrosomal membrane,35,0,0.27,1,11,0,FALSE,FALSE
+shared,CC,388,GO:0002081,outer acrosomal membrane,16,0,0.12,1,2,0,FALSE,FALSE
+shared,CC,389,GO:0002102,podosome,40,0,0.31,1,12,0,FALSE,FALSE
+shared,CC,390,GO:0002116,semaphorin receptor complex,48,0,0.37,1,3,0,FALSE,FALSE
+shared,CC,391,GO:0002139,stereocilia coupling link,9,0,0.07,1,3,0,FALSE,FALSE
+shared,CC,392,GO:0002141,stereocilia ankle link,9,0,0.07,1,3,0,FALSE,FALSE
+shared,CC,393,GO:0002142,stereocilia ankle link complex,9,0,0.07,1,3,0,FALSE,FALSE
+shared,CC,394,GO:0002169,"3-methylcrotonyl-CoA carboxylase complex, mitochondrial",1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,395,GO:0002177,manchette,5,0,0.04,1,4,0,FALSE,FALSE
+shared,CC,396,GO:0002178,palmitoyltransferase complex,5,0,0.04,1,3,0,FALSE,FALSE
+shared,CC,397,GO:0002189,ribose phosphate diphosphokinase complex,3,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,398,GO:0002193,MAML1-RBP-Jkappa- ICN1 complex,6,0,0.05,1,4,0,FALSE,FALSE
+shared,CC,399,GO:0002199,zona pellucida receptor complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,400,GO:0002944,cyclin K-CDK12 complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,401,GO:0002945,cyclin K-CDK13 complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,402,GO:0005577,fibrinogen complex,2,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,403,GO:0005581,collagen trimer,403,0,3.09,1,289,0,FALSE,FALSE
+shared,CC,404,GO:0005583,fibrillar collagen trimer,2,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,405,GO:0005584,collagen type I trimer,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,406,GO:0005587,collagen type IV trimer,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,407,GO:0005589,collagen type VI trimer,2,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,408,GO:0005592,collagen type XI trimer,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,409,GO:0005593,FACIT collagen trimer,10,0,0.08,1,7,0,FALSE,FALSE
+shared,CC,410,GO:0005594,collagen type IX trimer,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,411,GO:0005595,collagen type XII trimer,9,0,0.07,1,6,0,FALSE,FALSE
+shared,CC,412,GO:0005602,complement component C1 complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,413,GO:0005604,basement membrane,254,0,1.95,1,139,0,FALSE,FALSE
+shared,CC,414,GO:0005606,laminin-1 complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,415,GO:0005614,interstitial matrix,40,0,0.31,1,11,0,FALSE,FALSE
+shared,CC,416,GO:0005618,cell wall,24,0,0.18,1,15,0,FALSE,FALSE
+shared,CC,417,GO:0005628,prospore membrane,2,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,418,GO:0005637,nuclear inner membrane,92,0,0.71,1,58,0,FALSE,FALSE
+shared,CC,419,GO:0005638,lamin filament,2,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,420,GO:0005639,integral component of nuclear inner membrane,42,0,0.32,1,36,0,FALSE,FALSE
+shared,CC,421,GO:0005641,nuclear envelope lumen,11,0,0.08,1,7,0,FALSE,FALSE
+shared,CC,422,GO:0005642,annulate lamellae,7,0,0.05,1,3,0,FALSE,FALSE
+shared,CC,423,GO:0005652,nuclear lamina,22,0,0.17,1,4,0,FALSE,FALSE
+shared,CC,424,GO:0005655,nucleolar ribonuclease P complex,6,0,0.05,1,5,0,FALSE,FALSE
+shared,CC,425,GO:0005656,nuclear pre-replicative complex,2,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,426,GO:0005658,alpha DNA polymerase:primase complex,7,0,0.05,1,6,0,FALSE,FALSE
+shared,CC,427,GO:0005662,DNA replication factor A complex,16,0,0.12,1,8,0,FALSE,FALSE
+shared,CC,428,GO:0005663,DNA replication factor C complex,5,0,0.04,1,4,0,FALSE,FALSE
+shared,CC,429,GO:0005664,nuclear origin of replication recognition complex,8,0,0.06,1,5,0,FALSE,FALSE
+shared,CC,430,GO:0005665,"RNA polymerase II, core complex",15,0,0.12,1,14,0,FALSE,FALSE
+shared,CC,431,GO:0005666,RNA polymerase III complex,19,0,0.15,1,14,0,FALSE,FALSE
+shared,CC,432,GO:0005668,RNA polymerase transcription factor SL1 complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,433,GO:0005669,transcription factor TFIID complex,30,0,0.23,1,17,0,FALSE,FALSE
+shared,CC,434,GO:0005671,Ada2/Gcn5/Ada3 transcription activator complex,9,0,0.07,1,6,0,FALSE,FALSE
+shared,CC,435,GO:0005672,transcription factor TFIIA complex,5,0,0.04,1,4,0,FALSE,FALSE
+shared,CC,436,GO:0005673,transcription factor TFIIE complex,2,0,0.02,1,1,0,FALSE,FALSE
+shared,CC,437,GO:0005674,transcription factor TFIIF complex,2,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,438,GO:0005675,transcription factor TFIIH holo complex,14,0,0.11,1,9,0,FALSE,FALSE
+shared,CC,439,GO:0005677,chromatin silencing complex,8,0,0.06,1,5,0,FALSE,FALSE
+shared,CC,440,GO:0005680,anaphase-promoting complex,20,0,0.15,1,17,0,FALSE,FALSE
+shared,CC,441,GO:0005683,U7 snRNP,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,442,GO:0005684,U2-type spliceosomal complex,23,0,0.18,1,16,0,FALSE,FALSE
+shared,CC,443,GO:0005685,U1 snRNP,9,0,0.07,1,8,0,FALSE,FALSE
+shared,CC,444,GO:0005686,U2 snRNP,12,0,0.09,1,9,0,FALSE,FALSE
+shared,CC,445,GO:0005687,U4 snRNP,5,0,0.04,1,5,0,FALSE,FALSE
+shared,CC,446,GO:0005688,U6 snRNP,6,0,0.05,1,5,0,FALSE,FALSE
+shared,CC,447,GO:0005689,U12-type spliceosomal complex,18,0,0.14,1,13,0,FALSE,FALSE
+shared,CC,448,GO:0005690,U4atac snRNP,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,449,GO:0005697,telomerase holoenzyme complex,10,0,0.08,1,8,0,FALSE,FALSE
+shared,CC,450,GO:0005700,polytene chromosome,21,0,0.16,1,7,0,FALSE,FALSE
+shared,CC,451,GO:0005703,polytene chromosome puff,10,0,0.08,1,1,0,FALSE,FALSE
+shared,CC,452,GO:0005712,chiasma,3,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,453,GO:0005713,recombination nodule,2,0,0.02,1,1,0,FALSE,FALSE
+shared,CC,454,GO:0005715,late recombination nodule,2,0,0.02,1,1,0,FALSE,FALSE
+shared,CC,455,GO:0005721,pericentric heterochromatin,14,0,0.11,1,5,0,FALSE,FALSE
+shared,CC,456,GO:0005726,perichromatin fibrils,4,0,0.03,1,4,0,FALSE,FALSE
+shared,CC,457,GO:0005731,nucleolus organizer region,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,458,GO:0005732,sno(s)RNA-containing ribonucleoprotein complex,11,0,0.08,1,9,0,FALSE,FALSE
+shared,CC,459,GO:0005736,RNA polymerase I complex,9,0,0.07,1,8,0,FALSE,FALSE
+shared,CC,460,GO:0005742,mitochondrial outer membrane translocase complex,4,0,0.03,1,4,0,FALSE,FALSE
+shared,CC,461,GO:0005744,TIM23 mitochondrial import inner membrane translocase complex,6,0,0.05,1,5,0,FALSE,FALSE
+shared,CC,462,GO:0005745,m-AAA complex,2,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,463,GO:0005746,mitochondrial respirasome,30,0,0.23,1,27,0,FALSE,FALSE
+shared,CC,464,GO:0005747,mitochondrial respiratory chain complex I,16,0,0.12,1,14,0,FALSE,FALSE
+shared,CC,465,GO:0005749,"mitochondrial respiratory chain complex II, succinate dehydrogenase complex (ubiquinone)",4,0,0.03,1,3,0,FALSE,FALSE
+shared,CC,466,GO:0005750,mitochondrial respiratory chain complex III,4,0,0.03,1,4,0,FALSE,FALSE
+shared,CC,467,GO:0005751,mitochondrial respiratory chain complex IV,4,0,0.03,1,4,0,FALSE,FALSE
+shared,CC,468,GO:0005753,mitochondrial proton-transporting ATP synthase complex,5,0,0.04,1,5,0,FALSE,FALSE
+shared,CC,469,GO:0005756,"mitochondrial proton-transporting ATP synthase, central stalk",1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,470,GO:0005757,mitochondrial permeability transition pore complex,3,0,0.02,1,1,0,FALSE,FALSE
+shared,CC,471,GO:0005759,mitochondrial matrix,302,0,2.32,1,221,0,FALSE,FALSE
+shared,CC,472,GO:0005760,gamma DNA polymerase complex,4,0,0.03,1,1,0,FALSE,FALSE
+shared,CC,473,GO:0005761,mitochondrial ribosome,74,0,0.57,1,68,0,FALSE,FALSE
+shared,CC,474,GO:0005762,mitochondrial large ribosomal subunit,43,0,0.33,1,39,0,FALSE,FALSE
+shared,CC,475,GO:0005763,mitochondrial small ribosomal subunit,26,0,0.2,1,24,0,FALSE,FALSE
+shared,CC,476,GO:0005767,secondary lysosome,5,0,0.04,1,4,0,FALSE,FALSE
+shared,CC,477,GO:0005776,autophagosome,59,0,0.45,1,28,0,FALSE,FALSE
+shared,CC,478,GO:0005778,peroxisomal membrane,84,0,0.64,1,43,0,FALSE,FALSE
+shared,CC,479,GO:0005779,integral component of peroxisomal membrane,18,0,0.14,1,10,0,FALSE,FALSE
+shared,CC,480,GO:0005782,peroxisomal matrix,23,0,0.18,1,20,0,FALSE,FALSE
+shared,CC,481,GO:0005784,Sec61 translocon complex,2,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,482,GO:0005785,signal recognition particle receptor complex,4,0,0.03,1,4,0,FALSE,FALSE
+shared,CC,483,GO:0005786,"signal recognition particle, endoplasmic reticulum targeting",4,0,0.03,1,4,0,FALSE,FALSE
+shared,CC,484,GO:0005787,signal peptidase complex,7,0,0.05,1,4,0,FALSE,FALSE
+shared,CC,485,GO:0005788,endoplasmic reticulum lumen,206,0,1.58,1,112,0,FALSE,FALSE
+shared,CC,486,GO:0005790,smooth endoplasmic reticulum,38,0,0.29,1,12,0,FALSE,FALSE
+shared,CC,487,GO:0005791,rough endoplasmic reticulum,40,0,0.31,1,25,0,FALSE,FALSE
+shared,CC,488,GO:0005793,endoplasmic reticulum-Golgi intermediate compartment,87,0,0.67,1,48,0,FALSE,FALSE
+shared,CC,489,GO:0005796,Golgi lumen,99,0,0.76,1,38,0,FALSE,FALSE
+shared,CC,490,GO:0005798,Golgi-associated vesicle,126,0,0.97,1,53,0,FALSE,FALSE
+shared,CC,491,GO:0005802,trans-Golgi network,214,0,1.64,1,108,0,FALSE,FALSE
+shared,CC,492,GO:0005811,lipid droplet,64,0,0.49,1,34,0,FALSE,FALSE
+shared,CC,493,GO:0005816,spindle pole body,5,0,0.04,1,3,0,FALSE,FALSE
+shared,CC,494,GO:0005818,aster,11,0,0.08,1,1,0,FALSE,FALSE
+shared,CC,495,GO:0005826,actomyosin contractile ring,6,0,0.05,1,2,0,FALSE,FALSE
+shared,CC,496,GO:0005827,polar microtubule,6,0,0.05,1,5,0,FALSE,FALSE
+shared,CC,497,GO:0005828,kinetochore microtubule,9,0,0.07,1,7,0,FALSE,FALSE
+shared,CC,498,GO:0005832,chaperonin-containing T-complex,8,0,0.06,1,7,0,FALSE,FALSE
+shared,CC,499,GO:0005833,hemoglobin complex,2,0,0.02,1,1,0,FALSE,FALSE
+shared,CC,500,GO:0005834,heterotrimeric G-protein complex,42,0,0.32,1,8,0,FALSE,FALSE
+shared,CC,501,GO:0005839,proteasome core complex,15,0,0.12,1,15,0,FALSE,FALSE
+shared,CC,502,GO:0005840,ribosome,180,0,1.38,1,146,0,FALSE,FALSE
+shared,CC,503,GO:0005844,polysome,39,0,0.3,1,20,0,FALSE,FALSE
+shared,CC,504,GO:0005845,mRNA cap binding complex,12,0,0.09,1,6,0,FALSE,FALSE
+shared,CC,505,GO:0005846,nuclear cap binding complex,2,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,506,GO:0005847,mRNA cleavage and polyadenylation specificity factor complex,28,0,0.21,1,9,0,FALSE,FALSE
+shared,CC,507,GO:0005849,mRNA cleavage factor complex,33,0,0.25,1,12,0,FALSE,FALSE
+shared,CC,508,GO:0005850,eukaryotic translation initiation factor 2 complex,6,0,0.05,1,5,0,FALSE,FALSE
+shared,CC,509,GO:0005851,eukaryotic translation initiation factor 2B complex,2,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,510,GO:0005852,eukaryotic translation initiation factor 3 complex,17,0,0.13,1,15,0,FALSE,FALSE
+shared,CC,511,GO:0005853,eukaryotic translation elongation factor 1 complex,7,0,0.05,1,2,0,FALSE,FALSE
+shared,CC,512,GO:0005854,nascent polypeptide-associated complex,2,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,513,GO:0005858,axonemal dynein complex,60,0,0.46,1,15,0,FALSE,FALSE
+shared,CC,514,GO:0005859,muscle myosin complex,14,0,0.11,1,11,0,FALSE,FALSE
+shared,CC,515,GO:0005863,striated muscle myosin thick filament,2,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,516,GO:0005869,dynactin complex,11,0,0.08,1,8,0,FALSE,FALSE
+shared,CC,517,GO:0005871,kinesin complex,118,0,0.9,1,27,0,FALSE,FALSE
+shared,CC,518,GO:0005876,spindle microtubule,71,0,0.54,1,29,0,FALSE,FALSE
+shared,CC,519,GO:0005879,axonemal microtubule,19,0,0.15,1,5,0,FALSE,FALSE
+shared,CC,520,GO:0005881,cytoplasmic microtubule,88,0,0.67,1,22,0,FALSE,FALSE
+shared,CC,521,GO:0005882,intermediate filament,80,0,0.61,1,17,0,FALSE,FALSE
+shared,CC,522,GO:0005884,actin filament,111,0,0.85,1,36,0,FALSE,FALSE
+shared,CC,523,GO:0005885,Arp2/3 protein complex,9,0,0.07,1,6,0,FALSE,FALSE
+shared,CC,524,GO:0005889,potassium:proton exchanging ATPase complex,3,0,0.02,1,3,0,FALSE,FALSE
+shared,CC,525,GO:0005890,sodium:potassium-exchanging ATPase complex,2,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,526,GO:0005891,voltage-gated calcium channel complex,17,0,0.13,1,6,0,FALSE,FALSE
+shared,CC,527,GO:0005892,acetylcholine-gated channel complex,123,0,0.94,1,81,0,FALSE,FALSE
+shared,CC,528,GO:0005901,caveola,71,0,0.54,1,40,0,FALSE,FALSE
+shared,CC,529,GO:0005902,microvillus,113,0,0.87,1,61,0,FALSE,FALSE
+shared,CC,530,GO:0005905,clathrin-coated pit,190,0,1.46,1,52,0,FALSE,FALSE
+shared,CC,531,GO:0005912,adherens junction,241,0,1.85,1,92,0,FALSE,FALSE
+shared,CC,532,GO:0005914,spot adherens junction,2,0,0.02,1,1,0,FALSE,FALSE
+shared,CC,533,GO:0005915,zonula adherens,11,0,0.08,1,6,0,FALSE,FALSE
+shared,CC,534,GO:0005916,fascia adherens,3,0,0.02,1,3,0,FALSE,FALSE
+shared,CC,535,GO:0005918,septate junction,35,0,0.27,1,18,0,FALSE,FALSE
+shared,CC,536,GO:0005919,pleated septate junction,12,0,0.09,1,4,0,FALSE,FALSE
+shared,CC,537,GO:0005920,smooth septate junction,2,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,538,GO:0005921,gap junction,38,0,0.29,1,16,0,FALSE,FALSE
+shared,CC,539,GO:0005923,bicellular tight junction,142,0,1.09,1,47,0,FALSE,FALSE
+shared,CC,540,GO:0005927,muscle tendon junction,8,0,0.06,1,6,0,FALSE,FALSE
+shared,CC,541,GO:0005930,axoneme,273,0,2.09,1,80,0,FALSE,FALSE
+shared,CC,542,GO:0005933,cellular bud,8,0,0.06,1,2,0,FALSE,FALSE
+shared,CC,543,GO:0005934,cellular bud tip,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,544,GO:0005935,cellular bud neck,8,0,0.06,1,2,0,FALSE,FALSE
+shared,CC,545,GO:0005937,mating projection,3,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,546,GO:0005940,septin ring,4,0,0.03,1,2,0,FALSE,FALSE
+shared,CC,547,GO:0005943,"phosphatidylinositol 3-kinase complex, class IA",4,0,0.03,1,1,0,FALSE,FALSE
+shared,CC,548,GO:0005945,6-phosphofructokinase complex,3,0,0.02,1,1,0,FALSE,FALSE
+shared,CC,549,GO:0005947,mitochondrial alpha-ketoglutarate dehydrogenase complex,2,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,550,GO:0005953,CAAX-protein geranylgeranyltransferase complex,2,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,551,GO:0005955,calcineurin complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,552,GO:0005956,protein kinase CK2 complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,553,GO:0005958,DNA-dependent protein kinase-DNA ligase 4 complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,554,GO:0005960,glycine cleavage complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,555,GO:0005968,Rab-protein geranylgeranyltransferase complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,556,GO:0005971,ribonucleoside-diphosphate reductase complex,31,0,0.24,1,30,0,FALSE,FALSE
+shared,CC,557,GO:0008023,transcription elongation factor complex,35,0,0.27,1,26,0,FALSE,FALSE
+shared,CC,558,GO:0008024,cyclin/CDK positive transcription elongation factor complex,4,0,0.03,1,2,0,FALSE,FALSE
+shared,CC,559,GO:0008074,"guanylate cyclase complex, soluble",66,0,0.51,1,43,0,FALSE,FALSE
+shared,CC,560,GO:0008076,voltage-gated potassium channel complex,104,0,0.8,1,42,0,FALSE,FALSE
+shared,CC,561,GO:0008091,spectrin,8,0,0.06,1,2,0,FALSE,FALSE
+shared,CC,562,GO:0008180,COP9 signalosome,20,0,0.15,1,9,0,FALSE,FALSE
+shared,CC,563,GO:0008250,oligosaccharyltransferase complex,6,0,0.05,1,6,0,FALSE,FALSE
+shared,CC,564,GO:0008274,gamma-tubulin ring complex,5,0,0.04,1,4,0,FALSE,FALSE
+shared,CC,565,GO:0008275,gamma-tubulin small complex,3,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,566,GO:0008278,cohesin complex,2,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,567,GO:0008282,inward rectifying potassium channel,3,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,568,GO:0008287,protein serine/threonine phosphatase complex,129,0,0.99,1,24,0,FALSE,FALSE
+shared,CC,569,GO:0008290,F-actin capping protein complex,3,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,570,GO:0008303,caspase complex,11,0,0.08,1,8,0,FALSE,FALSE
+shared,CC,571,GO:0008305,integrin complex,16,0,0.12,1,13,0,FALSE,FALSE
+shared,CC,572,GO:0008352,katanin complex,5,0,0.04,1,1,0,FALSE,FALSE
+shared,CC,573,GO:0008385,IkappaB kinase complex,5,0,0.04,1,3,0,FALSE,FALSE
+shared,CC,574,GO:0008537,proteasome activator complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,575,GO:0008540,"proteasome regulatory particle, base subcomplex",6,0,0.05,1,6,0,FALSE,FALSE
+shared,CC,576,GO:0008622,epsilon DNA polymerase complex,4,0,0.03,1,3,0,FALSE,FALSE
+shared,CC,577,GO:0008623,CHRAC,4,0,0.03,1,1,0,FALSE,FALSE
+shared,CC,578,GO:0009277,fungal-type cell wall,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,579,GO:0009279,cell outer membrane,2,0,0.02,1,1,0,FALSE,FALSE
+shared,CC,580,GO:0009295,nucleoid,36,0,0.28,1,28,0,FALSE,FALSE
+shared,CC,581,GO:0009328,phenylalanine-tRNA ligase complex,3,0,0.02,1,3,0,FALSE,FALSE
+shared,CC,582,GO:0009330,"DNA topoisomerase type II (double strand cut, ATP-hydrolyzing) complex",1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,583,GO:0009331,glycerol-3-phosphate dehydrogenase complex,2,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,584,GO:0009346,citrate lyase complex,3,0,0.02,1,1,0,FALSE,FALSE
+shared,CC,585,GO:0009353,mitochondrial oxoglutarate dehydrogenase complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,586,GO:0009360,DNA polymerase III complex,2,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,587,GO:0009368,endopeptidase Clp complex,3,0,0.02,1,3,0,FALSE,FALSE
+shared,CC,588,GO:0009501,amyloplast,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,589,GO:0009505,plant-type cell wall,3,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,590,GO:0009507,chloroplast,28,0,0.21,1,18,0,FALSE,FALSE
+shared,CC,591,GO:0009524,phragmoplast,5,0,0.04,1,4,0,FALSE,FALSE
+shared,CC,592,GO:0009526,plastid envelope,3,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,593,GO:0009527,plastid outer membrane,3,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,594,GO:0009532,plastid stroma,2,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,595,GO:0009534,chloroplast thylakoid,3,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,596,GO:0009535,chloroplast thylakoid membrane,3,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,597,GO:0009536,plastid,29,0,0.22,1,19,0,FALSE,FALSE
+shared,CC,598,GO:0009570,chloroplast stroma,2,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,599,GO:0009579,thylakoid,3,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,600,GO:0009705,plant-type vacuole membrane,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,601,GO:0009707,chloroplast outer membrane,3,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,602,GO:0009841,mitochondrial endopeptidase Clp complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,603,GO:0009925,basal plasma membrane,605,0,4.64,1,295,0,FALSE,FALSE
+shared,CC,604,GO:0009941,chloroplast envelope,3,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,605,GO:0010009,cytoplasmic side of endosome membrane,16,0,0.12,1,11,0,FALSE,FALSE
+shared,CC,606,GO:0010339,external side of cell wall,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,607,GO:0010369,chromocenter,18,0,0.14,1,6,0,FALSE,FALSE
+shared,CC,608,GO:0010494,cytoplasmic stress granule,38,0,0.29,1,15,0,FALSE,FALSE
+shared,CC,609,GO:0012510,trans-Golgi network transport vesicle membrane,19,0,0.15,1,7,0,FALSE,FALSE
+shared,CC,610,GO:0014701,junctional sarcoplasmic reticulum membrane,2,0,0.02,1,1,0,FALSE,FALSE
+shared,CC,611,GO:0014704,intercalated disc,67,0,0.51,1,37,0,FALSE,FALSE
+shared,CC,612,GO:0014731,spectrin-associated cytoskeleton,135,0,1.04,1,69,0,FALSE,FALSE
+shared,CC,613,GO:0014802,terminal cisterna,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,614,GO:0015030,Cajal body,22,0,0.17,1,16,0,FALSE,FALSE
+shared,CC,615,GO:0015934,large ribosomal subunit,68,0,0.52,1,63,0,FALSE,FALSE
+shared,CC,616,GO:0015935,small ribosomal subunit,35,0,0.27,1,32,0,FALSE,FALSE
+shared,CC,617,GO:0016010,dystrophin-associated glycoprotein complex,10,0,0.08,1,6,0,FALSE,FALSE
+shared,CC,618,GO:0016011,dystroglycan complex,6,0,0.05,1,2,0,FALSE,FALSE
+shared,CC,619,GO:0016012,sarcoglycan complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,620,GO:0016013,syntrophin complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,621,GO:0016028,rhabdomere,18,0,0.14,1,8,0,FALSE,FALSE
+shared,CC,622,GO:0016035,zeta DNA polymerase complex,7,0,0.05,1,3,0,FALSE,FALSE
+shared,CC,623,GO:0016222,procollagen-proline 4-dioxygenase complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,624,GO:0016234,inclusion body,111,0,0.85,1,29,0,FALSE,FALSE
+shared,CC,625,GO:0016235,aggresome,12,0,0.09,1,11,0,FALSE,FALSE
+shared,CC,626,GO:0016272,prefoldin complex,7,0,0.05,1,7,0,FALSE,FALSE
+shared,CC,627,GO:0016281,eukaryotic translation initiation factor 4F complex,3,0,0.02,1,1,0,FALSE,FALSE
+shared,CC,628,GO:0016323,basolateral plasma membrane,569,0,4.36,1,275,0,FALSE,FALSE
+shared,CC,629,GO:0016324,apical plasma membrane,528,0,4.05,1,220,0,FALSE,FALSE
+shared,CC,630,GO:0016327,apicolateral plasma membrane,7,0,0.05,1,6,0,FALSE,FALSE
+shared,CC,631,GO:0016328,lateral plasma membrane,117,0,0.9,1,48,0,FALSE,FALSE
+shared,CC,632,GO:0016342,catenin complex,3,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,633,GO:0016363,nuclear matrix,139,0,1.07,1,57,0,FALSE,FALSE
+shared,CC,634,GO:0016442,RISC complex,10,0,0.08,1,5,0,FALSE,FALSE
+shared,CC,635,GO:0016459,myosin complex,92,0,0.71,1,34,0,FALSE,FALSE
+shared,CC,636,GO:0016460,myosin II complex,17,0,0.13,1,14,0,FALSE,FALSE
+shared,CC,637,GO:0016461,unconventional myosin complex,16,0,0.12,1,3,0,FALSE,FALSE
+shared,CC,638,GO:0016469,proton-transporting two-sector ATPase complex,20,0,0.15,1,16,0,FALSE,FALSE
+shared,CC,639,GO:0016471,vacuolar proton-transporting V-type ATPase complex,8,0,0.06,1,5,0,FALSE,FALSE
+shared,CC,640,GO:0016507,mitochondrial fatty acid beta-oxidation multienzyme complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,641,GO:0016514,SWI/SNF complex,15,0,0.12,1,2,0,FALSE,FALSE
+shared,CC,642,GO:0016528,sarcoplasm,226,0,1.73,1,104,0,FALSE,FALSE
+shared,CC,643,GO:0016529,sarcoplasmic reticulum,202,0,1.55,1,94,0,FALSE,FALSE
+shared,CC,644,GO:0016533,protein kinase 5 complex,2,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,645,GO:0016580,Sin3 complex,11,0,0.08,1,4,0,FALSE,FALSE
+shared,CC,646,GO:0016581,NuRD complex,32,0,0.25,1,8,0,FALSE,FALSE
+shared,CC,647,GO:0016586,RSC-type complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,648,GO:0016589,NURF complex,11,0,0.08,1,5,0,FALSE,FALSE
+shared,CC,649,GO:0016590,ACF complex,4,0,0.03,1,1,0,FALSE,FALSE
+shared,CC,650,GO:0016591,"RNA polymerase II, holoenzyme",93,0,0.71,1,56,0,FALSE,FALSE
+shared,CC,651,GO:0016592,mediator complex,52,0,0.4,1,25,0,FALSE,FALSE
+shared,CC,652,GO:0016593,Cdc73/Paf1 complex,7,0,0.05,1,7,0,FALSE,FALSE
+shared,CC,653,GO:0016600,flotillin complex,15,0,0.12,1,9,0,FALSE,FALSE
+shared,CC,654,GO:0016935,glycine-gated chloride channel complex,3,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,655,GO:0016942,insulin-like growth factor binding protein complex,7,0,0.05,1,6,0,FALSE,FALSE
+shared,CC,656,GO:0017059,serine C-palmitoyltransferase complex,4,0,0.03,1,2,0,FALSE,FALSE
+shared,CC,657,GO:0017071,intracellular cyclic nucleotide activated cation channel complex,9,0,0.07,1,2,0,FALSE,FALSE
+shared,CC,658,GO:0017101,aminoacyl-tRNA synthetase multienzyme complex,10,0,0.08,1,8,0,FALSE,FALSE
+shared,CC,659,GO:0017102,methionyl glutamyl tRNA synthetase complex,6,0,0.05,1,5,0,FALSE,FALSE
+shared,CC,660,GO:0017109,glutamate-cysteine ligase complex,2,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,661,GO:0017117,single-stranded DNA-dependent ATP-dependent DNA helicase complex,17,0,0.13,1,12,0,FALSE,FALSE
+shared,CC,662,GO:0017119,Golgi transport complex,13,0,0.1,1,9,0,FALSE,FALSE
+shared,CC,663,GO:0017177,glucosidase II complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,664,GO:0018444,translation release factor complex,2,0,0.02,1,1,0,FALSE,FALSE
+shared,CC,665,GO:0018995,host cellular component,46,0,0.35,1,30,0,FALSE,FALSE
+shared,CC,666,GO:0019005,SCF ubiquitin ligase complex,116,0,0.89,1,56,0,FALSE,FALSE
+shared,CC,667,GO:0019008,molybdopterin synthase complex,2,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,668,GO:0019012,virion,27,0,0.21,1,17,0,FALSE,FALSE
+shared,CC,669,GO:0019013,viral nucleocapsid,17,0,0.13,1,8,0,FALSE,FALSE
+shared,CC,670,GO:0019028,viral capsid,18,0,0.14,1,9,0,FALSE,FALSE
+shared,CC,671,GO:0019773,"proteasome core complex, alpha-subunit complex",8,0,0.06,1,8,0,FALSE,FALSE
+shared,CC,672,GO:0019774,"proteasome core complex, beta-subunit complex",1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,673,GO:0019907,cyclin-dependent protein kinase activating kinase holoenzyme complex,2,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,674,GO:0019908,nuclear cyclin-dependent protein kinase holoenzyme complex,6,0,0.05,1,4,0,FALSE,FALSE
+shared,CC,675,GO:0020002,host cell plasma membrane,13,0,0.1,1,4,0,FALSE,FALSE
+shared,CC,676,GO:0020003,symbiont-containing vacuole,9,0,0.07,1,3,0,FALSE,FALSE
+shared,CC,677,GO:0020016,ciliary pocket,2,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,678,GO:0020018,ciliary pocket membrane,2,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,679,GO:0022625,cytosolic large ribosomal subunit,23,0,0.18,1,22,0,FALSE,FALSE
+shared,CC,680,GO:0022626,cytosolic ribosome,42,0,0.32,1,39,0,FALSE,FALSE
+shared,CC,681,GO:0022627,cytosolic small ribosomal subunit,9,0,0.07,1,8,0,FALSE,FALSE
+shared,CC,682,GO:0030008,TRAPP complex,8,0,0.06,1,6,0,FALSE,FALSE
+shared,CC,683,GO:0030014,CCR4-NOT complex,26,0,0.2,1,9,0,FALSE,FALSE
+shared,CC,684,GO:0030015,CCR4-NOT core complex,15,0,0.12,1,5,0,FALSE,FALSE
+shared,CC,685,GO:0030027,lamellipodium,347,0,2.66,1,112,0,FALSE,FALSE
+shared,CC,686,GO:0030056,hemidesmosome,12,0,0.09,1,4,0,FALSE,FALSE
+shared,CC,687,GO:0030057,desmosome,26,0,0.2,1,12,0,FALSE,FALSE
+shared,CC,688,GO:0030061,mitochondrial crista,4,0,0.03,1,3,0,FALSE,FALSE
+shared,CC,689,GO:0030062,mitochondrial tricarboxylic acid cycle enzyme complex,2,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,690,GO:0030117,membrane coat,104,0,0.8,1,45,0,FALSE,FALSE
+shared,CC,691,GO:0030118,clathrin coat,63,0,0.48,1,20,0,FALSE,FALSE
+shared,CC,692,GO:0030119,AP-type membrane coat adaptor complex,62,0,0.48,1,22,0,FALSE,FALSE
+shared,CC,693,GO:0030120,vesicle coat,49,0,0.38,1,25,0,FALSE,FALSE
+shared,CC,694,GO:0030121,AP-1 adaptor complex,6,0,0.05,1,3,0,FALSE,FALSE
+shared,CC,695,GO:0030122,AP-2 adaptor complex,11,0,0.08,1,3,0,FALSE,FALSE
+shared,CC,696,GO:0030123,AP-3 adaptor complex,17,0,0.13,1,4,0,FALSE,FALSE
+shared,CC,697,GO:0030124,AP-4 adaptor complex,3,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,698,GO:0030125,clathrin vesicle coat,23,0,0.18,1,8,0,FALSE,FALSE
+shared,CC,699,GO:0030126,COPI vesicle coat,9,0,0.07,1,8,0,FALSE,FALSE
+shared,CC,700,GO:0030127,COPII vesicle coat,17,0,0.13,1,9,0,FALSE,FALSE
+shared,CC,701,GO:0030128,clathrin coat of endocytic vesicle,11,0,0.08,1,3,0,FALSE,FALSE
+shared,CC,702,GO:0030130,clathrin coat of trans-Golgi network vesicle,13,0,0.1,1,6,0,FALSE,FALSE
+shared,CC,703,GO:0030131,clathrin adaptor complex,36,0,0.28,1,13,0,FALSE,FALSE
+shared,CC,704,GO:0030132,clathrin coat of coated pit,18,0,0.14,1,6,0,FALSE,FALSE
+shared,CC,705,GO:0030136,clathrin-coated vesicle,239,0,1.83,1,57,0,FALSE,FALSE
+shared,CC,706,GO:0030137,COPI-coated vesicle,22,0,0.17,1,18,0,FALSE,FALSE
+shared,CC,707,GO:0030139,endocytic vesicle,557,0,4.27,1,231,0,FALSE,FALSE
+shared,CC,708,GO:0030140,trans-Golgi network transport vesicle,52,0,0.4,1,16,0,FALSE,FALSE
+shared,CC,709,GO:0030173,integral component of Golgi membrane,38,0,0.29,1,19,0,FALSE,FALSE
+shared,CC,710,GO:0030285,integral component of synaptic vesicle membrane,34,0,0.26,1,10,0,FALSE,FALSE
+shared,CC,711,GO:0030289,protein phosphatase 4 complex,6,0,0.05,1,2,0,FALSE,FALSE
+shared,CC,712,GO:0030313,cell envelope,2,0,0.02,1,1,0,FALSE,FALSE
+shared,CC,713,GO:0030314,junctional membrane complex,4,0,0.03,1,1,0,FALSE,FALSE
+shared,CC,714,GO:0030315,T-tubule,100,0,0.77,1,41,0,FALSE,FALSE
+shared,CC,715,GO:0030428,cell septum,3,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,716,GO:0030430,host cell cytoplasm,26,0,0.2,1,11,0,FALSE,FALSE
+shared,CC,717,GO:0030445,yeast-form cell wall,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,718,GO:0030446,hyphal cell wall,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,719,GO:0030485,smooth muscle contractile fiber,4,0,0.03,1,1,0,FALSE,FALSE
+shared,CC,720,GO:0030486,smooth muscle dense body,4,0,0.03,1,1,0,FALSE,FALSE
+shared,CC,721,GO:0030660,Golgi-associated vesicle membrane,63,0,0.48,1,28,0,FALSE,FALSE
+shared,CC,722,GO:0030663,COPI-coated vesicle membrane,15,0,0.12,1,12,0,FALSE,FALSE
+shared,CC,723,GO:0030665,clathrin-coated vesicle membrane,67,0,0.51,1,28,0,FALSE,FALSE
+shared,CC,724,GO:0030666,endocytic vesicle membrane,248,0,1.9,1,130,0,FALSE,FALSE
+shared,CC,725,GO:0030669,clathrin-coated endocytic vesicle membrane,22,0,0.17,1,11,0,FALSE,FALSE
+shared,CC,726,GO:0030670,phagocytic vesicle membrane,151,0,1.16,1,77,0,FALSE,FALSE
+shared,CC,727,GO:0030673,axolemma,100,0,0.77,1,50,0,FALSE,FALSE
+shared,CC,728,GO:0030677,ribonuclease P complex,7,0,0.05,1,6,0,FALSE,FALSE
+shared,CC,729,GO:0030678,mitochondrial ribonuclease P complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,730,GO:0030681,multimeric ribonuclease P complex,6,0,0.05,1,5,0,FALSE,FALSE
+shared,CC,731,GO:0030684,preribosome,64,0,0.49,1,51,0,FALSE,FALSE
+shared,CC,732,GO:0030686,90S preribosome,30,0,0.23,1,22,0,FALSE,FALSE
+shared,CC,733,GO:0030687,"preribosome, large subunit precursor",29,0,0.22,1,21,0,FALSE,FALSE
+shared,CC,734,GO:0030688,"preribosome, small subunit precursor",6,0,0.05,1,6,0,FALSE,FALSE
+shared,CC,735,GO:0030689,Noc complex,10,0,0.08,1,5,0,FALSE,FALSE
+shared,CC,736,GO:0030690,Noc1p-Noc2p complex,9,0,0.07,1,4,0,FALSE,FALSE
+shared,CC,737,GO:0030691,Noc2p-Noc3p complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,738,GO:0030692,Noc4p-Nop14p complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,739,GO:0030863,cortical cytoskeleton,82,0,0.63,1,29,0,FALSE,FALSE
+shared,CC,740,GO:0030864,cortical actin cytoskeleton,52,0,0.4,1,18,0,FALSE,FALSE
+shared,CC,741,GO:0030867,rough endoplasmic reticulum membrane,11,0,0.08,1,10,0,FALSE,FALSE
+shared,CC,742,GO:0030868,smooth endoplasmic reticulum membrane,4,0,0.03,1,4,0,FALSE,FALSE
+shared,CC,743,GO:0030870,Mre11 complex,3,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,744,GO:0030874,nucleolar chromatin,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,745,GO:0030877,beta-catenin destruction complex,6,0,0.05,1,4,0,FALSE,FALSE
+shared,CC,746,GO:0030880,RNA polymerase complex,120,0,0.92,1,77,0,FALSE,FALSE
+shared,CC,747,GO:0030891,VCB complex,7,0,0.05,1,5,0,FALSE,FALSE
+shared,CC,748,GO:0030893,meiotic cohesin complex,2,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,749,GO:0030894,replisome,36,0,0.28,1,27,0,FALSE,FALSE
+shared,CC,750,GO:0030895,apolipoprotein B mRNA editing enzyme complex,7,0,0.05,1,1,0,FALSE,FALSE
+shared,CC,751,GO:0030896,checkpoint clamp complex,4,0,0.03,1,3,0,FALSE,FALSE
+shared,CC,752,GO:0030897,HOPS complex,16,0,0.12,1,3,0,FALSE,FALSE
+shared,CC,753,GO:0030904,retromer complex,10,0,0.08,1,8,0,FALSE,FALSE
+shared,CC,754,GO:0030905,"retromer, tubulation complex",2,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,755,GO:0030906,"retromer, cargo-selective complex",2,0,0.02,1,1,0,FALSE,FALSE
+shared,CC,756,GO:0030907,MBF transcription complex,2,0,0.02,1,1,0,FALSE,FALSE
+shared,CC,757,GO:0030914,STAGA complex,26,0,0.2,1,6,0,FALSE,FALSE
+shared,CC,758,GO:0030915,Smc5-Smc6 complex,8,0,0.06,1,6,0,FALSE,FALSE
+shared,CC,759,GO:0030934,anchoring collagen complex,9,0,0.07,1,6,0,FALSE,FALSE
+shared,CC,760,GO:0030956,glutamyl-tRNA(Gln) amidotransferase complex,2,0,0.02,1,1,0,FALSE,FALSE
+shared,CC,761,GO:0030964,NADH dehydrogenase complex,16,0,0.12,1,14,0,FALSE,FALSE
+shared,CC,762,GO:0030981,cortical microtubule cytoskeleton,11,0,0.08,1,1,0,FALSE,FALSE
+shared,CC,763,GO:0030990,intraciliary transport particle,57,0,0.44,1,22,0,FALSE,FALSE
+shared,CC,764,GO:0030991,intraciliary transport particle A,15,0,0.12,1,5,0,FALSE,FALSE
+shared,CC,765,GO:0030992,intraciliary transport particle B,41,0,0.31,1,16,0,FALSE,FALSE
+shared,CC,766,GO:0031010,ISWI-type complex,23,0,0.18,1,10,0,FALSE,FALSE
+shared,CC,767,GO:0031011,Ino80 complex,16,0,0.12,1,10,0,FALSE,FALSE
+shared,CC,768,GO:0031021,interphase microtubule organizing center,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,769,GO:0031045,dense core granule,34,0,0.26,1,8,0,FALSE,FALSE
+shared,CC,770,GO:0031074,nucleocytoplasmic transport complex,8,0,0.06,1,5,0,FALSE,FALSE
+shared,CC,771,GO:0031082,BLOC complex,41,0,0.31,1,14,0,FALSE,FALSE
+shared,CC,772,GO:0031083,BLOC-1 complex,26,0,0.2,1,10,0,FALSE,FALSE
+shared,CC,773,GO:0031085,BLOC-3 complex,15,0,0.12,1,4,0,FALSE,FALSE
+shared,CC,774,GO:0031089,platelet dense granule lumen,17,0,0.13,1,5,0,FALSE,FALSE
+shared,CC,775,GO:0031091,platelet alpha granule,41,0,0.31,1,20,0,FALSE,FALSE
+shared,CC,776,GO:0031092,platelet alpha granule membrane,13,0,0.1,1,5,0,FALSE,FALSE
+shared,CC,777,GO:0031093,platelet alpha granule lumen,8,0,0.06,1,8,0,FALSE,FALSE
+shared,CC,778,GO:0031094,platelet dense tubular network,3,0,0.02,1,3,0,FALSE,FALSE
+shared,CC,779,GO:0031095,platelet dense tubular network membrane,2,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,780,GO:0031105,septin complex,9,0,0.07,1,2,0,FALSE,FALSE
+shared,CC,781,GO:0031143,pseudopodium,51,0,0.39,1,31,0,FALSE,FALSE
+shared,CC,782,GO:0031164,contractile vacuolar membrane,13,0,0.1,1,2,0,FALSE,FALSE
+shared,CC,783,GO:0031166,integral component of vacuolar membrane,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,784,GO:0031209,SCAR complex,6,0,0.05,1,2,0,FALSE,FALSE
+shared,CC,785,GO:0031211,endoplasmic reticulum palmitoyltransferase complex,4,0,0.03,1,2,0,FALSE,FALSE
+shared,CC,786,GO:0031213,RSF complex,3,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,787,GO:0031225,anchored component of membrane,149,0,1.14,1,88,0,FALSE,FALSE
+shared,CC,788,GO:0031228,intrinsic component of Golgi membrane,41,0,0.31,1,22,0,FALSE,FALSE
+shared,CC,789,GO:0031229,intrinsic component of nuclear inner membrane,42,0,0.32,1,36,0,FALSE,FALSE
+shared,CC,790,GO:0031231,intrinsic component of peroxisomal membrane,23,0,0.18,1,13,0,FALSE,FALSE
+shared,CC,791,GO:0031232,extrinsic component of external side of plasma membrane,41,0,0.31,1,23,0,FALSE,FALSE
+shared,CC,792,GO:0031233,intrinsic component of external side of plasma membrane,26,0,0.2,1,13,0,FALSE,FALSE
+shared,CC,793,GO:0031235,intrinsic component of the cytoplasmic side of the plasma membrane,30,0,0.23,1,3,0,FALSE,FALSE
+shared,CC,794,GO:0031248,protein acetyltransferase complex,107,0,0.82,1,53,0,FALSE,FALSE
+shared,CC,795,GO:0031251,PAN complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,796,GO:0031254,cell trailing edge,5,0,0.04,1,1,0,FALSE,FALSE
+shared,CC,797,GO:0031258,lamellipodium membrane,6,0,0.05,1,3,0,FALSE,FALSE
+shared,CC,798,GO:0031260,pseudopodium membrane,43,0,0.33,1,25,0,FALSE,FALSE
+shared,CC,799,GO:0031261,DNA replication preinitiation complex,5,0,0.04,1,5,0,FALSE,FALSE
+shared,CC,800,GO:0031262,Ndc80 complex,3,0,0.02,1,3,0,FALSE,FALSE
+shared,CC,801,GO:0031264,death-inducing signaling complex,27,0,0.21,1,10,0,FALSE,FALSE
+shared,CC,802,GO:0031265,CD95 death-inducing signaling complex,24,0,0.18,1,9,0,FALSE,FALSE
+shared,CC,803,GO:0031298,replication fork protection complex,7,0,0.05,1,4,0,FALSE,FALSE
+shared,CC,804,GO:0031304,intrinsic component of mitochondrial inner membrane,19,0,0.15,1,15,0,FALSE,FALSE
+shared,CC,805,GO:0031305,integral component of mitochondrial inner membrane,18,0,0.14,1,14,0,FALSE,FALSE
+shared,CC,806,GO:0031306,intrinsic component of mitochondrial outer membrane,34,0,0.26,1,20,0,FALSE,FALSE
+shared,CC,807,GO:0031307,integral component of mitochondrial outer membrane,30,0,0.23,1,17,0,FALSE,FALSE
+shared,CC,808,GO:0031310,intrinsic component of vacuolar membrane,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,809,GO:0031312,extrinsic component of organelle membrane,49,0,0.38,1,30,0,FALSE,FALSE
+shared,CC,810,GO:0031313,extrinsic component of endosome membrane,15,0,0.12,1,5,0,FALSE,FALSE
+shared,CC,811,GO:0031314,extrinsic component of mitochondrial inner membrane,4,0,0.03,1,3,0,FALSE,FALSE
+shared,CC,812,GO:0031315,extrinsic component of mitochondrial outer membrane,2,0,0.02,1,1,0,FALSE,FALSE
+shared,CC,813,GO:0031332,RNAi effector complex,10,0,0.08,1,5,0,FALSE,FALSE
+shared,CC,814,GO:0031362,anchored component of external side of plasma membrane,5,0,0.04,1,2,0,FALSE,FALSE
+shared,CC,815,GO:0031371,ubiquitin conjugating enzyme complex,3,0,0.02,1,3,0,FALSE,FALSE
+shared,CC,816,GO:0031372,UBC13-MMS2 complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,817,GO:0031390,Ctf18 RFC-like complex,5,0,0.04,1,5,0,FALSE,FALSE
+shared,CC,818,GO:0031414,N-terminal protein acetyltransferase complex,8,0,0.06,1,7,0,FALSE,FALSE
+shared,CC,819,GO:0031415,NatA complex,2,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,820,GO:0031416,NatB complex,2,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,821,GO:0031417,NatC complex,4,0,0.03,1,3,0,FALSE,FALSE
+shared,CC,822,GO:0031422,RecQ family helicase-topoisomerase III complex,4,0,0.03,1,4,0,FALSE,FALSE
+shared,CC,823,GO:0031428,box C/D RNP complex,4,0,0.03,1,3,0,FALSE,FALSE
+shared,CC,824,GO:0031429,box H/ACA snoRNP complex,2,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,825,GO:0031430,M band,168,0,1.29,1,74,0,FALSE,FALSE
+shared,CC,826,GO:0031436,BRCA1-BARD1 complex,3,0,0.02,1,1,0,FALSE,FALSE
+shared,CC,827,GO:0031461,cullin-RING ubiquitin ligase complex,331,0,2.54,1,160,0,FALSE,FALSE
+shared,CC,828,GO:0031462,Cul2-RING ubiquitin ligase complex,11,0,0.08,1,8,0,FALSE,FALSE
+shared,CC,829,GO:0031463,Cul3-RING ubiquitin ligase complex,156,0,1.2,1,64,0,FALSE,FALSE
+shared,CC,830,GO:0031464,Cul4A-RING E3 ubiquitin ligase complex,13,0,0.1,1,10,0,FALSE,FALSE
+shared,CC,831,GO:0031465,Cul4B-RING E3 ubiquitin ligase complex,6,0,0.05,1,4,0,FALSE,FALSE
+shared,CC,832,GO:0031466,Cul5-RING ubiquitin ligase complex,8,0,0.06,1,4,0,FALSE,FALSE
+shared,CC,833,GO:0031467,Cul7-RING ubiquitin ligase complex,6,0,0.05,1,4,0,FALSE,FALSE
+shared,CC,834,GO:0031475,myosin V complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,835,GO:0031476,myosin VI complex,6,0,0.05,1,2,0,FALSE,FALSE
+shared,CC,836,GO:0031477,myosin VII complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,837,GO:0031501,mannosyltransferase complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,838,GO:0031514,motile cilium,209,0,1.6,1,87,0,FALSE,FALSE
+shared,CC,839,GO:0031515,tRNA (m1A) methyltransferase complex,3,0,0.02,1,3,0,FALSE,FALSE
+shared,CC,840,GO:0031520,plasma membrane of cell tip,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,841,GO:0031523,Myb complex,8,0,0.06,1,4,0,FALSE,FALSE
+shared,CC,842,GO:0031526,brush border membrane,82,0,0.63,1,44,0,FALSE,FALSE
+shared,CC,843,GO:0031527,filopodium membrane,4,0,0.03,1,2,0,FALSE,FALSE
+shared,CC,844,GO:0031528,microvillus membrane,26,0,0.2,1,11,0,FALSE,FALSE
+shared,CC,845,GO:0031588,nucleotide-activated protein kinase complex,34,0,0.26,1,4,0,FALSE,FALSE
+shared,CC,846,GO:0031594,neuromuscular junction,177,0,1.36,1,89,0,FALSE,FALSE
+shared,CC,847,GO:0031595,nuclear proteasome complex,3,0,0.02,1,3,0,FALSE,FALSE
+shared,CC,848,GO:0031597,cytosolic proteasome complex,4,0,0.03,1,4,0,FALSE,FALSE
+shared,CC,849,GO:0031616,spindle pole centrosome,22,0,0.17,1,7,0,FALSE,FALSE
+shared,CC,850,GO:0031617,NMS complex,3,0,0.02,1,3,0,FALSE,FALSE
+shared,CC,851,GO:0031672,A band,237,0,1.82,1,81,0,FALSE,FALSE
+shared,CC,852,GO:0031673,H zone,13,0,0.1,1,2,0,FALSE,FALSE
+shared,CC,853,GO:0031903,microbody membrane,84,0,0.64,1,43,0,FALSE,FALSE
+shared,CC,854,GO:0031907,microbody lumen,23,0,0.18,1,20,0,FALSE,FALSE
+shared,CC,855,GO:0031941,filamentous actin,44,0,0.34,1,9,0,FALSE,FALSE
+shared,CC,856,GO:0031969,chloroplast membrane,3,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,857,GO:0031976,plastid thylakoid,3,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,858,GO:0032009,early phagosome,44,0,0.34,1,6,0,FALSE,FALSE
+shared,CC,859,GO:0032021,NELF complex,2,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,860,GO:0032039,integrator complex,10,0,0.08,1,8,0,FALSE,FALSE
+shared,CC,861,GO:0032040,small-subunit processome,23,0,0.18,1,20,0,FALSE,FALSE
+shared,CC,862,GO:0032044,DSIF complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,863,GO:0032045,guanyl-nucleotide exchange factor complex,29,0,0.22,1,9,0,FALSE,FALSE
+shared,CC,864,GO:0032047,mitosome,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,865,GO:0032059,bleb,39,0,0.3,1,32,0,FALSE,FALSE
+shared,CC,866,GO:0032127,dense core granule membrane,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,867,GO:0032133,chromosome passenger complex,2,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,868,GO:0032144,4-aminobutyrate transaminase complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,869,GO:0032153,cell division site,228,0,1.75,1,110,0,FALSE,FALSE
+shared,CC,870,GO:0032154,cleavage furrow,216,0,1.66,1,102,0,FALSE,FALSE
+shared,CC,871,GO:0032156,septin cytoskeleton,12,0,0.09,1,4,0,FALSE,FALSE
+shared,CC,872,GO:0032280,symmetric synapse,6,0,0.05,1,1,0,FALSE,FALSE
+shared,CC,873,GO:0032281,AMPA glutamate receptor complex,17,0,0.13,1,12,0,FALSE,FALSE
+shared,CC,874,GO:0032299,ribonuclease H2 complex,3,0,0.02,1,3,0,FALSE,FALSE
+shared,CC,875,GO:0032300,mismatch repair complex,12,0,0.09,1,8,0,FALSE,FALSE
+shared,CC,876,GO:0032301,MutSalpha complex,3,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,877,GO:0032302,MutSbeta complex,2,0,0.02,1,1,0,FALSE,FALSE
+shared,CC,878,GO:0032389,MutLalpha complex,6,0,0.05,1,4,0,FALSE,FALSE
+shared,CC,879,GO:0032391,photoreceptor connecting cilium,53,0,0.41,1,22,0,FALSE,FALSE
+shared,CC,880,GO:0032426,stereocilium tip,22,0,0.17,1,6,0,FALSE,FALSE
+shared,CC,881,GO:0032432,actin filament bundle,84,0,0.64,1,26,0,FALSE,FALSE
+shared,CC,882,GO:0032433,filopodium tip,21,0,0.16,1,8,0,FALSE,FALSE
+shared,CC,883,GO:0032444,activin responsive factor complex,2,0,0.02,1,1,0,FALSE,FALSE
+shared,CC,884,GO:0032449,CBM complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,885,GO:0032541,cortical endoplasmic reticulum,12,0,0.09,1,3,0,FALSE,FALSE
+shared,CC,886,GO:0032545,CURI complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,887,GO:0032579,apical lamina of hyaline layer,45,0,0.35,1,19,0,FALSE,FALSE
+shared,CC,888,GO:0032580,Golgi cisterna membrane,131,0,1,1,65,0,FALSE,FALSE
+shared,CC,889,GO:0032584,growth cone membrane,13,0,0.1,1,3,0,FALSE,FALSE
+shared,CC,890,GO:0032586,protein storage vacuole membrane,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,891,GO:0032588,trans-Golgi network membrane,37,0,0.28,1,19,0,FALSE,FALSE
+shared,CC,892,GO:0032591,dendritic spine membrane,3,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,893,GO:0032592,integral component of mitochondrial membrane,53,0,0.41,1,34,0,FALSE,FALSE
+shared,CC,894,GO:0032593,insulin-responsive compartment,13,0,0.1,1,4,0,FALSE,FALSE
+shared,CC,895,GO:0032777,Piccolo NuA4 histone acetyltransferase complex,4,0,0.03,1,4,0,FALSE,FALSE
+shared,CC,896,GO:0032797,SMN complex,7,0,0.05,1,7,0,FALSE,FALSE
+shared,CC,897,GO:0032798,Swi5-Sfr1 complex,3,0,0.02,1,1,0,FALSE,FALSE
+shared,CC,898,GO:0032806,carboxy-terminal domain protein kinase complex,18,0,0.14,1,11,0,FALSE,FALSE
+shared,CC,899,GO:0032807,DNA ligase IV complex,2,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,900,GO:0032838,plasma membrane bounded cell projection cytoplasm,342,0,2.62,1,111,0,FALSE,FALSE
+shared,CC,901,GO:0032839,dendrite cytoplasm,22,0,0.17,1,9,0,FALSE,FALSE
+shared,CC,902,GO:0032982,myosin filament,7,0,0.05,1,3,0,FALSE,FALSE
+shared,CC,903,GO:0032983,kainate selective glutamate receptor complex,2,0,0.02,1,1,0,FALSE,FALSE
+shared,CC,904,GO:0032992,protein-carbohydrate complex,13,0,0.1,1,8,0,FALSE,FALSE
+shared,CC,905,GO:0032993,protein-DNA complex,104,0,0.8,1,81,0,FALSE,FALSE
+shared,CC,906,GO:0032994,protein-lipid complex,9,0,0.07,1,7,0,FALSE,FALSE
+shared,CC,907,GO:0032996,Bcl3-Bcl10 complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,908,GO:0033010,paranodal junction,7,0,0.05,1,2,0,FALSE,FALSE
+shared,CC,909,GO:0033017,sarcoplasmic reticulum membrane,50,0,0.38,1,15,0,FALSE,FALSE
+shared,CC,910,GO:0033018,sarcoplasmic reticulum lumen,8,0,0.06,1,3,0,FALSE,FALSE
+shared,CC,911,GO:0033061,DNA recombinase mediator complex,11,0,0.08,1,6,0,FALSE,FALSE
+shared,CC,912,GO:0033063,Rad51B-Rad51C-Rad51D-XRCC2 complex,8,0,0.06,1,5,0,FALSE,FALSE
+shared,CC,913,GO:0033065,Rad51C-XRCC3 complex,2,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,914,GO:0033093,Weibel-Palade body,17,0,0.13,1,4,0,FALSE,FALSE
+shared,CC,915,GO:0033100,NuA3 histone acetyltransferase complex,2,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,916,GO:0033116,endoplasmic reticulum-Golgi intermediate compartment membrane,32,0,0.25,1,23,0,FALSE,FALSE
+shared,CC,917,GO:0033117,esterosome,3,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,918,GO:0033118,esterosome membrane,3,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,919,GO:0033162,melanosome membrane,6,0,0.05,1,4,0,FALSE,FALSE
+shared,CC,920,GO:0033165,interphotoreceptor matrix,2,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,921,GO:0033166,hyaline layer,45,0,0.35,1,19,0,FALSE,FALSE
+shared,CC,922,GO:0033176,proton-transporting V-type ATPase complex,13,0,0.1,1,10,0,FALSE,FALSE
+shared,CC,923,GO:0033177,"proton-transporting two-sector ATPase complex, proton-transporting domain",7,0,0.05,1,6,0,FALSE,FALSE
+shared,CC,924,GO:0033178,"proton-transporting two-sector ATPase complex, catalytic domain",11,0,0.08,1,8,0,FALSE,FALSE
+shared,CC,925,GO:0033179,"proton-transporting V-type ATPase, V0 domain",3,0,0.02,1,3,0,FALSE,FALSE
+shared,CC,926,GO:0033180,"proton-transporting V-type ATPase, V1 domain",8,0,0.06,1,5,0,FALSE,FALSE
+shared,CC,927,GO:0033181,plasma membrane proton-transporting V-type ATPase complex,8,0,0.06,1,5,0,FALSE,FALSE
+shared,CC,928,GO:0033186,CAF-1 complex,5,0,0.04,1,2,0,FALSE,FALSE
+shared,CC,929,GO:0033202,DNA helicase complex,33,0,0.25,1,22,0,FALSE,FALSE
+shared,CC,930,GO:0033256,I-kappaB/NF-kappaB complex,6,0,0.05,1,5,0,FALSE,FALSE
+shared,CC,931,GO:0033257,Bcl3/NF-kappaB2 complex,2,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,932,GO:0033263,CORVET complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,933,GO:0033268,node of Ranvier,44,0,0.34,1,23,0,FALSE,FALSE
+shared,CC,934,GO:0033270,paranode region of axon,36,0,0.28,1,14,0,FALSE,FALSE
+shared,CC,935,GO:0033276,transcription factor TFTC complex,24,0,0.18,1,5,0,FALSE,FALSE
+shared,CC,936,GO:0033391,chromatoid body,18,0,0.14,1,9,0,FALSE,FALSE
+shared,CC,937,GO:0033503,HULC complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,938,GO:0033553,rDNA heterochromatin,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,939,GO:0033557,Slx1-Slx4 complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,940,GO:0033565,ESCRT-0 complex,5,0,0.04,1,2,0,FALSE,FALSE
+shared,CC,941,GO:0033588,elongator holoenzyme complex,7,0,0.05,1,5,0,FALSE,FALSE
+shared,CC,942,GO:0033593,BRCA2-MAGE-D1 complex,2,0,0.02,1,1,0,FALSE,FALSE
+shared,CC,943,GO:0033596,TSC1-TSC2 complex,3,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,944,GO:0033643,host cell part,44,0,0.34,1,28,0,FALSE,FALSE
+shared,CC,945,GO:0033644,host cell membrane,23,0,0.18,1,13,0,FALSE,FALSE
+shared,CC,946,GO:0033646,host intracellular part,33,0,0.25,1,18,0,FALSE,FALSE
+shared,CC,947,GO:0033647,host intracellular organelle,24,0,0.18,1,15,0,FALSE,FALSE
+shared,CC,948,GO:0033648,host intracellular membrane-bounded organelle,24,0,0.18,1,15,0,FALSE,FALSE
+shared,CC,949,GO:0033650,host cell mitochondrion,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,950,GO:0033655,host cell cytoplasm part,10,0,0.08,1,4,0,FALSE,FALSE
+shared,CC,951,GO:0034045,phagophore assembly site membrane,13,0,0.1,1,8,0,FALSE,FALSE
+shared,CC,952,GO:0034066,Ric1-Rgp1 guanyl-nucleotide exchange factor complex,3,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,953,GO:0034098,VCP-NPL4-UFD1 AAA ATPase complex,2,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,954,GO:0034245,mitochondrial DNA-directed RNA polymerase complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,955,GO:0034271,"phosphatidylinositol 3-kinase complex, class III, type I",4,0,0.03,1,1,0,FALSE,FALSE
+shared,CC,956,GO:0034272,"phosphatidylinositol 3-kinase complex, class III, type II",4,0,0.03,1,1,0,FALSE,FALSE
+shared,CC,957,GO:0034274,Atg12-Atg5-Atg16 complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,958,GO:0034357,photosynthetic membrane,3,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,959,GO:0034358,plasma lipoprotein particle,9,0,0.07,1,7,0,FALSE,FALSE
+shared,CC,960,GO:0034361,very-low-density lipoprotein particle,3,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,961,GO:0034362,low-density lipoprotein particle,2,0,0.02,1,1,0,FALSE,FALSE
+shared,CC,962,GO:0034364,high-density lipoprotein particle,3,0,0.02,1,3,0,FALSE,FALSE
+shared,CC,963,GO:0034366,spherical high-density lipoprotein particle,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,964,GO:0034385,triglyceride-rich plasma lipoprotein particle,3,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,965,GO:0034388,Pwp2p-containing subcomplex of 90S preribosome,3,0,0.02,1,3,0,FALSE,FALSE
+shared,CC,966,GO:0034399,nuclear periphery,154,0,1.18,1,66,0,FALSE,FALSE
+shared,CC,967,GO:0034448,EGO complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,968,GO:0034451,centriolar satellite,20,0,0.15,1,13,0,FALSE,FALSE
+shared,CC,969,GO:0034455,t-UTP complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,970,GO:0034456,UTP-C complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,971,GO:0034457,Mpp10 complex,3,0,0.02,1,3,0,FALSE,FALSE
+shared,CC,972,GO:0034464,BBSome,6,0,0.05,1,4,0,FALSE,FALSE
+shared,CC,973,GO:0034466,chromaffin granule lumen,3,0,0.02,1,3,0,FALSE,FALSE
+shared,CC,974,GO:0034507,"chromosome, centromeric outer repeat region",1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,975,GO:0034515,proteasome storage granule,2,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,976,GO:0034518,RNA cap binding complex,14,0,0.11,1,8,0,FALSE,FALSE
+shared,CC,977,GO:0034657,GID complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,978,GO:0034663,endoplasmic reticulum chaperone complex,7,0,0.05,1,6,0,FALSE,FALSE
+shared,CC,979,GO:0034668,integrin alpha4-beta1 complex,10,0,0.08,1,8,0,FALSE,FALSE
+shared,CC,980,GO:0034669,integrin alpha4-beta7 complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,981,GO:0034679,integrin alpha9-beta1 complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,982,GO:0034693,U11/U12 snRNP,2,0,0.02,1,1,0,FALSE,FALSE
+shared,CC,983,GO:0034704,calcium channel complex,23,0,0.18,1,11,0,FALSE,FALSE
+shared,CC,984,GO:0034705,potassium channel complex,106,0,0.81,1,43,0,FALSE,FALSE
+shared,CC,985,GO:0034706,sodium channel complex,31,0,0.24,1,4,0,FALSE,FALSE
+shared,CC,986,GO:0034707,chloride channel complex,43,0,0.33,1,21,0,FALSE,FALSE
+shared,CC,987,GO:0034709,methylosome,7,0,0.05,1,4,0,FALSE,FALSE
+shared,CC,988,GO:0034715,pICln-Sm protein complex,3,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,989,GO:0034718,SMN-Gemin2 complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,990,GO:0034719,SMN-Sm protein complex,9,0,0.07,1,9,0,FALSE,FALSE
+shared,CC,991,GO:0034750,Scrib-APC-beta-catenin complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,992,GO:0034751,aryl hydrocarbon receptor complex,4,0,0.03,1,4,0,FALSE,FALSE
+shared,CC,993,GO:0034752,cytosolic aryl hydrocarbon receptor complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,994,GO:0034753,nuclear aryl hydrocarbon receptor complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,995,GO:0034991,nuclear meiotic cohesin complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,996,GO:0035003,subapical complex,63,0,0.48,1,15,0,FALSE,FALSE
+shared,CC,997,GO:0035032,"phosphatidylinositol 3-kinase complex, class III",8,0,0.06,1,4,0,FALSE,FALSE
+shared,CC,998,GO:0035060,brahma complex,4,0,0.03,1,1,0,FALSE,FALSE
+shared,CC,999,GO:0035061,interchromatin granule,2,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,1000,GO:0035101,FACT complex,2,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,1001,GO:0035102,PRC1 complex,17,0,0.13,1,9,0,FALSE,FALSE
+shared,CC,1002,GO:0035145,exon-exon junction complex,7,0,0.05,1,5,0,FALSE,FALSE
+shared,CC,1003,GO:0035182,female germline ring canal outer rim,5,0,0.04,1,1,0,FALSE,FALSE
+shared,CC,1004,GO:0035183,female germline ring canal inner rim,19,0,0.15,1,2,0,FALSE,FALSE
+shared,CC,1005,GO:0035189,Rb-E2F complex,2,0,0.02,1,1,0,FALSE,FALSE
+shared,CC,1006,GO:0035267,NuA4 histone acetyltransferase complex,25,0,0.19,1,11,0,FALSE,FALSE
+shared,CC,1007,GO:0035301,Hedgehog signaling complex,8,0,0.06,1,1,0,FALSE,FALSE
+shared,CC,1008,GO:0035324,female germline ring canal,19,0,0.15,1,2,0,FALSE,FALSE
+shared,CC,1009,GO:0035327,transcriptionally active chromatin,19,0,0.15,1,13,0,FALSE,FALSE
+shared,CC,1010,GO:0035354,Toll-like receptor 1-Toll-like receptor 2 protein complex,8,0,0.06,1,7,0,FALSE,FALSE
+shared,CC,1011,GO:0035355,Toll-like receptor 2-Toll-like receptor 6 protein complex,15,0,0.12,1,11,0,FALSE,FALSE
+shared,CC,1012,GO:0035363,histone locus body,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1013,GO:0035370,UBC13-UEV1A complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1014,GO:0035371,microtubule plus-end,70,0,0.54,1,7,0,FALSE,FALSE
+shared,CC,1015,GO:0035517,PR-DUB complex,5,0,0.04,1,2,0,FALSE,FALSE
+shared,CC,1016,GO:0035525,NF-kappaB p50/p65 complex,2,0,0.02,1,1,0,FALSE,FALSE
+shared,CC,1017,GO:0035579,specific granule membrane,36,0,0.28,1,17,0,FALSE,FALSE
+shared,CC,1018,GO:0035580,specific granule lumen,18,0,0.14,1,10,0,FALSE,FALSE
+shared,CC,1019,GO:0035631,CD40 receptor complex,26,0,0.2,1,12,0,FALSE,FALSE
+shared,CC,1020,GO:0035686,sperm fibrous sheath,10,0,0.08,1,3,0,FALSE,FALSE
+shared,CC,1021,GO:0035748,myelin sheath abaxonal region,5,0,0.04,1,2,0,FALSE,FALSE
+shared,CC,1022,GO:0035749,myelin sheath adaxonal region,8,0,0.06,1,4,0,FALSE,FALSE
+shared,CC,1023,GO:0035838,growing cell tip,3,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,1024,GO:0035839,non-growing cell tip,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1025,GO:0035840,old growing cell tip,2,0,0.02,1,1,0,FALSE,FALSE
+shared,CC,1026,GO:0035841,new growing cell tip,3,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,1027,GO:0035859,Seh1-associated complex,29,0,0.22,1,6,0,FALSE,FALSE
+shared,CC,1028,GO:0035861,site of double-strand break,35,0,0.27,1,23,0,FALSE,FALSE
+shared,CC,1029,GO:0035869,ciliary transition zone,64,0,0.49,1,31,0,FALSE,FALSE
+shared,CC,1030,GO:0035974,meiotic spindle pole body,3,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,1031,GO:0036019,endolysosome,4,0,0.03,1,2,0,FALSE,FALSE
+shared,CC,1032,GO:0036020,endolysosome membrane,4,0,0.03,1,2,0,FALSE,FALSE
+shared,CC,1033,GO:0036038,MKS complex,9,0,0.07,1,7,0,FALSE,FALSE
+shared,CC,1034,GO:0036056,filtration diaphragm,40,0,0.31,1,7,0,FALSE,FALSE
+shared,CC,1035,GO:0036057,slit diaphragm,40,0,0.31,1,7,0,FALSE,FALSE
+shared,CC,1036,GO:0036062,presynaptic periactive zone,2,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,1037,GO:0036064,ciliary basal body,201,0,1.54,1,70,0,FALSE,FALSE
+shared,CC,1038,GO:0036117,hyaluranon cable,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1039,GO:0036125,fatty acid beta-oxidation multienzyme complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1040,GO:0036126,sperm flagellum,78,0,0.6,1,42,0,FALSE,FALSE
+shared,CC,1041,GO:0036156,inner dynein arm,43,0,0.33,1,8,0,FALSE,FALSE
+shared,CC,1042,GO:0036157,outer dynein arm,12,0,0.09,1,5,0,FALSE,FALSE
+shared,CC,1043,GO:0036194,muscle cell projection,3,0,0.02,1,3,0,FALSE,FALSE
+shared,CC,1044,GO:0036195,muscle cell projection membrane,3,0,0.02,1,3,0,FALSE,FALSE
+shared,CC,1045,GO:0036375,Kibra-Ex-Mer complex,2,0,0.02,1,1,0,FALSE,FALSE
+shared,CC,1046,GO:0036387,pre-replicative complex,2,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,1047,GO:0036396,RNA N6-methyladenosine methyltransferase complex,3,0,0.02,1,3,0,FALSE,FALSE
+shared,CC,1048,GO:0036398,TCR signalosome,31,0,0.24,1,1,0,FALSE,FALSE
+shared,CC,1049,GO:0036449,microtubule minus-end,11,0,0.08,1,1,0,FALSE,FALSE
+shared,CC,1050,GO:0036452,ESCRT complex,26,0,0.2,1,18,0,FALSE,FALSE
+shared,CC,1051,GO:0036454,growth factor complex,7,0,0.05,1,6,0,FALSE,FALSE
+shared,CC,1052,GO:0036501,UFD1-NPL4 complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1053,GO:0036502,Derlin-1-VIMP complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1054,GO:0036513,Derlin-1 retrotranslocation complex,27,0,0.21,1,14,0,FALSE,FALSE
+shared,CC,1055,GO:0038037,G protein-coupled receptor dimeric complex,3,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,1056,GO:0038038,G protein-coupled receptor homodimeric complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1057,GO:0038039,G protein-coupled receptor heterodimeric complex,2,0,0.02,1,1,0,FALSE,FALSE
+shared,CC,1058,GO:0042025,host cell nucleus,23,0,0.18,1,14,0,FALSE,FALSE
+shared,CC,1059,GO:0042101,T cell receptor complex,3,0,0.02,1,3,0,FALSE,FALSE
+shared,CC,1060,GO:0042105,alpha-beta T cell receptor complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1061,GO:0042151,nematocyst,10,0,0.08,1,7,0,FALSE,FALSE
+shared,CC,1062,GO:0042170,plastid membrane,3,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,1063,GO:0042382,paraspeckles,10,0,0.08,1,6,0,FALSE,FALSE
+shared,CC,1064,GO:0042383,sarcolemma,286,0,2.19,1,122,0,FALSE,FALSE
+shared,CC,1065,GO:0042405,nuclear inclusion body,19,0,0.15,1,8,0,FALSE,FALSE
+shared,CC,1066,GO:0042406,extrinsic component of endoplasmic reticulum membrane,14,0,0.11,1,13,0,FALSE,FALSE
+shared,CC,1067,GO:0042555,MCM complex,8,0,0.06,1,6,0,FALSE,FALSE
+shared,CC,1068,GO:0042564,NLS-dependent protein nuclear import complex,6,0,0.05,1,3,0,FALSE,FALSE
+shared,CC,1069,GO:0042565,RNA nuclear export complex,2,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,1070,GO:0042567,insulin-like growth factor ternary complex,7,0,0.05,1,6,0,FALSE,FALSE
+shared,CC,1071,GO:0042575,DNA polymerase complex,25,0,0.19,1,16,0,FALSE,FALSE
+shared,CC,1072,GO:0042581,specific granule,54,0,0.41,1,27,0,FALSE,FALSE
+shared,CC,1073,GO:0042583,chromaffin granule,12,0,0.09,1,9,0,FALSE,FALSE
+shared,CC,1074,GO:0042584,chromaffin granule membrane,12,0,0.09,1,9,0,FALSE,FALSE
+shared,CC,1075,GO:0042585,germinal vesicle,7,0,0.05,1,3,0,FALSE,FALSE
+shared,CC,1076,GO:0042587,glycogen granule,2,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,1077,GO:0042589,zymogen granule membrane,54,0,0.41,1,27,0,FALSE,FALSE
+shared,CC,1078,GO:0042597,periplasmic space,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1079,GO:0042599,lamellar body,3,0,0.02,1,3,0,FALSE,FALSE
+shared,CC,1080,GO:0042622,photoreceptor outer segment membrane,14,0,0.11,1,8,0,FALSE,FALSE
+shared,CC,1081,GO:0042629,mast cell granule,3,0,0.02,1,3,0,FALSE,FALSE
+shared,CC,1082,GO:0042641,actomyosin,136,0,1.04,1,36,0,FALSE,FALSE
+shared,CC,1083,GO:0042645,mitochondrial nucleoid,26,0,0.2,1,18,0,FALSE,FALSE
+shared,CC,1084,GO:0042651,thylakoid membrane,3,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,1085,GO:0042719,mitochondrial intermembrane space protein transporter complex,2,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,1086,GO:0042720,mitochondrial inner membrane peptidase complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1087,GO:0042721,TIM22 mitochondrial import inner membrane insertion complex,3,0,0.02,1,3,0,FALSE,FALSE
+shared,CC,1088,GO:0042734,presynaptic membrane,153,0,1.17,1,41,0,FALSE,FALSE
+shared,CC,1089,GO:0042763,intracellular immature spore,2,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,1090,GO:0042764,ascospore-type prospore,2,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,1091,GO:0042765,GPI-anchor transamidase complex,8,0,0.06,1,6,0,FALSE,FALSE
+shared,CC,1092,GO:0042788,polysomal ribosome,3,0,0.02,1,3,0,FALSE,FALSE
+shared,CC,1093,GO:0043020,NADPH oxidase complex,3,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,1094,GO:0043034,costamere,64,0,0.49,1,35,0,FALSE,FALSE
+shared,CC,1095,GO:0043073,germ cell nucleus,30,0,0.23,1,12,0,FALSE,FALSE
+shared,CC,1096,GO:0043083,synaptic cleft,19,0,0.15,1,17,0,FALSE,FALSE
+shared,CC,1097,GO:0043186,P granule,48,0,0.37,1,21,0,FALSE,FALSE
+shared,CC,1098,GO:0043189,H4/H2A histone acetyltransferase complex,25,0,0.19,1,11,0,FALSE,FALSE
+shared,CC,1099,GO:0043190,ATP-binding cassette (ABC) transporter complex,15,0,0.12,1,6,0,FALSE,FALSE
+shared,CC,1100,GO:0043194,axon initial segment,42,0,0.32,1,24,0,FALSE,FALSE
+shared,CC,1101,GO:0043195,terminal bouton,129,0,0.99,1,45,0,FALSE,FALSE
+shared,CC,1102,GO:0043196,varicosity,12,0,0.09,1,6,0,FALSE,FALSE
+shared,CC,1103,GO:0043197,dendritic spine,107,0,0.82,1,54,0,FALSE,FALSE
+shared,CC,1104,GO:0043198,dendritic shaft,37,0,0.28,1,21,0,FALSE,FALSE
+shared,CC,1105,GO:0043202,lysosomal lumen,86,0,0.66,1,41,0,FALSE,FALSE
+shared,CC,1106,GO:0043203,axon hillock,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1107,GO:0043204,perikaryon,202,0,1.55,1,98,0,FALSE,FALSE
+shared,CC,1108,GO:0043209,myelin sheath,105,0,0.81,1,51,0,FALSE,FALSE
+shared,CC,1109,GO:0043218,compact myelin,17,0,0.13,1,7,0,FALSE,FALSE
+shared,CC,1110,GO:0043219,lateral loop,3,0,0.02,1,1,0,FALSE,FALSE
+shared,CC,1111,GO:0043220,Schmidt-Lanterman incisure,15,0,0.12,1,6,0,FALSE,FALSE
+shared,CC,1112,GO:0043224,nuclear SCF ubiquitin ligase complex,3,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,1113,GO:0043240,Fanconi anaemia nuclear complex,8,0,0.06,1,7,0,FALSE,FALSE
+shared,CC,1114,GO:0043256,laminin complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1115,GO:0043259,laminin-10 complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1116,GO:0043260,laminin-11 complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1117,GO:0043291,RAVE complex,12,0,0.09,1,1,0,FALSE,FALSE
+shared,CC,1118,GO:0043296,apical junction complex,233,0,1.79,1,80,0,FALSE,FALSE
+shared,CC,1119,GO:0043332,mating projection tip,3,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,1120,GO:0043509,activin A complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1121,GO:0043511,inhibin complex,2,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,1122,GO:0043512,inhibin A complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1123,GO:0043513,inhibin B complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1124,GO:0043527,tRNA methyltransferase complex,7,0,0.05,1,4,0,FALSE,FALSE
+shared,CC,1125,GO:0043541,UDP-N-acetylglucosamine transferase complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1126,GO:0043564,Ku70:Ku80 complex,4,0,0.03,1,2,0,FALSE,FALSE
+shared,CC,1127,GO:0043590,bacterial nucleoid,10,0,0.08,1,10,0,FALSE,FALSE
+shared,CC,1128,GO:0043601,nuclear replisome,26,0,0.2,1,17,0,FALSE,FALSE
+shared,CC,1129,GO:0043614,multi-eIF complex,3,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,1130,GO:0043625,delta DNA polymerase complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1131,GO:0043656,host intracellular region,33,0,0.25,1,18,0,FALSE,FALSE
+shared,CC,1132,GO:0043657,host cell,46,0,0.35,1,30,0,FALSE,FALSE
+shared,CC,1133,GO:0043679,axon terminus,161,0,1.23,1,62,0,FALSE,FALSE
+shared,CC,1134,GO:0044094,host cell nuclear part,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1135,GO:0044190,host cell mitochondrial envelope,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1136,GO:0044194,cytolytic granule,2,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,1137,GO:0044214,spanning component of plasma membrane,4,0,0.03,1,2,0,FALSE,FALSE
+shared,CC,1138,GO:0044216,other organism cell,2,0,0.02,1,1,0,FALSE,FALSE
+shared,CC,1139,GO:0044217,other organism part,2,0,0.02,1,1,0,FALSE,FALSE
+shared,CC,1140,GO:0044218,other organism cell membrane,2,0,0.02,1,1,0,FALSE,FALSE
+shared,CC,1141,GO:0044224,juxtaparanode region of axon,13,0,0.1,1,3,0,FALSE,FALSE
+shared,CC,1142,GO:0044232,organelle membrane contact site,17,0,0.13,1,9,0,FALSE,FALSE
+shared,CC,1143,GO:0044233,mitochondria-associated endoplasmic reticulum membrane,9,0,0.07,1,5,0,FALSE,FALSE
+shared,CC,1144,GO:0044292,dendrite terminus,10,0,0.08,1,6,0,FALSE,FALSE
+shared,CC,1145,GO:0044294,dendritic growth cone,5,0,0.04,1,3,0,FALSE,FALSE
+shared,CC,1146,GO:0044295,axonal growth cone,26,0,0.2,1,16,0,FALSE,FALSE
+shared,CC,1147,GO:0044300,cerebellar mossy fiber,2,0,0.02,1,1,0,FALSE,FALSE
+shared,CC,1148,GO:0044301,climbing fiber,7,0,0.05,1,6,0,FALSE,FALSE
+shared,CC,1149,GO:0044304,main axon,174,0,1.33,1,85,0,FALSE,FALSE
+shared,CC,1150,GO:0044305,calyx of Held,28,0,0.21,1,2,0,FALSE,FALSE
+shared,CC,1151,GO:0044306,neuron projection terminus,175,0,1.34,1,72,0,FALSE,FALSE
+shared,CC,1152,GO:0044308,axonal spine,2,0,0.02,1,1,0,FALSE,FALSE
+shared,CC,1153,GO:0044309,neuron spine,109,0,0.84,1,55,0,FALSE,FALSE
+shared,CC,1154,GO:0044322,endoplasmic reticulum quality control compartment,31,0,0.24,1,18,0,FALSE,FALSE
+shared,CC,1155,GO:0044352,pinosome,25,0,0.19,1,2,0,FALSE,FALSE
+shared,CC,1156,GO:0044354,macropinosome,25,0,0.19,1,2,0,FALSE,FALSE
+shared,CC,1157,GO:0044391,ribosomal subunit,103,0,0.79,1,95,0,FALSE,FALSE
+shared,CC,1158,GO:0044393,microspike,2,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,1159,GO:0044423,virion part,19,0,0.15,1,10,0,FALSE,FALSE
+shared,CC,1160,GO:0044530,supraspliceosomal complex,12,0,0.09,1,6,0,FALSE,FALSE
+shared,CC,1161,GO:0044599,AP-5 adaptor complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1162,GO:0044611,nuclear pore inner ring,2,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,1163,GO:0044613,nuclear pore central transport channel,3,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,1164,GO:0044614,nuclear pore cytoplasmic filaments,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1165,GO:0044615,nuclear pore nuclear basket,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1166,GO:0044665,MLL1/2 complex,22,0,0.17,1,16,0,FALSE,FALSE
+shared,CC,1167,GO:0044666,MLL3/4 complex,11,0,0.08,1,5,0,FALSE,FALSE
+shared,CC,1168,GO:0044732,mitotic spindle pole body,4,0,0.03,1,2,0,FALSE,FALSE
+shared,CC,1169,GO:0044753,amphisome,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1170,GO:0044754,autolysosome,3,0,0.02,1,3,0,FALSE,FALSE
+shared,CC,1171,GO:0044776,"DNA polymerase III, core complex",1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1172,GO:0044815,DNA packaging complex,32,0,0.25,1,31,0,FALSE,FALSE
+shared,CC,1173,GO:0044853,plasma membrane raft,110,0,0.84,1,45,0,FALSE,FALSE
+shared,CC,1174,GO:0045009,chitosome,6,0,0.05,1,4,0,FALSE,FALSE
+shared,CC,1175,GO:0045025,mitochondrial degradosome,2,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,1176,GO:0045092,interleukin-18 receptor complex,4,0,0.03,1,1,0,FALSE,FALSE
+shared,CC,1177,GO:0045095,keratin filament,6,0,0.05,1,3,0,FALSE,FALSE
+shared,CC,1178,GO:0045098,type III intermediate filament,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1179,GO:0045111,intermediate filament cytoskeleton,96,0,0.74,1,31,0,FALSE,FALSE
+shared,CC,1180,GO:0045120,pronucleus,18,0,0.14,1,10,0,FALSE,FALSE
+shared,CC,1181,GO:0045121,membrane raft,400,0,3.07,1,189,0,FALSE,FALSE
+shared,CC,1182,GO:0045169,fusome,18,0,0.14,1,3,0,FALSE,FALSE
+shared,CC,1183,GO:0045170,spectrosome,15,0,0.12,1,2,0,FALSE,FALSE
+shared,CC,1184,GO:0045171,intercellular bridge,168,0,1.29,1,95,0,FALSE,FALSE
+shared,CC,1185,GO:0045172,germline ring canal,25,0,0.19,1,4,0,FALSE,FALSE
+shared,CC,1186,GO:0045179,apical cortex,31,0,0.24,1,18,0,FALSE,FALSE
+shared,CC,1187,GO:0045180,basal cortex,16,0,0.12,1,3,0,FALSE,FALSE
+shared,CC,1188,GO:0045239,tricarboxylic acid cycle enzyme complex,4,0,0.03,1,4,0,FALSE,FALSE
+shared,CC,1189,GO:0045240,dihydrolipoyl dehydrogenase complex,3,0,0.02,1,3,0,FALSE,FALSE
+shared,CC,1190,GO:0045252,oxoglutarate dehydrogenase complex,2,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,1191,GO:0045254,pyruvate dehydrogenase complex,3,0,0.02,1,3,0,FALSE,FALSE
+shared,CC,1192,GO:0045257,succinate dehydrogenase complex (ubiquinone),4,0,0.03,1,3,0,FALSE,FALSE
+shared,CC,1193,GO:0045259,proton-transporting ATP synthase complex,7,0,0.05,1,6,0,FALSE,FALSE
+shared,CC,1194,GO:0045261,"proton-transporting ATP synthase complex, catalytic core F(1)",3,0,0.02,1,3,0,FALSE,FALSE
+shared,CC,1195,GO:0045263,"proton-transporting ATP synthase complex, coupling factor F(o)",4,0,0.03,1,3,0,FALSE,FALSE
+shared,CC,1196,GO:0045269,"proton-transporting ATP synthase, central stalk",1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1197,GO:0045271,respiratory chain complex I,16,0,0.12,1,14,0,FALSE,FALSE
+shared,CC,1198,GO:0045273,respiratory chain complex II,4,0,0.03,1,3,0,FALSE,FALSE
+shared,CC,1199,GO:0045275,respiratory chain complex III,4,0,0.03,1,4,0,FALSE,FALSE
+shared,CC,1200,GO:0045277,respiratory chain complex IV,4,0,0.03,1,4,0,FALSE,FALSE
+shared,CC,1201,GO:0045281,succinate dehydrogenase complex,4,0,0.03,1,3,0,FALSE,FALSE
+shared,CC,1202,GO:0045283,fumarate reductase complex,4,0,0.03,1,3,0,FALSE,FALSE
+shared,CC,1203,GO:0045293,mRNA editing complex,3,0,0.02,1,3,0,FALSE,FALSE
+shared,CC,1204,GO:0045323,interleukin-1 receptor complex,4,0,0.03,1,1,0,FALSE,FALSE
+shared,CC,1205,GO:0045334,clathrin-coated endocytic vesicle,24,0,0.18,1,13,0,FALSE,FALSE
+shared,CC,1206,GO:0045335,phagocytic vesicle,240,0,1.84,1,120,0,FALSE,FALSE
+shared,CC,1207,GO:0045495,pole plasm,54,0,0.41,1,24,0,FALSE,FALSE
+shared,CC,1208,GO:0046581,intercellular canaliculus,2,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,1209,GO:0046658,anchored component of plasma membrane,8,0,0.06,1,5,0,FALSE,FALSE
+shared,CC,1210,GO:0046696,lipopolysaccharide receptor complex,10,0,0.08,1,4,0,FALSE,FALSE
+shared,CC,1211,GO:0046930,pore complex,8,0,0.06,1,6,0,FALSE,FALSE
+shared,CC,1212,GO:0048046,apoplast,3,0,0.02,1,3,0,FALSE,FALSE
+shared,CC,1213,GO:0048179,activin receptor complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1214,GO:0048180,activin complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1215,GO:0048188,Set1C/COMPASS complex,5,0,0.04,1,4,0,FALSE,FALSE
+shared,CC,1216,GO:0048237,rough endoplasmic reticulum lumen,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1217,GO:0048269,methionine adenosyltransferase complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1218,GO:0048475,coated membrane,104,0,0.8,1,45,0,FALSE,FALSE
+shared,CC,1219,GO:0048476,Holliday junction resolvase complex,6,0,0.05,1,2,0,FALSE,FALSE
+shared,CC,1220,GO:0048500,signal recognition particle,5,0,0.04,1,5,0,FALSE,FALSE
+shared,CC,1221,GO:0048787,presynaptic active zone membrane,3,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,1222,GO:0051285,cell cortex of cell tip,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1223,GO:0051286,cell tip,13,0,0.1,1,6,0,FALSE,FALSE
+shared,CC,1224,GO:0055028,cortical microtubule,11,0,0.08,1,1,0,FALSE,FALSE
+shared,CC,1225,GO:0055029,nuclear DNA-directed RNA polymerase complex,119,0,0.91,1,76,0,FALSE,FALSE
+shared,CC,1226,GO:0055035,plastid thylakoid membrane,3,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,1227,GO:0055036,virion membrane,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1228,GO:0055037,recycling endosome,181,0,1.39,1,68,0,FALSE,FALSE
+shared,CC,1229,GO:0055038,recycling endosome membrane,81,0,0.62,1,27,0,FALSE,FALSE
+shared,CC,1230,GO:0055087,Ski complex,2,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,1231,GO:0055120,striated muscle dense body,23,0,0.18,1,6,0,FALSE,FALSE
+shared,CC,1232,GO:0060076,excitatory synapse,26,0,0.2,1,11,0,FALSE,FALSE
+shared,CC,1233,GO:0060077,inhibitory synapse,22,0,0.17,1,6,0,FALSE,FALSE
+shared,CC,1234,GO:0060091,kinocilium,49,0,0.38,1,7,0,FALSE,FALSE
+shared,CC,1235,GO:0060170,ciliary membrane,96,0,0.74,1,40,0,FALSE,FALSE
+shared,CC,1236,GO:0060171,stereocilium membrane,28,0,0.21,1,5,0,FALSE,FALSE
+shared,CC,1237,GO:0060187,cell pole,13,0,0.1,1,6,0,FALSE,FALSE
+shared,CC,1238,GO:0060198,clathrin-sculpted vesicle,4,0,0.03,1,2,0,FALSE,FALSE
+shared,CC,1239,GO:0060293,germ plasm,48,0,0.37,1,21,0,FALSE,FALSE
+shared,CC,1240,GO:0060342,photoreceptor inner segment membrane,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1241,GO:0060417,yolk,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1242,GO:0060473,cortical granule,6,0,0.05,1,3,0,FALSE,FALSE
+shared,CC,1243,GO:0061174,type I terminal bouton,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1244,GO:0061175,type II terminal bouton,2,0,0.02,1,1,0,FALSE,FALSE
+shared,CC,1245,GO:0061574,ASAP complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1246,GO:0061617,MICOS complex,3,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,1247,GO:0061673,mitotic spindle astral microtubule,11,0,0.08,1,1,0,FALSE,FALSE
+shared,CC,1248,GO:0061689,tricellular tight junction,2,0,0.02,1,1,0,FALSE,FALSE
+shared,CC,1249,GO:0061700,GATOR2 complex,14,0,0.11,1,3,0,FALSE,FALSE
+shared,CC,1250,GO:0061702,inflammasome complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1251,GO:0061742,chaperone-mediated autophagy translocation complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1252,GO:0061850,growth cone leading edge,3,0,0.02,1,1,0,FALSE,FALSE
+shared,CC,1253,GO:0062023,collagen-containing extracellular matrix,379,0,2.91,1,194,0,FALSE,FALSE
+shared,CC,1254,GO:0062159,contractile vacuole complex,18,0,0.14,1,5,0,FALSE,FALSE
+shared,CC,1255,GO:0065010,extracellular membrane-bounded organelle,17,0,0.13,1,10,0,FALSE,FALSE
+shared,CC,1256,GO:0070044,synaptobrevin 2-SNAP-25-syntaxin-1a complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1257,GO:0070069,cytochrome complex,10,0,0.08,1,10,0,FALSE,FALSE
+shared,CC,1258,GO:0070081,clathrin-sculpted monoamine transport vesicle,4,0,0.03,1,2,0,FALSE,FALSE
+shared,CC,1259,GO:0070083,clathrin-sculpted monoamine transport vesicle membrane,4,0,0.03,1,2,0,FALSE,FALSE
+shared,CC,1260,GO:0070160,tight junction,163,0,1.25,1,60,0,FALSE,FALSE
+shared,CC,1261,GO:0070176,DRM complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1262,GO:0070187,shelterin complex,5,0,0.04,1,3,0,FALSE,FALSE
+shared,CC,1263,GO:0070274,RES complex,2,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,1264,GO:0070390,transcription export complex 2,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1265,GO:0070418,DNA-dependent protein kinase complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1266,GO:0070419,nonhomologous end joining complex,10,0,0.08,1,6,0,FALSE,FALSE
+shared,CC,1267,GO:0070421,DNA ligase III-XRCC1 complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1268,GO:0070435,Shc-EGFR complex,3,0,0.02,1,1,0,FALSE,FALSE
+shared,CC,1269,GO:0070436,Grb2-EGFR complex,7,0,0.05,1,2,0,FALSE,FALSE
+shared,CC,1270,GO:0070449,elongin complex,6,0,0.05,1,3,0,FALSE,FALSE
+shared,CC,1271,GO:0070451,cell hair,6,0,0.05,1,5,0,FALSE,FALSE
+shared,CC,1272,GO:0070461,SAGA-type complex,36,0,0.28,1,12,0,FALSE,FALSE
+shared,CC,1273,GO:0070469,respirasome,38,0,0.29,1,34,0,FALSE,FALSE
+shared,CC,1274,GO:0070522,ERCC4-ERCC1 complex,2,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,1275,GO:0070531,BRCA1-A complex,6,0,0.05,1,4,0,FALSE,FALSE
+shared,CC,1276,GO:0070545,PeBoW complex,5,0,0.04,1,3,0,FALSE,FALSE
+shared,CC,1277,GO:0070552,BRISC complex,5,0,0.04,1,5,0,FALSE,FALSE
+shared,CC,1278,GO:0070557,PCNA-p21 complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1279,GO:0070578,RISC-loading complex,8,0,0.06,1,3,0,FALSE,FALSE
+shared,CC,1280,GO:0070603,SWI/SNF superfamily-type complex,100,0,0.77,1,41,0,FALSE,FALSE
+shared,CC,1281,GO:0070652,HAUS complex,9,0,0.07,1,6,0,FALSE,FALSE
+shared,CC,1282,GO:0070685,macropinocytic cup,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1283,GO:0070695,FHF complex,8,0,0.06,1,3,0,FALSE,FALSE
+shared,CC,1284,GO:0070761,pre-snoRNP complex,3,0,0.02,1,3,0,FALSE,FALSE
+shared,CC,1285,GO:0070762,nuclear pore transmembrane ring,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1286,GO:0070765,gamma-secretase complex,4,0,0.03,1,3,0,FALSE,FALSE
+shared,CC,1287,GO:0070772,PAS complex,2,0,0.02,1,1,0,FALSE,FALSE
+shared,CC,1288,GO:0070775,H3 histone acetyltransferase complex,9,0,0.07,1,6,0,FALSE,FALSE
+shared,CC,1289,GO:0070776,MOZ/MORF histone acetyltransferase complex,7,0,0.05,1,4,0,FALSE,FALSE
+shared,CC,1290,GO:0070820,tertiary granule,47,0,0.36,1,28,0,FALSE,FALSE
+shared,CC,1291,GO:0070821,tertiary granule membrane,28,0,0.21,1,14,0,FALSE,FALSE
+shared,CC,1292,GO:0070822,Sin3-type complex,16,0,0.12,1,6,0,FALSE,FALSE
+shared,CC,1293,GO:0070826,paraferritin complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1294,GO:0070847,core mediator complex,8,0,0.06,1,6,0,FALSE,FALSE
+shared,CC,1295,GO:0070852,cell body fiber,40,0,0.31,1,10,0,FALSE,FALSE
+shared,CC,1296,GO:0070860,RNA polymerase I core factor complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1297,GO:0070864,sperm individualization complex,5,0,0.04,1,1,0,FALSE,FALSE
+shared,CC,1298,GO:0070865,investment cone,5,0,0.04,1,1,0,FALSE,FALSE
+shared,CC,1299,GO:0070876,SOSS complex,5,0,0.04,1,3,0,FALSE,FALSE
+shared,CC,1300,GO:0070877,microprocessor complex,4,0,0.03,1,2,0,FALSE,FALSE
+shared,CC,1301,GO:0070937,CRD-mediated mRNA stability complex,7,0,0.05,1,3,0,FALSE,FALSE
+shared,CC,1302,GO:0070938,contractile ring,32,0,0.25,1,7,0,FALSE,FALSE
+shared,CC,1303,GO:0070939,Dsl1/NZR complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1304,GO:0070971,endoplasmic reticulum exit site,20,0,0.15,1,10,0,FALSE,FALSE
+shared,CC,1305,GO:0070985,transcription factor TFIIK complex,3,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,1306,GO:0070992,translation initiation complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1307,GO:0071001,U4/U6 snRNP,2,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,1308,GO:0071004,U2-type prespliceosome,7,0,0.05,1,6,0,FALSE,FALSE
+shared,CC,1309,GO:0071006,U2-type catalytic step 1 spliceosome,3,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,1310,GO:0071008,U2-type post-mRNA release spliceosomal complex,3,0,0.02,1,1,0,FALSE,FALSE
+shared,CC,1311,GO:0071010,prespliceosome,12,0,0.09,1,10,0,FALSE,FALSE
+shared,CC,1312,GO:0071011,precatalytic spliceosome,25,0,0.19,1,22,0,FALSE,FALSE
+shared,CC,1313,GO:0071012,catalytic step 1 spliceosome,6,0,0.05,1,5,0,FALSE,FALSE
+shared,CC,1314,GO:0071014,post-mRNA release spliceosomal complex,7,0,0.05,1,5,0,FALSE,FALSE
+shared,CC,1315,GO:0071020,post-spliceosomal complex,2,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,1316,GO:0071021,U2-type post-spliceosomal complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1317,GO:0071141,SMAD protein complex,9,0,0.07,1,6,0,FALSE,FALSE
+shared,CC,1318,GO:0071144,heteromeric SMAD protein complex,3,0,0.02,1,1,0,FALSE,FALSE
+shared,CC,1319,GO:0071159,NF-kappaB complex,2,0,0.02,1,1,0,FALSE,FALSE
+shared,CC,1320,GO:0071203,WASH complex,16,0,0.12,1,4,0,FALSE,FALSE
+shared,CC,1321,GO:0071204,histone pre-mRNA 3'end processing complex,3,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,1322,GO:0071212,subsynaptic reticulum,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1323,GO:0071256,translocon complex,2,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,1324,GO:0071339,MLL1 complex,22,0,0.17,1,16,0,FALSE,FALSE
+shared,CC,1325,GO:0071439,clathrin complex,20,0,0.15,1,5,0,FALSE,FALSE
+shared,CC,1326,GO:0071458,integral component of cytoplasmic side of endoplasmic reticulum membrane,3,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,1327,GO:0071540,"eukaryotic translation initiation factor 3 complex, eIF3e",3,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,1328,GO:0071541,"eukaryotic translation initiation factor 3 complex, eIF3m",7,0,0.05,1,6,0,FALSE,FALSE
+shared,CC,1329,GO:0071546,pi-body,29,0,0.22,1,11,0,FALSE,FALSE
+shared,CC,1330,GO:0071547,piP-body,7,0,0.05,1,4,0,FALSE,FALSE
+shared,CC,1331,GO:0071556,integral component of lumenal side of endoplasmic reticulum membrane,3,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,1332,GO:0071561,nucleus-vacuole junction,6,0,0.05,1,2,0,FALSE,FALSE
+shared,CC,1333,GO:0071563,Myo2p-Vac17p-Vac8p transport complex,2,0,0.02,1,1,0,FALSE,FALSE
+shared,CC,1334,GO:0071564,npBAF complex,7,0,0.05,1,2,0,FALSE,FALSE
+shared,CC,1335,GO:0071565,nBAF complex,8,0,0.06,1,2,0,FALSE,FALSE
+shared,CC,1336,GO:0071575,integral component of external side of plasma membrane,19,0,0.15,1,10,0,FALSE,FALSE
+shared,CC,1337,GO:0071595,Nem1-Spo7 phosphatase complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1338,GO:0071598,neuronal ribonucleoprotein granule,2,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,1339,GO:0071666,Slit-Robo signaling complex,13,0,0.1,1,8,0,FALSE,FALSE
+shared,CC,1340,GO:0071682,endocytic vesicle lumen,3,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,1341,GO:0071683,sensory dendrite,13,0,0.1,1,4,0,FALSE,FALSE
+shared,CC,1342,GO:0071797,LUBAC complex,3,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,1343,GO:0071817,MMXD complex,2,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,1344,GO:0071818,BAT3 complex,3,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,1345,GO:0071819,DUBm complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1346,GO:0071821,FANCM-MHF complex,3,0,0.02,1,3,0,FALSE,FALSE
+shared,CC,1347,GO:0071914,prominosome,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1348,GO:0071920,cleavage body,4,0,0.03,1,2,0,FALSE,FALSE
+shared,CC,1349,GO:0071953,elastic fiber,7,0,0.05,1,5,0,FALSE,FALSE
+shared,CC,1350,GO:0071986,Ragulator complex,5,0,0.04,1,5,0,FALSE,FALSE
+shared,CC,1351,GO:0072357,PTW/PP1 phosphatase complex,29,0,0.22,1,8,0,FALSE,FALSE
+shared,CC,1352,GO:0072379,ER membrane insertion complex,3,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,1353,GO:0072487,MSL complex,6,0,0.05,1,4,0,FALSE,FALSE
+shared,CC,1354,GO:0072492,host cell mitochondrial intermembrane space,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1355,GO:0072534,perineuronal net,23,0,0.18,1,13,0,FALSE,FALSE
+shared,CC,1356,GO:0072546,EMC complex,10,0,0.08,1,9,0,FALSE,FALSE
+shared,CC,1357,GO:0072557,IPAF inflammasome complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1358,GO:0072562,blood microparticle,29,0,0.22,1,16,0,FALSE,FALSE
+shared,CC,1359,GO:0072588,box H/ACA RNP complex,2,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,1360,GO:0072669,tRNA-splicing ligase complex,5,0,0.04,1,5,0,FALSE,FALSE
+shared,CC,1361,GO:0072687,meiotic spindle,9,0,0.07,1,4,0,FALSE,FALSE
+shared,CC,1362,GO:0075341,host cell PML body,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1363,GO:0080008,Cul4-RING E3 ubiquitin ligase complex,45,0,0.35,1,29,0,FALSE,FALSE
+shared,CC,1364,GO:0089701,U2AF complex,5,0,0.04,1,3,0,FALSE,FALSE
+shared,CC,1365,GO:0089717,spanning component of membrane,4,0,0.03,1,2,0,FALSE,FALSE
+shared,CC,1366,GO:0090498,extrinsic component of Golgi membrane,8,0,0.06,1,2,0,FALSE,FALSE
+shared,CC,1367,GO:0090533,cation-transporting ATPase complex,3,0,0.02,1,3,0,FALSE,FALSE
+shared,CC,1368,GO:0090537,CERF complex,5,0,0.04,1,2,0,FALSE,FALSE
+shared,CC,1369,GO:0090543,Flemming body,17,0,0.13,1,6,0,FALSE,FALSE
+shared,CC,1370,GO:0090545,CHD-type complex,32,0,0.25,1,8,0,FALSE,FALSE
+shared,CC,1371,GO:0090571,RNA polymerase II transcription repressor complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1372,GO:0090576,RNA polymerase III transcription regulator complex,6,0,0.05,1,4,0,FALSE,FALSE
+shared,CC,1373,GO:0090636,outer dense plaque of desmosome,4,0,0.03,1,1,0,FALSE,FALSE
+shared,CC,1374,GO:0090637,inner dense plaque of desmosome,4,0,0.03,1,1,0,FALSE,FALSE
+shared,CC,1375,GO:0090661,box H/ACA telomerase RNP complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1376,GO:0090665,glycoprotein complex,10,0,0.08,1,6,0,FALSE,FALSE
+shared,CC,1377,GO:0090725,peripheral region of growth cone,3,0,0.02,1,1,0,FALSE,FALSE
+shared,CC,1378,GO:0090734,site of DNA damage,35,0,0.27,1,23,0,FALSE,FALSE
+shared,CC,1379,GO:0090741,pigment granule membrane,6,0,0.05,1,4,0,FALSE,FALSE
+shared,CC,1380,GO:0097013,phagocytic vesicle lumen,3,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,1381,GO:0097014,ciliary plasm,273,0,2.09,1,80,0,FALSE,FALSE
+shared,CC,1382,GO:0097025,MPP7-DLG1-LIN7 complex,2,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,1383,GO:0097038,perinuclear endoplasmic reticulum,31,0,0.24,1,15,0,FALSE,FALSE
+shared,CC,1384,GO:0097057,TRAF2-GSTP1 complex,4,0,0.03,1,2,0,FALSE,FALSE
+shared,CC,1385,GO:0097129,cyclin D2-CDK4 complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1386,GO:0097132,cyclin D2-CDK6 complex,3,0,0.02,1,1,0,FALSE,FALSE
+shared,CC,1387,GO:0097136,Bcl-2 family protein complex,12,0,0.09,1,2,0,FALSE,FALSE
+shared,CC,1388,GO:0097144,BAX complex,3,0,0.02,1,1,0,FALSE,FALSE
+shared,CC,1389,GO:0097149,centralspindlin complex,7,0,0.05,1,4,0,FALSE,FALSE
+shared,CC,1390,GO:0097165,nuclear stress granule,7,0,0.05,1,2,0,FALSE,FALSE
+shared,CC,1391,GO:0097179,protease inhibitor complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1392,GO:0097180,serine protease inhibitor complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1393,GO:0097197,tetraspanin-enriched microdomain,20,0,0.15,1,13,0,FALSE,FALSE
+shared,CC,1394,GO:0097208,alveolar lamellar body,2,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,1395,GO:0097225,sperm midpiece,31,0,0.24,1,18,0,FALSE,FALSE
+shared,CC,1396,GO:0097226,sperm mitochondrial sheath,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1397,GO:0097228,sperm principal piece,9,0,0.07,1,6,0,FALSE,FALSE
+shared,CC,1398,GO:0097232,lamellar body membrane,2,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,1399,GO:0097233,alveolar lamellar body membrane,2,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,1400,GO:0097342,ripoptosome,27,0,0.21,1,10,0,FALSE,FALSE
+shared,CC,1401,GO:0097346,INO80-type complex,23,0,0.18,1,17,0,FALSE,FALSE
+shared,CC,1402,GO:0097361,CIA complex,4,0,0.03,1,4,0,FALSE,FALSE
+shared,CC,1403,GO:0097362,MCM8-MCM9 complex,3,0,0.02,1,1,0,FALSE,FALSE
+shared,CC,1404,GO:0097381,photoreceptor disc membrane,9,0,0.07,1,2,0,FALSE,FALSE
+shared,CC,1405,GO:0097386,glial cell projection,19,0,0.15,1,8,0,FALSE,FALSE
+shared,CC,1406,GO:0097409,glial cytoplasmic inclusion,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1407,GO:0097413,Lewy body,3,0,0.02,1,3,0,FALSE,FALSE
+shared,CC,1408,GO:0097414,classical Lewy body,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1409,GO:0097418,neurofibrillary tangle,73,0,0.56,1,4,0,FALSE,FALSE
+shared,CC,1410,GO:0097422,tubular endosome,4,0,0.03,1,3,0,FALSE,FALSE
+shared,CC,1411,GO:0097427,microtubule bundle,20,0,0.15,1,3,0,FALSE,FALSE
+shared,CC,1412,GO:0097431,mitotic spindle pole,33,0,0.25,1,11,0,FALSE,FALSE
+shared,CC,1413,GO:0097433,dense body,9,0,0.07,1,3,0,FALSE,FALSE
+shared,CC,1414,GO:0097440,apical dendrite,11,0,0.08,1,6,0,FALSE,FALSE
+shared,CC,1415,GO:0097441,basal dendrite,8,0,0.06,1,3,0,FALSE,FALSE
+shared,CC,1416,GO:0097442,CA3 pyramidal cell dendrite,3,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,1417,GO:0097443,sorting endosome,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1418,GO:0097449,astrocyte projection,11,0,0.08,1,5,0,FALSE,FALSE
+shared,CC,1419,GO:0097450,astrocyte end-foot,7,0,0.05,1,2,0,FALSE,FALSE
+shared,CC,1420,GO:0097451,glial limiting end-foot,7,0,0.05,1,2,0,FALSE,FALSE
+shared,CC,1421,GO:0097452,GAIT complex,4,0,0.03,1,3,0,FALSE,FALSE
+shared,CC,1422,GO:0097453,mesaxon,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1423,GO:0097462,Lewy neurite,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1424,GO:0097467,type III terminal bouton,2,0,0.02,1,1,0,FALSE,FALSE
+shared,CC,1425,GO:0097470,ribbon synapse,23,0,0.18,1,2,0,FALSE,FALSE
+shared,CC,1426,GO:0097504,Gemini of coiled bodies,7,0,0.05,1,6,0,FALSE,FALSE
+shared,CC,1427,GO:0097505,Rad6-Rad18 complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1428,GO:0097517,contractile actin filament bundle,82,0,0.63,1,24,0,FALSE,FALSE
+shared,CC,1429,GO:0097524,sperm plasma membrane,5,0,0.04,1,4,0,FALSE,FALSE
+shared,CC,1430,GO:0097539,ciliary transition fiber,16,0,0.12,1,4,0,FALSE,FALSE
+shared,CC,1431,GO:0097541,axonemal basal plate,10,0,0.08,1,2,0,FALSE,FALSE
+shared,CC,1432,GO:0097542,ciliary tip,27,0,0.21,1,10,0,FALSE,FALSE
+shared,CC,1433,GO:0097543,ciliary inversin compartment,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1434,GO:0097545,axonemal outer doublet,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1435,GO:0097546,ciliary base,29,0,0.22,1,10,0,FALSE,FALSE
+shared,CC,1436,GO:0097550,transcription preinitiation complex,2,0,0.02,1,1,0,FALSE,FALSE
+shared,CC,1437,GO:0097629,extrinsic component of omegasome membrane,2,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,1438,GO:0097630,intrinsic component of omegasome membrane,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1439,GO:0097631,integral component of omegasome membrane,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1440,GO:0097632,extrinsic component of phagophore assembly site membrane,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1441,GO:0097636,intrinsic component of autophagosome membrane,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1442,GO:0097637,integral component of autophagosome membrane,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1443,GO:0097648,G protein-coupled receptor complex,3,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,1444,GO:0097651,"phosphatidylinositol 3-kinase complex, class I",4,0,0.03,1,1,0,FALSE,FALSE
+shared,CC,1445,GO:0097729,9+2 motile cilium,78,0,0.6,1,42,0,FALSE,FALSE
+shared,CC,1446,GO:0097730,non-motile cilium,225,0,1.73,1,85,0,FALSE,FALSE
+shared,CC,1447,GO:0097731,9+0 non-motile cilium,150,0,1.15,1,66,0,FALSE,FALSE
+shared,CC,1448,GO:0097732,9+2 non-motile cilium,49,0,0.38,1,7,0,FALSE,FALSE
+shared,CC,1449,GO:0097733,photoreceptor cell cilium,150,0,1.15,1,66,0,FALSE,FALSE
+shared,CC,1450,GO:0098533,ATPase dependent transmembrane transport complex,17,0,0.13,1,8,0,FALSE,FALSE
+shared,CC,1451,GO:0098536,deuterosome,4,0,0.03,1,2,0,FALSE,FALSE
+shared,CC,1452,GO:0098547,lumenal side of Golgi membrane,5,0,0.04,1,1,0,FALSE,FALSE
+shared,CC,1453,GO:0098553,lumenal side of endoplasmic reticulum membrane,3,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,1454,GO:0098554,cytoplasmic side of endoplasmic reticulum membrane,4,0,0.03,1,3,0,FALSE,FALSE
+shared,CC,1455,GO:0098559,cytoplasmic side of early endosome membrane,14,0,0.11,1,9,0,FALSE,FALSE
+shared,CC,1456,GO:0098560,cytoplasmic side of late endosome membrane,13,0,0.1,1,8,0,FALSE,FALSE
+shared,CC,1457,GO:0098563,intrinsic component of synaptic vesicle membrane,34,0,0.26,1,10,0,FALSE,FALSE
+shared,CC,1458,GO:0098573,intrinsic component of mitochondrial membrane,58,0,0.44,1,38,0,FALSE,FALSE
+shared,CC,1459,GO:0098574,cytoplasmic side of lysosomal membrane,15,0,0.12,1,9,0,FALSE,FALSE
+shared,CC,1460,GO:0098576,lumenal side of membrane,13,0,0.1,1,8,0,FALSE,FALSE
+shared,CC,1461,GO:0098592,cytoplasmic side of apical plasma membrane,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1462,GO:0098594,mucin granule,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1463,GO:0098636,protein complex involved in cell adhesion,16,0,0.12,1,13,0,FALSE,FALSE
+shared,CC,1464,GO:0098637,protein complex involved in cell-matrix adhesion,10,0,0.08,1,8,0,FALSE,FALSE
+shared,CC,1465,GO:0098642,network-forming collagen trimer,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1466,GO:0098643,banded collagen fibril,2,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,1467,GO:0098644,complex of collagen trimers,3,0,0.02,1,3,0,FALSE,FALSE
+shared,CC,1468,GO:0098645,collagen network,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1469,GO:0098647,collagen beaded filament,2,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,1470,GO:0098651,basement membrane collagen trimer,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1471,GO:0098733,hemidesmosome associated protein complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1472,GO:0098798,mitochondrial protein-containing complex,138,0,1.06,1,122,0,FALSE,FALSE
+shared,CC,1473,GO:0098799,outer mitochondrial membrane protein complex,4,0,0.03,1,4,0,FALSE,FALSE
+shared,CC,1474,GO:0098800,inner mitochondrial membrane protein complex,49,0,0.38,1,44,0,FALSE,FALSE
+shared,CC,1475,GO:0098803,respiratory chain complex,28,0,0.21,1,25,0,FALSE,FALSE
+shared,CC,1476,GO:0098826,endoplasmic reticulum tubular network membrane,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1477,GO:0098833,presynaptic endocytic zone,4,0,0.03,1,1,0,FALSE,FALSE
+shared,CC,1478,GO:0098835,presynaptic endocytic zone membrane,4,0,0.03,1,1,0,FALSE,FALSE
+shared,CC,1479,GO:0098837,postsynaptic recycling endosome,2,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,1480,GO:0098839,postsynaptic density membrane,9,0,0.07,1,5,0,FALSE,FALSE
+shared,CC,1481,GO:0098842,postsynaptic early endosome,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1482,GO:0098843,postsynaptic endocytic zone,3,0,0.02,1,1,0,FALSE,FALSE
+shared,CC,1483,GO:0098845,postsynaptic endosome,3,0,0.02,1,3,0,FALSE,FALSE
+shared,CC,1484,GO:0098855,HCN channel complex,5,0,0.04,1,1,0,FALSE,FALSE
+shared,CC,1485,GO:0098857,membrane microdomain,400,0,3.07,1,189,0,FALSE,FALSE
+shared,CC,1486,GO:0098871,postsynaptic actin cytoskeleton,2,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,1487,GO:0098888,extrinsic component of presynaptic membrane,4,0,0.03,1,1,0,FALSE,FALSE
+shared,CC,1488,GO:0098890,extrinsic component of postsynaptic membrane,4,0,0.03,1,1,0,FALSE,FALSE
+shared,CC,1489,GO:0098936,intrinsic component of postsynaptic membrane,10,0,0.08,1,4,0,FALSE,FALSE
+shared,CC,1490,GO:0098948,intrinsic component of postsynaptic specialization membrane,7,0,0.05,1,3,0,FALSE,FALSE
+shared,CC,1491,GO:0098966,perisynaptic extracellular matrix,23,0,0.18,1,13,0,FALSE,FALSE
+shared,CC,1492,GO:0098978,glutamatergic synapse,2,0,0.02,1,1,0,FALSE,FALSE
+shared,CC,1493,GO:0098982,GABA-ergic synapse,2,0,0.02,1,1,0,FALSE,FALSE
+shared,CC,1494,GO:0099023,vesicle tethering complex,86,0,0.66,1,34,0,FALSE,FALSE
+shared,CC,1495,GO:0099053,activating signal cointegrator 1 complex,5,0,0.04,1,3,0,FALSE,FALSE
+shared,CC,1496,GO:0099055,integral component of postsynaptic membrane,10,0,0.08,1,4,0,FALSE,FALSE
+shared,CC,1497,GO:0099060,integral component of postsynaptic specialization membrane,7,0,0.05,1,3,0,FALSE,FALSE
+shared,CC,1498,GO:0099061,integral component of postsynaptic density membrane,7,0,0.05,1,3,0,FALSE,FALSE
+shared,CC,1499,GO:0099073,mitochondrion-derived vesicle,3,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,1500,GO:0099078,BORC complex,11,0,0.08,1,7,0,FALSE,FALSE
+shared,CC,1501,GO:0099086,synaptonemal structure,19,0,0.15,1,13,0,FALSE,FALSE
+shared,CC,1502,GO:0099146,intrinsic component of postsynaptic density membrane,7,0,0.05,1,3,0,FALSE,FALSE
+shared,CC,1503,GO:0099240,intrinsic component of synaptic membrane,10,0,0.08,1,4,0,FALSE,FALSE
+shared,CC,1504,GO:0099243,extrinsic component of synaptic membrane,4,0,0.03,1,1,0,FALSE,FALSE
+shared,CC,1505,GO:0099535,synapse-associated extracellular matrix,23,0,0.18,1,13,0,FALSE,FALSE
+shared,CC,1506,GO:0099568,cytoplasmic region,411,0,3.15,1,139,0,FALSE,FALSE
+shared,CC,1507,GO:0099571,postsynaptic cytoskeleton,2,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,1508,GO:0099617,matrix side of mitochondrial inner membrane,5,0,0.04,1,5,0,FALSE,FALSE
+shared,CC,1509,GO:0099631,postsynaptic endocytic zone cytoplasmic component,3,0,0.02,1,1,0,FALSE,FALSE
+shared,CC,1510,GO:0099634,postsynaptic specialization membrane,10,0,0.08,1,6,0,FALSE,FALSE
+shared,CC,1511,GO:0099699,integral component of synaptic membrane,10,0,0.08,1,4,0,FALSE,FALSE
+shared,CC,1512,GO:0099738,cell cortex region,69,0,0.53,1,28,0,FALSE,FALSE
+shared,CC,1513,GO:0101002,ficolin-1-rich granule,48,0,0.37,1,28,0,FALSE,FALSE
+shared,CC,1514,GO:0101003,ficolin-1-rich granule membrane,10,0,0.08,1,9,0,FALSE,FALSE
+shared,CC,1515,GO:0101031,chaperone complex,10,0,0.08,1,8,0,FALSE,FALSE
+shared,CC,1516,GO:0106068,SUMO ligase complex,8,0,0.06,1,6,0,FALSE,FALSE
+shared,CC,1517,GO:0120111,neuron projection cytoplasm,76,0,0.58,1,32,0,FALSE,FALSE
+shared,CC,1518,GO:0140007,KICSTOR complex,3,0,0.02,1,3,0,FALSE,FALSE
+shared,CC,1519,GO:0140445,"chromosome, telomeric repeat region",8,0,0.06,1,6,0,FALSE,FALSE
+shared,CC,1520,GO:0140534,endoplasmic reticulum protein-containing complex,96,0,0.74,1,72,0,FALSE,FALSE
+shared,CC,1521,GO:0150005,enzyme activator complex,2,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,1522,GO:1902493,acetyltransferase complex,107,0,0.82,1,53,0,FALSE,FALSE
+shared,CC,1523,GO:1902555,endoribonuclease complex,23,0,0.18,1,14,0,FALSE,FALSE
+shared,CC,1524,GO:1902560,GMP reductase complex,2,0,0.02,1,1,0,FALSE,FALSE
+shared,CC,1525,GO:1902562,H4 histone acetyltransferase complex,38,0,0.29,1,20,0,FALSE,FALSE
+shared,CC,1526,GO:1902636,kinociliary basal body,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1527,GO:1902710,GABA receptor complex,6,0,0.05,1,5,0,FALSE,FALSE
+shared,CC,1528,GO:1902711,GABA-A receptor complex,4,0,0.03,1,4,0,FALSE,FALSE
+shared,CC,1529,GO:1902912,pyruvate kinase complex,20,0,0.15,1,2,0,FALSE,FALSE
+shared,CC,1530,GO:1902937,inward rectifier potassium channel complex,2,0,0.02,1,1,0,FALSE,FALSE
+shared,CC,1531,GO:1903095,ribonuclease III complex,4,0,0.03,1,2,0,FALSE,FALSE
+shared,CC,1532,GO:1903293,phosphatase complex,129,0,0.99,1,24,0,FALSE,FALSE
+shared,CC,1533,GO:1903349,omegasome membrane,3,0,0.02,1,3,0,FALSE,FALSE
+shared,CC,1534,GO:1904090,peptidase inhibitor complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1535,GO:1904115,axon cytoplasm,53,0,0.41,1,22,0,FALSE,FALSE
+shared,CC,1536,GO:1904602,serotonin-activated cation-selective channel complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1537,GO:1904724,tertiary granule lumen,15,0,0.12,1,10,0,FALSE,FALSE
+shared,CC,1538,GO:1904813,ficolin-1-rich granule lumen,38,0,0.29,1,19,0,FALSE,FALSE
+shared,CC,1539,GO:1904949,ATPase complex,136,0,1.04,1,62,0,FALSE,FALSE
+shared,CC,1540,GO:1905202,methylcrotonoyl-CoA carboxylase complex,3,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,1541,GO:1905347,endodeoxyribonuclease complex,6,0,0.05,1,2,0,FALSE,FALSE
+shared,CC,1542,GO:1905354,exoribonuclease complex,14,0,0.11,1,14,0,FALSE,FALSE
+shared,CC,1543,GO:1905360,GTPase complex,42,0,0.32,1,8,0,FALSE,FALSE
+shared,CC,1544,GO:1905720,cytoplasmic microtubule bundle,11,0,0.08,1,1,0,FALSE,FALSE
+shared,CC,1545,GO:1905961,protein-cysteine S-palmitoyltransferase complex,4,0,0.03,1,2,0,FALSE,FALSE
+shared,CC,1546,GO:1990015,ensheathing process,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1547,GO:1990030,pericellular basket,11,0,0.08,1,4,0,FALSE,FALSE
+shared,CC,1548,GO:1990032,parallel fiber,2,0,0.02,1,1,0,FALSE,FALSE
+shared,CC,1549,GO:1990037,Lewy body core,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1550,GO:1990038,Lewy body corona,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1551,GO:1990047,spindle matrix,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1552,GO:1990071,TRAPPII protein complex,2,0,0.02,1,1,0,FALSE,FALSE
+shared,CC,1553,GO:1990072,TRAPPIII protein complex,2,0,0.02,1,1,0,FALSE,FALSE
+shared,CC,1554,GO:1990075,periciliary membrane compartment,18,0,0.14,1,5,0,FALSE,FALSE
+shared,CC,1555,GO:1990111,spermatoproteasome complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1556,GO:1990124,messenger ribonucleoprotein complex,6,0,0.05,1,5,0,FALSE,FALSE
+shared,CC,1557,GO:1990130,GATOR1 complex,16,0,0.12,1,4,0,FALSE,FALSE
+shared,CC,1558,GO:1990131,Gtr1-Gtr2 GTPase complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1559,GO:1990204,oxidoreductase complex,70,0,0.54,1,64,0,FALSE,FALSE
+shared,CC,1560,GO:1990246,uniplex complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1561,GO:1990316,Atg1/ULK1 kinase complex,3,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,1562,GO:1990357,terminal web,4,0,0.03,1,1,0,FALSE,FALSE
+shared,CC,1563,GO:1990391,DNA repair complex,37,0,0.28,1,22,0,FALSE,FALSE
+shared,CC,1564,GO:1990415,Pex17p-Pex14p docking complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1565,GO:1990423,RZZ complex,5,0,0.04,1,3,0,FALSE,FALSE
+shared,CC,1566,GO:1990425,ryanodine receptor complex,3,0,0.02,1,3,0,FALSE,FALSE
+shared,CC,1567,GO:1990429,peroxisomal importomer complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1568,GO:1990452,Parkin-FBXW7-Cul1 ubiquitin ligase complex,8,0,0.06,1,4,0,FALSE,FALSE
+shared,CC,1569,GO:1990454,L-type voltage-gated calcium channel complex,8,0,0.06,1,1,0,FALSE,FALSE
+shared,CC,1570,GO:1990462,omegasome,3,0,0.02,1,3,0,FALSE,FALSE
+shared,CC,1571,GO:1990467,NuA3a histone acetyltransferase complex,2,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,1572,GO:1990498,mitotic spindle microtubule,3,0,0.02,1,1,0,FALSE,FALSE
+shared,CC,1573,GO:1990533,Dom34-Hbs1 complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1574,GO:1990565,HSP90-CDC37 chaperone complex,2,0,0.02,1,1,0,FALSE,FALSE
+shared,CC,1575,GO:1990597,AIP1-IRE1 complex,2,0,0.02,1,1,0,FALSE,FALSE
+shared,CC,1576,GO:1990604,IRE1-TRAF2-ASK1 complex,4,0,0.03,1,2,0,FALSE,FALSE
+shared,CC,1577,GO:1990621,ESCRT IV complex,2,0,0.02,1,1,0,FALSE,FALSE
+shared,CC,1578,GO:1990635,proximal dendrite,11,0,0.08,1,3,0,FALSE,FALSE
+shared,CC,1579,GO:1990696,USH2 complex,9,0,0.07,1,3,0,FALSE,FALSE
+shared,CC,1580,GO:1990712,HFE-transferrin receptor complex,2,0,0.02,1,1,0,FALSE,FALSE
+shared,CC,1581,GO:1990716,axonemal central apparatus,23,0,0.18,1,5,0,FALSE,FALSE
+shared,CC,1582,GO:1990718,axonemal central pair projection,11,0,0.08,1,2,0,FALSE,FALSE
+shared,CC,1583,GO:1990726,Lsm1-7-Pat1 complex,2,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,1584,GO:1990730,VCP-NSFL1C complex,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1585,GO:1990742,microvesicle,1,0,0.01,1,1,0,FALSE,FALSE
+shared,CC,1586,GO:1990745,EARP complex,7,0,0.05,1,5,0,FALSE,FALSE
+shared,CC,1587,GO:1990752,microtubule end,70,0,0.54,1,7,0,FALSE,FALSE
+shared,CC,1588,GO:1990777,lipoprotein particle,9,0,0.07,1,7,0,FALSE,FALSE
+shared,CC,1589,GO:1990816,vacuole-mitochondrion membrane contact site,2,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,1590,GO:1990851,Wnt-Frizzled-LRP5/6 complex,14,0,0.11,1,8,0,FALSE,FALSE
+shared,CC,1591,GO:1990879,CST complex,2,0,0.02,1,2,0,FALSE,FALSE
+shared,CC,1592,GO:1990909,Wnt signalosome,15,0,0.12,1,9,0,FALSE,FALSE
+shared,CC,1593,GO:1990923,PET complex,9,0,0.07,1,5,0,FALSE,FALSE
+shared,CC,1594,GO:1990971,EMILIN complex,10,0,0.08,1,8,0,FALSE,FALSE

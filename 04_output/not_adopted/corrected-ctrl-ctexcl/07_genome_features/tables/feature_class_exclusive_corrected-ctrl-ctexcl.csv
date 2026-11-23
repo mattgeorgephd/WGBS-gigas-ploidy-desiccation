@@ -1,0 +1,65 @@
+mode,set,n_loci,class,n,pct,pct_in_TE
+corrected-ctrl-ctexcl,all analysed CpGs,427349,CDS,119146,27.8802571200588,1.54600238363017
+corrected-ctrl-ctexcl,all analysed CpGs,427349,lncRNA,11959,2.79841534670726,26.1058616941216
+corrected-ctrl-ctexcl,all analysed CpGs,427349,exon_UTR,34457,8.06296493030287,4.83501175378007
+corrected-ctrl-ctexcl,all analysed CpGs,427349,intron,138118,32.3197199478646,29.5196860655382
+corrected-ctrl-ctexcl,all analysed CpGs,427349,upstream_flank,15322,3.58535997510232,22.7515990079624
+corrected-ctrl-ctexcl,all analysed CpGs,427349,downstream_flank,9807,2.29484566478452,36.2292240236566
+corrected-ctrl-ctexcl,all analysed CpGs,427349,intergenic,98540,23.0584370151796,40.7986604424599
+corrected-ctrl-ctexcl,all analysed CpGs,427349,other,0,0,
+corrected-ctrl-ctexcl,eligible CpGs,52274,CDS,13313,25.4677277422811,3.89844512882145
+corrected-ctrl-ctexcl,eligible CpGs,52274,lncRNA,1780,3.40513448368214,35
+corrected-ctrl-ctexcl,eligible CpGs,52274,exon_UTR,2969,5.67968779890577,8.21825530481644
+corrected-ctrl-ctexcl,eligible CpGs,52274,intron,27781,53.1449669051536,38.0655843922105
+corrected-ctrl-ctexcl,eligible CpGs,52274,upstream_flank,577,1.10379921184528,56.8457538994801
+corrected-ctrl-ctexcl,eligible CpGs,52274,downstream_flank,904,1.7293491984543,54.424778761062
+corrected-ctrl-ctexcl,eligible CpGs,52274,intergenic,4950,9.46933465967785,64.8686868686869
+corrected-ctrl-ctexcl,eligible CpGs,52274,other,0,0,
+corrected-ctrl-ctexcl,ploidy DML,1985,CDS,569,28.6649874055416,1.05448154657293
+corrected-ctrl-ctexcl,ploidy DML,1985,lncRNA,55,2.77078085642317,18.1818181818182
+corrected-ctrl-ctexcl,ploidy DML,1985,exon_UTR,150,7.55667506297229,6
+corrected-ctrl-ctexcl,ploidy DML,1985,intron,1133,57.0780856423174,19.6822594880847
+corrected-ctrl-ctexcl,ploidy DML,1985,upstream_flank,8,0.403022670025189,12.5
+corrected-ctrl-ctexcl,ploidy DML,1985,downstream_flank,21,1.05793450881612,47.6190476190476
+corrected-ctrl-ctexcl,ploidy DML,1985,intergenic,49,2.46851385390428,44.8979591836735
+corrected-ctrl-ctexcl,ploidy DML,1985,other,0,0,
+corrected-ctrl-ctexcl,heat DML,1596,CDS,540,33.8345864661654,0.925925925925926
+corrected-ctrl-ctexcl,heat DML,1596,lncRNA,31,1.94235588972431,19.3548387096774
+corrected-ctrl-ctexcl,heat DML,1596,exon_UTR,107,6.70426065162907,2.80373831775701
+corrected-ctrl-ctexcl,heat DML,1596,intron,799,50.062656641604,34.5431789737172
+corrected-ctrl-ctexcl,heat DML,1596,upstream_flank,11,0.68922305764411,27.2727272727273
+corrected-ctrl-ctexcl,heat DML,1596,downstream_flank,33,2.06766917293233,51.5151515151515
+corrected-ctrl-ctexcl,heat DML,1596,intergenic,75,4.69924812030075,62.6666666666667
+corrected-ctrl-ctexcl,heat DML,1596,other,0,0,
+corrected-ctrl-ctexcl,shared,125,CDS,38,30.4,0
+corrected-ctrl-ctexcl,shared,125,lncRNA,1,0.8,0
+corrected-ctrl-ctexcl,shared,125,exon_UTR,10,8,0
+corrected-ctrl-ctexcl,shared,125,intron,73,58.4,28.7671232876712
+corrected-ctrl-ctexcl,shared,125,upstream_flank,0,0,
+corrected-ctrl-ctexcl,shared,125,downstream_flank,1,0.8,0
+corrected-ctrl-ctexcl,shared,125,intergenic,2,1.6,50
+corrected-ctrl-ctexcl,shared,125,other,0,0,
+corrected-ctrl-ctexcl,"shared, both hyper",48,CDS,10,20.8333333333333,0
+corrected-ctrl-ctexcl,"shared, both hyper",48,lncRNA,1,2.08333333333333,0
+corrected-ctrl-ctexcl,"shared, both hyper",48,exon_UTR,1,2.08333333333333,0
+corrected-ctrl-ctexcl,"shared, both hyper",48,intron,35,72.9166666666667,37.1428571428572
+corrected-ctrl-ctexcl,"shared, both hyper",48,upstream_flank,0,0,
+corrected-ctrl-ctexcl,"shared, both hyper",48,downstream_flank,0,0,
+corrected-ctrl-ctexcl,"shared, both hyper",48,intergenic,1,2.08333333333333,0
+corrected-ctrl-ctexcl,"shared, both hyper",48,other,0,0,
+corrected-ctrl-ctexcl,"shared, both hypo",17,CDS,5,29.4117647058824,0
+corrected-ctrl-ctexcl,"shared, both hypo",17,lncRNA,0,0,
+corrected-ctrl-ctexcl,"shared, both hypo",17,exon_UTR,6,35.2941176470588,0
+corrected-ctrl-ctexcl,"shared, both hypo",17,intron,6,35.2941176470588,33.3333333333333
+corrected-ctrl-ctexcl,"shared, both hypo",17,upstream_flank,0,0,
+corrected-ctrl-ctexcl,"shared, both hypo",17,downstream_flank,0,0,
+corrected-ctrl-ctexcl,"shared, both hypo",17,intergenic,0,0,
+corrected-ctrl-ctexcl,"shared, both hypo",17,other,0,0,
+corrected-ctrl-ctexcl,"shared, opposite",60,CDS,23,38.3333333333333,0
+corrected-ctrl-ctexcl,"shared, opposite",60,lncRNA,0,0,
+corrected-ctrl-ctexcl,"shared, opposite",60,exon_UTR,3,5,0
+corrected-ctrl-ctexcl,"shared, opposite",60,intron,32,53.3333333333333,18.75
+corrected-ctrl-ctexcl,"shared, opposite",60,upstream_flank,0,0,
+corrected-ctrl-ctexcl,"shared, opposite",60,downstream_flank,1,1.66666666666667,0
+corrected-ctrl-ctexcl,"shared, opposite",60,intergenic,1,1.66666666666667,100
+corrected-ctrl-ctexcl,"shared, opposite",60,other,0,0,
