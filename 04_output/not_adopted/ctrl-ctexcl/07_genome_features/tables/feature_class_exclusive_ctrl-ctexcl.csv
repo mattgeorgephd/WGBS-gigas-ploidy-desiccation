@@ -1,0 +1,65 @@
+mode,set,n_loci,class,n,pct,pct_in_TE
+ctrl-ctexcl,all analysed CpGs,452159,CDS,122461,27.0836143922824,2.01370232155543
+ctrl-ctexcl,all analysed CpGs,452159,lncRNA,13225,2.924856079388,27.531190926276
+ctrl-ctexcl,all analysed CpGs,452159,exon_UTR,36118,7.98789806240725,6.52583199512708
+ctrl-ctexcl,all analysed CpGs,452159,intron,146456,32.3903759518223,30.8420276397007
+ctrl-ctexcl,all analysed CpGs,452159,upstream_flank,16263,3.59674362337142,22.7018385291767
+ctrl-ctexcl,all analysed CpGs,452159,downstream_flank,10550,2.33325002930385,35.4502369668247
+ctrl-ctexcl,all analysed CpGs,452159,intergenic,106726,23.6036438509462,41.5409553435901
+ctrl-ctexcl,all analysed CpGs,452159,other,360,0.0796180104786148,0
+ctrl-ctexcl,eligible CpGs,56381,CDS,13917,24.6838473953992,5.00826327513114
+ctrl-ctexcl,eligible CpGs,56381,lncRNA,2258,4.00489526613575,35.9167404782994
+ctrl-ctexcl,eligible CpGs,56381,exon_UTR,3358,5.95590713183519,13.9666468135795
+ctrl-ctexcl,eligible CpGs,56381,intron,29078,51.5741118461893,38.9125799573561
+ctrl-ctexcl,eligible CpGs,56381,upstream_flank,650,1.1528706479133,56.6153846153846
+ctrl-ctexcl,eligible CpGs,56381,downstream_flank,995,1.76477891488267,55.0753768844221
+ctrl-ctexcl,eligible CpGs,56381,intergenic,6125,10.8635887976446,60.130612244898
+ctrl-ctexcl,eligible CpGs,56381,other,0,0,
+ctrl-ctexcl,ploidy DML,2112,CDS,583,27.6041666666667,1.02915951972556
+ctrl-ctexcl,ploidy DML,2112,lncRNA,64,3.03030303030303,23.4375
+ctrl-ctexcl,ploidy DML,2112,exon_UTR,157,7.43371212121212,9.55414012738854
+ctrl-ctexcl,ploidy DML,2112,intron,1173,55.5397727272727,19.7783461210571
+ctrl-ctexcl,ploidy DML,2112,upstream_flank,10,0.473484848484849,10
+ctrl-ctexcl,ploidy DML,2112,downstream_flank,21,0.994318181818182,47.6190476190476
+ctrl-ctexcl,ploidy DML,2112,intergenic,104,4.92424242424242,32.6923076923077
+ctrl-ctexcl,ploidy DML,2112,other,0,0,
+ctrl-ctexcl,heat DML,1667,CDS,547,32.8134373125375,0.914076782449726
+ctrl-ctexcl,heat DML,1667,lncRNA,69,4.13917216556689,8.69565217391304
+ctrl-ctexcl,heat DML,1667,exon_UTR,107,6.41871625674865,2.80373831775701
+ctrl-ctexcl,heat DML,1667,intron,816,48.9502099580084,34.0686274509804
+ctrl-ctexcl,heat DML,1667,upstream_flank,11,0.659868026394721,27.2727272727273
+ctrl-ctexcl,heat DML,1667,downstream_flank,33,1.97960407918416,51.5151515151515
+ctrl-ctexcl,heat DML,1667,intergenic,84,5.03899220155969,58.3333333333333
+ctrl-ctexcl,heat DML,1667,other,0,0,
+ctrl-ctexcl,shared,131,CDS,39,29.7709923664122,0
+ctrl-ctexcl,shared,131,lncRNA,1,0.763358778625954,0
+ctrl-ctexcl,shared,131,exon_UTR,10,7.63358778625954,0
+ctrl-ctexcl,shared,131,intron,77,58.7786259541985,28.5714285714286
+ctrl-ctexcl,shared,131,upstream_flank,0,0,
+ctrl-ctexcl,shared,131,downstream_flank,1,0.763358778625954,0
+ctrl-ctexcl,shared,131,intergenic,3,2.29007633587786,33.3333333333333
+ctrl-ctexcl,shared,131,other,0,0,
+ctrl-ctexcl,"shared, both hyper",50,CDS,10,20,0
+ctrl-ctexcl,"shared, both hyper",50,lncRNA,1,2,0
+ctrl-ctexcl,"shared, both hyper",50,exon_UTR,1,2,0
+ctrl-ctexcl,"shared, both hyper",50,intron,36,72,36.1111111111111
+ctrl-ctexcl,"shared, both hyper",50,upstream_flank,0,0,
+ctrl-ctexcl,"shared, both hyper",50,downstream_flank,0,0,
+ctrl-ctexcl,"shared, both hyper",50,intergenic,2,4,0
+ctrl-ctexcl,"shared, both hyper",50,other,0,0,
+ctrl-ctexcl,"shared, both hypo",19,CDS,5,26.3157894736842,0
+ctrl-ctexcl,"shared, both hypo",19,lncRNA,0,0,
+ctrl-ctexcl,"shared, both hypo",19,exon_UTR,6,31.5789473684211,0
+ctrl-ctexcl,"shared, both hypo",19,intron,8,42.1052631578947,37.5
+ctrl-ctexcl,"shared, both hypo",19,upstream_flank,0,0,
+ctrl-ctexcl,"shared, both hypo",19,downstream_flank,0,0,
+ctrl-ctexcl,"shared, both hypo",19,intergenic,0,0,
+ctrl-ctexcl,"shared, both hypo",19,other,0,0,
+ctrl-ctexcl,"shared, opposite",62,CDS,24,38.7096774193548,0
+ctrl-ctexcl,"shared, opposite",62,lncRNA,0,0,
+ctrl-ctexcl,"shared, opposite",62,exon_UTR,3,4.83870967741936,0
+ctrl-ctexcl,"shared, opposite",62,intron,33,53.2258064516129,18.1818181818182
+ctrl-ctexcl,"shared, opposite",62,upstream_flank,0,0,
+ctrl-ctexcl,"shared, opposite",62,downstream_flank,1,1.61290322580645,0
+ctrl-ctexcl,"shared, opposite",62,intergenic,1,1.61290322580645,100
+ctrl-ctexcl,"shared, opposite",62,other,0,0,
