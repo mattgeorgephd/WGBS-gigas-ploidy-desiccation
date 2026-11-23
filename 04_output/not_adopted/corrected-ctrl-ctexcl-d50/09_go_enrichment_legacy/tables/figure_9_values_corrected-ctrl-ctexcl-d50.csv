@@ -1,0 +1,10 @@
+set,ontology,total,hyper,hypo,genes
+ploidy,BP,1,1,0,1
+heat,BP,1,0,1,1
+shared,BP,0,0,0,0
+ploidy,CC,1,1,0,1
+heat,CC,2,1,1,2
+shared,CC,0,0,0,0
+ploidy,MF,1,1,0,1
+heat,MF,1,0,1,1
+shared,MF,0,0,0,0
