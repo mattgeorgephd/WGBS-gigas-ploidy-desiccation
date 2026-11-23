@@ -1,0 +1,3 @@
+gene_id,gene,biotype,product,chr,gene_start,gene_end,strand,n_transcripts,n_go_terms,in_legacy_universe,n_cpg_tested,n_cpg_eligible,n_dml,n_hyper,n_hypo,min_meth_diff,max_meth_diff,dml_positions
+105332451,LOC105332451,protein_coding,uncharacterized LOC105332451,NC_047567.1,31556619,31569856,+,1,0,FALSE,17,6,3,0,3,-54.3654219728038,-51.5189815763704,31559112;31561569;31561573
+105331136,LOC105331136,protein_coding,protein farnesyltransferase subunit beta,NC_047561.1,9361078,9371161,+,1,8,TRUE,4,2,1,1,0,55.875,55.875,9370360
