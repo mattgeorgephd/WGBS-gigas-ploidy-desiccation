@@ -1,0 +1,2 @@
+id,filter,min_coverage,overdispersion,test,contrast_variant,ct_excluded,dml_difference,dml_qvalue,fit_id,fit_fingerprint_md5,ct_variant_list_md5,git_commit,written_utc,steps_done
+mnchisq-ctrl-q05,legacy,10,MN,Chisq,ctrl,FALSE,20,0.05,mnchisq-ctrl,5e5a5036f57685a8f662d7ce84fae941,"",56686e0,2026-11-23 05:55:30,04;05;06;07;08;09
