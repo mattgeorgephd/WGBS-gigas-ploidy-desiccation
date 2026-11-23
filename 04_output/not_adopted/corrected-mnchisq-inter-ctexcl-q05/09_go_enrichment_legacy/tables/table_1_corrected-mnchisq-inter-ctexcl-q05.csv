@@ -1,0 +1,9 @@
+dml_set,gene_id,gene_name,chromosome,start,end,methylation_difference
+ploidy-DML,105318231,adenylate kinase 9,NC_047563.1,5569232,5569234,24.05
+ploidy-DML,105322431,homer protein homolog 2,NC_047561.1,22980387,22980389,-27.8
+heat-DML,105318231,adenylate kinase 9,NC_047563.1,5569232,5569234,-24.18
+heat-DML,105320544,kinesin-like protein unc-104,NC_047564.1,40471809,40471811,41.68
+heat-DML,105325383,FYVE and coiled-coil domain-containing protein 1,NC_047564.1,1605191,1605193,31.48
+heat-DML,105329309,nesprin-1,NC_047561.1,28600946,28600948,-27.53
+heat-DML,105338968,mitogen-activated protein kinase kinase kinase 15,NC_047563.1,69748102,69748104,32.76
+interaction-DML,105318231,adenylate kinase 9,NC_047563.1,5569232,5569234,-24.18
