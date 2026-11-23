@@ -1,0 +1,632 @@
+GOID,transcript,topGOterm,p.value,geneID,chr,start,end,meth.diff,GOterm,GOSlim
+GO:0097109,XM_034470921.1,neuroligin family protein binding,2.26251854321282e-19,,,,,,,
+GO:0097109,XM_034470922.1,neuroligin family protein binding,2.26251854321282e-19,,,,,,,
+GO:0097109,XM_034470923.1,neuroligin family protein binding,2.26251854321282e-19,,,,,,,
+GO:0097109,XM_034470924.1,neuroligin family protein binding,2.26251854321282e-19,,,,,,,
+GO:0097109,XM_034470925.1,neuroligin family protein binding,2.26251854321282e-19,,,,,,,
+GO:0097109,XM_034470926.1,neuroligin family protein binding,2.26251854321282e-19,,,,,,,
+GO:0097109,XM_034470927.1,neuroligin family protein binding,2.26251854321282e-19,,,,,,,
+GO:0097109,XM_034470928.1,neuroligin family protein binding,2.26251854321282e-19,,,,,,,
+GO:0097109,XM_034470929.1,neuroligin family protein binding,2.26251854321282e-19,,,,,,,
+GO:0097109,XM_034470930.1,neuroligin family protein binding,2.26251854321282e-19,,,,,,,
+GO:0097109,XM_034470931.1,neuroligin family protein binding,2.26251854321282e-19,,,,,,,
+GO:0097109,XM_034470932.1,neuroligin family protein binding,2.26251854321282e-19,,,,,,,
+GO:0097109,XM_034470933.1,neuroligin family protein binding,2.26251854321282e-19,,,,,,,
+GO:0033130,XM_034470921.1,acetylcholine receptor binding,3.05980987506563e-18,105328103,NC_047561.1,51312262,51312264,-22.9454506407044,acetylcholine receptor binding,signal transduction activity
+GO:0033130,XM_034470921.1,acetylcholine receptor binding,3.05980987506563e-18,105328103,NC_047561.1,51346481,51346483,-32.1481189433712,acetylcholine receptor binding,signal transduction activity
+GO:0033130,XM_034470922.1,acetylcholine receptor binding,3.05980987506563e-18,105328103,NC_047561.1,51312262,51312264,-22.9454506407044,acetylcholine receptor binding,signal transduction activity
+GO:0033130,XM_034470922.1,acetylcholine receptor binding,3.05980987506563e-18,105328103,NC_047561.1,51346481,51346483,-32.1481189433712,acetylcholine receptor binding,signal transduction activity
+GO:0033130,XM_034470923.1,acetylcholine receptor binding,3.05980987506563e-18,105328103,NC_047561.1,51312262,51312264,-22.9454506407044,acetylcholine receptor binding,signal transduction activity
+GO:0033130,XM_034470923.1,acetylcholine receptor binding,3.05980987506563e-18,105328103,NC_047561.1,51346481,51346483,-32.1481189433712,acetylcholine receptor binding,signal transduction activity
+GO:0033130,XM_034470924.1,acetylcholine receptor binding,3.05980987506563e-18,105328103,NC_047561.1,51312262,51312264,-22.9454506407044,acetylcholine receptor binding,signal transduction activity
+GO:0033130,XM_034470924.1,acetylcholine receptor binding,3.05980987506563e-18,105328103,NC_047561.1,51346481,51346483,-32.1481189433712,acetylcholine receptor binding,signal transduction activity
+GO:0033130,XM_034470925.1,acetylcholine receptor binding,3.05980987506563e-18,105328103,NC_047561.1,51312262,51312264,-22.9454506407044,acetylcholine receptor binding,signal transduction activity
+GO:0033130,XM_034470925.1,acetylcholine receptor binding,3.05980987506563e-18,105328103,NC_047561.1,51346481,51346483,-32.1481189433712,acetylcholine receptor binding,signal transduction activity
+GO:0033130,XM_034470926.1,acetylcholine receptor binding,3.05980987506563e-18,105328103,NC_047561.1,51312262,51312264,-22.9454506407044,acetylcholine receptor binding,signal transduction activity
+GO:0033130,XM_034470926.1,acetylcholine receptor binding,3.05980987506563e-18,105328103,NC_047561.1,51346481,51346483,-32.1481189433712,acetylcholine receptor binding,signal transduction activity
+GO:0033130,XM_034470927.1,acetylcholine receptor binding,3.05980987506563e-18,105328103,NC_047561.1,51312262,51312264,-22.9454506407044,acetylcholine receptor binding,signal transduction activity
+GO:0033130,XM_034470927.1,acetylcholine receptor binding,3.05980987506563e-18,105328103,NC_047561.1,51346481,51346483,-32.1481189433712,acetylcholine receptor binding,signal transduction activity
+GO:0033130,XM_034470928.1,acetylcholine receptor binding,3.05980987506563e-18,105328103,NC_047561.1,51312262,51312264,-22.9454506407044,acetylcholine receptor binding,signal transduction activity
+GO:0033130,XM_034470928.1,acetylcholine receptor binding,3.05980987506563e-18,105328103,NC_047561.1,51346481,51346483,-32.1481189433712,acetylcholine receptor binding,signal transduction activity
+GO:0033130,XM_034470929.1,acetylcholine receptor binding,3.05980987506563e-18,105328103,NC_047561.1,51312262,51312264,-22.9454506407044,acetylcholine receptor binding,signal transduction activity
+GO:0033130,XM_034470929.1,acetylcholine receptor binding,3.05980987506563e-18,105328103,NC_047561.1,51346481,51346483,-32.1481189433712,acetylcholine receptor binding,signal transduction activity
+GO:0033130,XM_034470930.1,acetylcholine receptor binding,3.05980987506563e-18,105328103,NC_047561.1,51312262,51312264,-22.9454506407044,acetylcholine receptor binding,signal transduction activity
+GO:0033130,XM_034470930.1,acetylcholine receptor binding,3.05980987506563e-18,105328103,NC_047561.1,51346481,51346483,-32.1481189433712,acetylcholine receptor binding,signal transduction activity
+GO:0033130,XM_034470931.1,acetylcholine receptor binding,3.05980987506563e-18,105328103,NC_047561.1,51312262,51312264,-22.9454506407044,acetylcholine receptor binding,signal transduction activity
+GO:0033130,XM_034470931.1,acetylcholine receptor binding,3.05980987506563e-18,105328103,NC_047561.1,51346481,51346483,-32.1481189433712,acetylcholine receptor binding,signal transduction activity
+GO:0033130,XM_034470932.1,acetylcholine receptor binding,3.05980987506563e-18,105328103,NC_047561.1,51312262,51312264,-22.9454506407044,acetylcholine receptor binding,signal transduction activity
+GO:0033130,XM_034470932.1,acetylcholine receptor binding,3.05980987506563e-18,105328103,NC_047561.1,51346481,51346483,-32.1481189433712,acetylcholine receptor binding,signal transduction activity
+GO:0033130,XM_034470933.1,acetylcholine receptor binding,3.05980987506563e-18,105328103,NC_047561.1,51312262,51312264,-22.9454506407044,acetylcholine receptor binding,signal transduction activity
+GO:0033130,XM_034470933.1,acetylcholine receptor binding,3.05980987506563e-18,105328103,NC_047561.1,51346481,51346483,-32.1481189433712,acetylcholine receptor binding,signal transduction activity
+GO:0033130,XM_034476908.1,acetylcholine receptor binding,3.05980987506563e-18,,,,,,,
+GO:0004386,XM_011415279.3,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_011415280.3,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_011415281.3,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_011415960.3,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_011416733.3,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_011416734.3,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_011416735.3,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_011416736.3,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_011417029.3,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_011417355.3,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_011419006.3,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_011419071.3,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_011420132.3,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_011421598.3,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_011421600.3,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_011421601.3,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_011423132.3,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_011423133.3,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_011423587.3,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_011423940.3,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_011427421.3,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_011427422.3,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_011428488.3,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_011428956.3,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_011433621.3,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_011435116.2,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_011435377.3,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_011438986.3,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_011439281.3,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_011439679.3,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_011440038.3,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_011440204.3,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_011440205.3,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_011440206.3,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_011440264.3,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_011440462.3,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_011440463.3,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_011441327.3,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_011441604.3,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_011443322.3,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_011443323.3,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_011443665.3,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_011444079.3,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_011444080.3,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_011444552.3,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_011444553.3,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_011444835.3,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_011445367.3,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_011446461.3,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_011448622.3,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_011449347.3,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_011449349.3,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_011449688.3,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_011450033.3,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_011451527.3,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_011453285.3,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_011453529.3,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_011453972.3,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_011454949.3,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034461104.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034461220.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034461221.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034461223.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034461224.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034461235.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034461274.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034461280.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034461290.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034461312.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034461393.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034461404.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034461411.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034461475.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034461476.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034462748.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034462749.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034463024.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034463167.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034463168.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034463650.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034463693.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034464912.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034465796.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034465903.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034465904.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034466038.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034466112.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034466172.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034466229.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034466446.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034466662.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034466743.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034466769.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034466933.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034467020.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034467021.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034467022.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034467023.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034467024.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034467298.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034467299.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034467300.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034467617.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034467618.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034467619.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034467779.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034467791.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034468039.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034468603.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034468703.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034468940.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034469152.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034469539.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034470003.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034470136.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034470145.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034470162.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034470178.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034470185.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034471967.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034471968.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034471969.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034472170.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034472171.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034472172.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034472174.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034472397.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034472850.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034472851.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034472852.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034472853.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034473532.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034473704.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034474112.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034474425.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034475000.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034475013.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034475014.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034475015.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034475020.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034475021.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034475087.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034475413.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034475682.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034475710.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034476350.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034476351.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034477122.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034477123.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034477124.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034477125.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034477126.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034477551.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034477601.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034478144.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034478147.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034478152.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034478153.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034478939.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034479019.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034479733.1,helicase activity,3.14571819834861e-16,105334383,NC_047563.1,30177204,30177206,-21.6630591630592,helicase activity,other molecular function
+GO:0004386,XM_034479734.1,helicase activity,3.14571819834861e-16,105334383,NC_047563.1,30177204,30177206,-21.6630591630592,helicase activity,other molecular function
+GO:0004386,XM_034479735.1,helicase activity,3.14571819834861e-16,105334383,NC_047563.1,30177204,30177206,-21.6630591630592,helicase activity,other molecular function
+GO:0004386,XM_034479736.1,helicase activity,3.14571819834861e-16,105334383,NC_047563.1,30177204,30177206,-21.6630591630592,helicase activity,other molecular function
+GO:0004386,XM_034479737.1,helicase activity,3.14571819834861e-16,105334383,NC_047563.1,30177204,30177206,-21.6630591630592,helicase activity,other molecular function
+GO:0004386,XM_034479738.1,helicase activity,3.14571819834861e-16,105334383,NC_047563.1,30177204,30177206,-21.6630591630592,helicase activity,other molecular function
+GO:0004386,XM_034479739.1,helicase activity,3.14571819834861e-16,105334383,NC_047563.1,30177204,30177206,-21.6630591630592,helicase activity,other molecular function
+GO:0004386,XM_034479740.1,helicase activity,3.14571819834861e-16,105334383,NC_047563.1,30177204,30177206,-21.6630591630592,helicase activity,other molecular function
+GO:0004386,XM_034479741.1,helicase activity,3.14571819834861e-16,105334383,NC_047563.1,30177204,30177206,-21.6630591630592,helicase activity,other molecular function
+GO:0004386,XM_034479742.1,helicase activity,3.14571819834861e-16,105334383,NC_047563.1,30177204,30177206,-21.6630591630592,helicase activity,other molecular function
+GO:0004386,XM_034479743.1,helicase activity,3.14571819834861e-16,105334383,NC_047563.1,30177204,30177206,-21.6630591630592,helicase activity,other molecular function
+GO:0004386,XM_034479744.1,helicase activity,3.14571819834861e-16,105334383,NC_047563.1,30177204,30177206,-21.6630591630592,helicase activity,other molecular function
+GO:0004386,XM_034479745.1,helicase activity,3.14571819834861e-16,105334383,NC_047563.1,30177204,30177206,-21.6630591630592,helicase activity,other molecular function
+GO:0004386,XM_034479746.1,helicase activity,3.14571819834861e-16,105334383,NC_047563.1,30177204,30177206,-21.6630591630592,helicase activity,other molecular function
+GO:0004386,XM_034479747.1,helicase activity,3.14571819834861e-16,105334383,NC_047563.1,30177204,30177206,-21.6630591630592,helicase activity,other molecular function
+GO:0004386,XM_034479748.1,helicase activity,3.14571819834861e-16,105334383,NC_047563.1,30177204,30177206,-21.6630591630592,helicase activity,other molecular function
+GO:0004386,XM_034479749.1,helicase activity,3.14571819834861e-16,105334383,NC_047563.1,30177204,30177206,-21.6630591630592,helicase activity,other molecular function
+GO:0004386,XM_034479750.1,helicase activity,3.14571819834861e-16,105334383,NC_047563.1,30177204,30177206,-21.6630591630592,helicase activity,other molecular function
+GO:0004386,XM_034479751.1,helicase activity,3.14571819834861e-16,105334383,NC_047563.1,30177204,30177206,-21.6630591630592,helicase activity,other molecular function
+GO:0004386,XM_034479752.1,helicase activity,3.14571819834861e-16,105334383,NC_047563.1,30177204,30177206,-21.6630591630592,helicase activity,other molecular function
+GO:0004386,XM_034479753.1,helicase activity,3.14571819834861e-16,105334383,NC_047563.1,30177204,30177206,-21.6630591630592,helicase activity,other molecular function
+GO:0004386,XM_034479754.1,helicase activity,3.14571819834861e-16,105334383,NC_047563.1,30177204,30177206,-21.6630591630592,helicase activity,other molecular function
+GO:0004386,XM_034479755.1,helicase activity,3.14571819834861e-16,105334383,NC_047563.1,30177204,30177206,-21.6630591630592,helicase activity,other molecular function
+GO:0004386,XM_034479756.1,helicase activity,3.14571819834861e-16,105334383,NC_047563.1,30177204,30177206,-21.6630591630592,helicase activity,other molecular function
+GO:0004386,XM_034479757.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034479758.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034479759.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034479760.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034479761.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034480004.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034480016.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034480017.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034480018.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034480019.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034480020.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034480021.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034480022.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034480023.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034480239.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034480378.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034480846.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034480936.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034481401.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034481402.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034481403.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034481404.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034481405.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034481406.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034481407.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034481408.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034481409.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034481410.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034481411.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034481440.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034481792.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034481793.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034481794.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034481795.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034481796.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034481797.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034481798.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034482064.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034482211.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034482212.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034482321.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034482476.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034482479.1,helicase activity,3.14571819834861e-16,105331446,NC_047564.1,26737593,26737595,-22.5901584091675,helicase activity,other molecular function
+GO:0004386,XM_034482479.1,helicase activity,3.14571819834861e-16,105331446,NC_047564.1,26780303,26780305,-21.1971458773784,helicase activity,other molecular function
+GO:0004386,XM_034482479.1,helicase activity,3.14571819834861e-16,105331446,NC_047564.1,26780325,26780327,-34.2591390871728,helicase activity,other molecular function
+GO:0004386,XM_034482479.1,helicase activity,3.14571819834861e-16,105331446,NC_047564.1,26780335,26780337,-25.2554278416348,helicase activity,other molecular function
+GO:0004386,XM_034482480.1,helicase activity,3.14571819834861e-16,105331446,NC_047564.1,26737593,26737595,-22.5901584091675,helicase activity,other molecular function
+GO:0004386,XM_034482480.1,helicase activity,3.14571819834861e-16,105331446,NC_047564.1,26780303,26780305,-21.1971458773784,helicase activity,other molecular function
+GO:0004386,XM_034482480.1,helicase activity,3.14571819834861e-16,105331446,NC_047564.1,26780325,26780327,-34.2591390871728,helicase activity,other molecular function
+GO:0004386,XM_034482480.1,helicase activity,3.14571819834861e-16,105331446,NC_047564.1,26780335,26780337,-25.2554278416348,helicase activity,other molecular function
+GO:0004386,XM_034482481.1,helicase activity,3.14571819834861e-16,105331446,NC_047564.1,26737593,26737595,-22.5901584091675,helicase activity,other molecular function
+GO:0004386,XM_034482481.1,helicase activity,3.14571819834861e-16,105331446,NC_047564.1,26780303,26780305,-21.1971458773784,helicase activity,other molecular function
+GO:0004386,XM_034482481.1,helicase activity,3.14571819834861e-16,105331446,NC_047564.1,26780325,26780327,-34.2591390871728,helicase activity,other molecular function
+GO:0004386,XM_034482481.1,helicase activity,3.14571819834861e-16,105331446,NC_047564.1,26780335,26780337,-25.2554278416348,helicase activity,other molecular function
+GO:0004386,XM_034482482.1,helicase activity,3.14571819834861e-16,105331446,NC_047564.1,26737593,26737595,-22.5901584091675,helicase activity,other molecular function
+GO:0004386,XM_034482482.1,helicase activity,3.14571819834861e-16,105331446,NC_047564.1,26780303,26780305,-21.1971458773784,helicase activity,other molecular function
+GO:0004386,XM_034482482.1,helicase activity,3.14571819834861e-16,105331446,NC_047564.1,26780325,26780327,-34.2591390871728,helicase activity,other molecular function
+GO:0004386,XM_034482482.1,helicase activity,3.14571819834861e-16,105331446,NC_047564.1,26780335,26780337,-25.2554278416348,helicase activity,other molecular function
+GO:0004386,XM_034482483.1,helicase activity,3.14571819834861e-16,105331446,NC_047564.1,26737593,26737595,-22.5901584091675,helicase activity,other molecular function
+GO:0004386,XM_034482483.1,helicase activity,3.14571819834861e-16,105331446,NC_047564.1,26780303,26780305,-21.1971458773784,helicase activity,other molecular function
+GO:0004386,XM_034482483.1,helicase activity,3.14571819834861e-16,105331446,NC_047564.1,26780325,26780327,-34.2591390871728,helicase activity,other molecular function
+GO:0004386,XM_034482483.1,helicase activity,3.14571819834861e-16,105331446,NC_047564.1,26780335,26780337,-25.2554278416348,helicase activity,other molecular function
+GO:0004386,XM_034482484.1,helicase activity,3.14571819834861e-16,105331446,NC_047564.1,26737593,26737595,-22.5901584091675,helicase activity,other molecular function
+GO:0004386,XM_034482484.1,helicase activity,3.14571819834861e-16,105331446,NC_047564.1,26780303,26780305,-21.1971458773784,helicase activity,other molecular function
+GO:0004386,XM_034482484.1,helicase activity,3.14571819834861e-16,105331446,NC_047564.1,26780325,26780327,-34.2591390871728,helicase activity,other molecular function
+GO:0004386,XM_034482484.1,helicase activity,3.14571819834861e-16,105331446,NC_047564.1,26780335,26780337,-25.2554278416348,helicase activity,other molecular function
+GO:0004386,XM_034482485.1,helicase activity,3.14571819834861e-16,105331446,NC_047564.1,26737593,26737595,-22.5901584091675,helicase activity,other molecular function
+GO:0004386,XM_034482485.1,helicase activity,3.14571819834861e-16,105331446,NC_047564.1,26780303,26780305,-21.1971458773784,helicase activity,other molecular function
+GO:0004386,XM_034482485.1,helicase activity,3.14571819834861e-16,105331446,NC_047564.1,26780325,26780327,-34.2591390871728,helicase activity,other molecular function
+GO:0004386,XM_034482485.1,helicase activity,3.14571819834861e-16,105331446,NC_047564.1,26780335,26780337,-25.2554278416348,helicase activity,other molecular function
+GO:0004386,XM_034482486.1,helicase activity,3.14571819834861e-16,105331446,NC_047564.1,26737593,26737595,-22.5901584091675,helicase activity,other molecular function
+GO:0004386,XM_034482486.1,helicase activity,3.14571819834861e-16,105331446,NC_047564.1,26780303,26780305,-21.1971458773784,helicase activity,other molecular function
+GO:0004386,XM_034482486.1,helicase activity,3.14571819834861e-16,105331446,NC_047564.1,26780325,26780327,-34.2591390871728,helicase activity,other molecular function
+GO:0004386,XM_034482486.1,helicase activity,3.14571819834861e-16,105331446,NC_047564.1,26780335,26780337,-25.2554278416348,helicase activity,other molecular function
+GO:0004386,XM_034482487.1,helicase activity,3.14571819834861e-16,105331446,NC_047564.1,26737593,26737595,-22.5901584091675,helicase activity,other molecular function
+GO:0004386,XM_034482487.1,helicase activity,3.14571819834861e-16,105331446,NC_047564.1,26780303,26780305,-21.1971458773784,helicase activity,other molecular function
+GO:0004386,XM_034482487.1,helicase activity,3.14571819834861e-16,105331446,NC_047564.1,26780325,26780327,-34.2591390871728,helicase activity,other molecular function
+GO:0004386,XM_034482487.1,helicase activity,3.14571819834861e-16,105331446,NC_047564.1,26780335,26780337,-25.2554278416348,helicase activity,other molecular function
+GO:0004386,XM_034482488.1,helicase activity,3.14571819834861e-16,105331446,NC_047564.1,26737593,26737595,-22.5901584091675,helicase activity,other molecular function
+GO:0004386,XM_034482488.1,helicase activity,3.14571819834861e-16,105331446,NC_047564.1,26780303,26780305,-21.1971458773784,helicase activity,other molecular function
+GO:0004386,XM_034482488.1,helicase activity,3.14571819834861e-16,105331446,NC_047564.1,26780325,26780327,-34.2591390871728,helicase activity,other molecular function
+GO:0004386,XM_034482488.1,helicase activity,3.14571819834861e-16,105331446,NC_047564.1,26780335,26780337,-25.2554278416348,helicase activity,other molecular function
+GO:0004386,XM_034482594.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034482595.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034483283.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034483389.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0004386,XM_034483537.1,helicase activity,3.14571819834861e-16,,,,,,,
+GO:0070137,XM_034462325.1,ubiquitin-like protein-specific endopeptidase activity,1.22643476571529e-14,,,,,,,
+GO:0070137,XM_034466462.1,ubiquitin-like protein-specific endopeptidase activity,1.22643476571529e-14,,,,,,,
+GO:0070137,XM_034467882.1,ubiquitin-like protein-specific endopeptidase activity,1.22643476571529e-14,,,,,,,
+GO:0070137,XM_034467883.1,ubiquitin-like protein-specific endopeptidase activity,1.22643476571529e-14,,,,,,,
+GO:0070137,XM_034467884.1,ubiquitin-like protein-specific endopeptidase activity,1.22643476571529e-14,,,,,,,
+GO:0070137,XM_034467885.1,ubiquitin-like protein-specific endopeptidase activity,1.22643476571529e-14,,,,,,,
+GO:0070137,XM_034467886.1,ubiquitin-like protein-specific endopeptidase activity,1.22643476571529e-14,,,,,,,
+GO:0070137,XM_034467887.1,ubiquitin-like protein-specific endopeptidase activity,1.22643476571529e-14,,,,,,,
+GO:0070137,XM_034467888.1,ubiquitin-like protein-specific endopeptidase activity,1.22643476571529e-14,,,,,,,
+GO:0070137,XM_034467889.1,ubiquitin-like protein-specific endopeptidase activity,1.22643476571529e-14,,,,,,,
+GO:0070137,XM_034467890.1,ubiquitin-like protein-specific endopeptidase activity,1.22643476571529e-14,,,,,,,
+GO:0070137,XM_034467891.1,ubiquitin-like protein-specific endopeptidase activity,1.22643476571529e-14,,,,,,,
+GO:0070137,XM_034467892.1,ubiquitin-like protein-specific endopeptidase activity,1.22643476571529e-14,,,,,,,
+GO:0070139,XM_034462325.1,SUMO-specific endopeptidase activity,1.22643476571529e-14,,,,,,,
+GO:0070139,XM_034466462.1,SUMO-specific endopeptidase activity,1.22643476571529e-14,,,,,,,
+GO:0070139,XM_034467882.1,SUMO-specific endopeptidase activity,1.22643476571529e-14,105329645,NC_047561.1,27733219,27733221,-21.008727929374,SUMO-specific endopeptidase activity,other molecular function
+GO:0070139,XM_034467883.1,SUMO-specific endopeptidase activity,1.22643476571529e-14,105329645,NC_047561.1,27733219,27733221,-21.008727929374,SUMO-specific endopeptidase activity,other molecular function
+GO:0070139,XM_034467884.1,SUMO-specific endopeptidase activity,1.22643476571529e-14,105329645,NC_047561.1,27733219,27733221,-21.008727929374,SUMO-specific endopeptidase activity,other molecular function
+GO:0070139,XM_034467885.1,SUMO-specific endopeptidase activity,1.22643476571529e-14,105329645,NC_047561.1,27733219,27733221,-21.008727929374,SUMO-specific endopeptidase activity,other molecular function
+GO:0070139,XM_034467886.1,SUMO-specific endopeptidase activity,1.22643476571529e-14,105329645,NC_047561.1,27733219,27733221,-21.008727929374,SUMO-specific endopeptidase activity,other molecular function
+GO:0070139,XM_034467887.1,SUMO-specific endopeptidase activity,1.22643476571529e-14,105329645,NC_047561.1,27733219,27733221,-21.008727929374,SUMO-specific endopeptidase activity,other molecular function
+GO:0070139,XM_034467888.1,SUMO-specific endopeptidase activity,1.22643476571529e-14,105329645,NC_047561.1,27733219,27733221,-21.008727929374,SUMO-specific endopeptidase activity,other molecular function
+GO:0070139,XM_034467889.1,SUMO-specific endopeptidase activity,1.22643476571529e-14,105329645,NC_047561.1,27733219,27733221,-21.008727929374,SUMO-specific endopeptidase activity,other molecular function
+GO:0070139,XM_034467890.1,SUMO-specific endopeptidase activity,1.22643476571529e-14,105329645,NC_047561.1,27733219,27733221,-21.008727929374,SUMO-specific endopeptidase activity,other molecular function
+GO:0070139,XM_034467891.1,SUMO-specific endopeptidase activity,1.22643476571529e-14,105329645,NC_047561.1,27733219,27733221,-21.008727929374,SUMO-specific endopeptidase activity,other molecular function
+GO:0070139,XM_034467892.1,SUMO-specific endopeptidase activity,1.22643476571529e-14,105329645,NC_047561.1,27733219,27733221,-21.008727929374,SUMO-specific endopeptidase activity,other molecular function
+GO:0005219,XM_034470158.1,ryanodine-sensitive calcium-release channel activity,4.87868629658546e-14,,,,,,,
+GO:0005219,XM_034470472.1,ryanodine-sensitive calcium-release channel activity,4.87868629658546e-14,105333338,NC_047561.1,30415141,30415143,-22.9926440116038,ryanodine-sensitive calcium-release channel activity,transporter activity
+GO:0005219,XM_034470472.1,ryanodine-sensitive calcium-release channel activity,4.87868629658546e-14,105333338,NC_047561.1,30415160,30415162,-21.8506316871184,ryanodine-sensitive calcium-release channel activity,transporter activity
+GO:0005219,XM_034470473.1,ryanodine-sensitive calcium-release channel activity,4.87868629658546e-14,105333338,NC_047561.1,30415141,30415143,-22.9926440116038,ryanodine-sensitive calcium-release channel activity,transporter activity
+GO:0005219,XM_034470473.1,ryanodine-sensitive calcium-release channel activity,4.87868629658546e-14,105333338,NC_047561.1,30415160,30415162,-21.8506316871184,ryanodine-sensitive calcium-release channel activity,transporter activity
+GO:0005219,XM_034470474.1,ryanodine-sensitive calcium-release channel activity,4.87868629658546e-14,105333338,NC_047561.1,30415141,30415143,-22.9926440116038,ryanodine-sensitive calcium-release channel activity,transporter activity
+GO:0005219,XM_034470474.1,ryanodine-sensitive calcium-release channel activity,4.87868629658546e-14,105333338,NC_047561.1,30415160,30415162,-21.8506316871184,ryanodine-sensitive calcium-release channel activity,transporter activity
+GO:0005219,XM_034470475.1,ryanodine-sensitive calcium-release channel activity,4.87868629658546e-14,105333338,NC_047561.1,30415141,30415143,-22.9926440116038,ryanodine-sensitive calcium-release channel activity,transporter activity
+GO:0005219,XM_034470475.1,ryanodine-sensitive calcium-release channel activity,4.87868629658546e-14,105333338,NC_047561.1,30415160,30415162,-21.8506316871184,ryanodine-sensitive calcium-release channel activity,transporter activity
+GO:0005219,XM_034470476.1,ryanodine-sensitive calcium-release channel activity,4.87868629658546e-14,105333338,NC_047561.1,30415141,30415143,-22.9926440116038,ryanodine-sensitive calcium-release channel activity,transporter activity
+GO:0005219,XM_034470476.1,ryanodine-sensitive calcium-release channel activity,4.87868629658546e-14,105333338,NC_047561.1,30415160,30415162,-21.8506316871184,ryanodine-sensitive calcium-release channel activity,transporter activity
+GO:0005219,XM_034470477.1,ryanodine-sensitive calcium-release channel activity,4.87868629658546e-14,105333338,NC_047561.1,30415141,30415143,-22.9926440116038,ryanodine-sensitive calcium-release channel activity,transporter activity
+GO:0005219,XM_034470477.1,ryanodine-sensitive calcium-release channel activity,4.87868629658546e-14,105333338,NC_047561.1,30415160,30415162,-21.8506316871184,ryanodine-sensitive calcium-release channel activity,transporter activity
+GO:0005219,XM_034470478.1,ryanodine-sensitive calcium-release channel activity,4.87868629658546e-14,105333338,NC_047561.1,30415141,30415143,-22.9926440116038,ryanodine-sensitive calcium-release channel activity,transporter activity
+GO:0005219,XM_034470478.1,ryanodine-sensitive calcium-release channel activity,4.87868629658546e-14,105333338,NC_047561.1,30415160,30415162,-21.8506316871184,ryanodine-sensitive calcium-release channel activity,transporter activity
+GO:0005219,XM_034470479.1,ryanodine-sensitive calcium-release channel activity,4.87868629658546e-14,105333338,NC_047561.1,30415141,30415143,-22.9926440116038,ryanodine-sensitive calcium-release channel activity,transporter activity
+GO:0005219,XM_034470479.1,ryanodine-sensitive calcium-release channel activity,4.87868629658546e-14,105333338,NC_047561.1,30415160,30415162,-21.8506316871184,ryanodine-sensitive calcium-release channel activity,transporter activity
+GO:0005219,XM_034470480.1,ryanodine-sensitive calcium-release channel activity,4.87868629658546e-14,105333338,NC_047561.1,30415141,30415143,-22.9926440116038,ryanodine-sensitive calcium-release channel activity,transporter activity
+GO:0005219,XM_034470480.1,ryanodine-sensitive calcium-release channel activity,4.87868629658546e-14,105333338,NC_047561.1,30415160,30415162,-21.8506316871184,ryanodine-sensitive calcium-release channel activity,transporter activity
+GO:0005219,XM_034470481.1,ryanodine-sensitive calcium-release channel activity,4.87868629658546e-14,105333339,NC_047561.1,30440017,30440019,-32.1127508718446,ryanodine-sensitive calcium-release channel activity,transporter activity
+GO:0005219,XM_034470481.1,ryanodine-sensitive calcium-release channel activity,4.87868629658546e-14,105333339,NC_047561.1,30447367,30447369,-20.9230769230769,ryanodine-sensitive calcium-release channel activity,transporter activity
+GO:0005219,XM_034470481.1,ryanodine-sensitive calcium-release channel activity,4.87868629658546e-14,105333339,NC_047561.1,30450949,30450951,-23.2064536340852,ryanodine-sensitive calcium-release channel activity,transporter activity
+GO:0016929,XM_011452641.3,SUMO-specific protease activity,2.00447189630983e-13,,,,,,,
+GO:0016929,XM_034462325.1,SUMO-specific protease activity,2.00447189630983e-13,,,,,,,
+GO:0016929,XM_034466462.1,SUMO-specific protease activity,2.00447189630983e-13,,,,,,,
+GO:0016929,XM_034467882.1,SUMO-specific protease activity,2.00447189630983e-13,105329645,NC_047561.1,27733219,27733221,-21.008727929374,SUMO-specific protease activity,other molecular function
+GO:0016929,XM_034467883.1,SUMO-specific protease activity,2.00447189630983e-13,105329645,NC_047561.1,27733219,27733221,-21.008727929374,SUMO-specific protease activity,other molecular function
+GO:0016929,XM_034467884.1,SUMO-specific protease activity,2.00447189630983e-13,105329645,NC_047561.1,27733219,27733221,-21.008727929374,SUMO-specific protease activity,other molecular function
+GO:0016929,XM_034467885.1,SUMO-specific protease activity,2.00447189630983e-13,105329645,NC_047561.1,27733219,27733221,-21.008727929374,SUMO-specific protease activity,other molecular function
+GO:0016929,XM_034467886.1,SUMO-specific protease activity,2.00447189630983e-13,105329645,NC_047561.1,27733219,27733221,-21.008727929374,SUMO-specific protease activity,other molecular function
+GO:0016929,XM_034467887.1,SUMO-specific protease activity,2.00447189630983e-13,105329645,NC_047561.1,27733219,27733221,-21.008727929374,SUMO-specific protease activity,other molecular function
+GO:0016929,XM_034467888.1,SUMO-specific protease activity,2.00447189630983e-13,105329645,NC_047561.1,27733219,27733221,-21.008727929374,SUMO-specific protease activity,other molecular function
+GO:0016929,XM_034467889.1,SUMO-specific protease activity,2.00447189630983e-13,105329645,NC_047561.1,27733219,27733221,-21.008727929374,SUMO-specific protease activity,other molecular function
+GO:0016929,XM_034467890.1,SUMO-specific protease activity,2.00447189630983e-13,105329645,NC_047561.1,27733219,27733221,-21.008727929374,SUMO-specific protease activity,other molecular function
+GO:0016929,XM_034467891.1,SUMO-specific protease activity,2.00447189630983e-13,105329645,NC_047561.1,27733219,27733221,-21.008727929374,SUMO-specific protease activity,other molecular function
+GO:0016929,XM_034467892.1,SUMO-specific protease activity,2.00447189630983e-13,105329645,NC_047561.1,27733219,27733221,-21.008727929374,SUMO-specific protease activity,other molecular function
+GO:0016929,XM_034477342.1,SUMO-specific protease activity,2.00447189630983e-13,,,,,,,
+GO:0005521,XM_011419157.3,lamin binding,2.445295915574e-13,,,,,,,
+GO:0005521,XM_011419164.3,lamin binding,2.445295915574e-13,,,,,,,
+GO:0005521,XM_011419171.3,lamin binding,2.445295915574e-13,,,,,,,
+GO:0005521,XM_011419180.3,lamin binding,2.445295915574e-13,,,,,,,
+GO:0005521,XM_011419190.3,lamin binding,2.445295915574e-13,,,,,,,
+GO:0005521,XM_011449533.3,lamin binding,2.445295915574e-13,,,,,,,
+GO:0005521,XM_011449534.3,lamin binding,2.445295915574e-13,,,,,,,
+GO:0005521,XM_034469083.1,lamin binding,2.445295915574e-13,105329309,NC_047561.1,28607026,28607028,20.6939030095119,lamin binding,other molecular function
+GO:0005521,XM_034469083.1,lamin binding,2.445295915574e-13,105329309,NC_047561.1,28607119,28607121,-24.0457733480989,lamin binding,other molecular function
+GO:0005521,XM_034469084.1,lamin binding,2.445295915574e-13,105329309,NC_047561.1,28607026,28607028,20.6939030095119,lamin binding,other molecular function
+GO:0005521,XM_034469084.1,lamin binding,2.445295915574e-13,105329309,NC_047561.1,28607119,28607121,-24.0457733480989,lamin binding,other molecular function
+GO:0005521,XM_034469085.1,lamin binding,2.445295915574e-13,105329309,NC_047561.1,28607026,28607028,20.6939030095119,lamin binding,other molecular function
+GO:0005521,XM_034469085.1,lamin binding,2.445295915574e-13,105329309,NC_047561.1,28607119,28607121,-24.0457733480989,lamin binding,other molecular function
+GO:0005521,XM_034469086.1,lamin binding,2.445295915574e-13,105329309,NC_047561.1,28607026,28607028,20.6939030095119,lamin binding,other molecular function
+GO:0005521,XM_034469086.1,lamin binding,2.445295915574e-13,105329309,NC_047561.1,28607119,28607121,-24.0457733480989,lamin binding,other molecular function
+GO:0005521,XM_034469087.1,lamin binding,2.445295915574e-13,105329309,NC_047561.1,28607026,28607028,20.6939030095119,lamin binding,other molecular function
+GO:0005521,XM_034469087.1,lamin binding,2.445295915574e-13,105329309,NC_047561.1,28607119,28607121,-24.0457733480989,lamin binding,other molecular function
+GO:0005521,XM_034469088.1,lamin binding,2.445295915574e-13,105329309,NC_047561.1,28607026,28607028,20.6939030095119,lamin binding,other molecular function
+GO:0005521,XM_034469088.1,lamin binding,2.445295915574e-13,105329309,NC_047561.1,28607119,28607121,-24.0457733480989,lamin binding,other molecular function
+GO:0005521,XM_034469089.1,lamin binding,2.445295915574e-13,105329309,NC_047561.1,28607026,28607028,20.6939030095119,lamin binding,other molecular function
+GO:0005521,XM_034469089.1,lamin binding,2.445295915574e-13,105329309,NC_047561.1,28607119,28607121,-24.0457733480989,lamin binding,other molecular function
+GO:0005521,XM_034469090.1,lamin binding,2.445295915574e-13,105329309,NC_047561.1,28607026,28607028,20.6939030095119,lamin binding,other molecular function
+GO:0005521,XM_034469090.1,lamin binding,2.445295915574e-13,105329309,NC_047561.1,28607119,28607121,-24.0457733480989,lamin binding,other molecular function
+GO:0005521,XM_034469091.1,lamin binding,2.445295915574e-13,105329309,NC_047561.1,28607026,28607028,20.6939030095119,lamin binding,other molecular function
+GO:0005521,XM_034469091.1,lamin binding,2.445295915574e-13,105329309,NC_047561.1,28607119,28607121,-24.0457733480989,lamin binding,other molecular function
+GO:0005521,XM_034469092.1,lamin binding,2.445295915574e-13,105329309,NC_047561.1,28607026,28607028,20.6939030095119,lamin binding,other molecular function
+GO:0005521,XM_034469092.1,lamin binding,2.445295915574e-13,105329309,NC_047561.1,28607119,28607121,-24.0457733480989,lamin binding,other molecular function
+GO:0005521,XM_034469093.1,lamin binding,2.445295915574e-13,105329309,NC_047561.1,28607026,28607028,20.6939030095119,lamin binding,other molecular function
+GO:0005521,XM_034469093.1,lamin binding,2.445295915574e-13,105329309,NC_047561.1,28607119,28607121,-24.0457733480989,lamin binding,other molecular function
+GO:0005521,XM_034469094.1,lamin binding,2.445295915574e-13,105329309,NC_047561.1,28607026,28607028,20.6939030095119,lamin binding,other molecular function
+GO:0005521,XM_034469094.1,lamin binding,2.445295915574e-13,105329309,NC_047561.1,28607119,28607121,-24.0457733480989,lamin binding,other molecular function
+GO:0019783,XM_011431810.3,ubiquitin-like protein-specific protease activity,4.21816604430571e-12,,,,,,,
+GO:0019783,XM_011446405.3,ubiquitin-like protein-specific protease activity,4.21816604430571e-12,,,,,,,
+GO:0019783,XM_011451883.3,ubiquitin-like protein-specific protease activity,4.21816604430571e-12,,,,,,,
+GO:0019783,XM_011452641.3,ubiquitin-like protein-specific protease activity,4.21816604430571e-12,,,,,,,
+GO:0019783,XM_034462325.1,ubiquitin-like protein-specific protease activity,4.21816604430571e-12,,,,,,,
+GO:0019783,XM_034466462.1,ubiquitin-like protein-specific protease activity,4.21816604430571e-12,,,,,,,
+GO:0019783,XM_034467882.1,ubiquitin-like protein-specific protease activity,4.21816604430571e-12,,,,,,,
+GO:0019783,XM_034467883.1,ubiquitin-like protein-specific protease activity,4.21816604430571e-12,,,,,,,
+GO:0019783,XM_034467884.1,ubiquitin-like protein-specific protease activity,4.21816604430571e-12,,,,,,,
+GO:0019783,XM_034467885.1,ubiquitin-like protein-specific protease activity,4.21816604430571e-12,,,,,,,
+GO:0019783,XM_034467886.1,ubiquitin-like protein-specific protease activity,4.21816604430571e-12,,,,,,,
+GO:0019783,XM_034467887.1,ubiquitin-like protein-specific protease activity,4.21816604430571e-12,,,,,,,
+GO:0019783,XM_034467888.1,ubiquitin-like protein-specific protease activity,4.21816604430571e-12,,,,,,,
+GO:0019783,XM_034467889.1,ubiquitin-like protein-specific protease activity,4.21816604430571e-12,,,,,,,
+GO:0019783,XM_034467890.1,ubiquitin-like protein-specific protease activity,4.21816604430571e-12,,,,,,,
+GO:0019783,XM_034467891.1,ubiquitin-like protein-specific protease activity,4.21816604430571e-12,,,,,,,
+GO:0019783,XM_034467892.1,ubiquitin-like protein-specific protease activity,4.21816604430571e-12,,,,,,,
+GO:0019783,XM_034477342.1,ubiquitin-like protein-specific protease activity,4.21816604430571e-12,,,,,,,
+GO:0008201,XM_011414495.2,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_011415843.3,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_011416487.3,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_011416488.3,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_011417134.3,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_011417358.3,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_011417487.3,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_011418635.3,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_011418636.3,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_011422051.3,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_011422433.3,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_011423343.3,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_011426021.3,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_011426605.3,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_011426606.3,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_011426609.3,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_011428146.3,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_011429709.3,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_011429710.3,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_011429711.3,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_011429712.3,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_011429855.3,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_011430714.3,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_011430715.3,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_011430717.3,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_011430719.3,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_011431244.3,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_011431245.3,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_011431283.3,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_011435634.3,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_011435635.3,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_011435636.3,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_011437563.3,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_011437936.3,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_011438790.3,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_011439880.3,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_011441505.3,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_011442987.3,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_011445977.3,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_011447618.3,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_011447619.3,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_011447621.3,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_011447622.3,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_011449267.3,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_011449491.3,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_011449908.3,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_011449909.3,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_011449927.3,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_011449928.3,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_011449931.3,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_011449932.3,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_011451355.2,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_011451731.3,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_011453508.3,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_011454416.3,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_011454417.3,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034462766.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034463409.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034463831.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034464353.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034464525.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034465979.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034466076.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034467572.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034468146.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034468149.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034468158.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034468162.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034468163.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034468165.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034468169.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034468177.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034468184.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034468185.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034468190.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034468196.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034468202.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034468205.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034468208.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034468212.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034468222.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034468226.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034468233.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034468243.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034468250.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034468257.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034468259.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034468261.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034468263.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034468265.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034468267.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034468274.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034468283.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034468288.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034468294.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034468298.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034468302.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034468308.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034468315.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034468318.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034468324.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034468329.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034468337.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034468340.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034468342.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034468346.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034468350.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034468354.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034469160.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034469161.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034469168.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034469797.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034469983.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034471210.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034471219.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034471221.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034471516.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034471523.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034471532.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034471535.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034471545.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034471550.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034471551.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034471944.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034471945.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034471946.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034471947.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034471948.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034472261.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034472279.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034472494.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034473471.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034474504.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034474506.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034474653.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034474665.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034474666.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034474677.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034474678.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034474680.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034474933.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034476543.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034476544.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034476545.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034476547.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034476548.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034476822.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034476832.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034477201.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034477229.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034477230.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034477231.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034477232.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034477673.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034478814.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034479555.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034479556.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034479563.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034479564.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034479568.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034479572.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034479573.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034479574.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034479575.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034479733.1,heparin binding,9.05805580640193e-12,105334383,NC_047563.1,30177204,30177206,-21.6630591630592,heparin binding,other molecular function
+GO:0008201,XM_034479734.1,heparin binding,9.05805580640193e-12,105334383,NC_047563.1,30177204,30177206,-21.6630591630592,heparin binding,other molecular function
+GO:0008201,XM_034479735.1,heparin binding,9.05805580640193e-12,105334383,NC_047563.1,30177204,30177206,-21.6630591630592,heparin binding,other molecular function
+GO:0008201,XM_034479736.1,heparin binding,9.05805580640193e-12,105334383,NC_047563.1,30177204,30177206,-21.6630591630592,heparin binding,other molecular function
+GO:0008201,XM_034479737.1,heparin binding,9.05805580640193e-12,105334383,NC_047563.1,30177204,30177206,-21.6630591630592,heparin binding,other molecular function
+GO:0008201,XM_034479738.1,heparin binding,9.05805580640193e-12,105334383,NC_047563.1,30177204,30177206,-21.6630591630592,heparin binding,other molecular function
+GO:0008201,XM_034479739.1,heparin binding,9.05805580640193e-12,105334383,NC_047563.1,30177204,30177206,-21.6630591630592,heparin binding,other molecular function
+GO:0008201,XM_034479740.1,heparin binding,9.05805580640193e-12,105334383,NC_047563.1,30177204,30177206,-21.6630591630592,heparin binding,other molecular function
+GO:0008201,XM_034479741.1,heparin binding,9.05805580640193e-12,105334383,NC_047563.1,30177204,30177206,-21.6630591630592,heparin binding,other molecular function
+GO:0008201,XM_034479742.1,heparin binding,9.05805580640193e-12,105334383,NC_047563.1,30177204,30177206,-21.6630591630592,heparin binding,other molecular function
+GO:0008201,XM_034479743.1,heparin binding,9.05805580640193e-12,105334383,NC_047563.1,30177204,30177206,-21.6630591630592,heparin binding,other molecular function
+GO:0008201,XM_034479744.1,heparin binding,9.05805580640193e-12,105334383,NC_047563.1,30177204,30177206,-21.6630591630592,heparin binding,other molecular function
+GO:0008201,XM_034479745.1,heparin binding,9.05805580640193e-12,105334383,NC_047563.1,30177204,30177206,-21.6630591630592,heparin binding,other molecular function
+GO:0008201,XM_034479746.1,heparin binding,9.05805580640193e-12,105334383,NC_047563.1,30177204,30177206,-21.6630591630592,heparin binding,other molecular function
+GO:0008201,XM_034479747.1,heparin binding,9.05805580640193e-12,105334383,NC_047563.1,30177204,30177206,-21.6630591630592,heparin binding,other molecular function
+GO:0008201,XM_034479748.1,heparin binding,9.05805580640193e-12,105334383,NC_047563.1,30177204,30177206,-21.6630591630592,heparin binding,other molecular function
+GO:0008201,XM_034479749.1,heparin binding,9.05805580640193e-12,105334383,NC_047563.1,30177204,30177206,-21.6630591630592,heparin binding,other molecular function
+GO:0008201,XM_034479750.1,heparin binding,9.05805580640193e-12,105334383,NC_047563.1,30177204,30177206,-21.6630591630592,heparin binding,other molecular function
+GO:0008201,XM_034479751.1,heparin binding,9.05805580640193e-12,105334383,NC_047563.1,30177204,30177206,-21.6630591630592,heparin binding,other molecular function
+GO:0008201,XM_034479752.1,heparin binding,9.05805580640193e-12,105334383,NC_047563.1,30177204,30177206,-21.6630591630592,heparin binding,other molecular function
+GO:0008201,XM_034479753.1,heparin binding,9.05805580640193e-12,105334383,NC_047563.1,30177204,30177206,-21.6630591630592,heparin binding,other molecular function
+GO:0008201,XM_034479754.1,heparin binding,9.05805580640193e-12,105334383,NC_047563.1,30177204,30177206,-21.6630591630592,heparin binding,other molecular function
+GO:0008201,XM_034479755.1,heparin binding,9.05805580640193e-12,105334383,NC_047563.1,30177204,30177206,-21.6630591630592,heparin binding,other molecular function
+GO:0008201,XM_034479756.1,heparin binding,9.05805580640193e-12,105334383,NC_047563.1,30177204,30177206,-21.6630591630592,heparin binding,other molecular function
+GO:0008201,XM_034479757.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034479758.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034479759.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034479760.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034479761.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034480006.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034481126.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034482300.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034482305.1,heparin binding,9.05805580640193e-12,105342863,NC_047564.1,14992390,14992392,-21.585308056872,heparin binding,other molecular function
+GO:0008201,XM_034482306.1,heparin binding,9.05805580640193e-12,105342863,NC_047564.1,14992390,14992392,-21.585308056872,heparin binding,other molecular function
+GO:0008201,XM_034482307.1,heparin binding,9.05805580640193e-12,105342863,NC_047564.1,14992390,14992392,-21.585308056872,heparin binding,other molecular function
+GO:0008201,XM_034482308.1,heparin binding,9.05805580640193e-12,105342863,NC_047564.1,14992390,14992392,-21.585308056872,heparin binding,other molecular function
+GO:0008201,XM_034482309.1,heparin binding,9.05805580640193e-12,105342863,NC_047564.1,14992390,14992392,-21.585308056872,heparin binding,other molecular function
+GO:0008201,XM_034482310.1,heparin binding,9.05805580640193e-12,105342863,NC_047564.1,14992390,14992392,-21.585308056872,heparin binding,other molecular function
+GO:0008201,XM_034482311.1,heparin binding,9.05805580640193e-12,105342863,NC_047564.1,14992390,14992392,-21.585308056872,heparin binding,other molecular function
+GO:0008201,XM_034482312.1,heparin binding,9.05805580640193e-12,105342863,NC_047564.1,14992390,14992392,-21.585308056872,heparin binding,other molecular function
+GO:0008201,XM_034482447.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034482504.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034482961.1,heparin binding,9.05805580640193e-12,,,,,,,
+GO:0008201,XM_034483261.1,heparin binding,9.05805580640193e-12,,,,,,,
