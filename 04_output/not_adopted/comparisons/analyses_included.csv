@@ -15,9 +15,10 @@ corrected-cov5-mnchisq-ctexcl,corrected,5,MN,Chisq,none,TRUE,20,0.01,corrected-c
 corrected-cov5-mnchisq-ctexcl-d50,corrected,5,MN,Chisq,none,TRUE,50,0.01,corrected-cov5-mnchisq,4d2b451ed872ed0ef171db1e4695494f,4be241cfd320d7315a31059278cfc7c6,b6d827b,2026-11-21 12:20:03,04;05;06;07;08;09
 corrected-cov5-mnchisq-ctexcl-d50-q05,corrected,5,MN,Chisq,none,TRUE,50,0.05,corrected-cov5-mnchisq,4d2b451ed872ed0ef171db1e4695494f,4be241cfd320d7315a31059278cfc7c6,4b5263a,2026-11-22 14:19:44,04;05;06;07;08;09
 corrected-cov5-mnchisq-ctexcl-q05,corrected,5,MN,Chisq,none,TRUE,20,0.05,corrected-cov5-mnchisq,4d2b451ed872ed0ef171db1e4695494f,4be241cfd320d7315a31059278cfc7c6,40e1b57,2026-11-22 14:03:51,04;05;06;07;08;09
-corrected-cov5-mnchisq-ctrl,corrected,5,MN,Chisq,ctrl,FALSE,20,0.01,corrected-cov5-mnchisq-ctrl,03a83b06d924d94d2938a726f161963b,"",e71fcc2,2026-11-23 00:17:47,04;05;06;07;08
+corrected-cov5-mnchisq-ctrl,corrected,5,MN,Chisq,ctrl,FALSE,20,0.01,corrected-cov5-mnchisq-ctrl,03a83b06d924d94d2938a726f161963b,"",e71fcc2,2026-11-23 00:20:11,04;05;06;07;08;09
 corrected-cov5-mnchisq-d50,corrected,5,MN,Chisq,none,FALSE,50,0.01,corrected-cov5-mnchisq,4d2b451ed872ed0ef171db1e4695494f,"",689bca5,2026-11-21 21:02:18,04;05;06;07;08;09
 corrected-cov5-mnchisq-d50-q05,corrected,5,MN,Chisq,none,FALSE,50,0.05,corrected-cov5-mnchisq,4d2b451ed872ed0ef171db1e4695494f,"",271c297,2026-11-22 12:06:19,04;05;06;07;08;09
+corrected-cov5-mnchisq-inter,corrected,5,MN,Chisq,inter,FALSE,20,0.01,corrected-cov5-mnchisq-inter,122792e171e5d16902df5a67e97ec2f5,"",c1fc7ae,2026-11-23 01:38:06,04;05;06;07;08
 corrected-cov5-mnchisq-q05,corrected,5,MN,Chisq,none,FALSE,20,0.05,corrected-cov5-mnchisq,4d2b451ed872ed0ef171db1e4695494f,"",3467fa7,2026-11-22 11:50:31,04;05;06;07;08;09
 corrected-cov5-q05,corrected,5,none,not passed,none,FALSE,20,0.05,corrected-cov5,fff70143d6491df78097be9cba2e5a59,"",f029391,2026-11-22 10:46:26,04;05;06;07;08;09
 corrected-ctexcl,corrected,10,none,not passed,none,TRUE,20,0.01,corrected,df0c3e7805a7baead11759cd641f1df3,4be241cfd320d7315a31059278cfc7c6,33aaaea,2026-11-21 19:37:52,04;05;06;07;08;09
