@@ -1,0 +1,105 @@
+mode,set,n_loci,track,n_overlap,pct_of_loci,legacy_share_pct,track_label
+ctrl-q05,all analysed CpGs,480579,gene,340706,70.8948996939109,,genes
+ctrl-q05,all analysed CpGs,480579,mRNA,328804,68.4183037544296,,mRNA transcripts
+ctrl-q05,all analysed CpGs,480579,exon,174705,36.3530241646015,,exons
+ctrl-q05,all analysed CpGs,480579,CDS,130459,27.1462132136444,21.4850241020802,coding sequence
+ctrl-q05,all analysed CpGs,480579,exon_UTR,44251,9.20785136262716,7.28760607962003,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+ctrl-q05,all analysed CpGs,480579,intron,166610,34.6685976707264,27.4386578591556,introns
+ctrl-q05,all analysed CpGs,480579,nonCDS,306138,63.7019095715793,,complement of the exon track (not of coding sequence)
+ctrl-q05,all analysed CpGs,480579,lncRNA,14835,3.08690142515591,2.44314560554933,long non-coding RNA
+ctrl-q05,all analysed CpGs,480579,upstream_flank,17130,3.56445038172704,2.8211044302703,upstream flanks (up to 1 kb)
+ctrl-q05,all analysed CpGs,480579,downstream_flank,12652,2.63265768999478,2.0836318302265,downstream flanks (up to 1 kb)
+ctrl-q05,all analysed CpGs,480579,flanks,28286,5.88581690003101,,upstream and downstream flanks together
+ctrl-q05,all analysed CpGs,480579,intergenic,111306,23.1608122701991,18.3307559670558,intergenic regions
+ctrl-q05,all analysed CpGs,480579,TE,109966,22.8819819426151,18.1100741260423,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+ctrl-q05,eligible CpGs,65480,gene,57192,87.3427000610874,,genes
+ctrl-q05,eligible CpGs,65480,mRNA,55646,84.9816737935247,,mRNA transcripts
+ctrl-q05,eligible CpGs,65480,exon,21230,32.4221136224802,,exons
+ctrl-q05,eligible CpGs,65480,CDS,16420,25.0763591936469,18.7045770396191,coding sequence
+ctrl-q05,eligible CpGs,65480,exon_UTR,4811,7.34728161270617,5.48037272458023,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+ctrl-q05,eligible CpGs,65480,intron,36086,55.1099572388516,41.106782402661,introns
+ctrl-q05,eligible CpGs,65480,nonCDS,44369,67.7596212583995,,complement of the exon track (not of coding sequence)
+ctrl-q05,eligible CpGs,65480,lncRNA,2668,4.07452657299939,3.03920898548744,long non-coding RNA
+ctrl-q05,eligible CpGs,65480,upstream_flank,702,1.07208307880269,0.799671929464835,upstream flanks (up to 1 kb)
+ctrl-q05,eligible CpGs,65480,downstream_flank,1201,1.8341478313989,1.36809969699041,downstream flanks (up to 1 kb)
+ctrl-q05,eligible CpGs,65480,flanks,1803,2.75351252290776,,upstream and downstream flanks together
+ctrl-q05,eligible CpGs,65480,intergenic,6487,9.90684178375076,7.38956097783246,intergenic regions
+ctrl-q05,eligible CpGs,65480,TE,19411,29.6441661576054,22.1117262433646,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+ctrl-q05,ploidy DML,3326,gene,3151,94.7384245339748,,genes
+ctrl-q05,ploidy DML,3326,mRNA,3090,92.904389657246,,mRNA transcripts
+ctrl-q05,ploidy DML,3326,exon,1232,37.0414912808178,,exons
+ctrl-q05,ploidy DML,3326,CDS,963,28.953698135899,24.6543778801843,coding sequence
+ctrl-q05,ploidy DML,3326,exon_UTR,269,8.08779314491882,6.8868407578085,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+ctrl-q05,ploidy DML,3326,intron,1927,57.9374624173181,49.3343573988735,introns
+ctrl-q05,ploidy DML,3326,nonCDS,2102,63.1990378833434,,complement of the exon track (not of coding sequence)
+ctrl-q05,ploidy DML,3326,lncRNA,99,2.97654840649429,2.53456221198157,long non-coding RNA
+ctrl-q05,ploidy DML,3326,upstream_flank,16,0.481058328322309,0.409626216077829,upstream flanks (up to 1 kb)
+ctrl-q05,ploidy DML,3326,downstream_flank,41,1.23271196632592,1.04966717869944,downstream flanks (up to 1 kb)
+ctrl-q05,ploidy DML,3326,flanks,53,1.59350571256765,,upstream and downstream flanks together
+ctrl-q05,ploidy DML,3326,intergenic,122,3.66806975345761,3.12339989759345,intergenic regions
+ctrl-q05,ploidy DML,3326,TE,469,14.1010222489477,12.0071684587814,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+ctrl-q05,heat DML,2352,gene,2204,93.7074829931973,,genes
+ctrl-q05,heat DML,2352,mRNA,2179,92.6445578231293,,mRNA transcripts
+ctrl-q05,heat DML,2352,exon,987,41.9642857142857,,exons
+ctrl-q05,heat DML,2352,CDS,802,34.0986394557823,27.6361130254997,coding sequence
+ctrl-q05,heat DML,2352,exon_UTR,185,7.8656462585034,6.37491385251551,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+ctrl-q05,heat DML,2352,intron,1219,51.828231292517,42.0055134390076,introns
+ctrl-q05,heat DML,2352,nonCDS,1367,58.1207482993197,,complement of the exon track (not of coding sequence)
+ctrl-q05,heat DML,2352,lncRNA,84,3.57142857142857,2.89455547898001,long non-coding RNA
+ctrl-q05,heat DML,2352,upstream_flank,13,0.552721088435374,0.447966919365954,upstream flanks (up to 1 kb)
+ctrl-q05,heat DML,2352,downstream_flank,42,1.78571428571429,1.44727773949001,downstream flanks (up to 1 kb)
+ctrl-q05,heat DML,2352,flanks,54,2.29591836734694,,upstream and downstream flanks together
+ctrl-q05,heat DML,2352,intergenic,94,3.99659863945578,3.23914541695383,intergenic regions
+ctrl-q05,heat DML,2352,TE,463,19.6853741496599,15.9545141281875,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+ctrl-q05,shared,248,gene,239,96.3709677419355,,genes
+ctrl-q05,shared,248,mRNA,236,95.1612903225806,,mRNA transcripts
+ctrl-q05,shared,248,exon,105,42.3387096774194,,exons
+ctrl-q05,shared,248,CDS,88,35.4838709677419,30.0341296928328,coding sequence
+ctrl-q05,shared,248,exon_UTR,17,6.85483870967742,5.80204778156997,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+ctrl-q05,shared,248,intron,134,54.0322580645161,45.7337883959044,introns
+ctrl-q05,shared,248,nonCDS,143,57.6612903225807,,complement of the exon track (not of coding sequence)
+ctrl-q05,shared,248,lncRNA,6,2.41935483870968,2.04778156996587,long non-coding RNA
+ctrl-q05,shared,248,upstream_flank,0,0,0,upstream flanks (up to 1 kb)
+ctrl-q05,shared,248,downstream_flank,4,1.61290322580645,1.36518771331058,downstream flanks (up to 1 kb)
+ctrl-q05,shared,248,flanks,4,1.61290322580645,,upstream and downstream flanks together
+ctrl-q05,shared,248,intergenic,5,2.01612903225806,1.70648464163823,intergenic regions
+ctrl-q05,shared,248,TE,39,15.7258064516129,13.3105802047782,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+ctrl-q05,"shared, both hyper",85,gene,82,96.4705882352941,,genes
+ctrl-q05,"shared, both hyper",85,mRNA,80,94.1176470588235,,mRNA transcripts
+ctrl-q05,"shared, both hyper",85,exon,28,32.9411764705882,,exons
+ctrl-q05,"shared, both hyper",85,CDS,24,28.2352941176471,23.3009708737864,coding sequence
+ctrl-q05,"shared, both hyper",85,exon_UTR,4,4.70588235294118,3.88349514563107,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+ctrl-q05,"shared, both hyper",85,intron,54,63.5294117647059,52.4271844660194,introns
+ctrl-q05,"shared, both hyper",85,nonCDS,57,67.0588235294118,,complement of the exon track (not of coding sequence)
+ctrl-q05,"shared, both hyper",85,lncRNA,3,3.52941176470588,2.9126213592233,long non-coding RNA
+ctrl-q05,"shared, both hyper",85,upstream_flank,0,0,0,upstream flanks (up to 1 kb)
+ctrl-q05,"shared, both hyper",85,downstream_flank,0,0,0,downstream flanks (up to 1 kb)
+ctrl-q05,"shared, both hyper",85,flanks,0,0,,upstream and downstream flanks together
+ctrl-q05,"shared, both hyper",85,intergenic,3,3.52941176470588,2.9126213592233,intergenic regions
+ctrl-q05,"shared, both hyper",85,TE,15,17.6470588235294,14.5631067961165,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+ctrl-q05,"shared, both hypo",38,gene,36,94.7368421052632,,genes
+ctrl-q05,"shared, both hypo",38,mRNA,36,94.7368421052632,,mRNA transcripts
+ctrl-q05,"shared, both hypo",38,exon,18,47.3684210526316,,exons
+ctrl-q05,"shared, both hypo",38,CDS,12,31.5789473684211,27.2727272727273,coding sequence
+ctrl-q05,"shared, both hypo",38,exon_UTR,6,15.7894736842105,13.6363636363636,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+ctrl-q05,"shared, both hypo",38,intron,18,47.3684210526316,40.9090909090909,introns
+ctrl-q05,"shared, both hypo",38,nonCDS,20,52.6315789473684,,complement of the exon track (not of coding sequence)
+ctrl-q05,"shared, both hypo",38,lncRNA,0,0,0,long non-coding RNA
+ctrl-q05,"shared, both hypo",38,upstream_flank,0,0,0,upstream flanks (up to 1 kb)
+ctrl-q05,"shared, both hypo",38,downstream_flank,1,2.63157894736842,2.27272727272727,downstream flanks (up to 1 kb)
+ctrl-q05,"shared, both hypo",38,flanks,1,2.63157894736842,,upstream and downstream flanks together
+ctrl-q05,"shared, both hypo",38,intergenic,1,2.63157894736842,2.27272727272727,intergenic regions
+ctrl-q05,"shared, both hypo",38,TE,6,15.7894736842105,13.6363636363636,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+ctrl-q05,"shared, opposite",125,gene,121,96.8,,genes
+ctrl-q05,"shared, opposite",125,mRNA,120,96,,mRNA transcripts
+ctrl-q05,"shared, opposite",125,exon,59,47.2,,exons
+ctrl-q05,"shared, opposite",125,CDS,52,41.6,35.6164383561644,coding sequence
+ctrl-q05,"shared, opposite",125,exon_UTR,7,5.6,4.79452054794521,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+ctrl-q05,"shared, opposite",125,intron,62,49.6,42.4657534246575,introns
+ctrl-q05,"shared, opposite",125,nonCDS,66,52.8,,complement of the exon track (not of coding sequence)
+ctrl-q05,"shared, opposite",125,lncRNA,3,2.4,2.05479452054795,long non-coding RNA
+ctrl-q05,"shared, opposite",125,upstream_flank,0,0,0,upstream flanks (up to 1 kb)
+ctrl-q05,"shared, opposite",125,downstream_flank,3,2.4,2.05479452054795,downstream flanks (up to 1 kb)
+ctrl-q05,"shared, opposite",125,flanks,3,2.4,,upstream and downstream flanks together
+ctrl-q05,"shared, opposite",125,intergenic,1,0.8,0.684931506849315,intergenic regions
+ctrl-q05,"shared, opposite",125,TE,18,14.4,12.3287671232877,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"

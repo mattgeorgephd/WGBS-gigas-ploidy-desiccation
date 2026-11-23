@@ -1,0 +1,65 @@
+mode,set,n_loci,class,n,pct,pct_in_TE
+ctrl-q05,all analysed CpGs,480579,CDS,130459,27.1462132136444,2.01519251259016
+ctrl-q05,all analysed CpGs,480579,lncRNA,13895,2.89130403117906,27.1392587261605
+ctrl-q05,all analysed CpGs,480579,exon_UTR,38332,7.97621202757507,6.51935719503287
+ctrl-q05,all analysed CpGs,480579,intron,158065,32.8905341265432,30.0920507386202
+ctrl-q05,all analysed CpGs,480579,upstream_flank,17071,3.55217352401998,22.5294358854197
+ctrl-q05,all analysed CpGs,480579,downstream_flank,11143,2.31866144796173,35.2239073858028
+ctrl-q05,all analysed CpGs,480579,intergenic,111251,23.1493677418281,41.1061473604732
+ctrl-q05,all analysed CpGs,480579,other,363,0.0755338872485065,0
+ctrl-q05,eligible CpGs,65480,CDS,16420,25.0763591936469,4.55542021924482
+ctrl-q05,eligible CpGs,65480,lncRNA,2467,3.76756261453879,34.7790839075801
+ctrl-q05,eligible CpGs,65480,exon_UTR,3976,6.07208307880269,13.2293762575453
+ctrl-q05,eligible CpGs,65480,intron,34335,52.4358582773366,36.3331877093345
+ctrl-q05,eligible CpGs,65480,upstream_flank,702,1.07208307880269,54.985754985755
+ctrl-q05,eligible CpGs,65480,downstream_flank,1100,1.67990226023213,54.2727272727273
+ctrl-q05,eligible CpGs,65480,intergenic,6480,9.8961514966402,58.966049382716
+ctrl-q05,eligible CpGs,65480,other,0,0,
+ctrl-q05,ploidy DML,3326,CDS,963,28.953698135899,0.83073727933541
+ctrl-q05,ploidy DML,3326,lncRNA,90,2.70595309681299,21.1111111111111
+ctrl-q05,ploidy DML,3326,exon_UTR,234,7.03547805171377,7.26495726495727
+ctrl-q05,ploidy DML,3326,intron,1864,56.043295249549,19.7961373390558
+ctrl-q05,ploidy DML,3326,upstream_flank,16,0.481058328322309,12.5
+ctrl-q05,ploidy DML,3326,downstream_flank,37,1.11244738424534,45.945945945946
+ctrl-q05,ploidy DML,3326,intergenic,122,3.66806975345761,30.327868852459
+ctrl-q05,ploidy DML,3326,other,0,0,
+ctrl-q05,heat DML,2352,CDS,802,34.0986394557823,0.748129675810474
+ctrl-q05,heat DML,2352,lncRNA,76,3.2312925170068,10.5263157894737
+ctrl-q05,heat DML,2352,exon_UTR,148,6.29251700680272,2.02702702702703
+ctrl-q05,heat DML,2352,intron,1178,50.0850340136055,31.3242784380306
+ctrl-q05,heat DML,2352,upstream_flank,13,0.552721088435374,30.7692307692308
+ctrl-q05,heat DML,2352,downstream_flank,41,1.74319727891156,48.7804878048781
+ctrl-q05,heat DML,2352,intergenic,94,3.99659863945578,56.3829787234043
+ctrl-q05,heat DML,2352,other,0,0,
+ctrl-q05,shared,248,CDS,88,35.4838709677419,1.13636363636364
+ctrl-q05,shared,248,lncRNA,5,2.01612903225806,40
+ctrl-q05,shared,248,exon_UTR,16,6.45161290322581,0
+ctrl-q05,shared,248,intron,130,52.4193548387097,26.1538461538462
+ctrl-q05,shared,248,upstream_flank,0,0,
+ctrl-q05,shared,248,downstream_flank,4,1.61290322580645,25
+ctrl-q05,shared,248,intergenic,5,2.01612903225806,20
+ctrl-q05,shared,248,other,0,0,
+ctrl-q05,"shared, both hyper",85,CDS,24,28.2352941176471,0
+ctrl-q05,"shared, both hyper",85,lncRNA,3,3.52941176470588,33.3333333333333
+ctrl-q05,"shared, both hyper",85,exon_UTR,3,3.52941176470588,0
+ctrl-q05,"shared, both hyper",85,intron,52,61.1764705882353,26.9230769230769
+ctrl-q05,"shared, both hyper",85,upstream_flank,0,0,
+ctrl-q05,"shared, both hyper",85,downstream_flank,0,0,
+ctrl-q05,"shared, both hyper",85,intergenic,3,3.52941176470588,0
+ctrl-q05,"shared, both hyper",85,other,0,0,
+ctrl-q05,"shared, both hypo",38,CDS,12,31.5789473684211,0
+ctrl-q05,"shared, both hypo",38,lncRNA,0,0,
+ctrl-q05,"shared, both hypo",38,exon_UTR,6,15.7894736842105,0
+ctrl-q05,"shared, both hypo",38,intron,18,47.3684210526316,27.7777777777778
+ctrl-q05,"shared, both hypo",38,upstream_flank,0,0,
+ctrl-q05,"shared, both hypo",38,downstream_flank,1,2.63157894736842,100
+ctrl-q05,"shared, both hypo",38,intergenic,1,2.63157894736842,0
+ctrl-q05,"shared, both hypo",38,other,0,0,
+ctrl-q05,"shared, opposite",125,CDS,52,41.6,1.92307692307692
+ctrl-q05,"shared, opposite",125,lncRNA,2,1.6,50
+ctrl-q05,"shared, opposite",125,exon_UTR,7,5.6,0
+ctrl-q05,"shared, opposite",125,intron,60,48,25
+ctrl-q05,"shared, opposite",125,upstream_flank,0,0,
+ctrl-q05,"shared, opposite",125,downstream_flank,3,2.4,0
+ctrl-q05,"shared, opposite",125,intergenic,1,0.8,100
+ctrl-q05,"shared, opposite",125,other,0,0,

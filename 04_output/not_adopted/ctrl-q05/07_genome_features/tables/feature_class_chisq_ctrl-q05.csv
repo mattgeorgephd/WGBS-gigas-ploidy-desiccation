@@ -1,0 +1,4 @@
+mode,background,set,test,statistic,df,p,min_expected
+ctrl-q05,all analysed CpGs,ploidy DML,"chi-squared, DML status by exclusive class",1215.54681105175,7,3.06851960422605e-258,2.51225708988533
+ctrl-q05,all analysed CpGs,heat DML,"chi-squared, DML status by exclusive class",703.448823171896,7,1.24465226699059e-147,1.77655702808487
+ctrl-q05,all analysed CpGs,shared,"chi-squared, DML status by exclusive class",93.9106265635519,7,1.94284674552485e-17,0.187324040376296
