@@ -1,0 +1,4 @@
+mode,set,n_dml,n_regions,n_single_locus_regions,largest_region_n_dml,dml_in_regions_of_5_or_more
+ctrl-ctexcl-d50-q05,heat DML,2,2,2,1,0
+ctrl-ctexcl-d50-q05,ploidy DML,4,3,2,2,0
+ctrl-ctexcl-d50-q05,shared,0,0,0,0,0

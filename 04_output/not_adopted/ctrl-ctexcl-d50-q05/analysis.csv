@@ -1,0 +1,2 @@
+id,filter,min_coverage,overdispersion,test,contrast_variant,ct_excluded,dml_difference,dml_qvalue,fit_id,fit_fingerprint_md5,ct_variant_list_md5,git_commit,written_utc,steps_done
+ctrl-ctexcl-d50-q05,legacy,10,none,not passed,ctrl,TRUE,50,0.05,ctrl,2ef3ed9e3cb8bbf3cf383aa4352885a9,4be241cfd320d7315a31059278cfc7c6,fe0ef6a,2026-11-23 03:28:11,04;05;06;07;08;09
