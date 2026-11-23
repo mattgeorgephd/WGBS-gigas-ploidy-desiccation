@@ -1,0 +1,3 @@
+set,chr,start,end,span_bp,n_dml,n_hyper,n_hypo,mode
+heat DML,NC_047561.1,23953193,23953195,2,1,0,1,corrected-mnchisq-ctrl-ctexcl-d50-q05
+heat DML,NC_047566.1,54825892,54825894,2,1,1,0,corrected-mnchisq-ctrl-ctexcl-d50-q05
