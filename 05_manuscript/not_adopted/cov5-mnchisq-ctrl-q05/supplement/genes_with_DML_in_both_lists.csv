@@ -1,0 +1,2 @@
+gene_id,gene,biotype,product,chr,gene_start,gene_end,strand,n_transcripts,n_go_terms,in_legacy_universe,n_cpg_tested,n_cpg_eligible,n_dml,n_hyper,n_hypo,min_meth_diff,max_meth_diff,dml_positions
+105348209,LOC105348209,protein_coding,uncharacterized LOC105348209,NC_047561.1,26354518,26443353,+,2,10,TRUE,374,315,1,1,0,31.7310996563574,31.7310996563574,26386782

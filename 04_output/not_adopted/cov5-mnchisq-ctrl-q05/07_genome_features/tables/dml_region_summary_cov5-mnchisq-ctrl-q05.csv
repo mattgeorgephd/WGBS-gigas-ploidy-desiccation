@@ -1,0 +1,4 @@
+mode,set,n_dml,n_regions,n_single_locus_regions,largest_region_n_dml,dml_in_regions_of_5_or_more
+cov5-mnchisq-ctrl-q05,heat DML,2834,2333,2027,21,156
+cov5-mnchisq-ctrl-q05,ploidy DML,398,382,368,4,0
+cov5-mnchisq-ctrl-q05,shared,1,1,1,1,0
