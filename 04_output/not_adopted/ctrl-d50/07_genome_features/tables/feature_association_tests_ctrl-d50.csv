@@ -1,0 +1,55 @@
+mode,background,set,track,dml_in_track,dml_total,pct_dml,pct_other_cpg,odds_ratio,ci_low,ci_high,p_fisher,q_BH,track_label
+ctrl-d50,all analysed CpGs,ploidy DML,exon_UTR,0,4,0,9.20792800291318,0,0,14.9328333098791,1,1,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+ctrl-d50,all analysed CpGs,ploidy DML,CDS,0,4,0,27.1464391614212,0,0,4.06517623254225,0.580117920634698,1,coding sequence
+ctrl-d50,all analysed CpGs,ploidy DML,intron,4,4,100,34.6680538937731,Inf,1.24393991366697,Inf,0.014445576618845,0.520040758278422,introns
+ctrl-d50,all analysed CpGs,ploidy DML,upstream_flank,0,4,0,3.56448004994018,0,0,40.9642976746819,1,1,upstream flanks (up to 1 kb)
+ctrl-d50,all analysed CpGs,ploidy DML,downstream_flank,0,4,0,2.63267960255943,0,0,56.0730193296893,1,1,downstream flanks (up to 1 kb)
+ctrl-d50,all analysed CpGs,ploidy DML,lncRNA,0,4,0,3.0869271185559,0,0,47.5682149183985,1,1,long non-coding RNA
+ctrl-d50,all analysed CpGs,ploidy DML,TE,0,4,0,22.8821723976487,0,0,5.10550803304837,0.580218673686505,1,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+ctrl-d50,all analysed CpGs,ploidy DML,intergenic,0,4,0,23.1610050460386,0,0,5.02580414791904,0.579695570026787,1,intergenic regions
+ctrl-d50,all analysed CpGs,ploidy DML,gene,4,4,100,70.8946574416064,Inf,0.270984181707832,Inf,0.329706165578562,1,genes
+ctrl-d50,all analysed CpGs,heat DML,exon_UTR,0,4,0,9.20792800291318,0,0,14.9328333098791,1,1,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+ctrl-d50,all analysed CpGs,heat DML,CDS,2,4,50,27.1460229932893,2.68377673106959,0.194527374398262,37.0268560641551,0.298405171837871,1,coding sequence
+ctrl-d50,all analysed CpGs,heat DML,intron,2,4,50,34.668470061905,1.88453234725764,0.13658245740061,26.0013489875226,0.613309520365975,1,introns
+ctrl-d50,all analysed CpGs,heat DML,upstream_flank,0,4,0,3.56448004994018,0,0,40.9642976746819,1,1,upstream flanks (up to 1 kb)
+ctrl-d50,all analysed CpGs,heat DML,downstream_flank,0,4,0,2.63267960255943,0,0,56.0730193296893,1,1,downstream flanks (up to 1 kb)
+ctrl-d50,all analysed CpGs,heat DML,lncRNA,0,4,0,3.0869271185559,0,0,47.5682149183985,1,1,long non-coding RNA
+ctrl-d50,all analysed CpGs,heat DML,TE,0,4,0,22.8821723976487,0,0,5.10550803304837,0.580218673686505,1,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+ctrl-d50,all analysed CpGs,heat DML,intergenic,0,4,0,23.1610050460386,0,0,5.02580414791904,0.579695570026787,1,intergenic regions
+ctrl-d50,all analysed CpGs,heat DML,gene,4,4,100,70.8946574416064,Inf,0.270984181707832,Inf,0.329706165578562,1,genes
+ctrl-d50,all analysed CpGs,shared,exon_UTR,0,0,,9.20785136262716,,,,,,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+ctrl-d50,all analysed CpGs,shared,CDS,0,0,,27.1462132136444,,,,,,coding sequence
+ctrl-d50,all analysed CpGs,shared,intron,0,0,,34.6685976707264,,,,,,introns
+ctrl-d50,all analysed CpGs,shared,upstream_flank,0,0,,3.56445038172704,,,,,,upstream flanks (up to 1 kb)
+ctrl-d50,all analysed CpGs,shared,downstream_flank,0,0,,2.63265768999478,,,,,,downstream flanks (up to 1 kb)
+ctrl-d50,all analysed CpGs,shared,lncRNA,0,0,,3.08690142515591,,,,,,long non-coding RNA
+ctrl-d50,all analysed CpGs,shared,TE,0,0,,22.8819819426151,,,,,,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+ctrl-d50,all analysed CpGs,shared,intergenic,0,0,,23.1608122701991,,,,,,intergenic regions
+ctrl-d50,all analysed CpGs,shared,gene,0,0,,70.8948996939109,,,,,,genes
+ctrl-d50,eligible CpGs,ploidy DML,exon_UTR,0,4,0,7.35682238057535,0,0,19.076826389883,1,1,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+ctrl-d50,eligible CpGs,ploidy DML,CDS,0,4,0,24.0366851411982,0,0,4.78844296239409,0.578524087080535,1,coding sequence
+ctrl-d50,eligible CpGs,ploidy DML,intron,4,4,100,58.7325151755081,Inf,0.463741815027694,Inf,0.147997459856731,1,introns
+ctrl-d50,eligible CpGs,ploidy DML,upstream_flank,0,4,0,0.824755872261811,0,0,183.288153714989,1,1,upstream flanks (up to 1 kb)
+ctrl-d50,eligible CpGs,ploidy DML,downstream_flank,0,4,0,1.49775666402745,0,0,99.7972770901582,1,1,downstream flanks (up to 1 kb)
+ctrl-d50,eligible CpGs,ploidy DML,lncRNA,0,4,0,4.23924518342571,0,0,34.2536371152128,1,1,long non-coding RNA
+ctrl-d50,eligible CpGs,ploidy DML,TE,0,4,0,28.6025336500396,0,0,3.78249919470247,0.583562125110657,1,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+ctrl-d50,eligible CpGs,ploidy DML,intergenic,0,4,0,7.82198469253101,0,0,17.860289354625,1,1,intergenic regions
+ctrl-d50,eligible CpGs,ploidy DML,gene,4,4,100,89.9709685932964,Inf,0.0735286452437298,Inf,1,1,genes
+ctrl-d50,eligible CpGs,heat DML,exon_UTR,0,4,0,7.35706509188084,0,0,19.0761535079692,1,1,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+ctrl-d50,eligible CpGs,heat DML,CDS,2,4,50,24.0308798785919,3.16116035337887,0.229097806283834,43.6175951576375,0.245524454678768,1,coding sequence
+ctrl-d50,eligible CpGs,heat DML,intron,2,4,50,58.7377519712316,0.702503704786991,0.0509223841771548,9.69410437088969,1,1,introns
+ctrl-d50,eligible CpGs,heat DML,upstream_flank,0,4,0,0.824783082049421,0,0,183.282142164233,1,1,upstream flanks (up to 1 kb)
+ctrl-d50,eligible CpGs,heat DML,downstream_flank,0,4,0,1.49780607700175,0,0,99.7939446090435,1,1,downstream flanks (up to 1 kb)
+ctrl-d50,eligible CpGs,heat DML,lncRNA,0,4,0,4.23938504173402,0,0,34.2524322435667,1,1,long non-coding RNA
+ctrl-d50,eligible CpGs,heat DML,TE,0,4,0,28.6034772854739,0,0,3.78232431062654,0.583564894874344,1,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+ctrl-d50,eligible CpGs,heat DML,intergenic,0,4,0,7.82224275015671,0,0,17.8596503670055,1,1,intergenic regions
+ctrl-d50,eligible CpGs,heat DML,gene,4,4,100,89.970637722279,Inf,0.0735313479776547,Inf,1,1,genes
+ctrl-d50,eligible CpGs,shared,exon_UTR,0,0,,7.35609434273462,,,,,,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+ctrl-d50,eligible CpGs,shared,CDS,0,0,,24.0343064489527,,,,,,coding sequence
+ctrl-d50,eligible CpGs,shared,intron,0,0,,58.7365990433779,,,,,,introns
+ctrl-d50,eligible CpGs,shared,upstream_flank,0,0,,0.8246742536698,,,,,,upstream flanks (up to 1 kb)
+ctrl-d50,eligible CpGs,shared,downstream_flank,0,0,,1.49760844466436,,,,,,downstream flanks (up to 1 kb)
+ctrl-d50,eligible CpGs,shared,lncRNA,0,0,,4.23882566386277,,,,,,long non-coding RNA
+ctrl-d50,eligible CpGs,shared,TE,0,0,,28.5997031172687,,,,,,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+ctrl-d50,eligible CpGs,shared,intergenic,0,0,,7.82121062180439,,,,,,intergenic regions
+ctrl-d50,eligible CpGs,shared,gene,0,0,,89.9719610753752,,,,,,genes
