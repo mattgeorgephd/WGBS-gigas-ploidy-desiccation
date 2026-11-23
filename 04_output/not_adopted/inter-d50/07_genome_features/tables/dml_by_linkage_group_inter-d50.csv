@@ -1,0 +1,13 @@
+sequence,n_cpg_analysed,ploidy_dml,ploidy_dml_hyper,ploidy_dml_hypo,heat_dml,heat_dml_hyper,heat_dml_hypo,shared,shared_hyper,shared_hypo,n_genes,mode,pct_of_ploidy_dml,pct_of_heat_dml,ploidy_dml_per_1000_cpg,heat_dml_per_1000_cpg
+LG1,54739,0,0,0,0,0,0,0,0,0,3422,inter-d50,0,0,0,0
+LG2,26286,0,0,0,0,0,0,0,0,0,3521,inter-d50,0,0,0,0
+LG3,58816,1,0,1,2,1,1,0,0,0,3790,inter-d50,100,50,0.0170021762785637,0.0340043525571273
+LG4,37678,0,0,0,0,0,0,0,0,0,3115,inter-d50,0,0,0,0
+LG5,36663,0,0,0,0,0,0,0,0,0,3909,inter-d50,0,0,0,0
+LG6,61554,0,0,0,0,0,0,0,0,0,4117,inter-d50,0,0,0,0
+LG7,62350,0,0,0,1,1,0,0,0,0,4087,inter-d50,0,25,0,0.0160384923817161
+LG8,37765,0,0,0,1,1,0,0,0,0,3603,inter-d50,0,25,0,0.0264795445518337
+LG9,19306,0,0,0,0,0,0,0,0,0,1826,inter-d50,0,0,0,0
+LG10,60467,0,0,0,0,0,0,0,0,0,3701,inter-d50,0,0,0,0
+unplaced,24592,0,0,0,0,0,0,0,0,0,3117,inter-d50,0,0,0,0
+mitochondrial,363,0,0,0,0,0,0,0,0,0,0,inter-d50,0,0,0,0
