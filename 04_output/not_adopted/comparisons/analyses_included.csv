@@ -75,7 +75,8 @@ cov5-ctexcl-d50-q05,legacy,5,none,not passed,none,TRUE,50,0.05,cov5,10d66f1498ef
 cov5-ctexcl-q05,legacy,5,none,not passed,none,TRUE,20,0.05,cov5,10d66f1498ef61f043bbe3e5255a3a72,4be241cfd320d7315a31059278cfc7c6,26dabd3,2026-11-22 12:24:39,04;05;06;07;08;09
 cov5-ctrl,legacy,5,none,not passed,ctrl,FALSE,20,0.01,cov5-ctrl,f0ad3cdfabd27851527e81c4773d3d30,"",f495b1a,2026-11-22 17:48:06,04;05;06;07;08;09
 cov5-ctrl-ctexcl,legacy,5,none,not passed,ctrl,TRUE,20,0.01,cov5-ctrl,f0ad3cdfabd27851527e81c4773d3d30,4be241cfd320d7315a31059278cfc7c6,149492b,2026-11-23 17:34:16,04;05;06;07;08;09
-cov5-ctrl-d50,legacy,5,none,not passed,ctrl,FALSE,50,0.01,cov5-ctrl,f0ad3cdfabd27851527e81c4773d3d30,"",44ad0ae,2026-11-23 17:51:32,04;05;06;07;08
+cov5-ctrl-d50,legacy,5,none,not passed,ctrl,FALSE,50,0.01,cov5-ctrl,f0ad3cdfabd27851527e81c4773d3d30,"",44ad0ae,2026-11-23 17:54:00,04;05;06;07;08;09
+cov5-ctrl-q05,legacy,5,none,not passed,ctrl,FALSE,20,0.05,cov5-ctrl,f0ad3cdfabd27851527e81c4773d3d30,"",fc1af05,2026-11-23 18:13:21,04;05;06;07;08
 cov5-d50,legacy,5,none,not passed,none,FALSE,50,0.01,cov5,10d66f1498ef61f043bbe3e5255a3a72,"",c61d4ae,2026-11-21 11:40:40,04;05;06;07;08;09
 cov5-d50-q05,legacy,5,none,not passed,none,FALSE,50,0.05,cov5,10d66f1498ef61f043bbe3e5255a3a72,"",083cc59,2026-11-22 10:27:58,04;05;06;07;08;09
 cov5-inter,legacy,5,none,not passed,inter,FALSE,20,0.01,cov5-inter,37b336d7c94c6e508d209abeefc15692,"",81cb3d0,2026-11-22 19:15:43,04;05;06;07;08;09
