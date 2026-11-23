@@ -1,0 +1,5 @@
+gene_id,gene,biotype,product,chr,gene_start,gene_end,strand,n_transcripts,n_go_terms,in_legacy_universe,n_cpg_tested,n_cpg_eligible,n_dml,n_hyper,n_hypo,min_meth_diff,max_meth_diff,dml_positions
+105323039,LOC105323039,protein_coding,5' exonuclease Apollo,NC_047566.1,54820358,54826942,+,2,20,TRUE,11,5,1,1,0,51.8974358974359,51.8974358974359,54825892
+105344263,LOC105344263,protein_coding,uncharacterized LOC105344263,NC_047565.1,18457651,18466835,+,2,7,TRUE,3,3,1,1,0,50.7386192342478,50.7386192342478,18464323
+105345667,LOC105345667,protein_coding,cytoplasmic dynein 1 heavy chain 1,NC_047561.1,23938074,23978368,-,10,35,TRUE,41,17,1,0,1,-55.149375656436,-55.149375656436,23953193
+105347539,LOC105347539,protein_coding,coiled-coil domain-containing protein 124,NC_047561.1,4237492,4241277,-,1,5,FALSE,1,1,1,1,0,50.4777763944223,50.4777763944223,4239156
