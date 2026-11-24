@@ -299,6 +299,9 @@ cov5-mnchisq-ctrl-ctexcl,shared,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 cov5-mnchisq-ctrl-ctexcl-d50,ploidy,5,5,5,0,0,5,4,4,3,3,11,7,92,6,3,10,3,1
 cov5-mnchisq-ctrl-ctexcl-d50,heat,48,47,47,1,2,49,47,46,39,32,158,144,1703,111,39,213,67,67
 cov5-mnchisq-ctrl-ctexcl-d50,shared,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+cov5-mnchisq-ctrl-ctexcl-d50-q05,ploidy,12,12,12,0,0,12,10,10,7,7,39,34,275,23,7,32,13,14
+cov5-mnchisq-ctrl-ctexcl-d50-q05,heat,60,59,59,1,2,61,58,57,48,39,204,187,2132,141,48,236,76,85
+cov5-mnchisq-ctrl-ctexcl-d50-q05,shared,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 cov5-mnchisq-ctrl-ctexcl-q05,ploidy,352,325,320,10,18,343,304,294,249,189,1456,1290,17206,1144,246,791,201,246
 cov5-mnchisq-ctrl-ctexcl-q05,heat,2195,2021,1990,57,77,2101,1444,1403,1225,924,7745,5214,94992,4593,1220,1897,431,606
 cov5-mnchisq-ctrl-ctexcl-q05,shared,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
