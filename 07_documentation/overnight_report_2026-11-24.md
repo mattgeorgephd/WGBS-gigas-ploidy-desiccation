@@ -45,7 +45,11 @@ Built and tested before use:
 
 **What follows.** The conclusions of I-02 and I-07 hold at every combination of settings. Under the correction, the shared set comes from the all-sample ploidy contrast, it does not reappear among the controls, and the tested interaction does not contain it. Nothing in the runs shows a ploidy-specific response to heat that the confounding of I-01 and the five high-level libraries of I-49 would not also produce.
 
-**Not checked.** Whether the control-only and interaction lists are longer than relabelled libraries give was checked only at the paper's settings (10x, q < 0.01, no upper filter, no exclusion). It was not checked for the other settings, among them 5x and q < 0.05. The corrected test does not hold its level at 10x (I-06, item 2), so these lengths cannot be read as counts of real differences. The check does not need methylKit refits: `06_diagnostics/dml_corrected_test.R` repeats methylKit's test in base R on samples of CpGs for each relabelling (about 25 minutes on one core at 10x). At 5x it would need that script adapted to read the 5x tables, and an estimated few hours to run. It was not part of what you asked; say if you want it.
+**Checked afterwards at 5x, at your request (2026-11-24, `06_diagnostics/dml_corrected_test_5x.R`).** The relabelling check of the 10x diagnostic, made for the corrected 5x lists of `cov5-mnchisq-ctrl` and `cov5-mnchisq-inter` (the paper's settings with 5x coverage):
+- *Control-only ploidy:* the real list has 120 DML; 150 regroupings of the control libraries give a median of 135.5, and 92 of them reach 120. No evidence of a ploidy difference at single CpGs among the controls, as at 10x.
+- *Interaction:* the real list has 1,718 DML; 200 relabellings give a median of 136.5 and at most 1,451, so none reaches it. The relabellings that come closest keep most of the real grouping of the heat-treated libraries. The ploidy difference is not the same in the heat cohort as among the controls, but the heat cohort is also a separate experiment (I-01), so this is a ploidy by cohort interaction, not evidence of a ploidy-specific response to heat.
+- *The corrected test exceeds its level at 5x too:* over all relabellings, 8.6% (controls) and 6.7% (interaction) of p-values fall below 0.05, against 5%.
+Not checked: the other settings (upper filter, C-to-T exclusion, 50 points, q < 0.05), and whether the five high-level libraries of I-49 carry the 5x interaction list as they carry the 10x contrast.
 
 ## 3. Incidents
 

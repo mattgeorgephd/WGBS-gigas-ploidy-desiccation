@@ -357,4 +357,4 @@ if (is.na(trial)) {
 } else {
   log_msg("trial run (%d relabellings per design): nothing written", trial)
 }
-finish_step("dml_corrected_test_5x", t0)
+log_msg("dml_corrected_test_5x finished in %.1f min; outputs in %s", as.numeric(difftime(Sys.time(), t0, units = "mins")), out_dir)
