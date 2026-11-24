@@ -1,0 +1,55 @@
+mode,background,set,track,dml_in_track,dml_total,pct_dml,pct_other_cpg,odds_ratio,ci_low,ci_high,p_fisher,q_BH,track_label
+cov5-mnchisq-inter-d50-q05,all analysed CpGs,ploidy DML,exon_UTR,0,3,0,8.6104021664324,0,0,25.678951495219,1,1,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+cov5-mnchisq-inter-d50-q05,all analysed CpGs,ploidy DML,CDS,1,3,33.3333333333333,26.1806703978221,1.4098053652847,0.0238960417235998,27.0786379082837,1,1,coding sequence
+cov5-mnchisq-inter-d50-q05,all analysed CpGs,ploidy DML,intron,2,3,66.6666666666667,35.925132539886,3.56713147098028,0.18569771168403,210.180938323141,0.294453973752404,0.883361921257211,introns
+cov5-mnchisq-inter-d50-q05,all analysed CpGs,ploidy DML,upstream_flank,0,3,0,4.18581833013891,0,0,55.4403804942213,1,1,upstream flanks (up to 1 kb)
+cov5-mnchisq-inter-d50-q05,all analysed CpGs,ploidy DML,downstream_flank,0,3,0,3.24102953422661,0,0,72.2440181034873,1,1,downstream flanks (up to 1 kb)
+cov5-mnchisq-inter-d50-q05,all analysed CpGs,ploidy DML,lncRNA,0,3,0,2.78935571620293,0,0,84.382650367836,1,1,long non-coding RNA
+cov5-mnchisq-inter-d50-q05,all analysed CpGs,ploidy DML,TE,1,3,33.3333333333333,20.8661463595552,1.89615205174055,0.0321408357462192,36.4303547909176,0.504451086116742,1,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+cov5-mnchisq-inter-d50-q05,all analysed CpGs,ploidy DML,intergenic,0,3,0,22.3508890913547,0,0,8.40888866143121,1,1,intergenic regions
+cov5-mnchisq-inter-d50-q05,all analysed CpGs,ploidy DML,gene,3,3,100,70.5691586356282,Inf,0.172314364862757,Inf,0.560302479250237,1,genes
+cov5-mnchisq-inter-d50-q05,all analysed CpGs,heat DML,exon_UTR,5,83,6.02409638554217,8.61048436912996,0.680396774979629,0.214903491193695,1.65663773446754,0.555437426855789,1,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+cov5-mnchisq-inter-d50-q05,all analysed CpGs,heat DML,CDS,38,83,45.7831325301205,26.1799714690315,2.38110621990132,1.50445146914711,3.75065088081749,0.000137778127913907,0.00165333753496689,coding sequence
+cov5-mnchisq-inter-d50-q05,all analysed CpGs,heat DML,intron,39,83,46.9879518072289,35.9247729689751,1.58098542772015,1.00038961695585,2.48990653083045,0.039460396706329,0.227019907790666,introns
+cov5-mnchisq-inter-d50-q05,all analysed CpGs,heat DML,upstream_flank,0,83,0,4.18596410426297,0,0,1.04026814726722,0.0517329740476635,0.232798383214486,upstream flanks (up to 1 kb)
+cov5-mnchisq-inter-d50-q05,all analysed CpGs,heat DML,downstream_flank,0,83,0,3.24114240540356,0,0,1.35681841132091,0.117821209425587,0.471284837702346,downstream flanks (up to 1 kb)
+cov5-mnchisq-inter-d50-q05,all analysed CpGs,heat DML,lncRNA,1,83,1.20481927710843,2.78940932536927,0.42499869003293,0.0106346375559508,2.43506384524803,0.732270675997919,1,long non-coding RNA
+cov5-mnchisq-inter-d50-q05,all analysed CpGs,heat DML,TE,14,83,16.8674698795181,20.8663071201614,0.769478383286999,0.399964709051129,1.37989184372169,0.419694468173794,1,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+cov5-mnchisq-inter-d50-q05,all analysed CpGs,heat DML,intergenic,1,83,1.20481927710843,22.351623944944,0.0423652347132248,0.00106409238333081,0.242704476303692,3.577070492763e-08,6.43872688697339e-07,intergenic regions
+cov5-mnchisq-inter-d50-q05,all analysed CpGs,heat DML,gene,82,83,98.7951807228916,70.5681772176255,34.1996748559646,5.96872082247699,1358.74268647792,1.4193100203909e-11,5.10951607340725e-10,genes
+cov5-mnchisq-inter-d50-q05,all analysed CpGs,shared,exon_UTR,0,0,,8.61039092196013,,,,,,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+cov5-mnchisq-inter-d50-q05,all analysed CpGs,shared,CDS,0,0,,26.1806797386076,,,,,,coding sequence
+cov5-mnchisq-inter-d50-q05,all analysed CpGs,shared,intron,0,0,,35.9251726857841,,,,,,introns
+cov5-mnchisq-inter-d50-q05,all analysed CpGs,shared,upstream_flank,0,0,,4.18581286380677,,,,,,upstream flanks (up to 1 kb)
+cov5-mnchisq-inter-d50-q05,all analysed CpGs,shared,downstream_flank,0,0,,3.2410253017104,,,,,,downstream flanks (up to 1 kb)
+cov5-mnchisq-inter-d50-q05,all analysed CpGs,shared,lncRNA,0,0,,2.78935207353533,,,,,,long non-coding RNA
+cov5-mnchisq-inter-d50-q05,all analysed CpGs,shared,TE,0,0,,20.866162640669,,,,,,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+cov5-mnchisq-inter-d50-q05,all analysed CpGs,shared,intergenic,0,0,,22.3508599029442,,,,,,intergenic regions
+cov5-mnchisq-inter-d50-q05,all analysed CpGs,shared,gene,0,0,,70.5691970698701,,,,,,genes
+cov5-mnchisq-inter-d50-q05,eligible CpGs,ploidy DML,exon_UTR,0,3,0,7.28284361580263,0,0,30.8270242511008,1,1,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+cov5-mnchisq-inter-d50-q05,eligible CpGs,ploidy DML,CDS,1,3,33.3333333333333,27.0846617873608,1.34606069962174,0.0228151714384435,25.8577750609479,1,1,coding sequence
+cov5-mnchisq-inter-d50-q05,eligible CpGs,ploidy DML,intron,2,3,66.6666666666667,59.22318591961,1.37705240569539,0.0716835818275625,81.207698068042,1,1,introns
+cov5-mnchisq-inter-d50-q05,eligible CpGs,ploidy DML,upstream_flank,0,3,0,0.529312514460163,0,0,453.117093278477,1,1,upstream flanks (up to 1 kb)
+cov5-mnchisq-inter-d50-q05,eligible CpGs,ploidy DML,downstream_flank,0,3,0,1.86557267889691,0,0,127.234244600483,1,1,downstream flanks (up to 1 kb)
+cov5-mnchisq-inter-d50-q05,eligible CpGs,ploidy DML,lncRNA,0,3,0,2.73120743068997,0,0,86.2511063306602,1,1,long non-coding RNA
+cov5-mnchisq-inter-d50-q05,eligible CpGs,ploidy DML,TE,1,3,33.3333333333333,24.0594545485325,1.57817962483592,0.0267494900576065,30.3188914916367,0.562058487705647,1,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+cov5-mnchisq-inter-d50-q05,eligible CpGs,ploidy DML,intergenic,0,3,0,4.32873805802123,0,0,53.5217706707573,1,1,intergenic regions
+cov5-mnchisq-inter-d50-q05,eligible CpGs,ploidy DML,gene,3,3,100,93.406729830541,Inf,0.0291934432791864,Inf,1,1,genes
+cov5-mnchisq-inter-d50-q05,eligible CpGs,heat DML,exon_UTR,5,83,6.02409638554217,7.28322785703398,0.816028607407893,0.25774986711489,1.98736779363406,0.833240107314257,1,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+cov5-mnchisq-inter-d50-q05,eligible CpGs,heat DML,CDS,38,83,45.7831325301205,27.076264727634,2.27433502630199,1.43682325333657,3.58274086266794,0.000280663295961697,0.00252596966365527,coding sequence
+cov5-mnchisq-inter-d50-q05,eligible CpGs,heat DML,intron,39,83,46.9879518072289,59.2289409652634,0.610158597777472,0.386050150042479,0.961005063137998,0.0254517781867903,0.18325280294489,introns
+cov5-mnchisq-inter-d50-q05,eligible CpGs,heat DML,upstream_flank,0,83,0,0.52954559568234,0,0,8.55400161156875,1,1,upstream flanks (up to 1 kb)
+cov5-mnchisq-inter-d50-q05,eligible CpGs,heat DML,downstream_flank,0,83,0,1.86639417838573,0,0,2.39087738936681,0.411694436421361,1,downstream flanks (up to 1 kb)
+cov5-mnchisq-inter-d50-q05,eligible CpGs,heat DML,lncRNA,1,83,1.20481927710843,2.73184556237404,0.434212266129654,0.01086303301203,2.48890221382674,0.730525923697143,1,long non-coding RNA
+cov5-mnchisq-inter-d50-q05,eligible CpGs,heat DML,TE,14,83,16.8674698795181,24.0627099411177,0.640325858634166,0.332775479045619,1.1484070115279,0.156697992638347,0.56411277349805,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+cov5-mnchisq-inter-d50-q05,eligible CpGs,heat DML,intergenic,1,83,1.20481927710843,4.33007965765837,0.269443383039204,0.00674277273308935,1.54423389580008,0.271252476297697,0.883361921257211,intergenic regions
+cov5-mnchisq-inter-d50-q05,eligible CpGs,heat DML,gene,82,83,98.7951807228916,93.4043910507923,5.79027666124074,1.01041189823519,231.293576359663,0.0441427598481851,0.227019907790666,genes
+cov5-mnchisq-inter-d50-q05,eligible CpGs,shared,exon_UTR,0,0,,7.28272032683648,,,,,,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+cov5-mnchisq-inter-d50-q05,eligible CpGs,shared,CDS,0,0,,27.0847675691537,,,,,,coding sequence
+cov5-mnchisq-inter-d50-q05,eligible CpGs,shared,intron,0,0,,59.2233119279515,,,,,,introns
+cov5-mnchisq-inter-d50-q05,eligible CpGs,shared,upstream_flank,0,0,,0.529303553895291,,,,,,upstream flanks (up to 1 kb)
+cov5-mnchisq-inter-d50-q05,eligible CpGs,shared,downstream_flank,0,0,,1.86554109720451,,,,,,downstream flanks (up to 1 kb)
+cov5-mnchisq-inter-d50-q05,eligible CpGs,shared,lncRNA,0,0,,2.73116119493945,,,,,,long non-coding RNA
+cov5-mnchisq-inter-d50-q05,eligible CpGs,shared,TE,0,0,,24.0596115431061,,,,,,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+cov5-mnchisq-inter-d50-q05,eligible CpGs,shared,intergenic,0,0,,4.3286647781778,,,,,,intergenic regions
+cov5-mnchisq-inter-d50-q05,eligible CpGs,shared,gene,0,0,,93.4068414459354,,,,,,genes
