@@ -1,0 +1,5 @@
+chr,start,end,meth.diff,direction,gene_id,gene,biotype,product,n_go_terms
+NC_047561.1,5134010,5134012,72.093023255814,hyper,105333507,LOC105333507,protein_coding,protein dispatched homolog 1,10
+NC_047561.1,5134188,5134190,64.1975308641975,hyper,105333507,LOC105333507,protein_coding,protein dispatched homolog 1,10
+NC_047561.1,5166031,5166033,57.037037037037,hyper,105327639,LOC105327639,protein_coding,mediator of RNA polymerase II transcription subunit 27-A,3
+NC_047561.1,47194043,47194045,60.8671171171171,hyper,105323684,LOC105323684,protein_coding,cysteine-rich PDZ-binding protein,1
