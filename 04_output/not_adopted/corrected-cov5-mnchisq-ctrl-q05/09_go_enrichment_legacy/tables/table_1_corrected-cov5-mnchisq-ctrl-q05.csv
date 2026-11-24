@@ -1,0 +1,55 @@
+dml_set,gene_id,gene_name,chromosome,start,end,methylation_difference
+ploidy-DML,105321596,uncharacterized LOC105321596,NW_022994960.1,102461,102463,35.86
+ploidy-DML,105323682,"spectrin beta chain, non-erythrocytic 5",NC_047561.1,47180167,47180169,22.13
+ploidy-DML,105325608,mitochondrial Rho GTPase 1,NC_047568.1,52333625,52333627,44.96
+ploidy-DML,105327826,F-actin-uncapping protein LRRC16A,NC_047564.1,48321287,48321289,24.11
+ploidy-DML,105329758,"dynein heavy chain 2, axonemal",NC_047562.1,4020977,4020979,22.01
+ploidy-DML,105330274,"dynein heavy chain 2, axonemal",NC_047562.1,4020977,4020979,22.01
+ploidy-DML,105331956,protein broad-minded,NW_022994957.1,152185,152187,23.04
+ploidy-DML,105333084,spatacsin,NC_047561.1,9488119,9488121,35.94
+ploidy-DML,105333084,spatacsin,NC_047561.1,9492506,9492508,42.1
+ploidy-DML,105337762,kinesin-like protein KIF28P,NC_047564.1,23049729,23049731,39.61
+ploidy-DML,105337762,kinesin-like protein KIF28P,NC_047564.1,23049738,23049740,39.5
+ploidy-DML,105338883,radial spoke head protein 4 homolog A,NC_047561.1,50324359,50324361,29.73
+ploidy-DML,105339927,WD repeat-containing protein 19,NW_022994936.1,7347,7349,-37.55
+ploidy-DML,105343250,kinesin-like protein KIF2A,NC_047568.1,29125566,29125568,34.4
+ploidy-DML,105344081,tubulin polyglutamylase ttll6,NC_047561.1,52355447,52355449,22.96
+heat-DML,105320499,vacuolar protein sorting-associated protein 13A,NC_047563.1,62139646,62139648,-46.07
+heat-DML,105320695,DENN domain-containing protein 5A,NC_047563.1,38377219,38377221,-32.96
+heat-DML,105321596,uncharacterized LOC105321596,NW_022994960.1,89189,89191,27.06
+heat-DML,105321596,uncharacterized LOC105321596,NW_022994960.1,90634,90636,-26.45
+heat-DML,105321596,uncharacterized LOC105321596,NW_022994960.1,100491,100493,23.68
+heat-DML,105321596,uncharacterized LOC105321596,NW_022994960.1,110266,110268,-62.68
+heat-DML,105323311,polycystic kidney disease 2-like 1 protein,NC_047568.1,50426978,50426980,-34.91
+heat-DML,105324818,cyclic nucleotide-gated cation channel beta-1,NC_047564.1,35100886,35100888,-48.28
+heat-DML,105325407,WASH complex subunit 2,NC_047559.1,16018973,16018975,-21.79
+heat-DML,105325407,WASH complex subunit 2,NC_047559.1,16020230,16020232,-29.67
+heat-DML,105326252,myoferlin,NC_047562.1,50383543,50383545,-36.85
+heat-DML,105327506,"inositol 1,4,5-trisphosphate receptor type 2",NC_047562.1,24064924,24064926,24.23
+heat-DML,105327506,"inositol 1,4,5-trisphosphate receptor type 2",NC_047562.1,24065882,24065884,44.24
+heat-DML,105329663,AP-1 complex subunit gamma-1,NC_047564.1,30383385,30383387,-22.44
+heat-DML,105329663,AP-1 complex subunit gamma-1,NC_047564.1,30385249,30385251,42.19
+heat-DML,105329663,AP-1 complex subunit gamma-1,NC_047564.1,30385273,30385275,-20.8
+heat-DML,105331920,rootletin,NC_047564.1,15988473,15988475,-21.88
+heat-DML,105334383,neuron navigator 3,NC_047563.1,30182751,30182753,-35.81
+heat-DML,105334383,neuron navigator 3,NC_047563.1,30326493,30326495,-27.61
+heat-DML,105334956,synaptotagmin-7,NC_047563.1,57892871,57892873,21.67
+heat-DML,105334956,synaptotagmin-7,NC_047563.1,57895460,57895462,23
+heat-DML,105334963,microtubule-associated protein futsch,NC_047568.1,36582795,36582797,-24.96
+heat-DML,105335674,C-Jun-amino-terminal kinase-interacting protein 4,NC_047565.1,49290362,49290364,-25.15
+heat-DML,105335674,C-Jun-amino-terminal kinase-interacting protein 4,NC_047565.1,49290374,49290376,-24.02
+heat-DML,105337450,myosin-3,NC_047559.1,24819741,24819743,-27.55
+heat-DML,105338738,rabenosyn-5,NC_047566.1,38472083,38472085,-33.7
+heat-DML,105345667,cytoplasmic dynein 1 heavy chain 1,NC_047561.1,23942307,23942309,27.37
+heat-DML,105345667,cytoplasmic dynein 1 heavy chain 1,NC_047561.1,23950537,23950539,27.65
+heat-DML,105345667,cytoplasmic dynein 1 heavy chain 1,NC_047561.1,23951450,23951452,-24.36
+heat-DML,105345667,cytoplasmic dynein 1 heavy chain 1,NC_047561.1,23951945,23951947,-32.96
+heat-DML,105345667,cytoplasmic dynein 1 heavy chain 1,NC_047561.1,23952486,23952488,-33.11
+heat-DML,105345667,cytoplasmic dynein 1 heavy chain 1,NC_047561.1,23952692,23952694,-56.14
+heat-DML,105345667,cytoplasmic dynein 1 heavy chain 1,NC_047561.1,23952747,23952749,-62.17
+heat-DML,105345667,cytoplasmic dynein 1 heavy chain 1,NC_047561.1,23953193,23953195,-53.59
+heat-DML,105345667,cytoplasmic dynein 1 heavy chain 1,NC_047561.1,23953754,23953756,26.85
+heat-DML,105345667,cytoplasmic dynein 1 heavy chain 1,NC_047561.1,23970238,23970240,48.3
+heat-DML,117686732,centrosomal protein of 135 kDa-like,NW_022994978.1,107569,107571,27.22
+heat-DML,117686732,centrosomal protein of 135 kDa-like,NW_022994978.1,108277,108279,-26.63
+interaction-DML,105348209,uncharacterized LOC105348209,NC_047561.1,26386782,26386784,31.73
