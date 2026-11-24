@@ -1,0 +1,4 @@
+part,measure,observed,reference,reference_median,reference_min,reference_max,reference_at_or_below_observed,n_reference,reference_at_or_above_observed
+1,"DML kept (of 1,718) without the set left out",118,the other 149 sets of five of the same make-up,701,134,1189,0,149,
+2,"CpGs with an interaction difference above 20 points, 17 libraries",117319,all other groupings of the 17 within cohort,99345,89230,125440,,4409,52
+2,"corrected calls at the 22-library threshold, 17 libraries",526,groupings of the 17 within cohort drawn with the seed,258.5,139,627,,200,4
