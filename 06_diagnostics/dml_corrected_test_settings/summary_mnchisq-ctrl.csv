@@ -1,0 +1,9 @@
+id,ctexcl,d50,q05,difference,cutoff,p_star,pipeline_dml,fit,design,n_relabellings,observed_n_called,relabelled_n_called_median,relabelled_n_called_q05,relabelled_n_called_q95,relabelled_n_called_max,relabellings_at_or_above_observed,observed_n_called_on_their_own,relabelled_n_called_on_their_own_median,relabellings_on_their_own_at_or_above_observed
+mnchisq-ctrl,FALSE,FALSE,FALSE,20,0.01,7.1709890459331e-07,10,mnchisq-ctrl,ctrl,150,10,17,7,43.55,88,135,3,6,130
+mnchisq-ctrl-ctexcl,TRUE,FALSE,FALSE,20,0.01,7.1709890459331e-07,8,mnchisq-ctrl,ctrl,150,8,13,5,38,70,131,3,4.5,112
+mnchisq-ctrl-ctexcl-d50,TRUE,TRUE,FALSE,50,0.01,7.1709890459331e-07,1,mnchisq-ctrl,ctrl,150,1,0,0,2,4,48,0,0,150
+mnchisq-ctrl-ctexcl-d50-q05,TRUE,TRUE,TRUE,50,0.05,1.68434604946561e-05,1,mnchisq-ctrl,ctrl,150,1,1,0,3,6,77,0,0,150
+mnchisq-ctrl-ctexcl-q05,TRUE,FALSE,TRUE,20,0.05,1.68434604946561e-05,44,mnchisq-ctrl,ctrl,150,44,43,20.45,94.55,139,74,5,7,112
+mnchisq-ctrl-d50,FALSE,TRUE,FALSE,50,0.01,7.1709890459331e-07,1,mnchisq-ctrl,ctrl,150,1,0,0,2,5,67,0,0,150
+mnchisq-ctrl-d50-q05,FALSE,TRUE,TRUE,50,0.05,1.68434604946561e-05,1,mnchisq-ctrl,ctrl,150,1,1,0,5,8,98,0,0,150
+mnchisq-ctrl-q05,FALSE,FALSE,TRUE,20,0.05,1.68434604946561e-05,53,mnchisq-ctrl,ctrl,150,53,53.5,26.45,112.65,169,77,6,9,117

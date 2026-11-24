@@ -1,0 +1,9 @@
+id,ctexcl,d50,q05,difference,cutoff,p_star,pipeline_dml,fit,design,n_relabellings,observed_n_called,relabelled_n_called_median,relabelled_n_called_q05,relabelled_n_called_q95,relabelled_n_called_max,relabellings_at_or_above_observed,observed_n_called_on_their_own,relabelled_n_called_on_their_own_median,relabellings_on_their_own_at_or_above_observed
+mnchisq-inter,FALSE,FALSE,FALSE,20,0.01,7.02165743049911e-06,242,mnchisq-inter,inter,200,242,19,8,56,223,0,19,1,2
+mnchisq-inter-ctexcl,TRUE,FALSE,FALSE,20,0.01,7.02165743049911e-06,204,mnchisq-inter,inter,200,204,17,6.95,46.05,195,0,15,1,2
+mnchisq-inter-ctexcl-d50,TRUE,TRUE,FALSE,50,0.01,7.02165743049911e-06,63,mnchisq-inter,inter,200,63,3,0,13,67,1,9,0,1
+mnchisq-inter-ctexcl-d50-q05,TRUE,TRUE,TRUE,50,0.05,0.000284524498272739,226,mnchisq-inter,inter,200,226,20,6.95,58.1999999999999,162,0,13,1,2
+mnchisq-inter-ctexcl-q05,TRUE,FALSE,TRUE,20,0.05,0.000284524498272739,1734,mnchisq-inter,inter,200,1734,115,61,241.15,1613,0,21,2,3
+mnchisq-inter-d50,FALSE,TRUE,FALSE,50,0.01,7.02165743049911e-06,79,mnchisq-inter,inter,200,79,5,1,17,79,1,12,0,0
+mnchisq-inter-d50-q05,FALSE,TRUE,TRUE,50,0.05,0.000284524498272739,289,mnchisq-inter,inter,200,289,27,11,71,203,0,17,1,2
+mnchisq-inter-q05,FALSE,FALSE,TRUE,20,0.05,0.000284524498272739,2006,mnchisq-inter,inter,200,2006,133,72,283.8,1867,0,26,3,2
