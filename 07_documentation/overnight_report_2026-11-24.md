@@ -45,7 +45,7 @@ Built and tested before use:
 
 **What follows.** The conclusions of I-02 and I-07 hold at every combination of settings. Under the correction, the shared set comes from the all-sample ploidy contrast, it does not reappear among the controls, and the tested interaction does not contain it. Nothing in the runs shows a ploidy-specific response to heat that the confounding of I-01 and the five high-level libraries of I-49 would not also produce.
 
-**Not checked.** Whether the control-only and interaction lists are longer than relabelled libraries give was checked only at the paper's settings (10x, q < 0.01, no upper filter, no exclusion). It was not checked for the other settings, among them 5x and q < 0.05. The corrected test does not hold its level at 10x (I-06, item 2), so these lengths cannot be read as counts of real differences. The check would need relabelled fits, several hours each at 5x. It was not part of what you asked; say if you want it.
+**Not checked.** Whether the control-only and interaction lists are longer than relabelled libraries give was checked only at the paper's settings (10x, q < 0.01, no upper filter, no exclusion). It was not checked for the other settings, among them 5x and q < 0.05. The corrected test does not hold its level at 10x (I-06, item 2), so these lengths cannot be read as counts of real differences. The check does not need methylKit refits: `06_diagnostics/dml_corrected_test.R` repeats methylKit's test in base R on samples of CpGs for each relabelling (about 25 minutes on one core at 10x). At 5x it would need that script adapted to read the 5x tables, and an estimated few hours to run. It was not part of what you asked; say if you want it.
 
 ## 3. Incidents
 
