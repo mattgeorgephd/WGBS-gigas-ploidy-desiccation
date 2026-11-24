@@ -77,6 +77,8 @@ Column `mode` of every table holds the analysis id (the paper's tables keep the 
 | `mnchisq-ctexcl/` | `--overdispersion --exclude-ct-variants --gene-level-go` (combination C2), 2026-11-21, the fit of `mnchisq` from the cache: 452,159 CpGs tested, 12 ploidy and 142 heat DML (14 and 185 before the exclusion), 4 in both lists; step 10 calls no GO term against the eligible universe | 04 to 11 |
 | `corrected-ctexcl/`, `corrected-mnchisq-ctexcl/`, `corrected-cov5/`, `corrected-cov5-mnchisq/`, `cov5-mnchisq/`, `cov5-mnchisq-ctexcl/` and their `-d50` versions | the six combinations not run before, at 20 and 50 points, 2026-11-21 (author's request); all with cached fits except `cov5-mnchisq`, a new 5x fit by sequence (resumed from its saved parts after a container restart); counts in the comparison below | 04 to 09 |
 | `d50/`, `ctexcl-d50/`, `mnchisq-d50/`, `mnchisq-ctexcl-d50/`, `corrected-d50/`, `corrected-mnchisq-d50/`, `cov5-d50/`, `cov5-ctexcl-d50/`, `corrected-cov5-ctexcl-d50/`, `corrected-cov5-mnchisq-ctexcl-d50/` | `--difference 50` added to the switches of each analysis above, 2026-11-21, each with the fit of its analysis without `d50` from the cache (10 to 14 minutes per run); the last is the analysis closest to the settings of Venkataraman et al. 2022 (their stated settings, except the variant rule, which counts reads with their full CIGAR, I-08). DML counts in the comparison below | 04 to 09 |
+| the 32 analyses ending in `-q05` (`q05/`, `d50-q05/`, `corrected-cov5-mnchisq-ctexcl-q05/`, ...) | `--qvalue 0.05` added to each of the 32 analyses above (the 16 combinations at 20 and 50 points), 2026-11-22, each with the cached fit of its analysis without `q05` (section "The option `q05`"; issues.md, I-52) | 04 to 09 |
+| the 64 analyses with `ctrl` (`ctrl/`, `cov5-mnchisq-ctrl-ctexcl/`, ...) and the 64 with `inter` (`inter/`, `corrected-cov5-mnchisq-inter-d50-q05/`, ...) | `--controls-only-ploidy` or `--interaction` with each of the 64 combinations of the other settings, 2026-11-22 to 2026-11-24 (author's request of 2026-11-22): 16 new fits (8 for each option; 6.5 to 13.6 minutes for step 05 at 10x, 27 to 69 minutes at 5x, peak memory of the machine up to 10.4 GB), then the 112 variants that act after the test (`ctexcl`, `d50`, `q05`), 15 minutes a run at 10x and 19 to 26 at 5x; one commit per analysis, paper files unchanged around every run (sections "The option `ctrl`" and "The option `inter`"; issues.md, I-02 and I-07, updates of 2026-11-23 and 2026-11-24) | 04 to 09 |
 | `comparisons/` | the tables that listed the legacy and the corrected mode side by side before the settings layout, now rebuilt by every optional run from every analysis folder | |
 | `ct_variants/` | `01_pipeline/optional/ct_variant_loci.R` (see `01_pipeline/optional/README.md`), finished 2026-11-20: of the 13,245,836 CpG sites of the reference 407,217 listed (3.07%) (`tables/ct_variant_log.txt`) | |
 
@@ -329,42 +331,17 @@ WGBS_CACHE_DIR=/home/user/gannet_cache WGBS_CORES=2 Rscript run_pipeline.R --cov
 
 ## Comparison of all analyses
 
-`Rscript 01_pipeline/optional/compare_analyses.R` (from the repository root) writes `comparisons/analysis_comparison.csv` (every count, rates per 1,000 tested CpGs, ratios to the paper and a column `venkataraman_2022_settings`) and `comparisons/analysis_comparison.md` from the tables every run writes; it computes nothing new from the data. The table below is a copy of `comparisons/analysis_comparison.md` as of 2026-11-22 (32 analyses, all at q < 0.01: the 16 combinations of the four optional settings at 20 and at 50 points); after a new run, run the script again, and the file is authoritative. Since the options `ctrl` and `inter` (2026-11-22) the script also writes a column Contrasts (the paper's, `ctrl` or `inter`) and the interaction counts of the `inter` analyses (DML, hyper, hypo, and how many are among the shared loci), and orders the rows by contrasts first (the paper's row first); the copy below was made before them. Only `legacy` is the paper's analysis. A DML has a SLIM q-value below the cutoff of its row (column Q: 0.01 in the paper, 0.05 with option `q05`) and an absolute difference of more than the threshold of its row (percentage points). Upper filter: the 99.9th percentile coverage filter that the draft describes but did not apply (I-05). Shared: loci in both lists; opposite: different directions in the two lists. V2022: the settings that the Methods of Venkataraman et al. 2022 (BMC Genomics 23:556) state for coverage, the test, variant removal and the threshold, at q < 0.01; the variant rule counts reads with their full CIGAR (I-08).
+`Rscript 01_pipeline/optional/compare_analyses.R` (from the repository root) writes `comparisons/analysis_comparison.csv` (every count, rates per 1,000 tested CpGs, ratios to the paper, counts at 10, 15 and 25 points and a column `venkataraman_2022_settings`) and `comparisons/analysis_comparison.md` from the tables every run writes; it computes nothing new from the data. After a new run, run the script again; the file is authoritative, and no copy of it is kept here. Only `legacy` is the paper's analysis. A DML has a SLIM q-value below the cutoff of its row (column Q: 0.01 in the paper, 0.05 with option `q05`) and an absolute difference of more than the threshold of its row (percentage points). Upper filter: the 99.9th percentile coverage filter that the draft describes but did not apply (I-05). Shared: loci in both lists; opposite: different directions in the two lists. V2022: the settings that the Methods of Venkataraman et al. 2022 (BMC Genomics 23:556) state for coverage, the test, variant removal and the threshold, at q < 0.01; the variant rule counts reads with their full CIGAR (I-08).
 
-| Analysis | Coverage | Upper filter | Overdispersion | C-to-T loci | Threshold | Q | CpGs tested | Ploidy DML (hyper/hypo) | Heat DML (hyper/hypo) | Shared (both hyper/both hypo/opposite) | Opposite % |
-|---|---|---|---|---|---|---|---|---|---|---|---|
-| legacy (paper) | 10x | no | none | kept | 20 | 0.01 | 480,579 | 1,038 (442/596) | 2,351 (1,150/1,201) | 200 (28/49/123) | 61.5 |
-| ctexcl | 10x | no | none | excluded | 20 | 0.01 | 452,159 | 717 (302/415) | 1,667 (826/841) | 139 (16/26/97) | 69.8 |
-| mnchisq | 10x | no | MN, chi-squared | kept | 20 | 0.01 | 480,579 | 14 (9/5) | 185 (95/90) | 4 (1/2/1) | 25.0 |
-| mnchisq-ctexcl | 10x | no | MN, chi-squared | excluded | 20 | 0.01 | 452,159 | 12 (7/5) | 142 (75/67) | 4 (1/2/1) | 25.0 |
-| corrected | 10x | yes | none | kept | 20 | 0.01 | 454,555 | 952 (430/522) | 2,273 (1,089/1,184) | 159 (27/49/83) | 52.2 |
-| corrected-ctexcl | 10x | yes | none | excluded | 20 | 0.01 | 427,349 | 635 (292/343) | 1,596 (772/824) | 100 (15/26/59) | 59.0 |
-| corrected-mnchisq | 10x | yes | MN, chi-squared | kept | 20 | 0.01 | 454,555 | 14 (9/5) | 157 (84/73) | 4 (1/2/1) | 25.0 |
-| corrected-mnchisq-ctexcl | 10x | yes | MN, chi-squared | excluded | 20 | 0.01 | 427,349 | 12 (7/5) | 118 (65/53) | 4 (1/2/1) | 25.0 |
-| cov5 | 5x | no | none | kept | 20 | 0.01 | 2,297,236 | 9,942 (4,408/5,534) | 21,361 (10,090/11,271) | 1,784 (318/485/981) | 55.0 |
-| cov5-ctexcl | 5x | no | none | excluded | 20 | 0.01 | 2,153,017 | 7,046 (3,157/3,889) | 15,530 (7,265/8,265) | 1,219 (228/311/680) | 55.8 |
-| cov5-mnchisq | 5x | no | MN, chi-squared | kept | 20 | 0.01 | 2,297,236 | 126 (58/68) | 1,191 (511/680) | 27 (10/12/5) | 18.5 |
-| cov5-mnchisq-ctexcl | 5x | no | MN, chi-squared | excluded | 20 | 0.01 | 2,153,017 | 96 (48/48) | 923 (382/541) | 19 (8/8/3) | 15.8 |
-| corrected-cov5 | 5x | yes | none | kept | 20 | 0.01 | 2,265,759 | 9,791 (4,380/5,411) | 21,200 (9,987/11,213) | 1,711 (312/482/917) | 53.6 |
-| corrected-cov5-ctexcl | 5x | yes | none | excluded | 20 | 0.01 | 2,122,969 | 6,902 (3,133/3,769) | 15,376 (7,168/8,208) | 1,148 (222/308/618) | 53.8 |
-| corrected-cov5-mnchisq | 5x | yes | MN, chi-squared | kept | 20 | 0.01 | 2,265,759 | 126 (58/68) | 1,133 (494/639) | 27 (10/12/5) | 18.5 |
-| corrected-cov5-mnchisq-ctexcl | 5x | yes | MN, chi-squared | excluded | 20 | 0.01 | 2,122,969 | 96 (48/48) | 875 (368/507) | 19 (8/8/3) | 15.8 |
-| d50 | 10x | no | none | kept | 50 | 0.01 | 480,579 | 1 (0/1) | 4 (3/1) | 0 (0/0/0) |  |
-| ctexcl-d50 | 10x | no | none | excluded | 50 | 0.01 | 452,159 | 1 (0/1) | 2 (1/1) | 0 (0/0/0) |  |
-| mnchisq-d50 | 10x | no | MN, chi-squared | kept | 50 | 0.01 | 480,579 | 1 (0/1) | 4 (3/1) | 0 (0/0/0) |  |
-| mnchisq-ctexcl-d50 | 10x | no | MN, chi-squared | excluded | 50 | 0.01 | 452,159 | 1 (0/1) | 2 (1/1) | 0 (0/0/0) |  |
-| corrected-d50 | 10x | yes | none | kept | 50 | 0.01 | 454,555 | 1 (0/1) | 4 (3/1) | 0 (0/0/0) |  |
-| corrected-ctexcl-d50 | 10x | yes | none | excluded | 50 | 0.01 | 427,349 | 1 (0/1) | 2 (1/1) | 0 (0/0/0) |  |
-| corrected-mnchisq-d50 | 10x | yes | MN, chi-squared | kept | 50 | 0.01 | 454,555 | 1 (0/1) | 4 (3/1) | 0 (0/0/0) |  |
-| corrected-mnchisq-ctexcl-d50 | 10x | yes | MN, chi-squared | excluded | 50 | 0.01 | 427,349 | 1 (0/1) | 2 (1/1) | 0 (0/0/0) |  |
-| cov5-d50 | 5x | no | none | kept | 50 | 0.01 | 2,297,236 | 6 (2/4) | 92 (41/51) | 0 (0/0/0) |  |
-| cov5-ctexcl-d50 | 5x | no | none | excluded | 50 | 0.01 | 2,153,017 | 4 (1/3) | 63 (28/35) | 0 (0/0/0) |  |
-| cov5-mnchisq-d50 | 5x | no | MN, chi-squared | kept | 50 | 0.01 | 2,297,236 | 1 (0/1) | 63 (30/33) | 0 (0/0/0) |  |
-| cov5-mnchisq-ctexcl-d50 | 5x | no | MN, chi-squared | excluded | 50 | 0.01 | 2,153,017 | 1 (0/1) | 48 (21/27) | 0 (0/0/0) |  |
-| corrected-cov5-d50 | 5x | yes | none | kept | 50 | 0.01 | 2,265,759 | 6 (2/4) | 92 (41/51) | 0 (0/0/0) |  |
-| corrected-cov5-ctexcl-d50 | 5x | yes | none | excluded | 50 | 0.01 | 2,122,969 | 4 (1/3) | 63 (28/35) | 0 (0/0/0) |  |
-| corrected-cov5-mnchisq-d50 | 5x | yes | MN, chi-squared | kept | 50 | 0.01 | 2,265,759 | 1 (0/1) | 62 (30/32) | 0 (0/0/0) |  |
-| corrected-cov5-mnchisq-ctexcl-d50 (V2022) | 5x | yes | MN, chi-squared | excluded | 50 | 0.01 | 2,122,969 | 1 (0/1) | 47 (21/26) | 0 (0/0/0) |  |
+As of 2026-11-24 the table has 192 rows: the 64 combinations of the six settings that do not change the contrasts (`corrected`, `cov5`, `mnchisq`, `ctexcl`, `d50`, `q05`, each on or off; the paper's settings are the one with all six off), each with the paper's contrasts, with `ctrl` and with `inter`. In brief (issues.md, I-02, I-07, I-51 and I-52):
+
+| Contrasts | Without the overdispersion correction, 20 points | With the correction, 20 points | At 50 points |
+|---|---|---|---|
+| The paper's (64 analyses) | ploidy 635 to 1,038 DML at 10x, 6,902 to 10,335 at 5x; heat 1,596 to 2,352 and 15,376 to 21,604; shared 100 to 201 and 1,148 to 1,891 | ploidy 12 to 37 and 96 to 321; heat 118 to 410 and 875 to 2,834; shared 4 to 6 and 19 to 45 | ploidy 1 to 6, heat 2 to 92; no shared locus |
+| `ctrl` (64) | control-only ploidy 1,985 to 3,326 at 10x, 14,741 to 27,725 at 5x, 77% to 84% higher in triploids; heat as the paper's | control-only ploidy 5 to 53 and 106 to 398; shared with the heat list in 2 of 16 analyses, one locus each | control-only ploidy 0 to 50; no shared locus |
+| `inter` (64) | ploidy, heat and shared as the paper's; interaction 13,282 to 20,352 at 10x, 70,041 to 112,438 at 5x, 86% to 91% negative; 26% to 56% of the shared loci among them | interaction 194 to 2,006 and 1,427 to 9,044, 92% to 95% negative; none of the shared loci among them | interaction 61 to 7,876 (a difference of two differences, not on the scale of a main effect) |
+
+Each cell covers 16 analyses (10x and 5x, each with and without the upper filter, `ctexcl` and `q05`); where two ranges are given, the first is at 10x and the second at 5x. Whether the control-only and interaction lists are longer than chance gives has been checked at 10x only (issues.md, I-06 item 2, I-02 and I-07).
 
 ## What is tracked
 
