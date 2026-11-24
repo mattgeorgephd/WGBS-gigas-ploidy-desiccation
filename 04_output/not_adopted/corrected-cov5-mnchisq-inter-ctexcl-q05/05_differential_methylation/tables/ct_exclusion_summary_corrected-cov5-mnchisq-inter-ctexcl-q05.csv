@@ -1,0 +1,4 @@
+mode,contrast,cpg_tested_before,cpg_removed,cpg_tested_after,dml_before,dml_removed,dml_after,cpg_kept_not_assessable,dml_kept_not_assessable,min_crick_reads_assessable
+corrected-cov5-mnchisq-inter-ctexcl-q05,ploidy,2265759,142790,2122969,313,81,232,36868,3,3
+corrected-cov5-mnchisq-inter-ctexcl-q05,heat,2265759,142790,2122969,2737,621,2116,36868,26,3
+corrected-cov5-mnchisq-inter-ctexcl-q05,interaction,2265759,142790,2122969,9025,1344,7681,36868,42,3
