@@ -1,0 +1,101 @@
+mode,min_coverage,group,bin,grouping,n,mean_percent,se_percent
+corrected-cov5-mnchisq-inter-q05,1,diploid,0-10,ploidy,11,83.2137839807001,0.151946374411772
+corrected-cov5-mnchisq-inter-q05,1,diploid,11-20,ploidy,11,2.58599030706393,0.0387173710996252
+corrected-cov5-mnchisq-inter-q05,1,diploid,21-30,ploidy,11,1.38472943482672,0.0221305171962845
+corrected-cov5-mnchisq-inter-q05,1,diploid,31-40,ploidy,11,1.59856860697284,0.0207605969360263
+corrected-cov5-mnchisq-inter-q05,1,diploid,41-50,ploidy,11,1.83150628977869,0.0231337816683794
+corrected-cov5-mnchisq-inter-q05,1,diploid,51-60,ploidy,11,0.803770480390108,0.0323623230288025
+corrected-cov5-mnchisq-inter-q05,1,diploid,61-70,ploidy,11,1.08219910583439,0.0214657030382515
+corrected-cov5-mnchisq-inter-q05,1,diploid,71-80,ploidy,11,1.32087263764916,0.024533649780451
+corrected-cov5-mnchisq-inter-q05,1,diploid,81-90,ploidy,11,1.42606791796161,0.0696209793417133
+corrected-cov5-mnchisq-inter-q05,1,diploid,91-100,ploidy,11,4.75251123882245,0.0984650496979572
+corrected-cov5-mnchisq-inter-q05,5,diploid,0-10,ploidy,11,81.0066508818871,0.145770636374394
+corrected-cov5-mnchisq-inter-q05,5,diploid,11-20,ploidy,11,3.94998729572499,0.152549608497669
+corrected-cov5-mnchisq-inter-q05,5,diploid,21-30,ploidy,11,1.4113403383848,0.0287646348529279
+corrected-cov5-mnchisq-inter-q05,5,diploid,31-40,ploidy,11,1.62596914346507,0.0284943996933717
+corrected-cov5-mnchisq-inter-q05,5,diploid,41-50,ploidy,11,1.46647441942642,0.0329056084519134
+corrected-cov5-mnchisq-inter-q05,5,diploid,51-60,ploidy,11,1.21258487792735,0.0235651347056307
+corrected-cov5-mnchisq-inter-q05,5,diploid,61-70,ploidy,11,1.19816139220645,0.0274304536884491
+corrected-cov5-mnchisq-inter-q05,5,diploid,71-80,ploidy,11,1.66380784489253,0.0285215904045338
+corrected-cov5-mnchisq-inter-q05,5,diploid,81-90,ploidy,11,2.14323423096003,0.0444981221313559
+corrected-cov5-mnchisq-inter-q05,5,diploid,91-100,ploidy,11,4.3217895751253,0.128136590660986
+corrected-cov5-mnchisq-inter-q05,1,triploid,0-10,ploidy,11,83.1412702231657,0.110315754170686
+corrected-cov5-mnchisq-inter-q05,1,triploid,11-20,ploidy,11,2.70957433242623,0.082319981733437
+corrected-cov5-mnchisq-inter-q05,1,triploid,21-30,ploidy,11,1.45619709450211,0.0519207595404045
+corrected-cov5-mnchisq-inter-q05,1,triploid,31-40,ploidy,11,1.62123019951104,0.0285861163931431
+corrected-cov5-mnchisq-inter-q05,1,triploid,41-50,ploidy,11,1.83334415810842,0.0187858022409041
+corrected-cov5-mnchisq-inter-q05,1,triploid,51-60,ploidy,11,0.820849013344644,0.025421627654836
+corrected-cov5-mnchisq-inter-q05,1,triploid,61-70,ploidy,11,1.13320850921781,0.0194754402455477
+corrected-cov5-mnchisq-inter-q05,1,triploid,71-80,ploidy,11,1.36046782721224,0.0188521149704193
+corrected-cov5-mnchisq-inter-q05,1,triploid,81-90,ploidy,11,1.3925492373918,0.0251857008771311
+corrected-cov5-mnchisq-inter-q05,1,triploid,91-100,ploidy,11,4.53130940511997,0.254778566189239
+corrected-cov5-mnchisq-inter-q05,5,triploid,0-10,ploidy,11,80.8379439287193,0.177243478530762
+corrected-cov5-mnchisq-inter-q05,5,triploid,11-20,ploidy,11,4.10932237440905,0.0653936103696554
+corrected-cov5-mnchisq-inter-q05,5,triploid,21-30,ploidy,11,1.4958592711937,0.0596347996239566
+corrected-cov5-mnchisq-inter-q05,5,triploid,31-40,ploidy,11,1.65054469111186,0.0290022571771961
+corrected-cov5-mnchisq-inter-q05,5,triploid,41-50,ploidy,11,1.46516455712979,0.0240000450675578
+corrected-cov5-mnchisq-inter-q05,5,triploid,51-60,ploidy,11,1.24525377454509,0.0194747449123839
+corrected-cov5-mnchisq-inter-q05,5,triploid,61-70,ploidy,11,1.27326114554763,0.0277168186741273
+corrected-cov5-mnchisq-inter-q05,5,triploid,71-80,ploidy,11,1.73033290730088,0.0316750468615344
+corrected-cov5-mnchisq-inter-q05,5,triploid,81-90,ploidy,11,2.12026856207028,0.0396293829164316
+corrected-cov5-mnchisq-inter-q05,5,triploid,91-100,ploidy,11,4.07204878797247,0.213191691818708
+corrected-cov5-mnchisq-inter-q05,1,heat,0-10,treatment,10,83.0735470877986,0.144698476670671
+corrected-cov5-mnchisq-inter-q05,1,heat,11-20,treatment,10,2.71591918650045,0.0684915933020602
+corrected-cov5-mnchisq-inter-q05,1,heat,21-30,treatment,10,1.4930691996784,0.0345487336928485
+corrected-cov5-mnchisq-inter-q05,1,heat,31-40,treatment,10,1.63764983343159,0.0205322999753137
+corrected-cov5-mnchisq-inter-q05,1,heat,41-50,treatment,10,1.81462332652309,0.0205886341323146
+corrected-cov5-mnchisq-inter-q05,1,heat,51-60,treatment,10,0.896732629061068,0.0165650072879324
+corrected-cov5-mnchisq-inter-q05,1,heat,61-70,treatment,10,1.14893368088732,0.0170075268689502
+corrected-cov5-mnchisq-inter-q05,1,heat,71-80,treatment,10,1.37804199252173,0.0168345650716527
+corrected-cov5-mnchisq-inter-q05,1,heat,81-90,treatment,10,1.54943203709306,0.0404225539476575
+corrected-cov5-mnchisq-inter-q05,1,heat,91-100,treatment,10,4.29205102650468,0.165366755100663
+corrected-cov5-mnchisq-inter-q05,5,heat,0-10,treatment,10,81.1296719647114,0.135749646153018
+corrected-cov5-mnchisq-inter-q05,5,heat,11-20,treatment,10,3.78843648413977,0.111007872544569
+corrected-cov5-mnchisq-inter-q05,5,heat,21-30,treatment,10,1.52021181283533,0.0436522818063854
+corrected-cov5-mnchisq-inter-q05,5,heat,31-40,treatment,10,1.64685851335009,0.0257821905568574
+corrected-cov5-mnchisq-inter-q05,5,heat,41-50,treatment,10,1.52274828974555,0.0253460957527725
+corrected-cov5-mnchisq-inter-q05,5,heat,51-60,treatment,10,1.24915285872572,0.0204119941216462
+corrected-cov5-mnchisq-inter-q05,5,heat,61-70,treatment,10,1.28620847032207,0.0227133496714659
+corrected-cov5-mnchisq-inter-q05,5,heat,71-80,treatment,10,1.68803007576875,0.020949616573977
+corrected-cov5-mnchisq-inter-q05,5,heat,81-90,treatment,10,2.15675779809944,0.0453187483586505
+corrected-cov5-mnchisq-inter-q05,5,heat,91-100,treatment,10,4.01192373230194,0.192898631239868
+corrected-cov5-mnchisq-inter-q05,1,control,0-10,treatment,12,83.2641771137115,0.117570549126037
+corrected-cov5-mnchisq-inter-q05,1,control,11-20,treatment,12,2.59100159744895,0.0607407146679764
+corrected-cov5-mnchisq-inter-q05,1,control,21-30,treatment,12,1.35995831881942,0.0363513944902584
+corrected-cov5-mnchisq-inter-q05,1,control,31-40,treatment,12,1.58677404475056,0.0258291310840997
+corrected-cov5-mnchisq-inter-q05,1,control,41-50,treatment,12,1.84726013846061,0.020178548300691
+corrected-cov5-mnchisq-inter-q05,1,control,51-60,treatment,12,0.7419573450393,0.0156998874240413
+corrected-cov5-mnchisq-inter-q05,1,control,61-70,treatment,12,1.07334557972508,0.0193689203259999
+corrected-cov5-mnchisq-inter-q05,1,control,71-80,treatment,12,1.30952709902151,0.0218143985527183
+corrected-cov5-mnchisq-inter-q05,1,control,81-90,treatment,12,1.29253902816308,0.0278126121050657
+corrected-cov5-mnchisq-inter-q05,1,control,91-100,treatment,12,4.93345973485998,0.169015798067069
+corrected-cov5-mnchisq-inter-q05,5,control,0-10,treatment,12,80.749485272463,0.16289729855489
+corrected-cov5-mnchisq-inter-q05,5,control,11-20,treatment,12,4.2306701275064,0.0867809841466879
+corrected-cov5-mnchisq-inter-q05,5,control,21-30,treatment,12,1.39808979808418,0.0451137102883227
+corrected-cov5-mnchisq-inter-q05,5,control,31-40,treatment,12,1.63108892057045,0.0306467160726236
+corrected-cov5-mnchisq-inter-q05,5,control,41-50,treatment,12,1.41837882038856,0.0222317123795276
+corrected-cov5-mnchisq-inter-q05,5,control,51-60,treatment,12,1.21205804916163,0.0219623999743879
+corrected-cov5-mnchisq-inter-q05,5,control,61-70,treatment,12,1.19363026767284,0.0282187730226368
+corrected-cov5-mnchisq-inter-q05,5,control,71-80,treatment,12,1.70460395970334,0.0372531747707783
+corrected-cov5-mnchisq-inter-q05,5,control,81-90,treatment,12,2.11091272852825,0.0386474358931719
+corrected-cov5-mnchisq-inter-q05,5,control,91-100,treatment,12,4.35108205592134,0.15502653393725
+corrected-cov5-mnchisq-inter-q05,1,all libraries,0-10,all,22,83.1775271019329,0.091962956526136
+corrected-cov5-mnchisq-inter-q05,1,all libraries,11-20,all,22,2.64778231974508,0.0463918732202121
+corrected-cov5-mnchisq-inter-q05,1,all libraries,21-30,all,22,1.42046326466441,0.0286227780655691
+corrected-cov5-mnchisq-inter-q05,1,all libraries,31-40,all,22,1.60989940324194,0.0174154134276893
+corrected-cov5-mnchisq-inter-q05,1,all libraries,41-50,all,22,1.83242522394356,0.0145426065990221
+corrected-cov5-mnchisq-inter-q05,1,all libraries,51-60,all,22,0.812309746867376,0.0201669397000544
+corrected-cov5-mnchisq-inter-q05,1,all libraries,61-70,all,22,1.1077038075261,0.0151984267776146
+corrected-cov5-mnchisq-inter-q05,1,all libraries,71-80,all,22,1.3406702324307,0.0157032841745084
+corrected-cov5-mnchisq-inter-q05,1,all libraries,81-90,all,22,1.40930857767671,0.0363107467711454
+corrected-cov5-mnchisq-inter-q05,1,all libraries,91-100,all,22,4.64191032197121,0.135448106706109
+corrected-cov5-mnchisq-inter-q05,5,all libraries,0-10,all,22,80.9222974053032,0.113481098607652
+corrected-cov5-mnchisq-inter-q05,5,all libraries,11-20,all,22,4.02965483506702,0.082832433685255
+corrected-cov5-mnchisq-inter-q05,5,all libraries,21-30,all,22,1.45359980478925,0.0335973569133668
+corrected-cov5-mnchisq-inter-q05,5,all libraries,31-40,all,22,1.63825691728847,0.0200193930522906
+corrected-cov5-mnchisq-inter-q05,5,all libraries,41-50,all,22,1.4658194882781,0.0198738103435343
+corrected-cov5-mnchisq-inter-q05,5,all libraries,51-60,all,22,1.22891932623622,0.0153370396923822
+corrected-cov5-mnchisq-inter-q05,5,all libraries,61-70,all,22,1.23571126887704,0.0207172028503799
+corrected-cov5-mnchisq-inter-q05,5,all libraries,71-80,all,22,1.69707037609671,0.0220284929628822
+corrected-cov5-mnchisq-inter-q05,5,all libraries,81-90,all,22,2.13175139651515,0.029183091814284
+corrected-cov5-mnchisq-inter-q05,5,all libraries,91-100,all,22,4.19691918154889,0.124392051465872
