@@ -1,0 +1,105 @@
+mode,set,n_loci,track,n_overlap,pct_of_loci,legacy_share_pct,track_label
+corrected-cov5-ctrl-q05,all analysed CpGs,2265759,gene,1602439,70.7241591007693,,genes
+corrected-cov5-ctrl-q05,all analysed CpGs,2265759,mRNA,1553213,68.5515538060315,,mRNA transcripts
+corrected-cov5-ctrl-q05,all analysed CpGs,2265759,exon,792291,34.9680173398848,,exons
+corrected-cov5-ctrl-q05,all analysed CpGs,2265759,CDS,597293,26.3617180821085,21.2884112771094,coding sequence
+corrected-cov5-ctrl-q05,all analysed CpGs,2265759,exon_UTR,195014,8.60700542290685,6.95058913597548,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+corrected-cov5-ctrl-q05,all analysed CpGs,2265759,intron,813493,35.9037744084874,28.9941009773252,introns
+corrected-cov5-ctrl-q05,all analysed CpGs,2265759,nonCDS,1476927,65.1846467342732,,complement of the exon track (not of coding sequence)
+corrected-cov5-ctrl-q05,all analysed CpGs,2265759,lncRNA,62468,2.75704521089842,2.22645247082833,long non-coding RNA
+corrected-cov5-ctrl-q05,all analysed CpGs,2265759,upstream_flank,94997,4.19272305660046,3.38583443317025,upstream flanks (up to 1 kb)
+corrected-cov5-ctrl-q05,all analysed CpGs,2265759,downstream_flank,73245,3.23269156163564,2.61056078673595,downstream flanks (up to 1 kb)
+corrected-cov5-ctrl-q05,all analysed CpGs,2265759,flanks,160670,7.09122197020954,,upstream and downstream flanks together
+corrected-cov5-ctrl-q05,all analysed CpGs,2265759,intergenic,503104,22.2046563646001,17.931375166223,intergenic regions
+corrected-cov5-ctrl-q05,all analysed CpGs,2265759,TE,466105,20.5716936355544,16.6126757526324,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+corrected-cov5-ctrl-q05,eligible CpGs,369111,gene,339007,91.8441877917483,,genes
+corrected-cov5-ctrl-q05,eligible CpGs,369111,mRNA,334135,90.5242596400541,,mRNA transcripts
+corrected-cov5-ctrl-q05,eligible CpGs,369111,exon,139335,37.748807269358,,exons
+corrected-cov5-ctrl-q05,eligible CpGs,369111,CDS,113883,30.8533205458521,24.460668075674,coding sequence
+corrected-cov5-ctrl-q05,eligible CpGs,369111,exon_UTR,25457,6.89684132957295,5.4678505764902,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+corrected-cov5-ctrl-q05,eligible CpGs,369111,intron,200458,54.3083245961242,43.0559135350619,introns
+corrected-cov5-ctrl-q05,eligible CpGs,369111,nonCDS,230539,62.4579056164677,,complement of the exon track (not of coding sequence)
+corrected-cov5-ctrl-q05,eligible CpGs,369111,lncRNA,9318,2.52444386647919,2.00139182432084,long non-coding RNA
+corrected-cov5-ctrl-q05,eligible CpGs,369111,upstream_flank,2602,0.704936997271823,0.558877605374848,upstream flanks (up to 1 kb)
+corrected-cov5-ctrl-q05,eligible CpGs,369111,downstream_flank,7227,1.95794760925575,1.55227073560493,downstream flanks (up to 1 kb)
+corrected-cov5-ctrl-q05,eligible CpGs,369111,flanks,9290,2.51685807250394,,upstream and downstream flanks together
+corrected-cov5-ctrl-q05,eligible CpGs,369111,intergenic,20828,5.64274703273541,4.47359829544478,intergenic regions
+corrected-cov5-ctrl-q05,eligible CpGs,369111,TE,85803,23.2458528735258,18.4294293520285,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+corrected-cov5-ctrl-q05,ploidy DML,27481,gene,26130,95.0838761326007,,genes
+corrected-cov5-ctrl-q05,ploidy DML,27481,mRNA,25873,94.1486845456861,,mRNA transcripts
+corrected-cov5-ctrl-q05,ploidy DML,27481,exon,10689,38.895964484553,,exons
+corrected-cov5-ctrl-q05,ploidy DML,27481,CDS,8492,30.9013500236527,26.1211934789296,coding sequence
+corrected-cov5-ctrl-q05,ploidy DML,27481,exon_UTR,2197,7.99461446090026,6.75792063980314,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+corrected-cov5-ctrl-q05,ploidy DML,27481,intron,15493,56.3771332920927,47.6561058135958,introns
+corrected-cov5-ctrl-q05,ploidy DML,27481,nonCDS,16842,61.2859794039518,,complement of the exon track (not of coding sequence)
+corrected-cov5-ctrl-q05,ploidy DML,27481,lncRNA,566,2.05960481787417,1.74100276837896,long non-coding RNA
+corrected-cov5-ctrl-q05,ploidy DML,27481,upstream_flank,127,0.462137476802154,0.390649031067364,upstream flanks (up to 1 kb)
+corrected-cov5-ctrl-q05,ploidy DML,27481,downstream_flank,528,1.92132746261053,1.62411565672101,downstream flanks (up to 1 kb)
+corrected-cov5-ctrl-q05,ploidy DML,27481,flanks,607,2.20879880644809,,upstream and downstream flanks together
+corrected-cov5-ctrl-q05,ploidy DML,27481,intergenic,745,2.7109639387213,2.29160258382036,intergenic regions
+corrected-cov5-ctrl-q05,ploidy DML,27481,TE,4362,15.8727848331575,13.4174100276838,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+corrected-cov5-ctrl-q05,heat DML,21453,gene,20206,94.1872931524729,,genes
+corrected-cov5-ctrl-q05,heat DML,21453,mRNA,20029,93.3622337202256,,mRNA transcripts
+corrected-cov5-ctrl-q05,heat DML,21453,exon,9248,43.1081899967371,,exons
+corrected-cov5-ctrl-q05,heat DML,21453,CDS,7710,35.9390295063627,29.4432139311082,coding sequence
+corrected-cov5-ctrl-q05,heat DML,21453,exon_UTR,1538,7.16916049037431,5.87336744825479,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+corrected-cov5-ctrl-q05,heat DML,21453,intron,10982,51.1909756211253,41.9384403879936,introns
+corrected-cov5-ctrl-q05,heat DML,21453,nonCDS,12230,57.008343821377,,complement of the exon track (not of coding sequence)
+corrected-cov5-ctrl-q05,heat DML,21453,lncRNA,340,1.58485992635063,1.29840372718246,long non-coding RNA
+corrected-cov5-ctrl-q05,heat DML,21453,upstream_flank,106,0.494103388803431,0.404796456121592,upstream flanks (up to 1 kb)
+corrected-cov5-ctrl-q05,heat DML,21453,downstream_flank,547,2.54975994033469,2.08890246696708,downstream flanks (up to 1 kb)
+corrected-cov5-ctrl-q05,heat DML,21453,flanks,607,2.82944110380833,,upstream and downstream flanks together
+corrected-cov5-ctrl-q05,heat DML,21453,intergenic,641,2.98792709644339,2.44787290918812,intergenic regions
+corrected-cov5-ctrl-q05,heat DML,21453,TE,4322,20.1463664755512,16.5050026731841,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+corrected-cov5-ctrl-q05,shared,2431,gene,2328,95.7630604689428,,genes
+corrected-cov5-ctrl-q05,shared,2431,mRNA,2313,95.1460304401481,,mRNA transcripts
+corrected-cov5-ctrl-q05,shared,2431,exon,1054,43.3566433566434,,exons
+corrected-cov5-ctrl-q05,shared,2431,CDS,875,35.9934183463595,30.0274536719286,coding sequence
+corrected-cov5-ctrl-q05,shared,2431,exon_UTR,179,7.36322501028383,6.14275909402883,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+corrected-cov5-ctrl-q05,shared,2431,intron,1277,52.5298231180584,43.8229238160604,introns
+corrected-cov5-ctrl-q05,shared,2431,nonCDS,1380,56.7667626491156,,complement of the exon track (not of coding sequence)
+corrected-cov5-ctrl-q05,shared,2431,lncRNA,30,1.23406005758947,1.02951269732327,long non-coding RNA
+corrected-cov5-ctrl-q05,shared,2431,upstream_flank,13,0.53475935828877,0.446122168840082,upstream flanks (up to 1 kb)
+corrected-cov5-ctrl-q05,shared,2431,downstream_flank,55,2.26244343891403,1.88743994509266,downstream flanks (up to 1 kb)
+corrected-cov5-ctrl-q05,shared,2431,flanks,60,2.46812011517894,,upstream and downstream flanks together
+corrected-cov5-ctrl-q05,shared,2431,intergenic,43,1.76881941587824,1.47563486616335,intergenic regions
+corrected-cov5-ctrl-q05,shared,2431,TE,442,18.1818181818182,15.1681537405628,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+corrected-cov5-ctrl-q05,"shared, both hyper",827,gene,800,96.7351874244256,,genes
+corrected-cov5-ctrl-q05,"shared, both hyper",827,mRNA,794,96.0096735187425,,mRNA transcripts
+corrected-cov5-ctrl-q05,"shared, both hyper",827,exon,332,40.1451027811366,,exons
+corrected-cov5-ctrl-q05,"shared, both hyper",827,CDS,287,34.7037484885127,28.9023162134945,coding sequence
+corrected-cov5-ctrl-q05,"shared, both hyper",827,exon_UTR,45,5.44135429262394,4.53172205438067,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+corrected-cov5-ctrl-q05,"shared, both hyper",827,intron,469,56.7110036275695,47.2306143001007,introns
+corrected-cov5-ctrl-q05,"shared, both hyper",827,nonCDS,496,59.9758162031439,,complement of the exon track (not of coding sequence)
+corrected-cov5-ctrl-q05,"shared, both hyper",827,lncRNA,15,1.81378476420798,1.51057401812689,long non-coding RNA
+corrected-cov5-ctrl-q05,"shared, both hyper",827,upstream_flank,4,0.483675937122128,0.40281973816717,upstream flanks (up to 1 kb)
+corrected-cov5-ctrl-q05,"shared, both hyper",827,downstream_flank,16,1.93470374848851,1.61127895266868,downstream flanks (up to 1 kb)
+corrected-cov5-ctrl-q05,"shared, both hyper",827,flanks,18,2.17654171704958,,upstream and downstream flanks together
+corrected-cov5-ctrl-q05,"shared, both hyper",827,intergenic,9,1.08827085852479,0.906344410876133,intergenic regions
+corrected-cov5-ctrl-q05,"shared, both hyper",827,TE,148,17.8960096735187,14.9043303121853,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+corrected-cov5-ctrl-q05,"shared, both hypo",383,gene,358,93.4725848563969,,genes
+corrected-cov5-ctrl-q05,"shared, both hypo",383,mRNA,357,93.2114882506527,,mRNA transcripts
+corrected-cov5-ctrl-q05,"shared, both hypo",383,exon,178,46.4751958224543,,exons
+corrected-cov5-ctrl-q05,"shared, both hypo",383,CDS,142,37.0757180156658,31.6258351893096,coding sequence
+corrected-cov5-ctrl-q05,"shared, both hypo",383,exon_UTR,36,9.39947780678851,8.01781737193764,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+corrected-cov5-ctrl-q05,"shared, both hypo",383,intron,181,47.2584856396867,40.3118040089087,introns
+corrected-cov5-ctrl-q05,"shared, both hypo",383,nonCDS,206,53.7859007832898,,complement of the exon track (not of coding sequence)
+corrected-cov5-ctrl-q05,"shared, both hypo",383,lncRNA,2,0.522193211488251,0.44543429844098,long non-coding RNA
+corrected-cov5-ctrl-q05,"shared, both hypo",383,upstream_flank,2,0.522193211488251,0.44543429844098,upstream flanks (up to 1 kb)
+corrected-cov5-ctrl-q05,"shared, both hypo",383,downstream_flank,11,2.87206266318538,2.44988864142539,downstream flanks (up to 1 kb)
+corrected-cov5-ctrl-q05,"shared, both hypo",383,flanks,11,2.87206266318538,,upstream and downstream flanks together
+corrected-cov5-ctrl-q05,"shared, both hypo",383,intergenic,14,3.65535248041775,3.11804008908686,intergenic regions
+corrected-cov5-ctrl-q05,"shared, both hypo",383,TE,61,15.9268929503916,13.5857461024499,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
+corrected-cov5-ctrl-q05,"shared, opposite",1221,gene,1170,95.8230958230958,,genes
+corrected-cov5-ctrl-q05,"shared, opposite",1221,mRNA,1162,95.1678951678952,,mRNA transcripts
+corrected-cov5-ctrl-q05,"shared, opposite",1221,exon,544,44.5536445536446,,exons
+corrected-cov5-ctrl-q05,"shared, opposite",1221,CDS,446,36.5274365274365,30.2989130434783,coding sequence
+corrected-cov5-ctrl-q05,"shared, opposite",1221,exon_UTR,98,8.02620802620803,6.65760869565217,exon minus coding sequence (untranslated regions and exons of non-coding genes)
+corrected-cov5-ctrl-q05,"shared, opposite",1221,intron,627,51.3513513513514,42.5951086956522,introns
+corrected-cov5-ctrl-q05,"shared, opposite",1221,nonCDS,678,55.5282555282555,,complement of the exon track (not of coding sequence)
+corrected-cov5-ctrl-q05,"shared, opposite",1221,lncRNA,13,1.06470106470106,0.883152173913043,long non-coding RNA
+corrected-cov5-ctrl-q05,"shared, opposite",1221,upstream_flank,7,0.573300573300573,0.47554347826087,upstream flanks (up to 1 kb)
+corrected-cov5-ctrl-q05,"shared, opposite",1221,downstream_flank,28,2.29320229320229,1.90217391304348,downstream flanks (up to 1 kb)
+corrected-cov5-ctrl-q05,"shared, opposite",1221,flanks,31,2.53890253890254,,upstream and downstream flanks together
+corrected-cov5-ctrl-q05,"shared, opposite",1221,intergenic,20,1.63800163800164,1.35869565217391,intergenic regions
+corrected-cov5-ctrl-q05,"shared, opposite",1221,TE,233,19.0827190827191,15.8288043478261,"repetitive elements (RepeatMasker, all classes; 1-based coordinates read as BED)"
