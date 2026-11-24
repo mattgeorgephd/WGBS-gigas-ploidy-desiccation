@@ -30,22 +30,22 @@ Built and tested before use:
 - *At 50 points* nothing material changes, and no analysis has a locus in both lists.
 
 **Control-only ploidy contrast (I-07).**
-- *Without the correction, at 20 points,* the control-only list is longer than the all-sample list: 1,985 to 3,326 DML at 10x and 14,741 to 27,725 at 5x, 1.9 to 3.9 times as long.
+- *Without the correction, at 20 points,* the control-only list is longer than the all-sample list: 1,985 to 3,326 DML at 10x and 14,741 to 27,725 at 5x, 1.9 to 3.8 times as long.
   - 77% to 84% of it is higher in triploids. That is the direction of the difference in overall methylation level between the control groups (I-49).
-  - At 10x a list of this length is what regroupings of the control libraries give (update of 2026-11-19).
+  - At the paper's settings a list of this length is what regroupings of the control libraries give (update of 2026-11-19); this was not checked for the other settings.
 - *With the correction* it has 5 to 53 DML at 10x and 106 to 398 at 5x.
 - *It almost never shares a locus with the heat list.* Under the correction there is no shared locus in 14 of the 16 analyses at 20 points. Each of the other two shares one locus, at q < 0.05, and that locus is not among the all-sample shared loci.
 - *The all-sample shared loci are not ploidy differences among the controls.* The loci that the all-sample corrected lists share (4 at 10x, 27 at 5x) have control-only ploidy q-values of 0.25 to 0.92 (update of 2026-11-23).
 - **Reading:** the shared set ("interaction-DML") depends on the heat-treated libraries, which are also a separate experiment and sequencing project (I-01).
 
 **Tested interaction (I-02).**
-- *Without the correction* the interaction list holds 3% to 5% of all tested CpGs, and 86% to 91% of it has one sign: heat-cohort diploids and control-cohort triploids are the more methylated groups. A quarter to a half of the shared loci are among them.
+- *Without the correction* the interaction list holds 3% to 5% of all tested CpGs, and 86% to 91% of it has one sign: heat-cohort diploids and control-cohort triploids are the more methylated groups. A quarter to more than half of the shared loci are among them (26% to 56%).
 - *With the correction* it has 194 to 2,006 DML at 10x and 1,427 to 9,044 at 5x. None of the shared loci is among them in any of the 16 analyses.
 - *At 50 points* it keeps 61 to 7,876 DML. The interaction difference is a difference of two differences, so a threshold chosen for the main effects does not carry over to it (I-52, update of 2026-11-24).
 
 **What follows.** The conclusions of I-02 and I-07 hold at every combination of settings. Under the correction, the shared set comes from the all-sample ploidy contrast, it does not reappear among the controls, and the tested interaction does not contain it. Nothing in the runs shows a ploidy-specific response to heat that the confounding of I-01 and the five high-level libraries of I-49 would not also produce.
 
-**Not checked.** At 5x and at q < 0.05, nobody has checked whether the corrected control-only and interaction lists are longer than relabelled libraries give. The corrected test does not hold its level at 10x (I-06, item 2), so these lengths cannot be read as counts of real differences. The check would need relabelled fits, several hours each at 5x. It was not part of what you asked; say if you want it.
+**Not checked.** Whether the control-only and interaction lists are longer than relabelled libraries give was checked only at the paper's settings (10x, q < 0.01, no upper filter, no exclusion). It was not checked for the other settings, among them 5x and q < 0.05. The corrected test does not hold its level at 10x (I-06, item 2), so these lengths cannot be read as counts of real differences. The check would need relabelled fits, several hours each at 5x. It was not part of what you asked; say if you want it.
 
 ## 3. Incidents
 
@@ -66,7 +66,7 @@ Built and tested before use:
 | Paper snapshots around every one of the 160 runs (32 `q05`, 128 `ctrl` and `inter`) | no paper output changed |
 | Files changed outside `not_adopted/` and the documentation, from the merge of the options to the last run | one: `compare_analyses.R` (the planned 25-point columns) |
 | Comparison table against the analysis folders | 192 rows, one per analysis folder; none missing |
-| Independent check of the new issues.md, README and plan text against `analysis_comparison.csv` | see the end of this section |
+| Independent check of the new issues.md, README and plan text against `analysis_comparison.csv` and the per-analysis lists (all 4 x 192 list lengths equal the table) | 6 findings, all applied: one wrong ratio (3.9 for 3.8), a range quoted with the wrong end points, a denominator (16 for 32 analyses in the 50-point column), three statements wider than their evidence (the relabelling checks were made at the paper's settings only, not at 10x in general); and four statements of earlier dates corrected where they stand (issues.md, corrections table, rows of 2026-11-24) |
 
 ## 5. For you to decide or know
 

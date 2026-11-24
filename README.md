@@ -127,7 +127,7 @@ The first run downloads 10.5 GB (plus the 31 MB GO.db archive). Step 04 needs ab
 | Diagnostics | no | `--diagnostics` (all) or `--diagnostics name1,name2` | `diagnostics = "all"` or names | | `06_diagnostics/` | the checks and controls of the audit, listed in `06_diagnostics/diagnostics.csv` | |
 | Side by side | no | made by every optional run; the table of all analyses by `Rscript 01_pipeline/optional/compare_analyses.R` | | | `04_output/not_adopted/comparisons/` (`analysis_comparison.md`), `05_manuscript/not_adopted/` | the tables that list analyses, from every analysis folder on disk, the paper first; the manuscript values of every analysis, computed as the paper computed them and with the corrected recipe of the audit ("not run" where absent) | |
 
-Every combination has been run (2026-11-20 to 2026-11-24): 192 analyses, the 64 combinations of `corrected`, `cov5`, `mnchisq`, `ctexcl`, `d50` and `q05`, each with the paper's contrasts, with `ctrl` and with `inter`; none is adopted. Their counts are in `04_output/not_adopted/comparisons/analysis_comparison.md`, and what they show is in `issues.md` (I-02, I-06, I-07, I-08, I-51, I-52).
+Every combination has been run (2026-11-20 to 2026-11-24): 192 analyses, the 64 combinations of `corrected`, `cov5`, `mnchisq`, `ctexcl`, `d50` and `q05`, each with the paper's contrasts, with `ctrl` and with `inter`; none is adopted except `legacy`, the paper's analysis. Their counts are in `04_output/not_adopted/comparisons/analysis_comparison.md`, and what they show is in `issues.md` (I-02, I-06, I-07, I-08, I-51, I-52).
 
 ## Conventions
 
