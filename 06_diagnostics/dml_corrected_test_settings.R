@@ -16,6 +16,8 @@
 #           difference exceeds 20 points under that labelling, and each variant is
 #           counted from it:
 #             called        corrected p at or below the threshold of the real list
+#                           (with a relative tolerance of 1e-9, because the CpG that sets
+#                           the threshold is itself recomputed to about 1e-14)
 #                           of that variant (the largest p-value with q below its
 #                           cutoff in the real fit), difference above its threshold,
 #                           not excluded;
@@ -174,7 +176,7 @@ evaluate <- function(k) {
   p <- tests[, "p_corrected"]; a_eff <- abs(eff[above]); ex <- excluded[above]
   lab_no <- k - 1L; is_obs <- k == 1L
   out <- variants[, .(id, labelling = lab_no, observed = is_obs,
-    n_called = vapply(seq_len(.N), function(v) sum(p <= p_star[v] & a_eff > difference[v] & !(ctexcl[v] & ex)), numeric(1)),
+    n_called = vapply(seq_len(.N), function(v) sum(p <= p_star[v] * (1 + 1e-9) & a_eff > difference[v] & !(ctexcl[v] & ex)), numeric(1)),
     n_called_on_their_own = vapply(seq_len(.N), function(v) sum(p < p_single[v] & a_eff > difference[v] & !(ctexcl[v] & ex)), numeric(1)),
     n_above_cutoff = vapply(seq_len(.N), function(v) sum(a_eff > difference[v] & !(ctexcl[v] & ex)), numeric(1)))]
   if (k == 1) attr(out, "check") <- list(p = max(abs(p - fit$pvalue[above]) / pmax(abs(fit$pvalue[above]), .Machine$double.xmin)),
