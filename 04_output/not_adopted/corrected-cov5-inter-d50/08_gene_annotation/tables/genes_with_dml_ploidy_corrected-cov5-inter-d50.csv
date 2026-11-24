@@ -1,0 +1,6 @@
+gene_id,gene,biotype,product,chr,gene_start,gene_end,strand,n_transcripts,n_go_terms,in_legacy_universe,n_cpg_tested,n_cpg_eligible,n_dml,n_hyper,n_hypo,min_meth_diff,max_meth_diff,dml_positions
+105334154,LOC105334154,protein_coding,uncharacterized LOC105334154,NC_047561.1,57102807,57118830,-,2,0,FALSE,23,8,2,0,2,-51.1886924383179,-50.1879178700004,57107606;57107660
+105330131,LOC105330131,protein_coding,gamma-tubulin complex component 4,NC_047561.1,31089120,31099581,+,1,19,TRUE,52,26,1,1,0,53.9945799457995,53.9945799457995,31098854
+105336766,LOC105336766,protein_coding,"probable methylmalonate-semialdehyde dehydrogenase [acylating], mitochondrial",NC_047561.1,47331603,47339428,-,1,3,TRUE,52,15,1,0,1,-55.4583858296895,-55.4583858296895,47337700
+105337663,LOC105337663,protein_coding,myosin-9,NC_047561.1,6738639,6743417,+,1,0,FALSE,34,10,1,0,1,-50.5867215645908,-50.5867215645908,6740817
+105347080,LOC105347080,protein_coding,calcyphosin-2-like,NC_047563.1,40244470,40257738,-,1,3,FALSE,52,17,1,1,0,51.2778904665314,51.2778904665314,40252760
