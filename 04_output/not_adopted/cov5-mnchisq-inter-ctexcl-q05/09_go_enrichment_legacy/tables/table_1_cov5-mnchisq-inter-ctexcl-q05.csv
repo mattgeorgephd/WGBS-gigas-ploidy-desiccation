@@ -1,0 +1,25 @@
+dml_set,gene_id,gene_name,chromosome,start,end,methylation_difference
+ploidy-DML,105318231,adenylate kinase 9,NC_047563.1,5569232,5569234,23.26
+ploidy-DML,105328182,uncharacterized LOC105328182,NC_047564.1,29173638,29173640,-34.68
+ploidy-DML,105331446,helicase domino,NC_047564.1,26730660,26730662,-22.93
+ploidy-DML,105331446,helicase domino,NC_047564.1,26741701,26741703,-25.02
+ploidy-DML,105333338,ryanodine receptor,NC_047561.1,30370853,30370855,-30.99
+ploidy-DML,105343585,beta-hexosaminidase subunit beta,NC_047564.1,6921579,6921581,40.77
+ploidy-DML,105346586,ephexin-1,NC_047564.1,6723825,6723827,21.32
+ploidy-DML,105346586,ephexin-1,NC_047564.1,6742442,6742444,23.83
+heat-DML,105325897,"arf-GAP with GTPase, ANK repeat and PH domain-containing protein 1",NC_047559.1,52731132,52731134,-31.06
+heat-DML,105325897,"arf-GAP with GTPase, ANK repeat and PH domain-containing protein 1",NC_047559.1,52747567,52747569,-29.85
+heat-DML,105327689,dynactin subunit 1,NC_047562.1,22390360,22390362,-31.41
+heat-DML,105327689,dynactin subunit 1,NC_047562.1,22422912,22422914,42.92
+heat-DML,105327689,dynactin subunit 1,NC_047562.1,22422918,22422920,21.77
+heat-DML,105327689,dynactin subunit 1,NC_047562.1,22551862,22551864,-23.55
+heat-DML,105329309,nesprin-1,NC_047561.1,28600946,28600948,-27.73
+heat-DML,105331920,rootletin,NC_047564.1,15988473,15988475,-21.88
+heat-DML,105333917,centlein,NC_047561.1,48051415,48051417,-34.72
+heat-DML,105336635,cAMP-dependent protein kinase catalytic subunit 1,NC_047568.1,33400874,33400876,22.38
+heat-DML,105340590,dihydropyrimidinase,NW_022994979.1,37590,37592,-20.81
+heat-DML,105340590,dihydropyrimidinase,NW_022994979.1,40214,40216,-24.24
+heat-DML,105341103,"calcium uptake protein 1, mitochondrial",NC_047568.1,22056807,22056809,20.32
+heat-DML,117686732,centrosomal protein of 135 kDa-like,NW_022994978.1,107569,107571,27.22
+heat-DML,117686732,centrosomal protein of 135 kDa-like,NW_022994978.1,108277,108279,-26.63
+interaction-DML,105318231,adenylate kinase 9,NC_047563.1,5569232,5569234,-22.73
