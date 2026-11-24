@@ -1,0 +1,24 @@
+dml_set,gene_id,gene_name,chromosome,start,end,methylation_difference
+ploidy-DML,105319868,A-kinase anchor protein 13,NC_047561.1,2796668,2796670,24.13
+ploidy-DML,105319868,A-kinase anchor protein 13,NC_047561.1,2809457,2809459,22.16
+ploidy-DML,105328182,uncharacterized LOC105328182,NC_047564.1,29173638,29173640,-34.68
+ploidy-DML,105333338,ryanodine receptor,NC_047561.1,30370853,30370855,-30.99
+ploidy-DML,105334383,neuron navigator 3,NC_047563.1,30119291,30119293,21.87
+ploidy-DML,105337984,mothers against decapentaplegic homolog 3,NC_047560.1,47371134,47371136,-26.87
+ploidy-DML,105340116,sodium/calcium exchanger 2,NC_047561.1,49877852,49877854,-24.25
+ploidy-DML,105342879,histone deacetylase 4,NC_047567.1,10817745,10817747,-29.89
+ploidy-DML,105344258,prostaglandin G/H synthase 2-like,NC_047565.1,18533642,18533644,-40.43
+ploidy-DML,105346586,ephexin-1,NC_047564.1,6723825,6723827,21.32
+ploidy-DML,105346586,ephexin-1,NC_047564.1,6742442,6742444,23.83
+heat-DML,105323311,polycystic kidney disease 2-like 1 protein,NC_047568.1,50426978,50426980,-34.91
+heat-DML,105324818,cyclic nucleotide-gated cation channel beta-1,NC_047564.1,35100886,35100888,-48.28
+heat-DML,105326252,myoferlin,NC_047562.1,50383543,50383545,-36.85
+heat-DML,105326427,double-stranded RNA-specific editase 1,NC_047559.1,3846799,3846801,40.82
+heat-DML,105326427,double-stranded RNA-specific editase 1,NC_047559.1,3856157,3856159,-25.56
+heat-DML,105327506,"inositol 1,4,5-trisphosphate receptor type 2",NC_047562.1,24064924,24064926,24.23
+heat-DML,105327506,"inositol 1,4,5-trisphosphate receptor type 2",NC_047562.1,24065882,24065884,44.24
+heat-DML,105334383,neuron navigator 3,NC_047563.1,30182751,30182753,-35.81
+heat-DML,105334383,neuron navigator 3,NC_047563.1,30326493,30326495,-27.61
+heat-DML,105334956,synaptotagmin-7,NC_047563.1,57892871,57892873,21.67
+heat-DML,105334956,synaptotagmin-7,NC_047563.1,57895460,57895462,23
+interaction-DML,105318231,adenylate kinase 9,NC_047563.1,5569232,5569234,-22.73
