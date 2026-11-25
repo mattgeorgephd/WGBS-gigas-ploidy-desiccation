@@ -70,6 +70,14 @@
 #             current terms, and with those replaced by their primary IDs the
 #             step calls one term (organelle; heat set, CC) where it now calls
 #             none (issues.md, I-41).
+#           - With option inter (not adopted) the tested interaction list is a fourth
+#             set, "interaction" (step 08 annotates it). It is tested in a pass of its
+#             own, whose eligible universe adds the genes of its DML; the three sets of
+#             the paper and their universe are those of the analysis without inter. The
+#             draft's terms (legacy_top10_at_gene_level.csv) concern the three sets only.
+#             The interaction rests mostly on five libraries with a raised overall
+#             methylation level (issues I-02, I-49): its genes describe those libraries
+#             as much as a response to heat.
 #           - The heat contrast is confounded with cohort and sequencing batch
 #             (issue I-01). Enrichment of "heat" DML genes describes genes that
 #             differ between the two cohorts, whatever the cause.
@@ -98,7 +106,13 @@ an <- config$analysis
 check_stamp(an, needs = c("04", "05", "08"))
 tab <- function(name) analysis_path(an, step, "tables", name)
 ann_in <- function(name) analysis_input(an, "08_gene_annotation", "tables", name)
-sets <- c(ploidy = "ploidy DML", heat = "heat DML", shared = "in both lists")
+set_labels <- c(ploidy = "ploidy DML", heat = "heat DML", shared = "in both lists", interaction = "tested interaction DML")
+paper_sets <- c("ploidy", "heat", "shared")
+# Option inter (not adopted; author's request of 2026-11-25): the tested interaction list,
+# annotated by step 08 as a fourth set, is tested in a pass of its own (below), so that
+# the three sets of the paper keep exactly the universe they have without inter.
+inter_set <- identical(an$contrast_variant, "inter")
+sets <- set_labels[c(paper_sets, if (inter_set) "interaction")]
 onts <- c("BP", "CC", "MF")
 universes <- c(tested = "n_cpg_tested", eligible = "n_cpg_eligible")
 log_msg("GO.db %s (ontology of %s), topGO %s, goseq %s", as.character(packageVersion("GO.db")), go_source_date(),
@@ -111,7 +125,17 @@ results <- list(); summary_rows <- list(); bias_rows <- list(); term_genes <- li
 for (mode in an$id) {
   gene_tab <- fread(ann_in(sprintf("gene_table_%s.csv.gz", mode)), colClasses = c(gene_id = "character"))
   gene_tab <- gene_tab[biotype == "protein_coding"]
-  any_dml <- gene_tab$n_dml_ploidy + gene_tab$n_dml_heat + gene_tab$n_dml_shared > 0
+  any_dml_paper <- gene_tab$n_dml_ploidy + gene_tab$n_dml_heat + gene_tab$n_dml_shared > 0
+  # Passes: the paper's three sets; with inter, the interaction set on its own, its
+  # eligible universe adding the genes of its own DML (many interaction DML lie at
+  # CpGs whose mean is outside the eligible range).
+  passes <- list(list(sets = paper_sets, any_dml = any_dml_paper))
+  if (inter_set) {
+    if (!"n_dml_interaction" %in% names(gene_tab)) stop("gene_table_", mode, ".csv.gz has no interaction set: run step 08 of the analysis again.", call. = FALSE)
+    passes[[2]] <- list(sets = "interaction", any_dml = any_dml_paper | gene_tab$n_dml_interaction > 0)
+  }
+  for (pass in passes) {
+  pass_sets <- pass$sets; any_dml <- pass$any_dml
 
   for (u in names(universes)) {
     # Genes of the universe. A gene that holds a DML belongs to the eligible
@@ -125,7 +149,7 @@ for (mode in an$id) {
 
     # Probability that a gene holds a DML, by number of CpGs (all protein-coding genes of the universe).
     uni[, cpg_bin := cut(bias, c(0, 1, 2, 5, 10, 20, 50, 100, Inf), labels = c("1", "2", "3-5", "6-10", "11-20", "21-50", "51-100", ">100"))]
-    for (s in names(sets)) {
+    for (s in pass_sets) {
       bias_rows[[length(bias_rows) + 1]] <- uni[, .(mode = mode, universe = u, set = s, genes = .N,
         genes_with_dml = sum(get(paste0("n_dml_", s)) > 0), percent_with_dml = 100 * mean(get(paste0("n_dml_", s)) > 0)),
         by = cpg_bin][order(cpg_bin)]
@@ -133,7 +157,7 @@ for (mode in an$id) {
 
     for (ont in onts) {
       td <- go_gene_level_object(ont, annotated_ids, gene2go_all)
-      for (s in names(sets)) {
+      for (s in pass_sets) {
         dml_genes <- uni[get(paste0("n_dml_", s)) > 0, gene_id]
         if (!any(topGO::genes(td) %in% dml_genes)) {
           log_msg("[%s] %-8s %s %-6s: no gene that holds a DML of the set carries a term of the ontology; not tested", mode, u, ont, s)
@@ -166,8 +190,9 @@ for (mode in an$id) {
         }
       }
       log_msg("[%s] %-8s %s: %5d genes; terms with q < %g (Wallenius): %s", mode, u, ont, length(annotated_ids), config$go_fdr,
-              paste(vapply(tail(summary_rows, 3), function(r) sprintf("%s %d", r$set, r$wallenius_q_below_fdr), ""), collapse = ", "))
+              paste(vapply(tail(summary_rows, length(pass_sets)), function(r) sprintf("%s %d", r$set, r$wallenius_q_below_fdr), ""), collapse = ", "))
     }
+  }
   }
 }
 # With no set tested at all, the table of results keeps its columns.
@@ -200,7 +225,7 @@ write_table(term_genes, tab("go_enriched_term_genes.csv"))
 # The "enriched" terms of the draft, retested at gene level
 # =============================================================================
 legacy_dir <- function(name) paper_path("09_go_enrichment_legacy", "tables", name)     # the draft's terms
-legacy_top <- rbindlist(lapply(names(sets), function(s) rbindlist(lapply(onts, function(o) {
+legacy_top <- rbindlist(lapply(paper_sets, function(s) rbindlist(lapply(onts, function(o) {
   fread(legacy_dir(sprintf("legacy_fisher_%s_%s.csv", s, o)))[top10 == TRUE]
 }))))
 known_go <- AnnotationDbi::keys(GO.db::GO.db)
@@ -235,7 +260,8 @@ print(top_check[, .N, by = .(set, gene_level_status)][order(set, gene_level_stat
 # =============================================================================
 bias <- rbindlist(bias_rows)
 bias[, `:=`(set_label = factor(sets[set], levels = sets), universe = factor(universe, levels = names(universes)))]
-set_cols <- setNames(unname(config$colours$dml_set), sets)
+# The three colours of run_config.R, and one for the tested interaction (option inter).
+set_cols <- setNames(c(unname(config$colours$dml_set), "mediumpurple3"), set_labels)
 # The eligible range of the analysis (dml_eligible(): half the threshold to 100 minus that).
 eligible_label <- sprintf("Eligible CpGs in the gene (mean %g%% to %g%%)", an$dml_difference / 2, 100 - an$dml_difference / 2)
 for (mode_i in an$id) {
@@ -249,7 +275,7 @@ for (mode_i in an$id) {
 }
 
 # How many terms each analysis calls enriched.
-legacy_counts <- rbindlist(lapply(names(sets), function(s) rbindlist(lapply(onts, function(o) {
+legacy_counts <- rbindlist(lapply(paper_sets, function(s) rbindlist(lapply(onts, function(o) {
   x <- fread(legacy_dir(sprintf("legacy_fisher_%s_%s.csv", s, o)))
   data.table(set = s, ontology = o, analysis = "Draft: transcripts, p < 0.01, no correction", n_terms = sum(x$below_p_cutoff))
 }))))
@@ -289,7 +315,7 @@ if (length(top_files) > 0) {
   write_table(side, not_adopted_path("comparisons", step, "tables", "legacy_top10_at_gene_level.csv"))
 }
 by_analysis <- fread(not_adopted_path("comparisons", step, "tables", "go_terms_by_analysis.csv"))
-by_analysis[, `:=`(analysis = factor(analysis, levels = rev(unique(analysis))), set_label = factor(sets[set], levels = sets))]
+by_analysis[, `:=`(analysis = factor(analysis, levels = rev(unique(analysis))), set_label = factor(set_labels[set], levels = set_labels))]
 pa <- ggplot(by_analysis, aes(n_terms, analysis, fill = set_label)) +
   geom_col(position = position_dodge2(width = 0.85, reverse = TRUE), width = 0.8) +
   geom_text(aes(label = n_terms), position = position_dodge2(width = 0.85, reverse = TRUE), hjust = -0.2, size = 2.8) +
