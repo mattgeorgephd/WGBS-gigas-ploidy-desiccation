@@ -1,0 +1,19 @@
+set,ontology,overdispersion,analyses,with_any_top_terms,kept_median,kept_max,kept_at_least_5,kept_none
+heat,BP,"MN, chi-squared",96,96,0,0,0,96
+heat,BP,none (as the draft),95,95,0,10,11,84
+heat,CC,"MN, chi-squared",96,96,1,2,0,33
+heat,CC,none (as the draft),95,95,1,10,11,39
+heat,MF,"MN, chi-squared",96,96,1,4,0,24
+heat,MF,none (as the draft),95,95,1,10,23,12
+ploidy,BP,"MN, chi-squared",96,60,0,1,0,93
+ploidy,BP,none (as the draft),95,71,0,10,7,80
+ploidy,CC,"MN, chi-squared",96,60,0,1,0,84
+ploidy,CC,none (as the draft),95,71,0,10,15,74
+ploidy,MF,"MN, chi-squared",96,58,0,3,0,84
+ploidy,MF,none (as the draft),95,71,0,10,15,72
+shared,BP,"MN, chi-squared",96,34,0,0,0,96
+shared,BP,none (as the draft),95,47,0,10,7,76
+shared,CC,"MN, chi-squared",96,34,0,2,0,72
+shared,CC,none (as the draft),95,47,0,10,7,72
+shared,MF,"MN, chi-squared",96,34,0,1,0,80
+shared,MF,none (as the draft),95,47,0,10,15,65

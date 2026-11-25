@@ -1,0 +1,577 @@
+analysis,contrasts,min_coverage,upper_filter,overdispersion,ct_variants,difference_threshold,qvalue_threshold,ploidy_dml,heat_dml,shared,set,n_genes,n_protein_coding,n_genes_in_paper_list,paper_genes,share_of_paper_genes_kept,share_of_genes_in_paper_list
+cov5-ctrl-q05,ploidy in controls only (ctrl),5,no (as the draft),none (as the draft),kept,20,0.05,27725,21604,2449,heat,6586,6425,1460,1476,0.989159891598916,0.221682356513817
+cov5-inter-q05,paper's and interaction (inter),5,no (as the draft),none (as the draft),kept,20,0.05,10335,21604,1891,heat,6586,6425,1460,1476,0.989159891598916,0.221682356513817
+cov5-q05,paper's,5,no (as the draft),none (as the draft),kept,20,0.05,10335,21604,1891,heat,6586,6425,1460,1476,0.989159891598916,0.221682356513817
+corrected-cov5-ctrl-q05,ploidy in controls only (ctrl),5,yes,none (as the draft),kept,20,0.05,27481,21453,2431,heat,6570,6416,1458,1476,0.987804878048781,0.221917808219178
+corrected-cov5-inter-q05,paper's and interaction (inter),5,yes,none (as the draft),kept,20,0.05,10192,21453,1820,heat,6570,6416,1458,1476,0.987804878048781,0.221917808219178
+corrected-cov5-q05,paper's,5,yes,none (as the draft),kept,20,0.05,10192,21453,1820,heat,6570,6416,1458,1476,0.987804878048781,0.221917808219178
+cov5,paper's,5,no (as the draft),none (as the draft),kept,20,0.01,9942,21361,1784,heat,6553,6392,1459,1476,0.988482384823848,0.222646116282619
+cov5-ctrl,ploidy in controls only (ctrl),5,no (as the draft),none (as the draft),kept,20,0.01,19076,21361,1585,heat,6553,6392,1459,1476,0.988482384823848,0.222646116282619
+cov5-inter,paper's and interaction (inter),5,no (as the draft),none (as the draft),kept,20,0.01,9942,21361,1784,heat,6553,6392,1459,1476,0.988482384823848,0.222646116282619
+corrected-cov5,paper's,5,yes,none (as the draft),kept,20,0.01,9791,21200,1711,heat,6535,6381,1457,1476,0.987127371273713,0.222953328232594
+corrected-cov5-ctrl,ploidy in controls only (ctrl),5,yes,none (as the draft),kept,20,0.01,18808,21200,1568,heat,6535,6381,1457,1476,0.987127371273713,0.222953328232594
+corrected-cov5-inter,paper's and interaction (inter),5,yes,none (as the draft),kept,20,0.01,9791,21200,1711,heat,6535,6381,1457,1476,0.987127371273713,0.222953328232594
+cov5-ctexcl-q05,paper's,5,no (as the draft),none (as the draft),excluded,20,0.05,7357,15717,1297,heat,5696,5546,1358,1476,0.920054200542005,0.238412921348315
+cov5-ctrl-ctexcl-q05,ploidy in controls only (ctrl),5,no (as the draft),none (as the draft),excluded,20,0.05,21915,15717,1716,heat,5696,5546,1358,1476,0.920054200542005,0.238412921348315
+cov5-inter-ctexcl-q05,paper's and interaction (inter),5,no (as the draft),none (as the draft),excluded,20,0.05,7357,15717,1297,heat,5696,5546,1358,1476,0.920054200542005,0.238412921348315
+corrected-cov5-ctexcl-q05,paper's,5,yes,none (as the draft),excluded,20,0.05,7220,15572,1228,heat,5680,5537,1356,1476,0.91869918699187,0.238732394366197
+corrected-cov5-ctrl-ctexcl-q05,ploidy in controls only (ctrl),5,yes,none (as the draft),excluded,20,0.05,21689,15572,1700,heat,5680,5537,1356,1476,0.91869918699187,0.238732394366197
+corrected-cov5-inter-ctexcl-q05,paper's and interaction (inter),5,yes,none (as the draft),excluded,20,0.05,7220,15572,1228,heat,5680,5537,1356,1476,0.91869918699187,0.238732394366197
+cov5-ctexcl,paper's,5,no (as the draft),none (as the draft),excluded,20,0.01,7046,15530,1219,heat,5658,5508,1357,1476,0.919376693766938,0.239837398373984
+cov5-ctrl-ctexcl,ploidy in controls only (ctrl),5,no (as the draft),none (as the draft),excluded,20,0.01,14970,15530,1110,heat,5658,5508,1357,1476,0.919376693766938,0.239837398373984
+cov5-inter-ctexcl,paper's and interaction (inter),5,no (as the draft),none (as the draft),excluded,20,0.01,7046,15530,1219,heat,5658,5508,1357,1476,0.919376693766938,0.239837398373984
+corrected-cov5-ctexcl,paper's,5,yes,none (as the draft),excluded,20,0.01,6902,15376,1148,heat,5638,5495,1354,1476,0.917344173441735,0.24015608371763
+corrected-cov5-ctrl-ctexcl,ploidy in controls only (ctrl),5,yes,none (as the draft),excluded,20,0.01,14741,15376,1095,heat,5638,5495,1354,1476,0.917344173441735,0.24015608371763
+corrected-cov5-inter-ctexcl,paper's and interaction (inter),5,yes,none (as the draft),excluded,20,0.01,6902,15376,1148,heat,5638,5495,1354,1476,0.917344173441735,0.24015608371763
+cov5-mnchisq-ctrl-q05,ploidy in controls only (ctrl),5,no (as the draft),"MN, chi-squared",kept,20,0.05,398,2834,1,heat,1839,1796,638,1476,0.432249322493225,0.346927678085916
+cov5-mnchisq-inter-q05,paper's and interaction (inter),5,no (as the draft),"MN, chi-squared",kept,20,0.05,321,2834,45,heat,1839,1796,638,1476,0.432249322493225,0.346927678085916
+cov5-mnchisq-q05,paper's,5,no (as the draft),"MN, chi-squared",kept,20,0.05,321,2834,45,heat,1839,1796,638,1476,0.432249322493225,0.346927678085916
+corrected-cov5-mnchisq-ctrl-q05,ploidy in controls only (ctrl),5,yes,"MN, chi-squared",kept,20,0.05,364,2737,1,heat,1795,1755,619,1476,0.419376693766938,0.344846796657382
+corrected-cov5-mnchisq-inter-q05,paper's and interaction (inter),5,yes,"MN, chi-squared",kept,20,0.05,313,2737,42,heat,1795,1755,619,1476,0.419376693766938,0.344846796657382
+corrected-cov5-mnchisq-q05,paper's,5,yes,"MN, chi-squared",kept,20,0.05,313,2737,42,heat,1795,1755,619,1476,0.419376693766938,0.344846796657382
+ctrl-q05,ploidy in controls only (ctrl),10,no (as the draft),none (as the draft),kept,20,0.05,3326,2352,248,heat,1477,1446,1476,1476,1,0.999322951929587
+inter-q05,paper's and interaction (inter),10,no (as the draft),none (as the draft),kept,20,0.05,1038,2352,201,heat,1477,1446,1476,1476,1,0.999322951929587
+q05,paper's,10,no (as the draft),none (as the draft),kept,20,0.05,1038,2352,201,heat,1477,1446,1476,1476,1,0.999322951929587
+ctrl,ploidy in controls only (ctrl),10,no (as the draft),none (as the draft),kept,20,0.01,2768,2351,194,heat,1476,1445,1476,1476,1,1
+inter,paper's and interaction (inter),10,no (as the draft),none (as the draft),kept,20,0.01,1038,2351,200,heat,1476,1445,1476,1476,1,1
+legacy,paper's,10,no (as the draft),none (as the draft),kept,20,0.01,1038,2351,200,heat,1476,1445,1476,1476,1,1
+corrected,paper's,10,yes,none (as the draft),kept,20,0.01,952,2273,159,heat,1470,1442,1470,1476,0.995934959349593,1
+corrected-ctrl,ploidy in controls only (ctrl),10,yes,none (as the draft),kept,20,0.01,2628,2273,187,heat,1470,1442,1470,1476,0.995934959349593,1
+corrected-ctrl-q05,ploidy in controls only (ctrl),10,yes,none (as the draft),kept,20,0.05,3222,2273,244,heat,1470,1442,1470,1476,0.995934959349593,1
+corrected-inter,paper's and interaction (inter),10,yes,none (as the draft),kept,20,0.01,952,2273,159,heat,1470,1442,1470,1476,0.995934959349593,1
+corrected-inter-q05,paper's and interaction (inter),10,yes,none (as the draft),kept,20,0.05,952,2273,159,heat,1470,1442,1470,1476,0.995934959349593,1
+corrected-q05,paper's,10,yes,none (as the draft),kept,20,0.05,952,2273,159,heat,1470,1442,1470,1476,0.995934959349593,1
+cov5-mnchisq-ctexcl-q05,paper's,5,no (as the draft),"MN, chi-squared",excluded,20,0.05,240,2195,32,heat,1444,1403,507,1476,0.34349593495935,0.351108033240997
+cov5-mnchisq-ctrl-ctexcl-q05,ploidy in controls only (ctrl),5,no (as the draft),"MN, chi-squared",excluded,20,0.05,352,2195,0,heat,1444,1403,507,1476,0.34349593495935,0.351108033240997
+cov5-mnchisq-inter-ctexcl-q05,paper's and interaction (inter),5,no (as the draft),"MN, chi-squared",excluded,20,0.05,240,2195,32,heat,1444,1403,507,1476,0.34349593495935,0.351108033240997
+corrected-cov5-mnchisq-ctexcl-q05,paper's,5,yes,"MN, chi-squared",excluded,20,0.05,232,2116,29,heat,1409,1371,491,1476,0.332655826558266,0.34847409510291
+corrected-cov5-mnchisq-ctrl-ctexcl-q05,ploidy in controls only (ctrl),5,yes,"MN, chi-squared",excluded,20,0.05,326,2116,0,heat,1409,1371,491,1476,0.332655826558266,0.34847409510291
+corrected-cov5-mnchisq-inter-ctexcl-q05,paper's and interaction (inter),5,yes,"MN, chi-squared",excluded,20,0.05,232,2116,29,heat,1409,1371,491,1476,0.332655826558266,0.34847409510291
+ctexcl-q05,paper's,10,no (as the draft),none (as the draft),excluded,20,0.05,717,1668,140,heat,1041,1013,1040,1476,0.704607046070461,0.999039385206532
+ctrl-ctexcl-q05,ploidy in controls only (ctrl),10,no (as the draft),none (as the draft),excluded,20,0.05,2544,1668,176,heat,1041,1013,1040,1476,0.704607046070461,0.999039385206532
+inter-ctexcl-q05,paper's and interaction (inter),10,no (as the draft),none (as the draft),excluded,20,0.05,717,1668,140,heat,1041,1013,1040,1476,0.704607046070461,0.999039385206532
+ctexcl,paper's,10,no (as the draft),none (as the draft),excluded,20,0.01,717,1667,139,heat,1040,1012,1040,1476,0.704607046070461,1
+ctrl-ctexcl,ploidy in controls only (ctrl),10,no (as the draft),none (as the draft),excluded,20,0.01,2112,1667,131,heat,1040,1012,1040,1476,0.704607046070461,1
+inter-ctexcl,paper's and interaction (inter),10,no (as the draft),none (as the draft),excluded,20,0.01,717,1667,139,heat,1040,1012,1040,1476,0.704607046070461,1
+corrected-ctexcl,paper's,10,yes,none (as the draft),excluded,20,0.01,635,1596,100,heat,1034,1009,1034,1476,0.700542005420054,1
+corrected-ctexcl-q05,paper's,10,yes,none (as the draft),excluded,20,0.05,635,1596,100,heat,1034,1009,1034,1476,0.700542005420054,1
+corrected-ctrl-ctexcl,ploidy in controls only (ctrl),10,yes,none (as the draft),excluded,20,0.01,1985,1596,125,heat,1034,1009,1034,1476,0.700542005420054,1
+corrected-ctrl-ctexcl-q05,ploidy in controls only (ctrl),10,yes,none (as the draft),excluded,20,0.05,2444,1596,172,heat,1034,1009,1034,1476,0.700542005420054,1
+corrected-inter-ctexcl,paper's and interaction (inter),10,yes,none (as the draft),excluded,20,0.01,635,1596,100,heat,1034,1009,1034,1476,0.700542005420054,1
+corrected-inter-ctexcl-q05,paper's and interaction (inter),10,yes,none (as the draft),excluded,20,0.05,635,1596,100,heat,1034,1009,1034,1476,0.700542005420054,1
+cov5-mnchisq,paper's,5,no (as the draft),"MN, chi-squared",kept,20,0.01,126,1191,27,heat,877,865,336,1476,0.227642276422764,0.383124287343216
+cov5-mnchisq-ctrl,ploidy in controls only (ctrl),5,no (as the draft),"MN, chi-squared",kept,20,0.01,120,1191,0,heat,877,865,336,1476,0.227642276422764,0.383124287343216
+cov5-mnchisq-inter,paper's and interaction (inter),5,no (as the draft),"MN, chi-squared",kept,20,0.01,126,1191,27,heat,877,865,336,1476,0.227642276422764,0.383124287343216
+corrected-cov5-mnchisq,paper's,5,yes,"MN, chi-squared",kept,20,0.01,126,1133,27,heat,837,827,326,1476,0.220867208672087,0.389486260454002
+corrected-cov5-mnchisq-ctrl,ploidy in controls only (ctrl),5,yes,"MN, chi-squared",kept,20,0.01,117,1133,0,heat,837,827,326,1476,0.220867208672087,0.389486260454002
+corrected-cov5-mnchisq-inter,paper's and interaction (inter),5,yes,"MN, chi-squared",kept,20,0.01,126,1133,27,heat,837,827,326,1476,0.220867208672087,0.389486260454002
+cov5-mnchisq-ctexcl,paper's,5,no (as the draft),"MN, chi-squared",excluded,20,0.01,96,923,19,heat,663,651,245,1476,0.165989159891599,0.369532428355958
+cov5-mnchisq-ctrl-ctexcl,ploidy in controls only (ctrl),5,no (as the draft),"MN, chi-squared",excluded,20,0.01,109,923,0,heat,663,651,245,1476,0.165989159891599,0.369532428355958
+cov5-mnchisq-inter-ctexcl,paper's and interaction (inter),5,no (as the draft),"MN, chi-squared",excluded,20,0.01,96,923,19,heat,663,651,245,1476,0.165989159891599,0.369532428355958
+corrected-cov5-mnchisq-ctexcl,paper's,5,yes,"MN, chi-squared",excluded,20,0.01,96,875,19,heat,630,620,236,1476,0.159891598915989,0.374603174603175
+corrected-cov5-mnchisq-ctrl-ctexcl,ploidy in controls only (ctrl),5,yes,"MN, chi-squared",excluded,20,0.01,106,875,0,heat,630,620,236,1476,0.159891598915989,0.374603174603175
+corrected-cov5-mnchisq-inter-ctexcl,paper's and interaction (inter),5,yes,"MN, chi-squared",excluded,20,0.01,96,875,19,heat,630,620,236,1476,0.159891598915989,0.374603174603175
+mnchisq-ctrl-q05,ploidy in controls only (ctrl),10,no (as the draft),"MN, chi-squared",kept,20,0.05,53,410,0,heat,298,290,298,1476,0.20189701897019,1
+mnchisq-inter-q05,paper's and interaction (inter),10,no (as the draft),"MN, chi-squared",kept,20,0.05,37,410,6,heat,298,290,298,1476,0.20189701897019,1
+mnchisq-q05,paper's,10,no (as the draft),"MN, chi-squared",kept,20,0.05,37,410,6,heat,298,290,298,1476,0.20189701897019,1
+corrected-mnchisq-ctrl-q05,ploidy in controls only (ctrl),10,yes,"MN, chi-squared",kept,20,0.05,42,355,0,heat,265,258,265,1476,0.179539295392954,1
+corrected-mnchisq-inter-q05,paper's and interaction (inter),10,yes,"MN, chi-squared",kept,20,0.05,34,355,6,heat,265,258,265,1476,0.179539295392954,1
+corrected-mnchisq-q05,paper's,10,yes,"MN, chi-squared",kept,20,0.05,34,355,6,heat,265,258,265,1476,0.179539295392954,1
+mnchisq-ctexcl-q05,paper's,10,no (as the draft),"MN, chi-squared",excluded,20,0.05,28,314,6,heat,221,213,221,1476,0.149728997289973,1
+mnchisq-ctrl-ctexcl-q05,ploidy in controls only (ctrl),10,no (as the draft),"MN, chi-squared",excluded,20,0.05,44,314,0,heat,221,213,221,1476,0.149728997289973,1
+mnchisq-inter-ctexcl-q05,paper's and interaction (inter),10,no (as the draft),"MN, chi-squared",excluded,20,0.05,28,314,6,heat,221,213,221,1476,0.149728997289973,1
+corrected-mnchisq-ctexcl-q05,paper's,10,yes,"MN, chi-squared",excluded,20,0.05,25,267,6,heat,192,185,192,1476,0.130081300813008,1
+corrected-mnchisq-ctrl-ctexcl-q05,ploidy in controls only (ctrl),10,yes,"MN, chi-squared",excluded,20,0.05,35,267,0,heat,192,185,192,1476,0.130081300813008,1
+corrected-mnchisq-inter-ctexcl-q05,paper's and interaction (inter),10,yes,"MN, chi-squared",excluded,20,0.05,25,267,6,heat,192,185,192,1476,0.130081300813008,1
+mnchisq,paper's,10,no (as the draft),"MN, chi-squared",kept,20,0.01,14,185,4,heat,139,136,139,1476,0.0941734417344173,1
+mnchisq-ctrl,ploidy in controls only (ctrl),10,no (as the draft),"MN, chi-squared",kept,20,0.01,10,185,0,heat,139,136,139,1476,0.0941734417344173,1
+mnchisq-inter,paper's and interaction (inter),10,no (as the draft),"MN, chi-squared",kept,20,0.01,14,185,4,heat,139,136,139,1476,0.0941734417344173,1
+corrected-mnchisq,paper's,10,yes,"MN, chi-squared",kept,20,0.01,14,157,4,heat,122,120,122,1476,0.0826558265582656,1
+corrected-mnchisq-ctrl,ploidy in controls only (ctrl),10,yes,"MN, chi-squared",kept,20,0.01,6,157,0,heat,122,120,122,1476,0.0826558265582656,1
+corrected-mnchisq-inter,paper's and interaction (inter),10,yes,"MN, chi-squared",kept,20,0.01,14,157,4,heat,122,120,122,1476,0.0826558265582656,1
+mnchisq-ctexcl,paper's,10,no (as the draft),"MN, chi-squared",excluded,20,0.01,12,142,4,heat,104,101,104,1476,0.0704607046070461,1
+mnchisq-ctrl-ctexcl,ploidy in controls only (ctrl),10,no (as the draft),"MN, chi-squared",excluded,20,0.01,8,142,0,heat,104,101,104,1476,0.0704607046070461,1
+mnchisq-inter-ctexcl,paper's and interaction (inter),10,no (as the draft),"MN, chi-squared",excluded,20,0.01,12,142,4,heat,104,101,104,1476,0.0704607046070461,1
+corrected-cov5-ctrl-d50,ploidy in controls only (ctrl),5,yes,none (as the draft),kept,50,0.01,42,92,0,heat,88,87,32,1476,0.021680216802168,0.363636363636364
+corrected-cov5-ctrl-d50-q05,ploidy in controls only (ctrl),5,yes,none (as the draft),kept,50,0.05,42,92,0,heat,88,87,32,1476,0.021680216802168,0.363636363636364
+corrected-cov5-d50,paper's,5,yes,none (as the draft),kept,50,0.01,6,92,0,heat,88,87,32,1476,0.021680216802168,0.363636363636364
+corrected-cov5-d50-q05,paper's,5,yes,none (as the draft),kept,50,0.05,6,92,0,heat,88,87,32,1476,0.021680216802168,0.363636363636364
+corrected-cov5-inter-d50,paper's and interaction (inter),5,yes,none (as the draft),kept,50,0.01,6,92,0,heat,88,87,32,1476,0.021680216802168,0.363636363636364
+corrected-cov5-inter-d50-q05,paper's and interaction (inter),5,yes,none (as the draft),kept,50,0.05,6,92,0,heat,88,87,32,1476,0.021680216802168,0.363636363636364
+corrected-mnchisq-ctexcl,paper's,10,yes,"MN, chi-squared",excluded,20,0.01,12,118,4,heat,88,86,88,1476,0.0596205962059621,1
+corrected-mnchisq-ctrl-ctexcl,ploidy in controls only (ctrl),10,yes,"MN, chi-squared",excluded,20,0.01,5,118,0,heat,88,86,88,1476,0.0596205962059621,1
+corrected-mnchisq-inter-ctexcl,paper's and interaction (inter),10,yes,"MN, chi-squared",excluded,20,0.01,12,118,4,heat,88,86,88,1476,0.0596205962059621,1
+cov5-ctrl-d50,ploidy in controls only (ctrl),5,no (as the draft),none (as the draft),kept,50,0.01,50,92,0,heat,88,87,32,1476,0.021680216802168,0.363636363636364
+cov5-ctrl-d50-q05,ploidy in controls only (ctrl),5,no (as the draft),none (as the draft),kept,50,0.05,50,92,0,heat,88,87,32,1476,0.021680216802168,0.363636363636364
+cov5-d50,paper's,5,no (as the draft),none (as the draft),kept,50,0.01,6,92,0,heat,88,87,32,1476,0.021680216802168,0.363636363636364
+cov5-d50-q05,paper's,5,no (as the draft),none (as the draft),kept,50,0.05,6,92,0,heat,88,87,32,1476,0.021680216802168,0.363636363636364
+cov5-inter-d50,paper's and interaction (inter),5,no (as the draft),none (as the draft),kept,50,0.01,6,92,0,heat,88,87,32,1476,0.021680216802168,0.363636363636364
+cov5-inter-d50-q05,paper's and interaction (inter),5,no (as the draft),none (as the draft),kept,50,0.05,6,92,0,heat,88,87,32,1476,0.021680216802168,0.363636363636364
+cov5-mnchisq-ctrl-d50-q05,ploidy in controls only (ctrl),5,no (as the draft),"MN, chi-squared",kept,50,0.05,14,83,0,heat,81,80,28,1476,0.018970189701897,0.345679012345679
+cov5-mnchisq-d50-q05,paper's,5,no (as the draft),"MN, chi-squared",kept,50,0.05,3,83,0,heat,81,80,28,1476,0.018970189701897,0.345679012345679
+cov5-mnchisq-inter-d50-q05,paper's and interaction (inter),5,no (as the draft),"MN, chi-squared",kept,50,0.05,3,83,0,heat,81,80,28,1476,0.018970189701897,0.345679012345679
+corrected-cov5-mnchisq-ctrl-d50-q05,ploidy in controls only (ctrl),5,yes,"MN, chi-squared",kept,50,0.05,11,82,0,heat,80,79,28,1476,0.018970189701897,0.35
+corrected-cov5-mnchisq-d50-q05,paper's,5,yes,"MN, chi-squared",kept,50,0.05,3,82,0,heat,80,79,28,1476,0.018970189701897,0.35
+corrected-cov5-mnchisq-inter-d50-q05,paper's and interaction (inter),5,yes,"MN, chi-squared",kept,50,0.05,3,82,0,heat,80,79,28,1476,0.018970189701897,0.35
+cov5-mnchisq-ctrl-d50,ploidy in controls only (ctrl),5,no (as the draft),"MN, chi-squared",kept,50,0.01,6,63,0,heat,62,61,20,1476,0.013550135501355,0.32258064516129
+cov5-mnchisq-d50,paper's,5,no (as the draft),"MN, chi-squared",kept,50,0.01,1,63,0,heat,62,61,20,1476,0.013550135501355,0.32258064516129
+cov5-mnchisq-inter-d50,paper's and interaction (inter),5,no (as the draft),"MN, chi-squared",kept,50,0.01,1,63,0,heat,62,61,20,1476,0.013550135501355,0.32258064516129
+corrected-cov5-ctexcl-d50,paper's,5,yes,none (as the draft),excluded,50,0.01,4,63,0,heat,61,60,22,1476,0.0149051490514905,0.360655737704918
+corrected-cov5-ctexcl-d50-q05,paper's,5,yes,none (as the draft),excluded,50,0.05,4,63,0,heat,61,60,22,1476,0.0149051490514905,0.360655737704918
+corrected-cov5-ctrl-ctexcl-d50,ploidy in controls only (ctrl),5,yes,none (as the draft),excluded,50,0.01,28,63,0,heat,61,60,22,1476,0.0149051490514905,0.360655737704918
+corrected-cov5-ctrl-ctexcl-d50-q05,ploidy in controls only (ctrl),5,yes,none (as the draft),excluded,50,0.05,28,63,0,heat,61,60,22,1476,0.0149051490514905,0.360655737704918
+corrected-cov5-inter-ctexcl-d50,paper's and interaction (inter),5,yes,none (as the draft),excluded,50,0.01,4,63,0,heat,61,60,22,1476,0.0149051490514905,0.360655737704918
+corrected-cov5-inter-ctexcl-d50-q05,paper's and interaction (inter),5,yes,none (as the draft),excluded,50,0.05,4,63,0,heat,61,60,22,1476,0.0149051490514905,0.360655737704918
+cov5-ctexcl-d50,paper's,5,no (as the draft),none (as the draft),excluded,50,0.01,4,63,0,heat,61,60,22,1476,0.0149051490514905,0.360655737704918
+cov5-ctexcl-d50-q05,paper's,5,no (as the draft),none (as the draft),excluded,50,0.05,4,63,0,heat,61,60,22,1476,0.0149051490514905,0.360655737704918
+cov5-ctrl-ctexcl-d50,ploidy in controls only (ctrl),5,no (as the draft),none (as the draft),excluded,50,0.01,36,63,0,heat,61,60,22,1476,0.0149051490514905,0.360655737704918
+cov5-ctrl-ctexcl-d50-q05,ploidy in controls only (ctrl),5,no (as the draft),none (as the draft),excluded,50,0.05,36,63,0,heat,61,60,22,1476,0.0149051490514905,0.360655737704918
+cov5-inter-ctexcl-d50,paper's and interaction (inter),5,no (as the draft),none (as the draft),excluded,50,0.01,4,63,0,heat,61,60,22,1476,0.0149051490514905,0.360655737704918
+cov5-inter-ctexcl-d50-q05,paper's and interaction (inter),5,no (as the draft),none (as the draft),excluded,50,0.05,4,63,0,heat,61,60,22,1476,0.0149051490514905,0.360655737704918
+corrected-cov5-mnchisq-ctrl-d50,ploidy in controls only (ctrl),5,yes,"MN, chi-squared",kept,50,0.01,5,62,0,heat,60,60,18,1476,0.0121951219512195,0.3
+corrected-cov5-mnchisq-d50,paper's,5,yes,"MN, chi-squared",kept,50,0.01,1,62,0,heat,60,60,18,1476,0.0121951219512195,0.3
+corrected-cov5-mnchisq-inter-d50,paper's and interaction (inter),5,yes,"MN, chi-squared",kept,50,0.01,1,62,0,heat,60,60,18,1476,0.0121951219512195,0.3
+cov5-mnchisq-ctexcl-d50-q05,paper's,5,no (as the draft),"MN, chi-squared",excluded,50,0.05,2,60,0,heat,58,57,21,1476,0.0142276422764228,0.362068965517241
+cov5-mnchisq-ctrl-ctexcl-d50-q05,ploidy in controls only (ctrl),5,no (as the draft),"MN, chi-squared",excluded,50,0.05,12,60,0,heat,58,57,21,1476,0.0142276422764228,0.362068965517241
+cov5-mnchisq-inter-ctexcl-d50-q05,paper's and interaction (inter),5,no (as the draft),"MN, chi-squared",excluded,50,0.05,2,60,0,heat,58,57,21,1476,0.0142276422764228,0.362068965517241
+corrected-cov5-mnchisq-ctexcl-d50-q05,paper's,5,yes,"MN, chi-squared",excluded,50,0.05,2,59,0,heat,57,56,21,1476,0.0142276422764228,0.368421052631579
+corrected-cov5-mnchisq-ctrl-ctexcl-d50-q05,ploidy in controls only (ctrl),5,yes,"MN, chi-squared",excluded,50,0.05,10,59,0,heat,57,56,21,1476,0.0142276422764228,0.368421052631579
+corrected-cov5-mnchisq-inter-ctexcl-d50-q05,paper's and interaction (inter),5,yes,"MN, chi-squared",excluded,50,0.05,2,59,0,heat,57,56,21,1476,0.0142276422764228,0.368421052631579
+cov5-mnchisq-ctexcl-d50,paper's,5,no (as the draft),"MN, chi-squared",excluded,50,0.01,1,48,0,heat,47,46,16,1476,0.010840108401084,0.340425531914894
+cov5-mnchisq-ctrl-ctexcl-d50,ploidy in controls only (ctrl),5,no (as the draft),"MN, chi-squared",excluded,50,0.01,5,48,0,heat,47,46,16,1476,0.010840108401084,0.340425531914894
+cov5-mnchisq-inter-ctexcl-d50,paper's and interaction (inter),5,no (as the draft),"MN, chi-squared",excluded,50,0.01,1,48,0,heat,47,46,16,1476,0.010840108401084,0.340425531914894
+corrected-cov5-mnchisq-ctexcl-d50,paper's,5,yes,"MN, chi-squared",excluded,50,0.01,1,47,0,heat,45,45,14,1476,0.00948509485094851,0.311111111111111
+corrected-cov5-mnchisq-ctrl-ctexcl-d50,ploidy in controls only (ctrl),5,yes,"MN, chi-squared",excluded,50,0.01,4,47,0,heat,45,45,14,1476,0.00948509485094851,0.311111111111111
+corrected-cov5-mnchisq-inter-ctexcl-d50,paper's and interaction (inter),5,yes,"MN, chi-squared",excluded,50,0.01,1,47,0,heat,45,45,14,1476,0.00948509485094851,0.311111111111111
+corrected-ctrl-d50,ploidy in controls only (ctrl),10,yes,none (as the draft),kept,50,0.01,1,4,0,heat,4,4,4,1476,0.002710027100271,1
+corrected-ctrl-d50-q05,ploidy in controls only (ctrl),10,yes,none (as the draft),kept,50,0.05,1,4,0,heat,4,4,4,1476,0.002710027100271,1
+corrected-d50,paper's,10,yes,none (as the draft),kept,50,0.01,1,4,0,heat,4,4,4,1476,0.002710027100271,1
+corrected-d50-q05,paper's,10,yes,none (as the draft),kept,50,0.05,1,4,0,heat,4,4,4,1476,0.002710027100271,1
+corrected-inter-d50,paper's and interaction (inter),10,yes,none (as the draft),kept,50,0.01,1,4,0,heat,4,4,4,1476,0.002710027100271,1
+corrected-inter-d50-q05,paper's and interaction (inter),10,yes,none (as the draft),kept,50,0.05,1,4,0,heat,4,4,4,1476,0.002710027100271,1
+corrected-mnchisq-ctrl-d50,ploidy in controls only (ctrl),10,yes,"MN, chi-squared",kept,50,0.01,0,4,0,heat,4,4,4,1476,0.002710027100271,1
+corrected-mnchisq-ctrl-d50-q05,ploidy in controls only (ctrl),10,yes,"MN, chi-squared",kept,50,0.05,0,4,0,heat,4,4,4,1476,0.002710027100271,1
+corrected-mnchisq-d50,paper's,10,yes,"MN, chi-squared",kept,50,0.01,1,4,0,heat,4,4,4,1476,0.002710027100271,1
+corrected-mnchisq-d50-q05,paper's,10,yes,"MN, chi-squared",kept,50,0.05,1,4,0,heat,4,4,4,1476,0.002710027100271,1
+corrected-mnchisq-inter-d50,paper's and interaction (inter),10,yes,"MN, chi-squared",kept,50,0.01,1,4,0,heat,4,4,4,1476,0.002710027100271,1
+corrected-mnchisq-inter-d50-q05,paper's and interaction (inter),10,yes,"MN, chi-squared",kept,50,0.05,1,4,0,heat,4,4,4,1476,0.002710027100271,1
+ctrl-d50,ploidy in controls only (ctrl),10,no (as the draft),none (as the draft),kept,50,0.01,4,4,0,heat,4,4,4,1476,0.002710027100271,1
+ctrl-d50-q05,ploidy in controls only (ctrl),10,no (as the draft),none (as the draft),kept,50,0.05,4,4,0,heat,4,4,4,1476,0.002710027100271,1
+d50,paper's,10,no (as the draft),none (as the draft),kept,50,0.01,1,4,0,heat,4,4,4,1476,0.002710027100271,1
+d50-q05,paper's,10,no (as the draft),none (as the draft),kept,50,0.05,1,4,0,heat,4,4,4,1476,0.002710027100271,1
+inter-d50,paper's and interaction (inter),10,no (as the draft),none (as the draft),kept,50,0.01,1,4,0,heat,4,4,4,1476,0.002710027100271,1
+inter-d50-q05,paper's and interaction (inter),10,no (as the draft),none (as the draft),kept,50,0.05,1,4,0,heat,4,4,4,1476,0.002710027100271,1
+mnchisq-ctrl-d50,ploidy in controls only (ctrl),10,no (as the draft),"MN, chi-squared",kept,50,0.01,1,4,0,heat,4,4,4,1476,0.002710027100271,1
+mnchisq-ctrl-d50-q05,ploidy in controls only (ctrl),10,no (as the draft),"MN, chi-squared",kept,50,0.05,1,4,0,heat,4,4,4,1476,0.002710027100271,1
+mnchisq-d50,paper's,10,no (as the draft),"MN, chi-squared",kept,50,0.01,1,4,0,heat,4,4,4,1476,0.002710027100271,1
+mnchisq-d50-q05,paper's,10,no (as the draft),"MN, chi-squared",kept,50,0.05,1,4,0,heat,4,4,4,1476,0.002710027100271,1
+mnchisq-inter-d50,paper's and interaction (inter),10,no (as the draft),"MN, chi-squared",kept,50,0.01,1,4,0,heat,4,4,4,1476,0.002710027100271,1
+mnchisq-inter-d50-q05,paper's and interaction (inter),10,no (as the draft),"MN, chi-squared",kept,50,0.05,1,4,0,heat,4,4,4,1476,0.002710027100271,1
+corrected-ctexcl-d50,paper's,10,yes,none (as the draft),excluded,50,0.01,1,2,0,heat,2,2,2,1476,0.0013550135501355,1
+corrected-ctexcl-d50-q05,paper's,10,yes,none (as the draft),excluded,50,0.05,1,2,0,heat,2,2,2,1476,0.0013550135501355,1
+corrected-ctrl-ctexcl-d50,ploidy in controls only (ctrl),10,yes,none (as the draft),excluded,50,0.01,1,2,0,heat,2,2,2,1476,0.0013550135501355,1
+corrected-ctrl-ctexcl-d50-q05,ploidy in controls only (ctrl),10,yes,none (as the draft),excluded,50,0.05,1,2,0,heat,2,2,2,1476,0.0013550135501355,1
+corrected-inter-ctexcl-d50,paper's and interaction (inter),10,yes,none (as the draft),excluded,50,0.01,1,2,0,heat,2,2,2,1476,0.0013550135501355,1
+corrected-inter-ctexcl-d50-q05,paper's and interaction (inter),10,yes,none (as the draft),excluded,50,0.05,1,2,0,heat,2,2,2,1476,0.0013550135501355,1
+corrected-mnchisq-ctexcl-d50,paper's,10,yes,"MN, chi-squared",excluded,50,0.01,1,2,0,heat,2,2,2,1476,0.0013550135501355,1
+corrected-mnchisq-ctexcl-d50-q05,paper's,10,yes,"MN, chi-squared",excluded,50,0.05,1,2,0,heat,2,2,2,1476,0.0013550135501355,1
+corrected-mnchisq-ctrl-ctexcl-d50,ploidy in controls only (ctrl),10,yes,"MN, chi-squared",excluded,50,0.01,0,2,0,heat,2,2,2,1476,0.0013550135501355,1
+corrected-mnchisq-ctrl-ctexcl-d50-q05,ploidy in controls only (ctrl),10,yes,"MN, chi-squared",excluded,50,0.05,0,2,0,heat,2,2,2,1476,0.0013550135501355,1
+corrected-mnchisq-inter-ctexcl-d50,paper's and interaction (inter),10,yes,"MN, chi-squared",excluded,50,0.01,1,2,0,heat,2,2,2,1476,0.0013550135501355,1
+corrected-mnchisq-inter-ctexcl-d50-q05,paper's and interaction (inter),10,yes,"MN, chi-squared",excluded,50,0.05,1,2,0,heat,2,2,2,1476,0.0013550135501355,1
+ctexcl-d50,paper's,10,no (as the draft),none (as the draft),excluded,50,0.01,1,2,0,heat,2,2,2,1476,0.0013550135501355,1
+ctexcl-d50-q05,paper's,10,no (as the draft),none (as the draft),excluded,50,0.05,1,2,0,heat,2,2,2,1476,0.0013550135501355,1
+ctrl-ctexcl-d50,ploidy in controls only (ctrl),10,no (as the draft),none (as the draft),excluded,50,0.01,4,2,0,heat,2,2,2,1476,0.0013550135501355,1
+ctrl-ctexcl-d50-q05,ploidy in controls only (ctrl),10,no (as the draft),none (as the draft),excluded,50,0.05,4,2,0,heat,2,2,2,1476,0.0013550135501355,1
+inter-ctexcl-d50,paper's and interaction (inter),10,no (as the draft),none (as the draft),excluded,50,0.01,1,2,0,heat,2,2,2,1476,0.0013550135501355,1
+inter-ctexcl-d50-q05,paper's and interaction (inter),10,no (as the draft),none (as the draft),excluded,50,0.05,1,2,0,heat,2,2,2,1476,0.0013550135501355,1
+mnchisq-ctexcl-d50,paper's,10,no (as the draft),"MN, chi-squared",excluded,50,0.01,1,2,0,heat,2,2,2,1476,0.0013550135501355,1
+mnchisq-ctexcl-d50-q05,paper's,10,no (as the draft),"MN, chi-squared",excluded,50,0.05,1,2,0,heat,2,2,2,1476,0.0013550135501355,1
+mnchisq-ctrl-ctexcl-d50,ploidy in controls only (ctrl),10,no (as the draft),"MN, chi-squared",excluded,50,0.01,1,2,0,heat,2,2,2,1476,0.0013550135501355,1
+mnchisq-ctrl-ctexcl-d50-q05,ploidy in controls only (ctrl),10,no (as the draft),"MN, chi-squared",excluded,50,0.05,1,2,0,heat,2,2,2,1476,0.0013550135501355,1
+mnchisq-inter-ctexcl-d50,paper's and interaction (inter),10,no (as the draft),"MN, chi-squared",excluded,50,0.01,1,2,0,heat,2,2,2,1476,0.0013550135501355,1
+mnchisq-inter-ctexcl-d50-q05,paper's and interaction (inter),10,no (as the draft),"MN, chi-squared",excluded,50,0.05,1,2,0,heat,2,2,2,1476,0.0013550135501355,1
+cov5-ctrl-q05,ploidy in controls only (ctrl),5,no (as the draft),none (as the draft),kept,20,0.05,27725,21604,2449,ploidy,6824,6631,662,724,0.914364640883978,0.097010550996483
+corrected-cov5-ctrl-q05,ploidy in controls only (ctrl),5,yes,none (as the draft),kept,20,0.05,27481,21453,2431,ploidy,6810,6618,661,724,0.912983425414365,0.0970631424375918
+cov5-ctrl-ctexcl-q05,ploidy in controls only (ctrl),5,no (as the draft),none (as the draft),excluded,20,0.05,21915,15717,1716,ploidy,6175,5994,625,724,0.863259668508287,0.101214574898785
+corrected-cov5-ctrl-ctexcl-q05,ploidy in controls only (ctrl),5,yes,none (as the draft),excluded,20,0.05,21689,15572,1700,ploidy,6161,5981,624,724,0.861878453038674,0.101282259373478
+cov5-ctrl,ploidy in controls only (ctrl),5,no (as the draft),none (as the draft),kept,20,0.01,19076,21361,1585,ploidy,5739,5585,620,724,0.856353591160221,0.108032758320265
+corrected-cov5-ctrl,ploidy in controls only (ctrl),5,yes,none (as the draft),kept,20,0.01,18808,21200,1568,ploidy,5717,5564,617,724,0.852209944751381,0.107923736225293
+cov5-ctrl-ctexcl,ploidy in controls only (ctrl),5,no (as the draft),none (as the draft),excluded,20,0.01,14970,15530,1110,ploidy,5071,4926,578,724,0.798342541436464,0.113981463222244
+corrected-cov5-ctrl-ctexcl,ploidy in controls only (ctrl),5,yes,none (as the draft),excluded,20,0.01,14741,15376,1095,ploidy,5054,4910,576,724,0.795580110497238,0.113969133359715
+cov5-inter-q05,paper's and interaction (inter),5,no (as the draft),none (as the draft),kept,20,0.05,10335,21604,1891,ploidy,4489,4388,700,724,0.966850828729282,0.155936734239252
+cov5-q05,paper's,5,no (as the draft),none (as the draft),kept,20,0.05,10335,21604,1891,ploidy,4489,4388,700,724,0.966850828729282,0.155936734239252
+corrected-cov5-inter-q05,paper's and interaction (inter),5,yes,none (as the draft),kept,20,0.05,10192,21453,1820,ploidy,4478,4382,695,724,0.959944751381216,0.155203215721304
+corrected-cov5-q05,paper's,5,yes,none (as the draft),kept,20,0.05,10192,21453,1820,ploidy,4478,4382,695,724,0.959944751381216,0.155203215721304
+cov5,paper's,5,no (as the draft),none (as the draft),kept,20,0.01,9942,21361,1784,ploidy,4386,4288,700,724,0.966850828729282,0.159598723210214
+cov5-inter,paper's and interaction (inter),5,no (as the draft),none (as the draft),kept,20,0.01,9942,21361,1784,ploidy,4386,4288,700,724,0.966850828729282,0.159598723210214
+corrected-cov5,paper's,5,yes,none (as the draft),kept,20,0.01,9791,21200,1711,ploidy,4373,4280,695,724,0.959944751381216,0.15892979647839
+corrected-cov5-inter,paper's and interaction (inter),5,yes,none (as the draft),kept,20,0.01,9791,21200,1711,ploidy,4373,4280,695,724,0.959944751381216,0.15892979647839
+cov5-ctexcl-q05,paper's,5,no (as the draft),none (as the draft),excluded,20,0.05,7357,15717,1297,ploidy,3608,3523,613,724,0.846685082872928,0.16990022172949
+cov5-inter-ctexcl-q05,paper's and interaction (inter),5,no (as the draft),none (as the draft),excluded,20,0.05,7357,15717,1297,ploidy,3608,3523,613,724,0.846685082872928,0.16990022172949
+corrected-cov5-ctexcl-q05,paper's,5,yes,none (as the draft),excluded,20,0.05,7220,15572,1228,ploidy,3598,3518,609,724,0.841160220994475,0.169260700389105
+corrected-cov5-inter-ctexcl-q05,paper's and interaction (inter),5,yes,none (as the draft),excluded,20,0.05,7220,15572,1228,ploidy,3598,3518,609,724,0.841160220994475,0.169260700389105
+cov5-ctexcl,paper's,5,no (as the draft),none (as the draft),excluded,20,0.01,7046,15530,1219,ploidy,3506,3423,605,724,0.835635359116022,0.172561323445522
+cov5-inter-ctexcl,paper's and interaction (inter),5,no (as the draft),none (as the draft),excluded,20,0.01,7046,15530,1219,ploidy,3506,3423,605,724,0.835635359116022,0.172561323445522
+corrected-cov5-ctexcl,paper's,5,yes,none (as the draft),excluded,20,0.01,6902,15376,1148,ploidy,3493,3415,601,724,0.830110497237569,0.172058402519324
+corrected-cov5-inter-ctexcl,paper's and interaction (inter),5,yes,none (as the draft),excluded,20,0.01,6902,15376,1148,ploidy,3493,3415,601,724,0.830110497237569,0.172058402519324
+ctrl-q05,ploidy in controls only (ctrl),10,no (as the draft),none (as the draft),kept,20,0.05,3326,2352,248,ploidy,1818,1771,431,724,0.595303867403315,0.237073707370737
+corrected-ctrl-q05,ploidy in controls only (ctrl),10,yes,none (as the draft),kept,20,0.05,3222,2273,244,ploidy,1809,1762,427,724,0.589779005524862,0.236042012161415
+ctrl,ploidy in controls only (ctrl),10,no (as the draft),none (as the draft),kept,20,0.01,2768,2351,194,ploidy,1585,1545,400,724,0.552486187845304,0.252365930599369
+corrected-ctrl,ploidy in controls only (ctrl),10,yes,none (as the draft),kept,20,0.01,2628,2273,187,ploidy,1565,1525,397,724,0.548342541436464,0.253674121405751
+ctrl-ctexcl-q05,ploidy in controls only (ctrl),10,no (as the draft),none (as the draft),excluded,20,0.05,2544,1668,176,ploidy,1469,1424,367,724,0.506906077348066,0.249829816201498
+corrected-ctrl-ctexcl-q05,ploidy in controls only (ctrl),10,yes,none (as the draft),excluded,20,0.05,2444,1596,172,ploidy,1460,1415,363,724,0.501381215469613,0.248630136986301
+ctrl-ctexcl,ploidy in controls only (ctrl),10,no (as the draft),none (as the draft),excluded,20,0.01,2112,1667,131,ploidy,1266,1228,339,724,0.468232044198895,0.267772511848341
+corrected-ctrl-ctexcl,ploidy in controls only (ctrl),10,yes,none (as the draft),excluded,20,0.01,1985,1596,125,ploidy,1248,1210,336,724,0.464088397790055,0.269230769230769
+inter,paper's and interaction (inter),10,no (as the draft),none (as the draft),kept,20,0.01,1038,2351,200,ploidy,724,711,724,724,1,1
+inter-q05,paper's and interaction (inter),10,no (as the draft),none (as the draft),kept,20,0.05,1038,2352,201,ploidy,724,711,724,724,1,1
+legacy,paper's,10,no (as the draft),none (as the draft),kept,20,0.01,1038,2351,200,ploidy,724,711,724,724,1,1
+q05,paper's,10,no (as the draft),none (as the draft),kept,20,0.05,1038,2352,201,ploidy,724,711,724,724,1,1
+corrected,paper's,10,yes,none (as the draft),kept,20,0.01,952,2273,159,ploidy,715,705,715,724,0.987569060773481,1
+corrected-inter,paper's and interaction (inter),10,yes,none (as the draft),kept,20,0.01,952,2273,159,ploidy,715,705,715,724,0.987569060773481,1
+corrected-inter-q05,paper's and interaction (inter),10,yes,none (as the draft),kept,20,0.05,952,2273,159,ploidy,715,705,715,724,0.987569060773481,1
+corrected-q05,paper's,10,yes,none (as the draft),kept,20,0.05,952,2273,159,ploidy,715,705,715,724,0.987569060773481,1
+ctexcl,paper's,10,no (as the draft),none (as the draft),excluded,20,0.01,717,1667,139,ploidy,487,478,487,724,0.672651933701657,1
+ctexcl-q05,paper's,10,no (as the draft),none (as the draft),excluded,20,0.05,717,1668,140,ploidy,487,478,487,724,0.672651933701657,1
+inter-ctexcl,paper's and interaction (inter),10,no (as the draft),none (as the draft),excluded,20,0.01,717,1667,139,ploidy,487,478,487,724,0.672651933701657,1
+inter-ctexcl-q05,paper's and interaction (inter),10,no (as the draft),none (as the draft),excluded,20,0.05,717,1668,140,ploidy,487,478,487,724,0.672651933701657,1
+corrected-ctexcl,paper's,10,yes,none (as the draft),excluded,20,0.01,635,1596,100,ploidy,479,473,479,724,0.661602209944751,1
+corrected-ctexcl-q05,paper's,10,yes,none (as the draft),excluded,20,0.05,635,1596,100,ploidy,479,473,479,724,0.661602209944751,1
+corrected-inter-ctexcl,paper's and interaction (inter),10,yes,none (as the draft),excluded,20,0.01,635,1596,100,ploidy,479,473,479,724,0.661602209944751,1
+corrected-inter-ctexcl-q05,paper's and interaction (inter),10,yes,none (as the draft),excluded,20,0.05,635,1596,100,ploidy,479,473,479,724,0.661602209944751,1
+cov5-mnchisq-ctrl-q05,ploidy in controls only (ctrl),5,no (as the draft),"MN, chi-squared",kept,20,0.05,398,2834,1,ploidy,342,332,79,724,0.109116022099448,0.230994152046784
+corrected-cov5-mnchisq-ctrl-q05,ploidy in controls only (ctrl),5,yes,"MN, chi-squared",kept,20,0.05,364,2737,1,ploidy,315,306,76,724,0.104972375690608,0.241269841269841
+cov5-mnchisq-ctrl-ctexcl-q05,ploidy in controls only (ctrl),5,no (as the draft),"MN, chi-squared",excluded,20,0.05,352,2195,0,ploidy,304,294,72,724,0.0994475138121547,0.236842105263158
+corrected-cov5-mnchisq-ctrl-ctexcl-q05,ploidy in controls only (ctrl),5,yes,"MN, chi-squared",excluded,20,0.05,326,2116,0,ploidy,283,274,70,724,0.0966850828729282,0.247349823321555
+cov5-mnchisq-inter-q05,paper's and interaction (inter),5,no (as the draft),"MN, chi-squared",kept,20,0.05,321,2834,45,ploidy,267,263,70,724,0.0966850828729282,0.262172284644195
+cov5-mnchisq-q05,paper's,5,no (as the draft),"MN, chi-squared",kept,20,0.05,321,2834,45,ploidy,267,263,70,724,0.0966850828729282,0.262172284644195
+corrected-cov5-mnchisq-inter-q05,paper's and interaction (inter),5,yes,"MN, chi-squared",kept,20,0.05,313,2737,42,ploidy,266,263,69,724,0.0953038674033149,0.259398496240602
+corrected-cov5-mnchisq-q05,paper's,5,yes,"MN, chi-squared",kept,20,0.05,313,2737,42,ploidy,266,263,69,724,0.0953038674033149,0.259398496240602
+cov5-mnchisq-ctexcl-q05,paper's,5,no (as the draft),"MN, chi-squared",excluded,20,0.05,240,2195,32,ploidy,193,190,48,724,0.0662983425414365,0.248704663212435
+cov5-mnchisq-inter-ctexcl-q05,paper's and interaction (inter),5,no (as the draft),"MN, chi-squared",excluded,20,0.05,240,2195,32,ploidy,193,190,48,724,0.0662983425414365,0.248704663212435
+corrected-cov5-mnchisq-ctexcl-q05,paper's,5,yes,"MN, chi-squared",excluded,20,0.05,232,2116,29,ploidy,191,189,47,724,0.0649171270718232,0.246073298429319
+corrected-cov5-mnchisq-inter-ctexcl-q05,paper's and interaction (inter),5,yes,"MN, chi-squared",excluded,20,0.05,232,2116,29,ploidy,191,189,47,724,0.0649171270718232,0.246073298429319
+cov5-mnchisq-ctrl,ploidy in controls only (ctrl),5,no (as the draft),"MN, chi-squared",kept,20,0.01,120,1191,0,ploidy,111,106,30,724,0.0414364640883978,0.27027027027027
+corrected-cov5-mnchisq-ctrl,ploidy in controls only (ctrl),5,yes,"MN, chi-squared",kept,20,0.01,117,1133,0,ploidy,108,103,28,724,0.0386740331491713,0.259259259259259
+corrected-cov5-mnchisq,paper's,5,yes,"MN, chi-squared",kept,20,0.01,126,1133,27,ploidy,106,105,27,724,0.037292817679558,0.254716981132076
+corrected-cov5-mnchisq-inter,paper's and interaction (inter),5,yes,"MN, chi-squared",kept,20,0.01,126,1133,27,ploidy,106,105,27,724,0.037292817679558,0.254716981132076
+cov5-mnchisq,paper's,5,no (as the draft),"MN, chi-squared",kept,20,0.01,126,1191,27,ploidy,106,105,27,724,0.037292817679558,0.254716981132076
+cov5-mnchisq-inter,paper's and interaction (inter),5,no (as the draft),"MN, chi-squared",kept,20,0.01,126,1191,27,ploidy,106,105,27,724,0.037292817679558,0.254716981132076
+cov5-mnchisq-ctrl-ctexcl,ploidy in controls only (ctrl),5,no (as the draft),"MN, chi-squared",excluded,20,0.01,109,923,0,ploidy,102,97,28,724,0.0386740331491713,0.274509803921569
+corrected-cov5-mnchisq-ctrl-ctexcl,ploidy in controls only (ctrl),5,yes,"MN, chi-squared",excluded,20,0.01,106,875,0,ploidy,99,94,26,724,0.0359116022099448,0.262626262626263
+corrected-cov5-mnchisq-ctexcl,paper's,5,yes,"MN, chi-squared",excluded,20,0.01,96,875,19,ploidy,77,76,19,724,0.0262430939226519,0.246753246753247
+corrected-cov5-mnchisq-inter-ctexcl,paper's and interaction (inter),5,yes,"MN, chi-squared",excluded,20,0.01,96,875,19,ploidy,77,76,19,724,0.0262430939226519,0.246753246753247
+cov5-mnchisq-ctexcl,paper's,5,no (as the draft),"MN, chi-squared",excluded,20,0.01,96,923,19,ploidy,77,76,19,724,0.0262430939226519,0.246753246753247
+cov5-mnchisq-inter-ctexcl,paper's and interaction (inter),5,no (as the draft),"MN, chi-squared",excluded,20,0.01,96,923,19,ploidy,77,76,19,724,0.0262430939226519,0.246753246753247
+mnchisq-ctrl-q05,ploidy in controls only (ctrl),10,no (as the draft),"MN, chi-squared",kept,20,0.05,53,410,0,ploidy,43,41,21,724,0.0290055248618785,0.488372093023256
+cov5-ctrl-d50,ploidy in controls only (ctrl),5,no (as the draft),none (as the draft),kept,50,0.01,50,92,0,ploidy,38,38,12,724,0.0165745856353591,0.315789473684211
+cov5-ctrl-d50-q05,ploidy in controls only (ctrl),5,no (as the draft),none (as the draft),kept,50,0.05,50,92,0,ploidy,38,38,12,724,0.0165745856353591,0.315789473684211
+corrected-cov5-ctrl-d50,ploidy in controls only (ctrl),5,yes,none (as the draft),kept,50,0.01,42,92,0,ploidy,37,37,12,724,0.0165745856353591,0.324324324324324
+corrected-cov5-ctrl-d50-q05,ploidy in controls only (ctrl),5,yes,none (as the draft),kept,50,0.05,42,92,0,ploidy,37,37,12,724,0.0165745856353591,0.324324324324324
+corrected-mnchisq-ctrl-q05,ploidy in controls only (ctrl),10,yes,"MN, chi-squared",kept,20,0.05,42,355,0,ploidy,37,35,19,724,0.0262430939226519,0.513513513513514
+mnchisq-ctrl-ctexcl-q05,ploidy in controls only (ctrl),10,no (as the draft),"MN, chi-squared",excluded,20,0.05,44,314,0,ploidy,35,33,19,724,0.0262430939226519,0.542857142857143
+mnchisq-inter-q05,paper's and interaction (inter),10,no (as the draft),"MN, chi-squared",kept,20,0.05,37,410,6,ploidy,34,32,34,724,0.0469613259668508,1
+mnchisq-q05,paper's,10,no (as the draft),"MN, chi-squared",kept,20,0.05,37,410,6,ploidy,34,32,34,724,0.0469613259668508,1
+corrected-mnchisq-inter-q05,paper's and interaction (inter),10,yes,"MN, chi-squared",kept,20,0.05,34,355,6,ploidy,32,31,32,724,0.0441988950276243,1
+corrected-mnchisq-q05,paper's,10,yes,"MN, chi-squared",kept,20,0.05,34,355,6,ploidy,32,31,32,724,0.0441988950276243,1
+corrected-mnchisq-ctrl-ctexcl-q05,ploidy in controls only (ctrl),10,yes,"MN, chi-squared",excluded,20,0.05,35,267,0,ploidy,30,28,17,724,0.0234806629834254,0.566666666666667
+cov5-ctrl-ctexcl-d50,ploidy in controls only (ctrl),5,no (as the draft),none (as the draft),excluded,50,0.01,36,63,0,ploidy,27,27,10,724,0.0138121546961326,0.37037037037037
+cov5-ctrl-ctexcl-d50-q05,ploidy in controls only (ctrl),5,no (as the draft),none (as the draft),excluded,50,0.05,36,63,0,ploidy,27,27,10,724,0.0138121546961326,0.37037037037037
+corrected-cov5-ctrl-ctexcl-d50,ploidy in controls only (ctrl),5,yes,none (as the draft),excluded,50,0.01,28,63,0,ploidy,26,26,10,724,0.0138121546961326,0.384615384615385
+corrected-cov5-ctrl-ctexcl-d50-q05,ploidy in controls only (ctrl),5,yes,none (as the draft),excluded,50,0.05,28,63,0,ploidy,26,26,10,724,0.0138121546961326,0.384615384615385
+mnchisq-ctexcl-q05,paper's,10,no (as the draft),"MN, chi-squared",excluded,20,0.05,28,314,6,ploidy,26,24,26,724,0.0359116022099448,1
+mnchisq-inter-ctexcl-q05,paper's and interaction (inter),10,no (as the draft),"MN, chi-squared",excluded,20,0.05,28,314,6,ploidy,26,24,26,724,0.0359116022099448,1
+corrected-mnchisq-ctexcl-q05,paper's,10,yes,"MN, chi-squared",excluded,20,0.05,25,267,6,ploidy,24,23,24,724,0.0331491712707182,1
+corrected-mnchisq-inter-ctexcl-q05,paper's and interaction (inter),10,yes,"MN, chi-squared",excluded,20,0.05,25,267,6,ploidy,24,23,24,724,0.0331491712707182,1
+corrected-mnchisq,paper's,10,yes,"MN, chi-squared",kept,20,0.01,14,157,4,ploidy,12,11,12,724,0.0165745856353591,1
+corrected-mnchisq-inter,paper's and interaction (inter),10,yes,"MN, chi-squared",kept,20,0.01,14,157,4,ploidy,12,11,12,724,0.0165745856353591,1
+mnchisq,paper's,10,no (as the draft),"MN, chi-squared",kept,20,0.01,14,185,4,ploidy,12,11,12,724,0.0165745856353591,1
+mnchisq-inter,paper's and interaction (inter),10,no (as the draft),"MN, chi-squared",kept,20,0.01,14,185,4,ploidy,12,11,12,724,0.0165745856353591,1
+corrected-mnchisq-ctexcl,paper's,10,yes,"MN, chi-squared",excluded,20,0.01,12,118,4,ploidy,11,10,11,724,0.0151933701657459,1
+corrected-mnchisq-inter-ctexcl,paper's and interaction (inter),10,yes,"MN, chi-squared",excluded,20,0.01,12,118,4,ploidy,11,10,11,724,0.0151933701657459,1
+cov5-mnchisq-ctrl-d50-q05,ploidy in controls only (ctrl),5,no (as the draft),"MN, chi-squared",kept,50,0.05,14,83,0,ploidy,11,11,5,724,0.0069060773480663,0.454545454545455
+mnchisq-ctexcl,paper's,10,no (as the draft),"MN, chi-squared",excluded,20,0.01,12,142,4,ploidy,11,10,11,724,0.0151933701657459,1
+mnchisq-inter-ctexcl,paper's and interaction (inter),10,no (as the draft),"MN, chi-squared",excluded,20,0.01,12,142,4,ploidy,11,10,11,724,0.0151933701657459,1
+corrected-cov5-mnchisq-ctrl-d50-q05,ploidy in controls only (ctrl),5,yes,"MN, chi-squared",kept,50,0.05,11,82,0,ploidy,10,10,4,724,0.00552486187845304,0.4
+cov5-mnchisq-ctrl-ctexcl-d50-q05,ploidy in controls only (ctrl),5,no (as the draft),"MN, chi-squared",excluded,50,0.05,12,60,0,ploidy,10,10,5,724,0.0069060773480663,0.5
+mnchisq-ctrl,ploidy in controls only (ctrl),10,no (as the draft),"MN, chi-squared",kept,20,0.01,10,185,0,ploidy,10,10,5,724,0.0069060773480663,0.5
+corrected-cov5-mnchisq-ctrl-ctexcl-d50-q05,ploidy in controls only (ctrl),5,yes,"MN, chi-squared",excluded,50,0.05,10,59,0,ploidy,9,9,4,724,0.00552486187845304,0.444444444444444
+mnchisq-ctrl-ctexcl,ploidy in controls only (ctrl),10,no (as the draft),"MN, chi-squared",excluded,20,0.01,8,142,0,ploidy,8,8,4,724,0.00552486187845304,0.5
+corrected-mnchisq-ctrl,ploidy in controls only (ctrl),10,yes,"MN, chi-squared",kept,20,0.01,6,157,0,ploidy,6,6,3,724,0.00414364640883978,0.5
+corrected-cov5-d50,paper's,5,yes,none (as the draft),kept,50,0.01,6,92,0,ploidy,5,5,2,724,0.00276243093922652,0.4
+corrected-cov5-d50-q05,paper's,5,yes,none (as the draft),kept,50,0.05,6,92,0,ploidy,5,5,2,724,0.00276243093922652,0.4
+corrected-cov5-inter-d50,paper's and interaction (inter),5,yes,none (as the draft),kept,50,0.01,6,92,0,ploidy,5,5,2,724,0.00276243093922652,0.4
+corrected-cov5-inter-d50-q05,paper's and interaction (inter),5,yes,none (as the draft),kept,50,0.05,6,92,0,ploidy,5,5,2,724,0.00276243093922652,0.4
+corrected-mnchisq-ctrl-ctexcl,ploidy in controls only (ctrl),10,yes,"MN, chi-squared",excluded,20,0.01,5,118,0,ploidy,5,5,2,724,0.00276243093922652,0.4
+cov5-d50,paper's,5,no (as the draft),none (as the draft),kept,50,0.01,6,92,0,ploidy,5,5,2,724,0.00276243093922652,0.4
+cov5-d50-q05,paper's,5,no (as the draft),none (as the draft),kept,50,0.05,6,92,0,ploidy,5,5,2,724,0.00276243093922652,0.4
+cov5-inter-d50,paper's and interaction (inter),5,no (as the draft),none (as the draft),kept,50,0.01,6,92,0,ploidy,5,5,2,724,0.00276243093922652,0.4
+cov5-inter-d50-q05,paper's and interaction (inter),5,no (as the draft),none (as the draft),kept,50,0.05,6,92,0,ploidy,5,5,2,724,0.00276243093922652,0.4
+cov5-mnchisq-ctrl-d50,ploidy in controls only (ctrl),5,no (as the draft),"MN, chi-squared",kept,50,0.01,6,63,0,ploidy,5,5,2,724,0.00276243093922652,0.4
+corrected-cov5-mnchisq-ctrl-d50,ploidy in controls only (ctrl),5,yes,"MN, chi-squared",kept,50,0.01,5,62,0,ploidy,4,4,1,724,0.00138121546961326,0.25
+cov5-mnchisq-ctrl-ctexcl-d50,ploidy in controls only (ctrl),5,no (as the draft),"MN, chi-squared",excluded,50,0.01,5,48,0,ploidy,4,4,2,724,0.00276243093922652,0.5
+corrected-cov5-ctexcl-d50,paper's,5,yes,none (as the draft),excluded,50,0.01,4,63,0,ploidy,3,3,1,724,0.00138121546961326,0.333333333333333
+corrected-cov5-ctexcl-d50-q05,paper's,5,yes,none (as the draft),excluded,50,0.05,4,63,0,ploidy,3,3,1,724,0.00138121546961326,0.333333333333333
+corrected-cov5-inter-ctexcl-d50,paper's and interaction (inter),5,yes,none (as the draft),excluded,50,0.01,4,63,0,ploidy,3,3,1,724,0.00138121546961326,0.333333333333333
+corrected-cov5-inter-ctexcl-d50-q05,paper's and interaction (inter),5,yes,none (as the draft),excluded,50,0.05,4,63,0,ploidy,3,3,1,724,0.00138121546961326,0.333333333333333
+corrected-cov5-mnchisq-ctrl-ctexcl-d50,ploidy in controls only (ctrl),5,yes,"MN, chi-squared",excluded,50,0.01,4,47,0,ploidy,3,3,1,724,0.00138121546961326,0.333333333333333
+corrected-cov5-mnchisq-d50-q05,paper's,5,yes,"MN, chi-squared",kept,50,0.05,3,82,0,ploidy,3,3,1,724,0.00138121546961326,0.333333333333333
+corrected-cov5-mnchisq-inter-d50-q05,paper's and interaction (inter),5,yes,"MN, chi-squared",kept,50,0.05,3,82,0,ploidy,3,3,1,724,0.00138121546961326,0.333333333333333
+cov5-ctexcl-d50,paper's,5,no (as the draft),none (as the draft),excluded,50,0.01,4,63,0,ploidy,3,3,1,724,0.00138121546961326,0.333333333333333
+cov5-ctexcl-d50-q05,paper's,5,no (as the draft),none (as the draft),excluded,50,0.05,4,63,0,ploidy,3,3,1,724,0.00138121546961326,0.333333333333333
+cov5-inter-ctexcl-d50,paper's and interaction (inter),5,no (as the draft),none (as the draft),excluded,50,0.01,4,63,0,ploidy,3,3,1,724,0.00138121546961326,0.333333333333333
+cov5-inter-ctexcl-d50-q05,paper's and interaction (inter),5,no (as the draft),none (as the draft),excluded,50,0.05,4,63,0,ploidy,3,3,1,724,0.00138121546961326,0.333333333333333
+cov5-mnchisq-d50-q05,paper's,5,no (as the draft),"MN, chi-squared",kept,50,0.05,3,83,0,ploidy,3,3,1,724,0.00138121546961326,0.333333333333333
+cov5-mnchisq-inter-d50-q05,paper's and interaction (inter),5,no (as the draft),"MN, chi-squared",kept,50,0.05,3,83,0,ploidy,3,3,1,724,0.00138121546961326,0.333333333333333
+corrected-cov5-mnchisq-ctexcl-d50-q05,paper's,5,yes,"MN, chi-squared",excluded,50,0.05,2,59,0,ploidy,2,2,1,724,0.00138121546961326,0.5
+corrected-cov5-mnchisq-inter-ctexcl-d50-q05,paper's and interaction (inter),5,yes,"MN, chi-squared",excluded,50,0.05,2,59,0,ploidy,2,2,1,724,0.00138121546961326,0.5
+cov5-mnchisq-ctexcl-d50-q05,paper's,5,no (as the draft),"MN, chi-squared",excluded,50,0.05,2,60,0,ploidy,2,2,1,724,0.00138121546961326,0.5
+cov5-mnchisq-inter-ctexcl-d50-q05,paper's and interaction (inter),5,no (as the draft),"MN, chi-squared",excluded,50,0.05,2,60,0,ploidy,2,2,1,724,0.00138121546961326,0.5
+ctrl-ctexcl-d50,ploidy in controls only (ctrl),10,no (as the draft),none (as the draft),excluded,50,0.01,4,2,0,ploidy,2,2,2,724,0.00276243093922652,1
+ctrl-ctexcl-d50-q05,ploidy in controls only (ctrl),10,no (as the draft),none (as the draft),excluded,50,0.05,4,2,0,ploidy,2,2,2,724,0.00276243093922652,1
+ctrl-d50,ploidy in controls only (ctrl),10,no (as the draft),none (as the draft),kept,50,0.01,4,4,0,ploidy,2,2,2,724,0.00276243093922652,1
+ctrl-d50-q05,ploidy in controls only (ctrl),10,no (as the draft),none (as the draft),kept,50,0.05,4,4,0,ploidy,2,2,2,724,0.00276243093922652,1
+corrected-cov5-mnchisq-ctexcl-d50,paper's,5,yes,"MN, chi-squared",excluded,50,0.01,1,47,0,ploidy,1,1,1,724,0.00138121546961326,1
+corrected-cov5-mnchisq-d50,paper's,5,yes,"MN, chi-squared",kept,50,0.01,1,62,0,ploidy,1,1,1,724,0.00138121546961326,1
+corrected-cov5-mnchisq-inter-ctexcl-d50,paper's and interaction (inter),5,yes,"MN, chi-squared",excluded,50,0.01,1,47,0,ploidy,1,1,1,724,0.00138121546961326,1
+corrected-cov5-mnchisq-inter-d50,paper's and interaction (inter),5,yes,"MN, chi-squared",kept,50,0.01,1,62,0,ploidy,1,1,1,724,0.00138121546961326,1
+corrected-ctexcl-d50,paper's,10,yes,none (as the draft),excluded,50,0.01,1,2,0,ploidy,1,1,1,724,0.00138121546961326,1
+corrected-ctexcl-d50-q05,paper's,10,yes,none (as the draft),excluded,50,0.05,1,2,0,ploidy,1,1,1,724,0.00138121546961326,1
+corrected-ctrl-ctexcl-d50,ploidy in controls only (ctrl),10,yes,none (as the draft),excluded,50,0.01,1,2,0,ploidy,1,1,1,724,0.00138121546961326,1
+corrected-ctrl-ctexcl-d50-q05,ploidy in controls only (ctrl),10,yes,none (as the draft),excluded,50,0.05,1,2,0,ploidy,1,1,1,724,0.00138121546961326,1
+corrected-ctrl-d50,ploidy in controls only (ctrl),10,yes,none (as the draft),kept,50,0.01,1,4,0,ploidy,1,1,1,724,0.00138121546961326,1
+corrected-ctrl-d50-q05,ploidy in controls only (ctrl),10,yes,none (as the draft),kept,50,0.05,1,4,0,ploidy,1,1,1,724,0.00138121546961326,1
+corrected-d50,paper's,10,yes,none (as the draft),kept,50,0.01,1,4,0,ploidy,1,1,1,724,0.00138121546961326,1
+corrected-d50-q05,paper's,10,yes,none (as the draft),kept,50,0.05,1,4,0,ploidy,1,1,1,724,0.00138121546961326,1
+corrected-inter-ctexcl-d50,paper's and interaction (inter),10,yes,none (as the draft),excluded,50,0.01,1,2,0,ploidy,1,1,1,724,0.00138121546961326,1
+corrected-inter-ctexcl-d50-q05,paper's and interaction (inter),10,yes,none (as the draft),excluded,50,0.05,1,2,0,ploidy,1,1,1,724,0.00138121546961326,1
+corrected-inter-d50,paper's and interaction (inter),10,yes,none (as the draft),kept,50,0.01,1,4,0,ploidy,1,1,1,724,0.00138121546961326,1
+corrected-inter-d50-q05,paper's and interaction (inter),10,yes,none (as the draft),kept,50,0.05,1,4,0,ploidy,1,1,1,724,0.00138121546961326,1
+corrected-mnchisq-ctexcl-d50,paper's,10,yes,"MN, chi-squared",excluded,50,0.01,1,2,0,ploidy,1,1,1,724,0.00138121546961326,1
+corrected-mnchisq-ctexcl-d50-q05,paper's,10,yes,"MN, chi-squared",excluded,50,0.05,1,2,0,ploidy,1,1,1,724,0.00138121546961326,1
+corrected-mnchisq-d50,paper's,10,yes,"MN, chi-squared",kept,50,0.01,1,4,0,ploidy,1,1,1,724,0.00138121546961326,1
+corrected-mnchisq-d50-q05,paper's,10,yes,"MN, chi-squared",kept,50,0.05,1,4,0,ploidy,1,1,1,724,0.00138121546961326,1
+corrected-mnchisq-inter-ctexcl-d50,paper's and interaction (inter),10,yes,"MN, chi-squared",excluded,50,0.01,1,2,0,ploidy,1,1,1,724,0.00138121546961326,1
+corrected-mnchisq-inter-ctexcl-d50-q05,paper's and interaction (inter),10,yes,"MN, chi-squared",excluded,50,0.05,1,2,0,ploidy,1,1,1,724,0.00138121546961326,1
+corrected-mnchisq-inter-d50,paper's and interaction (inter),10,yes,"MN, chi-squared",kept,50,0.01,1,4,0,ploidy,1,1,1,724,0.00138121546961326,1
+corrected-mnchisq-inter-d50-q05,paper's and interaction (inter),10,yes,"MN, chi-squared",kept,50,0.05,1,4,0,ploidy,1,1,1,724,0.00138121546961326,1
+cov5-mnchisq-ctexcl-d50,paper's,5,no (as the draft),"MN, chi-squared",excluded,50,0.01,1,48,0,ploidy,1,1,1,724,0.00138121546961326,1
+cov5-mnchisq-d50,paper's,5,no (as the draft),"MN, chi-squared",kept,50,0.01,1,63,0,ploidy,1,1,1,724,0.00138121546961326,1
+cov5-mnchisq-inter-ctexcl-d50,paper's and interaction (inter),5,no (as the draft),"MN, chi-squared",excluded,50,0.01,1,48,0,ploidy,1,1,1,724,0.00138121546961326,1
+cov5-mnchisq-inter-d50,paper's and interaction (inter),5,no (as the draft),"MN, chi-squared",kept,50,0.01,1,63,0,ploidy,1,1,1,724,0.00138121546961326,1
+ctexcl-d50,paper's,10,no (as the draft),none (as the draft),excluded,50,0.01,1,2,0,ploidy,1,1,1,724,0.00138121546961326,1
+ctexcl-d50-q05,paper's,10,no (as the draft),none (as the draft),excluded,50,0.05,1,2,0,ploidy,1,1,1,724,0.00138121546961326,1
+d50,paper's,10,no (as the draft),none (as the draft),kept,50,0.01,1,4,0,ploidy,1,1,1,724,0.00138121546961326,1
+d50-q05,paper's,10,no (as the draft),none (as the draft),kept,50,0.05,1,4,0,ploidy,1,1,1,724,0.00138121546961326,1
+inter-ctexcl-d50,paper's and interaction (inter),10,no (as the draft),none (as the draft),excluded,50,0.01,1,2,0,ploidy,1,1,1,724,0.00138121546961326,1
+inter-ctexcl-d50-q05,paper's and interaction (inter),10,no (as the draft),none (as the draft),excluded,50,0.05,1,2,0,ploidy,1,1,1,724,0.00138121546961326,1
+inter-d50,paper's and interaction (inter),10,no (as the draft),none (as the draft),kept,50,0.01,1,4,0,ploidy,1,1,1,724,0.00138121546961326,1
+inter-d50-q05,paper's and interaction (inter),10,no (as the draft),none (as the draft),kept,50,0.05,1,4,0,ploidy,1,1,1,724,0.00138121546961326,1
+mnchisq-ctexcl-d50,paper's,10,no (as the draft),"MN, chi-squared",excluded,50,0.01,1,2,0,ploidy,1,1,1,724,0.00138121546961326,1
+mnchisq-ctexcl-d50-q05,paper's,10,no (as the draft),"MN, chi-squared",excluded,50,0.05,1,2,0,ploidy,1,1,1,724,0.00138121546961326,1
+mnchisq-ctrl-ctexcl-d50,ploidy in controls only (ctrl),10,no (as the draft),"MN, chi-squared",excluded,50,0.01,1,2,0,ploidy,1,1,1,724,0.00138121546961326,1
+mnchisq-ctrl-ctexcl-d50-q05,ploidy in controls only (ctrl),10,no (as the draft),"MN, chi-squared",excluded,50,0.05,1,2,0,ploidy,1,1,1,724,0.00138121546961326,1
+mnchisq-ctrl-d50,ploidy in controls only (ctrl),10,no (as the draft),"MN, chi-squared",kept,50,0.01,1,4,0,ploidy,1,1,1,724,0.00138121546961326,1
+mnchisq-ctrl-d50-q05,ploidy in controls only (ctrl),10,no (as the draft),"MN, chi-squared",kept,50,0.05,1,4,0,ploidy,1,1,1,724,0.00138121546961326,1
+mnchisq-d50,paper's,10,no (as the draft),"MN, chi-squared",kept,50,0.01,1,4,0,ploidy,1,1,1,724,0.00138121546961326,1
+mnchisq-d50-q05,paper's,10,no (as the draft),"MN, chi-squared",kept,50,0.05,1,4,0,ploidy,1,1,1,724,0.00138121546961326,1
+mnchisq-inter-ctexcl-d50,paper's and interaction (inter),10,no (as the draft),"MN, chi-squared",excluded,50,0.01,1,2,0,ploidy,1,1,1,724,0.00138121546961326,1
+mnchisq-inter-ctexcl-d50-q05,paper's and interaction (inter),10,no (as the draft),"MN, chi-squared",excluded,50,0.05,1,2,0,ploidy,1,1,1,724,0.00138121546961326,1
+mnchisq-inter-d50,paper's and interaction (inter),10,no (as the draft),"MN, chi-squared",kept,50,0.01,1,4,0,ploidy,1,1,1,724,0.00138121546961326,1
+mnchisq-inter-d50-q05,paper's and interaction (inter),10,no (as the draft),"MN, chi-squared",kept,50,0.05,1,4,0,ploidy,1,1,1,724,0.00138121546961326,1
+corrected-mnchisq-ctrl-ctexcl-d50,ploidy in controls only (ctrl),10,yes,"MN, chi-squared",excluded,50,0.01,0,2,0,ploidy,0,0,0,724,0,
+corrected-mnchisq-ctrl-ctexcl-d50-q05,ploidy in controls only (ctrl),10,yes,"MN, chi-squared",excluded,50,0.05,0,2,0,ploidy,0,0,0,724,0,
+corrected-mnchisq-ctrl-d50,ploidy in controls only (ctrl),10,yes,"MN, chi-squared",kept,50,0.01,0,4,0,ploidy,0,0,0,724,0,
+corrected-mnchisq-ctrl-d50-q05,ploidy in controls only (ctrl),10,yes,"MN, chi-squared",kept,50,0.05,0,4,0,ploidy,0,0,0,724,0,
+cov5-ctrl-q05,ploidy in controls only (ctrl),5,no (as the draft),none (as the draft),kept,20,0.05,27725,21604,2449,shared,1745,1724,84,143,0.587412587412587,0.0481375358166189
+corrected-cov5-ctrl-q05,ploidy in controls only (ctrl),5,yes,none (as the draft),kept,20,0.05,27481,21453,2431,shared,1738,1717,84,143,0.587412587412587,0.048331415420023
+cov5-inter-q05,paper's and interaction (inter),5,no (as the draft),none (as the draft),kept,20,0.05,10335,21604,1891,shared,1346,1329,131,143,0.916083916083916,0.0973254086181278
+cov5-q05,paper's,5,no (as the draft),none (as the draft),kept,20,0.05,10335,21604,1891,shared,1346,1329,131,143,0.916083916083916,0.0973254086181278
+corrected-cov5-inter-q05,paper's and interaction (inter),5,yes,none (as the draft),kept,20,0.05,10192,21453,1820,shared,1340,1325,129,143,0.902097902097902,0.0962686567164179
+corrected-cov5-q05,paper's,5,yes,none (as the draft),kept,20,0.05,10192,21453,1820,shared,1340,1325,129,143,0.902097902097902,0.0962686567164179
+cov5-ctrl-ctexcl-q05,ploidy in controls only (ctrl),5,no (as the draft),none (as the draft),excluded,20,0.05,21915,15717,1716,shared,1280,1263,61,143,0.426573426573427,0.04765625
+corrected-cov5-ctrl-ctexcl-q05,ploidy in controls only (ctrl),5,yes,none (as the draft),excluded,20,0.05,21689,15572,1700,shared,1274,1257,61,143,0.426573426573427,0.0478806907378336
+cov5,paper's,5,no (as the draft),none (as the draft),kept,20,0.01,9942,21361,1784,shared,1274,1257,131,143,0.916083916083916,0.102825745682889
+cov5-inter,paper's and interaction (inter),5,no (as the draft),none (as the draft),kept,20,0.01,9942,21361,1784,shared,1274,1257,131,143,0.916083916083916,0.102825745682889
+corrected-cov5,paper's,5,yes,none (as the draft),kept,20,0.01,9791,21200,1711,shared,1266,1251,129,143,0.902097902097902,0.101895734597156
+corrected-cov5-inter,paper's and interaction (inter),5,yes,none (as the draft),kept,20,0.01,9791,21200,1711,shared,1266,1251,129,143,0.902097902097902,0.101895734597156
+cov5-ctrl,ploidy in controls only (ctrl),5,no (as the draft),none (as the draft),kept,20,0.01,19076,21361,1585,shared,1190,1177,75,143,0.524475524475525,0.0630252100840336
+corrected-cov5-ctrl,ploidy in controls only (ctrl),5,yes,none (as the draft),kept,20,0.01,18808,21200,1568,shared,1181,1169,75,143,0.524475524475525,0.0635055038103302
+cov5-ctexcl-q05,paper's,5,no (as the draft),none (as the draft),excluded,20,0.05,7357,15717,1297,shared,937,925,98,143,0.685314685314685,0.104589114194237
+cov5-inter-ctexcl-q05,paper's and interaction (inter),5,no (as the draft),none (as the draft),excluded,20,0.05,7357,15717,1297,shared,937,925,98,143,0.685314685314685,0.104589114194237
+corrected-cov5-ctexcl-q05,paper's,5,yes,none (as the draft),excluded,20,0.05,7220,15572,1228,shared,931,921,96,143,0.671328671328671,0.103114930182599
+corrected-cov5-inter-ctexcl-q05,paper's and interaction (inter),5,yes,none (as the draft),excluded,20,0.05,7220,15572,1228,shared,931,921,96,143,0.671328671328671,0.103114930182599
+cov5-ctexcl,paper's,5,no (as the draft),none (as the draft),excluded,20,0.01,7046,15530,1219,shared,884,872,97,143,0.678321678321678,0.10972850678733
+cov5-inter-ctexcl,paper's and interaction (inter),5,no (as the draft),none (as the draft),excluded,20,0.01,7046,15530,1219,shared,884,872,97,143,0.678321678321678,0.10972850678733
+corrected-cov5-ctexcl,paper's,5,yes,none (as the draft),excluded,20,0.01,6902,15376,1148,shared,876,866,95,143,0.664335664335664,0.108447488584475
+corrected-cov5-inter-ctexcl,paper's and interaction (inter),5,yes,none (as the draft),excluded,20,0.01,6902,15376,1148,shared,876,866,95,143,0.664335664335664,0.108447488584475
+cov5-ctrl-ctexcl,ploidy in controls only (ctrl),5,no (as the draft),none (as the draft),excluded,20,0.01,14970,15530,1110,shared,860,850,58,143,0.405594405594406,0.0674418604651163
+corrected-cov5-ctrl-ctexcl,ploidy in controls only (ctrl),5,yes,none (as the draft),excluded,20,0.01,14741,15376,1095,shared,852,843,58,143,0.405594405594406,0.068075117370892
+ctrl-q05,ploidy in controls only (ctrl),10,no (as the draft),none (as the draft),kept,20,0.05,3326,2352,248,shared,217,211,52,143,0.363636363636364,0.23963133640553
+corrected-ctrl-q05,ploidy in controls only (ctrl),10,yes,none (as the draft),kept,20,0.05,3222,2273,244,shared,214,208,52,143,0.363636363636364,0.242990654205607
+ctrl,ploidy in controls only (ctrl),10,no (as the draft),none (as the draft),kept,20,0.01,2768,2351,194,shared,165,163,47,143,0.328671328671329,0.284848484848485
+corrected-ctrl,ploidy in controls only (ctrl),10,yes,none (as the draft),kept,20,0.01,2628,2273,187,shared,160,158,47,143,0.328671328671329,0.29375
+ctrl-ctexcl-q05,ploidy in controls only (ctrl),10,no (as the draft),none (as the draft),excluded,20,0.05,2544,1668,176,shared,157,152,41,143,0.286713286713287,0.261146496815287
+corrected-ctrl-ctexcl-q05,ploidy in controls only (ctrl),10,yes,none (as the draft),excluded,20,0.05,2444,1596,172,shared,154,149,41,143,0.286713286713287,0.266233766233766
+inter-q05,paper's and interaction (inter),10,no (as the draft),none (as the draft),kept,20,0.05,1038,2352,201,shared,144,139,143,143,1,0.993055555555556
+q05,paper's,10,no (as the draft),none (as the draft),kept,20,0.05,1038,2352,201,shared,144,139,143,143,1,0.993055555555556
+inter,paper's and interaction (inter),10,no (as the draft),none (as the draft),kept,20,0.01,1038,2351,200,shared,143,138,143,143,1,1
+legacy,paper's,10,no (as the draft),none (as the draft),kept,20,0.01,1038,2351,200,shared,143,138,143,143,1,1
+corrected,paper's,10,yes,none (as the draft),kept,20,0.01,952,2273,159,shared,140,137,140,143,0.979020979020979,1
+corrected-inter,paper's and interaction (inter),10,yes,none (as the draft),kept,20,0.01,952,2273,159,shared,140,137,140,143,0.979020979020979,1
+corrected-inter-q05,paper's and interaction (inter),10,yes,none (as the draft),kept,20,0.05,952,2273,159,shared,140,137,140,143,0.979020979020979,1
+corrected-q05,paper's,10,yes,none (as the draft),kept,20,0.05,952,2273,159,shared,140,137,140,143,0.979020979020979,1
+ctrl-ctexcl,ploidy in controls only (ctrl),10,no (as the draft),none (as the draft),excluded,20,0.01,2112,1667,131,shared,112,111,36,143,0.251748251748252,0.321428571428571
+corrected-ctrl-ctexcl,ploidy in controls only (ctrl),10,yes,none (as the draft),excluded,20,0.01,1985,1596,125,shared,107,106,36,143,0.251748251748252,0.336448598130841
+ctexcl-q05,paper's,10,no (as the draft),none (as the draft),excluded,20,0.05,717,1668,140,shared,94,91,93,143,0.65034965034965,0.98936170212766
+inter-ctexcl-q05,paper's and interaction (inter),10,no (as the draft),none (as the draft),excluded,20,0.05,717,1668,140,shared,94,91,93,143,0.65034965034965,0.98936170212766
+ctexcl,paper's,10,no (as the draft),none (as the draft),excluded,20,0.01,717,1667,139,shared,93,90,93,143,0.65034965034965,1
+inter-ctexcl,paper's and interaction (inter),10,no (as the draft),none (as the draft),excluded,20,0.01,717,1667,139,shared,93,90,93,143,0.65034965034965,1
+corrected-ctexcl,paper's,10,yes,none (as the draft),excluded,20,0.01,635,1596,100,shared,90,89,90,143,0.629370629370629,1
+corrected-ctexcl-q05,paper's,10,yes,none (as the draft),excluded,20,0.05,635,1596,100,shared,90,89,90,143,0.629370629370629,1
+corrected-inter-ctexcl,paper's and interaction (inter),10,yes,none (as the draft),excluded,20,0.01,635,1596,100,shared,90,89,90,143,0.629370629370629,1
+corrected-inter-ctexcl-q05,paper's and interaction (inter),10,yes,none (as the draft),excluded,20,0.05,635,1596,100,shared,90,89,90,143,0.629370629370629,1
+cov5-mnchisq-inter-q05,paper's and interaction (inter),5,no (as the draft),"MN, chi-squared",kept,20,0.05,321,2834,45,shared,38,38,8,143,0.0559440559440559,0.210526315789474
+cov5-mnchisq-q05,paper's,5,no (as the draft),"MN, chi-squared",kept,20,0.05,321,2834,45,shared,38,38,8,143,0.0559440559440559,0.210526315789474
+corrected-cov5-mnchisq-inter-q05,paper's and interaction (inter),5,yes,"MN, chi-squared",kept,20,0.05,313,2737,42,shared,37,37,8,143,0.0559440559440559,0.216216216216216
+corrected-cov5-mnchisq-q05,paper's,5,yes,"MN, chi-squared",kept,20,0.05,313,2737,42,shared,37,37,8,143,0.0559440559440559,0.216216216216216
+cov5-mnchisq-ctexcl-q05,paper's,5,no (as the draft),"MN, chi-squared",excluded,20,0.05,240,2195,32,shared,26,26,7,143,0.048951048951049,0.269230769230769
+cov5-mnchisq-inter-ctexcl-q05,paper's and interaction (inter),5,no (as the draft),"MN, chi-squared",excluded,20,0.05,240,2195,32,shared,26,26,7,143,0.048951048951049,0.269230769230769
+corrected-cov5-mnchisq-ctexcl-q05,paper's,5,yes,"MN, chi-squared",excluded,20,0.05,232,2116,29,shared,25,25,7,143,0.048951048951049,0.28
+corrected-cov5-mnchisq-inter-ctexcl-q05,paper's and interaction (inter),5,yes,"MN, chi-squared",excluded,20,0.05,232,2116,29,shared,25,25,7,143,0.048951048951049,0.28
+corrected-cov5-mnchisq,paper's,5,yes,"MN, chi-squared",kept,20,0.01,126,1133,27,shared,23,23,5,143,0.034965034965035,0.217391304347826
+corrected-cov5-mnchisq-inter,paper's and interaction (inter),5,yes,"MN, chi-squared",kept,20,0.01,126,1133,27,shared,23,23,5,143,0.034965034965035,0.217391304347826
+cov5-mnchisq,paper's,5,no (as the draft),"MN, chi-squared",kept,20,0.01,126,1191,27,shared,23,23,5,143,0.034965034965035,0.217391304347826
+cov5-mnchisq-inter,paper's and interaction (inter),5,no (as the draft),"MN, chi-squared",kept,20,0.01,126,1191,27,shared,23,23,5,143,0.034965034965035,0.217391304347826
+corrected-cov5-mnchisq-ctexcl,paper's,5,yes,"MN, chi-squared",excluded,20,0.01,96,875,19,shared,15,15,4,143,0.027972027972028,0.266666666666667
+corrected-cov5-mnchisq-inter-ctexcl,paper's and interaction (inter),5,yes,"MN, chi-squared",excluded,20,0.01,96,875,19,shared,15,15,4,143,0.027972027972028,0.266666666666667
+cov5-mnchisq-ctexcl,paper's,5,no (as the draft),"MN, chi-squared",excluded,20,0.01,96,923,19,shared,15,15,4,143,0.027972027972028,0.266666666666667
+cov5-mnchisq-inter-ctexcl,paper's and interaction (inter),5,no (as the draft),"MN, chi-squared",excluded,20,0.01,96,923,19,shared,15,15,4,143,0.027972027972028,0.266666666666667
+corrected-mnchisq-ctexcl-q05,paper's,10,yes,"MN, chi-squared",excluded,20,0.05,25,267,6,shared,6,6,6,143,0.041958041958042,1
+corrected-mnchisq-inter-ctexcl-q05,paper's and interaction (inter),10,yes,"MN, chi-squared",excluded,20,0.05,25,267,6,shared,6,6,6,143,0.041958041958042,1
+corrected-mnchisq-inter-q05,paper's and interaction (inter),10,yes,"MN, chi-squared",kept,20,0.05,34,355,6,shared,6,6,6,143,0.041958041958042,1
+corrected-mnchisq-q05,paper's,10,yes,"MN, chi-squared",kept,20,0.05,34,355,6,shared,6,6,6,143,0.041958041958042,1
+mnchisq-ctexcl-q05,paper's,10,no (as the draft),"MN, chi-squared",excluded,20,0.05,28,314,6,shared,6,6,6,143,0.041958041958042,1
+mnchisq-inter-ctexcl-q05,paper's and interaction (inter),10,no (as the draft),"MN, chi-squared",excluded,20,0.05,28,314,6,shared,6,6,6,143,0.041958041958042,1
+mnchisq-inter-q05,paper's and interaction (inter),10,no (as the draft),"MN, chi-squared",kept,20,0.05,37,410,6,shared,6,6,6,143,0.041958041958042,1
+mnchisq-q05,paper's,10,no (as the draft),"MN, chi-squared",kept,20,0.05,37,410,6,shared,6,6,6,143,0.041958041958042,1
+corrected-mnchisq,paper's,10,yes,"MN, chi-squared",kept,20,0.01,14,157,4,shared,4,4,4,143,0.027972027972028,1
+corrected-mnchisq-ctexcl,paper's,10,yes,"MN, chi-squared",excluded,20,0.01,12,118,4,shared,4,4,4,143,0.027972027972028,1
+corrected-mnchisq-inter,paper's and interaction (inter),10,yes,"MN, chi-squared",kept,20,0.01,14,157,4,shared,4,4,4,143,0.027972027972028,1
+corrected-mnchisq-inter-ctexcl,paper's and interaction (inter),10,yes,"MN, chi-squared",excluded,20,0.01,12,118,4,shared,4,4,4,143,0.027972027972028,1
+mnchisq,paper's,10,no (as the draft),"MN, chi-squared",kept,20,0.01,14,185,4,shared,4,4,4,143,0.027972027972028,1
+mnchisq-ctexcl,paper's,10,no (as the draft),"MN, chi-squared",excluded,20,0.01,12,142,4,shared,4,4,4,143,0.027972027972028,1
+mnchisq-inter,paper's and interaction (inter),10,no (as the draft),"MN, chi-squared",kept,20,0.01,14,185,4,shared,4,4,4,143,0.027972027972028,1
+mnchisq-inter-ctexcl,paper's and interaction (inter),10,no (as the draft),"MN, chi-squared",excluded,20,0.01,12,142,4,shared,4,4,4,143,0.027972027972028,1
+corrected-cov5-mnchisq-ctrl-q05,ploidy in controls only (ctrl),5,yes,"MN, chi-squared",kept,20,0.05,364,2737,1,shared,1,1,0,143,0,0
+cov5-mnchisq-ctrl-q05,ploidy in controls only (ctrl),5,no (as the draft),"MN, chi-squared",kept,20,0.05,398,2834,1,shared,1,1,0,143,0,0
+corrected-cov5-ctexcl-d50,paper's,5,yes,none (as the draft),excluded,50,0.01,4,63,0,shared,0,0,0,143,0,
+corrected-cov5-ctexcl-d50-q05,paper's,5,yes,none (as the draft),excluded,50,0.05,4,63,0,shared,0,0,0,143,0,
+corrected-cov5-ctrl-ctexcl-d50,ploidy in controls only (ctrl),5,yes,none (as the draft),excluded,50,0.01,28,63,0,shared,0,0,0,143,0,
+corrected-cov5-ctrl-ctexcl-d50-q05,ploidy in controls only (ctrl),5,yes,none (as the draft),excluded,50,0.05,28,63,0,shared,0,0,0,143,0,
+corrected-cov5-ctrl-d50,ploidy in controls only (ctrl),5,yes,none (as the draft),kept,50,0.01,42,92,0,shared,0,0,0,143,0,
+corrected-cov5-ctrl-d50-q05,ploidy in controls only (ctrl),5,yes,none (as the draft),kept,50,0.05,42,92,0,shared,0,0,0,143,0,
+corrected-cov5-d50,paper's,5,yes,none (as the draft),kept,50,0.01,6,92,0,shared,0,0,0,143,0,
+corrected-cov5-d50-q05,paper's,5,yes,none (as the draft),kept,50,0.05,6,92,0,shared,0,0,0,143,0,
+corrected-cov5-inter-ctexcl-d50,paper's and interaction (inter),5,yes,none (as the draft),excluded,50,0.01,4,63,0,shared,0,0,0,143,0,
+corrected-cov5-inter-ctexcl-d50-q05,paper's and interaction (inter),5,yes,none (as the draft),excluded,50,0.05,4,63,0,shared,0,0,0,143,0,
+corrected-cov5-inter-d50,paper's and interaction (inter),5,yes,none (as the draft),kept,50,0.01,6,92,0,shared,0,0,0,143,0,
+corrected-cov5-inter-d50-q05,paper's and interaction (inter),5,yes,none (as the draft),kept,50,0.05,6,92,0,shared,0,0,0,143,0,
+corrected-cov5-mnchisq-ctexcl-d50,paper's,5,yes,"MN, chi-squared",excluded,50,0.01,1,47,0,shared,0,0,0,143,0,
+corrected-cov5-mnchisq-ctexcl-d50-q05,paper's,5,yes,"MN, chi-squared",excluded,50,0.05,2,59,0,shared,0,0,0,143,0,
+corrected-cov5-mnchisq-ctrl,ploidy in controls only (ctrl),5,yes,"MN, chi-squared",kept,20,0.01,117,1133,0,shared,0,0,0,143,0,
+corrected-cov5-mnchisq-ctrl-ctexcl,ploidy in controls only (ctrl),5,yes,"MN, chi-squared",excluded,20,0.01,106,875,0,shared,0,0,0,143,0,
+corrected-cov5-mnchisq-ctrl-ctexcl-d50,ploidy in controls only (ctrl),5,yes,"MN, chi-squared",excluded,50,0.01,4,47,0,shared,0,0,0,143,0,
+corrected-cov5-mnchisq-ctrl-ctexcl-d50-q05,ploidy in controls only (ctrl),5,yes,"MN, chi-squared",excluded,50,0.05,10,59,0,shared,0,0,0,143,0,
+corrected-cov5-mnchisq-ctrl-ctexcl-q05,ploidy in controls only (ctrl),5,yes,"MN, chi-squared",excluded,20,0.05,326,2116,0,shared,0,0,0,143,0,
+corrected-cov5-mnchisq-ctrl-d50,ploidy in controls only (ctrl),5,yes,"MN, chi-squared",kept,50,0.01,5,62,0,shared,0,0,0,143,0,
+corrected-cov5-mnchisq-ctrl-d50-q05,ploidy in controls only (ctrl),5,yes,"MN, chi-squared",kept,50,0.05,11,82,0,shared,0,0,0,143,0,
+corrected-cov5-mnchisq-d50,paper's,5,yes,"MN, chi-squared",kept,50,0.01,1,62,0,shared,0,0,0,143,0,
+corrected-cov5-mnchisq-d50-q05,paper's,5,yes,"MN, chi-squared",kept,50,0.05,3,82,0,shared,0,0,0,143,0,
+corrected-cov5-mnchisq-inter-ctexcl-d50,paper's and interaction (inter),5,yes,"MN, chi-squared",excluded,50,0.01,1,47,0,shared,0,0,0,143,0,
+corrected-cov5-mnchisq-inter-ctexcl-d50-q05,paper's and interaction (inter),5,yes,"MN, chi-squared",excluded,50,0.05,2,59,0,shared,0,0,0,143,0,
+corrected-cov5-mnchisq-inter-d50,paper's and interaction (inter),5,yes,"MN, chi-squared",kept,50,0.01,1,62,0,shared,0,0,0,143,0,
+corrected-cov5-mnchisq-inter-d50-q05,paper's and interaction (inter),5,yes,"MN, chi-squared",kept,50,0.05,3,82,0,shared,0,0,0,143,0,
+corrected-ctexcl-d50,paper's,10,yes,none (as the draft),excluded,50,0.01,1,2,0,shared,0,0,0,143,0,
+corrected-ctexcl-d50-q05,paper's,10,yes,none (as the draft),excluded,50,0.05,1,2,0,shared,0,0,0,143,0,
+corrected-ctrl-ctexcl-d50,ploidy in controls only (ctrl),10,yes,none (as the draft),excluded,50,0.01,1,2,0,shared,0,0,0,143,0,
+corrected-ctrl-ctexcl-d50-q05,ploidy in controls only (ctrl),10,yes,none (as the draft),excluded,50,0.05,1,2,0,shared,0,0,0,143,0,
+corrected-ctrl-d50,ploidy in controls only (ctrl),10,yes,none (as the draft),kept,50,0.01,1,4,0,shared,0,0,0,143,0,
+corrected-ctrl-d50-q05,ploidy in controls only (ctrl),10,yes,none (as the draft),kept,50,0.05,1,4,0,shared,0,0,0,143,0,
+corrected-d50,paper's,10,yes,none (as the draft),kept,50,0.01,1,4,0,shared,0,0,0,143,0,
+corrected-d50-q05,paper's,10,yes,none (as the draft),kept,50,0.05,1,4,0,shared,0,0,0,143,0,
+corrected-inter-ctexcl-d50,paper's and interaction (inter),10,yes,none (as the draft),excluded,50,0.01,1,2,0,shared,0,0,0,143,0,
+corrected-inter-ctexcl-d50-q05,paper's and interaction (inter),10,yes,none (as the draft),excluded,50,0.05,1,2,0,shared,0,0,0,143,0,
+corrected-inter-d50,paper's and interaction (inter),10,yes,none (as the draft),kept,50,0.01,1,4,0,shared,0,0,0,143,0,
+corrected-inter-d50-q05,paper's and interaction (inter),10,yes,none (as the draft),kept,50,0.05,1,4,0,shared,0,0,0,143,0,
+corrected-mnchisq-ctexcl-d50,paper's,10,yes,"MN, chi-squared",excluded,50,0.01,1,2,0,shared,0,0,0,143,0,
+corrected-mnchisq-ctexcl-d50-q05,paper's,10,yes,"MN, chi-squared",excluded,50,0.05,1,2,0,shared,0,0,0,143,0,
+corrected-mnchisq-ctrl,ploidy in controls only (ctrl),10,yes,"MN, chi-squared",kept,20,0.01,6,157,0,shared,0,0,0,143,0,
+corrected-mnchisq-ctrl-ctexcl,ploidy in controls only (ctrl),10,yes,"MN, chi-squared",excluded,20,0.01,5,118,0,shared,0,0,0,143,0,
+corrected-mnchisq-ctrl-ctexcl-d50,ploidy in controls only (ctrl),10,yes,"MN, chi-squared",excluded,50,0.01,0,2,0,shared,0,0,0,143,0,
+corrected-mnchisq-ctrl-ctexcl-d50-q05,ploidy in controls only (ctrl),10,yes,"MN, chi-squared",excluded,50,0.05,0,2,0,shared,0,0,0,143,0,
+corrected-mnchisq-ctrl-ctexcl-q05,ploidy in controls only (ctrl),10,yes,"MN, chi-squared",excluded,20,0.05,35,267,0,shared,0,0,0,143,0,
+corrected-mnchisq-ctrl-d50,ploidy in controls only (ctrl),10,yes,"MN, chi-squared",kept,50,0.01,0,4,0,shared,0,0,0,143,0,
+corrected-mnchisq-ctrl-d50-q05,ploidy in controls only (ctrl),10,yes,"MN, chi-squared",kept,50,0.05,0,4,0,shared,0,0,0,143,0,
+corrected-mnchisq-ctrl-q05,ploidy in controls only (ctrl),10,yes,"MN, chi-squared",kept,20,0.05,42,355,0,shared,0,0,0,143,0,
+corrected-mnchisq-d50,paper's,10,yes,"MN, chi-squared",kept,50,0.01,1,4,0,shared,0,0,0,143,0,
+corrected-mnchisq-d50-q05,paper's,10,yes,"MN, chi-squared",kept,50,0.05,1,4,0,shared,0,0,0,143,0,
+corrected-mnchisq-inter-ctexcl-d50,paper's and interaction (inter),10,yes,"MN, chi-squared",excluded,50,0.01,1,2,0,shared,0,0,0,143,0,
+corrected-mnchisq-inter-ctexcl-d50-q05,paper's and interaction (inter),10,yes,"MN, chi-squared",excluded,50,0.05,1,2,0,shared,0,0,0,143,0,
+corrected-mnchisq-inter-d50,paper's and interaction (inter),10,yes,"MN, chi-squared",kept,50,0.01,1,4,0,shared,0,0,0,143,0,
+corrected-mnchisq-inter-d50-q05,paper's and interaction (inter),10,yes,"MN, chi-squared",kept,50,0.05,1,4,0,shared,0,0,0,143,0,
+cov5-ctexcl-d50,paper's,5,no (as the draft),none (as the draft),excluded,50,0.01,4,63,0,shared,0,0,0,143,0,
+cov5-ctexcl-d50-q05,paper's,5,no (as the draft),none (as the draft),excluded,50,0.05,4,63,0,shared,0,0,0,143,0,
+cov5-ctrl-ctexcl-d50,ploidy in controls only (ctrl),5,no (as the draft),none (as the draft),excluded,50,0.01,36,63,0,shared,0,0,0,143,0,
+cov5-ctrl-ctexcl-d50-q05,ploidy in controls only (ctrl),5,no (as the draft),none (as the draft),excluded,50,0.05,36,63,0,shared,0,0,0,143,0,
+cov5-ctrl-d50,ploidy in controls only (ctrl),5,no (as the draft),none (as the draft),kept,50,0.01,50,92,0,shared,0,0,0,143,0,
+cov5-ctrl-d50-q05,ploidy in controls only (ctrl),5,no (as the draft),none (as the draft),kept,50,0.05,50,92,0,shared,0,0,0,143,0,
+cov5-d50,paper's,5,no (as the draft),none (as the draft),kept,50,0.01,6,92,0,shared,0,0,0,143,0,
+cov5-d50-q05,paper's,5,no (as the draft),none (as the draft),kept,50,0.05,6,92,0,shared,0,0,0,143,0,
+cov5-inter-ctexcl-d50,paper's and interaction (inter),5,no (as the draft),none (as the draft),excluded,50,0.01,4,63,0,shared,0,0,0,143,0,
+cov5-inter-ctexcl-d50-q05,paper's and interaction (inter),5,no (as the draft),none (as the draft),excluded,50,0.05,4,63,0,shared,0,0,0,143,0,
+cov5-inter-d50,paper's and interaction (inter),5,no (as the draft),none (as the draft),kept,50,0.01,6,92,0,shared,0,0,0,143,0,
+cov5-inter-d50-q05,paper's and interaction (inter),5,no (as the draft),none (as the draft),kept,50,0.05,6,92,0,shared,0,0,0,143,0,
+cov5-mnchisq-ctexcl-d50,paper's,5,no (as the draft),"MN, chi-squared",excluded,50,0.01,1,48,0,shared,0,0,0,143,0,
+cov5-mnchisq-ctexcl-d50-q05,paper's,5,no (as the draft),"MN, chi-squared",excluded,50,0.05,2,60,0,shared,0,0,0,143,0,
+cov5-mnchisq-ctrl,ploidy in controls only (ctrl),5,no (as the draft),"MN, chi-squared",kept,20,0.01,120,1191,0,shared,0,0,0,143,0,
+cov5-mnchisq-ctrl-ctexcl,ploidy in controls only (ctrl),5,no (as the draft),"MN, chi-squared",excluded,20,0.01,109,923,0,shared,0,0,0,143,0,
+cov5-mnchisq-ctrl-ctexcl-d50,ploidy in controls only (ctrl),5,no (as the draft),"MN, chi-squared",excluded,50,0.01,5,48,0,shared,0,0,0,143,0,
+cov5-mnchisq-ctrl-ctexcl-d50-q05,ploidy in controls only (ctrl),5,no (as the draft),"MN, chi-squared",excluded,50,0.05,12,60,0,shared,0,0,0,143,0,
+cov5-mnchisq-ctrl-ctexcl-q05,ploidy in controls only (ctrl),5,no (as the draft),"MN, chi-squared",excluded,20,0.05,352,2195,0,shared,0,0,0,143,0,
+cov5-mnchisq-ctrl-d50,ploidy in controls only (ctrl),5,no (as the draft),"MN, chi-squared",kept,50,0.01,6,63,0,shared,0,0,0,143,0,
+cov5-mnchisq-ctrl-d50-q05,ploidy in controls only (ctrl),5,no (as the draft),"MN, chi-squared",kept,50,0.05,14,83,0,shared,0,0,0,143,0,
+cov5-mnchisq-d50,paper's,5,no (as the draft),"MN, chi-squared",kept,50,0.01,1,63,0,shared,0,0,0,143,0,
+cov5-mnchisq-d50-q05,paper's,5,no (as the draft),"MN, chi-squared",kept,50,0.05,3,83,0,shared,0,0,0,143,0,
+cov5-mnchisq-inter-ctexcl-d50,paper's and interaction (inter),5,no (as the draft),"MN, chi-squared",excluded,50,0.01,1,48,0,shared,0,0,0,143,0,
+cov5-mnchisq-inter-ctexcl-d50-q05,paper's and interaction (inter),5,no (as the draft),"MN, chi-squared",excluded,50,0.05,2,60,0,shared,0,0,0,143,0,
+cov5-mnchisq-inter-d50,paper's and interaction (inter),5,no (as the draft),"MN, chi-squared",kept,50,0.01,1,63,0,shared,0,0,0,143,0,
+cov5-mnchisq-inter-d50-q05,paper's and interaction (inter),5,no (as the draft),"MN, chi-squared",kept,50,0.05,3,83,0,shared,0,0,0,143,0,
+ctexcl-d50,paper's,10,no (as the draft),none (as the draft),excluded,50,0.01,1,2,0,shared,0,0,0,143,0,
+ctexcl-d50-q05,paper's,10,no (as the draft),none (as the draft),excluded,50,0.05,1,2,0,shared,0,0,0,143,0,
+ctrl-ctexcl-d50,ploidy in controls only (ctrl),10,no (as the draft),none (as the draft),excluded,50,0.01,4,2,0,shared,0,0,0,143,0,
+ctrl-ctexcl-d50-q05,ploidy in controls only (ctrl),10,no (as the draft),none (as the draft),excluded,50,0.05,4,2,0,shared,0,0,0,143,0,
+ctrl-d50,ploidy in controls only (ctrl),10,no (as the draft),none (as the draft),kept,50,0.01,4,4,0,shared,0,0,0,143,0,
+ctrl-d50-q05,ploidy in controls only (ctrl),10,no (as the draft),none (as the draft),kept,50,0.05,4,4,0,shared,0,0,0,143,0,
+d50,paper's,10,no (as the draft),none (as the draft),kept,50,0.01,1,4,0,shared,0,0,0,143,0,
+d50-q05,paper's,10,no (as the draft),none (as the draft),kept,50,0.05,1,4,0,shared,0,0,0,143,0,
+inter-ctexcl-d50,paper's and interaction (inter),10,no (as the draft),none (as the draft),excluded,50,0.01,1,2,0,shared,0,0,0,143,0,
+inter-ctexcl-d50-q05,paper's and interaction (inter),10,no (as the draft),none (as the draft),excluded,50,0.05,1,2,0,shared,0,0,0,143,0,
+inter-d50,paper's and interaction (inter),10,no (as the draft),none (as the draft),kept,50,0.01,1,4,0,shared,0,0,0,143,0,
+inter-d50-q05,paper's and interaction (inter),10,no (as the draft),none (as the draft),kept,50,0.05,1,4,0,shared,0,0,0,143,0,
+mnchisq-ctexcl-d50,paper's,10,no (as the draft),"MN, chi-squared",excluded,50,0.01,1,2,0,shared,0,0,0,143,0,
+mnchisq-ctexcl-d50-q05,paper's,10,no (as the draft),"MN, chi-squared",excluded,50,0.05,1,2,0,shared,0,0,0,143,0,
+mnchisq-ctrl,ploidy in controls only (ctrl),10,no (as the draft),"MN, chi-squared",kept,20,0.01,10,185,0,shared,0,0,0,143,0,
+mnchisq-ctrl-ctexcl,ploidy in controls only (ctrl),10,no (as the draft),"MN, chi-squared",excluded,20,0.01,8,142,0,shared,0,0,0,143,0,
+mnchisq-ctrl-ctexcl-d50,ploidy in controls only (ctrl),10,no (as the draft),"MN, chi-squared",excluded,50,0.01,1,2,0,shared,0,0,0,143,0,
+mnchisq-ctrl-ctexcl-d50-q05,ploidy in controls only (ctrl),10,no (as the draft),"MN, chi-squared",excluded,50,0.05,1,2,0,shared,0,0,0,143,0,
+mnchisq-ctrl-ctexcl-q05,ploidy in controls only (ctrl),10,no (as the draft),"MN, chi-squared",excluded,20,0.05,44,314,0,shared,0,0,0,143,0,
+mnchisq-ctrl-d50,ploidy in controls only (ctrl),10,no (as the draft),"MN, chi-squared",kept,50,0.01,1,4,0,shared,0,0,0,143,0,
+mnchisq-ctrl-d50-q05,ploidy in controls only (ctrl),10,no (as the draft),"MN, chi-squared",kept,50,0.05,1,4,0,shared,0,0,0,143,0,
+mnchisq-ctrl-q05,ploidy in controls only (ctrl),10,no (as the draft),"MN, chi-squared",kept,20,0.05,53,410,0,shared,0,0,0,143,0,
+mnchisq-d50,paper's,10,no (as the draft),"MN, chi-squared",kept,50,0.01,1,4,0,shared,0,0,0,143,0,
+mnchisq-d50-q05,paper's,10,no (as the draft),"MN, chi-squared",kept,50,0.05,1,4,0,shared,0,0,0,143,0,
+mnchisq-inter-ctexcl-d50,paper's and interaction (inter),10,no (as the draft),"MN, chi-squared",excluded,50,0.01,1,2,0,shared,0,0,0,143,0,
+mnchisq-inter-ctexcl-d50-q05,paper's and interaction (inter),10,no (as the draft),"MN, chi-squared",excluded,50,0.05,1,2,0,shared,0,0,0,143,0,
+mnchisq-inter-d50,paper's and interaction (inter),10,no (as the draft),"MN, chi-squared",kept,50,0.01,1,4,0,shared,0,0,0,143,0,
+mnchisq-inter-d50-q05,paper's and interaction (inter),10,no (as the draft),"MN, chi-squared",kept,50,0.05,1,4,0,shared,0,0,0,143,0,
