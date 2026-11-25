@@ -14,6 +14,15 @@
 # Run:     Rscript 01_pipeline/optional/specification_curve.R   (from the repository root,
 #          after compare_analyses.R)
 # Reads:   04_output/not_adopted/comparisons/analysis_comparison.csv
+#          06_diagnostics/dml_corrected_test_settings/summary.csv   (relabelling check of the 64 corrected
+#            ctrl and inter analyses: each list against relabelled libraries; issues.md I-02, I-07)
+#          06_diagnostics/dml_corrected_test/relabel_corrected_lists_summary.csv   (the same check for the
+#            corrected ploidy list of all 22 libraries at the paper's settings, mnchisq; I-06 item 7)
+#          Where a list was checked, its panel shows the 5th to 95th percentile of the relabelled lists
+#          (grey bar) and their median (tick), and a row marks whether the real list is longer than the
+#          relabelled lists: permutation p = (relabellings at or above the real list + 1) / (relabellings + 1)
+#          at most 0.05. Lists not checked (all uncorrected lists, the corrected heat and shared lists, the
+#          corrected ploidy lists of all 22 libraries other than mnchisq) show no bar.
 # Writes:  04_output/not_adopted/comparisons/specification_curve.png
 #          04_output/not_adopted/comparisons/specification_curve.pdf
 
@@ -32,6 +41,25 @@ x[, contrast := factor(contrast, levels = c("Paper's contrasts", "Control-only p
 setorder(x, ploidy_dml, heat_dml, shared, contrast)
 x[, rank := seq_len(.N)]
 paper_rank <- x[analysis == "legacy", rank]
+
+# Relabelling references of the checked lists.
+s_set <- fread(here("06_diagnostics", "dml_corrected_test_settings", "summary.csv"))
+if (nrow(s_set) != 64) stop("Expected the relabelling check of 64 corrected ctrl and inter analyses; found ", nrow(s_set), call. = FALSE)
+ref <- s_set[, .(analysis = id, panel = fifelse(design == "ctrl", "ploidy_dml", "interaction_dml"), observed = observed_n_called,
+                 median = relabelled_n_called_median, lo = relabelled_n_called_q05, hi = relabelled_n_called_q95,
+                 at_or_above = relabellings_at_or_above_observed, n = n_relabellings)]
+s10 <- fread(here("06_diagnostics", "dml_corrected_test", "relabel_corrected_lists_summary.csv"))[design == "pooled"]
+if (nrow(s10) != 1) stop("relabel_corrected_lists_summary.csv lacks the pooled design.", call. = FALSE)
+# The corrected ploidy list of all 22 libraries at the paper's settings; with inter the ploidy list is the same list.
+ref <- rbind(ref, rbindlist(lapply(c("mnchisq", "mnchisq-inter"), function(a) s10[, .(analysis = a, panel = "ploidy_dml", observed = observed_n_called,
+  median = relabelled_n_called_median, lo = relabelled_n_called_q05, hi = relabelled_n_called_q95,
+  at_or_above = relabellings_n_called_at_or_above_observed, n = n_relabellings)])))
+ref <- merge(ref, x[, .(analysis, rank, ploidy_dml, interaction_dml)], by = "analysis")
+stopifnot(all(ref[panel == "ploidy_dml", observed == ploidy_dml]), all(ref[panel == "interaction_dml", observed == interaction_dml]))
+ref[, p_perm := (at_or_above + 1) / (n + 1)]
+ref[, verdict := factor(fifelse(p_perm <= 0.05, "longer than relabelled lists (p <= 0.05)", "within relabelled lists"),
+                        levels = c("longer than relabelled lists (p <= 0.05)", "within relabelled lists"))]
+ref_col <- "#b9b8b3"
 v2022_rank <- x[analysis == "corrected-cov5-mnchisq-ctexcl-d50", rank]
 
 # Colours: the reference categorical palette, first three slots (validated all-pairs, light
@@ -58,8 +86,12 @@ log_y <- scale_y_continuous(trans = scales::pseudo_log_trans(base = 10, sigma = 
 x_scale <- scale_x_continuous(limits = c(0.5, nrow(x) + 0.5), expand = c(0, 0))
 
 curve <- function(col, title, data = x) {
+  r <- ref[panel == col]
   ggplot(data[!is.na(get(col))], aes(rank, .data[[col]], colour = contrast, shape = contrast)) +
-    marks + geom_point(size = 1.6) +
+    marks +
+    (if (nrow(r)) list(geom_linerange(data = r, aes(x = rank, ymin = lo, ymax = hi), inherit.aes = FALSE, colour = ref_col, linewidth = 0.9),
+                       geom_point(data = r, aes(x = rank, y = median), inherit.aes = FALSE, colour = ink2, shape = 95, size = 2.6)) else NULL) +
+    geom_point(size = 1.6) +
     scale_colour_manual(values = pal, name = NULL, drop = FALSE) + scale_shape_manual(values = shp, name = NULL, drop = FALSE) +
     log_y + x_scale + labs(y = title) + theme_spec()
 }
@@ -86,16 +118,26 @@ p_spec <- ggplot(m, aes(rank, setting)) + marks +
   theme(panel.grid.major.y = element_blank(), axis.text.y = element_text(colour = ink, size = 8.5),
         axis.title.x = element_text(colour = ink2, size = 9, margin = margin(t = 6)))
 
-fig <- (p_ploidy / p_heat / p_share / p_inter / p_spec) +
-  plot_layout(heights = c(1, 1, 1, 1, 1.15), guides = "collect") +
+ref[, check_row := factor(fifelse(panel == "ploidy_dml", "Relabelling check: ploidy list", "Relabelling check: interaction list"),
+                          levels = c("Relabelling check: interaction list", "Relabelling check: ploidy list"))]
+p_check <- ggplot(ref, aes(rank, check_row)) + marks +
+  geom_point(aes(shape = verdict), colour = ink, size = 1.8, stroke = 0.6) +
+  scale_shape_manual(values = c("longer than relabelled lists (p <= 0.05)" = 18, "within relabelled lists" = 1), name = NULL, drop = FALSE) +
+  x_scale + labs(y = NULL) + theme_spec() +
+  theme(panel.grid.major.y = element_blank(), axis.text.y = element_text(colour = ink, size = 8.5))
+
+fig <- (p_ploidy / p_heat / p_share / p_inter / p_check / p_spec) +
+  plot_layout(heights = c(1, 1, 1, 1, 0.32, 1.15), guides = "collect") +
   plot_annotation(title = "Specification curve of the 192 DML analyses (none adopted except the paper's)",
                   subtitle = paste("Each column is one analysis; counts on a log scale (0 shown at the bottom). Shaded columns: the paper (legacy)",
                                    "and the settings of Venkataraman et al. 2022 (corrected-cov5-mnchisq-ctexcl-d50).",
-                                   "\nWith inter, the ploidy and heat lists equal those of the paper's contrasts. Counts: analysis_comparison.csv."),
+                                   "\nWith inter, the ploidy and heat lists equal those of the paper's contrasts. Counts: analysis_comparison.csv.",
+                                   "\nGrey bars: 5th to 95th percentile of the lists that relabelled libraries give, tick at their median, for the corrected lists that were checked",
+                                   "\n(control-only ploidy, interaction, and the ploidy list of mnchisq, also that of mnchisq-inter); the other lists were not checked."),
                   theme = theme(plot.background = element_rect(fill = surface, colour = NA),
                                 plot.title = element_text(colour = ink, face = "bold", size = 12),
                                 plot.subtitle = element_text(colour = ink2, size = 9))) &
-  theme(legend.position = "top", legend.background = element_rect(fill = surface, colour = NA))
+  theme(legend.position = "top", legend.box = "vertical", legend.box.just = "left", legend.spacing.y = grid::unit(0, "pt"), legend.margin = margin(0, 0, 0, 0), legend.background = element_rect(fill = surface, colour = NA))
 
 ggsave(file.path(cmp_dir, "specification_curve.png"), fig, width = 13, height = 11, dpi = 200, bg = surface, device = ragg::agg_png)
 ggsave(file.path(cmp_dir, "specification_curve.pdf"), fig, width = 13, height = 11, bg = surface)
