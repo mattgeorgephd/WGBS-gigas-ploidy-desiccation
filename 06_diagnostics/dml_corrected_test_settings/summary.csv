@@ -31,6 +31,14 @@ mnchisq-ctrl-ctexcl-q05,TRUE,FALSE,TRUE,20,0.05,1.68434604946561e-05,44,mnchisq-
 mnchisq-ctrl-d50,FALSE,TRUE,FALSE,50,0.01,7.1709890459331e-07,1,mnchisq-ctrl,ctrl,150,1,0,0,2,5,67,0,0,150
 mnchisq-ctrl-d50-q05,FALSE,TRUE,TRUE,50,0.05,1.68434604946561e-05,1,mnchisq-ctrl,ctrl,150,1,1,0,5,8,98,0,0,150
 mnchisq-ctrl-q05,FALSE,FALSE,TRUE,20,0.05,1.68434604946561e-05,53,mnchisq-ctrl,ctrl,150,53,53.5,26.45,112.65,169,77,6,9,117
+corrected-cov5-mnchisq-inter,FALSE,FALSE,FALSE,20,0.01,8.55695840152401e-06,1714,corrected-cov5-mnchisq-inter,inter,200,1714,134,67,265.7,1453,0,79,5,0
+corrected-cov5-mnchisq-inter-ctexcl,TRUE,FALSE,FALSE,20,0.01,8.55695840152401e-06,1427,corrected-cov5-mnchisq-inter,inter,200,1427,112,61.95,225.05,1256,0,65,4,0
+corrected-cov5-mnchisq-inter-ctexcl-d50,TRUE,TRUE,FALSE,50,0.01,8.55695840152401e-06,555,corrected-cov5-mnchisq-inter,inter,200,555,39.5,14,91.05,375,0,38,2,0
+corrected-cov5-mnchisq-inter-ctexcl-d50-q05,TRUE,TRUE,TRUE,50,0.05,0.000230562785994423,1814,corrected-cov5-mnchisq-inter,inter,200,1814,169,77.85,373.3,1273,0,60,4,0
+corrected-cov5-mnchisq-inter-ctexcl-q05,TRUE,FALSE,TRUE,20,0.05,0.000230562785994423,7681,corrected-cov5-mnchisq-inter,inter,200,7681,644,387.95,1201.2,6932,0,105,8,0
+corrected-cov5-mnchisq-inter-d50,FALSE,TRUE,FALSE,50,0.01,8.55695840152401e-06,688,corrected-cov5-mnchisq-inter,inter,200,688,52,18,119.1,427,0,48,3,0
+corrected-cov5-mnchisq-inter-d50-q05,FALSE,TRUE,TRUE,50,0.05,0.000230562785994423,2246,corrected-cov5-mnchisq-inter,inter,200,2246,231,107.95,498.05,1517,0,77,5,0
+corrected-cov5-mnchisq-inter-q05,FALSE,FALSE,TRUE,20,0.05,0.000230562785994423,9025,corrected-cov5-mnchisq-inter,inter,200,9025,763,452.95,1443.05,7962,0,129,9,0
 corrected-mnchisq-inter,FALSE,FALSE,FALSE,20,0.01,6.65518580120949e-06,231,corrected-mnchisq-inter,inter,200,231,17,7,45.2999999999999,213,0,20,1,2
 corrected-mnchisq-inter-ctexcl,TRUE,FALSE,FALSE,20,0.01,6.65518580120949e-06,194,corrected-mnchisq-inter,inter,200,194,15,5.95,39.1999999999999,185,0,16,1,2
 corrected-mnchisq-inter-ctexcl-d50,TRUE,TRUE,FALSE,50,0.01,6.65518580120949e-06,61,corrected-mnchisq-inter,inter,200,61,3,0,12,49,0,10,0,0
