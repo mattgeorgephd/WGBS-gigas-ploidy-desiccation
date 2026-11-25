@@ -87,3 +87,13 @@ Built and tested before use:
    - a license (I-34);
    - the tracked legacy file over 50 MB (I-34);
    - items 2 and 4 to 6 of the report of 2026-11-21.
+
+## 6. Downstream results across the analyses (2026-11-25, at your request)
+
+You chose to compile what had run, to run the gene-level GO on a short pre-chosen set, and to extend GO to the tested interaction lists.
+
+- **Compiled (steps 07 to 09, all 192 analyses; `01_pipeline/optional/compare_downstream.R`).** With the overdispersion correction an analysis keeps 2% of the paper's ploidy genes (median; at most 4.7%) and 11% of its heat genes. Of the 19 loci of Table 1 only the heat locus of unc-104 is a DML in any corrected analysis. No corrected analysis keeps more than 4 of the paper's ten top-ranked GO terms. The paper's lncRNA excess appears in 7 of 85 analyses and is reversed in 28. The gene-body excess of DML holds against all CpGs and weakens against eligible CpGs.
+- **Gene-level GO (step 10) on nine analyses.** Eight enrich no term at all, the paper's lists included. The uncorrected 5x analysis (`cov5`) enriches mostly broad terms from lists holding 37% to 55% of all eligible genes, and nine more specific molecular-function terms (microtubule and cytoskeletal motor activity, tubulin binding, RNA polymerase binding, 4Fe-4S cluster binding); its lists have not been checked against relabelled libraries.
+- **GO of the tested interaction lists (four analyses).** Steps 08 and 10 were extended to the interaction list (an independent review found one bug, fixed and retested: step 09 would have stopped for any analysis with `inter`). No interaction list enriches a term in the eligible universe.
+
+Reading: no result of the draft that depends on which loci are in its lists survives the overdispersion correction. Details: issues.md, I-41 (update of 2026-11-25), I-02 and I-45.
