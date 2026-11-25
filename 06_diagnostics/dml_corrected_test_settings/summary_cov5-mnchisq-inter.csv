@@ -1,0 +1,9 @@
+id,ctexcl,d50,q05,difference,cutoff,p_star,pipeline_dml,fit,design,n_relabellings,observed_n_called,relabelled_n_called_median,relabelled_n_called_q05,relabelled_n_called_q95,relabelled_n_called_max,relabellings_at_or_above_observed,observed_n_called_on_their_own,relabelled_n_called_on_their_own_median,relabellings_on_their_own_at_or_above_observed
+cov5-mnchisq-inter,FALSE,FALSE,FALSE,20,0.01,8.52163106714391e-06,1718,cov5-mnchisq-inter,inter,200,1718,136.5,68.95,266.9,1451,0,80,5,0
+cov5-mnchisq-inter-ctexcl,TRUE,FALSE,FALSE,20,0.01,8.52163106714391e-06,1432,cov5-mnchisq-inter,inter,200,1432,116,62,230,1254,0,66,4,0
+cov5-mnchisq-inter-ctexcl-d50,TRUE,TRUE,FALSE,50,0.01,8.52163106714391e-06,554,cov5-mnchisq-inter,inter,200,554,40,14.95,91.05,375,0,38,2,0
+cov5-mnchisq-inter-ctexcl-d50-q05,TRUE,TRUE,TRUE,50,0.05,0.00022966087719897,1818,cov5-mnchisq-inter,inter,200,1818,174.5,78.95,374.25,1272,0,60,4,0
+cov5-mnchisq-inter-ctexcl-q05,TRUE,FALSE,TRUE,20,0.05,0.00022966087719897,7702,cov5-mnchisq-inter,inter,200,7702,659.5,394.85,1213.7,6921,0,106,8,0
+cov5-mnchisq-inter-d50,FALSE,TRUE,FALSE,50,0.01,8.52163106714391e-06,687,cov5-mnchisq-inter,inter,200,687,52,19,119.1,427,0,48,3,0
+cov5-mnchisq-inter-d50-q05,FALSE,TRUE,TRUE,50,0.05,0.00022966087719897,2250,cov5-mnchisq-inter,inter,200,2250,234.5,109.95,498.05,1515,0,77,5,0
+cov5-mnchisq-inter-q05,FALSE,FALSE,TRUE,20,0.05,0.00022966087719897,9044,cov5-mnchisq-inter,inter,200,9044,776,466.65,1456.9,7950,0,130,9,0

@@ -39,6 +39,14 @@ corrected-mnchisq-inter-ctexcl-q05,TRUE,FALSE,TRUE,20,0.05,0.000288006333159343,
 corrected-mnchisq-inter-d50,FALSE,TRUE,FALSE,50,0.01,6.65518580120949e-06,77,corrected-mnchisq-inter,inter,200,77,4,0.950000000000001,15.1,54,0,13,0,0
 corrected-mnchisq-inter-d50-q05,FALSE,TRUE,TRUE,50,0.05,0.000288006333159343,282,corrected-mnchisq-inter,inter,200,282,26,10,61.15,198,0,17,1,1
 corrected-mnchisq-inter-q05,FALSE,FALSE,TRUE,20,0.05,0.000288006333159343,1980,corrected-mnchisq-inter,inter,200,1980,123,66.95,258.749999999999,1874,0,25,3,3
+cov5-mnchisq-inter,FALSE,FALSE,FALSE,20,0.01,8.52163106714391e-06,1718,cov5-mnchisq-inter,inter,200,1718,136.5,68.95,266.9,1451,0,80,5,0
+cov5-mnchisq-inter-ctexcl,TRUE,FALSE,FALSE,20,0.01,8.52163106714391e-06,1432,cov5-mnchisq-inter,inter,200,1432,116,62,230,1254,0,66,4,0
+cov5-mnchisq-inter-ctexcl-d50,TRUE,TRUE,FALSE,50,0.01,8.52163106714391e-06,554,cov5-mnchisq-inter,inter,200,554,40,14.95,91.05,375,0,38,2,0
+cov5-mnchisq-inter-ctexcl-d50-q05,TRUE,TRUE,TRUE,50,0.05,0.00022966087719897,1818,cov5-mnchisq-inter,inter,200,1818,174.5,78.95,374.25,1272,0,60,4,0
+cov5-mnchisq-inter-ctexcl-q05,TRUE,FALSE,TRUE,20,0.05,0.00022966087719897,7702,cov5-mnchisq-inter,inter,200,7702,659.5,394.85,1213.7,6921,0,106,8,0
+cov5-mnchisq-inter-d50,FALSE,TRUE,FALSE,50,0.01,8.52163106714391e-06,687,cov5-mnchisq-inter,inter,200,687,52,19,119.1,427,0,48,3,0
+cov5-mnchisq-inter-d50-q05,FALSE,TRUE,TRUE,50,0.05,0.00022966087719897,2250,cov5-mnchisq-inter,inter,200,2250,234.5,109.95,498.05,1515,0,77,5,0
+cov5-mnchisq-inter-q05,FALSE,FALSE,TRUE,20,0.05,0.00022966087719897,9044,cov5-mnchisq-inter,inter,200,9044,776,466.65,1456.9,7950,0,130,9,0
 mnchisq-inter,FALSE,FALSE,FALSE,20,0.01,7.02165743049911e-06,242,mnchisq-inter,inter,200,242,19,8,56,223,0,19,1,2
 mnchisq-inter-ctexcl,TRUE,FALSE,FALSE,20,0.01,7.02165743049911e-06,204,mnchisq-inter,inter,200,204,17,6.95,46.05,195,0,15,1,2
 mnchisq-inter-ctexcl-d50,TRUE,TRUE,FALSE,50,0.01,7.02165743049911e-06,63,mnchisq-inter,inter,200,63,3,0,13,67,1,9,0,1
