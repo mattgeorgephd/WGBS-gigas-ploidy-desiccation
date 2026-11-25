@@ -25,8 +25,8 @@ corrected-cov5-inter-d50,corrected,5,none,not passed,inter,FALSE,50,0.01,correct
 corrected-cov5-inter-d50-q05,corrected,5,none,not passed,inter,FALSE,50,0.05,corrected-cov5-inter,c9feb0b4cd62b4cb462cbf2b5c9a4211,"",c4be453,2026-11-24 08:16:03,04;05;06;07;08;09
 corrected-cov5-inter-q05,corrected,5,none,not passed,inter,FALSE,20,0.05,corrected-cov5-inter,c9feb0b4cd62b4cb462cbf2b5c9a4211,"",0918811,2026-11-24 07:08:58,04;05;06;07;08;09
 corrected-cov5-mnchisq,corrected,5,MN,Chisq,none,FALSE,20,0.01,corrected-cov5-mnchisq,4d2b451ed872ed0ef171db1e4695494f,"",c2101c8,2026-11-21 20:51:01,04;05;06;07;08;09
-corrected-cov5-mnchisq-ctexcl,corrected,5,MN,Chisq,none,TRUE,20,0.01,corrected-cov5-mnchisq,4d2b451ed872ed0ef171db1e4695494f,4be241cfd320d7315a31059278cfc7c6,c73b4a5,2026-11-21 10:30:20,04;05;06;07;08;09
-corrected-cov5-mnchisq-ctexcl-d50,corrected,5,MN,Chisq,none,TRUE,50,0.01,corrected-cov5-mnchisq,4d2b451ed872ed0ef171db1e4695494f,4be241cfd320d7315a31059278cfc7c6,b6d827b,2026-11-21 12:20:03,04;05;06;07;08;09
+corrected-cov5-mnchisq-ctexcl,corrected,5,MN,Chisq,none,TRUE,20,0.01,corrected-cov5-mnchisq,4d2b451ed872ed0ef171db1e4695494f,4be241cfd320d7315a31059278cfc7c6,4db7edf,2026-11-25 19:56:43,04;05;06;07;08;09;10;11
+corrected-cov5-mnchisq-ctexcl-d50,corrected,5,MN,Chisq,none,TRUE,50,0.01,corrected-cov5-mnchisq,4d2b451ed872ed0ef171db1e4695494f,4be241cfd320d7315a31059278cfc7c6,4db7edf,2026-11-25 19:57:53,04;05;06;07;08;09;10
 corrected-cov5-mnchisq-ctexcl-d50-q05,corrected,5,MN,Chisq,none,TRUE,50,0.05,corrected-cov5-mnchisq,4d2b451ed872ed0ef171db1e4695494f,4be241cfd320d7315a31059278cfc7c6,4b5263a,2026-11-22 14:19:44,04;05;06;07;08;09
 corrected-cov5-mnchisq-ctexcl-q05,corrected,5,MN,Chisq,none,TRUE,20,0.05,corrected-cov5-mnchisq,4d2b451ed872ed0ef171db1e4695494f,4be241cfd320d7315a31059278cfc7c6,40e1b57,2026-11-22 14:03:51,04;05;06;07;08;09
 corrected-cov5-mnchisq-ctrl,corrected,5,MN,Chisq,ctrl,FALSE,20,0.01,corrected-cov5-mnchisq-ctrl,03a83b06d924d94d2938a726f161963b,"",e71fcc2,2026-11-23 00:20:11,04;05;06;07;08;09
@@ -96,7 +96,7 @@ corrected-mnchisq-inter-d50-q05,corrected,10,MN,Chisq,inter,FALSE,50,0.05,correc
 corrected-mnchisq-inter-q05,corrected,10,MN,Chisq,inter,FALSE,20,0.05,corrected-mnchisq-inter,7e6a24912596ea572cf843627ff5387a,"",f65a4af,2026-11-23 15:59:10,04;05;06;07;08;09
 corrected-mnchisq-q05,corrected,10,MN,Chisq,none,FALSE,20,0.05,corrected-mnchisq,ad1021bb99cb205a7e6603efb65e1d73,"",35786ac,2026-11-22 06:58:45,04;05;06;07;08;09
 corrected-q05,corrected,10,none,not passed,none,FALSE,20,0.05,corrected,df0c3e7805a7baead11759cd641f1df3,"",4dc9a97,2026-11-22 06:07:59,04;05;06;07;08;09
-cov5,legacy,5,none,not passed,none,FALSE,20,0.01,cov5,10d66f1498ef61f043bbe3e5255a3a72,"",d98ff3c,2026-11-21 03:27:53,04;05;06;07;08;09
+cov5,legacy,5,none,not passed,none,FALSE,20,0.01,cov5,10d66f1498ef61f043bbe3e5255a3a72,"",4db7edf,2026-11-25 19:49:35,04;05;06;07;08;09;10;11
 cov5-ctexcl,legacy,5,none,not passed,none,TRUE,20,0.01,cov5,10d66f1498ef61f043bbe3e5255a3a72,4be241cfd320d7315a31059278cfc7c6,93b6961,2026-11-21 03:42:28,04;05;06;07;08;09
 cov5-ctexcl-d50,legacy,5,none,not passed,none,TRUE,50,0.01,cov5,10d66f1498ef61f043bbe3e5255a3a72,4be241cfd320d7315a31059278cfc7c6,a6517c5,2026-11-21 11:52:54,04;05;06;07;08;09
 cov5-ctexcl-d50-q05,legacy,5,none,not passed,none,TRUE,50,0.05,cov5,10d66f1498ef61f043bbe3e5255a3a72,4be241cfd320d7315a31059278cfc7c6,4572081,2026-11-22 12:39:29,04;05;06;07;08;09
@@ -119,7 +119,7 @@ cov5-inter-ctexcl-q05,legacy,5,none,not passed,inter,TRUE,20,0.05,cov5-inter,37b
 cov5-inter-d50,legacy,5,none,not passed,inter,FALSE,50,0.01,cov5-inter,37b336d7c94c6e508d209abeefc15692,"",de65f37,2026-11-23 20:26:52,04;05;06;07;08;09
 cov5-inter-d50-q05,legacy,5,none,not passed,inter,FALSE,50,0.05,cov5-inter,37b336d7c94c6e508d209abeefc15692,"",cce093e,2026-11-23 21:54:42,04;05;06;07;08;09
 cov5-inter-q05,legacy,5,none,not passed,inter,FALSE,20,0.05,cov5-inter,37b336d7c94c6e508d209abeefc15692,"",18cab16,2026-11-23 20:50:38,04;05;06;07;08;09
-cov5-mnchisq,legacy,5,MN,Chisq,none,FALSE,20,0.01,cov5-mnchisq,08c997671963d74d86fc65e695e81bff,"",a4c8df2,2026-11-21 23:16:30,04;05;06;07;08;09
+cov5-mnchisq,legacy,5,MN,Chisq,none,FALSE,20,0.01,cov5-mnchisq,08c997671963d74d86fc65e695e81bff,"",4db7edf,2026-11-25 19:54:16,04;05;06;07;08;09;10;11
 cov5-mnchisq-ctexcl,legacy,5,MN,Chisq,none,TRUE,20,0.01,cov5-mnchisq,08c997671963d74d86fc65e695e81bff,4be241cfd320d7315a31059278cfc7c6,c267aaf,2026-11-21 23:45:37,04;05;06;07;08;09
 cov5-mnchisq-ctexcl-d50,legacy,5,MN,Chisq,none,TRUE,50,0.01,cov5-mnchisq,08c997671963d74d86fc65e695e81bff,4be241cfd320d7315a31059278cfc7c6,ac3fcc1,2026-11-21 23:58:40,04;05;06;07;08;09
 cov5-mnchisq-ctexcl-d50-q05,legacy,5,MN,Chisq,none,TRUE,50,0.05,cov5-mnchisq,08c997671963d74d86fc65e695e81bff,4be241cfd320d7315a31059278cfc7c6,abb63b4,2026-11-22 13:46:01,04;05;06;07;08;09
@@ -144,7 +144,7 @@ cov5-mnchisq-inter-d50-q05,legacy,5,MN,Chisq,inter,FALSE,50,0.05,cov5-mnchisq-in
 cov5-mnchisq-inter-q05,legacy,5,MN,Chisq,inter,FALSE,20,0.05,cov5-mnchisq-inter,545d5b8b7b8faa62e7fb14aacaeba661,"",e29e09d,2026-11-24 02:01:13,04;05;06;07;08;09
 cov5-mnchisq-q05,legacy,5,MN,Chisq,none,FALSE,20,0.05,cov5-mnchisq,08c997671963d74d86fc65e695e81bff,"",55831d8,2026-11-22 11:18:43,04;05;06;07;08;09
 cov5-q05,legacy,5,none,not passed,none,FALSE,20,0.05,cov5,10d66f1498ef61f043bbe3e5255a3a72,"",cc932f9,2026-11-22 10:13:04,04;05;06;07;08;09
-ctexcl,legacy,10,none,not passed,none,TRUE,20,0.01,legacy,6181094c68aab31c49284e2a4ae5f1c4,4be241cfd320d7315a31059278cfc7c6,18388b2,2026-11-20 19:50:57,04;05;06;07;08;09
+ctexcl,legacy,10,none,not passed,none,TRUE,20,0.01,legacy,6181094c68aab31c49284e2a4ae5f1c4,4be241cfd320d7315a31059278cfc7c6,332269e,2026-11-25 19:44:44,04;05;06;07;08;09;10;11
 ctexcl-d50,legacy,10,none,not passed,none,TRUE,50,0.01,legacy,6181094c68aab31c49284e2a4ae5f1c4,4be241cfd320d7315a31059278cfc7c6,a7415ae,2026-11-21 11:27:13,04;05;06;07;08;09
 ctexcl-d50-q05,legacy,10,none,not passed,none,TRUE,50,0.05,legacy,6181094c68aab31c49284e2a4ae5f1c4,4be241cfd320d7315a31059278cfc7c6,e86d7c4,2026-11-22 08:28:57,04;05;06;07;08;09
 ctexcl-q05,legacy,10,none,not passed,none,TRUE,20,0.05,legacy,6181094c68aab31c49284e2a4ae5f1c4,4be241cfd320d7315a31059278cfc7c6,c8092c8,2026-11-22 08:16:00,04;05;06;07;08;09

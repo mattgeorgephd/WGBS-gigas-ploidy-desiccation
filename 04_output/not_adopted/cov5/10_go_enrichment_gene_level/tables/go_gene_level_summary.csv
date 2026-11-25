@@ -1,0 +1,19 @@
+mode,set,ontology,universe,universe_genes,dml_genes,terms_tested,fisher_p_below_cutoff,fisher_q_below_fdr,wallenius_p_below_cutoff,wallenius_q_below_fdr,smallest_q_wallenius,top_term,go_db,go_source_date
+cov5,ploidy,BP,tested,14526,3193,7431,700,476,644,466,4.69363441120699e-42,cellular nitrogen compound metabolic process,3.18.0,2023-07-27
+cov5,heat,BP,tested,14526,4732,7431,867,736,834,704,1.39087607032069e-63,primary metabolic process,3.18.0,2023-07-27
+cov5,shared,BP,tested,14526,973,7431,257,117,244,109,2.8596590125519e-12,nucleic acid metabolic process,3.18.0,2023-07-27
+cov5,ploidy,CC,tested,15381,3355,908,187,187,185,185,1.61591836786747e-144,intracellular anatomical structure,3.18.0,2023-07-27
+cov5,heat,CC,tested,15381,4949,908,231,241,243,265,1.24531618250339e-224,intracellular anatomical structure,3.18.0,2023-07-27
+cov5,shared,CC,tested,15381,1013,908,79,63,88,72,3.07767048626269e-40,intracellular anatomical structure,3.18.0,2023-07-27
+cov5,ploidy,MF,tested,14863,3004,1571,211,185,210,180,1.42069203002956e-46,heterocyclic compound binding,3.18.0,2023-07-27
+cov5,heat,MF,tested,14863,4424,1571,261,250,268,257,5.76489794745416e-72,heterocyclic compound binding,3.18.0,2023-07-27
+cov5,shared,MF,tested,14863,905,1571,93,69,94,72,5.85447851400487e-11,heterocyclic compound binding,3.18.0,2023-07-27
+cov5,ploidy,BP,eligible,8531,3193,5858,311,126,74,18,5.71590635192238e-05,cellular nitrogen compound metabolic process,3.18.0,2023-07-27
+cov5,heat,BP,eligible,8531,4732,5858,366,183,111,51,7.99592706322693e-08,cellular biosynthetic process,3.18.0,2023-07-27
+cov5,shared,BP,eligible,8531,973,5858,89,4,27,0,1,organic cyclic compound metabolic process,3.18.0,2023-07-27
+cov5,ploidy,CC,eligible,8903,3355,785,62,49,40,16,8.37643365512312e-08,intracellular organelle lumen,3.18.0,2023-07-27
+cov5,heat,CC,eligible,8903,4949,785,83,61,52,35,2.75417955833633e-17,intracellular organelle,3.18.0,2023-07-27
+cov5,shared,CC,eligible,8903,1013,785,35,12,20,0,0.125788336831835,nucleoplasm,3.18.0,2023-07-27
+cov5,ploidy,MF,eligible,8227,3004,1186,87,52,37,7,0.0093948421865007,heterocyclic compound binding,3.18.0,2023-07-27
+cov5,heat,MF,eligible,8227,4424,1186,93,68,53,20,2.5323486500311e-07,heterocyclic compound binding,3.18.0,2023-07-27
+cov5,shared,MF,eligible,8227,905,1186,51,20,12,0,0.907845305560122,"proton-transporting ATP synthase activity, rotational mechanism",3.18.0,2023-07-27

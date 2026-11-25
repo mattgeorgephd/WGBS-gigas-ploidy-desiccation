@@ -1,0 +1,19 @@
+mode,set,ontology,universe,universe_genes,dml_genes,terms_tested,fisher_p_below_cutoff,fisher_q_below_fdr,wallenius_p_below_cutoff,wallenius_q_below_fdr,smallest_q_wallenius,top_term,go_db,go_source_date
+corrected-cov5-mnchisq-ctexcl-d50,ploidy,BP,tested,14498,0,0,0,0,0,0,,,3.18.0,2023-07-27
+corrected-cov5-mnchisq-ctexcl-d50,heat,BP,tested,14498,33,7427,86,0,86,0,0.203306195948194,phosphorylation,3.18.0,2023-07-27
+corrected-cov5-mnchisq-ctexcl-d50,shared,BP,tested,14498,0,0,0,0,0,0,,,3.18.0,2023-07-27
+corrected-cov5-mnchisq-ctexcl-d50,ploidy,CC,tested,15347,0,0,0,0,0,0,,,3.18.0,2023-07-27
+corrected-cov5-mnchisq-ctexcl-d50,heat,CC,tested,15347,38,907,3,0,5,0,1,catalytic complex,3.18.0,2023-07-27
+corrected-cov5-mnchisq-ctexcl-d50,shared,CC,tested,15347,0,0,0,0,0,0,,,3.18.0,2023-07-27
+corrected-cov5-mnchisq-ctexcl-d50,ploidy,MF,tested,14827,0,0,0,0,0,0,,,3.18.0,2023-07-27
+corrected-cov5-mnchisq-ctexcl-d50,heat,MF,tested,14827,30,1571,14,0,18,0,0.248705541045279,1-phosphatidylinositol-3-kinase activity,3.18.0,2023-07-27
+corrected-cov5-mnchisq-ctexcl-d50,shared,MF,tested,14827,0,0,0,0,0,0,,,3.18.0,2023-07-27
+corrected-cov5-mnchisq-ctexcl-d50,ploidy,BP,eligible,7042,0,0,0,0,0,0,,,3.18.0,2023-07-27
+corrected-cov5-mnchisq-ctexcl-d50,heat,BP,eligible,7042,33,5360,76,0,67,0,0.38995338080135,phosphorylation,3.18.0,2023-07-27
+corrected-cov5-mnchisq-ctexcl-d50,shared,BP,eligible,7042,0,0,0,0,0,0,,,3.18.0,2023-07-27
+corrected-cov5-mnchisq-ctexcl-d50,ploidy,CC,eligible,7347,0,0,0,0,0,0,,,3.18.0,2023-07-27
+corrected-cov5-mnchisq-ctexcl-d50,heat,CC,eligible,7347,38,730,0,0,0,0,1,Parkin-FBXW7-Cul1 ubiquitin ligase complex,3.18.0,2023-07-27
+corrected-cov5-mnchisq-ctexcl-d50,shared,CC,eligible,7347,0,0,0,0,0,0,,,3.18.0,2023-07-27
+corrected-cov5-mnchisq-ctexcl-d50,ploidy,MF,eligible,6629,0,0,0,0,0,0,,,3.18.0,2023-07-27
+corrected-cov5-mnchisq-ctexcl-d50,heat,MF,eligible,6629,30,1043,7,0,6,0,0.568745482996389,1-phosphatidylinositol-3-kinase activity,3.18.0,2023-07-27
+corrected-cov5-mnchisq-ctexcl-d50,shared,MF,eligible,6629,0,0,0,0,0,0,,,3.18.0,2023-07-27

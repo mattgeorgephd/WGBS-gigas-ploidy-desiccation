@@ -1,0 +1,91 @@
+set,ontology,go_id,legacy_rank,term,legacy_transcripts_annotated,legacy_transcripts_of_interest,legacy_genes_behind_them,legacy_p,genes_annotated_eligible_corrected-cov5-mnchisq-ctexcl_dml,genes_with_dml_eligible_corrected-cov5-mnchisq-ctexcl_dml,p_fisher_eligible_corrected-cov5-mnchisq-ctexcl_dml,q_fisher_eligible_corrected-cov5-mnchisq-ctexcl_dml,p_wallenius_eligible_corrected-cov5-mnchisq-ctexcl_dml,q_wallenius_eligible_corrected-cov5-mnchisq-ctexcl_dml,gene_level_status
+heat,BP,GO:0048261,1,negative regulation of receptor-mediated endocytosis,64,53,3,2.95917761671929e-39,6,0,1,1,1,1,not enriched
+heat,BP,GO:0016188,2,synaptic vesicle maturation,85,56,3,3.12036571616553e-32,7,1,0.328545149901498,1,0.523591588127046,1,not enriched
+heat,BP,GO:0098711,3,iron ion import across plasma membrane,73,51,2,2.12001847705037e-31,4,0,1,,1,,fewer annotated genes than go_min_genes
+heat,BP,GO:1902961,4,positive regulation of aspartic-type endopeptidase activity involved in amyloid precursor protein catabolic process,73,51,2,2.12001847705037e-31,4,0,1,,1,,fewer annotated genes than go_min_genes
+heat,BP,GO:1905247,5,positive regulation of aspartic-type peptidase activity,73,51,2,2.12001847705037e-31,4,0,1,,1,,fewer annotated genes than go_min_genes
+heat,BP,GO:1902959,6,regulation of aspartic-type endopeptidase activity involved in amyloid precursor protein catabolic process,74,51,2,6.05731323326409e-31,5,0,1,1,0.999999999999999,1,not enriched
+heat,BP,GO:1902962,7,regulation of metalloendopeptidase activity involved in amyloid precursor protein catabolic process,74,51,2,6.05731323326409e-31,5,0,1,1,0.999999999999999,1,not enriched
+heat,BP,GO:1902963,8,negative regulation of metalloendopeptidase activity involved in amyloid precursor protein catabolic process,74,51,2,6.05731323326409e-31,5,0,1,1,0.999999999999999,1,not enriched
+heat,BP,GO:1905245,9,regulation of aspartic-type peptidase activity,74,51,2,6.05731323326409e-31,5,0,1,1,0.999999999999999,1,not enriched
+heat,BP,GO:1902004,10,positive regulation of amyloid-beta formation,77,51,2,1.19354752263906e-29,4,0,1,,1,,fewer annotated genes than go_min_genes
+heat,CC,GO:0097418,1,neurofibrillary tangle,73,51,2,7.81081251607402e-32,4,0,1,,1,,fewer annotated genes than go_min_genes
+heat,CC,GO:0030136,2,clathrin-coated vesicle,239,89,9,1.16054371450024e-25,57,7,0.0393777304931299,0.639616844831949,0.112768267541347,0.990274576432157,not enriched
+heat,CC,GO:0030135,3,coated vesicle,297,96,14,2.59354350180895e-22,94,9,0.0809059888959603,0.697200330467782,0.184022959271365,1,not enriched
+heat,CC,GO:0016234,4,inclusion body,111,53,4,1.01967779728322e-21,44,4,0.232806034047967,0.940843065805428,0.348415881012517,1,not enriched
+heat,CC,GO:0005905,5,clathrin-coated pit,190,66,9,1.32841368725415e-17,45,2,0.728113266458922,1,0.868291557953583,1,not enriched
+heat,CC,GO:0005875,6,microtubule associated complex,266,80,15,8.71620010167553e-17,103,10,0.0632244381175982,0.649283835207815,0.495888257123304,1,not enriched
+heat,CC,GO:0030118,7,clathrin coat,63,33,5,1.36394785010999e-15,26,2,0.433682756933975,1,0.482276963011042,1,not enriched
+heat,CC,GO:0005834,8,heterotrimeric G-protein complex,42,26,1,5.93392208206138e-15,3,1,0.159278753450834,,0.255058867196136,,fewer annotated genes than go_min_genes
+heat,CC,GO:1905360,9,GTPase complex,42,26,1,5.93392208206138e-15,5,1,0.251131801728396,0.940843065805428,0.286493463084003,1,not enriched
+heat,CC,GO:0030119,10,AP-type membrane coat adaptor complex,62,32,5,6.38223686792139e-15,25,2,0.413949768197681,1,0.443445407660852,1,not enriched
+heat,MF,GO:0004674,1,protein serine/threonine kinase activity,708,202,40,1.4219562768603e-37,279,18,0.266241527921866,1,0.791458223447406,1,not enriched
+heat,MF,GO:0032050,2,clathrin heavy chain binding,64,50,2,1.61770034257702e-35,5,0,1,1,1,1,not enriched
+heat,MF,GO:0035615,3,clathrin adaptor activity,78,51,2,5.6496308375861e-30,6,1,0.286492989167435,1,0.443988689854763,1,not enriched
+heat,MF,GO:0140312,4,cargo adaptor activity,78,51,2,5.6496308375861e-30,6,1,0.286492989167435,1,0.443988689854763,1,not enriched
+heat,MF,GO:0004672,5,protein kinase activity,1091,247,46,3.11478425096931e-28,369,28,0.0480791183890621,0.898492925753443,0.599252847353667,1,not enriched
+heat,MF,GO:0030276,6,clathrin binding,158,72,6,8.9560484270486e-28,23,4,0.034176233346494,0.898492925753443,0.091882846186103,1,not enriched
+heat,MF,GO:0016301,7,kinase activity,1361,281,55,3.04382751326812e-25,487,37,0.0251726983559247,0.898492925753443,0.423642527658088,1,not enriched
+heat,MF,GO:0016773,8,"phosphotransferase activity, alcohol group as acceptor",1277,262,52,3.45524098711416e-23,450,33,0.0506119452952565,0.898492925753443,0.572356843515408,1,not enriched
+heat,MF,GO:0005545,9,1-phosphatidylinositol binding,101,51,2,1.2158996036451e-22,10,1,0.430357943929424,1,0.627246686134681,1,not enriched
+heat,MF,GO:0003774,10,motor activity,288,92,16,1.7097163988957e-21,94,11,0.0132035622374253,0.898492925753443,0.449187183217818,1,not enriched
+ploidy,BP,GO:0035562,1,negative regulation of chromatin binding,20,16,2,1.02503191753473e-19,8,0,1,1,1,1,not enriched
+ploidy,BP,GO:0097116,2,gephyrin clustering involved in postsynaptic density assembly,13,13,1,4.30606786200845e-19,1,0,1,,0.999999999999998,,fewer annotated genes than go_min_genes
+ploidy,BP,GO:0097118,3,neuroligin clustering involved in postsynaptic membrane assembly,13,13,1,4.30606786200845e-19,1,0,1,,0.999999999999998,,fewer annotated genes than go_min_genes
+ploidy,BP,GO:2000821,4,regulation of grooming behavior,13,13,1,4.30606786200845e-19,1,0,1,,0.999999999999998,,fewer annotated genes than go_min_genes
+ploidy,BP,GO:0043647,5,inositol phosphate metabolic process,64,24,1,6.43482720933989e-18,15,0,1,1,1,1,not enriched
+ploidy,BP,GO:0043578,6,nuclear matrix organization,12,12,1,1.11798585358047e-17,2,0,1,,1,,fewer annotated genes than go_min_genes
+ploidy,BP,GO:0090292,7,nuclear matrix anchoring at nuclear membrane,12,12,1,1.11798585358047e-17,2,0,1,,1,,fewer annotated genes than go_min_genes
+ploidy,BP,GO:1902277,8,negative regulation of pancreatic amylase secretion,12,12,1,1.11798585358047e-17,1,0,1,,1,,fewer annotated genes than go_min_genes
+ploidy,BP,GO:0035561,9,regulation of chromatin binding,25,16,2,3.5956749821148e-17,12,0,1,1,1,1,not enriched
+ploidy,BP,GO:0097119,10,postsynaptic density protein 95 clustering,15,13,1,4.20395700007354e-17,2,0,1,,1,,fewer annotated genes than go_min_genes
+ploidy,CC,GO:0005790,1,smooth endoplasmic reticulum,38,24,1,3.90675769212489e-24,8,0,1,1,1,1,not enriched
+ploidy,CC,GO:0034992,2,microtubule organizing center attachment site,12,12,1,2.7666409380339e-17,2,0,1,,1,,fewer annotated genes than go_min_genes
+ploidy,CC,GO:0034993,3,meiotic nuclear membrane microtubule tethering complex,12,12,1,2.7666409380339e-17,2,0,1,,1,,fewer annotated genes than go_min_genes
+ploidy,CC,GO:0106083,4,nuclear membrane protein complex,12,12,1,2.7666409380339e-17,2,0,1,,1,,fewer annotated genes than go_min_genes
+ploidy,CC,GO:0106094,5,nuclear membrane microtubule tethering complex,12,12,1,2.7666409380339e-17,2,0,1,,1,,fewer annotated genes than go_min_genes
+ploidy,CC,GO:0005635,6,nuclear envelope,533,69,11,1.1601378623956e-16,250,3,0.225972292206944,1,0.335497039937068,1,not enriched
+ploidy,CC,GO:0031965,7,nuclear membrane,352,51,7,1.27137384325637e-14,165,1,0.666426349615256,1,0.704169120609833,1,not enriched
+ploidy,CC,GO:0005640,8,nuclear outer membrane,19,12,1,1.06027529130823e-12,4,0,1,,0.999999999999998,,fewer annotated genes than go_min_genes
+ploidy,CC,GO:0032593,9,insulin-responsive compartment,13,10,1,4.07335758877672e-12,3,0,1,,1,,fewer annotated genes than go_min_genes
+ploidy,CC,GO:0005882,10,intermediate filament,80,21,2,9.47711716139214e-12,13,0,1,1,1,1,not enriched
+ploidy,MF,GO:0004435,1,phosphatidylinositol phospholipase C activity,53,24,1,2.72685254658427e-20,7,0,1,1,1,1,not enriched
+ploidy,MF,GO:0004629,2,phospholipase C activity,53,24,1,2.72685254658427e-20,7,0,1,1,1,1,not enriched
+ploidy,MF,GO:0097109,3,neuroligin family protein binding,13,13,1,4.06969219586962e-19,1,0,1,,1,,fewer annotated genes than go_min_genes
+ploidy,MF,GO:0033130,4,acetylcholine receptor binding,14,13,1,5.49482204081628e-18,1,0,1,,1,,fewer annotated genes than go_min_genes
+ploidy,MF,GO:0070137,5,ubiquitin-like protein-specific endopeptidase activity,13,11,1,2.00836650961654e-14,3,0,1,,1,,fewer annotated genes than go_min_genes
+ploidy,MF,GO:0070139,6,SUMO-specific endopeptidase activity,13,11,1,2.00836650961654e-14,3,0,1,,1,,fewer annotated genes than go_min_genes
+ploidy,MF,GO:0004620,7,phospholipase activity,119,27,2,7.55852811708236e-14,36,0,1,1,1,1,not enriched
+ploidy,MF,GO:0005219,8,ryanodine-sensitive calcium-release channel activity,11,10,2,7.64790875891297e-14,3,0,1,,1,,fewer annotated genes than go_min_genes
+ploidy,MF,GO:0016929,9,SUMO-specific protease activity,15,11,1,3.27188956125871e-13,7,0,1,1,1,1,not enriched
+ploidy,MF,GO:0005521,10,lamin binding,19,12,1,4.15599119765318e-13,5,0,1,1,1,1,not enriched
+shared,BP,GO:0006206,1,pyrimidine nucleobase metabolic process,33,18,2,5.89190900140138e-23,13,0,1,1,1,1,not enriched
+shared,BP,GO:0006208,2,pyrimidine nucleobase catabolic process,12,12,1,1.84608925607928e-21,2,0,1,,1,,fewer annotated genes than go_min_genes
+shared,BP,GO:0006210,3,thymine catabolic process,12,12,1,1.84608925607928e-21,1,0,1,,1,,fewer annotated genes than go_min_genes
+shared,BP,GO:0006212,4,uracil catabolic process,12,12,1,1.84608925607928e-21,2,0,1,,1,,fewer annotated genes than go_min_genes
+shared,BP,GO:0019859,5,thymine metabolic process,12,12,1,1.84608925607928e-21,1,0,1,,1,,fewer annotated genes than go_min_genes
+shared,BP,GO:0043578,6,nuclear matrix organization,12,12,1,1.84608925607928e-21,2,0,1,,1,,fewer annotated genes than go_min_genes
+shared,BP,GO:0090292,7,nuclear matrix anchoring at nuclear membrane,12,12,1,1.84608925607928e-21,2,0,1,,1,,fewer annotated genes than go_min_genes
+shared,BP,GO:0006213,8,pyrimidine nucleoside metabolic process,33,17,2,3.53409922296593e-21,13,0,1,1,1,1,not enriched
+shared,BP,GO:0019860,9,uracil metabolic process,13,12,1,2.35880320461565e-20,3,0,1,,1,,fewer annotated genes than go_min_genes
+shared,BP,GO:0019482,10,beta-alanine metabolic process,14,12,1,1.62287856527051e-19,4,0,1,,1,,fewer annotated genes than go_min_genes
+shared,CC,GO:0034992,1,microtubule organizing center attachment site,12,12,1,6.05451371234328e-22,2,0,1,,1,,fewer annotated genes than go_min_genes
+shared,CC,GO:0034993,2,meiotic nuclear membrane microtubule tethering complex,12,12,1,6.05451371234328e-22,2,0,1,,1,,fewer annotated genes than go_min_genes
+shared,CC,GO:0106083,3,nuclear membrane protein complex,12,12,1,6.05451371234328e-22,2,0,1,,1,,fewer annotated genes than go_min_genes
+shared,CC,GO:0106094,4,nuclear membrane microtubule tethering complex,12,12,1,6.05451371234328e-22,2,0,1,,1,,fewer annotated genes than go_min_genes
+shared,CC,GO:0005640,5,nuclear outer membrane,19,12,1,2.73259595794761e-17,4,0,1,,1,,fewer annotated genes than go_min_genes
+shared,CC,GO:0005635,6,nuclear envelope,533,42,7,4.13012460317154e-16,250,0,1,1,1,1,not enriched
+shared,CC,GO:0031965,7,nuclear membrane,352,26,4,6.90430941227603e-10,165,0,1,1,1,1,not enriched
+shared,CC,GO:0045111,8,intermediate filament cytoskeleton,96,14,3,1.12983361354759e-09,27,0,1,1,1,1,not enriched
+shared,CC,GO:0031258,9,lamellipodium membrane,6,5,2,8.72364192818146e-09,4,0,1,,1,,fewer annotated genes than go_min_genes
+shared,CC,GO:0005868,10,cytoplasmic dynein complex,28,8,1,1.67468279496496e-08,12,1,0.014859573340485,1,0.0132233700806564,1,not enriched
+shared,MF,GO:0016812,1,"hydrolase activity, acting on carbon-nitrogen (but not peptide) bonds, in cyclic amides",25,18,2,1.69398660429308e-26,5,0,1,1,1,1,not enriched
+shared,MF,GO:0002054,2,nucleobase binding,17,14,2,2.53479564144281e-22,4,0,1,,1,,fewer annotated genes than go_min_genes
+shared,MF,GO:0002058,3,uracil binding,12,12,1,1.22212429584546e-21,2,0,1,,1,,fewer annotated genes than go_min_genes
+shared,MF,GO:0002059,4,thymine binding,12,12,1,1.22212429584546e-21,1,0,1,,1,,fewer annotated genes than go_min_genes
+shared,MF,GO:0002061,5,pyrimidine nucleobase binding,12,12,1,1.22212429584546e-21,2,0,1,,1,,fewer annotated genes than go_min_genes
+shared,MF,GO:0004157,6,dihydropyrimidinase activity,12,12,1,1.22212429584546e-21,1,0,1,,1,,fewer annotated genes than go_min_genes
+shared,MF,GO:0051219,7,phosphoprotein binding,85,23,2,8.35395868853916e-21,38,0,1,1,1,1,not enriched
+shared,MF,GO:0005521,8,lamin binding,19,12,1,5.47945491292443e-17,5,0,1,1,1,1,not enriched
+shared,MF,GO:0016597,9,amino acid binding,81,18,2,6.2227858286305e-15,31,0,1,1,1,1,not enriched
+shared,MF,GO:0019206,10,nucleoside kinase activity,22,10,1,2.01081395431672e-12,12,0,1,1,1,1,not enriched

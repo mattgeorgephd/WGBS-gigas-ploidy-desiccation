@@ -1,0 +1,24 @@
+set,phrase,go_id,gene_level_genes_annotated,gene_level_genes_with_dml,gene_level_p_wallenius,gene_level_q_wallenius,gene_level_result
+ploidy,DNA replication,GO:0006260,141,9,0.55737126071162,1,not enriched
+ploidy,homologous chromosome pairing at meiosis,GO:0007129,14,1,0.62700826461977,1,not enriched
+ploidy,chromosome segregation,GO:0007059,131,9,0.520081478318058,1,not enriched
+ploidy,ATP generation from ADP,GO:0006757,,,,,not tested: the term is not in GO.db 3.18.0
+ploidy,proton transmembrane transport,GO:1902600,7,0,0.999999999999998,1,not enriched
+ploidy,calcium ion transport,GO:0006816,75,6,0.636354924859452,1,not enriched
+heat,the MAPK cascade,GO:0000165,164,32,0.281787248020449,1,not enriched
+heat,the MAPK cascade,GO:0051403,50,11,0.297134232584949,1,not enriched
+heat,ER overload response,GO:0006983,2,1,0.247017270705127,,not tested: fewer than 5 eligible genes carry the term
+heat,signal transduction,GO:0007165,1327,243,0.0877022420813339,1,not enriched
+heat,physiological responses to osmotic and oxidative stress,GO:0006970,23,4,0.460980286181347,1,not enriched
+heat,physiological responses to osmotic and oxidative stress,GO:0006979,100,14,0.599096220529776,1,not enriched
+heat,mRNA methylation,GO:0080009,2,1,0.231686362520631,,not tested: fewer than 5 eligible genes carry the term
+heat,mRNA export from the nucleus in response to heat stress,GO:0031990,2,0,0.99999999999552,,not tested: fewer than 5 eligible genes carry the term
+heat,rRNA catabolic processes,GO:0016075,8,1,0.623282853167758,1,not enriched
+shared,tRNA modification,GO:0006400,27,0,1,1,not enriched
+shared,RNA 3'-end processing,GO:0031123,36,1,0.335775093599139,1,not enriched
+shared,post-translational protein modification,GO:0043687,538,5,0.813929497785312,1,not enriched
+shared,calcium-mediated signaling,GO:0019722,26,3,0.00785620001526792,1,not enriched
+shared,ER overload response,GO:0006983,2,1,0.0238764802823904,,not tested: fewer than 5 eligible genes carry the term
+shared,response to osmotic stress,GO:0006970,23,1,0.267984858876485,1,not enriched
+shared,positive regulation of gene expression,GO:0010628,167,4,0.212703947481623,1,not enriched
+shared,gene silencing by RNA,GO:0031047,62,1,0.572658205207468,1,not enriched

@@ -1,0 +1,19 @@
+mode,set,ontology,universe,universe_genes,dml_genes,terms_tested,fisher_p_below_cutoff,fisher_q_below_fdr,wallenius_p_below_cutoff,wallenius_q_below_fdr,smallest_q_wallenius,top_term,go_db,go_source_date
+ctexcl,ploidy,BP,tested,11281,363,6801,176,34,171,50,0.000884705550493308,nucleobase-containing compound metabolic process,3.18.0,2023-07-27
+ctexcl,heat,BP,tested,11281,785,6801,332,90,316,101,7.00153920545074e-09,organelle organization,3.18.0,2023-07-27
+ctexcl,shared,BP,tested,11281,71,6801,37,0,36,0,0.371541330628789,positive regulation of T cell differentiation,3.18.0,2023-07-27
+ctexcl,ploidy,CC,tested,11931,390,794,54,33,55,37,2.53070114575354e-11,nucleus,3.18.0,2023-07-27
+ctexcl,heat,CC,tested,11931,815,794,75,63,72,65,1.15746929364468e-25,intracellular anatomical structure,3.18.0,2023-07-27
+ctexcl,shared,CC,tested,11931,72,794,14,0,14,0,0.0554266691479248,intracellular organelle,3.18.0,2023-07-27
+ctexcl,ploidy,MF,tested,11603,347,1408,48,21,47,21,4.69751326709973e-06,nucleic acid binding,3.18.0,2023-07-27
+ctexcl,heat,MF,tested,11603,721,1408,80,46,81,48,4.91870903763224e-12,adenyl nucleotide binding,3.18.0,2023-07-27
+ctexcl,shared,MF,tested,11603,63,1408,21,0,21,0,0.380648690493182,P-type calcium transporter activity,3.18.0,2023-07-27
+ctexcl,ploidy,BP,eligible,5247,363,4709,80,0,24,0,0.0767704956208318,response to cold,3.18.0,2023-07-27
+ctexcl,heat,BP,eligible,5247,785,4709,154,2,15,0,1,regulation of double-strand break repair via homologous recombination,3.18.0,2023-07-27
+ctexcl,shared,BP,eligible,5247,71,4709,31,0,20,0,0.523519922477164,positive regulation of leukocyte differentiation,3.18.0,2023-07-27
+ctexcl,ploidy,CC,eligible,5453,390,619,8,0,4,0,0.992917166806324,vacuolar proton-transporting V-type ATPase complex,3.18.0,2023-07-27
+ctexcl,heat,CC,eligible,5453,815,619,3,0,6,0,0.821158260116338,organelle,3.18.0,2023-07-27
+ctexcl,shared,CC,eligible,5453,72,619,0,0,0,0,1,mitochondrial intermembrane space,3.18.0,2023-07-27
+ctexcl,ploidy,MF,eligible,5018,347,893,10,0,7,0,0.59407932567585,transcription coactivator binding,3.18.0,2023-07-27
+ctexcl,heat,MF,eligible,5018,721,893,31,14,19,0,0.157430452011401,adenyl nucleotide binding,3.18.0,2023-07-27
+ctexcl,shared,MF,eligible,5018,63,893,5,0,6,0,1,transcription coactivator binding,3.18.0,2023-07-27

@@ -35,6 +35,96 @@ corrected,shared,CC,eligible,5706,110,642,2,0,2,0,1,intermediate filament cytosk
 corrected,ploidy,MF,eligible,5245,514,909,30,8,11,0,0.480463948513119,ATP-dependent activity,3.18.0,2023-07-27
 corrected,heat,MF,eligible,5245,1019,909,48,31,13,0,0.14326885522538,transcription coactivator binding,3.18.0,2023-07-27
 corrected,shared,MF,eligible,5245,95,909,10,0,3,0,1,"hydrolase activity, acting on carbon-nitrogen (but not peptide) bonds, in cyclic amides",3.18.0,2023-07-27
+corrected-cov5-mnchisq-ctexcl,ploidy,BP,tested,14498,55,7427,39,0,31,0,0.297689418736489,walking behavior,3.18.0,2023-07-27
+corrected-cov5-mnchisq-ctexcl,heat,BP,tested,14498,468,7427,257,41,249,38,2.90432947019233e-05,cell cycle process,3.18.0,2023-07-27
+corrected-cov5-mnchisq-ctexcl,shared,BP,tested,14498,10,7427,20,0,21,0,1,cytoplasmic microtubule organization,3.18.0,2023-07-27
+corrected-cov5-mnchisq-ctexcl,ploidy,CC,tested,15347,58,907,22,0,22,0,0.0776959846701512,intracellular anatomical structure,3.18.0,2023-07-27
+corrected-cov5-mnchisq-ctexcl,heat,CC,tested,15347,496,907,66,37,62,41,6.29896684152324e-19,intracellular anatomical structure,3.18.0,2023-07-27
+corrected-cov5-mnchisq-ctexcl,shared,CC,tested,15347,11,907,5,0,6,0,1,equatorial microtubule organizing center,3.18.0,2023-07-27
+corrected-cov5-mnchisq-ctexcl,ploidy,MF,tested,14827,50,1571,14,6,13,0,0.0729800006553687,cytoskeletal motor activity,3.18.0,2023-07-27
+corrected-cov5-mnchisq-ctexcl,heat,MF,tested,14827,446,1571,57,19,48,2,0.0376512846521767,organic cyclic compound binding,3.18.0,2023-07-27
+corrected-cov5-mnchisq-ctexcl,shared,MF,tested,14827,10,1571,3,0,4,0,1,"transferase activity, transferring phosphorus-containing groups",3.18.0,2023-07-27
+corrected-cov5-mnchisq-ctexcl,ploidy,BP,eligible,8464,55,5832,34,0,15,0,0.90068275326694,tRNA catabolic process,3.18.0,2023-07-27
+corrected-cov5-mnchisq-ctexcl,heat,BP,eligible,8464,468,5832,129,0,40,0,0.822189361182453,male meiotic nuclear division,3.18.0,2023-07-27
+corrected-cov5-mnchisq-ctexcl,shared,BP,eligible,8464,10,5832,12,0,8,0,1,cytoplasmic microtubule organization,3.18.0,2023-07-27
+corrected-cov5-mnchisq-ctexcl,ploidy,CC,eligible,8828,58,783,11,0,6,0,0.350206552546565,primary lysosome,3.18.0,2023-07-27
+corrected-cov5-mnchisq-ctexcl,heat,CC,eligible,8828,496,783,20,0,4,0,0.980474432031815,mitotic spindle pole,3.18.0,2023-07-27
+corrected-cov5-mnchisq-ctexcl,shared,CC,eligible,8828,11,783,3,0,3,0,1,gamma-tubulin complex,3.18.0,2023-07-27
+corrected-cov5-mnchisq-ctexcl,ploidy,MF,eligible,8155,50,1175,8,0,5,0,1,dystroglycan binding,3.18.0,2023-07-27
+corrected-cov5-mnchisq-ctexcl,heat,MF,eligible,8155,446,1175,7,0,2,0,1,"hydrolase activity, acting on carbon-nitrogen (but not peptide) bonds, in cyclic amides",3.18.0,2023-07-27
+corrected-cov5-mnchisq-ctexcl,shared,MF,eligible,8155,10,1175,2,0,1,0,1,"transferase activity, transferring phosphorus-containing groups",3.18.0,2023-07-27
+corrected-cov5-mnchisq-ctexcl-d50,ploidy,BP,tested,14498,0,0,0,0,0,0,,,3.18.0,2023-07-27
+corrected-cov5-mnchisq-ctexcl-d50,heat,BP,tested,14498,33,7427,86,0,86,0,0.203306195948194,phosphorylation,3.18.0,2023-07-27
+corrected-cov5-mnchisq-ctexcl-d50,shared,BP,tested,14498,0,0,0,0,0,0,,,3.18.0,2023-07-27
+corrected-cov5-mnchisq-ctexcl-d50,ploidy,CC,tested,15347,0,0,0,0,0,0,,,3.18.0,2023-07-27
+corrected-cov5-mnchisq-ctexcl-d50,heat,CC,tested,15347,38,907,3,0,5,0,1,catalytic complex,3.18.0,2023-07-27
+corrected-cov5-mnchisq-ctexcl-d50,shared,CC,tested,15347,0,0,0,0,0,0,,,3.18.0,2023-07-27
+corrected-cov5-mnchisq-ctexcl-d50,ploidy,MF,tested,14827,0,0,0,0,0,0,,,3.18.0,2023-07-27
+corrected-cov5-mnchisq-ctexcl-d50,heat,MF,tested,14827,30,1571,14,0,18,0,0.248705541045279,1-phosphatidylinositol-3-kinase activity,3.18.0,2023-07-27
+corrected-cov5-mnchisq-ctexcl-d50,shared,MF,tested,14827,0,0,0,0,0,0,,,3.18.0,2023-07-27
+corrected-cov5-mnchisq-ctexcl-d50,ploidy,BP,eligible,7042,0,0,0,0,0,0,,,3.18.0,2023-07-27
+corrected-cov5-mnchisq-ctexcl-d50,heat,BP,eligible,7042,33,5360,76,0,67,0,0.38995338080135,phosphorylation,3.18.0,2023-07-27
+corrected-cov5-mnchisq-ctexcl-d50,shared,BP,eligible,7042,0,0,0,0,0,0,,,3.18.0,2023-07-27
+corrected-cov5-mnchisq-ctexcl-d50,ploidy,CC,eligible,7347,0,0,0,0,0,0,,,3.18.0,2023-07-27
+corrected-cov5-mnchisq-ctexcl-d50,heat,CC,eligible,7347,38,730,0,0,0,0,1,Parkin-FBXW7-Cul1 ubiquitin ligase complex,3.18.0,2023-07-27
+corrected-cov5-mnchisq-ctexcl-d50,shared,CC,eligible,7347,0,0,0,0,0,0,,,3.18.0,2023-07-27
+corrected-cov5-mnchisq-ctexcl-d50,ploidy,MF,eligible,6629,0,0,0,0,0,0,,,3.18.0,2023-07-27
+corrected-cov5-mnchisq-ctexcl-d50,heat,MF,eligible,6629,30,1043,7,0,6,0,0.568745482996389,1-phosphatidylinositol-3-kinase activity,3.18.0,2023-07-27
+corrected-cov5-mnchisq-ctexcl-d50,shared,MF,eligible,6629,0,0,0,0,0,0,,,3.18.0,2023-07-27
+cov5,ploidy,BP,tested,14526,3193,7431,700,476,644,466,4.69363441120699e-42,cellular nitrogen compound metabolic process,3.18.0,2023-07-27
+cov5,heat,BP,tested,14526,4732,7431,867,736,834,704,1.39087607032069e-63,primary metabolic process,3.18.0,2023-07-27
+cov5,shared,BP,tested,14526,973,7431,257,117,244,109,2.8596590125519e-12,nucleic acid metabolic process,3.18.0,2023-07-27
+cov5,ploidy,CC,tested,15381,3355,908,187,187,185,185,1.61591836786747e-144,intracellular anatomical structure,3.18.0,2023-07-27
+cov5,heat,CC,tested,15381,4949,908,231,241,243,265,1.24531618250339e-224,intracellular anatomical structure,3.18.0,2023-07-27
+cov5,shared,CC,tested,15381,1013,908,79,63,88,72,3.07767048626269e-40,intracellular anatomical structure,3.18.0,2023-07-27
+cov5,ploidy,MF,tested,14863,3004,1571,211,185,210,180,1.42069203002956e-46,heterocyclic compound binding,3.18.0,2023-07-27
+cov5,heat,MF,tested,14863,4424,1571,261,250,268,257,5.76489794745416e-72,heterocyclic compound binding,3.18.0,2023-07-27
+cov5,shared,MF,tested,14863,905,1571,93,69,94,72,5.85447851400487e-11,heterocyclic compound binding,3.18.0,2023-07-27
+cov5,ploidy,BP,eligible,8531,3193,5858,311,126,74,18,5.71590635192238e-05,cellular nitrogen compound metabolic process,3.18.0,2023-07-27
+cov5,heat,BP,eligible,8531,4732,5858,366,183,111,51,7.99592706322693e-08,cellular biosynthetic process,3.18.0,2023-07-27
+cov5,shared,BP,eligible,8531,973,5858,89,4,27,0,1,organic cyclic compound metabolic process,3.18.0,2023-07-27
+cov5,ploidy,CC,eligible,8903,3355,785,62,49,40,16,8.37643365512312e-08,intracellular organelle lumen,3.18.0,2023-07-27
+cov5,heat,CC,eligible,8903,4949,785,83,61,52,35,2.75417955833633e-17,intracellular organelle,3.18.0,2023-07-27
+cov5,shared,CC,eligible,8903,1013,785,35,12,20,0,0.125788336831835,nucleoplasm,3.18.0,2023-07-27
+cov5,ploidy,MF,eligible,8227,3004,1186,87,52,37,7,0.0093948421865007,heterocyclic compound binding,3.18.0,2023-07-27
+cov5,heat,MF,eligible,8227,4424,1186,93,68,53,20,2.5323486500311e-07,heterocyclic compound binding,3.18.0,2023-07-27
+cov5,shared,MF,eligible,8227,905,1186,51,20,12,0,0.907845305560122,"proton-transporting ATP synthase activity, rotational mechanism",3.18.0,2023-07-27
+cov5-mnchisq,ploidy,BP,tested,14526,79,7431,55,0,44,0,0.802972703014823,tRNA catabolic process,3.18.0,2023-07-27
+cov5-mnchisq,heat,BP,tested,14526,660,7431,252,81,239,78,1.4066075125641e-07,organelle organization,3.18.0,2023-07-27
+cov5-mnchisq,shared,BP,tested,14526,18,7431,24,0,18,0,1,endoplasmic reticulum to Golgi vesicle-mediated transport,3.18.0,2023-07-27
+cov5-mnchisq,ploidy,CC,tested,15381,84,908,21,0,21,0,0.102438098810725,intracellular anatomical structure,3.18.0,2023-07-27
+cov5-mnchisq,heat,CC,tested,15381,695,908,73,56,73,53,1.76304812761496e-24,intracellular anatomical structure,3.18.0,2023-07-27
+cov5-mnchisq,shared,CC,tested,15381,19,908,4,0,5,0,0.784182858989161,"transferase complex, transferring phosphorus-containing groups",3.18.0,2023-07-27
+cov5-mnchisq,ploidy,MF,tested,14863,69,1571,21,0,21,0,0.209608083668837,adenyl nucleotide binding,3.18.0,2023-07-27
+cov5-mnchisq,heat,MF,tested,14863,615,1571,69,36,61,26,7.37622242075198e-06,heterocyclic compound binding,3.18.0,2023-07-27
+cov5-mnchisq,shared,MF,tested,14863,16,1571,11,0,6,0,0.766704282600383,"transferase activity, transferring phosphorus-containing groups",3.18.0,2023-07-27
+cov5-mnchisq,ploidy,BP,eligible,8531,79,5858,45,0,17,0,1,tRNA catabolic process,3.18.0,2023-07-27
+cov5-mnchisq,heat,BP,eligible,8531,660,5858,130,2,27,0,1,male meiotic nuclear division,3.18.0,2023-07-27
+cov5-mnchisq,shared,BP,eligible,8531,18,5858,8,0,12,0,1,endoplasmic reticulum to Golgi vesicle-mediated transport,3.18.0,2023-07-27
+cov5-mnchisq,ploidy,CC,eligible,8902,84,785,13,0,6,0,0.957668880878788,primary lysosome,3.18.0,2023-07-27
+cov5-mnchisq,heat,CC,eligible,8902,695,785,28,7,11,0,0.545073490622566,"transferase complex, transferring phosphorus-containing groups",3.18.0,2023-07-27
+cov5-mnchisq,shared,CC,eligible,8902,19,785,3,0,2,0,1,"transferase complex, transferring phosphorus-containing groups",3.18.0,2023-07-27
+cov5-mnchisq,ploidy,MF,eligible,8226,69,1186,12,0,2,0,1,laminin binding,3.18.0,2023-07-27
+cov5-mnchisq,heat,MF,eligible,8226,615,1186,28,0,2,0,1,ribosome binding,3.18.0,2023-07-27
+cov5-mnchisq,shared,MF,eligible,8226,16,1186,2,0,1,0,1,"transferase activity, transferring phosphorus-containing groups",3.18.0,2023-07-27
+ctexcl,ploidy,BP,tested,11281,363,6801,176,34,171,50,0.000884705550493308,nucleobase-containing compound metabolic process,3.18.0,2023-07-27
+ctexcl,heat,BP,tested,11281,785,6801,332,90,316,101,7.00153920545074e-09,organelle organization,3.18.0,2023-07-27
+ctexcl,shared,BP,tested,11281,71,6801,37,0,36,0,0.371541330628789,positive regulation of T cell differentiation,3.18.0,2023-07-27
+ctexcl,ploidy,CC,tested,11931,390,794,54,33,55,37,2.53070114575354e-11,nucleus,3.18.0,2023-07-27
+ctexcl,heat,CC,tested,11931,815,794,75,63,72,65,1.15746929364468e-25,intracellular anatomical structure,3.18.0,2023-07-27
+ctexcl,shared,CC,tested,11931,72,794,14,0,14,0,0.0554266691479248,intracellular organelle,3.18.0,2023-07-27
+ctexcl,ploidy,MF,tested,11603,347,1408,48,21,47,21,4.69751326709973e-06,nucleic acid binding,3.18.0,2023-07-27
+ctexcl,heat,MF,tested,11603,721,1408,80,46,81,48,4.91870903763224e-12,adenyl nucleotide binding,3.18.0,2023-07-27
+ctexcl,shared,MF,tested,11603,63,1408,21,0,21,0,0.380648690493182,P-type calcium transporter activity,3.18.0,2023-07-27
+ctexcl,ploidy,BP,eligible,5247,363,4709,80,0,24,0,0.0767704956208318,response to cold,3.18.0,2023-07-27
+ctexcl,heat,BP,eligible,5247,785,4709,154,2,15,0,1,regulation of double-strand break repair via homologous recombination,3.18.0,2023-07-27
+ctexcl,shared,BP,eligible,5247,71,4709,31,0,20,0,0.523519922477164,positive regulation of leukocyte differentiation,3.18.0,2023-07-27
+ctexcl,ploidy,CC,eligible,5453,390,619,8,0,4,0,0.992917166806324,vacuolar proton-transporting V-type ATPase complex,3.18.0,2023-07-27
+ctexcl,heat,CC,eligible,5453,815,619,3,0,6,0,0.821158260116338,organelle,3.18.0,2023-07-27
+ctexcl,shared,CC,eligible,5453,72,619,0,0,0,0,1,mitochondrial intermembrane space,3.18.0,2023-07-27
+ctexcl,ploidy,MF,eligible,5018,347,893,10,0,7,0,0.59407932567585,transcription coactivator binding,3.18.0,2023-07-27
+ctexcl,heat,MF,eligible,5018,721,893,31,14,19,0,0.157430452011401,adenyl nucleotide binding,3.18.0,2023-07-27
+ctexcl,shared,MF,eligible,5018,63,893,5,0,6,0,1,transcription coactivator binding,3.18.0,2023-07-27
 mnchisq,ploidy,BP,tested,11435,8,6837,49,0,48,0,1,positive regulation of leukocyte differentiation,3.18.0,2023-07-27
 mnchisq,heat,BP,tested,11435,108,6837,143,4,99,4,0.00661514666680663,membrane organization,3.18.0,2023-07-27
 mnchisq,shared,BP,tested,11435,3,6837,92,0,92,0,0.154930993224661,positive regulation of leukocyte differentiation,3.18.0,2023-07-27
