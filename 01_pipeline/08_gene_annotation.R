@@ -83,6 +83,11 @@ check_stamp(an, needs = c("04", "05"), per_cpg = TRUE)   # reads united_cpg_<id>
 tab <- function(name) analysis_path(an, step, "tables", name)
 dml_file <- function(f) analysis_input(an, "05_differential_methylation", "tables", f)
 dml_sets <- c("ploidy", "heat", "shared")
+# Option inter (not adopted): the tested interaction list of step 05 is annotated as a
+# fourth set (author's request of 2026-11-25). Its meth.diff is the interaction
+# difference. The tables of the three other sets are unchanged by it, and the paper's
+# run and every analysis without inter have only the three sets.
+if (identical(an$contrast_variant, "inter")) dml_sets <- c(dml_sets, "interaction")
 
 # =============================================================================
 # 1. Annotation tables
