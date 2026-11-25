@@ -116,10 +116,12 @@ read_dml_annotation <- function(path, reader = c("exact", "legacy")) {
 # column holds the analysis id), one per DML set. A step that reads the
 # ten-column tables of step 08 calls this first: without the rows, step 08 has
 # not run for the analysis, and the step stops here. `sets` holds the names of
-# the DML sets (ploidy, heat, shared).
+# the DML sets (ploidy, heat, shared). With option inter step 08 also writes a row
+# for the set "interaction"; rows of sets not asked for are left out of the result.
 legacy_annotation_summary <- function(sets, a = config$analysis) {
   rows <- data.table::fread(analysis_input(a, "08_gene_annotation", "tables", "annotation_summary.csv"))
   rows <- rows[rows$mode == a$id, ]
+  rows <- rows[rows$set %in% sets, ]
   if (!identical(sort(rows$set), sort(sets))) {
     stop("annotation_summary.csv of step 08 must hold one row of the analysis '", a$id, "' for each DML set (",
          paste(sets, collapse = ", "), ") and holds ",

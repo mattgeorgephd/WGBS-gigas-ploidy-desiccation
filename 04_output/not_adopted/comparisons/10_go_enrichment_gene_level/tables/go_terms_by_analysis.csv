@@ -62,6 +62,18 @@ shared,CC,"Same, DML of the optional analysis corrected-cov5-mnchisq-ctexcl-d50"
 ploidy,MF,"Same, DML of the optional analysis corrected-cov5-mnchisq-ctexcl-d50",0,ploidy DML
 heat,MF,"Same, DML of the optional analysis corrected-cov5-mnchisq-ctexcl-d50",0,heat DML
 shared,MF,"Same, DML of the optional analysis corrected-cov5-mnchisq-ctexcl-d50",0,in both lists
+ploidy,BP,"Same, DML of the optional analysis corrected-cov5-mnchisq-inter-ctexcl",0,ploidy DML
+heat,BP,"Same, DML of the optional analysis corrected-cov5-mnchisq-inter-ctexcl",0,heat DML
+shared,BP,"Same, DML of the optional analysis corrected-cov5-mnchisq-inter-ctexcl",0,in both lists
+ploidy,CC,"Same, DML of the optional analysis corrected-cov5-mnchisq-inter-ctexcl",0,ploidy DML
+heat,CC,"Same, DML of the optional analysis corrected-cov5-mnchisq-inter-ctexcl",0,heat DML
+shared,CC,"Same, DML of the optional analysis corrected-cov5-mnchisq-inter-ctexcl",0,in both lists
+ploidy,MF,"Same, DML of the optional analysis corrected-cov5-mnchisq-inter-ctexcl",0,ploidy DML
+heat,MF,"Same, DML of the optional analysis corrected-cov5-mnchisq-inter-ctexcl",0,heat DML
+shared,MF,"Same, DML of the optional analysis corrected-cov5-mnchisq-inter-ctexcl",0,in both lists
+interaction,BP,Interaction DML of corrected-cov5-mnchisq-inter-ctexcl (eligible universe adds their genes),0,tested interaction DML
+interaction,CC,Interaction DML of corrected-cov5-mnchisq-inter-ctexcl (eligible universe adds their genes),0,tested interaction DML
+interaction,MF,Interaction DML of corrected-cov5-mnchisq-inter-ctexcl (eligible universe adds their genes),0,tested interaction DML
 ploidy,BP,"Same, DML of the optional analysis cov5",18,ploidy DML
 heat,BP,"Same, DML of the optional analysis cov5",51,heat DML
 shared,BP,"Same, DML of the optional analysis cov5",0,in both lists
@@ -80,6 +92,18 @@ shared,CC,"Same, DML of the optional analysis cov5-mnchisq",0,in both lists
 ploidy,MF,"Same, DML of the optional analysis cov5-mnchisq",0,ploidy DML
 heat,MF,"Same, DML of the optional analysis cov5-mnchisq",0,heat DML
 shared,MF,"Same, DML of the optional analysis cov5-mnchisq",0,in both lists
+ploidy,BP,"Same, DML of the optional analysis cov5-mnchisq-inter",0,ploidy DML
+heat,BP,"Same, DML of the optional analysis cov5-mnchisq-inter",0,heat DML
+shared,BP,"Same, DML of the optional analysis cov5-mnchisq-inter",0,in both lists
+ploidy,CC,"Same, DML of the optional analysis cov5-mnchisq-inter",0,ploidy DML
+heat,CC,"Same, DML of the optional analysis cov5-mnchisq-inter",0,heat DML
+shared,CC,"Same, DML of the optional analysis cov5-mnchisq-inter",0,in both lists
+ploidy,MF,"Same, DML of the optional analysis cov5-mnchisq-inter",0,ploidy DML
+heat,MF,"Same, DML of the optional analysis cov5-mnchisq-inter",0,heat DML
+shared,MF,"Same, DML of the optional analysis cov5-mnchisq-inter",0,in both lists
+interaction,BP,Interaction DML of cov5-mnchisq-inter (eligible universe adds their genes),0,tested interaction DML
+interaction,CC,Interaction DML of cov5-mnchisq-inter (eligible universe adds their genes),0,tested interaction DML
+interaction,MF,Interaction DML of cov5-mnchisq-inter (eligible universe adds their genes),0,tested interaction DML
 ploidy,BP,"Same, DML of the optional analysis ctexcl",0,ploidy DML
 heat,BP,"Same, DML of the optional analysis ctexcl",0,heat DML
 shared,BP,"Same, DML of the optional analysis ctexcl",0,in both lists
@@ -89,6 +113,18 @@ shared,CC,"Same, DML of the optional analysis ctexcl",0,in both lists
 ploidy,MF,"Same, DML of the optional analysis ctexcl",0,ploidy DML
 heat,MF,"Same, DML of the optional analysis ctexcl",0,heat DML
 shared,MF,"Same, DML of the optional analysis ctexcl",0,in both lists
+ploidy,BP,"Same, DML of the optional analysis inter",0,ploidy DML
+heat,BP,"Same, DML of the optional analysis inter",0,heat DML
+shared,BP,"Same, DML of the optional analysis inter",0,in both lists
+ploidy,CC,"Same, DML of the optional analysis inter",0,ploidy DML
+heat,CC,"Same, DML of the optional analysis inter",0,heat DML
+shared,CC,"Same, DML of the optional analysis inter",0,in both lists
+ploidy,MF,"Same, DML of the optional analysis inter",0,ploidy DML
+heat,MF,"Same, DML of the optional analysis inter",0,heat DML
+shared,MF,"Same, DML of the optional analysis inter",0,in both lists
+interaction,BP,Interaction DML of inter (eligible universe adds their genes),0,tested interaction DML
+interaction,CC,Interaction DML of inter (eligible universe adds their genes),0,tested interaction DML
+interaction,MF,Interaction DML of inter (eligible universe adds their genes),0,tested interaction DML
 ploidy,BP,"Same, DML of the optional analysis mnchisq",0,ploidy DML
 heat,BP,"Same, DML of the optional analysis mnchisq",0,heat DML
 shared,BP,"Same, DML of the optional analysis mnchisq",0,in both lists
@@ -107,3 +143,15 @@ shared,CC,"Same, DML of the optional analysis mnchisq-ctexcl",0,in both lists
 ploidy,MF,"Same, DML of the optional analysis mnchisq-ctexcl",0,ploidy DML
 heat,MF,"Same, DML of the optional analysis mnchisq-ctexcl",0,heat DML
 shared,MF,"Same, DML of the optional analysis mnchisq-ctexcl",0,in both lists
+ploidy,BP,"Same, DML of the optional analysis mnchisq-inter",0,ploidy DML
+heat,BP,"Same, DML of the optional analysis mnchisq-inter",0,heat DML
+shared,BP,"Same, DML of the optional analysis mnchisq-inter",0,in both lists
+ploidy,CC,"Same, DML of the optional analysis mnchisq-inter",0,ploidy DML
+heat,CC,"Same, DML of the optional analysis mnchisq-inter",0,heat DML
+shared,CC,"Same, DML of the optional analysis mnchisq-inter",0,in both lists
+ploidy,MF,"Same, DML of the optional analysis mnchisq-inter",0,ploidy DML
+heat,MF,"Same, DML of the optional analysis mnchisq-inter",0,heat DML
+shared,MF,"Same, DML of the optional analysis mnchisq-inter",0,in both lists
+interaction,BP,Interaction DML of mnchisq-inter (eligible universe adds their genes),0,tested interaction DML
+interaction,CC,Interaction DML of mnchisq-inter (eligible universe adds their genes),0,tested interaction DML
+interaction,MF,Interaction DML of mnchisq-inter (eligible universe adds their genes),0,tested interaction DML

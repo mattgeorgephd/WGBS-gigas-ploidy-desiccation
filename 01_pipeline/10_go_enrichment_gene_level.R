@@ -287,6 +287,8 @@ by_analysis <- if (an$paper) rbind(
   gl("legacy", "eligible", "wallenius_q_below_fdr", "Genes, eligible universe, Wallenius, FDR")) else
   gl(an$id, "eligible", "wallenius_q_below_fdr",
      if (an$id == "corrected") "Same, DML called with the coverage filter" else sprintf("Same, DML of the optional analysis %s", an$id))
+# The interaction set (option inter) has a universe of its own (see the Notes).
+if (inter_set) by_analysis[set == "interaction", analysis := sprintf("Interaction DML of %s (eligible universe adds their genes)", an$id)]
 by_analysis[, set_label := factor(sets[set], levels = sets)]
 write_table(by_analysis, tab("go_terms_by_analysis.csv"))
 

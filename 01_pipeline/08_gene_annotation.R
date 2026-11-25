@@ -19,6 +19,7 @@
 #
 # Inputs    04_output/05_differential_methylation/tables/
 #             united_cpg_<mode>.csv.gz, dml_{ploidy,heat,shared}_<mode>.csv
+#             (with option inter also dml_interaction_<mode>.csv, annotated as the set "interaction")
 #           03_input_files/genome_features/ gene and mRNA tracks
 #           03_input_files/annotation/ geneid2go.tab.gz, geneid2go-union1x-BOTH.tab.gz,
 #             20210605-cgigas-roslin-mito-blastx.outfmt6.gz, legacy_go_goslim_terms.tsv.gz

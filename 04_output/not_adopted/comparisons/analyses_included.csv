@@ -26,7 +26,7 @@ corrected-cov5-inter-d50-q05,corrected,5,none,not passed,inter,FALSE,50,0.05,cor
 corrected-cov5-inter-q05,corrected,5,none,not passed,inter,FALSE,20,0.05,corrected-cov5-inter,c9feb0b4cd62b4cb462cbf2b5c9a4211,"",0918811,2026-11-24 07:08:58,04;05;06;07;08;09
 corrected-cov5-mnchisq,corrected,5,MN,Chisq,none,FALSE,20,0.01,corrected-cov5-mnchisq,4d2b451ed872ed0ef171db1e4695494f,"",c2101c8,2026-11-21 20:51:01,04;05;06;07;08;09
 corrected-cov5-mnchisq-ctexcl,corrected,5,MN,Chisq,none,TRUE,20,0.01,corrected-cov5-mnchisq,4d2b451ed872ed0ef171db1e4695494f,4be241cfd320d7315a31059278cfc7c6,4db7edf,2026-11-25 19:56:43,04;05;06;07;08;09;10;11
-corrected-cov5-mnchisq-ctexcl-d50,corrected,5,MN,Chisq,none,TRUE,50,0.01,corrected-cov5-mnchisq,4d2b451ed872ed0ef171db1e4695494f,4be241cfd320d7315a31059278cfc7c6,4db7edf,2026-11-25 19:57:53,04;05;06;07;08;09;10
+corrected-cov5-mnchisq-ctexcl-d50,corrected,5,MN,Chisq,none,TRUE,50,0.01,corrected-cov5-mnchisq,4d2b451ed872ed0ef171db1e4695494f,4be241cfd320d7315a31059278cfc7c6,4db7edf,2026-11-25 19:58:27,04;05;06;07;08;09;10;11
 corrected-cov5-mnchisq-ctexcl-d50-q05,corrected,5,MN,Chisq,none,TRUE,50,0.05,corrected-cov5-mnchisq,4d2b451ed872ed0ef171db1e4695494f,4be241cfd320d7315a31059278cfc7c6,4b5263a,2026-11-22 14:19:44,04;05;06;07;08;09
 corrected-cov5-mnchisq-ctexcl-q05,corrected,5,MN,Chisq,none,TRUE,20,0.05,corrected-cov5-mnchisq,4d2b451ed872ed0ef171db1e4695494f,4be241cfd320d7315a31059278cfc7c6,40e1b57,2026-11-22 14:03:51,04;05;06;07;08;09
 corrected-cov5-mnchisq-ctrl,corrected,5,MN,Chisq,ctrl,FALSE,20,0.01,corrected-cov5-mnchisq-ctrl,03a83b06d924d94d2938a726f161963b,"",e71fcc2,2026-11-23 00:20:11,04;05;06;07;08;09
@@ -40,7 +40,7 @@ corrected-cov5-mnchisq-ctrl-q05,corrected,5,MN,Chisq,ctrl,FALSE,20,0.05,correcte
 corrected-cov5-mnchisq-d50,corrected,5,MN,Chisq,none,FALSE,50,0.01,corrected-cov5-mnchisq,4d2b451ed872ed0ef171db1e4695494f,"",689bca5,2026-11-21 21:02:18,04;05;06;07;08;09
 corrected-cov5-mnchisq-d50-q05,corrected,5,MN,Chisq,none,FALSE,50,0.05,corrected-cov5-mnchisq,4d2b451ed872ed0ef171db1e4695494f,"",271c297,2026-11-22 12:06:19,04;05;06;07;08;09
 corrected-cov5-mnchisq-inter,corrected,5,MN,Chisq,inter,FALSE,20,0.01,corrected-cov5-mnchisq-inter,122792e171e5d16902df5a67e97ec2f5,"",c1fc7ae,2026-11-23 01:41:45,04;05;06;07;08;09
-corrected-cov5-mnchisq-inter-ctexcl,corrected,5,MN,Chisq,inter,TRUE,20,0.01,corrected-cov5-mnchisq-inter,122792e171e5d16902df5a67e97ec2f5,4be241cfd320d7315a31059278cfc7c6,b2b589a,2026-11-24 12:03:35,04;05;06;07;08;09
+corrected-cov5-mnchisq-inter-ctexcl,corrected,5,MN,Chisq,inter,TRUE,20,0.01,corrected-cov5-mnchisq-inter,122792e171e5d16902df5a67e97ec2f5,4be241cfd320d7315a31059278cfc7c6,a898eba,2026-11-25 20:41:59,04;05;06;07;08;09;10;11
 corrected-cov5-mnchisq-inter-ctexcl-d50,corrected,5,MN,Chisq,inter,TRUE,50,0.01,corrected-cov5-mnchisq-inter,122792e171e5d16902df5a67e97ec2f5,4be241cfd320d7315a31059278cfc7c6,9e0cf3f,2026-11-24 13:21:16,04;05;06;07;08;09
 corrected-cov5-mnchisq-inter-ctexcl-d50-q05,corrected,5,MN,Chisq,inter,TRUE,50,0.05,corrected-cov5-mnchisq-inter,122792e171e5d16902df5a67e97ec2f5,4be241cfd320d7315a31059278cfc7c6,a00265b,2026-11-24 14:41:03,04;05;06;07;08;09
 corrected-cov5-mnchisq-inter-ctexcl-q05,corrected,5,MN,Chisq,inter,TRUE,20,0.05,corrected-cov5-mnchisq-inter,122792e171e5d16902df5a67e97ec2f5,4be241cfd320d7315a31059278cfc7c6,d3b90b1,2026-11-24 13:50:51,04;05;06;07;08;09
@@ -134,7 +134,7 @@ cov5-mnchisq-ctrl-d50-q05,legacy,5,MN,Chisq,ctrl,FALSE,50,0.05,cov5-mnchisq-ctrl
 cov5-mnchisq-ctrl-q05,legacy,5,MN,Chisq,ctrl,FALSE,20,0.05,cov5-mnchisq-ctrl,7f47c71cbdbee634913eea76aec319f2,"",b4a45eb,2026-11-23 23:15:23,04;05;06;07;08;09
 cov5-mnchisq-d50,legacy,5,MN,Chisq,none,FALSE,50,0.01,cov5-mnchisq,08c997671963d74d86fc65e695e81bff,"",f549e30,2026-11-21 23:30:53,04;05;06;07;08;09
 cov5-mnchisq-d50-q05,legacy,5,MN,Chisq,none,FALSE,50,0.05,cov5-mnchisq,08c997671963d74d86fc65e695e81bff,"",a35e5c0,2026-11-22 11:33:24,04;05;06;07;08;09
-cov5-mnchisq-inter,legacy,5,MN,Chisq,inter,FALSE,20,0.01,cov5-mnchisq-inter,545d5b8b7b8faa62e7fb14aacaeba661,"",206b771,2026-11-22 23:38:17,04;05;06;07;08;09
+cov5-mnchisq-inter,legacy,5,MN,Chisq,inter,FALSE,20,0.01,cov5-mnchisq-inter,545d5b8b7b8faa62e7fb14aacaeba661,"",a898eba,2026-11-25 20:36:17,04;05;06;07;08;09;10;11
 cov5-mnchisq-inter-ctexcl,legacy,5,MN,Chisq,inter,TRUE,20,0.01,cov5-mnchisq-inter,545d5b8b7b8faa62e7fb14aacaeba661,4be241cfd320d7315a31059278cfc7c6,0813c53,2026-11-24 01:11:42,04;05;06;07;08;09
 cov5-mnchisq-inter-ctexcl-d50,legacy,5,MN,Chisq,inter,TRUE,50,0.01,cov5-mnchisq-inter,545d5b8b7b8faa62e7fb14aacaeba661,4be241cfd320d7315a31059278cfc7c6,e663329,2026-11-24 02:24:28,04;05;06;07;08;09
 cov5-mnchisq-inter-ctexcl-d50-q05,legacy,5,MN,Chisq,inter,TRUE,50,0.05,cov5-mnchisq-inter,545d5b8b7b8faa62e7fb14aacaeba661,4be241cfd320d7315a31059278cfc7c6,feb087c,2026-11-24 03:31:52,04;05;06;07;08;09
@@ -158,7 +158,7 @@ ctrl-d50-q05,legacy,10,none,not passed,ctrl,FALSE,50,0.05,ctrl,2ef3ed9e3cb8bbf3c
 ctrl-q05,legacy,10,none,not passed,ctrl,FALSE,20,0.05,ctrl,2ef3ed9e3cb8bbf3cf383aa4352885a9,"",120ba71,2026-11-23 02:28:15,04;05;06;07;08;09
 d50,legacy,10,none,not passed,none,FALSE,50,0.01,legacy,6181094c68aab31c49284e2a4ae5f1c4,"",7c9f79e,2026-11-21 10:41:40,04;05;06;07;08;09
 d50-q05,legacy,10,none,not passed,none,FALSE,50,0.05,legacy,6181094c68aab31c49284e2a4ae5f1c4,"",c04375d,2026-11-22 05:53:54,04;05;06;07;08;09
-inter,legacy,10,none,not passed,inter,FALSE,20,0.01,inter,4cf444f0391acff4d1ac3fe979be8976,"",d889352,2026-11-22 08:00:44,04;05;06;07;08;09
+inter,legacy,10,none,not passed,inter,FALSE,20,0.01,inter,4cf444f0391acff4d1ac3fe979be8976,"",a898eba,2026-11-25 20:25:49,04;05;06;07;08;09;10;11
 inter-ctexcl,legacy,10,none,not passed,inter,TRUE,20,0.01,inter,4cf444f0391acff4d1ac3fe979be8976,4be241cfd320d7315a31059278cfc7c6,a0cbd44,2026-11-23 03:43:59,04;05;06;07;08;09
 inter-ctexcl-d50,legacy,10,none,not passed,inter,TRUE,50,0.01,inter,4cf444f0391acff4d1ac3fe979be8976,4be241cfd320d7315a31059278cfc7c6,e0b0d96,2026-11-23 04:27:12,04;05;06;07;08;09
 inter-ctexcl-d50-q05,legacy,10,none,not passed,inter,TRUE,50,0.05,inter,4cf444f0391acff4d1ac3fe979be8976,4be241cfd320d7315a31059278cfc7c6,0279241,2026-11-23 05:13:33,04;05;06;07;08;09
@@ -181,7 +181,7 @@ mnchisq-ctrl-d50-q05,legacy,10,MN,Chisq,ctrl,FALSE,50,0.05,mnchisq-ctrl,5e5a5036
 mnchisq-ctrl-q05,legacy,10,MN,Chisq,ctrl,FALSE,20,0.05,mnchisq-ctrl,5e5a5036f57685a8f662d7ce84fae941,"",56686e0,2026-11-23 05:55:30,04;05;06;07;08;09
 mnchisq-d50,legacy,10,MN,Chisq,none,FALSE,50,0.01,mnchisq,e1470495d4529ffebc67ad73cfa3d2fc,"",a5ae0f1,2026-11-21 11:03:24,04;05;06;07;08;09
 mnchisq-d50-q05,legacy,10,MN,Chisq,none,FALSE,50,0.05,mnchisq,e1470495d4529ffebc67ad73cfa3d2fc,"",453eaa6,2026-11-22 06:45:09,04;05;06;07;08;09
-mnchisq-inter,legacy,10,MN,Chisq,inter,FALSE,20,0.01,mnchisq-inter,34ae5ab276fe631b3584e6c8dfb4e375,"",928f96a,2026-11-22 16:05:14,04;05;06;07;08;09
+mnchisq-inter,legacy,10,MN,Chisq,inter,FALSE,20,0.01,mnchisq-inter,34ae5ab276fe631b3584e6c8dfb4e375,"",a898eba,2026-11-25 20:30:33,04;05;06;07;08;09;10;11
 mnchisq-inter-ctexcl,legacy,10,MN,Chisq,inter,TRUE,20,0.01,mnchisq-inter,34ae5ab276fe631b3584e6c8dfb4e375,4be241cfd320d7315a31059278cfc7c6,865aee1,2026-11-23 07:09:21,04;05;06;07;08;09
 mnchisq-inter-ctexcl-d50,legacy,10,MN,Chisq,inter,TRUE,50,0.01,mnchisq-inter,34ae5ab276fe631b3584e6c8dfb4e375,4be241cfd320d7315a31059278cfc7c6,a2e1eca,2026-11-23 07:57:01,04;05;06;07;08;09
 mnchisq-inter-ctexcl-d50-q05,legacy,10,MN,Chisq,inter,TRUE,50,0.05,mnchisq-inter,34ae5ab276fe631b3584e6c8dfb4e375,4be241cfd320d7315a31059278cfc7c6,b47ac96,2026-11-23 08:44:28,04;05;06;07;08;09

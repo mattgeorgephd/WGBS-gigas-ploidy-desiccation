@@ -71,6 +71,30 @@ corrected-cov5-mnchisq-ctexcl-d50,shared,CC,eligible,7347,0,0,0,0,0,0,,,3.18.0,2
 corrected-cov5-mnchisq-ctexcl-d50,ploidy,MF,eligible,6629,0,0,0,0,0,0,,,3.18.0,2023-07-27
 corrected-cov5-mnchisq-ctexcl-d50,heat,MF,eligible,6629,30,1043,7,0,6,0,0.568745482996389,1-phosphatidylinositol-3-kinase activity,3.18.0,2023-07-27
 corrected-cov5-mnchisq-ctexcl-d50,shared,MF,eligible,6629,0,0,0,0,0,0,,,3.18.0,2023-07-27
+corrected-cov5-mnchisq-inter-ctexcl,ploidy,BP,tested,14498,55,7427,39,0,31,0,0.297689418736489,walking behavior,3.18.0,2023-07-27
+corrected-cov5-mnchisq-inter-ctexcl,heat,BP,tested,14498,468,7427,257,41,249,38,2.90432947019233e-05,cell cycle process,3.18.0,2023-07-27
+corrected-cov5-mnchisq-inter-ctexcl,shared,BP,tested,14498,10,7427,20,0,21,0,1,cytoplasmic microtubule organization,3.18.0,2023-07-27
+corrected-cov5-mnchisq-inter-ctexcl,ploidy,CC,tested,15347,58,907,22,0,22,0,0.0776959846701512,intracellular anatomical structure,3.18.0,2023-07-27
+corrected-cov5-mnchisq-inter-ctexcl,heat,CC,tested,15347,496,907,66,37,62,41,6.29896684152324e-19,intracellular anatomical structure,3.18.0,2023-07-27
+corrected-cov5-mnchisq-inter-ctexcl,shared,CC,tested,15347,11,907,5,0,6,0,1,equatorial microtubule organizing center,3.18.0,2023-07-27
+corrected-cov5-mnchisq-inter-ctexcl,ploidy,MF,tested,14827,50,1571,14,6,13,0,0.0729800006553687,cytoskeletal motor activity,3.18.0,2023-07-27
+corrected-cov5-mnchisq-inter-ctexcl,heat,MF,tested,14827,446,1571,57,19,48,2,0.0376512846521767,organic cyclic compound binding,3.18.0,2023-07-27
+corrected-cov5-mnchisq-inter-ctexcl,shared,MF,tested,14827,10,1571,3,0,4,0,1,"transferase activity, transferring phosphorus-containing groups",3.18.0,2023-07-27
+corrected-cov5-mnchisq-inter-ctexcl,ploidy,BP,eligible,8464,55,5832,34,0,15,0,0.90068275326694,tRNA catabolic process,3.18.0,2023-07-27
+corrected-cov5-mnchisq-inter-ctexcl,heat,BP,eligible,8464,468,5832,129,0,40,0,0.822189361182453,male meiotic nuclear division,3.18.0,2023-07-27
+corrected-cov5-mnchisq-inter-ctexcl,shared,BP,eligible,8464,10,5832,12,0,8,0,1,cytoplasmic microtubule organization,3.18.0,2023-07-27
+corrected-cov5-mnchisq-inter-ctexcl,ploidy,CC,eligible,8828,58,783,11,0,6,0,0.350206552546565,primary lysosome,3.18.0,2023-07-27
+corrected-cov5-mnchisq-inter-ctexcl,heat,CC,eligible,8828,496,783,20,0,4,0,0.980474432031815,mitotic spindle pole,3.18.0,2023-07-27
+corrected-cov5-mnchisq-inter-ctexcl,shared,CC,eligible,8828,11,783,3,0,3,0,1,gamma-tubulin complex,3.18.0,2023-07-27
+corrected-cov5-mnchisq-inter-ctexcl,ploidy,MF,eligible,8155,50,1175,8,0,5,0,1,dystroglycan binding,3.18.0,2023-07-27
+corrected-cov5-mnchisq-inter-ctexcl,heat,MF,eligible,8155,446,1175,7,0,2,0,1,"hydrolase activity, acting on carbon-nitrogen (but not peptide) bonds, in cyclic amides",3.18.0,2023-07-27
+corrected-cov5-mnchisq-inter-ctexcl,shared,MF,eligible,8155,10,1175,2,0,1,0,1,"transferase activity, transferring phosphorus-containing groups",3.18.0,2023-07-27
+corrected-cov5-mnchisq-inter-ctexcl,interaction,BP,tested,14498,659,7427,511,338,257,90,5.06175272757979e-05,regulation of cellular process,3.18.0,2023-07-27
+corrected-cov5-mnchisq-inter-ctexcl,interaction,CC,tested,15347,673,907,85,79,73,52,1.41153000983527e-19,intracellular anatomical structure,3.18.0,2023-07-27
+corrected-cov5-mnchisq-inter-ctexcl,interaction,MF,tested,14827,613,1571,91,69,66,52,1.54579554424699e-09,protein binding,3.18.0,2023-07-27
+corrected-cov5-mnchisq-inter-ctexcl,interaction,BP,eligible,8464,659,5832,545,413,43,0,0.48908001605796,regulation of biological process,3.18.0,2023-07-27
+corrected-cov5-mnchisq-inter-ctexcl,interaction,CC,eligible,8828,673,783,72,63,2,0,1,actin cytoskeleton,3.18.0,2023-07-27
+corrected-cov5-mnchisq-inter-ctexcl,interaction,MF,eligible,8155,613,1175,75,46,5,0,0.959190009451442,protein kinase activity,3.18.0,2023-07-27
 cov5,ploidy,BP,tested,14526,3193,7431,700,476,644,466,4.69363441120699e-42,cellular nitrogen compound metabolic process,3.18.0,2023-07-27
 cov5,heat,BP,tested,14526,4732,7431,867,736,834,704,1.39087607032069e-63,primary metabolic process,3.18.0,2023-07-27
 cov5,shared,BP,tested,14526,973,7431,257,117,244,109,2.8596590125519e-12,nucleic acid metabolic process,3.18.0,2023-07-27
@@ -107,6 +131,30 @@ cov5-mnchisq,shared,CC,eligible,8902,19,785,3,0,2,0,1,"transferase complex, tran
 cov5-mnchisq,ploidy,MF,eligible,8226,69,1186,12,0,2,0,1,laminin binding,3.18.0,2023-07-27
 cov5-mnchisq,heat,MF,eligible,8226,615,1186,28,0,2,0,1,ribosome binding,3.18.0,2023-07-27
 cov5-mnchisq,shared,MF,eligible,8226,16,1186,2,0,1,0,1,"transferase activity, transferring phosphorus-containing groups",3.18.0,2023-07-27
+cov5-mnchisq-inter,ploidy,BP,tested,14526,79,7431,55,0,44,0,0.802972703014823,tRNA catabolic process,3.18.0,2023-07-27
+cov5-mnchisq-inter,heat,BP,tested,14526,660,7431,252,81,239,78,1.4066075125641e-07,organelle organization,3.18.0,2023-07-27
+cov5-mnchisq-inter,shared,BP,tested,14526,18,7431,24,0,18,0,1,endoplasmic reticulum to Golgi vesicle-mediated transport,3.18.0,2023-07-27
+cov5-mnchisq-inter,ploidy,CC,tested,15381,84,908,21,0,21,0,0.102438098810725,intracellular anatomical structure,3.18.0,2023-07-27
+cov5-mnchisq-inter,heat,CC,tested,15381,695,908,73,56,73,53,1.76304812761496e-24,intracellular anatomical structure,3.18.0,2023-07-27
+cov5-mnchisq-inter,shared,CC,tested,15381,19,908,4,0,5,0,0.784182858989161,"transferase complex, transferring phosphorus-containing groups",3.18.0,2023-07-27
+cov5-mnchisq-inter,ploidy,MF,tested,14863,69,1571,21,0,21,0,0.209608083668837,adenyl nucleotide binding,3.18.0,2023-07-27
+cov5-mnchisq-inter,heat,MF,tested,14863,615,1571,69,36,61,26,7.37622242075198e-06,heterocyclic compound binding,3.18.0,2023-07-27
+cov5-mnchisq-inter,shared,MF,tested,14863,16,1571,11,0,6,0,0.766704282600383,"transferase activity, transferring phosphorus-containing groups",3.18.0,2023-07-27
+cov5-mnchisq-inter,ploidy,BP,eligible,8531,79,5858,45,0,17,0,1,tRNA catabolic process,3.18.0,2023-07-27
+cov5-mnchisq-inter,heat,BP,eligible,8531,660,5858,130,2,27,0,1,male meiotic nuclear division,3.18.0,2023-07-27
+cov5-mnchisq-inter,shared,BP,eligible,8531,18,5858,8,0,12,0,1,endoplasmic reticulum to Golgi vesicle-mediated transport,3.18.0,2023-07-27
+cov5-mnchisq-inter,ploidy,CC,eligible,8902,84,785,13,0,6,0,0.957668880878788,primary lysosome,3.18.0,2023-07-27
+cov5-mnchisq-inter,heat,CC,eligible,8902,695,785,28,7,11,0,0.545073490622566,"transferase complex, transferring phosphorus-containing groups",3.18.0,2023-07-27
+cov5-mnchisq-inter,shared,CC,eligible,8902,19,785,3,0,2,0,1,"transferase complex, transferring phosphorus-containing groups",3.18.0,2023-07-27
+cov5-mnchisq-inter,ploidy,MF,eligible,8226,69,1186,12,0,2,0,1,laminin binding,3.18.0,2023-07-27
+cov5-mnchisq-inter,heat,MF,eligible,8226,615,1186,28,0,2,0,1,ribosome binding,3.18.0,2023-07-27
+cov5-mnchisq-inter,shared,MF,eligible,8226,16,1186,2,0,1,0,1,"transferase activity, transferring phosphorus-containing groups",3.18.0,2023-07-27
+cov5-mnchisq-inter,interaction,BP,tested,14526,749,7431,517,324,217,66,4.18065491282543e-05,regulation of cellular process,3.18.0,2023-07-27
+cov5-mnchisq-inter,interaction,CC,tested,15381,771,908,90,78,62,49,2.48913915521537e-22,intracellular anatomical structure,3.18.0,2023-07-27
+cov5-mnchisq-inter,interaction,MF,tested,14863,702,1571,100,76,68,53,9.23350075607892e-11,protein serine/threonine kinase activity,3.18.0,2023-07-27
+cov5-mnchisq-inter,interaction,BP,eligible,8531,749,5858,540,391,27,0,0.513772816191507,regulation of biological process,3.18.0,2023-07-27
+cov5-mnchisq-inter,interaction,CC,eligible,8902,771,785,70,63,4,0,1,actin cytoskeleton,3.18.0,2023-07-27
+cov5-mnchisq-inter,interaction,MF,eligible,8226,702,1186,81,67,7,0,0.377084675642573,protein kinase activity,3.18.0,2023-07-27
 ctexcl,ploidy,BP,tested,11281,363,6801,176,34,171,50,0.000884705550493308,nucleobase-containing compound metabolic process,3.18.0,2023-07-27
 ctexcl,heat,BP,tested,11281,785,6801,332,90,316,101,7.00153920545074e-09,organelle organization,3.18.0,2023-07-27
 ctexcl,shared,BP,tested,11281,71,6801,37,0,36,0,0.371541330628789,positive regulation of T cell differentiation,3.18.0,2023-07-27
@@ -125,6 +173,30 @@ ctexcl,shared,CC,eligible,5453,72,619,0,0,0,0,1,mitochondrial intermembrane spac
 ctexcl,ploidy,MF,eligible,5018,347,893,10,0,7,0,0.59407932567585,transcription coactivator binding,3.18.0,2023-07-27
 ctexcl,heat,MF,eligible,5018,721,893,31,14,19,0,0.157430452011401,adenyl nucleotide binding,3.18.0,2023-07-27
 ctexcl,shared,MF,eligible,5018,63,893,5,0,6,0,1,transcription coactivator binding,3.18.0,2023-07-27
+inter,ploidy,BP,tested,11435,542,6837,283,102,275,108,5.30603629542926e-08,RNA metabolic process,3.18.0,2023-07-27
+inter,heat,BP,tested,11435,1109,6837,374,197,366,221,7.61849577241642e-15,organelle organization,3.18.0,2023-07-27
+inter,shared,BP,tested,11435,104,6837,48,0,50,0,0.182481066894152,positive regulation of leukocyte differentiation,3.18.0,2023-07-27
+inter,ploidy,CC,tested,12094,579,801,66,48,66,54,1.82085752276171e-17,nucleus,3.18.0,2023-07-27
+inter,heat,CC,tested,12094,1157,801,96,82,98,87,1.23547041098322e-39,intracellular organelle,3.18.0,2023-07-27
+inter,shared,CC,tested,12094,111,801,21,11,22,13,0.00151488913135376,intracellular organelle,3.18.0,2023-07-27
+inter,ploidy,MF,tested,11744,517,1419,75,52,78,52,4.19107216976245e-09,ATP-dependent activity,3.18.0,2023-07-27
+inter,heat,MF,tested,11744,1021,1419,101,78,99,80,6.190354734778e-15,protein binding,3.18.0,2023-07-27
+inter,shared,MF,tested,11744,95,1419,22,0,23,0,0.154389363000592,ATPase-coupled monoatomic cation transmembrane transporter activity,3.18.0,2023-07-27
+inter,ploidy,BP,eligible,5525,542,4823,154,0,66,0,0.360188971795375,gene expression,3.18.0,2023-07-27
+inter,heat,BP,eligible,5525,1109,4823,169,22,31,0,1,regulation of organelle organization,3.18.0,2023-07-27
+inter,shared,BP,eligible,5525,104,4823,27,0,17,0,0.337596830602624,positive regulation of leukocyte differentiation,3.18.0,2023-07-27
+inter,ploidy,CC,eligible,5738,579,642,21,2,13,0,0.265774487119168,cytosol,3.18.0,2023-07-27
+inter,heat,CC,eligible,5738,1157,642,28,0,13,0,0.0753974305015093,organelle,3.18.0,2023-07-27
+inter,shared,CC,eligible,5738,111,642,2,0,2,0,1,intermediate filament cytoskeleton,3.18.0,2023-07-27
+inter,ploidy,MF,eligible,5277,517,913,31,8,14,0,0.329581288567209,ATP-dependent activity,3.18.0,2023-07-27
+inter,heat,MF,eligible,5277,1021,913,48,31,16,0,0.129436132803238,transcription coactivator binding,3.18.0,2023-07-27
+inter,shared,MF,eligible,5277,95,913,10,0,3,0,1,"hydrolase activity, acting on carbon-nitrogen (but not peptide) bonds, in cyclic amides",3.18.0,2023-07-27
+inter,interaction,BP,tested,11435,2703,6837,626,445,605,438,9.39024794364633e-32,organelle organization,3.18.0,2023-07-27
+inter,interaction,CC,tested,12094,2820,801,128,114,128,116,4.08942745267567e-89,intracellular anatomical structure,3.18.0,2023-07-27
+inter,interaction,MF,tested,11744,2568,1419,148,130,156,131,3.87585539759502e-28,heterocyclic compound binding,3.18.0,2023-07-27
+inter,interaction,BP,eligible,5557,2703,4830,407,276,128,0,0.0693063652527701,cellular developmental process,3.18.0,2023-07-27
+inter,interaction,CC,eligible,5770,2820,643,51,35,6,0,0.650169505585508,actin-based cell projection,3.18.0,2023-07-27
+inter,interaction,MF,eligible,5308,2568,916,47,27,12,0,0.347116364129986,kinase activity,3.18.0,2023-07-27
 mnchisq,ploidy,BP,tested,11435,8,6837,49,0,48,0,1,positive regulation of leukocyte differentiation,3.18.0,2023-07-27
 mnchisq,heat,BP,tested,11435,108,6837,143,4,99,4,0.00661514666680663,membrane organization,3.18.0,2023-07-27
 mnchisq,shared,BP,tested,11435,3,6837,92,0,92,0,0.154930993224661,positive regulation of leukocyte differentiation,3.18.0,2023-07-27
@@ -161,3 +233,27 @@ mnchisq-ctexcl,shared,CC,eligible,5453,3,619,4,0,4,0,0.680468563623066,CD95 deat
 mnchisq-ctexcl,ploidy,MF,eligible,5018,6,893,7,0,7,0,0.997084506040248,tumor necrosis factor receptor binding,3.18.0,2023-07-27
 mnchisq-ctexcl,heat,MF,eligible,5018,72,893,3,0,1,0,1,alcohol binding,3.18.0,2023-07-27
 mnchisq-ctexcl,shared,MF,eligible,5018,3,893,6,0,6,0,1,death receptor binding,3.18.0,2023-07-27
+mnchisq-inter,ploidy,BP,tested,11435,8,6837,49,0,48,0,1,positive regulation of leukocyte differentiation,3.18.0,2023-07-27
+mnchisq-inter,heat,BP,tested,11435,108,6837,143,4,99,4,0.00661514666680663,membrane organization,3.18.0,2023-07-27
+mnchisq-inter,shared,BP,tested,11435,3,6837,92,0,92,0,0.154930993224661,positive regulation of leukocyte differentiation,3.18.0,2023-07-27
+mnchisq-inter,ploidy,CC,tested,12094,9,801,6,0,8,0,0.938282593826102,ripoptosome,3.18.0,2023-07-27
+mnchisq-inter,heat,CC,tested,12094,110,801,41,27,42,24,2.08866956860724e-06,organelle,3.18.0,2023-07-27
+mnchisq-inter,shared,CC,tested,12094,3,801,4,0,4,0,0.529632529570741,CD95 death-inducing signaling complex,3.18.0,2023-07-27
+mnchisq-inter,ploidy,MF,tested,11744,7,1419,9,0,8,0,1,death effector domain binding,3.18.0,2023-07-27
+mnchisq-inter,heat,MF,tested,11744,98,1419,12,2,11,1,0.0417069251431251,cytoskeletal motor activity,3.18.0,2023-07-27
+mnchisq-inter,shared,MF,tested,11744,3,1419,8,0,8,0,0.872381931757115,death effector domain binding,3.18.0,2023-07-27
+mnchisq-inter,ploidy,BP,eligible,5525,8,4823,22,0,42,0,0.849297076337198,positive regulation of leukocyte differentiation,3.18.0,2023-07-27
+mnchisq-inter,heat,BP,eligible,5525,108,4823,112,1,34,0,0.223479047701898,membrane organization,3.18.0,2023-07-27
+mnchisq-inter,shared,BP,eligible,5525,3,4823,83,0,83,0,0.153629972802766,positive regulation of leukocyte differentiation,3.18.0,2023-07-27
+mnchisq-inter,ploidy,CC,eligible,5738,9,642,3,0,5,0,0.923532331393662,ripoptosome,3.18.0,2023-07-27
+mnchisq-inter,heat,CC,eligible,5738,110,642,31,12,19,0,0.119572539683494,vesicle,3.18.0,2023-07-27
+mnchisq-inter,shared,CC,eligible,5738,3,642,4,0,4,0,0.670729124118804,CD95 death-inducing signaling complex,3.18.0,2023-07-27
+mnchisq-inter,ploidy,MF,eligible,5277,7,913,5,0,6,0,1,death receptor binding,3.18.0,2023-07-27
+mnchisq-inter,heat,MF,eligible,5277,98,913,8,0,4,0,1,microtubule binding,3.18.0,2023-07-27
+mnchisq-inter,shared,MF,eligible,5277,3,913,6,0,6,0,1,death receptor binding,3.18.0,2023-07-27
+mnchisq-inter,interaction,BP,tested,11435,156,6837,131,22,58,0,0.119011184308099,regulation of small GTPase mediated signal transduction,3.18.0,2023-07-27
+mnchisq-inter,interaction,CC,tested,12094,160,801,26,7,26,9,0.00309780379781929,intracellular organelle,3.18.0,2023-07-27
+mnchisq-inter,interaction,MF,tested,11744,145,1419,36,12,35,11,0.00190806635996401,"transferase activity, transferring phosphorus-containing groups",3.18.0,2023-07-27
+mnchisq-inter,interaction,BP,eligible,5525,156,4823,132,45,16,0,1,blastoderm segmentation,3.18.0,2023-07-27
+mnchisq-inter,interaction,CC,eligible,5738,160,642,23,0,3,0,0.757463993264049,protein kinase complex,3.18.0,2023-07-27
+mnchisq-inter,interaction,MF,eligible,5277,145,913,18,4,5,0,0.471015981389868,thiolester hydrolase activity,3.18.0,2023-07-27

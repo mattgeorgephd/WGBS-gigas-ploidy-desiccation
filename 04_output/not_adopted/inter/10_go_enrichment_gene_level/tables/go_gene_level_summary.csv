@@ -1,0 +1,25 @@
+mode,set,ontology,universe,universe_genes,dml_genes,terms_tested,fisher_p_below_cutoff,fisher_q_below_fdr,wallenius_p_below_cutoff,wallenius_q_below_fdr,smallest_q_wallenius,top_term,go_db,go_source_date
+inter,ploidy,BP,tested,11435,542,6837,283,102,275,108,5.30603629542926e-08,RNA metabolic process,3.18.0,2023-07-27
+inter,heat,BP,tested,11435,1109,6837,374,197,366,221,7.61849577241642e-15,organelle organization,3.18.0,2023-07-27
+inter,shared,BP,tested,11435,104,6837,48,0,50,0,0.182481066894152,positive regulation of leukocyte differentiation,3.18.0,2023-07-27
+inter,ploidy,CC,tested,12094,579,801,66,48,66,54,1.82085752276171e-17,nucleus,3.18.0,2023-07-27
+inter,heat,CC,tested,12094,1157,801,96,82,98,87,1.23547041098322e-39,intracellular organelle,3.18.0,2023-07-27
+inter,shared,CC,tested,12094,111,801,21,11,22,13,0.00151488913135376,intracellular organelle,3.18.0,2023-07-27
+inter,ploidy,MF,tested,11744,517,1419,75,52,78,52,4.19107216976245e-09,ATP-dependent activity,3.18.0,2023-07-27
+inter,heat,MF,tested,11744,1021,1419,101,78,99,80,6.190354734778e-15,protein binding,3.18.0,2023-07-27
+inter,shared,MF,tested,11744,95,1419,22,0,23,0,0.154389363000592,ATPase-coupled monoatomic cation transmembrane transporter activity,3.18.0,2023-07-27
+inter,ploidy,BP,eligible,5525,542,4823,154,0,66,0,0.360188971795375,gene expression,3.18.0,2023-07-27
+inter,heat,BP,eligible,5525,1109,4823,169,22,31,0,1,regulation of organelle organization,3.18.0,2023-07-27
+inter,shared,BP,eligible,5525,104,4823,27,0,17,0,0.337596830602624,positive regulation of leukocyte differentiation,3.18.0,2023-07-27
+inter,ploidy,CC,eligible,5738,579,642,21,2,13,0,0.265774487119168,cytosol,3.18.0,2023-07-27
+inter,heat,CC,eligible,5738,1157,642,28,0,13,0,0.0753974305015093,organelle,3.18.0,2023-07-27
+inter,shared,CC,eligible,5738,111,642,2,0,2,0,1,intermediate filament cytoskeleton,3.18.0,2023-07-27
+inter,ploidy,MF,eligible,5277,517,913,31,8,14,0,0.329581288567209,ATP-dependent activity,3.18.0,2023-07-27
+inter,heat,MF,eligible,5277,1021,913,48,31,16,0,0.129436132803238,transcription coactivator binding,3.18.0,2023-07-27
+inter,shared,MF,eligible,5277,95,913,10,0,3,0,1,"hydrolase activity, acting on carbon-nitrogen (but not peptide) bonds, in cyclic amides",3.18.0,2023-07-27
+inter,interaction,BP,tested,11435,2703,6837,626,445,605,438,9.39024794364633e-32,organelle organization,3.18.0,2023-07-27
+inter,interaction,CC,tested,12094,2820,801,128,114,128,116,4.08942745267567e-89,intracellular anatomical structure,3.18.0,2023-07-27
+inter,interaction,MF,tested,11744,2568,1419,148,130,156,131,3.87585539759502e-28,heterocyclic compound binding,3.18.0,2023-07-27
+inter,interaction,BP,eligible,5557,2703,4830,407,276,128,0,0.0693063652527701,cellular developmental process,3.18.0,2023-07-27
+inter,interaction,CC,eligible,5770,2820,643,51,35,6,0,0.650169505585508,actin-based cell projection,3.18.0,2023-07-27
+inter,interaction,MF,eligible,5308,2568,916,47,27,12,0,0.347116364129986,kinase activity,3.18.0,2023-07-27

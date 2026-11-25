@@ -1,0 +1,25 @@
+mode,set,ontology,universe,universe_genes,dml_genes,terms_tested,fisher_p_below_cutoff,fisher_q_below_fdr,wallenius_p_below_cutoff,wallenius_q_below_fdr,smallest_q_wallenius,top_term,go_db,go_source_date
+cov5-mnchisq-inter,ploidy,BP,tested,14526,79,7431,55,0,44,0,0.802972703014823,tRNA catabolic process,3.18.0,2023-07-27
+cov5-mnchisq-inter,heat,BP,tested,14526,660,7431,252,81,239,78,1.4066075125641e-07,organelle organization,3.18.0,2023-07-27
+cov5-mnchisq-inter,shared,BP,tested,14526,18,7431,24,0,18,0,1,endoplasmic reticulum to Golgi vesicle-mediated transport,3.18.0,2023-07-27
+cov5-mnchisq-inter,ploidy,CC,tested,15381,84,908,21,0,21,0,0.102438098810725,intracellular anatomical structure,3.18.0,2023-07-27
+cov5-mnchisq-inter,heat,CC,tested,15381,695,908,73,56,73,53,1.76304812761496e-24,intracellular anatomical structure,3.18.0,2023-07-27
+cov5-mnchisq-inter,shared,CC,tested,15381,19,908,4,0,5,0,0.784182858989161,"transferase complex, transferring phosphorus-containing groups",3.18.0,2023-07-27
+cov5-mnchisq-inter,ploidy,MF,tested,14863,69,1571,21,0,21,0,0.209608083668837,adenyl nucleotide binding,3.18.0,2023-07-27
+cov5-mnchisq-inter,heat,MF,tested,14863,615,1571,69,36,61,26,7.37622242075198e-06,heterocyclic compound binding,3.18.0,2023-07-27
+cov5-mnchisq-inter,shared,MF,tested,14863,16,1571,11,0,6,0,0.766704282600383,"transferase activity, transferring phosphorus-containing groups",3.18.0,2023-07-27
+cov5-mnchisq-inter,ploidy,BP,eligible,8531,79,5858,45,0,17,0,1,tRNA catabolic process,3.18.0,2023-07-27
+cov5-mnchisq-inter,heat,BP,eligible,8531,660,5858,130,2,27,0,1,male meiotic nuclear division,3.18.0,2023-07-27
+cov5-mnchisq-inter,shared,BP,eligible,8531,18,5858,8,0,12,0,1,endoplasmic reticulum to Golgi vesicle-mediated transport,3.18.0,2023-07-27
+cov5-mnchisq-inter,ploidy,CC,eligible,8902,84,785,13,0,6,0,0.957668880878788,primary lysosome,3.18.0,2023-07-27
+cov5-mnchisq-inter,heat,CC,eligible,8902,695,785,28,7,11,0,0.545073490622566,"transferase complex, transferring phosphorus-containing groups",3.18.0,2023-07-27
+cov5-mnchisq-inter,shared,CC,eligible,8902,19,785,3,0,2,0,1,"transferase complex, transferring phosphorus-containing groups",3.18.0,2023-07-27
+cov5-mnchisq-inter,ploidy,MF,eligible,8226,69,1186,12,0,2,0,1,laminin binding,3.18.0,2023-07-27
+cov5-mnchisq-inter,heat,MF,eligible,8226,615,1186,28,0,2,0,1,ribosome binding,3.18.0,2023-07-27
+cov5-mnchisq-inter,shared,MF,eligible,8226,16,1186,2,0,1,0,1,"transferase activity, transferring phosphorus-containing groups",3.18.0,2023-07-27
+cov5-mnchisq-inter,interaction,BP,tested,14526,749,7431,517,324,217,66,4.18065491282543e-05,regulation of cellular process,3.18.0,2023-07-27
+cov5-mnchisq-inter,interaction,CC,tested,15381,771,908,90,78,62,49,2.48913915521537e-22,intracellular anatomical structure,3.18.0,2023-07-27
+cov5-mnchisq-inter,interaction,MF,tested,14863,702,1571,100,76,68,53,9.23350075607892e-11,protein serine/threonine kinase activity,3.18.0,2023-07-27
+cov5-mnchisq-inter,interaction,BP,eligible,8531,749,5858,540,391,27,0,0.513772816191507,regulation of biological process,3.18.0,2023-07-27
+cov5-mnchisq-inter,interaction,CC,eligible,8902,771,785,70,63,4,0,1,actin cytoskeleton,3.18.0,2023-07-27
+cov5-mnchisq-inter,interaction,MF,eligible,8226,702,1186,81,67,7,0,0.377084675642573,protein kinase activity,3.18.0,2023-07-27

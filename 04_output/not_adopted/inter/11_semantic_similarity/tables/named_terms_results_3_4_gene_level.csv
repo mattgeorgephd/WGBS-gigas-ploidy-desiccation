@@ -1,0 +1,24 @@
+set,phrase,go_id,gene_level_genes_annotated,gene_level_genes_with_dml,gene_level_p_wallenius,gene_level_q_wallenius,gene_level_result
+ploidy,DNA replication,GO:0006260,146,13,0.585068922681269,1,not enriched
+ploidy,homologous chromosome pairing at meiosis,GO:0007129,14,3,0.164473615942645,1,not enriched
+ploidy,chromosome segregation,GO:0007059,141,15,0.372616601281562,1,not enriched
+ploidy,ATP generation from ADP,GO:0006757,,,,,not tested: the term is not in GO.db 3.18.0
+ploidy,proton transmembrane transport,GO:1902600,7,0,1.00000000000828,1,not enriched
+ploidy,calcium ion transport,GO:0006816,78,9,0.62697155656025,1,not enriched
+heat,the MAPK cascade,GO:0000165,167,39,0.526168794561604,1,not enriched
+heat,the MAPK cascade,GO:0051403,52,14,0.335266285359511,1,not enriched
+heat,ER overload response,GO:0006983,2,1,0.381734520438333,,not tested: fewer than 5 eligible genes carry the term
+heat,signal transduction,GO:0007165,1378,323,0.268848872431434,1,not enriched
+heat,physiological responses to osmotic and oxidative stress,GO:0006970,24,5,0.562765424951278,1,not enriched
+heat,physiological responses to osmotic and oxidative stress,GO:0006979,106,18,0.765161476834244,1,not enriched
+heat,mRNA methylation,GO:0080009,2,1,0.325214689286121,,not tested: fewer than 5 eligible genes carry the term
+heat,mRNA export from the nucleus in response to heat stress,GO:0031990,2,1,0.392432795886147,,not tested: fewer than 5 eligible genes carry the term
+heat,rRNA catabolic processes,GO:0016075,9,3,0.185821978448649,1,not enriched
+shared,tRNA modification,GO:0006400,31,2,0.086301365091221,1,not enriched
+shared,RNA 3'-end processing,GO:0031123,40,2,0.123292360311384,1,not enriched
+shared,post-translational protein modification,GO:0043687,565,8,0.778168375778776,1,not enriched
+shared,calcium-mediated signaling,GO:0019722,26,3,0.0262432088800018,1,not enriched
+shared,ER overload response,GO:0006983,2,1,0.0401114738202671,,not tested: fewer than 5 eligible genes carry the term
+shared,response to osmotic stress,GO:0006970,24,1,0.373564948249276,1,not enriched
+shared,positive regulation of gene expression,GO:0010628,171,4,0.459024769249483,1,not enriched
+shared,gene silencing by RNA,GO:0031047,63,2,0.348429250515225,1,not enriched

@@ -22,7 +22,8 @@
 #
 # The shared set ("interaction-DML" of the draft) is the overlap of the ploidy and heat
 # lists, as in the draft; with option ctrl the ploidy list is the control-only list. The
-# tested interaction list (option inter) is not used by steps 06 to 13.
+# tested interaction list (option inter) is annotated by step 08 and tested by step 10
+# (2026-11-25) but is not part of these tables.
 #
 # Run:     Rscript 01_pipeline/optional/compare_downstream.R   (from the repository root,
 #          after compare_analyses.R)
