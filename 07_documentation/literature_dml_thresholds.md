@@ -8,7 +8,7 @@ Context. The draft calls a DML at SLIM q < 0.01 and an absolute difference of **
 
 | Study | Species; assay | Tool; overdispersion | Coverage | Multiple testing | Difference cutoff | Unit | Quote checked |
 |---|---|---|---|---|---|---|---|
-| Venkataraman et al. 2022, BMC Genomics 23:556, doi:10.1186/s12864-022-08781-5 | *C. gigas* gonad; WGBS | methylKit LR, chi-squared; MN | 5x; 99.9th pct | SLIM q < 0.01 | **at least 50%** | CpG | yes |
+| Venkataraman et al. 2022, BMC Genomics 23:556, doi:10.1186/s12864-022-08781-5 | *C. gigas* gonad; WGBS | methylKit LR, chi-squared; MN | 5x; 99.9th pct stated, not applied (misspelled argument; issues.md I-05, I-06) | SLIM q < 0.01 | **at least 50%** | CpG | yes |
 | Venkataraman et al. 2020, Front Mar Sci 7:225, doi:10.3389/fmars.2020.00225 | *C. virginica* gonad; MBD-BS | methylKit; not stated | 5x | SLIM q < 0.01 | **at least 50%** | CpG | yes |
 | Downey-Wall et al. 2020, Front Mar Sci 7:566419, doi:10.3389/fmars.2020.566419 | *C. virginica* mantle; MBD-BS | methylKit LR; not stated | 5x | q < 0.01 | **at least 50%** | CpG | no |
 | Venkataraman et al. 2024, Environ Epigenet 10:dvae018, doi:10.1093/eep/dvae018 | *C. virginica* gonad, sperm; WGBS | methylKit; not stated | 10x; 98th pct | q 0.01 | **50%** | CpG | no |

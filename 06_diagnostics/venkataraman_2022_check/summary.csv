@@ -1,0 +1,7 @@
+measure,real,other_splits_median,other_splits_min,other_splits_max,other_splits_at_or_above_real,other_splits_estimable,splits_not_estimable,permutation_p
+"DML (q < 0.01, more than 50 points)",1599,1140,370,1663,2,33,1,0.0882352941176471
+DML with p below 0.01 / CpGs tested,821,441,87,838,2,33,1,0.0882352941176471
+share of corrected p below 0.05 at eligible CpGs,0.120333333333333,0.1285,0.112333333333333,0.14,27,33,1,0.823529411764706
+share of corrected p below 0.01 at eligible CpGs,0.0585,0.0651666666666667,0.0545,0.0746666666666667,30,33,1,0.911764705882353
+share of corrected p below 0.001 at eligible CpGs,0.0286666666666667,0.0311666666666667,0.0253333333333333,0.0358333333333333,27,33,1,0.823529411764706
+DML at which the dispersion estimate is not above 1,705,455,178,728,,33,1,
